@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T13:24:04.979Z",
+  "generatedAt": "2026-08-21T17:46:01.851Z",
   "sources": {
     "reslshop": {
       "status": "error",
@@ -7,7 +7,7 @@
     },
     "svetkaravanu": {
       "status": "ok",
-      "parsedProducts": 16809
+      "parsedProducts": 16862
     }
   },
   "products": [
@@ -96,7 +96,7 @@
         "powerW": 1000,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -140,50 +140,6 @@
         "powerW": null,
         "currentA": 450,
         "batteryType": "lead",
-        "pureSine": null
-      }
-    },
-    {
-      "id": "svetkaravanu:24826_27955",
-      "merchant": "svetkaravanu",
-      "name": "PWM solární regulátor Victron Energy BlueSolar LCD&USB proud 20 A",
-      "description": "Kompaktní regulátor pro malé ostrovní systémy s LCD displejem a USB výstupyPWM solární regulátor Victron Energy BlueSolar LCD&USB pomáhá získávat a zejména přerozdělovat solární energii do zapojených zařízení, která chcete nabít. Regulátor má LCD displej pro sledování stavu a nastavení parametrů, díky čemuž se snadněji obsluhuje. Na zařízení najdete také 2 × USB výstupy s proudem 5 A, které se hodí například pro nabíjení mobilního telefonu. Regulátor je tak vhodný i pro nabíjení menších nebo DC spotřebičů (zařízení, která pracují se stejnosměrným proudem). Při zapojování DC spotřebičů nepřipojujte měnič napětí na DC výstup.Nabíjecí fáze a doporučení pro nabíjení:rychlé nabíjení (bulk) – generování vysokého proudu a nižšího napětí pro rychlé dobíjení vybité baterieabsorpční nabíjení (absorption) – konstantní napětí se snižováním proudu, které předchází přebíjeníudržovací nabíjení (float) – napětí se snižuje a udržuje se plně nabitý stav baterieDoporučené solární panely pro 12 V a 24 V baterie:U nabíjení 12 V akumulátorů jsou doporučené solární panely s minimálním počtem 32 článků a s maximálním počtem 108 článků s výkonem do 240Wp (panely v sérii). Je tedy možné nabíjet 12 V baterii i pomocí panelů s pracovním napětím 24 V. U 24 V baterií jsou doporučené panely s minimálním počtem 72 článků a s maximálním počtem 108 článků, maximálním proudem 20 A a výkonem do 480 Wp (2 × panel 175 Wp zapojený do série).Programovatelné nabíjecí algoritmy:Algoritmus nabíjení lze naprogramovat. V základu naleznete předprogramované algoritmy pro akumulátory typu AGM, Gel, LiFePO4 (pouze baterie s interním BMS) a kapalinové baterie. Klíčové vlastnosti PWM solárního regulátoru Victron Energy BlueSolar LCD&USB:Ochrana proti přepětí a zkratu.Programovatelná funkce ovládání osvětlení.Odpojení zařízení při detekci nízkého napětí.Ochrana proti přepólování připojení solárních panelů a baterie.Určený pro 12 V a 24 V systémy. Automatická detekce napětí, snadná instalace.DC výstup pro spotřebiče. Automatické odpojení a připojení zátěže dle stavu baterie.Programovatelný nabíjecí algoritmus. Podpora pro AGM, GEL, kapalinové a LiFePO4 baterie.USB výstupy pro dobíjení zařízení. Dva výstupy 5 V, celkem 2 A.Ochrana baterie. Regulátor chrání před nadměrným vybitím.LCD displej. Přehledné zobrazení provozních parametrů.Spolehlivý provoz. Jednoduché a bezpečné řešení pro menší fotovoltaické systémy.Parametry PWM solárního regulátoru Victron Energy BlueSolar LCD&USB:Varianta:20 A30 ANabíjecí proud:20 A30 ANapětí baterie:12 / 24 V12 / 24 VSpotřeba energie:max. 10 mAmax. 10 mAProvozní teplota (při plné zátěži):-35 až +60 °C-35 až +60 °CRozměry (Š × V × H):16,9 × 9,6 × 3,6 cm16,9 × 9,6 × 3,6 cmStupeň krytí:IP20IP20Hmotnost:150 g150 g",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Solární regulátory",
-      "category": "controller",
-      "brand": "Victron Energy",
-      "priceCzk": 949,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/pwm-solarni-regulator-victron-energy-bluesolar-lcd-usb_z24826/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fpwm-solarni-regulator-victron-energy-bluesolar-lcd-usb_z24826%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/160048_102.jpg?1704380278_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": 240,
-        "currentA": 20,
-        "batteryType": "lifepo4",
-        "pureSine": null
-      }
-    },
-    {
-      "id": "svetkaravanu:24826_27956",
-      "merchant": "svetkaravanu",
-      "name": "PWM solární regulátor Victron Energy BlueSolar LCD&USB proud 30 A",
-      "description": "Kompaktní regulátor pro malé ostrovní systémy s LCD displejem a USB výstupyPWM solární regulátor Victron Energy BlueSolar LCD&USB pomáhá získávat a zejména přerozdělovat solární energii do zapojených zařízení, která chcete nabít. Regulátor má LCD displej pro sledování stavu a nastavení parametrů, díky čemuž se snadněji obsluhuje. Na zařízení najdete také 2 × USB výstupy s proudem 5 A, které se hodí například pro nabíjení mobilního telefonu. Regulátor je tak vhodný i pro nabíjení menších nebo DC spotřebičů (zařízení, která pracují se stejnosměrným proudem). Při zapojování DC spotřebičů nepřipojujte měnič napětí na DC výstup.Nabíjecí fáze a doporučení pro nabíjení:rychlé nabíjení (bulk) – generování vysokého proudu a nižšího napětí pro rychlé dobíjení vybité baterieabsorpční nabíjení (absorption) – konstantní napětí se snižováním proudu, které předchází přebíjeníudržovací nabíjení (float) – napětí se snižuje a udržuje se plně nabitý stav baterieDoporučené solární panely pro 12 V a 24 V baterie:U nabíjení 12 V akumulátorů jsou doporučené solární panely s minimálním počtem 32 článků a s maximálním počtem 108 článků s výkonem do 240Wp (panely v sérii). Je tedy možné nabíjet 12 V baterii i pomocí panelů s pracovním napětím 24 V. U 24 V baterií jsou doporučené panely s minimálním počtem 72 článků a s maximálním počtem 108 článků, maximálním proudem 20 A a výkonem do 480 Wp (2 × panel 175 Wp zapojený do série).Programovatelné nabíjecí algoritmy:Algoritmus nabíjení lze naprogramovat. V základu naleznete předprogramované algoritmy pro akumulátory typu AGM, Gel, LiFePO4 (pouze baterie s interním BMS) a kapalinové baterie. Klíčové vlastnosti PWM solárního regulátoru Victron Energy BlueSolar LCD&USB:Ochrana proti přepětí a zkratu.Programovatelná funkce ovládání osvětlení.Odpojení zařízení při detekci nízkého napětí.Ochrana proti přepólování připojení solárních panelů a baterie.Určený pro 12 V a 24 V systémy. Automatická detekce napětí, snadná instalace.DC výstup pro spotřebiče. Automatické odpojení a připojení zátěže dle stavu baterie.Programovatelný nabíjecí algoritmus. Podpora pro AGM, GEL, kapalinové a LiFePO4 baterie.USB výstupy pro dobíjení zařízení. Dva výstupy 5 V, celkem 2 A.Ochrana baterie. Regulátor chrání před nadměrným vybitím.LCD displej. Přehledné zobrazení provozních parametrů.Spolehlivý provoz. Jednoduché a bezpečné řešení pro menší fotovoltaické systémy.Parametry PWM solárního regulátoru Victron Energy BlueSolar LCD&USB:Varianta:20 A30 ANabíjecí proud:20 A30 ANapětí baterie:12 / 24 V12 / 24 VSpotřeba energie:max. 10 mAmax. 10 mAProvozní teplota (při plné zátěži):-35 až +60 °C-35 až +60 °CRozměry (Š × V × H):16,9 × 9,6 × 3,6 cm16,9 × 9,6 × 3,6 cmStupeň krytí:IP20IP20Hmotnost:150 g150 g",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Solární regulátory",
-      "category": "controller",
-      "brand": "Victron Energy",
-      "priceCzk": 1229,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/pwm-solarni-regulator-victron-energy-bluesolar-lcd-usb_z24826/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fpwm-solarni-regulator-victron-energy-bluesolar-lcd-usb_z24826%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/160049_102.jpg?1704380278_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": 240,
-        "currentA": 30,
-        "batteryType": "lifepo4",
         "pureSine": null
       }
     },
@@ -496,28 +452,6 @@
       }
     },
     {
-      "id": "svetkaravanu:16291",
-      "merchant": "svetkaravanu",
-      "name": "Solární regulátor Schaudt MPP LRM 1218",
-      "description": "Spolehlivý solární regulátor Schaudt pro optimální výkonSolární regulátor Schaudt MPP LRM 1218 je zařízení, které umožňuje výbornou funkci připojených solárních panelů, zatímco je baterie v hlavní nabíjecí fázi, bez ohledu na sluneční záření, napětí baterie a teplotu panelu. Napětí je perfektně přizpůsobeno palubní baterii s volitelným teplotním čidlem a různými nastaveními. Balení zahrnuje připevňovací materiál a teplotní čidlo s kabelem 2,5 m. LRM 1218 je kompatibilní s SDTBUS.Klíčové vlastnosti solárního regulátoru Schaudt MPP LRM 1218:Nabíjecí proud do palubní baterie max. 20 A (startovací baterie 2,5 A).Vhodné pro 12 V kyselinové, AGM nebo gelové baterie.Charakteristika IUoU, regulační princip MPP.Rozsah nabíjecího napětí je 13,2 V – 14,9 V (teplotně řízené).LRM 1218 je kompatibilní s SDTBUS.Parametry solárního regulátoru Schaudt MPP LRM 1218:typ: LRM 1218barva: modránapětí: 24 Vnabíjecí proud palubní baterie: 20 Anabíjecí proud startovací baterie: 2,5 Arozměry (Š × V × H): 13 × 4,7 × 9 cmhmotnost: 360 grozměry balení: 21,1 × 14,9 × 10,5 cm",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Solární regulátory",
-      "category": "controller",
-      "brand": "Schaudt",
-      "priceCzk": 8249,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/solarni-regulator-schaudt-mpp-lrm-1218_z16291/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsolarni-regulator-schaudt-mpp-lrm-1218_z16291%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/134470_102.jpg?1704378299_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": null,
-        "currentA": 20,
-        "batteryType": "lead",
-        "pureSine": null
-      }
-    },
-    {
       "id": "svetkaravanu:19284_21274",
       "merchant": "svetkaravanu",
       "name": "Sinusový měnič Dometic SinePower DSP napětí 24 V stálý / špičkový výkon 150/300 W",
@@ -536,7 +470,7 @@
         "powerW": 150,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -558,7 +492,7 @@
         "powerW": 1300,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -580,13 +514,13 @@
         "powerW": 1800,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
       "id": "svetkaravanu:19287_21292",
       "merchant": "svetkaravanu",
-      "name": "Sinusový měnič Dometic SinePower DSP-T stálý / špičkový výkon 2300/4000 W napětí 24 V",
+      "name": "Sinusový měnič Dometic SinePower DSP-T napětí 24 V stálý / špičkový výkon 2300/4000 W",
       "description": "Převádění proudu z 12 V na 230 V pomocí sinusového měniče DometicSinusový měnič napětí Dometic SinePower DSP-T je navržen tak, aby převáděl proud z 12 V baterie na 230 V střídavý proud. Tím je zajištěn spolehlivý provoz elektrických spotřebičů až do 1200 W při napájení z baterie vozidla.Inteligentní obvod priority napájení ze sítě zajišťuje plynulé přepínání z napájení z baterie na síťové napájení ze zdroje, jakmile je vozidlo připojeno k elektrické síti. Při nižší zátěži dochází k automatickému přepnutí do úsporného inteligentního pohotovostního režimu.Měnič začne opět pracovat, jakmile je dosaženo přednastaveného rozsahu probuzení. Elegantní ovládací panel (není součástí balení) umožňuje intuitivní ovládání.Dometic SinePower DSP-T je vybaven ventilátorem s regulací zatížení a teploty. Dalším charakteristickým rysem je nízká hlučnost. Měnič je určen k trvalé instalaci.Klíčové vlastnosti sinusového měniče SinePower DSP-T:Úsporné přepínání zdroje šetří baterii.Energeticky úsporný inteligentní pohotovostní režim.Čisté sinusové výstupní napětí 230 V AC je vhodné pro citlivé elektrické spotřebiče.Měnič s uživatelským rozhraním pro bezchybný provoz a ovládání.Široký rozsah vstupního stejnosměrného napětí.SinePower DSP-T je vybaven integrovaným ventilátorem s regulací zatížení a teploty s nízkou hlučností.Určeno pro trvalou instalaci.Pohotovostní režim.Parametry sinusového měniče SinePower DSP-T:vstupní napětí: 24 Vvýstupní napětí: 230 VTyp:Kód produktu:stálý výkonšpičkový výkonRozměry (Š × V × H):rozměry balení:Hmotnost:DSP 1324T323/3131 300 W2 400 W28,4 × 11,8 × 40,5 cm55,5 × 41 × 23,5 cm4,8 kgDSP 1824T323/3151 800 W3 600 W28,4 × 11,8 × 40,5 cm54 × 40 × 22 cm6,1 kgDSP 2324T323/3172 300 W4 000 W28,4 × 11,8 × 48,1 cm61 × 40 × 22 cm6,6 kgDSP 3524T323/3193 500 W6 000 W32,4 × 12,2 × 49 cm65 × 42 × 22 cm10,9 kg",
       "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Měniče napětí",
       "category": "inverter",
@@ -602,7 +536,7 @@
         "powerW": 2300,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -756,7 +690,7 @@
         "powerW": 5000,
         "currentA": 60,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -778,7 +712,7 @@
         "powerW": 5000,
         "currentA": 120,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1306,7 +1240,7 @@
         "powerW": 150,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1328,7 +1262,7 @@
         "powerW": 350,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1350,7 +1284,7 @@
         "powerW": 600,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1372,7 +1306,7 @@
         "powerW": 150,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1394,7 +1328,7 @@
         "powerW": 350,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1416,7 +1350,7 @@
         "powerW": 600,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1438,7 +1372,7 @@
         "powerW": 1000,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1460,7 +1394,7 @@
         "powerW": 1500,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1482,7 +1416,7 @@
         "powerW": 2000,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1504,7 +1438,7 @@
         "powerW": 1500,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1526,7 +1460,7 @@
         "powerW": 2000,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1548,7 +1482,7 @@
         "powerW": 3000,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1878,7 +1812,7 @@
         "powerW": 2000,
         "currentA": 12,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -1900,7 +1834,7 @@
         "powerW": 1500,
         "currentA": 12,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2142,7 +2076,7 @@
         "powerW": 2000,
         "currentA": 12,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2164,7 +2098,7 @@
         "powerW": 1800,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2362,7 +2296,7 @@
         "powerW": 1500,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2384,7 +2318,7 @@
         "powerW": 1500,
         "currentA": 12,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2473,28 +2407,6 @@
         "currentA": 20,
         "batteryType": null,
         "pureSine": true
-      }
-    },
-    {
-      "id": "svetkaravanu:25830",
-      "merchant": "svetkaravanu",
-      "name": "Solární regulátor nabíjení PWM Carbest 15 A",
-      "description": "Řídící jednotka fotovoltaického nabíjení PWM CarbestSolární regulátor nabíjení PWM Carbest 15 A pro solární panely od 30 W do 360 W. Je vybaven 4 x LED diodami pro kontrolu funkčnosti. Disponuje automatickou ochranou proti přepólování baterií, solárních článků a nabíjecího výstupu. Lze nastavit pro gelové a olověné baterie s tekutým elektrolytem.Klíčové vlastnosti solárního regulátoru nabíjení PWM Carbest 15 A:Má rozsáhlou ochranu proti zkratu, přepólování přetížení a nízkému napětí baterie.Automaticky se nastavuje do výchozí polohy.Umožňuje kladné uzemnění.Snadno se instaluje na stěnu nebo lištu.Nabízí automatickou teplotní kompenzaci.Parametry solárního regulátoru nabíjení PWM Carbest 15 A:napětí: 12 Vkompenzační napětí: 14,5 (25°) (olověná baterie), 14,3 (25°) (gelová baterie)pomocné napětí: 14,8 (25°) (olověná baterie), 14,4 (25°) (gelová baterie)plovoucí napětí: 13,7 (25°) (olověná baterie), 13,6 (25°) (gelová baterie)nízkonapěťové odpojení: 11 Vnabíjecí proud spotřebiče: 12,8 Vmaximální nabíjecí proud: 15 Aspotřeba vstupního proudu: < 4 mAteplotní kompenzace: -40 °C ~ 50 °Ckrytí zařízení: IP22maximální tloušťka kabelu: 16 mm²rozměry (D × Š × V): 8,6 × 6,8 × 3,6 cmhmotnost: 145 g",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Solární regulátory",
-      "category": "controller",
-      "brand": "Carbest",
-      "priceCzk": 959,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/solarni-regulator-nabijeni-pwm-carbest-15-a_z25830/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsolarni-regulator-nabijeni-pwm-carbest-15-a_z25830%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/149374_102.jpg?1704379001_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": null,
-        "powerW": 30,
-        "currentA": 15,
-        "batteryType": "lead",
-        "pureSine": null
       }
     },
     {
@@ -2648,7 +2560,7 @@
         "powerW": 2000,
         "currentA": null,
         "batteryType": "lifepo4",
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2670,7 +2582,7 @@
         "powerW": 1800,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2714,7 +2626,7 @@
         "powerW": 600,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2736,7 +2648,7 @@
         "powerW": 1000,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2846,7 +2758,7 @@
         "powerW": 1000,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2868,7 +2780,7 @@
         "powerW": 1500,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2890,7 +2802,7 @@
         "powerW": 2000,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2934,7 +2846,7 @@
         "powerW": 2000,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -2956,7 +2868,7 @@
         "powerW": 3000,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -4386,7 +4298,7 @@
         "powerW": 500,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -4408,7 +4320,7 @@
         "powerW": 3000,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -4430,7 +4342,7 @@
         "powerW": 1000,
         "currentA": null,
         "batteryType": null,
-        "pureSine": null
+        "pureSine": true
       }
     },
     {
@@ -4539,6 +4451,28 @@
         "capacityAh": 280,
         "powerW": null,
         "currentA": 20,
+        "batteryType": "lifepo4",
+        "pureSine": null
+      }
+    },
+    {
+      "id": "svetkaravanu:26905_28290",
+      "merchant": "svetkaravanu",
+      "name": "MPPT solární regulátor EPever XTRA 12/24 V napětí 100 V proud 30 A",
+      "description": "Regulátor MPPT EPever XTRA pro solární systémyMPPT solární regulátor EPever XTRA 12/24 V je moderní regulátor nabíjení s technologií sledování bodu maximálního výkonu (MPPT), navržený pro ostrovní solární systémy. Díky špičkovému algoritmu a technologiím řízení zajišťuje účinnost sledování přes 99,5 % a maximální účinnost přeměny až 97,4 %.Regulátor série XTRA podporuje připojení volitelných LCD displejů (XDB1, XDS1, XDS2) pro snadné sledování systému a je vybaven izolovaným komunikačním rozhraním RS485 s protokolem Modbus. Kromě toho disponuje inteligentním řízením výkonu – při vysokých teplotách nebo při práci s předimenzovaným FV polem (až 1,5× jmenovitého výkonu) automaticky snižuje nabíjecí výkon a proud, čímž chrání celý systém.XTRA je vhodný jak pro olověné, tak pro lithium-iontové baterie a díky různým režimům zatížení a funkcím statistiky spotřeby je ideální volbou pro domácí, rekreační i mobilní FV instalace.Vhodný je i pro použití ve vozech a to díky možnosti zemnění na mínus pól. Přímo v MPPT regulátoru je integrován multifunkční displej pro snadný monitoring systému a případné nastavení provozních parametrů včetně kontrolních LED diod.Výkon fotovoltaických panelů nesmí být vyšší než 1,5 násobek nominálního výkonu regulátoru!Klíčové vlastnosti MPPT solárního regulátoru EPever XTRA 12/24 V:Účinnost MPPT sledování nad 99,5 %. Maximální využití sluneční energie.Maximální účinnost přeměny až 97,4 %. Nízké ztráty i při plném zatížení.Podpora lithium-iontových a olověných baterií. Flexibilní použití dle typu systému.Omezení nabíjecího výkonu a proudu. Stabilita i při velkých FV panelech (1,5násobek výkonu).Automatické snížení výkonu při přehřátí. Ochrana před přetížením a přehřátím systému.Volitelné LCD displeje. Pro přehledný monitoring (XDB1, XDS1, XDS2).RS485 Modbus komunikace. Snadná integrace a vzdálený přístup k datům.Statistiky spotřeby v reálném čase. Přesné vyhodnocení výkonu systému.Krytí IP33. Ochrana proti prachu a stříkající vodě.Parametry MPPT solárního regulátoru EPever XTRA 12/24 V:Varianta:Napětí fotovoltaiky:Nabíjecí proud:Rozměry:Hmotnost:XTRA 1210N100 V10 A17,5 × 14,3 × 4,8 cm0,57 kgXTRA 2210N100 V20 A21,7 × 15,8 × 5,7 cm0,96 kgXTRA 3210N100 V30 A23 × 16,5 × 6,3 cm1,31 kgXTRA 4210N100 V40 A25,5 × 18,5 × 6,8 cm1,7 kgModelXTRA1206NXTRA2206NXTRA1210NXTRA2210NXTRA3210NXTRA4210NXTRA3215NXTRA4215NXTRA3415NXTRA4415NJmenovité napětí systému12/24 V DC/Automatické12/24 V DC/Automatické12/24 V DC/Automatické12/24 V DC/Automatické12/24 V DC/Automatické12/24 V DC/Automatické12/24 V DC/Automatické12/24 V DC/Automatické12/24/36/48 V DC/Automaticky12/24/36/48 V DC/AutomatickyTyp baterieOlověné (utěsněné/gelové/zaplavené)/lithiové (LiFePO4/Li(NiCoMn)O2)/uživatelskéRozsah vstupního napětí baterie8～32V8～32V8～32V8～32V8～32V8～32V8～32V8～32V8～68V8～68VJmenovitý nabíjecí proud10A20A10A20A30A40A30A40A30A40AJmenovitý vybíjecí proud10A20A10A20A30A40A30A40A30A40AJmenovitý nabíjecí výkon130 W/12 V260 W/24 V260 W/12 V520 W/24 V130 W/12 V260 W/24 V260 W/12 V520 W/24 V390 W/12 V780 W/24 V520 W/12 V1040 W/24 V390 W/12 V780 W/24 V520 W/12 V1040 W/24 V390 W/12 V780 W/24 V1170 W/36 V1560 W/48 V520 W/12 V1040 W/24 V1560 W/36 V2080 W/48 VMaximální účinnost konverze97,90 %98,30 %98,20 %98,30 %98,60 %98,60 %97,60 %97,90 %98,10 %98,50 %Efektivita sledování≥99,5 %Max. napětí naprázdno FV systému60 V (při minimální provozní teplotě prostředí)46 V (při teplotě prostředí 25 °C)100 V (při minimální provozní teplotě prostředí);92 V (při teplotě prostředí 25 °C)150 V (při minimální provozní teplotě prostředí);138 V (při teplotě prostředí 25 °C)Rozsah napětí MPPT(Napětí baterie +2V) ~36V(Napětí baterie +2V) ~36V(Napětí baterie +2V) ~72V(Napětí baterie +2V) ~72V(Napětí baterie +2V) ~72V(Napětí baterie +2V) ~72V(Napětí baterie +2V) ~108V(Napětí baterie +2V) ~108V(Napětí baterie +2V) ~108V(Napětí baterie +2V) ~108VVyrovnávací napětíUtěsněné: 14,6 V, Zaplavené: 14,8 V, Uživatelsky definované: 9–17 VZvýšení napětíGelové: 14,2 V, Utěsněné: 14,4 V, Zaplavené: 14,6 V, Uživatelsky definované: 9–17 VPlovoucí napětíGelové/Utěsněné/Zaplavené: 13,8 V, Uživatelsky definované: 9–17 VNízké napětí pro opětovné připojení napětíGelové/Utěsněné/Zaplavené: 12,6 V, Uživatelsky definované: 9–17 VNízké odpojovací napětíGelové/Utěsněné/Zaplavené: 11,1 V, Uživatelsky definované: 9–17 VVlastní spotřeba≤14mA (12V) ≤15mA (24V)≤14mA (12V)≤15mA (24V)≤30mA (12V)≤16mA (24V)≤30mA (12V)≤16mA (24V)≤30mA (12V)≤16mA (24V)≤30mA (12V)≤16mA (24V)≤30mA (12V)≤16mA (24V)≤30mA (12V)≤16mA (24V)≤30mA(12V)≤16mA(24V)≤13mA(36V)≤13mA(48V)≤30mA(12V)≤16mA(24V)≤13mA(36V)≤13mA(48V)Teplotní kompenzace (pro olověné baterie)-3mV/℃/2V (výchozí)Relativní vlhkost≤95 %, NCKrytíIP33Komunikační rozhraníRS485 (RJ45)ZákladyČasté negativníRozsah provozních teplot-25℃～+50℃ (LCD); -30℃～+50℃ (bez LCD)-25℃～+45℃ (LCD); -30℃～+45℃ (bez LCD)Rozměry (DxŠxV) (mm)175×143×48217×158×56,5175×143×48217×158×56,5230×165×63255×185×67,8255×185×67,8255×187×75,7255×187×75,7255×189×83,2Čistá hmotnost0,57 kg0,96 kg0,57 kg0,96 kg1,31 kg1,70 kg1,70 kg2,07 kg2,07 kg2,47 kg1. Řídicí jednotka nedokáže automaticky identifikovat napětí systému, pokud byly připojeny lithiové baterie. 2. Uvedené napětí je pro 12V systém, *2 v 24V systému, *3 v 36V systému, *4 v 48V systému. Video:",
+      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Solární regulátory",
+      "category": "controller",
+      "brand": "Epever",
+      "priceCzk": 2139,
+      "available": true,
+      "productUrl": "https://www.svetkaravanu.cz/mppt-solarni-regulator-epever-xtra-12-24-v_z26905/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmppt-solarni-regulator-epever-xtra-12-24-v_z26905%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/152888_102.jpg?1704379102_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "powerW": null,
+        "currentA": 30,
         "batteryType": "lifepo4",
         "pureSine": null
       }
