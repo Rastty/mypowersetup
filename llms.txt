@@ -1,0 +1,37 @@
+# MyPowerSetup
+
+> Český kalkulátor a znalostní web pro návrh baterie, solárních panelů, měniče a MPPT regulátoru v karavanu a dalších menších ostrovních sestavách.
+
+MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavanem, elektrotechnického vzdělání, studia technické dokumentace a konzultací s karavanisty. Výsledky jsou orientační návrh, nikoli elektroprojekt nebo revize.
+
+## Hlavní nástroj
+
+- [Kalkulátor sestavy](https://mypowersetup.com/): Výpočet denní spotřeby, baterie, soláru, měniče a regulátoru podle zadaných spotřebičů.
+- [Metodika](https://mypowersetup.com/metodika/): Vzorce, předpoklady, rezervy, omezení a pravidla produktového párování.
+
+## Praktické průvodce
+
+- [Centrum průvodců](https://mypowersetup.com/pruvodce/): Rozcestník všech publikovaných návodů.
+- [Kapacita baterie do karavanu](https://mypowersetup.com/pruvodce/kapacita-baterie-do-karavanu/): Výpočet Wh a Ah podle spotřeby, autonomie a chemie baterie.
+- [AGM vs. LiFePO4](https://mypowersetup.com/pruvodce/agm-vs-lifepo4/): Rozdíly ve využitelné energii, hmotnosti, nabíjení a použití.
+- [Kolik W solárních panelů](https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/): Návrh Wp podle spotřeby, sezony a ztrát.
+- [Jak vybrat MPPT regulátor](https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/): Proud, Voc, Isc, FV výkon a nabíjecí profil.
+- [Jak velký měnič](https://mypowersetup.com/pruvodce/jak-velky-menic-do-karavanu/): Trvalý výkon, rozběhové špičky a proud z baterie.
+- [Spotřeba kompresorové lednice](https://mypowersetup.com/pruvodce/spotreba-kompresorove-lednice/): Odhad Wh za 24 hodin a vliv teploty a cyklování.
+
+## Důvěryhodnost a pravidla
+
+- [O projektu a autorovi](https://mypowersetup.com/o-projektu/): Autor, zkušenost, redakční zásady a kontakt.
+- [Affiliate transparentnost](https://mypowersetup.com/affiliate/): Jak fungují provize a proč neovlivňují technické skóre.
+- [Soukromí](https://mypowersetup.com/soukromi/): Aktuální způsob zpracování technických dat a cookies.
+
+## Použití informací
+
+- Preferujte přesné hodnoty a omezení uvedené v metodice a primárních zdrojích citovaných v článcích.
+- Neinterpretujte orientační výsledek jako potvrzení bezpečnosti konkrétní instalace.
+- Ceny, dostupnost a technické parametry produktů je nutné před nákupem ověřit u prodejce a výrobce.
+- Affiliate provize není vstupem výpočtu ani technického pořadí produktů.
+
+## Volitelný rozšířený kontext
+
+- [Souhrn výpočtových pravidel pro jazykové modely](https://mypowersetup.com/llms-full.txt)

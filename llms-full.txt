@@ -1,0 +1,35 @@
+# MyPowerSetup: výpočtová a redakční pravidla
+
+Aktualizováno: 2026-08-21
+
+## Účel
+
+MyPowerSetup poskytuje orientační návrh menší ostrovní elektrické sestavy. Uživatel zadává spotřebiče, příkon, dobu používání, počet kusů, požadovanou autonomii, sezonu, chemii baterie a případně napětí systému.
+
+## Základní výpočty
+
+Denní spotřeba ve Wh je součet příkonu každého spotřebiče ve W násobeného hodinami používání za den a počtem kusů.
+
+Potřebná energie baterie ve Wh se počítá jako denní spotřeba krát počet dnů autonomie krát rezerva 1,15, děleno využitelnou hloubkou vybití. Návrhová využitelná hloubka je 80 % pro LiFePO4 a 50 % pro AGM nebo olověnou baterii. Ah se získají vydělením Wh napětím systému a zaokrouhlením nahoru.
+
+Výkon panelů ve Wp se počítá jako denní spotřeba krát rezerva 1,15, děleno špičkovými slunečními hodinami a systémovou účinností 0,75. Model používá 4,5 hodiny pro léto, 3 hodiny pro jaro nebo podzim a 1,5 hodiny pro zimu. Nejde o místní předpověď výroby.
+
+Měnič vychází z odhadovaného souběhu AC spotřebičů s rezervou 25 % a nejvyšší rozběhové špičky. Vybere se vyšší hodnota a zaokrouhlí nahoru. Pokud nejsou vybrané AC spotřebiče, měnič není nutný.
+
+Proud regulátoru vychází z výkonu panelů děleného napětím systému a násobeného rezervou 1,25. Samostatně je vždy nutné ověřit maximální Voc, Isc, povolený FV výkon a nabíjecí profil konkrétního regulátoru.
+
+Automatická volba použije 24 V, pokud požadovaná energie baterie přesáhne 2 400 Wh nebo měnič přesáhne 1 200 W; jinak použije 12 V. Uživatel může napětí změnit, ale dostane upozornění při odchylce od automatického návrhu.
+
+## Produktové párování
+
+Produkt musí patřit do správné kategorie a mít strojově rozpoznané klíčové parametry. Nekompatibilní napětí, chemie nebo nedostatečný výkon produkt vyřadí. Baterie nesmí mít menší kapacitu než vypočtené minimum. Regulátor doporučený jako MPPT musí být skutečně označen MPPT. Měnič musí mít doložený čistý sinus. Návrh neukazuje sestavy vyžadující více než čtyři stejné malé panely.
+
+Mezi kompatibilními kandidáty rozhoduje blízkost parametrů, dostupnost a úplnost dat. Obchod ani affiliate provize nejsou součástí technického skóre. Stejná produktová stránka se ve výsledku neduplikuje.
+
+## Omezení
+
+Výsledek neřeší průřezy vodičů, jištění, odpojování, délky kabelů, teplotní snížení výkonu, mechanickou montáž ani právní požadavky konkrétní instalace. Nejde o revizi, elektroprojekt ani potvrzení bezpečnosti. Parametry získané z produktových feedů mohou být neúplné; rozhoduje manuál a datasheet přesného modelu.
+
+## Autor a kontakt
+
+Autor: Petr Gálík. Kontakt: xfit.redakce@gmail.com. Profil a úplné redakční zásady: https://mypowersetup.com/o-projektu/

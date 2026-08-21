@@ -62,6 +62,7 @@ test("every guide identifies Petr Gálík as its author", async () => {
     assert.ok(html.includes('"author":{"@type":"Person"'));
     assert.ok(html.includes('"name":"Petr Gálík"'));
     assert.ok(html.includes('"url":"https://mypowersetup.com/o-projektu/"'));
+    assert.ok(html.includes('Autor: <a href="/o-projektu/">Petr Gálík</a>'));
   }
 });
 
@@ -87,4 +88,30 @@ test("calculator assets are cache-busted and submit errors are visible", async (
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes("calculatorError.hidden = false"));
   assert.ok(engine.includes('from "./catalog.js?v=20260821-1"'));
+});
+
+test("homepage exposes valid website and calculator structured data", async () => {
+  const html = await readFile("index.html", "utf8");
+  const scripts = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  assert.ok(scripts.length > 0);
+  const graphs = scripts.map((match) => JSON.parse(match[1]));
+  const homepageGraph = graphs.find((entry) => Array.isArray(entry["@graph"]));
+  assert.ok(homepageGraph);
+  const types = homepageGraph["@graph"].map((entry) => entry["@type"]);
+  assert.ok(types.includes("WebSite"));
+  assert.ok(types.includes("WebApplication"));
+  assert.ok(homepageGraph["@graph"].some((entry) => entry.name === "Petr Gálík"));
+});
+
+test("LLM discovery files cover every published page and preserve safety limits", async () => {
+  const [llms, full, robots] = await Promise.all([
+    readFile("llms.txt", "utf8"),
+    readFile("llms-full.txt", "utf8"),
+    readFile("robots.txt", "utf8"),
+  ]);
+  for (const [, canonical] of pages) assert.ok(llms.includes(canonical));
+  assert.match(llms, /nikoli elektroprojekt nebo revize/i);
+  assert.match(full, /affiliate provize nejsou součástí technického skóre/i);
+  assert.match(full, /Petr Gálík/);
+  assert.ok(robots.includes("https://mypowersetup.com/llms.txt"));
 });
