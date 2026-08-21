@@ -83,9 +83,10 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260821-1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260821-2"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
+  assert.ok(app.includes('from "./products.js?v=20260821-2"'));
   assert.ok(app.includes("calculatorError.hidden = false"));
   assert.ok(engine.includes('from "./catalog.js?v=20260821-1"'));
 });
