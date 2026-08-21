@@ -43,3 +43,24 @@ test("affiliate recommendations are disclosed and measurable", async () => {
   assert.ok(app.includes('event: "affiliate_click"'));
   assert.ok(app.includes('data-product-id'));
 });
+
+test("author identity is transparent and consistent", async () => {
+  const [about, privacy] = await Promise.all([
+    readFile("o-projektu/index.html", "utf8"),
+    readFile("soukromi/index.html", "utf8"),
+  ]);
+  assert.match(about, /Petr Galík/);
+  assert.match(about, /elektrotechnické vzdělání/);
+  assert.match(about, /xfit\.redakce@gmail\.com/);
+  assert.match(privacy, /Petr Galík/);
+  assert.match(privacy, /xfit\.redakce@gmail\.com/);
+});
+
+test("every guide identifies Petr Galík as its author", async () => {
+  for (const [file] of pages.filter(([file]) => file.startsWith("pruvodce/") && file !== "pruvodce/index.html")) {
+    const html = await readFile(file, "utf8");
+    assert.ok(html.includes('"author":{"@type":"Person"'));
+    assert.ok(html.includes('"name":"Petr Galík"'));
+    assert.ok(html.includes('"url":"https://mypowersetup.com/o-projektu/"'));
+  }
+});
