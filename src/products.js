@@ -6,8 +6,57 @@ const MERCHANTS = {
   svetkaravanu: {
     hostname: "www.svetkaravanu.cz",
     affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4"
+  },
+  padabo: {
+    hostname: "www.padabo.sk",
+    affiliateBaseUrl: null
   }
 };
+
+const PRODUCT_TEXT = {
+  cs: {
+    batteryReason: (setup) => `Kapacita splňuje požadovaných ${setup.batteryAh} Ah`,
+    panelReason: (product, setup) => `${product.recommendedQuantity} ks pokryjí požadovaných ${setup.solarWatts} Wp`,
+    inverterReason: (setup) => `Trvalý výkon splňuje požadovaných ${setup.inverterWatts} W`,
+    controllerReason: (setup) => `Proud splňuje požadovaných ${setup.controllerAmps} A`,
+    systemVoltage: "napětí sestavy",
+    requirement: "Požadavek sestavy",
+    batteryLead: "Olověná technologie",
+    controllerFor: "Pro návrh panelů",
+    verify: {
+      battery: "Ověřte rozměry, BMS, nabíjecí proud a svorky.",
+      solar_panel: "Ověřte rozměry, Voc, Isc a způsob zapojení panelů.",
+      inverter: "Ověřte špičkový výkon, čistý sinus, kabeláž a vlastní spotřebu.",
+      controller: "Ověřte maximální Voc, Isc, FV výkon a profil baterie v datasheetu."
+    }
+  },
+  sk: {
+    batteryReason: (setup) => `Kapacita spĺňa požadovaných ${setup.batteryAh} Ah`,
+    panelReason: (product, setup) => `${product.recommendedQuantity} ks pokryje požadovaných ${setup.solarWatts} Wp`,
+    inverterReason: (setup) => `Trvalý výkon spĺňa požadovaných ${setup.inverterWatts} W`,
+    controllerReason: (setup) => `Prúd spĺňa požadovaných ${setup.controllerAmps} A`,
+    systemVoltage: "napätie zostavy",
+    requirement: "Požiadavka zostavy",
+    batteryLead: "Olovená technológia",
+    controllerFor: "Pre návrh panelov",
+    verify: {
+      battery: "Overte rozmery, BMS, nabíjací prúd a svorky.",
+      solar_panel: "Overte rozmery, Voc, Isc a spôsob zapojenia panelov.",
+      inverter: "Overte špičkový výkon, čistý sínus, kabeláž a vlastnú spotrebu.",
+      controller: "Overte maximálne Voc, Isc, FV výkon a profil batérie v datasheete."
+    }
+  }
+};
+
+export function configureMerchantAffiliate(merchantKey, affiliateBaseUrl) {
+  const merchant = MERCHANTS[merchantKey];
+  if (!merchant) throw new Error(`Neznámý obchod: ${merchantKey}`);
+  const url = new URL(affiliateBaseUrl);
+  if (url.protocol !== "https:" || url.hostname !== "ehub.sk") {
+    throw new Error("Affiliate odkaz musí být platná HTTPS adresa na eHub.sk.");
+  }
+  merchant.affiliateBaseUrl = url.toString();
+}
 
 export function normalizeProduct(raw, merchantKey) {
   const merchant = MERCHANTS[merchantKey];
@@ -19,7 +68,7 @@ export function normalizeProduct(raw, merchantKey) {
   const description = cleanText(raw.description);
   const fallbackText = [categoryPath, description].filter(Boolean).join(" ");
   const specs = extractSpecs(name, fallbackText);
-  if (/solární regulátory/i.test(categoryPath)) {
+  if (/solární regulátory|solárne regulátory/i.test(categoryPath)) {
     specs.currentA = extractControllerCurrent(name, description);
   }
 
@@ -43,6 +92,9 @@ export function normalizeProduct(raw, merchantKey) {
 export function buildAffiliateUrl(merchantKey, productUrl) {
   const merchant = MERCHANTS[merchantKey];
   if (!merchant) throw new Error(`Neznámý obchod: ${merchantKey}`);
+  if (!merchant.affiliateBaseUrl) {
+    throw new Error(`Affiliate program pro ${merchantKey} ještě není nakonfigurován.`);
+  }
   const destination = validateProductUrl(productUrl, merchant.hostname);
   const affiliateUrl = new URL(merchant.affiliateBaseUrl);
   affiliateUrl.searchParams.set("desturl", destination.toString());
@@ -64,39 +116,39 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
       : /\bagm\b|olov/i.test(`${primary} ${fallback}`)
         ? "lead"
         : null,
-    pureSine: /modifikovan(?:ý|á|ou) sinus/i.test(`${primary} ${fallback}`)
+    pureSine: /modifikovan(?:ý|á|ou) (?:sinus|sínus)/i.test(`${primary} ${fallback}`)
       ? false
-      : /čist(?:ý|á) sinus|pure sine|sinusov(?:ý|á) měnič|sinepower/i.test(`${primary} ${fallback}`)
+      : /čist(?:ý|á) (?:sinus|sínus)|pure sine|(?:sinusov|sínusov)(?:ý|á) (?:měnič|menič)|sinepower/i.test(`${primary} ${fallback}`)
         ? true
         : null
   };
 }
 
 export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {}) {
-  const accessory = /\b(pouzdro|obal|box|držák|rámeček|kabel|konektor|svorka|displej|ukazatel|modul|adaptér|průchodka|spojler|ventil)\b/i;
+  const accessory = /\b(pouzdro|puzdro|obal|box|držák|držiak|rámeček|rámček|kabel|kábel|konektor|svorka|displej|ukazatel|modul|adaptér|průchodka|priechodka|spojler|ventil)\b/i;
 
   const isBattery =
-    /\b(baterie|akumulátor|lifepo4|lithium|agm)\b/i.test(name) &&
-    !/vodovod|sprch|spotřební baterie|příslušenství k bateriím/i.test(`${name} ${categoryPath}`) &&
+    /\b(baterie|batéria|akumulátor|lifepo4|lithium|agm)\b/i.test(name) &&
+    !/vodovod|sprch|spotřební baterie|vodovodná batéria|príslušenstvo k batériám|příslušenství k bateriím/i.test(`${name} ${categoryPath}`) &&
     !accessory.test(name) &&
     specs.capacityAh > 0;
   if (isBattery) return "battery";
 
   const isSolarPanel =
-    /\b(solární|fotovoltaický)\s+(?:skládací\s+|přenosný\s+)?panel\b/i.test(name) &&
+    /\b(solární|solárny|fotovoltaický|fotovoltický)\s+(?:skládací\s+|skladací\s+|přenosný\s+|prenosný\s+)?panel\b/i.test(name) &&
     !accessory.test(name) &&
     specs.powerW > 0;
   if (isSolarPanel) return "solar_panel";
 
   const isInverter =
-    /měniče napětí/i.test(categoryPath) &&
-    /(měnič|invertor|inverter)/i.test(name) &&
+    /měniče napětí|meniče napätia/i.test(categoryPath) &&
+    /(měnič|menič|invertor|inverter)/i.test(name) &&
     !accessory.test(name) &&
     specs.powerW > 0;
   if (isInverter) return "inverter";
 
   const isController =
-    /solární regulátory/i.test(categoryPath) &&
+    /solární regulátory|solárne regulátory/i.test(categoryPath) &&
     /\bmppt\b/i.test(name) &&
     !accessory.test(name) &&
     specs.currentA > 0;
@@ -127,7 +179,7 @@ export function recommendProducts(products, setup, limitPerCategory = 3) {
 export function refreshCatalogProduct(product) {
   const fallbackText = [product.categoryPath, product.description].filter(Boolean).join(" ");
   const specs = extractSpecs(product.name, fallbackText);
-  if (/solární regulátory/i.test(product.categoryPath)) {
+  if (/solární regulátory|solárne regulátory/i.test(product.categoryPath)) {
     specs.currentA = extractControllerCurrent(product.name, product.description);
   }
   return {
@@ -183,7 +235,7 @@ function scoreProduct(product, setup) {
     score: Math.round(fitScore + availabilityScore + completenessScore - quantityPenalty),
     reason: recommendationReason(product, setup),
     checks: recommendationChecks(product, setup),
-    verify: verificationNote(product.category)
+    verify: verificationNote(product.category, setup.locale)
   };
 }
 
@@ -201,8 +253,8 @@ function relevantSpecValues(product) {
 function hasPureSineEvidence(product) {
   if (product.specs.pureSine === false) return false;
   if (product.specs.pureSine === true) return true;
-  return !/modifikovan(?:ý|á|ou) sinus/i.test(product.name)
-    && /čist(?:ý|á) sinus|pure sine|sinusov(?:ý|á) měnič|sinepower/i.test(product.name);
+  return !/modifikovan(?:ý|á|ou) (?:sinus|sínus)/i.test(product.name)
+    && /čist(?:ý|á) (?:sinus|sínus)|pure sine|(?:sinusov|sínusov)(?:ý|á) (?:měnič|menič)|sinepower/i.test(product.name);
 }
 
 function uniqueProductPages(candidates) {
@@ -215,37 +267,37 @@ function uniqueProductPages(candidates) {
 }
 
 function recommendationReason(product, setup) {
-  if (product.category === "battery") return `Kapacita splňuje požadovaných ${setup.batteryAh} Ah`;
-  if (product.category === "solar_panel") return `${product.recommendedQuantity} ks pokryjí požadovaných ${setup.solarWatts} Wp`;
-  if (product.category === "inverter") return `Trvalý výkon splňuje požadovaných ${setup.inverterWatts} W`;
-  return `Proud splňuje požadovaných ${setup.controllerAmps} A`;
+  const text = PRODUCT_TEXT[setup.locale] || PRODUCT_TEXT.cs;
+  if (product.category === "battery") return text.batteryReason(setup);
+  if (product.category === "solar_panel") return text.panelReason(product, setup);
+  if (product.category === "inverter") return text.inverterReason(setup);
+  return text.controllerReason(setup);
 }
 
 function recommendationChecks(product, setup) {
+  const text = PRODUCT_TEXT[setup.locale] || PRODUCT_TEXT.cs;
   if (product.category === "battery") return [
     `${product.specs.capacityAh} Ah ≥ ${setup.batteryAh} Ah`,
-    `${product.specs.voltageV} V = napětí sestavy`,
-    product.specs.batteryType === "lifepo4" ? "LiFePO₄" : "Olověná technologie"
+    `${product.specs.voltageV} V = ${text.systemVoltage}`,
+    product.specs.batteryType === "lifepo4" ? "LiFePO₄" : text.batteryLead
   ];
   if (product.category === "solar_panel") return [
     `${product.recommendedQuantity} × ${product.specs.powerW} Wp = ${product.recommendedQuantity * product.specs.powerW} Wp`,
-    `Požadavek sestavy: ${setup.solarWatts} Wp`
+    `${text.requirement}: ${setup.solarWatts} Wp`
   ];
   if (product.category === "inverter") return [
     `${product.specs.powerW} W ≥ ${setup.inverterWatts} W`,
-    `${product.specs.voltageV} V = napětí sestavy`
+    `${product.specs.voltageV} V = ${text.systemVoltage}`
   ];
   return [
     `${product.specs.currentA} A ≥ ${setup.controllerAmps} A`,
-    `Pro návrh panelů ${setup.solarWatts} Wp`
+    `${text.controllerFor} ${setup.solarWatts} Wp`
   ];
 }
 
-function verificationNote(category) {
-  if (category === "battery") return "Ověřte rozměry, BMS, nabíjecí proud a svorky.";
-  if (category === "solar_panel") return "Ověřte rozměry, Voc, Isc a způsob zapojení panelů.";
-  if (category === "inverter") return "Ověřte špičkový výkon, čistý sinus, kabeláž a vlastní spotřebu.";
-  return "Ověřte maximální Voc, Isc, FV výkon a profil baterie v datasheetu.";
+function verificationNote(category, locale) {
+  const verify = (PRODUCT_TEXT[locale] || PRODUCT_TEXT.cs).verify;
+  return verify[category] || verify.controller;
 }
 
 function validateProductUrl(value, hostname) {

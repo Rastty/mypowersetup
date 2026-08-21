@@ -1,0 +1,12 @@
+{
+  "generatedAt": null,
+  "market": "sk-SK",
+  "currency": "EUR",
+  "sources": {
+    "padabo": {
+      "status": "awaiting_affiliate_approval",
+      "productCount": 0
+    }
+  },
+  "products": []
+}

@@ -56,3 +56,23 @@ test("automatically switches a high-power setup to 24 V", () => {
   assert.ok(result.inverterWatts >= 2200);
   assert.ok(result.batteryWh >= 4100);
 });
+
+test("returns Slovak result labels and warnings without changing the calculation", () => {
+  const result = calculateSetup({
+    locale: "sk",
+    appliances: [
+      { selected: true, name: "Vodné čerpadlo", watts: 60, hours: 1, quantity: 1, ac: true, surge: 2 }
+    ],
+    autonomyDays: 1,
+    season: "winter",
+    batteryType: "lifepo4",
+    systemVoltage: "24"
+  });
+
+  assert.equal(result.seasonLabel, "Zima");
+  assert.equal(result.locale, "sk");
+  assert.equal(result.batteryLabel, "LiFePO₄");
+  assert.ok(result.warnings.some((warning) => /V zime počítajte/.test(warning)));
+  assert.ok(result.warnings.some((warning) => /Motorové spotrebiče/.test(warning)));
+  assert.ok(result.warnings.some((warning) => /odporučili 12V systém/.test(warning)));
+});
