@@ -2,6 +2,13 @@ name: Sync affiliate products
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "src/products.js"
+      - "src/feed.js"
+      - "scripts/sync-products.mjs"
+      - ".github/workflows/sync-products.yml"
   schedule:
     - cron: "17 3 * * *"
 
@@ -12,10 +19,11 @@ jobs:
   products:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
+          package-manager-cache: false
       - run: node scripts/sync-products.mjs
         env:
           RESLSHOP_FEED_URL: ${{ secrets.RESLSHOP_FEED_URL }}
