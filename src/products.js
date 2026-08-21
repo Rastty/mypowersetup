@@ -108,10 +108,10 @@ export function recommendProducts(products, setup, limitPerCategory = 3) {
     .filter(Boolean);
 
   return ["battery", "solar_panel", "inverter", "controller"].reduce((result, category) => {
-    result[category] = candidates
+    const ranked = candidates
       .filter((candidate) => candidate.product.category === category)
-      .sort((a, b) => b.score - a.score || a.product.priceCzk - b.product.priceCzk)
-      .slice(0, limitPerCategory);
+      .sort((a, b) => b.score - a.score || a.product.priceCzk - b.product.priceCzk);
+    result[category] = uniqueProductPages(ranked).slice(0, limitPerCategory);
     return result;
   }, {});
 }
@@ -135,6 +135,7 @@ function scoreProduct(product, setup) {
     product = { ...product, recommendedQuantity: quantity };
   }
   if (product.category === "inverter") {
+    if (!specs.voltageV) return null;
     if (!setup.inverterWatts || !specs.powerW || specs.powerW < setup.inverterWatts) return null;
     fit = specs.powerW / setup.inverterWatts;
   }
@@ -154,6 +155,15 @@ function scoreProduct(product, setup) {
     score: Math.round(fitScore + availabilityScore + completenessScore),
     reason: recommendationReason(product, setup)
   };
+}
+
+function uniqueProductPages(candidates) {
+  const seen = new Set();
+  return candidates.filter(({ product }) => {
+    if (seen.has(product.productUrl)) return false;
+    seen.add(product.productUrl);
+    return true;
+  });
 }
 
 function recommendationReason(product, setup) {

@@ -178,3 +178,54 @@ test("zero-watt and VA-only inverters are excluded until watts are known", () =>
   assert.equal(inverter.category, "other");
   assert.equal(inverter.priceCzk, null);
 });
+
+test("matcher rejects an inverter with unknown system voltage", () => {
+  const inverter = normalizeProduct({
+    id: "unknown-voltage",
+    name: "Sinusový měnič 1000 W",
+    category: "Elektro | Měniče napětí",
+    url: "https://www.svetkaravanu.cz/menic-bez-napeti_z505/",
+    available: true
+  }, "svetkaravanu");
+  const recommendations = recommendProducts([inverter], {
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    solarWatts: 200,
+    inverterWatts: 800,
+    controllerAmps: 20
+  });
+  assert.equal(recommendations.inverter.length, 0);
+});
+
+test("matcher shows only the best variant for one product page", () => {
+  const sharedUrl = "https://www.svetkaravanu.cz/sinepower-varianty_z506/";
+  const products = [
+    normalizeProduct({
+      id: "variant-1500",
+      name: "Sinusový měnič 12 V 1500 W",
+      category: "Elektro | Měniče napětí",
+      url: sharedUrl,
+      price: 15000,
+      available: true
+    }, "svetkaravanu"),
+    normalizeProduct({
+      id: "variant-1000",
+      name: "Sinusový měnič 12 V 1000 W",
+      category: "Elektro | Měniče napětí",
+      url: sharedUrl,
+      price: 12000,
+      available: true
+    }, "svetkaravanu")
+  ];
+  const recommendations = recommendProducts(products, {
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    solarWatts: 200,
+    inverterWatts: 1000,
+    controllerAmps: 20
+  });
+  assert.equal(recommendations.inverter.length, 1);
+  assert.equal(recommendations.inverter[0].product.id, "svetkaravanu:variant-1000");
+});
