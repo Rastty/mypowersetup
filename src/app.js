@@ -1,6 +1,6 @@
 import { APPLIANCES } from "./catalog.js?v=20260821-1";
 import { calculateSetup } from "./engine.js?v=20260821-1";
-import { recommendProducts } from "./products.js?v=20260821-1";
+import { recommendProducts } from "./products.js?v=20260821-2";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
