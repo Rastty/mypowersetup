@@ -1,5 +1,6 @@
 import { APPLIANCES } from "./catalog.js";
 import { calculateSetup } from "./engine.js";
+import { recommendProducts } from "./products.js";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -8,11 +9,24 @@ const liveConsumption = document.querySelector("#live-consumption");
 const applianceError = document.querySelector("#appliance-error");
 let currentStep = 1;
 let latestResult = null;
+let productCatalog = [];
 
 renderAppliances();
 bindChoiceCards();
 bindNavigation();
+loadProductCatalog();
 document.querySelector("#year").textContent = new Date().getFullYear();
+
+async function loadProductCatalog() {
+  try {
+    const response = await fetch("/data/products.json", { cache: "no-store" });
+    if (!response.ok) return;
+    const payload = await response.json();
+    productCatalog = Array.isArray(payload.products) ? payload.products : [];
+  } catch {
+    productCatalog = [];
+  }
+}
 
 function renderAppliances() {
   applianceGrid.innerHTML = APPLIANCES.map((appliance) => `
@@ -25,7 +39,7 @@ function renderAppliances() {
       </span>
       <span class="appliance-controls">
         <label class="mini-field">
-          <input type="number" min="0.01" max="24" step="any" value="${appliance.hours}" data-hours aria-label="Hodiny denně pro ${appliance.name}" /> h/den
+          <input type="number" min="0.01" max="24" step="0.05" value="${appliance.hours}" data-hours aria-label="Hodiny denně pro ${appliance.name}" /> h/den
         </label>
         <label class="mini-field">
           <input type="number" min="1" max="20" step="1" value="${appliance.quantity}" data-quantity aria-label="Počet kusů ${appliance.name}" /> ks
@@ -138,6 +152,78 @@ function renderResult(result) {
   document.querySelector("#result-notes").innerHTML = [...result.warnings, ...standardNotes]
     .map((note) => `<li>${note}</li>`)
     .join("");
+
+  renderProductRecommendations(result);
+}
+
+function renderProductRecommendations(result) {
+  const heading = document.querySelector("#product-heading");
+  const intro = document.querySelector("#product-intro");
+  const groups = document.querySelector("#recommendation-groups");
+  const recommendations = recommendProducts(productCatalog, result, 3);
+  const categoryLabels = {
+    battery: "Baterie",
+    solar_panel: "Solární panely",
+    inverter: "Měniče",
+    controller: "MPPT regulátory"
+  };
+  const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
+
+  if (total === 0) {
+    heading.textContent = "Připravujeme přesná produktová doporučení";
+    intro.textContent = "Produkty zveřejníme až po ověření jejich parametrů proti výsledku vaší sestavy. Nebudeme vás posílat na obecnou homepage ani označovat neověřený produkt za kompatibilní.";
+    groups.innerHTML = '<button class="button button-disabled" type="button" disabled>Produktové párování se připravuje</button>';
+    return;
+  }
+
+  heading.textContent = "Komponenty odpovídající vašemu výpočtu";
+  intro.textContent = "Nejdříve ověřujeme technickou kompatibilitu. Pořadí následně zohledňuje shodu parametrů, dostupnost a úplnost produktových dat.";
+  groups.innerHTML = Object.entries(recommendations)
+    .filter(([, items]) => items.length)
+    .map(([category, items]) => `
+      <section class="product-group">
+        <h5>${categoryLabels[category]}</h5>
+        <div class="product-grid">
+          ${items.map(({ product, reason }) => productCard(product, reason)).join("")}
+        </div>
+      </section>
+    `).join("");
+}
+
+function productCard(product, reason) {
+  return `
+    <article class="product-card">
+      ${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : ""}
+      <div class="product-card-copy">
+        <span>${escapeHtml(product.brand || merchantLabel(product.merchant))}</span>
+        <h6>${escapeHtml(product.name)}</h6>
+        <p>${escapeHtml(reason)}</p>
+        <div class="product-card-action">
+          <strong>${formatPrice(product.priceCzk)}</strong>
+          <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click>Prohlédnout produkt →</a>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function formatPrice(price) {
+  return Number.isFinite(price)
+    ? new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 }).format(price)
+    : "Cena v obchodě";
+}
+
+function merchantLabel(merchant) {
+  return merchant === "reslshop" ? "Reslshop.cz" : "SvětKaravanů.cz";
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 function resultCard(label, value, description, accent = false) {
