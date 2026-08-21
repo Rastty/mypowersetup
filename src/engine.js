@@ -92,6 +92,15 @@ export function calculateSetup(input) {
     seasonLabel: season.label,
     applianceRows,
     warnings,
+    calculation: {
+      dailyWhRaw,
+      requiredBatteryWhRaw,
+      peakSunHours: season.peakSunHours,
+      solarWattsRaw,
+      estimatedConcurrentWatts,
+      largestStartWatts,
+      automaticVoltage
+    },
     assumptions: {
       batteryMarginPercent: Math.round((BATTERY_MARGIN - 1) * 100),
       usableDepthPercent: Math.round(battery.usableDepth * 100),
