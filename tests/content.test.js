@@ -10,6 +10,10 @@ const pages = [
   ["pruvodce/jak-vybrat-mppt-regulator/index.html", "https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/"],
   ["pruvodce/jak-velky-menic-do-karavanu/index.html", "https://mypowersetup.com/pruvodce/jak-velky-menic-do-karavanu/"],
   ["pruvodce/spotreba-kompresorove-lednice/index.html", "https://mypowersetup.com/pruvodce/spotreba-kompresorove-lednice/"],
+  ["o-projektu/index.html", "https://mypowersetup.com/o-projektu/"],
+  ["metodika/index.html", "https://mypowersetup.com/metodika/"],
+  ["affiliate/index.html", "https://mypowersetup.com/affiliate/"],
+  ["soukromi/index.html", "https://mypowersetup.com/soukromi/"],
 ];
 
 for (const [file, canonical] of pages) {
@@ -23,7 +27,19 @@ for (const [file, canonical] of pages) {
   });
 }
 
-test("sitemap contains every published guide", async () => {
+test("sitemap contains every published page", async () => {
   const sitemap = await readFile("sitemap.xml", "utf8");
   for (const [, canonical] of pages) assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
+});
+
+test("affiliate recommendations are disclosed and measurable", async () => {
+  const [html, app] = await Promise.all([
+    readFile("index.html", "utf8"),
+    readFile("src/app.js", "utf8"),
+  ]);
+  assert.ok(html.includes('href="/affiliate/"'));
+  assert.match(html, /affiliate/i);
+  assert.ok(app.includes('rel="sponsored noopener"'));
+  assert.ok(app.includes('event: "affiliate_click"'));
+  assert.ok(app.includes('data-product-id'));
 });
