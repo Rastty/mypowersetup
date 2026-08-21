@@ -17,7 +17,11 @@ const types = {
 createServer((request, response) => {
   const requestPath = new URL(request.url, `http://${request.headers.host}`).pathname;
   const relativePath = requestPath === "/" ? "index.html" : requestPath.slice(1);
-  const filePath = normalize(join(root, relativePath));
+  let filePath = normalize(join(root, relativePath));
+
+  if (filePath.startsWith(root) && existsSync(filePath) && statSync(filePath).isDirectory()) {
+    filePath = join(filePath, "index.html");
+  }
 
   if (!filePath.startsWith(root) || !existsSync(filePath) || statSync(filePath).isDirectory()) {
     response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
