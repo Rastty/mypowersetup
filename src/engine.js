@@ -82,6 +82,7 @@ export function calculateSetup(input) {
     dailyWh,
     autonomyDays,
     batteryLabel: battery.label,
+    batteryType: input.batteryType || "lifepo4",
     batteryWh: requiredBatteryWh,
     batteryAh,
     solarWatts,
