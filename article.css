@@ -39,4 +39,5 @@ a { color:#176b4c; }
 .related-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
 .related-grid a { padding:20px; border:1px solid var(--line); border-radius:14px; color:var(--ink); background:white; font-weight:750; text-decoration:none; }
 .article-footer { padding:44px 24px; color:#b6c9c1; background:#09231c; text-align:center; }
+.article-footer a { color:#d7e6e0; }
 @media(max-width:800px){.article-header nav a:first-child{display:none}.article-layout{grid-template-columns:1fr;padding-top:38px}.toc{display:none}.related-grid{grid-template-columns:1fr}.article-hero{padding-top:48px}.article table{font-size:13px}.article th,.article td{padding:10px}}

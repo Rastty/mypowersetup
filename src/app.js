@@ -200,12 +200,26 @@ function productCard(product, reason) {
         <p>${escapeHtml(reason)}</p>
         <div class="product-card-action">
           <strong>${formatPrice(product.priceCzk)}</strong>
-          <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click>Prohlédnout produkt →</a>
+          <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Prohlédnout produkt →</a>
         </div>
       </div>
     </article>
   `;
 }
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("[data-affiliate-click]");
+  if (!link) return;
+  const detail = {
+    event: "affiliate_click",
+    productId: link.dataset.productId,
+    merchant: link.dataset.merchant,
+    category: link.dataset.category
+  };
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(detail);
+  document.dispatchEvent(new CustomEvent("mypowersetup:affiliate-click", { detail }));
+});
 
 function formatPrice(price) {
   return Number.isFinite(price)
