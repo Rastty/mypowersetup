@@ -32,3 +32,9 @@ npm test
 - Regulátor: proud panelů při zvoleném napětí systému s 25% rezervou.
 
 Výsledek je orientační návrh, ne elektroprojekt. Před nákupem je nutné ověřit štítkové hodnoty a bezpečnostní prvky konkrétní instalace.
+
+## Zdroj pravdy a nasazení
+
+Repozitář `Rastty/mypowersetup` je jediný kanonický zdroj produktu. Dočasná adresa `*.chatgpt.site` slouží pouze k rychlé uživatelské kontrole během vývoje; produkční nasazení na `mypowersetup.com` musí vycházet z tohoto repozitáře.
+
+Affiliate odkazy se publikují pouze jako deeplinky na konkrétní produkty, které prošly kompatibilitním filtrem. Výchozí odkazy na homepage se jako produktové doporučení nepoužívají.
