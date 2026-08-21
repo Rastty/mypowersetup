@@ -121,3 +121,60 @@ test("classifier accepts products only with their required technical value", () 
   assert.equal(inverter.category, "inverter");
   assert.equal(inverter.specs.powerW, 1000);
 });
+
+test("product title takes precedence over conflicting description values", () => {
+  const panel = normalizeProduct({
+    id: "panel-135",
+    name: "Solární panel Phaesun Sun Plus (Wp) 135",
+    description: "Produktová řada je dostupná také ve variantě 45 W.",
+    category: "Elektro | Solární panely | Fotovoltaické panely",
+    url: "https://www.svetkaravanu.cz/phaesun-135_z500/"
+  }, "svetkaravanu");
+  assert.equal(panel.category, "solar_panel");
+  assert.equal(panel.specs.powerW, 135);
+});
+
+test("MPPT model suffix is used as controller current", () => {
+  const controller = normalizeProduct({
+    id: "mppt-100-50",
+    name: "Solární regulátor Victron SmartSolar MPPT 100/50",
+    description: "V nabídce jsou také regulátory s proudem 30 A.",
+    category: "Elektro | Solární regulátory",
+    url: "https://www.svetkaravanu.cz/victron-100-50_z501/"
+  }, "svetkaravanu");
+  assert.equal(controller.category, "controller");
+  assert.equal(controller.specs.currentA, 50);
+});
+
+test("controller model number is not mistaken for amperage", () => {
+  const controller = normalizeProduct({
+    id: "suncontrol-2",
+    name: "Solární regulátor Dometic NDS SunControl 2",
+    description: "Maximální nabíjecí proud 20 A.",
+    category: "Elektro | Solární regulátory",
+    url: "https://www.svetkaravanu.cz/suncontrol-2_z502/"
+  }, "svetkaravanu");
+  assert.equal(controller.specs.currentA, 20);
+});
+
+test("decimal lithium voltage is normalized to nominal system voltage", () => {
+  const battery = normalizeProduct({
+    id: "lifepo-128",
+    name: "LiFePO4 baterie 12,8 V 100 Ah",
+    category: "Elektro | Baterie",
+    url: "https://www.svetkaravanu.cz/lifepo4-128v_z503/"
+  }, "svetkaravanu");
+  assert.equal(battery.specs.voltageV, 12);
+});
+
+test("zero-watt and VA-only inverters are excluded until watts are known", () => {
+  const inverter = normalizeProduct({
+    id: "va-only",
+    name: "Měnič napětí Victron Phoenix 250 VA",
+    description: "Spotřeba v režimu ECO je 0 W.",
+    category: "Elektro | Měniče napětí",
+    url: "https://www.svetkaravanu.cz/phoenix-250va_z504/"
+  }, "svetkaravanu");
+  assert.equal(inverter.category, "other");
+  assert.equal(inverter.priceCzk, null);
+});
