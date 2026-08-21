@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { parseProductFeed } from "../src/feed.js";
-import { buildAffiliateUrl, normalizeProduct, recommendProducts } from "../src/products.js";
+import { buildAffiliateUrl, normalizeProduct, recommendProducts, refreshCatalogProduct } from "../src/products.js";
 
 test("affiliate deeplink keeps the exact product destination", () => {
   const destination = "https://www.reslshop.cz/markyza-pro-obytne-dodavky-charly-charlyne/";
@@ -200,6 +200,105 @@ test("decimal lithium voltage is normalized to nominal system voltage", () => {
     url: "https://www.svetkaravanu.cz/lifepo4-128v_z503/"
   }, "svetkaravanu");
   assert.equal(battery.specs.voltageV, 12);
+});
+
+test("nominal battery voltage is found after charging voltages in description", () => {
+  const battery = normalizeProduct({
+    id: "gel-130",
+    name: "Gelová baterie Victron Energy VRLA GEL kapacita 130 Ah",
+    description: "Doporučené nabíjecí napětí 14,2–14,6 V. Pracovní napětí: 12 V.",
+    category: "Elektro | Baterie | Gelové baterie",
+    url: "https://www.svetkaravanu.cz/gelova-baterie_z508/"
+  }, "svetkaravanu");
+  assert.equal(battery.specs.voltageV, 12);
+});
+
+test("panel operating voltage does not exclude it from a 12 V MPPT system", () => {
+  const panel = normalizeProduct({
+    id: "panel-vmp-205",
+    name: "Skládací solární panel Carbest HC130 – 130 W",
+    description: "Jmenovité napětí Vmp: 20,5 V. Napětí otevřeného obvodu Voc: 24 V.",
+    category: "Elektro | Solární panely a příslušenství | Přenosné solární sady",
+    url: "https://www.svetkaravanu.cz/panel-hc130_z509/",
+    available: true
+  }, "svetkaravanu");
+  const recommendations = recommendProducts([panel], {
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    solarWatts: 250,
+    inverterWatts: 800,
+    controllerAmps: 30
+  });
+  assert.equal(recommendations.solar_panel.length, 1);
+  assert.equal(recommendations.solar_panel[0].product.recommendedQuantity, 2);
+});
+
+test("stored catalog products are refreshed with the current parser before ranking", () => {
+  const stored = {
+    id: "svetkaravanu:gel-130",
+    merchant: "svetkaravanu",
+    name: "Gelová baterie Victron Energy VRLA GEL kapacita 130 Ah",
+    description: "Nabíjecí napětí 14,2 V. Pracovní napětí: 12 V.",
+    categoryPath: "Elektro | Baterie | Gelové baterie",
+    category: "battery",
+    available: true,
+    productUrl: "https://www.svetkaravanu.cz/gelova-baterie_z510/",
+    affiliateUrl: "https://ehub.cz/example",
+    specs: { voltageV: null, capacityAh: 130, batteryType: "lead" }
+  };
+  const refreshed = refreshCatalogProduct(stored);
+  assert.equal(refreshed.specs.voltageV, 12);
+  const recommendations = recommendProducts([stored], {
+    systemVoltage: 12,
+    batteryAh: 120,
+    batteryType: "lead",
+    solarWatts: 200,
+    inverterWatts: 800,
+    controllerAmps: 20
+  });
+  assert.equal(recommendations.battery.length, 1);
+});
+
+test("selected inverter variant voltage wins over shared 12/24 V family text", () => {
+  const inverter = normalizeProduct({
+    id: "dpsi-24",
+    name: "Měnič Dometic SinePower DPSI 12 V nebo 24 V výkon 1000 W napětí 24 V",
+    category: "Elektro | Měniče napětí",
+    url: "https://www.svetkaravanu.cz/dpsi-24_z511/",
+    available: true
+  }, "svetkaravanu");
+  assert.equal(inverter.specs.voltageV, 24);
+  const recommendations = recommendProducts([inverter], {
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    solarWatts: 200,
+    inverterWatts: 800,
+    controllerAmps: 20
+  });
+  assert.equal(recommendations.inverter.length, 0);
+});
+
+test("irrelevant incidental specs do not boost battery ranking", () => {
+  const base = {
+    name: "LiFePO4 baterie 12 V 100 Ah",
+    category: "Elektro | Baterie",
+    available: true
+  };
+  const products = [
+    normalizeProduct({ ...base, id: "expensive", description: "BMS 100 A, displej 5 W", price: 20000, url: "https://www.svetkaravanu.cz/battery-expensive_z512/" }, "svetkaravanu"),
+    normalizeProduct({ ...base, id: "fair", price: 15000, url: "https://www.svetkaravanu.cz/battery-fair_z513/" }, "svetkaravanu")
+  ];
+  const recommendations = recommendProducts(products, {
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    solarWatts: 200,
+    inverterWatts: 800,
+    controllerAmps: 20
+  });
+  assert.equal(recommendations.battery[0].product.id, "svetkaravanu:fair");
 });
 
 test("zero-watt and VA-only inverters are excluded until watts are known", () => {
