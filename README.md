@@ -9,6 +9,17 @@ Rychlý český kalkulátor pro návrh ostrovní elektrické sestavy. Uživatel 
 - statická aplikace vhodná pro libovolný hosting,
 - připraveno pro pozdější affiliate produktové karty bez vazby na konkrétní obchod.
 
+## Produktová data a affiliate odkazy
+
+Produktový katalog se generuje z feedů Reslshop a SvětKaravanů pomocí `npm run sync:products`.
+URL feedů se neukládají do repozitáře; synchronizace je čte z proměnných
+`RESLSHOP_FEED_URL` a `SVETKARAVANU_FEED_URL`. Výstupem je normalizovaný
+`data/products.json` pouze s relevantními bateriemi, panely, měniči a regulátory.
+
+Kompatibilitní engine nejprve kontroluje napětí a požadovaný výkon, kapacitu nebo proud.
+Teprve poté produkty boduje. Affiliate URL vždy obsahuje `desturl` konkrétního produktu
+a validátor odmítne odkaz na homepage obchodu.
+
 ## Lokální spuštění
 
 ```bash
@@ -32,9 +43,3 @@ npm test
 - Regulátor: proud panelů při zvoleném napětí systému s 25% rezervou.
 
 Výsledek je orientační návrh, ne elektroprojekt. Před nákupem je nutné ověřit štítkové hodnoty a bezpečnostní prvky konkrétní instalace.
-
-## Zdroj pravdy a nasazení
-
-Repozitář `Rastty/mypowersetup` je jediný kanonický zdroj produktu. Dočasná adresa `*.chatgpt.site` slouží pouze k rychlé uživatelské kontrole během vývoje; produkční nasazení na `mypowersetup.com` musí vycházet z tohoto repozitáře.
-
-Affiliate odkazy se publikují pouze jako deeplinky na konkrétní produkty, které prošly kompatibilitním filtrem. Výchozí odkazy na homepage se jako produktové doporučení nepoužívají.
