@@ -7,6 +7,7 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 ## Hlavní nástroj
 
 - [Kalkulátor sestavy](https://mypowersetup.com/): Výpočet denní spotřeby, baterie, soláru, měniče a regulátoru podle zadaných spotřebičů.
+- [Slovenská kalkulačka zostavy](https://mypowersetup.com/sk/): Slovenská lokalizácia výpočtu spotreby, batérie, soláru, meniča a regulátora.
 - [Metodika](https://mypowersetup.com/metodika/): Vzorce, předpoklady, rezervy, omezení a pravidla produktového párování.
 
 ## Praktické průvodce

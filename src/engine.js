@@ -5,12 +5,31 @@ const SOLAR_SYSTEM_EFFICIENCY = 0.75;
 const SOLAR_MARGIN = 1.15;
 const INVERTER_MARGIN = 1.25;
 
+const ENGINE_TEXT = {
+  cs: {
+    seasons: { summer: "Léto", shoulder: "Jaro / podzim", winter: "Zima" },
+    batteries: { lifepo4: "LiFePO₄", lead: "AGM / olovo" },
+    winterWarning: "V zimě počítejte s velkými výkyvy výroby a záložním způsobem dobíjení.",
+    surgeWarning: "Motorové spotřebiče mohou mít krátkou rozběhovou špičku; ověřte ji v dokumentaci výrobce.",
+    voltageWarning: (voltage) => `Pro tuto velikost sestavy bychom standardně doporučili ${voltage}V systém.`
+  },
+  sk: {
+    seasons: { summer: "Leto", shoulder: "Jar / jeseň", winter: "Zima" },
+    batteries: { lifepo4: "LiFePO₄", lead: "AGM / olovo" },
+    winterWarning: "V zime počítajte s veľkými výkyvmi výroby a záložným spôsobom dobíjania.",
+    surgeWarning: "Motorové spotrebiče môžu mať krátku rozbehovú špičku; overte ju v dokumentácii výrobcu.",
+    voltageWarning: (voltage) => `Pre túto veľkosť zostavy by sme štandardne odporučili ${voltage}V systém.`
+  }
+};
+
 export function roundUp(value, step) {
   if (!Number.isFinite(value) || value <= 0) return 0;
   return Math.ceil(value / step) * step;
 }
 
 export function calculateSetup(input) {
+  const locale = input.locale === "sk" ? "sk" : "cs";
+  const text = ENGINE_TEXT[locale];
   const appliances = (input.appliances || []).filter((item) => item.selected);
   if (appliances.length === 0) {
     throw new Error("Vyberte alespoň jeden spotřebič.");
@@ -69,19 +88,20 @@ export function calculateSetup(input) {
 
   const warnings = [];
   if (input.season === "winter") {
-    warnings.push("V zimě počítejte s velkými výkyvy výroby a záložním způsobem dobíjení.");
+    warnings.push(text.winterWarning);
   }
   if (acLoads.some((item) => (item.surge || 1) >= 2)) {
-    warnings.push("Motorové spotřebiče mohou mít krátkou rozběhovou špičku; ověřte ji v dokumentaci výrobce.");
+    warnings.push(text.surgeWarning);
   }
   if (input.systemVoltage !== "auto" && Number(input.systemVoltage) !== automaticVoltage) {
-    warnings.push(`Pro tuto velikost sestavy bychom standardně doporučili ${automaticVoltage}V systém.`);
+    warnings.push(text.voltageWarning(automaticVoltage));
   }
 
   return {
+    locale,
     dailyWh,
     autonomyDays,
-    batteryLabel: battery.label,
+    batteryLabel: text.batteries[input.batteryType] || text.batteries.lifepo4,
     batteryType: input.batteryType || "lifepo4",
     batteryWh: requiredBatteryWh,
     batteryAh,
@@ -89,7 +109,7 @@ export function calculateSetup(input) {
     inverterWatts,
     controllerAmps,
     systemVoltage,
-    seasonLabel: season.label,
+    seasonLabel: text.seasons[input.season] || text.seasons.summer,
     applianceRows,
     warnings,
     calculation: {

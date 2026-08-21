@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { parseProductFeed } from "../src/feed.js";
-import { buildAffiliateUrl, normalizeProduct, recommendProducts, refreshCatalogProduct } from "../src/products.js";
+import { buildAffiliateUrl, configureMerchantAffiliate, normalizeProduct, recommendProducts, refreshCatalogProduct } from "../src/products.js";
 
 test("affiliate deeplink keeps the exact product destination", () => {
   const destination = "https://www.reslshop.cz/markyza-pro-obytne-dodavky-charly-charlyne/";
@@ -16,6 +16,29 @@ test("affiliate deeplink refuses a merchant homepage", () => {
   assert.throws(
     () => buildAffiliateUrl("svetkaravanu", "https://www.svetkaravanu.cz/"),
     /homepage/
+  );
+});
+
+test("Padabo stays disabled until approved eHub.sk tracking is configured", () => {
+  assert.throws(
+    () => buildAffiliateUrl("padabo", "https://www.padabo.sk/solarny-panel-200-w/"),
+    /není nakonfigurován/
+  );
+  assert.throws(
+    () => configureMerchantAffiliate("padabo", "https://example.com/click"),
+    /eHub\.sk/
+  );
+  configureMerchantAffiliate(
+    "padabo",
+    "https://ehub.sk/system/scripts/click.php?a_aid=test&a_bid=program"
+  );
+  const affiliate = new URL(
+    buildAffiliateUrl("padabo", "https://www.padabo.sk/solarny-panel-200-w/")
+  );
+  assert.equal(affiliate.hostname, "ehub.sk");
+  assert.equal(
+    affiliate.searchParams.get("desturl"),
+    "https://www.padabo.sk/solarny-panel-200-w/"
   );
 });
 
@@ -401,4 +424,57 @@ test("matcher shows only the best variant for one product page", () => {
   });
   assert.equal(recommendations.inverter.length, 1);
   assert.equal(recommendations.inverter[0].product.id, "svetkaravanu:variant-1000");
+});
+
+test("product recommendation explanations support Slovak locale", () => {
+  const battery = normalizeProduct({
+    id: "sk-battery",
+    name: "LiFePO4 batéria 12 V 100 Ah",
+    category: "Elektro | Batérie",
+    url: "https://www.svetkaravanu.cz/sk-battery_z514/",
+    available: true
+  }, "svetkaravanu");
+  const recommendations = recommendProducts([battery], {
+    locale: "sk",
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    solarWatts: 200,
+    inverterWatts: 800,
+    controllerAmps: 20
+  });
+  assert.match(recommendations.battery[0].reason, /Kapacita spĺňa/);
+  assert.match(recommendations.battery[0].checks[1], /napätie zostavy/);
+  assert.match(recommendations.battery[0].verify, /Overte rozmery/);
+});
+
+test("classifier recognizes Slovak Padabo category and product wording", () => {
+  const battery = normalizeProduct({
+    id: "sk-lifepo4",
+    name: "LiFePO4 batéria 12 V 150 Ah",
+    category: "Elektro pre karavany | Batérie",
+    url: "https://www.svetkaravanu.cz/sk-lifepo4_z515/"
+  }, "svetkaravanu");
+  const panel = normalizeProduct({
+    id: "sk-panel",
+    name: "Skladací solárny panel 200 W",
+    category: "Solárne panely",
+    url: "https://www.svetkaravanu.cz/sk-panel_z516/"
+  }, "svetkaravanu");
+  const inverter = normalizeProduct({
+    id: "sk-inverter",
+    name: "Sínusový menič 12 V 1000 W pure sine",
+    category: "Elektro | Meniče napätia",
+    url: "https://www.svetkaravanu.cz/sk-inverter_z517/"
+  }, "svetkaravanu");
+  const controller = normalizeProduct({
+    id: "sk-controller",
+    name: "Solárny regulátor MPPT 100/30",
+    category: "Elektro | Solárne regulátory",
+    url: "https://www.svetkaravanu.cz/sk-controller_z518/"
+  }, "svetkaravanu");
+  assert.deepEqual(
+    [battery.category, panel.category, inverter.category, controller.category],
+    ["battery", "solar_panel", "inverter", "controller"]
+  );
 });

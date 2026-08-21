@@ -104,6 +104,28 @@ test("homepage exposes valid website and calculator structured data", async () =
   assert.ok(homepageGraph["@graph"].some((entry) => entry.name === "Petr Gálík"));
 });
 
+test("Slovak calculator is localized, indexable and isolated from Czech products", async () => {
+  const [html, app, catalog, payload, sitemap] = await Promise.all([
+    readFile("sk/index.html", "utf8"),
+    readFile("src/app-sk.js", "utf8"),
+    readFile("src/catalog-sk.js", "utf8"),
+    readFile("data/products-sk.json", "utf8"),
+    readFile("sitemap.xml", "utf8"),
+  ]);
+  assert.ok(html.includes('<html lang="sk">'));
+  assert.ok(html.includes('<link rel="canonical" href="https://mypowersetup.com/sk/"'));
+  assert.ok(html.includes('hreflang="cs-CZ"'));
+  assert.ok(html.includes('hreflang="sk-SK"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260821-sk1"'));
+  assert.ok(app.includes('fetch("/data/products-sk.json"'));
+  assert.ok(app.includes('locale: "sk"'));
+  assert.ok(app.includes('currency: "EUR"'));
+  assert.match(catalog, /Kompresorová chladnička/);
+  assert.equal(JSON.parse(payload).market, "sk-SK");
+  assert.ok(sitemap.includes("<loc>https://mypowersetup.com/sk/</loc>"));
+  assert.doesNotMatch(html, /href="\/sk\/(?:sprievodca|metodika|affiliate|sukromie|o-projekte)/);
+});
+
 test("LLM discovery files cover every published page and preserve safety limits", async () => {
   const [llms, full, robots] = await Promise.all([
     readFile("llms.txt", "utf8"),
