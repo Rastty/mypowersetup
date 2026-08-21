@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T13:09:25.258Z",
+  "generatedAt": "2026-08-21T13:20:53.593Z",
   "sources": {
     "reslshop": {
       "status": "error",
@@ -11,72 +11,6 @@
     }
   },
   "products": [
-    {
-      "id": "svetkaravanu:24820_26587",
-      "merchant": "svetkaravanu",
-      "name": "Měnič napětí Victron Energy Phoenix VE.Direct varianta 250 VA napětí 12 V",
-      "description": "Sinusový měnič napětí Victron EnergyVictron Energy Phoenix VE.Direct je plně konfigurovatelný sinusový měnič napětí, který je vhodný k instalaci do obytných aut, karavanů a lodí. Vyznačuje se řadou funkcí, které jsou popsány níže, snadnou obsluhou a příznivou cenou. Obsahuje účinný robustní toroidní transformátor.Instalace měniče je nyní jednodušší, než kdy předtím – terminály jsou dostupnější. Díky portu VE.Direct lze připojit měnič k počítači (vyžaduje kabel – příslušenství) nebo ke smartphonům, tabletům, MacBookům a dalším zařízením s OS Android/iOS (přes VE.Direct Bluetooth Smart dongle). Mezi možnosti konfigurace patří:alarm nízkého napětí baterie a resetování úrovniúrovně vypnutí a restartu během nízkého napětí bateriedynamické vypínání: úroveň vypínání závislá na zatíženívýstupní napětí: 210–245 Vfrekvence: 50/60 Hzzapnutí/vypnutí režimu ECO a úroveň snímání režimu ECOStřídače jsou odolné vůči zkratu a chráněny proti přehřátí či přetížení v důsledku vysoké teploty okolí. Měnič Smart má vysoký startovací výkon, který je tak potřebný ke spuštění zátěží, jako jsou měniče pro LED žárovky, halogenové žárovky, lednice nebo elektrické nářadí.Přístroj je vybaven ECO režimem. Ten v případě potřeby přepne měnič do pohotovostního režimu, jakmile zařízení klesne pod přednastavenou hodnotu. V tomto režimu se střídač zapíná každých 2,5 sekundy (nastavitelné). K opětovnému provozu dojde, až zátěž překročí přednastavenou úroveň.Dvoupólový konektor umožňuje připojení dálkového vypínače nebo relé kontaktu. LED diody nabízí možnost diagnostiky přístroje (viz návod k použití). Výše zmíněnou aplikaci VictronConnect můžete nainstalovat do telefonu, tabletu nebo počítače s OS Android, iOS, Windows a macOS. Připojení probíhá prostřednictvím Bluetooth, nebo přes USB rozhraní s portem VE.DirectKlíčové vlastnosti měniče napětí Victron Phoenix VE.Direct:Lze monitorovat a nastavovat pomocí kabelu nebo Bluetooth.Umí dodávat vysoký startovací výkon pro náročné spotřebiče.Jednoduchá instalace měniče Smart Victron Energy Phoenix.Nastavitelné parametry, včetně alarmů, frekvence atd..Mobilní aplikace VictronConnect usnadňuje správu.Disponuje ochranou proti přehřátí, zkratu a přetížení.Měřič odebírá málo elektřiny v pohotovostním režimu.Parametry měniče napětí Victron Phoenix VE.Direct:výstupní napětí: 230 VUSB port: anopřipojení 230 V AC: Schuko (CEE 7/4)rozpětí provozních teplot: –40 až +65 °Cvlhkost (nekondenzující): max. 95 %třída ochrany: IP21kód produktu:PIN121251200PIN121371200PIN121501200PIN121801200PIN122121200PIN482120200varianta:250 VA375 VA500 VA800 VA1 200 VA1 200 VAvstupní napětí:12 V12 V12 V12 V12 V48 Vmax. účinnost:87 %89 %90 %90 %91 %92 %jmenovitý výkon:200 W300 W400 W650 W1 000 W1 000 Wšpičkový výkon:400 W700 W900 W1 500 W2 200 W2 200 Wspotřeba při nulovém zatížení:< 4,2 W< 5,6 W< 6 W< 6,5 W< 7 W< 10 Wspotřeba při nulovém zatížení (ECO):< 0,8 W< 0,9 W< 1 W< 1 W< 1 W< 3 Wrozměry (Š × V × H):16,5 × 8,6 × 26 cm16,5 × 8,6 × 26 cm17,2 × 8,6 × 27,5 cm21,6 × 10,5 × 30,5 cm23,2 × 11,7 × 32,7 cm23,2 × 11,7 × 32,7 cmhmotnost: 2,4 kg3 kg3,9 kg5,5 kg7,4 kg7,4 kg",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Měniče napětí",
-      "category": "inverter",
-      "brand": "Victron Energy",
-      "priceCzk": 2389,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/menic-napeti-victron-energy-phoenix-ve-direct_z24820/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-victron-energy-phoenix-ve-direct_z24820%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/158723_102.jpg?1704380233_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": 0,
-        "currentA": 40,
-        "batteryType": null,
-        "pureSine": null
-      }
-    },
-    {
-      "id": "svetkaravanu:24820_26588",
-      "merchant": "svetkaravanu",
-      "name": "Měnič napětí Victron Energy Phoenix VE.Direct varianta 800 VA napětí 12 V",
-      "description": "Sinusový měnič napětí Victron EnergyVictron Energy Phoenix VE.Direct je plně konfigurovatelný sinusový měnič napětí, který je vhodný k instalaci do obytných aut, karavanů a lodí. Vyznačuje se řadou funkcí, které jsou popsány níže, snadnou obsluhou a příznivou cenou. Obsahuje účinný robustní toroidní transformátor.Instalace měniče je nyní jednodušší, než kdy předtím – terminály jsou dostupnější. Díky portu VE.Direct lze připojit měnič k počítači (vyžaduje kabel – příslušenství) nebo ke smartphonům, tabletům, MacBookům a dalším zařízením s OS Android/iOS (přes VE.Direct Bluetooth Smart dongle). Mezi možnosti konfigurace patří:alarm nízkého napětí baterie a resetování úrovniúrovně vypnutí a restartu během nízkého napětí bateriedynamické vypínání: úroveň vypínání závislá na zatíženívýstupní napětí: 210–245 Vfrekvence: 50/60 Hzzapnutí/vypnutí režimu ECO a úroveň snímání režimu ECOStřídače jsou odolné vůči zkratu a chráněny proti přehřátí či přetížení v důsledku vysoké teploty okolí. Měnič Smart má vysoký startovací výkon, který je tak potřebný ke spuštění zátěží, jako jsou měniče pro LED žárovky, halogenové žárovky, lednice nebo elektrické nářadí.Přístroj je vybaven ECO režimem. Ten v případě potřeby přepne měnič do pohotovostního režimu, jakmile zařízení klesne pod přednastavenou hodnotu. V tomto režimu se střídač zapíná každých 2,5 sekundy (nastavitelné). K opětovnému provozu dojde, až zátěž překročí přednastavenou úroveň.Dvoupólový konektor umožňuje připojení dálkového vypínače nebo relé kontaktu. LED diody nabízí možnost diagnostiky přístroje (viz návod k použití). Výše zmíněnou aplikaci VictronConnect můžete nainstalovat do telefonu, tabletu nebo počítače s OS Android, iOS, Windows a macOS. Připojení probíhá prostřednictvím Bluetooth, nebo přes USB rozhraní s portem VE.DirectKlíčové vlastnosti měniče napětí Victron Phoenix VE.Direct:Lze monitorovat a nastavovat pomocí kabelu nebo Bluetooth.Umí dodávat vysoký startovací výkon pro náročné spotřebiče.Jednoduchá instalace měniče Smart Victron Energy Phoenix.Nastavitelné parametry, včetně alarmů, frekvence atd..Mobilní aplikace VictronConnect usnadňuje správu.Disponuje ochranou proti přehřátí, zkratu a přetížení.Měřič odebírá málo elektřiny v pohotovostním režimu.Parametry měniče napětí Victron Phoenix VE.Direct:výstupní napětí: 230 VUSB port: anopřipojení 230 V AC: Schuko (CEE 7/4)rozpětí provozních teplot: –40 až +65 °Cvlhkost (nekondenzující): max. 95 %třída ochrany: IP21kód produktu:PIN121251200PIN121371200PIN121501200PIN121801200PIN122121200PIN482120200varianta:250 VA375 VA500 VA800 VA1 200 VA1 200 VAvstupní napětí:12 V12 V12 V12 V12 V48 Vmax. účinnost:87 %89 %90 %90 %91 %92 %jmenovitý výkon:200 W300 W400 W650 W1 000 W1 000 Wšpičkový výkon:400 W700 W900 W1 500 W2 200 W2 200 Wspotřeba při nulovém zatížení:< 4,2 W< 5,6 W< 6 W< 6,5 W< 7 W< 10 Wspotřeba při nulovém zatížení (ECO):< 0,8 W< 0,9 W< 1 W< 1 W< 1 W< 3 Wrozměry (Š × V × H):16,5 × 8,6 × 26 cm16,5 × 8,6 × 26 cm17,2 × 8,6 × 27,5 cm21,6 × 10,5 × 30,5 cm23,2 × 11,7 × 32,7 cm23,2 × 11,7 × 32,7 cmhmotnost: 2,4 kg3 kg3,9 kg5,5 kg7,4 kg7,4 kg",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Měniče napětí",
-      "category": "inverter",
-      "brand": "Victron Energy",
-      "priceCzk": 6249,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/menic-napeti-victron-energy-phoenix-ve-direct_z24820/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-victron-energy-phoenix-ve-direct_z24820%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/158724_102.jpg?1704380233_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": 0,
-        "currentA": 40,
-        "batteryType": null,
-        "pureSine": null
-      }
-    },
-    {
-      "id": "svetkaravanu:24820_26589",
-      "merchant": "svetkaravanu",
-      "name": "Měnič napětí Victron Energy Phoenix VE.Direct varianta 1 200 VA napětí 12 V",
-      "description": "Sinusový měnič napětí Victron EnergyVictron Energy Phoenix VE.Direct je plně konfigurovatelný sinusový měnič napětí, který je vhodný k instalaci do obytných aut, karavanů a lodí. Vyznačuje se řadou funkcí, které jsou popsány níže, snadnou obsluhou a příznivou cenou. Obsahuje účinný robustní toroidní transformátor.Instalace měniče je nyní jednodušší, než kdy předtím – terminály jsou dostupnější. Díky portu VE.Direct lze připojit měnič k počítači (vyžaduje kabel – příslušenství) nebo ke smartphonům, tabletům, MacBookům a dalším zařízením s OS Android/iOS (přes VE.Direct Bluetooth Smart dongle). Mezi možnosti konfigurace patří:alarm nízkého napětí baterie a resetování úrovniúrovně vypnutí a restartu během nízkého napětí bateriedynamické vypínání: úroveň vypínání závislá na zatíženívýstupní napětí: 210–245 Vfrekvence: 50/60 Hzzapnutí/vypnutí režimu ECO a úroveň snímání režimu ECOStřídače jsou odolné vůči zkratu a chráněny proti přehřátí či přetížení v důsledku vysoké teploty okolí. Měnič Smart má vysoký startovací výkon, který je tak potřebný ke spuštění zátěží, jako jsou měniče pro LED žárovky, halogenové žárovky, lednice nebo elektrické nářadí.Přístroj je vybaven ECO režimem. Ten v případě potřeby přepne měnič do pohotovostního režimu, jakmile zařízení klesne pod přednastavenou hodnotu. V tomto režimu se střídač zapíná každých 2,5 sekundy (nastavitelné). K opětovnému provozu dojde, až zátěž překročí přednastavenou úroveň.Dvoupólový konektor umožňuje připojení dálkového vypínače nebo relé kontaktu. LED diody nabízí možnost diagnostiky přístroje (viz návod k použití). Výše zmíněnou aplikaci VictronConnect můžete nainstalovat do telefonu, tabletu nebo počítače s OS Android, iOS, Windows a macOS. Připojení probíhá prostřednictvím Bluetooth, nebo přes USB rozhraní s portem VE.DirectKlíčové vlastnosti měniče napětí Victron Phoenix VE.Direct:Lze monitorovat a nastavovat pomocí kabelu nebo Bluetooth.Umí dodávat vysoký startovací výkon pro náročné spotřebiče.Jednoduchá instalace měniče Smart Victron Energy Phoenix.Nastavitelné parametry, včetně alarmů, frekvence atd..Mobilní aplikace VictronConnect usnadňuje správu.Disponuje ochranou proti přehřátí, zkratu a přetížení.Měřič odebírá málo elektřiny v pohotovostním režimu.Parametry měniče napětí Victron Phoenix VE.Direct:výstupní napětí: 230 VUSB port: anopřipojení 230 V AC: Schuko (CEE 7/4)rozpětí provozních teplot: –40 až +65 °Cvlhkost (nekondenzující): max. 95 %třída ochrany: IP21kód produktu:PIN121251200PIN121371200PIN121501200PIN121801200PIN122121200PIN482120200varianta:250 VA375 VA500 VA800 VA1 200 VA1 200 VAvstupní napětí:12 V12 V12 V12 V12 V48 Vmax. účinnost:87 %89 %90 %90 %91 %92 %jmenovitý výkon:200 W300 W400 W650 W1 000 W1 000 Wšpičkový výkon:400 W700 W900 W1 500 W2 200 W2 200 Wspotřeba při nulovém zatížení:< 4,2 W< 5,6 W< 6 W< 6,5 W< 7 W< 10 Wspotřeba při nulovém zatížení (ECO):< 0,8 W< 0,9 W< 1 W< 1 W< 1 W< 3 Wrozměry (Š × V × H):16,5 × 8,6 × 26 cm16,5 × 8,6 × 26 cm17,2 × 8,6 × 27,5 cm21,6 × 10,5 × 30,5 cm23,2 × 11,7 × 32,7 cm23,2 × 11,7 × 32,7 cmhmotnost: 2,4 kg3 kg3,9 kg5,5 kg7,4 kg7,4 kg",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Měniče napětí",
-      "category": "inverter",
-      "brand": "Victron Energy",
-      "priceCzk": 7349,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/menic-napeti-victron-energy-phoenix-ve-direct_z24820/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-victron-energy-phoenix-ve-direct_z24820%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/158725_102.jpg?1704380233_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": 0,
-        "currentA": 40,
-        "batteryType": null,
-        "pureSine": null
-      }
-    },
     {
       "id": "svetkaravanu:24830_26601",
       "merchant": "svetkaravanu",
@@ -179,10 +113,10 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmppt-solarni-regulator-victron-energy-smartsolar-100-50_z101985%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/167410_102.jpg?1723111301_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": null,
         "capacityAh": null,
         "powerW": 700,
-        "currentA": 30,
+        "currentA": 50,
         "batteryType": null,
         "pureSine": null
       }
@@ -270,7 +204,7 @@
         "voltageV": 12,
         "capacityAh": null,
         "powerW": 100,
-        "currentA": 20,
+        "currentA": 10,
         "batteryType": null,
         "pureSine": null
       }
@@ -292,7 +226,7 @@
         "voltageV": 12,
         "capacityAh": null,
         "powerW": 100,
-        "currentA": 20,
+        "currentA": 15,
         "batteryType": null,
         "pureSine": null
       }
@@ -336,7 +270,7 @@
         "voltageV": 12,
         "capacityAh": null,
         "powerW": null,
-        "currentA": 220,
+        "currentA": 30,
         "batteryType": null,
         "pureSine": null
       }
@@ -377,7 +311,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsolarni-baterie-victron-energy-agm-super-cycle_z24831%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/158738_102.jpg?1704380234_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 125,
         "powerW": null,
         "currentA": null,
@@ -399,7 +333,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsolarni-baterie-victron-energy-agm-super-cycle_z24831%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/158739_102.jpg?1704380234_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 170,
         "powerW": null,
         "currentA": null,
@@ -421,7 +355,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fbaterie-victron-energy-lifepo-smart-12-8-v_z26964%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/160251_102.jpg?1704380286_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 200,
         "powerW": null,
         "currentA": null,
@@ -817,7 +751,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fkombinovany-menic-napeti-buttner-elektronik_z22540%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/156484_102.jpg?1704380152_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": null,
         "capacityAh": null,
         "powerW": 5000,
         "currentA": 60,
@@ -839,7 +773,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fkombinovany-menic-napeti-buttner-elektronik_z22540%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/156485_102.jpg?1704380152_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": null,
         "capacityAh": null,
         "powerW": 5000,
         "currentA": 120,
@@ -1191,7 +1125,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Flifepo4-baterie-carbest-li200bhd-pro-fiat-ducato-12-8-v_z26755%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/152522_102.jpg?1704379091_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 200,
         "powerW": null,
         "currentA": 350,
@@ -1237,7 +1171,7 @@
       "specs": {
         "voltageV": null,
         "capacityAh": null,
-        "powerW": 45,
+        "powerW": 90,
         "currentA": null,
         "batteryType": null,
         "pureSine": null
@@ -1259,7 +1193,7 @@
       "specs": {
         "voltageV": null,
         "capacityAh": null,
-        "powerW": 45,
+        "powerW": 135,
         "currentA": null,
         "batteryType": null,
         "pureSine": null
@@ -1926,50 +1860,6 @@
       }
     },
     {
-      "id": "svetkaravanu:104346_30558",
-      "merchant": "svetkaravanu",
-      "name": "Regulátor solárního nabíjení Dometic NDS Suncontrol 2 výkon 320 W",
-      "description": "Regulátor dvou solárních panelůRegulátor solárního nabíjení Dometic NDS Suncontrol 2 je nejnovější a nejinovativnější regulátor nabíjení solárních panelů se samostatnými vstupy pro dva solární panely. Nejmodernější technologie MPPT (Maximum Power Point Track) umožňuje vyrobit až o 30 % více energie z vašich solárních modulů. Protokol N-BUS vám umožňuje spravovat Suncontrol 2 a všechna ostatní zařízení N-BUS prostřednictvím jediného ovladače nebo mobilní aplikace NDS.Klíčové vlastnosti regulátoru solárního nabíjení Dometic NDS Suncontrol 2:Více energie ze solárního modulu díky technologii MPPT.Optimalizuje energetický výnos solárního panelu nalezením optimálního provozního bodu.Nastavitelný pro lithiové LiFePO4, AGM, gelové a olověné baterie.6-stupňové nabíjecí křivky s algoritmem OptiCharge.Možnost připojení zobrazovací sběrnice.Samostatné vstupy pro dva solární panely.Protokol N-BUS umožňuje správu a aktualizaci všech palubních zařízení prostřednictvím centrálního řídicího systému.Parametry regulátoru solárního nabíjení Dometic NDS Suncontrol 2:VÝKON / VARIANTA320 W360 WmodelSCE320SCE360jmenonvitý / špičkový výkon320 W / 320 W360 W / 360 Wnabíjecí proud20 A25 Ajmenovité napětí12 V12 Všířka151 mm151 mmvýška48 mm48 mmhloubka90 mm90 mmhmotnost300 g350 g",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Solární regulátory",
-      "category": "controller",
-      "brand": "Dometic",
-      "priceCzk": 3439,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/regulator-solarniho-nabijeni-dometic-nds-suncontrol-2_z104346/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fregulator-solarniho-nabijeni-dometic-nds-suncontrol-2_z104346%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180319_102.jpg?1741355684_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": 320,
-        "currentA": 2,
-        "batteryType": "lifepo4",
-        "pureSine": null
-      }
-    },
-    {
-      "id": "svetkaravanu:104346_30559",
-      "merchant": "svetkaravanu",
-      "name": "Regulátor solárního nabíjení Dometic NDS Suncontrol 2 výkon 360 W",
-      "description": "Regulátor dvou solárních panelůRegulátor solárního nabíjení Dometic NDS Suncontrol 2 je nejnovější a nejinovativnější regulátor nabíjení solárních panelů se samostatnými vstupy pro dva solární panely. Nejmodernější technologie MPPT (Maximum Power Point Track) umožňuje vyrobit až o 30 % více energie z vašich solárních modulů. Protokol N-BUS vám umožňuje spravovat Suncontrol 2 a všechna ostatní zařízení N-BUS prostřednictvím jediného ovladače nebo mobilní aplikace NDS.Klíčové vlastnosti regulátoru solárního nabíjení Dometic NDS Suncontrol 2:Více energie ze solárního modulu díky technologii MPPT.Optimalizuje energetický výnos solárního panelu nalezením optimálního provozního bodu.Nastavitelný pro lithiové LiFePO4, AGM, gelové a olověné baterie.6-stupňové nabíjecí křivky s algoritmem OptiCharge.Možnost připojení zobrazovací sběrnice.Samostatné vstupy pro dva solární panely.Protokol N-BUS umožňuje správu a aktualizaci všech palubních zařízení prostřednictvím centrálního řídicího systému.Parametry regulátoru solárního nabíjení Dometic NDS Suncontrol 2:VÝKON / VARIANTA320 W360 WmodelSCE320SCE360jmenonvitý / špičkový výkon320 W / 320 W360 W / 360 Wnabíjecí proud20 A25 Ajmenovité napětí12 V12 Všířka151 mm151 mmvýška48 mm48 mmhloubka90 mm90 mmhmotnost300 g350 g",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Solární regulátory",
-      "category": "controller",
-      "brand": "Dometic",
-      "priceCzk": 3549,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/regulator-solarniho-nabijeni-dometic-nds-suncontrol-2_z104346/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fregulator-solarniho-nabijeni-dometic-nds-suncontrol-2_z104346%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/180320_102.jpg?1741355708_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": 360,
-        "currentA": 2,
-        "batteryType": "lifepo4",
-        "pureSine": null
-      }
-    },
-    {
       "id": "svetkaravanu:104295_30490",
       "merchant": "svetkaravanu",
       "name": "Měnič napětí Dometic SinePower DPSI-RCD 12 V nebo 24 V stálý / špičkový výkon 2000/4000 W napětí 24 V",
@@ -2029,7 +1919,7 @@
       "specs": {
         "voltageV": null,
         "capacityAh": null,
-        "powerW": 25,
+        "powerW": 105,
         "currentA": 25,
         "batteryType": null,
         "pureSine": null
@@ -2073,7 +1963,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
-        "powerW": 1040,
+        "powerW": 390,
         "currentA": 40,
         "batteryType": "lifepo4",
         "pureSine": null
@@ -2095,7 +1985,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
-        "powerW": 0,
+        "powerW": 2000,
         "currentA": 3,
         "batteryType": null,
         "pureSine": true
@@ -2117,7 +2007,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
-        "powerW": 500,
+        "powerW": 1500,
         "currentA": 3,
         "batteryType": null,
         "pureSine": true
@@ -2227,7 +2117,7 @@
       "specs": {
         "voltageV": null,
         "capacityAh": null,
-        "powerW": 700,
+        "powerW": 1700,
         "currentA": 20,
         "batteryType": null,
         "pureSine": true
@@ -2293,7 +2183,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
-        "powerW": 155,
+        "powerW": 135,
         "currentA": null,
         "batteryType": null,
         "pureSine": null
@@ -2405,72 +2295,6 @@
         "capacityAh": null,
         "powerW": 600,
         "currentA": 0.2,
-        "batteryType": null,
-        "pureSine": null
-      }
-    },
-    {
-      "id": "svetkaravanu:25872_27340",
-      "merchant": "svetkaravanu",
-      "name": "Sinusový měnič napětí Carbest PS varianta PS300U",
-      "description": "Transformátor napětí Carbest pro citlivá zařízeníMěnič napětí Carbest pro citlivá zařízení převádí napětí z 12 V na 230 V. Díky čisté sinusoidě je vhodný pro napájení výpočetní techniky a ostatních spotřebičů, které jsou náchylné na výkyvy napětí. Automaticky detekuje výši zátěže. Pokud po jedné minutě nedojde k odběru proudu, měnič se přepne do úsporného režimu.Hliníkové pouzdro umožňuje flexibilní instalaci sinusového měniče. Díky ochraně nehrozí přehřátí, ani přepólování či podpětí.Druhé zásuvky měničů jsou anglického typu!Klíčové vlastnosti měniče napětí Carbest PS:Při vysoké teplotě dochází k automatickému zapnutí vestavěného ventilátoru pro ochlazení produktu.Hliníkové pouzdro umožňuje instalaci na podlahu či stěnu.Extrémně vysoký startovací proud – až trojnásobek kapacity.Převádí 12 V z baterie na 230 V.Měnič napětí se vypne při přehřátí (teplota okolo 60 °C).Ochrana proti přepólování a proti podpětí.Parametry měniče napětí Carbest PS:vstupní napětí: 12 Vvýstupní napětí: 230 Vpráh vypnutí: 10 Vúčinnost: 90 %USB port: ano kód produktu:822818228582282822868228382284varianta:PS300UPS700UPS1000UPS1500UPS2000UPS3000Ujmenovitý výkon:300 W700 W1 000 W1 500 W2 000 W3 000 Wšpičkový výkon:600 W2 100 W3 000 W4 500 W6 000 W9 000 Wspotřeba v pohotovostním režimu:0,6 Ah0,3 Ah0,4 Ah0,5 Ah0,6 Ah0,8 Ahpočet zásuvek:111222rozměry (Š × V × D):15 × 6 × 21,5 cm18,6 × 9,1 × 25,5 cm18,6 × 9,1 × 31,7 cm25,1 × 10,4 × 27,3 cm25,1 × 10,4 × 27,5 cm25,1 × 10,4 × 47,5 cmhmotnost: 1,6 kg2,4 kg3 kg4,7 kg3 kg6,5 kg",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Měniče napětí",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 3389,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/sinusovy-menic-napeti-carbest-ps_z25872/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsinusovy-menic-napeti-carbest-ps_z25872%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": 0,
-        "currentA": null,
-        "batteryType": null,
-        "pureSine": null
-      }
-    },
-    {
-      "id": "svetkaravanu:25872_27342",
-      "merchant": "svetkaravanu",
-      "name": "Sinusový měnič napětí Carbest PS varianta PS1000U",
-      "description": "Transformátor napětí Carbest pro citlivá zařízeníMěnič napětí Carbest pro citlivá zařízení převádí napětí z 12 V na 230 V. Díky čisté sinusoidě je vhodný pro napájení výpočetní techniky a ostatních spotřebičů, které jsou náchylné na výkyvy napětí. Automaticky detekuje výši zátěže. Pokud po jedné minutě nedojde k odběru proudu, měnič se přepne do úsporného režimu.Hliníkové pouzdro umožňuje flexibilní instalaci sinusového měniče. Díky ochraně nehrozí přehřátí, ani přepólování či podpětí.Druhé zásuvky měničů jsou anglického typu!Klíčové vlastnosti měniče napětí Carbest PS:Při vysoké teplotě dochází k automatickému zapnutí vestavěného ventilátoru pro ochlazení produktu.Hliníkové pouzdro umožňuje instalaci na podlahu či stěnu.Extrémně vysoký startovací proud – až trojnásobek kapacity.Převádí 12 V z baterie na 230 V.Měnič napětí se vypne při přehřátí (teplota okolo 60 °C).Ochrana proti přepólování a proti podpětí.Parametry měniče napětí Carbest PS:vstupní napětí: 12 Vvýstupní napětí: 230 Vpráh vypnutí: 10 Vúčinnost: 90 %USB port: ano kód produktu:822818228582282822868228382284varianta:PS300UPS700UPS1000UPS1500UPS2000UPS3000Ujmenovitý výkon:300 W700 W1 000 W1 500 W2 000 W3 000 Wšpičkový výkon:600 W2 100 W3 000 W4 500 W6 000 W9 000 Wspotřeba v pohotovostním režimu:0,6 Ah0,3 Ah0,4 Ah0,5 Ah0,6 Ah0,8 Ahpočet zásuvek:111222rozměry (Š × V × D):15 × 6 × 21,5 cm18,6 × 9,1 × 25,5 cm18,6 × 9,1 × 31,7 cm25,1 × 10,4 × 27,3 cm25,1 × 10,4 × 27,5 cm25,1 × 10,4 × 47,5 cmhmotnost: 1,6 kg2,4 kg3 kg4,7 kg3 kg6,5 kg",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Měniče napětí",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 9479,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/sinusovy-menic-napeti-carbest-ps_z25872/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsinusovy-menic-napeti-carbest-ps_z25872%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": 0,
-        "currentA": null,
-        "batteryType": null,
-        "pureSine": null
-      }
-    },
-    {
-      "id": "svetkaravanu:25872_27344",
-      "merchant": "svetkaravanu",
-      "name": "Sinusový měnič napětí Carbest PS varianta PS2000U",
-      "description": "Transformátor napětí Carbest pro citlivá zařízeníMěnič napětí Carbest pro citlivá zařízení převádí napětí z 12 V na 230 V. Díky čisté sinusoidě je vhodný pro napájení výpočetní techniky a ostatních spotřebičů, které jsou náchylné na výkyvy napětí. Automaticky detekuje výši zátěže. Pokud po jedné minutě nedojde k odběru proudu, měnič se přepne do úsporného režimu.Hliníkové pouzdro umožňuje flexibilní instalaci sinusového měniče. Díky ochraně nehrozí přehřátí, ani přepólování či podpětí.Druhé zásuvky měničů jsou anglického typu!Klíčové vlastnosti měniče napětí Carbest PS:Při vysoké teplotě dochází k automatickému zapnutí vestavěného ventilátoru pro ochlazení produktu.Hliníkové pouzdro umožňuje instalaci na podlahu či stěnu.Extrémně vysoký startovací proud – až trojnásobek kapacity.Převádí 12 V z baterie na 230 V.Měnič napětí se vypne při přehřátí (teplota okolo 60 °C).Ochrana proti přepólování a proti podpětí.Parametry měniče napětí Carbest PS:vstupní napětí: 12 Vvýstupní napětí: 230 Vpráh vypnutí: 10 Vúčinnost: 90 %USB port: ano kód produktu:822818228582282822868228382284varianta:PS300UPS700UPS1000UPS1500UPS2000UPS3000Ujmenovitý výkon:300 W700 W1 000 W1 500 W2 000 W3 000 Wšpičkový výkon:600 W2 100 W3 000 W4 500 W6 000 W9 000 Wspotřeba v pohotovostním režimu:0,6 Ah0,3 Ah0,4 Ah0,5 Ah0,6 Ah0,8 Ahpočet zásuvek:111222rozměry (Š × V × D):15 × 6 × 21,5 cm18,6 × 9,1 × 25,5 cm18,6 × 9,1 × 31,7 cm25,1 × 10,4 × 27,3 cm25,1 × 10,4 × 27,5 cm25,1 × 10,4 × 47,5 cmhmotnost: 1,6 kg2,4 kg3 kg4,7 kg3 kg6,5 kg",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Měniče napětí",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 16975,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/sinusovy-menic-napeti-carbest-ps_z25872/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsinusovy-menic-napeti-carbest-ps_z25872%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": 0,
-        "currentA": null,
         "batteryType": null,
         "pureSine": null
       }
@@ -2645,7 +2469,7 @@
       "specs": {
         "voltageV": null,
         "capacityAh": null,
-        "powerW": 200,
+        "powerW": 1200,
         "currentA": 20,
         "batteryType": null,
         "pureSine": true
@@ -2850,28 +2674,6 @@
       }
     },
     {
-      "id": "svetkaravanu:105972",
-      "merchant": "svetkaravanu",
-      "name": "Solární regulátor nabíjení Wentronic WTS-SCC 30",
-      "description": "Účinný regulátor nabíjení přes sluneční energii Solární regulátor nabíjení Wentronic WTS-SCC 30 efektivně přenáší energii vygenerovanou slunečním zářením přímo do baterie. Regulátor je vybaven konektory pro automobil s funkcí Plug & Play doplněnou ochranou proti přepólování. Solární regulátor poskytuje intuitivní uživatelské rozhraní pro snadné nastavení a monitoring. Je kompatibilní se všemi běžnými typy baterií a robustní hliníkové pouzdro chrání před poškozením. Technologie MPP (Maximum Power Point) zajišťuje maximální účinnost. LCD displej zobrazuje všechny důležité informace. Klíčové vlastnosti solárního regulátoru nabíjení Wentronic: Efektivně přenáší solární energii přímo do baterie.Konektory pro automobil s funkcí Plug & Play doplněnou ochranou proti přepólování.Intuitivní uživatelské rozhraní.Solární regulátor je kompatibilní se všemi běžnými typy baterií.Robustní hliníkové pouzdro chrání před poškozením.Technologie MPP zaručuje maximální účinnost.LCD displej regulátoru zobrazuje veškeré informace. Parametry solárního regulátoru nabíjení Wentronic: jmenovitá kapacita: 460 Wjmenovité napětí: 12 Vjmenovitý proud: 30 Aprovozní teplota: –20 až 85 °Cstupeň krytí: IP20rozměry (Š × V × H): 15,4 × 4,6 × 10,4 cmrozměry balení: 15,4 × 10,4 × 4,6 cmhmotnost: 566 g",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Solární regulátory",
-      "category": "controller",
-      "brand": "Wentronic Solutions",
-      "priceCzk": 5519,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/solarni-regulator-nabijeni-wentronic-wts-scc-30_z105972/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsolarni-regulator-nabijeni-wentronic-wts-scc-30_z105972%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/187305_102.jpg?1756364475_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": null,
-        "powerW": null,
-        "currentA": 20,
-        "batteryType": null,
-        "pureSine": null
-      }
-    },
-    {
       "id": "svetkaravanu:16597_17412",
       "merchant": "svetkaravanu",
       "name": "Baterie EXIDE Dual AGM kapacita 140 Ah varianta EP 1200",
@@ -2934,6 +2736,28 @@
         "powerW": 1000,
         "currentA": null,
         "batteryType": null,
+        "pureSine": null
+      }
+    },
+    {
+      "id": "svetkaravanu:106258",
+      "merchant": "svetkaravanu",
+      "name": "Solární regulátor nabíjení MPPT Carbest, 12/24 V",
+      "description": "Solární regulátor napětí MPPT s integrovanou funkcí Bluetooth Solární regulátor nabíjení MPPT Carbest, 12/24 V je vybaven moderní integrovanou funkcí Bluetooth, která umožňuje snadnou komunikaci se zařízením. Veškerá nastavení a konfigurace regulátoru se provádějí pohodlně prostřednictvím bezplatné aplikace, kterou si uživatel může stáhnout do svého chytrého telefonu nebo tabletu. Regulátor je ideální volbou vhodnou pro všechny běžné typy baterií, mezi které patří GEL, olověné, AGM a LiFePO4. Jeho provedení bez ventilace zaručuje, že provoz bude tichý. Navíc je vybaven LED displejem, který přesně a přehledně informuje o aktuálním stavu zařízení i baterie. Klíčové vlastnosti solárního regulátoru nabíjení MPPT Carbest, 12/24 V: Integrovaná funkce Bluetooth pro snadnou komunikaci.Bezplatná mobilní aplikace pro snadnou kontrolu zařízení.Solární regulátor nabíjení je vhodný pro všechny typy baterií (GEL, olověné, AGM, LiFePO4).Konstrukce bez ventilátoru zajišťuje tichý provoz.LED displej zobrazuje informace o aktuálním stavu. Parametry solárního regulátoru nabíjení MPPT Carbest, 12/24 V: výstup solárního modulu: 12/24 Vmax. výkon: 520 Wpmax. napětí: 50 Vmax. proud: 20 Atřída ochrany: IP54pro typ baterie:GELAGMLiFePO4olověnározměry (Š × V × D): 108 × 32 × 165 mmhmotnost: 700 g",
+      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Solární regulátory",
+      "category": "controller",
+      "brand": "Carbest",
+      "priceCzk": 2248,
+      "available": true,
+      "productUrl": "https://www.svetkaravanu.cz/solarni-regulator-nabijeni-mppt-carbest-12-24-v_z106258/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsolarni-regulator-nabijeni-mppt-carbest-12-24-v_z106258%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/187763_102.jpg?1758263649_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "powerW": null,
+        "currentA": 24,
+        "batteryType": "lifepo4",
         "pureSine": null
       }
     },
@@ -3158,28 +2982,6 @@
       }
     },
     {
-      "id": "svetkaravanu:24820_26877",
-      "merchant": "svetkaravanu",
-      "name": "Měnič napětí Victron Energy Phoenix VE.Direct varianta 500 VA napětí 12 V",
-      "description": "Sinusový měnič napětí Victron EnergyVictron Energy Phoenix VE.Direct je plně konfigurovatelný sinusový měnič napětí, který je vhodný k instalaci do obytných aut, karavanů a lodí. Vyznačuje se řadou funkcí, které jsou popsány níže, snadnou obsluhou a příznivou cenou. Obsahuje účinný robustní toroidní transformátor.Instalace měniče je nyní jednodušší, než kdy předtím – terminály jsou dostupnější. Díky portu VE.Direct lze připojit měnič k počítači (vyžaduje kabel – příslušenství) nebo ke smartphonům, tabletům, MacBookům a dalším zařízením s OS Android/iOS (přes VE.Direct Bluetooth Smart dongle). Mezi možnosti konfigurace patří:alarm nízkého napětí baterie a resetování úrovniúrovně vypnutí a restartu během nízkého napětí bateriedynamické vypínání: úroveň vypínání závislá na zatíženívýstupní napětí: 210–245 Vfrekvence: 50/60 Hzzapnutí/vypnutí režimu ECO a úroveň snímání režimu ECOStřídače jsou odolné vůči zkratu a chráněny proti přehřátí či přetížení v důsledku vysoké teploty okolí. Měnič Smart má vysoký startovací výkon, který je tak potřebný ke spuštění zátěží, jako jsou měniče pro LED žárovky, halogenové žárovky, lednice nebo elektrické nářadí.Přístroj je vybaven ECO režimem. Ten v případě potřeby přepne měnič do pohotovostního režimu, jakmile zařízení klesne pod přednastavenou hodnotu. V tomto režimu se střídač zapíná každých 2,5 sekundy (nastavitelné). K opětovnému provozu dojde, až zátěž překročí přednastavenou úroveň.Dvoupólový konektor umožňuje připojení dálkového vypínače nebo relé kontaktu. LED diody nabízí možnost diagnostiky přístroje (viz návod k použití). Výše zmíněnou aplikaci VictronConnect můžete nainstalovat do telefonu, tabletu nebo počítače s OS Android, iOS, Windows a macOS. Připojení probíhá prostřednictvím Bluetooth, nebo přes USB rozhraní s portem VE.DirectKlíčové vlastnosti měniče napětí Victron Phoenix VE.Direct:Lze monitorovat a nastavovat pomocí kabelu nebo Bluetooth.Umí dodávat vysoký startovací výkon pro náročné spotřebiče.Jednoduchá instalace měniče Smart Victron Energy Phoenix.Nastavitelné parametry, včetně alarmů, frekvence atd..Mobilní aplikace VictronConnect usnadňuje správu.Disponuje ochranou proti přehřátí, zkratu a přetížení.Měřič odebírá málo elektřiny v pohotovostním režimu.Parametry měniče napětí Victron Phoenix VE.Direct:výstupní napětí: 230 VUSB port: anopřipojení 230 V AC: Schuko (CEE 7/4)rozpětí provozních teplot: –40 až +65 °Cvlhkost (nekondenzující): max. 95 %třída ochrany: IP21kód produktu:PIN121251200PIN121371200PIN121501200PIN121801200PIN122121200PIN482120200varianta:250 VA375 VA500 VA800 VA1 200 VA1 200 VAvstupní napětí:12 V12 V12 V12 V12 V48 Vmax. účinnost:87 %89 %90 %90 %91 %92 %jmenovitý výkon:200 W300 W400 W650 W1 000 W1 000 Wšpičkový výkon:400 W700 W900 W1 500 W2 200 W2 200 Wspotřeba při nulovém zatížení:< 4,2 W< 5,6 W< 6 W< 6,5 W< 7 W< 10 Wspotřeba při nulovém zatížení (ECO):< 0,8 W< 0,9 W< 1 W< 1 W< 1 W< 3 Wrozměry (Š × V × H):16,5 × 8,6 × 26 cm16,5 × 8,6 × 26 cm17,2 × 8,6 × 27,5 cm21,6 × 10,5 × 30,5 cm23,2 × 11,7 × 32,7 cm23,2 × 11,7 × 32,7 cmhmotnost: 2,4 kg3 kg3,9 kg5,5 kg7,4 kg7,4 kg",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Měniče napětí",
-      "category": "inverter",
-      "brand": "Victron Energy",
-      "priceCzk": 3859,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/menic-napeti-victron-energy-phoenix-ve-direct_z24820/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-victron-energy-phoenix-ve-direct_z24820%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/159096_102.jpg?1704380245_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": 0,
-        "currentA": 40,
-        "batteryType": null,
-        "pureSine": null
-      }
-    },
-    {
       "id": "svetkaravanu:24827_26596",
       "merchant": "svetkaravanu",
       "name": "Solární regulátor Victron Energy SmartSolar MPPT 75–100 V varianta 75/15",
@@ -3196,7 +2998,7 @@
         "voltageV": 12,
         "capacityAh": null,
         "powerW": 100,
-        "currentA": 20,
+        "currentA": 15,
         "batteryType": null,
         "pureSine": null
       }
@@ -3281,7 +3083,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsolarni-baterie-victron-energy-agm-super-cycle_z24831%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/158740_102.jpg?1704380234_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 230,
         "powerW": null,
         "currentA": null,
@@ -3435,7 +3237,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fbaterie-victron-energy-lifepo-smart-12-8-v_z26964%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/160249_102.jpg?1704380286_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 100,
         "powerW": null,
         "currentA": null,
@@ -3457,7 +3259,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fbaterie-victron-energy-lifepo-lithium-superpack-12-8-v_z26965%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/160253_102.jpg?1704380286_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 20,
         "powerW": null,
         "currentA": 100,
@@ -3479,7 +3281,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fbaterie-victron-energy-lifepo-lithium-superpack-12-8-v_z26965%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/160254_102.jpg?1704380286_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 60,
         "powerW": null,
         "currentA": 100,
@@ -3501,7 +3303,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fbaterie-victron-energy-lifepo-lithium-superpack-12-8-v_z26965%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/160255_102.jpg?1704380286_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 100,
         "powerW": null,
         "currentA": 100,
@@ -3523,7 +3325,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fbaterie-victron-energy-lifepo-lithium-superpack-12-8-v_z26965%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/160256_102.jpg?1704380286_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 200,
         "powerW": null,
         "currentA": 100,
@@ -3655,7 +3457,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsledovac-stavu-baterie-victron-energy-bmv-700_z103627%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/175676_102.jpg?1733579563_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": null,
         "capacityAh": 200,
         "powerW": 1,
         "currentA": 144,
@@ -3677,7 +3479,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fbaterie-victron-energy-lifepo-lithium-superpack-12-8-v-ng_z107356%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/191111_102.jpg?1772790227_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 100,
         "powerW": 65,
         "currentA": 10,
@@ -3701,7 +3503,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
-        "powerW": 185,
+        "powerW": 55,
         "currentA": null,
         "batteryType": null,
         "pureSine": null
@@ -3723,7 +3525,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
-        "powerW": 185,
+        "powerW": 95,
         "currentA": null,
         "batteryType": null,
         "pureSine": null
@@ -3875,7 +3677,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fbaterie-victron-energy-lifepo-lithium-superpack-25-6v-100ah-ng_z107358%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/191118_102.jpg?1772808346_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 24,
         "capacityAh": 100,
         "powerW": 130,
         "currentA": 10,
@@ -4271,10 +4073,10 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmppt-solarni-regulator-victron-energy-smartsolar-ve-can_z25297%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/159226_102.jpg?1704380250_1",
       "specs": {
-        "voltageV": 48,
+        "voltageV": null,
         "capacityAh": null,
         "powerW": null,
-        "currentA": 70,
+        "currentA": 85,
         "batteryType": null,
         "pureSine": null
       }
@@ -4296,28 +4098,6 @@
         "voltageV": null,
         "capacityAh": null,
         "powerW": 120,
-        "currentA": null,
-        "batteryType": null,
-        "pureSine": null
-      }
-    },
-    {
-      "id": "svetkaravanu:25872_27345",
-      "merchant": "svetkaravanu",
-      "name": "Sinusový měnič napětí Carbest PS varianta PS3000U",
-      "description": "Transformátor napětí Carbest pro citlivá zařízeníMěnič napětí Carbest pro citlivá zařízení převádí napětí z 12 V na 230 V. Díky čisté sinusoidě je vhodný pro napájení výpočetní techniky a ostatních spotřebičů, které jsou náchylné na výkyvy napětí. Automaticky detekuje výši zátěže. Pokud po jedné minutě nedojde k odběru proudu, měnič se přepne do úsporného režimu.Hliníkové pouzdro umožňuje flexibilní instalaci sinusového měniče. Díky ochraně nehrozí přehřátí, ani přepólování či podpětí.Druhé zásuvky měničů jsou anglického typu!Klíčové vlastnosti měniče napětí Carbest PS:Při vysoké teplotě dochází k automatickému zapnutí vestavěného ventilátoru pro ochlazení produktu.Hliníkové pouzdro umožňuje instalaci na podlahu či stěnu.Extrémně vysoký startovací proud – až trojnásobek kapacity.Převádí 12 V z baterie na 230 V.Měnič napětí se vypne při přehřátí (teplota okolo 60 °C).Ochrana proti přepólování a proti podpětí.Parametry měniče napětí Carbest PS:vstupní napětí: 12 Vvýstupní napětí: 230 Vpráh vypnutí: 10 Vúčinnost: 90 %USB port: ano kód produktu:822818228582282822868228382284varianta:PS300UPS700UPS1000UPS1500UPS2000UPS3000Ujmenovitý výkon:300 W700 W1 000 W1 500 W2 000 W3 000 Wšpičkový výkon:600 W2 100 W3 000 W4 500 W6 000 W9 000 Wspotřeba v pohotovostním režimu:0,6 Ah0,3 Ah0,4 Ah0,5 Ah0,6 Ah0,8 Ahpočet zásuvek:111222rozměry (Š × V × D):15 × 6 × 21,5 cm18,6 × 9,1 × 25,5 cm18,6 × 9,1 × 31,7 cm25,1 × 10,4 × 27,3 cm25,1 × 10,4 × 27,5 cm25,1 × 10,4 × 47,5 cmhmotnost: 1,6 kg2,4 kg3 kg4,7 kg3 kg6,5 kg",
-      "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Měniče napětí",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 21599,
-      "available": true,
-      "productUrl": "https://www.svetkaravanu.cz/sinusovy-menic-napeti-carbest-ps_z25872/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsinusovy-menic-napeti-carbest-ps_z25872%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "powerW": 0,
         "currentA": null,
         "batteryType": null,
         "pureSine": null
@@ -4449,7 +4229,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
-        "powerW": 0,
+        "powerW": 1000,
         "currentA": 0,
         "batteryType": null,
         "pureSine": true
@@ -4471,7 +4251,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
-        "powerW": 0,
+        "powerW": 3000,
         "currentA": 0,
         "batteryType": null,
         "pureSine": true
@@ -4601,7 +4381,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsinusovy-menic-napeti-carbest-powerwave-12-230-v_z108740%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/195952_102.jpg?1783252189_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": null,
         "capacityAh": null,
         "powerW": 500,
         "currentA": null,
@@ -4623,9 +4403,9 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsinusovy-menic-napeti-carbest-powerwave-12-230-v_z108740%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/195963_102.jpg?1783252526_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": null,
         "capacityAh": null,
-        "powerW": 0,
+        "powerW": 3000,
         "currentA": null,
         "batteryType": null,
         "pureSine": null
@@ -4645,9 +4425,9 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsinusovy-menic-napeti-carbest-powerwave-12-230-v_z108740%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/195959_102.jpg?1783252344_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": null,
         "capacityAh": null,
-        "powerW": 0,
+        "powerW": 1000,
         "currentA": null,
         "batteryType": null,
         "pureSine": null
@@ -4711,7 +4491,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fvyhrivana-baterie-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/196766_102.jpg?1786433504_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 200,
         "powerW": null,
         "currentA": 67,
