@@ -233,6 +233,12 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .next-step-card { display: flex; justify-content: space-between; align-items: center; gap: 30px; margin-top: 16px; padding: 26px; border-radius: var(--radius-md); background: #eef3ed; }
 .next-step-card h4 { margin: 7px 0 8px; }
 .next-step-card p { max-width: 620px; margin: 0; color: var(--ink-soft); line-height: 1.5; }
+.affiliate-step { align-items: flex-start; }
+.affiliate-actions { min-width: 310px; display: grid; gap: 10px; }
+.affiliate-button { display: flex; flex-direction: column; gap: 3px; padding: 14px 18px; border: 1px solid #cbd8cf; border-radius: var(--radius-sm); color: var(--ink); background: white; text-decoration: none; transition: transform .18s ease, border-color .18s ease; }
+.affiliate-button:hover { transform: translateY(-2px); border-color: var(--forest); }
+.affiliate-button span { font-weight: 800; }
+.affiliate-button small { color: var(--ink-soft); font-size: 11px; }
 
 .method-section { padding: 100px 24px; color: white; background: var(--forest-deep); }
 .section-heading-light .eyebrow { color: var(--lime); }
