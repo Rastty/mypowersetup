@@ -230,9 +230,21 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .check-list { display: grid; gap: 13px; margin: 0; padding: 0; list-style: none; }
 .check-list li { position: relative; padding-left: 25px; color: var(--ink-soft); line-height: 1.45; }
 .check-list li::before { content: "✓"; position: absolute; left: 0; color: #4b8967; font-weight: 800; }
-.next-step-card { display: flex; justify-content: space-between; align-items: center; gap: 30px; margin-top: 16px; padding: 26px; border-radius: var(--radius-md); background: #eef3ed; }
+.next-step-card { display: grid; gap: 24px; margin-top: 16px; padding: 26px; border-radius: var(--radius-md); background: #eef3ed; }
 .next-step-card h4 { margin: 7px 0 8px; }
 .next-step-card p { max-width: 620px; margin: 0; color: var(--ink-soft); line-height: 1.5; }
+.product-group + .product-group { margin-top: 24px; }
+.product-group h5 { margin: 0 0 12px; font: 800 15px/1.2 "Manrope", sans-serif; }
+.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.product-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: white; }
+.product-card > img { width: 100%; aspect-ratio: 16 / 10; display: block; object-fit: contain; padding: 12px; background: #f8f9f6; }
+.product-card-copy { padding: 16px; }
+.product-card-copy > span { color: #719b84; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+.product-card h6 { margin: 7px 0 8px; font: 800 14px/1.35 "Manrope", sans-serif; }
+.product-card p { min-height: 38px; font-size: 12px; }
+.product-card-action { display: grid; gap: 10px; margin-top: 15px; }
+.product-card-action strong { font-size: 14px; }
+.product-card-action a { color: var(--forest); font-size: 12px; font-weight: 800; }
 
 .method-section { padding: 100px 24px; color: white; background: var(--forest-deep); }
 .section-heading-light .eyebrow { color: var(--lime); }
@@ -272,7 +284,7 @@ footer small { font-size: 12px; }
   .step { gap: 5px; }
   .step small { display: none; }
   .form-step { padding: 32px 18px 26px; }
-  .choice-grid-season, .appliance-grid, .advanced-grid, .result-columns, .method-grid { grid-template-columns: 1fr; }
+  .choice-grid-season, .appliance-grid, .advanced-grid, .result-columns, .method-grid, .product-grid { grid-template-columns: 1fr; }
   .choice-grid-season .choice-card { min-height: 76px; }
   .appliance-summary { flex-direction: column; gap: 5px; }
   .step-actions { align-items: stretch; flex-direction: column-reverse; }
@@ -281,7 +293,7 @@ footer small { font-size: 12px; }
   .result-grid { grid-template-columns: 1fr 1fr; }
   .result-card { min-height: 142px; padding: 17px; }
   .result-card strong { font-size: 24px; }
-  .next-step-card { align-items: stretch; flex-direction: column; }
+  .next-step-card { align-items: stretch; }
   .method-section { padding: 75px 20px; }
   .safety-note { margin: 50px 20px; }
 }
