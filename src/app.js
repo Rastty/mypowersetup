@@ -1,12 +1,13 @@
-import { APPLIANCES } from "./catalog.js";
-import { calculateSetup } from "./engine.js";
-import { recommendProducts } from "./products.js";
+import { APPLIANCES } from "./catalog.js?v=20260821-1";
+import { calculateSetup } from "./engine.js?v=20260821-1";
+import { recommendProducts } from "./products.js?v=20260821-1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
 const selectedCount = document.querySelector("#selected-count");
 const liveConsumption = document.querySelector("#live-consumption");
 const applianceError = document.querySelector("#appliance-error");
+const calculatorError = document.querySelector("#calculator-error");
 let currentStep = 1;
 let latestResult = null;
 let productCatalog = [];
@@ -105,6 +106,7 @@ function updateLiveSummary() {
 
 function handleSubmit(event) {
   event.preventDefault();
+  calculatorError.hidden = true;
   const appliances = getSelectedAppliances();
   if (!appliances.some((item) => item.selected)) {
     applianceError.hidden = false;
@@ -112,23 +114,30 @@ function handleSubmit(event) {
     return;
   }
 
-  const data = new FormData(form);
-  latestResult = calculateSetup({
-    appliances,
-    autonomyDays: data.get("autonomyDays"),
-    season: data.get("season"),
-    batteryType: data.get("batteryType"),
-    systemVoltage: data.get("systemVoltage")
-  });
+  try {
+    const data = new FormData(form);
+    latestResult = calculateSetup({
+      appliances,
+      autonomyDays: data.get("autonomyDays"),
+      season: data.get("season"),
+      batteryType: data.get("batteryType"),
+      systemVoltage: data.get("systemVoltage")
+    });
 
-  renderResult(latestResult);
-  trackEvent("calculation_completed", {
-    dailyWh: latestResult.dailyWh,
-    batteryAh: latestResult.batteryAh,
-    solarWatts: latestResult.solarWatts,
-    systemVoltage: latestResult.systemVoltage
-  });
-  showStep(3);
+    renderResult(latestResult);
+    trackEvent("calculation_completed", {
+      dailyWh: latestResult.dailyWh,
+      batteryAh: latestResult.batteryAh,
+      solarWatts: latestResult.solarWatts,
+      systemVoltage: latestResult.systemVoltage
+    });
+    showStep(3);
+  } catch (error) {
+    console.error("Výpočet sestavy selhal", error);
+    calculatorError.textContent = "Výpočet se nepodařilo zobrazit. Obnovte prosím stránku a zkuste to znovu.";
+    calculatorError.hidden = false;
+    calculatorError.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 }
 
 function renderResult(result) {

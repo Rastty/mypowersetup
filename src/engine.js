@@ -1,4 +1,4 @@
-import { BATTERIES, SEASONS } from "./catalog.js";
+import { BATTERIES, SEASONS } from "./catalog.js?v=20260821-1";
 
 const BATTERY_MARGIN = 1.15;
 const SOLAR_SYSTEM_EFFICIENCY = 0.75;

@@ -202,6 +202,7 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .mini-field { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 9px; background: white; color: var(--ink-soft); font-size: 12px; }
 .mini-field input { width: 54px; border: 0; outline: 0; color: var(--ink); font-weight: 700; background: transparent; }
 .form-error { color: #a94030; font-weight: 700; }
+.calculator-error { margin: 18px 50px 0; padding: 14px 18px; border: 1px solid #e3a69b; border-radius: 10px; color: #7c2e24; background: #fff0ed; font-weight: 700; }
 .advanced-settings { margin-top: 22px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: #fafbf8; }
 .advanced-settings summary { padding: 16px 18px; font-weight: 700; cursor: pointer; }
 .advanced-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; padding: 0 18px 18px; }
@@ -308,6 +309,7 @@ footer small { font-size: 12px; }
   .step { gap: 5px; }
   .step small { display: none; }
   .form-step { padding: 32px 18px 26px; }
+  .calculator-error { margin: 14px 18px 0; }
   .choice-grid-season, .appliance-grid, .advanced-grid, .result-columns, .method-grid, .product-grid, .guide-preview-grid, .decision-grid { grid-template-columns: 1fr; }
   .choice-grid-season .choice-card { min-height: 76px; }
   .appliance-summary { flex-direction: column; gap: 5px; }
