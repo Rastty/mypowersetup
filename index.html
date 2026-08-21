@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10261f" />
+    <meta
+      name="description"
+      content="Spočítejte si velikost baterie, solárních panelů, měniče a regulátoru pro karavan, chatu nebo záložní zdroj. Zdarma a s vysvětlením výpočtu."
+    />
+    <meta property="og:title" content="MyPowerSetup — sestavte si vlastní energii" />
+    <meta
+      property="og:description"
+      content="Praktický kalkulátor ostrovní elektrické sestavy podle vašich spotřebičů."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mypowersetup.com/" />
+    <link rel="canonical" href="https://mypowersetup.com/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Výpočet baterie a soláru | MyPowerSetup</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="MyPowerSetup domů">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" role="img">
+            <path d="M22 3 9 22h9l-1 15 14-21h-9V3Z" fill="currentColor" />
+          </svg>
+        </span>
+        <span>MyPowerSetup</span>
+      </a>
+      <a class="header-link" href="#jak-to-pocitame">Jak počítáme</a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Energie bez dohadů</p>
+          <h1 id="hero-title">Kolik baterie a soláru opravdu potřebujete?</h1>
+          <p class="hero-lead">
+            Vyberte spotřebiče. Za dvě minuty dostanete srozumitelný návrh baterie,
+            panelů, měniče a regulátoru — včetně vysvětlení.
+          </p>
+          <div class="trust-row" aria-label="Hlavní výhody">
+            <span><b>✓</b> Bez registrace</span>
+            <span><b>✓</b> Transparentní výpočet</span>
+            <span><b>✓</b> Zdarma</span>
+          </div>
+          <a class="button button-primary hero-button" href="#kalkulator">Spočítat moji sestavu</a>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="energy-card battery-card">
+            <span>Baterie</span>
+            <strong>200 Ah</strong>
+            <i><em style="width: 76%"></em></i>
+          </div>
+          <div class="power-path">
+            <span class="sun">☀</span>
+            <span class="path-line"></span>
+            <span class="bolt">ϟ</span>
+          </div>
+          <div class="energy-card solar-card">
+            <span>Solární výkon</span>
+            <strong>400 Wp</strong>
+            <small>letní provoz</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="calculator-section" id="kalkulator" aria-labelledby="calculator-title">
+        <div class="section-heading">
+          <p class="eyebrow">Kalkulátor sestavy</p>
+          <h2 id="calculator-title">Tři kroky k vlastní energii</h2>
+          <p>Hodnoty můžete upravit podle štítku svého spotřebiče.</p>
+        </div>
+
+        <div class="calculator-shell">
+          <nav class="steps" aria-label="Postup kalkulátoru">
+            <button class="step is-active" type="button" data-step-target="1">
+              <span>1</span>
+              <small>Využití</small>
+            </button>
+            <i></i>
+            <button class="step" type="button" data-step-target="2" disabled>
+              <span>2</span>
+              <small>Spotřebiče</small>
+            </button>
+            <i></i>
+            <button class="step" type="button" data-step-target="3" disabled>
+              <span>3</span>
+              <small>Výsledek</small>
+            </button>
+          </nav>
+
+          <form id="setup-form" novalidate>
+            <section class="form-step is-visible" data-step="1" aria-labelledby="step-one-title">
+              <div class="step-heading">
+                <span class="step-kicker">Krok 1 ze 3</span>
+                <h3 id="step-one-title">Kdy a jak budete energii používat?</h3>
+                <p>Pomůže nám to správně nastavit rezervu a výkon solárních panelů.</p>
+              </div>
+
+              <fieldset>
+                <legend>Kolik dnů chcete vydržet bez dobíjení?</legend>
+                <div class="choice-grid choice-grid-days">
+                  <label class="choice-card">
+                    <input type="radio" name="autonomyDays" value="1" />
+                    <span><strong>1 den</strong><small>Občasné přenocování</small></span>
+                  </label>
+                  <label class="choice-card is-selected">
+                    <input type="radio" name="autonomyDays" value="2" checked />
+                    <span><strong>2 dny</strong><small>Víkend bez přípojky</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="autonomyDays" value="3" />
+                    <span><strong>3 dny</strong><small>Delší nezávislost</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="autonomyDays" value="5" />
+                    <span><strong>5 dnů</strong><small>Velká rezerva</small></span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Ve kterém období má solár fungovat?</legend>
+                <div class="choice-grid choice-grid-season">
+                  <label class="choice-card is-selected">
+                    <input type="radio" name="season" value="summer" checked />
+                    <span class="choice-icon">☀️</span>
+                    <span><strong>Léto</strong><small>Nejlepší sluneční podmínky</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="season" value="shoulder" />
+                    <span class="choice-icon">⛅</span>
+                    <span><strong>Jaro / podzim</strong><small>Méně stabilní výroba</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="season" value="winter" />
+                    <span class="choice-icon">❄️</span>
+                    <span><strong>Zima</strong><small>Výrazně méně slunce</small></span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="step-actions step-actions-end">
+                <button class="button button-primary" type="button" data-next>Vybrat spotřebiče <span>→</span></button>
+              </div>
+            </section>
+
+            <section class="form-step" data-step="2" aria-labelledby="step-two-title" hidden>
+              <div class="step-heading">
+                <span class="step-kicker">Krok 2 ze 3</span>
+                <h3 id="step-two-title">Co chcete napájet každý den?</h3>
+                <p>Vyberte zařízení a upravte jejich dobu používání. Přednastavené hodnoty jsou běžné odhady.</p>
+              </div>
+
+              <div class="appliance-summary" aria-live="polite">
+                <span>Vybráno <strong id="selected-count">0</strong> zařízení</span>
+                <span>Odhad <strong id="live-consumption">0 Wh</strong> / den</span>
+              </div>
+
+              <div class="appliance-grid" id="appliance-grid"></div>
+              <p class="form-error" id="appliance-error" role="alert" hidden>Vyberte alespoň jeden spotřebič.</p>
+
+              <details class="advanced-settings">
+                <summary>Pokročilé nastavení sestavy</summary>
+                <div class="advanced-grid">
+                  <label>
+                    Typ baterie
+                    <select name="batteryType">
+                      <option value="lifepo4">LiFePO₄ — lehčí, delší životnost</option>
+                      <option value="lead">AGM / olovo — nižší pořizovací cena</option>
+                    </select>
+                  </label>
+                  <label>
+                    Napětí systému
+                    <select name="systemVoltage">
+                      <option value="auto">Doporučit automaticky</option>
+                      <option value="12">12 V</option>
+                      <option value="24">24 V</option>
+                    </select>
+                  </label>
+                </div>
+              </details>
+
+              <div class="step-actions">
+                <button class="button button-secondary" type="button" data-back>← Zpět</button>
+                <button class="button button-primary" type="submit">Spočítat sestavu <span>→</span></button>
+              </div>
+            </section>
+
+            <section class="form-step result-step" data-step="3" aria-labelledby="step-three-title" hidden>
+              <div class="result-heading">
+                <span class="result-check">✓</span>
+                <div>
+                  <span class="step-kicker">Váš orientační návrh</span>
+                  <h3 id="step-three-title">Sestava, která má rezervu</h3>
+                  <p id="result-intro"></p>
+                </div>
+              </div>
+
+              <div class="result-grid" id="result-grid"></div>
+
+              <div class="result-columns">
+                <section class="result-panel">
+                  <h4>Co tvoří vaši spotřebu</h4>
+                  <div id="consumption-breakdown"></div>
+                </section>
+                <section class="result-panel" id="result-notes-panel">
+                  <h4>Na co dát pozor</h4>
+                  <ul class="check-list" id="result-notes"></ul>
+                </section>
+              </div>
+
+              <section class="next-step-card" id="product-recommendations">
+                <div>
+                  <span class="step-kicker">Ověřené párování</span>
+                  <h4 id="product-heading">Připravujeme přesná produktová doporučení</h4>
+                  <p id="product-intro">Produkty z partnerských feedů zobrazíme až po ověření jejich parametrů proti výsledku vaší sestavy.</p>
+                </div>
+                <div id="recommendation-groups">
+                  <button class="button button-disabled" type="button" disabled>Produktové párování se připravuje</button>
+                </div>
+              </section>
+
+              <div class="step-actions">
+                <button class="button button-secondary" type="button" data-back>← Upravit spotřebiče</button>
+                <button class="text-button" type="button" id="start-over">Začít znovu</button>
+              </div>
+            </section>
+          </form>
+        </div>
+      </section>
+
+      <section class="method-section" id="jak-to-pocitame" aria-labelledby="method-title">
+        <div class="section-heading section-heading-light">
+          <p class="eyebrow">Žádná černá skříňka</p>
+          <h2 id="method-title">Výsledek umíme vysvětlit</h2>
+          <p>Každé doporučení vychází z vašich vstupů a několika konzervativních pravidel.</p>
+        </div>
+        <div class="method-grid">
+          <article>
+            <span>01</span>
+            <h3>Sečteme spotřebu</h3>
+            <p>Příkon každého zařízení násobíme dobou provozu a počtem kusů.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Přidáme reálné ztráty</h3>
+            <p>Počítáme s využitelnou kapacitou baterie, ztrátami i bezpečnou rezervou.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Zkontrolujeme špičky</h3>
+            <p>Měnič dimenzujeme i na krátký rozběh motorových spotřebičů.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="safety-note">
+        <strong>Než začnete nakupovat</strong>
+        <p>
+          Kalkulátor poskytuje orientační návrh, ne elektroprojekt. Ověřte skutečné štítkové hodnoty,
+          kabeláž, jištění, odpojování a podmínky instalace s kvalifikovaným odborníkem.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand brand-footer" href="#top">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><path d="M22 3 9 22h9l-1 15 14-21h-9V3Z" fill="currentColor" /></svg>
+        </span>
+        <span>MyPowerSetup</span>
+      </a>
+      <p>Praktické rozhodování pro energii mimo síť.</p>
+      <small>© <span id="year"></span> MyPowerSetup</small>
+    </footer>
+
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>

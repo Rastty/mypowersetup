@@ -9,6 +9,17 @@ Rychlý český kalkulátor pro návrh ostrovní elektrické sestavy. Uživatel 
 - statická aplikace vhodná pro libovolný hosting,
 - připraveno pro pozdější affiliate produktové karty bez vazby na konkrétní obchod.
 
+## Produktová data a affiliate odkazy
+
+Produktový katalog se generuje z feedů Reslshop a SvětKaravanů pomocí `npm run sync:products`.
+URL feedů se neukládají do repozitáře; synchronizace je čte z proměnných
+`RESLSHOP_FEED_URL` a `SVETKARAVANU_FEED_URL`. Výstupem je normalizovaný
+`data/products.json` pouze s relevantními bateriemi, panely, měniči a regulátory.
+
+Kompatibilitní engine nejprve kontroluje napětí a požadovaný výkon, kapacitu nebo proud.
+Teprve poté produkty boduje. Affiliate URL vždy obsahuje `desturl` konkrétního produktu
+a validátor odmítne odkaz na homepage obchodu.
+
 ## Lokální spuštění
 
 ```bash
