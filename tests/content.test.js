@@ -17,6 +17,8 @@ const pages = [
 ];
 
 const slovakPages = [
+  ["sk/sprievodca/index.html", "https://mypowersetup.com/sk/sprievodca/", "https://mypowersetup.com/pruvodce/"],
+  ["sk/sprievodca/kapacita-baterie-do-karavanu/index.html", "https://mypowersetup.com/sk/sprievodca/kapacita-baterie-do-karavanu/", "https://mypowersetup.com/pruvodce/kapacita-baterie-do-karavanu/"],
   ["sk/o-projekte/index.html", "https://mypowersetup.com/sk/o-projekte/", "https://mypowersetup.com/o-projektu/"],
   ["sk/metodika/index.html", "https://mypowersetup.com/sk/metodika/", "https://mypowersetup.com/metodika/"],
   ["sk/affiliate/index.html", "https://mypowersetup.com/sk/affiliate/", "https://mypowersetup.com/affiliate/"],
@@ -50,7 +52,6 @@ for (const [file, canonical, czechAlternate] of slovakPages) {
     assert.ok(html.includes(`hreflang="cs-CZ" href="${czechAlternate}"`));
     assert.ok(html.includes(`hreflang="sk-SK" href="${canonical}"`));
     assert.ok(html.includes('href="/sk/#kalkulator"'));
-    assert.doesNotMatch(html, /href="\/sk\/(?:sprievodca)\//);
   });
 }
 
@@ -173,7 +174,8 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.match(catalog, /Kompresorová chladnička/);
   assert.equal(JSON.parse(payload).market, "sk-SK");
   assert.ok(sitemap.includes("<loc>https://mypowersetup.com/sk/</loc>"));
-  assert.doesNotMatch(html, /href="\/sk\/sprievodca\//);
+  assert.ok(html.includes('href="/sk/sprievodca/"'));
+  assert.ok(html.includes('href="/sk/sprievodca/kapacita-baterie-do-karavanu/"'));
 });
 
 test("LLM discovery files cover every published page and preserve safety limits", async () => {
@@ -188,4 +190,18 @@ test("LLM discovery files cover every published page and preserve safety limits"
   assert.match(full, /affiliate provize nejsou součástí technického skóre/i);
   assert.match(full, /Petr Gálík/);
   assert.ok(robots.includes("https://mypowersetup.com/llms.txt"));
+});
+
+test("battery sizing content matches the calculator assumptions", async () => {
+  const [czech, slovak, catalog] = await Promise.all([
+    readFile("pruvodce/kapacita-baterie-do-karavanu/index.html", "utf8"),
+    readFile("sk/sprievodca/kapacita-baterie-do-karavanu/index.html", "utf8"),
+    readFile("src/catalog.js", "utf8"),
+  ]);
+  for (const html of [czech, slovak]) {
+    assert.match(html, /80 ?% využit/);
+    assert.match(html, /0,80 ÷ 12 = <strong>144 Ah<\/strong>/);
+    assert.doesNotMatch(html, /90 ?% využit|0,90 ÷ 12|128 Ah|132 Ah/);
+  }
+  assert.match(catalog, /lifepo4: \{[^}]*usableDepth: 0\.8/s);
 });
