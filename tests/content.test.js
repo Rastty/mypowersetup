@@ -75,3 +75,16 @@ test("calculator explains results and purchase checks", async () => {
   assert.ok(app.includes("Před nákupem:"));
   assert.ok(app.includes('trackEvent("calculation_completed"'));
 });
+
+test("calculator assets are cache-busted and submit errors are visible", async () => {
+  const [html, app, engine] = await Promise.all([
+    readFile("index.html", "utf8"),
+    readFile("src/app.js", "utf8"),
+    readFile("src/engine.js", "utf8"),
+  ]);
+  assert.ok(html.includes('src="/src/app.js?v=20260821-1"'));
+  assert.ok(html.includes('id="calculator-error"'));
+  assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
+  assert.ok(app.includes("calculatorError.hidden = false"));
+  assert.ok(engine.includes('from "./catalog.js?v=20260821-1"'));
+});
