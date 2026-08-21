@@ -138,6 +138,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('<link rel="canonical" href="https://mypowersetup.com/sk/"'));
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
+  assert.doesNotMatch(html, /\\n/);
   assert.ok(html.includes('src="/src/app-sk.js?v=20260821-sk1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
