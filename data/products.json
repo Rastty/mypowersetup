@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T17:46:01.851Z",
+  "generatedAt": "2026-08-21T18:17:40.407Z",
   "sources": {
     "reslshop": {
       "status": "error",
@@ -113,7 +113,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmppt-solarni-regulator-victron-energy-smartsolar-100-50_z101985%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/167410_102.jpg?1723111301_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 700,
         "currentA": 50,
@@ -157,7 +157,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsolarni-regulator-victron-energy-smartsolar-mppt-75-100-v_z24827%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/158728_102.jpg?1704380233_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 48,
         "capacityAh": null,
         "powerW": 100,
         "currentA": 10,
@@ -179,7 +179,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsolarni-regulator-victron-energy-smartsolar-mppt-75-100-v_z24827%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/158730_102.jpg?1704380234_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 48,
         "capacityAh": null,
         "powerW": 100,
         "currentA": 15,
@@ -201,7 +201,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsolarni-regulator-victron-energy-smartsolar-mppt-75-100-v_z24827%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/158731_102.jpg?1704380234_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 48,
         "capacityAh": null,
         "powerW": 100,
         "currentA": 20,
@@ -223,7 +223,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmppt-solarni-regulator-victron-smartsolar-100-30_z24828%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/145093_102.jpg?1704378888_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": null,
         "currentA": 30,
@@ -685,7 +685,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fkombinovany-menic-napeti-buttner-elektronik_z22540%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/156484_102.jpg?1704380152_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": null,
         "powerW": 5000,
         "currentA": 60,
@@ -707,7 +707,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fkombinovany-menic-napeti-buttner-elektronik_z22540%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/156485_102.jpg?1704380152_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": null,
         "powerW": 5000,
         "currentA": 120,
@@ -1301,7 +1301,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-dometic-sinepower-dpsi-12-v-nebo-24-v_z104292%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180081_102.jpg?1740987730_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 150,
         "currentA": null,
@@ -1323,7 +1323,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-dometic-sinepower-dpsi-12-v-nebo-24-v_z104292%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180081_102.jpg?1740987730_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 350,
         "currentA": null,
@@ -1345,7 +1345,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-dometic-sinepower-dpsi-12-v-nebo-24-v_z104292%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/180080_102.jpg?1740987682_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 600,
         "currentA": null,
@@ -1367,7 +1367,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-dometic-sinepower-dpsi-12-v-nebo-24-v_z104292%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/180080_102.jpg?1740987682_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 1000,
         "currentA": null,
@@ -1389,7 +1389,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-dometic-sinepower-dpsi-12-v-nebo-24-v_z104292%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180079_102.jpg?1740987646_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 1500,
         "currentA": null,
@@ -1411,7 +1411,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-dometic-sinepower-dpsi-12-v-nebo-24-v_z104292%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180079_102.jpg?1740987646_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 2000,
         "currentA": null,
@@ -1433,7 +1433,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-dometic-sinepower-dpsi-ts-12-v-nebo-24-v_z104293%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 1500,
         "currentA": null,
@@ -1455,7 +1455,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-dometic-sinepower-dpsi-ts-12-v-nebo-24-v_z104293%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 2000,
         "currentA": null,
@@ -1477,7 +1477,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-dometic-sinepower-dpsi-ts-12-v-nebo-24-v_z104293%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 3000,
         "currentA": null,
@@ -1807,7 +1807,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-dometic-sinepower-dpsi-rcd-12-v-nebo-24-v_z104295%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180089_102.jpg?1741000726_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 2000,
         "currentA": 12,
@@ -1829,7 +1829,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-dometic-sinepower-dpsi-rcd-12-v-nebo-24-v_z104295%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180089_102.jpg?1741000726_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 1500,
         "currentA": 12,
@@ -2577,7 +2577,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmenic-napeti-dometic-sinepower-dpsi-its-12-v-nebo-24-v_z104294%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/180087_102.jpg?1740999092_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 1800,
         "currentA": null,
@@ -2907,7 +2907,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsolarni-regulator-victron-energy-smartsolar-mppt-75-100-v_z24827%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/158729_102.jpg?1704380233_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 48,
         "capacityAh": null,
         "powerW": 100,
         "currentA": 15,
@@ -3325,7 +3325,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsolarni-baterie-hoppecke-sun-power-vr-m-6-v_z101961%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/167346_102.jpg?1722879952_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": 200,
         "powerW": null,
         "currentA": null,
@@ -3347,7 +3347,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmppt-solarni-regulator-victron-energy-bluesolar-100-30_z101984%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/167404_102.jpg?1723110413_1",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "powerW": 440,
         "currentA": 30,
@@ -3369,7 +3369,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsledovac-stavu-baterie-victron-energy-bmv-700_z103627%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/175676_102.jpg?1733579563_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 48,
         "capacityAh": 200,
         "powerW": 1,
         "currentA": 144,
@@ -3985,7 +3985,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fmppt-solarni-regulator-victron-energy-smartsolar-ve-can_z25297%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/159226_102.jpg?1704380250_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 48,
         "capacityAh": null,
         "powerW": null,
         "currentA": 85,
@@ -4293,7 +4293,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsinusovy-menic-napeti-carbest-powerwave-12-230-v_z108740%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/195952_102.jpg?1783252189_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": null,
         "powerW": 500,
         "currentA": null,
@@ -4315,7 +4315,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsinusovy-menic-napeti-carbest-powerwave-12-230-v_z108740%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/195963_102.jpg?1783252526_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": null,
         "powerW": 3000,
         "currentA": null,
@@ -4337,7 +4337,7 @@
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4&desturl=https%3A%2F%2Fwww.svetkaravanu.cz%2Fsinusovy-menic-napeti-carbest-powerwave-12-230-v_z108740%2F",
       "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/195959_102.jpg?1783252344_1",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": null,
         "powerW": 1000,
         "currentA": null,
