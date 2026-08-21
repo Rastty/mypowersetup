@@ -125,6 +125,21 @@ test("appliance controls do not nest interactive labels", async () => {
   }
 });
 
+test("language switch remains available on mobile", async () => {
+  const [czech, slovak, styles] = await Promise.all([
+    readFile("index.html", "utf8"),
+    readFile("sk/index.html", "utf8"),
+    readFile("styles.css", "utf8"),
+  ]);
+  assert.match(czech, /class="header-link language-switch" href="\/sk\/"/);
+  assert.match(czech, /aria-label="Prepnúť na slovenčinu"/);
+  assert.match(slovak, /class="header-link language-switch" href="\/"/);
+  assert.match(slovak, /aria-label="Přepnout do češtiny"/);
+  assert.match(styles, /\.header-link\.language-switch \{ display: inline-flex; \}/);
+  assert.ok(czech.includes('href="/styles.css?v=20260821-2"'));
+  assert.ok(slovak.includes('href="/styles.css?v=20260821-2"'));
+});
+
 test("homepage exposes valid website and calculator structured data", async () => {
   const html = await readFile("index.html", "utf8");
   const scripts = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
