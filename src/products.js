@@ -107,6 +107,7 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
 
 export function recommendProducts(products, setup, limitPerCategory = 3) {
   const candidates = products
+    .map(refreshCatalogProduct)
     .filter((product) => product.available !== false)
     .map((product) => scoreProduct(product, setup))
     .filter(Boolean);
@@ -120,14 +121,30 @@ export function recommendProducts(products, setup, limitPerCategory = 3) {
   }, {});
 }
 
+// Older generated catalogs may contain specs produced by an earlier parser.
+// Refresh them from the stored source text so parser fixes take effect immediately,
+// without waiting for the next successful merchant feed download.
+export function refreshCatalogProduct(product) {
+  const fallbackText = [product.categoryPath, product.description].filter(Boolean).join(" ");
+  const specs = extractSpecs(product.name, fallbackText);
+  if (/solární regulátory/i.test(product.categoryPath)) {
+    specs.currentA = extractControllerCurrent(product.name, product.description);
+  }
+  return {
+    ...product,
+    specs,
+    category: classifyProduct({ name: product.name, categoryPath: product.categoryPath, specs })
+  };
+}
+
 function scoreProduct(product, setup) {
   const { specs } = product;
   if (!product.category || product.category === "other") return null;
-  if (specs.voltageV && specs.voltageV !== setup.systemVoltage) return null;
 
   let fit = null;
   if (product.category === "battery") {
     if (!specs.voltageV) return null;
+    if (specs.voltageV !== setup.systemVoltage) return null;
     if (!specs.capacityAh || specs.capacityAh < setup.batteryAh) return null;
     if (specs.batteryType && setup.batteryType && specs.batteryType !== setup.batteryType) return null;
     fit = specs.capacityAh / setup.batteryAh;
@@ -141,6 +158,7 @@ function scoreProduct(product, setup) {
   }
   if (product.category === "inverter") {
     if (!specs.voltageV) return null;
+    if (specs.voltageV !== setup.systemVoltage) return null;
     if (!hasPureSineEvidence(product)) return null;
     if (!setup.inverterWatts || !specs.powerW || specs.powerW < setup.inverterWatts) return null;
     fit = specs.powerW / setup.inverterWatts;
@@ -152,7 +170,7 @@ function scoreProduct(product, setup) {
   }
 
   if (!fit || fit > 3) return null;
-  const completeness = Object.values(specs).filter((value) => value !== null).length;
+  const completeness = relevantSpecValues(product).filter((value) => value !== null).length;
   const fitScore = Math.max(0, 70 - Math.abs(1 - fit) * 35);
   const availabilityScore = product.available === true ? 15 : 5;
   const completenessScore = Math.min(15, completeness * 3);
@@ -167,6 +185,17 @@ function scoreProduct(product, setup) {
     checks: recommendationChecks(product, setup),
     verify: verificationNote(product.category)
   };
+}
+
+function relevantSpecValues(product) {
+  if (product.category === "battery") {
+    return [product.specs.voltageV, product.specs.capacityAh, product.specs.batteryType];
+  }
+  if (product.category === "solar_panel") return [product.specs.powerW];
+  if (product.category === "inverter") {
+    return [product.specs.voltageV, product.specs.powerW, product.specs.pureSine];
+  }
+  return [product.specs.currentA];
 }
 
 function hasPureSineEvidence(product) {
@@ -270,12 +299,17 @@ function extractContinuousPower(text) {
 }
 
 function extractNominalVoltage(text) {
-  const measured = matchNumber(text, /(\d+(?:[.,]\d+)?)\s*v\b/i);
-  if (!measured) return null;
-  if (measured >= 10 && measured < 16) return 12;
-  if (measured >= 20 && measured < 32) return 24;
-  if (measured >= 32 && measured < 44) return 36;
-  if (measured >= 44 && measured < 58) return 48;
+  const values = [...text.matchAll(/(\d+(?:[.,]\d+)?)\s*v\b/gi)]
+    .map((match) => parseLocalizedNumber(match[1]))
+    .filter(Number.isFinite);
+  const exactNominals = values.filter((value) => [12, 24, 36, 48].includes(value));
+  if (exactNominals.length) return exactNominals.at(-1);
+  for (const measured of values) {
+    if (measured >= 10 && measured < 16) return 12;
+    if (measured >= 20 && measured < 32) return 24;
+    if (measured >= 32 && measured < 44) return 36;
+    if (measured >= 44 && measured < 58) return 48;
+  }
   return null;
 }
 
