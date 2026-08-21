@@ -25,7 +25,7 @@ function renderAppliances() {
       </span>
       <span class="appliance-controls">
         <label class="mini-field">
-          <input type="number" min="0.01" max="24" step="0.05" value="${appliance.hours}" data-hours aria-label="Hodiny denně pro ${appliance.name}" /> h/den
+          <input type="number" min="0.01" max="24" step="any" value="${appliance.hours}" data-hours aria-label="Hodiny denně pro ${appliance.name}" /> h/den
         </label>
         <label class="mini-field">
           <input type="number" min="1" max="20" step="1" value="${appliance.quantity}" data-quantity aria-label="Počet kusů ${appliance.name}" /> ks
