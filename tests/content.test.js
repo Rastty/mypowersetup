@@ -64,3 +64,14 @@ test("every guide identifies Petr Gálík as its author", async () => {
     assert.ok(html.includes('"url":"https://mypowersetup.com/o-projektu/"'));
   }
 });
+
+test("calculator explains results and purchase checks", async () => {
+  const [html, app] = await Promise.all([
+    readFile("index.html", "utf8"),
+    readFile("src/app.js", "utf8"),
+  ]);
+  assert.ok(html.includes('id="result-reasons"'));
+  assert.ok(html.includes("Proč právě tyto hodnoty"));
+  assert.ok(app.includes("Před nákupem:"));
+  assert.ok(app.includes('trackEvent("calculation_completed"'));
+});

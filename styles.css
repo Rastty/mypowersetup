@@ -218,6 +218,14 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .result-card strong { display: block; margin: 18px 0 5px; font: 800 29px/1 "Manrope", sans-serif; letter-spacing: -.04em; }
 .result-card small { color: #d2dfd9; line-height: 1.35; }
 .result-card.is-accent small { color: #445620; }
+.decision-panel { margin-top: 16px; padding: 26px; border: 1px solid #bfd5c8; border-radius: var(--radius-md); background: #f2f8f4; }
+.decision-panel h4 { margin: 7px 0 20px; font-size: 21px; }
+.decision-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.decision-grid article { padding: 17px; border: 1px solid var(--line); border-radius: 12px; background: white; }
+.decision-grid span { color: #58806b; font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.decision-grid strong { display: block; margin: 7px 0 5px; font-size: 15px; }
+.decision-grid p { margin: 0; color: var(--ink-soft); font-size: 13px; line-height: 1.45; }
+.method-link { margin: 18px 0 0; font-size: 13px; font-weight: 750; }
 .result-columns { display: grid; grid-template-columns: 1.05fr .95fr; gap: 16px; margin-top: 16px; }
 .result-panel { padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: white; }
 .result-panel h4, .next-step-card h4 { margin: 0 0 18px; font-size: 18px; }
@@ -228,6 +236,7 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .check-list { display: grid; gap: 13px; margin: 0; padding: 0; list-style: none; }
 .check-list li { position: relative; padding-left: 25px; color: var(--ink-soft); line-height: 1.45; }
 .check-list li::before { content: "✓"; position: absolute; left: 0; color: #4b8967; font-weight: 800; }
+.check-list li.is-warning::before { content: "!"; display: grid; place-items: center; width: 17px; height: 17px; border-radius: 50%; color: #6d4e08; background: #f2cf6b; font-size: 11px; }
 .next-step-card { display: grid; gap: 24px; margin-top: 16px; padding: 26px; border-radius: var(--radius-md); background: #eef3ed; }
 .next-step-card h4 { margin: 7px 0 8px; }
 .next-step-card p { max-width: 620px; margin: 0; color: var(--ink-soft); line-height: 1.5; }
@@ -239,7 +248,12 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .product-card-copy { padding: 16px; }
 .product-card-copy > span { color: #719b84; font-size: 11px; font-weight: 800; text-transform: uppercase; }
 .product-card h6 { margin: 7px 0 8px; font: 800 14px/1.35 "Manrope", sans-serif; }
-.product-card p { min-height: 38px; font-size: 12px; }
+.product-card p { font-size: 12px; }
+.product-reason { min-height: 38px; }
+.product-checks { display: grid; gap: 6px; margin: 12px 0; padding: 0; list-style: none; }
+.product-checks li { position: relative; padding-left: 18px; color: #355447; font-size: 11px; line-height: 1.4; }
+.product-checks li::before { content: "✓"; position: absolute; left: 0; color: #4b8967; font-weight: 900; }
+.product-verify { padding-top: 10px; border-top: 1px solid var(--line); color: var(--ink-soft) !important; line-height: 1.45 !important; }
 .product-card-action { display: grid; gap: 10px; margin-top: 15px; }
 .product-card-action strong { font-size: 14px; }
 .product-card-action a { color: var(--forest); font-size: 12px; font-weight: 800; }
@@ -294,9 +308,10 @@ footer small { font-size: 12px; }
   .step { gap: 5px; }
   .step small { display: none; }
   .form-step { padding: 32px 18px 26px; }
-  .choice-grid-season, .appliance-grid, .advanced-grid, .result-columns, .method-grid, .product-grid, .guide-preview-grid { grid-template-columns: 1fr; }
+  .choice-grid-season, .appliance-grid, .advanced-grid, .result-columns, .method-grid, .product-grid, .guide-preview-grid, .decision-grid { grid-template-columns: 1fr; }
   .choice-grid-season .choice-card { min-height: 76px; }
   .appliance-summary { flex-direction: column; gap: 5px; }
+  .appliance-summary { position: sticky; z-index: 3; top: 8px; box-shadow: 0 5px 18px rgba(13,43,35,.12); }
   .step-actions { align-items: stretch; flex-direction: column-reverse; }
   .step-actions .button { width: 100%; }
   .step-actions-end { flex-direction: column; }

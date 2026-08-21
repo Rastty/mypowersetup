@@ -64,7 +64,11 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
       : /\bagm\b|olov/i.test(`${primary} ${fallback}`)
         ? "lead"
         : null,
-    pureSine: /čist(?:ý|á) sinus|pure sine/i.test(`${primary} ${fallback}`) ? true : null
+    pureSine: /modifikovan(?:ý|á|ou) sinus/i.test(`${primary} ${fallback}`)
+      ? false
+      : /čist(?:ý|á) sinus|pure sine|sinusov(?:ý|á) měnič|sinepower/i.test(`${primary} ${fallback}`)
+        ? true
+        : null
   };
 }
 
@@ -93,7 +97,7 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
 
   const isController =
     /solární regulátory/i.test(categoryPath) &&
-    /\b(regulátor|mppt)\b/i.test(name) &&
+    /\bmppt\b/i.test(name) &&
     !accessory.test(name) &&
     specs.currentA > 0;
   if (isController) return "controller";
@@ -124,22 +128,25 @@ function scoreProduct(product, setup) {
   let fit = null;
   if (product.category === "battery") {
     if (!specs.voltageV) return null;
-    if (!specs.capacityAh || specs.capacityAh < setup.batteryAh * 0.8) return null;
+    if (!specs.capacityAh || specs.capacityAh < setup.batteryAh) return null;
     if (specs.batteryType && setup.batteryType && specs.batteryType !== setup.batteryType) return null;
     fit = specs.capacityAh / setup.batteryAh;
   }
   if (product.category === "solar_panel") {
     if (!specs.powerW) return null;
     const quantity = Math.max(1, Math.ceil(setup.solarWatts / specs.powerW));
+    if (quantity > 4) return null;
     fit = (specs.powerW * quantity) / setup.solarWatts;
     product = { ...product, recommendedQuantity: quantity };
   }
   if (product.category === "inverter") {
     if (!specs.voltageV) return null;
+    if (!hasPureSineEvidence(product)) return null;
     if (!setup.inverterWatts || !specs.powerW || specs.powerW < setup.inverterWatts) return null;
     fit = specs.powerW / setup.inverterWatts;
   }
   if (product.category === "controller") {
+    if (!/\bmppt\b/i.test(product.name)) return null;
     if (!specs.currentA || specs.currentA < setup.controllerAmps) return null;
     fit = specs.currentA / setup.controllerAmps;
   }
@@ -149,12 +156,24 @@ function scoreProduct(product, setup) {
   const fitScore = Math.max(0, 70 - Math.abs(1 - fit) * 35);
   const availabilityScore = product.available === true ? 15 : 5;
   const completenessScore = Math.min(15, completeness * 3);
+  const quantityPenalty = product.category === "solar_panel"
+    ? Math.max(0, (product.recommendedQuantity - 1) * 4)
+    : 0;
 
   return {
     product,
-    score: Math.round(fitScore + availabilityScore + completenessScore),
-    reason: recommendationReason(product, setup)
+    score: Math.round(fitScore + availabilityScore + completenessScore - quantityPenalty),
+    reason: recommendationReason(product, setup),
+    checks: recommendationChecks(product, setup),
+    verify: verificationNote(product.category)
   };
+}
+
+function hasPureSineEvidence(product) {
+  if (product.specs.pureSine === false) return false;
+  if (product.specs.pureSine === true) return true;
+  return !/modifikovan(?:ý|á|ou) sinus/i.test(product.name)
+    && /čist(?:ý|á) sinus|pure sine|sinusov(?:ý|á) měnič|sinepower/i.test(product.name);
 }
 
 function uniqueProductPages(candidates) {
@@ -167,10 +186,37 @@ function uniqueProductPages(candidates) {
 }
 
 function recommendationReason(product, setup) {
-  if (product.category === "battery") return `${product.specs.capacityAh} Ah pro ${setup.systemVoltage}V systém`;
-  if (product.category === "solar_panel") return `${product.recommendedQuantity}× ${product.specs.powerW} Wp`;
-  if (product.category === "inverter") return `${product.specs.powerW} W pro požadavek ${setup.inverterWatts} W`;
-  return `${product.specs.currentA} A pro požadavek ${setup.controllerAmps} A`;
+  if (product.category === "battery") return `Kapacita splňuje požadovaných ${setup.batteryAh} Ah`;
+  if (product.category === "solar_panel") return `${product.recommendedQuantity} ks pokryjí požadovaných ${setup.solarWatts} Wp`;
+  if (product.category === "inverter") return `Trvalý výkon splňuje požadovaných ${setup.inverterWatts} W`;
+  return `Proud splňuje požadovaných ${setup.controllerAmps} A`;
+}
+
+function recommendationChecks(product, setup) {
+  if (product.category === "battery") return [
+    `${product.specs.capacityAh} Ah ≥ ${setup.batteryAh} Ah`,
+    `${product.specs.voltageV} V = napětí sestavy`,
+    product.specs.batteryType === "lifepo4" ? "LiFePO₄" : "Olověná technologie"
+  ];
+  if (product.category === "solar_panel") return [
+    `${product.recommendedQuantity} × ${product.specs.powerW} Wp = ${product.recommendedQuantity * product.specs.powerW} Wp`,
+    `Požadavek sestavy: ${setup.solarWatts} Wp`
+  ];
+  if (product.category === "inverter") return [
+    `${product.specs.powerW} W ≥ ${setup.inverterWatts} W`,
+    `${product.specs.voltageV} V = napětí sestavy`
+  ];
+  return [
+    `${product.specs.currentA} A ≥ ${setup.controllerAmps} A`,
+    `Pro návrh panelů ${setup.solarWatts} Wp`
+  ];
+}
+
+function verificationNote(category) {
+  if (category === "battery") return "Ověřte rozměry, BMS, nabíjecí proud a svorky.";
+  if (category === "solar_panel") return "Ověřte rozměry, Voc, Isc a způsob zapojení panelů.";
+  if (category === "inverter") return "Ověřte špičkový výkon, čistý sinus, kabeláž a vlastní spotřebu.";
+  return "Ověřte maximální Voc, Isc, FV výkon a profil baterie v datasheetu.";
 }
 
 function validateProductUrl(value, hostname) {

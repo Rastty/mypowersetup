@@ -35,6 +35,9 @@ test("sizes a small summer LiFePO4 setup deterministically", () => {
   assert.equal(result.inverterWatts, 100);
   assert.equal(result.controllerAmps, 30);
   assert.equal(result.systemVoltage, 12);
+  assert.equal(result.calculation.peakSunHours, 4.5);
+  assert.equal(result.calculation.automaticVoltage, 12);
+  assert.ok(result.calculation.requiredBatteryWhRaw > 1700);
 });
 
 test("automatically switches a high-power setup to 24 V", () => {

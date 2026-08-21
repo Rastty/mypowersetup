@@ -10,6 +10,7 @@ const applianceError = document.querySelector("#appliance-error");
 let currentStep = 1;
 let latestResult = null;
 let productCatalog = [];
+let productCatalogUpdatedAt = null;
 
 renderAppliances();
 bindChoiceCards();
@@ -23,6 +24,7 @@ async function loadProductCatalog() {
     if (!response.ok) return;
     const payload = await response.json();
     productCatalog = Array.isArray(payload.products) ? payload.products : [];
+    productCatalogUpdatedAt = payload.updatedAt || payload.generatedAt || null;
   } catch {
     productCatalog = [];
   }
@@ -120,6 +122,12 @@ function handleSubmit(event) {
   });
 
   renderResult(latestResult);
+  trackEvent("calculation_completed", {
+    dailyWh: latestResult.dailyWh,
+    batteryAh: latestResult.batteryAh,
+    solarWatts: latestResult.solarWatts,
+    systemVoltage: latestResult.systemVoltage
+  });
   showStep(3);
 }
 
@@ -134,6 +142,13 @@ function renderResult(result) {
     resultCard("MPPT regulátor", `${result.controllerAmps} A`, `pro ${result.systemVoltage}V systém`)
   ].join("");
 
+  document.querySelector("#result-reasons").innerHTML = [
+    explanationCard("Baterie", `${formatEnergy(result.dailyWh)} × ${result.autonomyDays} ${dayWord(result.autonomyDays)}`, `Po započtení ${result.assumptions.batteryMarginPercent}% rezervy a ${result.assumptions.usableDepthPercent}% využitelné kapacity vychází ${formatEnergy(result.batteryWh)}.`),
+    explanationCard("Solár", `${formatEnergy(result.dailyWh)} ÷ ${formatNumber(result.calculation.peakSunHours)} slunečních hodin`, `Po systémových ztrátách a rezervě zaokrouhlujeme nahoru na ${result.solarWatts} Wp.`),
+    explanationCard("Napětí", `${result.systemVoltage}V systém`, result.calculation.automaticVoltage === result.systemVoltage ? "Automatická volba podle velikosti baterie a výkonu měniče." : `Ruční volba; automatický návrh by použil ${result.calculation.automaticVoltage} V.`),
+    explanationCard("Měnič", result.inverterWatts ? `${result.inverterWatts} W` : "Není potřeba", result.inverterWatts ? `Porovnáváme souběžný AC odběr přibližně ${Math.round(result.calculation.estimatedConcurrentWatts)} W a rozběhovou špičku ${Math.round(result.calculation.largestStartWatts)} W.` : "Mezi vybranými zařízeními není 230V spotřebič.")
+  ].join("");
+
   const largestWh = Math.max(...result.applianceRows.map((item) => item.dailyWh));
   document.querySelector("#consumption-breakdown").innerHTML = result.applianceRows
     .sort((a, b) => b.dailyWh - a.dailyWh)
@@ -144,13 +159,14 @@ function renderResult(result) {
       </div>
     `).join("");
 
-  const standardNotes = [
-    `Baterie počítá s ${result.assumptions.usableDepthPercent}% využitelnou kapacitou a ${result.assumptions.batteryMarginPercent}% rezervou.`,
-    `Solární odhad zahrnuje ${100 - result.assumptions.solarEfficiencyPercent}% systémových ztrát a ${result.assumptions.solarMarginPercent}% rezervu.`,
-    "Před nákupem ověřte skutečný příkon, rozběhové špičky, kabeláž a jištění."
+  const checks = [
+    ...result.warnings.map((text) => ({ text, warning: true })),
+    { text: "Porovnejte vstupní příkony s výrobními štítky svých spotřebičů." },
+    { text: "Ověřte rozběhové špičky, kabeláž, jištění, BMS a podmínky montáže." },
+    { text: "U panelů a MPPT samostatně ověřte Voc a Isc při nejnižší očekávané teplotě." }
   ];
-  document.querySelector("#result-notes").innerHTML = [...result.warnings, ...standardNotes]
-    .map((note) => `<li>${note}</li>`)
+  document.querySelector("#result-notes").innerHTML = checks
+    .map(({ text, warning }) => `<li class="${warning ? "is-warning" : ""}">${escapeHtml(text)}</li>`)
     .join("");
 
   renderProductRecommendations(result);
@@ -168,6 +184,9 @@ function renderProductRecommendations(result) {
     controller: "MPPT regulátory"
   };
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
+  const freshness = productCatalogUpdatedAt
+    ? ` Produktová data byla načtena ${new Date(productCatalogUpdatedAt).toLocaleDateString("cs-CZ")}.`
+    : "";
 
   if (total === 0) {
     heading.textContent = "Připravujeme přesná produktová doporučení";
@@ -177,27 +196,29 @@ function renderProductRecommendations(result) {
   }
 
   heading.textContent = "Komponenty odpovídající vašemu výpočtu";
-  intro.textContent = "Nejdříve ověřujeme technickou kompatibilitu. Pořadí následně zohledňuje shodu parametrů, dostupnost a úplnost produktových dat.";
+  intro.textContent = `Nejdříve ověřujeme technickou kompatibilitu. Pořadí následně zohledňuje shodu parametrů, dostupnost a úplnost produktových dat.${freshness}`;
   groups.innerHTML = Object.entries(recommendations)
     .filter(([, items]) => items.length)
     .map(([category, items]) => `
       <section class="product-group">
         <h5>${categoryLabels[category]}</h5>
         <div class="product-grid">
-          ${items.map(({ product, reason }) => productCard(product, reason)).join("")}
+          ${items.map(({ product, reason, checks, verify }) => productCard(product, reason, checks, verify)).join("")}
         </div>
       </section>
     `).join("");
 }
 
-function productCard(product, reason) {
+function productCard(product, reason, checks, verify) {
   return `
     <article class="product-card">
       ${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : ""}
       <div class="product-card-copy">
-        <span>${escapeHtml(product.brand || merchantLabel(product.merchant))}</span>
+        <span>${escapeHtml(product.brand || merchantLabel(product.merchant))} · ${escapeHtml(merchantLabel(product.merchant))}</span>
         <h6>${escapeHtml(product.name)}</h6>
-        <p>${escapeHtml(reason)}</p>
+        <p class="product-reason"><strong>Proč sedí:</strong> ${escapeHtml(reason)}</p>
+        <ul class="product-checks">${checks.map((check) => `<li>${escapeHtml(check)}</li>`).join("")}</ul>
+        <p class="product-verify"><strong>Před nákupem:</strong> ${escapeHtml(verify)}</p>
         <div class="product-card-action">
           <strong>${formatPrice(product.priceCzk)}</strong>
           <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Prohlédnout produkt →</a>
@@ -216,10 +237,14 @@ document.addEventListener("click", (event) => {
     merchant: link.dataset.merchant,
     category: link.dataset.category
   };
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(detail);
+  trackEvent(detail.event, detail);
   document.dispatchEvent(new CustomEvent("mypowersetup:affiliate-click", { detail }));
 });
+
+function trackEvent(event, parameters = {}) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event, ...parameters });
+}
 
 function formatPrice(price) {
   return Number.isFinite(price)
@@ -248,6 +273,14 @@ function resultCard(label, value, description, accent = false) {
       <small>${description}</small>
     </article>
   `;
+}
+
+function explanationCard(label, formula, explanation) {
+  return `<article><span>${label}</span><strong>${formula}</strong><p>${explanation}</p></article>`;
+}
+
+function formatNumber(value) {
+  return Number(value).toLocaleString("cs-CZ", { maximumFractionDigits: 1 });
 }
 
 function showStep(step) {

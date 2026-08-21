@@ -64,6 +64,30 @@ test("matcher rejects incompatible voltage and ranks a fitting battery", () => {
   });
   assert.equal(recommendations.battery.length, 1);
   assert.equal(recommendations.battery[0].product.id, "reslshop:12v");
+  assert.deepEqual(recommendations.battery[0].checks, [
+    "200 Ah ≥ 180 Ah",
+    "12 V = napětí sestavy",
+    "LiFePO₄"
+  ]);
+  assert.match(recommendations.battery[0].verify, /BMS/);
+});
+
+test("matcher never presents an undersized battery as compatible", () => {
+  const battery = normalizeProduct({
+    id: "undersized",
+    name: "LiFePO4 baterie 12 V 160 Ah",
+    url: "https://www.reslshop.cz/baterie-12v-160ah/",
+    available: true
+  }, "reslshop");
+  const recommendations = recommendProducts([battery], {
+    systemVoltage: 12,
+    batteryAh: 180,
+    batteryType: "lifepo4",
+    solarWatts: 400,
+    inverterWatts: 1000,
+    controllerAmps: 40
+  });
+  assert.equal(recommendations.battery.length, 0);
 });
 
 test("classifier rejects a water faucet and battery accessories", () => {
@@ -101,6 +125,17 @@ test("classifier rejects solar holders and MPPT enclosures", () => {
   }, "svetkaravanu");
   assert.equal(holder.category, "other");
   assert.equal(enclosure.category, "other");
+});
+
+test("classifier excludes PWM controllers from MPPT recommendations", () => {
+  const pwm = normalizeProduct({
+    id: "pwm-30",
+    name: "PWM solární regulátor 30 A",
+    description: "Maximální nabíjecí proud 30 A.",
+    category: "Elektro | Solární regulátory",
+    url: "https://www.svetkaravanu.cz/pwm-regulator_z302/"
+  }, "svetkaravanu");
+  assert.equal(pwm.category, "other");
 });
 
 test("classifier accepts products only with their required technical value", () => {
@@ -177,6 +212,45 @@ test("zero-watt and VA-only inverters are excluded until watts are known", () =>
   }, "svetkaravanu");
   assert.equal(inverter.category, "other");
   assert.equal(inverter.priceCzk, null);
+});
+
+test("matcher only recommends an inverter with evidenced pure sine output", () => {
+  const modified = normalizeProduct({
+    id: "modified",
+    name: "Měnič napětí 12 V 1000 W s modifikovanou sinusoidou",
+    category: "Elektro | Měniče napětí",
+    url: "https://www.svetkaravanu.cz/menic-modifikovany_z505/",
+    available: true
+  }, "svetkaravanu");
+  const recommendations = recommendProducts([modified], {
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    solarWatts: 200,
+    inverterWatts: 800,
+    controllerAmps: 20
+  });
+  assert.equal(modified.specs.pureSine, false);
+  assert.equal(recommendations.inverter.length, 0);
+});
+
+test("matcher avoids impractical arrays of many tiny panels", () => {
+  const tiny = normalizeProduct({
+    id: "tiny-panel",
+    name: "Solární panel 25 W",
+    category: "Elektro | Solární panely",
+    url: "https://www.svetkaravanu.cz/tiny-panel_z507/",
+    available: true
+  }, "svetkaravanu");
+  const recommendations = recommendProducts([tiny], {
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    solarWatts: 250,
+    inverterWatts: 800,
+    controllerAmps: 30
+  });
+  assert.equal(recommendations.solar_panel.length, 0);
 });
 
 test("matcher rejects an inverter with unknown system voltage", () => {
