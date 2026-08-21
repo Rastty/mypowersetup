@@ -16,6 +16,13 @@ const pages = [
   ["soukromi/index.html", "https://mypowersetup.com/soukromi/"],
 ];
 
+const slovakPages = [
+  ["sk/o-projekte/index.html", "https://mypowersetup.com/sk/o-projekte/", "https://mypowersetup.com/o-projektu/"],
+  ["sk/metodika/index.html", "https://mypowersetup.com/sk/metodika/", "https://mypowersetup.com/metodika/"],
+  ["sk/affiliate/index.html", "https://mypowersetup.com/sk/affiliate/", "https://mypowersetup.com/affiliate/"],
+  ["sk/sukromie/index.html", "https://mypowersetup.com/sk/sukromie/", "https://mypowersetup.com/soukromi/"],
+];
+
 for (const [file, canonical] of pages) {
   test(`${file} has essential SEO and calculator links`, async () => {
     const html = await readFile(file, "utf8");
@@ -30,7 +37,22 @@ for (const [file, canonical] of pages) {
 test("sitemap contains every published page", async () => {
   const sitemap = await readFile("sitemap.xml", "utf8");
   for (const [, canonical] of pages) assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
+  for (const [, canonical] of slovakPages) assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
 });
+
+for (const [file, canonical, czechAlternate] of slovakPages) {
+  test(`${file} is fully localized and linked to its Czech alternate`, async () => {
+    const html = await readFile(file, "utf8");
+    assert.ok(html.includes('<html lang="sk">'));
+    assert.match(html, /<title>[^<]{20,}<\/title>/);
+    assert.match(html, /<meta name="description" content="[^"]{80,}"/);
+    assert.ok(html.includes(`<link rel="canonical" href="${canonical}">`));
+    assert.ok(html.includes(`hreflang="cs-CZ" href="${czechAlternate}"`));
+    assert.ok(html.includes(`hreflang="sk-SK" href="${canonical}"`));
+    assert.ok(html.includes('href="/sk/#kalkulator"'));
+    assert.doesNotMatch(html, /href="\/sk\/(?:sprievodca)\//);
+  });
+}
 
 test("affiliate recommendations are disclosed and measurable", async () => {
   const [html, app] = await Promise.all([
@@ -123,7 +145,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.match(catalog, /Kompresorová chladnička/);
   assert.equal(JSON.parse(payload).market, "sk-SK");
   assert.ok(sitemap.includes("<loc>https://mypowersetup.com/sk/</loc>"));
-  assert.doesNotMatch(html, /href="\/sk\/(?:sprievodca|metodika|affiliate|sukromie|o-projekte)/);
+  assert.doesNotMatch(html, /href="\/sk\/sprievodca\//);
 });
 
 test("LLM discovery files cover every published page and preserve safety limits", async () => {
@@ -133,6 +155,7 @@ test("LLM discovery files cover every published page and preserve safety limits"
     readFile("robots.txt", "utf8"),
   ]);
   for (const [, canonical] of pages) assert.ok(llms.includes(canonical));
+  for (const [, canonical] of slovakPages) assert.ok(llms.includes(canonical));
   assert.match(llms, /nikoli elektroprojekt nebo revize/i);
   assert.match(full, /affiliate provize nejsou součástí technického skóre/i);
   assert.match(full, /Petr Gálík/);
