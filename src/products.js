@@ -17,8 +17,11 @@ export function normalizeProduct(raw, merchantKey) {
   const name = cleanText(raw.name);
   const categoryPath = cleanText(raw.category);
   const description = cleanText(raw.description);
-  const text = [name, categoryPath, description].filter(Boolean).join(" ");
-  const specs = extractSpecs(text);
+  const fallbackText = [categoryPath, description].filter(Boolean).join(" ");
+  const specs = extractSpecs(name, fallbackText);
+  if (/solární regulátory/i.test(categoryPath)) {
+    specs.currentA = extractControllerCurrent(name, description);
+  }
 
   return {
     id: `${merchantKey}:${String(raw.id || productUrl.pathname).trim()}`,
@@ -46,19 +49,22 @@ export function buildAffiliateUrl(merchantKey, productUrl) {
   return affiliateUrl.toString();
 }
 
-export function extractSpecs(text = "") {
-  const normalized = cleanText(text);
+export function extractSpecs(primaryText = "", fallbackText = "") {
+  const primary = cleanText(primaryText);
+  const fallback = cleanText(fallbackText);
   return {
-    voltageV: matchNumber(normalized, /(12|24|36|48)\s*v\b/i),
-    capacityAh: matchNumber(normalized, /(\d+(?:[.,]\d+)?)\s*ah\b/i),
-    powerW: extractContinuousPower(normalized),
-    currentA: matchNumber(normalized, /(\d+(?:[.,]\d+)?)\s*a\b/i),
-    batteryType: /lifepo4|lithium(?:-ion)?/i.test(normalized)
+    voltageV: extractNominalVoltage(primary) ?? extractNominalVoltage(fallback),
+    capacityAh: matchNumber(primary, /(\d+(?:[.,]\d+)?)\s*ah\b/i)
+      ?? matchNumber(fallback, /(\d+(?:[.,]\d+)?)\s*ah\b/i),
+    powerW: extractContinuousPower(primary) ?? extractContinuousPower(fallback),
+    currentA: matchNumber(primary, /(\d+(?:[.,]\d+)?)\s*a\b/i)
+      ?? matchNumber(fallback, /(\d+(?:[.,]\d+)?)\s*a\b/i),
+    batteryType: /lifepo4|lithium(?:-ion)?/i.test(`${primary} ${fallback}`)
       ? "lifepo4"
-      : /\bagm\b|olov/i.test(normalized)
+      : /\bagm\b|olov/i.test(`${primary} ${fallback}`)
         ? "lead"
         : null,
-    pureSine: /čist(?:ý|á) sinus|pure sine/i.test(normalized) ? true : null
+    pureSine: /čist(?:ý|á) sinus|pure sine/i.test(`${primary} ${fallback}`) ? true : null
   };
 }
 
@@ -69,27 +75,27 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
     /\b(baterie|akumulátor|lifepo4|lithium|agm)\b/i.test(name) &&
     !/vodovod|sprch|spotřební baterie|příslušenství k bateriím/i.test(`${name} ${categoryPath}`) &&
     !accessory.test(name) &&
-    Number.isFinite(specs.capacityAh);
+    specs.capacityAh > 0;
   if (isBattery) return "battery";
 
   const isSolarPanel =
     /\b(solární|fotovoltaický)\s+(?:skládací\s+|přenosný\s+)?panel\b/i.test(name) &&
     !accessory.test(name) &&
-    Number.isFinite(specs.powerW);
+    specs.powerW > 0;
   if (isSolarPanel) return "solar_panel";
 
   const isInverter =
     /měniče napětí/i.test(categoryPath) &&
     /(měnič|invertor|inverter)/i.test(name) &&
     !accessory.test(name) &&
-    Number.isFinite(specs.powerW);
+    specs.powerW > 0;
   if (isInverter) return "inverter";
 
   const isController =
     /solární regulátory/i.test(categoryPath) &&
     /\b(regulátor|mppt)\b/i.test(name) &&
     !accessory.test(name) &&
-    Number.isFinite(specs.currentA);
+    specs.currentA > 0;
   if (isController) return "controller";
 
   return "other";
@@ -117,6 +123,7 @@ function scoreProduct(product, setup) {
 
   let fit = null;
   if (product.category === "battery") {
+    if (!specs.voltageV) return null;
     if (!specs.capacityAh || specs.capacityAh < setup.batteryAh * 0.8) return null;
     if (specs.batteryType && setup.batteryType && specs.batteryType !== setup.batteryType) return null;
     fit = specs.capacityAh / setup.batteryAh;
@@ -186,22 +193,51 @@ function normalizeAvailability(value) {
 }
 
 function parsePrice(value) {
-  const parsed = Number(String(value ?? "").replace(/[^\d,.-]/g, "").replace(",", "."));
+  const normalized = String(value ?? "").replace(/[^\d,.-]/g, "").replace(",", ".");
+  if (!normalized) return null;
+  const parsed = Number(normalized);
   return Number.isFinite(parsed) ? parsed : null;
 }
 
 function matchNumber(text, pattern) {
   const match = text.match(pattern);
   if (!match) return null;
-  const parsed = Number(match[1].replace(",", "."));
+  const parsed = parseLocalizedNumber(match[1]);
   return Number.isFinite(parsed) ? parsed : null;
 }
 
 function extractContinuousPower(text) {
-  const continuousAndPeak = text.match(/(?:stálý|trvalý|jmenovitý)[^\d]{0,30}(\d+(?:[.,]\d+)?)\s*\/\s*\d+(?:[.,]\d+)?\s*w\b/i);
-  if (continuousAndPeak) return Number(continuousAndPeak[1].replace(",", "."));
-  return matchNumber(text, /(\d+(?:[.,]\d+)?)\s*(?:w|wp)\b/i)
+  const continuousAndPeak = text.match(/(?:stálý|trvalý|jmenovitý)[^\d]{0,30}\b(\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?)\s*\/\s*\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?\s*w\b/i);
+  if (continuousAndPeak) return parseLocalizedNumber(continuousAndPeak[1]);
+  return matchNumber(text, /\b(\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?)\s*(?:w|wp)\b/i)
     ?? matchNumber(text, /\bwp\)?\s*(\d+(?:[.,]\d+)?)/i);
+}
+
+function extractNominalVoltage(text) {
+  const measured = matchNumber(text, /(\d+(?:[.,]\d+)?)\s*v\b/i);
+  if (!measured) return null;
+  if (measured >= 10 && measured < 16) return 12;
+  if (measured >= 20 && measured < 32) return 24;
+  if (measured >= 32 && measured < 44) return 36;
+  if (measured >= 44 && measured < 58) return 48;
+  return null;
+}
+
+function extractControllerCurrent(name, description) {
+  const explicitInName = matchNumber(name, /(\d+(?:[.,]\d+)?)\s*a\b/i);
+  if (explicitInName) return explicitInName;
+
+  const model = name.match(/(?:mppt|smartsolar|bluesolar)[^\n]{0,80}?\b\d{2,3}\s*[\/-]\s*(\d{1,3})\b/i);
+  if (model) return parseLocalizedNumber(model[1]);
+
+  return matchNumber(
+    description,
+    /(?:nabíjecí|výstupní|max(?:imální)?\.?)[^\d]{0,24}(\d+(?:[.,]\d+)?)\s*a\b/i
+  );
+}
+
+function parseLocalizedNumber(value) {
+  return Number(String(value).replace(/[ \u00a0]/g, "").replace(",", "."));
 }
 
 function cleanText(value) {
