@@ -33,13 +33,13 @@ async function loadProductCatalog() {
 
 function renderAppliances() {
   applianceGrid.innerHTML = APPLIANCES.map((appliance) => `
-    <label class="appliance-card" data-appliance-card="${appliance.id}">
-      <input type="checkbox" name="appliance" value="${appliance.id}" />
+    <article class="appliance-card" data-appliance-card="${appliance.id}">
+      <input id="appliance-${appliance.id}" type="checkbox" name="appliance" value="${appliance.id}" />
       <span class="appliance-icon" aria-hidden="true">${appliance.icon}</span>
-      <span class="appliance-copy">
+      <label class="appliance-copy" for="appliance-${appliance.id}">
         <strong>${appliance.name}</strong>
         <small>${appliance.description}</small>
-      </span>
+      </label>
       <span class="appliance-controls">
         <label class="mini-field">
           <input type="number" min="0.01" max="24" step="0.05" value="${appliance.hours}" data-hours aria-label="Hodiny denně pro ${appliance.name}" /> h/den
@@ -48,11 +48,20 @@ function renderAppliances() {
           <input type="number" min="1" max="20" step="1" value="${appliance.quantity}" data-quantity aria-label="Počet kusů ${appliance.name}" /> ks
         </label>
       </span>
-    </label>
+    </article>
   `).join("");
 
+  applianceGrid.addEventListener("click", handleApplianceCardClick);
   applianceGrid.addEventListener("change", handleApplianceChange);
   applianceGrid.addEventListener("input", updateLiveSummary);
+}
+
+function handleApplianceCardClick(event) {
+  const card = event.target.closest(".appliance-card");
+  if (!card || event.target.closest("input, select, button, a, label")) return;
+  const checkbox = card.querySelector('input[type="checkbox"][name="appliance"]');
+  checkbox.checked = !checkbox.checked;
+  checkbox.dispatchEvent(new Event("change", { bubbles: true }));
 }
 
 function bindChoiceCards() {
