@@ -18,7 +18,12 @@ const scenarios = [
       batteryType: "lifepo4",
       solarWatts: 200,
       inverterWatts: 800,
-      controllerAmps: 20
+      controllerAmps: 20,
+      charging: {
+        starterVoltage: 12,
+        dcDc: { suggestedCurrentAmps: 20 },
+        shore: { suggestedCurrentAmps: 15 }
+      }
     }
   },
   {
@@ -30,7 +35,12 @@ const scenarios = [
       batteryType: "lead",
       solarWatts: 400,
       inverterWatts: 1000,
-      controllerAmps: 40
+      controllerAmps: 40,
+      charging: {
+        starterVoltage: 12,
+        dcDc: { suggestedCurrentAmps: 20 },
+        shore: { suggestedCurrentAmps: 15 }
+      }
     }
   }
 ];
@@ -38,7 +48,7 @@ const scenarios = [
 for (const scenario of scenarios) {
   test(`catalog covers ${scenario.name}`, () => {
     const recommendations = recommendProducts(catalog.products, scenario.setup);
-    for (const category of ["battery", "solar_panel", "inverter", "controller"]) {
+    for (const category of ["battery", "solar_panel", "inverter", "controller", "dc_charger", "shore_charger"]) {
       assert.ok(
         recommendations[category].length > 0,
         `${scenario.name} nemá doporučení pro kategorii ${category}`

@@ -19,6 +19,8 @@ const PRODUCT_TEXT = {
     panelReason: (product, setup) => `${product.recommendedQuantity} ks pokryjí požadovaných ${setup.solarWatts} Wp`,
     inverterReason: (setup) => `Trvalý výkon splňuje požadovaných ${setup.inverterWatts} W`,
     controllerReason: (setup) => `Proud splňuje požadovaných ${setup.controllerAmps} A`,
+    dcChargerReason: (setup) => `Výstup pokrývá doporučených ${setup.charging.dcDc.suggestedCurrentAmps} A při jízdě`,
+    shoreChargerReason: (setup) => `Výstup pokrývá doporučených ${setup.charging.shore.suggestedCurrentAmps} A z 230 V`,
     systemVoltage: "napětí sestavy",
     requirement: "Požadavek sestavy",
     batteryLead: "Olověná technologie",
@@ -27,7 +29,9 @@ const PRODUCT_TEXT = {
       battery: "Ověřte rozměry, BMS, nabíjecí proud a svorky.",
       solar_panel: "Ověřte rozměry, Voc, Isc a způsob zapojení panelů.",
       inverter: "Ověřte špičkový výkon, čistý sinus, kabeláž a vlastní spotřebu.",
-      controller: "Ověřte maximální Voc, Isc, FV výkon a profil baterie v datasheetu."
+      controller: "Ověřte maximální Voc, Isc, FV výkon a profil baterie v datasheetu.",
+      dc_charger: "Ověřte vstupní i výstupní napětí, podporu chytrého alternátoru, BMS, kabeláž, jištění a chlazení.",
+      shore_charger: "Ověřte napětí, chemii baterie, nabíjecí profil, BMS, kabeláž a jištění."
     }
   },
   sk: {
@@ -35,6 +39,8 @@ const PRODUCT_TEXT = {
     panelReason: (product, setup) => `${product.recommendedQuantity} ks pokryje požadovaných ${setup.solarWatts} Wp`,
     inverterReason: (setup) => `Trvalý výkon spĺňa požadovaných ${setup.inverterWatts} W`,
     controllerReason: (setup) => `Prúd spĺňa požadovaných ${setup.controllerAmps} A`,
+    dcChargerReason: (setup) => `Výstup pokrýva odporúčaných ${setup.charging.dcDc.suggestedCurrentAmps} A počas jazdy`,
+    shoreChargerReason: (setup) => `Výstup pokrýva odporúčaných ${setup.charging.shore.suggestedCurrentAmps} A z 230 V`,
     systemVoltage: "napätie zostavy",
     requirement: "Požiadavka zostavy",
     batteryLead: "Olovená technológia",
@@ -43,7 +49,9 @@ const PRODUCT_TEXT = {
       battery: "Overte rozmery, BMS, nabíjací prúd a svorky.",
       solar_panel: "Overte rozmery, Voc, Isc a spôsob zapojenia panelov.",
       inverter: "Overte špičkový výkon, čistý sínus, kabeláž a vlastnú spotrebu.",
-      controller: "Overte maximálne Voc, Isc, FV výkon a profil batérie v datasheete."
+      controller: "Overte maximálne Voc, Isc, FV výkon a profil batérie v datasheete.",
+      dc_charger: "Overte vstupné aj výstupné napätie, podporu inteligentného alternátora, BMS, kabeláž, istenie a chladenie.",
+      shore_charger: "Overte napätie, chémiu batérie, nabíjací profil, BMS, kabeláž a istenie."
     }
   }
 };
@@ -111,6 +119,9 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
     powerW: extractContinuousPower(primary) ?? extractContinuousPower(fallback),
     currentA: matchNumber(primary, /(\d+(?:[.,]\d+)?)\s*a\b/i)
       ?? matchNumber(fallback, /(\d+(?:[.,]\d+)?)\s*a\b/i),
+    chargingVoltagesV: extractChargingVoltages(primary),
+    chargingInputVoltagesV: extractChargingInputVoltages(primary),
+    chargingBatteryTypes: extractChargingBatteryTypes(primary, fallback),
     batteryType: /lifepo4|lithium(?:-ion)?/i.test(`${primary} ${fallback}`)
       ? "lifepo4"
       : /\bagm\b|olov/i.test(`${primary} ${fallback}`)
@@ -126,6 +137,17 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
 
 export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {}) {
   const accessory = /\b(pouzdro|puzdro|obal|box|držák|držiak|rámeček|rámček|kabel|kábel|konektor|svorka|displej|ukazatel|modul|adaptér|průchodka|priechodka|spojler|ventil)\b/i;
+  const chargerPath = /nabíječky[, ]+boostery|nabíjačky[, ]+boostery/i.test(categoryPath);
+  const chargerAccessory = /\b(usb|startér|štartér|powerbank|čidlo|snímač|ovládání|ovládanie|kabel|kábel|zástrčka|pohotovostní)\b/i.test(name);
+  const explicitDcCharger = /\bdc\s*[-–]?\s*dc\b|posilovač nabíjení|posilňovač nabíjania|charge booster|nabíjecí booster|nabíjací booster|f\.?\s*alternátor/i.test(name);
+  const explicitBatteryCharger = /nabíječ(?:ka|ky)|nabíjač(?:ka|ky)|battery charger/i.test(name);
+
+  if (explicitDcCharger && explicitBatteryCharger && !chargerAccessory && specs.currentA > 0 && specs.chargingVoltagesV?.length) {
+    return "dc_charger";
+  }
+  if (chargerPath && explicitBatteryCharger && !explicitDcCharger && !chargerAccessory && !/solár|solar|integrovanou nabíječ|integrovanou nabíjač/i.test(name) && specs.currentA > 0 && specs.chargingVoltagesV?.length) {
+    return "shore_charger";
+  }
 
   const isBattery =
     /\b(baterie|batéria|akumulátor|lifepo4|lithium|agm)\b/i.test(name) &&
@@ -164,7 +186,7 @@ export function recommendProducts(products, setup, limitPerCategory = 3) {
     .map((product) => scoreProduct(product, setup))
     .filter(Boolean);
 
-  return ["battery", "solar_panel", "inverter", "controller"].reduce((result, category) => {
+  return ["battery", "solar_panel", "inverter", "controller", "dc_charger", "shore_charger"].reduce((result, category) => {
     const ranked = candidates
       .filter((candidate) => candidate.product.category === category)
       .sort((a, b) => b.score - a.score || a.product.priceCzk - b.product.priceCzk);
@@ -223,6 +245,15 @@ function scoreProduct(product, setup) {
     if (!specs.currentA || specs.currentA < setup.controllerAmps) return null;
     fit = specs.currentA / setup.controllerAmps;
   }
+  if (product.category === "dc_charger" || product.category === "shore_charger") {
+    const option = product.category === "dc_charger" ? setup.charging?.dcDc : setup.charging?.shore;
+    if (!option?.suggestedCurrentAmps) return null;
+    if (!specs.chargingVoltagesV?.includes(setup.systemVoltage)) return null;
+    if (product.category === "dc_charger" && !specs.chargingInputVoltagesV?.includes(setup.charging.starterVoltage)) return null;
+    if (!specs.chargingBatteryTypes?.includes(setup.batteryType)) return null;
+    if (!specs.currentA || specs.currentA < option.suggestedCurrentAmps) return null;
+    fit = specs.currentA / option.suggestedCurrentAmps;
+  }
 
   if (!fit || fit > 3) return null;
   const completeness = relevantSpecValues(product).filter((value) => value !== null).length;
@@ -250,6 +281,9 @@ function relevantSpecValues(product) {
   if (product.category === "inverter") {
     return [product.specs.voltageV, product.specs.powerW, product.specs.pureSine];
   }
+  if (product.category === "dc_charger" || product.category === "shore_charger") {
+    return [product.specs.currentA, product.specs.chargingVoltagesV, product.specs.chargingInputVoltagesV, product.specs.chargingBatteryTypes];
+  }
   return [product.specs.currentA];
 }
 
@@ -274,6 +308,8 @@ function recommendationReason(product, setup) {
   if (product.category === "battery") return text.batteryReason(setup);
   if (product.category === "solar_panel") return text.panelReason(product, setup);
   if (product.category === "inverter") return text.inverterReason(setup);
+  if (product.category === "dc_charger") return text.dcChargerReason(setup);
+  if (product.category === "shore_charger") return text.shoreChargerReason(setup);
   return text.controllerReason(setup);
 }
 
@@ -292,6 +328,17 @@ function recommendationChecks(product, setup) {
     `${product.specs.powerW} W ≥ ${setup.inverterWatts} W`,
     `${product.specs.voltageV} V = ${text.systemVoltage}`
   ];
+  if (product.category === "dc_charger" || product.category === "shore_charger") {
+    const required = product.category === "dc_charger"
+      ? setup.charging.dcDc.suggestedCurrentAmps
+      : setup.charging.shore.suggestedCurrentAmps;
+    return [
+      `${product.specs.currentA} A ≥ ${required} A`,
+      `${setup.systemVoltage} V = ${text.systemVoltage}`,
+      ...(product.category === "dc_charger" ? [`Vstup ${setup.charging.starterVoltage} V`] : []),
+      setup.batteryType === "lifepo4" ? "Profil pro LiFePO₄" : text.batteryLead
+    ];
+  }
   return [
     `${product.specs.currentA} A ≥ ${setup.controllerAmps} A`,
     `${text.controllerFor} ${setup.solarWatts} Wp`
@@ -366,6 +413,36 @@ function extractNominalVoltage(text) {
     if (measured >= 44 && measured < 58) return 48;
   }
   return null;
+}
+
+function extractChargingVoltages(primaryText) {
+  const primary = cleanText(primaryText);
+  const allowed = new Set([12, 24, 36, 48]);
+
+  const dualVoltage = primary.match(/\b(12|24|36|48)\s*v\s*[/]\s*(12|24|36|48)\s*v\b/i);
+  if (dualVoltage) return [Number(dualVoltage[2])];
+
+  const converterPair = primary.match(/\b(12|24|36|48)\s*[/]\s*(12|24|36|48)\s*[-/]\s*\d+(?:[.,]\d+)?\s*a\b/i);
+  if (converterPair) return [Number(converterPair[2])];
+
+  const primaryValues = [...primary.matchAll(/\b(12|24|36|48)\s*v\b/gi)].map((match) => Number(match[1]));
+  return [...new Set(primaryValues.filter((value) => allowed.has(value)))];
+}
+
+function extractChargingInputVoltages(primaryText) {
+  const primary = cleanText(primaryText);
+  const pair = primary.match(/\b(12|24|36|48)\s*v?\s*[/]\s*(12|24|36|48)(?:\s*v\b|\s*[-/]\s*\d+(?:[.,]\d+)?\s*a\b)/i);
+  if (pair) return [Number(pair[1])];
+  const single = primary.match(/\b(12|24|36|48)\s*v\b/i);
+  return single ? [Number(single[1])] : [];
+}
+
+function extractChargingBatteryTypes(primaryText, fallbackText) {
+  const text = `${cleanText(primaryText)} ${cleanText(fallbackText)}`;
+  const types = [];
+  if (/lifepo4|lithium(?:-ion)?|lithiov/i.test(text)) types.push("lifepo4");
+  if (/\bagm\b|olov|gelov/i.test(text)) types.push("lead");
+  return types;
 }
 
 function extractControllerCurrent(name, description) {

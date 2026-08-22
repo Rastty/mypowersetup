@@ -251,6 +251,14 @@
                     <small>Pre orientačný výkon DC–DC nabíjačky; 0 znamená bez dobíjania z alternátora.</small>
                   </label>
                   <label>
+                    Napätie štartovacej sústavy
+                    <select name="starterVoltage">
+                      <option value="12">12 V — väčšina osobných áut a dodávok</option>
+                      <option value="24">24 V — nákladné vozidlá a niektoré špeciály</option>
+                    </select>
+                    <small>Rozhoduje o vstupnom napätí kompatibilnej DC–DC nabíjačky.</small>
+                  </label>
+                  <label>
                     Čas pripojenia k 230 V
                     <input type="number" name="shoreChargeHours" min="0" max="24" step="0.5" value="8" inputmode="decimal" />
                     <small>Koľko hodín má nabíjačka na doplnenie jednej dennej spotreby; 0 túto možnosť vypne.</small>
@@ -420,6 +428,6 @@
       <small>© <span id="year"></span> MyPowerSetup</small>
     </footer>
 
-    <script type="module" src="/src/app-sk.js?v=20260822-charging1"></script>
+    <script type="module" src="/src/app-sk.js?v=20260822-chargingproducts1"></script>
   </body>
 </html>
