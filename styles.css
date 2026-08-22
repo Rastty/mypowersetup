@@ -255,6 +255,21 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .check-list li { position: relative; padding-left: 25px; color: var(--ink-soft); line-height: 1.45; }
 .check-list li::before { content: "✓"; position: absolute; left: 0; color: #4b8967; font-weight: 800; }
 .check-list li.is-warning::before { content: "!"; display: grid; place-items: center; width: 17px; height: 17px; border-radius: 50%; color: #6d4e08; background: #f2cf6b; font-size: 11px; }
+.diagram-panel { margin-top: 16px; padding: 26px; border: 1px solid #c6d8cf; border-radius: var(--radius-md); background: #f8faf8; }
+.diagram-panel h4 { margin: 7px 0 8px; font-size: 21px; }
+.diagram-panel > div:first-child > p { max-width: 760px; margin: 0; color: var(--ink-soft); line-height: 1.5; }
+.system-diagram { display: grid; gap: 12px; margin-top: 22px; }
+.diagram-path { display: flex; align-items: stretch; gap: 9px; }
+.diagram-path-loads { padding-left: 0; }
+.diagram-node { display: grid; align-content: center; flex: 1 1 0; min-width: 0; min-height: 86px; padding: 14px; border: 1px solid #bfd0c7; border-radius: 12px; background: white; text-align: center; }
+.diagram-node span { color: var(--ink-soft); font-size: 11px; font-weight: 750; line-height: 1.25; }
+.diagram-node strong { margin-top: 7px; color: var(--forest); font: 800 16px/1.2 "Manrope", sans-serif; }
+.diagram-node-battery { border-color: #a7c665; background: #f5fbdc; }
+.diagram-node-protection { border-color: #e0c47a; background: #fff9e9; }
+.diagram-arrow, .diagram-branch { display: grid; place-items: center; flex: 0 0 20px; color: #5e8671; font-weight: 900; }
+.diagram-safety-note, .diagram-context-note { margin: 12px 0 0; padding-left: 22px; color: var(--ink-soft); font-size: 12px; line-height: 1.5; }
+.diagram-safety-note::before { content: "!"; float: left; display: grid; place-items: center; width: 16px; height: 16px; margin-left: -22px; border-radius: 50%; color: #6d4e08; background: #f2cf6b; font-size: 10px; font-weight: 900; }
+.diagram-context-note { padding-left: 0; }
 .next-step-card { display: grid; gap: 24px; margin-top: 16px; padding: 26px; border-radius: var(--radius-md); background: #eef3ed; }
 .next-step-card h4 { margin: 7px 0 8px; }
 .next-step-card p { max-width: 620px; margin: 0; color: var(--ink-soft); line-height: 1.5; }
@@ -343,6 +358,13 @@ footer small { font-size: 12px; }
   .result-share-card { grid-template-columns: 1fr; }
   .result-share-actions { align-items: stretch; flex-direction: column; margin-top: 8px; }
   .result-share-actions .button { width: 100%; }
+  .diagram-panel { padding: 22px 16px; }
+  .diagram-path { display: grid; grid-template-columns: 1fr 24px 1fr; align-items: stretch; }
+  .diagram-path-source .diagram-node-battery { grid-column: 1 / -1; }
+  .diagram-path-source .diagram-arrow:last-of-type { display: none; }
+  .diagram-path-loads { grid-template-columns: 1fr 24px 1fr; padding-left: 0; }
+  .diagram-path-loads .diagram-node-inverter { grid-column: 1; }
+  .diagram-path-loads .diagram-node-ac { grid-column: 3; }
   .method-section { padding: 75px 20px; }
   .safety-note { margin: 50px 20px; }
 }
