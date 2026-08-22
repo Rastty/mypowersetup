@@ -93,6 +93,9 @@ function bindNavigation() {
   });
   document.querySelector("#start-over").addEventListener("click", resetForm);
   form.addEventListener("submit", handleSubmit);
+  document.querySelector("#result-products-link").addEventListener("click", () => {
+    trackEvent("product_recommendations_opened", { source: "result_next" });
+  });
 }
 
 function bindResultSharing() {
@@ -358,6 +361,13 @@ function renderProductRecommendations(result) {
     shore_charger: "Nabíjačky z 230 V"
   };
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
+  const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
+  const resultNext = document.querySelector("#result-next");
+  resultNext.hidden = false;
+  document.querySelector("#result-product-count").textContent = total
+    ? `Našli sme ${total} overených zhôd v ${categoryCount} kategóriách. Technické vysvetlenie a inštalačné podklady zostávajú nižšie.`
+    : "Pre túto konfiguráciu zatiaľ nemáme dostatočne overenú produktovú zhodu. Technický výsledok môžete ďalej použiť ako podklad pre výber.";
+  document.querySelector("#result-products-link").hidden = total === 0;
   const freshness = productCatalogUpdatedAt
     ? ` Produktové údaje boli načítané ${new Date(productCatalogUpdatedAt).toLocaleDateString("sk-SK")}.`
     : "";
