@@ -19,6 +19,7 @@ const pages = [
 const slovakPages = [
   ["sk/sprievodca/index.html", "https://mypowersetup.com/sk/sprievodca/", "https://mypowersetup.com/pruvodce/"],
   ["sk/sprievodca/kapacita-baterie-do-karavanu/index.html", "https://mypowersetup.com/sk/sprievodca/kapacita-baterie-do-karavanu/", "https://mypowersetup.com/pruvodce/kapacita-baterie-do-karavanu/"],
+  ["sk/sprievodca/agm-vs-lifepo4/index.html", "https://mypowersetup.com/sk/sprievodca/agm-vs-lifepo4/", "https://mypowersetup.com/pruvodce/agm-vs-lifepo4/"],
   ["sk/o-projekte/index.html", "https://mypowersetup.com/sk/o-projekte/", "https://mypowersetup.com/o-projektu/"],
   ["sk/metodika/index.html", "https://mypowersetup.com/sk/metodika/", "https://mypowersetup.com/metodika/"],
   ["sk/affiliate/index.html", "https://mypowersetup.com/sk/affiliate/", "https://mypowersetup.com/affiliate/"],
@@ -203,5 +204,24 @@ test("battery sizing content matches the calculator assumptions", async () => {
     assert.match(html, /0,80 ÷ 12 = <strong>144 Ah<\/strong>/);
     assert.doesNotMatch(html, /90 ?% využit|0,90 ÷ 12|128 Ah|132 Ah/);
   }
+  assert.match(catalog, /lifepo4: \{[^}]*usableDepth: 0\.8/s);
+});
+
+test("AGM and LiFePO4 guides use the same conservative battery assumptions", async () => {
+  const [czech, slovak, catalog] = await Promise.all([
+    readFile("pruvodce/agm-vs-lifepo4/index.html", "utf8"),
+    readFile("sk/sprievodca/agm-vs-lifepo4/index.html", "utf8"),
+    readFile("src/catalog.js", "utf8"),
+  ]);
+  for (const html of [czech, slovak]) {
+    assert.match(html, /50 %/);
+    assert.match(html, /80 %/);
+    assert.match(html, /600 Wh/);
+    assert.match(html, /960 Wh/);
+    assert.doesNotMatch(html, /90 %|1 080 Wh/);
+  }
+  assert.ok(czech.includes('hreflang="sk-SK" href="https://mypowersetup.com/sk/sprievodca/agm-vs-lifepo4/"'));
+  assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/agm-vs-lifepo4/"'));
+  assert.match(catalog, /lead: \{[^}]*usableDepth: 0\.5/s);
   assert.match(catalog, /lifepo4: \{[^}]*usableDepth: 0\.8/s);
 });
