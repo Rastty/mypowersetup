@@ -88,8 +88,8 @@ Po zapnutí měření sledujeme zejména:
 
 ## Nejbližší pořadí práce
 
-1. Dokončit kontrolu rozměrů střechy a realistického počtu panelů.
-2. Rozšířit návrh kabelů a jištění pouze tam, kde lze držet jasné bezpečnostní hranice.
-3. Přidat srozumitelné porovnání úsporné, doporučené a komfortní varianty.
-4. Zlepšovat produktová data, pokrytí kategorií a český SEO základ.
+1. Rozšířit návrh kabelů a jištění pouze tam, kde lze držet jasné bezpečnostní hranice.
+2. Přidat srozumitelné porovnání úsporné, doporučené a komfortní varianty.
+3. Zlepšovat produktová data, pokrytí kategorií a český SEO základ.
+4. Provést opakovaný mobilní a konverzní průchod celé uživatelské cesty.
 5. Přenášet hotové české jádro do dalších lokalizací bez kopírování známých nedostatků.
