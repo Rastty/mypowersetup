@@ -240,6 +240,11 @@
                       <option value="24">24 V</option>
                     </select>
                   </label>
+                  <label>
+                    Délka baterie–měnič (jedním směrem)
+                    <input type="number" name="inverterCableLength" min="0.2" max="10" step="0.1" value="1.5" inputmode="decimal" />
+                    <small>Metry od baterie k měniči; zpáteční vodič započítáme automaticky.</small>
+                  </label>
                 </div>
               </details>
 
@@ -387,6 +392,6 @@
       <small>© <span id="year"></span> MyPowerSetup</small>
     </footer>
 
-    <script type="module" src="/src/app.js?v=20260822-url1"></script>
+    <script type="module" src="/src/app.js?v=20260822-wire1"></script>
   </body>
 </html>

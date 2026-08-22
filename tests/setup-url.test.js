@@ -12,6 +12,7 @@ const config = {
   season: "shoulder",
   batteryType: "lifepo4",
   systemVoltage: "24",
+  inverterCableLength: 1.5,
 };
 
 test("setup query round-trips selected appliances and choices", () => {
@@ -26,6 +27,7 @@ test("setup query round-trips selected appliances and choices", () => {
     season: "shoulder",
     batteryType: "lifepo4",
     systemVoltage: "24",
+    inverterCableLength: 1.5,
   });
 });
 

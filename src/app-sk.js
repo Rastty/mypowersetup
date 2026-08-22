@@ -2,7 +2,8 @@ import { APPLIANCES } from "./catalog-sk.js?v=20260821-sk1";
 import { calculateSetup } from "./engine.js?v=20260821-sk1";
 import { recommendProducts } from "./products.js?v=20260821-sk1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
-import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260822-url1";
+import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260822-wire1";
+import { calculateBatteryCablePlan } from "./wiring.js?v=20260822-wire1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -174,12 +175,18 @@ function handleSubmit(event) {
       batteryType: data.get("batteryType"),
       systemVoltage: data.get("systemVoltage")
     });
+    latestResult.wiring = calculateBatteryCablePlan({
+      inverterWatts: latestResult.inverterWatts,
+      systemVoltage: latestResult.systemVoltage,
+      oneWayLengthMeters: data.get("inverterCableLength")
+    });
     latestShareUrl = buildSetupUrl({
       appliances,
       autonomyDays: data.get("autonomyDays"),
       season: data.get("season"),
       batteryType: data.get("batteryType"),
-      systemVoltage: data.get("systemVoltage")
+      systemVoltage: data.get("systemVoltage"),
+      inverterCableLength: data.get("inverterCableLength")
     }, "sk", window.location.origin);
     history.replaceState({}, "", latestShareUrl.replace(window.location.origin, ""));
 
@@ -214,7 +221,12 @@ function renderResult(result) {
     explanationCard("Batéria", `${formatEnergy(result.dailyWh)} × ${result.autonomyDays} ${dayWord(result.autonomyDays)}`, `Po započítaní ${result.assumptions.batteryMarginPercent}% rezervy a ${result.assumptions.usableDepthPercent}% využiteľnej kapacity vychádza ${formatEnergy(result.batteryWh)}.`),
     explanationCard("Solár", `${formatEnergy(result.dailyWh)} ÷ ${formatNumber(result.calculation.peakSunHours)} slnečných hodín`, `Po systémových stratách a rezerve zaokrúhľujeme nahor na ${result.solarWatts} Wp.`),
     explanationCard("Napätie", `${result.systemVoltage}V systém`, result.calculation.automaticVoltage === result.systemVoltage ? "Automatická voľba podľa veľkosti batérie a výkonu meniča." : `Ručná voľba; automatický návrh by použil ${result.calculation.automaticVoltage} V.`),
-    explanationCard("Menič", result.inverterWatts ? `${result.inverterWatts} W` : "Nie je potrebný", result.inverterWatts ? `Porovnávame súbežný AC odber približne ${Math.round(result.calculation.estimatedConcurrentWatts)} W a rozbehovú špičku ${Math.round(result.calculation.largestStartWatts)} W.` : "Medzi vybranými zariadeniami nie je 230V spotrebič.")
+    explanationCard("Menič", result.inverterWatts ? `${result.inverterWatts} W` : "Nie je potrebný", result.inverterWatts ? `Porovnávame súbežný AC odber približne ${Math.round(result.calculation.estimatedConcurrentWatts)} W a rozbehovú špičku ${Math.round(result.calculation.largestStartWatts)} W.` : "Medzi vybranými zariadeniami nie je 230V spotrebič."),
+    ...(result.wiring ? [explanationCard(
+      "Kábel batéria–menič",
+      result.wiring.recommendedCrossSectionMm2 ? `najmenej ${result.wiring.recommendedCrossSectionMm2} mm²` : "individuálny návrh",
+      `Pre dĺžku ${formatNumber(result.wiring.oneWayLengthMeters)} m a návrhový prúd ${result.wiring.designCurrentAmps} A vychádza minimum iba podľa cieľa úbytku do ${result.wiring.maxVoltageDropPercent} %. Finálny prierez a poistku vždy určite podľa manuálu meniča, zaťažiteľnosti kábla, teploty a spôsobu uloženia.`
+    )] : [])
   ].join("");
 
   const largestWh = Math.max(...result.applianceRows.map((item) => item.dailyWh));
@@ -231,6 +243,7 @@ function renderResult(result) {
     ...result.warnings.map((text) => ({ text, warning: true })),
     { text: "Porovnajte vstupné príkony s výrobnými štítkami svojich spotrebičov." },
     { text: "Overte rozbehové špičky, kabeláž, istenie, BMS a podmienky montáže." },
+    { text: "Poistka chráni kábel: jej DC napätie, vypínacia schopnosť, typ a prúd musia zodpovedať manuálu zariadenia aj skutočnej inštalácii." },
     { text: "Pri paneloch a MPPT samostatne overte Voc a Isc pri najnižšej očakávanej teplote." }
   ];
   document.querySelector("#result-notes").innerHTML = checks
@@ -403,7 +416,8 @@ function restoreSetupFromUrl() {
     autonomyDays: config.autonomyDays,
     season: config.season,
     batteryType: config.batteryType,
-    systemVoltage: config.systemVoltage
+    systemVoltage: config.systemVoltage,
+    inverterCableLength: config.inverterCableLength
   })) {
     const input = form.elements.namedItem(name);
     if (input) input.value = value;

@@ -21,6 +21,7 @@ export function encodeSetupQuery(config) {
   params.set("season", String(config.season));
   params.set("battery", String(config.batteryType));
   params.set("voltage", String(config.systemVoltage));
+  params.set("cable", cleanNumber(config.inverterCableLength || 1.5));
   return params.toString();
 }
 
@@ -45,10 +46,12 @@ export function decodeSetupQuery(search, allowedApplianceIds) {
   const season = params.get("season") || "summer";
   const battery = params.get("battery") || "lifepo4";
   const voltage = params.get("voltage") || "auto";
+  const cableLength = Number(params.get("cable") || 1.5);
   if (!ALLOWED.days.has(days) || !ALLOWED.season.has(season)
     || !ALLOWED.battery.has(battery) || !ALLOWED.voltage.has(voltage)) return null;
+  if (!Number.isFinite(cableLength) || cableLength < 0.2 || cableLength > 10) return null;
 
-  return { appliances, autonomyDays: days, season, batteryType: battery, systemVoltage: voltage };
+  return { appliances, autonomyDays: days, season, batteryType: battery, systemVoltage: voltage, inverterCableLength: cableLength };
 }
 
 export function buildSetupUrl(config, language = "cs", origin = "https://mypowersetup.com") {
