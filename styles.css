@@ -218,7 +218,8 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .advanced-settings summary { padding: 16px 18px; font-weight: 700; cursor: pointer; }
 .advanced-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; padding: 0 18px 18px; }
 .advanced-grid label { color: var(--ink-soft); font-size: 13px; font-weight: 700; }
-.advanced-grid select { width: 100%; height: 44px; margin-top: 7px; border: 1px solid var(--line); border-radius: 9px; padding: 0 11px; color: var(--ink); background: white; }
+.advanced-grid select, .advanced-grid input { width: 100%; height: 44px; margin-top: 7px; border: 1px solid var(--line); border-radius: 9px; padding: 0 11px; color: var(--ink); background: white; }
+.advanced-grid label small { display: block; margin-top: 6px; color: var(--ink-soft); font-weight: 500; line-height: 1.4; }
 
 .result-heading { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 34px; }
 .result-check { flex: 0 0 auto; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 18px; color: var(--forest); background: var(--lime); font-size: 27px; font-weight: 800; }

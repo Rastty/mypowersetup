@@ -107,7 +107,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260822-url1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260822-wire1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260821-2"'));
@@ -181,7 +181,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-url1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-wire1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));
@@ -213,6 +213,26 @@ test("calculator results can be shared in both languages", async () => {
   assert.match(appSk, /navigator\.share/);
   assert.match(share, /https:\/\/mypowersetup\.com\/sk\//);
   assert.doesNotMatch(share, /affiliate|provize|cena/i);
+});
+
+test("cable estimate is bounded, localized and source-transparent", async () => {
+  const [czech, slovak, app, appSk, method, methodSk] = await Promise.all([
+    readFile("index.html", "utf8"),
+    readFile("sk/index.html", "utf8"),
+    readFile("src/app.js", "utf8"),
+    readFile("src/app-sk.js", "utf8"),
+    readFile("metodika/index.html", "utf8"),
+    readFile("sk/metodika/index.html", "utf8"),
+  ]);
+  assert.ok(czech.includes('name="inverterCableLength"'));
+  assert.ok(slovak.includes('name="inverterCableLength"'));
+  assert.match(app, /minimum pouze podle cíle úbytku/);
+  assert.match(appSk, /minimum iba podľa cieľa úbytku/);
+  for (const html of [method, methodSk]) {
+    assert.ok(html.includes('id="kabel"'));
+    assert.ok(html.includes("victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/dc-wiring.html"));
+    assert.match(html, /Pojistku kalkulátor záměrně neurčuje|Poistku kalkulačka zámerne neurčuje/);
+  }
 });
 
 test("LLM discovery files cover every published page and preserve safety limits", async () => {
