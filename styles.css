@@ -293,6 +293,15 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .roof-fit-card.is-fit { border-color: #8bbda3; background: #f3faf6; }
 .roof-fit-card.is-warning { border-color: #dfb96a; background: #fff8e7; }
 .roof-fit-card.is-unchecked { opacity: .82; }
+.installation-panel { margin-top: 16px; padding: 26px; border: 1px solid #d9d3b9; border-radius: var(--radius-md); background: #fbfaf2; }
+.installation-panel h4 { margin: 7px 0 8px; font-size: 21px; }
+.installation-panel > div:first-child > p { max-width: 800px; margin: 0; color: var(--ink-soft); line-height: 1.5; }
+.installation-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
+.installation-card { display: flex; gap: 14px; padding: 17px; border: 1px solid var(--line); border-radius: 12px; background: white; }
+.installation-card > span { flex: 0 0 27px; color: #7b6b33; font-size: 12px; font-weight: 900; }
+.installation-card strong { display: block; color: var(--forest); font-size: 14px; line-height: 1.35; }
+.installation-card p { margin: 7px 0 0; color: var(--ink-soft); font-size: 12px; line-height: 1.5; }
+.installation-source { margin: 16px 0 0; color: var(--ink-soft); font-size: 12px; line-height: 1.5; }
 .next-step-card { display: grid; gap: 24px; margin-top: 16px; padding: 26px; border-radius: var(--radius-md); background: #eef3ed; }
 .next-step-card h4 { margin: 7px 0 8px; }
 .next-step-card p { max-width: 620px; margin: 0; color: var(--ink-soft); line-height: 1.5; }
@@ -368,7 +377,7 @@ footer small { font-size: 12px; }
   .step small { display: none; }
   .form-step { padding: 32px 18px 26px; }
   .calculator-error { margin: 14px 18px 0; }
-  .choice-grid-season, .appliance-grid, .advanced-grid, .result-columns, .method-grid, .product-grid, .guide-preview-grid, .decision-grid, .charging-grid { grid-template-columns: 1fr; }
+  .choice-grid-season, .appliance-grid, .advanced-grid, .result-columns, .method-grid, .product-grid, .guide-preview-grid, .decision-grid, .charging-grid, .installation-list { grid-template-columns: 1fr; }
   .choice-grid-season .choice-card { min-height: 76px; }
   .appliance-summary { flex-direction: column; gap: 5px; }
   .appliance-summary { position: sticky; z-index: 3; top: 8px; box-shadow: 0 5px 18px rgba(13,43,35,.12); }
@@ -429,9 +438,9 @@ footer small { font-size: 12px; }
   .result-grid { grid-template-columns: repeat(4, 1fr); }
   .result-card { min-height: 0; padding: 4mm; }
   .result-card strong { margin: 3mm 0 1.5mm; font-size: 18pt; }
-  .decision-panel, .diagram-panel, .charging-panel, .roof-panel, .result-panel { padding: 5mm; }
+  .decision-panel, .diagram-panel, .charging-panel, .roof-panel, .installation-panel, .result-panel { padding: 5mm; }
   .decision-grid { grid-template-columns: repeat(2, 1fr); }
   .result-columns, .charging-grid { grid-template-columns: repeat(2, 1fr); }
   .result-card, .decision-grid article, .result-panel, .diagram-panel,
-  .charging-card, .roof-panel, .roof-fit-card, .breakdown-row { break-inside: avoid; page-break-inside: avoid; }
+  .charging-card, .roof-panel, .roof-fit-card, .installation-card, .breakdown-row { break-inside: avoid; page-break-inside: avoid; }
 }
