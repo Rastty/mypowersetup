@@ -93,6 +93,9 @@ function bindNavigation() {
   });
   document.querySelector("#start-over").addEventListener("click", resetForm);
   form.addEventListener("submit", handleSubmit);
+  document.querySelector("#result-products-link").addEventListener("click", () => {
+    trackEvent("product_recommendations_opened", { source: "result_next" });
+  });
 }
 
 function bindResultSharing() {
@@ -357,6 +360,13 @@ function renderProductRecommendations(result) {
     shore_charger: "Nabíječky z 230 V"
   };
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
+  const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
+  const resultNext = document.querySelector("#result-next");
+  resultNext.hidden = false;
+  document.querySelector("#result-product-count").textContent = total
+    ? `Našli jsme ${total} ověřených shod v ${categoryCount} kategoriích. Technické vysvětlení a instalační podklady zůstávají níže.`
+    : "Pro tuto konfiguraci zatím nemáme dostatečně ověřenou produktovou shodu. Technický výsledek můžete dál použít jako podklad pro výběr.";
+  document.querySelector("#result-products-link").hidden = total === 0;
   const freshness = productCatalogUpdatedAt
     ? ` Produktová data byla načtena ${new Date(productCatalogUpdatedAt).toLocaleDateString("cs-CZ")}.`
     : "";

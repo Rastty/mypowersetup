@@ -27,7 +27,7 @@
     <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/" />
     <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/styles.css?v=20260822-packages1" />
+    <link rel="stylesheet" href="/styles.css?v=20260822-mobile1" />
     <title>Výpočet baterie a soláru | MyPowerSetup</title>
     <script type="application/ld+json">
       {
@@ -299,6 +299,15 @@
 
               <div class="result-grid" id="result-grid"></div>
 
+              <section class="result-next-card" id="result-next" aria-labelledby="result-next-title" hidden>
+                <div>
+                  <span class="step-kicker">Další krok</span>
+                  <h4 id="result-next-title">Vyberte kompatibilní komponenty</h4>
+                  <p id="result-product-count"></p>
+                </div>
+                <a class="button button-primary" id="result-products-link" href="#product-recommendations">Zobrazit doporučené produkty ↓</a>
+              </section>
+
               <section class="result-share-card" aria-labelledby="result-share-title">
                 <div>
                   <span class="step-kicker">Výsledek po ruce</span>
@@ -311,6 +320,19 @@
                   <button class="button button-secondary" type="button" id="result-print">Vytisknout / uložit PDF</button>
                 </div>
                 <p class="result-share-status" id="result-share-status" role="status" aria-live="polite"></p>
+              </section>
+
+              <section class="next-step-card" id="product-recommendations">
+                <div>
+                  <span class="step-kicker">Ověřené párování</span>
+                  <h4 id="product-heading">Připravujeme přesná produktová doporučení</h4>
+                  <p id="product-intro">Produkty z partnerských feedů zobrazíme až po ověření jejich parametrů proti výsledku vaší sestavy.</p>
+                </div>
+                <div id="package-variants"></div>
+                <div id="recommendation-groups">
+                  <button class="button button-disabled" type="button" disabled>Produktové párování se připravuje</button>
+                </div>
+                <p class="affiliate-note">Některé odkazy jsou affiliate. Pokud přes ně nakoupíte, můžeme získat provizi bez navýšení vaší ceny. Provize nemění technické podmínky párování ani pořadí výsledků. <a href="/affiliate/">Jak doporučení financujeme</a>.</p>
               </section>
 
               <section class="decision-panel" aria-labelledby="decision-title">
@@ -368,19 +390,6 @@
                 </div>
                 <div class="installation-list" id="installation-plan"></div>
                 <p class="installation-source">Principy vycházejí z <a href="https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/dc-wiring.html" target="_blank" rel="external noopener">Victron Wiring Unlimited</a>. Jde o kontrolní podklad, nikoli instalační projekt.</p>
-              </section>
-
-              <section class="next-step-card" id="product-recommendations">
-                <div>
-                  <span class="step-kicker">Ověřené párování</span>
-                  <h4 id="product-heading">Připravujeme přesná produktová doporučení</h4>
-                  <p id="product-intro">Produkty z partnerských feedů zobrazíme až po ověření jejich parametrů proti výsledku vaší sestavy.</p>
-                </div>
-                <div id="package-variants"></div>
-                <div id="recommendation-groups">
-                  <button class="button button-disabled" type="button" disabled>Produktové párování se připravuje</button>
-                </div>
-                <p class="affiliate-note">Některé odkazy jsou affiliate. Pokud přes ně nakoupíte, můžeme získat provizi bez navýšení vaší ceny. Provize nemění technické podmínky párování ani pořadí výsledků. <a href="/affiliate/">Jak doporučení financujeme</a>.</p>
               </section>
 
               <div class="step-actions">
@@ -464,6 +473,6 @@
       <small>© <span id="year"></span> MyPowerSetup</small>
     </footer>
 
-    <script type="module" src="/src/app.js?v=20260822-packages1"></script>
+    <script type="module" src="/src/app.js?v=20260822-mobile1"></script>
   </body>
 </html>
