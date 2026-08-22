@@ -1,7 +1,8 @@
 import { APPLIANCES } from "./catalog-sk.js?v=20260821-sk1";
 import { calculateSetup } from "./engine.js?v=20260821-sk1";
 import { recommendProducts } from "./products.js?v=20260821-sk1";
-import { buildResultShareText, copyText } from "./share.js?v=20260822-share1";
+import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
+import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260822-url1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -11,6 +12,7 @@ const applianceError = document.querySelector("#appliance-error");
 const calculatorError = document.querySelector("#calculator-error");
 let currentStep = 1;
 let latestResult = null;
+let latestShareUrl = "https://mypowersetup.com/sk/#kalkulator";
 let productCatalog = [];
 let productCatalogUpdatedAt = null;
 
@@ -18,7 +20,7 @@ renderAppliances();
 bindChoiceCards();
 bindNavigation();
 bindResultSharing();
-loadProductCatalog();
+loadProductCatalog().then(restoreSetupFromUrl);
 document.querySelector("#year").textContent = new Date().getFullYear();
 
 async function loadProductCatalog() {
@@ -98,7 +100,7 @@ function setShareStatus(message) {
 
 async function copyResult(eventName) {
   if (!latestResult) return;
-  const copied = await copyText(buildResultShareText(latestResult, "sk"));
+  const copied = await copyText(buildResultShareText(latestResult, "sk", latestShareUrl));
   setShareStatus(copied
     ? "Súhrn bol skopírovaný do schránky."
     : "Kopírovanie sa nepodarilo. Označte, prosím, výsledok ručne.");
@@ -115,7 +117,7 @@ async function shareResult() {
   try {
     await navigator.share({
       title: "MyPowerSetup — návrh zostavy",
-      text: buildResultShareText(latestResult, "sk")
+      text: buildResultShareText(latestResult, "sk", latestShareUrl)
     });
     setShareStatus("Výsledok bol pripravený na zdieľanie.");
     trackEvent("result_shared", { method: "native" });
@@ -172,6 +174,14 @@ function handleSubmit(event) {
       batteryType: data.get("batteryType"),
       systemVoltage: data.get("systemVoltage")
     });
+    latestShareUrl = buildSetupUrl({
+      appliances,
+      autonomyDays: data.get("autonomyDays"),
+      season: data.get("season"),
+      batteryType: data.get("batteryType"),
+      systemVoltage: data.get("systemVoltage")
+    }, "sk", window.location.origin);
+    history.replaceState({}, "", latestShareUrl.replace(window.location.origin, ""));
 
     renderResult(latestResult);
     trackEvent("calculation_completed", {
@@ -370,9 +380,39 @@ function resetForm() {
   });
   document.querySelectorAll(".appliance-card").forEach((card) => card.classList.remove("is-selected"));
   latestResult = null;
+  latestShareUrl = `${window.location.origin}/sk/#kalkulator`;
+  history.replaceState({}, "", "/sk/#kalkulator");
   setShareStatus("");
   updateLiveSummary();
   showStep(1);
+}
+
+function restoreSetupFromUrl() {
+  const config = decodeSetupQuery(window.location.search, APPLIANCES.map((item) => item.id));
+  if (!config) return;
+
+  config.appliances.forEach((saved) => {
+    const card = document.querySelector(`[data-appliance-card="${saved.id}"]`);
+    if (!card) return;
+    card.querySelector('input[type="checkbox"]').checked = true;
+    card.querySelector("[data-hours]").value = saved.hours;
+    card.querySelector("[data-quantity]").value = saved.quantity;
+    card.classList.add("is-selected");
+  });
+  for (const [name, value] of Object.entries({
+    autonomyDays: config.autonomyDays,
+    season: config.season,
+    batteryType: config.batteryType,
+    systemVoltage: config.systemVoltage
+  })) {
+    const input = form.elements.namedItem(name);
+    if (input) input.value = value;
+  }
+  document.querySelectorAll(".choice-card").forEach((card) => {
+    card.classList.toggle("is-selected", card.querySelector("input").checked);
+  });
+  updateLiveSummary();
+  form.requestSubmit();
 }
 
 function formatEnergy(wh) {

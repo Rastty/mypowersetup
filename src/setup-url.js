@@ -1,0 +1,58 @@
+const ALLOWED = {
+  days: new Set(["1", "2", "3", "5"]),
+  season: new Set(["summer", "shoulder", "winter"]),
+  battery: new Set(["lifepo4", "agm"]),
+  voltage: new Set(["auto", "12", "24", "48"]),
+};
+
+function cleanNumber(value) {
+  return Number(value).toString();
+}
+
+export function encodeSetupQuery(config) {
+  const selected = config.appliances.filter((item) => item.selected);
+  if (!selected.length) return "";
+
+  const params = new URLSearchParams();
+  params.set("loads", selected
+    .map((item) => `${item.id}:${cleanNumber(item.hours)}:${cleanNumber(item.quantity)}`)
+    .join(","));
+  params.set("days", String(config.autonomyDays));
+  params.set("season", String(config.season));
+  params.set("battery", String(config.batteryType));
+  params.set("voltage", String(config.systemVoltage));
+  return params.toString();
+}
+
+export function decodeSetupQuery(search, allowedApplianceIds) {
+  const params = new URLSearchParams(search);
+  const loads = params.get("loads");
+  if (!loads) return null;
+
+  const allowedIds = new Set(allowedApplianceIds);
+  const appliances = loads.split(",").flatMap((token) => {
+    const [id, hoursText, quantityText, ...extra] = token.split(":");
+    const hours = Number(hoursText);
+    const quantity = Number(quantityText);
+    if (extra.length || !allowedIds.has(id)) return [];
+    if (!Number.isFinite(hours) || hours < 0.01 || hours > 24) return [];
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 20) return [];
+    return [{ id, hours, quantity }];
+  });
+  if (!appliances.length) return null;
+
+  const days = params.get("days") || "2";
+  const season = params.get("season") || "summer";
+  const battery = params.get("battery") || "lifepo4";
+  const voltage = params.get("voltage") || "auto";
+  if (!ALLOWED.days.has(days) || !ALLOWED.season.has(season)
+    || !ALLOWED.battery.has(battery) || !ALLOWED.voltage.has(voltage)) return null;
+
+  return { appliances, autonomyDays: days, season, batteryType: battery, systemVoltage: voltage };
+}
+
+export function buildSetupUrl(config, language = "cs", origin = "https://mypowersetup.com") {
+  const query = encodeSetupQuery(config);
+  const path = language === "sk" ? "/sk/" : "/";
+  return `${origin.replace(/\/$/, "")}${path}${query ? `?${query}` : ""}#kalkulator`;
+}
