@@ -25,7 +25,7 @@ const COPY = {
   },
 };
 
-export function buildResultShareText(result, language = "cs") {
+export function buildResultShareText(result, language = "cs", resultUrl) {
   const copy = COPY[language] || COPY.cs;
   const daily = result.dailyWh >= 1000
     ? `${(result.dailyWh / 1000).toLocaleString(copy.locale, { maximumFractionDigits: 2 })} kWh`
@@ -41,7 +41,7 @@ export function buildResultShareText(result, language = "cs") {
     `${copy.controller}: ${result.controllerAmps} A`,
     "",
     copy.warning,
-    copy.url,
+    resultUrl || copy.url,
   ].join("\n");
 }
 
