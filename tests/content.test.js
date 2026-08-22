@@ -107,7 +107,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260821-3"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260822-share1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260821-2"'));
@@ -138,8 +138,8 @@ test("language switch remains available on mobile", async () => {
   assert.match(slovak, /class="header-link language-switch" href="\/"/);
   assert.match(slovak, /aria-label="Přepnout do češtiny"/);
   assert.match(styles, /\.header-link\.language-switch \{ display: inline-flex; \}/);
-  assert.ok(czech.includes('href="/styles.css?v=20260821-2"'));
-  assert.ok(slovak.includes('href="/styles.css?v=20260821-2"'));
+  assert.ok(czech.includes('href="/styles.css?v=20260822-share1"'));
+  assert.ok(slovak.includes('href="/styles.css?v=20260822-share1"'));
 });
 
 test("homepage exposes valid website and calculator structured data", async () => {
@@ -168,7 +168,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260821-sk2"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-share1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));
@@ -177,6 +177,29 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(sitemap.includes("<loc>https://mypowersetup.com/sk/</loc>"));
   assert.ok(html.includes('href="/sk/sprievodca/"'));
   assert.ok(html.includes('href="/sk/sprievodca/kapacita-baterie-do-karavanu/"'));
+  assert.ok(html.includes('href="/sk/sprievodca/agm-vs-lifepo4/"'));
+  assert.doesNotMatch(html, /href="\/pruvodce\/agm-vs-lifepo4\/"/);
+});
+
+test("calculator results can be shared in both languages", async () => {
+  const [czech, slovak, app, appSk, share] = await Promise.all([
+    readFile("index.html", "utf8"),
+    readFile("sk/index.html", "utf8"),
+    readFile("src/app.js", "utf8"),
+    readFile("src/app-sk.js", "utf8"),
+    readFile("src/share.js", "utf8"),
+  ]);
+  for (const html of [czech, slovak]) {
+    assert.ok(html.includes('id="result-share"'));
+    assert.ok(html.includes('id="result-copy"'));
+    assert.ok(html.includes('id="result-share-status"'));
+  }
+  assert.ok(app.includes('buildResultShareText(latestResult, "cs")'));
+  assert.ok(appSk.includes('buildResultShareText(latestResult, "sk")'));
+  assert.match(app, /navigator\.share/);
+  assert.match(appSk, /navigator\.share/);
+  assert.match(share, /https:\/\/mypowersetup\.com\/sk\//);
+  assert.doesNotMatch(share, /affiliate|provize|cena/i);
 });
 
 test("LLM discovery files cover every published page and preserve safety limits", async () => {
