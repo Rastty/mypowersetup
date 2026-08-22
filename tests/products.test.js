@@ -236,6 +236,28 @@ test("nominal battery voltage is found after charging voltages in description", 
   assert.equal(battery.specs.voltageV, 12);
 });
 
+test("a 6 V battery is never normalized to a 12 V system", () => {
+  const battery = normalizeProduct({
+    id: "six-volt",
+    name: "Solární AGM baterie 6 V kapacita 200 Ah",
+    description: "Nabíjecí soustava může obsahovat další 12 V komponenty.",
+    category: "Elektro | Baterie | AGM baterie",
+    url: "https://www.svetkaravanu.cz/six-volt_z519/",
+    available: true
+  }, "svetkaravanu");
+
+  assert.equal(battery.specs.voltageV, 6);
+  const recommendations = recommendProducts([battery], {
+    systemVoltage: 12,
+    batteryAh: 200,
+    batteryType: "lead",
+    solarWatts: 200,
+    inverterWatts: 800,
+    controllerAmps: 20
+  });
+  assert.equal(recommendations.battery.length, 0);
+});
+
 test("panel operating voltage does not exclude it from a 12 V MPPT system", () => {
   const panel = normalizeProduct({
     id: "panel-vmp-205",
