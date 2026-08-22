@@ -27,7 +27,7 @@
     <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/" />
     <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/styles.css?v=20260822-share1" />
+    <link rel="stylesheet" href="/styles.css?v=20260822-print1" />
     <title>Výpočet batérie a soláru | MyPowerSetup</title>
     <script type="application/ld+json">
       {
@@ -273,6 +273,11 @@
             </section>
 
             <section class="form-step result-step" data-step="3" aria-labelledby="step-three-title" hidden>
+              <header class="print-summary-header print-only">
+                <strong>MyPowerSetup</strong>
+                <span>Orientačný návrh elektrickej zostavy</span>
+                <small id="print-generated-at"></small>
+              </header>
               <div class="result-heading">
                 <span class="result-check">✓</span>
                 <div>
@@ -293,6 +298,7 @@
                 <div class="result-share-actions">
                   <button class="button button-primary" type="button" id="result-share">Zdieľať výsledok</button>
                   <button class="button button-secondary" type="button" id="result-copy">Kopírovať súhrn</button>
+                  <button class="button button-secondary" type="button" id="result-print">Vytlačiť / uložiť PDF</button>
                 </div>
                 <p class="result-share-status" id="result-share-status" role="status" aria-live="polite"></p>
               </section>
@@ -428,6 +434,6 @@
       <small>© <span id="year"></span> MyPowerSetup</small>
     </footer>
 
-    <script type="module" src="/src/app-sk.js?v=20260822-chargingproducts1"></script>
+    <script type="module" src="/src/app-sk.js?v=20260822-print1"></script>
   </body>
 </html>
