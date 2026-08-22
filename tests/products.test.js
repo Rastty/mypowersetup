@@ -283,6 +283,27 @@ test("stored catalog products are refreshed with the current parser before ranki
   assert.equal(recommendations.battery.length, 1);
 });
 
+test("compact catalog keeps previously extracted specs when the excerpt omits them", () => {
+  const product = refreshCatalogProduct({
+    name: "Victron Energy měnič",
+    description: "Krátký katalogový výpis bez technických parametrů.",
+    categoryPath: "Elektro pro karavany | Měniče napětí",
+    specs: {
+      voltageV: 12,
+      capacityAh: null,
+      powerW: 1200,
+      currentA: null,
+      batteryType: null,
+      pureSine: true
+    }
+  });
+
+  assert.equal(product.specs.voltageV, 12);
+  assert.equal(product.specs.powerW, 1200);
+  assert.equal(product.specs.pureSine, true);
+  assert.equal(product.category, "inverter");
+});
+
 test("selected inverter variant voltage wins over shared 12/24 V family text", () => {
   const inverter = normalizeProduct({
     id: "dpsi-24",
