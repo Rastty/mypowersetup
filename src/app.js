@@ -4,6 +4,7 @@ import { recommendProducts } from "./products.js?v=20260821-2";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260822-wire1";
 import { calculateBatteryCablePlan } from "./wiring.js?v=20260822-wire1";
+import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -248,6 +249,8 @@ function renderResult(result) {
   document.querySelector("#result-notes").innerHTML = checks
     .map(({ text, warning }) => `<li class="${warning ? "is-warning" : ""}">${escapeHtml(text)}</li>`)
     .join("");
+
+  document.querySelector("#system-diagram").innerHTML = buildSystemDiagram(result, "cs");
 
   renderProductRecommendations(result);
 }

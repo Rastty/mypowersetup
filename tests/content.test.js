@@ -107,7 +107,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260822-wire1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260822-diagram1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260821-2"'));
@@ -181,7 +181,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-wire1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-diagram1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));
@@ -213,6 +213,21 @@ test("calculator results can be shared in both languages", async () => {
   assert.match(appSk, /navigator\.share/);
   assert.match(share, /https:\/\/mypowersetup\.com\/sk\//);
   assert.doesNotMatch(share, /affiliate|provize|cena/i);
+});
+
+test("both calculators render a localized bounded system diagram", async () => {
+  const [czech, slovak, app, appSk] = await Promise.all([
+    readFile("index.html", "utf8"),
+    readFile("sk/index.html", "utf8"),
+    readFile("src/app.js", "utf8"),
+    readFile("src/app-sk.js", "utf8"),
+  ]);
+  assert.ok(czech.includes('id="system-diagram"'));
+  assert.match(czech, /nikoli svorky, konkrétní pojistky nebo montážní zapojení/);
+  assert.ok(slovak.includes('id="system-diagram"'));
+  assert.match(slovak, /nie svorky, konkrétne poistky ani montážne zapojenie/);
+  assert.ok(app.includes('buildSystemDiagram(result, "cs")'));
+  assert.ok(appSk.includes('buildSystemDiagram(result, "sk")'));
 });
 
 test("cable estimate is bounded, localized and source-transparent", async () => {
