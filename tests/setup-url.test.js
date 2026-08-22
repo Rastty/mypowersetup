@@ -16,6 +16,8 @@ const config = {
   driveHoursPerDay: 2.5,
   starterVoltage: 12,
   shoreChargeHours: 10,
+  roofLength: 3.2,
+  roofWidth: 1.4,
 };
 
 test("setup query round-trips selected appliances and choices", () => {
@@ -34,6 +36,8 @@ test("setup query round-trips selected appliances and choices", () => {
     driveHoursPerDay: 2.5,
     starterVoltage: 12,
     shoreChargeHours: 10,
+    roofLength: 3.2,
+    roofWidth: 1.4,
   });
 });
 
@@ -51,6 +55,8 @@ test("decoder rejects an unknown or unsafe configuration", () => {
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&drive=13", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&starter=48", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&shore=25", ["fridge"]), null);
+  assert.equal(decodeSetupQuery("?loads=fridge:2:1&roofL=3", ["fridge"]), null);
+  assert.equal(decodeSetupQuery("?loads=fridge:2:1&roofL=3&roofW=5", ["fridge"]), null);
 });
 
 test("AGM configuration uses the calculator's lead identifier", () => {
