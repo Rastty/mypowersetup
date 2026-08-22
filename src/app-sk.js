@@ -95,6 +95,13 @@ function bindNavigation() {
 function bindResultSharing() {
   document.querySelector("#result-share").addEventListener("click", shareResult);
   document.querySelector("#result-copy").addEventListener("click", () => copyResult("result_copied"));
+  document.querySelector("#result-print").addEventListener("click", printResult);
+}
+
+function printResult() {
+  if (!latestResult) return;
+  trackEvent("result_print_requested");
+  window.print();
 }
 
 function setShareStatus(message) {
@@ -221,6 +228,8 @@ function handleSubmit(event) {
 }
 
 function renderResult(result) {
+  document.querySelector("#print-generated-at").textContent =
+    `Vytvorené ${new Date().toLocaleDateString("sk-SK")} · mypowersetup.com`;
   document.querySelector("#result-intro").textContent =
     `Pre odhadovanú spotrebu ${formatEnergy(result.dailyWh)} denne a ${result.autonomyDays} ${dayWord(result.autonomyDays)} autonómie.`;
 

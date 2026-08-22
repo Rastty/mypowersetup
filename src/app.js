@@ -95,6 +95,13 @@ function bindNavigation() {
 function bindResultSharing() {
   document.querySelector("#result-share").addEventListener("click", shareResult);
   document.querySelector("#result-copy").addEventListener("click", () => copyResult("result_copied"));
+  document.querySelector("#result-print").addEventListener("click", printResult);
+}
+
+function printResult() {
+  if (!latestResult) return;
+  trackEvent("result_print_requested");
+  window.print();
 }
 
 function setShareStatus(message) {
@@ -220,6 +227,8 @@ function handleSubmit(event) {
 }
 
 function renderResult(result) {
+  document.querySelector("#print-generated-at").textContent =
+    `Vytvořeno ${new Date().toLocaleDateString("cs-CZ")} · mypowersetup.com`;
   document.querySelector("#result-intro").textContent =
     `Pro odhadovanou spotřebu ${formatEnergy(result.dailyWh)} denně a ${result.autonomyDays} ${dayWord(result.autonomyDays)} autonomie.`;
 
