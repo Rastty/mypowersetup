@@ -270,6 +270,18 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .diagram-safety-note, .diagram-context-note { margin: 12px 0 0; padding-left: 22px; color: var(--ink-soft); font-size: 12px; line-height: 1.5; }
 .diagram-safety-note::before { content: "!"; float: left; display: grid; place-items: center; width: 16px; height: 16px; margin-left: -22px; border-radius: 50%; color: #6d4e08; background: #f2cf6b; font-size: 10px; font-weight: 900; }
 .diagram-context-note { padding-left: 0; }
+.charging-panel { margin-top: 16px; padding: 26px; border: 1px solid #c6d8cf; border-radius: var(--radius-md); background: #f2f8f4; }
+.charging-panel h4 { margin: 7px 0 8px; font-size: 21px; }
+.charging-panel > div:first-child > p { max-width: 760px; margin: 0; color: var(--ink-soft); line-height: 1.5; }
+.charging-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
+.charging-card { padding: 20px; border: 1px solid var(--line); border-radius: 13px; background: white; }
+.charging-card > span { color: #58806b; font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.charging-card > strong { display: block; margin: 9px 0 8px; color: var(--forest); font: 800 21px/1.2 "Manrope", sans-serif; }
+.charging-card p, .charging-card small { color: var(--ink-soft); line-height: 1.5; }
+.charging-card p { margin: 0 0 11px; font-size: 13px; }
+.charging-card small { display: block; padding-top: 11px; border-top: 1px solid var(--line); font-size: 11px; }
+.charging-card.is-warning { border-color: #dfc070; background: #fff9e9; }
+.charging-card.is-disabled { opacity: .75; }
 .next-step-card { display: grid; gap: 24px; margin-top: 16px; padding: 26px; border-radius: var(--radius-md); background: #eef3ed; }
 .next-step-card h4 { margin: 7px 0 8px; }
 .next-step-card p { max-width: 620px; margin: 0; color: var(--ink-soft); line-height: 1.5; }
@@ -344,7 +356,7 @@ footer small { font-size: 12px; }
   .step small { display: none; }
   .form-step { padding: 32px 18px 26px; }
   .calculator-error { margin: 14px 18px 0; }
-  .choice-grid-season, .appliance-grid, .advanced-grid, .result-columns, .method-grid, .product-grid, .guide-preview-grid, .decision-grid { grid-template-columns: 1fr; }
+  .choice-grid-season, .appliance-grid, .advanced-grid, .result-columns, .method-grid, .product-grid, .guide-preview-grid, .decision-grid, .charging-grid { grid-template-columns: 1fr; }
   .choice-grid-season .choice-card { min-height: 76px; }
   .appliance-summary { flex-direction: column; gap: 5px; }
   .appliance-summary { position: sticky; z-index: 3; top: 8px; box-shadow: 0 5px 18px rgba(13,43,35,.12); }

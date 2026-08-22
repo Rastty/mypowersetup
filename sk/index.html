@@ -245,6 +245,16 @@
                     <input type="number" name="inverterCableLength" min="0.2" max="10" step="0.1" value="1.5" inputmode="decimal" />
                     <small>Metre od batérie k meniču; spätný vodič započítame automaticky.</small>
                   </label>
+                  <label>
+                    Typický čas jazdy za deň
+                    <input type="number" name="driveHoursPerDay" min="0" max="12" step="0.5" value="2" inputmode="decimal" />
+                    <small>Pre orientačný výkon DC–DC nabíjačky; 0 znamená bez dobíjania z alternátora.</small>
+                  </label>
+                  <label>
+                    Čas pripojenia k 230 V
+                    <input type="number" name="shoreChargeHours" min="0" max="24" step="0.5" value="8" inputmode="decimal" />
+                    <small>Koľko hodín má nabíjačka na doplnenie jednej dennej spotreby; 0 túto možnosť vypne.</small>
+                  </label>
                 </div>
               </details>
 
@@ -306,6 +316,15 @@
                   <p>Schéma ukazuje funkčné bloky a ich poradie, nie svorky, konkrétne poistky ani montážne zapojenie.</p>
                 </div>
                 <div id="system-diagram"></div>
+              </section>
+
+              <section class="charging-panel" aria-labelledby="charging-plan-title">
+                <div>
+                  <span class="step-kicker">Záloha mimo soláru</span>
+                  <h4 id="charging-plan-title">Dobíjanie počas jazdy a z 230 V</h4>
+                  <p>Orientačný výkon na doplnenie jednej dennej spotreby vo zvolenom čase. Pred výberom vždy rozhoduje manuál batérie, BMS, alternátora a nabíjačky.</p>
+                </div>
+                <div class="charging-grid" id="charging-options"></div>
               </section>
 
               <section class="next-step-card" id="product-recommendations">
@@ -401,6 +420,6 @@
       <small>© <span id="year"></span> MyPowerSetup</small>
     </footer>
 
-    <script type="module" src="/src/app-sk.js?v=20260822-diagram1"></script>
+    <script type="module" src="/src/app-sk.js?v=20260822-charging1"></script>
   </body>
 </html>

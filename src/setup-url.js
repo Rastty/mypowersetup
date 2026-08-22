@@ -22,6 +22,8 @@ export function encodeSetupQuery(config) {
   params.set("battery", String(config.batteryType));
   params.set("voltage", String(config.systemVoltage));
   params.set("cable", cleanNumber(config.inverterCableLength || 1.5));
+  params.set("drive", cleanNumber(config.driveHoursPerDay ?? 2));
+  params.set("shore", cleanNumber(config.shoreChargeHours ?? 8));
   return params.toString();
 }
 
@@ -47,11 +49,15 @@ export function decodeSetupQuery(search, allowedApplianceIds) {
   const battery = params.get("battery") || "lifepo4";
   const voltage = params.get("voltage") || "auto";
   const cableLength = Number(params.get("cable") || 1.5);
+  const driveHoursPerDay = Number(params.get("drive") ?? 2);
+  const shoreChargeHours = Number(params.get("shore") ?? 8);
   if (!ALLOWED.days.has(days) || !ALLOWED.season.has(season)
     || !ALLOWED.battery.has(battery) || !ALLOWED.voltage.has(voltage)) return null;
   if (!Number.isFinite(cableLength) || cableLength < 0.2 || cableLength > 10) return null;
+  if (!Number.isFinite(driveHoursPerDay) || driveHoursPerDay < 0 || driveHoursPerDay > 12) return null;
+  if (!Number.isFinite(shoreChargeHours) || shoreChargeHours < 0 || shoreChargeHours > 24) return null;
 
-  return { appliances, autonomyDays: days, season, batteryType: battery, systemVoltage: voltage, inverterCableLength: cableLength };
+  return { appliances, autonomyDays: days, season, batteryType: battery, systemVoltage: voltage, inverterCableLength: cableLength, driveHoursPerDay, shoreChargeHours };
 }
 
 export function buildSetupUrl(config, language = "cs", origin = "https://mypowersetup.com") {

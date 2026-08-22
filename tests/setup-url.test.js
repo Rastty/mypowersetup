@@ -13,6 +13,8 @@ const config = {
   batteryType: "lifepo4",
   systemVoltage: "24",
   inverterCableLength: 1.5,
+  driveHoursPerDay: 2.5,
+  shoreChargeHours: 10,
 };
 
 test("setup query round-trips selected appliances and choices", () => {
@@ -28,6 +30,8 @@ test("setup query round-trips selected appliances and choices", () => {
     batteryType: "lifepo4",
     systemVoltage: "24",
     inverterCableLength: 1.5,
+    driveHoursPerDay: 2.5,
+    shoreChargeHours: 10,
   });
 });
 
@@ -42,6 +46,8 @@ test("decoder rejects an unknown or unsafe configuration", () => {
   assert.equal(decodeSetupQuery("?loads=fridge:25:1", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&voltage=230", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&voltage=48", ["fridge"]), null);
+  assert.equal(decodeSetupQuery("?loads=fridge:2:1&drive=13", ["fridge"]), null);
+  assert.equal(decodeSetupQuery("?loads=fridge:2:1&shore=25", ["fridge"]), null);
 });
 
 test("AGM configuration uses the calculator's lead identifier", () => {
