@@ -338,8 +338,13 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .product-checks li { position: relative; padding-left: 18px; color: #355447; font-size: 11px; line-height: 1.4; }
 .product-checks li::before { content: "✓"; position: absolute; left: 0; color: #4b8967; font-weight: 900; }
 .product-verify { padding-top: 10px; border-top: 1px solid var(--line); color: var(--ink-soft) !important; line-height: 1.45 !important; }
+.catalog-source-note, .product-source-status { padding: 10px 12px; border-radius: 9px; font-size: 11px !important; line-height: 1.45 !important; }
+.catalog-source-note { margin-top: 12px !important; }
+.catalog-source-note.is-stale, .product-source-status.is-stale { color: #684d12; background: #fff6d8; }
 .product-card-action { display: grid; gap: 10px; margin-top: 15px; }
 .product-card-action strong { font-size: 14px; }
+.product-price { display: grid; gap: 2px; }
+.product-price small { color: var(--ink-soft); font-size: 10px; line-height: 1.35; }
 .product-card-action a { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: 10px 14px; border-radius: 9px; color: white; background: var(--forest); font-size: 12px; font-weight: 800; text-align: center; }
 
 .method-section { padding: 100px 24px; color: white; background: var(--forest-deep); }
