@@ -1,6 +1,6 @@
 import { APPLIANCES } from "./catalog-sk.js?v=20260821-sk1";
 import { calculateSetup } from "./engine.js?v=20260821-sk1";
-import { recommendProducts } from "./products.js?v=20260822-chargingproducts1";
+import { recommendProducts } from "./products.js?v=20260822-packages1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260822-roof1";
 import { calculateBatteryCablePlan } from "./wiring.js?v=20260822-wire1";
@@ -8,6 +8,7 @@ import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
 import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts1";
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
+import { buildProductPackages } from "./packages.js?v=20260822-packages1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -344,7 +345,10 @@ function renderProductRecommendations(result) {
   const heading = document.querySelector("#product-heading");
   const intro = document.querySelector("#product-intro");
   const groups = document.querySelector("#recommendation-groups");
-  const recommendations = recommendProducts(productCatalog, result, 3);
+  const rankedRecommendations = recommendProducts(productCatalog, result, 24);
+  const recommendations = Object.fromEntries(
+    Object.entries(rankedRecommendations).map(([category, items]) => [category, items.slice(0, 3)])
+  );
   const categoryLabels = {
     battery: "Batérie",
     solar_panel: "Solárne panely",
@@ -359,6 +363,7 @@ function renderProductRecommendations(result) {
     : "";
 
   if (total === 0) {
+    document.querySelector("#package-variants").innerHTML = "";
     heading.textContent = "Pripravujeme presné produktové odporúčania";
     intro.textContent = "Produkty zverejníme až po overení ich parametrov voči výsledku vašej zostavy. Nebudeme vás posielať na všeobecnú domovskú stránku ani označovať neoverený produkt za kompatibilný.";
     groups.innerHTML = '<button class="button button-disabled" type="button" disabled>Produktové párovanie sa pripravuje</button>';
@@ -367,6 +372,7 @@ function renderProductRecommendations(result) {
 
   heading.textContent = "Komponenty zodpovedajúce vášmu výpočtu";
   intro.textContent = `Najprv overujeme technickú kompatibilitu. Poradie následne zohľadňuje zhodu parametrov, dostupnosť a úplnosť produktových údajov.${freshness}`;
+  renderProductPackages(buildProductPackages(rankedRecommendations, result));
   groups.innerHTML = Object.entries(recommendations)
     .filter(([, items]) => items.length)
     .map(([category, items]) => `
@@ -377,6 +383,27 @@ function renderProductRecommendations(result) {
         </div>
       </section>
     `).join("");
+}
+
+function renderProductPackages(variants) {
+  const target = document.querySelector("#package-variants");
+  const copy = {
+    economy: ["Úsporná", "Najnižšia známa cena medzi kompatibilnými voľbami."],
+    recommended: ["Odporúčaná", "Najlepšia zhoda parametrov a úplnosti údajov."],
+    reserve: ["S väčšou rezervou", "Mierne vyššia technická rezerva, kde ju katalóg ponúka."],
+  };
+  if (!variants.length) {
+    target.innerHTML = "";
+    return;
+  }
+  target.innerHTML = `<div class="package-intro"><strong>Tri bezpečné cesty k nákupu</strong><p>Všetky varianty spĺňajú rovnakú vypočítanú požiadavku. Ide iba o hlavné komponenty, nie kompletný inštalačný rozpočet.</p></div><div class="package-grid">${variants.map((variant) => {
+    const [label, description] = copy[variant.id];
+    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong></li>`).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podľa obchodu" : formatPrice(variant.totalPriceCzk)}</b></article>`;
+  }).join("")}</div>`;
+}
+
+function packageCategoryLabel(category) {
+  return ({ battery: "Batéria", solar_panel: "Solár", inverter: "Menič", controller: "MPPT" })[category] || category;
 }
 
 function productCard(product, reason, checks, verify) {
