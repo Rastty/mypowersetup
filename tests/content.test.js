@@ -107,7 +107,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260822-mobile1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260822-trust1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260822-packages1"'));
@@ -138,8 +138,8 @@ test("language switch remains available on mobile", async () => {
   assert.match(slovak, /class="header-link language-switch" href="\/"/);
   assert.match(slovak, /aria-label="Přepnout do češtiny"/);
   assert.match(styles, /\.header-link\.language-switch \{ display: inline-flex; \}/);
-  assert.ok(czech.includes('href="/styles.css?v=20260822-mobile1"'));
-  assert.ok(slovak.includes('href="/styles.css?v=20260822-mobile1"'));
+  assert.ok(czech.includes('href="/styles.css?v=20260822-trust1"'));
+  assert.ok(slovak.includes('href="/styles.css?v=20260822-trust1"'));
 });
 
 test("homepage exposes valid website and calculator structured data", async () => {
@@ -181,7 +181,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-mobile1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-trust1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));
@@ -226,7 +226,7 @@ test("both calculators offer a clean printable PDF summary", async () => {
   for (const html of [czech, slovak]) {
     assert.ok(html.includes('id="result-print"'));
     assert.ok(html.includes('id="print-generated-at"'));
-    assert.ok(html.includes('/styles.css?v=20260822-mobile1'));
+    assert.ok(html.includes('/styles.css?v=20260822-trust1'));
   }
   for (const source of [app, appSk]) {
     assert.ok(source.includes('trackEvent("result_print_requested")'));
@@ -260,6 +260,26 @@ test("both calculators lead mobile users directly to compatible products", async
 
   assert.match(styles, /\.product-card-action a \{[^}]*min-height: 44px;/);
   assert.match(styles, /\.result-next-card \.button \{ width: 100%;/);
+});
+
+test("product cards disclose feed freshness without weakening compatibility checks", async () => {
+  const [app, appSk, styles] = await Promise.all([
+    readFile("src/app.js", "utf8"),
+    readFile("src/app-sk.js", "utf8"),
+    readFile("styles.css", "utf8"),
+  ]);
+
+  for (const source of [app, appSk]) {
+    assert.ok(source.includes("productCatalogSources = payload.sources"));
+    assert.ok(source.includes('source?.status === "stale"'));
+    assert.ok(source.includes('productCatalogSources[product.merchant]?.status === "stale"'));
+    assert.ok(source.includes('class="product-source-status is-stale"'));
+    assert.ok(source.includes('class="product-price"'));
+  }
+
+  assert.match(app, /cenu a dostupnost ověřte po prokliku/);
+  assert.match(appSk, /cenu a dostupnosť overte po prekliku/);
+  assert.match(styles, /\.catalog-source-note\.is-stale/);
 });
 
 test("both calculators expose a bounded roof-fit check", async () => {

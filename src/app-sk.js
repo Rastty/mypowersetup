@@ -21,6 +21,7 @@ let latestResult = null;
 let latestShareUrl = "https://mypowersetup.com/sk/#kalkulator";
 let productCatalog = [];
 let productCatalogUpdatedAt = null;
+let productCatalogSources = {};
 
 renderAppliances();
 bindChoiceCards();
@@ -36,6 +37,7 @@ async function loadProductCatalog() {
     const payload = await response.json();
     productCatalog = Array.isArray(payload.products) ? payload.products : [];
     productCatalogUpdatedAt = payload.updatedAt || payload.generatedAt || null;
+    productCatalogSources = payload.sources && typeof payload.sources === "object" ? payload.sources : {};
   } catch {
     productCatalog = [];
   }
@@ -406,7 +408,10 @@ function renderProductPackages(variants) {
     target.innerHTML = "";
     return;
   }
-  target.innerHTML = `<div class="package-intro"><strong>Tri bezpečné cesty k nákupu</strong><p>Všetky varianty spĺňajú rovnakú vypočítanú požiadavku. Ide iba o hlavné komponenty, nie kompletný inštalačný rozpočet.</p></div><div class="package-grid">${variants.map((variant) => {
+  const stalePriceNote = Object.values(productCatalogSources).some((source) => source?.status === "stale")
+    ? '<p class="catalog-source-note is-stale"><strong>Aktualizácia cien:</strong> Pri jednom obchode používame posledný úspešne načítaný feed. Aktuálnu cenu a dostupnosť vždy potvrďte na stránke produktu.</p>'
+    : "";
+  target.innerHTML = `<div class="package-intro"><strong>Tri bezpečné cesty k nákupu</strong><p>Všetky varianty spĺňajú rovnakú vypočítanú požiadavku. Ide iba o hlavné komponenty, nie kompletný inštalačný rozpočet.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
     return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong></li>`).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podľa obchodu" : formatPrice(variant.totalPriceCzk)}</b></article>`;
   }).join("")}</div>`;
@@ -417,6 +422,10 @@ function packageCategoryLabel(category) {
 }
 
 function productCard(product, reason, checks, verify) {
+  const sourceIsStale = productCatalogSources[product.merchant]?.status === "stale";
+  const sourceNote = sourceIsStale
+    ? '<p class="product-source-status is-stale"><strong>Starší produktový feed:</strong> Parametre prešli kontrolou zhody, ale cenu a dostupnosť overte po prekliku.</p>'
+    : "";
   return `
     <article class="product-card">
       ${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : ""}
@@ -426,8 +435,9 @@ function productCard(product, reason, checks, verify) {
         <p class="product-reason"><strong>Prečo vyhovuje:</strong> ${escapeHtml(reason)}</p>
         <ul class="product-checks">${checks.map((check) => `<li>${escapeHtml(check)}</li>`).join("")}</ul>
         <p class="product-verify"><strong>Pred nákupom:</strong> ${escapeHtml(verify)}</p>
+        ${sourceNote}
         <div class="product-card-action">
-          <strong>${formatPrice(product.priceCzk)}</strong>
+          <span class="product-price"><strong>${formatPrice(product.priceCzk)}</strong><small>${sourceIsStale ? "Cena z posledného úspešného feedu" : "Cena z produktového feedu"}</small></span>
           <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Zobraziť produkt →</a>
         </div>
       </div>
