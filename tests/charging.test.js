@@ -8,11 +8,13 @@ test("sizes bounded DC-DC and shore charging from daily energy", () => {
     batteryAh: 150,
     batteryType: "lifepo4",
     systemVoltage: 12,
+    starterVoltage: 24,
     driveHoursPerDay: 2,
     shoreChargeHours: 8,
   });
   assert.equal(plan.dcDc.requiredCurrentAmps, 29);
   assert.equal(plan.dcDc.suggestedCurrentAmps, 30);
+  assert.equal(plan.starterVoltage, 24);
   assert.equal(plan.shore.requiredCurrentAmps, 8);
   assert.equal(plan.shore.suggestedCurrentAmps, 10);
   assert.equal(plan.efficiencyPercent, 90);

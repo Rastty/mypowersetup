@@ -35,6 +35,7 @@ export function calculateChargingPlan(input) {
   const batteryAh = Number(input.batteryAh);
   const systemVoltage = Number(input.systemVoltage);
   const batteryType = input.batteryType === "lead" ? "lead" : "lifepo4";
+  const starterVoltage = Number(input.starterVoltage) === 24 ? 24 : 12;
   if (![dailyWh, batteryAh, systemVoltage].every((value) => Number.isFinite(value) && value > 0)) {
     return null;
   }
@@ -42,6 +43,7 @@ export function calculateChargingPlan(input) {
   return {
     efficiencyPercent: Math.round(CHARGING_EFFICIENCY * 100),
     batteryType,
+    starterVoltage,
     dcDc: buildOption({
       dailyWh,
       batteryAh,

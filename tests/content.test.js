@@ -107,10 +107,10 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260822-charging1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260822-chargingproducts1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
-  assert.ok(app.includes('from "./products.js?v=20260821-2"'));
+  assert.ok(app.includes('from "./products.js?v=20260822-chargingproducts1"'));
   assert.ok(app.includes("calculatorError.hidden = false"));
   assert.ok(engine.includes('from "./catalog.js?v=20260821-1"'));
 });
@@ -181,7 +181,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-charging1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-chargingproducts1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));
@@ -242,6 +242,7 @@ test("both calculators expose bounded alternator and shore charging plans", asyn
   ]);
   for (const html of [czech, slovak]) {
     assert.ok(html.includes('name="driveHoursPerDay"'));
+    assert.ok(html.includes('name="starterVoltage"'));
     assert.ok(html.includes('name="shoreChargeHours"'));
     assert.ok(html.includes('id="charging-options"'));
   }

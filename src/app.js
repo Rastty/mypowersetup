@@ -1,11 +1,11 @@
 import { APPLIANCES } from "./catalog.js?v=20260821-1";
 import { calculateSetup } from "./engine.js?v=20260821-1";
-import { recommendProducts } from "./products.js?v=20260821-2";
+import { recommendProducts } from "./products.js?v=20260822-chargingproducts1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
-import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260822-charging1";
+import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260822-chargingproducts1";
 import { calculateBatteryCablePlan } from "./wiring.js?v=20260822-wire1";
 import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
-import { calculateChargingPlan } from "./charging.js?v=20260822-charging1";
+import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -186,6 +186,7 @@ function handleSubmit(event) {
       batteryAh: latestResult.batteryAh,
       batteryType: latestResult.batteryType,
       systemVoltage: latestResult.systemVoltage,
+      starterVoltage: data.get("starterVoltage"),
       driveHoursPerDay: data.get("driveHoursPerDay"),
       shoreChargeHours: data.get("shoreChargeHours")
     });
@@ -197,6 +198,7 @@ function handleSubmit(event) {
       systemVoltage: data.get("systemVoltage"),
       inverterCableLength: data.get("inverterCableLength"),
       driveHoursPerDay: data.get("driveHoursPerDay"),
+      starterVoltage: data.get("starterVoltage"),
       shoreChargeHours: data.get("shoreChargeHours")
     }, "cs", window.location.origin);
     history.replaceState({}, "", latestShareUrl.replace(window.location.origin, ""));
@@ -277,7 +279,7 @@ function renderChargingPlan(plan, systemVoltage) {
     ? " Pro 24V nástavbovou baterii musí měnič výslovně podporovat převod ze startovací soustavy na 24 V; proud na vstupu může být výrazně vyšší než zobrazený výstupní proud."
     : "";
   target.innerHTML = [
-    chargingCard("DC–DC z alternátoru", plan.dcDc, `Výstup pro ${systemVoltage}V baterii. Ověřte volnou kapacitu alternátoru, vstupní proud, kabeláž, jištění a podporu chytrého alternátoru.${dcDcVoltageCheck}`),
+    chargingCard("DC–DC z alternátoru", plan.dcDc, `Vstup ${plan.starterVoltage} V, výstup pro ${systemVoltage}V baterii. Ověřte volnou kapacitu alternátoru, vstupní proud, kabeláž, jištění a podporu chytrého alternátoru.${dcDcVoltageCheck}`),
     chargingCard("Nabíječka z 230 V", plan.shore, `Výstup pro ${systemVoltage}V baterii. Nabíjecí profil, teplotní kompenzace a maximální proud musí povolit výrobce baterie a BMS.`)
   ].join("");
 }
@@ -300,7 +302,9 @@ function renderProductRecommendations(result) {
     battery: "Baterie",
     solar_panel: "Solární panely",
     inverter: "Měniče",
-    controller: "MPPT regulátory"
+    controller: "MPPT regulátory",
+    dc_charger: "DC–DC nabíječky z alternátoru",
+    shore_charger: "Nabíječky z 230 V"
   };
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const freshness = productCatalogUpdatedAt
@@ -457,6 +461,7 @@ function restoreSetupFromUrl() {
     systemVoltage: config.systemVoltage,
     inverterCableLength: config.inverterCableLength,
     driveHoursPerDay: config.driveHoursPerDay,
+    starterVoltage: config.starterVoltage,
     shoreChargeHours: config.shoreChargeHours
   })) {
     const input = form.elements.namedItem(name);

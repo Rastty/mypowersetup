@@ -14,6 +14,7 @@ const config = {
   systemVoltage: "24",
   inverterCableLength: 1.5,
   driveHoursPerDay: 2.5,
+  starterVoltage: 12,
   shoreChargeHours: 10,
 };
 
@@ -31,6 +32,7 @@ test("setup query round-trips selected appliances and choices", () => {
     systemVoltage: "24",
     inverterCableLength: 1.5,
     driveHoursPerDay: 2.5,
+    starterVoltage: 12,
     shoreChargeHours: 10,
   });
 });
@@ -47,6 +49,7 @@ test("decoder rejects an unknown or unsafe configuration", () => {
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&voltage=230", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&voltage=48", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&drive=13", ["fridge"]), null);
+  assert.equal(decodeSetupQuery("?loads=fridge:2:1&starter=48", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&shore=25", ["fridge"]), null);
 });
 

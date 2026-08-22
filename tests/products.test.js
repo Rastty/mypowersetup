@@ -60,6 +60,112 @@ test("Heureka XML is normalized and technical values are extracted", () => {
   assert.equal(product.available, true);
 });
 
+test("charger classifier separates explicit DC-DC and 230V battery chargers", () => {
+  const dcDc = normalizeProduct({
+    id: "orion",
+    name: "DC-DC nabíječka Orion-Tr Smart 12/12-18A",
+    category: "Elektro pro karavany | Nabíječky, boostery",
+    description: "Nabíjecí profily pro LiFePO4, AGM a gelové baterie.",
+    url: "https://www.reslshop.cz/orion-12-12-18a/",
+    available: true
+  }, "reslshop");
+  const shore = normalizeProduct({
+    id: "shore",
+    name: "Inteligentní nabíječka baterií 12 V / 20 A",
+    category: "Elektro pro karavany | Nabíječky, boostery",
+    description: "Pro LiFePO4, AGM a gelové baterie.",
+    url: "https://www.reslshop.cz/nabijecka-12v-20a/",
+    available: true
+  }, "reslshop");
+  const usb = normalizeProduct({
+    id: "usb",
+    name: "USB nabíječka 12 V / 20 A",
+    category: "Elektro pro karavany | Nabíječky, boostery",
+    url: "https://www.reslshop.cz/usb-nabijecka/",
+    available: true
+  }, "reslshop");
+
+  assert.equal(dcDc.category, "dc_charger");
+  assert.deepEqual(dcDc.specs.chargingVoltagesV, [12]);
+  assert.deepEqual(dcDc.specs.chargingInputVoltagesV, [12]);
+  assert.equal(shore.category, "shore_charger");
+  assert.deepEqual(shore.specs.chargingVoltagesV, [12]);
+  assert.equal(usb.category, "other");
+});
+
+test("charger matcher requires calculated current and exact battery voltage", () => {
+  const products = [
+    normalizeProduct({
+      id: "dc-fit",
+      name: "Renogy nabíječka DC-DC 12V/30A",
+      category: "Elektro pro karavany | Nabíječky, boostery",
+      description: "Nabíjecí profily pro LiFePO4, AGM a gelové baterie.",
+      url: "https://www.reslshop.cz/dc-fit/",
+      available: true
+    }, "reslshop"),
+    normalizeProduct({
+      id: "dc-wrong-voltage",
+      name: "DC-DC nabíječka 24V/30A",
+      category: "Elektro pro karavany | Nabíječky, boostery",
+      description: "Nabíjecí profily pro LiFePO4, AGM a gelové baterie.",
+      url: "https://www.reslshop.cz/dc-wrong-voltage/",
+      available: true
+    }, "reslshop"),
+    normalizeProduct({
+      id: "shore-fit",
+      name: "Inteligentní nabíječka baterií 12V/20A",
+      category: "Elektro pro karavany | Nabíječky, boostery",
+      description: "Nabíjecí profily pro LiFePO4, AGM a gelové baterie.",
+      url: "https://www.reslshop.cz/shore-fit/",
+      available: true
+    }, "reslshop")
+  ];
+  const recommendations = recommendProducts(products, {
+    locale: "cs",
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    solarWatts: 300,
+    inverterWatts: 800,
+    controllerAmps: 30,
+    charging: {
+      starterVoltage: 12,
+      dcDc: { suggestedCurrentAmps: 20 },
+      shore: { suggestedCurrentAmps: 10 }
+    }
+  });
+
+  assert.deepEqual(recommendations.dc_charger.map(({ product }) => product.id), ["reslshop:dc-fit"]);
+  assert.deepEqual(recommendations.shore_charger.map(({ product }) => product.id), ["reslshop:shore-fit"]);
+  assert.match(recommendations.dc_charger[0].verify, /chytrého alternátoru/);
+});
+
+test("DC-DC matcher rejects a charger with the wrong starter-system input voltage", () => {
+  const converter = normalizeProduct({
+    id: "48-to-12",
+    name: "DC-DC nabíječka 48/12-30A",
+    category: "Elektro pro karavany | Nabíječky, boostery",
+    description: "Nabíjecí profily pro LiFePO4, AGM a gelové baterie.",
+    url: "https://www.reslshop.cz/48-to-12/",
+    available: true
+  }, "reslshop");
+  const recommendations = recommendProducts([converter], {
+    locale: "cs",
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    solarWatts: 300,
+    inverterWatts: 800,
+    controllerAmps: 30,
+    charging: {
+      starterVoltage: 12,
+      dcDc: { suggestedCurrentAmps: 20 },
+      shore: { suggestedCurrentAmps: 10 }
+    }
+  });
+  assert.equal(recommendations.dc_charger.length, 0);
+});
+
 test("matcher rejects incompatible voltage and ranks a fitting battery", () => {
   const products = [
     normalizeProduct({
