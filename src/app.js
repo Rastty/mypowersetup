@@ -2,9 +2,10 @@ import { APPLIANCES } from "./catalog.js?v=20260821-1";
 import { calculateSetup } from "./engine.js?v=20260821-1";
 import { recommendProducts } from "./products.js?v=20260821-2";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
-import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260822-wire1";
+import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260822-charging1";
 import { calculateBatteryCablePlan } from "./wiring.js?v=20260822-wire1";
 import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
+import { calculateChargingPlan } from "./charging.js?v=20260822-charging1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -180,13 +181,23 @@ function handleSubmit(event) {
       systemVoltage: latestResult.systemVoltage,
       oneWayLengthMeters: data.get("inverterCableLength")
     });
+    latestResult.charging = calculateChargingPlan({
+      dailyWh: latestResult.dailyWh,
+      batteryAh: latestResult.batteryAh,
+      batteryType: latestResult.batteryType,
+      systemVoltage: latestResult.systemVoltage,
+      driveHoursPerDay: data.get("driveHoursPerDay"),
+      shoreChargeHours: data.get("shoreChargeHours")
+    });
     latestShareUrl = buildSetupUrl({
       appliances,
       autonomyDays: data.get("autonomyDays"),
       season: data.get("season"),
       batteryType: data.get("batteryType"),
       systemVoltage: data.get("systemVoltage"),
-      inverterCableLength: data.get("inverterCableLength")
+      inverterCableLength: data.get("inverterCableLength"),
+      driveHoursPerDay: data.get("driveHoursPerDay"),
+      shoreChargeHours: data.get("shoreChargeHours")
     }, "cs", window.location.origin);
     history.replaceState({}, "", latestShareUrl.replace(window.location.origin, ""));
 
@@ -251,8 +262,33 @@ function renderResult(result) {
     .join("");
 
   document.querySelector("#system-diagram").innerHTML = buildSystemDiagram(result, "cs");
+  renderChargingPlan(result.charging, result.systemVoltage);
 
   renderProductRecommendations(result);
+}
+
+function renderChargingPlan(plan, systemVoltage) {
+  const target = document.querySelector("#charging-options");
+  if (!plan) {
+    target.innerHTML = "";
+    return;
+  }
+  const dcDcVoltageCheck = systemVoltage === 24
+    ? " Pro 24V nástavbovou baterii musí měnič výslovně podporovat převod ze startovací soustavy na 24 V; proud na vstupu může být výrazně vyšší než zobrazený výstupní proud."
+    : "";
+  target.innerHTML = [
+    chargingCard("DC–DC z alternátoru", plan.dcDc, `Výstup pro ${systemVoltage}V baterii. Ověřte volnou kapacitu alternátoru, vstupní proud, kabeláž, jištění a podporu chytrého alternátoru.${dcDcVoltageCheck}`),
+    chargingCard("Nabíječka z 230 V", plan.shore, `Výstup pro ${systemVoltage}V baterii. Nabíjecí profil, teplotní kompenzace a maximální proud musí povolit výrobce baterie a BMS.`)
+  ].join("");
+}
+
+function chargingCard(label, option, check) {
+  if (!option.enabled) return `<article class="charging-card is-disabled"><span>${label}</span><strong>Vypnuto</strong><p>Pro tento zdroj jste nastavili 0 hodin.</p></article>`;
+  const value = option.suggestedCurrentAmps ? `alespoň ${option.suggestedCurrentAmps} A` : "individuální návrh";
+  const reason = option.suggestedCurrentAmps
+    ? `Pro doplnění denní spotřeby za ${formatNumber(option.hours)} h vychází nejméně ${option.requiredCurrentAmps} A při započtení 90% účinnosti.`
+    : `Potřebných ${option.requiredCurrentAmps} A překračuje konzervativní plánovací limit ${option.planningCeilingAmps} A pro tuto baterii.`;
+  return `<article class="charging-card ${option.needsIndividualDesign ? "is-warning" : ""}"><span>${label}</span><strong>${value}</strong><p>${reason}</p><small>${check}</small></article>`;
 }
 
 function renderProductRecommendations(result) {
@@ -419,7 +455,9 @@ function restoreSetupFromUrl() {
     season: config.season,
     batteryType: config.batteryType,
     systemVoltage: config.systemVoltage,
-    inverterCableLength: config.inverterCableLength
+    inverterCableLength: config.inverterCableLength,
+    driveHoursPerDay: config.driveHoursPerDay,
+    shoreChargeHours: config.shoreChargeHours
   })) {
     const input = form.elements.namedItem(name);
     if (input) input.value = value;
