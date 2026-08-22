@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">MyPowerSetup</title>
+  <desc id="desc">Kalkulátor baterie a soláru pro karavan</desc>
+  <rect width="1200" height="630" fill="#0b2f26"/>
+  <circle cx="1070" cy="80" r="260" fill="#154b3d"/>
+  <circle cx="1110" cy="650" r="330" fill="#123b31"/>
+  <rect x="72" y="70" width="112" height="112" rx="30" fill="#ddff58"/>
+  <path d="M140 88 102 145h27l-3 44 41-63h-27V88Z" fill="#0b2f26"/>
+  <text x="212" y="145" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700">MyPowerSetup</text>
+  <text x="72" y="300" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="700">Kolik baterie a soláru</text>
+  <text x="72" y="382" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="700">opravdu potřebujete?</text>
+  <text x="76" y="470" fill="#c5d8d0" font-family="Arial, Helvetica, sans-serif" font-size="31">Výpočet podle vašich spotřebičů — zdarma a s vysvětlením.</text>
+  <rect x="72" y="518" width="404" height="3" rx="2" fill="#ddff58"/>
+  <text x="72" y="570" fill="#ddff58" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">mypowersetup.com</text>
+</svg>

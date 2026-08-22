@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T03:59:12.599Z",
+  "generatedAt": "2026-08-21T18:33:05.854Z",
   "sources": {
     "reslshop": {
       "status": "error",
@@ -7,7 +7,7 @@
     },
     "svetkaravanu": {
       "status": "ok",
-      "parsedProducts": 16820
+      "parsedProducts": 16862
     }
   },
   "products": [
@@ -520,7 +520,7 @@
     {
       "id": "svetkaravanu:19287_21292",
       "merchant": "svetkaravanu",
-      "name": "Sinusový měnič Dometic SinePower DSP-T stálý / špičkový výkon 2300/4000 W napětí 24 V",
+      "name": "Sinusový měnič Dometic SinePower DSP-T napětí 24 V stálý / špičkový výkon 2300/4000 W",
       "description": "Převádění proudu z 12 V na 230 V pomocí sinusového měniče DometicSinusový měnič napětí Dometic SinePower DSP-T je navržen tak, aby převáděl proud z 12 V baterie na 230 V střídavý proud. Tím je zajištěn spolehlivý provoz elektrických spotřebičů až do 1200 W při napájení z baterie vozidla.Inteligentní obvod priority napájení ze sítě zajišťuje plynulé přepínání z napájení z baterie na síťové napájení ze zdroje, jakmile je vozidlo připojeno k elektrické síti. Při nižší zátěži dochází k automatickému přepnutí do úsporného inteligentního pohotovostního režimu.Měnič začne opět pracovat, jakmile je dosaženo přednastaveného rozsahu probuzení. Elegantní ovládací panel (není součástí balení) umožňuje intuitivní ovládání.Dometic SinePower DSP-T je vybaven ventilátorem s regulací zatížení a teploty. Dalším charakteristickým rysem je nízká hlučnost. Měnič je určen k trvalé instalaci.Klíčové vlastnosti sinusového měniče SinePower DSP-T:Úsporné přepínání zdroje šetří baterii.Energeticky úsporný inteligentní pohotovostní režim.Čisté sinusové výstupní napětí 230 V AC je vhodné pro citlivé elektrické spotřebiče.Měnič s uživatelským rozhraním pro bezchybný provoz a ovládání.Široký rozsah vstupního stejnosměrného napětí.SinePower DSP-T je vybaven integrovaným ventilátorem s regulací zatížení a teploty s nízkou hlučností.Určeno pro trvalou instalaci.Pohotovostní režim.Parametry sinusového měniče SinePower DSP-T:vstupní napětí: 24 Vvýstupní napětí: 230 VTyp:Kód produktu:stálý výkonšpičkový výkonRozměry (Š × V × H):rozměry balení:Hmotnost:DSP 1324T323/3131 300 W2 400 W28,4 × 11,8 × 40,5 cm55,5 × 41 × 23,5 cm4,8 kgDSP 1824T323/3151 800 W3 600 W28,4 × 11,8 × 40,5 cm54 × 40 × 22 cm6,1 kgDSP 2324T323/3172 300 W4 000 W28,4 × 11,8 × 48,1 cm61 × 40 × 22 cm6,6 kgDSP 3524T323/3193 500 W6 000 W32,4 × 12,2 × 49 cm65 × 42 × 22 cm10,9 kg",
       "categoryPath": "Elektro pro karavany, obytná auta a dodávky | Měniče napětí",
       "category": "inverter",

@@ -155,6 +155,19 @@ test("homepage exposes valid website and calculator structured data", async () =
   assert.ok(homepageGraph["@graph"].some((entry) => entry.name === "Petr Gálík"));
 });
 
+test("both homepages expose a large social preview", async () => {
+  const [czech, slovak] = await Promise.all([
+    readFile("index.html", "utf8"),
+    readFile("sk/index.html", "utf8"),
+  ]);
+  for (const html of [czech, slovak]) {
+    assert.ok(html.includes('property="og:image" content="https://mypowersetup.com/social-card.png"'));
+    assert.ok(html.includes('property="og:image:width" content="1200"'));
+    assert.ok(html.includes('property="og:image:height" content="630"'));
+    assert.ok(html.includes('name="twitter:card" content="summary_large_image"'));
+  }
+});
+
 test("Slovak calculator is localized, indexable and isolated from Czech products", async () => {
   const [html, app, catalog, payload, sitemap] = await Promise.all([
     readFile("sk/index.html", "utf8"),
