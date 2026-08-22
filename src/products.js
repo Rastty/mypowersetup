@@ -266,6 +266,7 @@ function scoreProduct(product, setup) {
 
   return {
     product,
+    fit,
     score: Math.round(fitScore + availabilityScore + completenessScore - quantityPenalty),
     reason: recommendationReason(product, setup),
     checks: recommendationChecks(product, setup),
