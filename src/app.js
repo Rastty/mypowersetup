@@ -7,6 +7,7 @@ import { calculateBatteryCablePlan } from "./wiring.js?v=20260822-wire1";
 import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
 import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts1";
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
+import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -287,8 +288,19 @@ function renderResult(result) {
   document.querySelector("#system-diagram").innerHTML = buildSystemDiagram(result, "cs");
   renderChargingPlan(result.charging, result.systemVoltage);
   renderRoofFit(result.roof);
+  renderInstallationPlan(result);
 
   renderProductRecommendations(result);
+}
+
+function renderInstallationPlan(result) {
+  const target = document.querySelector("#installation-plan");
+  target.innerHTML = buildInstallationPlan(result, "cs").map((circuit, index) => `
+    <article class="installation-card">
+      <span>${String(index + 1).padStart(2, "0")}</span>
+      <div><strong>${escapeHtml(circuit.label)}</strong><p>${escapeHtml(circuit.detail)}</p></div>
+    </article>
+  `).join("");
 }
 
 function renderRoofFit(roof) {

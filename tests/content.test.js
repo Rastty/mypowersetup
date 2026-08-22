@@ -107,7 +107,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260822-roof1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260822-installation1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260822-chargingproducts1"'));
@@ -138,8 +138,8 @@ test("language switch remains available on mobile", async () => {
   assert.match(slovak, /class="header-link language-switch" href="\/"/);
   assert.match(slovak, /aria-label="Přepnout do češtiny"/);
   assert.match(styles, /\.header-link\.language-switch \{ display: inline-flex; \}/);
-  assert.ok(czech.includes('href="/styles.css?v=20260822-roof1"'));
-  assert.ok(slovak.includes('href="/styles.css?v=20260822-roof1"'));
+    assert.ok(czech.includes('href="/styles.css?v=20260822-installation1"'));
+    assert.ok(slovak.includes('href="/styles.css?v=20260822-installation1"'));
 });
 
 test("homepage exposes valid website and calculator structured data", async () => {
@@ -181,7 +181,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-roof1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-installation1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));
@@ -226,7 +226,7 @@ test("both calculators offer a clean printable PDF summary", async () => {
   for (const html of [czech, slovak]) {
     assert.ok(html.includes('id="result-print"'));
     assert.ok(html.includes('id="print-generated-at"'));
-    assert.ok(html.includes('/styles.css?v=20260822-roof1'));
+    assert.ok(html.includes('/styles.css?v=20260822-installation1'));
   }
   for (const source of [app, appSk]) {
     assert.ok(source.includes('trackEvent("result_print_requested")'));
@@ -255,6 +255,26 @@ test("both calculators expose a bounded roof-fit check", async () => {
     assert.ok(source.includes("calculateRoofFit"));
     assert.ok(source.includes("ROOF_DIMENSIONS_INCOMPLETE"));
   }
+});
+
+test("both calculators produce a localized circuit-by-circuit installation plan", async () => {
+  const [czech, slovak, app, appSk, module] = await Promise.all([
+    readFile("index.html", "utf8"),
+    readFile("sk/index.html", "utf8"),
+    readFile("src/app.js", "utf8"),
+    readFile("src/app-sk.js", "utf8"),
+    readFile("src/installation.js", "utf8"),
+  ]);
+  for (const html of [czech, slovak]) {
+    assert.ok(html.includes('id="installation-plan"'));
+    assert.ok(html.includes("The_Wiring_Unlimited_book/en/dc-wiring.html"));
+    assert.ok(html.includes("vypínac"));
+  }
+  assert.ok(app.includes('buildInstallationPlan(result, "cs")'));
+  assert.ok(appSk.includes('buildInstallationPlan(result, "sk")'));
+  assert.ok(module.includes("battery-inverter"));
+  assert.ok(module.includes("starter-dcdc"));
+  assert.ok(module.includes("shore-charger"));
 });
 
 test("both calculators render a localized bounded system diagram", async () => {
