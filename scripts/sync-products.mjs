@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 
 const feeds = [
@@ -9,6 +9,14 @@ const feeds = [
 const missing = feeds.filter(([, url]) => !url).map(([merchant]) => merchant);
 if (missing.length) {
   throw new Error(`Chybí URL feedu pro: ${missing.join(", ")}`);
+}
+
+let previousProducts = [];
+try {
+  const previousCatalog = JSON.parse(await readFile("data/products.json", "utf8"));
+  if (Array.isArray(previousCatalog.products)) previousProducts = previousCatalog.products;
+} catch {
+  // A missing first-run catalog is fine. A feed still has to succeed below.
 }
 
 const products = [];
@@ -33,8 +41,21 @@ for (const [merchant, url] of feeds) {
     sources[merchant] = { status: "ok", parsedProducts: parsed.length };
     console.log(`${merchant}: načteno ${parsed.length} produktů.`);
   } catch (error) {
-    sources[merchant] = { status: "error", error: error.message };
-    console.error(`${merchant}: synchronizace selhala (${error.message}).`);
+    const preserved = previousProducts.filter((product) => product.merchant === merchant);
+    if (preserved.length > 0) {
+      products.push(...preserved);
+      sources[merchant] = {
+        status: "stale",
+        error: error.message,
+        preservedProducts: preserved.length
+      };
+      console.warn(
+        `${merchant}: synchronizace selhala (${error.message}), zachováno ${preserved.length} posledních produktů.`
+      );
+    } else {
+      sources[merchant] = { status: "error", error: error.message };
+      console.error(`${merchant}: synchronizace selhala (${error.message}).`);
+    }
   }
 }
 
