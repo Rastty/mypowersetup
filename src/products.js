@@ -357,7 +357,7 @@ function extractNominalVoltage(text) {
   const values = [...text.matchAll(/(\d+(?:[.,]\d+)?)\s*v\b/gi)]
     .map((match) => parseLocalizedNumber(match[1]))
     .filter(Number.isFinite);
-  const exactNominals = values.filter((value) => [12, 24, 36, 48].includes(value));
+  const exactNominals = values.filter((value) => [6, 12, 24, 36, 48].includes(value));
   if (exactNominals.length) return exactNominals.at(-1);
   for (const measured of values) {
     if (measured >= 10 && measured < 16) return 12;
