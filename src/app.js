@@ -2,10 +2,11 @@ import { APPLIANCES } from "./catalog.js?v=20260821-1";
 import { calculateSetup } from "./engine.js?v=20260821-1";
 import { recommendProducts } from "./products.js?v=20260822-chargingproducts1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
-import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260822-chargingproducts1";
+import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260822-roof1";
 import { calculateBatteryCablePlan } from "./wiring.js?v=20260822-wire1";
 import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
 import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts1";
+import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -197,6 +198,11 @@ function handleSubmit(event) {
       driveHoursPerDay: data.get("driveHoursPerDay"),
       shoreChargeHours: data.get("shoreChargeHours")
     });
+    latestResult.roof = calculateRoofFit({
+      solarWatts: latestResult.solarWatts,
+      availableLengthMeters: data.get("roofLength"),
+      availableWidthMeters: data.get("roofWidth")
+    });
     latestShareUrl = buildSetupUrl({
       appliances,
       autonomyDays: data.get("autonomyDays"),
@@ -206,7 +212,9 @@ function handleSubmit(event) {
       inverterCableLength: data.get("inverterCableLength"),
       driveHoursPerDay: data.get("driveHoursPerDay"),
       starterVoltage: data.get("starterVoltage"),
-      shoreChargeHours: data.get("shoreChargeHours")
+      shoreChargeHours: data.get("shoreChargeHours"),
+      roofLength: data.get("roofLength"),
+      roofWidth: data.get("roofWidth")
     }, "cs", window.location.origin);
     history.replaceState({}, "", latestShareUrl.replace(window.location.origin, ""));
 
@@ -220,7 +228,11 @@ function handleSubmit(event) {
     showStep(3);
   } catch (error) {
     console.error("Výpočet sestavy selhal", error);
-    calculatorError.textContent = "Výpočet se nepodařilo zobrazit. Obnovte prosím stránku a zkuste to znovu.";
+    calculatorError.textContent = error?.message === "ROOF_DIMENSIONS_INCOMPLETE"
+      ? "Pro kontrolu střechy vyplňte délku i šířku volného obdélníku, nebo nechte obě pole prázdná."
+      : error?.message === "ROOF_DIMENSIONS_INVALID"
+        ? "Rozměry volné plochy střechy jsou mimo podporovaný rozsah."
+        : "Výpočet se nepodařilo zobrazit. Obnovte prosím stránku a zkuste to znovu.";
     calculatorError.hidden = false;
     calculatorError.scrollIntoView({ behavior: "smooth", block: "center" });
   }
@@ -274,8 +286,21 @@ function renderResult(result) {
 
   document.querySelector("#system-diagram").innerHTML = buildSystemDiagram(result, "cs");
   renderChargingPlan(result.charging, result.systemVoltage);
+  renderRoofFit(result.roof);
 
   renderProductRecommendations(result);
+}
+
+function renderRoofFit(roof) {
+  const target = document.querySelector("#roof-fit");
+  if (!roof?.checked) {
+    target.innerHTML = '<article class="roof-fit-card is-unchecked"><strong>Kontrola není zapnutá</strong><p>V pokročilém nastavení doplňte délku a šířku největšího volného obdélníku na střeše.</p></article>';
+    return;
+  }
+  const status = roof.fits ? "Referenční sestava se geometricky vejde" : "Referenční sestava se do zadané plochy nevejde";
+  const detail = `${roof.requiredQuantity}× ${roof.referencePanelWatts} Wp · panel ${formatNumber(roof.referencePanelLengthMeters)} × ${formatNumber(roof.referencePanelWidthMeters)} m · celkem ${roof.installedWatts} Wp`;
+  const capacity = `Do obdélníku ${formatNumber(roof.availableLengthMeters)} × ${formatNumber(roof.availableWidthMeters)} m vychází při jednotné orientaci nejvýše ${roof.capacity} ks.`;
+  target.innerHTML = `<article class="roof-fit-card ${roof.fits ? "is-fit" : "is-warning"}"><strong>${status}</strong><p>${detail}</p><small>${capacity} Nezapočítáváme montážní mezery, držáky, stínění ani servisní přístup.</small></article>`;
 }
 
 function renderChargingPlan(plan, systemVoltage) {
@@ -471,10 +496,12 @@ function restoreSetupFromUrl() {
     inverterCableLength: config.inverterCableLength,
     driveHoursPerDay: config.driveHoursPerDay,
     starterVoltage: config.starterVoltage,
-    shoreChargeHours: config.shoreChargeHours
+    shoreChargeHours: config.shoreChargeHours,
+    roofLength: config.roofLength,
+    roofWidth: config.roofWidth
   })) {
     const input = form.elements.namedItem(name);
-    if (input) input.value = value;
+    if (input && value !== undefined && value !== null) input.value = value;
   }
   document.querySelectorAll(".choice-card").forEach((card) => {
     card.classList.toggle("is-selected", card.querySelector("input").checked);

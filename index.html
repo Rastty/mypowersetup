@@ -27,7 +27,7 @@
     <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/" />
     <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/styles.css?v=20260822-print1" />
+    <link rel="stylesheet" href="/styles.css?v=20260822-roof1" />
     <title>Výpočet baterie a soláru | MyPowerSetup</title>
     <script type="application/ld+json">
       {
@@ -263,6 +263,16 @@
                     <input type="number" name="shoreChargeHours" min="0" max="24" step="0.5" value="8" inputmode="decimal" />
                     <small>Kolik hodin má nabíječka na doplnění jedné denní spotřeby; 0 tuto možnost vypne.</small>
                   </label>
+                  <label>
+                    Délka volného obdélníku na střeše
+                    <input type="number" name="roofLength" min="0.5" max="12" step="0.01" inputmode="decimal" placeholder="např. 3,00" />
+                    <small>Volná délka bez oken, klimatizace, antén a dalších překážek; nepovinné.</small>
+                  </label>
+                  <label>
+                    Šířka volného obdélníku na střeše
+                    <input type="number" name="roofWidth" min="0.5" max="4" step="0.01" inputmode="decimal" placeholder="např. 1,40" />
+                    <small>Vyplňte oba rozměry. Montážní mezery a servisní přístup ověřte zvlášť.</small>
+                  </label>
                 </div>
               </details>
 
@@ -339,6 +349,15 @@
                   <p>Orientační výkon pro doplnění jedné denní spotřeby ve zvoleném čase. Před výběrem vždy rozhoduje manuál baterie, BMS, alternátoru a nabíječky.</p>
                 </div>
                 <div class="charging-grid" id="charging-options"></div>
+              </section>
+
+              <section class="roof-panel" aria-labelledby="roof-fit-title">
+                <div>
+                  <span class="step-kicker">Kontrola místa</span>
+                  <h4 id="roof-fit-title">Vejdou se panely na střechu?</h4>
+                  <p>Geometrická kontrola používá <a href="https://www.victronenergy.com/upload/documents/Datasheet-BlueSolar-Monocrystalline-Panels-current-models-EN-.pdf" target="_blank" rel="external noopener">oficiální referenční rozměry panelů 95, 130 a 190 Wp</a>. Před nákupem vždy rozhodují skutečné rozměry, držáky, mezery a překážky.</p>
+                </div>
+                <div id="roof-fit"></div>
               </section>
 
               <section class="next-step-card" id="product-recommendations">
@@ -434,6 +453,6 @@
       <small>© <span id="year"></span> MyPowerSetup</small>
     </footer>
 
-    <script type="module" src="/src/app.js?v=20260822-print1"></script>
+    <script type="module" src="/src/app.js?v=20260822-roof1"></script>
   </body>
 </html>

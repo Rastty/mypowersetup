@@ -25,6 +25,12 @@ export function encodeSetupQuery(config) {
   params.set("drive", cleanNumber(config.driveHoursPerDay ?? 2));
   params.set("starter", String(config.starterVoltage ?? 12));
   params.set("shore", cleanNumber(config.shoreChargeHours ?? 8));
+  const roofLength = optionalSetupNumber(config.roofLength);
+  const roofWidth = optionalSetupNumber(config.roofWidth);
+  if (roofLength !== null && roofWidth !== null) {
+    params.set("roofL", cleanNumber(roofLength));
+    params.set("roofW", cleanNumber(roofWidth));
+  }
   return params.toString();
 }
 
@@ -53,18 +59,42 @@ export function decodeSetupQuery(search, allowedApplianceIds) {
   const driveHoursPerDay = Number(params.get("drive") ?? 2);
   const starterVoltage = Number(params.get("starter") ?? 12);
   const shoreChargeHours = Number(params.get("shore") ?? 8);
+  const roofLengthText = params.get("roofL");
+  const roofWidthText = params.get("roofW");
+  if ((roofLengthText === null) !== (roofWidthText === null)) return null;
+  const roofLength = roofLengthText === null ? null : Number(roofLengthText);
+  const roofWidth = roofWidthText === null ? null : Number(roofWidthText);
   if (!ALLOWED.days.has(days) || !ALLOWED.season.has(season)
     || !ALLOWED.battery.has(battery) || !ALLOWED.voltage.has(voltage)) return null;
   if (!Number.isFinite(cableLength) || cableLength < 0.2 || cableLength > 10) return null;
   if (!Number.isFinite(driveHoursPerDay) || driveHoursPerDay < 0 || driveHoursPerDay > 12) return null;
   if (![12, 24].includes(starterVoltage)) return null;
   if (!Number.isFinite(shoreChargeHours) || shoreChargeHours < 0 || shoreChargeHours > 24) return null;
+  if (roofLength !== null && (!Number.isFinite(roofLength) || roofLength < 0.5 || roofLength > 12)) return null;
+  if (roofWidth !== null && (!Number.isFinite(roofWidth) || roofWidth < 0.5 || roofWidth > 4)) return null;
 
-  return { appliances, autonomyDays: days, season, batteryType: battery, systemVoltage: voltage, inverterCableLength: cableLength, driveHoursPerDay, starterVoltage, shoreChargeHours };
+  return {
+    appliances,
+    autonomyDays: days,
+    season,
+    batteryType: battery,
+    systemVoltage: voltage,
+    inverterCableLength: cableLength,
+    driveHoursPerDay,
+    starterVoltage,
+    shoreChargeHours,
+    ...(roofLength === null ? {} : { roofLength, roofWidth }),
+  };
 }
 
 export function buildSetupUrl(config, language = "cs", origin = "https://mypowersetup.com") {
   const query = encodeSetupQuery(config);
   const path = language === "sk" ? "/sk/" : "/";
   return `${origin.replace(/\/$/, "")}${path}${query ? `?${query}` : ""}#kalkulator`;
+}
+
+function optionalSetupNumber(value) {
+  if (value === null || value === undefined || String(value).trim() === "") return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
 }
