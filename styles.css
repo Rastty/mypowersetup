@@ -231,6 +231,11 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .result-card strong { display: block; margin: 18px 0 5px; font: 800 29px/1 "Manrope", sans-serif; letter-spacing: -.04em; }
 .result-card small { color: #d2dfd9; line-height: 1.35; }
 .result-card.is-accent small { color: #445620; }
+.result-next-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 18px; margin-top: 16px; padding: 20px 22px; border-radius: var(--radius-md); color: white; background: var(--forest-deep); }
+.result-next-card h4 { margin: 5px 0 4px; font-size: 18px; }
+.result-next-card p { max-width: 650px; margin: 0; color: #c8d8d1; font-size: 13px; line-height: 1.45; }
+.result-next-card .step-kicker { color: var(--lime); }
+.result-next-card .button { white-space: nowrap; }
 .result-share-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px 22px; margin-top: 16px; padding: 22px 24px; border: 1px solid #c9d8a4; border-radius: var(--radius-md); background: #f6fadf; }
 .result-share-card h4 { margin: 0 0 5px; font-size: 18px; }
 .result-share-card p { margin: 0; color: var(--ink-soft); line-height: 1.45; }
@@ -335,7 +340,7 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .product-verify { padding-top: 10px; border-top: 1px solid var(--line); color: var(--ink-soft) !important; line-height: 1.45 !important; }
 .product-card-action { display: grid; gap: 10px; margin-top: 15px; }
 .product-card-action strong { font-size: 14px; }
-.product-card-action a { color: var(--forest); font-size: 12px; font-weight: 800; }
+.product-card-action a { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: 10px 14px; border-radius: 9px; color: white; background: var(--forest); font-size: 12px; font-weight: 800; text-align: center; }
 
 .method-section { padding: 100px 24px; color: white; background: var(--forest-deep); }
 .header-nav { display: flex; align-items: center; gap: 24px; }
@@ -403,6 +408,8 @@ footer small { font-size: 12px; }
   .result-card strong { font-size: 24px; }
   .next-step-card { align-items: stretch; }
   .result-share-card { grid-template-columns: 1fr; }
+  .result-next-card { grid-template-columns: 1fr; padding: 20px 18px; }
+  .result-next-card .button { width: 100%; white-space: normal; }
   .result-share-actions { align-items: stretch; flex-direction: column; margin-top: 8px; }
   .result-share-actions .button { width: 100%; }
   .diagram-panel { padding: 22px 16px; }
@@ -436,7 +443,7 @@ footer small { font-size: 12px; }
   html, body { min-width: 0; background: white; }
   body > header, main > section:not(.calculator-section), footer,
   .calculator-section > .section-heading, .steps, .calculator-error,
-  .form-step:not(.result-step), .result-share-card, .next-step-card,
+  .form-step:not(.result-step), .result-share-card, .result-next-card, .next-step-card,
   .step-actions, .method-link { display: none !important; }
 
   .calculator-section { padding: 0; }
