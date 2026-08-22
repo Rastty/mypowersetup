@@ -178,7 +178,10 @@ export function recommendProducts(products, setup, limitPerCategory = 3) {
 // without waiting for the next successful merchant feed download.
 export function refreshCatalogProduct(product) {
   const fallbackText = [product.categoryPath, product.description].filter(Boolean).join(" ");
-  const specs = extractSpecs(product.name, fallbackText);
+  const extractedSpecs = extractSpecs(product.name, fallbackText);
+  const specs = Object.fromEntries(
+    Object.entries(extractedSpecs).map(([key, value]) => [key, value ?? product.specs?.[key] ?? null])
+  );
   if (/solární regulátory|solárne regulátory/i.test(product.categoryPath)) {
     specs.currentA = extractControllerCurrent(product.name, product.description);
   }

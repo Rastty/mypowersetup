@@ -39,13 +39,19 @@ for (const [merchant, url] of feeds) {
 }
 
 const relevant = products.filter((product) => product.category !== "other");
+const catalogProducts = relevant.map((product) => ({
+  ...product,
+  // The extracted specs drive matching. Keeping only a short source excerpt makes
+  // the public catalog substantially smaller while preserving useful context.
+  description: product.description.slice(0, 500)
+}));
 if (products.length === 0) {
   throw new Error("Nepodařilo se načíst žádný produktový feed.");
 }
 await mkdir("data", { recursive: true });
 await writeFile(
   "data/products.json",
-  `${JSON.stringify({ generatedAt: new Date().toISOString(), sources, products: relevant }, null, 2)}\n`
+  `${JSON.stringify({ generatedAt: new Date().toISOString(), sources, products: catalogProducts })}\n`
 );
 
-console.log(`Uloženo ${relevant.length} relevantních produktů z ${products.length} načtených položek.`);
+console.log(`Uloženo ${catalogProducts.length} relevantních produktů z ${products.length} načtených položek.`);
