@@ -1,6 +1,7 @@
 import { APPLIANCES } from "./catalog.js?v=20260821-1";
 import { calculateSetup } from "./engine.js?v=20260821-1";
 import { recommendProducts } from "./products.js?v=20260821-2";
+import { buildResultShareText, copyText } from "./share.js?v=20260822-share1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -16,6 +17,7 @@ let productCatalogUpdatedAt = null;
 renderAppliances();
 bindChoiceCards();
 bindNavigation();
+bindResultSharing();
 loadProductCatalog();
 document.querySelector("#year").textContent = new Date().getFullYear();
 
@@ -83,6 +85,43 @@ function bindNavigation() {
   });
   document.querySelector("#start-over").addEventListener("click", resetForm);
   form.addEventListener("submit", handleSubmit);
+}
+
+function bindResultSharing() {
+  document.querySelector("#result-share").addEventListener("click", shareResult);
+  document.querySelector("#result-copy").addEventListener("click", () => copyResult("result_copied"));
+}
+
+function setShareStatus(message) {
+  document.querySelector("#result-share-status").textContent = message;
+}
+
+async function copyResult(eventName) {
+  if (!latestResult) return;
+  const copied = await copyText(buildResultShareText(latestResult, "cs"));
+  setShareStatus(copied
+    ? "Souhrn byl zkopírován do schránky."
+    : "Kopírování se nepodařilo. Označte prosím výsledek ručně.");
+  trackEvent(eventName, { success: copied });
+}
+
+async function shareResult() {
+  if (!latestResult) return;
+  if (typeof navigator.share !== "function") {
+    await copyResult("result_share_fallback");
+    return;
+  }
+
+  try {
+    await navigator.share({
+      title: "MyPowerSetup — návrh sestavy",
+      text: buildResultShareText(latestResult, "cs")
+    });
+    setShareStatus("Výsledek byl připraven ke sdílení.");
+    trackEvent("result_shared", { method: "native" });
+  } catch (error) {
+    if (error?.name !== "AbortError") await copyResult("result_share_fallback");
+  }
 }
 
 function handleApplianceChange(event) {
@@ -330,6 +369,7 @@ function resetForm() {
   });
   document.querySelectorAll(".appliance-card").forEach((card) => card.classList.remove("is-selected"));
   latestResult = null;
+  setShareStatus("");
   updateLiveSummary();
   showStep(1);
 }

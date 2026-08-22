@@ -23,7 +23,7 @@
     <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/" />
     <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/styles.css?v=20260821-2" />
+    <link rel="stylesheet" href="/styles.css?v=20260822-share1" />
     <title>Výpočet batérie a soláru | MyPowerSetup</title>
     <script type="application/ld+json">
       {
@@ -257,6 +257,19 @@
 
               <div class="result-grid" id="result-grid"></div>
 
+              <section class="result-share-card" aria-labelledby="result-share-title">
+                <div>
+                  <span class="step-kicker">Výsledok poruke</span>
+                  <h4 id="result-share-title">Uložte si návrh alebo ho pošlite ďalej</h4>
+                  <p>Skopírujeme stručný súhrn bez osobných údajov, cien a affiliate odkazov.</p>
+                </div>
+                <div class="result-share-actions">
+                  <button class="button button-primary" type="button" id="result-share">Zdieľať výsledok</button>
+                  <button class="button button-secondary" type="button" id="result-copy">Kopírovať súhrn</button>
+                </div>
+                <p class="result-share-status" id="result-share-status" role="status" aria-live="polite"></p>
+              </section>
+
               <section class="decision-panel" aria-labelledby="decision-title">
                 <div>
                   <span class="step-kicker">Výpočet bez čiernej skrinky</span>
@@ -308,7 +321,7 @@
           <a href="/sk/sprievodca/kapacita-baterie-do-karavanu/">
             <span>Batéria · 8 min</span><h3>Koľko Ah batérie potrebujete?</h3><p>Výpočet z dennej spotreby, autonómie a typu batérie.</p>
           </a>
-          <a href="/pruvodce/agm-vs-lifepo4/" hreflang="cs-CZ" lang="cs">
+          <a href="/sk/sprievodca/agm-vs-lifepo4/">
             <span>Rozhodovanie · 9 min</span><h3>AGM alebo LiFePO₄?</h3><p>Porovnanie podľa použitia, nie podľa marketingových sloganov.</p>
           </a>
           <a href="/pruvodce/kolik-w-solarnich-panelu/" hreflang="cs-CZ" lang="cs">
@@ -370,6 +383,6 @@
       <small>© <span id="year"></span> MyPowerSetup</small>
     </footer>
 
-    <script type="module" src="/src/app-sk.js?v=20260821-sk2"></script>
+    <script type="module" src="/src/app-sk.js?v=20260822-share1"></script>
   </body>
 </html>
