@@ -1,8 +1,8 @@
 const ALLOWED = {
   days: new Set(["1", "2", "3", "5"]),
   season: new Set(["summer", "shoulder", "winter"]),
-  battery: new Set(["lifepo4", "agm"]),
-  voltage: new Set(["auto", "12", "24", "48"]),
+  battery: new Set(["lifepo4", "lead"]),
+  voltage: new Set(["auto", "12", "24"]),
 };
 
 function cleanNumber(value) {

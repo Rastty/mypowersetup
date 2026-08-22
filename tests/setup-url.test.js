@@ -39,6 +39,13 @@ test("decoder rejects an unknown or unsafe configuration", () => {
   assert.equal(decodeSetupQuery("?loads=unknown:2:1", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:25:1", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&voltage=230", ["fridge"]), null);
+  assert.equal(decodeSetupQuery("?loads=fridge:2:1&voltage=48", ["fridge"]), null);
+});
+
+test("AGM configuration uses the calculator's lead identifier", () => {
+  const decoded = decodeSetupQuery("?loads=fridge:24:1&battery=lead", ["fridge"]);
+  assert.equal(decoded.batteryType, "lead");
+  assert.equal(decodeSetupQuery("?loads=fridge:24:1&battery=agm", ["fridge"]), null);
 });
 
 test("decoder keeps valid loads and drops malformed extras", () => {
