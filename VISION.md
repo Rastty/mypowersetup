@@ -88,8 +88,8 @@ Po zapnutí měření sledujeme zejména:
 
 ## Nejbližší pořadí práce
 
-1. Dokončit a veřejně ověřit sdílení výsledku a sociální náhledy.
-2. Přidat uložitelnou konfiguraci do URL a její bezpečné obnovení.
-3. Rozšířit návrh o kabely a jištění s jasnými bezpečnostními hranicemi.
-4. Připravit dynamické schéma zapojení.
-5. Zlepšovat produktová data a doporučení souběžně s českým SEO základem.
+1. Dokončit kontrolu rozměrů střechy a realistického počtu panelů.
+2. Rozšířit návrh kabelů a jištění pouze tam, kde lze držet jasné bezpečnostní hranice.
+3. Přidat srozumitelné porovnání úsporné, doporučené a komfortní varianty.
+4. Zlepšovat produktová data, pokrytí kategorií a český SEO základ.
+5. Přenášet hotové české jádro do dalších lokalizací bez kopírování známých nedostatků.
