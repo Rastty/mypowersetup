@@ -107,7 +107,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260822-print1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260822-roof1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260822-chargingproducts1"'));
@@ -138,8 +138,8 @@ test("language switch remains available on mobile", async () => {
   assert.match(slovak, /class="header-link language-switch" href="\/"/);
   assert.match(slovak, /aria-label="Přepnout do češtiny"/);
   assert.match(styles, /\.header-link\.language-switch \{ display: inline-flex; \}/);
-  assert.ok(czech.includes('href="/styles.css?v=20260822-print1"'));
-  assert.ok(slovak.includes('href="/styles.css?v=20260822-print1"'));
+  assert.ok(czech.includes('href="/styles.css?v=20260822-roof1"'));
+  assert.ok(slovak.includes('href="/styles.css?v=20260822-roof1"'));
 });
 
 test("homepage exposes valid website and calculator structured data", async () => {
@@ -181,7 +181,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-print1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-roof1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));
@@ -226,7 +226,7 @@ test("both calculators offer a clean printable PDF summary", async () => {
   for (const html of [czech, slovak]) {
     assert.ok(html.includes('id="result-print"'));
     assert.ok(html.includes('id="print-generated-at"'));
-    assert.ok(html.includes('/styles.css?v=20260822-print1'));
+    assert.ok(html.includes('/styles.css?v=20260822-roof1'));
   }
   for (const source of [app, appSk]) {
     assert.ok(source.includes('trackEvent("result_print_requested")'));
@@ -235,6 +235,26 @@ test("both calculators offer a clean printable PDF summary", async () => {
   assert.match(styles, /@media print/);
   assert.match(styles, /\.next-step-card/);
   assert.match(styles, /break-inside: avoid/);
+});
+
+test("both calculators expose a bounded roof-fit check", async () => {
+  const [czech, slovak, app, appSk] = await Promise.all([
+    readFile("index.html", "utf8"),
+    readFile("sk/index.html", "utf8"),
+    readFile("src/app.js", "utf8"),
+    readFile("src/app-sk.js", "utf8"),
+  ]);
+  for (const html of [czech, slovak]) {
+    assert.ok(html.includes('name="roofLength"'));
+    assert.ok(html.includes('name="roofWidth"'));
+    assert.ok(html.includes('id="roof-fit"'));
+    assert.ok(html.includes("Datasheet-BlueSolar-Monocrystalline-Panels-current-models-EN-.pdf"));
+  }
+  for (const source of [app, appSk]) {
+    assert.ok(source.includes('from "./roof.js?v=20260822-roof1"'));
+    assert.ok(source.includes("calculateRoofFit"));
+    assert.ok(source.includes("ROOF_DIMENSIONS_INCOMPLETE"));
+  }
 });
 
 test("both calculators render a localized bounded system diagram", async () => {
