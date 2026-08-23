@@ -1,6 +1,6 @@
 # MyPowerSetup — produktová vize a směr
 
-Aktualizováno: 22. srpna 2026
+Aktualizováno: 23. srpna 2026
 
 ## Vize
 
@@ -14,7 +14,18 @@ Nejde jen o kalkulačku ani o katalog produktů. Cílem je propojit cestu:
 
 1. Česká republika je primární trh a místo, kde má vzniknout nejlepší úplná verze produktu.
 2. Slovensko se rozvíjí paralelně, ale nesmí brzdit kvalitu a rychlost české verze.
-3. Další lokalizace přijdou až po prokázání použitelnosti, návštěvnosti a monetizace jádra.
+3. Polsko je další plnohodnotný trh po dokončení českého jádra a zprovoznění slovenského produktového katalogu.
+4. Maďarsko bude následovat na stejném lokalizačním a produktovém základu jako Polsko; nebude vznikat jako oddělená kopie aplikace.
+5. Další lokalizace přijdou až po prokázání použitelnosti, návštěvnosti a monetizace jádra.
+
+## Pořadí lokalizací
+
+1. **CZ — golden master:** dokončit technickou, nákupní, bezpečnostní, mobilní a SEO cestu.
+2. **SK — první ověření přenositelnosti:** držet funkčně shodný kalkulátor a po schválení Padabo doplnit samostatný EUR katalog a affiliate tracking.
+3. **PL — další veřejný trh:** využít stejné výpočetní jádro, obecnou konfiguraci trhu a samostatná produktová data Padabo.pl.
+4. **HU — připravený následný trh:** přidat po polském ověření pomocí stejné infrastruktury; plnou jazykovou a technickou kontrolu neprovádět současně s Polskem.
+
+Polsko ani Maďarsko se nesmí zveřejnit jen jako strojově přeložená kopie. Každá země potřebuje ověřenou terminologii, lokální měnu, právní a affiliate texty, vlastní produktový feed, správné hreflang a testované výpočty. Příprava společné konfigurace může začít dříve, ale nesmí odsunout otevřené P0–P2 úkoly české verze.
 
 ## Produktové principy
 
@@ -92,4 +103,4 @@ Po zapnutí měření sledujeme zejména:
 2. Přidat srozumitelné porovnání úsporné, doporučené a komfortní varianty.
 3. Zlepšovat produktová data, pokrytí kategorií a český SEO základ.
 4. Provést opakovaný mobilní a konverzní průchod celé uživatelské cesty.
-5. Přenášet hotové české jádro do dalších lokalizací bez kopírování známých nedostatků.
+5. Po uzavření českých P0–P2 mezer zobecnit konfiguraci trhu pro SK, PL a HU bez kopírování aplikace a známých nedostatků.

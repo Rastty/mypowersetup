@@ -14,10 +14,27 @@ test("sizes bounded DC-DC and shore charging from daily energy", () => {
   });
   assert.equal(plan.dcDc.requiredCurrentAmps, 29);
   assert.equal(plan.dcDc.suggestedCurrentAmps, 30);
+  assert.equal(plan.dcDc.estimatedInputCurrentAmps, 17);
+  assert.equal(plan.dcDc.inputEstimateOutputCurrentAmps, 30);
   assert.equal(plan.starterVoltage, 24);
   assert.equal(plan.shore.requiredCurrentAmps, 8);
   assert.equal(plan.shore.suggestedCurrentAmps, 10);
   assert.equal(plan.efficiencyPercent, 90);
+});
+
+test("exposes the higher alternator-side current for a 12-to-24 V charger", () => {
+  const plan = calculateChargingPlan({
+    dailyWh: 1000,
+    batteryAh: 200,
+    batteryType: "lifepo4",
+    systemVoltage: 24,
+    starterVoltage: 12,
+    driveHoursPerDay: 2,
+    shoreChargeHours: 0,
+  });
+  assert.equal(plan.dcDc.suggestedCurrentAmps, 25);
+  assert.equal(plan.dcDc.estimatedInputCurrentAmps, 56);
+  assert.equal(plan.dcDc.inputEstimateOutputCurrentAmps, 25);
 });
 
 test("refuses a standard charger beyond the conservative battery planning ceiling", () => {
@@ -31,6 +48,7 @@ test("refuses a standard charger beyond the conservative battery planning ceilin
   });
   assert.equal(plan.dcDc.suggestedCurrentAmps, null);
   assert.equal(plan.dcDc.needsIndividualDesign, true);
+  assert.equal(plan.dcDc.estimatedInputCurrentAmps, 63);
   assert.equal(plan.shore.suggestedCurrentAmps, null);
   assert.equal(plan.shore.planningCeilingAmps, 10);
 });

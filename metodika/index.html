@@ -1,1 +1,81 @@
-<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Metodika výpočtu a doporučení | MyPowerSetup</title><meta name="description" content="Transparentní metodika MyPowerSetup: výpočet spotřeby, baterie, solárních panelů, měniče, MPPT regulátoru a pravidla produktového párování."><link rel="canonical" href="https://mypowersetup.com/metodika/"><link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/metodika/"><link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/metodika/"><link rel="stylesheet" href="/article.css"></head><body><header class="article-header"><a class="article-brand" href="/">⚡ MyPowerSetup</a><nav><a href="/pruvodce/">Průvodce</a><a href="/#kalkulator">Kalkulátor</a><a href="https://mypowersetup.com/sk/metodika/" hreflang="sk-SK" lang="sk">Slovensky</a></nav></header><section class="article-hero"><div class="article-hero-inner"><span class="kicker">Transparentní metodika</span><h1>Jak MyPowerSetup počítá</h1><p>Všechny hlavní předpoklady a omezení kalkulátoru na jednom místě.</p></div></section><main class="article-layout"><article class="article"><div class="answer"><strong>Verze metodiky: 1.2 · 22. 8. 2026</strong>Výpočet je deterministický: stejné vstupy dávají stejný výsledek. Nepoužívá generativní AI ani skryté produktové preference.</div><h2 id="spotreba">Denní spotřeba</h2><div class="formula">Wh/den = součet výkon × hodiny používání × počet kusů</div><p>Přednastavené hodnoty jsou orientační. Pro přesnější výsledek má přednost štítek, dokumentace nebo vlastní měření.</p><h2 id="baterie">Baterie</h2><div class="formula">Wh baterie = denní Wh × dny autonomie × 1,15 ÷ využitelná hloubka</div><p>Pro LiFePO₄ kalkulátor používá 80% využitelnou hloubku, pro AGM/olovo 50 %. Potřebné Ah získá vydělením výsledku napětím systému. Jde o konzervativní návrhové hodnoty; rozhoduje datasheet konkrétní baterie.</p><h2 id="solar">Solární panely</h2><div class="formula">Wp = denní Wh × 1,15 ÷ špičkové sluneční hodiny ÷ 0,75</div><p>Špičkové hodiny jsou podle zvolené sezony 4,5 v létě, 3 na jaře/podzim a 1,5 v zimě. Faktor 0,75 zahrnuje návrhové systémové ztráty. Není to předpověď pro konkrétní místo, orientaci ani počasí.</p><h2 id="menic">Měnič a regulátor</h2><p>Měnič vychází z odhadované souběžné AC zátěže s 25% rezervou a nejvyšší rozběhové špičky. Regulátor vychází z výkonu panelů a napětí systému s 25% proudovou rezervou. Vždy je nutné samostatně ověřit Voc, Isc a povolený FV výkon.</p><h2 id="kabel">Kabel baterie–měnič</h2><div class="formula">mm² = 2 × délka jedním směrem × proud × měrný odpor mědi ÷ povolený úbytek napětí</div><p>Kalkulátor počítá pouze orientační minimální průřez z úbytku napětí s cílem do 2,5 % a s 90% účinností měniče. Vychází z celkové délky kladného i záporného vodiče. Podle <a href="https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/dc-wiring.html" rel="external">Victron Wiring Unlimited</a> musí finální volba respektovat také manuál zařízení, proudovou zatížitelnost, teplotu, způsob uložení a místní požadavky. Pojistku kalkulátor záměrně neurčuje bez konkrétního zařízení a kabelu.</p><h2 id="dobijeni">Dobíjení za jízdy a z 230 V</h2><div class="formula">výstupní A = denní Wh ÷ dostupné hodiny ÷ napětí baterie ÷ 0,90</div><p>Výsledek říká, jaký průměrný výstupní proud by měl během zadané doby nahradit jednu denní spotřebu. Účinnost 90 % je konzervativní návrhový předpoklad, nikoli vlastnost konkrétního výrobku. Kalkulátor zaokrouhluje nahoru na běžný jmenovitý proud a doporučení zobrazí jen do interní návrhové hranice 0,2 C pro LiFePO₄ a 0,1 C pro AGM/olovo. Tyto hranice nejsou univerzální povolená maxima; vždy rozhoduje dokumentace baterie a BMS.</p><p>U DC–DC dobíjení je nutné ověřit volnou kapacitu alternátoru (zejména na volnoběh), vstupní i výstupní napětí a proud, podporu chytrého alternátoru, průřez a délku kabelů, jištění a chlazení. U 24V nástavbové baterie se 12V startovací soustavou je nutný měnič, který výslovně podporuje převod 12→24 V; vstupní proud nelze zaměnit za zobrazený výstupní proud. U síťové nabíječky musí odpovídat napětí, chemie a nabíjecí profil. Viz oficiální <a href="https://www.victronenergy.com/media/pg/Orion_XS_12-12-50A_DC-DC_battery_charger/en/index-en.html" rel="external">manuál Victron Orion XS</a>, jeho <a href="https://www.victronenergy.com/media/pg/Orion_XS_12-12-50A_DC-DC_battery_charger/en/installation.html" rel="external">tabulky kabelů a pojistek</a> a <a href="https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/dc-wiring.html" rel="external">Wiring Unlimited</a>.</p><h2 id="produkty">Produktové párování</h2><ol><li>Produkt musí být zařazen do správné kategorie.</li><li>Musí mít potřebné rozpoznané parametry.</li><li>Nekompatibilní napětí nebo nedostatečný výkon produkt vyřadí.</li><li>Teprve mezi kompatibilními kandidáty se hodnotí blízkost parametrů, dostupnost a úplnost dat.</li><li>Z jedné produktové stránky zobrazujeme pouze nejvhodnější variantu.</li></ol><div class="note"><strong>Provize není součástí skóre.</strong> Obchod ani výše affiliate provize nemění technické podmínky párování a pořadí kandidátů.</div><h2 id="omezeni">Omezení</h2><p>Strojově získané parametry mohou být neúplné nebo chybné. Proto zobrazujeme jen produkty, u nichž známe základní technický údaj, a před nákupem vyžadujeme kontrolu datasheetu. Výpočet kabelu je pouze kontrola úbytku napětí; neurčuje proudovou zatížitelnost, přesnou pojistku, umístění, teplotní derating ani zákonné požadavky konkrétní instalace.</p></article><aside class="toc"><strong>V metodice</strong><a href="#spotreba">Spotřeba</a><a href="#baterie">Baterie</a><a href="#solar">Solár</a><a href="#menic">Měnič a MPPT</a><a href="#kabel">Kabel měniče</a><a href="#dobijeni">Dobíjení</a><a href="#produkty">Produkty</a><a href="#omezeni">Omezení</a></aside></main><footer class="article-footer"><a href="/o-projektu/">O projektu</a> · <a href="/affiliate/">Affiliate</a> · <a href="/soukromi/">Soukromí</a></footer></body></html>
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Metodika výpočtu a doporučení | MyPowerSetup</title>
+<meta name="description" content="Transparentní metodika MyPowerSetup: výpočet spotřeby, baterie, solárních panelů, měniče, MPPT regulátoru a pravidla produktového párování.">
+<link rel="canonical" href="https://mypowersetup.com/metodika/">
+<link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/metodika/">
+<link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/metodika/">
+<link rel="stylesheet" href="/article.css">
+</head>
+<body>
+<header class="article-header">
+<a class="article-brand" href="/">⚡ MyPowerSetup</a>
+<nav>
+<a href="/pruvodce/">Průvodce</a>
+<a href="/#kalkulator">Kalkulátor</a>
+<a href="https://mypowersetup.com/sk/metodika/" hreflang="sk-SK" lang="sk">Slovensky</a>
+</nav>
+</header>
+<section class="article-hero">
+<div class="article-hero-inner">
+<span class="kicker">Transparentní metodika</span>
+<h1>Jak MyPowerSetup počítá</h1>
+<p>Všechny hlavní předpoklady a omezení kalkulátoru na jednom místě.</p>
+</div>
+</section>
+<main class="article-layout">
+<article class="article">
+<div class="answer">
+<strong>Verze metodiky: 1.3 · 23. 8. 2026</strong>Výpočet je deterministický: stejné vstupy dávají stejný výsledek. Nepoužívá generativní AI ani skryté produktové preference.</div>
+<h2 id="spotreba">Denní spotřeba</h2>
+<div class="formula">Wh/den = součet výkon × hodiny používání × počet kusů</div>
+<p>Přednastavené hodnoty jsou orientační. Pro přesnější výsledek má přednost štítek, dokumentace nebo vlastní měření.</p>
+<h2 id="baterie">Baterie</h2>
+<div class="formula">Wh baterie = denní Wh × dny autonomie × 1,15 ÷ využitelná hloubka</div>
+<p>Pro LiFePO₄ kalkulátor používá 80% využitelnou hloubku, pro AGM/olovo 50 %. Potřebné Ah získá vydělením výsledku napětím systému. Jde o konzervativní návrhové hodnoty; rozhoduje datasheet konkrétní baterie.</p>
+<h2 id="solar">Solární panely</h2>
+<div class="formula">Wp = denní Wh × 1,15 ÷ špičkové sluneční hodiny ÷ 0,75</div>
+<p>Špičkové hodiny jsou podle zvolené sezony 4,5 v létě, 3 na jaře/podzim a 1,5 v zimě. Faktor 0,75 zahrnuje návrhové systémové ztráty. Není to předpověď pro konkrétní místo, orientaci ani počasí.</p>
+<h2 id="menic">Měnič a regulátor</h2>
+<p>Měnič vychází z odhadované souběžné AC zátěže s 25% rezervou a nejvyšší rozběhové špičky. Regulátor vychází z výkonu panelů a napětí systému s 25% proudovou rezervou. Vždy je nutné samostatně ověřit Voc, Isc a povolený FV výkon.</p>
+<h2 id="kabel">Kabel baterie–měnič</h2>
+<div class="formula">mm² = 2 × délka jedním směrem × proud × měrný odpor mědi ÷ povolený úbytek napětí</div>
+<p>Kalkulátor počítá pouze orientační minimální průřez z úbytku napětí s cílem do 2,5 % a s 90% účinností měniče. Vychází z celkové délky kladného i záporného vodiče. Podle <a href="https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/dc-wiring.html" rel="external">Victron Wiring Unlimited</a> musí finální volba respektovat také manuál zařízení, proudovou zatížitelnost, teplotu, způsob uložení a místní požadavky. Pojistku kalkulátor záměrně neurčuje bez konkrétního zařízení a kabelu.</p>
+<h2 id="dobijeni">Dobíjení za jízdy a z 230 V</h2>
+<div class="formula">výstupní A = denní Wh ÷ dostupné hodiny ÷ napětí baterie ÷ 0,90</div>
+<div class="formula">odhad vstupních A DC–DC = navržené výstupní A × napětí baterie ÷ napětí startovací soustavy ÷ 0,90</div>
+<p>Výsledek říká, jaký průměrný výstupní proud by měl během zadané doby nahradit jednu denní spotřebu. Účinnost 90 % je konzervativní návrhový předpoklad, nikoli vlastnost konkrétního výrobku. Odhad vstupního proudu slouží k včasnému odhalení vysokého zatížení alternátoru, zejména při převodu 12→24 V. Kalkulátor zaokrouhluje výstup nahoru na běžný jmenovitý proud a doporučení zobrazí jen do interní návrhové hranice 0,2 C pro LiFePO₄ a 0,1 C pro AGM/olovo. Tyto hranice nejsou univerzální povolená maxima; vždy rozhoduje dokumentace baterie a BMS.</p>
+<p>U DC–DC dobíjení je nutné ověřit volnou kapacitu alternátoru (zejména na volnoběh), skutečný maximální vstupní i výstupní proud, podporu chytrého alternátoru, průřez a délku kabelů, jištění a chlazení. U 24V nástavbové baterie se 12V startovací soustavou je nutná nabíječka, která výslovně podporuje převod 12→24 V; pro návrh kabelu a jištění rozhoduje manuál konkrétního zařízení, nikoli pouze orientační odhad. U síťové nabíječky musí odpovídat napětí, chemie a nabíjecí profil. Viz oficiální <a href="https://www.victronenergy.com/media/pg/Orion_XS_12-12-50A_DC-DC_battery_charger/en/index-en.html" rel="external">manuál Victron Orion XS</a>, jeho <a href="https://www.victronenergy.com/media/pg/Orion_XS_12-12-50A_DC-DC_battery_charger/en/installation.html" rel="external">tabulky kabelů a pojistek</a> a <a href="https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/dc-wiring.html" rel="external">Wiring Unlimited</a>.</p>
+<h2 id="produkty">Produktové párování</h2>
+<ol>
+<li>Produkt musí být zařazen do správné kategorie.</li>
+<li>Musí mít potřebné rozpoznané parametry.</li>
+<li>Nekompatibilní napětí nebo nedostatečný výkon produkt vyřadí.</li>
+<li>Teprve mezi kompatibilními kandidáty se hodnotí blízkost parametrů, dostupnost a úplnost dat.</li>
+<li>Z jedné produktové stránky zobrazujeme pouze nejvhodnější variantu.</li>
+</ol>
+<div class="note">
+<strong>Provize není součástí skóre.</strong> Obchod ani výše affiliate provize nemění technické podmínky párování a pořadí kandidátů.</div>
+<h2 id="omezeni">Omezení</h2>
+<p>Strojově získané parametry mohou být neúplné nebo chybné. Proto zobrazujeme jen produkty, u nichž známe základní technický údaj, a před nákupem vyžadujeme kontrolu datasheetu. Výpočet kabelu je pouze kontrola úbytku napětí; neurčuje proudovou zatížitelnost, přesnou pojistku, umístění, teplotní derating ani zákonné požadavky konkrétní instalace.</p>
+</article>
+<aside class="toc">
+<strong>V metodice</strong>
+<a href="#spotreba">Spotřeba</a>
+<a href="#baterie">Baterie</a>
+<a href="#solar">Solár</a>
+<a href="#menic">Měnič a MPPT</a>
+<a href="#kabel">Kabel měniče</a>
+<a href="#dobijeni">Dobíjení</a>
+<a href="#produkty">Produkty</a>
+<a href="#omezeni">Omezení</a>
+</aside>
+</main>
+<footer class="article-footer">
+<a href="/o-projektu/">O projektu</a> · <a href="/affiliate/">Affiliate</a> · <a href="/soukromi/">Soukromí</a>
+</footer>
+</body>
+</html>

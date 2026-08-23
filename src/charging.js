@@ -30,6 +30,18 @@ function buildOption({ dailyWh, batteryAh, batteryType, systemVoltage, hours }) 
   };
 }
 
+function addDcDcInputEstimate(option, starterVoltage, systemVoltage) {
+  if (!option.enabled) return option;
+  const outputCurrentAmps = option.suggestedCurrentAmps || option.requiredCurrentAmps;
+  return {
+    ...option,
+    estimatedInputCurrentAmps: Math.ceil(
+      outputCurrentAmps * systemVoltage / starterVoltage / CHARGING_EFFICIENCY,
+    ),
+    inputEstimateOutputCurrentAmps: outputCurrentAmps,
+  };
+}
+
 export function calculateChargingPlan(input) {
   const dailyWh = Number(input.dailyWh);
   const batteryAh = Number(input.batteryAh);
@@ -40,17 +52,19 @@ export function calculateChargingPlan(input) {
     return null;
   }
 
+  const dcDc = buildOption({
+    dailyWh,
+    batteryAh,
+    batteryType,
+    systemVoltage,
+    hours: clampHours(input.driveHoursPerDay, 2),
+  });
+
   return {
     efficiencyPercent: Math.round(CHARGING_EFFICIENCY * 100),
     batteryType,
     starterVoltage,
-    dcDc: buildOption({
-      dailyWh,
-      batteryAh,
-      batteryType,
-      systemVoltage,
-      hours: clampHours(input.driveHoursPerDay, 2),
-    }),
+    dcDc: addDcDcInputEstimate(dcDc, starterVoltage, systemVoltage),
     shore: buildOption({
       dailyWh,
       batteryAh,

@@ -107,7 +107,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260823-packages3"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260823-dcdcinput1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260822-packages1"'));
@@ -181,7 +181,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260823-packages3"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260823-dcdcinput1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));
@@ -387,11 +387,15 @@ test("both calculators expose bounded alternator and shore charging plans", asyn
   assert.doesNotMatch(charging, /alternator.*max|pojistka.*A|poistka.*A/i);
   assert.match(app, /24V nástavbovou baterii/);
   assert.match(appSk, /24V nadstavbovú batériu/);
+  assert.match(app, /Orientační odběr ze/);
+  assert.match(appSk, /Orientačný odber z/);
+  assert.match(charging, /estimatedInputCurrentAmps/);
   for (const html of [method, methodSk]) {
     assert.ok(html.includes("victronenergy.com/media/pg/Orion_XS_12-12-50A_DC-DC_battery_charger/en/installation.html"));
     assert.match(html, /0,2 C/);
     assert.match(html, /0,1 C/);
     assert.match(html, /nejsou univerzální povolená maxima|nie sú univerzálne povolené maximá/);
+    assert.match(html, /odhad vstupních A DC–DC|odhad vstupných A DC–DC/);
   }
 });
 
