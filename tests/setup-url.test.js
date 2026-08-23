@@ -69,3 +69,36 @@ test("decoder keeps valid loads and drops malformed extras", () => {
   const decoded = decodeSetupQuery("?loads=fridge:24:1,unknown:2:1,fridge:2:1:extra", ["fridge"]);
   assert.deepEqual(decoded.appliances, [{ id: "fridge", hours: 24, quantity: 1 }]);
 });
+
+test("custom appliance round-trips its bounded electrical data", () => {
+  const customConfig = {
+    ...config,
+    appliances: [{
+      id: "custom",
+      selected: true,
+      name: "Dieselové topení",
+      watts: 42,
+      hours: 6.5,
+      quantity: 1,
+      ac: false,
+      surge: 2,
+    }],
+  };
+  const decoded = decodeSetupQuery(encodeSetupQuery(customConfig), ["custom"]);
+  assert.deepEqual(decoded.appliances, [{
+    id: "custom",
+    hours: 6.5,
+    quantity: 1,
+    name: "Dieselové topení",
+    watts: 42,
+    ac: false,
+    surge: 2,
+  }]);
+});
+
+test("decoder rejects incomplete or unsafe custom appliance data", () => {
+  const base = "?loads=custom:2:1&customName=Topení&customAc=0&customSurge=1";
+  assert.equal(decodeSetupQuery(base, ["custom"]), null);
+  assert.equal(decodeSetupQuery(`${base}&customWatts=10001`, ["custom"]), null);
+  assert.equal(decodeSetupQuery("?loads=custom:2:1&customName=Topení&customWatts=100&customAc=0&customSurge=3", ["custom"]), null);
+});

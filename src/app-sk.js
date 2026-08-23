@@ -1,8 +1,8 @@
-import { APPLIANCES } from "./catalog-sk.js?v=20260821-sk1";
+import { APPLIANCES } from "./catalog-sk.js?v=20260823-custom1";
 import { calculateSetup } from "./engine.js?v=20260821-sk1";
 import { recommendProducts } from "./products.js?v=20260822-packages1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
-import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260822-roof1";
+import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260823-custom1";
 import { calculateBatteryCablePlan } from "./wiring.js?v=20260822-wire1";
 import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
 import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts1";
@@ -45,27 +45,38 @@ async function loadProductCatalog() {
 
 function renderAppliances() {
   applianceGrid.innerHTML = APPLIANCES.map((appliance) => `
-    <article class="appliance-card" data-appliance-card="${appliance.id}">
+    <article class="appliance-card ${appliance.custom ? "is-custom" : ""}" data-appliance-card="${appliance.id}">
       <input id="appliance-sk-${appliance.id}" type="checkbox" name="appliance" value="${appliance.id}" />
       <span class="appliance-icon" aria-hidden="true">${appliance.icon}</span>
       <label class="appliance-copy" for="appliance-sk-${appliance.id}">
         <strong>${appliance.name}</strong>
         <small>${appliance.description}</small>
       </label>
-      <span class="appliance-controls">
-        <label class="mini-field">
-          <input type="number" min="0.01" max="24" step="0.05" value="${appliance.hours}" data-hours aria-label="Hodiny denne pre ${appliance.name}" /> h/deň
-        </label>
-        <label class="mini-field">
-          <input type="number" min="1" max="20" step="1" value="${appliance.quantity}" data-quantity aria-label="Počet kusov ${appliance.name}" /> ks
-        </label>
-      </span>
+      ${applianceControls(appliance)}
     </article>
   `).join("");
 
   applianceGrid.addEventListener("click", handleApplianceCardClick);
   applianceGrid.addEventListener("change", handleApplianceChange);
   applianceGrid.addEventListener("input", updateLiveSummary);
+}
+
+function applianceControls(appliance) {
+  const common = `
+    <label class="mini-field">
+      <input type="number" min="0.01" max="24" step="0.05" value="${appliance.hours}" data-hours aria-label="Hodiny denne pre ${appliance.name}" /> h/deň
+    </label>
+    <label class="mini-field">
+      <input type="number" min="1" max="20" step="1" value="${appliance.quantity}" data-quantity aria-label="Počet kusov ${appliance.name}" /> ks
+    </label>`;
+  if (!appliance.custom) return `<span class="appliance-controls">${common}</span>`;
+  return `<span class="appliance-controls custom-appliance-controls">
+    <label class="mini-field custom-name-field"><input type="text" maxlength="60" value="Vlastný spotrebič" data-custom-name aria-label="Názov vlastného spotrebiča" /></label>
+    <label class="mini-field"><input type="number" min="1" max="10000" step="1" value="${appliance.watts}" data-watts aria-label="Príkon vlastného spotrebiča" /> W</label>
+    ${common}
+    <label class="mini-field custom-select-field"><select data-ac aria-label="Napájanie vlastného spotrebiča"><option value="false">12/24 V DC</option><option value="true">230 V AC</option></select></label>
+    <label class="mini-field custom-select-field"><select data-surge aria-label="Rozbeh vlastného spotrebiča"><option value="1">Bez známej špičky</option><option value="2">Motor / kompresor · 2×</option></select></label>
+  </span>`;
 }
 
 function handleApplianceCardClick(event) {
@@ -159,15 +170,22 @@ function getSelectedAppliances() {
     return {
       ...appliance,
       selected: card.querySelector('input[type="checkbox"]').checked,
+      name: card.querySelector("[data-custom-name]")?.value.trim() || appliance.name,
+      watts: Number(card.querySelector("[data-watts]")?.value ?? appliance.watts),
       hours: Number(card.querySelector("[data-hours]").value),
-      quantity: Number(card.querySelector("[data-quantity]").value)
+      quantity: Number(card.querySelector("[data-quantity]").value),
+      ac: card.querySelector("[data-ac]")?.value === "true" || (!appliance.custom && appliance.ac),
+      surge: Number(card.querySelector("[data-surge]")?.value ?? appliance.surge)
     };
   });
 }
 
 function updateLiveSummary() {
   const selected = getSelectedAppliances().filter((item) => item.selected);
-  const total = selected.reduce((sum, item) => sum + item.watts * item.hours * item.quantity, 0);
+  const total = selected.reduce((sum, item) => {
+    const value = item.watts * item.hours * item.quantity;
+    return sum + (Number.isFinite(value) ? value : 0);
+  }, 0);
   selectedCount.textContent = selected.length;
   liveConsumption.textContent = formatEnergy(total);
 }
@@ -177,6 +195,18 @@ function handleSubmit(event) {
   calculatorError.hidden = true;
   const appliances = getSelectedAppliances();
   if (!appliances.some((item) => item.selected)) {
+    applianceError.textContent = "Vyberte aspoň jeden spotrebič.";
+    applianceError.hidden = false;
+    applianceError.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+  const invalidAppliance = appliances.find((item) => item.selected && (
+    !item.name || !Number.isFinite(item.watts) || item.watts < 1 || item.watts > 10000
+    || !Number.isFinite(item.hours) || item.hours < 0.01 || item.hours > 24
+    || !Number.isInteger(item.quantity) || item.quantity < 1 || item.quantity > 20
+  ));
+  if (invalidAppliance) {
+    applianceError.textContent = "Pri vybraných spotrebičoch skontrolujte názov, príkon, čas používania a počet kusov.";
     applianceError.hidden = false;
     applianceError.scrollIntoView({ behavior: "smooth", block: "center" });
     return;
@@ -276,7 +306,7 @@ function renderResult(result) {
     .sort((a, b) => b.dailyWh - a.dailyWh)
     .map((item) => `
       <div class="breakdown-row">
-        <div class="breakdown-label"><span>${item.name}</span><strong>${formatEnergy(item.dailyWh)}</strong></div>
+        <div class="breakdown-label"><span>${escapeHtml(item.name)}</span><strong>${formatEnergy(item.dailyWh)}</strong></div>
         <div class="breakdown-bar"><i style="width:${Math.max(5, (item.dailyWh / largestWh) * 100)}%"></i></div>
       </div>
     `).join("");
@@ -557,6 +587,12 @@ function restoreSetupFromUrl() {
     card.querySelector('input[type="checkbox"]').checked = true;
     card.querySelector("[data-hours]").value = saved.hours;
     card.querySelector("[data-quantity]").value = saved.quantity;
+    if (saved.id === "custom") {
+      card.querySelector("[data-custom-name]").value = saved.name;
+      card.querySelector("[data-watts]").value = saved.watts;
+      card.querySelector("[data-ac]").value = String(saved.ac);
+      card.querySelector("[data-surge]").value = String(saved.surge);
+    }
     card.classList.add("is-selected");
   });
   for (const [name, value] of Object.entries({
