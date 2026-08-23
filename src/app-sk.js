@@ -8,7 +8,7 @@ import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
 import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts1";
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
-import { buildProductPackages } from "./packages.js?v=20260822-packages1";
+import { buildProductPackages } from "./packages.js?v=20260823-packages2";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -411,14 +411,14 @@ function renderProductPackages(variants) {
   const stalePriceNote = Object.values(productCatalogSources).some((source) => source?.status === "stale")
     ? '<p class="catalog-source-note is-stale"><strong>Aktualizácia cien:</strong> Pri jednom obchode používame posledný úspešne načítaný feed. Aktuálnu cenu a dostupnosť vždy potvrďte na stránke produktu.</p>'
     : "";
-  target.innerHTML = `<div class="package-intro"><strong>Tri bezpečné cesty k nákupu</strong><p>Všetky varianty spĺňajú rovnakú vypočítanú požiadavku. Ide iba o hlavné komponenty, nie kompletný inštalačný rozpočet.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
+  target.innerHTML = `<div class="package-intro"><strong>Tri bezpečné cesty k nákupu</strong><p>Všetky varianty spĺňajú rovnakú vypočítanú požiadavku a zahŕňajú dostupné hlavné aj nabíjacie komponenty. Nejde o kompletný inštalačný materiál ani realizačný rozpočet.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
     return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong></li>`).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podľa obchodu" : formatPrice(variant.totalPriceCzk)}</b></article>`;
   }).join("")}</div>`;
 }
 
 function packageCategoryLabel(category) {
-  return ({ battery: "Batéria", solar_panel: "Solár", inverter: "Menič", controller: "MPPT" })[category] || category;
+  return ({ battery: "Batéria", solar_panel: "Solár", inverter: "Menič", controller: "MPPT", dc_charger: "DC–DC nabíjačka", shore_charger: "Nabíjačka 230 V" })[category] || category;
 }
 
 function productCard(product, reason, checks, verify) {

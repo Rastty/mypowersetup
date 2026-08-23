@@ -1,4 +1,4 @@
-const CORE_CATEGORIES = ["battery", "solar_panel", "inverter", "controller"];
+const PACKAGE_CATEGORIES = ["battery", "solar_panel", "inverter", "controller", "dc_charger", "shore_charger"];
 
 function effectivePrice(candidate) {
   const price = Number(candidate?.product?.priceCzk);
@@ -42,8 +42,10 @@ function signature(variant) {
 
 export function buildProductPackages(recommendations, setup) {
   if (!recommendations || !setup) return [];
-  const categories = CORE_CATEGORIES.filter((category) => {
+  const categories = PACKAGE_CATEGORIES.filter((category) => {
     if (category === "inverter" && !Number(setup.inverterWatts)) return false;
+    if (category === "dc_charger" && !setup.charging?.dcDc?.suggestedCurrentAmps) return false;
+    if (category === "shore_charger" && !setup.charging?.shore?.suggestedCurrentAmps) return false;
     return (recommendations[category] || []).length > 0;
   });
   if (categories.length < 2) return [];
