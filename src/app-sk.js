@@ -328,11 +328,14 @@ function renderChargingPlan(plan, systemVoltage) {
     target.innerHTML = "";
     return;
   }
+  const inputEstimate = plan.dcDc.enabled && plan.dcDc.estimatedInputCurrentAmps
+    ? ` Orientačný odber z ${plan.starterVoltage}V štartovacej sústavy pri výkone navrhnutej nabíjačky je až približne ${plan.dcDc.estimatedInputCurrentAmps} A.`
+    : "";
   const dcDcVoltageCheck = systemVoltage === 24
-    ? " Pre 24V nadstavbovú batériu musí menič výslovne podporovať prevod zo štartovacej sústavy na 24 V; prúd na vstupe môže byť výrazne vyšší než zobrazený výstupný prúd."
+    ? " Pre 24V nadstavbovú batériu musí nabíjačka výslovne podporovať prevod zo štartovacej sústavy na 24 V."
     : "";
   target.innerHTML = [
-    chargingCard("DC–DC z alternátora", plan.dcDc, `Vstup ${plan.starterVoltage} V, výstup pre ${systemVoltage}V batériu. Overte voľnú kapacitu alternátora, vstupný prúd, kabeláž, istenie a podporu inteligentného alternátora.${dcDcVoltageCheck}`),
+    chargingCard("DC–DC z alternátora", plan.dcDc, `Vstup ${plan.starterVoltage} V, výstup pre ${systemVoltage}V batériu.${inputEstimate} Ide o návrhový odhad pri 90% účinnosti, nie náhradu údajov výrobcu. Overte voľnú kapacitu alternátora, skutočný maximálny vstupný prúd, kabeláž, istenie a podporu inteligentného alternátora.${dcDcVoltageCheck}`),
     chargingCard("Nabíjačka z 230 V", plan.shore, `Výstup pre ${systemVoltage}V batériu. Nabíjací profil, teplotnú kompenzáciu a maximálny prúd musí povoliť výrobca batérie a BMS.`)
   ].join("");
 }
