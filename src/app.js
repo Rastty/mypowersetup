@@ -412,8 +412,14 @@ function renderProductPackages(variants) {
     : "";
   target.innerHTML = `<div class="package-intro"><strong>Tři bezpečné cesty k nákupu</strong><p>Všechny varianty splňují stejný vypočtený požadavek a zahrnují dostupné hlavní i nabíjecí komponenty. Nejde o kompletní instalační materiál ani realizační rozpočet.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
-    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong></li>`).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podle obchodu" : formatPrice(variant.totalPriceCzk)}</b></article>`;
+    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podle obchodu" : formatPrice(variant.totalPriceCzk)}</b><small class="package-price-note">Orientační součet produktů; doprava a montáž nejsou zahrnuté.</small></article>`;
   }).join("")}</div>`;
+}
+
+function packageProductLink(category, product, packageId) {
+  const quantity = product.recommendedQuantity || 1;
+  const quantityLabel = quantity > 1 ? `${quantity} ks · ` : "";
+  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(merchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Zobrazit přesný produkt →</a></li>`;
 }
 
 function packageCategoryLabel(category) {
@@ -437,7 +443,7 @@ function productCard(product, reason, checks, verify) {
         ${sourceNote}
         <div class="product-card-action">
           <span class="product-price"><strong>${formatPrice(product.priceCzk)}</strong><small>${sourceIsStale ? "Cena z posledního úspěšného feedu" : "Cena z produktového feedu"}</small></span>
-          <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Prohlédnout produkt →</a>
+          <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Prohlédnout produkt →</a>
         </div>
       </div>
     </article>
@@ -451,7 +457,9 @@ document.addEventListener("click", (event) => {
     event: "affiliate_click",
     productId: link.dataset.productId,
     merchant: link.dataset.merchant,
-    category: link.dataset.category
+    category: link.dataset.category,
+    source: link.dataset.source || "unknown",
+    packageId: link.dataset.packageId || undefined
   };
   trackEvent(detail.event, detail);
   document.dispatchEvent(new CustomEvent("mypowersetup:affiliate-click", { detail }));

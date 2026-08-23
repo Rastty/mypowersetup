@@ -320,10 +320,13 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .package-card > p { min-height: 54px; margin-top: 8px; font-size: 12px; }
 .package-card ul { display: grid; gap: 9px; margin: 15px 0; padding: 0; list-style: none; }
 .package-card li { padding-top: 9px; border-top: 1px solid #edf0ec; }
-.package-card li small, .package-card li strong { display: block; }
+.package-card li small, .package-card li strong, .package-product-meta { display: block; }
 .package-card li small { color: #6d887a; font-size: 10px; font-weight: 800; text-transform: uppercase; }
 .package-card li strong { margin-top: 3px; font-size: 11px; line-height: 1.35; }
+.package-product-meta { margin-top: 4px; color: var(--ink-soft); font-size: 10px; }
+.package-product-link { display: inline-flex; min-height: 44px; align-items: center; margin-top: 3px; color: var(--forest); font-size: 11px; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
 .package-card > b { color: var(--forest); font-size: 17px; }
+.package-price-note { display: block; margin-top: 6px; color: var(--ink-soft); font-size: 10px; line-height: 1.4; }
 .product-group + .product-group { margin-top: 24px; }
 .product-group h5 { margin: 0 0 12px; font: 800 15px/1.2 "Manrope", sans-serif; }
 .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }

@@ -107,7 +107,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260823-packages2"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260823-packages3"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260822-packages1"'));
@@ -138,8 +138,8 @@ test("language switch remains available on mobile", async () => {
   assert.match(slovak, /class="header-link language-switch" href="\/"/);
   assert.match(slovak, /aria-label="Přepnout do češtiny"/);
   assert.match(styles, /\.header-link\.language-switch \{ display: inline-flex; \}/);
-  assert.ok(czech.includes('href="/styles.css?v=20260822-trust1"'));
-  assert.ok(slovak.includes('href="/styles.css?v=20260822-trust1"'));
+  assert.ok(czech.includes('href="/styles.css?v=20260823-packages3"'));
+  assert.ok(slovak.includes('href="/styles.css?v=20260823-packages3"'));
 });
 
 test("homepage exposes valid website and calculator structured data", async () => {
@@ -181,7 +181,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260823-packages2"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260823-packages3"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));
@@ -226,7 +226,7 @@ test("both calculators offer a clean printable PDF summary", async () => {
   for (const html of [czech, slovak]) {
     assert.ok(html.includes('id="result-print"'));
     assert.ok(html.includes('id="print-generated-at"'));
-    assert.ok(html.includes('/styles.css?v=20260822-trust1'));
+    assert.ok(html.includes('/styles.css?v=20260823-packages3'));
   }
   for (const source of [app, appSk]) {
     assert.ok(source.includes('trackEvent("result_print_requested")'));
@@ -339,6 +339,15 @@ test("both calculators explain product packages without weakening technical requ
   assert.ok(packages.includes('"dc_charger", "shore_charger"'));
   assert.match(app, /DC–DC nabíječka/);
   assert.match(appSk, /DC–DC nabíjačka/);
+  for (const source of [app, appSk]) {
+    assert.ok(source.includes('data-source="package"'));
+    assert.ok(source.includes('data-package-id='));
+    assert.ok(source.includes('class="package-product-link"'));
+    assert.ok(source.includes('rel="sponsored noopener"'));
+    assert.ok(source.includes('packageId: link.dataset.packageId'));
+  }
+  assert.match(app, /Zobrazit přesný produkt/);
+  assert.match(appSk, /Zobraziť presný produkt/);
 });
 
 test("both calculators render a localized bounded system diagram", async () => {
