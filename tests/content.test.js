@@ -107,7 +107,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260822-trust1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260823-packages2"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260822-packages1"'));
@@ -181,7 +181,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260822-trust1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260823-packages2"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));
@@ -336,6 +336,9 @@ test("both calculators explain product packages without weakening technical requ
   assert.ok(packages.includes('buildVariant("economy"'));
   assert.ok(packages.includes('buildVariant("recommended"'));
   assert.ok(packages.includes('buildVariant("reserve"'));
+  assert.ok(packages.includes('"dc_charger", "shore_charger"'));
+  assert.match(app, /DC–DC nabíječka/);
+  assert.match(appSk, /DC–DC nabíjačka/);
 });
 
 test("both calculators render a localized bounded system diagram", async () => {
