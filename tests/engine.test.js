@@ -57,6 +57,29 @@ test("automatically switches a high-power setup to 24 V", () => {
   assert.ok(result.batteryWh >= 4100);
 });
 
+test("custom AC appliance contributes its name, energy and declared start surge", () => {
+  const result = calculateSetup({
+    appliances: [{
+      id: "custom",
+      selected: true,
+      name: "Kompresor",
+      watts: 500,
+      hours: 2,
+      quantity: 1,
+      ac: true,
+      surge: 2,
+    }],
+    autonomyDays: 1,
+    season: "summer",
+    batteryType: "lifepo4",
+    systemVoltage: "auto",
+  });
+  assert.equal(result.dailyWh, 1000);
+  assert.equal(result.inverterWatts, 1000);
+  assert.equal(result.applianceRows[0].name, "Kompresor");
+  assert.ok(result.warnings.some((warning) => /rozběhovou špičku/.test(warning)));
+});
+
 test("returns Slovak result labels and warnings without changing the calculation", () => {
   const result = calculateSetup({
     locale: "sk",

@@ -203,6 +203,7 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .appliance-card { position: relative; display: grid; grid-template-columns: auto 1fr; gap: 13px; min-height: 106px; padding: 17px; border: 1.5px solid var(--line); border-radius: var(--radius-sm); background: white; cursor: pointer; }
 .appliance-card:hover { border-color: #99b3a5; }
 .appliance-card.is-selected { border-color: var(--forest); background: #f5faf7; }
+.appliance-card.is-custom { grid-column: 1 / -1; }
 .appliance-card > input { position: absolute; top: 15px; right: 15px; width: 19px; height: 19px; accent-color: var(--forest); }
 .appliance-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: #f0f3ef; font-size: 21px; }
 .appliance-copy { padding-right: 26px; }
@@ -210,8 +211,11 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .appliance-copy small { display: block; color: var(--ink-soft); line-height: 1.35; }
 .appliance-controls { grid-column: 2; display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
 .appliance-card.is-selected .appliance-controls { display: grid; }
+.custom-appliance-controls { grid-template-columns: 1.5fr repeat(3, 0.65fr) 1.2fr 1.4fr; }
 .mini-field { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 9px; background: white; color: var(--ink-soft); font-size: 12px; }
 .mini-field input { width: 54px; border: 0; outline: 0; color: var(--ink); font-weight: 700; background: transparent; }
+.custom-name-field input { width: 100%; }
+.custom-select-field select { width: 100%; min-width: 0; border: 0; outline: 0; color: var(--ink); background: transparent; font-weight: 700; }
 .form-error { color: #a94030; font-weight: 700; }
 .calculator-error { margin: 18px 50px 0; padding: 14px 18px; border: 1px solid #e3a69b; border-radius: 10px; color: #7c2e24; background: #fff0ed; font-weight: 700; }
 .advanced-settings { margin-top: 22px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: #fafbf8; }
@@ -405,6 +409,8 @@ footer small { font-size: 12px; }
   .form-step { padding: 32px 18px 26px; }
   .calculator-error { margin: 14px 18px 0; }
   .choice-grid-season, .appliance-grid, .advanced-grid, .result-columns, .method-grid, .product-grid, .guide-preview-grid, .decision-grid, .charging-grid, .installation-list, .package-grid { grid-template-columns: 1fr; }
+  .custom-appliance-controls { grid-template-columns: 1fr 1fr; }
+  .custom-name-field, .custom-select-field { grid-column: 1 / -1; }
   .choice-grid-season .choice-card { min-height: 76px; }
   .appliance-summary { flex-direction: column; gap: 5px; }
   .appliance-summary { position: sticky; z-index: 3; top: 8px; box-shadow: 0 5px 18px rgba(13,43,35,.12); }

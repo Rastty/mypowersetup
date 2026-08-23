@@ -108,6 +108,18 @@ export const APPLIANCES = [
     quantity: 1,
     ac: true,
     surge: 2
+  },
+  {
+    id: "custom",
+    name: "Vlastný spotrebič",
+    description: "Doplňte údaje zo štítku alebo manuálu",
+    icon: "＋",
+    watts: 100,
+    hours: 1,
+    quantity: 1,
+    ac: false,
+    surge: 1,
+    custom: true
   }
 ];
 

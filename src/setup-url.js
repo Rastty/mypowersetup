@@ -17,6 +17,13 @@ export function encodeSetupQuery(config) {
   params.set("loads", selected
     .map((item) => `${item.id}:${cleanNumber(item.hours)}:${cleanNumber(item.quantity)}`)
     .join(","));
+  const custom = selected.find((item) => item.id === "custom");
+  if (custom) {
+    params.set("customName", String(custom.name || "").trim().slice(0, 60));
+    params.set("customWatts", cleanNumber(custom.watts));
+    params.set("customAc", custom.ac ? "1" : "0");
+    params.set("customSurge", cleanNumber(custom.surge || 1));
+  }
   params.set("days", String(config.autonomyDays));
   params.set("season", String(config.season));
   params.set("battery", String(config.batteryType));
@@ -50,6 +57,23 @@ export function decodeSetupQuery(search, allowedApplianceIds) {
     return [{ id, hours, quantity }];
   });
   if (!appliances.length) return null;
+
+  const customIndex = appliances.findIndex((item) => item.id === "custom");
+  if (customIndex >= 0) {
+    const name = (params.get("customName") || "").trim();
+    const watts = Number(params.get("customWatts"));
+    const ac = params.get("customAc");
+    const surge = Number(params.get("customSurge"));
+    if (!name || name.length > 60 || !Number.isFinite(watts) || watts < 1 || watts > 10000
+      || !["0", "1"].includes(ac) || ![1, 2].includes(surge)) return null;
+    appliances[customIndex] = {
+      ...appliances[customIndex],
+      name,
+      watts,
+      ac: ac === "1",
+      surge,
+    };
+  }
 
   const days = params.get("days") || "2";
   const season = params.get("season") || "summer";
