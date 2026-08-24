@@ -38,3 +38,39 @@ export function calculateBatteryCablePlan({
     basis: "voltage-drop-only",
   };
 }
+
+export function calculateDcCablePlan({
+  currentAmps,
+  voltage,
+  oneWayLengthMeters,
+  maxVoltageDropPercent = 3,
+}) {
+  const current = Number(currentAmps);
+  const systemVoltage = Number(voltage);
+  const length = Number(oneWayLengthMeters);
+  if (!Number.isFinite(current) || current <= 0 || ![12, 24].includes(systemVoltage)) return null;
+  if (!Number.isFinite(length) || length < 0.2 || length > 15) return null;
+  if (!Number.isFinite(maxVoltageDropPercent) || maxVoltageDropPercent <= 0 || maxVoltageDropPercent > 5) return null;
+
+  const maxDropVolts = systemVoltage * (maxVoltageDropPercent / 100);
+  const requiredCrossSectionMm2 = (2 * length * current
+    * COPPER_RESISTIVITY_OHM_MM2_PER_M) / maxDropVolts;
+  const recommendedCrossSectionMm2 = STANDARD_CROSS_SECTIONS_MM2
+    .find((size) => size >= requiredCrossSectionMm2) || null;
+  const estimatedDropPercent = recommendedCrossSectionMm2
+    ? ((2 * length * current * COPPER_RESISTIVITY_OHM_MM2_PER_M
+      / recommendedCrossSectionMm2) / systemVoltage) * 100
+    : null;
+
+  return {
+    oneWayLengthMeters: length,
+    designCurrentAmps: Math.ceil(current),
+    requiredCrossSectionMm2: Math.round(requiredCrossSectionMm2 * 10) / 10,
+    recommendedCrossSectionMm2,
+    estimatedDropPercent: estimatedDropPercent === null
+      ? null
+      : Math.round(estimatedDropPercent * 10) / 10,
+    maxVoltageDropPercent,
+    basis: "voltage-drop-only",
+  };
+}

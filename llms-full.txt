@@ -30,7 +30,7 @@ Mezi kompatibilními kandidáty rozhoduje blízkost parametrů, dostupnost a úp
 
 ## Omezení
 
-Výsledek uvádí pouze omezený odhad minimálního průřezu kabelu baterie–měnič podle cíle úbytku napětí. Neurčuje proudovou zatížitelnost, konkrétní pojistku, odpojování, teplotní snížení výkonu, mechanickou montáž ani právní požadavky instalace. Geometrická kontrola střechy není montážní plán. Nejde o revizi, elektroprojekt ani potvrzení bezpečnosti. Parametry získané z produktových feedů mohou být neúplné; rozhoduje manuál a datasheet přesného modelu.
+Výsledek uvádí pouze omezený odhad minimálního průřezu kabelu baterie–měnič a vstupního přívodu startovací baterie–DC–DC nabíječka podle cíle úbytku napětí. Neurčuje proudovou zatížitelnost, konkrétní pojistku, odpojování, teplotní snížení výkonu, mechanickou montáž ani právní požadavky instalace. Geometrická kontrola střechy není montážní plán. Nejde o revizi, elektroprojekt ani potvrzení bezpečnosti. Parametry získané z produktových feedů mohou být neúplné; rozhoduje manuál a datasheet přesného modelu.
 
 ## Autor a kontakt
 

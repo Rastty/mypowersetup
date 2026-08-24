@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { calculateBatteryCablePlan } from "../src/wiring.js";
+import { calculateBatteryCablePlan, calculateDcCablePlan } from "../src/wiring.js";
 
 test("sizes a short 12V inverter run by a 2.5 percent voltage-drop target", () => {
   const plan = calculateBatteryCablePlan({ inverterWatts: 1200, systemVoltage: 12, oneWayLengthMeters: 1.5 });
@@ -26,4 +26,23 @@ test("flags a route needing more than the largest standard section", () => {
   const plan = calculateBatteryCablePlan({ inverterWatts: 3000, systemVoltage: 12, oneWayLengthMeters: 10 });
   assert.equal(plan.recommendedCrossSectionMm2, null);
   assert.ok(plan.requiredCrossSectionMm2 > 120);
+});
+
+test("sizes the alternator-side DC-DC cable only by voltage drop", () => {
+  const plan = calculateDcCablePlan({
+    currentAmps: 56,
+    voltage: 12,
+    oneWayLengthMeters: 4,
+  });
+  assert.equal(plan.designCurrentAmps, 56);
+  assert.equal(plan.recommendedCrossSectionMm2, 25);
+  assert.ok(plan.estimatedDropPercent <= 3);
+  assert.equal(plan.basis, "voltage-drop-only");
+});
+
+test("refuses unsafe DC cable planning inputs", () => {
+  assert.equal(calculateDcCablePlan({ currentAmps: 0, voltage: 12, oneWayLengthMeters: 4 }), null);
+  assert.equal(calculateDcCablePlan({ currentAmps: 40, voltage: 48, oneWayLengthMeters: 4 }), null);
+  assert.equal(calculateDcCablePlan({ currentAmps: 40, voltage: 12, oneWayLengthMeters: 16 }), null);
+  assert.equal(calculateDcCablePlan({ currentAmps: 40, voltage: 12, oneWayLengthMeters: 4, maxVoltageDropPercent: 8 }), null);
 });

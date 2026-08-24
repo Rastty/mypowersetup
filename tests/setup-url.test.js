@@ -15,6 +15,7 @@ const config = {
   inverterCableLength: 1.5,
   driveHoursPerDay: 2.5,
   starterVoltage: 12,
+  dcDcInputCableLength: 5.5,
   shoreChargeHours: 10,
   roofLength: 3.2,
   roofWidth: 1.4,
@@ -35,6 +36,7 @@ test("setup query round-trips selected appliances and choices", () => {
     inverterCableLength: 1.5,
     driveHoursPerDay: 2.5,
     starterVoltage: 12,
+    dcDcInputCableLength: 5.5,
     shoreChargeHours: 10,
     roofLength: 3.2,
     roofWidth: 1.4,
@@ -54,6 +56,7 @@ test("decoder rejects an unknown or unsafe configuration", () => {
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&voltage=48", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&drive=13", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&starter=48", ["fridge"]), null);
+  assert.equal(decodeSetupQuery("?loads=fridge:2:1&dcdcCable=16", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&shore=25", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&roofL=3", ["fridge"]), null);
   assert.equal(decodeSetupQuery("?loads=fridge:2:1&roofL=3&roofW=5", ["fridge"]), null);
