@@ -31,6 +31,7 @@ export function encodeSetupQuery(config) {
   params.set("cable", cleanNumber(config.inverterCableLength || 1.5));
   params.set("drive", cleanNumber(config.driveHoursPerDay ?? 2));
   params.set("starter", String(config.starterVoltage ?? 12));
+  params.set("dcdcCable", cleanNumber(config.dcDcInputCableLength ?? 4));
   params.set("shore", cleanNumber(config.shoreChargeHours ?? 8));
   const roofLength = optionalSetupNumber(config.roofLength);
   const roofWidth = optionalSetupNumber(config.roofWidth);
@@ -82,6 +83,7 @@ export function decodeSetupQuery(search, allowedApplianceIds) {
   const cableLength = Number(params.get("cable") || 1.5);
   const driveHoursPerDay = Number(params.get("drive") ?? 2);
   const starterVoltage = Number(params.get("starter") ?? 12);
+  const dcDcInputCableLength = Number(params.get("dcdcCable") ?? 4);
   const shoreChargeHours = Number(params.get("shore") ?? 8);
   const roofLengthText = params.get("roofL");
   const roofWidthText = params.get("roofW");
@@ -93,6 +95,7 @@ export function decodeSetupQuery(search, allowedApplianceIds) {
   if (!Number.isFinite(cableLength) || cableLength < 0.2 || cableLength > 10) return null;
   if (!Number.isFinite(driveHoursPerDay) || driveHoursPerDay < 0 || driveHoursPerDay > 12) return null;
   if (![12, 24].includes(starterVoltage)) return null;
+  if (!Number.isFinite(dcDcInputCableLength) || dcDcInputCableLength < 0.2 || dcDcInputCableLength > 15) return null;
   if (!Number.isFinite(shoreChargeHours) || shoreChargeHours < 0 || shoreChargeHours > 24) return null;
   if (roofLength !== null && (!Number.isFinite(roofLength) || roofLength < 0.5 || roofLength > 12)) return null;
   if (roofWidth !== null && (!Number.isFinite(roofWidth) || roofWidth < 0.5 || roofWidth > 4)) return null;
@@ -106,6 +109,7 @@ export function decodeSetupQuery(search, allowedApplianceIds) {
     inverterCableLength: cableLength,
     driveHoursPerDay,
     starterVoltage,
+    dcDcInputCableLength,
     shoreChargeHours,
     ...(roofLength === null ? {} : { roofLength, roofWidth }),
   };

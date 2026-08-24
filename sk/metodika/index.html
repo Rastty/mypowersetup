@@ -40,9 +40,9 @@
 <p>Špičkové hodiny sú podľa zvolenej sezóny 4,5 v lete, 3 na jar a jeseň a 1,5 v zime. Faktor 0,75 zahŕňa návrhové systémové straty. Nie je to predpoveď pre konkrétne miesto, orientáciu ani počasie.</p>
 <h2 id="menic">Menič a regulátor</h2>
 <p>Menič vychádza z odhadovanej súbežnej AC záťaže s 25 % rezervou a najvyššej rozbehovej špičky. Regulátor vychádza z výkonu panelov a napätia systému s 25 % prúdovou rezervou. Vždy je potrebné samostatne overiť Voc, Isc a povolený FV výkon.</p>
-<h2 id="kabel">Kábel batéria–menič</h2>
+<h2 id="kabel">Kábel batéria–menič a prívod k DC–DC</h2>
 <div class="formula">mm² = 2 × dĺžka jedným smerom × prúd × merný odpor medi ÷ povolený úbytok napätia</div>
-<p>Kalkulačka počíta iba orientačný minimálny prierez z úbytku napätia s cieľom do 2,5 % a s 90% účinnosťou meniča. Vychádza z celkovej dĺžky kladného aj záporného vodiča. Podľa <a href="https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/dc-wiring.html" rel="external">Victron Wiring Unlimited</a> musí finálna voľba rešpektovať aj manuál zariadenia, prúdovú zaťažiteľnosť, teplotu, spôsob uloženia a miestne požiadavky. Poistku kalkulačka zámerne neurčuje bez konkrétneho zariadenia a kábla.</p>
+<p>Kalkulačka počíta iba orientačný minimálny prierez z úbytku napätia: pre kábel batéria–menič s cieľom do 2,5 % a pre vstupný prívod štartovacia batéria–DC–DC nabíjačka s cieľom do 3 %. Pri meniči započítava 90% účinnosť, pri DC–DC používa skôr vypočítaný orientačný vstupný prúd. V oboch prípadoch vychádza z celkovej dĺžky kladného aj záporného vodiča. Podľa <a href="https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/dc-wiring.html" rel="external">Victron Wiring Unlimited</a> musí finálna voľba rešpektovať aj manuál zariadenia, prúdovú zaťažiteľnosť, teplotu, spôsob uloženia, svorky a miestne požiadavky. Poistku kalkulačka zámerne neurčuje bez konkrétneho zariadenia a kábla.</p>
 <h2 id="dobijanie">Dobíjanie počas jazdy a z 230 V</h2>
 <div class="formula">výstupné A = denné Wh ÷ dostupné hodiny ÷ napätie batérie ÷ 0,90</div>
 <div class="formula">odhad vstupných A DC–DC = navrhnuté výstupné A × napätie batérie ÷ napätie štartovacej sústavy ÷ 0,90</div>
@@ -67,7 +67,7 @@
 <a href="#bateria">Batéria</a>
 <a href="#solar">Solár</a>
 <a href="#menic">Menič a MPPT</a>
-<a href="#kabel">Kábel meniča</a>
+<a href="#kabel">Káble a úbytok</a>
 <a href="#dobijanie">Dobíjanie</a>
 <a href="#produkty">Produkty</a>
 <a href="#obmedzenia">Obmedzenia</a>

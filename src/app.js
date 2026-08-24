@@ -3,7 +3,7 @@ import { calculateSetup } from "./engine.js?v=20260821-1";
 import { recommendProducts } from "./products.js?v=20260822-packages1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260823-custom1";
-import { calculateBatteryCablePlan } from "./wiring.js?v=20260822-wire1";
+import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
 import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
 import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts1";
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
@@ -235,6 +235,13 @@ function handleSubmit(event) {
       driveHoursPerDay: data.get("driveHoursPerDay"),
       shoreChargeHours: data.get("shoreChargeHours")
     });
+    if (latestResult.charging?.dcDc?.enabled) {
+      latestResult.charging.dcDc.inputWiring = calculateDcCablePlan({
+        currentAmps: latestResult.charging.dcDc.estimatedInputCurrentAmps,
+        voltage: latestResult.charging.starterVoltage,
+        oneWayLengthMeters: data.get("dcDcInputCableLength")
+      });
+    }
     latestResult.roof = calculateRoofFit({
       solarWatts: latestResult.solarWatts,
       availableLengthMeters: data.get("roofLength"),
@@ -249,6 +256,7 @@ function handleSubmit(event) {
       inverterCableLength: data.get("inverterCableLength"),
       driveHoursPerDay: data.get("driveHoursPerDay"),
       starterVoltage: data.get("starterVoltage"),
+      dcDcInputCableLength: data.get("dcDcInputCableLength"),
       shoreChargeHours: data.get("shoreChargeHours"),
       roofLength: data.get("roofLength"),
       roofWidth: data.get("roofWidth")
@@ -363,8 +371,13 @@ function renderChargingPlan(plan, systemVoltage) {
   const dcDcVoltageCheck = systemVoltage === 24
     ? " Pro 24V nástavbovou baterii musí nabíječka výslovně podporovat převod ze startovací soustavy na 24 V."
     : "";
+  const dcDcCable = plan.dcDc.inputWiring
+    ? plan.dcDc.inputWiring.recommendedCrossSectionMm2
+      ? ` Pro zadanou délku ${formatNumber(plan.dcDc.inputWiring.oneWayLengthMeters)} m vychází nejméně ${plan.dcDc.inputWiring.recommendedCrossSectionMm2} mm² pouze podle cíle úbytku do ${plan.dcDc.inputWiring.maxVoltageDropPercent} %.`
+      : ` Pro zadanou délku ${formatNumber(plan.dcDc.inputWiring.oneWayLengthMeters)} m je nutný individuální návrh přívodu; výpočet podle úbytku překračuje 120 mm².`
+    : "";
   target.innerHTML = [
-    chargingCard("DC–DC z alternátoru", plan.dcDc, `Vstup ${plan.starterVoltage} V, výstup pro ${systemVoltage}V baterii.${inputEstimate} Jde o návrhový odhad při 90% účinnosti, nikoli náhradu údajů výrobce. Ověřte volnou kapacitu alternátoru, skutečný maximální vstupní proud, kabeláž, jištění a podporu chytrého alternátoru.${dcDcVoltageCheck}`),
+    chargingCard("DC–DC z alternátoru", plan.dcDc, `Vstup ${plan.starterVoltage} V, výstup pro ${systemVoltage}V baterii.${inputEstimate}${dcDcCable} Jde o návrhový odhad při 90% účinnosti, nikoli náhradu údajů výrobce. Průřez může být nutné zvětšit podle proudové zatížitelnosti, teploty, uložení, svorek a manuálu; pojistku tento výpočet neurčuje. Ověřte volnou kapacitu alternátoru, skutečný maximální vstupní proud, kabeláž, jištění a podporu chytrého alternátoru.${dcDcVoltageCheck}`),
     chargingCard("Nabíječka z 230 V", plan.shore, `Výstup pro ${systemVoltage}V baterii. Nabíjecí profil, teplotní kompenzace a maximální proud musí povolit výrobce baterie a BMS.`)
   ].join("");
 }
@@ -602,6 +615,7 @@ function restoreSetupFromUrl() {
     inverterCableLength: config.inverterCableLength,
     driveHoursPerDay: config.driveHoursPerDay,
     starterVoltage: config.starterVoltage,
+    dcDcInputCableLength: config.dcDcInputCableLength,
     shoreChargeHours: config.shoreChargeHours,
     roofLength: config.roofLength,
     roofWidth: config.roofWidth
