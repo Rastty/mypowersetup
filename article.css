@@ -41,4 +41,6 @@ a { color:#176b4c; }
 .related-grid a { padding:20px; border:1px solid var(--line); border-radius:14px; color:var(--ink); background:white; font-weight:750; text-decoration:none; }
 .article-footer { padding:44px 24px; color:#b6c9c1; background:#09231c; text-align:center; }
 .article-footer a { color:#d7e6e0; }
+.article [data-analytics-settings] { min-height:44px; padding:11px 18px; color:white; background:var(--forest); border:0; border-radius:10px; font:inherit; font-weight:800; cursor:pointer; }
+.article [data-analytics-settings]:focus-visible { outline:3px solid #176b4c; outline-offset:3px; }
 @media(max-width:800px){.article-header nav a:first-child{display:none}.article-layout{grid-template-columns:1fr;padding-top:38px}.toc{display:none}.related-grid{grid-template-columns:1fr}.article-hero{padding-top:48px}.article table{font-size:13px}.article th,.article td{padding:10px}}

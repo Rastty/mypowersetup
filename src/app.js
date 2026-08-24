@@ -512,8 +512,7 @@ document.addEventListener("click", (event) => {
 });
 
 function trackEvent(event, parameters = {}) {
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event, ...parameters });
+  window.MyPowerSetupAnalytics?.track(event, parameters);
 }
 
 function formatPrice(price) {

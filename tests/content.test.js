@@ -80,6 +80,30 @@ test("author identity is transparent and consistent", async () => {
   assert.match(privacy, /xfit\.redakce@gmail\.com/);
 });
 
+test("GA4 is available site-wide only after an explicit localized choice", async () => {
+  const allPageFiles = ["index.html", "sk/index.html", ...pages.map(([file]) => file), ...slovakPages.map(([file]) => file)];
+  const [analytics, app, appSk, czechPrivacy, slovakPrivacy, ...htmlFiles] = await Promise.all([
+    readFile("src/analytics.js", "utf8"),
+    readFile("src/app.js", "utf8"),
+    readFile("src/app-sk.js", "utf8"),
+    readFile("soukromi/index.html", "utf8"),
+    readFile("sk/sukromie/index.html", "utf8"),
+    ...allPageFiles.map((file) => readFile(file, "utf8")),
+  ]);
+  assert.match(analytics, /G-TDNRBM2V2J/);
+  assert.match(analytics, /choice !== "granted"/);
+  assert.match(analytics, /allow_google_signals: false/);
+  assert.match(analytics, /allow_ad_personalization_signals: false/);
+  assert.match(analytics, /Povolit analytiku/);
+  assert.match(analytics, /Povoliť analytiku/);
+  for (const source of [app, appSk]) assert.match(source, /MyPowerSetupAnalytics\?\.track/);
+  for (const html of htmlFiles) assert.ok(html.includes('/src/analytics.js?v=20260824-1'));
+  for (const privacy of [czechPrivacy, slovakPrivacy]) {
+    assert.ok(privacy.includes("data-analytics-settings"));
+    assert.ok(privacy.includes("https://policies.google.com/privacy"));
+  }
+});
+
 test("every guide identifies Petr Gálík as its author", async () => {
   for (const [file] of pages.filter(([file]) => file.startsWith("pruvodce/") && file !== "pruvodce/index.html")) {
     const html = await readFile(file, "utf8");
