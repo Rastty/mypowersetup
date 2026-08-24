@@ -1,6 +1,6 @@
 # MyPowerSetup: výpočtová a redakční pravidla
 
-Aktualizováno: 2026-08-22
+Aktualizováno: 2026-08-24
 
 ## Účel
 
@@ -19,6 +19,8 @@ Měnič vychází z odhadovaného souběhu AC spotřebičů s rezervou 25 % a ne
 Proud regulátoru vychází z výkonu panelů děleného napětím systému a násobeného rezervou 1,25. Samostatně je vždy nutné ověřit maximální Voc, Isc, povolený FV výkon a nabíjecí profil konkrétního regulátoru.
 
 Automatická volba použije 24 V, pokud požadovaná energie baterie přesáhne 2 400 Wh nebo měnič přesáhne 1 200 W; jinak použije 12 V. Uživatel může napětí změnit, ale dostane upozornění při odchylce od automatického návrhu.
+
+DC–DC a 230V nabíječka se předběžně dimenzují z denní spotřeby dělené dostupnou dobou nabíjení, napětím servisní baterie a účinností 0,90. Výsledek se zaokrouhluje na nejbližší vyšší standardní proud 5, 10, 15, 20, 25, 30, 40, 50 nebo 60 A. Konzervativní plánovací strop je 0,2 C pro LiFePO4 a 0,1 C pro AGM nebo olovo; nejde o náhradu limitu výrobce baterie a BMS. Odhad vstupního proudu DC–DC nabíječky zohledňuje poměr vstupního a výstupního napětí a účinnost. Pro alternátor, kabel a jištění rozhoduje maximální vstupní proud a manuál přesného modelu.
 
 Pokud uživatel zadá délku a šířku největšího volného obdélníku na střeše, kalkulátor provede konzervativní geometrickou kontrolu s referenčními panely 95, 130 a 190 Wp z oficiálního datasheetu Victron BlueSolar. Hledá jednotnou orientaci stejných panelů, která pokryje vypočtený výkon. Kontrola nezapočítává držáky, montážní mezery, stínění, servisní přístup ani jiné tvary volné plochy; před nákupem rozhodují skutečné rozměry konkrétního panelu a střechy.
 
