@@ -10,6 +10,7 @@ const pages = [
   ["pruvodce/jak-vybrat-mppt-regulator/index.html", "https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/"],
   ["pruvodce/jak-vybrat-dc-dc-nabijecku/index.html", "https://mypowersetup.com/pruvodce/jak-vybrat-dc-dc-nabijecku/"],
   ["pruvodce/jak-vybrat-nabijecku-230-v/index.html", "https://mypowersetup.com/pruvodce/jak-vybrat-nabijecku-230-v/"],
+  ["pruvodce/kabely-a-pojistky-12-v/index.html", "https://mypowersetup.com/pruvodce/kabely-a-pojistky-12-v/"],
   ["pruvodce/jak-velky-menic-do-karavanu/index.html", "https://mypowersetup.com/pruvodce/jak-velky-menic-do-karavanu/"],
   ["pruvodce/spotreba-kompresorove-lednice/index.html", "https://mypowersetup.com/pruvodce/spotreba-kompresorove-lednice/"],
   ["o-projektu/index.html", "https://mypowersetup.com/o-projektu/"],
@@ -86,6 +87,27 @@ test("230V charger guide matches the calculator model and preserves installation
   assert.ok(charging.includes("shoreChargeHours"));
   assert.ok(hub.includes('/pruvodce/jak-vybrat-nabijecku-230-v/'));
   assert.ok(llms.includes("DC–DC a 230V nabíječka"));
+});
+
+test("cable and fuse guide matches the bounded voltage-drop model", async () => {
+  const [guide, wiring, hub, llms] = await Promise.all([
+    readFile("pruvodce/kabely-a-pojistky-12-v/index.html", "utf8"),
+    readFile("src/wiring.js", "utf8"),
+    readFile("pruvodce/index.html", "utf8"),
+    readFile("llms-full.txt", "utf8"),
+  ]);
+  assert.ok(guide.includes("2 × jednosměrná délka"));
+  assert.ok(guide.includes("0,0175"));
+  assert.ok(guide.includes("cíl úbytku do 2,5 %"));
+  assert.ok(guide.includes("pro vstupní kabel použijte maximální vstupní proud"));
+  assert.ok(guide.includes("Pojistka chrání kabel"));
+  assert.ok(guide.includes("The_Wiring_Unlimited_book"));
+  assert.doesNotMatch(guide, /(?:pojistk|jistič)[^<.]{0,45}\b\d+\s*A\b/i);
+  assert.ok(wiring.includes("COPPER_RESISTIVITY_OHM_MM2_PER_M = 0.0175"));
+  assert.ok(wiring.includes("maxVoltageDropPercent = 2.5"));
+  assert.ok(wiring.includes("maxVoltageDropPercent = 3"));
+  assert.ok(hub.includes('/pruvodce/kabely-a-pojistky-12-v/'));
+  assert.ok(llms.includes("Průřez měděného kabelu"));
 });
 
 test("sitemap contains every published page", async () => {
