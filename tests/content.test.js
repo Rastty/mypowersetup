@@ -37,6 +37,18 @@ for (const [file, canonical] of pages) {
   });
 }
 
+test("every Czech guide has a complete share preview", async () => {
+  for (const [file, canonical] of pages.filter(([file]) => file.startsWith("pruvodce/"))) {
+    const html = await readFile(file, "utf8");
+    assert.match(html, /<meta property="og:title" content="[^"]+">/);
+    assert.match(html, /<meta property="og:description" content="[^"]{80,}">/);
+    assert.ok(html.includes(`<meta property="og:url" content="${canonical}">`));
+    assert.ok(html.includes('<meta property="og:image" content="https://mypowersetup.com/social-card.png">'));
+    assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image">'));
+    assert.ok(html.includes('<meta name="twitter:image" content="https://mypowersetup.com/social-card.png">'));
+  }
+});
+
 test("sitemap contains every published page", async () => {
   const sitemap = await readFile("sitemap.xml", "utf8");
   for (const [, canonical] of pages) assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
