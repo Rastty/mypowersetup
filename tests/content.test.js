@@ -125,13 +125,28 @@ test("calculator explains results and purchase checks", async () => {
   assert.ok(app.includes('trackEvent("calculation_completed"'));
 });
 
+test("both calculators measure a privacy-safe conversion funnel", async () => {
+  const [app, appSk] = await Promise.all([
+    readFile("src/app.js", "utf8"),
+    readFile("src/app-sk.js", "utf8"),
+  ]);
+  for (const source of [app, appSk]) {
+    assert.ok(source.includes('trackEvent("calculator_started", { source })'));
+    assert.ok(source.includes('trackEvent("calculation_failed", { reason: "no_appliance" })'));
+    assert.ok(source.includes("hasCustomAppliance"));
+    assert.ok(source.includes("hasDcDc"));
+    assert.ok(source.includes("hasShoreCharging"));
+    assert.ok(!source.includes("customName:"));
+  }
+});
+
 test("calculator assets are cache-busted and submit errors are visible", async () => {
   const [html, app, engine] = await Promise.all([
     readFile("index.html", "utf8"),
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260824-dcdccable1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260824-funnel1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260822-packages1"'));
@@ -226,7 +241,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260824-dcdccable1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260824-funnel1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));

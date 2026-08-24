@@ -22,6 +22,7 @@ let latestShareUrl = "https://mypowersetup.com/#kalkulator";
 let productCatalog = [];
 let productCatalogUpdatedAt = null;
 let productCatalogSources = {};
+let calculatorStarted = false;
 
 renderAppliances();
 bindChoiceCards();
@@ -99,12 +100,16 @@ function bindChoiceCards() {
 
 function bindNavigation() {
   document.querySelectorAll("[data-next]").forEach((button) => {
-    button.addEventListener("click", () => showStep(currentStep + 1));
+    button.addEventListener("click", () => {
+      trackCalculatorStarted("next_button");
+      showStep(currentStep + 1);
+    });
   });
   document.querySelectorAll("[data-back]").forEach((button) => {
     button.addEventListener("click", () => showStep(currentStep - 1));
   });
   document.querySelector("#start-over").addEventListener("click", resetForm);
+  form.addEventListener("input", () => trackCalculatorStarted("form_input"), { once: true });
   form.addEventListener("submit", handleSubmit);
   document.querySelector("#result-products-link").addEventListener("click", () => {
     trackEvent("product_recommendations_opened", { source: "result_next" });
@@ -192,12 +197,14 @@ function updateLiveSummary() {
 
 function handleSubmit(event) {
   event.preventDefault();
+  trackCalculatorStarted("submit");
   calculatorError.hidden = true;
   const appliances = getSelectedAppliances();
   if (!appliances.some((item) => item.selected)) {
     applianceError.textContent = "Vyberte alespoň jeden spotřebič.";
     applianceError.hidden = false;
     applianceError.scrollIntoView({ behavior: "smooth", block: "center" });
+    trackEvent("calculation_failed", { reason: "no_appliance" });
     return;
   }
   const invalidAppliance = appliances.find((item) => item.selected && (
@@ -209,6 +216,7 @@ function handleSubmit(event) {
     applianceError.textContent = "U vybraných spotřebičů zkontrolujte název, příkon, dobu používání a počet kusů.";
     applianceError.hidden = false;
     applianceError.scrollIntoView({ behavior: "smooth", block: "center" });
+    trackEvent("calculation_failed", { reason: "invalid_appliance" });
     return;
   }
 
@@ -268,7 +276,13 @@ function handleSubmit(event) {
       dailyWh: latestResult.dailyWh,
       batteryAh: latestResult.batteryAh,
       solarWatts: latestResult.solarWatts,
-      systemVoltage: latestResult.systemVoltage
+      systemVoltage: latestResult.systemVoltage,
+      applianceCount: appliances.filter((item) => item.selected).length,
+      hasCustomAppliance: appliances.some((item) => item.selected && item.custom),
+      batteryType: latestResult.batteryType,
+      season: data.get("season"),
+      hasDcDc: Boolean(latestResult.charging?.dcDc?.enabled),
+      hasShoreCharging: Boolean(latestResult.charging?.shore?.enabled)
     });
     showStep(3);
   } catch (error) {
@@ -280,7 +294,17 @@ function handleSubmit(event) {
         : "Výpočet se nepodařilo zobrazit. Obnovte prosím stránku a zkuste to znovu.";
     calculatorError.hidden = false;
     calculatorError.scrollIntoView({ behavior: "smooth", block: "center" });
+    trackEvent("calculation_failed", {
+      reason: error?.message === "ROOF_DIMENSIONS_INCOMPLETE"
+        ? "roof_incomplete"
+        : error?.message === "ROOF_DIMENSIONS_INVALID" ? "roof_invalid" : "unexpected"
+    });
   }
+}
+
+function trackCalculatorStarted(source) {
+  if (calculatorStarted) return;
+  calculatorStarted = trackEvent("calculator_started", { source });
 }
 
 function renderResult(result) {
@@ -512,7 +536,7 @@ document.addEventListener("click", (event) => {
 });
 
 function trackEvent(event, parameters = {}) {
-  window.MyPowerSetupAnalytics?.track(event, parameters);
+  return Boolean(window.MyPowerSetupAnalytics?.track(event, parameters));
 }
 
 function formatPrice(price) {
@@ -575,6 +599,7 @@ function showStep(step) {
 
 function resetForm() {
   form.reset();
+  calculatorStarted = false;
   document.querySelectorAll(".choice-card").forEach((card) => {
     const input = card.querySelector("input");
     card.classList.toggle("is-selected", input.checked);
@@ -626,6 +651,7 @@ function restoreSetupFromUrl() {
     card.classList.toggle("is-selected", card.querySelector("input").checked);
   });
   updateLiveSummary();
+  trackCalculatorStarted("shared_url");
   form.requestSubmit();
 }
 
