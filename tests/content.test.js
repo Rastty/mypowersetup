@@ -8,6 +8,7 @@ const pages = [
   ["pruvodce/agm-vs-lifepo4/index.html", "https://mypowersetup.com/pruvodce/agm-vs-lifepo4/"],
   ["pruvodce/kolik-w-solarnich-panelu/index.html", "https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/"],
   ["pruvodce/jak-vybrat-mppt-regulator/index.html", "https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/"],
+  ["pruvodce/jak-vybrat-dc-dc-nabijecku/index.html", "https://mypowersetup.com/pruvodce/jak-vybrat-dc-dc-nabijecku/"],
   ["pruvodce/jak-velky-menic-do-karavanu/index.html", "https://mypowersetup.com/pruvodce/jak-velky-menic-do-karavanu/"],
   ["pruvodce/spotreba-kompresorove-lednice/index.html", "https://mypowersetup.com/pruvodce/spotreba-kompresorove-lednice/"],
   ["o-projektu/index.html", "https://mypowersetup.com/o-projektu/"],
@@ -47,6 +48,25 @@ test("every Czech guide has a complete share preview", async () => {
     assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image">'));
     assert.ok(html.includes('<meta name="twitter:image" content="https://mypowersetup.com/social-card.png">'));
   }
+});
+
+test("DC-DC guide matches the calculator model and preserves installation limits", async () => {
+  const [guide, charging, hub, llms] = await Promise.all([
+    readFile("pruvodce/jak-vybrat-dc-dc-nabijecku/index.html", "utf8"),
+    readFile("src/charging.js", "utf8"),
+    readFile("pruvodce/index.html", "utf8"),
+    readFile("llms-full.txt", "utf8"),
+  ]);
+  assert.ok(guide.includes("účinnost 90 %"));
+  assert.ok(guide.includes("0,2 C pro LiFePO₄ a 0,1 C pro AGM"));
+  assert.ok(guide.includes("maximálním vstupním proudem"));
+  assert.ok(guide.includes("manuálu přesného modelu"));
+  assert.ok(guide.includes("victronenergy.com/upload/documents/Orion-Tr_Smart"));
+  assert.doesNotMatch(guide, /pojistk[^<.]{0,40}\b\d+\s*A\b/i);
+  assert.ok(charging.includes("const CHARGING_EFFICIENCY = 0.9"));
+  assert.ok(charging.includes("lifepo4: 0.2, lead: 0.1"));
+  assert.ok(hub.includes('/pruvodce/jak-vybrat-dc-dc-nabijecku/'));
+  assert.ok(llms.includes("DC–DC a 230V nabíječka"));
 });
 
 test("sitemap contains every published page", async () => {
