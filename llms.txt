@@ -25,6 +25,7 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 - [Kolik W solárních panelů](https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/): Návrh Wp podle spotřeby, sezony a ztrát.
 - [Jak vybrat MPPT regulátor](https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/): Proud, Voc, Isc, FV výkon a nabíjecí profil.
 - [Jak vybrat DC–DC nabíječku](https://mypowersetup.com/pruvodce/jak-vybrat-dc-dc-nabijecku/): Výpočet proudu z doby jízdy, vstupní proud, alternátor, baterie, kabeláž a jištění.
+- [Jak vybrat nabíječku 230 V](https://mypowersetup.com/pruvodce/jak-vybrat-nabijecku-230-v/): Výpočet proudu a doby nabíjení, profil baterie, přípojka, kabeláž a jištění.
 - [Jak velký měnič](https://mypowersetup.com/pruvodce/jak-velky-menic-do-karavanu/): Trvalý výkon, rozběhové špičky a proud z baterie.
 - [Spotřeba kompresorové lednice](https://mypowersetup.com/pruvodce/spotreba-kompresorove-lednice/): Odhad Wh za 24 hodin a vliv teploty a cyklování.
 
