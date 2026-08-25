@@ -12,6 +12,26 @@ test("affiliate deeplink keeps the exact product destination", () => {
   assert.equal(affiliate.searchParams.get("desturl"), destination);
 });
 
+test("CJ deeplink keeps BLUETTI tracking and the exact product destination", () => {
+  const destination = "https://www.bluettipower.com/products/ac200l";
+  const affiliate = new URL(buildAffiliateUrl("bluetti", destination));
+  assert.equal(affiliate.hostname, "www.dpbolvw.net");
+  assert.equal(affiliate.pathname, "/click-101869970-17110660");
+  assert.equal(affiliate.searchParams.get("url"), destination);
+  assert.equal(affiliate.searchParams.has("desturl"), false);
+});
+
+test("CJ deeplink rejects a non-BLUETTI destination and a merchant homepage", () => {
+  assert.throws(
+    () => buildAffiliateUrl("bluetti", "https://example.com/products/ac200l"),
+    /Neplatná produktová URL/
+  );
+  assert.throws(
+    () => buildAffiliateUrl("bluetti", "https://www.bluettipower.com/"),
+    /homepage/
+  );
+});
+
 test("affiliate deeplink refuses a merchant homepage", () => {
   assert.throws(
     () => buildAffiliateUrl("svetkaravanu", "https://www.svetkaravanu.cz/"),
