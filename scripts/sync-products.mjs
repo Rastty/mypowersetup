@@ -2,11 +2,13 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 
 const feeds = [
-  ["reslshop", process.env.RESLSHOP_FEED_URL],
-  ["svetkaravanu", process.env.SVETKARAVANU_FEED_URL]
+  ["reslshop", process.env.RESLSHOP_FEED_URL, true],
+  ["svetkaravanu", process.env.SVETKARAVANU_FEED_URL, true],
+  ["solarimport", process.env.SOLAR_IMPORT_FEED_URL, false],
+  ["batterycz", process.env.BATTERY_CZ_FEED_URL, false]
 ];
 
-const missing = feeds.filter(([, url]) => !url).map(([merchant]) => merchant);
+const missing = feeds.filter(([, url, required]) => required && !url).map(([merchant]) => merchant);
 if (missing.length) {
   throw new Error(`Chybí URL feedu pro: ${missing.join(", ")}`);
 }
@@ -22,6 +24,14 @@ try {
 const products = [];
 const sources = {};
 for (const [merchant, url] of feeds) {
+  if (!url) {
+    const preserved = previousProducts.filter((product) => product.merchant === merchant);
+    if (preserved.length > 0) products.push(...preserved);
+    sources[merchant] = preserved.length > 0
+      ? { status: "stale", error: "feed URL není nakonfigurována", preservedProducts: preserved.length }
+      : { status: "disabled", error: "feed URL není nakonfigurována" };
+    continue;
+  }
   try {
     const response = await fetch(url, {
       redirect: "follow",

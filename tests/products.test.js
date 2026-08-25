@@ -32,6 +32,136 @@ test("CJ deeplink rejects a non-BLUETTI destination and a merchant homepage", ()
   );
 });
 
+test("new Czech merchant deeplinks preserve exact Solar-import and Battery.cz products", () => {
+  const solarDestination = "https://www.solar-import.cz/off-grid/victron-energy-dc-dc-konvertor-orion-ip67-24-12-10/";
+  const batteryDestination = "https://www.battery.cz/skyrich-lithium-motobaterie-hjtz5s-fp--12v-24wh--2ah/";
+  const solar = new URL(buildAffiliateUrl("solarimport", solarDestination));
+  const battery = new URL(buildAffiliateUrl("batterycz", batteryDestination));
+
+  assert.equal(solar.hostname, "ehub.cz");
+  assert.equal(solar.searchParams.get("a_bid"), "35cb7fb0");
+  assert.equal(solar.searchParams.get("desturl"), solarDestination);
+  assert.equal(battery.hostname, "ehub.cz");
+  assert.equal(battery.searchParams.get("a_bid"), "7095cb16");
+  assert.equal(battery.searchParams.get("desturl"), batteryDestination);
+});
+
+test("Battery.cz starter and motorcycle batteries are excluded from caravan recommendations", () => {
+  const motorcycle = normalizeProduct({
+    id: "moto",
+    name: "Skyrich Lithium motobaterie 12V 2Ah",
+    category: "Heureka.cz | Auto-moto | Vše pro motorky | Motobaterie",
+    url: "https://www.battery.cz/skyrich-lithium-motobaterie-12v-2ah/",
+    available: true
+  }, "batterycz");
+  const leisure = normalizeProduct({
+    id: "leisure",
+    name: "LiFePO4 baterie 12V 100Ah",
+    category: "TRAKČNÍ BATERIE | VOLNÝ ČAS",
+    url: "https://www.battery.cz/lifepo4-baterie-12v-100ah/",
+    available: true
+  }, "batterycz");
+
+  assert.equal(motorcycle.category, "other");
+  assert.equal(leisure.category, "battery");
+});
+
+test("unsupported 8V traction batteries and multi-component sets are not presented as 12V batteries", () => {
+  const eightVolt = normalizeProduct({
+    id: "8v",
+    name: "Trakční baterie Trojan T 875, 170Ah, 8V",
+    category: "TRAKČNÍ BATERIE | PRŮMYSLOVÉ",
+    description: "Nabíjecí napětí soustavy 12V.",
+    url: "https://www.battery.cz/trakcni-baterie-trojan-t-875/",
+    available: true
+  }, "batterycz");
+  const set = normalizeProduct({
+    id: "set",
+    name: "Solární sestava pro karavan 55Wp + baterie 45Ah",
+    category: "Heureka.cz | Dílna, stavba, zahrada | Fotovoltaika | Solární sestavy",
+    url: "https://www.solar-import.cz/solarni-sestava-pro-karavan/",
+    available: true
+  }, "solarimport");
+
+  assert.equal(eightVolt.specs.voltageV, 8);
+  assert.equal(set.category, "other");
+});
+
+test("battery matcher requires evidenced chemistry and treats gel as lead", () => {
+  const unknown = normalizeProduct({
+    id: "unknown",
+    name: "Trakční baterie 12V 120Ah",
+    category: "TRAKČNÍ BATERIE | VOLNÝ ČAS",
+    url: "https://www.battery.cz/trakcni-baterie-12v-120ah/",
+    available: true
+  }, "batterycz");
+  const gel = normalizeProduct({
+    id: "gel",
+    name: "Trakční gelová baterie 12V 120Ah",
+    category: "TRAKČNÍ BATERIE | VOLNÝ ČAS",
+    url: "https://www.battery.cz/trakcni-gelova-baterie-12v-120ah/",
+    available: true
+  }, "batterycz");
+  const setup = {
+    locale: "cs",
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lead",
+    solarWatts: 200,
+    inverterWatts: 0,
+    controllerAmps: 20,
+    charging: { starterVoltage: 12, dcDc: {}, shore: {} }
+  };
+  const recommended = recommendProducts([unknown, gel], setup);
+
+  assert.equal(unknown.specs.batteryType, null);
+  assert.equal(gel.specs.batteryType, "lead");
+  assert.deepEqual(recommended.battery.map(({ product }) => product.id), ["batterycz:gel"]);
+});
+
+test("identical products from shared merchant catalogs are shown only once", () => {
+  const first = normalizeProduct({
+    id: "first",
+    name: "LiFePO4 baterie 12V 100Ah",
+    category: "BATERIE | LITHIOVÉ",
+    price: "10000",
+    url: "https://www.solar-import.cz/lifepo4-baterie-12v-100ah/",
+    available: true
+  }, "solarimport");
+  const second = normalizeProduct({
+    id: "second",
+    name: "LiFePO4 baterie 12V 100Ah",
+    category: "BATERIE | LITHIOVÉ",
+    price: "11000",
+    url: "https://www.battery.cz/lifepo4-baterie-12v-100ah/",
+    available: true
+  }, "batterycz");
+  const setup = {
+    locale: "cs",
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    solarWatts: 200,
+    inverterWatts: 0,
+    controllerAmps: 20,
+    charging: { starterVoltage: 12, dcDc: {}, shore: {} }
+  };
+
+  assert.equal(recommendProducts([first, second], setup).battery.length, 1);
+});
+
+test("numeric Heureka delivery time remains orderable", () => {
+  const product = normalizeProduct({
+    id: "delivery",
+    name: "LiFePO4 baterie 12V 100Ah",
+    category: "BATERIE | LITHIOVÉ",
+    url: "https://www.solar-import.cz/lifepo4-baterie-12v-100ah/",
+    available: "14"
+  }, "solarimport");
+
+  assert.equal(product.available, true);
+});
+
 test("affiliate deeplink refuses a merchant homepage", () => {
   assert.throws(
     () => buildAffiliateUrl("svetkaravanu", "https://www.svetkaravanu.cz/"),

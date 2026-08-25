@@ -569,7 +569,12 @@ function formatPrice(price) {
 }
 
 function merchantLabel(merchant) {
-  return merchant === "reslshop" ? "Reslshop.cz" : "SvětKaravanů.cz";
+  return ({
+    reslshop: "Reslshop.cz",
+    svetkaravanu: "SvětKaravanů.cz",
+    solarimport: "Solar-import.cz",
+    batterycz: "Battery.cz"
+  })[merchant] || merchant;
 }
 
 function escapeHtml(value) {
