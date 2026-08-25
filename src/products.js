@@ -9,6 +9,16 @@ const MERCHANTS = {
     affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4",
     destinationParam: "desturl"
   },
+  solarimport: {
+    hostname: "www.solar-import.cz",
+    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=35cb7fb0",
+    destinationParam: "desturl"
+  },
+  batterycz: {
+    hostname: "www.battery.cz",
+    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7095cb16",
+    destinationParam: "desturl"
+  },
   padabo: {
     hostname: "www.padabo.sk",
     affiliateBaseUrl: null,
@@ -132,7 +142,7 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
     chargingBatteryTypes: extractChargingBatteryTypes(primary, fallback),
     batteryType: /lifepo4|lithium(?:-ion)?/i.test(`${primary} ${fallback}`)
       ? "lifepo4"
-      : /\bagm\b|olov/i.test(`${primary} ${fallback}`)
+      : /\bagm\b|olov|gelov|\bgel\b/i.test(`${primary} ${fallback}`)
         ? "lead"
         : null,
     pureSine: /modifikovan(?:ý|á|ou) (?:sinus|sínus)/i.test(`${primary} ${fallback}`)
@@ -145,6 +155,7 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
 
 export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {}) {
   const accessory = /\b(pouzdro|puzdro|obal|box|držák|držiak|rámeček|rámček|kabel|kábel|konektor|svorka|displej|ukazatel|modul|adaptér|průchodka|priechodka|spojler|ventil)\b/i;
+  const multiComponentBundle = /\b(set|sestava|zostava|kit)\b/i.test(name);
   const chargerPath = /nabíječky[, ]+boostery|nabíjačky[, ]+boostery/i.test(categoryPath);
   const chargerAccessory = /\b(usb|startér|štartér|powerbank|čidlo|snímač|ovládání|ovládanie|kabel|kábel|zástrčka|pohotovostní)\b/i.test(name);
   const explicitDcCharger = /\bdc\s*[-–]?\s*dc\b|posilovač nabíjení|posilňovač nabíjania|charge booster|nabíjecí booster|nabíjací booster|f\.?\s*alternátor/i.test(name);
@@ -156,10 +167,12 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
   if (chargerPath && explicitBatteryCharger && !explicitDcCharger && !chargerAccessory && !/solár|solar|integrovanou nabíječ|integrovanou nabíjač/i.test(name) && specs.currentA > 0 && specs.chargingVoltagesV?.length) {
     return "shore_charger";
   }
+  if (multiComponentBundle) return "other";
 
   const isBattery =
     /\b(baterie|batéria|akumulátor|lifepo4|lithium|agm)\b/i.test(name) &&
     !/vodovod|sprch|spotřební baterie|vodovodná batéria|príslušenstvo k batériám|příslušenství k bateriím/i.test(`${name} ${categoryPath}`) &&
+    !/autobaterie|motobaterie|osobní auta|nákladní vozy|vše pro motorky|startovací baterie|startovací zdroje|packy pro ups|lifepo4 články|testery baterií|měření napětí|nabíječky|nabíjačky|nabíječe/i.test(categoryPath) &&
     !accessory.test(name) &&
     specs.capacityAh > 0;
   if (isBattery) return "battery";
@@ -231,7 +244,7 @@ function scoreProduct(product, setup) {
     if (!specs.voltageV) return null;
     if (specs.voltageV !== setup.systemVoltage) return null;
     if (!specs.capacityAh || specs.capacityAh < setup.batteryAh) return null;
-    if (specs.batteryType && setup.batteryType && specs.batteryType !== setup.batteryType) return null;
+    if (!specs.batteryType || specs.batteryType !== setup.batteryType) return null;
     fit = specs.capacityAh / setup.batteryAh;
   }
   if (product.category === "solar_panel") {
@@ -304,10 +317,13 @@ function hasPureSineEvidence(product) {
 }
 
 function uniqueProductPages(candidates) {
-  const seen = new Set();
+  const seenPages = new Set();
+  const seenProducts = new Set();
   return candidates.filter(({ product }) => {
-    if (seen.has(product.productUrl)) return false;
-    seen.add(product.productUrl);
+    const identity = `${product.category}:${cleanText(product.name).toLocaleLowerCase("cs-CZ")}`;
+    if (seenPages.has(product.productUrl) || seenProducts.has(identity)) return false;
+    seenPages.add(product.productUrl);
+    seenProducts.add(identity);
     return true;
   });
 }
@@ -385,7 +401,9 @@ function normalizeImageUrl(value) {
 function normalizeAvailability(value) {
   if (typeof value === "boolean") return value;
   if (value === null || value === undefined || value === "") return null;
-  return /skladem|in stock|true|^0$|^1$/i.test(String(value));
+  const normalized = String(value).trim();
+  if (/^\d+$/.test(normalized)) return Number(normalized) >= 0;
+  return /skladem|in stock|true/i.test(normalized);
 }
 
 function parsePrice(value) {
@@ -413,7 +431,7 @@ function extractNominalVoltage(text) {
   const values = [...text.matchAll(/(\d+(?:[.,]\d+)?)\s*v\b/gi)]
     .map((match) => parseLocalizedNumber(match[1]))
     .filter(Number.isFinite);
-  const exactNominals = values.filter((value) => [6, 12, 24, 36, 48].includes(value));
+  const exactNominals = values.filter((value) => [6, 8, 12, 24, 36, 48].includes(value));
   if (exactNominals.length) return exactNominals.at(-1);
   for (const measured of values) {
     if (measured >= 10 && measured < 16) return 12;

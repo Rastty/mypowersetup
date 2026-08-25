@@ -625,3 +625,20 @@ test("both calculators compare a portable power station without claiming a produ
   assert.match(methodSk, /denné Wh × dni autonómie × 1,15 ÷ 0,80/);
   assert.doesNotMatch(`${cs}${sk}`, /BLUETTI|ALLPOWERS/i);
 });
+
+test("Czech product sync accepts optional Solar-import and Battery.cz feeds safely", async () => {
+  const [sync, workflow, app] = await Promise.all([
+    readFile("scripts/sync-products.mjs", "utf8"),
+    readFile(".github/workflows/sync-products.yml", "utf8"),
+    readFile("src/app.js", "utf8")
+  ]);
+
+  assert.ok(sync.includes('["solarimport", process.env.SOLAR_IMPORT_FEED_URL, false]'));
+  assert.ok(sync.includes('["batterycz", process.env.BATTERY_CZ_FEED_URL, false]'));
+  assert.ok(sync.includes('status: "disabled"'));
+  assert.ok(sync.includes("previousProducts.filter((product) => product.merchant === merchant)"));
+  assert.ok(workflow.includes("SOLAR_IMPORT_FEED_URL: ${{ secrets.SOLAR_IMPORT_FEED_URL }}"));
+  assert.ok(workflow.includes("BATTERY_CZ_FEED_URL: ${{ secrets.BATTERY_CZ_FEED_URL }}"));
+  assert.ok(app.includes('solarimport: "Solar-import.cz"'));
+  assert.ok(app.includes('batterycz: "Battery.cz"'));
+});

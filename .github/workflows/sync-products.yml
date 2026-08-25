@@ -28,6 +28,8 @@ jobs:
         env:
           RESLSHOP_FEED_URL: ${{ secrets.RESLSHOP_FEED_URL }}
           SVETKARAVANU_FEED_URL: ${{ secrets.SVETKARAVANU_FEED_URL }}
+          SOLAR_IMPORT_FEED_URL: ${{ secrets.SOLAR_IMPORT_FEED_URL }}
+          BATTERY_CZ_FEED_URL: ${{ secrets.BATTERY_CZ_FEED_URL }}
       - run: node --test
       - name: Commit refreshed catalog
         run: |
