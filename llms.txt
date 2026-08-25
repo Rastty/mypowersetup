@@ -11,6 +11,7 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 - [Slovenské centrum návodov](https://mypowersetup.com/sk/sprievodca/): Rozcestník slovenských výpočtov a rozhodovacích návodov.
 - [Kapacita batérie do karavanu](https://mypowersetup.com/sk/sprievodca/kapacita-baterie-do-karavanu/): Slovenský výpočet Wh a Ah podľa spotreby, autonómie a chémie batérie.
 - [AGM vs. LiFePO4 do karavanu](https://mypowersetup.com/sk/sprievodca/agm-vs-lifepo4/): Slovenské porovnanie využiteľnej energie, hmotnosti, nabíjania a vhodného použitia.
+- [Koľko W solárnych panelov](https://mypowersetup.com/sk/sprievodca/kolko-w-solarnych-panelov/): Slovenský návrh Wp podľa dennej spotreby, sezóny, rezervy a systémových strát.
 - [Slovenská metodika](https://mypowersetup.com/sk/metodika/): Vzorce, predpoklady, rezervy a pravidlá produktového párovania.
 - [O projekte – Slovensko](https://mypowersetup.com/sk/o-projekte/): Autor, skúsenosti, redakčné zásady a kontakt.
 - [Affiliate transparentnosť – Slovensko](https://mypowersetup.com/sk/affiliate/): Ako fungujú provízie a prečo nemenia technické skóre.
