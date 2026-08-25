@@ -1,6 +1,6 @@
 import { APPLIANCES } from "./catalog-sk.js?v=20260823-custom1";
 import { calculateSetup } from "./engine.js?v=20260821-sk1";
-import { recommendProducts } from "./products.js?v=20260822-packages1";
+import { recommendProducts } from "./products.js?v=20260825-merchants1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260823-custom1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
