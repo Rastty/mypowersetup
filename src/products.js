@@ -1,15 +1,23 @@
 const MERCHANTS = {
   reslshop: {
     hostname: "www.reslshop.cz",
-    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=c38e2d15"
+    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=c38e2d15",
+    destinationParam: "desturl"
   },
   svetkaravanu: {
     hostname: "www.svetkaravanu.cz",
-    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4"
+    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4",
+    destinationParam: "desturl"
   },
   padabo: {
     hostname: "www.padabo.sk",
-    affiliateBaseUrl: null
+    affiliateBaseUrl: null,
+    destinationParam: "desturl"
+  },
+  bluetti: {
+    hostname: "www.bluettipower.com",
+    affiliateBaseUrl: "https://www.dpbolvw.net/click-101869970-17110660",
+    destinationParam: "url"
   }
 };
 
@@ -105,7 +113,7 @@ export function buildAffiliateUrl(merchantKey, productUrl) {
   }
   const destination = validateProductUrl(productUrl, merchant.hostname);
   const affiliateUrl = new URL(merchant.affiliateBaseUrl);
-  affiliateUrl.searchParams.set("desturl", destination.toString());
+  affiliateUrl.searchParams.set(merchant.destinationParam || "desturl", destination.toString());
   return affiliateUrl.toString();
 }
 
