@@ -9,6 +9,7 @@ import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
 import { buildProductPackages } from "./packages.js?v=20260823-packages2";
+import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -357,8 +358,30 @@ function renderResult(result) {
   renderChargingPlan(result.charging, result.systemVoltage);
   renderRoofFit(result.roof);
   renderInstallationPlan(result);
+  renderPowerStationComparison(result);
 
   renderProductRecommendations(result);
+}
+
+function renderPowerStationComparison(result) {
+  const profile = calculatePowerStationProfile(result);
+  const target = document.querySelector("#power-station-profile");
+  const verdict = {
+    compact: ["Kompaktní power station dává smysl k porovnání", "Výsledek se vejde do běžné přenosné kategorie. Rozhodují ale konkrétní výstupy, konektory a způsob dobíjení."],
+    large: ["Porovnávejte velkou nebo rozšiřitelnou power station", "Požadavky jsou vyšší; pečlivě ověřte hmotnost, rozšíření baterie, solární vstup a trvalý výkon."],
+    individual: ["Vestavná sestava bude obvykle vhodnější", "Potřebná kapacita nebo výkon přesahují běžnou přenosnou kategorii. Power station může vyžadovat rozšiřující baterie či individuální návrh."]
+  }[profile.profile];
+  target.innerHTML = [
+    powerStationCard("Orientační závěr", verdict[0], verdict[1]),
+    powerStationCard("Minimální jmenovitá kapacita", `${profile.capacityWh} Wh`, `Počítáme s ${profile.assumptions.capacityReservePercent}% rezervou a pouze ${profile.assumptions.usableRatioPercent}% využitím jmenovité kapacity.`),
+    powerStationCard("Trvalý AC výstup", profile.acOutputWatts ? `alespoň ${profile.acOutputWatts} W` : "Není nutný", profile.acOutputWatts ? "Ověřte také krátkodobý rozběhový výkon konkrétního modelu." : "Vybrané spotřebiče nevyžadují 230 V."),
+    powerStationCard("Solární vstup", `alespoň ${profile.solarInputWatts} W`, "Pro využití navrženého pole. Ověřte také povolené napětí Voc, proud a konektory."),
+    powerStationCard("12V DC výstup", profile.dcContinuousWatts ? `nejméně ${profile.dcOutputAmpsAt12V} A` : "Bez DC požadavku", profile.dcContinuousWatts ? `Součet zadaných DC příkonů je ${Math.round(profile.dcContinuousWatts)} W; ověřte regulovaný výstup a souběh zásuvek.` : "Ve výběru není DC spotřebič.")
+  ].join("");
+}
+
+function powerStationCard(label, value, description) {
+  return `<article class="charging-card"><span>${label}</span><strong>${value}</strong><p>${description}</p></article>`;
 }
 
 function renderInstallationPlan(result) {

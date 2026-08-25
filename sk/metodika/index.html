@@ -28,7 +28,7 @@
 <main class="article-layout">
 <article class="article">
 <div class="answer">
-<strong>Verzia metodiky: 1.3 · 23. 8. 2026</strong>Výpočet je deterministický: rovnaké vstupy dávajú rovnaký výsledok. Nepoužíva generatívnu AI ani skryté produktové preferencie.</div>
+<strong>Verzia metodiky: 1.4 · 25. 8. 2026</strong>Výpočet je deterministický: rovnaké vstupy dávajú rovnaký výsledok. Nepoužíva generatívnu AI ani skryté produktové preferencie.</div>
 <h2 id="spotreba">Denná spotreba</h2>
 <div class="formula">Wh/deň = súčet výkon × hodiny používania × počet kusov</div>
 <p>Prednastavené hodnoty sú orientačné. Pre presnejší výsledok má prednosť štítok, dokumentácia alebo vlastné meranie.</p>
@@ -48,6 +48,9 @@
 <div class="formula">odhad vstupných A DC–DC = navrhnuté výstupné A × napätie batérie ÷ napätie štartovacej sústavy ÷ 0,90</div>
 <p>Výsledok hovorí, aký priemerný výstupný prúd by mal počas zadanej doby nahradiť jednu dennú spotrebu. Účinnosť 90 % je konzervatívny návrhový predpoklad, nie vlastnosť konkrétneho výrobku. Odhad vstupného prúdu slúži na včasné odhalenie vysokého zaťaženia alternátora, najmä pri prevode 12→24 V. Kalkulačka zaokrúhľuje výstup nahor na bežný menovitý prúd a odporúčanie zobrazí iba do internej návrhovej hranice 0,2 C pre LiFePO₄ a 0,1 C pre AGM/olovo. Tieto hranice nie sú univerzálne povolené maximá; vždy rozhoduje dokumentácia batérie a BMS.</p>
 <p>Pri DC–DC dobíjaní treba overiť voľnú kapacitu alternátora (najmä na voľnobehu), skutočný maximálny vstupný aj výstupný prúd, podporu inteligentného alternátora, prierez a dĺžku káblov, istenie a chladenie. Pri 24V nadstavbovej batérii s 12V štartovacou sústavou je nutná nabíjačka, ktorá výslovne podporuje prevod 12→24 V; pre návrh kábla a istenia rozhoduje manuál konkrétneho zariadenia, nie iba orientačný odhad. Pri sieťovej nabíjačke musí zodpovedať napätie, chémia a nabíjací profil. Pozri oficiálny <a href="https://www.victronenergy.com/media/pg/Orion_XS_12-12-50A_DC-DC_battery_charger/en/index-en.html" rel="external">manuál Victron Orion XS</a>, jeho <a href="https://www.victronenergy.com/media/pg/Orion_XS_12-12-50A_DC-DC_battery_charger/en/installation.html" rel="external">tabuľky káblov a poistiek</a> a <a href="https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/dc-wiring.html" rel="external">Wiring Unlimited</a>.</p>
+<h2 id="power-station">Prenosná power station</h2>
+<div class="formula">menovitá Wh = denné Wh × dni autonómie × 1,15 ÷ 0,80</div>
+<p>Porovnanie používa konzervatívne 80 % menovitej kapacity pre súhrn strát a rezervu. Požadovaný trvalý AC výkon preberá z návrhu meniča, požadovaný solárny vstup z návrhu panelov a 12V DC prúd zo súčtu menovitých príkonov vybraných DC spotrebičov. Výsledok je minimálny profil, nie potvrdenie kompatibility konkrétneho výrobku. Pred nákupom treba overiť trvalý aj rozbehový výkon, skutočne využiteľnú kapacitu, napätie a prúd solárneho vstupu, regulovaný 12V výstup, súbeh zásuviek, konektory, teploty a možnosti opravy či rozšírenia.</p>
 <h2 id="produkty">Produktové párovanie</h2>
 <ol>
 <li>Produkt musí byť zaradený do správnej kategórie.</li>
@@ -69,6 +72,7 @@
 <a href="#menic">Menič a MPPT</a>
 <a href="#kabel">Káble a úbytok</a>
 <a href="#dobijanie">Dobíjanie</a>
+<a href="#power-station">Power station</a>
 <a href="#produkty">Produkty</a>
 <a href="#obmedzenia">Obmedzenia</a>
 </aside>
