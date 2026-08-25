@@ -219,7 +219,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260824-funnel1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260825-powerstation1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260822-packages1"'));
@@ -314,7 +314,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260824-funnel1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260825-powerstation1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));
@@ -601,4 +601,27 @@ test("AGM and LiFePO4 guides use the same conservative battery assumptions", asy
   assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/agm-vs-lifepo4/"'));
   assert.match(catalog, /lead: \{[^}]*usableDepth: 0\.5/s);
   assert.match(catalog, /lifepo4: \{[^}]*usableDepth: 0\.8/s);
+});
+
+test("both calculators compare a portable power station without claiming a product match", async () => {
+  const [cs, sk, app, appSk, module, method, methodSk] = await Promise.all([
+    readFile("index.html", "utf8"),
+    readFile("sk/index.html", "utf8"),
+    readFile("src/app.js", "utf8"),
+    readFile("src/app-sk.js", "utf8"),
+    readFile("src/power-station.js", "utf8"),
+    readFile("metodika/index.html", "utf8"),
+    readFile("sk/metodika/index.html", "utf8")
+  ]);
+
+  assert.ok(cs.includes('id="power-station-profile"'));
+  assert.ok(sk.includes('id="power-station-profile"'));
+  assert.match(cs, /Nejde o doporučení konkrétní značky/);
+  assert.match(sk, /Nejde o odporúčanie konkrétnej značky/);
+  assert.ok(app.includes("calculatePowerStationProfile(result)"));
+  assert.ok(appSk.includes("calculatePowerStationProfile(result)"));
+  assert.ok(module.includes("const CONSERVATIVE_USABLE_RATIO = 0.8"));
+  assert.match(method, /denní Wh × dny autonomie × 1,15 ÷ 0,80/);
+  assert.match(methodSk, /denné Wh × dni autonómie × 1,15 ÷ 0,80/);
+  assert.doesNotMatch(`${cs}${sk}`, /BLUETTI|ALLPOWERS/i);
 });
