@@ -24,6 +24,7 @@ const slovakPages = [
   ["sk/sprievodca/kapacita-baterie-do-karavanu/index.html", "https://mypowersetup.com/sk/sprievodca/kapacita-baterie-do-karavanu/", "https://mypowersetup.com/pruvodce/kapacita-baterie-do-karavanu/"],
   ["sk/sprievodca/agm-vs-lifepo4/index.html", "https://mypowersetup.com/sk/sprievodca/agm-vs-lifepo4/", "https://mypowersetup.com/pruvodce/agm-vs-lifepo4/"],
   ["sk/sprievodca/kolko-w-solarnych-panelov/index.html", "https://mypowersetup.com/sk/sprievodca/kolko-w-solarnych-panelov/", "https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/"],
+  ["sk/sprievodca/ako-vybrat-mppt-regulator/index.html", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-mppt-regulator/", "https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/"],
   ["sk/o-projekte/index.html", "https://mypowersetup.com/sk/o-projekte/", "https://mypowersetup.com/o-projektu/"],
   ["sk/metodika/index.html", "https://mypowersetup.com/sk/metodika/", "https://mypowersetup.com/metodika/"],
   ["sk/affiliate/index.html", "https://mypowersetup.com/sk/affiliate/", "https://mypowersetup.com/affiliate/"],
@@ -619,6 +620,23 @@ test("Czech and Slovak solar guides share the calculator assumptions and recipro
   assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/"'));
   assert.match(slovak, /4,5 špičkovej hodiny v lete/);
   assert.match(full, /4,5 hodiny pro léto, 3 hodiny pro jaro nebo podzim a 1,5 hodiny pro zimu/);
+});
+
+test("Czech and Slovak MPPT guides share bounded checks and reciprocal language links", async () => {
+  const [czech, slovak] = await Promise.all([
+    readFile("pruvodce/jak-vybrat-mppt-regulator/index.html", "utf8"),
+    readFile("sk/sprievodca/ako-vybrat-mppt-regulator/index.html", "utf8"),
+  ]);
+  for (const html of [czech, slovak]) {
+    assert.match(html, /400 ÷ 12 × 1,25 ≈ 42 A/);
+    assert.match(html, /Voc/);
+    assert.match(html, /Isc/);
+    assert.match(html, /290 W/);
+    assert.match(html, /580 W/);
+    assert.ok(html.includes("technical-specifications.html"));
+  }
+  assert.ok(czech.includes('hreflang="sk-SK" href="https://mypowersetup.com/sk/sprievodca/ako-vybrat-mppt-regulator/"'));
+  assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/"'));
 });
 
 test("both calculators compare a portable power station without claiming a product match", async () => {
