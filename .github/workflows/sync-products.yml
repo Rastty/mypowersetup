@@ -28,6 +28,7 @@ jobs:
         env:
           RESLSHOP_FEED_URL: ${{ secrets.RESLSHOP_FEED_URL }}
           SVETKARAVANU_FEED_URL: ${{ secrets.SVETKARAVANU_FEED_URL }}
+          # Optional partner feeds remain disabled until their repository secrets exist.
           SOLAR_IMPORT_FEED_URL: ${{ secrets.SOLAR_IMPORT_FEED_URL }}
           BATTERY_CZ_FEED_URL: ${{ secrets.BATTERY_CZ_FEED_URL }}
       - run: node --test
