@@ -23,6 +23,18 @@ const COPY = {
     locale: "sk-SK",
     url: "https://mypowersetup.com/sk/",
   },
+  pl: {
+    title: "MyPowerSetup — orientacyjny projekt",
+    daily: "Dzienne zużycie energii",
+    battery: "Akumulator",
+    solar: "Panele fotowoltaiczne",
+    inverter: "Przetwornica",
+    noInverter: "nie jest potrzebna",
+    controller: "Regulator MPPT",
+    warning: "Wynik orientacyjny — przed montażem sprawdź parametry, zabezpieczenia i przewody.",
+    locale: "pl-PL",
+    url: "https://mypowersetup.com/pl/",
+  },
 };
 
 export function buildResultShareText(result, language = "cs", resultUrl) {
