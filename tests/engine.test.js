@@ -99,3 +99,28 @@ test("returns Slovak result labels and warnings without changing the calculation
   assert.ok(result.warnings.some((warning) => /Motorové spotrebiče/.test(warning)));
   assert.ok(result.warnings.some((warning) => /odporučili 12V systém/.test(warning)));
 });
+
+test("returns Polish result labels and warnings without changing the calculation", () => {
+  const result = calculateSetup({
+    locale: "pl",
+    appliances: [
+      { selected: true, name: "Pompa wody", watts: 60, hours: 1, quantity: 1, ac: true, surge: 2 }
+    ],
+    autonomyDays: 1,
+    season: "winter",
+    batteryType: "lead",
+    systemVoltage: "24"
+  });
+
+  assert.equal(result.seasonLabel, "Zima");
+  assert.equal(result.locale, "pl");
+  assert.equal(result.batteryLabel, "AGM / kwasowo-ołowiowy");
+  assert.ok(result.warnings.some((warning) => /Zimą należy liczyć/.test(warning)));
+  assert.ok(result.warnings.some((warning) => /Urządzenia z silnikiem/.test(warning)));
+  assert.ok(result.warnings.some((warning) => /zalecamy system 12 V/.test(warning)));
+});
+
+test("missing appliance error follows the requested locale", () => {
+  assert.throws(() => calculateSetup({ locale: "sk", appliances: [] }), /Vyberte aspoň jeden spotrebič/);
+  assert.throws(() => calculateSetup({ locale: "pl", appliances: [] }), /Wybierz co najmniej jedno urządzenie/);
+});
