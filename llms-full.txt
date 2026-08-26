@@ -1,6 +1,6 @@
 # MyPowerSetup: výpočtová a redakční pravidla
 
-Aktualizováno: 2026-08-25
+Aktualizováno: 2026-08-26
 
 ## Účel
 

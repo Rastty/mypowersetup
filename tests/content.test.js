@@ -25,6 +25,8 @@ const slovakPages = [
   ["sk/sprievodca/agm-vs-lifepo4/index.html", "https://mypowersetup.com/sk/sprievodca/agm-vs-lifepo4/", "https://mypowersetup.com/pruvodce/agm-vs-lifepo4/"],
   ["sk/sprievodca/kolko-w-solarnych-panelov/index.html", "https://mypowersetup.com/sk/sprievodca/kolko-w-solarnych-panelov/", "https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/"],
   ["sk/sprievodca/ako-vybrat-mppt-regulator/index.html", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-mppt-regulator/", "https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/"],
+  ["sk/sprievodca/ako-vybrat-dc-dc-nabijacku/index.html", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-dc-dc-nabijacku/", "https://mypowersetup.com/pruvodce/jak-vybrat-dc-dc-nabijecku/"],
+  ["sk/sprievodca/ako-vybrat-nabijacku-230-v/index.html", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-nabijacku-230-v/", "https://mypowersetup.com/pruvodce/jak-vybrat-nabijecku-230-v/"],
   ["sk/o-projekte/index.html", "https://mypowersetup.com/sk/o-projekte/", "https://mypowersetup.com/o-projektu/"],
   ["sk/metodika/index.html", "https://mypowersetup.com/sk/metodika/", "https://mypowersetup.com/metodika/"],
   ["sk/affiliate/index.html", "https://mypowersetup.com/sk/affiliate/", "https://mypowersetup.com/affiliate/"],
@@ -637,6 +639,38 @@ test("Czech and Slovak MPPT guides share bounded checks and reciprocal language 
   }
   assert.ok(czech.includes('hreflang="sk-SK" href="https://mypowersetup.com/sk/sprievodca/ako-vybrat-mppt-regulator/"'));
   assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/"'));
+});
+
+test("Czech and Slovak DC-DC guides share the charging model and reciprocal language links", async () => {
+  const [czech, slovak, charging] = await Promise.all([
+    readFile("pruvodce/jak-vybrat-dc-dc-nabijecku/index.html", "utf8"),
+    readFile("sk/sprievodca/ako-vybrat-dc-dc-nabijacku/index.html", "utf8"),
+    readFile("src/charging.js", "utf8"),
+  ]);
+  for (const html of [czech, slovak]) {
+    assert.match(html, /600 ÷ 2 ÷ 12 ÷ 0,90 ≈ 27,8 A/);
+    assert.match(html, /0,2 C/);
+    assert.match(html, /0,1 C/);
+    assert.ok(html.includes("Orion-Tr_Smart"));
+  }
+  assert.ok(czech.includes('hreflang="sk-SK" href="https://mypowersetup.com/sk/sprievodca/ako-vybrat-dc-dc-nabijacku/"'));
+  assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/jak-vybrat-dc-dc-nabijecku/"'));
+  assert.ok(charging.includes("const CHARGING_EFFICIENCY = 0.9"));
+});
+
+test("Czech and Slovak 230V charger guides share the charging model and reciprocal language links", async () => {
+  const [czech, slovak] = await Promise.all([
+    readFile("pruvodce/jak-vybrat-nabijecku-230-v/index.html", "utf8"),
+    readFile("sk/sprievodca/ako-vybrat-nabijacku-230-v/index.html", "utf8"),
+  ]);
+  for (const html of [czech, slovak]) {
+    assert.match(html, /600 ÷ 8 ÷ 12 ÷ 0,90 ≈ 6,9 A/);
+    assert.match(html, /0,2 C/);
+    assert.match(html, /0,1 C/);
+    assert.ok(html.includes("Blue_Smart_IP22_Charger_230V_manual"));
+  }
+  assert.ok(czech.includes('hreflang="sk-SK" href="https://mypowersetup.com/sk/sprievodca/ako-vybrat-nabijacku-230-v/"'));
+  assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/jak-vybrat-nabijecku-230-v/"'));
 });
 
 test("both calculators compare a portable power station without claiming a product match", async () => {
