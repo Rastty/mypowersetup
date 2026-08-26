@@ -157,6 +157,20 @@ for (const [file, canonical, czechAlternate] of slovakPages) {
   });
 }
 
+test("every Slovak content page has complete share and language metadata", async () => {
+  for (const [file, canonical, czechAlternate] of slovakPages) {
+    const html = await readFile(file, "utf8");
+    assert.match(html, /<meta property="og:title" content="[^"]+">/);
+    assert.match(html, /<meta property="og:description" content="[^"]{70,}">/);
+    assert.ok(html.includes(`<meta property="og:url" content="${canonical}">`));
+    assert.ok(html.includes('<meta property="og:locale" content="sk_SK">'));
+    assert.ok(html.includes('<meta property="og:image" content="https://mypowersetup.com/social-card.png">'));
+    assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image">'));
+    assert.ok(html.includes('<meta name="twitter:image" content="https://mypowersetup.com/social-card.png">'));
+    assert.ok(html.includes(`hreflang="x-default" href="${czechAlternate}"`));
+  }
+});
+
 test("affiliate recommendations are disclosed and measurable", async () => {
   const [html, app] = await Promise.all([
     readFile("index.html", "utf8"),
