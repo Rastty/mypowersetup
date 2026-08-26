@@ -30,6 +30,14 @@ test("Slovak share summary is localized and handles a DC-only setup", () => {
   assert.match(text, /https:\/\/mypowersetup\.com\/sk\//);
 });
 
+test("Polish share summary is localized and uses the future Polish route", () => {
+  const text = buildResultShareText({ ...result, inverterWatts: 0 }, "pl");
+  assert.match(text, /MyPowerSetup — orientacyjny projekt/);
+  assert.match(text, /Dzienne zużycie energii: 1,25 kWh/);
+  assert.match(text, /Przetwornica: nie jest potrzebna/);
+  assert.match(text, /https:\/\/mypowersetup\.com\/pl\//);
+});
+
 test("copyText prefers the Clipboard API", async () => {
   let copied = "";
   const success = await copyText("návrh", {
