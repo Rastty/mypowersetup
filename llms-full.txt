@@ -24,6 +24,8 @@ DC–DC a 230V nabíječka se předběžně dimenzují z denní spotřeby dělen
 
 Průřez měděného kabelu se orientačně počítá z dvojnásobku jednosměrné délky, proudu a měrného odporu 0,0175 Ω·mm²/m děleného dovoleným úbytkem ve voltech. Pro větev baterie–měnič se používá cíl 2,5 % a pro vstup DC–DC 3 %. Výsledek se zaokrouhluje na vyšší běžný průřez, ale pokrývá pouze úbytek napětí. Proudová zatížitelnost, teplota, uložení, izolace, svorky a manuál mohou vyžadovat větší průřez. Konkrétní pojistku kalkulátor neurčuje.
 
+Slovenský návod pro kabely a jištění používá totožný model. Výslovně odděluje výpočet úbytku napětí od proudové zatížitelnosti a neurčuje konkrétní pojistku ani bezpečnost montáže.
+
 Pokud uživatel zadá délku a šířku největšího volného obdélníku na střeše, kalkulátor provede konzervativní geometrickou kontrolu s referenčními panely 95, 130 a 190 Wp z oficiálního datasheetu Victron BlueSolar. Hledá jednotnou orientaci stejných panelů, která pokryje vypočtený výkon. Kontrola nezapočítává držáky, montážní mezery, stínění, servisní přístup ani jiné tvary volné plochy; před nákupem rozhodují skutečné rozměry konkrétního panelu a střechy.
 
 ## Produktové párování
