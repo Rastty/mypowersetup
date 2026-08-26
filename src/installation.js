@@ -33,6 +33,23 @@ const COPY = {
     acDetail: "230V časť musí mať zodpovedajúcu ochranu, odpájanie, uzemnenie a prúdový chránič podľa inštalácie; realizáciu zverte kvalifikovanej osobe.",
     shoreDcDetail: "Overiť DC kábel, poistku pri batérii, nabíjací profil, maximálny prúd batérie/BMS a odvod tepla.",
   },
+  pl: {
+    solarToController: "Panele fotowoltaiczne → regulator MPPT",
+    controllerToBattery: "Regulator MPPT → akumulator pokładowy",
+    batteryToDistribution: "Akumulator pokładowy → rozdzielnia DC",
+    batteryToInverter: "Akumulator pokładowy → przetwornica",
+    starterToDcDc: "Akumulator rozruchowy → ładowarka DC–DC",
+    dcDcToBattery: "Ładowarka DC–DC → akumulator pokładowy",
+    shoreToCharger: "Przyłącze 230 V → ładowarka sieciowa",
+    chargerToBattery: "Ładowarka sieciowa → akumulator pokładowy",
+    solarDetail: "Sprawdź Voc i Isc przy najniższej temperaturze, przekrój przewodów, złącza, odłączanie oraz wymagania dotyczące zabezpieczenia pola PV.",
+    dcDetail: "Sprawdź przekrój i obciążalność prądową przewodu, spadek napięcia, bezpiecznik DC oraz jego położenie zgodnie z instrukcją urządzenia.",
+    inverterDetail: "Obwód wysokoprądowy: przewód powinien być możliwie krótki; sprawdź zaciski, zaciskanie końcówek, odciążenie mechaniczne i bezpiecznik wymagany przez producenta.",
+    dcDcInputDetail: "Sprawdź rzeczywisty prąd wejściowy, wolną wydajność alternatora, przewód, zabezpieczenie przy źródle i sterowanie inteligentnym alternatorem.",
+    dcDcOutputDetail: "Sprawdź przewód wyjściowy, zabezpieczenie przy akumulatorze, profil ładowania, BMS i chłodzenie ładowarki.",
+    acDetail: "Część 230 V wymaga odpowiedniej ochrony, odłączania, uziemienia i wyłącznika różnicowoprądowego; wykonanie powierz osobie z odpowiednimi kwalifikacjami.",
+    shoreDcDetail: "Sprawdź przewód DC, bezpiecznik przy akumulatorze, profil ładowania, maksymalny prąd akumulatora/BMS i odprowadzanie ciepła.",
+  },
 };
 
 export function buildInstallationPlan(result, locale = "cs") {
