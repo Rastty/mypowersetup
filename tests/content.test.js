@@ -47,8 +47,8 @@ for (const [file, canonical] of pages) {
   });
 }
 
-test("every Czech guide has a complete share preview", async () => {
-  for (const [file, canonical] of pages.filter(([file]) => file.startsWith("pruvodce/"))) {
+test("every Czech content page has a complete share preview", async () => {
+  for (const [file, canonical] of pages) {
     const html = await readFile(file, "utf8");
     assert.match(html, /<meta property="og:title" content="[^"]+">/);
     assert.match(html, /<meta property="og:description" content="[^"]{80,}">/);
