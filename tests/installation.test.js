@@ -31,6 +31,17 @@ test("adds both AC and DC sides of shore charging", () => {
   assert.match(plan.find(({ id }) => id === "shore-charger").detail, /prúdový chránič/);
 });
 
+test("Polish installation plan keeps every safety check", () => {
+  const plan = buildInstallationPlan({
+    systemVoltage: 12,
+    inverterWatts: 1200,
+    charging: { dcDc: { enabled: true }, shore: { enabled: true } },
+  }, "pl");
+  assert.match(plan.find(({ id }) => id === "starter-dcdc").label, /Akumulator rozruchowy/);
+  assert.match(plan.find(({ id }) => id === "battery-inverter").detail, /bezpiecznik wymagany przez producenta/);
+  assert.match(plan.find(({ id }) => id === "shore-charger").detail, /wyłącznika różnicowoprądowego/);
+});
+
 test("refuses an incomplete setup", () => {
   assert.deepEqual(buildInstallationPlan(null), []);
   assert.deepEqual(buildInstallationPlan({ systemVoltage: "unknown" }), []);

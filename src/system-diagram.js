@@ -21,6 +21,17 @@ const COPY = {
     verify: "Typ a hodnotu istenia určite podľa kábla, zariadenia a podmienok inštalácie.",
     noInverter: "Táto zostava nemá vybrané 230V spotrebiče, preto vetva meniča nie je potrebná.",
   },
+  pl: {
+    solar: "Panele fotowoltaiczne",
+    controller: "Regulator MPPT",
+    battery: "Akumulator",
+    protection: "Zabezpieczenie i odłączanie DC",
+    dcLoads: "Odbiorniki 12/24 V",
+    inverter: "Przetwornica z czystym sinusem",
+    acLoads: "Odbiorniki 230 V",
+    verify: "Typ i wartość zabezpieczenia dobierz do przewodu, urządzenia i warunków instalacji.",
+    noInverter: "W tym zestawie nie wybrano odbiorników 230 V, dlatego przetwornica nie jest potrzebna.",
+  },
 };
 
 export function buildSystemDiagram(result, locale = "cs") {

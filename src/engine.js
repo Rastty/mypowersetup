@@ -11,14 +11,24 @@ const ENGINE_TEXT = {
     batteries: { lifepo4: "LiFePO₄", lead: "AGM / olovo" },
     winterWarning: "V zimě počítejte s velkými výkyvy výroby a záložním způsobem dobíjení.",
     surgeWarning: "Motorové spotřebiče mohou mít krátkou rozběhovou špičku; ověřte ji v dokumentaci výrobce.",
-    voltageWarning: (voltage) => `Pro tuto velikost sestavy bychom standardně doporučili ${voltage}V systém.`
+    voltageWarning: (voltage) => `Pro tuto velikost sestavy bychom standardně doporučili ${voltage}V systém.`,
+    missingSelection: "Vyberte alespoň jeden spotřebič."
   },
   sk: {
     seasons: { summer: "Leto", shoulder: "Jar / jeseň", winter: "Zima" },
     batteries: { lifepo4: "LiFePO₄", lead: "AGM / olovo" },
     winterWarning: "V zime počítajte s veľkými výkyvmi výroby a záložným spôsobom dobíjania.",
     surgeWarning: "Motorové spotrebiče môžu mať krátku rozbehovú špičku; overte ju v dokumentácii výrobcu.",
-    voltageWarning: (voltage) => `Pre túto veľkosť zostavy by sme štandardne odporučili ${voltage}V systém.`
+    voltageWarning: (voltage) => `Pre túto veľkosť zostavy by sme štandardne odporučili ${voltage}V systém.`,
+    missingSelection: "Vyberte aspoň jeden spotrebič."
+  },
+  pl: {
+    seasons: { summer: "Lato", shoulder: "Wiosna / jesień", winter: "Zima" },
+    batteries: { lifepo4: "LiFePO₄", lead: "AGM / kwasowo-ołowiowy" },
+    winterWarning: "Zimą należy liczyć się z dużymi wahaniami produkcji i zapewnić zapasowy sposób ładowania.",
+    surgeWarning: "Urządzenia z silnikiem mogą mieć krótkotrwały prąd rozruchowy; sprawdź go w dokumentacji producenta.",
+    voltageWarning: (voltage) => `Dla zestawu tej wielkości standardowo zalecamy system ${voltage} V.`,
+    missingSelection: "Wybierz co najmniej jedno urządzenie."
   }
 };
 
@@ -28,11 +38,11 @@ export function roundUp(value, step) {
 }
 
 export function calculateSetup(input) {
-  const locale = input.locale === "sk" ? "sk" : "cs";
+  const locale = Object.hasOwn(ENGINE_TEXT, input.locale) ? input.locale : "cs";
   const text = ENGINE_TEXT[locale];
   const appliances = (input.appliances || []).filter((item) => item.selected);
   if (appliances.length === 0) {
-    throw new Error("Vyberte alespoň jeden spotřebič.");
+    throw new Error(text.missingSelection);
   }
 
   const autonomyDays = clampNumber(input.autonomyDays, 1, 7, 2);
