@@ -13,6 +13,8 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 - [AGM vs. LiFePO4 do karavanu](https://mypowersetup.com/sk/sprievodca/agm-vs-lifepo4/): Slovenské porovnanie využiteľnej energie, hmotnosti, nabíjania a vhodného použitia.
 - [Koľko W solárnych panelov](https://mypowersetup.com/sk/sprievodca/kolko-w-solarnych-panelov/): Slovenský návrh Wp podľa dennej spotreby, sezóny, rezervy a systémových strát.
 - [Ako vybrať MPPT regulátor](https://mypowersetup.com/sk/sprievodca/ako-vybrat-mppt-regulator/): Slovenská kontrola prúdu, Voc, Isc, FV výkonu a nabíjacieho profilu.
+- [Ako vybrať DC–DC nabíjačku](https://mypowersetup.com/sk/sprievodca/ako-vybrat-dc-dc-nabijacku/): Slovenský výpočet prúdu podľa spotreby a času jazdy, kontrola alternátora, batérie, káblov a istenia.
+- [Ako vybrať nabíjačku 230 V](https://mypowersetup.com/sk/sprievodca/ako-vybrat-nabijacku-230-v/): Slovenský výpočet prúdu a času nabíjania, profil batérie, prípojka a bezpečná inštalácia.
 - [Slovenská metodika](https://mypowersetup.com/sk/metodika/): Vzorce, predpoklady, rezervy a pravidlá produktového párovania.
 - [O projekte – Slovensko](https://mypowersetup.com/sk/o-projekte/): Autor, skúsenosti, redakčné zásady a kontakt.
 - [Affiliate transparentnosť – Slovensko](https://mypowersetup.com/sk/affiliate/): Ako fungujú provízie a prečo nemenia technické skóre.
