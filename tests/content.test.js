@@ -27,6 +27,7 @@ const slovakPages = [
   ["sk/sprievodca/ako-vybrat-mppt-regulator/index.html", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-mppt-regulator/", "https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/"],
   ["sk/sprievodca/ako-vybrat-dc-dc-nabijacku/index.html", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-dc-dc-nabijacku/", "https://mypowersetup.com/pruvodce/jak-vybrat-dc-dc-nabijecku/"],
   ["sk/sprievodca/ako-vybrat-nabijacku-230-v/index.html", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-nabijacku-230-v/", "https://mypowersetup.com/pruvodce/jak-vybrat-nabijecku-230-v/"],
+  ["sk/sprievodca/kable-a-poistky-12-v/index.html", "https://mypowersetup.com/sk/sprievodca/kable-a-poistky-12-v/", "https://mypowersetup.com/pruvodce/kabely-a-pojistky-12-v/"],
   ["sk/sprievodca/aky-velky-menic-do-karavanu/index.html", "https://mypowersetup.com/sk/sprievodca/aky-velky-menic-do-karavanu/", "https://mypowersetup.com/pruvodce/jak-velky-menic-do-karavanu/"],
   ["sk/sprievodca/spotreba-kompresorovej-chladnicky/index.html", "https://mypowersetup.com/sk/sprievodca/spotreba-kompresorovej-chladnicky/", "https://mypowersetup.com/pruvodce/spotreba-kompresorove-lednice/"],
   ["sk/o-projekte/index.html", "https://mypowersetup.com/sk/o-projekte/", "https://mypowersetup.com/o-projektu/"],
@@ -114,6 +115,27 @@ test("cable and fuse guide matches the bounded voltage-drop model", async () => 
   assert.ok(wiring.includes("maxVoltageDropPercent = 3"));
   assert.ok(hub.includes('/pruvodce/kabely-a-pojistky-12-v/'));
   assert.ok(llms.includes("Průřez měděného kabelu"));
+});
+
+test("Czech and Slovak cable guides share the bounded model and reciprocal language links", async () => {
+  const [czech, slovak, hub, full] = await Promise.all([
+    readFile("pruvodce/kabely-a-pojistky-12-v/index.html", "utf8"),
+    readFile("sk/sprievodca/kable-a-poistky-12-v/index.html", "utf8"),
+    readFile("sk/sprievodca/index.html", "utf8"),
+    readFile("llms-full.txt", "utf8"),
+  ]);
+  for (const html of [czech, slovak]) {
+    assert.match(html, /2 × jedno(?:směrná|smerná) (?:délka|dĺžka)/);
+    assert.match(html, /0,0175/);
+    assert.match(html, /2,5 %/);
+    assert.match(html, /3 %/);
+    assert.ok(html.includes("The_Wiring_Unlimited_book"));
+    assert.doesNotMatch(html, /(?:pojistk|jistič|poistk|istič)[^<.]{0,45}\b\d+\s*A\b/i);
+  }
+  assert.ok(czech.includes('hreflang="sk-SK" href="https://mypowersetup.com/sk/sprievodca/kable-a-poistky-12-v/"'));
+  assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/kabely-a-pojistky-12-v/"'));
+  assert.ok(hub.includes('/sk/sprievodca/kable-a-poistky-12-v/'));
+  assert.match(full, /Slovenský návod pro kabely a jištění používá totožný model/);
 });
 
 test("sitemap contains every published page", async () => {
