@@ -15,6 +15,8 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 - [Ako vybrať MPPT regulátor](https://mypowersetup.com/sk/sprievodca/ako-vybrat-mppt-regulator/): Slovenská kontrola prúdu, Voc, Isc, FV výkonu a nabíjacieho profilu.
 - [Ako vybrať DC–DC nabíjačku](https://mypowersetup.com/sk/sprievodca/ako-vybrat-dc-dc-nabijacku/): Slovenský výpočet prúdu podľa spotreby a času jazdy, kontrola alternátora, batérie, káblov a istenia.
 - [Ako vybrať nabíjačku 230 V](https://mypowersetup.com/sk/sprievodca/ako-vybrat-nabijacku-230-v/): Slovenský výpočet prúdu a času nabíjania, profil batérie, prípojka a bezpečná inštalácia.
+- [Aký veľký menič do karavanu](https://mypowersetup.com/sk/sprievodca/aky-velky-menic-do-karavanu/): Slovenský výpočet trvalého výkonu, rozbehovej špičky a prúdu odoberaného z batérie.
+- [Spotreba kompresorovej chladničky](https://mypowersetup.com/sk/sprievodca/spotreba-kompresorovej-chladnicky/): Slovenský výpočet Wh za deň, vplyv teploty, cyklovanie a meranie spotreby.
 - [Slovenská metodika](https://mypowersetup.com/sk/metodika/): Vzorce, predpoklady, rezervy a pravidlá produktového párovania.
 - [O projekte – Slovensko](https://mypowersetup.com/sk/o-projekte/): Autor, skúsenosti, redakčné zásady a kontakt.
 - [Affiliate transparentnosť – Slovensko](https://mypowersetup.com/sk/affiliate/): Ako fungujú provízie a prečo nemenia technické skóre.

@@ -27,6 +27,8 @@ const slovakPages = [
   ["sk/sprievodca/ako-vybrat-mppt-regulator/index.html", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-mppt-regulator/", "https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/"],
   ["sk/sprievodca/ako-vybrat-dc-dc-nabijacku/index.html", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-dc-dc-nabijacku/", "https://mypowersetup.com/pruvodce/jak-vybrat-dc-dc-nabijecku/"],
   ["sk/sprievodca/ako-vybrat-nabijacku-230-v/index.html", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-nabijacku-230-v/", "https://mypowersetup.com/pruvodce/jak-vybrat-nabijecku-230-v/"],
+  ["sk/sprievodca/aky-velky-menic-do-karavanu/index.html", "https://mypowersetup.com/sk/sprievodca/aky-velky-menic-do-karavanu/", "https://mypowersetup.com/pruvodce/jak-velky-menic-do-karavanu/"],
+  ["sk/sprievodca/spotreba-kompresorovej-chladnicky/index.html", "https://mypowersetup.com/sk/sprievodca/spotreba-kompresorovej-chladnicky/", "https://mypowersetup.com/pruvodce/spotreba-kompresorove-lednice/"],
   ["sk/o-projekte/index.html", "https://mypowersetup.com/sk/o-projekte/", "https://mypowersetup.com/o-projektu/"],
   ["sk/metodika/index.html", "https://mypowersetup.com/sk/metodika/", "https://mypowersetup.com/metodika/"],
   ["sk/affiliate/index.html", "https://mypowersetup.com/sk/affiliate/", "https://mypowersetup.com/affiliate/"],
@@ -671,6 +673,36 @@ test("Czech and Slovak 230V charger guides share the charging model and reciproc
   }
   assert.ok(czech.includes('hreflang="sk-SK" href="https://mypowersetup.com/sk/sprievodca/ako-vybrat-nabijacku-230-v/"'));
   assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/jak-vybrat-nabijecku-230-v/"'));
+});
+
+test("Czech and Slovak inverter guides share sizing examples and reciprocal language links", async () => {
+  const [czech, slovak] = await Promise.all([
+    readFile("pruvodce/jak-velky-menic-do-karavanu/index.html", "utf8"),
+    readFile("sk/sprievodca/aky-velky-menic-do-karavanu/index.html", "utf8"),
+  ]);
+  for (const html of [czech, slovak]) {
+    assert.match(html, /1 200 W/);
+    assert.match(html, /111 A/);
+    assert.match(html, /1 200 W (?:po dobu|počas) 15 sek/);
+    assert.ok(html.includes("Inverter_VE.Direct_230V"));
+  }
+  assert.ok(czech.includes('hreflang="sk-SK" href="https://mypowersetup.com/sk/sprievodca/aky-velky-menic-do-karavanu/"'));
+  assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/jak-velky-menic-do-karavanu/"'));
+});
+
+test("Czech and Slovak compressor fridge guides share measured examples and reciprocal language links", async () => {
+  const [czech, slovak] = await Promise.all([
+    readFile("pruvodce/spotreba-kompresorove-lednice/index.html", "utf8"),
+    readFile("sk/sprievodca/spotreba-kompresorovej-chladnicky/index.html", "utf8"),
+  ]);
+  for (const html of [czech, slovak]) {
+    assert.match(html, /268 Wh\/24 h/);
+    assert.match(html, /557 Wh\/24 h/);
+    assert.match(html, /12 V × 5 A × 24 h × 0,40 = 576 Wh/);
+    assert.ok(html.includes("dometic-crx-50t"));
+  }
+  assert.ok(czech.includes('hreflang="sk-SK" href="https://mypowersetup.com/sk/sprievodca/spotreba-kompresorovej-chladnicky/"'));
+  assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/spotreba-kompresorove-lednice/"'));
 });
 
 test("both calculators compare a portable power station without claiming a product match", async () => {
