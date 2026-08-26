@@ -34,6 +34,13 @@ test("diagram has localized Slovak safety copy", () => {
   assert.match(html, /hodnotu istenia určite/);
 });
 
+test("diagram has localized Polish safety copy", () => {
+  const html = buildSystemDiagram(baseResult, "pl");
+  assert.match(html, /Panele fotowoltaiczne/);
+  assert.match(html, /Zabezpieczenie i odłączanie DC/);
+  assert.match(html, /wartość zabezpieczenia dobierz/);
+});
+
 test("diagram refuses an incomplete result", () => {
   assert.equal(buildSystemDiagram({ systemVoltage: 12 }, "cs"), "");
 });
