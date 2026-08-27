@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T08:49:48.529Z",
+  "generatedAt": "2026-08-27T08:55:10.550Z",
   "market": "pl-PL",
   "currency": "PLN",
   "sources": {
@@ -7,7 +7,7 @@
       "status": "ok",
       "parsedProducts": 36,
       "relevantProducts": 28,
-      "technicallyVerifiedPowerStations": 1
+      "technicallyVerifiedPowerStations": 3
     }
   },
   "products": [
@@ -392,7 +392,7 @@
       "id": "allpowers_pl:8428259246235",
       "merchant": "allpowers_pl",
       "name": "Stacja Zasilania 1800W 1152Wh Akumulator LiFePO4 ALLPOWERS R1500",
-      "description": "",
+      "description": "Pojemność 1152 Wh. Wyjście AC 1800 W, czysta sinusoida. Wejście solarne maks. 650 W. Wyjście 12 V DC 10 A. Akumulator LiFePO4.",
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
@@ -413,10 +413,11 @@
           "lifepo4"
         ],
         "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
+        "pureSine": true,
+        "solarInputW": 650,
+        "dcOutputA": 10
+      },
+      "verifiedAt": "2026-08-27"
     },
     {
       "id": "allpowers_pl:8428256526491",
@@ -702,7 +703,7 @@
       "id": "allpowers_pl:8428244172955",
       "merchant": "allpowers_pl",
       "name": "Przenośna Stacja Zasilania 600W 299Wh Akumulator LiFePO4 ALLPOWERS R600",
-      "description": "Falownik sinusoidalny AC 600 W (przepięcie 1200 W); Pojemność 299 Wh; Maks. 400 W. Szybkie ładowanie; Akumulator LiFePO4 z ponad 3500 cyklami życia do 80%; 10 wyjść do ładowania wielu urządzeń jednocześnie; Inteligentne sterowanie i monitorowanie w aplikacji ALLPOWERS; Maks. 300 W. Wejście solarne; Łatwy do przenoszenia/Szybkie ładowanie/Bezpieczny i niezawodny/Ekonomiczny Obsługa UPS Klienci z innych krajów, takich jak Irlandia, którzy używają brytyjskich standardów wtyczek, mogą kupić online adapter do konwersji gniazdka ze standardu europejskiego na brytyjski",
+      "description": "Pojemność 299 Wh. Wyjście AC 600 W, czysta sinusoida. Wejście solarne maks. 220 W. Wyjście 12 V DC 10 A. Akumulator LiFePO4.",
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
@@ -723,10 +724,11 @@
           "lifepo4"
         ],
         "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
+        "pureSine": true,
+        "solarInputW": 220,
+        "dcOutputA": 10
+      },
+      "verifiedAt": "2026-08-27"
     },
     {
       "id": "allpowers_pl:8428243746971",

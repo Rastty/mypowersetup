@@ -54,6 +54,39 @@ test("ALLPOWERS PL deeplink rejects other hosts and non-product pages", () => {
   );
 });
 
+test("Awin deeplink keeps Power Queen US tracking and exact product destination", () => {
+  const destination = "https://ipowerqueen.com/products/power-queen-24v-50ah-smart-lifepo4-battery";
+  const affiliate = new URL(buildAffiliateUrl("powerqueen_us", destination));
+
+  assert.equal(affiliate.hostname, "www.awin1.com");
+  assert.equal(affiliate.searchParams.get("awinmid"), "97025");
+  assert.equal(affiliate.searchParams.get("awinaffid"), "3044971");
+  assert.equal(affiliate.searchParams.get("ued"), destination);
+});
+
+test("Power Queen US connector accepts batteries but rejects other markets and collection pages", () => {
+  const battery = normalizeProduct({
+    id: "24v-50ah-smart",
+    name: "Power Queen 24V 50Ah Smart LiFePO4 Battery",
+    category: "24V Lithium Batteries",
+    url: "https://ipowerqueen.com/products/power-queen-24v-50ah-smart-lifepo4-battery",
+    available: true
+  }, "powerqueen_us");
+
+  assert.equal(battery.category, "battery");
+  assert.equal(battery.specs.voltageV, 24);
+  assert.equal(battery.specs.capacityAh, 50);
+  assert.equal(battery.specs.batteryType, "lifepo4");
+  assert.throws(
+    () => buildAffiliateUrl("powerqueen_us", "https://www.ipowerqueen.de/products/power-queen-24v-50ah"),
+    /Neplatná produktová URL/
+  );
+  assert.throws(
+    () => buildAffiliateUrl("powerqueen_us", "https://ipowerqueen.com/collections/24v-batteries"),
+    /produktovou stránku/
+  );
+});
+
 test("ALLPOWERS power station is recommended only when every verified limit fits", () => {
   const product = normalizeProduct({
     id: "r1500-lite",
