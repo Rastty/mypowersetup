@@ -7,6 +7,7 @@
     "start": "node server.mjs",
     "test": "node --test",
     "sync:products": "node scripts/sync-products.mjs",
+    "sync:products:pl": "node scripts/sync-products-pl.mjs",
     "sync:products:sk": "node scripts/sync-products-sk.mjs"
   }
 }

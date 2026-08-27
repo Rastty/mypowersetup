@@ -8,6 +8,9 @@ on:
       - "src/products.js"
       - "src/feed.js"
       - "scripts/sync-products.mjs"
+      - "scripts/sync-products-pl.mjs"
+      - "src/shopify.js"
+      - "data/products-pl-verified.json"
       - ".github/workflows/sync-products.yml"
   schedule:
     - cron: "17 3 * * *"
@@ -31,12 +34,13 @@ jobs:
           # Optional partner feeds remain disabled until their repository secrets exist.
           SOLAR_IMPORT_FEED_URL: ${{ secrets.SOLAR_IMPORT_FEED_URL }}
           BATTERY_CZ_FEED_URL: ${{ secrets.BATTERY_CZ_FEED_URL }}
+      - run: node scripts/sync-products-pl.mjs
       - run: node --test
       - name: Commit refreshed catalog
         run: |
-          if git diff --quiet -- data/products.json; then exit 0; fi
+          if git diff --quiet -- data/products.json data/products-pl.json; then exit 0; fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -- data/products.json
+          git add -- data/products.json data/products-pl.json
           git commit -m "data: refresh affiliate product catalog"
           git push
