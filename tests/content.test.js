@@ -311,8 +311,10 @@ test("language switch remains available on mobile", async () => {
   ]);
   assert.match(czech, /class="header-link language-switch" href="\/sk\/"/);
   assert.match(czech, /aria-label="Prepnúť na slovenčinu"/);
+  assert.match(czech, /class="header-link language-switch" href="\/pl\/"/);
   assert.match(slovak, /class="header-link language-switch" href="\/"/);
   assert.match(slovak, /aria-label="Přepnout do češtiny"/);
+  assert.match(slovak, /class="header-link language-switch" href="\/pl\/"/);
   assert.match(styles, /\.header-link\.language-switch \{ display: inline-flex; \}/);
   assert.ok(czech.includes('href="/styles.css?v=20260827-hidden1"'));
   assert.ok(slovak.includes('href="/styles.css?v=20260827-hidden1"'));
