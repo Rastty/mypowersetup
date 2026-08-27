@@ -406,6 +406,19 @@ test("Polish calculator is localized, indexable and safely isolated until its ca
   assert.ok(llmsFull.includes("https://mypowersetup.com/pl/"));
 });
 
+test("hidden calculator actions stay hidden even when component styles set display", async () => {
+  const [styles, app, appSk, appPl] = await Promise.all([
+    readFile("styles.css", "utf8"),
+    readFile("src/app.js", "utf8"),
+    readFile("src/app-sk.js", "utf8"),
+    readFile("src/app-pl.js", "utf8"),
+  ]);
+  assert.match(styles, /\[hidden\]\s*\{\s*display:\s*none\s*!important;/);
+  for (const source of [app, appSk, appPl]) {
+    assert.ok(source.includes('document.querySelector("#result-products-link").hidden = total === 0'));
+  }
+});
+
 test("calculator results can be shared in both languages", async () => {
   const [czech, slovak, app, appSk, share] = await Promise.all([
     readFile("index.html", "utf8"),
