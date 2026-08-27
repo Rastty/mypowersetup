@@ -32,6 +32,71 @@ test("CJ deeplink rejects a non-BLUETTI destination and a merchant homepage", ()
   );
 });
 
+test("Awin deeplink keeps ALLPOWERS PL tracking and exact product destination", () => {
+  const destination = "https://allpowers.com.pl/products/allpowers-r1500-lite-stacja-zasilania-1600w-1056wh-akumulator-lifep04";
+  const affiliate = new URL(buildAffiliateUrl("allpowers_pl", destination));
+
+  assert.equal(affiliate.hostname, "www.awin1.com");
+  assert.equal(affiliate.pathname, "/cread.php");
+  assert.equal(affiliate.searchParams.get("awinmid"), "121776");
+  assert.equal(affiliate.searchParams.get("awinaffid"), "3044971");
+  assert.equal(affiliate.searchParams.get("ued"), destination);
+});
+
+test("ALLPOWERS PL deeplink rejects other hosts and non-product pages", () => {
+  assert.throws(
+    () => buildAffiliateUrl("allpowers_pl", "https://example.com/products/r1500-lite"),
+    /Neplatná produktová URL/
+  );
+  assert.throws(
+    () => buildAffiliateUrl("allpowers_pl", "https://allpowers.com.pl/collections/power-stations"),
+    /produktovou stránku/
+  );
+});
+
+test("ALLPOWERS power station is recommended only when every verified limit fits", () => {
+  const product = normalizeProduct({
+    id: "r1500-lite",
+    name: "ALLPOWERS R1500 LITE Stacja Zasilania 1600W 1056Wh Akumulator LiFePO4",
+    category: "Stacje zasilania",
+    description: "Wejście solarne 650 W. Wyjście 12 V 10 A. Czysta sinusoida.",
+    price: "2119",
+    url: "https://allpowers.com.pl/products/allpowers-r1500-lite-stacja-zasilania-1600w-1056wh-akumulator-lifep04",
+    available: true
+  }, "allpowers_pl");
+  const setup = {
+    locale: "pl",
+    dailyWh: 600,
+    autonomyDays: 1,
+    solarWatts: 300,
+    inverterWatts: 1000,
+    applianceRows: [{ watts: 60, quantity: 1, ac: false }],
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    controllerAmps: 30,
+    charging: { starterVoltage: 12, dcDc: {}, shore: {} }
+  };
+
+  assert.equal(product.category, "power_station");
+  assert.equal(product.specs.capacityWh, 1056);
+  assert.equal(product.specs.solarInputW, 650);
+  assert.equal(product.specs.dcOutputA, 10);
+  assert.deepEqual(
+    recommendProducts([product], setup).power_station.map(({ product: match }) => match.id),
+    ["allpowers_pl:r1500-lite"]
+  );
+
+  assert.equal(
+    recommendProducts([product], { ...setup, solarWatts: 700 }).power_station.length,
+    0
+  );
+  assert.equal(
+    recommendProducts([product], { ...setup, applianceRows: [{ watts: 132, quantity: 1, ac: false }] }).power_station.length,
+    0
+  );
+});
+
 test("new Czech merchant deeplinks preserve exact Solar-import and Battery.cz products", () => {
   const solarDestination = "https://www.solar-import.cz/off-grid/victron-energy-dc-dc-konvertor-orion-ip67-24-12-10/";
   const batteryDestination = "https://www.battery.cz/skyrich-lithium-motobaterie-hjtz5s-fp--12v-24wh--2ah/";

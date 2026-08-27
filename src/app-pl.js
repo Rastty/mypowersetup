@@ -1,6 +1,6 @@
 import { APPLIANCES } from "./catalog-pl.js?v=20260823-custom1";
 import { calculateSetup } from "./engine.js?v=20260821-sk1";
-import { recommendProducts } from "./products.js?v=20260825-merchants1";
+import { recommendProducts } from "./products.js?v=20260827-allpowers1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260823-custom1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -453,7 +453,8 @@ function renderProductRecommendations(result) {
     inverter: "Przetwornice",
     controller: "Regulatory MPPT",
     dc_charger: "Ładowarki DC–DC z alternatora",
-    shore_charger: "Ładowarki z 230 V"
+    shore_charger: "Ładowarki z 230 V",
+    power_station: "Przenośne stacje zasilania"
   };
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
@@ -570,7 +571,9 @@ function formatPrice(price) {
 }
 
 function merchantLabel(merchant) {
-  return merchant === "padabo" ? "Padabo.sk" : merchant;
+  if (merchant === "padabo") return "Padabo.sk";
+  if (merchant === "allpowers_pl") return "ALLPOWERS PL";
+  return merchant;
 }
 
 function escapeHtml(value) {
