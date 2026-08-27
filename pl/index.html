@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10261f" />
+    <meta
+      name="description"
+      content="Oblicz pojemność akumulatora, moc paneli fotowoltaicznych, przetwornicy i regulatora MPPT do kampera. Bezpłatnie, z objaśnieniem każdego wyniku."
+    />
+    <meta property="og:title" content="MyPowerSetup — kalkulator akumulatora i fotowoltaiki do kampera" />
+    <meta
+      property="og:description"
+      content="Praktyczny kalkulator instalacji elektrycznej do kampera na podstawie używanych urządzeń."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mypowersetup.com/pl/" />
+    <meta property="og:site_name" content="MyPowerSetup" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:image" content="https://mypowersetup.com/social-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MyPowerSetup — kalkulator akumulatora i fotowoltaiki" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://mypowersetup.com/pl/" />
+    <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/" />
+    <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/" />
+    <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css?v=20260823-custom1" />
+    <title>Kalkulator akumulatora i fotowoltaiki do kampera | MyPowerSetup</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://mypowersetup.com/pl/#website",
+            "url": "https://mypowersetup.com/pl/",
+            "name": "MyPowerSetup",
+            "inLanguage": "pl-PL",
+            "publisher": { "@id": "https://mypowersetup.com/pl/#organization" }
+          },
+          {
+            "@type": "WebApplication",
+            "@id": "https://mypowersetup.com/pl/#calculator",
+            "name": "MyPowerSetup — kalkulator instalacji elektrycznej do kampera",
+            "url": "https://mypowersetup.com/pl/#kalkulator",
+            "applicationCategory": "UtilitiesApplication",
+            "operatingSystem": "Web",
+            "isAccessibleForFree": true,
+            "inLanguage": "pl-PL",
+            "description": "Kalkulator akumulatora, paneli fotowoltaicznych, przetwornicy i regulatora MPPT na podstawie dziennego zużycia energii.",
+            "creator": { "@id": "https://mypowersetup.com/o-projektu/#petr-galik" }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://mypowersetup.com/pl/#organization",
+            "name": "MyPowerSetup",
+            "url": "https://mypowersetup.com/pl/",
+            "founder": { "@id": "https://mypowersetup.com/o-projektu/#petr-galik" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://mypowersetup.com/o-projektu/#petr-galik",
+            "name": "Petr Gálík",
+            "url": "https://mypowersetup.com/o-projektu/",
+            "knowsAbout": ["elektrotechnika", "instalacje elektryczne w kamperach", "fotowoltaika off-grid"]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Strona główna MyPowerSetup">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" role="img">
+            <path d="M22 3 9 22h9l-1 15 14-21h-9V3Z" fill="currentColor" />
+          </svg>
+        </span>
+        <span>MyPowerSetup</span>
+      </a>
+      <nav class="header-nav" aria-label="Nawigacja główna">
+        <a class="header-link" href="#jak-liczymy">Jak liczymy</a>
+        <a class="header-link language-switch" href="/sk/" hreflang="sk-SK" lang="sk" aria-label="Przełącz na język słowacki">SK</a>
+        <a class="header-link language-switch" href="/" hreflang="cs-CZ" lang="cs" aria-label="Przełącz na język czeski">CZ</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Energia bez zgadywania</p>
+          <h1 id="hero-title">Jakiego akumulatora i paneli naprawdę potrzebujesz?</h1>
+          <p class="hero-lead">
+            Wybierz urządzenia. W dwie minuty otrzymasz czytelny dobór akumulatora,
+            paneli, przetwornicy i regulatora — wraz z wyjaśnieniem.
+          </p>
+          <div class="trust-row" aria-label="Najważniejsze zalety">
+            <span><b>✓</b> Bez rejestracji</span>
+            <span><b>✓</b> Przejrzyste obliczenia</span>
+            <span><b>✓</b> Bezpłatnie</span>
+          </div>
+          <a class="button button-primary hero-button" href="#kalkulator">Oblicz mój zestaw</a>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="energy-card battery-card">
+            <span>Akumulator</span>
+            <strong>200 Ah</strong>
+            <i><em style="width: 76%"></em></i>
+          </div>
+          <div class="power-path">
+            <span class="sun">☀</span>
+            <span class="path-line"></span>
+            <span class="bolt">ϟ</span>
+          </div>
+          <div class="energy-card solar-card">
+            <span>Moc paneli</span>
+            <strong>400 Wp</strong>
+            <small>sezon letni</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="calculator-section" id="kalkulator" aria-labelledby="calculator-title">
+        <div class="section-heading">
+          <p class="eyebrow">Kalkulator zestawu</p>
+          <h2 id="calculator-title">Trzy kroki do własnego zasilania</h2>
+          <p>Wartości możesz zmienić zgodnie z tabliczką znamionową urządzenia.</p>
+        </div>
+
+        <div class="calculator-shell">
+          <nav class="steps" aria-label="Etapy kalkulatora">
+            <button class="step is-active" type="button" data-step-target="1">
+              <span>1</span>
+              <small>Użytkowanie</small>
+            </button>
+            <i></i>
+            <button class="step" type="button" data-step-target="2" disabled>
+              <span>2</span>
+              <small>Urządzenia</small>
+            </button>
+            <i></i>
+            <button class="step" type="button" data-step-target="3" disabled>
+              <span>3</span>
+              <small>Wynik</small>
+            </button>
+          </nav>
+
+          <p class="calculator-error" id="calculator-error" role="alert" hidden></p>
+
+          <form id="setup-form" novalidate>
+            <section class="form-step is-visible" data-step="1" aria-labelledby="step-one-title">
+              <div class="step-heading">
+                <span class="step-kicker">Krok 1 z 3</span>
+                <h3 id="step-one-title">Kiedy i jak będziesz korzystać z energii?</h3>
+                <p>Na tej podstawie dobierzemy rezerwę i moc paneli fotowoltaicznych.</p>
+              </div>
+
+              <fieldset>
+                <legend>Ile dni chcesz działać bez ładowania?</legend>
+                <div class="choice-grid choice-grid-days">
+                  <label class="choice-card">
+                    <input type="radio" name="autonomyDays" value="1" />
+                    <span><strong>1 dzień</strong><small>Pojedynczy nocleg</small></span>
+                  </label>
+                  <label class="choice-card is-selected">
+                    <input type="radio" name="autonomyDays" value="2" checked />
+                    <span><strong>2 dni</strong><small>Weekend bez przyłącza</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="autonomyDays" value="3" />
+                    <span><strong>3 dni</strong><small>Dłuższa niezależność</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="autonomyDays" value="5" />
+                    <span><strong>5 dni</strong><small>Duży zapas energii</small></span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>W jakim okresie instalacja ma działać?</legend>
+                <div class="choice-grid choice-grid-season">
+                  <label class="choice-card is-selected">
+                    <input type="radio" name="season" value="summer" checked />
+                    <span class="choice-icon">☀️</span>
+                    <span><strong>Lato</strong><small>Najlepsze nasłonecznienie</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="season" value="shoulder" />
+                    <span class="choice-icon">⛅</span>
+                    <span><strong>Wiosna / jesień</strong><small>Mniej stabilna produkcja</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="season" value="winter" />
+                    <span class="choice-icon">❄️</span>
+                    <span><strong>Zima</strong><small>Znacznie mniej słońca</small></span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="step-actions step-actions-end">
+                <button class="button button-primary" type="button" data-next>Wybierz urządzenia <span>→</span></button>
+              </div>
+            </section>
+
+            <section class="form-step" data-step="2" aria-labelledby="step-two-title" hidden>
+              <div class="step-heading">
+                <span class="step-kicker">Krok 2 z 3</span>
+                <h3 id="step-two-title">Co chcesz zasilać każdego dnia?</h3>
+                <p>Wybierz urządzenia i zmień czas pracy. Wartości początkowe są typowymi szacunkami.</p>
+              </div>
+
+              <div class="appliance-summary" aria-live="polite">
+                <span>Wybrano <strong id="selected-count">0</strong> urządzeń</span>
+                <span>Szacunek <strong id="live-consumption">0 Wh</strong> / dzień</span>
+              </div>
+
+              <div class="appliance-grid" id="appliance-grid"></div>
+              <p class="form-error" id="appliance-error" role="alert" hidden>Wybierz co najmniej jedno urządzenie.</p>
+
+              <details class="advanced-settings">
+                <summary>Zaawansowane ustawienia zestawu</summary>
+                <div class="advanced-grid">
+                  <label>
+                    Typ akumulatora
+                    <select name="batteryType">
+                      <option value="lifepo4">LiFePO₄ — lżejszy, dłuższa żywotność</option>
+                      <option value="lead">AGM / kwasowo-ołowiowy — niższy koszt zakupu</option>
+                    </select>
+                  </label>
+                  <label>
+                    Napięcie systemu
+                    <select name="systemVoltage">
+                      <option value="auto">Dobierz automatycznie</option>
+                      <option value="12">12 V</option>
+                      <option value="24">24 V</option>
+                    </select>
+                  </label>
+                  <label>
+                    Długość akumulator–przetwornica (w jedną stronę)
+                    <input type="number" name="inverterCableLength" min="0.2" max="10" step="0.1" value="1.5" inputmode="decimal" />
+                    <small>Metry od akumulatora do przetwornicy; przewód powrotny uwzględnimy automatycznie.</small>
+                  </label>
+                  <label>
+                    Typowy czas jazdy dziennie
+                    <input type="number" name="driveHoursPerDay" min="0" max="12" step="0.5" value="2" inputmode="decimal" />
+                    <small>Do orientacyjnego doboru ładowarki DC–DC; 0 wyłącza ładowanie z alternatora.</small>
+                  </label>
+                  <label>
+                    Napięcie instalacji rozruchowej
+                    <select name="starterVoltage">
+                      <option value="12">12 V — większość samochodów i kamperów</option>
+                      <option value="24">24 V — ciężarówki i niektóre pojazdy specjalne</option>
+                    </select>
+                    <small>Określa napięcie wejściowe zgodnej ładowarki DC–DC.</small>
+                  </label>
+                  <label>
+                    Długość przewodu akumulator rozruchowy–DC–DC (w jedną stronę)
+                    <input type="number" name="dcDcInputCableLength" min="0.2" max="15" step="0.1" value="4" inputmode="decimal" />
+                    <small>Metry do wejścia ładowarki; przewód powrotny uwzględnimy automatycznie. Wynik opiera się tylko na spadku napięcia.</small>
+                  </label>
+                  <label>
+                    Czas podłączenia do 230 V
+                    <input type="number" name="shoreChargeHours" min="0" max="24" step="0.5" value="8" inputmode="decimal" />
+                    <small>Ile godzin ma ładowarka na uzupełnienie dziennego zużycia; 0 wyłącza tę opcję.</small>
+                  </label>
+                  <label>
+                    Długość wolnego prostokąta na dachu
+                    <input type="number" name="roofLength" min="0.5" max="12" step="0.01" inputmode="decimal" placeholder="napr. 3,00" />
+                    <small>Wolna długość bez okien, klimatyzacji, anten i innych przeszkód; pole opcjonalne.</small>
+                  </label>
+                  <label>
+                    Szerokość wolnego prostokąta na dachu
+                    <input type="number" name="roofWidth" min="0.5" max="4" step="0.01" inputmode="decimal" placeholder="napr. 1,40" />
+                    <small>Podaj oba wymiary. Odstępy montażowe i dostęp serwisowy sprawdź osobno.</small>
+                  </label>
+                </div>
+              </details>
+
+              <div class="step-actions">
+                <button class="button button-secondary" type="button" data-back>← Wstecz</button>
+                <button class="button button-primary" type="submit">Oblicz zestaw <span>→</span></button>
+              </div>
+            </section>
+
+            <section class="form-step result-step" data-step="3" aria-labelledby="step-three-title" hidden>
+              <header class="print-summary-header print-only">
+                <strong>MyPowerSetup</strong>
+                <span>Orientacyjny dobór instalacji elektrycznej</span>
+                <small id="print-generated-at"></small>
+              </header>
+              <div class="result-heading">
+                <span class="result-check">✓</span>
+                <div>
+                  <span class="step-kicker">Twój orientacyjny zestaw</span>
+                  <h3 id="step-three-title">Zestaw z bezpiecznym zapasem</h3>
+                  <p id="result-intro"></p>
+                </div>
+              </div>
+
+              <div class="result-grid" id="result-grid"></div>
+
+              <section class="result-next-card" id="result-next" aria-labelledby="result-next-title" hidden>
+                <div>
+                  <span class="step-kicker">Następny krok</span>
+                  <h4 id="result-next-title">Wybierz zgodne komponenty</h4>
+                  <p id="result-product-count"></p>
+                </div>
+                <a class="button button-primary" id="result-products-link" href="#product-recommendations">Pokaż polecane produkty ↓</a>
+              </section>
+
+              <section class="result-share-card" aria-labelledby="result-share-title">
+                <div>
+                  <span class="step-kicker">Zachowaj wynik</span>
+                  <h4 id="result-share-title">Zapisz zestaw lub udostępnij go dalej</h4>
+                  <p>Podsumowanie nie zawiera danych osobowych, cen ani linków afiliacyjnych.</p>
+                </div>
+                <div class="result-share-actions">
+                  <button class="button button-primary" type="button" id="result-share">Udostępnij wynik</button>
+                  <button class="button button-secondary" type="button" id="result-copy">Kopiuj podsumowanie</button>
+                  <button class="button button-secondary" type="button" id="result-print">Drukuj / zapisz PDF</button>
+                </div>
+                <p class="result-share-status" id="result-share-status" role="status" aria-live="polite"></p>
+              </section>
+
+              <section class="charging-panel" aria-labelledby="power-station-title">
+                <div>
+                  <span class="step-kicker">Alternatywa bez składania komponentów</span>
+                  <h4 id="power-station-title">Instalacja stała czy przenośna stacja zasilania?</h4>
+                  <p>To samo zużycie przeliczamy na minimalne parametry stacji. Nie polecamy konkretnej marki; przed zakupem sprawdź wszystkie wyjścia, ładowanie i warunki pracy.</p>
+                </div>
+                <div class="charging-grid" id="power-station-profile"></div>
+              </section>
+
+              <section class="next-step-card" id="product-recommendations">
+                <div>
+                  <span class="step-kicker">Zweryfikowane dopasowanie</span>
+                  <h4 id="product-heading">Przygotowujemy dokładne rekomendacje produktów</h4>
+                  <p id="product-intro">Produkty pokażemy dopiero po sprawdzeniu ich parametrów względem wyniku zestawu.</p>
+                </div>
+                <div id="package-variants"></div>
+                <div id="recommendation-groups">
+                  <button class="button button-disabled" type="button" disabled>Dopasowanie produktów jest przygotowywane</button>
+                </div>
+                <p class="affiliate-note">Niektóre odnośniki mogą być afiliacyjne. Zakup nie kosztuje wtedy więcej, a prowizja nie zmienia kryteriów technicznych ani kolejności wyników.</p>
+              </section>
+
+              <section class="decision-panel" aria-labelledby="decision-title">
+                <div>
+                  <span class="step-kicker">Obliczenia bez czarnej skrzynki</span>
+                  <h4 id="decision-title">Skąd biorą się te wartości</h4>
+                </div>
+                <div class="decision-grid" id="result-reasons"></div>
+                <p class="method-link"><a href="#jak-liczymy">Zobacz założenia obliczeń →</a></p>
+              </section>
+
+              <div class="result-columns">
+                <section class="result-panel">
+                  <h4>Co składa się na zużycie energii</h4>
+                  <div id="consumption-breakdown"></div>
+                </section>
+                <section class="result-panel" id="result-notes-panel">
+                  <h4>Kontrola przed wykonaniem instalacji</h4>
+                  <ul class="check-list" id="result-notes"></ul>
+                </section>
+              </div>
+
+              <section class="diagram-panel" aria-labelledby="system-diagram-title">
+                <div>
+                  <span class="step-kicker">Przepływ energii w zestawie</span>
+                  <h4 id="system-diagram-title">Orientacyjny schemat instalacji</h4>
+                  <p>Schemat pokazuje bloki funkcjonalne i ich kolejność, a nie zaciski, konkretne bezpieczniki ani projekt montażowy.</p>
+                </div>
+                <div id="system-diagram"></div>
+              </section>
+
+              <section class="charging-panel" aria-labelledby="charging-plan-title">
+                <div>
+                  <span class="step-kicker">Ładowanie poza fotowoltaiką</span>
+                  <h4 id="charging-plan-title">Ładowanie podczas jazdy i z 230 V</h4>
+                  <p>Orientacyjna moc potrzebna do uzupełnienia dziennego zużycia w wybranym czasie. Decydują instrukcje akumulatora, BMS, alternatora i ładowarki.</p>
+                </div>
+                <div class="charging-grid" id="charging-options"></div>
+              </section>
+
+              <section class="roof-panel" aria-labelledby="roof-fit-title">
+                <div>
+                  <span class="step-kicker">Kontrola miejsca</span>
+                  <h4 id="roof-fit-title">Czy panele zmieszczą się na dachu?</h4>
+                  <p>Kontrola geometryczna korzysta z <a href="https://www.victronenergy.com/upload/documents/Datasheet-BlueSolar-Monocrystalline-Panels-current-models-EN-.pdf" target="_blank" rel="external noopener">oficjalnych wymiarów referencyjnych paneli 95, 130 i 190 Wp</a>. Przed zakupem sprawdź rzeczywiste wymiary, uchwyty, odstępy i przeszkody.</p>
+                </div>
+                <div id="roof-fit"></div>
+              </section>
+
+              <section class="installation-panel" aria-labelledby="installation-plan-title">
+                <div>
+                  <span class="step-kicker">Podstawa bezpiecznego wykonania</span>
+                  <h4 id="installation-plan-title">Obwody, które musi zaprojektować i sprawdzić instalator</h4>
+                  <p>Lista odpowiada temu zestawowi. Dla każdego obwodu decydują instrukcja urządzenia, obciążalność przewodu i parametry zabezpieczenia — prąd, napięcie DC/AC, zdolność wyłączania, charakterystyka i typ.</p>
+                </div>
+                <div class="installation-list" id="installation-plan"></div>
+                <p class="installation-source">Zasady oparto na <a href="https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/dc-wiring.html" target="_blank" rel="external noopener">Victron Wiring Unlimited</a>. To lista kontrolna, nie projekt instalacji.</p>
+              </section>
+
+              <div class="step-actions">
+                <button class="button button-secondary" type="button" data-back>← Zmień urządzenia</button>
+                <button class="text-button" type="button" id="start-over">Zacznij od nowa</button>
+              </div>
+            </section>
+          </form>
+        </div>
+      </section>
+
+      <section class="method-section" id="jak-liczymy" aria-labelledby="method-title">
+        <div class="section-heading section-heading-light">
+          <p class="eyebrow">Bez czarnej skrzynki</p>
+          <h2 id="method-title">Każdy wynik potrafimy wyjaśnić</h2>
+          <p>Każda wartość wynika z podanych danych i konserwatywnych zasad projektowych.</p>
+        </div>
+        <div class="method-grid">
+          <article>
+            <span>01</span>
+            <h3>Liczymy zużycie</h3>
+            <p>Moc każdego urządzenia mnożymy przez czas pracy i liczbę sztuk.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Dodajemy rzeczywiste straty</h3>
+            <p>Uwzględniamy użyteczną pojemność akumulatora, straty i bezpieczny zapas.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Sprawdzamy prądy rozruchowe</h3>
+            <p>Przetwornicę dobieramy także do krótkiego rozruchu urządzeń silnikowych.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="safety-note">
+        <strong>Zanim zaczniesz kupować</strong>
+        <p>
+          Kalkulator daje orientacyjny dobór, a nie projekt elektryczny. Rzeczywiste dane znamionowe,
+          przewody, zabezpieczenia, odłączanie i warunki montażu sprawdź z wykwalifikowanym specjalistą.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand brand-footer" href="#top">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><path d="M22 3 9 22h9l-1 15 14-21h-9V3Z" fill="currentColor" /></svg>
+        </span>
+        <span>MyPowerSetup</span>
+      </a>
+      <p>Praktyczne decyzje dotyczące zasilania poza siecią.</p>
+      <nav class="footer-links" aria-label="Informacje o stronie">
+        <a href="/o-projektu/" hreflang="cs-CZ">O projekcie i autorze</a>
+        <a href="#jak-liczymy">Metodologia</a>
+        <a href="/soukromi/" hreflang="cs-CZ">Prywatność</a>
+      </nav>
+      <small>© <span id="year"></span> MyPowerSetup</small>
+    </footer>
+
+    <script type="module" src="/src/app-pl.js?v=20260825-merchants1"></script>
+  <script type="module" src="/src/analytics.js?v=20260824-1"></script></body>
+</html>
