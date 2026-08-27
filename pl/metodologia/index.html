@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Metodyka obliczeń i rekomendacji | MyPowerSetup</title>
+  <meta name="description" content="Przejrzysta metodyka MyPowerSetup: obliczanie zużycia, akumulatora, paneli słonecznych, przetwornicy, regulatora MPPT i zasady dopasowywania produktów.">
+  <meta property="og:title" content="Metodyka obliczeń i rekomendacji">
+  <meta property="og:description" content="Wzory, zapasy projektowe, ograniczenia bezpieczeństwa oraz reguły technicznego dopasowywania produktów w MyPowerSetup.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mypowersetup.com/pl/metodologia/">
+  <meta property="og:site_name" content="MyPowerSetup">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:locale:alternate" content="cs_CZ">
+  <meta property="og:locale:alternate" content="sk_SK">
+  <meta property="og:image" content="https://mypowersetup.com/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MyPowerSetup — przejrzysta metodyka obliczeń">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Metodyka obliczeń i rekomendacji">
+  <meta name="twitter:description" content="Wzory, zapasy, ograniczenia i zasady technicznego dopasowywania produktów.">
+  <meta name="twitter:image" content="https://mypowersetup.com/social-card.png">
+  <link rel="canonical" href="https://mypowersetup.com/pl/metodologia/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/metodika/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/metodika/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/metodologia/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/metodika/">
+  <link rel="stylesheet" href="/article.css">
+</head>
+<body>
+  <header class="article-header"><a class="article-brand" href="/pl/">⚡ MyPowerSetup</a><nav><a href="/pl/#kalkulator">Kalkulator</a><a href="/metodika/" hreflang="cs-CZ" lang="cs">Česky</a><a href="/sk/metodika/" hreflang="sk-SK" lang="sk">Slovensky</a></nav></header>
+  <section class="article-hero"><div class="article-hero-inner"><span class="kicker">Przejrzysta metodyka</span><h1>Jak liczy MyPowerSetup</h1><p>Wszystkie główne założenia i ograniczenia kalkulatora w jednym miejscu.</p></div></section>
+  <main class="article-layout"><article class="article">
+    <div class="answer"><strong>Wersja metodyki: 1.4 · 27.08.2026</strong>Obliczenia są deterministyczne: takie same dane wejściowe dają taki sam wynik. Nie używamy generatywnej AI ani ukrytych preferencji produktowych.</div>
+    <h2 id="zuzycie">Dobowe zużycie</h2><div class="formula">Wh/dzień = suma mocy × czas pracy × liczba sztuk</div><p>Wartości początkowe są orientacyjne. Dla dokładniejszego wyniku pierwszeństwo ma tabliczka znamionowa, dokumentacja lub własny pomiar.</p>
+    <h2 id="akumulator">Akumulator</h2><div class="formula">Wh akumulatora = dobowe Wh × dni autonomii × 1,15 ÷ użyteczna głębokość</div><p>Dla LiFePO₄ kalkulator przyjmuje 80% użytecznej głębokości, a dla AGM/ołowiowego 50%. Wymagane Ah otrzymujemy, dzieląc wynik przez napięcie systemu. Ostatecznie decyduje karta katalogowa konkretnego akumulatora.</p>
+    <h2 id="panele">Panele słoneczne</h2><div class="formula">Wp = dobowe Wh × 1,15 ÷ godziny pełnego słońca ÷ 0,75</div><p>Model wykorzystuje 4,5 godziny latem, 3 wiosną i jesienią oraz 1,5 zimą. Współczynnik 0,75 obejmuje projektowe straty systemowe. Nie jest to prognoza dla konkretnego miejsca, orientacji ani pogody.</p>
+    <h2 id="przetwornica">Przetwornica i MPPT</h2><p>Moc przetwornicy wynika z szacowanego jednoczesnego obciążenia AC z zapasem 25% oraz największego prądu rozruchowego. Regulator wynika z mocy paneli i napięcia systemu z zapasem prądowym 25%. Osobno trzeba sprawdzić Voc, Isc, dopuszczalną moc PV i profil ładowania.</p>
+    <h2 id="przewody">Przewód akumulator–przetwornica i zasilanie DC–DC</h2><div class="formula">mm² = 2 × długość w jedną stronę × prąd × rezystywność miedzi ÷ dopuszczalny spadek napięcia</div><p>Kalkulator określa jedynie orientacyjny minimalny przekrój wynikający ze spadku napięcia: cel do 2,5% dla przewodu akumulator–przetwornica i do 3% dla wejścia akumulator rozruchowy–ładowarka DC–DC. Wykorzystuje rezystywność miedzi 0,0175 Ω·mm²/m. Końcowy dobór musi uwzględniać instrukcję urządzenia, obciążalność prądową, temperaturę, sposób ułożenia, izolację i zaciski. Bez konkretnego urządzenia i przewodu kalkulator celowo nie podaje wartości bezpiecznika.</p>
+    <h2 id="ladowanie">Ładowanie podczas jazdy i z 230 V</h2><div class="formula">prąd wyjściowy A = dobowe Wh ÷ dostępne godziny ÷ napięcie akumulatora ÷ 0,90</div><p>Wynik określa średni prąd potrzebny do uzupełnienia jednego dnia zużycia w podanym czasie. Wewnętrzny limit planistyczny wynosi 0,2 C dla LiFePO₄ i 0,1 C dla AGM/ołowiowego; nie zastępuje on limitu producenta akumulatora ani BMS. Dla DC–DC trzeba sprawdzić zapas alternatora, maksymalny prąd wejściowy, obsługę inteligentnego alternatora, przewody, zabezpieczenia i chłodzenie. System 12→24 V wymaga ładowarki wyraźnie obsługującej taką konwersję.</p>
+    <h2 id="power-station">Przenośna stacja zasilania</h2><div class="formula">pojemność znamionowa Wh = dobowe Wh × dni autonomii × 1,15 ÷ 0,80</div><p>Porównanie wykorzystuje konserwatywnie 80% pojemności znamionowej. Wynik jest minimalnym profilem, a nie potwierdzeniem zgodności produktu. Przed zakupem trzeba sprawdzić moc ciągłą i rozruchową, pojemność użyteczną, wejście solarne, regulowane wyjście 12 V, złącza, temperatury oraz możliwość rozbudowy.</p>
+    <h2 id="produkty">Dopasowywanie produktów</h2><ol><li>Produkt musi należeć do właściwej kategorii.</li><li>Musi mieć rozpoznane wymagane parametry.</li><li>Niezgodne napięcie lub zbyt mała moc wykluczają produkt.</li><li>Dopiero wśród zgodnych kandydatów oceniamy bliskość parametrów, dostępność i kompletność danych.</li><li>Z jednej strony produktu pokazujemy tylko najwłaściwszy wariant.</li></ol><div class="note"><strong>Prowizja nie jest częścią punktacji.</strong> Sprzedawca ani wysokość prowizji afiliacyjnej nie zmieniają warunków technicznych i kolejności kandydatów.</div>
+    <h2 id="ograniczenia">Ograniczenia</h2><p>Parametry pozyskane automatycznie mogą być niepełne lub błędne. Dlatego pokazujemy tylko produkty z podstawowym rozpoznanym parametrem i wymagamy sprawdzenia dokumentacji przed zakupem. Obliczenie przewodu dotyczy wyłącznie spadku napięcia. Wynik nie jest projektem, odbiorem ani potwierdzeniem bezpieczeństwa konkretnego montażu.</p>
+  </article><aside class="toc"><strong>W metodyce</strong><a href="#zuzycie">Zużycie</a><a href="#akumulator">Akumulator</a><a href="#panele">Panele</a><a href="#przetwornica">Przetwornica i MPPT</a><a href="#przewody">Przewody</a><a href="#ladowanie">Ładowanie</a><a href="#power-station">Stacja zasilania</a><a href="#produkty">Produkty</a><a href="#ograniczenia">Ograniczenia</a></aside></main>
+  <footer class="article-footer"><a href="/pl/o-projekcie/">O projekcie</a> · <a href="/pl/afiliacja/">Afiliacja</a> · <a href="/pl/prywatnosc/">Prywatność</a></footer>
+  <script type="module" src="/src/analytics.js?v=20260827-pltrust1"></script>
+</body>
+</html>
