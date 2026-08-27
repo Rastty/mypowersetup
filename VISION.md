@@ -1,6 +1,6 @@
 # MyPowerSetup — produktová vize a směr
 
-Aktualizováno: 23. srpna 2026
+Aktualizováno: 27. srpna 2026
 
 ## Vize
 
@@ -17,6 +17,29 @@ Nejde jen o kalkulačku ani o katalog produktů. Cílem je propojit cestu:
 3. Polsko je další plnohodnotný trh po dokončení českého jádra a zprovoznění slovenského produktového katalogu.
 4. Maďarsko bude následovat na stejném lokalizačním a produktovém základu jako Polsko; nebude vznikat jako oddělená kopie aplikace.
 5. Další lokalizace přijdou až po prokázání použitelnosti, návštěvnosti a monetizace jádra.
+
+## Kandidáti po CZ / SK / PL / HU
+
+Toto pořadí je výzkumná fronta, ne závazek spustit více nehotových trhů současně:
+
+1. **Švédsko** — první kandidát díky poměru poptávky, konkurence a kupní síly; základ monetizace ALLPOWERS INTERNATIONAL a po samostatném schválení Amazon.se.
+2. **Španělsko** — velký camper trh a fragmentovaná konkurence; ALLPOWERS INTERNATIONAL, následně ověřit Amazon.es a specializovaný lokální katalog.
+3. **Itálie** — velký potenciál, ale silnější produktová konkurence; ALLPOWERS INTERNATIONAL, následně ověřit Amazon.it a lokální camping program.
+4. **Nizozemsko** — mimořádně silný caravan trh, ale vyspělá konkurence; prověřit zejména Obelink/TradeTracker a Amazon.nl vedle ALLPOWERS.
+5. **Německo** — největší potenciál i nejtěžší SEO; před spuštěním požadovat jasné odlišení a prověřit Fritz Berger Awin vedle ALLPOWERS a Amazon.de.
+6. **Portugalsko** — levnější lokalizační experiment až po ES; vedle ALLPOWERS prověřit Worten PT Awin a reálnou dostupnost vhodných produktů.
+
+Společným základem dalších evropských trhů může být program **ALLPOWERS INTERNATIONAL (Awin 38934)**, ale každá lokalizace musí mít přesné cílové URL, lokální cenu, dostupnost a podmínky doručení. Samotná existence globálního programu nestačí k publikaci trhu.
+
+### Brána pro otevření dalšího trhu
+
+Nový trh se zveřejní pouze tehdy, když současně splní:
+
+- přirozenou jazykovou a technickou kontrolu hlavního kalkulátoru,
+- samostatný produktový katalog s lokální měnou, dostupností a bezpečným párováním,
+- alespoň jednu ověřenou affiliate cestu s přesným deeplinkem; ideálně druhý nezávislý obchod,
+- lokální právní, soukromí a affiliate texty, hreflang, sitemap a měření,
+- ověřený mobilní průchod od vstupu přes výsledek až ke konkrétnímu produktu.
 
 ## Pořadí lokalizací
 
