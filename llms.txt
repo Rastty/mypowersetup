@@ -13,6 +13,9 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 - [O projekcie – Polska](https://mypowersetup.com/pl/o-projekcie/): Autor, doświadczenie, zasady redakcyjne i kontakt.
 - [Afiliacja – Polska](https://mypowersetup.com/pl/afiliacja/): Jak działa prowizja i dlaczego nie zmienia wyniku technicznego.
 - [Prywatność – Polska](https://mypowersetup.com/pl/prywatnosc/): Przetwarzanie danych kalkulatora, zgoda analityczna i linki zewnętrzne.
+- [Polskie centrum poradników](https://mypowersetup.com/pl/poradnik/): Praktyczne obliczenia i decyzje dotyczące instalacji elektrycznej w kamperze.
+- [Pojemność akumulatora do kampera](https://mypowersetup.com/pl/poradnik/pojemnosc-akumulatora-do-kampera/): Obliczenie Wh i Ah według zużycia, autonomii i technologii akumulatora.
+- [AGM czy LiFePO4](https://mypowersetup.com/pl/poradnik/agm-czy-lifepo4/): Porównanie użytecznej energii, masy, ładowania i zastosowania.
 - [Slovenské centrum návodov](https://mypowersetup.com/sk/sprievodca/): Rozcestník slovenských výpočtov a rozhodovacích návodov.
 - [Kapacita batérie do karavanu](https://mypowersetup.com/sk/sprievodca/kapacita-baterie-do-karavanu/): Slovenský výpočet Wh a Ah podľa spotreby, autonómie a chémie batérie.
 - [AGM vs. LiFePO4 do karavanu](https://mypowersetup.com/sk/sprievodca/agm-vs-lifepo4/): Slovenské porovnanie využiteľnej energie, hmotnosti, nabíjania a vhodného použitia.
