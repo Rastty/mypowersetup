@@ -1,3 +1,5 @@
+import { calculatePowerStationProfile } from "./power-station.js";
+
 const MERCHANTS = {
   reslshop: {
     hostname: "www.reslshop.cz",
@@ -28,6 +30,12 @@ const MERCHANTS = {
     hostname: "www.bluettipower.com",
     affiliateBaseUrl: "https://www.dpbolvw.net/click-101869970-17110660",
     destinationParam: "url"
+  },
+  allpowers_pl: {
+    hostname: "allpowers.com.pl",
+    affiliateBaseUrl: "https://www.awin1.com/cread.php?awinmid=121776&awinaffid=3044971",
+    destinationParam: "ued",
+    productPathPrefix: "/products/"
   }
 };
 
@@ -71,6 +79,28 @@ const PRODUCT_TEXT = {
       dc_charger: "Overte vstupné aj výstupné napätie, podporu inteligentného alternátora, BMS, kabeláž, istenie a chladenie.",
       shore_charger: "Overte napätie, chémiu batérie, nabíjací profil, BMS, kabeláž a istenie."
     }
+  },
+  pl: {
+    batteryReason: (setup) => `Pojemność spełnia wymagane ${setup.batteryAh} Ah`,
+    panelReason: (product, setup) => `${product.recommendedQuantity} szt. pokrywa wymagane ${setup.solarWatts} Wp`,
+    inverterReason: (setup) => `Moc ciągła spełnia wymagane ${setup.inverterWatts} W`,
+    controllerReason: (setup) => `Prąd spełnia wymagane ${setup.controllerAmps} A`,
+    dcChargerReason: (setup) => `Wyjście pokrywa zalecane ${setup.charging.dcDc.suggestedCurrentAmps} A podczas jazdy`,
+    shoreChargerReason: (setup) => `Wyjście pokrywa zalecane ${setup.charging.shore.suggestedCurrentAmps} A z 230 V`,
+    powerStationReason: (profile) => `Pojemność, wyjście AC, wejście PV i wyjście 12 V spełniają obliczony profil`,
+    systemVoltage: "napięcie instalacji",
+    requirement: "Wymaganie instalacji",
+    batteryLead: "Technologia ołowiowa",
+    controllerFor: "Dla projektu paneli",
+    verify: {
+      battery: "Sprawdź wymiary, BMS, prąd ładowania i zaciski.",
+      solar_panel: "Sprawdź wymiary, Voc, Isc i sposób połączenia paneli.",
+      inverter: "Sprawdź moc szczytową, czystą sinusoidę, okablowanie i pobór własny.",
+      controller: "Sprawdź maksymalne Voc, Isc, moc PV i profil akumulatora w dokumentacji.",
+      dc_charger: "Sprawdź napięcie wejściowe i wyjściowe, obsługę inteligentnego alternatora, BMS, przewody, zabezpieczenia i chłodzenie.",
+      shore_charger: "Sprawdź napięcie, chemię akumulatora, profil ładowania, BMS, przewody i zabezpieczenia.",
+      power_station: "Sprawdź moc rozruchową urządzeń, zakres Voc paneli, złącza, równoczesną pracę wyjść oraz aktualną dostępność."
+    }
   }
 };
 
@@ -88,7 +118,7 @@ export function normalizeProduct(raw, merchantKey) {
   const merchant = MERCHANTS[merchantKey];
   if (!merchant) throw new Error(`Neznámý obchod: ${merchantKey}`);
 
-  const productUrl = validateProductUrl(raw.url, merchant.hostname);
+  const productUrl = validateProductUrl(raw.url, merchant.hostname, merchant.productPathPrefix);
   const name = cleanText(raw.name);
   const categoryPath = cleanText(raw.category);
   const description = cleanText(raw.description);
@@ -121,7 +151,7 @@ export function buildAffiliateUrl(merchantKey, productUrl) {
   if (!merchant.affiliateBaseUrl) {
     throw new Error(`Affiliate program pro ${merchantKey} ještě není nakonfigurován.`);
   }
-  const destination = validateProductUrl(productUrl, merchant.hostname);
+  const destination = validateProductUrl(productUrl, merchant.hostname, merchant.productPathPrefix);
   const affiliateUrl = new URL(merchant.affiliateBaseUrl);
   affiliateUrl.searchParams.set(merchant.destinationParam || "desturl", destination.toString());
   return affiliateUrl.toString();
@@ -134,6 +164,8 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
     voltageV: extractNominalVoltage(primary) ?? extractNominalVoltage(fallback),
     capacityAh: matchNumber(primary, /(\d+(?:[.,]\d+)?)\s*ah\b/i)
       ?? matchNumber(fallback, /(\d+(?:[.,]\d+)?)\s*ah\b/i),
+    capacityWh: matchNumber(primary, /(\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?)\s*wh\b/i)
+      ?? matchNumber(fallback, /(\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?)\s*wh\b/i),
     powerW: extractContinuousPower(primary) ?? extractContinuousPower(fallback),
     currentA: matchNumber(primary, /(\d+(?:[.,]\d+)?)\s*a\b/i)
       ?? matchNumber(fallback, /(\d+(?:[.,]\d+)?)\s*a\b/i),
@@ -149,7 +181,9 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
       ? false
       : /čist(?:ý|á) (?:sinus|sínus)|pure sine|(?:sinusov|sínusov)(?:ý|á) (?:měnič|menič)|sinepower/i.test(`${primary} ${fallback}`)
         ? true
-        : null
+        : null,
+    solarInputW: matchNumber(`${primary} ${fallback}`, /(?:wejście|wkład)\s+(?:fotowoltaiczne|solar(?:ne|ny))[^\d]{0,20}(\d+(?:[.,]\d+)?)\s*w\b/i),
+    dcOutputA: matchNumber(`${primary} ${fallback}`, /(?:wyjście|gniazdo)[^\n]{0,40}12\s*v[^\d]{0,12}(\d+(?:[.,]\d+)?)\s*a\b/i)
   };
 }
 
@@ -160,6 +194,10 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
   const chargerAccessory = /\b(usb|startér|štartér|powerbank|čidlo|snímač|ovládání|ovládanie|kabel|kábel|zástrčka|pohotovostní)\b/i.test(name);
   const explicitDcCharger = /\bdc\s*[-–]?\s*dc\b|posilovač nabíjení|posilňovač nabíjania|charge booster|nabíjecí booster|nabíjací booster|f\.?\s*alternátor/i.test(name);
   const explicitBatteryCharger = /nabíječ(?:ka|ky)|nabíjač(?:ka|ky)|battery charger/i.test(name);
+
+  if (/(?:stacja zasilania|power station)/i.test(`${name} ${categoryPath}`) && specs.capacityWh > 0 && specs.powerW > 0) {
+    return "power_station";
+  }
 
   if (explicitDcCharger && explicitBatteryCharger && !chargerAccessory && specs.currentA > 0 && specs.chargingVoltagesV?.length) {
     return "dc_charger";
@@ -207,7 +245,7 @@ export function recommendProducts(products, setup, limitPerCategory = 3) {
     .map((product) => scoreProduct(product, setup))
     .filter(Boolean);
 
-  return ["battery", "solar_panel", "inverter", "controller", "dc_charger", "shore_charger"].reduce((result, category) => {
+  return ["battery", "solar_panel", "inverter", "controller", "dc_charger", "shore_charger", "power_station"].reduce((result, category) => {
     const ranked = candidates
       .filter((candidate) => candidate.product.category === category)
       .sort((a, b) => b.score - a.score || a.product.priceCzk - b.product.priceCzk);
@@ -275,6 +313,21 @@ function scoreProduct(product, setup) {
     if (!specs.currentA || specs.currentA < option.suggestedCurrentAmps) return null;
     fit = specs.currentA / option.suggestedCurrentAmps;
   }
+  if (product.category === "power_station") {
+    const profile = calculatePowerStationProfile(setup);
+    if (profile.profile === "individual") return null;
+    if (!specs.capacityWh || specs.capacityWh < profile.capacityWh) return null;
+    if (profile.acOutputWatts > 0 && (!specs.powerW || specs.powerW < profile.acOutputWatts)) return null;
+    if (profile.solarInputWatts > 0 && (!specs.solarInputW || specs.solarInputW < profile.solarInputWatts)) return null;
+    if (profile.dcOutputAmpsAt12V > 0 && (!specs.dcOutputA || specs.dcOutputA < profile.dcOutputAmpsAt12V)) return null;
+    const ratios = [
+      specs.capacityWh / profile.capacityWh,
+      ...(profile.acOutputWatts > 0 ? [specs.powerW / profile.acOutputWatts] : []),
+      ...(profile.solarInputWatts > 0 ? [specs.solarInputW / profile.solarInputWatts] : []),
+      ...(profile.dcOutputAmpsAt12V > 0 ? [specs.dcOutputA / profile.dcOutputAmpsAt12V] : [])
+    ];
+    fit = Math.max(...ratios);
+  }
 
   if (!fit || fit > 3) return null;
   const completeness = relevantSpecValues(product).filter((value) => value !== null).length;
@@ -306,6 +359,9 @@ function relevantSpecValues(product) {
   if (product.category === "dc_charger" || product.category === "shore_charger") {
     return [product.specs.currentA, product.specs.chargingVoltagesV, product.specs.chargingInputVoltagesV, product.specs.chargingBatteryTypes];
   }
+  if (product.category === "power_station") {
+    return [product.specs.capacityWh, product.specs.powerW, product.specs.solarInputW, product.specs.dcOutputA];
+  }
   return [product.specs.currentA];
 }
 
@@ -335,6 +391,7 @@ function recommendationReason(product, setup) {
   if (product.category === "inverter") return text.inverterReason(setup);
   if (product.category === "dc_charger") return text.dcChargerReason(setup);
   if (product.category === "shore_charger") return text.shoreChargerReason(setup);
+  if (product.category === "power_station") return text.powerStationReason(calculatePowerStationProfile(setup));
   return text.controllerReason(setup);
 }
 
@@ -364,6 +421,15 @@ function recommendationChecks(product, setup) {
       setup.batteryType === "lifepo4" ? "Profil pro LiFePO₄" : text.batteryLead
     ];
   }
+  if (product.category === "power_station") {
+    const profile = calculatePowerStationProfile(setup);
+    return [
+      `${product.specs.capacityWh} Wh ≥ ${profile.capacityWh} Wh`,
+      `${product.specs.powerW} W ≥ ${profile.acOutputWatts} W AC`,
+      `${product.specs.solarInputW} W ≥ ${profile.solarInputWatts} W PV`,
+      `${product.specs.dcOutputA} A ≥ ${profile.dcOutputAmpsAt12V} A przy 12 V`
+    ];
+  }
   return [
     `${product.specs.currentA} A ≥ ${setup.controllerAmps} A`,
     `${text.controllerFor} ${setup.solarWatts} Wp`
@@ -375,7 +441,7 @@ function verificationNote(category, locale) {
   return verify[category] || verify.controller;
 }
 
-function validateProductUrl(value, hostname) {
+function validateProductUrl(value, hostname, productPathPrefix = null) {
   const url = new URL(value);
   const allowedHosts = new Set([hostname, hostname.replace(/^www\./, "")]);
   if (url.protocol !== "https:" || !allowedHosts.has(url.hostname)) {
@@ -383,6 +449,9 @@ function validateProductUrl(value, hostname) {
   }
   if (url.pathname === "/" || url.pathname === "") {
     throw new Error("Affiliate odkaz nesmí směřovat na homepage.");
+  }
+  if (productPathPrefix && !url.pathname.startsWith(productPathPrefix)) {
+    throw new Error(`Affiliate odkaz musí směřovat na produktovou stránku ${productPathPrefix}.`);
   }
   url.hash = "";
   return url;

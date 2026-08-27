@@ -389,7 +389,8 @@ test("Polish calculator is localized, indexable and safely isolated until its ca
   assert.ok(html.includes('<link rel="canonical" href="https://mypowersetup.com/pl/"'));
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="pl-PL"'));
-  assert.ok(html.includes('src="/src/app-pl.js?v=20260825-merchants1"'));
+  assert.ok(html.includes('src="/src/app-pl.js?v=20260827-allpowers1"'));
+  assert.ok(app.includes('products.js?v=20260827-allpowers1'));
   assert.match(html, /Jakiego akumulatora i paneli naprawdę potrzebujesz/);
   assert.match(html, /Zanim zaczniesz kupować/);
   assert.doesNotMatch(html, /sprievodca|sukromie|Vypočítať|Koľko batérie|slovenské návody/);
@@ -399,7 +400,11 @@ test("Polish calculator is localized, indexable and safely isolated until its ca
   assert.ok(app.includes('buildSystemDiagram(result, "pl")'));
   assert.ok(app.includes('buildInstallationPlan(result, "pl")'));
   assert.match(catalog, /Lodówka kompresorowa/);
-  assert.deepEqual(JSON.parse(payload), { generatedAt: null, sources: {}, products: [] });
+  const polishProducts = JSON.parse(payload);
+  assert.equal(polishProducts.sources.allpowers_pl.status, "verified_manual");
+  assert.equal(polishProducts.products.length, 1);
+  assert.equal(polishProducts.products[0].category, "power_station");
+  assert.match(polishProducts.products[0].affiliateUrl, /awinmid=121776/);
   assert.ok(sitemap.includes("<loc>https://mypowersetup.com/pl/</loc>"));
   assert.ok(czech.includes('hreflang="pl-PL" href="https://mypowersetup.com/pl/"'));
   assert.ok(slovak.includes('hreflang="pl-PL" href="https://mypowersetup.com/pl/"'));

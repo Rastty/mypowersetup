@@ -1,5 +1,40 @@
 {
-  "generatedAt": null,
-  "sources": {},
-  "products": []
+  "generatedAt": "2026-08-27T00:00:00.000Z",
+  "sources": {
+    "allpowers_pl": {
+      "status": "verified_manual",
+      "parsedProducts": 1,
+      "verifiedAt": "2026-08-27"
+    }
+  },
+  "products": [
+    {
+      "id": "allpowers_pl:r1500-lite",
+      "merchant": "allpowers_pl",
+      "name": "ALLPOWERS R1500 LITE Stacja Zasilania 1600W 1056Wh Akumulator LiFePO4",
+      "description": "Pojemność 1056 Wh. Wyjście AC 1600 W, czysta sinusoida. Wejście solarne maks. 650 W. Wyjście 12 V DC 10 A. Akumulator LiFePO4.",
+      "categoryPath": "Stacje zasilania",
+      "category": "power_station",
+      "brand": "ALLPOWERS",
+      "priceCzk": 2119,
+      "available": null,
+      "productUrl": "https://allpowers.com.pl/products/allpowers-r1500-lite-stacja-zasilania-1600w-1056wh-akumulator-lifep04",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=121776&awinaffid=3044971&ued=https%3A%2F%2Fallpowers.com.pl%2Fproducts%2Fallpowers-r1500-lite-stacja-zasilania-1600w-1056wh-akumulator-lifep04",
+      "imageUrl": "",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": null,
+        "capacityWh": 1056,
+        "powerW": 1600,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": ["lifepo4"],
+        "batteryType": "lifepo4",
+        "pureSine": true,
+        "solarInputW": 650,
+        "dcOutputA": 10
+      }
+    }
+  ]
 }
