@@ -6,6 +6,8 @@ Aktualizováno: 2026-08-26
 
 MyPowerSetup poskytuje orientační návrh menší ostrovní elektrické sestavy. Uživatel zadává spotřebiče, příkon, dobu používání, počet kusů, požadovanou autonomii, sezonu, chemii baterie a případně napětí systému.
 
+Stejný výpočtový model a bezpečnostní omezení používají česká, slovenská a polská kalkulačka. Polská verze je dostupná na https://mypowersetup.com/pl/; produktová doporučení zůstanou vypnutá, dokud není nakonfigurovaný a ověřený polský affiliate katalog.
+
 ## Základní výpočty
 
 Denní spotřeba ve Wh je součet příkonu každého spotřebiče ve W násobeného hodinami používání za den a počtem kusů.

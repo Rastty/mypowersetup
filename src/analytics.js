@@ -21,6 +21,15 @@ const COPY = {
     details: "Viac o súkromí",
     detailsUrl: "/sk/sukromie/",
   },
+  pl: {
+    label: "Wybór analityki",
+    title: "Pomożesz nam ulepszać kalkulator?",
+    text: "Za Twoją zgodą użyjemy Google Analytics do anonimowego pomiaru odwiedzin i użycia funkcji. Bez zgody analityka nie zostanie załadowana.",
+    accept: "Zezwól na analitykę",
+    reject: "Odrzuć",
+    details: "Więcej o prywatności",
+    detailsUrl: "/soukromi/",
+  },
 };
 
 let choice = readChoice();
@@ -79,7 +88,7 @@ function setConsent(value) {
 
 function renderDialog() {
   removeDialog();
-  const locale = document.documentElement.lang === "sk" ? "sk" : "cs";
+  const locale = Object.hasOwn(COPY, document.documentElement.lang) ? document.documentElement.lang : "cs";
   const copy = COPY[locale];
   const dialog = document.createElement("aside");
   dialog.className = "analytics-consent";

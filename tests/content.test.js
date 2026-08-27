@@ -211,6 +211,7 @@ test("GA4 is available site-wide only after an explicit localized choice", async
   assert.match(analytics, /allow_ad_personalization_signals: false/);
   assert.match(analytics, /Povolit analytiku/);
   assert.match(analytics, /Povoliť analytiku/);
+  assert.match(analytics, /Zezwól na analitykę/);
   for (const source of [app, appSk]) assert.match(source, /MyPowerSetupAnalytics\?\.track/);
   for (const html of htmlFiles) assert.ok(html.includes('/src/analytics.js?v=20260824-1'));
   for (const privacy of [czechPrivacy, slovakPrivacy]) {
@@ -367,6 +368,42 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('href="/sk/sprievodca/kapacita-baterie-do-karavanu/"'));
   assert.ok(html.includes('href="/sk/sprievodca/agm-vs-lifepo4/"'));
   assert.doesNotMatch(html, /href="\/pruvodce\/agm-vs-lifepo4\/"/);
+});
+
+test("Polish calculator is localized, indexable and safely isolated until its catalog is ready", async () => {
+  const [html, app, catalog, payload, sitemap, czech, slovak, analytics, llms, llmsFull] = await Promise.all([
+    readFile("pl/index.html", "utf8"),
+    readFile("src/app-pl.js", "utf8"),
+    readFile("src/catalog-pl.js", "utf8"),
+    readFile("data/products-pl.json", "utf8"),
+    readFile("sitemap.xml", "utf8"),
+    readFile("index.html", "utf8"),
+    readFile("sk/index.html", "utf8"),
+    readFile("src/analytics.js", "utf8"),
+    readFile("llms.txt", "utf8"),
+    readFile("llms-full.txt", "utf8"),
+  ]);
+  assert.ok(html.includes('<html lang="pl">'));
+  assert.ok(html.includes('<link rel="canonical" href="https://mypowersetup.com/pl/"'));
+  assert.ok(html.includes('hreflang="cs-CZ"'));
+  assert.ok(html.includes('hreflang="pl-PL"'));
+  assert.ok(html.includes('src="/src/app-pl.js?v=20260825-merchants1"'));
+  assert.match(html, /Jakiego akumulatora i paneli naprawdę potrzebujesz/);
+  assert.match(html, /Zanim zaczniesz kupować/);
+  assert.doesNotMatch(html, /sprievodca|sukromie|Vypočítať|Koľko batérie|slovenské návody/);
+  assert.ok(app.includes('fetch("/data/products-pl.json"'));
+  assert.ok(app.includes('locale: "pl"'));
+  assert.ok(app.includes('}, "pl", window.location.origin)'));
+  assert.ok(app.includes('buildSystemDiagram(result, "pl")'));
+  assert.ok(app.includes('buildInstallationPlan(result, "pl")'));
+  assert.match(catalog, /Lodówka kompresorowa/);
+  assert.deepEqual(JSON.parse(payload), { generatedAt: null, sources: {}, products: [] });
+  assert.ok(sitemap.includes("<loc>https://mypowersetup.com/pl/</loc>"));
+  assert.ok(czech.includes('hreflang="pl-PL" href="https://mypowersetup.com/pl/"'));
+  assert.ok(slovak.includes('hreflang="pl-PL" href="https://mypowersetup.com/pl/"'));
+  assert.match(analytics, /Zezwól na analitykę/);
+  assert.ok(llms.includes("https://mypowersetup.com/pl/"));
+  assert.ok(llmsFull.includes("https://mypowersetup.com/pl/"));
 });
 
 test("calculator results can be shared in both languages", async () => {
