@@ -94,7 +94,7 @@ test("Shopify parser rejects malformed payloads and insecure origins", () => {
   );
 });
 
-test("committed Polish catalog offers panels and only a fully verified power station", async () => {
+test("committed Polish catalog offers panels and only fully verified power stations", async () => {
   const catalog = JSON.parse(await readFile("data/products-pl.json", "utf8"));
   const setup = {
     locale: "pl",
@@ -112,7 +112,20 @@ test("committed Polish catalog offers panels and only a fully verified power sta
   const recommendations = recommendProducts(catalog.products, setup);
 
   assert.equal(recommendations.solar_panel.length, 3);
-  assert.equal(recommendations.power_station.length, 1);
-  assert.equal(recommendations.power_station[0].product.id, "allpowers_pl:8562503319707");
+  assert.equal(recommendations.power_station.length, 2);
+  assert.deepEqual(
+    new Set(recommendations.power_station.map(({ product }) => product.id)),
+    new Set(["allpowers_pl:8562503319707", "allpowers_pl:8428259246235"])
+  );
   assert.ok(recommendations.solar_panel.every(({ product }) => product.affiliateUrl.includes("awinaffid=3044971")));
+
+  const compactRecommendations = recommendProducts(catalog.products, {
+    ...setup,
+    dailyWh: 120,
+    solarWatts: 100,
+    inverterWatts: 300
+  });
+  assert.ok(
+    compactRecommendations.power_station.some(({ product }) => product.id === "allpowers_pl:8428244172955")
+  );
 });

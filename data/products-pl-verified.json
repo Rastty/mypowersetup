@@ -12,6 +12,32 @@
         "dcOutputA": 10,
         "batteryType": "lifepo4"
       }
+    },
+    {
+      "productUrl": "https://allpowers.com.pl/products/allpowers-r600-portable-power-station-600w-299wh-with-lifep04-battery-1",
+      "verifiedAt": "2026-08-27",
+      "description": "Pojemność 299 Wh. Wyjście AC 600 W, czysta sinusoida. Wejście solarne maks. 220 W. Wyjście 12 V DC 10 A. Akumulator LiFePO4.",
+      "specs": {
+        "capacityWh": 299,
+        "powerW": 600,
+        "pureSine": true,
+        "solarInputW": 220,
+        "dcOutputA": 10,
+        "batteryType": "lifepo4"
+      }
+    },
+    {
+      "productUrl": "https://allpowers.com.pl/products/allpowers-r1500-portable-home-backup-power-station-1800w-1152wh-lifep04-battery",
+      "verifiedAt": "2026-08-27",
+      "description": "Pojemność 1152 Wh. Wyjście AC 1800 W, czysta sinusoida. Wejście solarne maks. 650 W. Wyjście 12 V DC 10 A. Akumulator LiFePO4.",
+      "specs": {
+        "capacityWh": 1152,
+        "powerW": 1800,
+        "pureSine": true,
+        "solarInputW": 650,
+        "dcOutputA": 10,
+        "batteryType": "lifepo4"
+      }
     }
   ]
 }

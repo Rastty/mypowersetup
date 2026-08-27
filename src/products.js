@@ -36,6 +36,12 @@ const MERCHANTS = {
     affiliateBaseUrl: "https://www.awin1.com/cread.php?awinmid=121776&awinaffid=3044971",
     destinationParam: "ued",
     productPathPrefix: "/products/"
+  },
+  powerqueen_us: {
+    hostname: "ipowerqueen.com",
+    affiliateBaseUrl: "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971",
+    destinationParam: "ued",
+    productPathPrefix: "/products/"
   }
 };
 
