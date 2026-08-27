@@ -216,7 +216,8 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
   if (isBattery) return "battery";
 
   const isSolarPanel =
-    /\b(solární|solárny|fotovoltaický|fotovoltický)\s+(?:skládací\s+|skladací\s+|přenosný\s+|prenosný\s+)?panel\b/i.test(name) &&
+    (/\b(solární|solárny|fotovoltaický|fotovoltický)\s+(?:skládací\s+|skladací\s+|přenosný\s+|prenosný\s+)?panel\b/i.test(name)
+      || /\bpanel(?:e)?\s+(?:słoneczn\w*|fotowoltaiczn\w*)\b|\b(?:słoneczn\w*|fotowoltaiczn\w*)\s+panel(?:e)?\b/i.test(name)) &&
     !accessory.test(name) &&
     specs.powerW > 0;
   if (isSolarPanel) return "solar_panel";
