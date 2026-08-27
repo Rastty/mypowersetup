@@ -37,6 +37,9 @@ const slovakPages = [
 ];
 
 const polishPages = [
+  ["pl/poradnik/index.html", "https://mypowersetup.com/pl/poradnik/", "https://mypowersetup.com/pruvodce/", "https://mypowersetup.com/sk/sprievodca/"],
+  ["pl/poradnik/pojemnosc-akumulatora-do-kampera/index.html", "https://mypowersetup.com/pl/poradnik/pojemnosc-akumulatora-do-kampera/", "https://mypowersetup.com/pruvodce/kapacita-baterie-do-karavanu/", "https://mypowersetup.com/sk/sprievodca/kapacita-baterie-do-karavanu/"],
+  ["pl/poradnik/agm-czy-lifepo4/index.html", "https://mypowersetup.com/pl/poradnik/agm-czy-lifepo4/", "https://mypowersetup.com/pruvodce/agm-vs-lifepo4/", "https://mypowersetup.com/sk/sprievodca/agm-vs-lifepo4/"],
   ["pl/o-projekcie/index.html", "https://mypowersetup.com/pl/o-projekcie/", "https://mypowersetup.com/o-projektu/", "https://mypowersetup.com/sk/o-projekte/"],
   ["pl/metodologia/index.html", "https://mypowersetup.com/pl/metodologia/", "https://mypowersetup.com/metodika/", "https://mypowersetup.com/sk/metodika/"],
   ["pl/afiliacja/index.html", "https://mypowersetup.com/pl/afiliacja/", "https://mypowersetup.com/affiliate/", "https://mypowersetup.com/sk/affiliate/"],
@@ -211,6 +214,27 @@ test("Polish trust pages replace Czech legal destinations throughout the Polish 
   assert.doesNotMatch(homepage, /href="\/(?:o-projektu|soukromi)\/"/);
 });
 
+test("Polish battery guides share calculator assumptions and form a complete entry path", async () => {
+  const [homepage, hub, capacity, chemistry] = await Promise.all([
+    readFile("pl/index.html", "utf8"),
+    readFile("pl/poradnik/index.html", "utf8"),
+    readFile("pl/poradnik/pojemnosc-akumulatora-do-kampera/index.html", "utf8"),
+    readFile("pl/poradnik/agm-czy-lifepo4/index.html", "utf8"),
+  ]);
+  for (const html of [homepage, hub]) {
+    assert.ok(html.includes('href="/pl/poradnik/pojemnosc-akumulatora-do-kampera/"'));
+    assert.ok(html.includes('href="/pl/poradnik/agm-czy-lifepo4/"'));
+  }
+  for (const html of [capacity, chemistry]) {
+    assert.match(html, /80%/);
+    assert.match(html, /50%/);
+    assert.ok(html.includes('href="/pl/#kalkulator"'));
+  }
+  assert.match(capacity, /1,15/);
+  assert.match(capacity, /144 Ah/);
+  assert.match(capacity, /230 Ah/);
+});
+
 test("affiliate recommendations are disclosed and measurable", async () => {
   const [html, app] = await Promise.all([
     readFile("index.html", "utf8"),
@@ -255,7 +279,7 @@ test("GA4 is available site-wide only after an explicit localized choice", async
   assert.match(analytics, /Povoliť analytiku/);
   assert.match(analytics, /Zezwól na analitykę/);
   for (const source of [app, appSk, appPl]) assert.match(source, /MyPowerSetupAnalytics\?\.track/);
-  for (const html of htmlFiles) assert.match(html, /\/src\/analytics\.js\?v=202608(?:24-1|27-pltrust1)/);
+  for (const html of htmlFiles) assert.match(html, /\/src\/analytics\.js\?v=202608(?:24-1|27-(?:pltrust1|plguides1))/);
   for (const privacy of [czechPrivacy, slovakPrivacy, polishPrivacy]) {
     assert.ok(privacy.includes("data-analytics-settings"));
     assert.ok(privacy.includes("https://policies.google.com/privacy"));
