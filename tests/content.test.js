@@ -40,6 +40,8 @@ const polishPages = [
   ["pl/poradnik/index.html", "https://mypowersetup.com/pl/poradnik/", "https://mypowersetup.com/pruvodce/", "https://mypowersetup.com/sk/sprievodca/"],
   ["pl/poradnik/pojemnosc-akumulatora-do-kampera/index.html", "https://mypowersetup.com/pl/poradnik/pojemnosc-akumulatora-do-kampera/", "https://mypowersetup.com/pruvodce/kapacita-baterie-do-karavanu/", "https://mypowersetup.com/sk/sprievodca/kapacita-baterie-do-karavanu/"],
   ["pl/poradnik/agm-czy-lifepo4/index.html", "https://mypowersetup.com/pl/poradnik/agm-czy-lifepo4/", "https://mypowersetup.com/pruvodce/agm-vs-lifepo4/", "https://mypowersetup.com/sk/sprievodca/agm-vs-lifepo4/"],
+  ["pl/poradnik/ile-wat-paneli-solarnych-do-kampera/index.html", "https://mypowersetup.com/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/", "https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/", "https://mypowersetup.com/sk/sprievodca/kolko-w-solarnych-panelov/"],
+  ["pl/poradnik/jak-dobrac-regulator-mppt/index.html", "https://mypowersetup.com/pl/poradnik/jak-dobrac-regulator-mppt/", "https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-mppt-regulator/"],
   ["pl/o-projekcie/index.html", "https://mypowersetup.com/pl/o-projekcie/", "https://mypowersetup.com/o-projektu/", "https://mypowersetup.com/sk/o-projekte/"],
   ["pl/metodologia/index.html", "https://mypowersetup.com/pl/metodologia/", "https://mypowersetup.com/metodika/", "https://mypowersetup.com/sk/metodika/"],
   ["pl/afiliacja/index.html", "https://mypowersetup.com/pl/afiliacja/", "https://mypowersetup.com/affiliate/", "https://mypowersetup.com/sk/affiliate/"],
@@ -233,6 +235,18 @@ test("Polish battery guides share calculator assumptions and form a complete ent
   assert.match(capacity, /1,15/);
   assert.match(capacity, /144 Ah/);
   assert.match(capacity, /230 Ah/);
+});
+
+test("Polish solar and MPPT guides preserve bounded shared assumptions", async () => {
+  const [hub, solar, mppt] = await Promise.all([
+    readFile("pl/poradnik/index.html", "utf8"),
+    readFile("pl/poradnik/ile-wat-paneli-solarnych-do-kampera/index.html", "utf8"),
+    readFile("pl/poradnik/jak-dobrac-regulator-mppt/index.html", "utf8"),
+  ]);
+  assert.ok(hub.includes('href="/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/"'));
+  assert.ok(hub.includes('href="/pl/poradnik/jak-dobrac-regulator-mppt/"'));
+  for (const value of ["4,5", "3", "1,5", "0,75", "1,15", "230 Wp"]) assert.ok(solar.includes(value));
+  for (const value of ["Voc", "Isc", "1,25", "42 A", "100/20", "290 W", "580 W"]) assert.ok(mppt.includes(value));
 });
 
 test("affiliate recommendations are disclosed and measurable", async () => {
