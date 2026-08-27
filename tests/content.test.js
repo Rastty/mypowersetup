@@ -231,12 +231,18 @@ test("every guide identifies Petr Gálík as its author", async () => {
 });
 
 test("calculator explains results and purchase checks", async () => {
-  const [html, app] = await Promise.all([
+  const [html, slovak, polish, app] = await Promise.all([
     readFile("index.html", "utf8"),
+    readFile("sk/index.html", "utf8"),
+    readFile("pl/index.html", "utf8"),
     readFile("src/app.js", "utf8"),
   ]);
   assert.ok(html.includes('id="result-reasons"'));
   assert.ok(html.includes("Proč právě tyto hodnoty"));
+  for (const localizedHtml of [html, slovak, polish]) {
+    assert.ok(localizedHtml.includes('<details class="decision-panel"'));
+    assert.ok(!localizedHtml.includes('<details class="decision-panel" open'));
+  }
   assert.ok(app.includes("Před nákupem:"));
   assert.ok(app.includes('trackEvent("calculation_completed"'));
 });
