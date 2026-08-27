@@ -284,7 +284,9 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .result-share-actions { display: flex; align-items: center; gap: 10px; }
 .result-share-status { grid-column: 1 / -1; min-height: 1.4em; color: #315745 !important; font-size: 13px; font-weight: 750; }
 .decision-panel { margin-top: 16px; padding: 26px; border: 1px solid #bfd5c8; border-radius: var(--radius-md); background: #f2f8f4; }
-.decision-panel h4 { margin: 7px 0 20px; font-size: 21px; }
+.decision-panel summary { cursor: pointer; }
+.decision-panel h4 { margin: 7px 0 0; font-size: 21px; }
+.decision-panel[open] .decision-grid { margin-top: 20px; }
 .decision-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .decision-grid article { padding: 17px; border: 1px solid var(--line); border-radius: 12px; background: white; }
 .decision-grid span { color: #58806b; font-size: 12px; font-weight: 800; text-transform: uppercase; }
@@ -517,6 +519,7 @@ footer small { font-size: 12px; }
   .result-card { min-height: 0; padding: 4mm; }
   .result-card strong { margin: 3mm 0 1.5mm; font-size: 18pt; }
   .decision-panel, .diagram-panel, .charging-panel, .roof-panel, .installation-panel, .result-panel { padding: 5mm; }
+  .decision-panel > :not(summary) { display: block !important; }
   .decision-grid { grid-template-columns: repeat(2, 1fr); }
   .result-columns, .charging-grid { grid-template-columns: repeat(2, 1fr); }
   .result-card, .decision-grid article, .result-panel, .diagram-panel,
