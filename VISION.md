@@ -38,6 +38,9 @@ Polsko ani Maďarsko se nesmí zveřejnit jen jako strojově přeložená kopie.
 - Unikátní užitečný nástroj a jeho výstupy mají přednost před množstvím obecných článků.
 - Obsah a komunitní distribuce musí být autentické, užitečné a bez spamu.
 - Web musí být rychlý, přístupný, dobře ovladatelný na mobilu a srozumitelný začátečníkovi.
+- Běžný uživatel musí během jedné minuty pochopit, co potřebuje, proč to potřebuje a které konkrétní produkty odpovídají výsledku.
+- Rychlé profily smějí pouze transparentně předvyplnit společný kalkulátor; nesmějí skrývat spotřebu ani nahrazovat upravitelné vstupy.
+- Budoucí kontrola existující sestavy má nejdříve určit hlavní omezení a nejmenší smysluplný upgrade, ne automaticky doporučit kompletní výměnu.
 
 ## Prioritní produktová cesta
 
@@ -99,8 +102,8 @@ Po zapnutí měření sledujeme zejména:
 
 ## Nejbližší pořadí práce
 
-1. Rozšířit návrh kabelů a jištění pouze tam, kde lze držet jasné bezpečnostní hranice.
-2. Přidat srozumitelné porovnání úsporné, doporučené a komfortní varianty.
-3. Zlepšovat produktová data, pokrytí kategorií a český SEO základ.
-4. Provést opakovaný mobilní a konverzní průchod celé uživatelské cesty.
-5. Po uzavření českých P0–P2 mezer zobecnit konfiguraci trhu pro SK, PL a HU bez kopírování aplikace a známých nedostatků.
+1. Dokončit plnohodnotné polské rozhraní nad společným enginem a ověřeným ALLPOWERS katalogem.
+2. Převést hlavní výsledek do jedné srozumitelné věty a přidat transparentní rychlé profily používání.
+3. Navrhnout bezpečné MVP kontroly existující sestavy a hlavního omezení bez předstírání úplné instalační kompatibility.
+4. Zlepšovat produktová data, pokrytí kategorií a SEO základ všech aktivních trhů.
+5. Po polském ověření připravit Maďarsko na stejné infrastruktuře bez kopírování aplikace a známých nedostatků.

@@ -199,6 +199,16 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .step-actions { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 38px; }
 .step-actions-end { justify-content: flex-end; }
 
+.usage-profiles { margin: -12px 0 30px; padding: 20px; border: 1px solid #d9e2dc; border-radius: var(--radius-md); background: #f7f9f5; }
+.usage-profile-heading strong { display: block; margin: 5px 0 6px; font-size: 17px; }
+.usage-profile-heading p { margin: 0; color: var(--ink-soft); font-size: 13px; line-height: 1.5; }
+.usage-profile-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; margin-top: 15px; }
+.usage-profile { min-height: 94px; padding: 14px; border: 1.5px solid var(--line); border-radius: 11px; color: var(--ink); background: white; text-align: left; cursor: pointer; transition: border .18s ease, background .18s ease, transform .18s ease; }
+.usage-profile:hover { transform: translateY(-2px); border-color: #9cb7a8; }
+.usage-profile.is-selected { border-color: var(--forest); background: var(--mint); box-shadow: inset 0 0 0 1px var(--forest); }
+.usage-profile strong, .usage-profile small { display: block; }
+.usage-profile strong { margin-bottom: 5px; font: 800 13px/1.3 "Manrope", sans-serif; }
+.usage-profile small { color: var(--ink-soft); font-size: 11px; line-height: 1.35; }
 .appliance-summary { display: flex; justify-content: space-between; gap: 16px; margin: -10px 0 22px; padding: 14px 18px; border-radius: var(--radius-sm); background: var(--mint); color: #315745; font-size: 14px; }
 .appliance-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .appliance-card { position: relative; display: grid; grid-template-columns: auto 1fr; gap: 13px; min-height: 106px; padding: 17px; border: 1.5px solid var(--line); border-radius: var(--radius-sm); background: white; cursor: pointer; }
@@ -227,6 +237,7 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .advanced-grid label small { display: block; margin-top: 6px; color: var(--ink-soft); font-weight: 500; line-height: 1.4; }
 
 .result-heading { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 34px; }
+.result-verdict { margin: -12px 0 18px; padding: 19px 22px; border-left: 5px solid var(--lime); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; color: white; background: var(--forest-deep); font: 750 17px/1.55 "Manrope", sans-serif; }
 .result-check { flex: 0 0 auto; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 18px; color: var(--forest); background: var(--lime); font-size: 27px; font-weight: 800; }
 .result-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .result-card { min-height: 156px; padding: 20px; border-radius: var(--radius-md); color: white; background: var(--forest); }
@@ -389,6 +400,7 @@ footer small { font-size: 12px; }
   .hero-visual { min-height: 330px; max-width: 520px; width: 100%; margin: 0 auto; }
   .choice-grid-days { grid-template-columns: repeat(2, 1fr); }
   .result-grid { grid-template-columns: repeat(2, 1fr); }
+  .usage-profile-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 680px) {
@@ -415,6 +427,7 @@ footer small { font-size: 12px; }
   .choice-grid-season .choice-card { min-height: 76px; }
   .appliance-summary { flex-direction: column; gap: 5px; }
   .appliance-summary { position: sticky; z-index: 3; top: 8px; box-shadow: 0 5px 18px rgba(13,43,35,.12); }
+  .usage-profiles { margin-top: -18px; padding: 16px; }
   .step-actions { align-items: stretch; flex-direction: column-reverse; }
   .step-actions .button { width: 100%; }
   .step-actions-end { flex-direction: column; }
@@ -444,6 +457,7 @@ footer small { font-size: 12px; }
   .result-heading { flex-direction: column; }
   .result-grid { grid-template-columns: 1fr; }
   .result-card { min-height: 128px; }
+  .usage-profile-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
