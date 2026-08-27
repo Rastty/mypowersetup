@@ -278,6 +278,8 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .is-insufficient .setup-status, .is-incompatible .setup-status { color: #7c2e24; background: #ffe0da; }
 .is-unknown .setup-status { color: #58645e; background: #e8ece9; }
 .existing-setup-safety { margin: 0; padding: 15px 22px 18px; color: var(--ink-soft); font-size: 11px; line-height: 1.5; }
+.existing-setup-action { margin: 16px 0 0; }
+.existing-setup-action .button { width: fit-content; }
 .result-share-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px 22px; margin-top: 16px; padding: 22px 24px; border: 1px solid #c9d8a4; border-radius: var(--radius-md); background: #f6fadf; }
 .result-share-card h4 { margin: 0 0 5px; font-size: 18px; }
 .result-share-card p { margin: 0; color: var(--ink-soft); line-height: 1.45; }
@@ -488,6 +490,7 @@ footer small { font-size: 12px; }
   .result-card { min-height: 128px; }
   .usage-profile-grid { grid-template-columns: 1fr; }
   .existing-setup-fields, .existing-setup-grid { grid-template-columns: 1fr; }
+  .existing-setup-action .button { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
