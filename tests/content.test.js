@@ -314,8 +314,8 @@ test("language switch remains available on mobile", async () => {
   assert.match(slovak, /class="header-link language-switch" href="\/"/);
   assert.match(slovak, /aria-label="Přepnout do češtiny"/);
   assert.match(styles, /\.header-link\.language-switch \{ display: inline-flex; \}/);
-  assert.ok(czech.includes('href="/styles.css?v=20260823-custom1"'));
-  assert.ok(slovak.includes('href="/styles.css?v=20260823-custom1"'));
+  assert.ok(czech.includes('href="/styles.css?v=20260827-hidden1"'));
+  assert.ok(slovak.includes('href="/styles.css?v=20260827-hidden1"'));
 });
 
 test("homepage exposes valid website and calculator structured data", async () => {
@@ -407,16 +407,20 @@ test("Polish calculator is localized, indexable and safely isolated until its ca
 });
 
 test("hidden calculator actions stay hidden even when component styles set display", async () => {
-  const [styles, app, appSk, appPl] = await Promise.all([
+  const [styles, app, appSk, appPl, czech, slovak, polish] = await Promise.all([
     readFile("styles.css", "utf8"),
     readFile("src/app.js", "utf8"),
     readFile("src/app-sk.js", "utf8"),
     readFile("src/app-pl.js", "utf8"),
+    readFile("index.html", "utf8"),
+    readFile("sk/index.html", "utf8"),
+    readFile("pl/index.html", "utf8"),
   ]);
   assert.match(styles, /\[hidden\]\s*\{\s*display:\s*none\s*!important;/);
   for (const source of [app, appSk, appPl]) {
     assert.ok(source.includes('document.querySelector("#result-products-link").hidden = total === 0'));
   }
+  for (const html of [czech, slovak, polish]) assert.ok(html.includes('/styles.css?v=20260827-hidden1'));
 });
 
 test("calculator results can be shared in both languages", async () => {
@@ -451,7 +455,7 @@ test("both calculators offer a clean printable PDF summary", async () => {
   for (const html of [czech, slovak]) {
     assert.ok(html.includes('id="result-print"'));
     assert.ok(html.includes('id="print-generated-at"'));
-    assert.ok(html.includes('/styles.css?v=20260823-custom1'));
+    assert.ok(html.includes('/styles.css?v=20260827-hidden1'));
   }
   for (const source of [app, appSk]) {
     assert.ok(source.includes('trackEvent("result_print_requested")'));
