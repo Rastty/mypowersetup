@@ -252,6 +252,32 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .result-next-card p { max-width: 650px; margin: 0; color: #c8d8d1; font-size: 13px; line-height: 1.45; }
 .result-next-card .step-kicker { color: var(--lime); }
 .result-next-card .button { white-space: nowrap; }
+.existing-setup-check { margin-top: 16px; }
+.existing-setup-details { border: 1px solid #b9d0c5; border-radius: var(--radius-md); background: #f4f8f5; overflow: hidden; }
+.existing-setup-details summary { padding: 20px 22px; cursor: pointer; }
+.existing-setup-details summary > span { display: inline-grid; gap: 4px; max-width: 780px; vertical-align: middle; }
+.existing-setup-details summary small { color: #58806b; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.existing-setup-details summary strong { font: 800 18px/1.3 "Manrope", sans-serif; }
+.existing-setup-details summary em { color: var(--ink-soft); font-size: 13px; font-style: normal; line-height: 1.45; }
+.existing-setup-form { padding: 0 22px 20px; }
+.existing-setup-fields { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; margin-bottom: 16px; }
+.existing-setup-fields label { color: var(--ink-soft); font-size: 12px; font-weight: 750; }
+.existing-setup-fields label > span { display: flex; align-items: center; gap: 7px; }
+.existing-setup-fields input, .existing-setup-fields select { width: 100%; height: 42px; margin-top: 6px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: white; }
+.existing-setup-output { padding: 20px 22px; border-top: 1px solid #cbdcd3; background: white; }
+.existing-setup-summary { margin: 0 0 15px; color: var(--forest-deep); font: 800 16px/1.5 "Manrope", sans-serif; }
+.existing-setup-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; }
+.existing-setup-item { padding: 14px; border: 1px solid var(--line); border-radius: 11px; background: #fafbf9; }
+.existing-setup-item > div { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; }
+.existing-setup-item strong { font-size: 13px; }
+.existing-setup-item b, .existing-setup-item small { display: block; }
+.existing-setup-item b { margin: 14px 0 4px; font-size: 20px; }
+.existing-setup-item small { color: var(--ink-soft); font-size: 11px; line-height: 1.4; }
+.setup-status { flex: 0 0 auto; padding: 3px 6px; border-radius: 99px; color: #315745; background: #dff0e7; font-size: 9px; font-weight: 850; text-transform: uppercase; }
+.is-close .setup-status { color: #6c5313; background: #fff0b9; }
+.is-insufficient .setup-status, .is-incompatible .setup-status { color: #7c2e24; background: #ffe0da; }
+.is-unknown .setup-status { color: #58645e; background: #e8ece9; }
+.existing-setup-safety { margin: 0; padding: 15px 22px 18px; color: var(--ink-soft); font-size: 11px; line-height: 1.5; }
 .result-share-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px 22px; margin-top: 16px; padding: 22px 24px; border: 1px solid #c9d8a4; border-radius: var(--radius-md); background: #f6fadf; }
 .result-share-card h4 { margin: 0 0 5px; font-size: 18px; }
 .result-share-card p { margin: 0; color: var(--ink-soft); line-height: 1.45; }
@@ -438,6 +464,7 @@ footer small { font-size: 12px; }
   .result-share-card { grid-template-columns: 1fr; }
   .result-next-card { grid-template-columns: 1fr; padding: 20px 18px; }
   .result-next-card .button { width: 100%; white-space: normal; }
+  .existing-setup-fields, .existing-setup-grid { grid-template-columns: 1fr 1fr; }
   .result-share-actions { align-items: stretch; flex-direction: column; margin-top: 8px; }
   .result-share-actions .button { width: 100%; }
   .diagram-panel { padding: 22px 16px; }
@@ -458,6 +485,7 @@ footer small { font-size: 12px; }
   .result-grid { grid-template-columns: 1fr; }
   .result-card { min-height: 128px; }
   .usage-profile-grid { grid-template-columns: 1fr; }
+  .existing-setup-fields, .existing-setup-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -472,7 +500,7 @@ footer small { font-size: 12px; }
   html, body { min-width: 0; background: white; }
   body > header, main > section:not(.calculator-section), footer,
   .calculator-section > .section-heading, .steps, .calculator-error,
-  .form-step:not(.result-step), .result-share-card, .result-next-card, .next-step-card,
+  .form-step:not(.result-step), .result-share-card, .result-next-card, .existing-setup-check, .next-step-card,
   .step-actions, .method-link { display: none !important; }
 
   .calculator-section { padding: 0; }
