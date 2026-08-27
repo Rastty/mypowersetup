@@ -36,6 +36,13 @@ const slovakPages = [
   ["sk/sukromie/index.html", "https://mypowersetup.com/sk/sukromie/", "https://mypowersetup.com/soukromi/"],
 ];
 
+const polishPages = [
+  ["pl/o-projekcie/index.html", "https://mypowersetup.com/pl/o-projekcie/", "https://mypowersetup.com/o-projektu/", "https://mypowersetup.com/sk/o-projekte/"],
+  ["pl/metodologia/index.html", "https://mypowersetup.com/pl/metodologia/", "https://mypowersetup.com/metodika/", "https://mypowersetup.com/sk/metodika/"],
+  ["pl/afiliacja/index.html", "https://mypowersetup.com/pl/afiliacja/", "https://mypowersetup.com/affiliate/", "https://mypowersetup.com/sk/affiliate/"],
+  ["pl/prywatnosc/index.html", "https://mypowersetup.com/pl/prywatnosc/", "https://mypowersetup.com/soukromi/", "https://mypowersetup.com/sk/sukromie/"],
+];
+
 for (const [file, canonical] of pages) {
   test(`${file} has essential SEO and calculator links`, async () => {
     const html = await readFile(file, "utf8");
@@ -142,6 +149,7 @@ test("sitemap contains every published page", async () => {
   const sitemap = await readFile("sitemap.xml", "utf8");
   for (const [, canonical] of pages) assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
   for (const [, canonical] of slovakPages) assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
+  for (const [, canonical] of polishPages) assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
 });
 
 for (const [file, canonical, czechAlternate] of slovakPages) {
@@ -171,6 +179,38 @@ test("every Slovak content page has complete share and language metadata", async
   }
 });
 
+for (const [file, canonical, czechAlternate, slovakAlternate] of polishPages) {
+  test(`${file} is fully localized and linked to its language alternates`, async () => {
+    const html = await readFile(file, "utf8");
+    assert.ok(html.includes('<html lang="pl">'));
+    assert.match(html, /<title>[^<]{20,}<\/title>/);
+    assert.match(html, /<meta name="description" content="[^"]{80,}"/);
+    assert.ok(html.includes(`<link rel="canonical" href="${canonical}">`));
+    assert.ok(html.includes(`hreflang="cs-CZ" href="${czechAlternate}"`));
+    assert.ok(html.includes(`hreflang="sk-SK" href="${slovakAlternate}"`));
+    assert.ok(html.includes(`hreflang="pl-PL" href="${canonical}"`));
+    assert.ok(html.includes('hreflang="x-default"'));
+    assert.ok(html.includes('href="/pl/#kalkulator"'));
+    assert.match(html, /<meta property="og:locale" content="pl_PL">/);
+    assert.ok(html.includes('<meta property="og:image" content="https://mypowersetup.com/social-card.png">'));
+    assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image">'));
+  });
+}
+
+test("Polish trust pages replace Czech legal destinations throughout the Polish UI", async () => {
+  const [homepage, analytics, privacy] = await Promise.all([
+    readFile("pl/index.html", "utf8"),
+    readFile("src/analytics.js", "utf8"),
+    readFile("pl/prywatnosc/index.html", "utf8"),
+  ]);
+  for (const path of ["/pl/o-projekcie/", "/pl/metodologia/", "/pl/afiliacja/", "/pl/prywatnosc/"]) {
+    assert.ok(homepage.includes(`href="${path}"`));
+  }
+  assert.ok(analytics.includes('detailsUrl: "/pl/prywatnosc/"'));
+  assert.ok(privacy.includes("data-analytics-settings"));
+  assert.doesNotMatch(homepage, /href="\/(?:o-projektu|soukromi)\/"/);
+});
+
 test("affiliate recommendations are disclosed and measurable", async () => {
   const [html, app] = await Promise.all([
     readFile("index.html", "utf8"),
@@ -196,13 +236,15 @@ test("author identity is transparent and consistent", async () => {
 });
 
 test("GA4 is available site-wide only after an explicit localized choice", async () => {
-  const allPageFiles = ["index.html", "sk/index.html", ...pages.map(([file]) => file), ...slovakPages.map(([file]) => file)];
-  const [analytics, app, appSk, czechPrivacy, slovakPrivacy, ...htmlFiles] = await Promise.all([
+  const allPageFiles = ["index.html", "sk/index.html", "pl/index.html", ...pages.map(([file]) => file), ...slovakPages.map(([file]) => file), ...polishPages.map(([file]) => file)];
+  const [analytics, app, appSk, appPl, czechPrivacy, slovakPrivacy, polishPrivacy, ...htmlFiles] = await Promise.all([
     readFile("src/analytics.js", "utf8"),
     readFile("src/app.js", "utf8"),
     readFile("src/app-sk.js", "utf8"),
+    readFile("src/app-pl.js", "utf8"),
     readFile("soukromi/index.html", "utf8"),
     readFile("sk/sukromie/index.html", "utf8"),
+    readFile("pl/prywatnosc/index.html", "utf8"),
     ...allPageFiles.map((file) => readFile(file, "utf8")),
   ]);
   assert.match(analytics, /G-TDNRBM2V2J/);
@@ -212,9 +254,9 @@ test("GA4 is available site-wide only after an explicit localized choice", async
   assert.match(analytics, /Povolit analytiku/);
   assert.match(analytics, /Povoliť analytiku/);
   assert.match(analytics, /Zezwól na analitykę/);
-  for (const source of [app, appSk]) assert.match(source, /MyPowerSetupAnalytics\?\.track/);
-  for (const html of htmlFiles) assert.ok(html.includes('/src/analytics.js?v=20260824-1'));
-  for (const privacy of [czechPrivacy, slovakPrivacy]) {
+  for (const source of [app, appSk, appPl]) assert.match(source, /MyPowerSetupAnalytics\?\.track/);
+  for (const html of htmlFiles) assert.match(html, /\/src\/analytics\.js\?v=202608(?:24-1|27-pltrust1)/);
+  for (const privacy of [czechPrivacy, slovakPrivacy, polishPrivacy]) {
     assert.ok(privacy.includes("data-analytics-settings"));
     assert.ok(privacy.includes("https://policies.google.com/privacy"));
   }
@@ -710,6 +752,7 @@ test("LLM discovery files cover every published page and preserve safety limits"
   ]);
   for (const [, canonical] of pages) assert.ok(llms.includes(canonical));
   for (const [, canonical] of slovakPages) assert.ok(llms.includes(canonical));
+  for (const [, canonical] of polishPages) assert.ok(llms.includes(canonical));
   assert.match(llms, /nikoli elektroprojekt nebo revize/i);
   assert.match(full, /affiliate provize nejsou součástí technického skóre/i);
   assert.match(full, /Petr Gálík/);

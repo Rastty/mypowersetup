@@ -28,7 +28,7 @@ const COPY = {
     accept: "Zezwól na analitykę",
     reject: "Odrzuć",
     details: "Więcej o prywatności",
-    detailsUrl: "/soukromi/",
+    detailsUrl: "/pl/prywatnosc/",
   },
 };
 
