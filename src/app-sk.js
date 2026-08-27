@@ -10,6 +10,8 @@ import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
 import { buildProductPackages } from "./packages.js?v=20260823-packages2";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
+import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
+import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -26,6 +28,17 @@ let productCatalogSources = {};
 let calculatorStarted = false;
 
 renderAppliances();
+mountUsageProfiles({
+  locale: "sk",
+  form,
+  applianceGrid,
+  appliances: APPLIANCES,
+  onChange: updateLiveSummary,
+  onSelect: (profile) => {
+    trackCalculatorStarted("usage_profile");
+    trackEvent("usage_profile_selected", { profile });
+  },
+});
 bindChoiceCards();
 bindNavigation();
 bindResultSharing();
@@ -314,6 +327,7 @@ function renderResult(result) {
     `Vytvorené ${new Date().toLocaleDateString("sk-SK")} · mypowersetup.com`;
   document.querySelector("#result-intro").textContent =
     `Pre odhadovanú spotrebu ${formatEnergy(result.dailyWh)} denne a ${result.autonomyDays} ${dayWord(result.autonomyDays)} autonómie.`;
+  document.querySelector("#result-verdict").textContent = buildPlainLanguageVerdict(result, "sk");
 
   document.querySelector("#result-grid").innerHTML = [
     resultCard("Batéria", `${result.batteryAh} Ah`, `${formatEnergy(result.batteryWh)} · ${result.systemVoltage} V · ${result.batteryLabel}`, true),
@@ -629,6 +643,10 @@ function resetForm() {
     card.classList.toggle("is-selected", input.checked);
   });
   document.querySelectorAll(".appliance-card").forEach((card) => card.classList.remove("is-selected"));
+  document.querySelectorAll("[data-usage-profile]").forEach((button) => {
+    button.classList.remove("is-selected");
+    button.setAttribute("aria-pressed", "false");
+  });
   latestResult = null;
   latestShareUrl = `${window.location.origin}/sk/#kalkulator`;
   history.replaceState({}, "", "/sk/#kalkulator");
