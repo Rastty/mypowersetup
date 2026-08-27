@@ -12,6 +12,7 @@ import { buildProductPackages } from "./packages.js?v=20260823-packages2";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
+import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -38,6 +39,12 @@ mountUsageProfiles({
     trackCalculatorStarted("usage_profile");
     trackEvent("usage_profile_selected", { profile });
   },
+});
+const existingSetupCheck = mountExistingSetupCheck({
+  target: document.querySelector("#existing-setup-check"),
+  locale: "pl",
+  getResult: () => latestResult,
+  onAssessed: (assessment) => trackEvent("existing_setup_assessed", { bottleneck: assessment.primaryBottleneck || "none" })
 });
 bindChoiceCards();
 bindNavigation();
@@ -323,6 +330,7 @@ function trackCalculatorStarted(source) {
 }
 
 function renderResult(result) {
+  existingSetupCheck.setResult(result);
   document.querySelector("#print-generated-at").textContent =
     `Utworzono ${new Date().toLocaleDateString("pl-PL")} · mypowersetup.com`;
   document.querySelector("#result-intro").textContent =
