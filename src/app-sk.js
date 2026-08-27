@@ -12,7 +12,7 @@ import { buildProductPackages } from "./packages.js?v=20260823-packages2";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
-import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-1";
+import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -44,6 +44,8 @@ const existingSetupCheck = mountExistingSetupCheck({
   target: document.querySelector("#existing-setup-check"),
   locale: "sk",
   getResult: () => latestResult,
+  hasProductCategory: (category) => Boolean(document.querySelector(`[data-product-category="${category}"]`)),
+  onUpgradeOpen: (category) => trackEvent("existing_setup_upgrade_opened", { category }),
   onAssessed: (assessment) => trackEvent("existing_setup_assessed", { bottleneck: assessment.primaryBottleneck || "none" })
 });
 bindChoiceCards();
@@ -503,7 +505,7 @@ function renderProductRecommendations(result) {
   groups.innerHTML = Object.entries(recommendations)
     .filter(([, items]) => items.length)
     .map(([category, items]) => `
-      <section class="product-group">
+      <section class="product-group" id="product-group-${category}" data-product-category="${category}">
         <h5>${categoryLabels[category]}</h5>
         <div class="product-grid">
           ${items.map(({ product, reason, checks, verify }) => productCard(product, reason, checks, verify)).join("")}

@@ -276,6 +276,8 @@ test("all active calculators offer the shared optional existing-setup check", as
     assert.ok(app.includes("mountExistingSetupCheck"));
     assert.ok(app.includes(locale));
     assert.ok(app.includes('trackEvent("existing_setup_assessed", { bottleneck:'));
+    assert.ok(app.includes('trackEvent("existing_setup_upgrade_opened", { category })'));
+    assert.ok(app.includes('data-product-category="${category}"'));
   }
 });
 
@@ -300,7 +302,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260827-existing1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260827-existing2"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260825-merchants1"'));
@@ -354,8 +356,8 @@ test("language switch remains available on mobile", async () => {
   assert.match(slovak, /aria-label="Přepnout do češtiny"/);
   assert.match(slovak, /class="header-link language-switch" href="\/pl\/"/);
   assert.match(styles, /\.header-link\.language-switch \{ display: inline-flex; \}/);
-  assert.ok(czech.includes('href="/styles.css?v=20260827-profiles1"'));
-  assert.ok(slovak.includes('href="/styles.css?v=20260827-profiles1"'));
+  assert.ok(czech.includes('href="/styles.css?v=20260827-existing2"'));
+  assert.ok(slovak.includes('href="/styles.css?v=20260827-existing2"'));
 });
 
 test("homepage exposes valid website and calculator structured data", async () => {
@@ -397,7 +399,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260827-existing1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260827-existing2"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency: "EUR"'));
@@ -427,7 +429,7 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
   assert.ok(html.includes('<link rel="canonical" href="https://mypowersetup.com/pl/"'));
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="pl-PL"'));
-  assert.ok(html.includes('src="/src/app-pl.js?v=20260827-existing1"'));
+  assert.ok(html.includes('src="/src/app-pl.js?v=20260827-existing2"'));
   assert.ok(app.includes('products.js?v=20260827-allpowers2'));
   assert.match(html, /Jakiego akumulatora i paneli naprawdę potrzebujesz/);
   assert.match(html, /Zanim zaczniesz kupować/);
@@ -468,7 +470,7 @@ test("hidden calculator actions stay hidden even when component styles set displ
   for (const source of [app, appSk, appPl]) {
     assert.ok(source.includes('document.querySelector("#result-products-link").hidden = total === 0'));
   }
-  for (const html of [czech, slovak, polish]) assert.ok(html.includes('/styles.css?v=20260827-profiles1'));
+  for (const html of [czech, slovak, polish]) assert.ok(html.includes('/styles.css?v=20260827-existing2'));
 });
 
 test("calculator results can be shared in both languages", async () => {
@@ -503,7 +505,7 @@ test("both calculators offer a clean printable PDF summary", async () => {
   for (const html of [czech, slovak]) {
     assert.ok(html.includes('id="result-print"'));
     assert.ok(html.includes('id="print-generated-at"'));
-    assert.ok(html.includes('/styles.css?v=20260827-profiles1'));
+    assert.ok(html.includes('/styles.css?v=20260827-existing2'));
   }
   for (const source of [app, appSk]) {
     assert.ok(source.includes('trackEvent("result_print_requested")'));

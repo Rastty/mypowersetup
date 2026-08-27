@@ -1,4 +1,5 @@
 const USABLE_DEPTH = { lifepo4: 0.8, lead: 0.5 };
+const PRODUCT_CATEGORY_BY_COMPONENT = { battery: "battery", solar: "solar_panel", inverter: "inverter", controller: "controller" };
 
 const COPY = {
   cs: {
@@ -15,6 +16,7 @@ const COPY = {
     controller: "Jmenovitý proud MPPT",
     optional: "Nepovinné",
     submit: "Porovnat s návrhem",
+    upgradeProducts: "Zobrazit vhodné produkty pro tento upgrade ↓",
     statuses: { sufficient: "Stačí", close: "Téměř stačí", insufficient: "Nestačí", unknown: "Nezadáno", incompatible: "Jiné napětí" },
     component: { battery: "Baterie", solar: "Solár", inverter: "Měnič", controller: "MPPT", voltage: "Napětí systému" },
     compared: (current, required) => `${current} z doporučených ${required}`,
@@ -44,6 +46,7 @@ const COPY = {
     controller: "Menovitý prúd MPPT",
     optional: "Nepovinné",
     submit: "Porovnať s návrhom",
+    upgradeProducts: "Zobraziť vhodné produkty pre tento upgrade ↓",
     statuses: { sufficient: "Stačí", close: "Takmer stačí", insufficient: "Nestačí", unknown: "Nezadané", incompatible: "Iné napätie" },
     component: { battery: "Batéria", solar: "Solár", inverter: "Menič", controller: "MPPT", voltage: "Napätie systému" },
     compared: (current, required) => `${current} z odporúčaných ${required}`,
@@ -73,6 +76,7 @@ const COPY = {
     controller: "Prąd znamionowy MPPT",
     optional: "Opcjonalnie",
     submit: "Porównaj z wynikiem",
+    upgradeProducts: "Pokaż odpowiednie produkty do tej modernizacji ↓",
     statuses: { sufficient: "Wystarczy", close: "Prawie wystarczy", insufficient: "Za mało", unknown: "Brak danych", incompatible: "Inne napięcie" },
     component: { battery: "Akumulator", solar: "Panele", inverter: "Przetwornica", controller: "MPPT", voltage: "Napięcie systemu" },
     compared: (current, required) => `${current} z zalecanych ${required}`,
@@ -157,6 +161,10 @@ export function assessExistingSetup(result, input, locale = result?.locale || "c
   return { locale, voltage, batteryType, requiredBatteryAh, items, primaryBottleneck, summary };
 }
 
+export function productCategoryForBottleneck(component) {
+  return PRODUCT_CATEGORY_BY_COMPONENT[component] || null;
+}
+
 function renderItem(item, text) {
   const current = item.current === null ? "—" : `${item.current} ${item.unit}`;
   const comparison = item.id === "inverter" && item.required === 0
@@ -170,7 +178,7 @@ function renderItem(item, text) {
   </article>`;
 }
 
-export function mountExistingSetupCheck({ target, locale = "cs", getResult, onAssessed }) {
+export function mountExistingSetupCheck({ target, locale = "cs", getResult, hasProductCategory, onAssessed, onUpgradeOpen }) {
   if (!target) return { setResult() {} };
   const text = COPY[locale] || COPY.cs;
   target.innerHTML = `<details class="existing-setup-details">
@@ -197,8 +205,13 @@ export function mountExistingSetupCheck({ target, locale = "cs", getResult, onAs
     if (!result) return;
     const values = Object.fromEntries([...form.querySelectorAll("[name]")].map((field) => [field.name, field.value]));
     const assessment = assessExistingSetup(result, values, locale);
-    output.innerHTML = `<p class="existing-setup-summary">${assessment.summary}</p><div class="existing-setup-grid">${assessment.items.map((item) => renderItem(item, text)).join("")}</div>`;
+    const productCategory = productCategoryForBottleneck(assessment.primaryBottleneck);
+    const upgradeAction = productCategory && hasProductCategory?.(productCategory)
+      ? `<p class="existing-setup-action"><a class="button button-primary" data-existing-upgrade-link href="#product-group-${productCategory}">${text.upgradeProducts}</a></p>`
+      : "";
+    output.innerHTML = `<p class="existing-setup-summary">${assessment.summary}</p><div class="existing-setup-grid">${assessment.items.map((item) => renderItem(item, text)).join("")}</div>${upgradeAction}`;
     output.hidden = false;
+    output.querySelector("[data-existing-upgrade-link]")?.addEventListener("click", () => onUpgradeOpen?.(productCategory));
     onAssessed?.(assessment);
   });
 

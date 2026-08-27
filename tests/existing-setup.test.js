@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { assessExistingSetup } from "../src/existing-setup.js";
+import { assessExistingSetup, productCategoryForBottleneck } from "../src/existing-setup.js";
 
 const result = {
   locale: "cs",
@@ -79,4 +79,13 @@ test("unknown values stay optional and no unnecessary inverter is flagged", () =
   assert.equal(assessment.items.find((item) => item.id === "inverter").status, "sufficient");
   assert.equal(assessment.items.find((item) => item.id === "solar").status, "unknown");
   assert.match(assessment.summary, /Uzupełnij brakujące wartości/);
+});
+
+test("only product-sized bottlenecks map to a recommendation category", () => {
+  assert.equal(productCategoryForBottleneck("battery"), "battery");
+  assert.equal(productCategoryForBottleneck("solar"), "solar_panel");
+  assert.equal(productCategoryForBottleneck("inverter"), "inverter");
+  assert.equal(productCategoryForBottleneck("controller"), "controller");
+  assert.equal(productCategoryForBottleneck("voltage"), null);
+  assert.equal(productCategoryForBottleneck(null), null);
 });
