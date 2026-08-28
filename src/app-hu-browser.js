@@ -117,6 +117,7 @@ function renderProducts(output) {
   const entries = Object.entries(output.recommendations).filter(([,items]) => items.length);
   const total = entries.reduce((sum,[,items]) => sum + items.length,0);
   const coverage = output.recommendationCoverage;
+  track("product_coverage_calculated", { locale:"hu", required_categories:coverage.required.length, covered_categories:coverage.covered.length, missing_categories:coverage.missing.join(",") });
   document.querySelector("#result-next").hidden = false; document.querySelector("#result-product-count").textContent = total ? `${total} ellenőrzött műszaki találat ${entries.length} kategóriában. Terméklefedettség: ${coverage.covered.length}/${coverage.required.length} szükséges kategória.` : "Ehhez a konfigurációhoz még nincs elég ellenőrzött termék."; document.querySelector("#result-products-link").hidden = !total;
   document.querySelector("#product-heading").textContent = total ? "A számítással kompatibilis alkatrészek" : "Pontos termékajánlások előkészítése";
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>A katalógusból még hiányzik:</strong> ${escapeHtml(coverage.message)}</p>`;
