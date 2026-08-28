@@ -250,7 +250,7 @@ test("Polish solar and MPPT guides preserve bounded shared assumptions", async (
   ]);
   assert.ok(hub.includes('href="/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/"'));
   assert.ok(hub.includes('href="/pl/poradnik/jak-dobrac-regulator-mppt/"'));
-  for (const value of ["4,5", "3", "1,5", "0,75", "1,15", "230 Wp"]) assert.ok(solar.includes(value));
+  for (const value of ["4,5", "3", "1,5", "0,75", "1,15", "205 Wp"]) assert.ok(solar.includes(value));
   for (const value of ["Voc", "Isc", "1,25", "42 A", "100/20", "290 W", "580 W"]) assert.ok(mppt.includes(value));
 });
 
@@ -899,7 +899,7 @@ test("Czech and Slovak solar guides share the calculator assumptions and recipro
     readFile("llms-full.txt", "utf8"),
   ]);
   for (const html of [czech, slovak]) {
-    assert.match(html, /600 × 1,15 ÷ 4 ÷ 0,75 = <strong>230 Wp<\/strong>/);
+    assert.match(html, /600 × 1,15 ÷ 4,5 ÷ 0,75 = <strong>205 Wp<\/strong>/);
     assert.match(html, /75 ?%/);
     assert.ok(html.includes("Manual_SmartSolar_MPPT"));
   }
