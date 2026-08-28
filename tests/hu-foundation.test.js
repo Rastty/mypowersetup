@@ -197,7 +197,7 @@ test("Hungarian launch gate opens only with complete coverage and explicit revie
 
 test("Hungarian core guides preserve calculator assumptions while remaining private", async () => {
   const pages = Object.keys(HU_GUIDE_ROUTES).map((kind) => [kind, renderHungarianGuide(kind)]);
-  assert.equal(pages.length, 7);
+  assert.equal(pages.length, 8);
   for (const [kind, html] of pages) {
     assert.match(html, /<html lang="hu">/);
     assert.match(html, /name="robots" content="noindex,nofollow,noarchive"/);
@@ -240,6 +240,15 @@ test("Hungarian inverter and charging guides preserve bounded engine calculation
   assert.match(shore, /6,9 A/);
   assert.match(shore, /1380 W/);
   assert.match(shore, /RCD/);
+});
+
+test("Hungarian wiring guide preserves the bounded voltage-drop model", () => {
+  const wiring = renderHungarianGuide("wiring");
+  assert.match(wiring, /2 × egyirányú hossz/);
+  assert.match(wiring, /1500 W, 12 V/);
+  assert.match(wiring, /24,3 mm²/);
+  assert.match(wiring, /25 mm² csak feszültségesés alapján/);
+  assert.match(wiring, /megszakítóképesség/);
 });
 
 async function fileExists(path) {
