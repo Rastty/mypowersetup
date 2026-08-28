@@ -212,7 +212,7 @@ test("Hungarian core guides preserve calculator assumptions while remaining priv
   const solar = pages.find(([kind]) => kind === "solar")[1];
   assert.match(solar, /4,5/);
   assert.match(solar, /1,5 teljes napsütéses órával/);
-  assert.match(solar, /600 × 1,15 ÷ 4 ÷ 0,75/);
+  assert.match(solar, /600 × 1,15 ÷ 4,5 ÷ 0,75/);
   const mppt = pages.find(([kind]) => kind === "mppt")[1];
   assert.match(mppt, /400 ÷ 12 × 1,25/);
   assert.match(mppt, /Voc/);
