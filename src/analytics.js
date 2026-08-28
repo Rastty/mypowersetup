@@ -30,6 +30,15 @@ const COPY = {
     details: "Więcej o prywatności",
     detailsUrl: "/pl/prywatnosc/",
   },
+  hu: {
+    label: "Analitikai beállítás",
+    title: "Segítesz fejleszteni a kalkulátort?",
+    text: "Hozzájárulásod után a Google Analytics segítségével névtelenül mérjük a látogatásokat és a funkciók használatát. Hozzájárulás nélkül az analitika nem töltődik be.",
+    accept: "Analitika engedélyezése",
+    reject: "Elutasítás",
+    details: "További információ az adatvédelemről",
+    detailsUrl: "/hu/adatvedelem/",
+  },
 };
 
 let choice = readChoice();
