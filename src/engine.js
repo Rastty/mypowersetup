@@ -29,6 +29,14 @@ const ENGINE_TEXT = {
     surgeWarning: "Urządzenia z silnikiem mogą mieć krótkotrwały prąd rozruchowy; sprawdź go w dokumentacji producenta.",
     voltageWarning: (voltage) => `Dla zestawu tej wielkości standardowo zalecamy system ${voltage} V.`,
     missingSelection: "Wybierz co najmniej jedno urządzenie."
+  },
+  hu: {
+    seasons: { summer: "Nyár", shoulder: "Tavasz / ősz", winter: "Tél" },
+    batteries: { lifepo4: "LiFePO₄", lead: "AGM / ólom-savas" },
+    winterWarning: "Télen nagy termelési ingadozásokkal és tartalék töltési lehetőséggel kell számolni.",
+    surgeWarning: "A motoros fogyasztók rövid indítási teljesítménycsúcsot igényelhetnek; ellenőrizd a gyártói dokumentációt.",
+    voltageWarning: (voltage) => `Ehhez a méretű rendszerhez alapértelmezetten ${voltage} V-os feszültséget ajánlunk.`,
+    missingSelection: "Válassz legalább egy fogyasztót."
   }
 };
 
