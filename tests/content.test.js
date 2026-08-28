@@ -46,6 +46,7 @@ const polishPages = [
   ["pl/poradnik/jak-dobrac-ladowarke-230-v/index.html", "https://mypowersetup.com/pl/poradnik/jak-dobrac-ladowarke-230-v/", "https://mypowersetup.com/pruvodce/jak-vybrat-nabijecku-230-v/", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-nabijacku-230-v/"],
   ["pl/poradnik/jak-dobrac-przetwornice-do-kampera/index.html", "https://mypowersetup.com/pl/poradnik/jak-dobrac-przetwornice-do-kampera/", "https://mypowersetup.com/pruvodce/jak-velky-menic-do-karavanu/", "https://mypowersetup.com/sk/sprievodca/aky-velky-menic-do-karavanu/"],
   ["pl/poradnik/przewody-i-bezpieczniki-12-v/index.html", "https://mypowersetup.com/pl/poradnik/przewody-i-bezpieczniki-12-v/", "https://mypowersetup.com/pruvodce/kabely-a-pojistky-12-v/", "https://mypowersetup.com/sk/sprievodca/kable-a-poistky-12-v/"],
+  ["pl/poradnik/zuzycie-lodowki-kompresorowej/index.html", "https://mypowersetup.com/pl/poradnik/zuzycie-lodowki-kompresorowej/", "https://mypowersetup.com/pruvodce/spotreba-kompresorove-lednice/", "https://mypowersetup.com/sk/sprievodca/spotreba-kompresorovej-chladnicky/"],
   ["pl/o-projekcie/index.html", "https://mypowersetup.com/pl/o-projekcie/", "https://mypowersetup.com/o-projektu/", "https://mypowersetup.com/sk/o-projekte/"],
   ["pl/metodologia/index.html", "https://mypowersetup.com/pl/metodologia/", "https://mypowersetup.com/metodika/", "https://mypowersetup.com/sk/metodika/"],
   ["pl/afiliacja/index.html", "https://mypowersetup.com/pl/afiliacja/", "https://mypowersetup.com/affiliate/", "https://mypowersetup.com/sk/affiliate/"],
@@ -282,6 +283,20 @@ test("Polish inverter and cable guides preserve shared sizing boundaries", async
   assert.match(cable, /nie określa obciążalności, wartości bezpiecznika ani bezpieczeństwa montażu/i);
 });
 
+test("Polish guide hub reaches complete CZ and SK topic parity", async () => {
+  const [hub, fridge] = await Promise.all([
+    readFile("pl/poradnik/index.html", "utf8"),
+    readFile("pl/poradnik/zuzycie-lodowki-kompresorowej/index.html", "utf8"),
+  ]);
+  const guidePaths = polishPages
+    .map(([file]) => file)
+    .filter((file) => file.startsWith("pl/poradnik/") && file !== "pl/poradnik/index.html")
+    .map((file) => `/${file.replace(/index\.html$/, "")}`);
+  assert.equal(guidePaths.length, 9);
+  for (const path of guidePaths) assert.ok(hub.includes(`href="${path}"`), path);
+  for (const value of ["250–600 Wh", "268 Wh/24 h", "557 Wh/24 h", "0,40", "576 Wh/dobę"]) assert.ok(fridge.includes(value));
+});
+
 test("affiliate recommendations are disclosed and measurable", async () => {
   const [html, app] = await Promise.all([
     readFile("index.html", "utf8"),
@@ -326,7 +341,7 @@ test("GA4 is available site-wide only after an explicit localized choice", async
   assert.match(analytics, /Povoliť analytiku/);
   assert.match(analytics, /Zezwól na analitykę/);
   for (const source of [app, appSk, appPl]) assert.match(source, /MyPowerSetupAnalytics\?\.track/);
-  for (const html of htmlFiles) assert.match(html, /\/src\/analytics\.js\?v=202608(?:24-1|27-(?:pltrust1|plguides1)|28-(?:plcharging1|plpower1))/);
+  for (const html of htmlFiles) assert.match(html, /\/src\/analytics\.js\?v=202608(?:24-1|27-(?:pltrust1|plguides1)|28-(?:plcharging1|plpower1|plfinal1))/);
   for (const privacy of [czechPrivacy, slovakPrivacy, polishPrivacy]) {
     assert.ok(privacy.includes("data-analytics-settings"));
     assert.ok(privacy.includes("https://policies.google.com/privacy"));
