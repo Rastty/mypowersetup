@@ -197,7 +197,7 @@ test("Hungarian launch gate opens only with complete coverage and explicit revie
 
 test("Hungarian core guides preserve calculator assumptions while remaining private", async () => {
   const pages = Object.keys(HU_GUIDE_ROUTES).map((kind) => [kind, renderHungarianGuide(kind)]);
-  assert.equal(pages.length, 9);
+  assert.equal(pages.length, 10);
   for (const [kind, html] of pages) {
     assert.match(html, /<html lang="hu">/);
     assert.match(html, /name="robots" content="noindex,nofollow,noarchive"/);
@@ -258,6 +258,17 @@ test("Hungarian fridge guide connects measured daily consumption to existing bat
   assert.match(fridge, /557 Wh\/24 h/);
   assert.match(fridge, /100 Ah-s LiFePO₄/);
   assert.match(fridge, /58%-a|58%/);
+});
+
+test("Hungarian AGM and LiFePO4 guide keeps shared usable-capacity assumptions", () => {
+  const chemistry = renderHungarianGuide("chemistry");
+  assert.match(chemistry, /50%/);
+  assert.match(chemistry, /80%/);
+  assert.match(chemistry, /96 Ah AGM/);
+  assert.match(chemistry, /60 Ah LiFePO₄/);
+  assert.match(chemistry, /269 Ah AGM/);
+  assert.match(chemistry, /168 Ah LiFePO₄/);
+  assert.match(chemistry, /fagypont alatti töltés/);
 });
 
 async function fileExists(path) {
