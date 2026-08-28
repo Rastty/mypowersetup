@@ -1,0 +1,129 @@
+import { APPLIANCES } from "./catalog-hu.js";
+import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js";
+import { copyText } from "./share.js";
+import { mountUsageProfiles } from "./usage-profiles.js";
+import { mountExistingSetupCheck } from "./existing-setup.js";
+
+const form = document.querySelector("#setup-form");
+const grid = document.querySelector("#appliance-grid");
+let currentStep = 1;
+let latest = null;
+let catalog = { products: [], sources: {}, generatedAt: null };
+
+renderAppliances();
+mountUsageProfiles({ locale: "hu", form, applianceGrid: grid, appliances: APPLIANCES, onChange: updateSummary });
+const existingSetup = mountExistingSetupCheck({
+  target: document.querySelector("#existing-setup-check"), locale: "hu", getResult: () => latest?.result,
+  hasProductCategory: (category) => Boolean(document.querySelector(`[data-product-category="${category}"]`)),
+});
+bindNavigation();
+bindActions();
+loadHungarianProductCatalog().then((value) => { catalog = value; }).catch(() => {});
+document.querySelector("#year").textContent = new Date().getFullYear();
+
+function renderAppliances() {
+  grid.innerHTML = APPLIANCES.map((item) => `<article class="appliance-card ${item.custom ? "is-custom" : ""}" data-appliance-card="${item.id}">
+    <input id="appliance-hu-${item.id}" type="checkbox" name="appliance" value="${item.id}">
+    <span class="appliance-icon" aria-hidden="true">${item.icon}</span><label class="appliance-copy" for="appliance-hu-${item.id}"><strong>${item.name}</strong><small>${item.description}</small></label>
+    <span class="appliance-controls">${item.custom ? `<label class="mini-field custom-name-field"><input type="text" maxlength="60" value="Egyéni készülék" data-custom-name aria-label="Az egyéni készülék neve"></label><label class="mini-field"><input type="number" min="1" max="10000" step="1" value="${item.watts}" data-watts aria-label="Teljesítmény"> W</label>` : ""}<label class="mini-field"><input type="number" min="0.01" max="24" step="0.05" value="${item.hours}" data-hours aria-label="Napi üzemidő"> h/nap</label><label class="mini-field"><input type="number" min="1" max="20" step="1" value="${item.quantity}" data-quantity aria-label="Darabszám"> db</label>${item.custom ? `<label class="mini-field"><select data-ac aria-label="Tápellátás"><option value="false">12/24 V DC</option><option value="true">230 V AC</option></select></label><label class="mini-field"><select data-surge aria-label="Indítási csúcs"><option value="1">Nincs ismert csúcs</option><option value="2">Motor / kompresszor · 2×</option></select></label>` : ""}</span>
+  </article>`).join("");
+  grid.addEventListener("change", (event) => {
+    const checkbox = event.target.closest('input[name="appliance"]');
+    if (checkbox) checkbox.closest(".appliance-card").classList.toggle("is-selected", checkbox.checked);
+    updateSummary();
+  });
+  grid.addEventListener("input", updateSummary);
+  grid.addEventListener("click", (event) => {
+    const card = event.target.closest(".appliance-card");
+    if (!card || event.target.closest("input,select,label,button,a")) return;
+    const checkbox = card.querySelector('input[name="appliance"]');
+    checkbox.checked = !checkbox.checked;
+    checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+  });
+}
+
+function selectedAppliances() {
+  return APPLIANCES.map((item) => {
+    const card = grid.querySelector(`[data-appliance-card="${item.id}"]`);
+    return { ...item, selected: card.querySelector('input[name="appliance"]').checked,
+      name: card.querySelector("[data-custom-name]")?.value.trim() || item.name,
+      watts: Number(card.querySelector("[data-watts]")?.value ?? item.watts), hours: Number(card.querySelector("[data-hours]").value),
+      quantity: Number(card.querySelector("[data-quantity]").value), ac: card.querySelector("[data-ac]")?.value === "true" || (!item.custom && item.ac),
+      surge: Number(card.querySelector("[data-surge]")?.value ?? item.surge) };
+  });
+}
+
+function updateSummary() {
+  const selected = selectedAppliances().filter((item) => item.selected);
+  const wh = selected.reduce((sum, item) => sum + (Number.isFinite(item.watts * item.hours * item.quantity) ? item.watts * item.hours * item.quantity : 0), 0);
+  document.querySelector("#selected-count").textContent = selected.length;
+  document.querySelector("#live-consumption").textContent = formatEnergy(wh);
+}
+
+function bindNavigation() {
+  document.querySelectorAll("[data-next]").forEach((button) => button.addEventListener("click", () => showStep(currentStep + 1)));
+  document.querySelectorAll("[data-back]").forEach((button) => button.addEventListener("click", () => showStep(currentStep - 1)));
+  document.querySelectorAll('.choice-card input[type="radio"]').forEach((input) => input.addEventListener("change", () => document.querySelectorAll(`input[name="${input.name}"]`).forEach((peer) => peer.closest(".choice-card").classList.toggle("is-selected", peer.checked))));
+  form.addEventListener("submit", calculate);
+  document.querySelector("#start-over").addEventListener("click", () => { form.reset(); latest = null; updateSummary(); showStep(1); });
+}
+
+function bindActions() {
+  document.querySelector("#result-copy").addEventListener("click", async () => setShareStatus(await copyText(latest?.shareText || "") ? "Az összefoglaló a vágólapra került." : "A másolás nem sikerült."));
+  document.querySelector("#result-share").addEventListener("click", async () => {
+    if (!latest) return;
+    if (navigator.share) await navigator.share({ title: "MyPowerSetup", text: latest.shareText });
+    else setShareStatus(await copyText(latest.shareText) ? "Az összefoglaló a vágólapra került." : "A másolás nem sikerült.");
+  });
+  document.querySelector("#result-print").addEventListener("click", () => latest && window.print());
+}
+
+function calculate(event) {
+  event.preventDefault();
+  const appliances = selectedAppliances();
+  const error = document.querySelector("#appliance-error");
+  if (!appliances.some((item) => item.selected)) { error.hidden = false; error.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+  error.hidden = true;
+  try {
+    const data = new FormData(form);
+    latest = buildHungarianApplicationResult({ appliances, ...Object.fromEntries(["autonomyDays","season","batteryType","systemVoltage","inverterCableLength","driveHoursPerDay","starterVoltage","dcDcInputCableLength","shoreChargeHours","roofLength","roofWidth"].map((key) => [key, data.get(key)])) }, catalog, window.location.origin);
+    history.replaceState({}, "", latest.shareUrl.replace(window.location.origin, ""));
+    renderResult(latest); existingSetup.setResult(latest.result); showStep(3); track("calculation_completed", { dailyWh: latest.result.dailyWh, batteryAh: latest.result.batteryAh, solarWatts: latest.result.solarWatts, systemVoltage: latest.result.systemVoltage });
+  } catch (failure) {
+    const target = document.querySelector("#calculator-error"); target.textContent = failure?.message === "ROOF_DIMENSIONS_INCOMPLETE" ? "A tető ellenőrzéséhez add meg mindkét méretet, vagy hagyd mindkettőt üresen." : "A számítás nem jeleníthető meg. Ellenőrizd a megadott értékeket."; target.hidden = false;
+  }
+}
+
+function renderResult(output) {
+  const result = output.result;
+  document.querySelector("#result-intro").textContent = `${formatEnergy(result.dailyWh)} becsült napi fogyasztás és ${result.autonomyDays} nap autonómia alapján.`;
+  document.querySelector("#result-verdict").textContent = output.verdict;
+  document.querySelector("#result-grid").innerHTML = [["Akkumulátor",`${result.batteryAh} Ah`,`${formatEnergy(result.batteryWh)} · ${result.systemVoltage} V`],["Napelemek",`${result.solarWatts} Wp`,result.seasonLabel],["Tiszta szinuszos inverter",result.inverterWatts ? `${result.inverterWatts} W` : "Nem szükséges",result.inverterWatts ? "a kiválasztott 230 V-os fogyasztókhoz" : "minden fogyasztó DC"],["MPPT szabályozó",`${result.controllerAmps} A`,`${result.systemVoltage} V-os rendszerhez`]].map(([label,value,note]) => `<article class="result-card"><span>${label}</span><strong>${value}</strong><small>${note}</small></article>`).join("");
+  document.querySelector("#result-reasons").innerHTML = `<article><span>Fogyasztás</span><strong>${formatEnergy(result.dailyWh)}/nap</strong><p>A megadott teljesítmény, üzemidő és darabszám alapján.</p></article><article><span>Tartalék</span><strong>${result.assumptions.batteryMarginPercent}%</strong><p>A veszteségeket és a használható akkumulátorkapacitást is figyelembe vesszük.</p></article>`;
+  document.querySelector("#consumption-breakdown").innerHTML = result.applianceRows.sort((a,b) => b.dailyWh-a.dailyWh).map((item) => `<div class="breakdown-row"><div class="breakdown-label"><span>${escapeHtml(item.name)}</span><strong>${formatEnergy(item.dailyWh)}</strong></div></div>`).join("");
+  document.querySelector("#result-notes").innerHTML = [...result.warnings,"Ellenőrizd az adattáblákat, a kábeleket, a védelmeket, a BMS-t és a telepítési feltételeket."].map((note) => `<li>${escapeHtml(note)}</li>`).join("");
+  document.querySelector("#system-diagram").innerHTML = output.systemDiagram;
+  document.querySelector("#installation-plan").innerHTML = output.installationPlan.map((item,index) => `<article class="installation-card"><span>${String(index+1).padStart(2,"0")}</span><div><strong>${escapeHtml(item.label)}</strong><p>${escapeHtml(item.detail)}</p></div></article>`).join("");
+  renderCharging(result); renderRoof(result.roof); renderPowerStation(output.powerStationProfile); renderProducts(output);
+}
+
+function renderCharging(result) {
+  document.querySelector("#charging-options").innerHTML = [["DC–DC töltés",result.charging.dcDc],["230 V-os töltés",result.charging.shore]].map(([label,item]) => `<article class="charging-card"><span>${label}</span><strong>${item.enabled ? (item.suggestedCurrentAmps ? `legalább ${item.suggestedCurrentAmps} A` : "egyedi tervezés") : "Kikapcsolva"}</strong><p>${item.enabled ? `${item.hours} óra alatt pótolja a napi fogyasztást.` : "Ehhez a forráshoz 0 óra van beállítva."}</p></article>`).join("");
+}
+function renderRoof(roof) { document.querySelector("#roof-fit").innerHTML = roof?.checked ? `<article class="roof-fit-card ${roof.fits ? "is-fit" : "is-warning"}"><strong>${roof.fits ? "A referencia-elrendezés geometriailag elfér" : "A referencia-elrendezés nem fér el"}</strong><p>${roof.requiredQuantity} × ${roof.referencePanelWatts} Wp</p></article>` : '<article class="roof-fit-card is-unchecked"><strong>Az ellenőrzés nincs bekapcsolva</strong><p>Add meg a tető szabad téglalapjának mindkét méretét.</p></article>'; }
+function renderPowerStation(profile) { document.querySelector("#power-station-profile").innerHTML = `<article class="charging-card"><span>Minimális névleges kapacitás</span><strong>${profile.capacityWh} Wh</strong></article><article class="charging-card"><span>Folyamatos AC teljesítmény</span><strong>${profile.acOutputWatts ? `${profile.acOutputWatts} W` : "Nem szükséges"}</strong></article><article class="charging-card"><span>Napelemes bemenet</span><strong>${profile.solarInputWatts} W</strong></article>`; }
+function renderProducts(output) {
+  const labels = { battery:"Akkumulátorok",solar_panel:"Napelemek",inverter:"Inverterek",controller:"MPPT szabályozók",dc_charger:"DC–DC töltők",shore_charger:"230 V-os töltők",power_station:"Hordozható erőművek" };
+  const entries = Object.entries(output.recommendations).filter(([,items]) => items.length);
+  const total = entries.reduce((sum,[,items]) => sum + items.length,0);
+  document.querySelector("#result-next").hidden = false; document.querySelector("#result-product-count").textContent = total ? `${total} ellenőrzött műszaki találat ${entries.length} kategóriában.` : "Ehhez a konfigurációhoz még nincs elég ellenőrzött termék."; document.querySelector("#result-products-link").hidden = !total;
+  document.querySelector("#product-heading").textContent = total ? "A számítással kompatibilis alkatrészek" : "Pontos termékajánlások előkészítése";
+  document.querySelector("#recommendation-groups").innerHTML = entries.map(([category,items]) => `<section class="product-group" data-product-category="${category}"><h5>${labels[category]}</h5><div class="product-grid">${items.map(({product,reason,checks,verify}) => `<article class="product-card"><div class="product-card-copy"><span>${hungarianMerchantLabel(product.merchant)}</span><h6>${escapeHtml(product.name)}</h6><p><strong>Miért megfelelő:</strong> ${escapeHtml(reason)}</p><ul>${checks.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul><p><strong>Vásárlás előtt:</strong> ${escapeHtml(verify)}</p><div class="product-card-action"><span class="product-price"><strong>${formatHungarianPrice(product.priceCzk,product.priceCurrency)}</strong></span><a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-product-id="${escapeHtml(product.id)}" data-merchant="${product.merchant}" data-category="${category}">A pontos termék megjelenítése →</a></div></div></article>`).join("")}</div></section>`).join("");
+}
+
+function showStep(step) { currentStep=Math.max(1,Math.min(3,step)); document.querySelectorAll(".form-step").forEach((section) => { const visible=Number(section.dataset.step)===currentStep; section.hidden=!visible; section.classList.toggle("is-visible",visible); }); document.querySelectorAll(".step").forEach((button,index) => { button.disabled=index+1>currentStep; button.classList.toggle("is-active",index+1===currentStep); button.classList.toggle("is-complete",index+1<currentStep); }); document.querySelector("#kalkulator").scrollIntoView({ behavior:"smooth",block:"start" }); }
+function setShareStatus(value) { document.querySelector("#result-share-status").textContent=value; }
+function formatEnergy(wh) { return wh>=1000 ? `${(wh/1000).toLocaleString("hu-HU",{maximumFractionDigits:2})} kWh` : `${Math.round(wh).toLocaleString("hu-HU")} Wh`; }
+function escapeHtml(value) { return String(value||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"); }
+function track(event,parameters={}) { return Boolean(window.MyPowerSetupAnalytics?.track(event,parameters)); }
+document.addEventListener("click", (event) => { const link=event.target.closest("[data-affiliate-click]"); if (link) track("affiliate_click",{productId:link.dataset.productId,merchant:link.dataset.merchant,category:link.dataset.category,source:"product-card"}); });
