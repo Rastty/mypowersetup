@@ -13,6 +13,7 @@ import {
 import { renderHungarianPrivatePage } from "../src/page-hu.js";
 import { HU_TRUST_ROUTES, renderHungarianTrustPage } from "../src/trust-pages-hu.js";
 import { HU_REQUIRED_PRODUCT_COVERAGE, assessHungarianLaunchReadiness, requireHungarianLaunchReady } from "../src/readiness-hu.js";
+import { HU_GUIDE_ROUTES, renderHungarianGuide } from "../src/guides-hu.js";
 
 test("Hungarian UI copy covers the full calculator and purchase journey", () => {
   assert.match(HU_UI_COPY.hero.title, /akkumulátorra és napelemre/);
@@ -192,6 +193,31 @@ test("Hungarian launch gate opens only with complete coverage and explicit revie
   });
   assert.equal(report.ready, true);
   assert.deepEqual(report.blockers, []);
+});
+
+test("Hungarian core guides preserve calculator assumptions while remaining private", async () => {
+  const pages = Object.keys(HU_GUIDE_ROUTES).map((kind) => [kind, renderHungarianGuide(kind)]);
+  assert.equal(pages.length, 4);
+  for (const [kind, html] of pages) {
+    assert.match(html, /<html lang="hu">/);
+    assert.match(html, /name="robots" content="noindex,nofollow,noarchive"/);
+    assert.match(html, /Petr Gálík|Tudásbázis/);
+    assert.match(html, /szakember/);
+    assert.equal(await fileExists(`${HU_GUIDE_ROUTES[kind].slice(1)}index.html`), false);
+  }
+  const battery = pages.find(([kind]) => kind === "battery")[1];
+  assert.match(battery, /600 × 2 × 1,15 ÷ 0,80 ÷ 12/);
+  assert.match(battery, /144 Ah/);
+  assert.match(battery, /230 Ah/);
+  const solar = pages.find(([kind]) => kind === "solar")[1];
+  assert.match(solar, /4,5/);
+  assert.match(solar, /1,5 teljes napsütéses órával/);
+  assert.match(solar, /600 × 1,15 ÷ 4 ÷ 0,75/);
+  const mppt = pages.find(([kind]) => kind === "mppt")[1];
+  assert.match(mppt, /400 ÷ 12 × 1,25/);
+  assert.match(mppt, /Voc/);
+  assert.match(mppt, /Isc/);
+  assert.throws(() => renderHungarianGuide("missing"), /HU_GUIDE_UNKNOWN/);
 });
 
 async function fileExists(path) {
