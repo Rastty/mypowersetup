@@ -89,3 +89,17 @@ test("only product-sized bottlenecks map to a recommendation category", () => {
   assert.equal(productCategoryForBottleneck("voltage"), null);
   assert.equal(productCategoryForBottleneck(null), null);
 });
+
+test("Hungarian existing-setup assessment explains the smallest upgrade", () => {
+  const assessment = assessExistingSetup(result, {
+    batteryType: "lifepo4",
+    systemVoltage: 12,
+    batteryAh: 50,
+    solarWatts: 400,
+    inverterWatts: 1200,
+    controllerAmps: 50,
+  }, "hu");
+  assert.equal(assessment.locale, "hu");
+  assert.equal(assessment.primaryBottleneck, "battery");
+  assert.match(assessment.summary, /legkisebb ésszerű lépés/);
+});
