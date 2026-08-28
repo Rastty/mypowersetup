@@ -11,6 +11,7 @@ import {
   loadHungarianProductCatalog,
 } from "../src/app-hu.js";
 import { renderHungarianPrivatePage } from "../src/page-hu.js";
+import { HU_TRUST_ROUTES, renderHungarianTrustPage } from "../src/trust-pages-hu.js";
 
 test("Hungarian UI copy covers the full calculator and purchase journey", () => {
   assert.match(HU_UI_COPY.hero.title, /akkumulátorra és napelemre/);
@@ -144,6 +145,25 @@ test("Hungarian private page template covers the full mobile purchase journey wi
   assert.doesNotMatch(sitemap, /mypowersetup\.com\/hu\//);
   assert.doesNotMatch(robots, /\/hu\//);
   assert.equal(await fileExists("hu/index.html"), false);
+});
+
+test("Hungarian trust pages are complete but remain private until market launch", async () => {
+  const pages = Object.keys(HU_TRUST_ROUTES).map((kind) => [kind, renderHungarianTrustPage(kind)]);
+  assert.equal(pages.length, 4);
+  for (const [kind, html] of pages) {
+    assert.match(html, /^<!doctype html>/);
+    assert.match(html, /<html lang="hu">/);
+    assert.match(html, /name="robots" content="noindex,nofollow,noarchive"/);
+    assert.match(html, new RegExp(`https://mypowersetup\\.com${HU_TRUST_ROUTES[kind]}`));
+    assert.match(html, /xfit\.redakce@gmail\.com|Módszertan|Partnerkapcsolatok|Adatvédelem/);
+    assert.equal(await fileExists(`${HU_TRUST_ROUTES[kind].slice(1)}index.html`), false);
+  }
+  assert.match(pages.find(([kind]) => kind === "about")[1], /Petr Gálík/);
+  assert.match(pages.find(([kind]) => kind === "methodology")[1], /determinisztikus/);
+  assert.match(pages.find(([kind]) => kind === "methodology")[1], /A jutalék nem része a pontozásnak/);
+  assert.match(pages.find(([kind]) => kind === "affiliate")[1], /jutalékot kaphatunk/);
+  assert.match(pages.find(([kind]) => kind === "privacy")[1], /data-consent-settings/);
+  assert.throws(() => renderHungarianTrustPage("missing"), /HU_TRUST_PAGE_UNKNOWN/);
 });
 
 async function fileExists(path) {
