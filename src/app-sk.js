@@ -1,6 +1,6 @@
 import { APPLIANCES } from "./catalog-sk.js?v=20260823-custom1";
 import { calculateSetup } from "./engine.js?v=20260821-sk1";
-import { recommendProducts } from "./products.js?v=20260825-merchants1";
+import { recommendProducts } from "./products.js?v=20260828-ampul1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260823-custom1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -530,7 +530,7 @@ function renderProductPackages(variants) {
     : "";
   target.innerHTML = `<div class="package-intro"><strong>Tri bezpečné cesty k nákupu</strong><p>Všetky varianty spĺňajú rovnakú vypočítanú požiadavku a zahŕňajú dostupné hlavné aj nabíjacie komponenty. Nejde o kompletný inštalačný materiál ani realizačný rozpočet.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
-    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podľa obchodu" : formatPrice(variant.totalPriceCzk)}</b><small class="package-price-note">Orientačný súčet produktov; doprava a montáž nie sú zahrnuté.</small></article>`;
+    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podľa obchodu" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientačný súčet produktov; doprava a montáž nie sú zahrnuté.</small></article>`;
   }).join("")}</div>`;
 }
 
@@ -560,7 +560,7 @@ function productCard(product, reason, checks, verify) {
         <p class="product-verify"><strong>Pred nákupom:</strong> ${escapeHtml(verify)}</p>
         ${sourceNote}
         <div class="product-card-action">
-          <span class="product-price"><strong>${formatPrice(product.priceCzk)}</strong><small>${sourceIsStale ? "Cena z posledného úspešného feedu" : "Cena z produktového feedu"}</small></span>
+          <span class="product-price"><strong>${formatPrice(product.priceCzk, product.priceCurrency)}</strong><small>${sourceIsStale ? "Cena z posledného úspešného feedu" : "Cena z produktového feedu"}</small></span>
           <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Zobraziť produkt →</a>
         </div>
       </div>
@@ -587,14 +587,14 @@ function trackEvent(event, parameters = {}) {
   return Boolean(window.MyPowerSetupAnalytics?.track(event, parameters));
 }
 
-function formatPrice(price) {
+function formatPrice(price, currency = "EUR") {
   return Number.isFinite(price)
-    ? new Intl.NumberFormat("sk-SK", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(price)
+    ? new Intl.NumberFormat("sk-SK", { style: "currency", currency: currency || "EUR", maximumFractionDigits: 2 }).format(price)
     : "Cena v obchode";
 }
 
 function merchantLabel(merchant) {
-  return merchant === "padabo" ? "Padabo.sk" : merchant;
+  return ({ padabo: "Padabo.sk", ampul_sk: "Ampul.eu" })[merchant] || merchant;
 }
 
 function escapeHtml(value) {

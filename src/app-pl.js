@@ -1,6 +1,6 @@
 import { APPLIANCES } from "./catalog-pl.js?v=20260823-custom1";
 import { calculateSetup } from "./engine.js?v=20260821-sk1";
-import { recommendProducts } from "./products.js?v=20260827-allpowers2";
+import { recommendProducts } from "./products.js?v=20260828-ampul1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260823-custom1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -531,7 +531,7 @@ function renderProductPackages(variants) {
     : "";
   target.innerHTML = `<div class="package-intro"><strong>Trzy bezpieczne drogi zakupu</strong><p>Każdy wariant spełnia ten sam wynik obliczeń i obejmuje dostępne główne komponenty oraz ładowanie. To nie jest kompletny materiał instalacyjny ani kosztorys wykonania.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
-    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena w sklepie" : formatPrice(variant.totalPriceCzk)}</b><small class="package-price-note">Orientacyjna suma produktów; bez dostawy i montażu.</small></article>`;
+    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena w sklepie" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientacyjna suma produktów; bez dostawy i montażu.</small></article>`;
   }).join("")}</div>`;
 }
 
@@ -561,7 +561,7 @@ function productCard(product, reason, checks, verify) {
         <p class="product-verify"><strong>Przed zakupem:</strong> ${escapeHtml(verify)}</p>
         ${sourceNote}
         <div class="product-card-action">
-          <span class="product-price"><strong>${formatPrice(product.priceCzk)}</strong><small>${sourceIsStale ? "Cena z ostatniego poprawnego importu" : "Cena z katalogu produktowego"}</small></span>
+          <span class="product-price"><strong>${formatPrice(product.priceCzk, product.priceCurrency)}</strong><small>${sourceIsStale ? "Cena z ostatniego poprawnego importu" : "Cena z katalogu produktowego"}</small></span>
           <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Pokaż produkt →</a>
         </div>
       </div>
@@ -588,15 +588,16 @@ function trackEvent(event, parameters = {}) {
   return Boolean(window.MyPowerSetupAnalytics?.track(event, parameters));
 }
 
-function formatPrice(price) {
+function formatPrice(price, currency = "PLN") {
   return Number.isFinite(price)
-    ? new Intl.NumberFormat("pl-PL", { style: "currency", currency: "PLN", maximumFractionDigits: 0 }).format(price)
+    ? new Intl.NumberFormat("pl-PL", { style: "currency", currency: currency || "PLN", maximumFractionDigits: currency === "PLN" ? 0 : 2 }).format(price)
     : "Cena w sklepie";
 }
 
 function merchantLabel(merchant) {
   if (merchant === "padabo") return "Padabo.sk";
   if (merchant === "allpowers_pl") return "ALLPOWERS PL";
+  if (merchant === "ampul_pl") return "Ampul.eu";
   return merchant;
 }
 

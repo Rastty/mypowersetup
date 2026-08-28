@@ -1,12 +1,486 @@
 {
-  "generatedAt": null,
+  "generatedAt": "2026-08-28T08:39:08.660Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo": {
-      "status": "awaiting_affiliate_approval",
-      "productCount": 0
+      "status": "disabled",
+      "error": "feed nebo affiliate odkaz není nakonfigurován"
+    },
+    "ampul_sk": {
+      "status": "ok",
+      "parsedProducts": 7667,
+      "relevantProducts": 14
     }
   },
-  "products": []
+  "products": [
+    {
+      "id": "ampul_sk:5479",
+      "merchant": "ampul_sk",
+      "name": "Nabíjačka batériu z 12V na 29.2V, 20A, 584W, IP65, slim",
+      "description": "Nabíjačka 24V LiFePO4 a LiMn2O4 batériu z 12V/24V DC zdroja.",
+      "categoryPath": "Nabíjačky",
+      "category": "shore_charger",
+      "brand": "",
+      "priceCzk": 164.59,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://ampul.eu/sk/nabijacky/5479-nabijacka-bateriu-z-12v-na-292v-20a-584w-ip65-slim",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fnabijacky%2F5479-nabijacka-bateriu-z-12v-na-292v-20a-584w-ip65-slim",
+      "imageUrl": "https://ampul.eu/21724-large_default/nabijacka-bateriu-z-12v-na-292v-20a-584w-ip65-slim.jpg",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 584,
+        "currentA": 20,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:5522",
+      "merchant": "ampul_sk",
+      "name": "Nabíjačka batériu z 12V na 43.8V, 13A, 569W, IP65, slim",
+      "description": "Nabíjačka 36V LiFePO4 a LiMn2O4 batériu z 12V/24V DC zdroja.",
+      "categoryPath": "Nabíjačky",
+      "category": "shore_charger",
+      "brand": "",
+      "priceCzk": 164.59,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://ampul.eu/sk/nabijacky/5522-nabijacka-bateriu-z-12v-na-438v-13a-569w-ip65-slim",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fnabijacky%2F5522-nabijacka-bateriu-z-12v-na-438v-13a-569w-ip65-slim",
+      "imageUrl": "https://ampul.eu/21967-large_default/nabijacka-bateriu-z-12v-na-438v-13a-569w-ip65-slim.jpg",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 569,
+        "currentA": 13,
+        "chargingVoltagesV": [
+          36
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:5523",
+      "merchant": "ampul_sk",
+      "name": "Nabíjačka batériu z 12V/24V na 58.4V, 10A, 584W, IP65, slim",
+      "description": "Nabíjačka 48V LiFePO4 a LiMn2O4 batériu z 12V/24V DC zdroja.",
+      "categoryPath": "Nabíjačky",
+      "category": "shore_charger",
+      "brand": "",
+      "priceCzk": 164.59,
+      "priceCurrency": "EUR",
+      "available": null,
+      "productUrl": "https://ampul.eu/sk/nabijacky/5523-nabijacka-bateriu-z-12v-24v-na-584v-10a-584w-ip65-",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fnabijacky%2F5523-nabijacka-bateriu-z-12v-24v-na-584v-10a-584w-ip65-",
+      "imageUrl": "https://ampul.eu/21970-large_default/nabijacka-bateriu-z-12v-24v-na-584v-10a-584w-ip65-.jpg",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 584,
+        "currentA": 10,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:5577-7391",
+      "merchant": "ampul_sk",
+      "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 12 V DC",
+      "description": "Invertor",
+      "categoryPath": "Meniče napätia",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 352.61,
+      "priceCurrency": "EUR",
+      "available": null,
+      "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7391-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fmenice-napatia%2F5577-7391-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napatia-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:5577-7392",
+      "merchant": "ampul_sk",
+      "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 24 V DC",
+      "description": "Invertor",
+      "categoryPath": "Meniče napätia",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 352.61,
+      "priceCurrency": "EUR",
+      "available": null,
+      "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7392-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fmenice-napatia%2F5577-7392-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napatia-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:5577-7393",
+      "merchant": "ampul_sk",
+      "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 36 V DC",
+      "description": "Invertor",
+      "categoryPath": "Meniče napätia",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 352.61,
+      "priceCurrency": "EUR",
+      "available": null,
+      "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7393-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fmenice-napatia%2F5577-7393-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napatia-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 36,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:5577-7394",
+      "merchant": "ampul_sk",
+      "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 48 V DC",
+      "description": "Invertor",
+      "categoryPath": "Meniče napätia",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 352.61,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7394-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fmenice-napatia%2F5577-7394-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napatia-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 48,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:5577-7395",
+      "merchant": "ampul_sk",
+      "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 60 V DC",
+      "description": "Invertor",
+      "categoryPath": "Meniče napätia",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 352.61,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7395-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fmenice-napatia%2F5577-7395-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napatia-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 60,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:5577-7396",
+      "merchant": "ampul_sk",
+      "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 72 V DC",
+      "description": "Invertor",
+      "categoryPath": "Meniče napätia",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 352.61,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7396-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fmenice-napatia%2F5577-7396-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napatia-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 72,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:5577-7397",
+      "merchant": "ampul_sk",
+      "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 84 V DC",
+      "description": "Invertor",
+      "categoryPath": "Meniče napätia",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 352.61,
+      "priceCurrency": "EUR",
+      "available": null,
+      "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7397-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fmenice-napatia%2F5577-7397-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napatia-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 84,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:6653",
+      "merchant": "ampul_sk",
+      "name": "Napájací zdroj zásuvkový 36V, 2A, 5.5x2.1mm, nabíjačka olovených batérií",
+      "description": "Inteligentná sieťová nabíjačka určená pre 36V olovené akumulátory s koncovým nabíjacím napätím 43,2 V . Využíva automatický CC/CV nabíjací režim, LED indikáciu stavu a kompletnú sadu ochranných prvkov. Vďaka širokému vstupnému rozsahu 100–240 V AC je vhodná na univerzálne použitie v Európe i ďalších regiónoch. Technické špecifikácie Vstupné napätie: 100–240 V AC, 50/60 Hz Výstupné napätie: 36 V DC (nabíjacie napätie 43,2 V) Výstupný prúd: 2 A Maximálny výkon: 84 W Konektor: XLR 3-pin (polarita: ",
+      "categoryPath": "Nabíjačky",
+      "category": "shore_charger",
+      "brand": "",
+      "priceCzk": 27.29,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://ampul.eu/sk/nabijacky/6653-napajaci-zdroj-zasuvkovy-36v-2a-55x21mm-nabijacka-olovenych-baterii",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fnabijacky%2F6653-napajaci-zdroj-zasuvkovy-36v-2a-55x21mm-nabijacka-olovenych-baterii",
+      "imageUrl": "https://ampul.eu/29338-large_default/napajaci-zdroj-zasuvkovy-36v-2a-55x21mm-nabijacka-olovenych-baterii.jpg",
+      "specs": {
+        "voltageV": 36,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 84,
+        "currentA": 2,
+        "chargingVoltagesV": [
+          36
+        ],
+        "chargingInputVoltagesV": [
+          36
+        ],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:6692",
+      "merchant": "ampul_sk",
+      "name": "Napájací zdroj zásuvkový 24V, 5A, 5.5x2.1mm, nabíjačka olovených batérií",
+      "description": "Inteligentná nabíjačka pre 24V olovené akumulátory určená pre spoľahlivé a bezpečné nabíjanie batériových zostáv s koncovým napätím 28,8 V. Vhodná pre elektrické vozíky, skútre, priemyselné aplikácie, záložné systémy a ďalšie zariadenia využívajúce olovené akumulátory. Nabíjačka využíva automatický režim CC/CV a je vybavená svetelnou signalizáciou stavu nabíjania. Technické špecifikácie Vstupné napätie: 100–240 V AC, 50/60 Hz Výstupné napätie: 24 V DC (nabíjacie napätie 28,8 V) Výstupný prúd: 5 ",
+      "categoryPath": "Nabíjačky",
+      "category": "shore_charger",
+      "brand": "",
+      "priceCzk": 39.3,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://ampul.eu/sk/nabijacky/6692-napajaci-zdroj-zasuvkovy-24v-5a-55x21mm-nabijacka-olovenych-baterii",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fnabijacky%2F6692-napajaci-zdroj-zasuvkovy-24v-5a-55x21mm-nabijacka-olovenych-baterii",
+      "imageUrl": "https://ampul.eu/29568-large_default/napajaci-zdroj-zasuvkovy-24v-5a-55x21mm-nabijacka-olovenych-baterii.jpg",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 150,
+        "currentA": 5,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          24
+        ],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:6880",
+      "merchant": "ampul_sk",
+      "name": "Menič napätia 110V DC / 230V AC, 12 kVA / 9600 W, 19\" 4U, RS485",
+      "description": "Priemyselný menič napätia určený na prevod jednosmerného vstupného napätia na striedavý výstup 220 VAC. Zariadenie je prevedené v 19\" rackovom formáte 4U a je vhodné pre aplikácie, kde je k dispozícii DC napájanie a je požadovaný čistý sínusový AC výstup pre napájanie zariadení citlivých na kvalitu napätia. Produkt je vybavený komunikačným rozhraním RS485, LCD indikáciou a ochrannými funkciami pre prevádzku v technických a priemyselných inštaláciách. Technické špecifikácie Typ zariadenia: DC/AC ",
+      "categoryPath": "Meniče napätia",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 3624.38,
+      "priceCurrency": "EUR",
+      "available": null,
+      "productUrl": "https://ampul.eu/sk/menice-napatia/6880-menic-napatia-110v-dc-230v-ac-12-kva-9600-w-19-4u-rs485",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fmenice-napatia%2F6880-menic-napatia-110v-dc-230v-ac-12-kva-9600-w-19-4u-rs485",
+      "imageUrl": "https://ampul.eu/30754-large_default/menic-napatia-110v-dc-230v-ac-12-kva-9600-w-19-4u-rs485.jpg",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 9600,
+        "currentA": 485,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_sk:6907",
+      "merchant": "ampul_sk",
+      "name": "Menič napätia 48V / 230V AC, 10 kVA / 8000 W, 19\" 4U, RS485",
+      "description": "Menič napätia slúži na prevod jednosmerného napätia 48 V DC na striedavé napätie 220–240 V AC. Prevedenie v 19\" rack formáte 4U je určené na inštaláciu do rozvádzačov, technologických skríň a záložných či energetických systémov, kde je vyžadovaný centralizovaný výkonový menič s komunikačným rozhraním RS485. Technické špecifikácie Model: IPS-DTA10000-482-4U Typ zariadenia: menič napätia DC/AC Vstupné napätie: 48 V DC Rozsah pracovného vstupného napätia: 40–58.8 VDC Štartovací napäťový rozsah: 42-",
+      "categoryPath": "Meniče napätia",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 3168.39,
+      "priceCurrency": "EUR",
+      "available": null,
+      "productUrl": "https://ampul.eu/sk/menice-napatia/6907-menic-napatia-48v-230v-ac-10-kva-8000-w-19-4u-rs485",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fmenice-napatia%2F6907-menic-napatia-48v-230v-ac-10-kva-8000-w-19-4u-rs485",
+      "imageUrl": "https://ampul.eu/30907-large_default/menic-napatia-48v-230v-ac-10-kva-8000-w-19-4u-rs485.jpg",
+      "specs": {
+        "voltageV": 48,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 8000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          48
+        ],
+        "chargingInputVoltagesV": [
+          48
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    }
+  ]
 }

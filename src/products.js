@@ -4,27 +4,32 @@ const MERCHANTS = {
   reslshop: {
     hostname: "www.reslshop.cz",
     affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=c38e2d15",
-    destinationParam: "desturl"
+    destinationParam: "desturl",
+    currency: "CZK"
   },
   svetkaravanu: {
     hostname: "www.svetkaravanu.cz",
     affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=38137ac4",
-    destinationParam: "desturl"
+    destinationParam: "desturl",
+    currency: "CZK"
   },
   solarimport: {
     hostname: "www.solar-import.cz",
     affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=35cb7fb0",
-    destinationParam: "desturl"
+    destinationParam: "desturl",
+    currency: "CZK"
   },
   batterycz: {
     hostname: "www.battery.cz",
     affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7095cb16",
-    destinationParam: "desturl"
+    destinationParam: "desturl",
+    currency: "CZK"
   },
   padabo: {
     hostname: "www.padabo.sk",
     affiliateBaseUrl: null,
-    destinationParam: "desturl"
+    destinationParam: "desturl",
+    currency: "EUR"
   },
   bluetti: {
     hostname: "www.bluettipower.com",
@@ -35,14 +40,51 @@ const MERCHANTS = {
     hostname: "allpowers.com.pl",
     affiliateBaseUrl: "https://www.awin1.com/cread.php?awinmid=121776&awinaffid=3044971",
     destinationParam: "ued",
-    productPathPrefix: "/products/"
+    productPathPrefix: "/products/",
+    currency: "PLN"
   },
   powerqueen_us: {
     hostname: "ipowerqueen.com",
     affiliateBaseUrl: "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971",
     destinationParam: "ued",
-    productPathPrefix: "/products/"
+    productPathPrefix: "/products/",
+    currency: "USD"
+  },
+  ampul_cz: {
+    hostname: "ampul.eu",
+    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae",
+    destinationParam: "desturl",
+    productPathPrefix: "/cs/",
+    currency: "CZK"
+  },
+  ampul_sk: {
+    hostname: "ampul.eu",
+    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae",
+    destinationParam: "desturl",
+    productPathPrefix: "/sk/",
+    currency: "EUR"
+  },
+  ampul_pl: {
+    hostname: "ampul.eu",
+    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae",
+    destinationParam: "desturl",
+    productPathPrefix: "/pl/",
+    currency: "EUR"
   }
+};
+
+// Ampul's localized Google feeds currently repeat the 12 V title for every
+// variant of product 5577. The product pages identify these exact combination
+// IDs and their real DC input voltage; keeping the mapping here prevents a
+// 24–84 V variant from ever being presented as a 12 V inverter.
+const AMPUL_VERIFIED_INVERTER_VARIANTS = {
+  "5577-7391": 12,
+  "5577-7392": 24,
+  "5577-7393": 36,
+  "5577-7394": 48,
+  "5577-7395": 60,
+  "5577-7396": 72,
+  "5577-7397": 84
 };
 
 const PRODUCT_TEXT = {
@@ -125,11 +167,19 @@ export function normalizeProduct(raw, merchantKey) {
   if (!merchant) throw new Error(`Neznámý obchod: ${merchantKey}`);
 
   const productUrl = validateProductUrl(raw.url, merchant.hostname, merchant.productPathPrefix);
-  const name = cleanText(raw.name);
+  let name = cleanText(raw.name);
   const categoryPath = cleanText(raw.category);
   const description = cleanText(raw.description);
   const fallbackText = [categoryPath, description].filter(Boolean).join(" ");
   const specs = extractSpecs(name, fallbackText);
+  const ampulVariantVoltage = merchantKey.startsWith("ampul_")
+    ? AMPUL_VERIFIED_INVERTER_VARIANTS[String(raw.id || "").trim()]
+    : null;
+  if (ampulVariantVoltage) {
+    specs.voltageV = ampulVariantVoltage;
+    specs.pureSine = true;
+    name = name.replace(/-\s*12\s*V\s*DC\s*$/i, `- ${ampulVariantVoltage} V DC`);
+  }
   if (/solární regulátory|solárne regulátory/i.test(categoryPath)) {
     specs.currentA = extractControllerCurrent(name, description);
   }
@@ -143,6 +193,7 @@ export function normalizeProduct(raw, merchantKey) {
     category: classifyProduct({ name, categoryPath, specs }),
     brand: cleanText(raw.brand),
     priceCzk: parsePrice(raw.price),
+    priceCurrency: parseCurrency(raw.price) || merchant.currency || null,
     available: normalizeAvailability(raw.available),
     productUrl: productUrl.toString(),
     affiliateUrl: buildAffiliateUrl(merchantKey, productUrl.toString()),
@@ -183,9 +234,9 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
       : /\bagm\b|olov|gelov|\bgel\b/i.test(`${primary} ${fallback}`)
         ? "lead"
         : null,
-    pureSine: /modifikovan(?:ý|á|ou) (?:sinus|sínus)/i.test(`${primary} ${fallback}`)
+    pureSine: /modifikovan[^\s]* (?:sinus|sínus)[^\s]*/i.test(`${primary} ${fallback}`)
       ? false
-      : /čist(?:ý|á) (?:sinus|sínus)|pure sine|(?:sinusov|sínusov)(?:ý|á) (?:měnič|menič)|sinepower/i.test(`${primary} ${fallback}`)
+      : /čist[^\s]* (?:sinus|sínus)[^\s]*|czyst[^\s]* sinus[^\s]*|pure sine|(?:sinusov|sínusov)[^\s]* (?:měnič|menič)|sinepower/i.test(`${primary} ${fallback}`)
         ? true
         : null,
     solarInputW: matchNumber(`${primary} ${fallback}`, /(?:wejście|wkład)\s+(?:fotowoltaiczne|solar(?:ne|ny))[^\d]{0,20}(\d+(?:[.,]\d+)?)\s*w\b/i),
@@ -194,12 +245,12 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
 }
 
 export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {}) {
-  const accessory = /\b(pouzdro|puzdro|obal|box|držák|držiak|rámeček|rámček|kabel|kábel|konektor|svorka|displej|ukazatel|modul|adaptér|průchodka|priechodka|spojler|ventil)\b/i;
+  const accessory = /\b(pouzdro|puzdro|obal|box|držák|držiak|rámeček|rámček|kabel|kábel|konektor|svorka|displej|ukazatel|modul|adaptér|průchodka|priechodka|spojler|ventil|etui|obudowa|uchwyt|rama|przewód|złącze|zacisk|wyświetlacz|wskaźnik|przelotka|wentyl)\b/i;
   const multiComponentBundle = /\b(set|sestava|zostava|kit)\b/i.test(name);
-  const chargerPath = /nabíječky[, ]+boostery|nabíjačky[, ]+boostery/i.test(categoryPath);
+  const chargerPath = /nabíječky|nabíjačky|ładowarki/i.test(categoryPath);
   const chargerAccessory = /\b(usb|startér|štartér|powerbank|čidlo|snímač|ovládání|ovládanie|kabel|kábel|zástrčka|pohotovostní)\b/i.test(name);
   const explicitDcCharger = /\bdc\s*[-–]?\s*dc\b|posilovač nabíjení|posilňovač nabíjania|charge booster|nabíjecí booster|nabíjací booster|f\.?\s*alternátor/i.test(name);
-  const explicitBatteryCharger = /nabíječ(?:ka|ky)|nabíjač(?:ka|ky)|battery charger/i.test(name);
+  const explicitBatteryCharger = /nabíječ(?:ka|ky)|nabíjač(?:ka|ky)|ładowark\w*|battery charger/i.test(name);
 
   if (/(?:stacja zasilania|power station)/i.test(`${name} ${categoryPath}`) && specs.capacityWh > 0 && specs.powerW > 0) {
     return "power_station";
@@ -214,9 +265,9 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
   if (multiComponentBundle) return "other";
 
   const isBattery =
-    /\b(baterie|batéria|akumulátor|lifepo4|lithium|agm)\b/i.test(name) &&
+    /\b(bateri\w*|batéri\w*|akumulátor|akumulator|lifepo4|lithium|litow\w*|agm)\b/i.test(name) &&
     !/vodovod|sprch|spotřební baterie|vodovodná batéria|príslušenstvo k batériám|příslušenství k bateriím/i.test(`${name} ${categoryPath}`) &&
-    !/autobaterie|motobaterie|osobní auta|nákladní vozy|vše pro motorky|startovací baterie|startovací zdroje|packy pro ups|lifepo4 články|testery baterií|měření napětí|nabíječky|nabíjačky|nabíječe/i.test(categoryPath) &&
+    !/autobaterie|motobaterie|osobní auta|nákladní vozy|vše pro motorky|startovací baterie|startovací zdroje|akumulatory samochodowe|akumulatory motocyklowe|rozruchow\w*|packy pro ups|lifepo4 články|testery baterií|měření napětí|nabíječky|nabíjačky|nabíječe|ładowarki/i.test(categoryPath) &&
     !accessory.test(name) &&
     specs.capacityAh > 0;
   if (isBattery) return "battery";
@@ -229,14 +280,15 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
   if (isSolarPanel) return "solar_panel";
 
   const isInverter =
-    /měniče napětí|meniče napätia/i.test(categoryPath) &&
-    /(měnič|menič|invertor|inverter)/i.test(name) &&
+    /měniče napětí|meniče napätia|przetwornice napięcia|przekształtniki napięcia/i.test(categoryPath) &&
+    /(měnič|menič|invertor|inverter|przetwornic\w*)/i.test(name) &&
     !accessory.test(name) &&
+    (/\b230\s*v\s*ac\b/i.test(name) || specs.pureSine === true) &&
     specs.powerW > 0;
   if (isInverter) return "inverter";
 
   const isController =
-    /solární regulátory|solárne regulátory/i.test(categoryPath) &&
+    /solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)/i.test(categoryPath) &&
     /\bmppt\b/i.test(name) &&
     !accessory.test(name) &&
     specs.currentA > 0;
@@ -270,7 +322,7 @@ export function refreshCatalogProduct(product) {
   const specs = Object.fromEntries(
     Object.entries(extractedSpecs).map(([key, value]) => [key, value ?? product.specs?.[key] ?? null])
   );
-  if (/solární regulátory|solárne regulátory/i.test(product.categoryPath)) {
+  if (/solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)/i.test(product.categoryPath)) {
     specs.currentA = extractControllerCurrent(product.name, product.description);
   }
   return {
@@ -375,8 +427,8 @@ function relevantSpecValues(product) {
 function hasPureSineEvidence(product) {
   if (product.specs.pureSine === false) return false;
   if (product.specs.pureSine === true) return true;
-  return !/modifikovan(?:ý|á|ou) (?:sinus|sínus)/i.test(product.name)
-    && /čist(?:ý|á) (?:sinus|sínus)|pure sine|(?:sinusov|sínusov)(?:ý|á) (?:měnič|menič)|sinepower/i.test(product.name);
+  return !/modifikovan[^\s]* (?:sinus|sínus)[^\s]*/i.test(product.name)
+    && /čist[^\s]* (?:sinus|sínus)[^\s]*|czyst[^\s]* sinus[^\s]*|pure sine|(?:sinusov|sínusov)[^\s]* (?:měnič|menič)|sinepower/i.test(product.name);
 }
 
 function uniqueProductPages(candidates) {
@@ -479,7 +531,9 @@ function normalizeAvailability(value) {
   if (value === null || value === undefined || value === "") return null;
   const normalized = String(value).trim();
   if (/^\d+$/.test(normalized)) return Number(normalized) >= 0;
-  return /skladem|in stock|true/i.test(normalized);
+  if (/back[ _-]?order|pre[ _-]?order/i.test(normalized)) return null;
+  if (/out[ _-]?of[ _-]?stock|vyprodáno|vypredané|niedostępn/i.test(normalized)) return false;
+  return /skladem|na sklade|dostępn\w*|in[ _-]?stock|true/i.test(normalized);
 }
 
 function parsePrice(value) {
@@ -487,6 +541,11 @@ function parsePrice(value) {
   if (!normalized) return null;
   const parsed = Number(normalized);
   return Number.isFinite(parsed) ? parsed : null;
+}
+
+function parseCurrency(value) {
+  const match = String(value ?? "").toUpperCase().match(/\b(CZK|EUR|PLN|USD|GBP|HUF|SEK)\b/);
+  return match?.[1] || null;
 }
 
 function matchNumber(text, pattern) {
@@ -522,6 +581,9 @@ function extractChargingVoltages(primaryText) {
   const primary = cleanText(primaryText);
   const allowed = new Set([12, 24, 36, 48]);
 
+  const directional = primary.match(/\b(?:z|zo|od)\s*(\d+(?:[.,]\d+)?)\s*v\s*(?:na|do)\s*(\d+(?:[.,]\d+)?)\s*v\b/i);
+  if (directional) return [normalizeSystemVoltage(parseLocalizedNumber(directional[2]))].filter(Boolean);
+
   const dualVoltage = primary.match(/\b(12|24|36|48)\s*v\s*[/]\s*(12|24|36|48)\s*v\b/i);
   if (dualVoltage) return [Number(dualVoltage[2])];
 
@@ -534,17 +596,28 @@ function extractChargingVoltages(primaryText) {
 
 function extractChargingInputVoltages(primaryText) {
   const primary = cleanText(primaryText);
+  const directional = primary.match(/\b(?:z|zo|od)\s*(\d+(?:[.,]\d+)?)\s*v\s*(?:na|do)\s*(\d+(?:[.,]\d+)?)\s*v\b/i);
+  if (directional) return [normalizeSystemVoltage(parseLocalizedNumber(directional[1]))].filter(Boolean);
   const pair = primary.match(/\b(12|24|36|48)\s*v?\s*[/]\s*(12|24|36|48)(?:\s*v\b|\s*[-/]\s*\d+(?:[.,]\d+)?\s*a\b)/i);
   if (pair) return [Number(pair[1])];
   const single = primary.match(/\b(12|24|36|48)\s*v\b/i);
   return single ? [Number(single[1])] : [];
 }
 
+function normalizeSystemVoltage(value) {
+  if ([12, 24, 36, 48].includes(value)) return value;
+  if (value >= 10 && value < 16) return 12;
+  if (value >= 20 && value < 32) return 24;
+  if (value >= 32 && value < 44) return 36;
+  if (value >= 44 && value < 60) return 48;
+  return null;
+}
+
 function extractChargingBatteryTypes(primaryText, fallbackText) {
   const text = `${cleanText(primaryText)} ${cleanText(fallbackText)}`;
   const types = [];
-  if (/lifepo4|lithium(?:-ion)?|lithiov/i.test(text)) types.push("lifepo4");
-  if (/\bagm\b|olov|gelov/i.test(text)) types.push("lead");
+  if (/lifepo4|lithium(?:-ion)?|lithiov|litow/i.test(text)) types.push("lifepo4");
+  if (/\bagm\b|olov|ołowi|kwasow|gelov|żelow/i.test(text)) types.push("lead");
   return types;
 }
 

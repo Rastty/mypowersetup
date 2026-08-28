@@ -64,3 +64,14 @@ test("omits charger products when the calculated charging source is disabled", (
 
   assert.deepEqual(packages[0].items.map(({ category }) => category), ["battery", "solar_panel"]);
 });
+
+test("does not add prices expressed in different currencies", () => {
+  const battery = item("battery", 1000, 95, 1.05);
+  battery.product.priceCurrency = "PLN";
+  const panel = item("panel", 250, 94, 1.04);
+  panel.product.priceCurrency = "EUR";
+  const [variant] = buildProductPackages({ battery: [battery], solar_panel: [panel] }, { inverterWatts: 0 });
+
+  assert.equal(variant.totalPriceCzk, null);
+  assert.equal(variant.totalCurrency, null);
+});
