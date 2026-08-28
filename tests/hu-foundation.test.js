@@ -12,6 +12,7 @@ import {
 } from "../src/app-hu.js";
 import { renderHungarianPrivatePage } from "../src/page-hu.js";
 import { HU_TRUST_ROUTES, renderHungarianTrustPage } from "../src/trust-pages-hu.js";
+import { HU_REQUIRED_PRODUCT_COVERAGE, assessHungarianLaunchReadiness, requireHungarianLaunchReady } from "../src/readiness-hu.js";
 
 test("Hungarian UI copy covers the full calculator and purchase journey", () => {
   assert.match(HU_UI_COPY.hero.title, /akkumulátorra és napelemre/);
@@ -164,6 +165,33 @@ test("Hungarian trust pages are complete but remain private until market launch"
   assert.match(pages.find(([kind]) => kind === "affiliate")[1], /jutalékot kaphatunk/);
   assert.match(pages.find(([kind]) => kind === "privacy")[1], /data-consent-settings/);
   assert.throws(() => renderHungarianTrustPage("missing"), /HU_TRUST_PAGE_UNKNOWN/);
+});
+
+test("Hungarian launch gate reports exact catalog and review blockers", async () => {
+  const catalog = JSON.parse(await readFile("data/products-hu.json", "utf8"));
+  const report = assessHungarianLaunchReadiness({ catalog });
+  assert.equal(report.checks.catalogSource, true);
+  assert.equal(report.ready, false);
+  assert.equal(report.categoryCounts.inverter, 7);
+  assert.equal(report.categoryCounts.dc_charger, 3);
+  assert.equal(report.categoryCounts.shore_charger, 2);
+  assert.deepEqual(report.missingCategories.map(({ category }) => category), ["battery", "solar_panel", "controller"]);
+  assert.match(report.blockers.join(" "), /HU_LANGUAGE_REVIEW_REQUIRED/);
+  assert.match(report.blockers.join(" "), /HU_MOBILE_JOURNEY_REVIEW_REQUIRED/);
+  assert.throws(() => requireHungarianLaunchReady({ catalog }), /HU_LAUNCH_BLOCKED/);
+});
+
+test("Hungarian launch gate opens only with complete coverage and explicit reviews", () => {
+  const products = Object.entries(HU_REQUIRED_PRODUCT_COVERAGE).flatMap(([category, count]) =>
+    Array.from({ length: count }, (_, index) => ({ id: `${category}-${index}`, category }))
+  );
+  const report = requireHungarianLaunchReady({
+    catalog: { market: "hu-HU", currency: "EUR", sources: { ampul_hu: { status: "ok" } }, products },
+    languageReviewed: true,
+    mobileJourneyReviewed: true,
+  });
+  assert.equal(report.ready, true);
+  assert.deepEqual(report.blockers, []);
 });
 
 async function fileExists(path) {
