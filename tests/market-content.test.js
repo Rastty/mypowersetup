@@ -127,6 +127,36 @@ test("fridge guides contain distinct local weather decisions and existing-batter
   assert.equal(new Set(labels).size, labels.length);
 });
 
+test("chemistry guides make local decisions from the shared AGM and LiFePO4 model", async () => {
+  const files = {
+    cs: "pruvodce/agm-vs-lifepo4/index.html",
+    sk: "sk/sprievodca/agm-vs-lifepo4/index.html",
+    pl: "pl/poradnik/agm-czy-lifepo4/index.html",
+  };
+  const labels = [];
+  for (const [locale, file] of Object.entries(files)) {
+    const html = await readFile(file, "utf8");
+    for (const scenario of MARKET_CONTENT[locale].chemistryScenarios) {
+      assert.equal(requiredBatteryAh(scenario.dailyWh, scenario.autonomyDays, "lead"), scenario.agmAh);
+      assert.equal(requiredBatteryAh(scenario.dailyWh, scenario.autonomyDays, "lifepo4"), scenario.lifepo4Ah);
+      assert.ok(html.includes(scenario.label));
+      assert.ok(html.includes(`${scenario.agmAh} Ah`));
+      assert.ok(html.includes(`${scenario.lifepo4Ah} Ah`));
+      labels.push(scenario.label);
+    }
+  }
+  const hungarian = renderHungarianGuide("chemistry");
+  for (const scenario of MARKET_CONTENT.hu.chemistryScenarios) {
+    assert.equal(requiredBatteryAh(scenario.dailyWh, scenario.autonomyDays, "lead"), scenario.agmAh);
+    assert.equal(requiredBatteryAh(scenario.dailyWh, scenario.autonomyDays, "lifepo4"), scenario.lifepo4Ah);
+    assert.ok(hungarian.includes(scenario.label));
+    assert.ok(hungarian.includes(`${scenario.agmAh} Ah`));
+    assert.ok(hungarian.includes(`${scenario.lifepo4Ah} Ah`));
+    labels.push(scenario.label);
+  }
+  assert.equal(new Set(labels).size, labels.length);
+});
+
 test("charging guides contain distinct local driving and campsite decisions", async () => {
   const files = {
     cs: ["pruvodce/jak-vybrat-dc-dc-nabijecku/index.html", "pruvodce/jak-vybrat-nabijecku-230-v/index.html"],

@@ -26,6 +26,10 @@ export const MARKET_CONTENT = Object.freeze({
       { label: "Horký den na jihu Česka", ambientC: 32, dailyWh: 557, usableBatteryShare: "58 % použitelné 100Ah LiFePO₄" },
       { label: "Mírný víkend v českých horách", ambientC: 25, dailyWh: 268, usableBatteryShare: "28 % použitelné 100Ah LiFePO₄" },
     ],
+    chemistryScenarios: [
+      { label: "Několik českých víkendů ročně", dailyWh: 250, autonomyDays: 2, agmAh: 96, lifepo4Ah: 60, decision: "Stávající zdravá 100Ah AGM může stačit, pokud nabíjení odpovídá a vyšší hmotnost nevadí." },
+      { label: "Pravidelná práce z obytné dodávky", dailyWh: 800, autonomyDays: 2, agmAh: 307, lifepo4Ah: 192, decision: "LiFePO₄ obvykle dává větší smysl, ale až po kontrole všech nabíjecích zdrojů a BMS." },
+    ],
   },
   sk: {
     locale: "sk-SK",
@@ -50,6 +54,10 @@ export const MARKET_CONTENT = Object.freeze({
     fridgeScenarios: [
       { label: "Horúci deň pri vodnej nádrži", ambientC: 32, dailyWh: 557, usableBatteryShare: "58 % použiteľnej 100Ah LiFePO₄" },
       { label: "Mierny víkend pod Tatrami", ambientC: 25, dailyWh: 268, usableBatteryShare: "28 % použiteľnej 100Ah LiFePO₄" },
+    ],
+    chemistryScenarios: [
+      { label: "Zimné státie pod Tatrami", dailyWh: 400, autonomyDays: 2, agmAh: 154, lifepo4Ah: 96, decision: "LiFePO₄ potrebuje pre nabíjanie v chlade overenú ochranu alebo vyhrievanie; rozhoduje konkrétny datasheet." },
+      { label: "Časté víkendy pri vode", dailyWh: 600, autonomyDays: 2, agmAh: 230, lifepo4Ah: 144, decision: "Pri častom cyklovaní a vyššej spotrebe zvyčajne vyhráva LiFePO₄ s kompatibilným dobíjaním." },
     ],
   },
   pl: {
@@ -76,6 +84,10 @@ export const MARKET_CONTENT = Object.freeze({
       { label: "Upalny postój nad Bałtykiem", ambientC: 32, dailyWh: 557, usableBatteryShare: "58% użytecznej energii akumulatora LiFePO₄ 100 Ah" },
       { label: "Łagodny weekend na Mazurach", ambientC: 25, dailyWh: 268, usableBatteryShare: "28% użytecznej energii akumulatora LiFePO₄ 100 Ah" },
     ],
+    chemistryScenarios: [
+      { label: "Kilka weekendów w przyczepie rocznie", dailyWh: 300, autonomyDays: 2, agmAh: 115, lifepo4Ah: 72, decision: "AGM może pozostać najtańszą zmianą, jeśli obecne ładowanie jest zgodne i masa nie ogranicza zestawu." },
+      { label: "Praca z kampera przez dwa dni", dailyWh: 900, autonomyDays: 2, agmAh: 345, lifepo4Ah: 216, decision: "LiFePO₄ zwykle wygrywa użyteczną energią i masą, ale wymaga sprawdzenia ładowarek, BMS oraz instalacji." },
+    ],
   },
   hu: {
     locale: "hu-HU",
@@ -100,6 +112,10 @@ export const MARKET_CONTENT = Object.freeze({
     fridgeScenarios: [
       { label: "Forró nap a Balatonnál", ambientC: 32, dailyWh: 557, usableBatteryShare: "a 100 Ah-s LiFePO₄ használható energiájának 58%-át" },
       { label: "Enyhe tavaszi termáltúra", ambientC: 25, dailyWh: 268, usableBatteryShare: "a 100 Ah-s LiFePO₄ használható energiájának 28%-át" },
+    ],
+    chemistryScenarios: [
+      { label: "Termálkemping rendszeres 230 V-os töltéssel", dailyWh: 500, autonomyDays: 1, agmAh: 96, lifepo4Ah: 60, decision: "Egy meglévő 100 Ah-s AGM megfelelő lehet, ha jó állapotú és a töltési profil helyes." },
+      { label: "Két hálózat nélküli nap a Balatonnál", dailyWh: 700, autonomyDays: 2, agmAh: 269, lifepo4Ah: 168, decision: "A LiFePO₄ általában jobb használható energia–tömeg arányt ad, kompatibilis töltéssel és hidegvédelemmel." },
     ],
   },
 });
