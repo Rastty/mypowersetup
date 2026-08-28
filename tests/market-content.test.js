@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { MARKET_CONTENT, inverterDcAmps, marketSolarScenarios, requiredBatteryAh, requiredChargingAmps, requiredInverterWatts, requiredSolarWp } from "../src/market-content.js";
+import { MARKET_CONTENT, compressorFridgeDailyWh, inverterDcAmps, marketSolarScenarios, requiredBatteryAh, requiredChargingAmps, requiredInverterWatts, requiredSolarWp, shareOfUsableBattery } from "../src/market-content.js";
 import { renderHungarianGuide } from "../src/guides-hu.js";
 import { calculateBatteryCablePlan } from "../src/wiring.js";
 
@@ -37,6 +37,12 @@ test("market inverter scenarios use the shared reserve and DC efficiency", () =>
   assert.equal(requiredInverterWatts(1590), 1988);
   assert.equal(inverterDcAmps(1200), 112);
   assert.equal(inverterDcAmps(1590), 148);
+});
+
+test("fridge examples connect compressor duty cycle to usable battery energy", () => {
+  assert.equal(compressorFridgeDailyWh(12, 5, 0.4), 576);
+  assert.equal(shareOfUsableBattery(557), 58);
+  assert.equal(shareOfUsableBattery(268), 28);
 });
 
 test("every localization has distinct terminology and two quantified local scenarios", () => {
@@ -94,6 +100,31 @@ test("wiring guides keep local high-current examples inside the shared voltage-d
   assert.ok(hungarian.includes(scenario.label));
   assert.ok(hungarian.includes(`${plan.recommendedCrossSectionMm2} mm²`));
   assert.match(hungarian, /terhelhetőség/);
+});
+
+test("fridge guides contain distinct local weather decisions and existing-battery impact", async () => {
+  const files = {
+    cs: "pruvodce/spotreba-kompresorove-lednice/index.html",
+    sk: "sk/sprievodca/spotreba-kompresorovej-chladnicky/index.html",
+    pl: "pl/poradnik/zuzycie-lodowki-kompresorowej/index.html",
+  };
+  const labels = [];
+  for (const [locale, file] of Object.entries(files)) {
+    const html = await readFile(file, "utf8");
+    for (const scenario of MARKET_CONTENT[locale].fridgeScenarios) {
+      assert.ok(html.includes(scenario.label));
+      assert.ok(html.includes(scenario.usableBatteryShare));
+      labels.push(scenario.label);
+    }
+    assert.match(html, /100\s?Ah/);
+  }
+  const hungarian = renderHungarianGuide("fridge");
+  for (const scenario of MARKET_CONTENT.hu.fridgeScenarios) {
+    assert.ok(hungarian.includes(scenario.label));
+    assert.ok(hungarian.includes(scenario.usableBatteryShare));
+    labels.push(scenario.label);
+  }
+  assert.equal(new Set(labels).size, labels.length);
 });
 
 test("charging guides contain distinct local driving and campsite decisions", async () => {
