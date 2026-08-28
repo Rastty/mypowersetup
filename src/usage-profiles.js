@@ -84,6 +84,17 @@ const PROFILE_TEXT = {
       comfort: ["Większy komfort", "Więcej urządzeń i trzy dni zapasu"],
     },
   },
+  hu: {
+    eyebrow: "Gyors kezdés",
+    title: "Nem ismered a pontos fogyasztást? Indulj egy tipikus profilból",
+    note: "A profil csak előre kitölti a fogyasztókat és a feltételeket. Minden értéket azonnal módosíthatsz az adattáblák és a használati szokásaid alapján.",
+    profiles: {
+      weekend: ["Hétvége", "Hűtőszekrény, világítás, telefonok és víz"],
+      family: ["Családi nyaralás", "Átlagos használat televízióval"],
+      work: ["Munka a lakóautóból", "Egész napos laptophasználat és alapfogyasztók"],
+      comfort: ["Nagyobb kényelem", "Több fogyasztó és háromnapos tartalék"],
+    },
+  },
 };
 
 export function getUsageProfiles(locale = "cs") {

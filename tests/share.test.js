@@ -38,6 +38,14 @@ test("Polish share summary is localized and uses the future Polish route", () =>
   assert.match(text, /https:\/\/mypowersetup\.com\/pl\//);
 });
 
+test("Hungarian share summary is localized for the private market foundation", () => {
+  const text = buildResultShareText({ ...result, inverterWatts: 0 }, "hu");
+  assert.match(text, /MyPowerSetup — tájékoztató rendszerjavaslat/);
+  assert.match(text, /Napi energiafogyasztás: 1,25 kWh/);
+  assert.match(text, /Inverter: nem szükséges/);
+  assert.match(text, /https:\/\/mypowersetup\.com\/hu\//);
+});
+
 test("copyText prefers the Clipboard API", async () => {
   let copied = "";
   const success = await copyText("návrh", {

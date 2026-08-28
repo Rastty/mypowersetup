@@ -29,6 +29,16 @@ const VERDICT_TEXT = {
     controller: (result) => `MPPT ${result.controllerAmps} A`,
     conjunction: "i",
   },
+  hu: {
+    lead: (voltage) => `Ehhez az utazási módhoz ${voltage} V-os rendszert ajánlunk:`,
+    battery: (result) => `${result.batteryAh} Ah-s ${result.batteryLabel} akkumulátort`,
+    solar: (result) => `${result.solarWatts} Wp napelemet`,
+    inverter: (result) => result.inverterWatts
+      ? `${result.inverterWatts} W-os tiszta szinuszos invertert`
+      : "külön 230 V-os inverter nélkül",
+    controller: (result) => `${result.controllerAmps} A-es MPPT szabályozót`,
+    conjunction: "és",
+  },
 };
 
 export function buildPlainLanguageVerdict(result, locale = result?.locale || "cs") {
