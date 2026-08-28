@@ -43,6 +43,13 @@ const MERCHANTS = {
     productPathPrefix: "/products/",
     currency: "PLN"
   },
+  allpowers_eu: {
+    hostname: "iallpowers.eu",
+    affiliateBaseUrl: "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971",
+    destinationParam: "ued",
+    productPathPrefix: "/products/",
+    currency: "EUR"
+  },
   powerqueen_us: {
     hostname: "ipowerqueen.com",
     affiliateBaseUrl: "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971",
@@ -311,6 +318,7 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
 
   const isSolarPanel =
     (/\b(solární|solárny|fotovoltaický|fotovoltický)\s+(?:skládací\s+|skladací\s+|přenosný\s+|prenosný\s+)?panel\b/i.test(name)
+      || /\b(?:portable\s+|foldable\s+|flexible\s+|monocrystalline\s+)?solar\s+panel\b/i.test(name)
       || /\bpanel(?:e)?\s+(?:słoneczn\w*|fotowoltaiczn\w*)\b|\b(?:słoneczn\w*|fotowoltaiczn\w*)\s+panel(?:e)?\b|\bnapelem(?:panel)?\b|\bfotovoltaikus\s+panel\b/i.test(name)) &&
     !accessory.test(name) &&
     specs.powerW > 0;
