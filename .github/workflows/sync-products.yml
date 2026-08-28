@@ -11,6 +11,7 @@ on:
       - "scripts/sync-products-ampul-cz.mjs"
       - "scripts/sync-products-pl.mjs"
       - "scripts/sync-products-sk.mjs"
+      - "scripts/sync-products-hu.mjs"
       - "src/shopify.js"
       - "data/products-pl-verified.json"
       - ".github/workflows/sync-products.yml"
@@ -47,12 +48,15 @@ jobs:
       - run: node scripts/sync-products-pl.mjs
         env:
           AMPUL_PL_FEED_URL: ${{ secrets.AMPUL_PL_FEED_URL }}
+      - run: node scripts/sync-products-hu.mjs
+        env:
+          AMPUL_HU_FEED_URL: ${{ secrets.AMPUL_HU_FEED_URL }}
       - run: node --test
       - name: Commit refreshed catalog
         run: |
-          if git diff --quiet -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json; then exit 0; fi
+          if git diff --quiet -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json; then exit 0; fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json
+          git add -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json
           git commit -m "data: refresh affiliate product catalog"
           git push

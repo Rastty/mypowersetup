@@ -148,7 +148,8 @@ test("Ampul deeplinks keep exact localized product pages and market currencies",
   const examples = [
     ["ampul_cz", "https://ampul.eu/cs/menice-napeti/5577-7391-menic-napeti-z-dc-na-230v-ac-50hz-2000w", "CZK"],
     ["ampul_sk", "https://ampul.eu/sk/menice-napatia/5577-7391-menic-napatia-z-dc-na-230v-ac-50hz-2000w", "EUR"],
-    ["ampul_pl", "https://ampul.eu/pl/przeksztaltniki-napiecia/5577-7391-przetwornica-napiecia-z-dc-na-230v-ac-50hz-2000w", "EUR"]
+    ["ampul_pl", "https://ampul.eu/pl/przeksztaltniki-napiecia/5577-7391-przetwornica-napiecia-z-dc-na-230v-ac-50hz-2000w", "EUR"],
+    ["ampul_hu", "https://ampul.eu/hu/feszultseg-atalakitok/4502-feszultseg-atalakito-24v-rol-12v-ra-100a-1200w-ip6", "EUR"]
   ];
 
   for (const [merchant, destination, currency] of examples) {
@@ -170,6 +171,10 @@ test("Ampul deeplinks keep exact localized product pages and market currencies",
 
   assert.throws(
     () => buildAffiliateUrl("ampul_pl", "https://ampul.eu/cs/menice-napeti/5577-product"),
+    /produktovou stránku/
+  );
+  assert.throws(
+    () => buildAffiliateUrl("ampul_hu", "https://ampul.eu/sk/menice-napatia/5577-product"),
     /produktovou stránku/
   );
 });
@@ -211,6 +216,36 @@ test("Ampul directional battery chargers are treated as DC-DC and keep both inpu
   assert.equal(dualInput.category, "dc_charger");
   assert.deepEqual(dualInput.specs.chargingInputVoltagesV, [12, 24]);
   assert.deepEqual(dualInput.specs.chargingVoltagesV, [48]);
+});
+
+test("Hungarian Ampul wording keeps technical classification and charging direction", () => {
+  const charger = normalizeProduct({
+    id: "hu-dc-charger",
+    name: "Akkumulátortöltő 12V/24V-tól 29.2V-ig, 20A, 584W, IP65, vékony",
+    description: "Töltő 24V-os LiFePO4 akkumulátorhoz 12V/24V DC forrásról.",
+    category: "Töltők",
+    price: "164,59 EUR",
+    url: "https://ampul.eu/hu/toltok/5479-akkumulatortolto-12v-rol-292v-ig-20a-584w-ip65",
+    available: "Készleten"
+  }, "ampul_hu");
+  assert.equal(charger.category, "dc_charger");
+  assert.deepEqual(charger.specs.chargingInputVoltagesV, [12, 24]);
+  assert.deepEqual(charger.specs.chargingVoltagesV, [24]);
+  assert.deepEqual(charger.specs.chargingBatteryTypes, ["lifepo4"]);
+  assert.equal(charger.available, true);
+
+  const inverter = normalizeProduct({
+    id: "hu-inverter",
+    name: "Feszültségátalakító 12V DC-ről 230V AC-re, 2000W",
+    description: "Tiszta szinuszos kimenet.",
+    category: "Feszültség átalakítók",
+    price: "299 EUR",
+    url: "https://ampul.eu/hu/feszultseg-atalakitok/7000-feszultsegatalakito-12v-dc-rol-230v-ac-re-2000w",
+    available: true
+  }, "ampul_hu");
+  assert.equal(inverter.category, "inverter");
+  assert.equal(inverter.specs.voltageV, 12);
+  assert.equal(inverter.specs.pureSine, true);
 });
 
 test("Ampul's repeated feed title cannot disguise a higher-voltage inverter variant", () => {

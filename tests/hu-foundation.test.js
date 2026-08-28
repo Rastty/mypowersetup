@@ -42,3 +42,17 @@ test("Hungarian trust copy explains authorship, method, affiliate independence, 
   assert.equal(HU_TRUST_COPY.privacy.contact, "xfit.redakce@gmail.com");
   assert.match(HU_TRUST_COPY.safety.text, /szakembernek/);
 });
+
+test("Hungarian Ampul catalog is private, market-specific and ready for secret-backed refresh", async () => {
+  const [catalog, sync] = await Promise.all([
+    readFile("data/products-hu.json", "utf8").then(JSON.parse),
+    readFile("scripts/sync-products-hu.mjs", "utf8"),
+  ]);
+  assert.equal(catalog.market, "hu-HU");
+  assert.equal(catalog.currency, "EUR");
+  assert.ok(Object.hasOwn(catalog.sources, "ampul_hu"));
+  assert.match(sync, /process\.env\.AMPUL_HU_FEED_URL/);
+  assert.match(sync, /parseProductFeed\(await response\.text\(\), "ampul_hu"\)/);
+  assert.match(sync, /"accept-language": "hu-HU,hu;q=0\.9,en;q=0\.6"/);
+  assert.doesNotMatch(sync, /id_feed=|token=/);
+});
