@@ -13,9 +13,9 @@ Nejde jen o kalkulačku ani o katalog produktů. Cílem je propojit cestu:
 ## Hlavní trhy
 
 1. Česká republika je primární trh a místo, kde má vzniknout nejlepší úplná verze produktu.
-2. Slovensko se rozvíjí paralelně, ale nesmí brzdit kvalitu a rychlost české verze.
-3. Polsko je další plnohodnotný trh po dokončení českého jádra a zprovoznění slovenského produktového katalogu.
-4. Maďarsko bude následovat na stejném lokalizačním a produktovém základu jako Polsko; nebude vznikat jako oddělená kopie aplikace.
+2. Slovensko je plnohodnotná lokalizace se samostatným katalogem; jeho produktové pokrytí se rozšiřuje bez snižování technických nároků.
+3. Polsko je veřejný plnohodnotný trh se samostatnými daty Ampul a ALLPOWERS.
+4. Maďarsko používá stejné výpočetní jádro, ale zůstane neveřejné do splnění produktové, jazykové a mobilní brány.
 5. Další lokalizace přijdou až po prokázání použitelnosti, návštěvnosti a monetizace jádra.
 
 ## Kandidáti po CZ / SK / PL / HU
@@ -45,9 +45,9 @@ Nový trh se zveřejní pouze tehdy, když současně splní:
 ## Pořadí lokalizací
 
 1. **CZ — golden master:** dokončit technickou, nákupní, bezpečnostní, mobilní a SEO cestu.
-2. **SK — první ověření přenositelnosti:** držet funkčně shodný kalkulátor a po schválení Padabo doplnit samostatný EUR katalog a affiliate tracking.
-3. **PL — další veřejný trh:** využít stejné výpočetní jádro, obecnou konfiguraci trhu a samostatná produktová data Padabo.pl.
-4. **HU — připravený následný trh:** přidat po polském ověření pomocí stejné infrastruktury; plnou jazykovou a technickou kontrolu neprovádět současně s Polskem.
+2. **SK — první ověření přenositelnosti:** držet funkčně shodný kalkulátor, samostatný EUR katalog a rozšířit pokrytí baterií, panelů a MPPT.
+3. **PL — veřejný růstový trh:** rozvíjet samostatný katalog Ampul + ALLPOWERS a doplnit baterie a MPPT bez obecného nebo neověřeného doporučování.
+4. **HU — připravený následný trh:** dokončit produktové pokrytí, přirozenou jazykovou revizi a mobilní průchod před zveřejněním.
 
 Polsko ani Maďarsko se nesmí zveřejnit jen jako strojově přeložená kopie. Každá země potřebuje ověřenou terminologii, lokální měnu, právní a affiliate texty, vlastní produktový feed, správné hreflang a testované výpočty. Příprava společné konfigurace může začít dříve, ale nesmí odsunout otevřené P0–P2 úkoly české verze.
 
@@ -65,6 +65,7 @@ Polsko ani Maďarsko se nesmí zveřejnit jen jako strojově přeložená kopie.
 - Běžný uživatel musí během jedné minuty pochopit, co potřebuje, proč to potřebuje a které konkrétní produkty odpovídají výsledku.
 - Rychlé profily smějí pouze transparentně předvyplnit společný kalkulátor; nesmějí skrývat spotřebu ani nahrazovat upravitelné vstupy.
 - Budoucí kontrola existující sestavy má nejdříve určit hlavní omezení a nejmenší smysluplný upgrade, ne automaticky doporučit kompletní výměnu.
+- Neúplný katalog se nesmí prezentovat jako kompletní nákupní balíček; výsledek musí pojmenovat chybějící kategorie a ponechat uživateli přesné technické minimum pro jejich výběr.
 
 ## Prioritní produktová cesta
 
@@ -126,8 +127,8 @@ Po zapnutí měření sledujeme zejména:
 
 ## Nejbližší pořadí práce
 
-1. Dokončit tržní přepracování prioritních návodů CZ/SK/PL/HU: měnič, kabeláž a jištění, kompresorová chladnička a AGM vs. LiFePO₄. Každý návod musí mít lokální scénář, společný výpočtový základ a kontrolu bottlenecku stávající sestavy.
-2. Dokončit technickou jazykovou kontrolu neveřejné maďarské vrstvy a zveřejnit ji až po splnění tržní brány: lokální produktový katalog, affiliate cesta, mobilní průchod, právní texty, hreflang a měření.
-3. Zlepšovat produktová data a pokrytí kategorií v CZ, SK, PL a HU; synchronizace Ampul používá samostatný feed a měnu každého trhu.
-4. Využít stárnoucí účty MyPower.cz, Caravan24.cz a CamperTeam.pl nejprve pro autentické užitečné odpovědi bez odkazů.
+1. Měřit a transparentně zobrazovat produktové pokrytí každé vypočtené sestavy; balíčky zobrazovat jen tehdy, když obsahují všechny potřebné kategorie.
+2. Doplnit ověřené baterie, panely a MPPT pro SK, baterie a MPPT pro PL a baterie, panely a MPPT pro HU; přesné lokální deeplinky a dostupnost mají přednost před počtem produktů.
+3. Dokončit přirozenou technickou jazykovou kontrolu neveřejné maďarské vrstvy a ověřit celý mobilní průchod před jejím zveřejněním.
+4. Využít účty MyPower.cz, Caravan24.cz a CamperTeam.pl nejprve pro autentické užitečné odpovědi bez odkazů a následně měřit skutečný přínos komunitní distribuce.
 5. Rumunsko ověřit jako pozdější experiment proti existující lokální konkurenci; další trhy zůstávají výzkumnou frontou, dokud CZ/SK/PL/HU nesplní vlastní brány.
