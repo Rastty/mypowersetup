@@ -41,6 +41,13 @@ test("diagram has localized Polish safety copy", () => {
   assert.match(html, /wartość zabezpieczenia dobierz/);
 });
 
+test("diagram has localized Hungarian safety copy", () => {
+  const html = buildSystemDiagram(baseResult, "hu");
+  assert.match(html, /Napelemek/);
+  assert.match(html, /Tiszta szinuszos inverter/);
+  assert.match(html, /telepítési feltételek alapján/);
+});
+
 test("diagram refuses an incomplete result", () => {
   assert.equal(buildSystemDiagram({ systemVoltage: 12 }, "cs"), "");
 });

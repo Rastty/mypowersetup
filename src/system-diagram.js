@@ -32,6 +32,17 @@ const COPY = {
     verify: "Typ i wartość zabezpieczenia dobierz do przewodu, urządzenia i warunków instalacji.",
     noInverter: "W tym zestawie nie wybrano odbiorników 230 V, dlatego przetwornica nie jest potrzebna.",
   },
+  hu: {
+    solar: "Napelemek",
+    controller: "MPPT töltésszabályozó",
+    battery: "Akkumulátor",
+    protection: "DC védelem és leválasztás",
+    dcLoads: "12/24 V-os fogyasztók",
+    inverter: "Tiszta szinuszos inverter",
+    acLoads: "230 V-os fogyasztók",
+    verify: "A védelem típusát és névleges értékét a kábel, a készülék és a telepítési feltételek alapján kell meghatározni.",
+    noInverter: "Ehhez a rendszerhez nincs kiválasztva 230 V-os fogyasztó, ezért külön inverterág nem szükséges.",
+  },
 };
 
 export function buildSystemDiagram(result, locale = "cs") {

@@ -91,6 +91,36 @@ const COPY = {
       controller: (target) => `Największym ograniczeniem jest MPPT. Przyjmij co najmniej ${target} A i osobno sprawdź Voc oraz Isc paneli.`
     },
     safety: "To orientacyjna kontrola mocy, a nie potwierdzenie zgodności. Sprawdź BMS, przewody i zabezpieczenia, zdolność wyłączania DC, prądy rozruchowe oraz Voc/Isc paneli w niskiej temperaturze."
+  },
+  hu: {
+    kicker: "Már van rendszered?",
+    title: "A meglévő rendszer ellenőrzése",
+    intro: "Csak az ismert értékeket add meg. Megmutatjuk, mi elegendő, hol van a szűk keresztmetszet, és mi a legkisebb ésszerű fejlesztés.",
+    batteryType: "Akkumulátor típusa",
+    lifepo4: "LiFePO₄",
+    lead: "AGM / ólom-savas",
+    voltage: "Akkumulátor / rendszer feszültsége",
+    battery: "Akkumulátor kapacitása",
+    solar: "Napelemek",
+    inverter: "Inverter folyamatos teljesítménye",
+    controller: "MPPT névleges árama",
+    optional: "Nem kötelező",
+    submit: "Összehasonlítás a javaslattal",
+    upgradeProducts: "A fejlesztéshez megfelelő termékek megjelenítése ↓",
+    statuses: { sufficient: "Elegendő", close: "Majdnem elegendő", insufficient: "Kevés", unknown: "Nincs adat", incompatible: "Eltérő feszültség" },
+    component: { battery: "Akkumulátor", solar: "Napelem", inverter: "Inverter", controller: "MPPT", voltage: "Rendszerfeszültség" },
+    compared: (current, required) => `${current} a javasolt ${required} értékből`,
+    noInverter: "A kiválasztott fogyasztókhoz külön inverter nem szükséges.",
+    allGood: "A megadott fő paraméterek megfelelnek a javaslatnak. Telepítés előtt ellenőrizd a kompatibilitást és a biztonsági határértékeket.",
+    unknownOnly: "A megadott paraméterek elegendőnek tűnnek. A teljes ellenőrzéshez add meg a hiányzó értékeket.",
+    voltageMismatch: (current, required) => `Először a feszültséget kell rendezni: a meglévő ${current} V-os elemek nem kapcsolhatók közvetlenül a javasolt ${required} V-os rendszerhez.`,
+    upgrade: {
+      battery: (target, voltage, type) => `A legkisebb ésszerű lépés az akkumulátor növelése körülbelül ${target} Ah-ra, ${voltage} V feszültségen (${type}).`,
+      solar: (target) => `A legnagyobb korlát a napelem. Növeld a beépített teljesítményt legalább körülbelül ${target} Wp-re.`,
+      inverter: (target) => `A legnagyobb korlát az inverter. Válassz legalább ${target} W folyamatos teljesítményű tiszta szinuszos modellt, és ellenőrizd az indítási csúcsteljesítményt.`,
+      controller: (target) => `A legnagyobb korlát az MPPT. Legalább ${target} A-rel számolj, és külön ellenőrizd a napelemek Voc és Isc értékeit.`
+    },
+    safety: "Tájékoztató teljesítmény-ellenőrzés, nem kompatibilitási igazolás. Ellenőrizd a BMS-t, a kábeleket és védelmeket, a DC megszakítóképességet, az indítási áramokat, valamint a napelemek hidegben érvényes Voc/Isc értékeit."
   }
 };
 
