@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { MARKET_CONTENT, inverterDcAmps, marketSolarScenarios, requiredBatteryAh, requiredChargingAmps, requiredInverterWatts, requiredSolarWp } from "../src/market-content.js";
 import { renderHungarianGuide } from "../src/guides-hu.js";
+import { calculateBatteryCablePlan } from "../src/wiring.js";
 
 const solarPages = {
   cs: "pruvodce/kolik-w-solarnich-panelu/index.html",
@@ -71,6 +72,28 @@ test("inverter guides contain distinct local use cases and a battery-side bottle
   const hungarian = renderHungarianGuide("inverter");
   for (const scenario of MARKET_CONTENT.hu.inverterScenarios) assert.ok(hungarian.includes(scenario.label));
   assert.match(hungarian, /BMS/);
+});
+
+test("wiring guides keep local high-current examples inside the shared voltage-drop model", async () => {
+  const files = {
+    cs: "pruvodce/kabely-a-pojistky-12-v/index.html",
+    sk: "sk/sprievodca/kable-a-poistky-12-v/index.html",
+    pl: "pl/poradnik/przewody-i-bezpieczniki-12-v/index.html",
+  };
+  for (const [locale, file] of Object.entries(files)) {
+    const scenario = MARKET_CONTENT[locale].wiringScenario;
+    const plan = calculateBatteryCablePlan({ inverterWatts: scenario.inverterWatts, systemVoltage: scenario.voltage, oneWayLengthMeters: scenario.oneWayMeters });
+    const html = await readFile(file, "utf8");
+    assert.ok(html.includes(scenario.label));
+    assert.ok(html.includes(`${plan.recommendedCrossSectionMm2} mm²`));
+    assert.match(html, /[Zz]atížitelnost|zaťažiteľnosť|obciążalność/);
+  }
+  const scenario = MARKET_CONTENT.hu.wiringScenario;
+  const plan = calculateBatteryCablePlan({ inverterWatts: scenario.inverterWatts, systemVoltage: scenario.voltage, oneWayLengthMeters: scenario.oneWayMeters });
+  const hungarian = renderHungarianGuide("wiring");
+  assert.ok(hungarian.includes(scenario.label));
+  assert.ok(hungarian.includes(`${plan.recommendedCrossSectionMm2} mm²`));
+  assert.match(hungarian, /terhelhetőség/);
 });
 
 test("charging guides contain distinct local driving and campsite decisions", async () => {
