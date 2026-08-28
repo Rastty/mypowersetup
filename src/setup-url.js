@@ -117,7 +117,7 @@ export function decodeSetupQuery(search, allowedApplianceIds) {
 
 export function buildSetupUrl(config, language = "cs", origin = "https://mypowersetup.com") {
   const query = encodeSetupQuery(config);
-  const path = { sk: "/sk/", pl: "/pl/" }[language] || "/";
+  const path = { sk: "/sk/", pl: "/pl/", hu: "/hu/" }[language] || "/";
   return `${origin.replace(/\/$/, "")}${path}${query ? `?${query}` : ""}#kalkulator`;
 }
 
