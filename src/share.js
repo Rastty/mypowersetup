@@ -35,6 +35,18 @@ const COPY = {
     locale: "pl-PL",
     url: "https://mypowersetup.com/pl/",
   },
+  hu: {
+    title: "MyPowerSetup — tájékoztató rendszerjavaslat",
+    daily: "Napi energiafogyasztás",
+    battery: "Akkumulátor",
+    solar: "Napelemek",
+    inverter: "Inverter",
+    noInverter: "nem szükséges",
+    controller: "MPPT szabályozó",
+    warning: "Tájékoztató eredmény — kivitelezés előtt ellenőrizd a paramétereket, a biztosítékokat és a kábelezést.",
+    locale: "hu-HU",
+    url: "https://mypowersetup.com/hu/",
+  },
 };
 
 export function buildResultShareText(result, language = "cs", resultUrl) {
