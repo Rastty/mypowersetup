@@ -483,6 +483,12 @@ function renderProductRecommendations(result) {
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
   const coverage = assessRecommendationCoverage(recommendations, result, "sk");
+  trackEvent("product_coverage_calculated", {
+    locale: "sk",
+    required_categories: coverage.required.length,
+    covered_categories: coverage.covered.length,
+    missing_categories: coverage.missing.join(","),
+  });
   const resultNext = document.querySelector("#result-next");
   resultNext.hidden = false;
   document.querySelector("#result-product-count").textContent = total
