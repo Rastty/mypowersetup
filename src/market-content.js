@@ -22,6 +22,10 @@ export const MARKET_CONTENT = Object.freeze({
       { label: "Kávovar mimo kemp", simultaneousW: 1290, voltage: 12, practicalW: "2 000 W, jen pokud BMS a DC část zvládnou přibližně 150 A" },
     ],
     wiringScenario: { label: "Kávovar mimo kemp: kontrola 2 000W větve", inverterWatts: 2000, voltage: 12, oneWayMeters: 1, practicalMm2: "25 mm² jen podle úbytku; zatížitelnost může vyžadovat více" },
+    fridgeScenarios: [
+      { label: "Horký den na jihu Česka", ambientC: 32, dailyWh: 557, usableBatteryShare: "58 % použitelné 100Ah LiFePO₄" },
+      { label: "Mírný víkend v českých horách", ambientC: 25, dailyWh: 268, usableBatteryShare: "28 % použitelné 100Ah LiFePO₄" },
+    ],
   },
   sk: {
     locale: "sk-SK",
@@ -43,6 +47,10 @@ export const MARKET_CONTENT = Object.freeze({
       { label: "Kávovar na státí bez prípojky", simultaneousW: 1200, voltage: 12, practicalW: "1 500 W, ak batéria a BMS zvládnu približne 139 A" },
     ],
     wiringScenario: { label: "Kávovar na státí: kontrola 1 500 W vetvy", inverterWatts: 1500, voltage: 12, oneWayMeters: 1.5, practicalMm2: "25 mm² iba podľa úbytku; zaťažiteľnosť môže vyžadovať viac" },
+    fridgeScenarios: [
+      { label: "Horúci deň pri vodnej nádrži", ambientC: 32, dailyWh: 557, usableBatteryShare: "58 % použiteľnej 100Ah LiFePO₄" },
+      { label: "Mierny víkend pod Tatrami", ambientC: 25, dailyWh: 268, usableBatteryShare: "28 % použiteľnej 100Ah LiFePO₄" },
+    ],
   },
   pl: {
     locale: "pl-PL",
@@ -64,6 +72,10 @@ export const MARKET_CONTENT = Object.freeze({
       { label: "Płyta grzejna na postoju bez 230 V", simultaneousW: 1590, voltage: 12, practicalW: "2 000 W, jeśli BMS i instalacja DC wytrzymają około 184 A" },
     ],
     wiringScenario: { label: "Płyta grzejna: kontrola gałęzi 2 000 W", inverterWatts: 2000, voltage: 12, oneWayMeters: 1.5, practicalMm2: "35 mm² tylko według spadku; obciążalność może wymagać więcej" },
+    fridgeScenarios: [
+      { label: "Upalny postój nad Bałtykiem", ambientC: 32, dailyWh: 557, usableBatteryShare: "58% użytecznej energii akumulatora LiFePO₄ 100 Ah" },
+      { label: "Łagodny weekend na Mazurach", ambientC: 25, dailyWh: 268, usableBatteryShare: "28% użytecznej energii akumulatora LiFePO₄ 100 Ah" },
+    ],
   },
   hu: {
     locale: "hu-HU",
@@ -85,6 +97,10 @@ export const MARKET_CONTENT = Object.freeze({
       { label: "Hajszárító egy hálózat nélküli megállón", simultaneousW: 1200, voltage: 12, practicalW: "1 500 W, ha a BMS és a DC-oldal elvisel körülbelül 139 A-t" },
     ],
     wiringScenario: { label: "Hajszárító: az 1500 W-os ág ellenőrzése", inverterWatts: 1500, voltage: 12, oneWayMeters: 1.5, practicalMm2: "25 mm² csak feszültségesés alapján; a terhelhetőség többet is igényelhet" },
+    fridgeScenarios: [
+      { label: "Forró nap a Balatonnál", ambientC: 32, dailyWh: 557, usableBatteryShare: "a 100 Ah-s LiFePO₄ használható energiájának 58%-át" },
+      { label: "Enyhe tavaszi termáltúra", ambientC: 25, dailyWh: 268, usableBatteryShare: "a 100 Ah-s LiFePO₄ használható energiájának 28%-át" },
+    ],
   },
 });
 
@@ -121,4 +137,14 @@ export function requiredInverterWatts(simultaneousW, reserve = 1.25) {
 export function inverterDcAmps(acW, voltage = 12, efficiency = 0.9) {
   if (!(acW > 0) || !(voltage > 0) || !(efficiency > 0 && efficiency <= 1)) throw new RangeError("Invalid inverter current input");
   return Math.ceil(acW / voltage / efficiency);
+}
+
+export function compressorFridgeDailyWh(voltage, runningAmps, dutyCycle, hours = 24) {
+  if (!(voltage > 0) || !(runningAmps > 0) || !(hours > 0) || !(dutyCycle > 0 && dutyCycle <= 1)) throw new RangeError("Invalid fridge consumption input");
+  return Math.round(voltage * runningAmps * hours * dutyCycle);
+}
+
+export function shareOfUsableBattery(dailyWh, capacityAh = 100, voltage = 12, usableDepth = 0.8) {
+  if (!(dailyWh > 0) || !(capacityAh > 0) || !(voltage > 0) || !(usableDepth > 0 && usableDepth <= 1)) throw new RangeError("Invalid battery share input");
+  return Math.round((dailyWh / (capacityAh * voltage * usableDepth)) * 100);
 }
