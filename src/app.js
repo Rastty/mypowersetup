@@ -9,6 +9,7 @@ import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
 import { buildProductPackages } from "./packages.js?v=20260823-packages2";
+import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20260828-1";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
@@ -484,10 +485,11 @@ function renderProductRecommendations(result) {
   };
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
+  const coverage = assessRecommendationCoverage(recommendations, result, "cs");
   const resultNext = document.querySelector("#result-next");
   resultNext.hidden = false;
   document.querySelector("#result-product-count").textContent = total
-    ? `Našli jsme ${total} ověřených shod v ${categoryCount} kategoriích. Technické vysvětlení a instalační podklady zůstávají níže.`
+    ? `Našli jsme ${total} ověřených shod v ${categoryCount} kategoriích. Produktové pokrytí sestavy: ${coverage.covered.length} z ${coverage.required.length} potřebných kategorií.`
     : "Pro tuto konfiguraci zatím nemáme dostatečně ověřenou produktovou shodu. Technický výsledek můžete dál použít jako podklad pro výběr.";
   document.querySelector("#result-products-link").hidden = total === 0;
   const freshness = productCatalogUpdatedAt
@@ -505,7 +507,8 @@ function renderProductRecommendations(result) {
   heading.textContent = "Komponenty odpovídající vašemu výpočtu";
   intro.textContent = `Nejdříve ověřujeme technickou kompatibilitu. Pořadí následně zohledňuje shodu parametrů, dostupnost a úplnost produktových dat.${freshness}`;
   renderProductPackages(buildProductPackages(rankedRecommendations, result));
-  groups.innerHTML = Object.entries(recommendations)
+  const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Co katalog zatím nepokrývá:</strong> ${coverage.message}</p>`;
+  groups.innerHTML = coverageNotice + Object.entries(recommendations)
     .filter(([, items]) => items.length)
     .map(([category, items]) => `
       <section class="product-group" id="product-group-${category}" data-product-category="${category}">
