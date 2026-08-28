@@ -4,11 +4,12 @@ import assert from "node:assert/strict";
 import { APPLIANCES as CZECH_APPLIANCES } from "../src/catalog.js";
 import { APPLIANCES as SLOVAK_APPLIANCES } from "../src/catalog-sk.js";
 import { APPLIANCES as POLISH_APPLIANCES } from "../src/catalog-pl.js";
+import { APPLIANCES as HUNGARIAN_APPLIANCES } from "../src/catalog-hu.js";
 import { getUsageProfiles } from "../src/usage-profiles.js";
 import { buildPlainLanguageVerdict } from "../src/verdict.js";
 
 test("usage profiles remain localized views of one shared technical definition", () => {
-  const catalogs = { cs: CZECH_APPLIANCES, sk: SLOVAK_APPLIANCES, pl: POLISH_APPLIANCES };
+  const catalogs = { cs: CZECH_APPLIANCES, sk: SLOVAK_APPLIANCES, pl: POLISH_APPLIANCES, hu: HUNGARIAN_APPLIANCES };
   const technicalSignatures = [];
 
   for (const [locale, appliances] of Object.entries(catalogs)) {
@@ -45,6 +46,7 @@ test("plain-language verdict presents the same result in every active language",
   );
   assert.match(buildPlainLanguageVerdict(result, "sk"), /odporúčame 12V zostavu.*čistý sínusový menič 1500 W a MPPT 50 A/);
   assert.match(buildPlainLanguageVerdict(result, "pl"), /instalację 12 V.*przetwornicę z czystą sinusoidą 1500 W i MPPT 50 A/);
+  assert.match(buildPlainLanguageVerdict(result, "hu"), /12 V-os rendszert.*1500 W-os tiszta szinuszos invertert és 50 A-es MPPT szabályozót/);
 });
 
 test("plain-language verdict clearly says when a separate inverter is unnecessary", () => {
@@ -59,4 +61,5 @@ test("plain-language verdict clearly says when a separate inverter is unnecessar
   assert.match(buildPlainLanguageVerdict(result, "cs"), /bez samostatného 230V měniče/);
   assert.match(buildPlainLanguageVerdict(result, "sk"), /bez samostatného 230V meniča/);
   assert.match(buildPlainLanguageVerdict(result, "pl"), /bez osobnej przetwornicy 230 V/);
+  assert.match(buildPlainLanguageVerdict(result, "hu"), /külön 230 V-os inverter nélkül/);
 });
