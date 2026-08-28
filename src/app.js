@@ -1,6 +1,6 @@
 import { APPLIANCES } from "./catalog.js?v=20260823-custom1";
 import { calculateSetup } from "./engine.js?v=20260821-1";
-import { recommendProducts } from "./products.js?v=20260825-merchants1";
+import { recommendProducts } from "./products.js?v=20260828-ampul1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260823-custom1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -56,12 +56,16 @@ document.querySelector("#year").textContent = new Date().getFullYear();
 
 async function loadProductCatalog() {
   try {
-    const response = await fetch("/data/products.json", { cache: "no-store" });
-    if (!response.ok) return;
-    const payload = await response.json();
-    productCatalog = Array.isArray(payload.products) ? payload.products : [];
-    productCatalogUpdatedAt = payload.updatedAt || payload.generatedAt || null;
-    productCatalogSources = payload.sources && typeof payload.sources === "object" ? payload.sources : {};
+    const responses = await Promise.all([
+      fetch("/data/products.json", { cache: "no-store" }),
+      fetch("/data/products-ampul-cz.json", { cache: "no-store" })
+    ]);
+    const payloads = await Promise.all(responses.filter((response) => response.ok).map((response) => response.json()));
+    productCatalog = payloads.flatMap((payload) => Array.isArray(payload.products) ? payload.products : []);
+    productCatalogUpdatedAt = payloads.map((payload) => payload.updatedAt || payload.generatedAt).filter(Boolean).sort().at(-1) || null;
+    productCatalogSources = Object.assign({}, ...payloads.map((payload) =>
+      payload.sources && typeof payload.sources === "object" ? payload.sources : {}
+    ));
   } catch {
     productCatalog = [];
   }
@@ -529,7 +533,7 @@ function renderProductPackages(variants) {
     : "";
   target.innerHTML = `<div class="package-intro"><strong>Tři bezpečné cesty k nákupu</strong><p>Všechny varianty splňují stejný vypočtený požadavek a zahrnují dostupné hlavní i nabíjecí komponenty. Nejde o kompletní instalační materiál ani realizační rozpočet.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
-    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podle obchodu" : formatPrice(variant.totalPriceCzk)}</b><small class="package-price-note">Orientační součet produktů; doprava a montáž nejsou zahrnuté.</small></article>`;
+    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podle obchodu" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientační součet produktů; doprava a montáž nejsou zahrnuté.</small></article>`;
   }).join("")}</div>`;
 }
 
@@ -559,7 +563,7 @@ function productCard(product, reason, checks, verify) {
         <p class="product-verify"><strong>Před nákupem:</strong> ${escapeHtml(verify)}</p>
         ${sourceNote}
         <div class="product-card-action">
-          <span class="product-price"><strong>${formatPrice(product.priceCzk)}</strong><small>${sourceIsStale ? "Cena z posledního úspěšného feedu" : "Cena z produktového feedu"}</small></span>
+          <span class="product-price"><strong>${formatPrice(product.priceCzk, product.priceCurrency)}</strong><small>${sourceIsStale ? "Cena z posledního úspěšného feedu" : "Cena z produktového feedu"}</small></span>
           <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Prohlédnout produkt →</a>
         </div>
       </div>
@@ -586,9 +590,9 @@ function trackEvent(event, parameters = {}) {
   return Boolean(window.MyPowerSetupAnalytics?.track(event, parameters));
 }
 
-function formatPrice(price) {
+function formatPrice(price, currency = "CZK") {
   return Number.isFinite(price)
-    ? new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 }).format(price)
+    ? new Intl.NumberFormat("cs-CZ", { style: "currency", currency: currency || "CZK", maximumFractionDigits: currency === "CZK" ? 0 : 2 }).format(price)
     : "Cena v obchodě";
 }
 
@@ -597,7 +601,8 @@ function merchantLabel(merchant) {
     reslshop: "Reslshop.cz",
     svetkaravanu: "SvětKaravanů.cz",
     solarimport: "Solar-import.cz",
-    batterycz: "Battery.cz"
+    batterycz: "Battery.cz",
+    ampul_cz: "Ampul.eu"
   })[merchant] || merchant;
 }
 

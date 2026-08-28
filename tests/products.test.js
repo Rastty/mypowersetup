@@ -144,6 +144,74 @@ test("new Czech merchant deeplinks preserve exact Solar-import and Battery.cz pr
   assert.equal(battery.searchParams.get("desturl"), batteryDestination);
 });
 
+test("Ampul deeplinks keep exact localized product pages and market currencies", () => {
+  const examples = [
+    ["ampul_cz", "https://ampul.eu/cs/menice-napeti/5577-7391-menic-napeti-z-dc-na-230v-ac-50hz-2000w", "CZK"],
+    ["ampul_sk", "https://ampul.eu/sk/menice-napatia/5577-7391-menic-napatia-z-dc-na-230v-ac-50hz-2000w", "EUR"],
+    ["ampul_pl", "https://ampul.eu/pl/przeksztaltniki-napiecia/5577-7391-przetwornica-napiecia-z-dc-na-230v-ac-50hz-2000w", "EUR"]
+  ];
+
+  for (const [merchant, destination, currency] of examples) {
+    const product = normalizeProduct({
+      id: "5577-7391",
+      name: "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 12 V DC",
+      description: "Výstup s čistým sinusem.",
+      category: "Měniče napětí",
+      price: `100 ${currency}`,
+      url: destination,
+      available: true
+    }, merchant);
+    const affiliate = new URL(product.affiliateUrl);
+    assert.equal(affiliate.hostname, "ehub.cz");
+    assert.equal(affiliate.searchParams.get("a_bid"), "ddb5edae");
+    assert.equal(affiliate.searchParams.get("desturl"), destination);
+    assert.equal(product.priceCurrency, currency);
+  }
+
+  assert.throws(
+    () => buildAffiliateUrl("ampul_pl", "https://ampul.eu/cs/menice-napeti/5577-product"),
+    /produktovou stránku/
+  );
+});
+
+test("Ampul voltage converters and higher-voltage chargers are not offered as 12 V camper components", () => {
+  const dcConverter = normalizeProduct({
+    id: "dc-converter",
+    name: "Měnič napětí z 12V na 24V, 20A, 480W, IP68",
+    category: "Měniče napětí",
+    url: "https://ampul.eu/cs/menice-napeti/1-dc-converter"
+  }, "ampul_cz");
+  const charger = normalizeProduct({
+    id: "charger-24v",
+    name: "Nabíječka baterii z 12V na 29.2V, 20A, 584W, IP65",
+    category: "Nabíječky",
+    description: "Nabíječka pro LiFePO4 baterie.",
+    url: "https://ampul.eu/cs/nabijecky/2-charger"
+  }, "ampul_cz");
+  const setup = {
+    locale: "cs", systemVoltage: 12, batteryAh: 100, batteryType: "lifepo4",
+    solarWatts: 200, inverterWatts: 1000, controllerAmps: 20,
+    charging: { starterVoltage: 12, dcDc: {}, shore: { suggestedCurrentAmps: 20 } }
+  };
+
+  assert.equal(dcConverter.category, "other");
+  assert.deepEqual(charger.specs.chargingVoltagesV, [24]);
+  assert.equal(recommendProducts([charger], setup).shore_charger.length, 0);
+});
+
+test("Ampul's repeated feed title cannot disguise a higher-voltage inverter variant", () => {
+  const product = normalizeProduct({
+    id: "5577-7392",
+    name: "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 12 V DC",
+    category: "Měniče napětí",
+    url: "https://ampul.eu/cs/menice-napeti/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w"
+  }, "ampul_cz");
+
+  assert.equal(product.specs.voltageV, 24);
+  assert.equal(product.specs.pureSine, true);
+  assert.match(product.name, /24 V DC$/);
+});
+
 test("Battery.cz starter and motorcycle batteries are excluded from caravan recommendations", () => {
   const motorcycle = normalizeProduct({
     id: "moto",
@@ -258,6 +326,18 @@ test("numeric Heureka delivery time remains orderable", () => {
   }, "solarimport");
 
   assert.equal(product.available, true);
+});
+
+test("Google backorder remains eligible but does not claim immediate stock", () => {
+  const product = normalizeProduct({
+    id: "5577-7391",
+    name: "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 12 V DC",
+    category: "Měniče napětí",
+    url: "https://ampul.eu/cs/menice-napeti/5577-7391-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+    available: "backorder"
+  }, "ampul_cz");
+
+  assert.equal(product.available, null);
 });
 
 test("affiliate deeplink refuses a merchant homepage", () => {

@@ -27,12 +27,14 @@ function buildVariant(id, categories, recommendations, selector) {
     return selected ? [{ category, ...selected }] : [];
   });
   const priced = items.map(effectivePrice);
+  const currencies = new Set(items.map(({ product }) => product.priceCurrency).filter(Boolean));
   return {
     id,
     items,
-    totalPriceCzk: priced.every((price) => price !== null)
+    totalPriceCzk: priced.every((price) => price !== null) && currencies.size <= 1
       ? priced.reduce((total, price) => total + price, 0)
       : null,
+    totalCurrency: currencies.size === 1 ? [...currencies][0] : null,
   };
 }
 

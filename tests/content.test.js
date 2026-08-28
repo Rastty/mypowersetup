@@ -430,10 +430,10 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260827-existing2"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260828-ampul1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
-  assert.ok(app.includes('from "./products.js?v=20260825-merchants1"'));
+  assert.ok(app.includes('from "./products.js?v=20260828-ampul1"'));
   assert.ok(app.includes("calculatorError.hidden = false"));
   assert.ok(engine.includes('from "./catalog.js?v=20260821-1"'));
 });
@@ -527,10 +527,10 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260827-existing2"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260828-ampul1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
-  assert.ok(app.includes('currency: "EUR"'));
+  assert.ok(app.includes('currency = "EUR"'));
   assert.match(catalog, /Kompresorová chladnička/);
   assert.equal(JSON.parse(payload).market, "sk-SK");
   assert.ok(sitemap.includes("<loc>https://mypowersetup.com/sk/</loc>"));
@@ -557,8 +557,8 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
   assert.ok(html.includes('<link rel="canonical" href="https://mypowersetup.com/pl/"'));
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="pl-PL"'));
-  assert.ok(html.includes('src="/src/app-pl.js?v=20260827-existing2"'));
-  assert.ok(app.includes('products.js?v=20260827-allpowers2'));
+  assert.ok(html.includes('src="/src/app-pl.js?v=20260828-ampul1"'));
+  assert.ok(app.includes('products.js?v=20260828-ampul1'));
   assert.match(html, /Jakiego akumulatora i paneli naprawdę potrzebujesz/);
   assert.match(html, /Zanim zaczniesz kupować/);
   assert.doesNotMatch(html, /sprievodca|sukromie|Vypočítať|Koľko batérie|slovenské návody/);
@@ -570,12 +570,15 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
   assert.match(catalog, /Lodówka kompresorowa/);
   const polishProducts = JSON.parse(payload);
   assert.equal(polishProducts.market, "pl-PL");
-  assert.equal(polishProducts.currency, "PLN");
+  assert.equal(polishProducts.currency, "mixed");
   assert.equal(polishProducts.sources.allpowers_pl.status, "ok");
+  assert.equal(polishProducts.sources.ampul_pl.status, "ok");
   assert.ok(polishProducts.products.length >= 20);
   assert.ok(polishProducts.products.some((product) => product.category === "power_station"));
   assert.ok(polishProducts.products.some((product) => product.category === "solar_panel"));
-  assert.ok(polishProducts.products.every((product) => product.affiliateUrl.includes("awinmid=121776")));
+  assert.ok(polishProducts.products.every((product) =>
+    product.affiliateUrl.includes("awinmid=121776") || product.affiliateUrl.includes("a_bid=ddb5edae")
+  ));
   assert.ok(sitemap.includes("<loc>https://mypowersetup.com/pl/</loc>"));
   assert.ok(czech.includes('hreflang="pl-PL" href="https://mypowersetup.com/pl/"'));
   assert.ok(slovak.includes('hreflang="pl-PL" href="https://mypowersetup.com/pl/"'));
@@ -677,7 +680,7 @@ test("product cards disclose feed freshness without weakening compatibility chec
   ]);
 
   for (const source of [app, appSk]) {
-    assert.ok(source.includes("productCatalogSources = payload.sources"));
+    assert.match(source, /productCatalogSources = (?:payload\.sources|Object\.assign)/);
     assert.ok(source.includes('source?.status === "stale"'));
     assert.ok(source.includes('productCatalogSources[product.merchant]?.status === "stale"'));
     assert.ok(source.includes('class="product-source-status is-stale"'));
@@ -997,7 +1000,7 @@ test("both calculators compare a portable power station without claiming a produ
   assert.doesNotMatch(`${cs}${sk}`, /BLUETTI|ALLPOWERS/i);
 });
 
-test("Czech product sync accepts optional Solar-import and Battery.cz feeds safely", async () => {
+test("product sync accepts optional local partner feeds safely", async () => {
   const [sync, workflow, app] = await Promise.all([
     readFile("scripts/sync-products.mjs", "utf8"),
     readFile(".github/workflows/sync-products.yml", "utf8"),
@@ -1010,6 +1013,11 @@ test("Czech product sync accepts optional Solar-import and Battery.cz feeds safe
   assert.ok(sync.includes("previousProducts.filter((product) => product.merchant === merchant)"));
   assert.ok(workflow.includes("SOLAR_IMPORT_FEED_URL: ${{ secrets.SOLAR_IMPORT_FEED_URL }}"));
   assert.ok(workflow.includes("BATTERY_CZ_FEED_URL: ${{ secrets.BATTERY_CZ_FEED_URL }}"));
+  assert.ok(workflow.includes("AMPUL_CZ_FEED_URL: ${{ secrets.AMPUL_CZ_FEED_URL }}"));
+  assert.ok(workflow.includes("AMPUL_SK_FEED_URL: ${{ secrets.AMPUL_SK_FEED_URL }}"));
+  assert.ok(workflow.includes("AMPUL_PL_FEED_URL: ${{ secrets.AMPUL_PL_FEED_URL }}"));
   assert.ok(app.includes('solarimport: "Solar-import.cz"'));
   assert.ok(app.includes('batterycz: "Battery.cz"'));
+  assert.ok(app.includes('ampul_cz: "Ampul.eu"'));
+  assert.ok(app.includes('fetch("/data/products-ampul-cz.json"'));
 });

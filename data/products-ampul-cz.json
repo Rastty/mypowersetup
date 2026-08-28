@@ -1,0 +1,482 @@
+{
+  "generatedAt": "2026-08-28T08:44:54.721Z",
+  "market": "cs-CZ",
+  "currency": "CZK",
+  "sources": {
+    "ampul_cz": {
+      "status": "ok",
+      "parsedProducts": 7667,
+      "relevantProducts": 14
+    }
+  },
+  "products": [
+    {
+      "id": "ampul_cz:5479",
+      "merchant": "ampul_cz",
+      "name": "Nabíječka baterii z 12V na 29.2V, 20A, 584W, IP65, slim",
+      "description": "Nabíječka baterii z 12V na 29.2V, 20A, 584W, IP65, slim je ideální pro bezpečné nabíjení LiFePO4 a LiMn2O4 akumulátorů. Nabízí vysokou účinnost 95,5 %, integrované automatické ochrany proti zkratu či přepětí a elegantní slim provedení.",
+      "categoryPath": "Nabíječky",
+      "category": "shore_charger",
+      "brand": "",
+      "priceCzk": 3920,
+      "priceCurrency": "CZK",
+      "available": true,
+      "productUrl": "https://ampul.eu/cs/nabijecky/5479-nabijecka-baterii-z-12v-na-292v-20a-584w-ip65-slim",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fnabijecky%2F5479-nabijecka-baterii-z-12v-na-292v-20a-584w-ip65-slim",
+      "imageUrl": "https://ampul.eu/21724-large_default/nabijecka-baterii-z-12v-na-292v-20a-584w-ip65-slim.jpg",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 584,
+        "currentA": 20,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:5522",
+      "merchant": "ampul_cz",
+      "name": "Nabíječka baterii z 12V na 43.8V, 13A, 569W, IP65, slim",
+      "description": "Nabíječka baterií z 12V na 43.8V 13A 569W slim představuje špičkový DC/DC měnič pro LiFePO4 a LiMn2O4 akumulátory. Vyniká vysokou účinností 94,4 %, robustním hliníkovým tělem s krytím IP65 a komplexní soustavou automatických pojistek.",
+      "categoryPath": "Nabíječky",
+      "category": "shore_charger",
+      "brand": "",
+      "priceCzk": 3920,
+      "priceCurrency": "CZK",
+      "available": true,
+      "productUrl": "https://ampul.eu/cs/nabijecky/5522-nabijecka-baterii-z-12v-na-438v-13a-569w-ip65-slim",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fnabijecky%2F5522-nabijecka-baterii-z-12v-na-438v-13a-569w-ip65-slim",
+      "imageUrl": "https://ampul.eu/21967-large_default/nabijecka-baterii-z-12v-na-438v-13a-569w-ip65-slim.jpg",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 569,
+        "currentA": 13,
+        "chargingVoltagesV": [
+          36
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:5523",
+      "merchant": "ampul_cz",
+      "name": "Nabíječka baterii z 12V/24V na 58.4V, 10A, 584W, IP65, slim",
+      "description": "Nabíječka baterií z 12V/24V na 58.4V 10A 584W slim je profesionální měnič pro 48V LiFePO4 a LiMn2O4 články. Poskytuje vynikající účinnost 94,5 %, certifikaci IP65, integrované tepelné a přepěťové jištění v odolném hliníkovém pouzdře.",
+      "categoryPath": "Nabíječky",
+      "category": "shore_charger",
+      "brand": "",
+      "priceCzk": 3920,
+      "priceCurrency": "CZK",
+      "available": null,
+      "productUrl": "https://ampul.eu/cs/nabijecky/5523-nabijecka-baterii-z-12v-24v-na-584v-10a-584w-ip65-slim",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fnabijecky%2F5523-nabijecka-baterii-z-12v-24v-na-584v-10a-584w-ip65-slim",
+      "imageUrl": "https://ampul.eu/21970-large_default/nabijecka-baterii-z-12v-24v-na-584v-10a-584w-ip65-slim.jpg",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 584,
+        "currentA": 10,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:5577-7391",
+      "merchant": "ampul_cz",
+      "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 12 V DC",
+      "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
+      "categoryPath": "Měniče napětí",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 8398,
+      "priceCurrency": "CZK",
+      "available": null,
+      "productUrl": "https://ampul.eu/cs/menice-napeti/5577-7391-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fmenice-napeti%2F5577-7391-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napeti-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:5577-7392",
+      "merchant": "ampul_cz",
+      "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 24 V DC",
+      "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
+      "categoryPath": "Měniče napětí",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 8398,
+      "priceCurrency": "CZK",
+      "available": null,
+      "productUrl": "https://ampul.eu/cs/menice-napeti/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fmenice-napeti%2F5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napeti-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:5577-7393",
+      "merchant": "ampul_cz",
+      "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 36 V DC",
+      "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
+      "categoryPath": "Měniče napětí",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 8398,
+      "priceCurrency": "CZK",
+      "available": null,
+      "productUrl": "https://ampul.eu/cs/menice-napeti/5577-7393-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fmenice-napeti%2F5577-7393-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napeti-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 36,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:5577-7394",
+      "merchant": "ampul_cz",
+      "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 48 V DC",
+      "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
+      "categoryPath": "Měniče napětí",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 8398,
+      "priceCurrency": "CZK",
+      "available": true,
+      "productUrl": "https://ampul.eu/cs/menice-napeti/5577-7394-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fmenice-napeti%2F5577-7394-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napeti-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 48,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:5577-7395",
+      "merchant": "ampul_cz",
+      "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 60 V DC",
+      "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
+      "categoryPath": "Měniče napětí",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 8398,
+      "priceCurrency": "CZK",
+      "available": true,
+      "productUrl": "https://ampul.eu/cs/menice-napeti/5577-7395-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fmenice-napeti%2F5577-7395-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napeti-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 60,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:5577-7396",
+      "merchant": "ampul_cz",
+      "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 72 V DC",
+      "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
+      "categoryPath": "Měniče napětí",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 8398,
+      "priceCurrency": "CZK",
+      "available": true,
+      "productUrl": "https://ampul.eu/cs/menice-napeti/5577-7396-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fmenice-napeti%2F5577-7396-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napeti-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 72,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:5577-7397",
+      "merchant": "ampul_cz",
+      "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 84 V DC",
+      "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
+      "categoryPath": "Měniče napětí",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 8398,
+      "priceCurrency": "CZK",
+      "available": null,
+      "productUrl": "https://ampul.eu/cs/menice-napeti/5577-7397-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fmenice-napeti%2F5577-7397-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "imageUrl": "https://ampul.eu/22150-large_default/menic-napeti-z-dc-na-230v-ac-50hz-2000w.jpg",
+      "specs": {
+        "voltageV": 84,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:6653",
+      "merchant": "ampul_cz",
+      "name": "Napájecí zdroj zásuvkový 36V, 2A, 5.5x2.1mm, nabíječka olověných baterií",
+      "description": "Napájecí zdroj zásuvkový 36V, 2A, 5.5x2.1mm funguje jako inteligentní nabíječka olověných baterií. Využívá automatický CC/CV režim a LED indikaci. Vstupní napětí 100-240 V, výstupní 42 V DC, maximální výkon 84 W, krytí IP22.",
+      "categoryPath": "Nabíječky",
+      "category": "shore_charger",
+      "brand": "",
+      "priceCzk": 650,
+      "priceCurrency": "CZK",
+      "available": true,
+      "productUrl": "https://ampul.eu/cs/nabijecky/6653-napajeci-zdroj-zasuvkovy-36v-2a-55x21mm-nabijecka-olovenych-baterii",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fnabijecky%2F6653-napajeci-zdroj-zasuvkovy-36v-2a-55x21mm-nabijecka-olovenych-baterii",
+      "imageUrl": "https://ampul.eu/29338-large_default/napajeci-zdroj-zasuvkovy-36v-2a-55x21mm-nabijecka-olovenych-baterii.jpg",
+      "specs": {
+        "voltageV": 36,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 84,
+        "currentA": 2,
+        "chargingVoltagesV": [
+          36
+        ],
+        "chargingInputVoltagesV": [
+          36
+        ],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:6692",
+      "merchant": "ampul_cz",
+      "name": "Napájecí zdroj zásuvkový 24V, 5A, 5.5x2.1mm, nabíječka olověných baterií",
+      "description": "Spolehlivý napájecí zdroj zásuvkový 24V, 5A, 5.5x2.1mm je inteligentní nabíječka olověných baterií s automatickým režimem CC/CV. Nabízí maximální výkon 150 W a zajišťuje stabilní nabíjení pro vozíky, skútry i záložní systémy.",
+      "categoryPath": "Nabíječky",
+      "category": "shore_charger",
+      "brand": "",
+      "priceCzk": 936,
+      "priceCurrency": "CZK",
+      "available": true,
+      "productUrl": "https://ampul.eu/cs/nabijecky/6692-napajeci-zdroj-zasuvkovy-24v-5a-55x21mm-nabijecka-olovenych-baterii",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fnabijecky%2F6692-napajeci-zdroj-zasuvkovy-24v-5a-55x21mm-nabijecka-olovenych-baterii",
+      "imageUrl": "https://ampul.eu/29568-large_default/napajeci-zdroj-zasuvkovy-24v-5a-55x21mm-nabijecka-olovenych-baterii.jpg",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 150,
+        "currentA": 5,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          24
+        ],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:6880",
+      "merchant": "ampul_cz",
+      "name": "Měnič napětí 110V DC / 230V AC, 12 kVA / 9600 W, 19\" 4U, RS485",
+      "description": "Měnič napětí 110V DC / 230V AC, 12 kVA, 19\" 4U je určen pro náročné průmyslové instalace. Nabízí čistý sinus, RS485 komunikaci, přehledný LCD displej a ochranné funkce. Výkon 9600 W a frekvence 50 Hz zaručí stabilní chod vašich systémů.",
+      "categoryPath": "Měniče napětí",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 86320,
+      "priceCurrency": "CZK",
+      "available": null,
+      "productUrl": "https://ampul.eu/cs/menice-napeti/6880-menic-napeti-110v-dc-230v-ac-12-kva-9600-w-19-4u-rs485",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fmenice-napeti%2F6880-menic-napeti-110v-dc-230v-ac-12-kva-9600-w-19-4u-rs485",
+      "imageUrl": "https://ampul.eu/30754-large_default/menic-napeti-110v-dc-230v-ac-12-kva-9600-w-19-4u-rs485.jpg",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 9600,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "ampul_cz:6907",
+      "merchant": "ampul_cz",
+      "name": "Měnič napětí 48V / 230V AC, 10 kVA / 8000 W, 19\" 4U, RS485",
+      "description": "Výkonný měnič napětí 48V/230V AC v rackovém provedení 19\" 4U je určen pro rozvaděče a záložní systémy. Nabízí trvalý výkon 8000 W, čistou sinusovku, komunikaci RS485, vstup 48 V DC a krytí IP20. Spolehlivé řešení pro náročné provozy.",
+      "categoryPath": "Měniče napětí",
+      "category": "inverter",
+      "brand": "",
+      "priceCzk": 75460,
+      "priceCurrency": "CZK",
+      "available": null,
+      "productUrl": "https://ampul.eu/cs/menice-napeti/6907-menic-napeti-48v-230v-ac-10-kva-8000-w-19-4u-rs485",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fmenice-napeti%2F6907-menic-napeti-48v-230v-ac-10-kva-8000-w-19-4u-rs485",
+      "imageUrl": "https://ampul.eu/30907-large_default/menic-napeti-48v-230v-ac-10-kva-8000-w-19-4u-rs485.jpg",
+      "specs": {
+        "voltageV": 48,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 8000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          48
+        ],
+        "chargingInputVoltagesV": [
+          48
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    }
+  ]
+}
