@@ -9,6 +9,7 @@ import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
 import { buildProductPackages } from "./packages.js?v=20260823-packages2";
+import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20260828-1";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
@@ -481,10 +482,11 @@ function renderProductRecommendations(result) {
   };
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
+  const coverage = assessRecommendationCoverage(recommendations, result, "sk");
   const resultNext = document.querySelector("#result-next");
   resultNext.hidden = false;
   document.querySelector("#result-product-count").textContent = total
-    ? `Našli sme ${total} overených zhôd v ${categoryCount} kategóriách. Technické vysvetlenie a inštalačné podklady zostávajú nižšie.`
+    ? `Našli sme ${total} overených zhôd v ${categoryCount} kategóriách. Produktové pokrytie zostavy: ${coverage.covered.length} z ${coverage.required.length} potrebných kategórií.`
     : "Pre túto konfiguráciu zatiaľ nemáme dostatočne overenú produktovú zhodu. Technický výsledok môžete ďalej použiť ako podklad pre výber.";
   document.querySelector("#result-products-link").hidden = total === 0;
   const freshness = productCatalogUpdatedAt
@@ -502,7 +504,8 @@ function renderProductRecommendations(result) {
   heading.textContent = "Komponenty zodpovedajúce vášmu výpočtu";
   intro.textContent = `Najprv overujeme technickú kompatibilitu. Poradie následne zohľadňuje zhodu parametrov, dostupnosť a úplnosť produktových údajov.${freshness}`;
   renderProductPackages(buildProductPackages(rankedRecommendations, result));
-  groups.innerHTML = Object.entries(recommendations)
+  const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Čo katalóg zatiaľ nepokrýva:</strong> ${coverage.message}</p>`;
+  groups.innerHTML = coverageNotice + Object.entries(recommendations)
     .filter(([, items]) => items.length)
     .map(([category, items]) => `
       <section class="product-group" id="product-group-${category}" data-product-category="${category}">

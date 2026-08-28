@@ -1,3 +1,5 @@
+import { requiredRecommendationCategories } from "./recommendation-coverage.js";
+
 const PACKAGE_CATEGORIES = ["battery", "solar_panel", "inverter", "controller", "dc_charger", "shore_charger"];
 
 function effectivePrice(candidate) {
@@ -44,13 +46,9 @@ function signature(variant) {
 
 export function buildProductPackages(recommendations, setup) {
   if (!recommendations || !setup) return [];
-  const categories = PACKAGE_CATEGORIES.filter((category) => {
-    if (category === "inverter" && !Number(setup.inverterWatts)) return false;
-    if (category === "dc_charger" && !setup.charging?.dcDc?.suggestedCurrentAmps) return false;
-    if (category === "shore_charger" && !setup.charging?.shore?.suggestedCurrentAmps) return false;
-    return (recommendations[category] || []).length > 0;
-  });
-  if (categories.length < 2) return [];
+  const required = new Set(requiredRecommendationCategories(setup));
+  const categories = PACKAGE_CATEGORIES.filter((category) => required.has(category));
+  if (categories.length < 2 || categories.some((category) => !(recommendations[category] || []).length)) return [];
 
   const candidates = [
     buildVariant("economy", categories, recommendations, cheapest),

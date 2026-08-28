@@ -20,14 +20,24 @@ test("builds distinct economy, recommended and reserve packages from compatible 
 
 test("omits inverter for a DC-only setup and removes duplicate variants", () => {
   const one = item("only", 1000, 90, 1.1);
-  const packages = buildProductPackages({ battery: [one], solar_panel: [one], inverter: [one] }, { inverterWatts: 0 });
+  const packages = buildProductPackages({ battery: [one], solar_panel: [one], controller: [one], inverter: [one] }, { inverterWatts: 0 });
   assert.equal(packages.length, 1);
-  assert.deepEqual(packages[0].items.map(({ category }) => category), ["battery", "solar_panel"]);
+  assert.deepEqual(packages[0].items.map(({ category }) => category), ["battery", "solar_panel", "controller"]);
 });
 
 test("does not claim a package when catalogue coverage is too thin", () => {
   assert.deepEqual(buildProductPackages({ battery: [item("b", 1, 1, 1)] }, { inverterWatts: 0 }), []);
   assert.deepEqual(buildProductPackages(null, {}), []);
+});
+
+test("does not present a partial catalogue as a complete package", () => {
+  const recommendations = {
+    battery: [item("battery", 10000, 10, 1)],
+    solar_panel: [item("solar", 5000, 9, 1)],
+    inverter: [item("inverter", 7000, 8, 1)],
+  };
+  const setup = { inverterWatts: 800, charging: { dcDc: {}, shore: {} } };
+  assert.deepEqual(buildProductPackages(recommendations, setup), []);
 });
 
 test("adds compatible DC-DC and shore chargers when charging is enabled", () => {
@@ -55,6 +65,7 @@ test("omits charger products when the calculated charging source is disabled", (
   const packages = buildProductPackages({
     battery: [item("battery", 10000, 95, 1.05)],
     solar_panel: [item("panel", 3000, 94, 1.04)],
+    controller: [item("mppt", 2500, 93, 1.08)],
     dc_charger: [item("dc-dc", 4500, 92, 1.1)],
     shore_charger: [item("shore", 3500, 91, 1.15)],
   }, {
@@ -62,7 +73,7 @@ test("omits charger products when the calculated charging source is disabled", (
     charging: { dcDc: { suggestedCurrentAmps: null }, shore: { suggestedCurrentAmps: null } },
   });
 
-  assert.deepEqual(packages[0].items.map(({ category }) => category), ["battery", "solar_panel"]);
+  assert.deepEqual(packages[0].items.map(({ category }) => category), ["battery", "solar_panel", "controller"]);
 });
 
 test("does not add prices expressed in different currencies", () => {
@@ -70,7 +81,9 @@ test("does not add prices expressed in different currencies", () => {
   battery.product.priceCurrency = "PLN";
   const panel = item("panel", 250, 94, 1.04);
   panel.product.priceCurrency = "EUR";
-  const [variant] = buildProductPackages({ battery: [battery], solar_panel: [panel] }, { inverterWatts: 0 });
+  const controller = item("controller", 300, 93, 1.08);
+  controller.product.priceCurrency = "PLN";
+  const [variant] = buildProductPackages({ battery: [battery], solar_panel: [panel], controller: [controller] }, { inverterWatts: 0 });
 
   assert.equal(variant.totalPriceCzk, null);
   assert.equal(variant.totalCurrency, null);

@@ -390,6 +390,8 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .catalog-source-note, .product-source-status { padding: 10px 12px; border-radius: 9px; font-size: 11px !important; line-height: 1.45 !important; }
 .catalog-source-note { margin-top: 12px !important; }
 .catalog-source-note.is-stale, .product-source-status.is-stale { color: #684d12; background: #fff6d8; }
+.recommendation-coverage-note { margin: 0 0 20px; padding: 14px 16px; border: 1px solid #dfc070; border-radius: 10px; color: #684d12; background: #fff9e9; font-size: 12px; line-height: 1.55; }
+.recommendation-coverage-note strong { color: #553e0d; }
 .product-card-action { display: grid; gap: 10px; margin-top: 15px; }
 .product-card-action strong { font-size: 14px; }
 .product-price { display: grid; gap: 2px; }

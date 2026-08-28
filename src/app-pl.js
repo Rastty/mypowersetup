@@ -9,6 +9,7 @@ import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
 import { buildProductPackages } from "./packages.js?v=20260823-packages2";
+import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20260828-1";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
@@ -482,10 +483,11 @@ function renderProductRecommendations(result) {
   };
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
+  const coverage = assessRecommendationCoverage(recommendations, result, "pl");
   const resultNext = document.querySelector("#result-next");
   resultNext.hidden = false;
   document.querySelector("#result-product-count").textContent = total
-    ? `Znaleźliśmy ${total} zweryfikowanych dopasowań w ${categoryCount} kategoriach. Wyjaśnienie techniczne i dane instalacyjne są poniżej.`
+    ? `Znaleźliśmy ${total} zweryfikowanych dopasowań w ${categoryCount} kategoriach. Pokrycie zestawu produktami: ${coverage.covered.length} z ${coverage.required.length} wymaganych kategorii.`
     : "Dla tej konfiguracji nie mamy jeszcze dostatecznie zweryfikowanego dopasowania produktów. Wynik techniczny możesz wykorzystać jako podstawę wyboru.";
   document.querySelector("#result-products-link").hidden = total === 0;
   const freshness = productCatalogUpdatedAt
@@ -503,7 +505,8 @@ function renderProductRecommendations(result) {
   heading.textContent = "Komponenty zgodne z obliczeniem";
   intro.textContent = `Najpierw sprawdzamy zgodność techniczną. Kolejność uwzględnia następnie dopasowanie parametrów, dostępność i kompletność danych.${freshness}`;
   renderProductPackages(buildProductPackages(rankedRecommendations, result));
-  groups.innerHTML = Object.entries(recommendations)
+  const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Czego katalog jeszcze nie obejmuje:</strong> ${coverage.message}</p>`;
+  groups.innerHTML = coverageNotice + Object.entries(recommendations)
     .filter(([, items]) => items.length)
     .map(([category, items]) => `
       <section class="product-group" id="product-group-${category}" data-product-category="${category}">
