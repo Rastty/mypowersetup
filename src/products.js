@@ -70,6 +70,13 @@ const MERCHANTS = {
     destinationParam: "desturl",
     productPathPrefix: "/pl/",
     currency: "EUR"
+  },
+  ampul_hu: {
+    hostname: "ampul.eu",
+    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae",
+    destinationParam: "desturl",
+    productPathPrefix: "/hu/",
+    currency: "EUR"
   }
 };
 
@@ -210,7 +217,7 @@ export function normalizeProduct(raw, merchantKey) {
     specs.pureSine = true;
     name = name.replace(/-\s*12\s*V\s*DC\s*$/i, `- ${ampulVariantVoltage} V DC`);
   }
-  if (/solární regulátory|solárne regulátory/i.test(categoryPath)) {
+  if (/solární regulátory|solárne regulátory|napelemes töltésszabályozók|töltésszabályozók/i.test(categoryPath)) {
     specs.currentA = extractControllerCurrent(name, description);
   }
 
@@ -259,14 +266,14 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
     chargingVoltagesV: extractChargingVoltages(primary),
     chargingInputVoltagesV: extractChargingInputVoltages(primary),
     chargingBatteryTypes: extractChargingBatteryTypes(primary, fallback),
-    batteryType: /lifepo4|lithium(?:-ion)?/i.test(`${primary} ${fallback}`)
+    batteryType: /lifepo4|lithium(?:-ion)?|lítium/i.test(`${primary} ${fallback}`)
       ? "lifepo4"
       : /\bagm\b|olov|gelov|\bgel\b/i.test(`${primary} ${fallback}`)
         ? "lead"
         : null,
-    pureSine: /modifikovan[^\s]* (?:sinus|sínus)[^\s]*/i.test(`${primary} ${fallback}`)
+    pureSine: /modifikovan[^\s]* (?:sinus|sínus)[^\s]*|módosított szinusz/i.test(`${primary} ${fallback}`)
       ? false
-      : /čist[^\s]* (?:sinus|sínus)[^\s]*|czyst[^\s]* sinus[^\s]*|pure sine|(?:sinusov|sínusov)[^\s]* (?:měnič|menič)|sinepower/i.test(`${primary} ${fallback}`)
+      : /čist[^\s]* (?:sinus|sínus)[^\s]*|czyst[^\s]* sinus[^\s]*|tiszta szinusz|pure sine|(?:sinusov|sínusov)[^\s]* (?:měnič|menič)|sinepower/i.test(`${primary} ${fallback}`)
         ? true
         : null,
     solarInputW: matchNumber(`${primary} ${fallback}`, /(?:wejście|wkład)\s+(?:fotowoltaiczne|solar(?:ne|ny))[^\d]{0,20}(\d+(?:[.,]\d+)?)\s*w\b/i),
@@ -275,12 +282,12 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
 }
 
 export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {}) {
-  const accessory = /\b(pouzdro|puzdro|obal|box|držák|držiak|rámeček|rámček|kabel|kábel|konektor|svorka|displej|ukazatel|modul|adaptér|průchodka|priechodka|spojler|ventil|etui|obudowa|uchwyt|rama|przewód|złącze|zacisk|wyświetlacz|wskaźnik|przelotka|wentyl)\b/i;
+  const accessory = /\b(pouzdro|puzdro|obal|box|držák|držiak|rámeček|rámček|kabel|kábel|konektor|svorka|displej|ukazatel|modul|adaptér|průchodka|priechodka|spojler|ventil|etui|obudowa|uchwyt|rama|przewód|złącze|zacisk|wyświetlacz|wskaźnik|przelotka|wentyl|tok|keret|csatlakozó|kapocs|kijelző|jelző|átvezető|ventilátor)\b/i;
   const multiComponentBundle = /\b(set|sestava|zostava|kit)\b/i.test(name);
-  const chargerPath = /nabíječky|nabíjačky|ładowarki/i.test(categoryPath);
-  const chargerAccessory = /\b(usb|startér|štartér|powerbank|čidlo|snímač|ovládání|ovládanie|kabel|kábel|zástrčka|pohotovostní)\b/i.test(name);
-  const explicitDcCharger = /\bdc\s*[-–]?\s*dc\b|posilovač nabíjení|posilňovač nabíjania|charge booster|nabíjecí booster|nabíjací booster|f\.?\s*alternátor|\b(?:z|zo|od)\s*(?:12|24|36|48)\s*v(?:\s*\/\s*(?:12|24|36|48)\s*v?)?\s*(?:na|do)\s*\d+(?:[.,]\d+)?\s*v\b/i.test(name);
-  const explicitBatteryCharger = /nabíječ(?:ka|ky)|nabíjač(?:ka|ky)|ładowark\w*|battery charger/i.test(name);
+  const chargerPath = /nabíječky|nabíjačky|ładowarki|töltők/i.test(categoryPath);
+  const chargerAccessory = /\b(usb|startér|štartér|powerbank|čidlo|snímač|ovládání|ovládanie|kabel|kábel|zástrčka|pohotovostní|indító|érzékelő|vezérlő|csatlakozó)\b/i.test(name);
+  const explicitDcCharger = /\bdc\s*[-–]?\s*dc\b|posilovač nabíjení|posilňovač nabíjania|charge booster|nabíjecí booster|nabíjací booster|f\.?\s*alternátor|\b(?:z|zo|od)\s*(?:12|24|36|48)\s*v(?:\s*\/\s*(?:12|24|36|48)\s*v?)?\s*(?:na|do)\s*\d+(?:[.,]\d+)?\s*v\b|\b(?:12|24|36|48)\s*v(?:\s*\/\s*(?:12|24|36|48)\s*v?)?\s*[-–]?(?:ról|ről|tól|től)\s*\d+(?:[.,]\d+)?\s*v(?:\s*[-–]?(?:ra|re|ig))?/i.test(name);
+  const explicitBatteryCharger = /nabíječ(?:ka|ky)|nabíjač(?:ka|ky)|ładowark\w*|battery charger|akkumulátor\s*töltő|akkumulátortöltő|\btöltő\b/i.test(name);
 
   if (/(?:stacja zasilania|power station)/i.test(`${name} ${categoryPath}`) && specs.capacityWh > 0 && specs.powerW > 0) {
     return "power_station";
@@ -297,28 +304,28 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
   const isBattery =
     /\b(bateri\w*|batéri\w*|akumulátor|akumulator|lifepo4|lithium|litow\w*|agm)\b/i.test(name) &&
     !/vodovod|sprch|spotřební baterie|vodovodná batéria|príslušenstvo k batériám|příslušenství k bateriím/i.test(`${name} ${categoryPath}`) &&
-    !/autobaterie|motobaterie|osobní auta|nákladní vozy|vše pro motorky|startovací baterie|startovací zdroje|akumulatory samochodowe|akumulatory motocyklowe|rozruchow\w*|packy pro ups|lifepo4 články|testery baterií|měření napětí|nabíječky|nabíjačky|nabíječe|ładowarki/i.test(categoryPath) &&
+    !/autobaterie|motobaterie|osobní auta|nákladní vozy|vše pro motorky|startovací baterie|startovací zdroje|akumulatory samochodowe|akumulatory motocyklowe|rozruchow\w*|packy pro ups|lifepo4 články|testery baterií|měření napětí|nabíječky|nabíjačky|nabíječe|ładowarki|töltők/i.test(categoryPath) &&
     !accessory.test(name) &&
     specs.capacityAh > 0;
   if (isBattery) return "battery";
 
   const isSolarPanel =
     (/\b(solární|solárny|fotovoltaický|fotovoltický)\s+(?:skládací\s+|skladací\s+|přenosný\s+|prenosný\s+)?panel\b/i.test(name)
-      || /\bpanel(?:e)?\s+(?:słoneczn\w*|fotowoltaiczn\w*)\b|\b(?:słoneczn\w*|fotowoltaiczn\w*)\s+panel(?:e)?\b/i.test(name)) &&
+      || /\bpanel(?:e)?\s+(?:słoneczn\w*|fotowoltaiczn\w*)\b|\b(?:słoneczn\w*|fotowoltaiczn\w*)\s+panel(?:e)?\b|\bnapelem(?:panel)?\b|\bfotovoltaikus\s+panel\b/i.test(name)) &&
     !accessory.test(name) &&
     specs.powerW > 0;
   if (isSolarPanel) return "solar_panel";
 
   const isInverter =
-    /měniče napětí|meniče napätia|przetwornice napięcia|przekształtniki napięcia/i.test(categoryPath) &&
-    /(měnič|menič|invertor|inverter|przetwornic\w*)/i.test(name) &&
+    /měniče napětí|meniče napätia|przetwornice napięcia|przekształtniki napięcia|feszültség\s*átalakítók/i.test(categoryPath) &&
+    /(měnič|menič|invertor|inverter|przetwornic\w*|feszültség\s*átalakító|feszültségátalakító)/i.test(name) &&
     !accessory.test(name) &&
     (/\b230\s*v\s*ac\b/i.test(name) || specs.pureSine === true) &&
     specs.powerW > 0;
   if (isInverter) return "inverter";
 
   const isController =
-    /solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)/i.test(categoryPath) &&
+    /solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)|napelemes töltésszabályozók|töltésszabályozók/i.test(categoryPath) &&
     /\bmppt\b/i.test(name) &&
     !accessory.test(name) &&
     specs.currentA > 0;
@@ -352,7 +359,7 @@ export function refreshCatalogProduct(product) {
   const specs = Object.fromEntries(
     Object.entries(extractedSpecs).map(([key, value]) => [key, value ?? product.specs?.[key] ?? null])
   );
-  if (/solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)/i.test(product.categoryPath)) {
+  if (/solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)|napelemes töltésszabályozók|töltésszabályozók/i.test(product.categoryPath)) {
     specs.currentA = extractControllerCurrent(product.name, product.description);
   }
   return {
@@ -562,8 +569,8 @@ function normalizeAvailability(value) {
   const normalized = String(value).trim();
   if (/^\d+$/.test(normalized)) return Number(normalized) >= 0;
   if (/back[ _-]?order|pre[ _-]?order/i.test(normalized)) return null;
-  if (/out[ _-]?of[ _-]?stock|vyprodáno|vypredané|niedostępn/i.test(normalized)) return false;
-  return /skladem|na sklade|dostępn\w*|in[ _-]?stock|true/i.test(normalized);
+  if (/out[ _-]?of[ _-]?stock|vyprodáno|vypredané|niedostępn|nincs készleten/i.test(normalized)) return false;
+  return /skladem|na sklade|dostępn\w*|készleten|in[ _-]?stock|true/i.test(normalized);
 }
 
 function parsePrice(value) {
@@ -635,7 +642,8 @@ function extractChargingInputVoltages(primaryText) {
 }
 
 function matchChargingDirection(text) {
-  const match = text.match(/\b(?:z|zo|od)\s*((?:12|24|36|48)\s*v(?:\s*\/\s*(?:12|24|36|48)\s*v?)?)\s*(?:na|do)\s*(\d+(?:[.,]\d+)?)\s*v\b/i);
+  const match = text.match(/\b(?:z|zo|od)\s*((?:12|24|36|48)\s*v(?:\s*\/\s*(?:12|24|36|48)\s*v?)?)\s*(?:na|do)\s*(\d+(?:[.,]\d+)?)\s*v\b/i)
+    || text.match(/\b((?:12|24|36|48)\s*v(?:\s*\/\s*(?:12|24|36|48)\s*v?)?)\s*[-–]?(?:ról|ről|tól|től)\s*(\d+(?:[.,]\d+)?)\s*v(?:\s*[-–]?(?:ra|re|ig))?/i);
   if (!match) return null;
   return {
     inputs: [...new Set([...match[1].matchAll(/(12|24|36|48)\s*v?/gi)].map((value) => Number(value[1])))],
@@ -655,8 +663,8 @@ function normalizeSystemVoltage(value) {
 function extractChargingBatteryTypes(primaryText, fallbackText) {
   const text = `${cleanText(primaryText)} ${cleanText(fallbackText)}`;
   const types = [];
-  if (/lifepo4|lithium(?:-ion)?|lithiov|litow/i.test(text)) types.push("lifepo4");
-  if (/\bagm\b|olov|ołowi|kwasow|gelov|żelow/i.test(text)) types.push("lead");
+  if (/lifepo4|lithium(?:-ion)?|lithiov|litow|lítium/i.test(text)) types.push("lifepo4");
+  if (/\bagm\b|olov|ołowi|kwasow|gelov|żelow|ólom|zselé/i.test(text)) types.push("lead");
   return types;
 }
 
@@ -669,7 +677,7 @@ function extractControllerCurrent(name, description) {
 
   return matchNumber(
     description,
-    /(?:nabíjecí|výstupní|max(?:imální)?\.?)[^\d]{0,24}(\d+(?:[.,]\d+)?)\s*a\b/i
+    /(?:nabíjecí|výstupní|max(?:imální)?\.?|töltőáram|kimeneti|maximális)[^\d]{0,24}(\d+(?:[.,]\d+)?)\s*a\b/i
   );
 }
 
