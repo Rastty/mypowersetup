@@ -1,6 +1,6 @@
 # MyPowerSetup — produktová vize a směr
 
-Aktualizováno: 27. srpna 2026
+Aktualizováno: 28. srpna 2026
 
 ## Vize
 
@@ -125,8 +125,8 @@ Po zapnutí měření sledujeme zejména:
 
 ## Nejbližší pořadí práce
 
-1. Dokončit plnohodnotné polské rozhraní nad společným enginem a ověřeným ALLPOWERS katalogem.
-2. Převést hlavní výsledek do jedné srozumitelné věty a přidat transparentní rychlé profily používání.
-3. Navrhnout bezpečné MVP kontroly existující sestavy a hlavního omezení bez předstírání úplné instalační kompatibility.
-4. Zlepšovat produktová data, pokrytí kategorií a SEO základ všech aktivních trhů.
-5. Po polském ověření připravit Maďarsko na stejné infrastruktuře bez kopírování aplikace a známých nedostatků.
+1. Dokončit neveřejnou maďarskou vrstvu: důvěryhodnostní stránky, kompletní UI shell, lokální katalog a technickou jazykovou kontrolu.
+2. Zveřejnit Maďarsko až po splnění tržní brány: ověřený lokální produktový katalog, affiliate cesta, mobilní průchod, právní texty, hreflang a měření.
+3. Zlepšovat produktová data a pokrytí kategorií v CZ, SK a PL; denní Ampul synchronizaci zapnout po doplnění feed URL do GitHub Secrets.
+4. Využít stárnoucí účty MyPower.cz, Caravan24.cz a CamperTeam.pl nejprve pro autentické užitečné odpovědi bez odkazů.
+5. Další trhy připravovat pouze jako výzkumnou frontu; přednost má dokončení a ověření CZ/SK/PL/HU.
