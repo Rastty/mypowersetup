@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { MARKET_CONTENT, marketSolarScenarios, requiredBatteryAh, requiredChargingAmps, requiredSolarWp } from "../src/market-content.js";
+import { MARKET_CONTENT, inverterDcAmps, marketSolarScenarios, requiredBatteryAh, requiredChargingAmps, requiredInverterWatts, requiredSolarWp } from "../src/market-content.js";
 import { renderHungarianGuide } from "../src/guides-hu.js";
 
 const solarPages = {
@@ -31,6 +31,13 @@ test("market charging scenarios use the shared 90 percent efficiency", () => {
   assert.equal(requiredChargingAmps(500, 1.5), 31);
 });
 
+test("market inverter scenarios use the shared reserve and DC efficiency", () => {
+  assert.equal(requiredInverterWatts(120), 150);
+  assert.equal(requiredInverterWatts(1590), 1988);
+  assert.equal(inverterDcAmps(1200), 112);
+  assert.equal(inverterDcAmps(1590), 148);
+});
+
 test("every localization has distinct terminology and two quantified local scenarios", () => {
   assert.deepEqual(Object.keys(MARKET_CONTENT), ["cs", "sk", "pl", "hu"]);
   const labels = [];
@@ -41,12 +48,29 @@ test("every localization has distinct terminology and two quantified local scena
     assert.equal(market.batteryScenarios.length, 2);
     assert.ok(market.chargingScenarios.dcDc.label);
     assert.ok(market.chargingScenarios.shore.label);
+    assert.equal(market.inverterScenarios.length, 2);
     for (const scenario of scenarios) {
       assert.ok(scenario.requiredWp >= 150);
       labels.push(scenario.label);
     }
   }
   assert.equal(new Set(labels).size, labels.length, "local scenarios must not be translated duplicates");
+});
+
+test("inverter guides contain distinct local use cases and a battery-side bottleneck check", async () => {
+  const files = {
+    cs: "pruvodce/jak-velky-menic-do-karavanu/index.html",
+    sk: "sk/sprievodca/aky-velky-menic-do-karavanu/index.html",
+    pl: "pl/poradnik/jak-dobrac-przetwornice-do-kampera/index.html",
+  };
+  for (const [locale, file] of Object.entries(files)) {
+    const html = await readFile(file, "utf8");
+    for (const scenario of MARKET_CONTENT[locale].inverterScenarios) assert.ok(html.includes(scenario.label));
+    assert.match(html, /BMS/);
+  }
+  const hungarian = renderHungarianGuide("inverter");
+  for (const scenario of MARKET_CONTENT.hu.inverterScenarios) assert.ok(hungarian.includes(scenario.label));
+  assert.match(hungarian, /BMS/);
 });
 
 test("charging guides contain distinct local driving and campsite decisions", async () => {
