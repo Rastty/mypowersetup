@@ -1,0 +1,12 @@
+{
+  "generatedAt": null,
+  "market": "hu-HU",
+  "currency": "EUR",
+  "sources": {
+    "ampul_hu": {
+      "status": "disabled",
+      "error": "feed URL is configured only in GitHub Actions"
+    }
+  },
+  "products": []
+}
