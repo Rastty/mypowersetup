@@ -50,6 +50,23 @@ const COPY = {
     acDetail: "Część 230 V wymaga odpowiedniej ochrony, odłączania, uziemienia i wyłącznika różnicowoprądowego; wykonanie powierz osobie z odpowiednimi kwalifikacjami.",
     shoreDcDetail: "Sprawdź przewód DC, bezpiecznik przy akumulatorze, profil ładowania, maksymalny prąd akumulatora/BMS i odprowadzanie ciepła.",
   },
+  hu: {
+    solarToController: "Napelemek → MPPT töltésszabályozó",
+    controllerToBattery: "MPPT töltésszabályozó → lakótéri akkumulátor",
+    batteryToDistribution: "Lakótéri akkumulátor → DC elosztó",
+    batteryToInverter: "Lakótéri akkumulátor → inverter",
+    starterToDcDc: "Indítóakkumulátor → DC–DC töltő",
+    dcDcToBattery: "DC–DC töltő → lakótéri akkumulátor",
+    shoreToCharger: "230 V-os hálózati csatlakozás → hálózati töltő",
+    chargerToBattery: "Hálózati töltő → lakótéri akkumulátor",
+    solarDetail: "Ellenőrizd a Voc és Isc értékét a legalacsonyabb hőmérsékleten, a kábel keresztmetszetét, a csatlakozókat, a leválasztást és a PV-mező védelmi követelményeit.",
+    dcDetail: "Ellenőrizd a kábel keresztmetszetét és áramterhelhetőségét, a feszültségesést, a DC biztosítékot és annak helyét a készülék útmutatója szerint.",
+    inverterDetail: "Nagyáramú ág: a kábel legyen a lehető legrövidebb; ellenőrizd a sarukat, a krimpelést, a tehermentesítést és a gyártó által előírt biztosítékot.",
+    dcDcInputDetail: "Ellenőrizd a tényleges bemeneti áramot, a generátor szabad kapacitását, a kábelt, a forrásnál elhelyezett védelmet és az intelligens generátor vezérlését.",
+    dcDcOutputDetail: "Ellenőrizd a kimeneti kábelt, az akkumulátornál elhelyezett védelmet, a töltési profilt, a BMS-t és a töltő hűtését.",
+    acDetail: "A 230 V-os rész megfelelő védelmet, leválasztást, földelést és áram-védőkapcsolót igényel; a kivitelezést bízd megfelelő képesítésű szakemberre.",
+    shoreDcDetail: "Ellenőrizd a DC kábelt, az akkumulátornál lévő biztosítékot, a töltési profilt, az akkumulátor/BMS legnagyobb áramát és a hőelvezetést.",
+  },
 };
 
 export function buildInstallationPlan(result, locale = "cs") {
