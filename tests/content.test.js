@@ -680,7 +680,7 @@ test("product cards disclose feed freshness without weakening compatibility chec
   ]);
 
   for (const source of [app, appSk]) {
-    assert.ok(source.includes("productCatalogSources = payload.sources"));
+    assert.match(source, /productCatalogSources = (?:payload\.sources|Object\.assign)/);
     assert.ok(source.includes('source?.status === "stale"'));
     assert.ok(source.includes('productCatalogSources[product.merchant]?.status === "stale"'));
     assert.ok(source.includes('class="product-source-status is-stale"'));
@@ -1009,7 +1009,6 @@ test("product sync accepts optional local partner feeds safely", async () => {
 
   assert.ok(sync.includes('["solarimport", process.env.SOLAR_IMPORT_FEED_URL, false]'));
   assert.ok(sync.includes('["batterycz", process.env.BATTERY_CZ_FEED_URL, false]'));
-  assert.ok(sync.includes('["ampul_cz", process.env.AMPUL_CZ_FEED_URL, false]'));
   assert.ok(sync.includes('status: "disabled"'));
   assert.ok(sync.includes("previousProducts.filter((product) => product.merchant === merchant)"));
   assert.ok(workflow.includes("SOLAR_IMPORT_FEED_URL: ${{ secrets.SOLAR_IMPORT_FEED_URL }}"));
@@ -1020,4 +1019,5 @@ test("product sync accepts optional local partner feeds safely", async () => {
   assert.ok(app.includes('solarimport: "Solar-import.cz"'));
   assert.ok(app.includes('batterycz: "Battery.cz"'));
   assert.ok(app.includes('ampul_cz: "Ampul.eu"'));
+  assert.ok(app.includes('fetch("/data/products-ampul-cz.json"'));
 });

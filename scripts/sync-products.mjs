@@ -5,9 +5,13 @@ const feeds = [
   ["reslshop", process.env.RESLSHOP_FEED_URL, true],
   ["svetkaravanu", process.env.SVETKARAVANU_FEED_URL, true],
   ["solarimport", process.env.SOLAR_IMPORT_FEED_URL, false],
-  ["batterycz", process.env.BATTERY_CZ_FEED_URL, false],
-  ["ampul_cz", process.env.AMPUL_CZ_FEED_URL, false]
+  ["batterycz", process.env.BATTERY_CZ_FEED_URL, false]
 ];
+
+const missing = feeds.filter(([, url, required]) => required && !url).map(([merchant]) => merchant);
+if (missing.length) {
+  throw new Error(`Chybí URL feedu pro: ${missing.join(", ")}`);
+}
 
 let previousProducts = [];
 try {

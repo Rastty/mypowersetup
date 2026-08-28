@@ -8,6 +8,7 @@ on:
       - "src/products.js"
       - "src/feed.js"
       - "scripts/sync-products.mjs"
+      - "scripts/sync-products-ampul-cz.mjs"
       - "scripts/sync-products-pl.mjs"
       - "scripts/sync-products-sk.mjs"
       - "src/shopify.js"
@@ -35,6 +36,8 @@ jobs:
           # Optional partner feeds remain disabled until their repository secrets exist.
           SOLAR_IMPORT_FEED_URL: ${{ secrets.SOLAR_IMPORT_FEED_URL }}
           BATTERY_CZ_FEED_URL: ${{ secrets.BATTERY_CZ_FEED_URL }}
+      - run: node scripts/sync-products-ampul-cz.mjs
+        env:
           AMPUL_CZ_FEED_URL: ${{ secrets.AMPUL_CZ_FEED_URL }}
       - run: node scripts/sync-products-sk.mjs
         env:
@@ -47,9 +50,9 @@ jobs:
       - run: node --test
       - name: Commit refreshed catalog
         run: |
-          if git diff --quiet -- data/products.json data/products-sk.json data/products-pl.json; then exit 0; fi
+          if git diff --quiet -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json; then exit 0; fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -- data/products.json data/products-sk.json data/products-pl.json
+          git add -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json
           git commit -m "data: refresh affiliate product catalog"
           git push

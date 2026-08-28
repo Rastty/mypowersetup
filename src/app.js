@@ -56,12 +56,16 @@ document.querySelector("#year").textContent = new Date().getFullYear();
 
 async function loadProductCatalog() {
   try {
-    const response = await fetch("/data/products.json", { cache: "no-store" });
-    if (!response.ok) return;
-    const payload = await response.json();
-    productCatalog = Array.isArray(payload.products) ? payload.products : [];
-    productCatalogUpdatedAt = payload.updatedAt || payload.generatedAt || null;
-    productCatalogSources = payload.sources && typeof payload.sources === "object" ? payload.sources : {};
+    const responses = await Promise.all([
+      fetch("/data/products.json", { cache: "no-store" }),
+      fetch("/data/products-ampul-cz.json", { cache: "no-store" })
+    ]);
+    const payloads = await Promise.all(responses.filter((response) => response.ok).map((response) => response.json()));
+    productCatalog = payloads.flatMap((payload) => Array.isArray(payload.products) ? payload.products : []);
+    productCatalogUpdatedAt = payloads.map((payload) => payload.updatedAt || payload.generatedAt).filter(Boolean).sort().at(-1) || null;
+    productCatalogSources = Object.assign({}, ...payloads.map((payload) =>
+      payload.sources && typeof payload.sources === "object" ? payload.sources : {}
+    ));
   } catch {
     productCatalog = [];
   }
