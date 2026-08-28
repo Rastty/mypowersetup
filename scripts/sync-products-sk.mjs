@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { configureMerchantAffiliate } from "../src/products.js";
+import { syncAllpowersEu } from "./lib/sync-allpowers-eu.mjs";
 
 const outputPath = "data/products-sk.json";
 let previousCatalog = { generatedAt: null, market: "sk-SK", currency: "EUR", sources: {}, products: [] };
@@ -15,13 +16,11 @@ const feeds = [
   ["ampul_sk", process.env.AMPUL_SK_FEED_URL, null]
 ];
 
-if (feeds.every(([, url]) => !url)) {
-  console.log("SK: žádný produktový feed není nakonfigurován, katalog zůstává beze změny.");
-  process.exit(0);
-}
-
 const products = [];
 const sources = {};
+const allpowers = await syncAllpowersEu(previousCatalog);
+products.push(...allpowers.products);
+sources.allpowers_eu = allpowers.source;
 for (const [merchant, feedUrl, affiliateBaseUrl] of feeds) {
   const preserved = previousCatalog.products.filter((product) => product.merchant === merchant);
   if (!feedUrl || (merchant === "padabo" && !affiliateBaseUrl)) {
