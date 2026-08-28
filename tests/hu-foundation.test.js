@@ -54,7 +54,7 @@ test("Hungarian trust copy explains authorship, method, affiliate independence, 
   assert.match(HU_TRUST_COPY.safety.text, /szakembernek/);
 });
 
-test("Hungarian Ampul catalog is private, market-specific and ready for secret-backed refresh", async () => {
+test("Hungarian catalog combines local Ampul and verified ALLPOWERS EU sources privately", async () => {
   const [catalog, sync] = await Promise.all([
     readFile("data/products-hu.json", "utf8").then(JSON.parse),
     readFile("scripts/sync-products-hu.mjs", "utf8"),
@@ -62,6 +62,8 @@ test("Hungarian Ampul catalog is private, market-specific and ready for secret-b
   assert.equal(catalog.market, "hu-HU");
   assert.equal(catalog.currency, "EUR");
   assert.ok(Object.hasOwn(catalog.sources, "ampul_hu"));
+  assert.equal(catalog.sources.allpowers_eu.status, "ok");
+  assert.equal(catalog.sources.allpowers_eu.technicallyVerifiedPowerStations, 3);
   assert.match(sync, /process\.env\.AMPUL_HU_FEED_URL/);
   assert.match(sync, /parseProductFeed\(await response\.text\(\), "ampul_hu"\)/);
   assert.match(sync, /"accept-language": "hu-HU,hu;q=0\.9,en;q=0\.6"/);
@@ -93,7 +95,7 @@ test("Hungarian headless app shell connects the shared engine to the verified lo
 
   assert.equal(HU_MARKET.published, false);
   assert.equal(HU_MARKET.indexable, false);
-  assert.equal(catalog.products.length, 12);
+  assert.equal(catalog.products.length, 37);
   assert.match(output.verdict, /rendszert ajánlunk/);
   assert.match(output.systemDiagram, /Napelemek/);
   assert.match(output.systemDiagram, /Tiszta szinuszos inverter/);
@@ -103,7 +105,9 @@ test("Hungarian headless app shell connects the shared engine to the verified lo
   assert.ok(output.recommendations.inverter.length >= 1);
   assert.equal(output.recommendations.inverter[0].product.merchant, "ampul_hu");
   assert.equal(output.catalogSources.ampul_hu.status, "ok");
+  assert.equal(output.catalogSources.allpowers_eu.status, "ok");
   assert.equal(hungarianMerchantLabel("ampul_hu"), "Ampul.eu");
+  assert.equal(hungarianMerchantLabel("allpowers_eu"), "ALLPOWERS EU");
   assert.match(formatHungarianPrice(164.59), /164[,.]59/);
 });
 
@@ -176,7 +180,8 @@ test("Hungarian launch gate reports exact catalog and review blockers", async ()
   assert.equal(report.categoryCounts.inverter, 7);
   assert.equal(report.categoryCounts.dc_charger, 3);
   assert.equal(report.categoryCounts.shore_charger, 2);
-  assert.deepEqual(report.missingCategories.map(({ category }) => category), ["battery", "solar_panel", "controller"]);
+  assert.equal(report.categoryCounts.solar_panel, 22);
+  assert.deepEqual(report.missingCategories.map(({ category }) => category), ["battery", "controller"]);
   assert.match(report.blockers.join(" "), /HU_LANGUAGE_REVIEW_REQUIRED/);
   assert.match(report.blockers.join(" "), /HU_MOBILE_JOURNEY_REVIEW_REQUIRED/);
   assert.throws(() => requireHungarianLaunchReady({ catalog }), /HU_LAUNCH_BLOCKED/);

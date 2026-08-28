@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
+import { syncAllpowersEu } from "./lib/sync-allpowers-eu.mjs";
 
 const feedUrl = process.env.AMPUL_HU_FEED_URL;
 const outputPath = "data/products-hu.json";
@@ -11,13 +12,11 @@ try {
   // A missing first-run catalog is handled by the configured feed below.
 }
 
-if (!feedUrl) {
-  console.log("HU: az Ampul feed nincs beállítva, a katalógus változatlan marad.");
-  process.exit(0);
-}
-
-let nextCatalog;
+const allpowers = await syncAllpowersEu(previousCatalog);
+let ampulProducts = previousCatalog.products.filter((product) => product.merchant === "ampul_hu");
+let ampulSource = previousCatalog.sources?.ampul_hu || { status: "disabled", error: "feed URL není nakonfigurována" };
 try {
+  if (!feedUrl) throw new Error("feed URL není nakonfigurována");
   const response = await fetch(feedUrl, {
     redirect: "follow",
     headers: {
@@ -30,24 +29,24 @@ try {
   });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const parsed = parseProductFeed(await response.text(), "ampul_hu");
-  const products = parsed
+  ampulProducts = parsed
     .filter((product) => product.category !== "other")
     .map((product) => ({ ...product, description: product.description.slice(0, 500) }));
-  nextCatalog = {
-    generatedAt: new Date().toISOString(),
-    market: "hu-HU",
-    currency: "EUR",
-    sources: { ampul_hu: { status: "ok", parsedProducts: parsed.length, relevantProducts: products.length } },
-    products
-  };
-  console.log(`Ampul HU: ${products.length} releváns termék mentve ${parsed.length} tételből.`);
+  ampulSource = { status: "ok", parsedProducts: parsed.length, relevantProducts: ampulProducts.length };
+  console.log(`Ampul HU: ${ampulProducts.length} releváns termék mentve ${parsed.length} tételből.`);
 } catch (error) {
-  if (!previousCatalog.products.length) throw error;
-  nextCatalog = {
-    ...previousCatalog,
-    sources: { ampul_hu: { status: "stale", error: error.message, preservedProducts: previousCatalog.products.length } }
-  };
+  ampulSource = ampulProducts.length
+    ? { status: "stale", error: error.message, preservedProducts: ampulProducts.length }
+    : { status: "error", error: error.message };
 }
+
+const nextCatalog = {
+  generatedAt: new Date().toISOString(),
+  market: "hu-HU",
+  currency: "EUR",
+  sources: { ampul_hu: ampulSource, allpowers_eu: allpowers.source },
+  products: [...ampulProducts, ...allpowers.products],
+};
 
 await mkdir("data", { recursive: true });
 await writeFile(outputPath, `${JSON.stringify(nextCatalog, null, 2)}\n`);
