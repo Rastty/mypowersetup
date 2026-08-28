@@ -42,6 +42,18 @@ test("Polish installation plan keeps every safety check", () => {
   assert.match(plan.find(({ id }) => id === "shore-charger").detail, /wyłącznika różnicowoprądowego/);
 });
 
+test("Hungarian installation plan keeps every safety check", () => {
+  const plan = buildInstallationPlan({
+    systemVoltage: 12,
+    inverterWatts: 1200,
+    charging: { dcDc: { enabled: true }, shore: { enabled: true } },
+  }, "hu");
+  assert.equal(plan.length, 8);
+  assert.match(plan.find((item) => item.id === "solar-controller").detail, /Voc és Isc/);
+  assert.match(plan.find((item) => item.id === "starter-dcdc").detail, /generátor szabad kapacitását/);
+  assert.match(plan.find((item) => item.id === "shore-charger").detail, /áram-védőkapcsolót/);
+});
+
 test("refuses an incomplete setup", () => {
   assert.deepEqual(buildInstallationPlan(null), []);
   assert.deepEqual(buildInstallationPlan({ systemVoltage: "unknown" }), []);
