@@ -47,6 +47,7 @@ test("setup URL uses the correct localized calculator", () => {
   assert.match(buildSetupUrl(config, "cs"), /^https:\/\/mypowersetup\.com\/\?loads=/);
   assert.match(buildSetupUrl(config, "sk"), /^https:\/\/mypowersetup\.com\/sk\/\?loads=/);
   assert.match(buildSetupUrl(config, "pl"), /^https:\/\/mypowersetup\.com\/pl\/\?loads=/);
+  assert.match(buildSetupUrl(config, "hu"), /^https:\/\/mypowersetup\.com\/hu\/\?loads=/);
   assert.match(buildSetupUrl(config, "sk"), /#kalkulator$/);
 });
 
