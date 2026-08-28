@@ -155,6 +155,30 @@ const PRODUCT_TEXT = {
       shore_charger: "Sprawdź napięcie, chemię akumulatora, profil ładowania, BMS, przewody i zabezpieczenia.",
       power_station: "Sprawdź moc rozruchową urządzeń, zakres Voc paneli, złącza, równoczesną pracę wyjść oraz aktualną dostępność."
     }
+  },
+  hu: {
+    batteryReason: (setup) => `A kapacitás eléri a szükséges ${setup.batteryAh} Ah értéket`,
+    panelReason: (product, setup) => `${product.recommendedQuantity} db lefedi a szükséges ${setup.solarWatts} Wp teljesítményt`,
+    inverterReason: (setup) => `A folyamatos teljesítmény eléri a szükséges ${setup.inverterWatts} W értéket`,
+    controllerReason: (setup) => `Az áramerősség eléri a szükséges ${setup.controllerAmps} A értéket`,
+    dcChargerReason: (setup) => `A kimenet menet közben biztosítja az ajánlott ${setup.charging.dcDc.suggestedCurrentAmps} A-t`,
+    shoreChargerReason: (setup) => `A kimenet 230 V-os hálózatról biztosítja az ajánlott ${setup.charging.shore.suggestedCurrentAmps} A-t`,
+    powerStationReason: () => "A kapacitás, az AC kimenet, a PV bemenet és a 12 V-os kimenet megfelel a számított profilnak",
+    systemVoltage: "rendszerfeszültség",
+    requirement: "A rendszer követelménye",
+    batteryLead: "Ólomsavas technológia",
+    controllerFor: "A napelemtervhez",
+    chargerInput: "Bemenet",
+    lifepo4Profile: "LiFePO₄ töltési profil",
+    verify: {
+      battery: "Ellenőrizd a méreteket, a BMS-t, a töltőáramot és a csatlakozókat.",
+      solar_panel: "Ellenőrizd a méreteket, a Voc és Isc értékeket, valamint a napelemek kapcsolását.",
+      inverter: "Ellenőrizd a csúcsteljesítményt, a tiszta szinuszt, a kábelezést és a saját fogyasztást.",
+      controller: "Ellenőrizd a legnagyobb Voc és Isc értéket, a PV-teljesítményt és az akkumulátorprofilt az adatlapon.",
+      dc_charger: "Ellenőrizd a bemeneti és kimeneti feszültséget, az intelligens generátor támogatását, a BMS-t, a kábelezést, a védelmet és a hűtést.",
+      shore_charger: "Ellenőrizd a feszültséget, az akkumulátor kémiáját, a töltési profilt, a BMS-t, a kábelezést és a védelmet.",
+      power_station: "Ellenőrizd a fogyasztók indítási teljesítményét, a napelemek Voc tartományát, a csatlakozókat, a kimenetek egyidejű használatát és az aktuális elérhetőséget."
+    }
   }
 };
 

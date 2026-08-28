@@ -939,6 +939,28 @@ test("product recommendation explanations support Slovak locale", () => {
   assert.match(recommendations.battery[0].verify, /Overte rozmery/);
 });
 
+test("product recommendation explanations support Hungarian locale", () => {
+  const battery = normalizeProduct({
+    id: "hu-battery",
+    name: "LiFePO4 akkumulátor 12 V 100 Ah",
+    category: "Elektro | Baterie",
+    url: "https://www.svetkaravanu.cz/hu-battery_z520/",
+    available: true
+  }, "svetkaravanu");
+  const recommendations = recommendProducts([battery], {
+    locale: "hu",
+    systemVoltage: 12,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    solarWatts: 200,
+    inverterWatts: 800,
+    controllerAmps: 20
+  });
+  assert.match(recommendations.battery[0].reason, /kapacitás eléri/);
+  assert.match(recommendations.battery[0].checks[1], /rendszerfeszültség/);
+  assert.match(recommendations.battery[0].verify, /Ellenőrizd a méreteket/);
+});
+
 test("classifier recognizes Slovak Padabo category and product wording", () => {
   const battery = normalizeProduct({
     id: "sk-lifepo4",
