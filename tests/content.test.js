@@ -42,6 +42,8 @@ const polishPages = [
   ["pl/poradnik/agm-czy-lifepo4/index.html", "https://mypowersetup.com/pl/poradnik/agm-czy-lifepo4/", "https://mypowersetup.com/pruvodce/agm-vs-lifepo4/", "https://mypowersetup.com/sk/sprievodca/agm-vs-lifepo4/"],
   ["pl/poradnik/ile-wat-paneli-solarnych-do-kampera/index.html", "https://mypowersetup.com/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/", "https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/", "https://mypowersetup.com/sk/sprievodca/kolko-w-solarnych-panelov/"],
   ["pl/poradnik/jak-dobrac-regulator-mppt/index.html", "https://mypowersetup.com/pl/poradnik/jak-dobrac-regulator-mppt/", "https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-mppt-regulator/"],
+  ["pl/poradnik/jak-dobrac-ladowarke-dc-dc/index.html", "https://mypowersetup.com/pl/poradnik/jak-dobrac-ladowarke-dc-dc/", "https://mypowersetup.com/pruvodce/jak-vybrat-dc-dc-nabijecku/", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-dc-dc-nabijacku/"],
+  ["pl/poradnik/jak-dobrac-ladowarke-230-v/index.html", "https://mypowersetup.com/pl/poradnik/jak-dobrac-ladowarke-230-v/", "https://mypowersetup.com/pruvodce/jak-vybrat-nabijecku-230-v/", "https://mypowersetup.com/sk/sprievodca/ako-vybrat-nabijacku-230-v/"],
   ["pl/o-projekcie/index.html", "https://mypowersetup.com/pl/o-projekcie/", "https://mypowersetup.com/o-projektu/", "https://mypowersetup.com/sk/o-projekte/"],
   ["pl/metodologia/index.html", "https://mypowersetup.com/pl/metodologia/", "https://mypowersetup.com/metodika/", "https://mypowersetup.com/sk/metodika/"],
   ["pl/afiliacja/index.html", "https://mypowersetup.com/pl/afiliacja/", "https://mypowersetup.com/affiliate/", "https://mypowersetup.com/sk/affiliate/"],
@@ -249,6 +251,22 @@ test("Polish solar and MPPT guides preserve bounded shared assumptions", async (
   for (const value of ["Voc", "Isc", "1,25", "42 A", "100/20", "290 W", "580 W"]) assert.ok(mppt.includes(value));
 });
 
+test("Polish charging guides preserve the shared bounded charging model", async () => {
+  const [hub, dcDc, shore] = await Promise.all([
+    readFile("pl/poradnik/index.html", "utf8"),
+    readFile("pl/poradnik/jak-dobrac-ladowarke-dc-dc/index.html", "utf8"),
+    readFile("pl/poradnik/jak-dobrac-ladowarke-230-v/index.html", "utf8"),
+  ]);
+  assert.ok(hub.includes('href="/pl/poradnik/jak-dobrac-ladowarke-dc-dc/"'));
+  assert.ok(hub.includes('href="/pl/poradnik/jak-dobrac-ladowarke-230-v/"'));
+  for (const html of [dcDc, shore]) {
+    for (const value of ["90%", "0,2 C", "0,1 C"]) assert.ok(html.includes(value));
+    assert.ok(html.includes('href="/pl/#kalkulator"'));
+  }
+  for (const value of ["27,8 A", "30 A", "34 A", "67 A"]) assert.ok(dcDc.includes(value));
+  for (const value of ["6,9 A", "10 A", "400 W", "1380 W"]) assert.ok(shore.includes(value));
+});
+
 test("affiliate recommendations are disclosed and measurable", async () => {
   const [html, app] = await Promise.all([
     readFile("index.html", "utf8"),
@@ -293,7 +311,7 @@ test("GA4 is available site-wide only after an explicit localized choice", async
   assert.match(analytics, /Povoliť analytiku/);
   assert.match(analytics, /Zezwól na analitykę/);
   for (const source of [app, appSk, appPl]) assert.match(source, /MyPowerSetupAnalytics\?\.track/);
-  for (const html of htmlFiles) assert.match(html, /\/src\/analytics\.js\?v=202608(?:24-1|27-(?:pltrust1|plguides1))/);
+  for (const html of htmlFiles) assert.match(html, /\/src\/analytics\.js\?v=202608(?:24-1|27-(?:pltrust1|plguides1)|28-plcharging1)/);
   for (const privacy of [czechPrivacy, slovakPrivacy, polishPrivacy]) {
     assert.ok(privacy.includes("data-analytics-settings"));
     assert.ok(privacy.includes("https://policies.google.com/privacy"));
