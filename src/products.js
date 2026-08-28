@@ -99,6 +99,8 @@ const PRODUCT_TEXT = {
     requirement: "Požadavek sestavy",
     batteryLead: "Olověná technologie",
     controllerFor: "Pro návrh panelů",
+    chargerInput: "Vstup",
+    lifepo4Profile: "Profil pro LiFePO₄",
     verify: {
       battery: "Ověřte rozměry, BMS, nabíjecí proud a svorky.",
       solar_panel: "Ověřte rozměry, Voc, Isc a způsob zapojení panelů.",
@@ -119,6 +121,8 @@ const PRODUCT_TEXT = {
     requirement: "Požiadavka zostavy",
     batteryLead: "Olovená technológia",
     controllerFor: "Pre návrh panelov",
+    chargerInput: "Vstup",
+    lifepo4Profile: "Profil pre LiFePO₄",
     verify: {
       battery: "Overte rozmery, BMS, nabíjací prúd a svorky.",
       solar_panel: "Overte rozmery, Voc, Isc a spôsob zapojenia panelov.",
@@ -140,6 +144,8 @@ const PRODUCT_TEXT = {
     requirement: "Wymaganie instalacji",
     batteryLead: "Technologia ołowiowa",
     controllerFor: "Dla projektu paneli",
+    chargerInput: "Wejście",
+    lifepo4Profile: "Profil dla LiFePO₄",
     verify: {
       battery: "Sprawdź wymiary, BMS, prąd ładowania i zaciski.",
       solar_panel: "Sprawdź wymiary, Voc, Isc i sposób połączenia paneli.",
@@ -249,7 +255,7 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
   const multiComponentBundle = /\b(set|sestava|zostava|kit)\b/i.test(name);
   const chargerPath = /nabíječky|nabíjačky|ładowarki/i.test(categoryPath);
   const chargerAccessory = /\b(usb|startér|štartér|powerbank|čidlo|snímač|ovládání|ovládanie|kabel|kábel|zástrčka|pohotovostní)\b/i.test(name);
-  const explicitDcCharger = /\bdc\s*[-–]?\s*dc\b|posilovač nabíjení|posilňovač nabíjania|charge booster|nabíjecí booster|nabíjací booster|f\.?\s*alternátor/i.test(name);
+  const explicitDcCharger = /\bdc\s*[-–]?\s*dc\b|posilovač nabíjení|posilňovač nabíjania|charge booster|nabíjecí booster|nabíjací booster|f\.?\s*alternátor|\b(?:z|zo|od)\s*(?:12|24|36|48)\s*v(?:\s*\/\s*(?:12|24|36|48)\s*v?)?\s*(?:na|do)\s*\d+(?:[.,]\d+)?\s*v\b/i.test(name);
   const explicitBatteryCharger = /nabíječ(?:ka|ky)|nabíjač(?:ka|ky)|ładowark\w*|battery charger/i.test(name);
 
   if (/(?:stacja zasilania|power station)/i.test(`${name} ${categoryPath}`) && specs.capacityWh > 0 && specs.powerW > 0) {
@@ -476,8 +482,8 @@ function recommendationChecks(product, setup) {
     return [
       `${product.specs.currentA} A ≥ ${required} A`,
       `${setup.systemVoltage} V = ${text.systemVoltage}`,
-      ...(product.category === "dc_charger" ? [`Vstup ${setup.charging.starterVoltage} V`] : []),
-      setup.batteryType === "lifepo4" ? "Profil pro LiFePO₄" : text.batteryLead
+      ...(product.category === "dc_charger" ? [`${text.chargerInput} ${setup.charging.starterVoltage} V`] : []),
+      setup.batteryType === "lifepo4" ? text.lifepo4Profile : text.batteryLead
     ];
   }
   if (product.category === "power_station") {
@@ -581,8 +587,8 @@ function extractChargingVoltages(primaryText) {
   const primary = cleanText(primaryText);
   const allowed = new Set([12, 24, 36, 48]);
 
-  const directional = primary.match(/\b(?:z|zo|od)\s*(\d+(?:[.,]\d+)?)\s*v\s*(?:na|do)\s*(\d+(?:[.,]\d+)?)\s*v\b/i);
-  if (directional) return [normalizeSystemVoltage(parseLocalizedNumber(directional[2]))].filter(Boolean);
+  const directional = matchChargingDirection(primary);
+  if (directional) return [normalizeSystemVoltage(directional.output)].filter(Boolean);
 
   const dualVoltage = primary.match(/\b(12|24|36|48)\s*v\s*[/]\s*(12|24|36|48)\s*v\b/i);
   if (dualVoltage) return [Number(dualVoltage[2])];
@@ -596,12 +602,21 @@ function extractChargingVoltages(primaryText) {
 
 function extractChargingInputVoltages(primaryText) {
   const primary = cleanText(primaryText);
-  const directional = primary.match(/\b(?:z|zo|od)\s*(\d+(?:[.,]\d+)?)\s*v\s*(?:na|do)\s*(\d+(?:[.,]\d+)?)\s*v\b/i);
-  if (directional) return [normalizeSystemVoltage(parseLocalizedNumber(directional[1]))].filter(Boolean);
+  const directional = matchChargingDirection(primary);
+  if (directional) return directional.inputs;
   const pair = primary.match(/\b(12|24|36|48)\s*v?\s*[/]\s*(12|24|36|48)(?:\s*v\b|\s*[-/]\s*\d+(?:[.,]\d+)?\s*a\b)/i);
   if (pair) return [Number(pair[1])];
   const single = primary.match(/\b(12|24|36|48)\s*v\b/i);
   return single ? [Number(single[1])] : [];
+}
+
+function matchChargingDirection(text) {
+  const match = text.match(/\b(?:z|zo|od)\s*((?:12|24|36|48)\s*v(?:\s*\/\s*(?:12|24|36|48)\s*v?)?)\s*(?:na|do)\s*(\d+(?:[.,]\d+)?)\s*v\b/i);
+  if (!match) return null;
+  return {
+    inputs: [...new Set([...match[1].matchAll(/(12|24|36|48)\s*v?/gi)].map((value) => Number(value[1])))],
+    output: parseLocalizedNumber(match[2])
+  };
 }
 
 function normalizeSystemVoltage(value) {

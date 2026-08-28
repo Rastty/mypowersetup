@@ -556,7 +556,11 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
   assert.ok(html.includes('<html lang="pl">'));
   assert.ok(html.includes('<link rel="canonical" href="https://mypowersetup.com/pl/"'));
   assert.ok(html.includes('hreflang="cs-CZ"'));
+  assert.ok(html.includes('hreflang="sk-SK" href="https://mypowersetup.com/sk/"'));
   assert.ok(html.includes('hreflang="pl-PL"'));
+  assert.ok(html.includes('"@id": "https://mypowersetup.com/pl/o-projekcie/#petr-galik"'));
+  assert.ok(html.includes('"url": "https://mypowersetup.com/pl/o-projekcie/"'));
+  assert.doesNotMatch(html, /placeholder="napr\./);
   assert.ok(html.includes('src="/src/app-pl.js?v=20260828-ampul1"'));
   assert.ok(app.includes('products.js?v=20260828-ampul1'));
   assert.match(html, /Jakiego akumulatora i paneli naprawdę potrzebujesz/);
@@ -604,41 +608,46 @@ test("hidden calculator actions stay hidden even when component styles set displ
   for (const html of [czech, slovak, polish]) assert.ok(html.includes('/styles.css?v=20260827-existing2'));
 });
 
-test("calculator results can be shared in both languages", async () => {
-  const [czech, slovak, app, appSk, share] = await Promise.all([
+test("calculator results can be shared in every active language", async () => {
+  const [czech, slovak, polish, app, appSk, appPl, share] = await Promise.all([
     readFile("index.html", "utf8"),
     readFile("sk/index.html", "utf8"),
+    readFile("pl/index.html", "utf8"),
     readFile("src/app.js", "utf8"),
     readFile("src/app-sk.js", "utf8"),
+    readFile("src/app-pl.js", "utf8"),
     readFile("src/share.js", "utf8"),
   ]);
-  for (const html of [czech, slovak]) {
+  for (const html of [czech, slovak, polish]) {
     assert.ok(html.includes('id="result-share"'));
     assert.ok(html.includes('id="result-copy"'));
     assert.ok(html.includes('id="result-share-status"'));
   }
   assert.ok(app.includes('buildResultShareText(latestResult, "cs", latestShareUrl)'));
   assert.ok(appSk.includes('buildResultShareText(latestResult, "sk", latestShareUrl)'));
+  assert.ok(appPl.includes('buildResultShareText(latestResult, "pl", latestShareUrl)'));
   assert.match(app, /navigator\.share/);
   assert.match(appSk, /navigator\.share/);
   assert.match(share, /https:\/\/mypowersetup\.com\/sk\//);
   assert.doesNotMatch(share, /affiliate|provize|cena/i);
 });
 
-test("both calculators offer a clean printable PDF summary", async () => {
-  const [czech, slovak, app, appSk, styles] = await Promise.all([
+test("all calculators offer a clean printable PDF summary", async () => {
+  const [czech, slovak, polish, app, appSk, appPl, styles] = await Promise.all([
     readFile("index.html", "utf8"),
     readFile("sk/index.html", "utf8"),
+    readFile("pl/index.html", "utf8"),
     readFile("src/app.js", "utf8"),
     readFile("src/app-sk.js", "utf8"),
+    readFile("src/app-pl.js", "utf8"),
     readFile("styles.css", "utf8"),
   ]);
-  for (const html of [czech, slovak]) {
+  for (const html of [czech, slovak, polish]) {
     assert.ok(html.includes('id="result-print"'));
     assert.ok(html.includes('id="print-generated-at"'));
     assert.ok(html.includes('/styles.css?v=20260827-existing2'));
   }
-  for (const source of [app, appSk]) {
+  for (const source of [app, appSk, appPl]) {
     assert.ok(source.includes('trackEvent("result_print_requested")'));
     assert.ok(source.includes("window.print()"));
   }
@@ -647,23 +656,25 @@ test("both calculators offer a clean printable PDF summary", async () => {
   assert.match(styles, /break-inside: avoid/);
 });
 
-test("both calculators lead mobile users directly to compatible products", async () => {
-  const [czech, slovak, app, appSk, styles] = await Promise.all([
+test("all calculators lead mobile users directly to compatible products", async () => {
+  const [czech, slovak, polish, app, appSk, appPl, styles] = await Promise.all([
     readFile("index.html", "utf8"),
     readFile("sk/index.html", "utf8"),
+    readFile("pl/index.html", "utf8"),
     readFile("src/app.js", "utf8"),
     readFile("src/app-sk.js", "utf8"),
+    readFile("src/app-pl.js", "utf8"),
     readFile("styles.css", "utf8"),
   ]);
 
-  for (const html of [czech, slovak]) {
+  for (const html of [czech, slovak, polish]) {
     assert.ok(html.includes('id="result-next"'));
     assert.ok(html.includes('id="result-product-count"'));
     assert.ok(html.includes('id="result-products-link" href="#product-recommendations"'));
     assert.ok(html.indexOf('id="product-recommendations"') < html.indexOf('class="decision-panel"'));
   }
 
-  for (const source of [app, appSk]) {
+  for (const source of [app, appSk, appPl]) {
     assert.ok(source.includes('trackEvent("product_recommendations_opened"'));
     assert.ok(source.includes('document.querySelector("#result-product-count")'));
   }

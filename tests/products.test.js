@@ -174,7 +174,7 @@ test("Ampul deeplinks keep exact localized product pages and market currencies",
   );
 });
 
-test("Ampul voltage converters and higher-voltage chargers are not offered as 12 V camper components", () => {
+test("Ampul directional battery chargers are treated as DC-DC and keep both input voltages", () => {
   const dcConverter = normalizeProduct({
     id: "dc-converter",
     name: "Měnič napětí z 12V na 24V, 20A, 480W, IP68",
@@ -191,12 +191,26 @@ test("Ampul voltage converters and higher-voltage chargers are not offered as 12
   const setup = {
     locale: "cs", systemVoltage: 12, batteryAh: 100, batteryType: "lifepo4",
     solarWatts: 200, inverterWatts: 1000, controllerAmps: 20,
-    charging: { starterVoltage: 12, dcDc: {}, shore: { suggestedCurrentAmps: 20 } }
+    charging: { starterVoltage: 12, dcDc: { suggestedCurrentAmps: 20 }, shore: { suggestedCurrentAmps: 20 } }
   };
 
   assert.equal(dcConverter.category, "other");
+  assert.equal(charger.category, "dc_charger");
   assert.deepEqual(charger.specs.chargingVoltagesV, [24]);
+  assert.deepEqual(charger.specs.chargingInputVoltagesV, [12]);
+  assert.equal(recommendProducts([charger], setup).dc_charger.length, 0);
   assert.equal(recommendProducts([charger], setup).shore_charger.length, 0);
+
+  const dualInput = normalizeProduct({
+    id: "charger-dual-input",
+    name: "Ładowarka akumulatorów od 12V/24V do 58,4V, 10A, 584W, IP65",
+    category: "Ładowarki",
+    description: "Ładowarka do akumulatorów LiFePO4.",
+    url: "https://ampul.eu/pl/ladowarki/3-charger"
+  }, "ampul_pl");
+  assert.equal(dualInput.category, "dc_charger");
+  assert.deepEqual(dualInput.specs.chargingInputVoltagesV, [12, 24]);
+  assert.deepEqual(dualInput.specs.chargingVoltagesV, [48]);
 });
 
 test("Ampul's repeated feed title cannot disguise a higher-voltage inverter variant", () => {
