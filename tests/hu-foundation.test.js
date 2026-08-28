@@ -197,7 +197,7 @@ test("Hungarian launch gate opens only with complete coverage and explicit revie
 
 test("Hungarian core guides preserve calculator assumptions while remaining private", async () => {
   const pages = Object.keys(HU_GUIDE_ROUTES).map((kind) => [kind, renderHungarianGuide(kind)]);
-  assert.equal(pages.length, 4);
+  assert.equal(pages.length, 7);
   for (const [kind, html] of pages) {
     assert.match(html, /<html lang="hu">/);
     assert.match(html, /name="robots" content="noindex,nofollow,noarchive"/);
@@ -218,6 +218,28 @@ test("Hungarian core guides preserve calculator assumptions while remaining priv
   assert.match(mppt, /Voc/);
   assert.match(mppt, /Isc/);
   assert.throws(() => renderHungarianGuide("missing"), /HU_GUIDE_UNKNOWN/);
+});
+
+test("Hungarian inverter and charging guides preserve bounded engine calculations", () => {
+  const inverter = renderHungarianGuide("inverter");
+  assert.match(inverter, /egyidejű AC-terhelés × 1,25/);
+  assert.match(inverter, /1200 W, 12 V és 90%/);
+  assert.match(inverter, /111 A/);
+  assert.match(inverter, /tiszta szinusz/i);
+
+  const dcDc = renderHungarianGuide("dcDc");
+  assert.match(dcDc, /600 ÷ 2 ÷ 12 ÷ 0,90/);
+  assert.match(dcDc, /27,8 A/);
+  assert.match(dcDc, /0,2 C/);
+  assert.match(dcDc, /0,1 C/);
+  assert.match(dcDc, /12 → 24 V, 30 A/);
+  assert.match(dcDc, /≈ 67 A/);
+
+  const shore = renderHungarianGuide("shore");
+  assert.match(shore, /600 ÷ 8 ÷ 12 ÷ 0,90/);
+  assert.match(shore, /6,9 A/);
+  assert.match(shore, /1380 W/);
+  assert.match(shore, /RCD/);
 });
 
 async function fileExists(path) {
