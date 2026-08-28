@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { HU_UI_COPY } from "../src/ui-copy-hu.js";
+import { HU_TRUST_COPY } from "../src/trust-copy-hu.js";
 
 test("Hungarian UI copy covers the full calculator and purchase journey", () => {
   assert.match(HU_UI_COPY.hero.title, /akkumulátorra és napelemre/);
@@ -27,4 +28,17 @@ test("Hungarian analytics copy is ready without activating an unfinished public 
   assert.match(analytics, /\/hu\/adatvedelem\//);
   assert.doesNotMatch(sitemap, /mypowersetup\.com\/hu\//);
   for (const html of [czech, slovak, polish]) assert.doesNotMatch(html, /hreflang="hu-HU"/);
+});
+
+test("Hungarian trust copy explains authorship, method, affiliate independence, privacy and safety", () => {
+  assert.match(HU_TRUST_COPY.about.author, /Petr Gálík/);
+  assert.match(HU_TRUST_COPY.about.author, /elektrotechnikai/);
+  assert.match(HU_TRUST_COPY.methodology.deterministic, /determinisztikus/);
+  assert.equal(Object.keys(HU_TRUST_COPY.methodology.formulas).length, 4);
+  assert.equal(HU_TRUST_COPY.methodology.productRules.length, 5);
+  assert.match(HU_TRUST_COPY.methodology.commission, /jutalék nem része/);
+  assert.match(HU_TRUST_COPY.affiliate.independence, /nem befolyásolja/);
+  assert.match(HU_TRUST_COPY.privacy.analytics, /kifejezett hozzájárulás/);
+  assert.equal(HU_TRUST_COPY.privacy.contact, "xfit.redakce@gmail.com");
+  assert.match(HU_TRUST_COPY.safety.text, /szakembernek/);
 });
