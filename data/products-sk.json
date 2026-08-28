@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T08:39:08.660Z",
+  "generatedAt": "2026-08-28T13:28:58.679Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
@@ -378,9 +378,10 @@
           36
         ],
         "chargingBatteryTypes": [
+          "lifepo4",
           "lead"
         ],
-        "batteryType": "lead",
+        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
