@@ -853,7 +853,7 @@
       "name": "Ładowarka akumulatorów od 12V do 29,2V, 20A, 584W, IP65, wąska",
       "description": "Ładowarka do akumulatorów LiFePO4 i LiMn2O4 24V ze źródła 12V/24V DC.",
       "categoryPath": "Ładowarki",
-      "category": "shore_charger",
+      "category": "dc_charger",
       "brand": "",
       "priceCzk": 164.59,
       "priceCurrency": "EUR",
@@ -888,7 +888,7 @@
       "name": "Ładowarka akumulatorów od 12V do 43,8V, 13A, 569W, IP65, wąska",
       "description": "Ładowarka do akumulatorów LiFePO4 i LiMn2O4 36V ze źródła 12V/24V DC.",
       "categoryPath": "Ładowarki",
-      "category": "shore_charger",
+      "category": "dc_charger",
       "brand": "",
       "priceCzk": 164.59,
       "priceCurrency": "EUR",
@@ -923,7 +923,7 @@
       "name": "Ładowarka akumulatorów od 12V/24V do 58,4V, 10A, 584W, IP65, wąska",
       "description": "Ładowarka do akumulatorów LiFePO4 i LiMn2O4 48V ze źródła 12V/24V DC.",
       "categoryPath": "Ładowarki",
-      "category": "shore_charger",
+      "category": "dc_charger",
       "brand": "",
       "priceCzk": 164.59,
       "priceCurrency": "EUR",
@@ -938,10 +938,11 @@
         "powerW": 584,
         "currentA": 10,
         "chargingVoltagesV": [
-          24
+          48
         ],
         "chargingInputVoltagesV": [
-          12
+          12,
+          24
         ],
         "chargingBatteryTypes": [
           "lifepo4"
