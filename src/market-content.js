@@ -17,6 +17,10 @@ export const MARKET_CONTENT = Object.freeze({
       dcDc: { label: "Přejezd mezi českými stáními", energyWh: 500, hours: 2.5, practicalA: "20 A" },
       shore: { label: "Jedna noc v českém kempu", energyWh: 1000, hours: 10, practicalA: "10 A" },
     },
+    inverterScenarios: [
+      { label: "Práce z obytné dodávky na českém stání", simultaneousW: 120, voltage: 12, practicalW: "300 W s čistou sinusovkou" },
+      { label: "Kávovar mimo kemp", simultaneousW: 1290, voltage: 12, practicalW: "2 000 W, jen pokud BMS a DC část zvládnou přibližně 150 A" },
+    ],
   },
   sk: {
     locale: "sk-SK",
@@ -33,6 +37,10 @@ export const MARKET_CONTENT = Object.freeze({
       dcDc: { label: "Presun z nížiny pod Tatry", energyWh: 600, hours: 3, practicalA: "20 A" },
       shore: { label: "Víkend v termálnom kempe", energyWh: 1000, hours: 8, practicalA: "15 A" },
     },
+    inverterScenarios: [
+      { label: "Práca z obytnej dodávky pod Tatrami", simultaneousW: 450, voltage: 12, practicalW: "600–800 W s čistou sínusoidou" },
+      { label: "Kávovar na státí bez prípojky", simultaneousW: 1200, voltage: 12, practicalW: "1 500 W, ak batéria a BMS zvládnu približne 139 A" },
+    ],
   },
   pl: {
     locale: "pl-PL",
@@ -49,6 +57,10 @@ export const MARKET_CONTENT = Object.freeze({
       dcDc: { label: "Długi przejazd między Mazurami a Bałtykiem", energyWh: 800, hours: 4, practicalA: "20 A" },
       shore: { label: "Noc na polskim kempingu", energyWh: 1200, hours: 10, practicalA: "15 A" },
     },
+    inverterScenarios: [
+      { label: "Praca z kampera nad Bałtykiem", simultaneousW: 140, voltage: 12, practicalW: "300 W z czystą sinusoidą" },
+      { label: "Płyta grzejna na postoju bez 230 V", simultaneousW: 1590, voltage: 12, practicalW: "2 000 W, jeśli BMS i instalacja DC wytrzymają około 184 A" },
+    ],
   },
   hu: {
     locale: "hu-HU",
@@ -65,6 +77,10 @@ export const MARKET_CONTENT = Object.freeze({
       dcDc: { label: "Rövid áthelyezés a Balaton körül", energyWh: 500, hours: 1.5, practicalA: "31 A, de az akkumulátor korlátja dönt" },
       shore: { label: "Éjszaka egy termálkempingben", energyWh: 1000, hours: 10, practicalA: "10 A" },
     },
+    inverterScenarios: [
+      { label: "Mobil munka a Balatonnál", simultaneousW: 140, voltage: 12, practicalW: "300 W-os tiszta szinuszos inverter" },
+      { label: "Hajszárító egy hálózat nélküli megállón", simultaneousW: 1200, voltage: 12, practicalW: "1 500 W, ha a BMS és a DC-oldal elvisel körülbelül 139 A-t" },
+    ],
   },
 });
 
@@ -91,4 +107,14 @@ export function requiredBatteryAh(dailyWh, autonomyDays, batteryType = "lifepo4"
 export function requiredChargingAmps(energyWh, hours, voltage = 12) {
   if (!(energyWh > 0) || !(hours > 0) || !(voltage > 0)) throw new RangeError("Invalid charging sizing input");
   return Math.ceil(energyWh / hours / voltage / 0.9);
+}
+
+export function requiredInverterWatts(simultaneousW, reserve = 1.25) {
+  if (!(simultaneousW > 0) || !(reserve >= 1)) throw new RangeError("Invalid inverter sizing input");
+  return Math.ceil(simultaneousW * reserve);
+}
+
+export function inverterDcAmps(acW, voltage = 12, efficiency = 0.9) {
+  if (!(acW > 0) || !(voltage > 0) || !(efficiency > 0 && efficiency <= 1)) throw new RangeError("Invalid inverter current input");
+  return Math.ceil(acW / voltage / efficiency);
 }
