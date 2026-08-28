@@ -22,6 +22,7 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 - [Jak dobrać ładowarkę 230 V](https://mypowersetup.com/pl/poradnik/jak-dobrac-ladowarke-230-v/): Prąd i czas ładowania, profil akumulatora, limit przyłącza i bezpieczny montaż.
 - [Jak dobrać przetwornicę](https://mypowersetup.com/pl/poradnik/jak-dobrac-przetwornice-do-kampera/): Moc ciągła, obciążenie rozruchowe, sinusoida i prąd z akumulatora.
 - [Przewody i bezpieczniki 12 V](https://mypowersetup.com/pl/poradnik/przewody-i-bezpieczniki-12-v/): Przekrój według spadku napięcia oraz bezpieczna rola zabezpieczeń i połączeń.
+- [Zużycie lodówki kompresorowej](https://mypowersetup.com/pl/poradnik/zuzycie-lodowki-kompresorowej/): Obliczenie Wh na dobę i wpływ temperatury, cyklu pracy oraz wentylacji.
 - [Slovenské centrum návodov](https://mypowersetup.com/sk/sprievodca/): Rozcestník slovenských výpočtov a rozhodovacích návodov.
 - [Kapacita batérie do karavanu](https://mypowersetup.com/sk/sprievodca/kapacita-baterie-do-karavanu/): Slovenský výpočet Wh a Ah podľa spotreby, autonómie a chémie batérie.
 - [AGM vs. LiFePO4 do karavanu](https://mypowersetup.com/sk/sprievodca/agm-vs-lifepo4/): Slovenské porovnanie využiteľnej energie, hmotnosti, nabíjania a vhodného použitia.
