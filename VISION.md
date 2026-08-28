@@ -28,6 +28,7 @@ Toto pořadí je výzkumná fronta, ne závazek spustit více nehotových trhů 
 4. **Nizozemsko** — mimořádně silný caravan trh, ale vyspělá konkurence; prověřit zejména Obelink/TradeTracker a Amazon.nl vedle ALLPOWERS.
 5. **Německo** — největší potenciál i nejtěžší SEO; před spuštěním požadovat jasné odlišení a prověřit Fritz Berger Awin vedle ALLPOWERS a Amazon.de.
 6. **Portugalsko** — levnější lokalizační experiment až po ES; vedle ALLPOWERS prověřit Worten PT Awin a reálnou dostupnost vhodných produktů.
+7. **Rumunsko** — kandidát na malý řízený experiment s ALLPOWERS INTERNATIONAL. Lokální poptávka a odborné komunity existují, ale od roku 2026 je dostupný i rumunský kalkulátor pro energii v rulote/camperu; před spuštěním proto musí být jasným odlišením kontrola existující sestavy, určení bottlenecku a kompatibilní lokální produkty, ne pouhý překlad.
 
 Společným základem dalších evropských trhů může být program **ALLPOWERS INTERNATIONAL (Awin 38934)**, ale každá lokalizace musí mít přesné cílové URL, lokální cenu, dostupnost a podmínky doručení. Samotná existence globálního programu nestačí k publikaci trhu.
 
@@ -125,8 +126,8 @@ Po zapnutí měření sledujeme zejména:
 
 ## Nejbližší pořadí práce
 
-1. Dokončit neveřejnou maďarskou vrstvu: důvěryhodnostní stránky, kompletní UI shell, lokální katalog a technickou jazykovou kontrolu.
-2. Zveřejnit Maďarsko až po splnění tržní brány: ověřený lokální produktový katalog, affiliate cesta, mobilní průchod, právní texty, hreflang a měření.
-3. Zlepšovat produktová data a pokrytí kategorií v CZ, SK a PL; denní Ampul synchronizaci zapnout po doplnění feed URL do GitHub Secrets.
+1. Dokončit tržní přepracování prioritních návodů CZ/SK/PL/HU: měnič, kabeláž a jištění, kompresorová chladnička a AGM vs. LiFePO₄. Každý návod musí mít lokální scénář, společný výpočtový základ a kontrolu bottlenecku stávající sestavy.
+2. Dokončit technickou jazykovou kontrolu neveřejné maďarské vrstvy a zveřejnit ji až po splnění tržní brány: lokální produktový katalog, affiliate cesta, mobilní průchod, právní texty, hreflang a měření.
+3. Zlepšovat produktová data a pokrytí kategorií v CZ, SK, PL a HU; synchronizace Ampul používá samostatný feed a měnu každého trhu.
 4. Využít stárnoucí účty MyPower.cz, Caravan24.cz a CamperTeam.pl nejprve pro autentické užitečné odpovědi bez odkazů.
-5. Další trhy připravovat pouze jako výzkumnou frontu; přednost má dokončení a ověření CZ/SK/PL/HU.
+5. Rumunsko ověřit jako pozdější experiment proti existující lokální konkurenci; další trhy zůstávají výzkumnou frontou, dokud CZ/SK/PL/HU nesplní vlastní brány.
