@@ -1027,6 +1027,9 @@ test("product sync accepts optional local partner feeds safely", async () => {
   assert.ok(workflow.includes("AMPUL_CZ_FEED_URL: ${{ secrets.AMPUL_CZ_FEED_URL }}"));
   assert.ok(workflow.includes("AMPUL_SK_FEED_URL: ${{ secrets.AMPUL_SK_FEED_URL }}"));
   assert.ok(workflow.includes("AMPUL_PL_FEED_URL: ${{ secrets.AMPUL_PL_FEED_URL }}"));
+  assert.ok(workflow.includes("AMPUL_HU_FEED_URL: ${{ secrets.AMPUL_HU_FEED_URL }}"));
+  assert.ok(workflow.includes("node scripts/sync-products-hu.mjs"));
+  assert.ok(workflow.includes("data/products-hu.json"));
   assert.ok(app.includes('solarimport: "Solar-import.cz"'));
   assert.ok(app.includes('batterycz: "Battery.cz"'));
   assert.ok(app.includes('ampul_cz: "Ampul.eu"'));
