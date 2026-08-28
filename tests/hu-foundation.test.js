@@ -10,6 +10,7 @@ import {
   hungarianMerchantLabel,
   loadHungarianProductCatalog,
 } from "../src/app-hu.js";
+import { renderHungarianPrivatePage } from "../src/page-hu.js";
 
 test("Hungarian UI copy covers the full calculator and purchase journey", () => {
   assert.match(HU_UI_COPY.hero.title, /akkumulátorra és napelemre/);
@@ -122,3 +123,29 @@ test("Hungarian catalog loader rejects another market or merchant", async () => 
   }));
   assert.deepEqual(valid.products, [{ merchant: "ampul_hu" }]);
 });
+
+test("Hungarian private page template covers the full mobile purchase journey without publishing it", async () => {
+  const [html, browser, sitemap, robots] = await Promise.all([
+    Promise.resolve(renderHungarianPrivatePage()),
+    readFile("src/app-hu-browser.js", "utf8"),
+    readFile("sitemap.xml", "utf8"),
+    readFile("robots.txt", "utf8"),
+  ]);
+  assert.match(html, /^<!doctype html>/);
+  assert.match(html, /<html lang="hu">/);
+  assert.match(html, /name="robots" content="noindex,nofollow,noarchive"/);
+  for (const id of ["setup-form","usage-profiles","appliance-grid","result-verdict","existing-setup-check","product-recommendations","system-diagram","charging-options","roof-fit","installation-plan","power-station-profile"]) {
+    assert.match(html, new RegExp(`id="${id}"`));
+  }
+  assert.match(browser, /buildHungarianApplicationResult/);
+  assert.match(browser, /loadHungarianProductCatalog/);
+  assert.match(browser, /mountExistingSetupCheck/);
+  assert.match(browser, /data-affiliate-click/);
+  assert.doesNotMatch(sitemap, /mypowersetup\.com\/hu\//);
+  assert.doesNotMatch(robots, /\/hu\//);
+  assert.equal(await fileExists("hu/index.html"), false);
+});
+
+async function fileExists(path) {
+  try { await readFile(path); return true; } catch { return false; }
+}
