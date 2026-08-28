@@ -3,6 +3,13 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { HU_UI_COPY } from "../src/ui-copy-hu.js";
 import { HU_TRUST_COPY } from "../src/trust-copy-hu.js";
+import {
+  HU_MARKET,
+  buildHungarianApplicationResult,
+  formatHungarianPrice,
+  hungarianMerchantLabel,
+  loadHungarianProductCatalog,
+} from "../src/app-hu.js";
 
 test("Hungarian UI copy covers the full calculator and purchase journey", () => {
   assert.match(HU_UI_COPY.hero.title, /akkumulátorra és napelemre/);
@@ -55,4 +62,63 @@ test("Hungarian Ampul catalog is private, market-specific and ready for secret-b
   assert.match(sync, /parseProductFeed\(await response\.text\(\), "ampul_hu"\)/);
   assert.match(sync, /"accept-language": "hu-HU,hu;q=0\.9,en;q=0\.6"/);
   assert.doesNotMatch(sync, /id_feed=|token=/);
+});
+
+test("Hungarian headless app shell connects the shared engine to the verified local catalog", async () => {
+  const payload = JSON.parse(await readFile("data/products-hu.json", "utf8"));
+  const catalog = await loadHungarianProductCatalog(async (url, options) => {
+    assert.equal(url, "/data/products-hu.json");
+    assert.equal(options.cache, "no-store");
+    return { ok: true, json: async () => payload };
+  });
+  const output = buildHungarianApplicationResult({
+    appliances: [
+      { id: "fridge", selected: true, hours: 8, quantity: 1 },
+      { id: "coffee", selected: true, hours: 0.15, quantity: 1 },
+    ],
+    autonomyDays: 2,
+    season: "summer",
+    batteryType: "lifepo4",
+    systemVoltage: 12,
+    inverterCableLength: 1.5,
+    driveHoursPerDay: 2,
+    starterVoltage: 12,
+    dcDcInputCableLength: 4,
+    shoreChargeHours: 8,
+  }, catalog);
+
+  assert.equal(HU_MARKET.published, false);
+  assert.equal(HU_MARKET.indexable, false);
+  assert.equal(catalog.products.length, 12);
+  assert.match(output.verdict, /rendszert ajánlunk/);
+  assert.match(output.systemDiagram, /Napelemek/);
+  assert.match(output.systemDiagram, /Tiszta szinuszos inverter/);
+  assert.ok(output.installationPlan.length >= 4);
+  assert.match(output.shareUrl, /^https:\/\/mypowersetup\.com\/hu\/\?/);
+  assert.match(output.shareText, /Napi energiafogyasztás/);
+  assert.ok(output.recommendations.inverter.length >= 1);
+  assert.equal(output.recommendations.inverter[0].product.merchant, "ampul_hu");
+  assert.equal(output.catalogSources.ampul_hu.status, "ok");
+  assert.equal(hungarianMerchantLabel("ampul_hu"), "Ampul.eu");
+  assert.match(formatHungarianPrice(164.59), /164[,.]59/);
+});
+
+test("Hungarian catalog loader rejects another market or merchant", async () => {
+  await assert.rejects(
+    loadHungarianProductCatalog(async () => ({
+      ok: true,
+      json: async () => ({ market: "pl-PL", currency: "EUR", sources: {}, products: [] }),
+    })),
+    /HU_CATALOG_INVALID/
+  );
+  const valid = await loadHungarianProductCatalog(async () => ({
+    ok: true,
+    json: async () => ({
+      market: "hu-HU",
+      currency: "EUR",
+      sources: { ampul_hu: { status: "ok" } },
+      products: [{ merchant: "ampul_hu" }, { merchant: "ampul_pl" }],
+    }),
+  }));
+  assert.deepEqual(valid.products, [{ merchant: "ampul_hu" }]);
 });
