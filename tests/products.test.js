@@ -54,6 +54,28 @@ test("ALLPOWERS PL deeplink rejects other hosts and non-product pages", () => {
   );
 });
 
+test("ALLPOWERS International keeps the exact EU product and Awin tracking", () => {
+  const destination = "https://iallpowers.eu/products/allpowers-r1500-lite-portable-power-station";
+  const affiliate = new URL(buildAffiliateUrl("allpowers_eu", destination));
+  assert.equal(affiliate.searchParams.get("awinmid"), "38934");
+  assert.equal(affiliate.searchParams.get("awinaffid"), "3044971");
+  assert.equal(affiliate.searchParams.get("ued"), destination);
+  assert.throws(() => buildAffiliateUrl("allpowers_eu", "https://iallpowers.eu/collections/portable-power-stations"));
+});
+
+test("classifier recognizes verified English EU solar panels", () => {
+  const panel = normalizeProduct({
+    id: "sp035",
+    name: "ALLPOWERS SP035 Foldable Solar Panel 200W",
+    category: "Solar Panel",
+    url: "https://iallpowers.eu/products/sp035-200w-solar-panel",
+    price: "199 EUR",
+    available: true,
+  }, "allpowers_eu");
+  assert.equal(panel.category, "solar_panel");
+  assert.equal(panel.specs.powerW, 200);
+});
+
 test("Awin deeplink keeps Power Queen US tracking and exact product destination", () => {
   const destination = "https://ipowerqueen.com/products/power-queen-24v-50ah-smart-lifepo4-battery";
   const affiliate = new URL(buildAffiliateUrl("powerqueen_us", destination));
