@@ -21,6 +21,7 @@ export const MARKET_CONTENT = Object.freeze({
       { label: "Práce z obytné dodávky na českém stání", simultaneousW: 120, voltage: 12, practicalW: "300 W s čistou sinusovkou" },
       { label: "Kávovar mimo kemp", simultaneousW: 1290, voltage: 12, practicalW: "2 000 W, jen pokud BMS a DC část zvládnou přibližně 150 A" },
     ],
+    wiringScenario: { label: "Kávovar mimo kemp: kontrola 2 000W větve", inverterWatts: 2000, voltage: 12, oneWayMeters: 1, practicalMm2: "25 mm² jen podle úbytku; zatížitelnost může vyžadovat více" },
   },
   sk: {
     locale: "sk-SK",
@@ -41,6 +42,7 @@ export const MARKET_CONTENT = Object.freeze({
       { label: "Práca z obytnej dodávky pod Tatrami", simultaneousW: 450, voltage: 12, practicalW: "600–800 W s čistou sínusoidou" },
       { label: "Kávovar na státí bez prípojky", simultaneousW: 1200, voltage: 12, practicalW: "1 500 W, ak batéria a BMS zvládnu približne 139 A" },
     ],
+    wiringScenario: { label: "Kávovar na státí: kontrola 1 500 W vetvy", inverterWatts: 1500, voltage: 12, oneWayMeters: 1.5, practicalMm2: "25 mm² iba podľa úbytku; zaťažiteľnosť môže vyžadovať viac" },
   },
   pl: {
     locale: "pl-PL",
@@ -61,6 +63,7 @@ export const MARKET_CONTENT = Object.freeze({
       { label: "Praca z kampera nad Bałtykiem", simultaneousW: 140, voltage: 12, practicalW: "300 W z czystą sinusoidą" },
       { label: "Płyta grzejna na postoju bez 230 V", simultaneousW: 1590, voltage: 12, practicalW: "2 000 W, jeśli BMS i instalacja DC wytrzymają około 184 A" },
     ],
+    wiringScenario: { label: "Płyta grzejna: kontrola gałęzi 2 000 W", inverterWatts: 2000, voltage: 12, oneWayMeters: 1.5, practicalMm2: "35 mm² tylko według spadku; obciążalność może wymagać więcej" },
   },
   hu: {
     locale: "hu-HU",
@@ -81,6 +84,7 @@ export const MARKET_CONTENT = Object.freeze({
       { label: "Mobil munka a Balatonnál", simultaneousW: 140, voltage: 12, practicalW: "300 W-os tiszta szinuszos inverter" },
       { label: "Hajszárító egy hálózat nélküli megállón", simultaneousW: 1200, voltage: 12, practicalW: "1 500 W, ha a BMS és a DC-oldal elvisel körülbelül 139 A-t" },
     ],
+    wiringScenario: { label: "Hajszárító: az 1500 W-os ág ellenőrzése", inverterWatts: 1500, voltage: 12, oneWayMeters: 1.5, practicalMm2: "25 mm² csak feszültségesés alapján; a terhelhetőség többet is igényelhet" },
   },
 });
 
