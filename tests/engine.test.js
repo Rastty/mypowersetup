@@ -120,7 +120,28 @@ test("returns Polish result labels and warnings without changing the calculation
   assert.ok(result.warnings.some((warning) => /zalecamy system 12 V/.test(warning)));
 });
 
+test("returns Hungarian result labels and warnings without changing the calculation", () => {
+  const result = calculateSetup({
+    locale: "hu",
+    appliances: [
+      { selected: true, name: "Vízszivattyú", watts: 60, hours: 1, quantity: 1, ac: true, surge: 2 }
+    ],
+    autonomyDays: 1,
+    season: "winter",
+    batteryType: "lead",
+    systemVoltage: "24"
+  });
+
+  assert.equal(result.seasonLabel, "Tél");
+  assert.equal(result.locale, "hu");
+  assert.equal(result.batteryLabel, "AGM / ólom-savas");
+  assert.ok(result.warnings.some((warning) => /Télen nagy termelési ingadozásokkal/.test(warning)));
+  assert.ok(result.warnings.some((warning) => /motoros fogyasztók/.test(warning)));
+  assert.ok(result.warnings.some((warning) => /12 V-os feszültséget ajánlunk/.test(warning)));
+});
+
 test("missing appliance error follows the requested locale", () => {
   assert.throws(() => calculateSetup({ locale: "sk", appliances: [] }), /Vyberte aspoň jeden spotrebič/);
   assert.throws(() => calculateSetup({ locale: "pl", appliances: [] }), /Wybierz co najmniej jedno urządzenie/);
+  assert.throws(() => calculateSetup({ locale: "hu", appliances: [] }), /Válassz legalább egy fogyasztót/);
 });
