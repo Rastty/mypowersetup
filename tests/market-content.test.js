@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { MARKET_CONTENT, marketSolarScenarios, requiredBatteryAh, requiredSolarWp } from "../src/market-content.js";
+import { MARKET_CONTENT, marketSolarScenarios, requiredBatteryAh, requiredChargingAmps, requiredSolarWp } from "../src/market-content.js";
 import { renderHungarianGuide } from "../src/guides-hu.js";
 
 const solarPages = {
@@ -24,6 +24,13 @@ test("market battery scenarios use the shared reserve and chemistry limits", () 
   assert.equal(requiredBatteryAh(900, 2, "lifepo4", 12), 216);
 });
 
+test("market charging scenarios use the shared 90 percent efficiency", () => {
+  assert.equal(requiredChargingAmps(500, 2.5), 19);
+  assert.equal(requiredChargingAmps(1000, 10), 10);
+  assert.equal(requiredChargingAmps(1200, 10), 12);
+  assert.equal(requiredChargingAmps(500, 1.5), 31);
+});
+
 test("every localization has distinct terminology and two quantified local scenarios", () => {
   assert.deepEqual(Object.keys(MARKET_CONTENT), ["cs", "sk", "pl", "hu"]);
   const labels = [];
@@ -32,12 +39,29 @@ test("every localization has distinct terminology and two quantified local scena
     const scenarios = marketSolarScenarios(locale);
     assert.equal(scenarios.length, 2);
     assert.equal(market.batteryScenarios.length, 2);
+    assert.ok(market.chargingScenarios.dcDc.label);
+    assert.ok(market.chargingScenarios.shore.label);
     for (const scenario of scenarios) {
       assert.ok(scenario.requiredWp >= 150);
       labels.push(scenario.label);
     }
   }
   assert.equal(new Set(labels).size, labels.length, "local scenarios must not be translated duplicates");
+});
+
+test("charging guides contain distinct local driving and campsite decisions", async () => {
+  const files = {
+    cs: ["pruvodce/jak-vybrat-dc-dc-nabijecku/index.html", "pruvodce/jak-vybrat-nabijecku-230-v/index.html"],
+    sk: ["sk/sprievodca/ako-vybrat-dc-dc-nabijacku/index.html", "sk/sprievodca/ako-vybrat-nabijacku-230-v/index.html"],
+    pl: ["pl/poradnik/jak-dobrac-ladowarke-dc-dc/index.html", "pl/poradnik/jak-dobrac-ladowarke-230-v/index.html"],
+  };
+  for (const [locale, [dcFile, shoreFile]] of Object.entries(files)) {
+    const [dcHtml, shoreHtml] = await Promise.all([readFile(dcFile, "utf8"), readFile(shoreFile, "utf8")]);
+    assert.ok(dcHtml.includes(MARKET_CONTENT[locale].chargingScenarios.dcDc.label));
+    assert.ok(shoreHtml.includes(MARKET_CONTENT[locale].chargingScenarios.shore.label));
+  }
+  assert.ok(renderHungarianGuide("dcDc").includes(MARKET_CONTENT.hu.chargingScenarios.dcDc.label));
+  assert.ok(renderHungarianGuide("shore").includes(MARKET_CONTENT.hu.chargingScenarios.shore.label));
 });
 
 test("battery guides contain distinct local scenarios and an existing-setup decision", async () => {
