@@ -2,8 +2,8 @@ import { assessExpansionMarketPublication } from "./expansion-market-publication
 
 export const SI_VERIFIED_FOUNDATION = Object.freeze({
   localizedCalculator: true,
-  localIntentResearch: false,
-  contentCluster: false,
+  localIntentResearch: true,
+  contentCluster: true,
   affiliateValidation: false,
   mobile390x844: false,
   analyticsParity: true,
