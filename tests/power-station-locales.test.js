@@ -42,14 +42,36 @@ for (const guide of guides) {
   });
 }
 
-test("public sitemap and guide hubs expose both new routes", async () => {
-  const [sitemap, czHub, skHub] = await Promise.all([
+test("all three public power station guides expose reciprocal hreflang", async () => {
+  const paths = [
+    "pruvodce/power-station-nebo-pevna-instalace-karavan/index.html",
+    "sk/sprievodca/power-station-alebo-pevna-instalacia-karavan/index.html",
+    "pl/poradnik/power-station-czy-stala-instalacja-kamper/index.html",
+  ];
+  for (const path of paths) {
+    const html = await readFile(path, "utf8");
+    assert.match(html, /hreflang="cs-CZ"/);
+    assert.match(html, /hreflang="sk-SK"/);
+    assert.match(html, /hreflang="pl-PL"/);
+    assert.match(html, /hreflang="x-default"/);
+  }
+});
+
+test("public sitemap, hubs and llms discovery expose the new cluster", async () => {
+  const [sitemap, czHub, skHub, llms] = await Promise.all([
     readFile("sitemap.xml", "utf8"),
     readFile("pruvodce/index.html", "utf8"),
     readFile("sk/sprievodca/index.html", "utf8"),
+    readFile("llms.txt", "utf8"),
   ]);
-  assert.match(sitemap, /pruvodce\/power-station-nebo-pevna-instalace-karavan\//);
-  assert.match(sitemap, /sk\/sprievodca\/power-station-alebo-pevna-instalacia-karavan\//);
+  for (const route of [
+    "pruvodce/power-station-nebo-pevna-instalace-karavan/",
+    "sk/sprievodca/power-station-alebo-pevna-instalacia-karavan/",
+    "pl/poradnik/power-station-czy-stala-instalacja-kamper/",
+  ]) {
+    assert.ok(sitemap.includes(route));
+    assert.ok(llms.includes(route));
+  }
   assert.match(czHub, /power-station-nebo-pevna-instalace-karavan/);
   assert.match(skHub, /power-station-alebo-pevna-instalacia-karavan/);
 });
