@@ -48,6 +48,8 @@ export function publicizeHungarianHtml(html, route, { home = false } = {}) {
     for (const [language, href] of homeAlternates) {
       if (!output.includes(`hreflang="${language}"`)) additions.push(`<link rel="alternate" hreflang="${language}" href="${href}">`);
     }
+    if (!output.includes('property="og:title"')) additions.push(...homeSocialMetadata(output, canonicalUrl));
+    if (!output.includes('"@id":"https://mypowersetup.com/hu/#calculator"')) additions.push(homeStructuredData());
   }
 
   if (additions.length) output = output.replace("</head>", `  ${additions.join("\n  ")}\n</head>`);
@@ -70,4 +72,62 @@ export function addHungarianRoutesToSitemap(xml) {
     .map(({ route, changefreq, priority }) => `  <url><loc>https://mypowersetup.com${route}</loc><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`);
   if (!additions.length) return xml;
   return xml.replace("</urlset>", `${additions.join("\n")}\n</urlset>`);
+}
+
+function homeSocialMetadata(html, canonicalUrl) {
+  const title = html.match(/<title>([^<]+)<\/title>/)?.[1] || "Lakóautó akkumulátor- és napelem-kalkulátor | MyPowerSetup";
+  const description = html.match(/<meta name="description" content="([^"]+)">/)?.[1] || "Lakóautó akkumulátor- és napelem-kalkulátor átlátható számítással.";
+  return [
+    `<meta property="og:title" content="${title}">`,
+    `<meta property="og:description" content="${description}">`,
+    '<meta property="og:type" content="website">',
+    `<meta property="og:url" content="${canonicalUrl}">`,
+    '<meta property="og:site_name" content="MyPowerSetup">',
+    '<meta property="og:locale" content="hu_HU">',
+    '<meta property="og:image" content="https://mypowersetup.com/social-card.png">',
+    '<meta property="og:image:width" content="1200">',
+    '<meta property="og:image:height" content="630">',
+    '<meta name="twitter:card" content="summary_large_image">',
+  ];
+}
+
+function homeStructuredData() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://mypowersetup.com/hu/#website",
+        url: "https://mypowersetup.com/hu/",
+        name: "MyPowerSetup",
+        inLanguage: "hu-HU",
+        publisher: { "@id": "https://mypowersetup.com/hu/#organization" },
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://mypowersetup.com/hu/#calculator",
+        name: "MyPowerSetup lakóautó energia-kalkulátor",
+        url: "https://mypowersetup.com/hu/#kalkulator",
+        applicationCategory: "UtilitiesApplication",
+        operatingSystem: "Web",
+        isAccessibleForFree: true,
+        inLanguage: "hu-HU",
+        creator: { "@id": "https://mypowersetup.com/hu/a-projektrol/#petr-galik" },
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://mypowersetup.com/hu/#organization",
+        name: "MyPowerSetup",
+        url: "https://mypowersetup.com/hu/",
+      },
+      {
+        "@type": "Person",
+        "@id": "https://mypowersetup.com/hu/a-projektrol/#petr-galik",
+        name: "Petr Gálík",
+        url: "https://mypowersetup.com/hu/a-projektrol/",
+        knowsAbout: ["lakóautó elektromos rendszerek", "akkumulátorméretezés", "napelemes rendszerek"],
+      },
+    ],
+  };
+  return `<script type="application/ld+json">${JSON.stringify(schema)}</script>`;
 }
