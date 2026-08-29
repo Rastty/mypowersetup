@@ -5,6 +5,7 @@ import { renderHungarianPrivatePage } from "../src/page-hu.js";
 import { HU_TRUST_ROUTES, renderHungarianTrustPage } from "../src/trust-pages-hu.js";
 import { HU_GUIDE_ROUTES, renderHungarianGuide } from "../src/guides-hu.js";
 import { HU_SYSTEM_GUIDE_ROUTE, renderHungarianSystemGuide } from "../src/system-guide-hu.js";
+import { HU_SYSTEM_VOLTAGE_GUIDE_ROUTE, renderHungarianSystemVoltageGuide } from "../src/system-voltage-guide-hu.js";
 import { injectHungarianSystemGuideLink } from "../src/system-guide-link-hu.js";
 import { requireHungarianLaunchReady } from "../src/readiness-hu.js";
 import {
@@ -71,6 +72,10 @@ function renderEntry(entry) {
   if (entry.source === "system-guide") {
     if (entry.route !== HU_SYSTEM_GUIDE_ROUTE) throw new Error(`HU_SYSTEM_GUIDE_PUBLICATION_UNKNOWN:${entry.route}`);
     return renderHungarianSystemGuide();
+  }
+  if (entry.source === "system-voltage-guide") {
+    if (entry.route !== HU_SYSTEM_VOLTAGE_GUIDE_ROUTE) throw new Error(`HU_SYSTEM_VOLTAGE_GUIDE_PUBLICATION_UNKNOWN:${entry.route}`);
+    return renderHungarianSystemVoltageGuide();
   }
   throw new Error(`HU_PUBLICATION_SOURCE_UNKNOWN:${entry.source}`);
 }
