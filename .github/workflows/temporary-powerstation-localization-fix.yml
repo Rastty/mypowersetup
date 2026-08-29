@@ -1,0 +1,73 @@
+name: Temporary power station localization patch
+
+on:
+  push:
+    branches: [fix/cz-sk-powerstation-copy]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: fix/cz-sk-powerstation-copy
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - name: Apply focused localization patch
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = 'src/products.js';
+          let source = fs.readFileSync(path, 'utf8');
+
+          const replacements = [
+            [
+              '    shoreChargerReason: (setup) => `Výstup pokrývá doporučených ${setup.charging.shore.suggestedCurrentAmps} A z 230 V`,\n    systemVoltage: "napětí sestavy",',
+              '    shoreChargerReason: (setup) => `Výstup pokrývá doporučených ${setup.charging.shore.suggestedCurrentAmps} A z 230 V`,\n    powerStationReason: () => "Kapacita, AC výstup, FV vstup a 12 V výstup splňují vypočtený profil",\n    powerStationAt12V: "při 12 V",\n    systemVoltage: "napětí sestavy",'
+            ],
+            [
+              '      shore_charger: "Ověřte napětí, chemii baterie, nabíjecí profil, BMS, kabeláž a jištění."\n    }',
+              '      shore_charger: "Ověřte napětí, chemii baterie, nabíjecí profil, BMS, kabeláž a jištění.",\n      power_station: "Ověřte rozběhový výkon spotřebičů, rozsah Voc panelů, konektory, souběžný provoz výstupů a aktuální dostupnost."\n    }'
+            ],
+            [
+              '    shoreChargerReason: (setup) => `Výstup pokrýva odporúčaných ${setup.charging.shore.suggestedCurrentAmps} A z 230 V`,\n    systemVoltage: "napätie zostavy",',
+              '    shoreChargerReason: (setup) => `Výstup pokrýva odporúčaných ${setup.charging.shore.suggestedCurrentAmps} A z 230 V`,\n    powerStationReason: () => "Kapacita, AC výstup, FV vstup a 12 V výstup spĺňajú vypočítaný profil",\n    powerStationAt12V: "pri 12 V",\n    systemVoltage: "napätie zostavy",'
+            ],
+            [
+              '      shore_charger: "Overte napätie, chémiu batérie, nabíjací profil, BMS, kabeláž a istenie."\n    }',
+              '      shore_charger: "Overte napätie, chémiu batérie, nabíjací profil, BMS, kabeláž a istenie.",\n      power_station: "Overte rozbehový výkon spotrebičov, rozsah Voc panelov, konektory, súbežnú prevádzku výstupov a aktuálnu dostupnosť."\n    }'
+            ],
+            [
+              '    powerStationReason: (profile) => `Pojemność, wyjście AC, wejście PV i wyjście 12 V spełniają obliczony profil`,\n    systemVoltage: "napięcie instalacji",',
+              '    powerStationReason: (profile) => `Pojemność, wyjście AC, wejście PV i wyjście 12 V spełniają obliczony profil`,\n    powerStationAt12V: "przy 12 V",\n    systemVoltage: "napięcie instalacji",'
+            ],
+            [
+              '    powerStationReason: () => "A kapacitás, az AC kimenet, a PV bemenet és a 12 V-os kimenet megfelel a számított profilnak",\n    systemVoltage: "rendszerfeszültség",',
+              '    powerStationReason: () => "A kapacitás, az AC kimenet, a PV bemenet és a 12 V-os kimenet megfelel a számított profilnak",\n    powerStationAt12V: "12 V-on",\n    systemVoltage: "rendszerfeszültség",'
+            ],
+            [
+              '      `${product.specs.dcOutputA} A ≥ ${profile.dcOutputAmpsAt12V} A przy 12 V`',
+              '      `${product.specs.dcOutputA} A ≥ ${profile.dcOutputAmpsAt12V} A ${text.powerStationAt12V}`'
+            ]
+          ];
+
+          for (const [before, after] of replacements) {
+            if (!source.includes(before)) throw new Error(`Expected patch anchor not found: ${before.slice(0, 80)}`);
+            source = source.replace(before, after);
+          }
+          fs.writeFileSync(path, source);
+          NODE
+      - run: npm test
+      - run: node --check src/products.js
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/products.js
+          git diff --cached --quiet || git commit -m "Fix localized power station recommendations"
+          git push origin HEAD:fix/cz-sk-powerstation-copy
