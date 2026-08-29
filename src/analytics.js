@@ -1,4 +1,5 @@
 import { buildAnalyticsContext } from "./analytics-context.js";
+import { classifyGuideCalculatorLink, classifyGuideClickZone } from "./analytics-links.js";
 
 const MEASUREMENT_ID = "G-TDNRBM2V2J";
 const CONSENT_KEY = "mypowersetup_analytics_consent";
@@ -135,16 +136,38 @@ function openSettings() {
   document.querySelector("[data-analytics-consent] button")?.focus();
 }
 
+function trackGuideCalculatorClick(event) {
+  const link = event.target.closest?.("a[href]");
+  if (!link) return;
+  const context = currentContext();
+  if (context.page_type !== "guide") return;
+
+  const destination = classifyGuideCalculatorLink(link.getAttribute("href"), { origin: window.location.origin });
+  if (!destination) return;
+
+  track("guide_to_calculator_click", {
+    ...destination,
+    source_zone: classifyGuideClickZone({
+      inPrimaryCta: Boolean(link.closest(".cta")),
+      inRelated: Boolean(link.closest(".related")),
+      inHeader: Boolean(link.closest(".article-header")),
+    }),
+  });
+}
+
 function init() {
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
   stylesheet.href = "/analytics.css?v=20260824-1";
   document.head.append(stylesheet);
   document.addEventListener("click", (event) => {
-    const trigger = event.target.closest("[data-analytics-settings]");
-    if (!trigger) return;
-    event.preventDefault();
-    openSettings();
+    const trigger = event.target.closest?.("[data-analytics-settings]");
+    if (trigger) {
+      event.preventDefault();
+      openSettings();
+      return;
+    }
+    trackGuideCalculatorClick(event);
   });
   if (choice === "granted") loadGoogleTag();
   else if (choice === null) renderDialog();
