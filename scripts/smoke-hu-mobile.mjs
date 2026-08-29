@@ -168,11 +168,12 @@ try {
     horizontalOverflow: false,
   }, null, 2));
 } finally {
+  if (cdp) await cdp.send("Browser.close").catch(() => {});
   await cdp?.close().catch(() => {});
   preview.kill("SIGTERM");
-  chrome.kill("SIGTERM");
+  if (chrome.exitCode === null && chrome.signalCode === null) chrome.kill("SIGTERM");
   await Promise.allSettled([waitForExit(preview), waitForExit(chrome)]);
-  await rm(profileDir, { recursive: true, force: true });
+  await cleanupProfile(profileDir);
 }
 
 function findChrome() {
@@ -193,6 +194,14 @@ function captureDiagnostics(child) {
   child.stdout?.on("data", append);
   child.stderr?.on("data", append);
   return () => output.trim();
+}
+
+async function cleanupProfile(directory) {
+  try {
+    await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+  } catch (error) {
+    console.warn(`HU mobile smoke passed; temporary Chrome profile cleanup was skipped: ${error?.code || error?.message || error}`);
+  }
 }
 
 async function waitForHttp(url, child, diagnostics, label, attempts = 60) {
