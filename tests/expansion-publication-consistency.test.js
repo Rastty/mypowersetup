@@ -15,9 +15,9 @@ for (const [name, assess] of CASES) {
     const report = assess();
     assert.equal(report.publicationReady, false);
     assert.deepEqual(report.blockers, ["nativeLanguageReview"]);
-    const completed = Object.values(report.gates).filter(Boolean).length;
+    const completed = Object.values(report.checks).filter(Boolean).length;
     assert.equal(completed, 7);
-    assert.equal(Object.keys(report.gates).length, 8);
+    assert.equal(Object.keys(report.checks).length, 8);
   });
 }
 
