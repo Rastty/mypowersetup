@@ -116,6 +116,8 @@ const PRODUCT_TEXT = {
     controllerReason: (setup) => `Proud splňuje požadovaných ${setup.controllerAmps} A`,
     dcChargerReason: (setup) => `Výstup pokrývá doporučených ${setup.charging.dcDc.suggestedCurrentAmps} A při jízdě`,
     shoreChargerReason: (setup) => `Výstup pokrývá doporučených ${setup.charging.shore.suggestedCurrentAmps} A z 230 V`,
+    powerStationReason: () => "Kapacita, AC výstup, FV vstup a 12 V výstup splňují vypočtený profil",
+    powerStationAt12V: "při 12 V",
     systemVoltage: "napětí sestavy",
     requirement: "Požadavek sestavy",
     batteryLead: "Olověná technologie",
@@ -128,7 +130,8 @@ const PRODUCT_TEXT = {
       inverter: "Ověřte špičkový výkon, čistý sinus, kabeláž a vlastní spotřebu.",
       controller: "Ověřte maximální Voc, Isc, FV výkon a profil baterie v datasheetu.",
       dc_charger: "Ověřte vstupní i výstupní napětí, podporu chytrého alternátoru, BMS, kabeláž, jištění a chlazení.",
-      shore_charger: "Ověřte napětí, chemii baterie, nabíjecí profil, BMS, kabeláž a jištění."
+      shore_charger: "Ověřte napětí, chemii baterie, nabíjecí profil, BMS, kabeláž a jištění.",
+      power_station: "Ověřte rozběhový výkon spotřebičů, rozsah Voc panelů, konektory, souběžný provoz výstupů a aktuální dostupnost."
     }
   },
   sk: {
@@ -138,6 +141,8 @@ const PRODUCT_TEXT = {
     controllerReason: (setup) => `Prúd spĺňa požadovaných ${setup.controllerAmps} A`,
     dcChargerReason: (setup) => `Výstup pokrýva odporúčaných ${setup.charging.dcDc.suggestedCurrentAmps} A počas jazdy`,
     shoreChargerReason: (setup) => `Výstup pokrýva odporúčaných ${setup.charging.shore.suggestedCurrentAmps} A z 230 V`,
+    powerStationReason: () => "Kapacita, AC výstup, FV vstup a 12 V výstup spĺňajú vypočítaný profil",
+    powerStationAt12V: "pri 12 V",
     systemVoltage: "napätie zostavy",
     requirement: "Požiadavka zostavy",
     batteryLead: "Olovená technológia",
@@ -150,7 +155,8 @@ const PRODUCT_TEXT = {
       inverter: "Overte špičkový výkon, čistý sínus, kabeláž a vlastnú spotrebu.",
       controller: "Overte maximálne Voc, Isc, FV výkon a profil batérie v datasheete.",
       dc_charger: "Overte vstupné aj výstupné napätie, podporu inteligentného alternátora, BMS, kabeláž, istenie a chladenie.",
-      shore_charger: "Overte napätie, chémiu batérie, nabíjací profil, BMS, kabeláž a istenie."
+      shore_charger: "Overte napätie, chémiu batérie, nabíjací profil, BMS, kabeláž a istenie.",
+      power_station: "Overte rozbehový výkon spotrebičov, rozsah Voc panelov, konektory, súbežnú prevádzku výstupov a aktuálnu dostupnosť."
     }
   },
   pl: {
@@ -161,6 +167,7 @@ const PRODUCT_TEXT = {
     dcChargerReason: (setup) => `Wyjście pokrywa zalecane ${setup.charging.dcDc.suggestedCurrentAmps} A podczas jazdy`,
     shoreChargerReason: (setup) => `Wyjście pokrywa zalecane ${setup.charging.shore.suggestedCurrentAmps} A z 230 V`,
     powerStationReason: (profile) => `Pojemność, wyjście AC, wejście PV i wyjście 12 V spełniają obliczony profil`,
+    powerStationAt12V: "przy 12 V",
     systemVoltage: "napięcie instalacji",
     requirement: "Wymaganie instalacji",
     batteryLead: "Technologia ołowiowa",
@@ -185,6 +192,7 @@ const PRODUCT_TEXT = {
     dcChargerReason: (setup) => `A kimenet menet közben biztosítja az ajánlott ${setup.charging.dcDc.suggestedCurrentAmps} A-t`,
     shoreChargerReason: (setup) => `A kimenet 230 V-os hálózatról biztosítja az ajánlott ${setup.charging.shore.suggestedCurrentAmps} A-t`,
     powerStationReason: () => "A kapacitás, az AC kimenet, a PV bemenet és a 12 V-os kimenet megfelel a számított profilnak",
+    powerStationAt12V: "12 V-on",
     systemVoltage: "rendszerfeszültség",
     requirement: "A rendszer követelménye",
     batteryLead: "Ólomsavas technológia",
@@ -538,7 +546,7 @@ function recommendationChecks(product, setup) {
       `${product.specs.capacityWh} Wh ≥ ${profile.capacityWh} Wh`,
       `${product.specs.powerW} W ≥ ${profile.acOutputWatts} W AC`,
       `${product.specs.solarInputW} W ≥ ${profile.solarInputWatts} W PV`,
-      `${product.specs.dcOutputA} A ≥ ${profile.dcOutputAmpsAt12V} A przy 12 V`
+      `${product.specs.dcOutputA} A ≥ ${profile.dcOutputAmpsAt12V} A ${text.powerStationAt12V}`
     ];
   }
   return [
