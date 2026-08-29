@@ -5,6 +5,7 @@ import { validateRomaniaCatalog, buildRomaniaRecommendations, parseRomaniaAffili
 import { readFile } from "node:fs/promises";
 
 const catalog = JSON.parse(await readFile(new URL("../data/products-ro.json", import.meta.url), "utf8"));
+const analyticsSource = await readFile(new URL("../src/analytics.js", import.meta.url), "utf8");
 
 test("Romania has four trust pages and ten private guides", () => {
   assert.equal(RO_PRIVATE_CONTENT.trust.length, 4);
@@ -21,6 +22,11 @@ test("Romanian guide pages point back to calculator", () => {
   const html = renderRomaniaPrivateContentPage("/ro/ghiduri/capacitate-baterie-autorulota/");
   assert.match(html, /\/ro\/#calculator-preview/);
   assert.match(html, /Alte ghiduri/);
+});
+
+test("Romanian analytics consent points to the dedicated privacy page", () => {
+  assert.match(analyticsSource, /ro:\s*\{[^\n]*detailsUrl:\s*"\/ro\/confidentialitate\/"/);
+  assert.doesNotMatch(analyticsSource, /ro:\s*\{[^\n]*detailsUrl:\s*"\/ro\/"/);
 });
 
 test("Romania affiliate catalog is exact-product and fail closed", () => {
