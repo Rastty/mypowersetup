@@ -1,0 +1,58 @@
+name: Diagnose Reslshop feed
+
+on:
+  push:
+    branches: [diagnostic/reslshop-feed]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - name: Probe feed without exposing its URL or contents
+        env:
+          RESLSHOP_FEED_URL: ${{ secrets.RESLSHOP_FEED_URL }}
+        run: |
+          node <<'NODE'
+          const url = process.env.RESLSHOP_FEED_URL;
+          if (!url) throw new Error('RESLSHOP_FEED_URL secret missing');
+          const origin = new URL(url).origin;
+          const profiles = [
+            ['minimal', {}],
+            ['browser-no-referer', {
+              'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36',
+              'accept': 'application/xml,text/xml,application/rss+xml,text/plain;q=0.9,*/*;q=0.8',
+              'accept-language': 'cs-CZ,cs;q=0.9,en;q=0.7'
+            }],
+            ['browser-with-referer', {
+              'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36',
+              'accept': 'application/xml,text/xml,application/rss+xml,text/plain;q=0.9,*/*;q=0.8',
+              'accept-language': 'cs-CZ,cs;q=0.9,en;q=0.7',
+              'cache-control': 'no-cache',
+              'referer': origin + '/'
+            }],
+            ['feed-reader', {
+              'user-agent': 'MyPowerSetupFeedReader/1.0 (+https://mypowersetup.com/)',
+              'accept': 'application/xml,text/xml;q=0.9,*/*;q=0.1'
+            }]
+          ];
+          for (const [name, headers] of profiles) {
+            try {
+              const response = await fetch(url, { redirect: 'follow', headers, signal: AbortSignal.timeout(15000) });
+              const type = response.headers.get('content-type') || '';
+              const length = response.headers.get('content-length') || 'unknown';
+              const text = response.ok ? await response.text() : '';
+              const looksXml = response.ok && /<(?:SHOP|SHOPITEM|rss|feed|products?)\b/i.test(text.slice(0, 5000));
+              console.log(JSON.stringify({ profile: name, status: response.status, ok: response.ok, contentType: type, contentLength: length, looksXml }));
+            } catch (error) {
+              console.log(JSON.stringify({ profile: name, error: error.name || 'Error', message: String(error.message || error).slice(0, 160) }));
+            }
+          }
+          NODE
