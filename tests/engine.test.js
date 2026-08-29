@@ -140,8 +140,41 @@ test("returns Hungarian result labels and warnings without changing the calculat
   assert.ok(result.warnings.some((warning) => /12 V-os feszültséget ajánlunk/.test(warning)));
 });
 
+test("RO PT SI localized engine output keeps the same deterministic sizing", () => {
+  const fixture = {
+    appliances: [{ selected: true, name: "Pump", watts: 60, hours: 1, quantity: 1, ac: true, surge: 2 }],
+    autonomyDays: 1,
+    season: "winter",
+    batteryType: "lead",
+    systemVoltage: "24"
+  };
+  const ro = calculateSetup({ ...fixture, locale: "ro" });
+  const pt = calculateSetup({ ...fixture, locale: "pt" });
+  const si = calculateSetup({ ...fixture, locale: "si" });
+
+  for (const result of [ro, pt, si]) {
+    assert.equal(result.dailyWh, 60);
+    assert.equal(result.batteryWh, 200);
+    assert.equal(result.solarWatts, 100);
+    assert.equal(result.inverterWatts, 200);
+    assert.equal(result.systemVoltage, 24);
+  }
+  assert.equal(ro.seasonLabel, "Iarnă");
+  assert.equal(ro.batteryLabel, "AGM / plumb-acid");
+  assert.ok(ro.warnings.some((warning) => /producția solară/.test(warning)));
+  assert.equal(pt.seasonLabel, "Inverno");
+  assert.equal(pt.batteryLabel, "AGM / chumbo-ácido");
+  assert.ok(pt.warnings.some((warning) => /produção solar/.test(warning)));
+  assert.equal(si.seasonLabel, "Zima");
+  assert.equal(si.batteryLabel, "AGM / svinčeno-kislinski");
+  assert.ok(si.warnings.some((warning) => /sončna proizvodnja/.test(warning)));
+});
+
 test("missing appliance error follows the requested locale", () => {
   assert.throws(() => calculateSetup({ locale: "sk", appliances: [] }), /Vyberte aspoň jeden spotrebič/);
   assert.throws(() => calculateSetup({ locale: "pl", appliances: [] }), /Wybierz co najmniej jedno urządzenie/);
   assert.throws(() => calculateSetup({ locale: "hu", appliances: [] }), /Válassz legalább egy fogyasztót/);
+  assert.throws(() => calculateSetup({ locale: "ro", appliances: [] }), /Selectează cel puțin un consumator/);
+  assert.throws(() => calculateSetup({ locale: "pt", appliances: [] }), /Seleciona pelo menos um equipamento/);
+  assert.throws(() => calculateSetup({ locale: "si", appliances: [] }), /Izberi vsaj en porabnik/);
 });
