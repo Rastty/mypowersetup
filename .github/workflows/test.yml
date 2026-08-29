@@ -29,9 +29,11 @@ jobs:
       - run: node --check scripts/submit-indexnow.mjs
       - run: node --check scripts/smoke-public-mobile.mjs
       - run: node --check scripts/smoke-hu-mobile.mjs
+      - run: node --check scripts/smoke-pt-mobile.mjs
       - run: npm run health:markets:safe
       - run: npm run preaudit:ready
       - run: npm run indexnow:check
       - run: google-chrome --version
       - run: npm run smoke:public:mobile
       - run: npm run smoke:hu:mobile
+      - run: npm run smoke:pt:mobile
