@@ -21,6 +21,23 @@ export function renderPrivateMarketSeedPage(seed) {
   const copy = seed.copy;
   const calculator = CALCULATOR_COPY[seed.key];
   if (!calculator) throw new Error(`PRIVATE_CALCULATOR_COPY_MISSING:${seed.key}`);
+
+  const stepNavigationHtml = calculator.steps
+    .map((label, index) => `<button class="step${index === 0 ? " is-active" : ""}" type="button" data-step-target="${index + 1}"${index ? " disabled" : ""}><span>${index + 1}</span><small>${escapeHtml(label)}</small></button>${index < 2 ? "<i></i>" : ""}`)
+    .join("");
+
+  const autonomyChoicesHtml = [1, 2, 3, 5]
+    .map((days) => `<label class="choice-card"><input type="radio" name="autonomyDays" value="${days}"${days === 2 ? " checked" : ""}><span><strong>${days}</strong></span></label>`)
+    .join("");
+
+  const seasonChoicesHtml = ["summer", "shoulder", "winter"]
+    .map((season, index) => `<label class="choice-card"><input type="radio" name="season" value="${season}"${index === 0 ? " checked" : ""}><span><strong>${escapeHtml(calculator.seasons[index])}</strong></span></label>`)
+    .join("");
+
+  const applianceChoicesHtml = APPLIANCES
+    .map((item, index) => `<label class="choice-card"><input type="checkbox" data-appliance data-name="${escapeHtml(calculator.appliances[index])}" data-watts="${item.watts}" data-hours="${item.hours}" data-ac="${item.ac}" data-surge="${item.surge}"${index < 3 ? " checked" : ""}><span><strong>${escapeHtml(calculator.appliances[index])}</strong><small>${item.watts} W · ${item.hours} h/day</small></span></label>`)
+    .join("");
+
   return `<!doctype html>
 <html lang="${escapeHtml(seed.locale.split("-")[0])}">
 <head>
@@ -38,11 +55,11 @@ export function renderPrivateMarketSeedPage(seed) {
     <section class="calculator-section" id="calculator-preview" data-expansion-calculator data-market="${escapeHtml(seed.key)}" aria-labelledby="calculator-title">
       <div class="section-heading"><p class="eyebrow">${escapeHtml(copy.privateNote)}</p><h2 id="calculator-title">${escapeHtml(calculator.title)}</h2><p>${escapeHtml(calculator.intro)}</p></div>
       <div class="calculator-shell">
-        <nav class="steps" aria-label="Calculator steps">${calculator.steps.map((label, index) => `<button class="step${index === 0 ? " is-active" : ""}" type="button" data-step-target="${index + 1}"${index ? " disabled" : ""}><span>${index + 1}</span><small>${escapeHtml(label)}</small></button>${index < 2 ? "<i></i>" : ""}`).join("")}</nav>
+        <nav class="steps" aria-label="Calculator steps">${stepNavigationHtml}</nav>
         <p class="calculator-error" data-calculator-error role="alert" hidden></p>
         <form id="setup-form" novalidate>
-          <section class="form-step is-visible" data-form-step="1"><div class="step-heading"><span class="step-kicker">1 / 3</span><h3>${escapeHtml(calculator.step1)}</h3></div><fieldset><legend>${escapeHtml(calculator.days)}</legend><div class="choice-grid choice-grid-days">${[1,2,3,5].map((days) => `<label class="choice-card"><input type="radio" name="autonomyDays" value="${days}"${days === 2 ? " checked" : ""><span><strong>${days}</strong></span></label>`).join("")}</div></fieldset><fieldset><legend>${escapeHtml(calculator.season)}</legend><div class="choice-grid choice-grid-season">${["summer","shoulder","winter"].map((season, i) => `<label class="choice-card"><input type="radio" name="season" value="${season}"${i === 0 ? " checked" : ""><span><strong>${escapeHtml(calculator.seasons[i])}</strong></span></label>`).join("")}</div></fieldset><div class="step-actions step-actions-end"><button class="button button-primary" type="button" data-next>${escapeHtml(calculator.next)} →</button></div></section>
-          <section class="form-step" data-form-step="2" hidden><div class="step-heading"><span class="step-kicker">2 / 3</span><h3>${escapeHtml(calculator.step2)}</h3></div><div class="appliance-grid">${APPLIANCES.map((item, i) => `<label class="choice-card"><input type="checkbox" data-appliance data-name="${escapeHtml(calculator.appliances[i])}" data-watts="${item.watts}" data-hours="${item.hours}" data-ac="${item.ac}" data-surge="${item.surge}"${i < 3 ? " checked" : ""><span><strong>${escapeHtml(calculator.appliances[i])}</strong><small>${item.watts} W · ${item.hours} h/day</small></span></label>`).join("")}</div><div class="advanced-grid"><label>${escapeHtml(calculator.battery)}<select name="batteryType"><option value="lifepo4">LiFePO₄</option><option value="lead">AGM / lead</option></select></label><label>${escapeHtml(calculator.voltage)}<select name="systemVoltage"><option value="auto">Auto</option><option value="12">12 V</option><option value="24">24 V</option></select></label></div><div class="step-actions"><button class="button button-secondary" type="button" data-back>← ${escapeHtml(calculator.back)}</button><button class="button button-primary" type="submit">${escapeHtml(calculator.calculate)}</button></div></section>
+          <section class="form-step is-visible" data-form-step="1"><div class="step-heading"><span class="step-kicker">1 / 3</span><h3>${escapeHtml(calculator.step1)}</h3></div><fieldset><legend>${escapeHtml(calculator.days)}</legend><div class="choice-grid choice-grid-days">${autonomyChoicesHtml}</div></fieldset><fieldset><legend>${escapeHtml(calculator.season)}</legend><div class="choice-grid choice-grid-season">${seasonChoicesHtml}</div></fieldset><div class="step-actions step-actions-end"><button class="button button-primary" type="button" data-next>${escapeHtml(calculator.next)} →</button></div></section>
+          <section class="form-step" data-form-step="2" hidden><div class="step-heading"><span class="step-kicker">2 / 3</span><h3>${escapeHtml(calculator.step2)}</h3></div><div class="appliance-grid">${applianceChoicesHtml}</div><div class="advanced-grid"><label>${escapeHtml(calculator.battery)}<select name="batteryType"><option value="lifepo4">LiFePO₄</option><option value="lead">AGM / lead</option></select></label><label>${escapeHtml(calculator.voltage)}<select name="systemVoltage"><option value="auto">Auto</option><option value="12">12 V</option><option value="24">24 V</option></select></label></div><div class="step-actions"><button class="button button-secondary" type="button" data-back>← ${escapeHtml(calculator.back)}</button><button class="button button-primary" type="submit">${escapeHtml(calculator.calculate)}</button></div></section>
           <section class="form-step" data-form-step="3" hidden><div class="step-heading"><span class="step-kicker">3 / 3</span><h3>${escapeHtml(calculator.step3)}</h3><p>${escapeHtml(calculator.private)}</p></div><div data-result></div></section>
         </form>
       </div>
