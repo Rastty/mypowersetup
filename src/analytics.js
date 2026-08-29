@@ -155,6 +155,32 @@ function trackGuideCalculatorClick(event) {
   });
 }
 
+function trackSharedCalculatorClick(event) {
+  const context = currentContext();
+  if (context.page_type !== "calculator") return;
+
+  if (event.target.closest?.("#result-share")) {
+    track("result_share_requested", { source: "result_action" });
+  }
+
+  // CZ/SK/PL already emit start and print events inside their calculator apps.
+  // HU uses the same shared analytics layer, so fill only its remaining parity gaps here.
+  if (context.market !== "hu") return;
+  if (event.target.closest?.("[data-next]")) {
+    track("calculator_started", { source: "next_button" });
+  }
+  if (event.target.closest?.("#result-print")) {
+    track("result_print_requested", { source: "result_action" });
+  }
+}
+
+function trackHungarianCalculatorInput(event) {
+  const context = currentContext();
+  if (context.market !== "hu" || context.page_type !== "calculator") return;
+  if (!event.target.closest?.("#setup-form")) return;
+  track("calculator_started", { source: "form_input" });
+}
+
 function init() {
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
@@ -168,7 +194,9 @@ function init() {
       return;
     }
     trackGuideCalculatorClick(event);
+    trackSharedCalculatorClick(event);
   });
+  document.addEventListener("input", trackHungarianCalculatorInput);
   if (choice === "granted") loadGoogleTag();
   else if (choice === null) renderDialog();
 }
