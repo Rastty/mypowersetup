@@ -12,6 +12,7 @@
     "sync:products:hu": "node scripts/sync-products-hu.mjs",
     "check:hu": "node scripts/check-hu-readiness.mjs",
     "preview:hu": "node scripts/preview-hu.mjs",
+    "smoke:hu:mobile": "node scripts/smoke-hu-mobile.mjs",
     "publish:hu:check": "node scripts/publish-hu.mjs --check",
     "publish:hu": "node scripts/publish-hu.mjs"
   }
