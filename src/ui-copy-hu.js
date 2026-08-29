@@ -1,7 +1,7 @@
 export const HU_UI_COPY = Object.freeze({
   meta: {
     title: "Lakóautó akkumulátor- és napelem-kalkulátor | MyPowerSetup",
-    description: "Számítsd ki a lakóautóhoz szükséges akkumulátorkapacitást, napelemteljesítményt, invertert és MPPT szabályozót. Ingyenesen, minden eredmény magyarázatával.",
+    description: "Számítsd ki a lakóautóhoz szükséges akkumulátorkapacitást, napelemteljesítményt, invertert és MPPT töltésvezérlőt. Ingyenesen, minden eredmény magyarázatával.",
   },
   navigation: {
     guides: "Útmutatók",
@@ -11,7 +11,7 @@ export const HU_UI_COPY = Object.freeze({
   hero: {
     eyebrow: "Energia találgatás nélkül",
     title: "Mekkora akkumulátorra és napelemre van valóban szükséged?",
-    lead: "Válaszd ki a fogyasztókat. Két perc alatt érthető javaslatot kapsz az akkumulátorra, a napelemekre, az inverterre és az MPPT szabályozóra — indoklással együtt.",
+    lead: "Válaszd ki a fogyasztókat. Két perc alatt érthető javaslatot kapsz az akkumulátorra, a napelemekre, az inverterre és az MPPT töltésvezérlőre — indoklással együtt.",
     noRegistration: "Regisztráció nélkül",
     transparent: "Átlátható számítások",
     free: "Ingyenes",
@@ -54,7 +54,7 @@ export const HU_UI_COPY = Object.freeze({
     solar: "Napelemek",
     inverter: "Tiszta szinuszos inverter",
     inverterNotNeeded: "Nem szükséges",
-    controller: "MPPT töltésszabályozó",
+    controller: "MPPT töltésvezérlő",
     next: "Következő lépés",
     compatibleComponents: "Válassz kompatibilis alkatrészeket",
     showProducts: "Ajánlott termékek megjelenítése ↓",
@@ -84,7 +84,7 @@ export const HU_UI_COPY = Object.freeze({
       battery: "Akkumulátorok",
       solarPanel: "Napelemek",
       inverter: "Inverterek",
-      controller: "MPPT szabályozók",
+      controller: "MPPT töltésvezérlők",
       dcCharger: "Menet közbeni DC–DC akkumulátortöltők",
       shoreCharger: "230 V-os hálózati töltők",
       powerStation: "Hordozható erőművek",
