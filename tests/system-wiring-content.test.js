@@ -10,7 +10,7 @@ const variants = [
     calculator: "/#kalkulator",
     hub: "pruvodce/index.html",
     hubHref: "/pruvodce/schema-elektroinstalace-karavanu/",
-    localNeedles: ["Solární panely", "servisní baterie", "Přípojka 230 V", "Českého cestování"],
+    localNeedles: ["Solární panely", "servisní baterie", "Přípojka 230 V", "českého cestování"],
   },
   {
     market: "sk",
