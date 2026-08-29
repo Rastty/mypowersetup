@@ -2,6 +2,7 @@ import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, resolve, sep } from "node:path";
 import { renderPrivateMarketSeedPage } from "../src/private-market-page.js";
+import { renderPortugalPrivateContentPage } from "../src/private-content-pt.js";
 import { RO_MARKET_SEED } from "../src/market-seed-ro.js";
 import { PT_MARKET_SEED } from "../src/market-seed-pt.js";
 import { SI_MARKET_SEED } from "../src/market-seed-si.js";
@@ -15,6 +16,10 @@ createServer(async (request, response) => {
   try {
     const pathname = new URL(request.url, "http://127.0.0.1").pathname;
     if (seeds.has(pathname)) return send(response, 200, "text/html; charset=utf-8", renderPrivateMarketSeedPage(seeds.get(pathname)));
+    if (pathname.startsWith("/pt/")) {
+      const content = renderPortugalPrivateContentPage(pathname);
+      if (content) return send(response, 200, "text/html; charset=utf-8", content);
+    }
     if (["/styles.css", "/analytics.css", "/favicon.svg", "/data/products-pt.json"].includes(pathname) || pathname.startsWith("/src/")) {
       const file = resolve(root, pathname.slice(1));
       if (!file.startsWith(root + sep)) return send(response, 403, "text/plain; charset=utf-8", "Forbidden");
