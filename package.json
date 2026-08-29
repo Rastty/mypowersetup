@@ -10,6 +10,8 @@
     "sync:products:pl": "node scripts/sync-products-pl.mjs",
     "sync:products:sk": "node scripts/sync-products-sk.mjs",
     "sync:products:hu": "node scripts/sync-products-hu.mjs",
+    "sync:public:hreflang": "node scripts/sync-public-hreflang.mjs",
+    "check:public:hreflang": "node scripts/sync-public-hreflang.mjs --check",
     "check:hu": "node scripts/check-hu-readiness.mjs",
     "health:markets": "node scripts/check-market-health.mjs",
     "health:markets:safe": "node scripts/check-market-health.mjs --require-safe",
