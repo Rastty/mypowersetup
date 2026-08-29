@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { assessRecommendationCoverage, requiredRecommendationCategories } from "../src/recommendation-coverage.js";
+import { assessRecommendationCoverage, isRecommendationEligible, requiredRecommendationCategories } from "../src/recommendation-coverage.js";
 
 const setup = {
   locale: "pl",
@@ -37,4 +37,23 @@ test("disabled charging paths and unused inverter are not reported as gaps", () 
   assert.equal(report.complete, true);
   assert.deepEqual(report.required, ["battery", "solar_panel", "controller"]);
   assert.match(report.message, /minden szükséges elemét/);
+});
+
+test("stale or unavailable rows cannot make result coverage look complete", () => {
+  assert.equal(isRecommendationEligible({}), true);
+  assert.equal(isRecommendationEligible({ staleSource: true }), false);
+  assert.equal(isRecommendationEligible({ available: false }), false);
+  const compact = {
+    ...setup,
+    locale: "cs",
+    inverterWatts: 0,
+    charging: { dcDc: { enabled: false }, shore: { enabled: false } },
+  };
+  const report = assessRecommendationCoverage({
+    battery: [{ staleSource: true }],
+    solar_panel: [{}],
+    controller: [{ available: false }],
+  }, compact);
+  assert.equal(report.complete, false);
+  assert.deepEqual(report.missing, ["battery", "controller"]);
 });
