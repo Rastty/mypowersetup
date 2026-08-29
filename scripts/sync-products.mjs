@@ -84,8 +84,7 @@ await writeFile(
 
 console.log(`Uloženo ${catalogProducts.length} relevantních produktů z ${products.length} načtených položek.`);
 
-function disablePreservedProducts(previous, merchant) {
-  return previous
-    .filter((product) => product.merchant === merchant)
+function disablePreservedProducts(previousProducts, merchant) {
+  return previousProducts.filter((product) => product.merchant === merchant)
     .map((product) => ({ ...product, available: false, staleSource: true }));
 }
