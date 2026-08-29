@@ -1,6 +1,10 @@
+import { buildAnalyticsContext } from "./analytics-context.js";
+
 const MEASUREMENT_ID = "G-TDNRBM2V2J";
 const CONSENT_KEY = "mypowersetup_analytics_consent";
 const VALID_CHOICES = new Set(["granted", "denied"]);
+const ONCE_PER_PAGE_EVENTS = new Set(["calculator_started"]);
+const trackedOnce = new Set();
 
 const COPY = {
   cs: {
@@ -79,9 +83,20 @@ function loadGoogleTag() {
   document.head.append(script);
 }
 
+function currentContext() {
+  return buildAnalyticsContext({
+    lang: document.documentElement.lang,
+    pathname: window.location.pathname,
+    hasCalculator: Boolean(document.querySelector("#setup-form")),
+  });
+}
+
 function track(event, parameters = {}) {
   if (choice !== "granted" || typeof window.gtag !== "function") return false;
-  window.gtag("event", event, parameters);
+  if (ONCE_PER_PAGE_EVENTS.has(event) && trackedOnce.has(event)) return true;
+  const payload = { ...parameters, ...currentContext() };
+  window.gtag("event", event, payload);
+  if (ONCE_PER_PAGE_EVENTS.has(event)) trackedOnce.add(event);
   return true;
 }
 
@@ -135,5 +150,5 @@ function init() {
   else if (choice === null) renderDialog();
 }
 
-window.MyPowerSetupAnalytics = { track, openSettings, measurementId: MEASUREMENT_ID };
+window.MyPowerSetupAnalytics = { track, openSettings, measurementId: MEASUREMENT_ID, context: currentContext };
 init();
