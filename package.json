@@ -18,6 +18,8 @@
     "preaudit:ready": "node scripts/preaudit.mjs --require-audit-ready",
     "audit:four-markets": "node scripts/final-four-market-audit.mjs",
     "audit:four-markets:ready": "node scripts/final-four-market-audit.mjs --require-ready-for-romania",
+    "check:expansion": "node scripts/check-expansion-readiness.mjs",
+    "check:expansion:ready": "node scripts/check-expansion-readiness.mjs --require-ready",
     "preview:hu": "node scripts/preview-hu.mjs",
     "smoke:public:mobile": "node scripts/smoke-public-mobile.mjs",
     "smoke:hu:mobile": "node scripts/smoke-hu-mobile.mjs",
