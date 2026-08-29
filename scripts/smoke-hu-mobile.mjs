@@ -1,9 +1,8 @@
 import { spawn, spawnSync } from "node:child_process";
-import { rm } from "node:fs/promises";
+import { readFile, rm } from "node:fs/promises";
 import { setTimeout as delay } from "node:timers/promises";
 
 const previewPort = Number(process.env.HU_SMOKE_PORT || 4183);
-const debugPort = Number(process.env.HU_CHROME_DEBUG_PORT || 9233);
 const previewUrl = `http://127.0.0.1:${previewPort}/hu/`;
 const profileDir = `/tmp/mypowersetup-hu-chrome-${process.pid}`;
 const chromeBin = findChrome();
@@ -17,16 +16,22 @@ const chrome = spawn(chromeBin, [
   "--no-sandbox",
   "--disable-gpu",
   "--disable-dev-shm-usage",
+  "--no-first-run",
+  "--no-default-browser-check",
   "--remote-allow-origins=*",
-  `--remote-debugging-port=${debugPort}`,
+  "--remote-debugging-address=127.0.0.1",
+  "--remote-debugging-port=0",
   `--user-data-dir=${profileDir}`,
   "about:blank",
 ], { stdio: ["ignore", "pipe", "pipe"] });
 
+const chromeDiagnostics = captureDiagnostics(chrome);
+const previewDiagnostics = captureDiagnostics(preview);
 let cdp;
 try {
-  await waitForHttp(previewUrl);
-  const target = await waitForChromeTarget(debugPort);
+  await waitForHttp(previewUrl, preview, previewDiagnostics, "PREVIEW");
+  const debugPort = await waitForDevToolsPort(profileDir, chrome, chromeDiagnostics);
+  const target = await waitForChromeTarget(debugPort, chrome, chromeDiagnostics);
   cdp = await CdpClient.connect(target.webSocketDebuggerUrl);
   await cdp.send("Page.enable");
   await cdp.send("Runtime.enable");
@@ -111,6 +116,7 @@ try {
   console.log(JSON.stringify({
     ok: true,
     chrome: chromeBin,
+    debugPort,
     viewport: `${initial.width}x844`,
     selectedAppliances: Number(stepTwo.selected),
     productGroups: result.productGroups,
@@ -135,19 +141,46 @@ function findChrome() {
   throw new Error(`HU_MOBILE_SMOKE_CHROME_NOT_FOUND:${candidates.join(",")}`);
 }
 
-async function waitForHttp(url, attempts = 60) {
+function captureDiagnostics(child) {
+  let output = "";
+  const append = (chunk) => {
+    output += String(chunk);
+    if (output.length > 12000) output = output.slice(-12000);
+  };
+  child.stdout?.on("data", append);
+  child.stderr?.on("data", append);
+  return () => output.trim();
+}
+
+async function waitForHttp(url, child, diagnostics, label, attempts = 60) {
   for (let index = 0; index < attempts; index += 1) {
+    if (child.exitCode !== null) throw new Error(`HU_MOBILE_SMOKE_${label}_EXITED:${child.exitCode}:${diagnostics()}`);
     try {
       const response = await fetch(url);
       if (response.ok) return;
     } catch {}
     await delay(100);
   }
-  throw new Error(`HU_MOBILE_SMOKE_PREVIEW_TIMEOUT:${url}`);
+  throw new Error(`HU_MOBILE_SMOKE_${label}_TIMEOUT:${url}:${diagnostics()}`);
 }
 
-async function waitForChromeTarget(port, attempts = 80) {
+async function waitForDevToolsPort(directory, child, diagnostics, attempts = 120) {
+  const path = `${directory}/DevToolsActivePort`;
   for (let index = 0; index < attempts; index += 1) {
+    if (child.exitCode !== null) throw new Error(`HU_MOBILE_SMOKE_CHROME_EXITED:${child.exitCode}:${diagnostics()}`);
+    try {
+      const [portText] = (await readFile(path, "utf8")).trim().split(/\r?\n/);
+      const port = Number(portText);
+      if (Number.isInteger(port) && port > 0) return port;
+    } catch {}
+    await delay(100);
+  }
+  throw new Error(`HU_MOBILE_SMOKE_DEVTOOLS_PORT_TIMEOUT:${path}:${diagnostics()}`);
+}
+
+async function waitForChromeTarget(port, child, diagnostics, attempts = 80) {
+  for (let index = 0; index < attempts; index += 1) {
+    if (child.exitCode !== null) throw new Error(`HU_MOBILE_SMOKE_CHROME_EXITED:${child.exitCode}:${diagnostics()}`);
     try {
       const response = await fetch(`http://127.0.0.1:${port}/json/list`);
       if (response.ok) {
@@ -158,7 +191,7 @@ async function waitForChromeTarget(port, attempts = 80) {
     } catch {}
     await delay(100);
   }
-  throw new Error(`HU_MOBILE_SMOKE_CHROME_TIMEOUT:${port}`);
+  throw new Error(`HU_MOBILE_SMOKE_CHROME_TARGET_TIMEOUT:${port}:${diagnostics()}`);
 }
 
 async function waitFor(predicate, attempts = 80) {
