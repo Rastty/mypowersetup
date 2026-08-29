@@ -21,6 +21,19 @@ function row(category, suffix, overrides = {}) {
   };
 }
 
+async function loadCatalog(path) {
+  return JSON.parse(await readFile(new URL(`../data/${path}`, import.meta.url), "utf8"));
+}
+
+function mergeCatalogs(market, catalogs) {
+  return {
+    market,
+    generatedAt: catalogs.map((catalog) => catalog.generatedAt).filter(Boolean).sort().at(-1) || null,
+    sources: Object.assign({}, ...catalogs.map((catalog) => catalog.sources || {})),
+    products: catalogs.flatMap((catalog) => Array.isArray(catalog.products) ? catalog.products : []),
+  };
+}
+
 test("commercial eligibility fails closed on stale, unavailable and generic destinations", () => {
   const safe = row("battery", "battery-100");
   assert.equal(affiliatePointsToExactProduct(safe), true);
@@ -43,9 +56,15 @@ test("core readiness requires battery, solar and controller exact-product supply
   assert.equal(report.coreCoverageRatio, 2 / 3);
 });
 
-test("current CZ/SK/PL/HU catalogs retain exact-product core commercial coverage", async () => {
-  const paths = ["products.json", "products-sk.json", "products-pl.json", "products-hu.json"];
-  const catalogs = await Promise.all(paths.map(async (path) => JSON.parse(await readFile(new URL(`../data/${path}`, import.meta.url), "utf8"))));
+test("current deployed CZ/SK/PL/HU catalog unions retain exact-product core coverage", async () => {
+  const [czBase, czAmpul, sk, pl, hu] = await Promise.all([
+    loadCatalog("products.json"),
+    loadCatalog("products-ampul-cz.json"),
+    loadCatalog("products-sk.json"),
+    loadCatalog("products-pl.json"),
+    loadCatalog("products-hu.json"),
+  ]);
+  const catalogs = [mergeCatalogs("cs-CZ", [czBase, czAmpul]), sk, pl, hu];
   const report = assessPublicCommercialPortfolio(catalogs);
   assert.equal(report.ready, true, `Commercial core blockers: ${report.blockers.join(", ")}`);
   for (const market of report.markets) {
