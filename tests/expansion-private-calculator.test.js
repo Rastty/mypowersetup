@@ -38,6 +38,6 @@ test("Romania calculator uses local motorhome and electrical terms", () => {
 test("Slovenia calculator uses local avtodom electrical terminology", () => {
   const html = renderPrivateMarketSeedPage(SI_MARKET_SEED);
   assert.match(html, /Porabniki/);
-  assert.match(html, /Solarni/);
+  assert.match(html, /sončne panele|solarnega sistema/);
   assert.match(html, /Napetost sistema/);
 });
