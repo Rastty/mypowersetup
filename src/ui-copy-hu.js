@@ -70,6 +70,7 @@ export const HU_UI_COPY = Object.freeze({
     charging: "Töltés menet közben és 230 V-ról",
     roof: "Elférnek a napelemek a tetőn?",
     installation: "Az áramkörök, amelyeket szakembernek kell megterveznie és ellenőriznie",
+    powerStationComparison: "Fix rendszer vagy hordozható áramforrás?",
     change: "Fogyasztók módosítása",
     restart: "Újrakezdés",
   },
@@ -87,7 +88,7 @@ export const HU_UI_COPY = Object.freeze({
       controller: "MPPT töltésvezérlők",
       dcCharger: "Menet közbeni DC–DC akkumulátortöltők",
       shoreCharger: "230 V-os hálózati töltők",
-      powerStation: "Hordozható erőművek",
+      powerStation: "Hordozható áramforrások",
     },
     packages: {
       heading: "Három biztonságos vásárlási út",
