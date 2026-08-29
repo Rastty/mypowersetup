@@ -86,6 +86,16 @@ test("Awin deeplink keeps Power Queen US tracking and exact product destination"
   assert.equal(affiliate.searchParams.get("ued"), destination);
 });
 
+test("Power Queen EU deeplink keeps the localized EUR product and Awin tracking", () => {
+  const destination = "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-lifepo4-deep-cycle-battery";
+  const affiliate = new URL(buildAffiliateUrl("powerqueen_eu", destination));
+  assert.equal(affiliate.searchParams.get("awinmid"), "97025");
+  assert.equal(affiliate.searchParams.get("awinaffid"), "3044971");
+  assert.equal(affiliate.searchParams.get("ued"), destination);
+  assert.throws(() => buildAffiliateUrl("powerqueen_eu", "https://www.ipowerqueen.de/en/collections/batteries"));
+  assert.throws(() => buildAffiliateUrl("powerqueen_eu", "https://ipowerqueen.com/products/power-queen-12v-100ah"));
+});
+
 test("Power Queen US connector accepts batteries but rejects other markets and collection pages", () => {
   const battery = normalizeProduct({
     id: "24v-50ah-smart",
