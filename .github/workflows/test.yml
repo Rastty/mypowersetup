@@ -24,6 +24,7 @@ jobs:
       - run: node --check src/analytics.js
       - run: node --check src/public-conversion-funnel.js
       - run: node --check src/market-health.js
+      - run: node --check scripts/sync-products.mjs
       - run: node --check scripts/check-market-health.mjs
       - run: node --check scripts/preaudit.mjs
       - run: node --check scripts/publish-hu.mjs

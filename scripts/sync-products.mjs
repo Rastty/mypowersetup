@@ -25,10 +25,10 @@ const products = [];
 const sources = {};
 for (const [merchant, url] of feeds) {
   if (!url) {
-    const preserved = previousProducts.filter((product) => product.merchant === merchant);
+    const preserved = disablePreservedProducts(previousProducts, merchant);
     if (preserved.length > 0) products.push(...preserved);
     sources[merchant] = preserved.length > 0
-      ? { status: "stale", error: "feed URL není nakonfigurována", preservedProducts: preserved.length }
+      ? { status: "stale", error: "feed URL není nakonfigurována", preservedProducts: preserved.length, recommendationsDisabled: true }
       : { status: "disabled", error: "feed URL není nakonfigurována" };
     continue;
   }
@@ -51,17 +51,16 @@ for (const [merchant, url] of feeds) {
     sources[merchant] = { status: "ok", parsedProducts: parsed.length };
     console.log(`${merchant}: načteno ${parsed.length} produktů.`);
   } catch (error) {
-    const preserved = previousProducts.filter((product) => product.merchant === merchant);
+    const preserved = disablePreservedProducts(previousProducts, merchant);
     if (preserved.length > 0) {
       products.push(...preserved);
       sources[merchant] = {
         status: "stale",
         error: error.message,
-        preservedProducts: preserved.length
+        preservedProducts: preserved.length,
+        recommendationsDisabled: true
       };
-      console.warn(
-        `${merchant}: synchronizace selhala (${error.message}), zachováno ${preserved.length} posledních produktů.`
-      );
+      console.warn(`${merchant}: synchronizace selhala (${error.message}), ${preserved.length} posledních produktů zachováno jen jako diagnostická data a vyřazeno z doporučení.`);
     } else {
       sources[merchant] = { status: "error", error: error.message };
       console.error(`${merchant}: synchronizace selhala (${error.message}).`);
@@ -72,8 +71,6 @@ for (const [merchant, url] of feeds) {
 const relevant = products.filter((product) => product.category !== "other");
 const catalogProducts = relevant.map((product) => ({
   ...product,
-  // The extracted specs drive matching. Keeping only a short source excerpt makes
-  // the public catalog substantially smaller while preserving useful context.
   description: product.description.slice(0, 500)
 }));
 if (products.length === 0) {
@@ -86,3 +83,8 @@ await writeFile(
 );
 
 console.log(`Uloženo ${catalogProducts.length} relevantních produktů z ${products.length} načtených položek.`);
+
+function disablePreservedProducts(previousProducts, merchant) {
+  return previousProducts.filter((product) => product.merchant === merchant)
+    .map((product) => ({ ...product, available: false, staleSource: true }));
+}
