@@ -1,5 +1,5 @@
 import { buildAnalyticsContext } from "./analytics-context.js";
-import { classifyGuideCalculatorLink, classifyGuideClickZone } from "./analytics-links.js";
+import { classifyGuideCalculatorLink, classifyGuideClickZone, classifyGuideInternalLink } from "./analytics-links.js";
 
 const MEASUREMENT_ID = "G-TDNRBM2V2J";
 const CONSENT_KEY = "mypowersetup_analytics_consent";
@@ -53,11 +53,21 @@ function renderDialog() {
   document.body.append(dialog);
 }
 function openSettings() { renderDialog(); document.querySelector("[data-analytics-consent] button")?.focus(); }
-function trackGuideCalculatorClick(event) {
+function guideClickZone(link) {
+  return classifyGuideClickZone({ inPrimaryCta: Boolean(link.closest(".cta")), inRelated: Boolean(link.closest(".related")), inHeader: Boolean(link.closest(".article-header")) });
+}
+function trackGuideJourneyClick(event) {
   const link = event.target.closest?.("a[href]"); if (!link) return;
   const context = currentContext(); if (context.page_type !== "guide") return;
-  const destination = classifyGuideCalculatorLink(link.getAttribute("href"), { origin: window.location.origin }); if (!destination) return;
-  track("guide_to_calculator_click", { ...destination, source_zone: classifyGuideClickZone({ inPrimaryCta: Boolean(link.closest(".cta")), inRelated: Boolean(link.closest(".related")), inHeader: Boolean(link.closest(".article-header")) }) });
+  const href = link.getAttribute("href");
+  const calculatorDestination = classifyGuideCalculatorLink(href, { origin: window.location.origin });
+  if (calculatorDestination) {
+    track("guide_to_calculator_click", { ...calculatorDestination, source_zone: guideClickZone(link) });
+    return;
+  }
+  const internalDestination = classifyGuideInternalLink(href, { origin: window.location.origin, sourcePath: window.location.pathname });
+  if (!internalDestination || internalDestination.destination_market !== context.market.replace("cz", "cs")) return;
+  track("guide_internal_link_click", { ...internalDestination, source_zone: guideClickZone(link) });
 }
 function trackSharedCalculatorClick(event) {
   const context = currentContext(); if (context.page_type !== "calculator") return;
@@ -73,7 +83,7 @@ function trackHungarianCalculatorInput(event) {
 }
 function init() {
   const stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = "/analytics.css?v=20260824-1"; document.head.append(stylesheet);
-  document.addEventListener("click", (event) => { const trigger = event.target.closest?.("[data-analytics-settings]"); if (trigger) { event.preventDefault(); openSettings(); return; } trackGuideCalculatorClick(event); trackSharedCalculatorClick(event); });
+  document.addEventListener("click", (event) => { const trigger = event.target.closest?.("[data-analytics-settings]"); if (trigger) { event.preventDefault(); openSettings(); return; } trackGuideJourneyClick(event); trackSharedCalculatorClick(event); });
   document.addEventListener("input", trackHungarianCalculatorInput);
   if (choice === "granted") loadGoogleTag(); else if (choice === null) renderDialog();
 }
