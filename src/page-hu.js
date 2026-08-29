@@ -17,6 +17,7 @@ export function renderHungarianPrivatePage() {
   <header class="site-header">
     <a class="brand" href="#top" aria-label="MyPowerSetup kezdőlap"><span class="brand-mark" aria-hidden="true">ϟ</span><span>MyPowerSetup</span></a>
     <nav class="header-nav" aria-label="Fő navigáció">
+      <a class="header-link" href="/hu/utmutatok/">${copy.navigation.guides}</a>
       <a class="header-link" href="#modszer">${copy.navigation.method}</a>
       <a class="header-link language-switch" href="/pl/" lang="pl" hreflang="pl-PL">PL</a>
       <a class="header-link language-switch" href="/sk/" lang="sk" hreflang="sk-SK">SK</a>
@@ -94,10 +95,30 @@ export function renderHungarianPrivatePage() {
       </div>
     </section>
 
+    <section class="guide-preview" aria-labelledby="hu-guide-preview-title">
+      <div class="section-heading">
+        <p class="eyebrow">Gyakorlati útmutatók</p>
+        <h2 id="hu-guide-preview-title">Előbb értsd meg. Utána vásárolj.</h2>
+        <p>A számítás mögötti döntéseket magyar lakóautós helyzetekkel, képletekkel és ellenőrzési pontokkal magyarázzuk el.</p>
+      </div>
+      <div class="guide-preview-grid">
+        <a href="/hu/utmutatok/lakoauto-akkumulator-kapacitas/">
+          <span>Akkumulátor · 8 perc</span><h3>Hány Ah akkumulátor kell?</h3><p>Napi fogyasztásból, autonómiából és akkumulátortípusból számolva.</p>
+        </a>
+        <a href="/hu/utmutatok/agm-vagy-lifepo4-lakoautohoz/">
+          <span>Döntés · 10 perc</span><h3>AGM vagy LiFePO₄?</h3><p>Használható energia, tömeg, hideg, töltők és a teljes átépítés alapján.</p>
+        </a>
+        <a href="/hu/utmutatok/dc-dc-tolto-kivalasztasa/">
+          <span>Töltés menet közben · 11 perc</span><h3>Mekkora DC–DC töltő kell?</h3><p>Menetidő, intelligens alternátor, BMS, bemeneti áram és kábelezés együtt.</p>
+        </a>
+      </div>
+      <p class="guide-preview-action"><a class="button button-secondary" href="/hu/utmutatok/">Minden útmutató →</a></p>
+    </section>
+
     <section class="method-section" id="modszer"><div class="section-heading section-heading-light"><p class="eyebrow">Átlátható módszertan</p><h2>${copy.method.title}</h2></div><div class="method-grid"><article><span>01</span><h3>${copy.method.consumption}</h3></article><article><span>02</span><h3>${copy.method.losses}</h3></article><article><span>03</span><h3>${copy.method.surge}</h3></article></div></section>
     <section class="safety-note"><strong>${copy.safety.title}</strong><p>${copy.safety.text}</p></section>
   </main>
-  <footer><a class="brand brand-footer" href="#top">ϟ MyPowerSetup</a><nav class="footer-links"><a href="/hu/a-projektrol/">${copy.footer.about}</a><a href="/hu/modszertan/">${copy.footer.methodology}</a><a href="/hu/partnerkapcsolatok/">${copy.footer.affiliate}</a><a href="/hu/adatvedelem/">${copy.footer.privacy}</a></nav><small>© <span id="year"></span> MyPowerSetup</small></footer>
+  <footer><a class="brand brand-footer" href="#top">ϟ MyPowerSetup</a><nav class="footer-links"><a href="/hu/utmutatok/">${copy.navigation.guides}</a><a href="/hu/a-projektrol/">${copy.footer.about}</a><a href="/hu/modszertan/">${copy.footer.methodology}</a><a href="/hu/partnerkapcsolatok/">${copy.footer.affiliate}</a><a href="/hu/adatvedelem/">${copy.footer.privacy}</a></nav><small>© <span id="year"></span> MyPowerSetup</small></footer>
   <script type="module" src="/src/app-hu-browser.js"></script>
   <script type="module" src="/src/analytics.js"></script>
 </body>
