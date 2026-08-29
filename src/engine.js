@@ -37,6 +37,30 @@ const ENGINE_TEXT = {
     surgeWarning: "A motoros fogyasztók rövid indítási teljesítménycsúcsot igényelhetnek; ellenőrizd a gyártói dokumentációt.",
     voltageWarning: (voltage) => `Ehhez a méretű rendszerhez alapértelmezetten ${voltage} V-os feszültséget ajánlunk.`,
     missingSelection: "Válassz legalább egy fogyasztót."
+  },
+  ro: {
+    seasons: { summer: "Vară", shoulder: "Primăvară / toamnă", winter: "Iarnă" },
+    batteries: { lifepo4: "LiFePO₄", lead: "AGM / plumb-acid" },
+    winterWarning: "Iarna, producția solară poate varia mult; planifică și o sursă de încărcare de rezervă.",
+    surgeWarning: "Consumatorii cu motor pot avea un vârf scurt de putere la pornire; verifică documentația producătorului.",
+    voltageWarning: (voltage) => `Pentru un sistem de această dimensiune recomandăm în mod normal ${voltage} V.`,
+    missingSelection: "Selectează cel puțin un consumator."
+  },
+  pt: {
+    seasons: { summer: "Verão", shoulder: "Primavera / outono", winter: "Inverno" },
+    batteries: { lifepo4: "LiFePO₄", lead: "AGM / chumbo-ácido" },
+    winterWarning: "No inverno, a produção solar pode variar bastante; prevê também uma forma alternativa de carregamento.",
+    surgeWarning: "Os equipamentos com motor podem ter um pico curto de potência no arranque; confirma-o na documentação do fabricante.",
+    voltageWarning: (voltage) => `Para um sistema desta dimensão recomendamos normalmente ${voltage} V.`,
+    missingSelection: "Seleciona pelo menos um equipamento."
+  },
+  si: {
+    seasons: { summer: "Poletje", shoulder: "Pomlad / jesen", winter: "Zima" },
+    batteries: { lifepo4: "LiFePO₄", lead: "AGM / svinčeno-kislinski" },
+    winterWarning: "Pozimi lahko sončna proizvodnja močno niha, zato predvidi tudi rezervni način polnjenja.",
+    surgeWarning: "Porabniki z motorjem imajo lahko kratek zagonski sunek moči; preveri podatke proizvajalca.",
+    voltageWarning: (voltage) => `Za sistem te velikosti običajno priporočamo ${voltage} V.`,
+    missingSelection: "Izberi vsaj en porabnik."
   }
 };
 
