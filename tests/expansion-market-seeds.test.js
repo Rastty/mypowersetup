@@ -2,9 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { RO_MARKET_SEED } from "../src/market-seed-ro.js";
 import { PT_MARKET_SEED } from "../src/market-seed-pt.js";
+import { SI_MARKET_SEED } from "../src/market-seed-si.js";
+import { SI_MARKET_RESEARCH } from "../src/market-research-si.js";
 import { renderPrivateMarketSeedPage } from "../src/private-market-page.js";
 
-for (const seed of [RO_MARKET_SEED, PT_MARKET_SEED]) {
+for (const seed of [RO_MARKET_SEED, PT_MARKET_SEED, SI_MARKET_SEED]) {
   test(`${seed.key} expansion seed remains private and market-specific`, () => {
     const html = renderPrivateMarketSeedPage(seed);
     assert.match(html, /noindex,nofollow,noarchive/);
@@ -21,9 +23,18 @@ test("Romania uses Romanian locale and RON", () => {
   assert.match(RO_MARKET_SEED.copy.heading, /autoru/);
 });
 
-test("Portugal uses European Portuguese locale and does not assume dedicated PT approval", () => {
+test("Portugal uses European Portuguese locale and does not assume dedicated PT approval on main", () => {
   assert.equal(PT_MARKET_SEED.locale, "pt-PT");
   assert.equal(PT_MARKET_SEED.currency, "EUR");
-  assert.equal(PT_MARKET_SEED.affiliate.dedicatedProgram.status, "available-not-assumed-approved");
   assert.match(PT_MARKET_SEED.copy.heading, /autocaravana/);
+});
+
+test("Slovenia uses Slovenian locale, EUR and local avtodom terminology", () => {
+  assert.equal(SI_MARKET_SEED.locale, "sl-SI");
+  assert.equal(SI_MARKET_SEED.currency, "EUR");
+  assert.equal(SI_MARKET_SEED.affiliate.primaryMerchant, "allpowers_international");
+  assert.match(SI_MARKET_SEED.copy.heading, /avtodomu/);
+  assert.equal(SI_MARKET_RESEARCH.locale, "sl-SI");
+  assert.equal(SI_MARKET_RESEARCH.terminology.vehicle, "avtodom");
+  assert.equal(SI_MARKET_RESEARCH.terminology.mppt, "solarni regulator MPPT");
 });

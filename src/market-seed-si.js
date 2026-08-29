@@ -1,0 +1,31 @@
+export const SI_MARKET_SEED = Object.freeze({
+  key: "si",
+  locale: "sl-SI",
+  currency: "EUR",
+  route: "/si/",
+  private: true,
+  robots: "noindex,nofollow,noarchive",
+  affiliate: Object.freeze({
+    primaryMerchant: "allpowers_international",
+    program: "ALLPOWERS INTERNATIONAL",
+    awinMerchantId: 38934,
+    status: "approved-existing-eu-account",
+    policy: "Use only verified exact-product destinations that are eligible for Slovenia; fail closed when destination, shipping or market eligibility is uncertain.",
+  }),
+  copy: Object.freeze({
+    title: "Kalkulator baterije in sončnih panelov za avtodom | MyPowerSetup",
+    description: "Izračunaj potrebno baterijo, sončne panele, inverter in MPPT regulator za avtodom. Rezultati so razloženi korak za korakom.",
+    eyebrow: "Energija brez ugibanja",
+    heading: "Koliko baterije in sončne energije potrebuješ v avtodomu?",
+    lead: "Izberi porabnike in način potovanja. MyPowerSetup oceni dnevno porabo, baterijo, sončne panele, inverter in polnjenje z jasno navedenimi predpostavkami.",
+    action: "Izračunaj moj sistem",
+    privateNote: "Zasebna različica v preverjanju za Slovenijo.",
+  }),
+  researchRequiredBeforePublic: Object.freeze([
+    "Slovenian avtodom electrical terminology and local search-intent review",
+    "local SERP/content-gap review for battery, solar, inverter, MPPT, DC-DC and 230 V charging",
+    "Slovenia-specific solar-season assumptions and travel examples",
+    "affiliate shipping and market-eligibility validation for every surfaced product",
+    "native-language review and 390x844 mobile journey smoke",
+  ]),
+});
