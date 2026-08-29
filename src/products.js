@@ -57,6 +57,13 @@ const MERCHANTS = {
     productPathPrefix: "/products/",
     currency: "USD"
   },
+  powerqueen_eu: {
+    hostname: "www.ipowerqueen.de",
+    affiliateBaseUrl: "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971",
+    destinationParam: "ued",
+    productPathPrefix: "/en/products/",
+    currency: "EUR"
+  },
   ampul_cz: {
     hostname: "ampul.eu",
     affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae",
