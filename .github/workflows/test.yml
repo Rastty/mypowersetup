@@ -20,6 +20,8 @@ jobs:
       - run: npm test
       - run: node --check src/app.js
       - run: node --check src/app-hu.js
+      - run: node --check src/analytics-context.js
+      - run: node --check src/analytics.js
       - run: node --check scripts/publish-hu.mjs
       - run: node --check scripts/submit-indexnow.mjs
       - run: node --check scripts/smoke-public-mobile.mjs
