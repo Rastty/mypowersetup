@@ -63,13 +63,13 @@ export function renderHungarianPrivatePage() {
             <details class="advanced-settings"><summary>${copy.calculator.advanced}</summary><div class="advanced-grid">
               <label>${copy.advanced.batteryType}<select name="batteryType"><option value="lifepo4">LiFePO₄</option><option value="lead">AGM / ólom-savas</option></select></label>
               <label>${copy.advanced.voltage}<select name="systemVoltage"><option value="auto">${copy.advanced.automatic}</option><option value="12">12 V</option><option value="24">24 V</option></select></label>
-              <label>${copy.advanced.inverterCable}<input type="number" name="inverterCableLength" min="0.2" max="10" step="0.1" value="1.5"></label>
-              <label>${copy.advanced.driveHours}<input type="number" name="driveHoursPerDay" min="0" max="12" step="0.5" value="2"></label>
+              <label>${copy.advanced.inverterCable}<input type="number" name="inverterCableLength" min="0.2" max="10" step="0.1" value="1.5" inputmode="decimal"></label>
+              <label>${copy.advanced.driveHours}<input type="number" name="driveHoursPerDay" min="0" max="12" step="0.5" value="2" inputmode="decimal"></label>
               <label>${copy.advanced.starterVoltage}<select name="starterVoltage"><option value="12">12 V</option><option value="24">24 V</option></select></label>
-              <label>${copy.advanced.dcDcCable}<input type="number" name="dcDcInputCableLength" min="0.2" max="15" step="0.1" value="4"></label>
-              <label>${copy.advanced.shoreHours}<input type="number" name="shoreChargeHours" min="0" max="24" step="0.5" value="8"></label>
-              <label>${copy.advanced.roofLength}<input type="number" name="roofLength" min="0.5" max="12" step="0.01" placeholder="${copy.advanced.optional}"></label>
-              <label>${copy.advanced.roofWidth}<input type="number" name="roofWidth" min="0.5" max="4" step="0.01" placeholder="${copy.advanced.optional}"></label>
+              <label>${copy.advanced.dcDcCable}<input type="number" name="dcDcInputCableLength" min="0.2" max="15" step="0.1" value="4" inputmode="decimal"></label>
+              <label>${copy.advanced.shoreHours}<input type="number" name="shoreChargeHours" min="0" max="24" step="0.5" value="8" inputmode="decimal"></label>
+              <label>${copy.advanced.roofLength}<input type="number" name="roofLength" min="0.5" max="12" step="0.01" placeholder="${copy.advanced.optional}" inputmode="decimal"></label>
+              <label>${copy.advanced.roofWidth}<input type="number" name="roofWidth" min="0.5" max="4" step="0.01" placeholder="${copy.advanced.optional}" inputmode="decimal"></label>
             </div></details>
             <div class="step-actions"><button class="button button-secondary" type="button" data-back>← ${copy.calculator.back}</button><button class="button button-primary" type="submit">${copy.calculator.calculate} →</button></div>
           </section>
@@ -79,7 +79,7 @@ export function renderHungarianPrivatePage() {
             <p class="result-verdict" id="result-verdict"></p><div class="result-grid" id="result-grid"></div>
             <section class="result-next-card" id="result-next" hidden><div><span class="step-kicker">${copy.result.next}</span><h4>${copy.result.compatibleComponents}</h4><p id="result-product-count"></p></div><a class="button button-primary" id="result-products-link" href="#product-recommendations">${copy.result.showProducts}</a></section>
             <section class="existing-setup-check" id="existing-setup-check" aria-label="Meglévő rendszer ellenőrzése"></section>
-            <section class="result-share-card"><div><span class="step-kicker">${copy.result.save}</span><h4>${copy.result.shareTitle}</h4></div><div class="result-share-actions"><button class="button button-primary" type="button" id="result-share">${copy.result.share}</button><button class="button button-secondary" type="button" id="result-copy">${copy.result.copy}</button><button class="button button-secondary" type="button" id="result-print">${copy.result.print}</button></div><p id="result-share-status" role="status"></p></section>
+            <section class="result-share-card"><div><span class="step-kicker">${copy.result.save}</span><h4>${copy.result.shareTitle}</h4></div><div class="result-share-actions"><button class="button button-primary" type="button" id="result-share">${copy.result.share}</button><button class="button button-secondary" type="button" id="result-copy">${copy.result.copy}</button><button class="button button-secondary" type="button" id="result-print">${copy.result.print}</button></div><p id="result-share-status" role="status" aria-live="polite"></p></section>
             <section class="next-step-card" id="product-recommendations"><div><span class="step-kicker">${copy.products.verifiedMatch}</span><h4 id="product-heading">${copy.products.preparing}</h4><p id="product-intro">${copy.products.intro}</p></div><div id="package-variants"></div><div id="recommendation-groups"></div><p class="affiliate-note">${copy.products.affiliate}</p></section>
             <details class="decision-panel"><summary><span class="step-kicker">Átlátható számítás</span><h4>${copy.result.why}</h4></summary><div class="decision-grid" id="result-reasons"></div></details>
             <div class="result-columns"><section class="result-panel"><h4>${copy.result.consumption}</h4><div id="consumption-breakdown"></div></section><section class="result-panel"><h4>${copy.result.preflight}</h4><ul class="check-list" id="result-notes"></ul></section></div>
