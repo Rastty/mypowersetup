@@ -15,6 +15,7 @@
     "health:markets:safe": "node scripts/check-market-health.mjs --require-safe",
     "preaudit": "node scripts/preaudit.mjs",
     "preaudit:safe": "node scripts/preaudit.mjs --require-safe",
+    "preaudit:ready": "node scripts/preaudit.mjs --require-audit-ready",
     "preview:hu": "node scripts/preview-hu.mjs",
     "smoke:public:mobile": "node scripts/smoke-public-mobile.mjs",
     "smoke:hu:mobile": "node scripts/smoke-hu-mobile.mjs",
