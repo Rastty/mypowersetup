@@ -57,6 +57,9 @@ jobs:
           AMPUL_HU_FEED_URL: ${{ secrets.AMPUL_HU_FEED_URL }}
       - run: node scripts/sync-products-pt.mjs
       - run: node --test
+      - run: npm run check:commercial:coverage:safe
+      - run: npm run check:commercial:scenarios:safe
+      - run: npm run check:commercial:opportunities
       - name: Commit refreshed catalog
         run: |
           if git diff --quiet -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json; then exit 0; fi
