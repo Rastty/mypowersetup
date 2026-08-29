@@ -88,7 +88,7 @@ export function renderHungarianPrivatePage() {
             <section class="charging-panel"><h4>${copy.result.charging}</h4><div class="charging-grid" id="charging-options"></div></section>
             <section class="roof-panel"><h4>${copy.result.roof}</h4><div id="roof-fit"></div></section>
             <section class="installation-panel"><h4>${copy.result.installation}</h4><div class="installation-list" id="installation-plan"></div></section>
-            <section class="charging-panel"><h4>Fix rendszer vagy hordozható erőmű?</h4><div class="charging-grid" id="power-station-profile"></div></section>
+            <section class="charging-panel"><h4>${copy.result.powerStationComparison}</h4><div class="charging-grid" id="power-station-profile"></div></section>
             <div class="step-actions"><button class="button button-secondary" type="button" data-back>← ${copy.result.change}</button><button class="text-button" type="button" id="start-over">${copy.result.restart}</button></div>
           </section>
         </form>
