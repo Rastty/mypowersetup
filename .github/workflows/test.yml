@@ -24,11 +24,13 @@ jobs:
       - run: node --check src/analytics.js
       - run: node --check src/market-health.js
       - run: node --check scripts/check-market-health.mjs
+      - run: node --check scripts/preaudit.mjs
       - run: node --check scripts/publish-hu.mjs
       - run: node --check scripts/submit-indexnow.mjs
       - run: node --check scripts/smoke-public-mobile.mjs
       - run: node --check scripts/smoke-hu-mobile.mjs
       - run: npm run health:markets:safe
+      - run: npm run preaudit:safe
       - run: npm run indexnow:check
       - run: google-chrome --version
       - run: npm run smoke:public:mobile
