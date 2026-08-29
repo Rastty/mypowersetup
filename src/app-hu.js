@@ -15,14 +15,20 @@ import { buildPlainLanguageVerdict } from "./verdict.js";
 import { HU_UI_COPY } from "./ui-copy-hu.js";
 import { HU_TRUST_COPY } from "./trust-copy-hu.js";
 
+export function isHungarianPublishedRuntime(runtime = globalThis) {
+  return runtime?.__MPS_HU_PUBLICATION__ === true;
+}
+
+const publishedRuntime = isHungarianPublishedRuntime();
+
 export const HU_MARKET = Object.freeze({
   locale: "hu",
   languageTag: "hu-HU",
   currency: "EUR",
   route: "/hu/",
   catalogUrl: "/data/products-hu.json",
-  published: false,
-  indexable: false,
+  published: publishedRuntime,
+  indexable: publishedRuntime,
   merchantLabels: Object.freeze({ ampul_hu: "Ampul.eu", allpowers_eu: "ALLPOWERS EU", powerqueen_eu: "Power Queen EU" }),
   copy: HU_UI_COPY,
   trust: HU_TRUST_COPY,

@@ -19,3 +19,5 @@ jobs:
           package-manager-cache: false
       - run: npm test
       - run: node --check src/app.js
+      - run: node --check src/app-hu.js
+      - run: node --check scripts/publish-hu.mjs
