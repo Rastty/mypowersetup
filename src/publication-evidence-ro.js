@@ -3,11 +3,23 @@ import { assessExpansionMarketPublication } from "./expansion-market-publication
 export const RO_VERIFIED_FOUNDATION = Object.freeze({
   localizedCalculator: true,
   localIntentResearch: true,
-  contentCluster: false,
-  affiliateValidation: false,
+  contentCluster: true,
+  affiliateValidation: true,
   mobile390x844: false,
   analyticsParity: true,
   nativeLanguageReview: false,
+});
+
+export const RO_AFFILIATE_EVIDENCE = Object.freeze({
+  merchant: "allpowers_eu",
+  awinMerchantId: 38934,
+  affiliateId: 3044971,
+  exactProductDestination: true,
+  romaniaShippingEligible: true,
+  verifiedAt: "2026-08-29",
+  shippingEvidenceUrl: "https://iallpowers.eu/pages/shipping-policy",
+  catalog: "/data/products-ro.json",
+  policy: "fail-closed",
 });
 
 export function assessRomaniaPublication(overrides = {}) {
