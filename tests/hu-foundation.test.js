@@ -27,7 +27,7 @@ test("Hungarian UI copy covers the full calculator and purchase journey", () => 
   assert.match(HU_UI_COPY.safety.text, /nem villamos tervet/);
 });
 
-test("Hungarian analytics copy is ready without activating an unfinished public route", async () => {
+test("Hungarian analytics copy is active on the published Hungarian route", async () => {
   const [analytics, sitemap, czech, slovak, polish] = await Promise.all([
     readFile("src/analytics.js", "utf8"),
     readFile("sitemap.xml", "utf8"),
@@ -37,8 +37,8 @@ test("Hungarian analytics copy is ready without activating an unfinished public 
   ]);
   assert.match(analytics, /Analitika engedélyezése/);
   assert.match(analytics, /\/hu\/adatvedelem\//);
-  assert.doesNotMatch(sitemap, /mypowersetup\.com\/hu\//);
-  for (const html of [czech, slovak, polish]) assert.doesNotMatch(html, /hreflang="hu-HU"/);
+  assert.match(sitemap, /mypowersetup\.com\/hu\//);
+  for (const html of [czech, slovak, polish]) assert.match(html, /hreflang="hu-HU"/);
 });
 
 test("Hungarian trust copy explains authorship, method, affiliate independence, privacy and safety", () => {
@@ -133,7 +133,7 @@ test("Hungarian catalog loader rejects another market or merchant", async () => 
   assert.deepEqual(valid.products, [{ merchant: "ampul_hu" }]);
 });
 
-test("Hungarian private page template covers the full mobile purchase journey without publishing it", async () => {
+test("Hungarian private page template stays noindex while committed HU output is public", async () => {
   const [html, browser, sitemap, robots] = await Promise.all([
     Promise.resolve(renderHungarianPrivatePage()),
     readFile("src/app-hu-browser.js", "utf8"),
@@ -150,12 +150,12 @@ test("Hungarian private page template covers the full mobile purchase journey wi
   assert.match(browser, /loadHungarianProductCatalog/);
   assert.match(browser, /mountExistingSetupCheck/);
   assert.match(browser, /data-affiliate-click/);
-  assert.doesNotMatch(sitemap, /mypowersetup\.com\/hu\//);
+  assert.match(sitemap, /mypowersetup\.com\/hu\//);
   assert.doesNotMatch(robots, /\/hu\//);
-  assert.equal(await fileExists("hu/index.html"), false);
+  assert.equal(await fileExists("hu/index.html"), true);
 });
 
-test("Hungarian trust pages are complete but remain private until market launch", async () => {
+test("Hungarian trust source pages stay private while committed public pages exist", async () => {
   const pages = Object.keys(HU_TRUST_ROUTES).map((kind) => [kind, renderHungarianTrustPage(kind)]);
   assert.equal(pages.length, 4);
   for (const [kind, html] of pages) {
@@ -164,7 +164,7 @@ test("Hungarian trust pages are complete but remain private until market launch"
     assert.match(html, /name="robots" content="noindex,nofollow,noarchive"/);
     assert.match(html, new RegExp(`https://mypowersetup\\.com${HU_TRUST_ROUTES[kind]}`));
     assert.match(html, /xfit\.redakce@gmail\.com|Módszertan|Partnerkapcsolatok|Adatvédelem/);
-    assert.equal(await fileExists(`${HU_TRUST_ROUTES[kind].slice(1)}index.html`), false);
+    assert.equal(await fileExists(`${HU_TRUST_ROUTES[kind].slice(1)}index.html`), true);
   }
   assert.match(pages.find(([kind]) => kind === "about")[1], /Petr Gálík/);
   assert.match(pages.find(([kind]) => kind === "methodology")[1], /determinisztikus/);
@@ -204,7 +204,7 @@ test("Hungarian launch gate opens only with complete coverage and explicit revie
   assert.deepEqual(report.blockers, []);
 });
 
-test("Hungarian core guides preserve calculator assumptions while remaining private", async () => {
+test("Hungarian core guide sources preserve assumptions while committed public guides exist", async () => {
   const pages = Object.keys(HU_GUIDE_ROUTES).map((kind) => [kind, renderHungarianGuide(kind)]);
   assert.equal(pages.length, 10);
   for (const [kind, html] of pages) {
@@ -212,7 +212,7 @@ test("Hungarian core guides preserve calculator assumptions while remaining priv
     assert.match(html, /name="robots" content="noindex,nofollow,noarchive"/);
     assert.match(html, /Petr Gálík|Tudásbázis/);
     assert.match(html, /szakember/);
-    assert.equal(await fileExists(`${HU_GUIDE_ROUTES[kind].slice(1)}index.html`), false);
+    assert.equal(await fileExists(`${HU_GUIDE_ROUTES[kind].slice(1)}index.html`), true);
   }
   const battery = pages.find(([kind]) => kind === "battery")[1];
   assert.match(battery, /600 × 2 × 1,15 ÷ 0,80 ÷ 12/);
