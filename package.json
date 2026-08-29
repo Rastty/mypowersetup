@@ -11,6 +11,8 @@
     "sync:products:sk": "node scripts/sync-products-sk.mjs",
     "sync:products:hu": "node scripts/sync-products-hu.mjs",
     "check:hu": "node scripts/check-hu-readiness.mjs",
-    "preview:hu": "node scripts/preview-hu.mjs"
+    "preview:hu": "node scripts/preview-hu.mjs",
+    "publish:hu:check": "node scripts/publish-hu.mjs --check",
+    "publish:hu": "node scripts/publish-hu.mjs"
   }
 }
