@@ -8,6 +8,15 @@ const CALCULATOR_COPY = Object.freeze({
   si: Object.freeze({ title: "Trije koraki do tvojega sistema", intro: "Uporabi realne vrednosti za porabnike, ki jih želiš napajati vsak dan.", steps: ["Uporaba", "Porabniki", "Rezultat"], step1: "Koliko dni avtonomije želiš in v katerem letnem času potuješ?", days: "Dnevi brez polnjenja", season: "Obdobje za dimenzioniranje solarnega sistema", seasons: ["Poletje", "Pomlad / jesen", "Zima"], next: "Izberi porabnike", step2: "Kaj želiš napajati vsak dan?", appliances: ["Kompresorski hladilnik", "LED razsvetljava", "Vodna črpalka", "Prenosnik", "Televizor", "Kavni aparat"], battery: "Vrsta baterije", batteryLead: "AGM / svinčeno-kislinski", voltage: "Napetost sistema", voltageAuto: "Samodejno", hoursPerDay: "h/dan", back: "Nazaj", calculate: "Izračunaj sistem", step3: "Ocena tvojega sistema", private: "Zasebni predogled za Slovenijo — rezultati še niso javno objavljeni ali indeksirani." }),
 });
 
+const PRIVATE_NAV = Object.freeze({
+  pt: Object.freeze([
+    ["Guias", "/pt/guias/"], ["Metodologia", "/pt/metodologia/"], ["Sobre", "/pt/sobre-o-projeto/"], ["Afiliados", "/pt/afiliacao/"], ["Privacidade", "/pt/privacidade/"],
+  ]),
+  si: Object.freeze([
+    ["Vodniki", "/si/vodici/"], ["Metodologija", "/si/metodologija/"], ["O projektu", "/si/o-projektu/"], ["Affiliate", "/si/affiliate/"], ["Zasebnost", "/si/zasebnost/"],
+  ]),
+});
+
 const APPLIANCES = Object.freeze([
   { watts: 45, hours: 10, ac: false, surge: 1 },
   { watts: 18, hours: 5, ac: false, surge: 1 },
@@ -21,22 +30,16 @@ export function renderPrivateMarketSeedPage(seed) {
   const copy = seed.copy;
   const calculator = CALCULATOR_COPY[seed.key];
   if (!calculator) throw new Error(`PRIVATE_CALCULATOR_COPY_MISSING:${seed.key}`);
+  const navItems = PRIVATE_NAV[seed.key] || [];
+  const navHtml = navItems.slice(0, 1).map(([label, href]) => `<a class="header-link" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("");
+  const footerHtml = navItems.length ? `<footer class="expansion-footer"><nav aria-label="Trust and guides">${navItems.map(([label, href]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("")}</nav></footer>` : "";
 
   const stepNavigationHtml = calculator.steps
     .map((label, index) => `<button class="step${index === 0 ? " is-active" : ""}" type="button" data-step-target="${index + 1}"${index ? " disabled" : ""}><span>${index + 1}</span><small>${escapeHtml(label)}</small></button>${index < 2 ? "<i></i>" : ""}`)
     .join("");
-
-  const autonomyChoicesHtml = [1, 2, 3, 5]
-    .map((days) => `<label class="choice-card"><input type="radio" name="autonomyDays" value="${days}"${days === 2 ? " checked" : ""}><span><strong>${days}</strong></span></label>`)
-    .join("");
-
-  const seasonChoicesHtml = ["summer", "shoulder", "winter"]
-    .map((season, index) => `<label class="choice-card"><input type="radio" name="season" value="${season}"${index === 0 ? " checked" : ""}><span><strong>${escapeHtml(calculator.seasons[index])}</strong></span></label>`)
-    .join("");
-
-  const applianceChoicesHtml = APPLIANCES
-    .map((item, index) => `<label class="choice-card"><input type="checkbox" data-appliance data-name="${escapeHtml(calculator.appliances[index])}" data-watts="${item.watts}" data-hours="${item.hours}" data-ac="${item.ac}" data-surge="${item.surge}"${index < 3 ? " checked" : ""}><span><strong>${escapeHtml(calculator.appliances[index])}</strong><small>${item.watts} W · ${item.hours} ${escapeHtml(calculator.hoursPerDay)}</small></span></label>`)
-    .join("");
+  const autonomyChoicesHtml = [1, 2, 3, 5].map((days) => `<label class="choice-card"><input type="radio" name="autonomyDays" value="${days}"${days === 2 ? " checked" : ""}><span><strong>${days}</strong></span></label>`).join("");
+  const seasonChoicesHtml = ["summer", "shoulder", "winter"].map((season, index) => `<label class="choice-card"><input type="radio" name="season" value="${season}"${index === 0 ? " checked" : ""}><span><strong>${escapeHtml(calculator.seasons[index])}</strong></span></label>`).join("");
+  const applianceChoicesHtml = APPLIANCES.map((item, index) => `<label class="choice-card"><input type="checkbox" data-appliance data-name="${escapeHtml(calculator.appliances[index])}" data-watts="${item.watts}" data-hours="${item.hours}" data-ac="${item.ac}" data-surge="${item.surge}"${index < 3 ? " checked" : ""}><span><strong>${escapeHtml(calculator.appliances[index])}</strong><small>${item.watts} W · ${item.hours} ${escapeHtml(calculator.hoursPerDay)}</small></span></label>`).join("");
 
   return `<!doctype html>
 <html lang="${escapeHtml(seed.locale.split("-")[0])}">
@@ -49,7 +52,7 @@ export function renderPrivateMarketSeedPage(seed) {
   <title>${escapeHtml(copy.title)}</title>
 </head>
 <body>
-  <header class="site-header"><a class="brand" href="${escapeHtml(seed.route)}">ϟ MyPowerSetup</a></header>
+  <header class="site-header"><a class="brand" href="${escapeHtml(seed.route)}">ϟ MyPowerSetup</a>${navItems.length ? `<nav class="expansion-nav" aria-label="Primary">${navHtml}</nav>` : ""}</header>
   <main id="top">
     <section class="hero" aria-labelledby="market-title"><div class="hero-copy"><p class="eyebrow">${escapeHtml(copy.eyebrow)}</p><h1 id="market-title">${escapeHtml(copy.heading)}</h1><p class="hero-lead">${escapeHtml(copy.lead)}</p><a class="button button-primary hero-button" href="#calculator-preview">${escapeHtml(copy.action)}</a></div></section>
     <section class="calculator-section" id="calculator-preview" data-expansion-calculator data-market="${escapeHtml(seed.key)}" aria-labelledby="calculator-title">
@@ -65,6 +68,7 @@ export function renderPrivateMarketSeedPage(seed) {
       </div>
     </section>
   </main>
+  ${footerHtml}
   <script type="module" src="/src/analytics.js"></script>
   <script type="module" src="/src/expansion-calculator-browser.js"></script>
 </body>
