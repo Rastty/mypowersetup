@@ -134,6 +134,6 @@ test("one fresh Árukereső MPPT closes the current HU product-coverage blocker"
   });
   assert.equal(report.categoryCounts.controller, 2);
   assert.equal(report.checks.productCoverage, true);
-  assert.equal(report.checks.catalogSourcesFresh, true);
+  assert.equal(report.checks.catalogSource, true);
   assert.equal(report.ready, true);
 });
