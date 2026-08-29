@@ -22,9 +22,10 @@ export function assessMarketHealth({
   const normalizedCatalogs = Array.isArray(catalogs) ? catalogs.filter(Boolean) : [];
   const products = normalizedCatalogs.flatMap((catalog) => Array.isArray(catalog?.products) ? catalog.products : []);
   const sources = Object.assign({}, ...normalizedCatalogs.map((catalog) => catalog?.sources || {}));
+  const recommendationEligibleProducts = products.filter((product) => isRecommendationEligible(product, sources));
   const categoryCounts = Object.fromEntries(Object.keys(productMinimums).map((category) => [category, 0]));
 
-  for (const product of products) {
+  for (const product of recommendationEligibleProducts) {
     if (Object.hasOwn(categoryCounts, product?.category)) categoryCounts[product.category] += 1;
   }
 
@@ -35,7 +36,7 @@ export function assessMarketHealth({
   const sourceEntries = Object.entries(sources);
   const activeSourceEntries = sourceEntries.filter(([, source]) => source?.status !== "disabled");
   const staleSources = activeSourceEntries.filter(([, source]) => source?.status !== "ok").map(([source]) => source);
-  const invalidAffiliateProducts = products
+  const invalidAffiliateProducts = recommendationEligibleProducts
     .filter((product) => !isHttpsUrl(product?.affiliateUrl) || !isHttpsUrl(product?.productUrl))
     .map((product) => product?.id || product?.name || "unknown");
 
@@ -45,7 +46,7 @@ export function assessMarketHealth({
   const homepageCanonical = extractCanonical(homepageHtml);
 
   const safetyChecks = Object.freeze({
-    catalogPresent: normalizedCatalogs.length > 0 && products.length > 0,
+    catalogPresent: normalizedCatalogs.length > 0 && recommendationEligibleProducts.length > 0,
     sourceMetadataPresent: sourceEntries.length > 0,
     affiliateDestinationsValid: invalidAffiliateProducts.length === 0,
     canonicalMatches: expectedPublic
@@ -83,6 +84,7 @@ export function assessMarketHealth({
     expectedPublic: Boolean(expectedPublic),
     status,
     productCount: products.length,
+    recommendationEligibleProductCount: recommendationEligibleProducts.length,
     categoryCounts: Object.freeze(categoryCounts),
     sourceCount: sourceEntries.length,
     activeSourceCount: activeSourceEntries.length,
@@ -127,6 +129,12 @@ export function extractCanonical(html) {
 export function hasNoindex(html) {
   return /<meta\b[^>]*\bname=["']robots["'][^>]*\bcontent=["'][^"']*\bnoindex\b[^"']*["'][^>]*>/i.test(String(html || ""))
     || /<meta\b[^>]*\bcontent=["'][^"']*\bnoindex\b[^"']*["'][^>]*\bname=["']robots["'][^>]*>/i.test(String(html || ""));
+}
+
+function isRecommendationEligible(product, sources) {
+  if (!product || product.available === false || product.staleSource === true) return false;
+  const source = product.merchant ? sources[product.merchant] : null;
+  return !source || source.status === "ok";
 }
 
 function isHttpsUrl(value) {
