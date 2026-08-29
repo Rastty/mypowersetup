@@ -33,7 +33,8 @@ export function assessMarketHealth({
     .map(([category, minimum]) => Object.freeze({ category, count: categoryCounts[category], minimum }));
 
   const sourceEntries = Object.entries(sources);
-  const staleSources = sourceEntries.filter(([, source]) => source?.status !== "ok").map(([source]) => source);
+  const activeSourceEntries = sourceEntries.filter(([, source]) => source?.status !== "disabled");
+  const staleSources = activeSourceEntries.filter(([, source]) => source?.status !== "ok").map(([source]) => source);
   const invalidAffiliateProducts = products
     .filter((product) => !isHttpsUrl(product?.affiliateUrl) || !isHttpsUrl(product?.productUrl))
     .map((product) => product?.id || product?.name || "unknown");
@@ -56,7 +57,7 @@ export function assessMarketHealth({
   });
 
   const qualityChecks = Object.freeze({
-    sourcesFresh: sourceEntries.length > 0 && staleSources.length === 0,
+    sourcesFresh: activeSourceEntries.length > 0 && staleSources.length === 0,
     productCoverage: missingCoverage.length === 0,
     guideDepth: Number.isInteger(guideCount) && guideCount >= minimumGuideCount,
   });
@@ -84,6 +85,7 @@ export function assessMarketHealth({
     productCount: products.length,
     categoryCounts: Object.freeze(categoryCounts),
     sourceCount: sourceEntries.length,
+    activeSourceCount: activeSourceEntries.length,
     staleSources: Object.freeze(staleSources),
     guideCount,
     sitemapContainsHomepage,
