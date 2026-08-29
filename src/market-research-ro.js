@@ -1,0 +1,30 @@
+export const RO_LOCAL_INTENT_EVIDENCE = Object.freeze({
+  locale: "ro-RO",
+  reviewedAt: "2026-08-29",
+  status: "researched-private",
+  terminology: Object.freeze({
+    vehicle: ["autorulotă", "rulotă"],
+    battery: ["baterie LiFePO4", "baterie AGM", "acumulator"],
+    solar: ["panou solar", "panouri fotovoltaice", "sistem fotovoltaic"],
+    controller: ["regulator MPPT", "controler MPPT", "regulator de încărcare"],
+    inverter: ["invertor sinus pur", "invertor 12V-230V"],
+    charging: ["încărcător DC-DC", "încărcător 230 V"],
+  }),
+  observedIntent: Object.freeze([
+    "dimensionarea bateriei din consumul zilnic și autonomia dorită",
+    "dimensionarea panourilor solare pentru rulotă/autorulotă",
+    "alegerea MPPT după puterea PV, tensiune și curent",
+    "alegerea invertorului după puterea continuă, vârf și sinus pur",
+    "LiFePO4 versus AGM și compatibilitatea încărcării",
+    "încărcare din alternator prin DC-DC și încărcare la 230 V",
+    "cabluri, siguranțe și cădere de tensiune în instalațiile 12/24 V",
+    "consumul frigiderului cu compresor și dimensionarea sistemului complet",
+  ]),
+  evidence: Object.freeze([
+    { source: "ClubRV România", url: "https://forum.clubrv.ro/viewtopic.php?t=6774", observation: "Discuțiile locale folosesc panou solar, regulator de încărcare, baterie/acumulator și invertor pentru autonomie off-camping." },
+    { source: "ClubRV România", url: "https://forum.clubrv.ro/viewtopic.php?p=132685", observation: "Discuție recentă despre baterii LiFePO4, invertor 12V-230V sinus pur și MPPT separat într-o rulotă." },
+    { source: "PentruRulote", url: "https://pentrurulote.ro/produs/sistem-kit-fotovoltaic-panou-solar-200w-controller-30a-invertor-sinus-pur-1600w-long-life-baterie-acumulator-40ah-conectori-si-cablu/", observation: "Retail local grupează explicit panou solar, controller, invertor sinus pur, baterie/acumulator, cablu și conectori pentru rulote." },
+    { source: "Darcom Energy", url: "https://www.darcomenergy.ro/portfolio/autorulota/", observation: "Exemplu local de sistem pentru autorulotă cu panouri, SmartSolar/MPPT, LiFePO4, BMS și invertor/încărcător." },
+  ]),
+  editorialPolicy: "Conținutul privat pornește de la intenția și terminologia observate local; nu este o traducere oarbă a clusterului CZ/PT/SI.",
+});
