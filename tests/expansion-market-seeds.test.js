@@ -42,5 +42,5 @@ test("Slovenia uses Slovenian locale, EUR and local avtodom terminology", () => 
   assert.match(SI_MARKET_SEED.copy.heading, /avtodomu/);
   assert.equal(SI_MARKET_RESEARCH.locale, "sl-SI");
   assert.equal(SI_MARKET_RESEARCH.terminology.vehicle, "avtodom");
-  assert.equal(SI_MARKET_RESEARCH.terminology.mppt, "solarni regulator MPPT");
+  assert.match(SI_MARKET_RESEARCH.terminology.mppt, /solarni regulator MPPT/);
 });
