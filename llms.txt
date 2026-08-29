@@ -14,6 +14,7 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 - [Afiliacja – Polska](https://mypowersetup.com/pl/afiliacja/): Jak działa prowizja i dlaczego nie zmienia wyniku technicznego.
 - [Prywatność – Polska](https://mypowersetup.com/pl/prywatnosc/): Przetwarzanie danych kalkulatora, zgoda analityczna i linki zewnętrzne.
 - [Polskie centrum poradników](https://mypowersetup.com/pl/poradnik/): Praktyczne obliczenia i decyzje dotyczące instalacji elektrycznej w kamperze.
+- [Power station czy stała instalacja](https://mypowersetup.com/pl/poradnik/power-station-czy-stala-instalacja-kamper/): Kiedy wybrać przenośną stację, kiedy stały system z MPPT i DC–DC, a kiedy wariant hybrydowy.
 - [Schemat instalacji elektrycznej kampera](https://mypowersetup.com/pl/poradnik/schemat-instalacji-elektrycznej-kampera/): Solar, alternator, 230 V, akumulator hotelowy, rozdział 12 V i przetwornica jako jeden system.
 - [12 V czy 24 V w kamperze](https://mypowersetup.com/pl/poradnik/12-v-czy-24-v-kamper/): Porównanie prądów, progów modelu i konsekwencji zmiany napięcia całej instalacji.
 - [Pojemność akumulatora do kampera](https://mypowersetup.com/pl/poradnik/pojemnosc-akumulatora-do-kampera/): Obliczenie Wh i Ah według zużycia, autonomii i technologii akumulatora.
@@ -26,6 +27,7 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 - [Przewody i bezpieczniki 12 V](https://mypowersetup.com/pl/poradnik/przewody-i-bezpieczniki-12-v/): Przekrój według spadku napięcia oraz bezpieczna rola zabezpieczeń i połączeń.
 - [Zużycie lodówki kompresorowej](https://mypowersetup.com/pl/poradnik/zuzycie-lodowki-kompresorowej/): Obliczenie Wh na dobę i wpływ temperatury, cyklu pracy oraz wentylacji.
 - [Slovenské centrum návodov](https://mypowersetup.com/sk/sprievodca/): Rozcestník slovenských výpočtov a rozhodovacích návodov.
+- [Power station alebo pevná inštalácia](https://mypowersetup.com/sk/sprievodca/power-station-alebo-pevna-instalacia-karavan/): Rozhodnutie podľa mobility, palubných 12 V, dobíjania počas jazdy, servisu a rozšírenia.
 - [Schéma elektroinštalácie karavanu](https://mypowersetup.com/sk/sprievodca/schema-elektroinstalacie-karavanu/): Solár, alternátor, 230 V, servisná batéria, 12V rozvod a voliteľný menič v jednej architektúre.
 - [12 V alebo 24 V v karavane](https://mypowersetup.com/sk/sprievodca/12-v-alebo-24-v-karavan/): Kedy vyššie napätie znižuje vysoké prúdy a ktoré komponenty treba preveriť pri zmene sústavy.
 - [Kapacita batérie do karavanu](https://mypowersetup.com/sk/sprievodca/kapacita-baterie-do-karavanu/): Slovenský výpočet Wh a Ah podľa spotreby, autonómie a chémie batérie.
@@ -46,6 +48,7 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 ## Praktické průvodce
 
 - [Centrum průvodců](https://mypowersetup.com/pruvodce/): Rozcestník všech publikovaných návodů.
+- [Power station nebo pevná instalace](https://mypowersetup.com/pruvodce/power-station-nebo-pevna-instalace-karavan/): Rozhodnutí podle mobility, palubních 12 V, dobíjení za jízdy, servisu a možnosti rozšíření.
 - [Schéma elektroinstalace karavanu](https://mypowersetup.com/pruvodce/schema-elektroinstalace-karavanu/): Solár, alternátor, 230 V, servisní baterie, 12V rozvod a případný měnič v jednom systému.
 - [12 V nebo 24 V v karavanu](https://mypowersetup.com/pruvodce/12-v-nebo-24-v-karavan/): Kdy 24 V snižuje vysoké proudy, jak rozhoduje Auto režim a které části systému se musí změnit.
 - [Kapacita baterie do karavanu](https://mypowersetup.com/pruvodce/kapacita-baterie-do-karavanu/): Výpočet Wh a Ah podle spotřeby, autonomie a chemie baterie.
