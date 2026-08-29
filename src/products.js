@@ -340,7 +340,7 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
   if (isInverter) return "inverter";
 
   const isController =
-    /solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)|napelemes töltésszabályozók|töltésszabályozók/i.test(categoryPath) &&
+    /solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)|napelemes töltésszabályozók|töltésszabályozók|battery charge controllers/i.test(categoryPath) &&
     /\bmppt\b/i.test(name) &&
     !accessory.test(name) &&
     specs.currentA > 0;
@@ -374,7 +374,7 @@ export function refreshCatalogProduct(product) {
   const specs = Object.fromEntries(
     Object.entries(extractedSpecs).map(([key, value]) => [key, value ?? product.specs?.[key] ?? null])
   );
-  if (/solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)|napelemes töltésszabályozók|töltésszabályozók/i.test(product.categoryPath)) {
+  if (/solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)|napelemes töltésszabályozók|töltésszabályozók|battery charge controllers/i.test(product.categoryPath)) {
     specs.currentA = extractControllerCurrent(product.name, product.description);
   }
   return {
