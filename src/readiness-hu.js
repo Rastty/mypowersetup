@@ -18,10 +18,15 @@ export function assessHungarianLaunchReadiness({
     if (Object.hasOwn(categoryCounts, product?.category)) categoryCounts[product.category] += 1;
   }
 
+  const catalogSources = Object.values(catalog?.sources || {});
+  const allCatalogSourcesFresh = catalogSources.length > 0
+    && catalogSources.every((source) => source?.status === "ok");
+
   const checks = {
     catalogSource: catalog?.market === "hu-HU"
       && catalog?.currency === "EUR"
-      && catalog?.sources?.ampul_hu?.status === "ok",
+      && catalog?.sources?.ampul_hu?.status === "ok"
+      && allCatalogSourcesFresh,
     productCoverage: Object.entries(HU_REQUIRED_PRODUCT_COVERAGE)
       .every(([category, minimum]) => categoryCounts[category] >= minimum),
     languageReviewed: languageReviewed === true,
