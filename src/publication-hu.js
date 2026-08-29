@@ -48,6 +48,7 @@ export function publicizeHungarianHtml(html, route, { home = false } = {}) {
     for (const [language, href] of homeAlternates) {
       if (!output.includes(`hreflang="${language}"`)) additions.push(`<link rel="alternate" hreflang="${language}" href="${href}">`);
     }
+    if (!output.includes("__MPS_HU_PUBLICATION__")) additions.push("<script>globalThis.__MPS_HU_PUBLICATION__=true</script>");
     if (!output.includes('property="og:title"')) additions.push(...homeSocialMetadata(output, canonicalUrl));
     if (!output.includes('"@id":"https://mypowersetup.com/hu/#calculator"')) additions.push(homeStructuredData());
   }
