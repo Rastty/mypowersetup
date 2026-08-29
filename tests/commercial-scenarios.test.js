@@ -11,13 +11,19 @@ import {
 
 function product(category, suffix, specs = {}) {
   const productUrl = `https://shop.example/products/${suffix}`;
+  const identity = {
+    battery: { name: `LiFePO4 battery ${specs.voltageV || 12}V ${specs.capacityAh || 100}Ah`, categoryPath: "Batteries" },
+    solar_panel: { name: `Portable solar panel ${specs.powerW || 100}W`, categoryPath: "Solar Panel" },
+    controller: { name: `MPPT charge controller ${specs.currentA || 30}A`, categoryPath: "battery charge controllers" },
+    inverter: { name: `Pure sine inverter ${specs.powerW || 1000}W 230V AC`, categoryPath: "Měniče napětí" },
+  }[category] || { name: suffix, categoryPath: "" };
   return {
     id: suffix,
     merchant: "safe",
     category,
     available: true,
-    name: suffix,
-    categoryPath: category === "controller" ? "battery charge controllers" : "",
+    name: identity.name,
+    categoryPath: identity.categoryPath,
     description: "",
     productUrl,
     affiliateUrl: `https://affiliate.example/click?desturl=${encodeURIComponent(productUrl)}`,
