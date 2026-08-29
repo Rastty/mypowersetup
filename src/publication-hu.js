@@ -1,6 +1,7 @@
 import { HU_TRUST_ROUTES } from "./trust-pages-hu.js";
 import { HU_GUIDE_ROUTES } from "./guides-hu.js";
 import { HU_SYSTEM_GUIDE_ROUTE } from "./system-guide-hu.js";
+import { HU_SYSTEM_VOLTAGE_GUIDE_ROUTE } from "./system-voltage-guide-hu.js";
 
 const trustMeta = Object.freeze({
   about: { changefreq: "monthly", priority: "0.6" },
@@ -31,6 +32,14 @@ export const HU_PUBLICATION_MANIFEST = Object.freeze([
     key: "system",
     route: HU_SYSTEM_GUIDE_ROUTE,
     path: `${HU_SYSTEM_GUIDE_ROUTE.slice(1)}index.html`,
+    changefreq: "monthly",
+    priority: "0.9",
+  }),
+  Object.freeze({
+    source: "system-voltage-guide",
+    key: "system-voltage",
+    route: HU_SYSTEM_VOLTAGE_GUIDE_ROUTE,
+    path: `${HU_SYSTEM_VOLTAGE_GUIDE_ROUTE.slice(1)}index.html`,
     changefreq: "monthly",
     priority: "0.9",
   }),
