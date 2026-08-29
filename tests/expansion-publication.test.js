@@ -1,0 +1,51 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { expansionPublicationManifest, publicizeExpansionHtml, addExpansionHomeAlternate, addExpansionRoutesToSitemap, requireExpansionNativeApproval } from "../src/expansion-publication.js";
+
+for (const market of ["pt", "si", "ro"]) {
+  test(`${market} publication manifest covers home, hub, four trust pages and ten guides`, () => {
+    const manifest = expansionPublicationManifest(market);
+    assert.equal(manifest.length, 16);
+    assert.equal(manifest[0].source, "home");
+    assert.equal(new Set(manifest.map((entry) => entry.route)).size, manifest.length);
+    assert.ok(manifest.every((entry) => entry.path.endsWith("index.html")));
+  });
+}
+
+test("publicizer removes private robots only for the requested market and adds canonical", () => {
+  const html = '<html><head><meta name="robots" content="noindex,nofollow,noarchive"></head><body></body></html>';
+  const output = publicizeExpansionHtml(html, "pt", "/pt/guias/", { home: false });
+  assert.doesNotMatch(output, /noindex/);
+  assert.match(output, /rel="canonical" href="https:\/\/mypowersetup.com\/pt\/guias\/"/);
+  assert.throws(() => publicizeExpansionHtml(html, "pt", "/si/vodici/"), /ROUTE_INVALID/);
+});
+
+test("home publication adds its locale hreflang and release marker idempotently", () => {
+  const html = '<html><head></head><body></body></html>';
+  const once = publicizeExpansionHtml(html, "ro", "/ro/", { home: true });
+  const twice = publicizeExpansionHtml(once, "ro", "/ro/", { home: true });
+  assert.match(once, /hreflang="ro-RO"/);
+  assert.match(once, /__MPS_RO_PUBLICATION__/);
+  assert.equal(twice, once);
+});
+
+test("published-market alternate injection is idempotent", () => {
+  const html = '<html><head><link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/" /></head></html>';
+  const once = addExpansionHomeAlternate(html, "si");
+  const twice = addExpansionHomeAlternate(once, "si");
+  assert.match(once, /hreflang="sl-SI" href="https:\/\/mypowersetup.com\/si\/"/);
+  assert.equal(twice, once);
+});
+
+test("sitemap publication adds all routes once", () => {
+  const xml = '<?xml version="1.0"?><urlset></urlset>';
+  const once = addExpansionRoutesToSitemap(xml, "pt");
+  const twice = addExpansionRoutesToSitemap(once, "pt");
+  assert.equal((once.match(/<loc>/g) || []).length, 16);
+  assert.equal(twice, once);
+});
+
+test("native approval requires explicit reviewer, date and publication approval", () => {
+  assert.throws(() => requireExpansionNativeApproval("pt", { nativeLanguageReview: true, publicPublicationApproved: true }), /NATIVE_REVIEW_REQUIRED/);
+  assert.equal(requireExpansionNativeApproval("pt", { nativeLanguageReview: true, publicPublicationApproved: true, reviewer: "Native reviewer", reviewedAt: "2026-08-29" }), true);
+});
