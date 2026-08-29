@@ -1,11 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import {
   buildDognetTrackedUrl,
   parseArukeresoFeed,
   parseDognetTrackingTemplate,
   syncArukeresoHu,
 } from "../scripts/lib/sync-arukereso-hu.mjs";
+import { loadHungarianProductCatalog, hungarianMerchantLabel } from "../src/app-hu.js";
+import { assessHungarianLaunchReadiness } from "../src/readiness-hu.js";
 
 const affiliateLink = "https://www.arukereso.hu/?utm_source=dognet&a_aid=publisher123&a_bid=campaign456&chan=mypowersetup_hu";
 const feed = `<?xml version="1.0" encoding="UTF-8"?>
@@ -100,4 +103,37 @@ test("Árukereső sync reports a fresh controller source with a real Dognet chan
   assert.equal(result.source.controllers, 1);
   assert.equal(result.source.trackingChannel, "mypowersetup_hu");
   assert.equal(result.products.length, 1);
+});
+
+test("Hungarian browser catalog accepts Árukereső and renders its local merchant label", async () => {
+  const [product] = parseArukeresoFeed(feed, affiliateLink);
+  const catalog = await loadHungarianProductCatalog(async () => ({
+    ok: true,
+    json: async () => ({
+      market: "hu-HU",
+      currency: "EUR",
+      sources: { arukereso_hu: { status: "ok" } },
+      products: [product, { merchant: "unknown", category: "controller" }],
+    }),
+  }));
+  assert.equal(catalog.products.length, 1);
+  assert.equal(catalog.products[0].merchant, "arukereso_hu");
+  assert.equal(hungarianMerchantLabel("arukereso_hu"), "Árukereső.hu");
+});
+
+test("one fresh Árukereső MPPT closes the current HU product-coverage blocker", async () => {
+  const catalog = JSON.parse(await readFile("data/products-hu.json", "utf8"));
+  const [product] = parseArukeresoFeed(feed, affiliateLink);
+  catalog.sources.arukereso_hu = { status: "ok" };
+  catalog.products.push(product);
+
+  const report = assessHungarianLaunchReadiness({
+    catalog,
+    languageReviewed: true,
+    mobileJourneyReviewed: true,
+  });
+  assert.equal(report.categoryCounts.controller, 2);
+  assert.equal(report.checks.productCoverage, true);
+  assert.equal(report.checks.catalogSourcesFresh, true);
+  assert.equal(report.ready, true);
 });
