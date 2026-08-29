@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { assessMarketScenarioCoverage } from "../src/commercial-scenarios.js";
+import { assessMarketScenarioCoverage, assessScenarioBaseline } from "../src/commercial-scenarios.js";
 
 const CONFIG = [
   { market: "cs-CZ", locale: "cs", files: ["data/products.json", "data/products-ampul-cz.json"] },
@@ -21,16 +21,22 @@ async function readCatalog(config) {
 const reports = [];
 for (const config of CONFIG) {
   const catalog = await readCatalog(config);
-  reports.push(assessMarketScenarioCoverage(catalog, config.locale));
+  const report = assessMarketScenarioCoverage(catalog, config.locale);
+  reports.push({ report, baseline: assessScenarioBaseline(report) });
 }
 
+const blockers = reports.flatMap(({ report, baseline }) => baseline.blockers.map((blocker) => `${report.market}:${blocker}`));
 console.log(JSON.stringify({
   generatedAt: new Date().toISOString(),
-  markets: reports.map((report) => ({
+  baselineReady: blockers.length === 0,
+  blockers,
+  markets: reports.map(({ report, baseline }) => ({
     market: report.market,
     scenarioCount: report.scenarioCount,
     purchaseReadyRatio: report.purchaseReadyRatio,
     weightedCoverage: report.weightedCoverage,
+    baselineReady: baseline.ready,
+    baseline: baseline.baseline,
     opportunities: report.opportunities,
     scenarios: report.scenarios.map((scenario) => ({
       id: scenario.id,
@@ -43,3 +49,5 @@ console.log(JSON.stringify({
     })),
   })),
 }, null, 2));
+
+if (process.argv.includes("--require-baseline") && blockers.length) process.exitCode = 1;
