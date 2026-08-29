@@ -1,4 +1,4 @@
-import { buildAllpowersPtDeeplink } from "./affiliate-allpowers-pt.js";
+import { buildAllpowersPtDeeplink, parseAllpowersPtDeeplink } from "./affiliate-allpowers-pt.js";
 
 const PT_ORIGIN = "https://allpowers-pt.com";
 const PRODUCT_PATH_PREFIX = "/products/";
@@ -102,8 +102,13 @@ export function validatePtCatalog(payload) {
     if (!product.productUrl || !product.affiliateUrl) throw new Error("PT_CATALOG_DESTINATION_MISSING");
     const destination = new URL(product.productUrl);
     if (!["allpowers-pt.com", "www.allpowers-pt.com"].includes(destination.hostname)
-      || !destination.pathname.startsWith(PRODUCT_PATH_PREFIX)) {
+      || !destination.pathname.startsWith(PRODUCT_PATH_PREFIX)
+      || destination.pathname === PRODUCT_PATH_PREFIX) {
       throw new Error("PT_CATALOG_DESTINATION_INVALID");
+    }
+    const tracking = parseAllpowersPtDeeplink(product.affiliateUrl);
+    if (!tracking || tracking.destinationUrl !== destination.toString()) {
+      throw new Error("PT_CATALOG_AFFILIATE_INVALID");
     }
   }
   return Object.freeze({
