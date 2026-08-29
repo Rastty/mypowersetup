@@ -10,7 +10,7 @@ import {
 } from "../src/system-voltage-guide-hu.js";
 import { renderHungarianGuide } from "../src/guides-hu.js";
 
-test("Hungarian voltage guide stays private before launch and becomes canonical only through publicizer", async () => {
+test("Hungarian voltage source stays private while the generated route is public", async () => {
   const privateHtml = renderHungarianSystemVoltageGuide();
   assert.match(privateHtml, /<html lang="hu">/);
   assert.match(privateHtml, /noindex,nofollow,noarchive/);
@@ -18,7 +18,10 @@ test("Hungarian voltage guide stays private before launch and becomes canonical 
   assert.match(privateHtml, /1,2 kW/);
   assert.match(privateHtml, /Balaton/);
   assert.match(privateHtml, /nem általános villamos szabvány/);
-  await assert.rejects(readFile(`${HU_SYSTEM_VOLTAGE_GUIDE_ROUTE.slice(1)}index.html`, "utf8"));
+
+  const committedHtml = await readFile(`${HU_SYSTEM_VOLTAGE_GUIDE_ROUTE.slice(1)}index.html`, "utf8");
+  assert.doesNotMatch(committedHtml, /noindex/);
+  assert.match(committedHtml, new RegExp(`rel="canonical" href="https://mypowersetup\\.com${HU_SYSTEM_VOLTAGE_GUIDE_ROUTE.replaceAll("/", "\\/")}"`));
 
   const publicHtml = publicizeHungarianHtml(privateHtml, HU_SYSTEM_VOLTAGE_GUIDE_ROUTE);
   assert.doesNotMatch(publicHtml, /noindex/);
