@@ -1,0 +1,38 @@
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - name: Collect changed files
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            : > changed-files.txt
+            echo "INDEXNOW_SUBMIT_ALL=1" >> "$GITHUB_ENV"
+          elif [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            git diff --name-only "$BEFORE" "$GITHUB_SHA" > changed-files.txt
+          else
+            git show --pretty="" --name-only "$GITHUB_SHA" > changed-files.txt
+          fi
+          echo "Changed files considered for IndexNow:"
+          cat changed-files.txt
+      - name: Notify IndexNow
+        run: npm run indexnow -- --changed-files changed-files.txt
