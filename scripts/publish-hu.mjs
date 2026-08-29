@@ -8,13 +8,13 @@ import { HU_POWER_STATION_GUIDE_ROUTE, renderHungarianPowerStationGuide } from "
 import { HU_SYSTEM_GUIDE_ROUTE, renderHungarianSystemGuide } from "../src/system-guide-hu.js";
 import { HU_SYSTEM_VOLTAGE_GUIDE_ROUTE, renderHungarianSystemVoltageGuide } from "../src/system-voltage-guide-hu.js";
 import { injectHungarianSystemGuideLink } from "../src/system-guide-link-hu.js";
-import { requireHungarianLaunchReady } from "../src/readiness-hu.js";
+import { requireHungarianPublicationReady } from "../src/readiness-hu.js";
 import { HU_PUBLICATION_MANIFEST, addHungarianHomeAlternate, addHungarianRoutesToSitemap, publicizeHungarianHtml } from "../src/publication-hu.js";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const checkOnly = process.argv.includes("--check");
 const catalog = JSON.parse(await readFile(resolve(root, "data/products-hu.json"), "utf8"));
-const readiness = requireHungarianLaunchReady({ catalog, languageReviewed: process.env.HU_LANGUAGE_REVIEWED === "true", mobileJourneyReviewed: process.env.HU_MOBILE_JOURNEY_REVIEWED === "true" });
+const readiness = requireHungarianPublicationReady({ catalog, languageReviewed: process.env.HU_LANGUAGE_REVIEWED === "true", mobileJourneyReviewed: process.env.HU_MOBILE_JOURNEY_REVIEWED === "true" });
 
 const plannedWrites = [];
 for (const entry of HU_PUBLICATION_MANIFEST) {
