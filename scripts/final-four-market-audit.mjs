@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { assessFinalFourMarketReadiness } from "../src/final-readiness.js";
 import { assessHungarianLaunchReadiness } from "../src/readiness-hu.js";
+import { HU_FINAL_REVIEW } from "../src/review-evidence-hu.js";
 
 function runJsonScript(script, args = []) {
   const stdout = execFileSync(process.execPath, [script, ...args], {
@@ -17,8 +18,8 @@ const preaudit = runJsonScript("scripts/preaudit.mjs");
 const huCatalog = JSON.parse(await readFile("data/products-hu.json", "utf8"));
 const huLaunch = assessHungarianLaunchReadiness({
   catalog: huCatalog,
-  languageReviewed: process.env.HU_LANGUAGE_REVIEWED === "true",
-  mobileJourneyReviewed: process.env.HU_MOBILE_JOURNEY_REVIEWED === "true",
+  languageReviewed: HU_FINAL_REVIEW.languageReviewed,
+  mobileJourneyReviewed: HU_FINAL_REVIEW.mobileJourneyReviewed,
 });
 
 const final = assessFinalFourMarketReadiness({
@@ -44,6 +45,7 @@ const report = {
     allHealthy: health.summary.allHealthy,
     markets: health.summary.markets,
   },
+  huReview: HU_FINAL_REVIEW,
   huLaunch,
 };
 
