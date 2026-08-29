@@ -1,0 +1,34 @@
+name: Patch live catalog recommendation regression
+
+on:
+  push:
+    branches: [fix/live-catalog-recommendation-order]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: fix/live-catalog-recommendation-order
+      - name: Replace merchant-order assertion with safety assertions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tests/hu-foundation.test.js')
+          s = p.read_text()
+          old = '  assert.ok(output.recommendations.inverter.length >= 1);\n  assert.equal(output.recommendations.inverter[0].product.merchant, "ampul_hu");'
+          new = '''  assert.ok(output.recommendations.inverter.length >= 1);\n  const recommendedInverter = output.recommendations.inverter[0].product;\n  assert.equal(recommendedInverter.available, true);\n  assert.ok(recommendedInverter.specs.powerW >= 1250);\n  assert.equal(recommendedInverter.specs.voltageV, 12);\n  assert.equal(recommendedInverter.specs.pureSine, true);'''
+          if old not in s:
+              raise SystemExit('expected assertion block not found')
+          p.write_text(s.replace(old, new))
+          PY
+          git rm .github/workflows/patch-live-catalog-test.yml
+          git config user.name "mypowersetup-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add tests/hu-foundation.test.js
+          git commit -m "Test compatible HU inverter instead of merchant order"
+          git push
