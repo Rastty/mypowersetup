@@ -14,6 +14,7 @@ const VERIFIED_EXACT_PRODUCTS = Object.freeze([
   }),
   Object.freeze({
     productUrl: "https://www.ipowerqueen.de/en/products/power-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
+    name: "Power Queen 14.6V 20A LiFePO4 battery charger for 12V LiFePO4 battery",
     categoryPath: "Nabíječky",
     verifiedAt,
     description: "Power Queen AC to DC charger for 12.8 V LiFePO4 batteries; 14.6 V charging output at 20 A and 100-240 V AC input.",
@@ -21,6 +22,7 @@ const VERIFIED_EXACT_PRODUCTS = Object.freeze([
   }),
   Object.freeze({
     productUrl: "https://www.ipowerqueen.de/en/products/power-queen-14-6v-40a-lifepo4-charger-without-handle",
+    name: "Power Queen 14.6V 40A LiFePO4 battery charger for 12V LiFePO4 battery",
     categoryPath: "Nabíječky",
     verifiedAt,
     description: "Power Queen AC to DC charger for 12 V LiFePO4 batteries with 14.6 V charging output at 40 A.",
@@ -28,6 +30,7 @@ const VERIFIED_EXACT_PRODUCTS = Object.freeze([
   }),
   Object.freeze({
     productUrl: "https://www.ipowerqueen.de/en/products/power-queen-29-2v-20-amp-lithium-lifepo4-battery-charger",
+    name: "Power Queen 29.2V 20A LiFePO4 battery charger for 24V LiFePO4 battery",
     categoryPath: "Nabíječky",
     verifiedAt,
     description: "Power Queen AC to DC charger for 24 V LiFePO4 batteries with 29.2 V charging output at 20 A.",
