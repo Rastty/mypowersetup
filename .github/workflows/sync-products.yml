@@ -52,6 +52,9 @@ jobs:
       - run: node scripts/sync-products-hu.mjs
         env:
           AMPUL_HU_FEED_URL: ${{ secrets.AMPUL_HU_FEED_URL }}
+          # Optional until Árukereső.hu approves the publisher in Dognet.
+          ARUKERESO_HU_FEED_URL: ${{ secrets.ARUKERESO_HU_FEED_URL }}
+          ARUKERESO_HU_AFFILIATE_LINK: ${{ secrets.ARUKERESO_HU_AFFILIATE_LINK }}
       - run: node --test
       - name: Commit refreshed catalog
         run: |
