@@ -4,6 +4,8 @@ import { fileURLToPath } from "node:url";
 import { renderHungarianPrivatePage } from "../src/page-hu.js";
 import { HU_TRUST_ROUTES, renderHungarianTrustPage } from "../src/trust-pages-hu.js";
 import { HU_GUIDE_ROUTES, renderHungarianGuide } from "../src/guides-hu.js";
+import { HU_SYSTEM_GUIDE_ROUTE, renderHungarianSystemGuide } from "../src/system-guide-hu.js";
+import { injectHungarianSystemGuideLink } from "../src/system-guide-link-hu.js";
 import { requireHungarianLaunchReady } from "../src/readiness-hu.js";
 import {
   HU_PUBLICATION_MANIFEST,
@@ -56,14 +58,19 @@ if (checkOnly) {
 }
 
 function renderEntry(entry) {
-  if (entry.source === "home") return renderHungarianPrivatePage();
+  if (entry.source === "home") return injectHungarianSystemGuideLink(renderHungarianPrivatePage());
   if (entry.source === "trust") {
     if (!Object.hasOwn(HU_TRUST_ROUTES, entry.key)) throw new Error(`HU_TRUST_PUBLICATION_UNKNOWN:${entry.key}`);
     return renderHungarianTrustPage(entry.key);
   }
   if (entry.source === "guide") {
     if (!Object.hasOwn(HU_GUIDE_ROUTES, entry.key)) throw new Error(`HU_GUIDE_PUBLICATION_UNKNOWN:${entry.key}`);
-    return renderHungarianGuide(entry.key);
+    const html = renderHungarianGuide(entry.key);
+    return entry.key === "hub" ? injectHungarianSystemGuideLink(html) : html;
+  }
+  if (entry.source === "system-guide") {
+    if (entry.route !== HU_SYSTEM_GUIDE_ROUTE) throw new Error(`HU_SYSTEM_GUIDE_PUBLICATION_UNKNOWN:${entry.route}`);
+    return renderHungarianSystemGuide();
   }
   throw new Error(`HU_PUBLICATION_SOURCE_UNKNOWN:${entry.source}`);
 }
