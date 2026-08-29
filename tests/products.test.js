@@ -96,6 +96,20 @@ test("Power Queen EU deeplink keeps the localized EUR product and Awin tracking"
   assert.throws(() => buildAffiliateUrl("powerqueen_eu", "https://ipowerqueen.com/products/power-queen-12v-100ah"));
 });
 
+test("Power Queen EU charge controller is classified as a 30A MPPT", () => {
+  const controller = normalizeProduct({
+    id: "mppt-30a-bluetooth",
+    name: "Power Queen MPPT 12/24V 30A solar charge controller with Bluetooth module",
+    category: "Battery Charge Controllers",
+    price: "129.99 EUR",
+    url: "https://www.ipowerqueen.de/en/products/power-queen-mppt-12-24v-30a-solar-charge-controller-with-bluetooth-module",
+    available: true,
+  }, "powerqueen_eu");
+
+  assert.equal(controller.category, "controller");
+  assert.equal(controller.specs.currentA, 30);
+});
+
 test("Power Queen US connector accepts batteries but rejects other markets and collection pages", () => {
   const battery = normalizeProduct({
     id: "24v-50ah-smart",

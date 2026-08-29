@@ -95,7 +95,7 @@ test("Hungarian headless app shell connects the shared engine to the verified lo
 
   assert.equal(HU_MARKET.published, false);
   assert.equal(HU_MARKET.indexable, false);
-  assert.equal(catalog.products.length, 53);
+  assert.equal(catalog.products.length, 54);
   assert.match(output.verdict, /rendszert ajánlunk/);
   assert.match(output.systemDiagram, /Napelemek/);
   assert.match(output.systemDiagram, /Tiszta szinuszos inverter/);
@@ -184,6 +184,7 @@ test("Hungarian launch gate reports exact catalog and review blockers", async ()
   assert.equal(report.categoryCounts.shore_charger, 2);
   assert.equal(report.categoryCounts.solar_panel, 22);
   assert.equal(report.categoryCounts.battery, 16);
+  assert.equal(report.categoryCounts.controller, 1);
   assert.deepEqual(report.missingCategories.map(({ category }) => category), ["controller"]);
   assert.match(report.blockers.join(" "), /HU_LANGUAGE_REVIEW_REQUIRED/);
   assert.match(report.blockers.join(" "), /HU_MOBILE_JOURNEY_REVIEW_REQUIRED/);

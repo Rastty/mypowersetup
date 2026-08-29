@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T02:35:07.512Z",
+  "generatedAt": "2026-08-29T03:05:56.086Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
@@ -16,8 +16,10 @@
     },
     "powerqueen_eu": {
       "status": "ok",
-      "parsedProducts": 46,
-      "relevantProducts": 16
+      "parsedProducts": 48,
+      "relevantProducts": 17,
+      "batteries": 16,
+      "controllers": 1
     }
   },
   "products": [
@@ -1709,6 +1711,41 @@
         "currentA": 100,
         "chargingVoltagesV": [
           12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "powerqueen_eu:7926322168028",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen MPPT 12/24V 30A solar charge controller with Bluetooth module",
+      "description": "Maximize your solar energy harvest: The tracking efficiency of 99% utilizes maximum sunlight and tracks the array's point of maximum power output. This achieves 20 to 25% higher power output than PWM controllers. The peak conversion efficiency of 98% maximizes the conversion of solar energy into electricity, allowing you to capture the most energy and charge the battery faster. Intelligent remote control via Bluetooth: Monitor PV input, battery bank, DC load data, and controller anomalies in real time using the Power Queen Bluetooth app. Adjust settings remotely and lock MPPT controllers with personalized passwords to protect your privacy. A controller for multiple batteries: It is immediately ready for use in 12V LiFePO4 mode and switches to 24V LiFePO4 mode within seconds. It automatically detects 12V/24V lead-acid battery systems (FLD/GEL/SEL/USE). If none of the preset modes match your battery, you can use the advanced user mode to safely charge your battery anyway. Wide temperature range for outdoor use: Reliable operation from -35 °C to 45 °C, automatic charging shutdown below 0 °C to prevent battery damage, and automatic resumption of operation at ≥ 5 °C. The gear-shaped die-cast aluminum heat sink accelerates heat dissipation, minimizes power loss, and ensures extremely quiet operation. Comprehensive security features: The built-in protection includes reverse polarity protection for the battery and PV system, overvoltage protection for the solar module and battery, load overload protection, ambient temperature overheating, and many other protective functions. This ensures comprehensive protection for the solar module, battery, and load connections. See everything at a glance: The LCD screen and four LED indicators show you the charging status of the solar input, the battery/DC load status, and error warnings. No more guesswork!",
+      "categoryPath": "Battery Charge Controllers",
+      "category": "controller",
+      "brand": "PQ-DE",
+      "priceCzk": 129.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12-24v-30amp-mppt-solar-charge-controller-and-bluetooth-adapter",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-12-24v-30amp-mppt-solar-charge-controller-and-bluetooth-adapter",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/12V-24V-30A_MPPT_BT.webp?v=1749605693",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 30,
+        "chargingVoltagesV": [
+          24
         ],
         "chargingInputVoltagesV": [
           12

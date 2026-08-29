@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T02:35:00.107Z",
+  "generatedAt": "2026-08-29T03:05:55.744Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
@@ -11,8 +11,10 @@
     },
     "powerqueen_eu": {
       "status": "ok",
-      "parsedProducts": 46,
-      "relevantProducts": 16
+      "parsedProducts": 48,
+      "relevantProducts": 17,
+      "batteries": 16,
+      "controllers": 1
     },
     "padabo": {
       "status": "disabled",
@@ -1305,6 +1307,41 @@
         "currentA": 100,
         "chargingVoltagesV": [
           12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "powerqueen_eu:7926322168028",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen MPPT 12/24V 30A solar charge controller with Bluetooth module",
+      "description": "Maximize your solar energy harvest: The tracking efficiency of 99% utilizes maximum sunlight and tracks the array's point of maximum power output. This achieves 20 to 25% higher power output than PWM controllers. The peak conversion efficiency of 98% maximizes the conversion of solar energy into electricity, allowing you to capture the most energy and charge the battery faster. Intelligent remote control via Bluetooth: Monitor PV input, battery bank, DC load data, and controller anomalies in rea",
+      "categoryPath": "Battery Charge Controllers",
+      "category": "controller",
+      "brand": "PQ-DE",
+      "priceCzk": 129.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12-24v-30amp-mppt-solar-charge-controller-and-bluetooth-adapter",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-12-24v-30amp-mppt-solar-charge-controller-and-bluetooth-adapter",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/12V-24V-30A_MPPT_BT.webp?v=1749605693",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 30,
+        "chargingVoltagesV": [
+          24
         ],
         "chargingInputVoltagesV": [
           12
