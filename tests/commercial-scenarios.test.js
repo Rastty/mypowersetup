@@ -4,8 +4,10 @@ import { readFile } from "node:fs/promises";
 
 import {
   COMMERCIAL_SCENARIOS,
+  PUBLIC_SCENARIO_BASELINES,
   assessCommercialScenario,
   assessMarketScenarioCoverage,
+  assessScenarioBaseline,
   buildScenarioSetup,
 } from "../src/commercial-scenarios.js";
 
@@ -62,14 +64,26 @@ test("missing exact-fit categories become weighted commercial opportunities", ()
   assert.equal(report.opportunities[0].score, scenario.weight);
 });
 
-test("current public catalogs produce measurable commercial scenario coverage", async () => {
+test("baseline assessment fails closed on missing baseline and measurable regression", () => {
+  const missing = assessScenarioBaseline({ market: "xx-XX", purchaseReadyRatio: 1, weightedCoverage: 1 });
+  assert.equal(missing.ready, false);
+  assert.match(missing.blockers[0], /SCENARIO_BASELINE_MISSING/);
+
+  const regression = assessScenarioBaseline(
+    { market: "cs-CZ", purchaseReadyRatio: 0.5, weightedCoverage: 0.7 },
+    { minPurchaseReadyRatio: 0.78, minWeightedCoverage: 0.94 },
+  );
+  assert.equal(regression.ready, false);
+  assert.deepEqual(regression.blockers.map((item) => item.split(":")[0]), ["PURCHASE_READY_REGRESSION", "WEIGHTED_COVERAGE_REGRESSION"]);
+});
+
+test("current public catalogs meet their commercial scenario no-regression floors", async () => {
   const configs = [
     { market: "cs-CZ", locale: "cs", files: ["products.json", "products-ampul-cz.json"] },
     { market: "sk-SK", locale: "sk", files: ["products-sk.json"] },
     { market: "pl-PL", locale: "pl", files: ["products-pl.json"] },
     { market: "hu-HU", locale: "hu", files: ["products-hu.json"] },
   ];
-  const benchmark = [];
   for (const config of configs) {
     const payloads = await Promise.all(config.files.map(async (file) => JSON.parse(await readFile(new URL(`../data/${file}`, import.meta.url), "utf8"))));
     const catalog = {
@@ -81,13 +95,8 @@ test("current public catalogs produce measurable commercial scenario coverage", 
     assert.equal(report.scenarioCount, COMMERCIAL_SCENARIOS.length);
     assert.ok(report.weightedCoverage > 0, `${config.market} should have non-zero weighted coverage`);
     assert.ok(report.purchaseReadyRatio >= 0 && report.purchaseReadyRatio <= 1);
-    benchmark.push({
-      market: config.market,
-      purchaseReadyRatio: report.purchaseReadyRatio,
-      weightedCoverage: report.weightedCoverage,
-      opportunities: report.opportunities,
-      scenarios: report.scenarios.map(({ id, purchaseReady, missing, chargingMissing }) => ({ id, purchaseReady, missing, chargingMissing })),
-    });
+    assert.ok(PUBLIC_SCENARIO_BASELINES[config.market]);
+    const baseline = assessScenarioBaseline(report);
+    assert.equal(baseline.ready, true, `${config.market}: ${baseline.blockers.join(", ")}`);
   }
-  console.log(`COMMERCIAL_SCENARIO_BENCHMARK:${JSON.stringify(benchmark)}`);
 });
