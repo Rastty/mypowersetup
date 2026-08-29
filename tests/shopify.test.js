@@ -92,6 +92,10 @@ test("Shopify parser rejects malformed payloads and insecure origins", () => {
     () => parseShopifyProducts({ products: [] }, "allpowers_pl", { origin: "http://allpowers.com.pl" }),
     /HTTPS/
   );
+  assert.throws(
+    () => parseShopifyProducts({ products: [] }, "powerqueen_eu", { origin: "https://www.ipowerqueen.de", productPathPrefix: "//evil.test/products/" }),
+    /productPathPrefix/
+  );
 });
 
 test("committed Polish catalog offers panels and only fully verified power stations", async () => {
@@ -139,6 +143,24 @@ test("committed SK and HU catalogs share only verified EU panels and power stati
     assert.ok(eu.every(({ affiliateUrl }) => affiliateUrl.includes("awinmid=38934") && affiliateUrl.includes("awinaffid=3044971")));
     assert.ok(eu.filter(({ category }) => category === "power_station").every(({ verifiedAt, specs }) =>
       verifiedAt && specs.capacityWh && specs.powerW && specs.pureSine === true && specs.solarInputW && specs.dcOutputA
+    ));
+  }
+});
+
+test("committed European catalogs contain only eligible Power Queen service batteries", async () => {
+  for (const path of ["data/products-sk.json", "data/products-pl.json", "data/products-hu.json"]) {
+    const catalog = JSON.parse(await readFile(path, "utf8"));
+    const batteries = catalog.products.filter(({ merchant }) => merchant === "powerqueen_eu");
+    assert.equal(batteries.length, 16);
+    assert.ok(batteries.every(({ category, priceCurrency, specs, affiliateUrl, name }) =>
+      category === "battery"
+      && priceCurrency === "EUR"
+      && [12, 24].includes(specs.voltageV)
+      && specs.capacityAh >= 50
+      && specs.batteryType === "lifepo4"
+      && affiliateUrl.includes("awinmid=97025")
+      && affiliateUrl.includes("awinaffid=3044971")
+      && !/(?:0%\s*vat|tax[- ]?(?:free|exemption)|【ua】|trolling motor|electric motor)/i.test(name)
     ));
   }
 });
