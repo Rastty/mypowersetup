@@ -26,6 +26,7 @@
     "smoke:hu:mobile": "node scripts/smoke-hu-mobile.mjs",
     "smoke:pt:mobile": "node scripts/smoke-pt-mobile.mjs",
     "smoke:si:mobile": "node scripts/smoke-si-mobile.mjs",
+    "smoke:ro:mobile": "node scripts/smoke-ro-mobile.mjs",
     "indexnow:check": "node scripts/submit-indexnow.mjs --dry-run --all",
     "indexnow": "node scripts/submit-indexnow.mjs",
     "publish:hu:check": "node scripts/publish-hu.mjs --check",
