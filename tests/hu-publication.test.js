@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { isHungarianPublishedRuntime } from "../src/app-hu.js";
 import { HU_SYSTEM_GUIDE_ROUTE } from "../src/system-guide-hu.js";
+import { HU_SYSTEM_VOLTAGE_GUIDE_ROUTE } from "../src/system-voltage-guide-hu.js";
 import {
   HU_PUBLICATION_MANIFEST,
   addHungarianHomeAlternate,
@@ -11,7 +12,7 @@ import {
 } from "../src/publication-hu.js";
 
 test("Hungarian publication manifest covers home, trust pages and every guide exactly once", () => {
-  assert.equal(HU_PUBLICATION_MANIFEST.length, 16);
+  assert.equal(HU_PUBLICATION_MANIFEST.length, 17);
   assert.equal(new Set(HU_PUBLICATION_MANIFEST.map(({ route }) => route)).size, HU_PUBLICATION_MANIFEST.length);
   assert.equal(new Set(HU_PUBLICATION_MANIFEST.map(({ path }) => path)).size, HU_PUBLICATION_MANIFEST.length);
   assert.equal(HU_PUBLICATION_MANIFEST[0].route, "/hu/");
@@ -19,6 +20,10 @@ test("Hungarian publication manifest covers home, trust pages and every guide ex
   assert.deepEqual(
     HU_PUBLICATION_MANIFEST.filter(({ source }) => source === "system-guide").map(({ route }) => route),
     [HU_SYSTEM_GUIDE_ROUTE]
+  );
+  assert.deepEqual(
+    HU_PUBLICATION_MANIFEST.filter(({ source }) => source === "system-voltage-guide").map(({ route }) => route),
+    [HU_SYSTEM_VOLTAGE_GUIDE_ROUTE]
   );
 });
 
