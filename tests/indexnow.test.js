@@ -11,27 +11,27 @@ import {
 
 const origin = "https://mypowersetup.com";
 
-test("current sitemap exposes public markets but keeps private HU out of IndexNow", async () => {
+test("current sitemap exposes every published market to IndexNow", async () => {
   const sitemap = await readFile("sitemap.xml", "utf8");
   const urls = extractSitemapUrls(sitemap);
   assert.ok(urls.includes(`${origin}/`));
   assert.ok(urls.includes(`${origin}/sk/`));
   assert.ok(urls.includes(`${origin}/pl/`));
-  assert.ok(urls.every((url) => !url.startsWith(`${origin}/hu/`)));
+  assert.ok(urls.includes(`${origin}/hu/`));
 });
 
-test("first key deployment submits every currently public sitemap URL and no private route", async () => {
+test("first key deployment submits every currently public sitemap URL", async () => {
   const urls = extractSitemapUrls(await readFile("sitemap.xml", "utf8"));
   const selected = changedFilesToIndexNowUrls([INDEXNOW_KEY_FILE], urls);
   assert.deepEqual(selected, [...urls].sort());
-  assert.ok(selected.every((url) => !url.startsWith(`${origin}/hu/`)));
+  assert.ok(selected.includes(`${origin}/hu/`));
 });
 
-test("shared calculator changes notify only public market homepages", async () => {
+test("shared calculator changes notify every public market homepage", async () => {
   const urls = extractSitemapUrls(await readFile("sitemap.xml", "utf8"));
   assert.deepEqual(
     changedFilesToIndexNowUrls(["src/products.js", "src/usage-profiles.js"], urls),
-    [`${origin}/`, `${origin}/pl/`, `${origin}/sk/`]
+    [`${origin}/`, `${origin}/hu/`, `${origin}/pl/`, `${origin}/sk/`]
   );
 });
 
@@ -39,7 +39,7 @@ test("market catalog changes notify only their public market", async () => {
   const urls = extractSitemapUrls(await readFile("sitemap.xml", "utf8"));
   assert.deepEqual(changedFilesToIndexNowUrls(["data/products-sk.json"], urls), [`${origin}/sk/`]);
   assert.deepEqual(changedFilesToIndexNowUrls(["data/products-pl.json"], urls), [`${origin}/pl/`]);
-  assert.deepEqual(changedFilesToIndexNowUrls(["data/products-hu.json"], urls), []);
+  assert.deepEqual(changedFilesToIndexNowUrls(["data/products-hu.json"], urls), [`${origin}/hu/`]);
 });
 
 test("changed static article maps to its exact sitemap URL", async () => {
