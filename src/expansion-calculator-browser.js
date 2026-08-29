@@ -23,11 +23,15 @@ root.addEventListener("click", (event) => {
   const next = event.target.closest("[data-next]");
   const back = event.target.closest("[data-back]");
   const edit = event.target.closest("[data-edit]");
-  if (next) showStep(Math.min(3, currentStep + 1));
+  if (next) {
+    track("calculator_started", { source: "next_button" });
+    showStep(Math.min(3, currentStep + 1));
+  }
   if (back) showStep(Math.max(1, currentStep - 1));
   if (edit) showStep(2);
 });
 
+form.addEventListener("input", () => track("calculator_started", { source: "form_input" }));
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const selected = [...form.querySelectorAll("[data-appliance]:checked")];
@@ -38,55 +42,23 @@ form.addEventListener("submit", (event) => {
   }
   error.hidden = true;
   const data = new FormData(form);
-  const appliances = selected.map((input) => ({
-    selected: true,
-    name: input.dataset.name,
-    watts: Number(input.dataset.watts),
-    hours: Number(input.dataset.hours),
-    quantity: 1,
-    ac: input.dataset.ac === "true",
-    surge: Number(input.dataset.surge || 1),
-  }));
-  const calculation = calculateSetup({
-    locale,
-    appliances,
-    autonomyDays: Number(data.get("autonomyDays")),
-    season: data.get("season"),
-    batteryType: data.get("batteryType"),
-    systemVoltage: data.get("systemVoltage"),
-  });
+  const appliances = selected.map((input) => ({ selected: true, name: input.dataset.name, watts: Number(input.dataset.watts), hours: Number(input.dataset.hours), quantity: 1, ac: input.dataset.ac === "true", surge: Number(input.dataset.surge || 1) }));
+  const calculation = calculateSetup({ locale, appliances, autonomyDays: Number(data.get("autonomyDays")), season: data.get("season"), batteryType: data.get("batteryType"), systemVoltage: data.get("systemVoltage") });
   renderResult(calculation);
+  track("calculation_completed", { daily_wh: calculation.dailyWh, battery_wh: calculation.batteryWh, solar_watts: calculation.solarWatts, system_voltage: calculation.systemVoltage, selected_appliances: selected.length });
   showStep(3);
 });
 
 function showStep(step) {
   currentStep = step;
-  for (const section of steps) {
-    const active = Number(section.dataset.formStep) === step;
-    section.hidden = !active;
-    section.classList.toggle("is-visible", active);
-  }
-  for (const button of stepButtons) {
-    const target = Number(button.dataset.stepTarget);
-    button.classList.toggle("is-active", target === step);
-    button.disabled = target > step;
-  }
+  for (const section of steps) { const active = Number(section.dataset.formStep) === step; section.hidden = !active; section.classList.toggle("is-visible", active); }
+  for (const button of stepButtons) { const target = Number(button.dataset.stepTarget); button.classList.toggle("is-active", target === step); button.disabled = target > step; }
 }
 
 function renderResult(value) {
   const warnings = value.warnings.length ? `<ul>${value.warnings.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : "";
-  result.innerHTML = `
-    <div class="result-grid">
-      <article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article>
-      <article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article>
-      <article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article>
-      <article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article>
-      <article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article>
-      <article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article>
-    </div>${warnings}
-    <button class="button button-secondary" type="button" data-edit>${labels.again}</button>`;
+  result.innerHTML = `<div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div>${warnings}<button class="button button-secondary" type="button" data-edit>${labels.again}</button>`;
 }
 
-function escapeHtml(value) {
-  return String(value).replace(/[&<>\"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]);
-}
+function track(event, parameters) { return window.MyPowerSetupAnalytics?.track?.(event, parameters) ?? false; }
+function escapeHtml(value) { return String(value).replace(/[&<>\"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]); }
