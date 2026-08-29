@@ -3,26 +3,9 @@ import assert from "node:assert/strict";
 import { buildAnalyticsContext, classifyAnalyticsPage } from "../src/analytics-context.js";
 
 test("calculator events get explicit market and calculator context", () => {
-  assert.deepEqual(buildAnalyticsContext({ lang: "cs", pathname: "/", hasCalculator: true }), {
-    market: "cz",
-    page_path: "/",
-    page_type: "calculator",
-  });
-  assert.deepEqual(buildAnalyticsContext({ lang: "sk-SK", pathname: "/sk/", hasCalculator: true }), {
-    market: "sk",
-    page_path: "/sk/",
-    page_type: "calculator",
-  });
-  assert.deepEqual(buildAnalyticsContext({ lang: "pl", pathname: "/pl/", hasCalculator: true }), {
-    market: "pl",
-    page_path: "/pl/",
-    page_type: "calculator",
-  });
-  assert.deepEqual(buildAnalyticsContext({ lang: "hu", pathname: "/hu/", hasCalculator: true }), {
-    market: "hu",
-    page_path: "/hu/",
-    page_type: "calculator",
-  });
+  for (const [lang, path, market] of [["cs","/","cz"],["sk-SK","/sk/","sk"],["pl","/pl/","pl"],["hu","/hu/","hu"],["ro-RO","/ro/","ro"],["pt-PT","/pt/","pt"],["sl-SI","/si/","si"]]) {
+    assert.deepEqual(buildAnalyticsContext({ lang, pathname: path, hasCalculator: true }), { market, page_path: path, page_type: "calculator" });
+  }
 });
 
 test("guide and trust pages are separated from calculator traffic", () => {
@@ -36,8 +19,8 @@ test("guide and trust pages are separated from calculator traffic", () => {
 });
 
 test("unknown language stays explicit instead of being silently counted as Czech", () => {
-  const context = buildAnalyticsContext({ lang: "ro", pathname: "/ro/", hasCalculator: false });
-  assert.equal(context.market, "ro");
-  assert.equal(context.page_path, "/ro/");
+  const context = buildAnalyticsContext({ lang: "xx", pathname: "/xx/", hasCalculator: false });
+  assert.equal(context.market, "xx");
+  assert.equal(context.page_path, "/xx/");
   assert.equal(context.page_type, "content");
 });

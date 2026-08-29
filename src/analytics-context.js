@@ -1,4 +1,4 @@
-const MARKET_BY_LANG = Object.freeze({ cs: "cz", sk: "sk", pl: "pl", hu: "hu" });
+const MARKET_BY_LANG = Object.freeze({ cs: "cz", sk: "sk", pl: "pl", hu: "hu", ro: "ro", pt: "pt", sl: "si" });
 
 export function buildAnalyticsContext({ lang, pathname, hasCalculator }) {
   const normalizedLang = String(lang || "cs").toLowerCase().split("-")[0];
