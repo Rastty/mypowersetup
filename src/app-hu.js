@@ -20,6 +20,7 @@ export function isHungarianPublishedRuntime(runtime = globalThis) {
 }
 
 const publishedRuntime = isHungarianPublishedRuntime();
+const HU_ALLOWED_MERCHANTS = Object.freeze(["ampul_hu", "allpowers_eu", "powerqueen_eu", "arukereso_hu"]);
 
 export const HU_MARKET = Object.freeze({
   locale: "hu",
@@ -29,7 +30,12 @@ export const HU_MARKET = Object.freeze({
   catalogUrl: "/data/products-hu.json",
   published: publishedRuntime,
   indexable: publishedRuntime,
-  merchantLabels: Object.freeze({ ampul_hu: "Ampul.eu", allpowers_eu: "ALLPOWERS EU", powerqueen_eu: "Power Queen EU" }),
+  merchantLabels: Object.freeze({
+    ampul_hu: "Ampul.eu",
+    allpowers_eu: "ALLPOWERS EU",
+    powerqueen_eu: "Power Queen EU",
+    arukereso_hu: "Árukereső.hu",
+  }),
   copy: HU_UI_COPY,
   trust: HU_TRUST_COPY,
 });
@@ -43,7 +49,7 @@ export async function loadHungarianProductCatalog(fetchImpl = globalThis.fetch) 
     || !Array.isArray(payload?.products) || typeof payload?.sources !== "object") {
     throw new Error("HU_CATALOG_INVALID");
   }
-  const products = payload.products.filter((product) => ["ampul_hu", "allpowers_eu", "powerqueen_eu"].includes(product?.merchant));
+  const products = payload.products.filter((product) => HU_ALLOWED_MERCHANTS.includes(product?.merchant));
   return Object.freeze({
     generatedAt: payload.generatedAt || null,
     sources: Object.freeze({ ...payload.sources }),
