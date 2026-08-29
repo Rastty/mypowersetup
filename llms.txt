@@ -14,6 +14,7 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 - [Afiliacja – Polska](https://mypowersetup.com/pl/afiliacja/): Jak działa prowizja i dlaczego nie zmienia wyniku technicznego.
 - [Prywatność – Polska](https://mypowersetup.com/pl/prywatnosc/): Przetwarzanie danych kalkulatora, zgoda analityczna i linki zewnętrzne.
 - [Polskie centrum poradników](https://mypowersetup.com/pl/poradnik/): Praktyczne obliczenia i decyzje dotyczące instalacji elektrycznej w kamperze.
+- [Schemat instalacji elektrycznej kampera](https://mypowersetup.com/pl/poradnik/schemat-instalacji-elektrycznej-kampera/): Solar, alternator, 230 V, akumulator hotelowy, rozdział 12 V i przetwornica jako jeden system.
 - [Pojemność akumulatora do kampera](https://mypowersetup.com/pl/poradnik/pojemnosc-akumulatora-do-kampera/): Obliczenie Wh i Ah według zużycia, autonomii i technologii akumulatora.
 - [AGM czy LiFePO4](https://mypowersetup.com/pl/poradnik/agm-czy-lifepo4/): Porównanie użytecznej energii, masy, ładowania i zastosowania.
 - [Ile wat paneli solarnych](https://mypowersetup.com/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/): Dobór Wp według zużycia, pory roku, strat i zapasu.
@@ -24,6 +25,7 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 - [Przewody i bezpieczniki 12 V](https://mypowersetup.com/pl/poradnik/przewody-i-bezpieczniki-12-v/): Przekrój według spadku napięcia oraz bezpieczna rola zabezpieczeń i połączeń.
 - [Zużycie lodówki kompresorowej](https://mypowersetup.com/pl/poradnik/zuzycie-lodowki-kompresorowej/): Obliczenie Wh na dobę i wpływ temperatury, cyklu pracy oraz wentylacji.
 - [Slovenské centrum návodov](https://mypowersetup.com/sk/sprievodca/): Rozcestník slovenských výpočtov a rozhodovacích návodov.
+- [Schéma elektroinštalácie karavanu](https://mypowersetup.com/sk/sprievodca/schema-elektroinstalacie-karavanu/): Solár, alternátor, 230 V, servisná batéria, 12V rozvod a voliteľný menič v jednej architektúre.
 - [Kapacita batérie do karavanu](https://mypowersetup.com/sk/sprievodca/kapacita-baterie-do-karavanu/): Slovenský výpočet Wh a Ah podľa spotreby, autonómie a chémie batérie.
 - [AGM vs. LiFePO4 do karavanu](https://mypowersetup.com/sk/sprievodca/agm-vs-lifepo4/): Slovenské porovnanie využiteľnej energie, hmotnosti, nabíjania a vhodného použitia.
 - [Koľko W solárnych panelov](https://mypowersetup.com/sk/sprievodca/kolko-w-solarnych-panelov/): Slovenský návrh Wp podľa dennej spotreby, sezóny, rezervy a systémových strát.
@@ -42,6 +44,7 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 ## Praktické průvodce
 
 - [Centrum průvodců](https://mypowersetup.com/pruvodce/): Rozcestník všech publikovaných návodů.
+- [Schéma elektroinstalace karavanu](https://mypowersetup.com/pruvodce/schema-elektroinstalace-karavanu/): Solár, alternátor, 230 V, servisní baterie, 12V rozvod a případný měnič v jednom systému.
 - [Kapacita baterie do karavanu](https://mypowersetup.com/pruvodce/kapacita-baterie-do-karavanu/): Výpočet Wh a Ah podle spotřeby, autonomie a chemie baterie.
 - [AGM vs. LiFePO4](https://mypowersetup.com/pruvodce/agm-vs-lifepo4/): Rozdíly ve využitelné energii, hmotnosti, nabíjení a použití.
 - [Kolik W solárních panelů](https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/): Návrh Wp podle spotřeby, sezony a ztrát.
