@@ -2,6 +2,49 @@ import { spawn, spawnSync } from "node:child_process";
 import { readFile, rm } from "node:fs/promises";
 import { setTimeout as delay } from "node:timers/promises";
 
+class CdpClient {
+  static async connect(url) {
+    const client = new CdpClient(url);
+    await client.opened;
+    return client;
+  }
+
+  constructor(url) {
+    this.nextId = 1;
+    this.pending = new Map();
+    this.socket = new WebSocket(url);
+    this.opened = new Promise((resolve, reject) => {
+      this.socket.addEventListener("open", resolve, { once: true });
+      this.socket.addEventListener("error", reject, { once: true });
+    });
+    this.socket.addEventListener("message", (event) => {
+      const message = JSON.parse(event.data);
+      if (!message.id || !this.pending.has(message.id)) return;
+      const { resolve, reject } = this.pending.get(message.id);
+      this.pending.delete(message.id);
+      if (message.error) reject(new Error(`CDP ${message.error.code}: ${message.error.message}`));
+      else resolve(message.result || {});
+    });
+  }
+
+  send(method, params = {}) {
+    const id = this.nextId++;
+    return new Promise((resolve, reject) => {
+      this.pending.set(id, { resolve, reject });
+      this.socket.send(JSON.stringify({ id, method, params }));
+    });
+  }
+
+  async close() {
+    for (const { reject } of this.pending.values()) reject(new Error("CDP connection closed"));
+    this.pending.clear();
+    if (this.socket.readyState === WebSocket.CLOSED) return;
+    const closed = new Promise((resolve) => this.socket.addEventListener("close", resolve, { once: true }));
+    this.socket.close();
+    await Promise.race([closed, delay(500)]);
+  }
+}
+
 const previewPort = Number(process.env.HU_SMOKE_PORT || 4183);
 const previewUrl = `http://127.0.0.1:${previewPort}/hu/`;
 const profileDir = `/tmp/mypowersetup-hu-chrome-${process.pid}`;
@@ -215,47 +258,4 @@ function assert(condition, message) {
 function waitForExit(child) {
   if (child.exitCode !== null || child.signalCode !== null) return Promise.resolve();
   return new Promise((resolve) => child.once("exit", resolve));
-}
-
-class CdpClient {
-  static async connect(url) {
-    const client = new CdpClient(url);
-    await client.opened;
-    return client;
-  }
-
-  constructor(url) {
-    this.nextId = 1;
-    this.pending = new Map();
-    this.socket = new WebSocket(url);
-    this.opened = new Promise((resolve, reject) => {
-      this.socket.addEventListener("open", resolve, { once: true });
-      this.socket.addEventListener("error", reject, { once: true });
-    });
-    this.socket.addEventListener("message", (event) => {
-      const message = JSON.parse(event.data);
-      if (!message.id || !this.pending.has(message.id)) return;
-      const { resolve, reject } = this.pending.get(message.id);
-      this.pending.delete(message.id);
-      if (message.error) reject(new Error(`CDP ${message.error.code}: ${message.error.message}`));
-      else resolve(message.result || {});
-    });
-  }
-
-  send(method, params = {}) {
-    const id = this.nextId++;
-    return new Promise((resolve, reject) => {
-      this.pending.set(id, { resolve, reject });
-      this.socket.send(JSON.stringify({ id, method, params }));
-    });
-  }
-
-  async close() {
-    for (const { reject } of this.pending.values()) reject(new Error("CDP connection closed"));
-    this.pending.clear();
-    if (this.socket.readyState === WebSocket.CLOSED) return;
-    const closed = new Promise((resolve) => this.socket.addEventListener("close", resolve, { once: true }));
-    this.socket.close();
-    await Promise.race([closed, delay(500)]);
-  }
 }
