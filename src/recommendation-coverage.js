@@ -31,11 +31,16 @@ export function requiredRecommendationCategories(setup) {
   return Object.freeze(required);
 }
 
+export function isRecommendationEligible(recommendation) {
+  return Boolean(recommendation) && recommendation.available !== false && recommendation.staleSource !== true;
+}
+
 export function assessRecommendationCoverage(recommendations, setup, locale = setup?.locale) {
   const language = Object.hasOwn(COPY, locale) ? locale : "cs";
   const copy = COPY[language];
   const required = requiredRecommendationCategories(setup);
-  const missing = required.filter((category) => !(recommendations?.[category]?.length > 0));
+  const eligibleCount = (category) => (recommendations?.[category] || []).filter(isRecommendationEligible).length;
+  const missing = required.filter((category) => eligibleCount(category) === 0);
   const covered = required.filter((category) => !missing.includes(category));
   return Object.freeze({
     complete: missing.length === 0,
