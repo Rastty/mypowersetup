@@ -3,13 +3,15 @@ import { normalizeProduct } from "./products.js";
 export function parseShopifyProducts(payload, merchantKey, {
   origin,
   verifiedProducts = [],
-  allowedProductTypes = null
+  allowedProductTypes = null,
+  productPathPrefix = "/products/"
 } = {}) {
   if (!payload || !Array.isArray(payload.products)) {
     throw new Error("Shopify katalog neobsahuje pole products.");
   }
   const storeOrigin = new URL(origin);
   if (storeOrigin.protocol !== "https:") throw new Error("Shopify origin musí používat HTTPS.");
+  if (!/^\/[a-z0-9/-]*products\/$/i.test(productPathPrefix)) throw new Error("Shopify productPathPrefix není bezpečný.");
 
   const verifiedByUrl = new Map(
     verifiedProducts.map((product) => [new URL(product.productUrl).toString(), product])
@@ -22,7 +24,7 @@ export function parseShopifyProducts(payload, merchantKey, {
     const variant = variants.find((item) => item?.available) || variants[0];
     if (!variant) return [];
 
-    const productUrl = new URL(`/products/${product.handle}`, storeOrigin).toString();
+    const productUrl = new URL(`${productPathPrefix}${product.handle}`, storeOrigin).toString();
     try {
       const normalized = normalizeProduct({
         id: product.id,

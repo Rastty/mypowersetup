@@ -12,6 +12,7 @@ on:
       - "scripts/sync-products-pl.mjs"
       - "scripts/sync-products-sk.mjs"
       - "scripts/sync-products-hu.mjs"
+      - "scripts/lib/*.mjs"
       - "src/shopify.js"
       - "data/products-pl-verified.json"
       - ".github/workflows/sync-products.yml"

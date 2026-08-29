@@ -603,7 +603,7 @@ function formatPrice(price, currency = "EUR") {
 }
 
 function merchantLabel(merchant) {
-  return ({ padabo: "Padabo.sk", ampul_sk: "Ampul.eu", allpowers_eu: "ALLPOWERS EU" })[merchant] || merchant;
+  return ({ padabo: "Padabo.sk", ampul_sk: "Ampul.eu", allpowers_eu: "ALLPOWERS EU", powerqueen_eu: "Power Queen EU" })[merchant] || merchant;
 }
 
 function escapeHtml(value) {

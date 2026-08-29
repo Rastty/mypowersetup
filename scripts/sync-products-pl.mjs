@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { parseShopifyProducts } from "../src/shopify.js";
+import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 
 const endpoint = "https://allpowers.com.pl/products.json?limit=250";
 const outputPath = "data/products-pl.json";
@@ -15,6 +16,9 @@ try {
 const verifiedCatalog = JSON.parse(await readFile("data/products-pl-verified.json", "utf8"));
 const products = [];
 const sources = {};
+const powerqueen = await syncPowerQueenEu(previousCatalog);
+products.push(...powerqueen.products);
+sources.powerqueen_eu = powerqueen.source;
 
 try {
   const response = await fetch(endpoint, {
