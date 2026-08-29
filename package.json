@@ -21,6 +21,7 @@
     "check:expansion": "node scripts/check-expansion-readiness.mjs",
     "check:expansion:ready": "node scripts/check-expansion-readiness.mjs --require-ready",
     "preview:hu": "node scripts/preview-hu.mjs",
+    "preview:expansion": "node scripts/preview-expansion-markets.mjs",
     "smoke:public:mobile": "node scripts/smoke-public-mobile.mjs",
     "smoke:hu:mobile": "node scripts/smoke-hu-mobile.mjs",
     "indexnow:check": "node scripts/submit-indexnow.mjs --dry-run --all",
