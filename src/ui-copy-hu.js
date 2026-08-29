@@ -85,7 +85,7 @@ export const HU_UI_COPY = Object.freeze({
       solarPanel: "Napelemek",
       inverter: "Inverterek",
       controller: "MPPT szabályozók",
-      dcCharger: "Generátoros DC–DC töltők",
+      dcCharger: "Menet közbeni DC–DC akkumulátortöltők",
       shoreCharger: "230 V-os hálózati töltők",
       powerStation: "Hordozható erőművek",
     },
