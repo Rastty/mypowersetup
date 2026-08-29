@@ -1,0 +1,12 @@
+{
+  "generatedAt": null,
+  "market": "pt-PT",
+  "currency": "EUR",
+  "private": true,
+  "sources": {
+    "allpowers_pt": {
+      "status": "pending-sync"
+    }
+  },
+  "products": []
+}
