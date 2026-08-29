@@ -16,8 +16,8 @@ test("Hungarian publication manifest covers home, trust pages and every guide ex
   assert.ok(HU_PUBLICATION_MANIFEST.every(({ route, path }) => route.startsWith("/hu/") && path.startsWith("hu/")));
 });
 
-test("Hungarian publicizer removes private robots directive and adds canonical metadata idempotently", () => {
-  const privateHtml = '<!doctype html><html><head><meta name="robots" content="noindex,nofollow,noarchive"><title>HU</title></head><body></body></html>';
+test("Hungarian publicizer removes private robots directive and adds complete home metadata idempotently", () => {
+  const privateHtml = '<!doctype html><html><head><meta name="robots" content="noindex,nofollow,noarchive"><meta name="description" content="HU leírás"><title>HU kalkulátor</title></head><body></body></html>';
   const once = publicizeHungarianHtml(privateHtml, "/hu/", { home: true });
   const twice = publicizeHungarianHtml(once, "/hu/", { home: true });
   assert.doesNotMatch(once, /noindex/);
@@ -25,6 +25,12 @@ test("Hungarian publicizer removes private robots directive and adds canonical m
   for (const locale of ["cs-CZ", "sk-SK", "pl-PL", "hu-HU", "x-default"]) {
     assert.match(once, new RegExp(`hreflang="${locale}"`));
   }
+  assert.match(once, /property="og:title" content="HU kalkulátor"/);
+  assert.match(once, /property="og:description" content="HU leírás"/);
+  assert.match(once, /property="og:locale" content="hu_HU"/);
+  assert.match(once, /name="twitter:card" content="summary_large_image"/);
+  assert.match(once, /"@id":"https:\/\/mypowersetup\.com\/hu\/#calculator"/);
+  assert.match(once, /"inLanguage":"hu-HU"/);
   assert.equal(twice, once);
 });
 
