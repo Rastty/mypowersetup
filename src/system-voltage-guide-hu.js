@@ -44,6 +44,6 @@ export function renderHungarianSystemVoltageGuide() {
 <section class="cta"><h2>Számítsd ki a saját rendszeredet</h2><p>A kalkulátor ugyanebből a fogyasztásból, akkumulátor-igényből és inverterterhelésből választ alapértelmezett 12 vagy 24 V-os rendszerfeszültséget.</p><a href="/hu/#kalkulator">Kalkulátor megnyitása →</a></section>
 <p>Ez a cikk döntési keret, nem szerelési terv. A konkrét BMS-, biztosító-, vezeték- és készülékhatárokat mindig a gyártói dokumentációval és a jármű tényleges kialakításával kell ellenőrizni.</p>
 </article></main>
-<footer class="article-footer"><a href="/hu/a-projektrol/">A projektről</a> · <a href="/hu/modszertan/">Módszertan</a> · <a href="/hu/affiliate/">Affiliate</a> · <a href="/hu/adatvedelem/">Adatvédelem</a></footer>
+<footer class="article-footer"><a href="/hu/a-projektrol/">A projektről</a> · <a href="/hu/modszertan/">Módszertan</a> · <a href="/hu/partnerkapcsolatok/">Partnerkapcsolatok</a> · <a href="/hu/adatvedelem/">Adatvédelem</a></footer>
 </body></html>`;
 }
