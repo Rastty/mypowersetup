@@ -6,11 +6,12 @@ export const PT_MARKET_SEED = Object.freeze({
   private: true,
   robots: "noindex,nofollow,noarchive",
   affiliate: Object.freeze({
-    primaryMerchant: "allpowers_international",
-    program: "ALLPOWERS INTERNATIONAL",
-    awinMerchantId: 38934,
-    dedicatedProgram: Object.freeze({ name: "ALLPOWERS PT", awinMerchantId: 125820, status: "available-not-assumed-approved" }),
-    policy: "Start from the approved international/EU account and switch to the dedicated PT program only after approval is confirmed. Exact-product destinations only; fail closed otherwise.",
+    primaryMerchant: "allpowers_pt",
+    program: "ALLPOWERS PT",
+    awinMerchantId: 125820,
+    dedicatedProgram: Object.freeze({ name: "ALLPOWERS PT", awinMerchantId: 125820, status: "approved" }),
+    fallbackProgram: Object.freeze({ name: "ALLPOWERS INTERNATIONAL", awinMerchantId: 38934, status: "approved-fallback" }),
+    policy: "Use the approved dedicated Portugal program for exact-product destinations. Fall back to the approved international/EU program only when the PT destination is not eligible. Never guess or downgrade to a generic landing page; fail closed otherwise.",
   }),
   copy: Object.freeze({
     title: "Calculadora de bateria e painéis solares para autocaravana | MyPowerSetup",
