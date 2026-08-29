@@ -606,6 +606,7 @@ function formatPrice(price, currency = "PLN") {
 function merchantLabel(merchant) {
   if (merchant === "padabo") return "Padabo.sk";
   if (merchant === "allpowers_pl") return "ALLPOWERS PL";
+  if (merchant === "powerqueen_eu") return "Power Queen EU";
   if (merchant === "ampul_pl") return "Ampul.eu";
   return merchant;
 }
