@@ -10,7 +10,16 @@ try {
   // First run starts empty and remains fail-closed if the source is unavailable.
 }
 
-const allpowers = await syncAllpowersPt(previousCatalog);
+let allpowers;
+try {
+  allpowers = await syncAllpowersPt(previousCatalog);
+} catch (error) {
+  allpowers = {
+    products: previousCatalog.products.filter((product) => product?.merchant === "allpowers_pt"),
+    source: { status: "error", error: error.message },
+  };
+}
+
 const nextCatalog = {
   generatedAt: new Date().toISOString(),
   market: "pt-PT",
@@ -22,4 +31,4 @@ const nextCatalog = {
 
 await mkdir("data", { recursive: true });
 await writeFile(outputPath, `${JSON.stringify(nextCatalog, null, 2)}\n`);
-console.log(`ALLPOWERS PT: ${allpowers.products.length} produtos seguros guardados.`);
+console.log(`ALLPOWERS PT: ${allpowers.products.length} produtos seguros guardados (${allpowers.source.status}).`);
