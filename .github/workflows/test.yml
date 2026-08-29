@@ -27,6 +27,7 @@ jobs:
       - run: node --check scripts/preaudit.mjs
       - run: node --check scripts/publish-hu.mjs
       - run: node --check scripts/submit-indexnow.mjs
+      - run: node --check scripts/check-expansion-release.mjs
       - run: node --check scripts/smoke-public-mobile.mjs
       - run: node --check scripts/smoke-hu-mobile.mjs
       - run: node --check scripts/smoke-pt-mobile.mjs
@@ -34,6 +35,7 @@ jobs:
       - run: node --check scripts/smoke-ro-mobile.mjs
       - run: npm run health:markets:safe
       - run: npm run preaudit:ready
+      - run: npm run check:expansion:release
       - run: npm run indexnow:check
       - run: google-chrome --version
       - run: npm run smoke:public:mobile

@@ -20,6 +20,8 @@
     "audit:four-markets:ready": "node scripts/final-four-market-audit.mjs --require-ready-for-romania",
     "check:expansion": "node scripts/check-expansion-readiness.mjs",
     "check:expansion:ready": "node scripts/check-expansion-readiness.mjs --require-ready",
+    "check:expansion:release": "node scripts/check-expansion-release.mjs",
+    "check:expansion:release:ready": "node scripts/check-expansion-release.mjs --require-ready",
     "preview:hu": "node scripts/preview-hu.mjs",
     "preview:expansion": "node scripts/preview-expansion-markets.mjs",
     "smoke:public:mobile": "node scripts/smoke-public-mobile.mjs",
