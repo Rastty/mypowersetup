@@ -1,12 +1,322 @@
 {
-  "generatedAt": null,
+  "generatedAt": "2026-08-29T15:42:56.224Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": true,
   "sources": {
     "allpowers_pt": {
-      "status": "pending-sync"
+      "status": "ok",
+      "relevantProducts": 17,
+      "solarPanels": 17,
+      "technicallyVerifiedPowerStations": 0
     }
   },
-  "products": []
+  "products": [
+    {
+      "id": "allpowers_pt-10037468201277",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SP035 Comprar Painel Solar Dobrável 200W",
+      "description": "Monocristalino, 25% de Eficiência; Revestimento ETFE Duradouro; Dobrável e Portátil; com conectores solares;",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 239,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-sp035-painel-solar-dobravel-200w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-sp035-painel-solar-dobravel-200w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/ALLPOWERS-SP035-Foldable-Solar-Panel-200W-ALLPOWERS-124322117.webp?v=1784531001",
+      "specs": {
+        "powerW": 200
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10227064406333",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SOLAX SE60 Painel Solar 60W",
+      "description": "Carregamento mais rápido com uma taxa de conversão elevada de 23.4%. Instalação fácil em 10 segundos. Auto-suporte com ângulo ajustável. Classificação IP68 garantida por materiais multicamadas. Design leve e fácil de transportar com uma mão. Fonte de energia solar ideal para o SOLAX P300.",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 76.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-solax-se60-painel-solar-60w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-solax-se60-painel-solar-60w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/SOLAXSE60SOLARPANEL.png?v=1770463926",
+      "specs": {
+        "powerW": 60
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10195393904957",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SOLAX SE200 Painel Solar 200W",
+      "description": "Alta eficiência de conversão; Leve e dobrável; Resistente à água IP68, material ETFE; Compatível com a maioria dos geradores solares com conectores solares;",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 199,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-solax-se200-painel-solar-200w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-solax-se200-painel-solar-200w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/SE200-1_1.webp?v=1767168068",
+      "specs": {
+        "powerW": 200
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10195393347901",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SOLAX SE100 Painel Solar 100W",
+      "description": "Alta eficiência de conversão; Leve e dobrável; Material impermeável ETFE IP68; Compatível com a maioria dos geradores solares com conectores solares;",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 109,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-solax-se100-painel-solar-100w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-solax-se100-painel-solar-100w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/se100-1_1.jpg?v=1775805970",
+      "specs": {
+        "powerW": 100
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037469806909",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SF200 Painel Solar Flexível 200W",
+      "description": "Alta eficiência de conversão; Leve e extremamente flexível Material ETFE impermeável IP68 Compatível com a maioria dos geradores solares com conectores MC4",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 249,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/painel-solar-flexivel-allpowers-sf200-de-200w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fpainel-solar-flexivel-allpowers-sf200-de-200w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/SF200SolarPanel200W_5.jpg?v=1767075919",
+      "specs": {
+        "powerW": 200
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037469741373",
+      "merchant": "allpowers_pt",
+      "name": "Cabo de extensão solar ALLPOWERS com conectores 5521 (1,5 m 16 AWG com conectores solares)",
+      "description": "Long Cable: 16AWG solar extension cable, length 1.5m, quite long enough, but it is very flexible and easy to store Y-branch Type: One end is (solar panel plug, male / female), the other is DC 5.5mm x 2.1mm and 3.5x1.35mm(DC5.5mmx2.5mm connectors also included) Wide Usage: Used to connect solar panel and solar generator, universal for all solar panel kits with solar connector. You can use it to connect ALLPOWERS 100W 50W solar panels and solar generator",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 19.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-solar-extension-cable-with-mc-4-to-5521-connectors-1-5m-16awg-with-mc-4-connectors",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-solar-extension-cable-with-mc-4-to-5521-connectors-1-5m-16awg-with-mc-4-connectors",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/ALLPOWERS_Solar_Panel_Adaptor_Cable.jpg?v=1767075856",
+      "specs": {
+        "powerW": 100
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037469675837",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SF100 Painel Solar Flexível 100W",
+      "description": "Pesa apenas 2,39 kg (5,29 lbs), o que o torna extremamente leve Flexibilidade de 260°, o que facilita a adaptação a qualquer superfície Proteção IP68 à prova de água para maior durabilidade Compatível universalmente",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/painel-solar-flexivel-allpowers-sf100-de-100w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fpainel-solar-flexivel-allpowers-sf100-de-100w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/ALLPOWERSSF100.jpg?v=1767075770",
+      "specs": {
+        "powerW": 100
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037469544765",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SP039 Painel Solar Portátil 600W",
+      "description": "Carregamento mais rápido com uma elevada potência solar de 600 Watt Até 23% de taxa de conversão Materiais duráveis de várias camadas Autossustentável com ângulo ajustável Classificação IP67 à prova de água",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 699,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/painel-solar-portatil-allpowers-sp039-de-600w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fpainel-solar-portatil-allpowers-sp039-de-600w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/ALLPOWERS-SP039-600W-Monocrystalline-Portable-Solar-Panel-ALLPOWERS-115578547.webp?v=1772358710",
+      "specs": {
+        "powerW": 600
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037468692797",
+      "merchant": "allpowers_pt",
+      "name": "Cabo adaptador para conector solar ALLPOWERS Anderson",
+      "description": "Características Ampla Compatibilidade: Adaptador de conector solar 16AWG para Anderson suporta corrente de 6A e 300V, ideal para painéis solares (40-120W, 13-18V) no carregamento de geradores solares portáteis de alta capacidade ou fontes de energia solar. Fácil de Usar: Funcionamento plug-and-play para pacotes de baterias solares. Compatível com todos os kits de painéis solares com conector solar, para uso com geradores solares portáteis e sistemas de alimentação UPS de reserva. Materiais de Al",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 19.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-anderson-to-mc-4-connector-adapter-cable",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-anderson-to-mc-4-connector-adapter-cable",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/1_1800x1800_0e3a0eaf-d907-4da4-8b28-31e8a620abc7.jpg?v=1767074191",
+      "specs": {
+        "powerW": 120
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037468102973",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SP029 Comprar Painel solar policristalino portátil 140W",
+      "description": "MC-4 USB + DC Output MC-4 Output can deliver 25A(max)current while the DC port only carries 10A, Dual USB port(5V/2.4A per port) for charging your 5V powered gadgets, and 18V DC output(18V/3A) for charging your laptop or 12V car battery and portable generator, the junction box parallel connecting port for connecting multiple foldable solar panels. Wide Compatibility Equipped with the MC4 connector and DC controller, ALLPOWERS140W solar panel is highly compatible with most solar generators on the",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 179,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-sp029-painel-solar-policristalino-portatil-140w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-sp029-painel-solar-policristalino-portatil-140w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/ALLPOWERS120WPortableSolarPanelChargerforLaptops_PowerStation_FoldableUSSolarCellSolarChargerwithMC-4_DC_andUSBOutput_forMostSolarGenerator_PowerStation_Cellphone2_1800x1800_f1c250d9.jpg?v=1767075750",
+      "specs": {
+        "powerW": 140
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037468070205",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SP020 Comprar Painel Solar Monocristalino 60W",
+      "description": "",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 69,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-sp020-painel-solar-monocristalino-60w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-sp020-painel-solar-monocristalino-60w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/ALLPOWERSSP020SOLARPANELS_a026038b-b7cd-4f0a-a2b5-a5abf8595c09.jpg?v=1767075704",
+      "specs": {
+        "powerW": 60
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037468037437",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SP026 Comprar Painel Solar Dobrável De Polissilício 60W",
+      "description": "Alta Eficiência de Conversão; Dobrável & Portátil; Leve & Extremamente Flexível Material ETFE à prova de água IP67; Painel solar especial de carregamento ALLPOWERS S200; Compatível: estação de energia/ baterias recarregáveis 12V/ laptops 18V-22V/ iPhone/ iPad/ câmaras digitais/ MP3, etc.",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 79.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-sp026-painel-solar-dobravel-de-polissilicio-60w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-sp026-painel-solar-dobravel-de-polissilicio-60w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/33_1800x1800_2fb6acda-5b92-4c52-be54-abda2518ff0f.jpg?v=1767075684",
+      "specs": {
+        "powerW": 60
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037467873597",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SP012 Comprar Painel Solar 100W",
+      "description": "Foldable & Portable When folded, the portable and frame design is suitable for outdoor, indoor, travel, camping, and RV use and takes up no space. Eyeholes make it simple to attach a portable solar panel to a backpack while traveling. Wide Compatibility Equipped with the Dual USB Output, the 100W solar panel is highly compatible with phones, pads and other devices. You also could connect the ALLPOWERS S200/S300/S700 poratble power station.",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 189,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-sp012-painel-solar-100w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-sp012-painel-solar-100w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/1_1800x1800_5619e973-60fd-4625-b20f-973e1658e67d.jpg?v=1767075482",
+      "specs": {
+        "powerW": 100
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037467840829",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SP033 Painel Solar Portátil 200W",
+      "description": "Alta eficiência de conversão: até 25%; Material monocristalino (atualizado em maio de 2025) Dobrável e portátil; Resistente e à prova de salpicos; Compatível com a maioria dos geradores solares com conectores solares;",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 179,
+      "priceCurrency": "EUR",
+      "available": false,
+      "productUrl": "https://allpowers-pt.com/products/painel-solar-portatil-allpowers-sp033-de-220w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fpainel-solar-portatil-allpowers-sp033-de-220w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/AP-SP-033-200w-solar-panel_1800x1800_cb9ef6a8-29a3-4b70-8a2e-a33c8a07d3b0.webp?v=1767075405",
+      "specs": {
+        "powerW": 200
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037467808061",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SP037 Painel Solar Portátil 400W",
+      "description": "Carregamento mais rápido com uma elevada potência solar de 400 Watt Até 22% de taxa de conversão Materiais duráveis de várias camadas Autossustentável com ângulo ajustável Classificação IP67 à prova de água",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 449,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/painel-solar-portatil-allpowers-sp037-de-400w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fpainel-solar-portatil-allpowers-sp037-de-400w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/1-min_1800x1800_720a044c-87d3-4111-83e1-aedb036dbfcb.jpg?v=1767075356",
+      "specs": {
+        "powerW": 400
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037467775293",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS SP027 Painel Solar Portátil 100W",
+      "description": "Portátil e leve Até 23% de taxa de conversão Autossuficiente Durável com classificação IP67 à prova de água Design dobrável numa só peça",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 89,
+      "priceCurrency": "EUR",
+      "available": false,
+      "productUrl": "https://allpowers-pt.com/products/painel-solar-portatil-allpowers-sp027-de-100w",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fpainel-solar-portatil-allpowers-sp027-de-100w",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/foldingsolarpanels_1800x1800_cc26c503-d85d-40fd-93be-5fd2d94fb149.jpg?v=1767075302",
+      "specs": {
+        "powerW": 100
+      },
+      "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037467480381",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS S200 Banco de energia portátil 200W 154Wh",
+      "description": "Capacidade: 154 Wh; Potência de saída AC 200 W (pico 240 W); Carregamento duplo rápido em 1,5 horas (USB‑C + AC); 3 modos de carregamento (USB‑C + AC + painel solar); Tomadas com plugue europeu",
+      "category": "solar_panel",
+      "brand": "ALLPOWERS",
+      "priceCzk": 113,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-s200-banco-de-energia-portatil-200w-154wh",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-s200-banco-de-energia-portatil-200w-154wh",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/ALLPOWERSS200_2_ed9cdd23-2779-4a24-b143-2e448debce1f.jpg?v=1767074123",
+      "specs": {
+        "powerW": 200
+      },
+      "verifiedAt": null
+    }
+  ]
 }
