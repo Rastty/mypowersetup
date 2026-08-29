@@ -69,6 +69,7 @@ test("current public catalogs produce measurable commercial scenario coverage", 
     { market: "pl-PL", locale: "pl", files: ["products-pl.json"] },
     { market: "hu-HU", locale: "hu", files: ["products-hu.json"] },
   ];
+  const benchmark = [];
   for (const config of configs) {
     const payloads = await Promise.all(config.files.map(async (file) => JSON.parse(await readFile(new URL(`../data/${file}`, import.meta.url), "utf8"))));
     const catalog = {
@@ -80,5 +81,13 @@ test("current public catalogs produce measurable commercial scenario coverage", 
     assert.equal(report.scenarioCount, COMMERCIAL_SCENARIOS.length);
     assert.ok(report.weightedCoverage > 0, `${config.market} should have non-zero weighted coverage`);
     assert.ok(report.purchaseReadyRatio >= 0 && report.purchaseReadyRatio <= 1);
+    benchmark.push({
+      market: config.market,
+      purchaseReadyRatio: report.purchaseReadyRatio,
+      weightedCoverage: report.weightedCoverage,
+      opportunities: report.opportunities,
+      scenarios: report.scenarios.map(({ id, purchaseReady, missing, chargingMissing }) => ({ id, purchaseReady, missing, chargingMissing })),
+    });
   }
+  console.log(`COMMERCIAL_SCENARIO_BENCHMARK:${JSON.stringify(benchmark)}`);
 });
