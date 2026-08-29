@@ -21,3 +21,6 @@ jobs:
       - run: node --check src/app.js
       - run: node --check src/app-hu.js
       - run: node --check scripts/publish-hu.mjs
+      - run: node --check scripts/smoke-hu-mobile.mjs
+      - run: google-chrome --version
+      - run: npm run smoke:hu:mobile
