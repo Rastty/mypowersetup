@@ -22,6 +22,7 @@ jobs:
       - run: node --check src/app-hu.js
       - run: node --check src/analytics-context.js
       - run: node --check src/analytics.js
+      - run: node --check src/public-conversion-funnel.js
       - run: node --check src/market-health.js
       - run: node --check scripts/check-market-health.mjs
       - run: node --check scripts/preaudit.mjs
@@ -29,6 +30,7 @@ jobs:
       - run: node --check scripts/submit-indexnow.mjs
       - run: node --check scripts/check-expansion-release.mjs
       - run: node --check scripts/sync-public-hreflang.mjs
+      - run: node --check scripts/check-public-conversion.mjs
       - run: node --check scripts/smoke-public-mobile.mjs
       - run: node --check scripts/smoke-hu-mobile.mjs
       - run: node --check scripts/smoke-pt-mobile.mjs
@@ -38,6 +40,7 @@ jobs:
       - run: npm run preaudit:ready
       - run: npm run check:expansion:release
       - run: npm run check:public:hreflang
+      - run: npm run check:public:conversion
       - run: npm run indexnow:check
       - run: google-chrome --version
       - run: npm run smoke:public:mobile
