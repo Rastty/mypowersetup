@@ -14,7 +14,7 @@ export const SI_MARKET_RESEARCH = Object.freeze({
     "Slovenian results around avtodom electrical topics are dominated by retailers, rental pages, classifieds and vehicle builders rather than dedicated calculation-first editorial tools.",
     "Retailers surface LiFePO4 batteries, combined DC-DC/MPPT chargers and sine inverters, confirming clear commercial intent around the same components sized by the calculator.",
     "Rental and classified listings repeatedly mention solar panels, lithium or AGM batteries and inverters as key self-sufficiency equipment, which supports a practical autonomy-led content angle.",
-    "The sampled searches did not surface a strong Slovenian calculator-first competitor for battery + solar + inverter + MPPT sizing, so the differentiated opportunity remains intact but must not be described as zero competition.",
+    "The sampled searches did not surface a strong Slovenian calculator-first competitor for battery + solar + inverter + MPPT sizing, so the differentiated opportunity remains intact while competition is still treated as present.",
   ]),
   sourceExamples: Object.freeze([
     Object.freeze({ host: "primusmobil.com", evidence: "Slovenian vehicle builder/retailer listing LiFePO4 batteries, DC-DC-MPPT chargers and sine inverters." }),
