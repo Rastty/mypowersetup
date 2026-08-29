@@ -1,6 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import { HU_GUIDE_ROUTES } from "../src/guides-hu.js";
 import { HU_SYSTEM_GUIDE_ROUTE } from "../src/system-guide-hu.js";
+import { HU_SYSTEM_VOLTAGE_GUIDE_ROUTE } from "../src/system-voltage-guide-hu.js";
 import { assessMarketHealth, extractSitemapUrls, summarizeMarketHealth } from "../src/market-health.js";
 import { renderHungarianPrivatePage } from "../src/page-hu.js";
 
@@ -39,7 +40,9 @@ const MARKETS = Object.freeze([
     homepageRenderer: renderHungarianPrivatePage,
     canonicalUrl: "https://mypowersetup.com/hu/",
     catalogs: ["data/products-hu.json"],
-    preparedGuideCount: Object.keys(HU_GUIDE_ROUTES).filter((key) => key !== "hub").length + (HU_SYSTEM_GUIDE_ROUTE ? 1 : 0),
+    preparedGuideCount: Object.keys(HU_GUIDE_ROUTES).filter((key) => key !== "hub").length
+      + (HU_SYSTEM_GUIDE_ROUTE ? 1 : 0)
+      + (HU_SYSTEM_VOLTAGE_GUIDE_ROUTE ? 1 : 0),
   },
 ]);
 
