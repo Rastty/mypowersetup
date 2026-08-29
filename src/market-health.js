@@ -47,7 +47,9 @@ export function assessMarketHealth({
     catalogPresent: normalizedCatalogs.length > 0 && products.length > 0,
     sourceMetadataPresent: sourceEntries.length > 0,
     affiliateDestinationsValid: invalidAffiliateProducts.length === 0,
-    canonicalMatches: homepageCanonical === canonicalUrl,
+    canonicalMatches: expectedPublic
+      ? homepageCanonical === canonicalUrl
+      : homepageCanonical === null || homepageCanonical === canonicalUrl,
     publicationStateMatches: expectedPublic
       ? sitemapContainsHomepage && !homepageNoindex
       : !sitemapContainsHomepage && homepageNoindex,
