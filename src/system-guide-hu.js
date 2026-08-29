@@ -1,0 +1,58 @@
+export const HU_SYSTEM_GUIDE_ROUTE = "/hu/utmutatok/lakoauto-elektromos-rendszer-kapcsolasi-rajz/";
+
+export function renderHungarianSystemGuide() {
+  return `<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Lakóautó elektromos rendszer kapcsolási rajza: napelem, alternátor és 230 V</title>
+  <meta name="description" content="A lakóautó teljes elektromos rendszerének logikus felépítése: napelem és MPPT, DC–DC töltés alternátorról, 230 V-os töltő, lakótéri akkumulátor, 12 V-os elosztás és inverter.">
+  <meta property="og:title" content="Lakóautó elektromos rendszer kapcsolási rajza: napelem, alternátor és 230 V">
+  <meta property="og:description" content="Hogyan áll össze egy rendszerbe a napelem, az alternátor, a 230 V-os töltés, a lakótéri akkumulátor és az inverter.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mypowersetup.com${HU_SYSTEM_GUIDE_ROUTE}">
+  <meta property="og:site_name" content="MyPowerSetup">
+  <meta property="og:locale" content="hu_HU">
+  <meta property="og:image" content="https://mypowersetup.com/social-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/article.css">
+  <script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Lakóautó elektromos rendszer kapcsolási rajza: napelem, alternátor és 230 V",
+    datePublished: "2026-08-29",
+    dateModified: "2026-08-29",
+    author: {
+      "@type": "Person",
+      "@id": "https://mypowersetup.com/hu/a-projektrol/#petr-galik",
+      name: "Petr Gálík",
+      url: "https://mypowersetup.com/hu/a-projektrol/",
+    },
+    publisher: { "@type": "Organization", name: "MyPowerSetup" },
+    mainEntityOfPage: `https://mypowersetup.com${HU_SYSTEM_GUIDE_ROUTE}`,
+    inLanguage: "hu-HU",
+  })}</script>
+</head>
+<body>
+<header class="article-header"><a class="article-brand" href="/hu/">⚡ MyPowerSetup</a><nav><a href="/hu/utmutatok/">Útmutatók</a><a href="/hu/#kalkulator">Kalkulátor</a></nav></header>
+<section class="article-hero"><div class="article-hero-inner"><div class="crumbs"><a href="/hu/">Kezdőlap</a> › <a href="/hu/utmutatok/">Útmutatók</a> › Elektromos rendszer</div><span class="kicker">Teljes rendszer</span><h1>Lakóautó elektromos rendszer: mi hova csatlakozik?</h1><p>A napelem, az alternátor és a 230 V-os kempingcsatlakozás nem három külön rendszer. Mindhárom töltési út a lakótéri akkumulátort tölti, amely ezután a 12 V-os fogyasztókat és szükség esetén az invertert látja el.</p><div class="article-meta"><span>Szerző: <a href="/hu/a-projektrol/">Petr Gálík</a></span><span>Frissítve: 2026. 08. 29.</span><span>10 perc olvasás</span><span>Rendszerarchitektúra, nem villamos terv</span></div></div></section>
+<main class="article-layout"><article class="article">
+<div class="answer"><strong>A legfontosabb elv</strong>Egy tipikus lakóautóban három töltési ág fut a lakótéri akkumulátorhoz: <strong>napelemek → MPPT töltésvezérlő → akkumulátor</strong>, <strong>indítóakkumulátor/alternátor → DC–DC töltő → akkumulátor</strong>, valamint <strong>230 V-os csatlakozás → hálózati töltő → akkumulátor</strong>. Az akkumulátorból külön 12 V-os elosztás, és ha kell, külön inverterág indul.</div>
+<h2 id="kapcsolas">1. A teljes rendszer logikai kapcsolása</h2><div class="formula">Napelemek → MPPT töltésvezérlő → lakótéri akkumulátor<br>Alternátor / indítóakkumulátor → DC–DC töltő → lakótéri akkumulátor<br>230 V-os kempingcsatlakozás → akkumulátortöltő → lakótéri akkumulátor<br>Lakótéri akkumulátor → 12 V-os elosztás + opcionális inverter → 230 V-os fogyasztók</div><p>Ez funkcionális felépítés, nem szerelési rajz. Minden nagyáramú ágnál külön kell ellenőrizni a feszültséget, áramot, vezetékhosszt, csatlakozókat, leválasztást és a konkrét készülék dokumentációja szerinti védelmet.</p>
+<h2 id="forrasok">2. A három töltési forrás más helyzetben erős</h2><table><thead><tr><th>Forrás</th><th>Mikor a leghasznosabb?</th><th>Mit kell ellenőrizni?</th></tr></thead><tbody><tr><td>Napelem + MPPT</td><td>Hosszabb hálózat nélküli állás, főleg tavasztól őszig</td><td>Voc, Isc, PV-teljesítmény, MPPT áram, akkumulátorprofil</td></tr><tr><td>Alternátor + DC–DC</td><td>Gyakori továbbhaladás és körutazás</td><td>bemeneti áram, alternátor, indítórendszer, BMS, vezeték</td></tr><tr><td>230 V + töltő</td><td>Kemping, termálkemping vagy indulás előtti feltöltés</td><td>töltési profil, akkumulátoráram, AC-védelem és csatlakozás</td></tr></tbody></table><p>Modern alternátornál és LiFePO₄ akkumulátornál a menet közbeni töltést érdemes önálló, szabályozott DC–DC ágként kezelni. A pontos bekötést mindig az adott jármű és töltő gyártói előírása határozza meg.</p>
+<h2 id="meretezes">3. Az energiamérleg fontosabb, mint önmagában az akkumulátor mérete</h2><p>Ha naponta 600 Wh energiát használsz el, de átlagosan csak 250–300 Wh-t töltesz vissza, a hiány minden nap nő. Ezért együtt kell méretezni az <a href="/hu/utmutatok/lakoauto-akkumulator-kapacitas/">akkumulátort</a>, a <a href="/hu/utmutatok/hany-watt-napelem-lakoautohoz/">napelemet</a>, az <a href="/hu/utmutatok/mppt-szabalyozo-kivalasztasa/">MPPT töltésvezérlőt</a>, a <a href="/hu/utmutatok/dc-dc-tolto-kivalasztasa/">DC–DC töltőt</a> és a <a href="/hu/utmutatok/230-v-os-tolto-kivalasztasa/">230 V-os töltőt</a>.</p>
+<h2 id="magyar-pelda">4. Magyar példa: két balatoni éjszaka és napi két óra vezetés</h2><div class="example"><strong>Modell: 600 Wh/nap, két nap autonómia, 12 V LiFePO₄, napi 2 óra vezetés</strong><p>A MyPowerSetup konzervatív modellje 600 × 2 × 1,15 ÷ 0,80 ÷ 12 ≈ <strong>144 Ah LiFePO₄</strong> kapacitást ad. Nyári napelemes méretezésnél 600 × 1,15 ÷ 4,5 ÷ 0,75 ≈ <strong>205 Wp</strong>, ezért a tető és a valós árnyékolás függvényében a következő praktikus panelméret indokolt lehet.</p><p>Ha a napi 600 Wh-t két óra vezetés alatt szeretnénk visszatölteni, az orientációs DC–DC áram 600 ÷ 2 ÷ 12 ÷ 0,90 ≈ <strong>27,8 A</strong>. Ez csak energiaoldali kiindulás: az alternátor, a BMS, a bemeneti kábel és a töltő gyártói korlátja tovább szűkítheti a választást.</p><p>A Balaton partján nyári hőségben a kompresszoros hűtő fogyasztása nőhet, miközben egy árnyékos parkoló jelentősen csökkentheti a napelem termelését. Egy magyarországi körutazásnál ezért a DC–DC töltés nagyobb értéket adhat, míg rendszeres termálkempinges 230 V-os csatlakozásnál a megfelelő hálózati töltő csökkenti a túlméretezett akkumulátor szükségességét.</p></div>
+<h2 id="inverter">5. Az invertert konkrét 230 V-os fogyasztó miatt add hozzá</h2><p>Ha a hűtő, világítás, USB-C és más fogyasztók közvetlenül DC-ről működnek, külön inverterre nincs feltétlenül szükség. Kávéfőző, hajszárító vagy más nagy AC-terhelés esetén viszont az inverter mellett az akkumulátor és a BMS maximális árama, valamint a DC-oldali vezeték is kritikus. Lásd a <a href="/hu/utmutatok/lakoauto-inverter-kivalasztasa/">lakóautó-inverter kiválasztásáról szóló útmutatót</a>.</p>
+<h2 id="vezetek">6. A kapcsolási rajzból nem következik univerzális vezetékméret vagy biztosíték</h2><p>A vezeték keresztmetszetét a tényleges áram, az egyirányú hossz, a megengedett feszültségesés, a hőmérséklet, a fektetés módja és a csatlakozások is befolyásolják. A túláramvédelemnek a vezetéket kell védenie, és közben tiszteletben kell tartania a készülék dokumentációját. Ezért egy idegen internetes rajzról nem szabad vakon átvenni szerelési értékeket. A méretezési korlátokat külön a <a href="/hu/utmutatok/12-v-vezetekek-es-biztositekok/">12 V-os vezetékek és biztosítékok útmutatója</a> kezeli.</p><div class="note"><strong>230 V-os rész:</strong> a lakóautó rögzített váltakozó áramú hálózata további érintésvédelmi, leválasztási, forrásváltási és ellenőrzési követelményeket jelent. Ezt a cikket ne használd szakember által ellenőrzött villamos terv helyett.</div>
+<section class="cta"><h2>Először számítsd ki az egész rendszert</h2><p>A kalkulátor ugyanabból a fogyasztási profilból becsüli az akkumulátort, a napelemet, az MPPT-t, az invertert, valamint az alternátoros és 230 V-os töltést. Ezután érdemes konkrét termékeket és szerelési megoldást választani.</p><a href="/hu/#kalkulator">Saját rendszer kiszámítása →</a></section>
+<h2 id="ellenorzes">7. Ellenőrzőlista vásárlás előtt</h2><ol><li>Ismerem a napi fogyasztást Wh-ban és a kívánt autonómiát.</li><li>Eldöntöttem, hogy 12 V-os vagy 24 V-os rendszerre van szükség.</li><li>Minden töltési forrás kompatibilis az akkumulátor kémiájával és BMS-ével.</li><li>Az MPPT elviseli a konkrét panelkapcsolás Voc, Isc és teljesítményértékeit.</li><li>A DC–DC töltő nem terheli túl az alternátort és a bemeneti vezetéket.</li><li>Az akkumulátor és a BMS képes az inverter szükséges DC-áramát leadni.</li><li>Minden nagyáramú ág vezetékét, leválasztását és védelmét külön méretezem.</li><li>A végleges szerelést és a 230 V-os részt a gyártói dokumentáció szerint, képzett szakemberrel ellenőriztetem.</li></ol>
+<div class="sources"><h2>Műszaki határok</h2><p>A napelemes ág bekötési sorrendjét, polaritását és maximális PV-értékeit a konkrét MPPT kézikönyve határozza meg. Ugyanez igaz a DC–DC és a hálózati töltőre. Ez az útmutató ezért rendszerszintű döntési térképet ad, nem univerzális szerelési értékeket.</p><p><a href="https://www.victronenergy.com/solar-charge-controllers" rel="nofollow noopener">Victron Energy — MPPT dokumentáció</a> · <a href="https://www.victronenergy.com/dc-dc-converters" rel="nofollow noopener">Victron Energy — DC–DC dokumentáció</a></p></div>
+</article><aside class="toc"><strong>A cikkben</strong><a href="#kapcsolas">Kapcsolási logika</a><a href="#forrasok">Töltési források</a><a href="#meretezes">Energiamérleg</a><a href="#magyar-pelda">Magyar példa</a><a href="#inverter">Inverter</a><a href="#vezetek">Vezeték és védelem</a><a href="#ellenorzes">Ellenőrzőlista</a></aside></main>
+<section class="related"><h2>Kapcsolódó útmutatók</h2><div class="related-grid"><a href="/hu/utmutatok/dc-dc-tolto-kivalasztasa/">DC–DC töltő →</a><a href="/hu/utmutatok/mppt-szabalyozo-kivalasztasa/">MPPT töltésvezérlő →</a><a href="/hu/utmutatok/12-v-vezetekek-es-biztositekok/">Vezetékek és biztosítékok →</a></div></section>
+<footer class="article-footer"><a href="/hu/utmutatok/">Minden útmutató</a> · Az eredmény tájékoztató jellegű méretezés, nem villamos terv.</footer>
+<script type="module" src="/src/analytics.js?v=20260824-1&build=20260829-husystem1"></script>
+</body>
+</html>`;
+}
