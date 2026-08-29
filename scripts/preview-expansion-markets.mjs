@@ -4,10 +4,15 @@ import { extname, resolve } from "node:path";
 import { renderPrivateMarketSeedPage } from "../src/private-market-page.js";
 import { RO_MARKET_SEED } from "../src/market-seed-ro.js";
 import { PT_MARKET_SEED } from "../src/market-seed-pt.js";
+import { SI_MARKET_SEED } from "../src/market-seed-si.js";
 
 const root = resolve(new URL("..", import.meta.url).pathname);
 const port = Number(process.env.EXPANSION_PREVIEW_PORT || 4174);
-const seeds = new Map([[RO_MARKET_SEED.route, RO_MARKET_SEED], [PT_MARKET_SEED.route, PT_MARKET_SEED]]);
+const seeds = new Map([
+  [RO_MARKET_SEED.route, RO_MARKET_SEED],
+  [PT_MARKET_SEED.route, PT_MARKET_SEED],
+  [SI_MARKET_SEED.route, SI_MARKET_SEED],
+]);
 const mime = { ".css": "text/css; charset=utf-8", ".svg": "image/svg+xml" };
 
 createServer(async (request, response) => {
@@ -22,7 +27,7 @@ createServer(async (request, response) => {
   } catch {
     return send(response, 500, "text/plain; charset=utf-8", "Preview error");
   }
-}).listen(port, "127.0.0.1", () => console.log(`Private RO/PT preview: http://127.0.0.1:${port}/ro/ and /pt/`));
+}).listen(port, "127.0.0.1", () => console.log(`Private expansion preview: http://127.0.0.1:${port}/ro/, /pt/ and /si/`));
 
 function send(response, status, contentType, body) {
   response.writeHead(status, { "content-type": contentType, "x-robots-tag": "noindex, nofollow, noarchive" });
