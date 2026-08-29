@@ -1,0 +1,33 @@
+name: Sync public hreflang
+
+on:
+  push:
+    branches: [seo/public-hreflang-parity]
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: ${{ !contains(github.event.head_commit.message, '[hreflang-sync]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: seo/public-hreflang-parity
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - run: node scripts/sync-public-hreflang.mjs
+      - name: Commit synchronized public HTML
+        run: |
+          if git diff --quiet; then
+            echo "No hreflang changes needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html sk pl hu pruvodce o-projektu metodika affiliate soukromi
+          git commit -m "Synchronize public hreflang [hreflang-sync]"
+          git push
