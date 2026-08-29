@@ -1,4 +1,4 @@
-import { normalizeProduct } from "./products.js";
+import { classifyProduct, normalizeProduct } from "./products.js";
 
 export function parseShopifyProducts(payload, merchantKey, {
   origin,
@@ -25,24 +25,28 @@ export function parseShopifyProducts(payload, merchantKey, {
     if (!variant) return [];
 
     const productUrl = new URL(`${productPathPrefix}${product.handle}`, storeOrigin).toString();
+    const verified = verifiedByUrl.get(productUrl);
     try {
       const normalized = normalizeProduct({
         id: product.id,
         name: product.title,
-        description: product.body_html,
-        category: product.product_type,
+        description: verified?.description || product.body_html,
+        category: verified?.categoryPath || product.product_type,
         brand: product.vendor,
         price: variant.price,
         available: variants.some((item) => item?.available),
         imageUrl: product.images?.[0]?.src || product.image?.src,
         url: productUrl
       }, merchantKey);
-      const verified = verifiedByUrl.get(productUrl);
       if (!verified) return [normalized];
+      const specs = { ...normalized.specs, ...verified.specs };
+      const categoryPath = verified.categoryPath || normalized.categoryPath;
       return [{
         ...normalized,
+        categoryPath,
+        category: classifyProduct({ name: normalized.name, categoryPath, specs }),
         description: verified.description || normalized.description,
-        specs: { ...normalized.specs, ...verified.specs },
+        specs,
         verifiedAt: verified.verifiedAt
       }];
     } catch {
