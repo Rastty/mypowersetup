@@ -29,7 +29,7 @@ export function parseShopifyProducts(payload, merchantKey, {
     try {
       const normalized = normalizeProduct({
         id: product.id,
-        name: product.title,
+        name: verified?.name || product.title,
         description: verified?.description || product.body_html,
         category: verified?.categoryPath || product.product_type,
         brand: product.vendor,
