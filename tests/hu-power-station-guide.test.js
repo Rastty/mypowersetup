@@ -5,13 +5,13 @@ import { HU_POWER_STATION_GUIDE_ROUTE, renderHungarianPowerStationGuide } from "
 import { HU_PUBLICATION_MANIFEST, addHungarianRoutesToSitemap, publicizeHungarianHtml } from "../src/publication-hu.js";
 import { injectHungarianSystemGuideLink } from "../src/system-guide-link-hu.js";
 
-test("Hungarian power station guide stays private before launch", async () => {
+test("Hungarian power station source stays private while the published route is indexed", async () => {
   const html = renderHungarianPowerStationGuide();
   const sitemap = await readFile("sitemap.xml", "utf8");
   assert.match(html, /<html lang="hu">/);
   assert.match(html, /noindex,nofollow,noarchive/);
   assert.equal(/rel="canonical"/.test(html), false);
-  assert.equal(sitemap.includes(`https://mypowersetup.com${HU_POWER_STATION_GUIDE_ROUTE}`), false);
+  assert.equal(sitemap.includes(`https://mypowersetup.com${HU_POWER_STATION_GUIDE_ROUTE}`), true);
   assert.match(html, /Magyar példa/);
   assert.match(html, /Power station vagy beépített rendszer/);
   assert.match(html, /href="\/hu\/#kalkulator"/);
@@ -30,11 +30,12 @@ test("Hungarian power station guide is publicized only through publication machi
   assert.equal(entry.source, "power-station-guide");
 });
 
-test("Hungarian publication sitemap knows route without leaking it into source sitemap", async () => {
+test("Hungarian publication sitemap contains the published power-station route idempotently", async () => {
   const sitemap = await readFile("sitemap.xml", "utf8");
   const published = addHungarianRoutesToSitemap(sitemap);
-  assert.equal(sitemap.includes(HU_POWER_STATION_GUIDE_ROUTE), false);
+  assert.equal(sitemap.includes(HU_POWER_STATION_GUIDE_ROUTE), true);
   assert.ok(published.includes(`https://mypowersetup.com${HU_POWER_STATION_GUIDE_ROUTE}`));
+  assert.equal(published, sitemap);
 });
 
 test("Hungarian launch-only guide promotion includes power station decision guide", () => {

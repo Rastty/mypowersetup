@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#10261f">
+<meta name="description" content="Számítsd ki a lakóautóhoz szükséges akkumulátorkapacitást, napelemteljesítményt, invertert és MPPT töltésvezérlőt. Ingyenesen, minden eredmény magyarázatával.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Lakóautó akkumulátor- és napelem-kalkulátor | MyPowerSetup</title>
+  <link rel="canonical" href="https://mypowersetup.com/hu/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/">
+  <script>globalThis.__MPS_HU_PUBLICATION__=true</script>
+  <meta property="og:title" content="Lakóautó akkumulátor- és napelem-kalkulátor | MyPowerSetup">
+  <meta property="og:description" content="Számítsd ki a lakóautóhoz szükséges akkumulátorkapacitást, napelemteljesítményt, invertert és MPPT töltésvezérlőt. Ingyenesen, minden eredmény magyarázatával.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mypowersetup.com/hu/">
+  <meta property="og:site_name" content="MyPowerSetup">
+  <meta property="og:locale" content="hu_HU">
+  <meta property="og:image" content="https://mypowersetup.com/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mypowersetup.com/hu/#website","url":"https://mypowersetup.com/hu/","name":"MyPowerSetup","inLanguage":"hu-HU","publisher":{"@id":"https://mypowersetup.com/hu/#organization"}},{"@type":"WebApplication","@id":"https://mypowersetup.com/hu/#calculator","name":"MyPowerSetup lakóautó energia-kalkulátor","url":"https://mypowersetup.com/hu/#kalkulator","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true,"inLanguage":"hu-HU","creator":{"@id":"https://mypowersetup.com/hu/a-projektrol/#petr-galik"}},{"@type":"Organization","@id":"https://mypowersetup.com/hu/#organization","name":"MyPowerSetup","url":"https://mypowersetup.com/hu/"},{"@type":"Person","@id":"https://mypowersetup.com/hu/a-projektrol/#petr-galik","name":"Petr Gálík","url":"https://mypowersetup.com/hu/a-projektrol/","knowsAbout":["lakóautó elektromos rendszerek","akkumulátorméretezés","napelemes rendszerek"]}]}</script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="MyPowerSetup kezdőlap"><span class="brand-mark" aria-hidden="true">ϟ</span><span>MyPowerSetup</span></a>
+    <nav class="header-nav" aria-label="Fő navigáció">
+      <a class="header-link" href="/hu/utmutatok/">Útmutatók</a>
+      <a class="header-link" href="#modszer">Így számolunk</a>
+      <a class="header-link language-switch" href="/pl/" lang="pl" hreflang="pl-PL">PL</a>
+      <a class="header-link language-switch" href="/sk/" lang="sk" hreflang="sk-SK">SK</a>
+      <a class="header-link language-switch" href="/" lang="cs" hreflang="cs-CZ">CZ</a>
+    </nav>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Energia találgatás nélkül</p>
+        <h1 id="hero-title">Mekkora akkumulátorra és napelemre van valóban szükséged?</h1>
+        <p class="hero-lead">Válaszd ki a fogyasztókat. Két perc alatt érthető javaslatot kapsz az akkumulátorra, a napelemekre, az inverterre és az MPPT töltésvezérlőre — indoklással együtt.</p>
+        <div class="trust-row"><span><b>✓</b> Regisztráció nélkül</span><span><b>✓</b> Átlátható számítások</span><span><b>✓</b> Ingyenes</span></div>
+        <a class="button button-primary hero-button" href="#kalkulator">A rendszerem kiszámítása</a>
+      </div>
+      <div class="hero-visual" aria-hidden="true"><div class="energy-card battery-card"><span>Akkumulátor</span><strong>200 Ah</strong><i><em style="width:76%"></em></i></div><div class="power-path"><span class="sun">☀</span><span class="path-line"></span><span class="bolt">ϟ</span></div><div class="energy-card solar-card"><span>Napelemek</span><strong>400 Wp</strong><small>nyári szezon</small></div></div>
+    </section>
+
+    <section class="calculator-section" id="kalkulator" aria-labelledby="calculator-title">
+      <div class="section-heading"><p class="eyebrow">Kalkulátor</p><h2 id="calculator-title">Három lépés a saját energiaellátásodhoz</h2><p>Az értékeket a készülékek adattáblája alapján módosíthatod.</p></div>
+      <div class="calculator-shell">
+        <nav class="steps" aria-label="A kalkulátor lépései"><button class="step is-active" type="button" data-step-target="1" ><span>1</span><small>Használat</small></button><i></i><button class="step " type="button" data-step-target="2" disabled><span>2</span><small>Fogyasztók</small></button><i></i><button class="step " type="button" data-step-target="3" disabled><span>3</span><small>Eredmény</small></button></nav>
+        <p class="calculator-error" id="calculator-error" role="alert" hidden></p>
+        <form id="setup-form" novalidate>
+          <section class="form-step is-visible" data-step="1">
+            <div class="step-heading"><span class="step-kicker">1 / 3</span><h3>Mikor és hogyan használod majd az energiát?</h3><p>Ez alapján választjuk ki a tartalékot és a napelemek teljesítményét.</p></div>
+            <fieldset><legend>Hány napig szeretnél töltés nélkül működni?</legend><div class="choice-grid choice-grid-days">
+              <label class="choice-card "><input type="radio" name="autonomyDays" value="1" ><span><strong>1 nap</strong><small>Egy éjszaka</small></span></label><label class="choice-card is-selected"><input type="radio" name="autonomyDays" value="2" checked><span><strong>2 nap</strong><small>Hétvége hálózat nélkül</small></span></label><label class="choice-card "><input type="radio" name="autonomyDays" value="3" ><span><strong>3 nap</strong><small>Hosszabb függetlenség</small></span></label><label class="choice-card "><input type="radio" name="autonomyDays" value="5" ><span><strong>5 nap</strong><small>Nagy energiatartalék</small></span></label>
+            </div></fieldset>
+            <fieldset><legend>Melyik időszakban kell működnie a rendszernek?</legend><div class="choice-grid choice-grid-season">
+              <label class="choice-card is-selected"><input type="radio" name="season" value="summer" checked><span class="choice-icon">☀️</span><span><strong>Nyár</strong><small>A legtöbb napsütés</small></span></label>
+              <label class="choice-card"><input type="radio" name="season" value="shoulder"><span class="choice-icon">⛅</span><span><strong>Tavasz / ősz</strong><small>Változó termelés</small></span></label>
+              <label class="choice-card"><input type="radio" name="season" value="winter"><span class="choice-icon">❄️</span><span><strong>Tél</strong><small>Jelentősen kevesebb napsütés</small></span></label>
+            </div></fieldset>
+            <div class="step-actions step-actions-end"><button class="button button-primary" type="button" data-next>Fogyasztók kiválasztása →</button></div>
+          </section>
+
+          <section class="form-step" data-step="2" hidden>
+            <div class="step-heading"><span class="step-kicker">2 / 3</span><h3>Mit szeretnél naponta működtetni?</h3><p>Válaszd ki a fogyasztókat, majd módosítsd az üzemidőt. A kezdőértékek tipikus becslések.</p></div>
+            <section class="usage-profiles" id="usage-profiles" aria-label="Gyors használati profilok"></section>
+            <div class="appliance-summary" aria-live="polite"><span>Kiválasztott fogyasztók: <strong id="selected-count">0</strong></span><span>Becsült napi fogyasztás: <strong id="live-consumption">0 Wh</strong></span></div>
+            <div class="appliance-grid" id="appliance-grid"></div>
+            <p class="form-error" id="appliance-error" role="alert" hidden>Válassz legalább egy fogyasztót.</p>
+            <details class="advanced-settings"><summary>A rendszer speciális beállításai</summary><div class="advanced-grid">
+              <label>Akkumulátor típusa<select name="batteryType"><option value="lifepo4">LiFePO₄</option><option value="lead">AGM / ólom-savas</option></select></label>
+              <label>Rendszerfeszültség<select name="systemVoltage"><option value="auto">Automatikus választás</option><option value="12">12 V</option><option value="24">24 V</option></select></label>
+              <label>Akkumulátor–inverter kábelhossz egy irányban<input type="number" name="inverterCableLength" min="0.2" max="10" step="0.1" value="1.5" inputmode="decimal"></label>
+              <label>Tipikus napi vezetési idő<input type="number" name="driveHoursPerDay" min="0" max="12" step="0.5" value="2" inputmode="decimal"></label>
+              <label>Indítórendszer feszültsége<select name="starterVoltage"><option value="12">12 V</option><option value="24">24 V</option></select></label>
+              <label>Indítóakkumulátor–DC–DC kábelhossz egy irányban<input type="number" name="dcDcInputCableLength" min="0.2" max="15" step="0.1" value="4" inputmode="decimal"></label>
+              <label>230 V-os csatlakozás időtartama<input type="number" name="shoreChargeHours" min="0" max="24" step="0.5" value="8" inputmode="decimal"></label>
+              <label>A tető szabad téglalapjának hossza<input type="number" name="roofLength" min="0.5" max="12" step="0.01" placeholder="Nem kötelező" inputmode="decimal"></label>
+              <label>A tető szabad téglalapjának szélessége<input type="number" name="roofWidth" min="0.5" max="4" step="0.01" placeholder="Nem kötelező" inputmode="decimal"></label>
+            </div></details>
+            <div class="step-actions"><button class="button button-secondary" type="button" data-back>← Vissza</button><button class="button button-primary" type="submit">Rendszer kiszámítása →</button></div>
+          </section>
+
+          <section class="form-step result-step" data-step="3" hidden>
+            <div class="result-heading"><span class="result-check">✓</span><div><span class="step-kicker">Tájékoztató rendszerjavaslat</span><h3>Rendszer biztonsági tartalékkal</h3><p id="result-intro"></p></div></div>
+            <p class="result-verdict" id="result-verdict"></p><div class="result-grid" id="result-grid"></div>
+            <section class="result-next-card" id="result-next" hidden><div><span class="step-kicker">Következő lépés</span><h4>Válassz kompatibilis alkatrészeket</h4><p id="result-product-count"></p></div><a class="button button-primary" id="result-products-link" href="#product-recommendations">Ajánlott termékek megjelenítése ↓</a></section>
+            <section class="existing-setup-check" id="existing-setup-check" aria-label="Meglévő rendszer ellenőrzése"></section>
+            <section class="result-share-card"><div><span class="step-kicker">Eredmény mentése</span><h4>Mentsd el vagy oszd meg a rendszerjavaslatot</h4></div><div class="result-share-actions"><button class="button button-primary" type="button" id="result-share">Eredmény megosztása</button><button class="button button-secondary" type="button" id="result-copy">Összefoglaló másolása</button><button class="button button-secondary" type="button" id="result-print">Nyomtatás / mentés PDF-ként</button></div><p id="result-share-status" role="status" aria-live="polite"></p></section>
+            <section class="next-step-card" id="product-recommendations"><div><span class="step-kicker">Ellenőrzött megfelelés</span><h4 id="product-heading">Pontos termékajánlások előkészítése</h4><p id="product-intro">Először a műszaki megfelelést ellenőrizzük. A sorrend ezután a paraméterek illeszkedését, az elérhetőséget és az adatok teljességét veszi figyelembe.</p></div><div id="package-variants"></div><div id="recommendation-groups"></div><p class="affiliate-note">Egyes hivatkozások partnerlinkek lehetnek. A jutalék nem módosítja a műszaki feltételeket vagy a találatok sorrendjét.</p></section>
+            <details class="decision-panel"><summary><span class="step-kicker">Átlátható számítás</span><h4>Hogyan kaptuk ezeket az értékeket?</h4></summary><div class="decision-grid" id="result-reasons"></div></details>
+            <div class="result-columns"><section class="result-panel"><h4>Mi adja az energiafogyasztást?</h4><div id="consumption-breakdown"></div></section><section class="result-panel"><h4>Ellenőrzés a kivitelezés előtt</h4><ul class="check-list" id="result-notes"></ul></section></div>
+            <section class="diagram-panel"><h4>Tájékoztató rendszerkapcsolás</h4><div id="system-diagram"></div></section>
+            <section class="charging-panel"><h4>Töltés menet közben és 230 V-ról</h4><div class="charging-grid" id="charging-options"></div></section>
+            <section class="roof-panel"><h4>Elférnek a napelemek a tetőn?</h4><div id="roof-fit"></div></section>
+            <section class="installation-panel"><h4>Az áramkörök, amelyeket szakembernek kell megterveznie és ellenőriznie</h4><div class="installation-list" id="installation-plan"></div></section>
+            <section class="charging-panel"><h4>Fix rendszer vagy hordozható áramforrás?</h4><div class="charging-grid" id="power-station-profile"></div></section>
+            <div class="step-actions"><button class="button button-secondary" type="button" data-back>← Fogyasztók módosítása</button><button class="text-button" type="button" id="start-over">Újrakezdés</button></div>
+          </section>
+        </form>
+      </div>
+    </section>
+
+    <section class="guide-preview" aria-labelledby="hu-guide-preview-title">
+      <div class="section-heading">
+        <p class="eyebrow">Gyakorlati útmutatók</p>
+        <h2 id="hu-guide-preview-title">Előbb értsd meg. Utána vásárolj.</h2>
+        <p>A számítás mögötti döntéseket magyar lakóautós helyzetekkel, képletekkel és ellenőrzési pontokkal magyarázzuk el.</p>
+      </div>
+      <div class="guide-preview-grid">
+        <a href="/hu/utmutatok/lakoauto-akkumulator-kapacitas/">
+          <span>Akkumulátor · 8 perc</span><h3>Hány Ah akkumulátor kell?</h3><p>Napi fogyasztásból, autonómiából és akkumulátortípusból számolva.</p>
+        </a>
+        <a href="/hu/utmutatok/agm-vagy-lifepo4-lakoautohoz/">
+          <span>Döntés · 10 perc</span><h3>AGM vagy LiFePO₄?</h3><p>Használható energia, tömeg, hideg, töltők és a teljes átépítés alapján.</p>
+        </a>
+        <a href="/hu/utmutatok/dc-dc-tolto-kivalasztasa/">
+          <span>Töltés menet közben · 11 perc</span><h3>Mekkora DC–DC töltő kell?</h3><p>Menetidő, intelligens alternátor, BMS, bemeneti áram és kábelezés együtt.</p>
+        </a>
+      </div>
+      <p class="guide-preview-action"><a class="button button-secondary" href="/hu/utmutatok/">Minden útmutató →</a></p>
+    </section>
+
+    <section class="method-section" id="modszer"><div class="section-heading section-heading-light"><p class="eyebrow">Átlátható módszertan</p><h2>Minden eredményt meg tudunk magyarázni</h2></div><div class="method-grid"><article><span>01</span><h3>Kiszámítjuk a fogyasztást</h3></article><article><span>02</span><h3>Hozzáadjuk a valós veszteségeket</h3></article><article><span>03</span><h3>Ellenőrizzük az indítási teljesítménycsúcsokat</h3></article></div></section>
+    <section class="safety-note"><strong>Mielőtt vásárolni kezdesz</strong><p>A kalkulátor tájékoztató méretezést ad, nem villamos tervet. A névleges adatokat, kábeleket, védelmeket, leválasztást és telepítési feltételeket ellenőriztesd megfelelő képesítésű szakemberrel.</p></section>
+  <section class="related hu-power-station-guide-promo" aria-label="Power station vagy beépített rendszer útmutató">
+    <h2>Power station vagy beépített rendszer?</h2>
+    <p>Hasonlítsd össze a hordozhatóságot, a fedélzeti 12 V-ot, a menet közbeni töltést, a javíthatóságot és a bővíthetőséget.</p>
+    <a href="/hu/utmutatok/power-station-vagy-beepitett-rendszer-lakoauto/">Power station döntési útmutató →</a>
+  </section>
+<section class="related hu-system-guide-promo" aria-label="Teljes elektromos rendszer útmutató">
+    <h2>Hogyan áll össze az egész elektromos rendszer?</h2>
+    <p>Napelem, MPPT, alternátoros DC–DC töltés, 230 V-os töltő, lakótéri akkumulátor és inverter egyetlen döntési térképen.</p>
+    <a href="/hu/utmutatok/lakoauto-elektromos-rendszer-kapcsolasi-rajz/">Teljes lakóautó-kapcsolási útmutató →</a>
+  </section>
+<section class="related hu-voltage-guide-promo" aria-label="12 vagy 24 voltos rendszer útmutató">
+    <h2>12 V vagy 24 V legyen a rendszer?</h2>
+    <p>Hasonlítsd össze az áramot, az invertert, az akkumulátorbankot és a teljes eszközlánc kompatibilitását.</p>
+    <a href="/hu/utmutatok/12-v-vagy-24-v-lakoauto/">12 V vagy 24 V döntési útmutató →</a>
+  </section>
+</main>
+  <footer><a class="brand brand-footer" href="#top">ϟ MyPowerSetup</a><nav class="footer-links"><a href="/hu/utmutatok/">Útmutatók</a><a href="/hu/a-projektrol/">A projektről és a szerzőről</a><a href="/hu/modszertan/">Módszertan</a><a href="/hu/partnerkapcsolatok/">Partnerkapcsolatok</a><a href="/hu/adatvedelem/">Adatvédelem</a></nav><small>© <span id="year"></span> MyPowerSetup</small></footer>
+  <script type="module" src="/src/app-hu-browser.js"></script>
+  <script type="module" src="/src/analytics.js"></script>
+</body>
+</html>

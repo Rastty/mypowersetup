@@ -5,7 +5,7 @@ import { HU_SYSTEM_GUIDE_ROUTE, renderHungarianSystemGuide } from "../src/system
 import { injectHungarianSystemGuideLink } from "../src/system-guide-link-hu.js";
 import { HU_PUBLICATION_MANIFEST, publicizeHungarianHtml } from "../src/publication-hu.js";
 
-test("Hungarian complete-system guide stays private and uses local system language", async () => {
+test("Hungarian complete-system source stays private while its published route is indexed", async () => {
   const html = renderHungarianSystemGuide();
   const sitemap = await readFile("sitemap.xml", "utf8");
 
@@ -13,7 +13,7 @@ test("Hungarian complete-system guide stays private and uses local system langua
   assert.match(html, /<html lang="hu">/);
   assert.match(html, /name="robots" content="noindex,nofollow,noarchive"/);
   assert.doesNotMatch(html, /rel="canonical"/);
-  assert.doesNotMatch(sitemap, new RegExp(`mypowersetup\\.com${HU_SYSTEM_GUIDE_ROUTE.replaceAll("/", "\\/")}`));
+  assert.match(sitemap, new RegExp(`mypowersetup\\.com${HU_SYSTEM_GUIDE_ROUTE.replaceAll("/", "\\/")}`));
   assert.match(html, /MPPT töltésvezérlő/);
   assert.match(html, /lakótéri akkumulátor/);
   assert.match(html, /Balaton/);

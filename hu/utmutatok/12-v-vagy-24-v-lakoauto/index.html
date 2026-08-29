@@ -1,34 +1,21 @@
-export const HU_SYSTEM_VOLTAGE_GUIDE_ROUTE = "/hu/utmutatok/12-v-vagy-24-v-lakoauto/";
-
-export function renderHungarianSystemVoltageGuide() {
-  return `<!doctype html>
+<!doctype html>
 <html lang="hu">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex,nofollow,noarchive">
-  <title>12 V vagy 24 V a lakóautóban? Mikor érdemes 24 V-ra váltani</title>
+<title>12 V vagy 24 V a lakóautóban? Mikor érdemes 24 V-ra váltani</title>
   <meta name="description" content="12 V és 24 V lakóautó-rendszer összehasonlítása áram, inverter, akkumulátor, kábelezés, DC–DC töltés és kompatibilitás alapján.">
   <meta property="og:title" content="12 V vagy 24 V a lakóautóban?">
   <meta property="og:description" content="Mikor elég a 12 V, és mikor érdemes 24 V-os rendszert tervezni a lakóautóban?">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://mypowersetup.com${HU_SYSTEM_VOLTAGE_GUIDE_ROUTE}">
+  <meta property="og:url" content="https://mypowersetup.com/hu/utmutatok/12-v-vagy-24-v-lakoauto/">
   <meta property="og:site_name" content="MyPowerSetup">
   <meta property="og:locale" content="hu_HU">
   <meta property="og:image" content="https://mypowersetup.com/social-card.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/article.css">
-  <script type="application/ld+json">${JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "12 V vagy 24 V a lakóautóban? Mikor érdemes 24 V-ra váltani",
-    datePublished: "2026-08-29",
-    dateModified: "2026-08-29",
-    author: { "@type": "Person", name: "Petr Gálík", url: "https://mypowersetup.com/hu/a-projektrol/" },
-    publisher: { "@type": "Organization", name: "MyPowerSetup" },
-    mainEntityOfPage: `https://mypowersetup.com${HU_SYSTEM_VOLTAGE_GUIDE_ROUTE}`,
-    inLanguage: "hu-HU",
-  })}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"12 V vagy 24 V a lakóautóban? Mikor érdemes 24 V-ra váltani","datePublished":"2026-08-29","dateModified":"2026-08-29","author":{"@type":"Person","name":"Petr Gálík","url":"https://mypowersetup.com/hu/a-projektrol/"},"publisher":{"@type":"Organization","name":"MyPowerSetup"},"mainEntityOfPage":"https://mypowersetup.com/hu/utmutatok/12-v-vagy-24-v-lakoauto/","inLanguage":"hu-HU"}</script>
+  <link rel="canonical" href="https://mypowersetup.com/hu/utmutatok/12-v-vagy-24-v-lakoauto/">
 </head>
 <body>
 <header class="article-header"><a class="article-brand" href="/hu/">⚡ MyPowerSetup</a><nav><a href="/hu/utmutatok/">Útmutatók</a><a href="/hu/#kalkulator">Kalkulátor</a></nav></header>
@@ -45,5 +32,4 @@ export function renderHungarianSystemVoltageGuide() {
 <p>Ez a cikk döntési keret, nem szerelési terv. A konkrét BMS-, biztosító-, vezeték- és készülékhatárokat mindig a gyártói dokumentációval és a jármű tényleges kialakításával kell ellenőrizni.</p>
 </article></main>
 <footer class="article-footer"><a href="/hu/a-projektrol/">A projektről</a> · <a href="/hu/modszertan/">Módszertan</a> · <a href="/hu/partnerkapcsolatok/">Partnerkapcsolatok</a> · <a href="/hu/adatvedelem/">Adatvédelem</a></footer>
-</body></html>`;
-}
+</body></html>
