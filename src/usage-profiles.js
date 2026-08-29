@@ -106,7 +106,14 @@ export function getUsageProfiles(locale = "cs") {
   }));
 }
 
+export function prepareApplianceInputsForMobile(applianceGrid) {
+  if (!applianceGrid?.querySelectorAll) return;
+  for (const input of applianceGrid.querySelectorAll("[data-hours], [data-watts]")) input.setAttribute("inputmode", "decimal");
+  for (const input of applianceGrid.querySelectorAll("[data-quantity]")) input.setAttribute("inputmode", "numeric");
+}
+
 export function mountUsageProfiles({ locale = "cs", form, applianceGrid, appliances, onChange, onSelect }) {
+  prepareApplianceInputsForMobile(applianceGrid);
   const target = document.querySelector("#usage-profiles");
   if (!target) return;
   const text = PROFILE_TEXT[locale] || PROFILE_TEXT.cs;
