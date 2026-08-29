@@ -31,6 +31,7 @@ jobs:
       - run: node --check scripts/smoke-hu-mobile.mjs
       - run: node --check scripts/smoke-pt-mobile.mjs
       - run: node --check scripts/smoke-si-mobile.mjs
+      - run: node --check scripts/smoke-ro-mobile.mjs
       - run: npm run health:markets:safe
       - run: npm run preaudit:ready
       - run: npm run indexnow:check
@@ -39,3 +40,4 @@ jobs:
       - run: npm run smoke:hu:mobile
       - run: npm run smoke:pt:mobile
       - run: npm run smoke:si:mobile
+      - run: npm run smoke:ro:mobile
