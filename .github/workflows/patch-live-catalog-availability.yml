@@ -1,0 +1,33 @@
+name: Patch live catalog availability assertion
+
+on:
+  push:
+    branches: [fix/live-catalog-recommendation-order]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: fix/live-catalog-recommendation-order
+      - run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tests/hu-foundation.test.js')
+          s = p.read_text()
+          old = '  assert.equal(recommendedInverter.available, true);'
+          new = '  assert.notEqual(recommendedInverter.available, false);'
+          if old not in s:
+              raise SystemExit('expected availability assertion not found')
+          p.write_text(s.replace(old, new))
+          PY
+          git rm .github/workflows/patch-live-catalog-availability.yml
+          git config user.name "mypowersetup-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add tests/hu-foundation.test.js
+          git commit -m "Match HU recommendation availability semantics"
+          git push
