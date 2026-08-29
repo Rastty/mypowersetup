@@ -63,10 +63,10 @@ test("Hungarian sitemap publication is complete and idempotent", () => {
   assert.equal(twice, once);
 });
 
-test("Hungarian publish command cannot write before launch readiness passes", async () => {
+test("Hungarian publish command cannot write before publication readiness passes", async () => {
   const script = await readFile("scripts/publish-hu.mjs", "utf8");
-  assert.match(script, /requireHungarianLaunchReady\(\{/);
-  assert.ok(script.indexOf("requireHungarianLaunchReady({") < script.indexOf("writeFile(item.path"));
+  assert.match(script, /requireHungarianPublicationReady\(\{/);
+  assert.ok(script.indexOf("requireHungarianPublicationReady({") < script.indexOf("writeFile(item.path"));
   assert.match(script, /HU_LANGUAGE_REVIEWED/);
   assert.match(script, /HU_MOBILE_JOURNEY_REVIEWED/);
 });
