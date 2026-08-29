@@ -1,6 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { HU_GUIDE_ROUTES } from "../src/guides-hu.js";
 import { assessMarketHealth, extractSitemapUrls, summarizeMarketHealth } from "../src/market-health.js";
+import { renderHungarianPrivatePage } from "../src/page-hu.js";
 
 const MARKETS = Object.freeze([
   {
@@ -34,10 +35,10 @@ const MARKETS = Object.freeze([
     key: "hu",
     locale: "hu-HU",
     expectedPublic: false,
-    homepage: "hu/index.html",
+    homepageRenderer: renderHungarianPrivatePage,
     canonicalUrl: "https://mypowersetup.com/hu/",
     catalogs: ["data/products-hu.json"],
-    guideRoot: "hu/utmutatok",
+    preparedGuideCount: Object.keys(HU_GUIDE_ROUTES).filter((key) => key !== "hub").length,
   },
 ]);
 
@@ -47,9 +48,9 @@ const reports = [];
 
 for (const market of MARKETS) {
   const [homepageHtml, catalogs, guideCount] = await Promise.all([
-    readFile(market.homepage, "utf8"),
+    market.homepageRenderer ? Promise.resolve(market.homepageRenderer()) : readFile(market.homepage, "utf8"),
     Promise.all(market.catalogs.map(async (path) => JSON.parse(await readFile(path, "utf8")))),
-    countGuideArticles(market.guideRoot),
+    Number.isInteger(market.preparedGuideCount) ? Promise.resolve(market.preparedGuideCount) : countGuideArticles(market.guideRoot),
   ]);
   reports.push(assessMarketHealth({ ...market, homepageHtml, catalogs, sitemapUrls, guideCount }));
 }
