@@ -1,5 +1,6 @@
 import { calculateSetup } from "./engine.js";
 import { buildPortugalRecommendations, loadPortugalProductCatalog, portugalRecommendationCoverage } from "./pt-recommendations.js";
+import { buildSloveniaRecommendations, loadSloveniaProductCatalog } from "./si-recommendations.js";
 
 const root = document.querySelector("[data-expansion-calculator]");
 if (!root) throw new Error("EXPANSION_CALCULATOR_ROOT_MISSING");
@@ -14,7 +15,7 @@ const result = root.querySelector("[data-result]");
 const labels = {
   ro: { required: "Selectează cel puțin un consumator.", daily: "Consum zilnic", battery: "Baterie", solar: "Panouri solare", inverter: "Invertor", mppt: "Controler MPPT", voltage: "Sistem", again: "Modifică datele" },
   pt: { required: "Seleciona pelo menos um equipamento.", daily: "Consumo diário", battery: "Bateria", solar: "Painéis solares", inverter: "Inversor", mppt: "Controlador MPPT", voltage: "Sistema", again: "Alterar dados", products: "Produtos compatíveis verificados", productsIntro: "Mostramos apenas produtos cujo destino exato e requisitos técnicos conseguimos validar.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W cobre a potência solar calculada`, powerStationFit: "Os limites elétricos verificados cobrem o perfil calculado", powerStation: "Estação de energia portátil", viewProduct: "Ver produto", affiliate: "Ligação de afiliado; a recomendação técnica não depende da comissão." },
-  si: { required: "Izberi vsaj en porabnik.", daily: "Dnevna poraba", battery: "Baterija", solar: "Solarni paneli", inverter: "Inverter", mppt: "Regulator MPPT", voltage: "Sistem", again: "Spremeni podatke" },
+  si: { required: "Izberi vsaj en porabnik.", daily: "Dnevna poraba", battery: "Baterija", solar: "Solarni paneli", inverter: "Inverter", mppt: "Regulator MPPT", voltage: "Sistem", again: "Spremeni podatke", products: "Preverjeni združljivi izdelki", productsIntro: "Prikažemo samo izdelke, pri katerih smo preverili točen cilj povezave, ključne električne omejitve in dostavo v Slovenijo.", powerStationFit: "Preverjene električne omejitve pokrivajo izračunani profil", powerStation: "Prenosna elektrarna", viewProduct: "Poglej izdelek", affiliate: "Partnerska povezava; tehnično priporočilo ni odvisno od provizije." },
 }[locale];
 
 let currentStep = 1;
@@ -31,7 +32,7 @@ root.addEventListener("click", (event) => {
   }
   if (back) showStep(Math.max(1, currentStep - 1));
   if (edit) showStep(2);
-  if (affiliate) track("affiliate_product_click", { market: locale, category: affiliate.dataset.category || "unknown", merchant: "allpowers_pt" });
+  if (affiliate) track("affiliate_product_click", { market: locale, category: affiliate.dataset.category || "unknown", merchant: affiliate.dataset.merchant || "unknown" });
 });
 
 form.addEventListener("input", () => track("calculator_started", { source: "form_input" }));
@@ -51,6 +52,7 @@ form.addEventListener("submit", async (event) => {
   track("calculation_completed", { daily_wh: calculation.dailyWh, battery_wh: calculation.batteryWh, solar_watts: calculation.solarWatts, system_voltage: calculation.systemVoltage, selected_appliances: selected.length });
   showStep(3);
   if (locale === "pt") await renderPortugalProducts(calculation);
+  if (locale === "si") await renderSloveniaProducts(calculation);
 });
 
 function showStep(step) {
@@ -81,12 +83,30 @@ async function renderPortugalProducts(calculation) {
   }
 }
 
+async function renderSloveniaProducts(calculation) {
+  const target = result.querySelector("[data-product-recommendations]");
+  if (!target) return;
+  try {
+    const catalog = await loadSloveniaProductCatalog();
+    const recommendations = buildSloveniaRecommendations(catalog, calculation, 3);
+    const products = recommendations.power_station;
+    track("product_recommendations_rendered", { market: "si", power_station_covered: products.length > 0, product_count: products.length });
+    if (!products.length) return;
+    target.innerHTML = `<section class="result-products" aria-labelledby="si-products-title"><h4 id="si-products-title">${labels.products}</h4><p>${labels.productsIntro}</p><div class="result-grid">${products.map(renderSloveniaProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`;
+  } catch {
+    track("product_recommendations_rendered", { market: "si", power_station_covered: false, product_count: 0 });
+    target.replaceChildren();
+  }
+}
+
 function renderPortugalProduct(item) {
-  const fit = item.category === "solar_panel"
-    ? labels.solarFit(item.quantity, item.powerW)
-    : labels.powerStationFit;
+  const fit = item.category === "solar_panel" ? labels.solarFit(item.quantity, item.powerW) : labels.powerStationFit;
   const price = Number.isFinite(item.price) ? `<small>${new Intl.NumberFormat("pt-PT", { style: "currency", currency: item.currency || "EUR" }).format(item.price)}</small>` : "";
-  return `<article class="result-card"><span>${item.category === "solar_panel" ? labels.solar : labels.powerStation}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(fit)}</small>${price}<a class="button button-primary" data-affiliate-product data-category="${escapeHtml(item.category)}" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`;
+  return `<article class="result-card"><span>${item.category === "solar_panel" ? labels.solar : labels.powerStation}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(fit)}</small>${price}<a class="button button-primary" data-affiliate-product data-category="${escapeHtml(item.category)}" data-merchant="allpowers_pt" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`;
+}
+
+function renderSloveniaProduct(item) {
+  return `<article class="result-card"><span>${labels.powerStation}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(labels.powerStationFit)}</small><small>${item.capacityWh} Wh · ${item.powerW} W · PV ${item.solarInputW} W · 12 V ${item.dcOutputA} A</small><a class="button button-primary" data-affiliate-product data-category="power_station" data-merchant="allpowers_eu" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`;
 }
 
 function track(event, parameters) { return window.MyPowerSetupAnalytics?.track?.(event, parameters) ?? false; }
