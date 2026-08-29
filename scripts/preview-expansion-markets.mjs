@@ -25,7 +25,7 @@ createServer(async (request, response) => {
       const content = renderSloveniaPrivateContentPage(pathname);
       if (content) return send(response, 200, "text/html; charset=utf-8", content);
     }
-    if (["/styles.css", "/analytics.css", "/favicon.svg", "/data/products-pt.json"].includes(pathname) || pathname.startsWith("/src/")) {
+    if (["/styles.css", "/analytics.css", "/favicon.svg", "/data/products-pt.json", "/data/products-si.json"].includes(pathname) || pathname.startsWith("/src/")) {
       const file = resolve(root, pathname.slice(1));
       if (!file.startsWith(root + sep)) return send(response, 403, "text/plain; charset=utf-8", "Forbidden");
       return send(response, 200, mime[extname(file)] || "application/octet-stream", await readFile(file));
