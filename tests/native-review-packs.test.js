@@ -37,7 +37,7 @@ test("review checklist approves only explicit complete evidence", () => {
 test("expansion release stays blocked by recorded native review evidence", () => {
   const report = assessExpansionReleaseReadiness();
   assert.equal(report.ready, false);
-  assert.deepEqual(report.blockers.sort(), ["pt:nativeLanguageReview", "ro:nativeLanguageReview", "si:nativeLanguageReview"]);
+  assert.deepEqual([...report.blockers].sort(), ["pt:nativeLanguageReview", "ro:nativeLanguageReview", "si:nativeLanguageReview"]);
   assert.throws(() => requireExpansionReleaseReadiness(), /EXPANSION_RELEASE_BLOCKED/);
 });
 
