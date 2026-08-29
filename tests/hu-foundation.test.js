@@ -104,7 +104,11 @@ test("Hungarian headless app shell connects the shared engine to the verified lo
   assert.match(output.shareUrl, /^https:\/\/mypowersetup\.com\/hu\/\?/);
   assert.match(output.shareText, /Napi energiafogyasztás/);
   assert.ok(output.recommendations.inverter.length >= 1);
-  assert.equal(output.recommendations.inverter[0].product.merchant, "ampul_hu");
+  const recommendedInverter = output.recommendations.inverter[0].product;
+  assert.equal(recommendedInverter.available, true);
+  assert.ok(recommendedInverter.specs.powerW >= 1250);
+  assert.equal(recommendedInverter.specs.voltageV, 12);
+  assert.equal(recommendedInverter.specs.pureSine, true);
   assert.equal(output.catalogSources.ampul_hu.status, "ok");
   assert.equal(output.catalogSources.allpowers_eu.status, "ok");
   assert.equal(output.catalogSources.powerqueen_eu.status, "ok");
