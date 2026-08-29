@@ -31,9 +31,11 @@ test("stale merchant products do not count toward recommendation coverage", () =
     products: [...freshProducts, product("controller", "c-stale", "stale")],
   };
   const report = assessMarketHealth({ key: "cz", locale: "cs-CZ", expectedPublic: true, homepageHtml, canonicalUrl, sitemapUrls: [canonicalUrl], catalogs: [catalog], guideCount: 12 });
+  assert.equal(report.status, "attention");
   assert.equal(report.productCount, 14);
   assert.equal(report.recommendationEligibleProductCount, 13);
   assert.equal(report.categoryCounts.controller, 1);
+  assert.equal(report.safetyChecks.catalogPresent, true);
   assert.ok(report.attention.includes("SOURCE_NOT_FRESH:stale"));
   assert.ok(report.attention.includes("PRODUCT_COVERAGE:controller:1/2"));
 });
@@ -50,7 +52,9 @@ test("explicitly unavailable preserved products do not create affiliate blockers
     key: "cz", locale: "cs-CZ", expectedPublic: true, homepageHtml, canonicalUrl, sitemapUrls: [canonicalUrl], catalogs: [catalog], guideCount: 12,
     productMinimums: { battery: 1 },
   });
+  assert.equal(report.status, "attention");
   assert.equal(report.safetyChecks.affiliateDestinationsValid, true);
   assert.equal(report.recommendationEligibleProductCount, 1);
+  assert.equal(report.categoryCounts.battery, 1);
   assert.equal(report.blockers.length, 0);
 });
