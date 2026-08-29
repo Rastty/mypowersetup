@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T17:35:24.934Z",
+  "generatedAt": "2026-08-29T20:40:09.009Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
@@ -16,10 +16,12 @@
     },
     "powerqueen_eu": {
       "status": "ok",
-      "parsedProducts": 48,
-      "relevantProducts": 17,
+      "parsedProducts": 60,
+      "relevantProducts": 21,
       "batteries": 16,
-      "controllers": 1
+      "controllers": 1,
+      "inverters": 1,
+      "shoreChargers": 3
     }
   },
   "products": [
@@ -736,14 +738,16 @@
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r1500-lite-portable-power-station",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R1500-LITE-Portable-Power-Station-1600W-1056Wh-ALLPOWERS-123505459.webp?v=1783440328",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": null,
         "capacityWh": 1056,
         "powerW": 1600,
-        "currentA": null,
+        "currentA": 10,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
         "batteryType": "lifepo4",
         "pureSine": true,
         "solarInputW": 650,
@@ -853,14 +857,16 @@
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r1500-portable-home-backup-power-station-1800w-1152wh-lifep04-battery",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R1500-Portable-Power-Station-1800W-1152Wh-LiFeP04-Battery-ALLPOWERS-123497827.webp?v=1783440297",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": null,
         "capacityWh": 1152,
         "powerW": 1800,
-        "currentA": null,
+        "currentA": 10,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
         "batteryType": "lifepo4",
         "pureSine": true,
         "solarInputW": 650,
@@ -1144,11 +1150,11 @@
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r600-portable-power-station-600w-299wh-with-lifep04-battery-1",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R600-Portable-Power-Station-600W-299Wh-LiFeP04-Battery-ALLPOWERS-123696485.webp?v=1782193409",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": null,
         "capacityWh": 299,
         "powerW": 600,
-        "currentA": null,
+        "currentA": 10,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [
@@ -1758,6 +1764,148 @@
         "solarInputW": null,
         "dcOutputA": null
       }
+    },
+    {
+      "id": "powerqueen_eu:8690424676572",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen 2000W inverter 12V to 230V pure sine wave",
+      "description": "Power Queen 12 V DC to 230 V AC pure sine inverter; 2000 W continuous and 4000 W peak output.",
+      "categoryPath": "Měniče napětí",
+      "category": "inverter",
+      "brand": "Power Queen",
+      "priceCzk": 219.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-2000w-inverter-12v-dc-to-230v-ac-converter",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-2000w-inverter-12v-dc-to-230v-ac-converter",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/Power_Queen_2000W_Wechselrichter_10.webp?v=1759222992",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
+      "verifiedAt": "2026-08-29"
+    },
+    {
+      "id": "powerqueen_eu:8354785984732",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen 14.6V 40A LiFePO4 battery charger for 12V LiFePO4 battery",
+      "description": "Power Queen AC to DC charger for 12 V LiFePO4 batteries with 14.6 V charging output at 40 A.",
+      "categoryPath": "Nabíječky",
+      "category": "shore_charger",
+      "brand": "PQ-DE",
+      "priceCzk": 169.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-40a-lifepo4-charger-without-handle",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-14-6v-40a-lifepo4-charger-without-handle",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PowerQueen14_6V40ALiFePO4LadegeratmitGrifffur12VBatterie.webp?v=1785207093",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 40,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
+      "verifiedAt": "2026-08-29"
+    },
+    {
+      "id": "powerqueen_eu:7752850145500",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen 29.2V 20A LiFePO4 battery charger for 24V LiFePO4 battery",
+      "description": "Power Queen AC to DC charger for 24 V LiFePO4 batteries with 29.2 V charging output at 20 A.",
+      "categoryPath": "Nabíječky",
+      "category": "shore_charger",
+      "brand": "PQ-DE",
+      "priceCzk": 102.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-29-2v-20-amp-lithium-lifepo4-battery-charger",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-29-2v-20-amp-lithium-lifepo4-battery-charger",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/1_2_3336ec5f-d881-45b5-92f9-70c536dd05d6.webp?v=1785824125",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 20,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          24
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
+      "verifiedAt": "2026-08-29"
+    },
+    {
+      "id": "powerqueen_eu:7752846115036",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen 14.6V 20A LiFePO4 battery charger for 12V LiFePO4 battery",
+      "description": "Power Queen AC to DC charger for 12.8 V LiFePO4 batteries; 14.6 V charging output at 20 A and 100-240 V AC input.",
+      "categoryPath": "Nabíječky",
+      "category": "shore_charger",
+      "brand": "PQ-DE",
+      "priceCzk": 85.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PowerQueen14_6V20ALiFePO4Ladegeratfur12VLiFePO4-Batterie.webp?v=1785835445",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 20,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
+      "verifiedAt": "2026-08-29"
     }
   ]
 }
