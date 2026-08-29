@@ -1,6 +1,7 @@
 import { calculateSetup } from "./engine.js";
 import { buildPortugalRecommendations, loadPortugalProductCatalog, portugalRecommendationCoverage } from "./pt-recommendations.js";
 import { buildSloveniaRecommendations, loadSloveniaProductCatalog } from "./si-recommendations.js";
+import { buildRomaniaRecommendations, loadRomaniaProductCatalog } from "./ro-recommendations.js";
 
 const root = document.querySelector("[data-expansion-calculator]");
 if (!root) throw new Error("EXPANSION_CALCULATOR_ROOT_MISSING");
@@ -13,7 +14,7 @@ const error = root.querySelector("[data-calculator-error]");
 const result = root.querySelector("[data-result]");
 
 const labels = {
-  ro: { required: "Selectează cel puțin un consumator.", daily: "Consum zilnic", battery: "Baterie", solar: "Panouri solare", inverter: "Invertor", mppt: "Controler MPPT", voltage: "Sistem", again: "Modifică datele" },
+  ro: { required: "Selectează cel puțin un consumator.", daily: "Consum zilnic", battery: "Baterie", solar: "Panouri solare", inverter: "Invertor", mppt: "Controler MPPT", voltage: "Sistem", again: "Modifică datele", products: "Produse compatibile verificate", productsIntro: "Afișăm doar produse cu destinația exactă, limitele electrice critice și livrarea în România verificate.", powerStationFit: "Limitele electrice verificate acoperă profilul calculat", powerStation: "Stație portabilă de energie", viewProduct: "Vezi produsul", affiliate: "Link afiliat; recomandarea tehnică nu depinde de comision." },
   pt: { required: "Seleciona pelo menos um equipamento.", daily: "Consumo diário", battery: "Bateria", solar: "Painéis solares", inverter: "Inversor", mppt: "Controlador MPPT", voltage: "Sistema", again: "Alterar dados", products: "Produtos compatíveis verificados", productsIntro: "Mostramos apenas produtos cujo destino exato e requisitos técnicos conseguimos validar.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W cobre a potência solar calculada`, powerStationFit: "Os limites elétricos verificados cobrem o perfil calculado", powerStation: "Estação de energia portátil", viewProduct: "Ver produto", affiliate: "Ligação de afiliado; a recomendação técnica não depende da comissão." },
   si: { required: "Izberi vsaj en porabnik.", daily: "Dnevna poraba", battery: "Baterija", solar: "Solarni paneli", inverter: "Inverter", mppt: "Regulator MPPT", voltage: "Sistem", again: "Spremeni podatke", products: "Preverjeni združljivi izdelki", productsIntro: "Prikažemo samo izdelke, pri katerih smo preverili točen cilj povezave, ključne električne omejitve in dostavo v Slovenijo.", powerStationFit: "Preverjene električne omejitve pokrivajo izračunani profil", powerStation: "Prenosna elektrarna", viewProduct: "Poglej izdelek", affiliate: "Partnerska povezava; tehnično priporočilo ni odvisno od provizije." },
 }[locale];
@@ -26,10 +27,7 @@ root.addEventListener("click", (event) => {
   const back = event.target.closest("[data-back]");
   const edit = event.target.closest("[data-edit]");
   const affiliate = event.target.closest("[data-affiliate-product]");
-  if (next) {
-    track("calculator_started", { source: "next_button" });
-    showStep(Math.min(3, currentStep + 1));
-  }
+  if (next) { track("calculator_started", { source: "next_button" }); showStep(Math.min(3, currentStep + 1)); }
   if (back) showStep(Math.max(1, currentStep - 1));
   if (edit) showStep(2);
   if (affiliate) track("affiliate_product_click", { market: locale, category: affiliate.dataset.category || "unknown", merchant: affiliate.dataset.merchant || "unknown" });
@@ -39,11 +37,7 @@ form.addEventListener("input", () => track("calculator_started", { source: "form
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const selected = [...form.querySelectorAll("[data-appliance]:checked")];
-  if (!selected.length) {
-    error.textContent = labels.required;
-    error.hidden = false;
-    return;
-  }
+  if (!selected.length) { error.textContent = labels.required; error.hidden = false; return; }
   error.hidden = true;
   const data = new FormData(form);
   const appliances = selected.map((input) => ({ selected: true, name: input.dataset.name, watts: Number(input.dataset.watts), hours: Number(input.dataset.hours), quantity: 1, ac: input.dataset.ac === "true", surge: Number(input.dataset.surge || 1) }));
@@ -53,6 +47,7 @@ form.addEventListener("submit", async (event) => {
   showStep(3);
   if (locale === "pt") await renderPortugalProducts(calculation);
   if (locale === "si") await renderSloveniaProducts(calculation);
+  if (locale === "ro") await renderRomaniaProducts(calculation);
 });
 
 function showStep(step) {
@@ -67,47 +62,22 @@ function renderResult(value) {
 }
 
 async function renderPortugalProducts(calculation) {
-  const target = result.querySelector("[data-product-recommendations]");
-  if (!target) return;
-  try {
-    const catalog = await loadPortugalProductCatalog();
-    const recommendations = buildPortugalRecommendations(catalog, calculation, 3);
-    const coverage = portugalRecommendationCoverage(recommendations);
-    const products = [...recommendations.solar_panel, ...recommendations.power_station];
-    track("product_recommendations_rendered", { market: "pt", solar_panel_covered: coverage.solarPanel, power_station_covered: coverage.powerStation, product_count: products.length });
-    if (!products.length) return;
-    target.innerHTML = `<section class="result-products" aria-labelledby="pt-products-title"><h4 id="pt-products-title">${labels.products}</h4><p>${labels.productsIntro}</p><div class="result-grid">${products.map(renderPortugalProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`;
-  } catch {
-    track("product_recommendations_rendered", { market: "pt", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
-    target.replaceChildren();
-  }
+  const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
+  try { const catalog = await loadPortugalProductCatalog(); const recommendations = buildPortugalRecommendations(catalog, calculation, 3); const coverage = portugalRecommendationCoverage(recommendations); const products = [...recommendations.solar_panel, ...recommendations.power_station]; track("product_recommendations_rendered", { market: "pt", solar_panel_covered: coverage.solarPanel, power_station_covered: coverage.powerStation, product_count: products.length }); if (!products.length) return; target.innerHTML = `<section class="result-products" aria-labelledby="pt-products-title"><h4 id="pt-products-title">${labels.products}</h4><p>${labels.productsIntro}</p><div class="result-grid">${products.map(renderPortugalProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`; } catch { track("product_recommendations_rendered", { market: "pt", solar_panel_covered: false, power_station_covered: false, product_count: 0 }); target.replaceChildren(); }
 }
 
 async function renderSloveniaProducts(calculation) {
-  const target = result.querySelector("[data-product-recommendations]");
-  if (!target) return;
-  try {
-    const catalog = await loadSloveniaProductCatalog();
-    const recommendations = buildSloveniaRecommendations(catalog, calculation, 3);
-    const products = recommendations.power_station;
-    track("product_recommendations_rendered", { market: "si", power_station_covered: products.length > 0, product_count: products.length });
-    if (!products.length) return;
-    target.innerHTML = `<section class="result-products" aria-labelledby="si-products-title"><h4 id="si-products-title">${labels.products}</h4><p>${labels.productsIntro}</p><div class="result-grid">${products.map(renderSloveniaProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`;
-  } catch {
-    track("product_recommendations_rendered", { market: "si", power_station_covered: false, product_count: 0 });
-    target.replaceChildren();
-  }
+  const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
+  try { const catalog = await loadSloveniaProductCatalog(); const products = buildSloveniaRecommendations(catalog, calculation, 3).power_station; track("product_recommendations_rendered", { market: "si", power_station_covered: products.length > 0, product_count: products.length }); if (!products.length) return; target.innerHTML = renderPowerStationSection("si-products-title", products); } catch { track("product_recommendations_rendered", { market: "si", power_station_covered: false, product_count: 0 }); target.replaceChildren(); }
 }
 
-function renderPortugalProduct(item) {
-  const fit = item.category === "solar_panel" ? labels.solarFit(item.quantity, item.powerW) : labels.powerStationFit;
-  const price = Number.isFinite(item.price) ? `<small>${new Intl.NumberFormat("pt-PT", { style: "currency", currency: item.currency || "EUR" }).format(item.price)}</small>` : "";
-  return `<article class="result-card"><span>${item.category === "solar_panel" ? labels.solar : labels.powerStation}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(fit)}</small>${price}<a class="button button-primary" data-affiliate-product data-category="${escapeHtml(item.category)}" data-merchant="allpowers_pt" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`;
+async function renderRomaniaProducts(calculation) {
+  const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
+  try { const catalog = await loadRomaniaProductCatalog(); const products = buildRomaniaRecommendations(catalog, calculation, 3).power_station; track("product_recommendations_rendered", { market: "ro", power_station_covered: products.length > 0, product_count: products.length }); if (!products.length) return; target.innerHTML = renderPowerStationSection("ro-products-title", products); } catch { track("product_recommendations_rendered", { market: "ro", power_station_covered: false, product_count: 0 }); target.replaceChildren(); }
 }
 
-function renderSloveniaProduct(item) {
-  return `<article class="result-card"><span>${labels.powerStation}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(labels.powerStationFit)}</small><small>${item.capacityWh} Wh · ${item.powerW} W · PV ${item.solarInputW} W · 12 V ${item.dcOutputA} A</small><a class="button button-primary" data-affiliate-product data-category="power_station" data-merchant="allpowers_eu" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`;
-}
-
+function renderPowerStationSection(id, products) { return `<section class="result-products" aria-labelledby="${id}"><h4 id="${id}">${labels.products}</h4><p>${labels.productsIntro}</p><div class="result-grid">${products.map(renderPowerStationProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`; }
+function renderPowerStationProduct(item) { return `<article class="result-card"><span>${labels.powerStation}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(labels.powerStationFit)}</small><small>${item.capacityWh} Wh · ${item.powerW} W · PV ${item.solarInputW} W · 12 V ${item.dcOutputA} A</small><a class="button button-primary" data-affiliate-product data-category="power_station" data-merchant="allpowers_eu" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`; }
+function renderPortugalProduct(item) { const fit = item.category === "solar_panel" ? labels.solarFit(item.quantity, item.powerW) : labels.powerStationFit; const price = Number.isFinite(item.price) ? `<small>${new Intl.NumberFormat("pt-PT", { style: "currency", currency: item.currency || "EUR" }).format(item.price)}</small>` : ""; return `<article class="result-card"><span>${item.category === "solar_panel" ? labels.solar : labels.powerStation}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(fit)}</small>${price}<a class="button button-primary" data-affiliate-product data-category="${escapeHtml(item.category)}" data-merchant="allpowers_pt" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`; }
 function track(event, parameters) { return window.MyPowerSetupAnalytics?.track?.(event, parameters) ?? false; }
 function escapeHtml(value) { return String(value).replace(/[&<>\"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]); }

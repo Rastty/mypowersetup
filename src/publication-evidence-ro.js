@@ -3,11 +3,34 @@ import { assessExpansionMarketPublication } from "./expansion-market-publication
 export const RO_VERIFIED_FOUNDATION = Object.freeze({
   localizedCalculator: true,
   localIntentResearch: true,
-  contentCluster: false,
-  affiliateValidation: false,
-  mobile390x844: false,
+  contentCluster: true,
+  affiliateValidation: true,
+  mobile390x844: true,
   analyticsParity: true,
   nativeLanguageReview: false,
+});
+
+export const RO_AFFILIATE_EVIDENCE = Object.freeze({
+  merchant: "allpowers_eu",
+  awinMerchantId: 38934,
+  affiliateId: 3044971,
+  exactProductDestination: true,
+  romaniaShippingEligible: true,
+  verifiedAt: "2026-08-29",
+  shippingEvidenceUrl: "https://iallpowers.eu/pages/shipping-policy",
+  catalog: "/data/products-ro.json",
+  policy: "fail-closed",
+});
+
+export const RO_MOBILE_EVIDENCE = Object.freeze({
+  viewport: "390x844",
+  chromeCdpSmoke: true,
+  calculatorJourney: true,
+  exactAffiliateDestinationChecked: true,
+  trustRoutesNoindexChecked: true,
+  horizontalOverflow: false,
+  githubActionsRun: 33263516067,
+  verifiedAt: "2026-08-29",
 });
 
 export function assessRomaniaPublication(overrides = {}) {

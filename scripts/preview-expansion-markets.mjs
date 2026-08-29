@@ -4,6 +4,7 @@ import { extname, resolve, sep } from "node:path";
 import { renderPrivateMarketSeedPage } from "../src/private-market-page.js";
 import { renderPortugalPrivateContentPage } from "../src/private-content-pt.js";
 import { renderSloveniaPrivateContentPage } from "../src/private-content-si.js";
+import { renderRomaniaPrivateContentPage } from "../src/private-content-ro.js";
 import { RO_MARKET_SEED } from "../src/market-seed-ro.js";
 import { PT_MARKET_SEED } from "../src/market-seed-pt.js";
 import { SI_MARKET_SEED } from "../src/market-seed-si.js";
@@ -17,15 +18,10 @@ createServer(async (request, response) => {
   try {
     const pathname = new URL(request.url, "http://127.0.0.1").pathname;
     if (seeds.has(pathname)) return send(response, 200, "text/html; charset=utf-8", renderPrivateMarketSeedPage(seeds.get(pathname)));
-    if (pathname.startsWith("/pt/")) {
-      const content = renderPortugalPrivateContentPage(pathname);
-      if (content) return send(response, 200, "text/html; charset=utf-8", content);
-    }
-    if (pathname.startsWith("/si/")) {
-      const content = renderSloveniaPrivateContentPage(pathname);
-      if (content) return send(response, 200, "text/html; charset=utf-8", content);
-    }
-    if (["/styles.css", "/analytics.css", "/favicon.svg", "/data/products-pt.json", "/data/products-si.json"].includes(pathname) || pathname.startsWith("/src/")) {
+    if (pathname.startsWith("/pt/")) { const content = renderPortugalPrivateContentPage(pathname); if (content) return send(response, 200, "text/html; charset=utf-8", content); }
+    if (pathname.startsWith("/si/")) { const content = renderSloveniaPrivateContentPage(pathname); if (content) return send(response, 200, "text/html; charset=utf-8", content); }
+    if (pathname.startsWith("/ro/")) { const content = renderRomaniaPrivateContentPage(pathname); if (content) return send(response, 200, "text/html; charset=utf-8", content); }
+    if (["/styles.css", "/analytics.css", "/favicon.svg", "/data/products-pt.json", "/data/products-si.json", "/data/products-ro.json"].includes(pathname) || pathname.startsWith("/src/")) {
       const file = resolve(root, pathname.slice(1));
       if (!file.startsWith(root + sep)) return send(response, 403, "text/plain; charset=utf-8", "Forbidden");
       return send(response, 200, mime[extname(file)] || "application/octet-stream", await readFile(file));
