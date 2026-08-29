@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { isHungarianPublishedRuntime } from "../src/app-hu.js";
 import {
   HU_PUBLICATION_MANIFEST,
   addHungarianHomeAlternate,
@@ -25,6 +26,7 @@ test("Hungarian publicizer removes private robots directive and adds complete ho
   for (const locale of ["cs-CZ", "sk-SK", "pl-PL", "hu-HU", "x-default"]) {
     assert.match(once, new RegExp(`hreflang="${locale}"`));
   }
+  assert.match(once, /globalThis\.__MPS_HU_PUBLICATION__=true/);
   assert.match(once, /property="og:title" content="HU kalkulátor"/);
   assert.match(once, /property="og:description" content="HU leírás"/);
   assert.match(once, /property="og:locale" content="hu_HU"/);
@@ -32,6 +34,12 @@ test("Hungarian publicizer removes private robots directive and adds complete ho
   assert.match(once, /"@id":"https:\/\/mypowersetup\.com\/hu\/#calculator"/);
   assert.match(once, /"inLanguage":"hu-HU"/);
   assert.equal(twice, once);
+});
+
+test("Hungarian runtime is public only with the explicit release marker", () => {
+  assert.equal(isHungarianPublishedRuntime({}), false);
+  assert.equal(isHungarianPublishedRuntime({ __MPS_HU_PUBLICATION__: false }), false);
+  assert.equal(isHungarianPublishedRuntime({ __MPS_HU_PUBLICATION__: true }), true);
 });
 
 test("public pages receive the Hungarian home alternate only once", () => {
