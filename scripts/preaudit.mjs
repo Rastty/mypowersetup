@@ -9,12 +9,14 @@ const markets = [
 
 const sharedRequired = ["calculation_completed", "product_coverage_calculated", "affiliate_click"];
 const parityEvents = ["calculator_started", "result_share_requested", "result_print_requested"];
+const sharedAnalytics = await readFile("src/analytics.js", "utf8");
 const reports = [];
 
 for (const market of markets) {
   const app = await readFile(market.app, "utf8");
-  const hardMissing = sharedRequired.filter((event) => !app.includes(event));
-  const parityMissing = parityEvents.filter((event) => !app.includes(event));
+  const capabilities = `${app}\n${sharedAnalytics}`;
+  const hardMissing = sharedRequired.filter((event) => !capabilities.includes(event));
+  const parityMissing = parityEvents.filter((event) => !capabilities.includes(event));
   let seo = { state: market.public ? "unknown" : "private" };
   if (market.home) {
     const html = await readFile(market.home, "utf8");
