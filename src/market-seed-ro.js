@@ -1,0 +1,31 @@
+export const RO_MARKET_SEED = Object.freeze({
+  key: "ro",
+  locale: "ro-RO",
+  currency: "RON",
+  route: "/ro/",
+  private: true,
+  robots: "noindex,nofollow,noarchive",
+  affiliate: Object.freeze({
+    primaryMerchant: "allpowers_international",
+    program: "ALLPOWERS INTERNATIONAL",
+    awinMerchantId: 38934,
+    status: "approved-existing-eu-account",
+    policy: "Use only verified exact-product destinations/datafeed entries; fail closed when destination or market eligibility is uncertain.",
+  }),
+  copy: Object.freeze({
+    title: "Calculator baterie și panouri solare pentru autorulotă | MyPowerSetup",
+    description: "Calculează necesarul de baterie, panouri solare, invertor și controler MPPT pentru autorulotă. Rezultatele sunt explicate pas cu pas.",
+    eyebrow: "Energie fără estimări la întâmplare",
+    heading: "De câtă baterie și energie solară ai nevoie în autorulotă?",
+    lead: "Alege consumatorii și modul de utilizare. MyPowerSetup estimează energia zilnică, bateria, panourile, invertorul și încărcarea necesară, cu ipotezele explicate.",
+    action: "Calculează sistemul meu",
+    privateNote: "Versiune privată în validare pentru România.",
+  }),
+  researchRequiredBeforePublic: Object.freeze([
+    "Romanian RV/autocamper terminology and search-intent review",
+    "local SERP/content-gap review for battery, solar, inverter, MPPT, DC-DC and shore charging",
+    "local solar-season assumptions and user examples",
+    "affiliate shipping/market eligibility validation for each surfaced product",
+    "native-language review and 390x844 mobile journey smoke",
+  ]),
+});
