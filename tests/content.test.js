@@ -592,11 +592,14 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
   assert.equal(polishProducts.currency, "mixed");
   assert.equal(polishProducts.sources.allpowers_pl.status, "ok");
   assert.equal(polishProducts.sources.ampul_pl.status, "ok");
+  assert.equal(polishProducts.sources.powerqueen_eu.status, "ok");
   assert.ok(polishProducts.products.length >= 20);
   assert.ok(polishProducts.products.some((product) => product.category === "power_station"));
   assert.ok(polishProducts.products.some((product) => product.category === "solar_panel"));
   assert.ok(polishProducts.products.every((product) =>
-    product.affiliateUrl.includes("awinmid=121776") || product.affiliateUrl.includes("a_bid=ddb5edae")
+    product.affiliateUrl.includes("awinmid=121776")
+      || product.affiliateUrl.includes("awinmid=97025")
+      || product.affiliateUrl.includes("a_bid=ddb5edae")
   ));
   assert.ok(sitemap.includes("<loc>https://mypowersetup.com/pl/</loc>"));
   assert.ok(czech.includes('hreflang="pl-PL" href="https://mypowersetup.com/pl/"'));
