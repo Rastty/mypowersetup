@@ -18,6 +18,10 @@ on:
       - "src/shopify.js"
       - "src/affiliate-allpowers-pt.js"
       - "data/products-pl-verified.json"
+      - "tests/hu-foundation.test.js"
+      - "tests/powerqueen-exact-products.test.js"
+      - "tests/commercial-scenarios.test.js"
+      - "tests/current-catalog-safety.test.js"
       - ".github/workflows/sync-products.yml"
   schedule:
     - cron: "17 3 * * *"
