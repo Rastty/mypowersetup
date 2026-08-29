@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
-import { extname, resolve } from "node:path";
+import { extname, resolve, sep } from "node:path";
 import { renderPrivateMarketSeedPage } from "../src/private-market-page.js";
 import { RO_MARKET_SEED } from "../src/market-seed-ro.js";
 import { PT_MARKET_SEED } from "../src/market-seed-pt.js";
@@ -13,14 +13,15 @@ const seeds = new Map([
   [PT_MARKET_SEED.route, PT_MARKET_SEED],
   [SI_MARKET_SEED.route, SI_MARKET_SEED],
 ]);
-const mime = { ".css": "text/css; charset=utf-8", ".svg": "image/svg+xml" };
+const mime = { ".css": "text/css; charset=utf-8", ".svg": "image/svg+xml", ".js": "text/javascript; charset=utf-8" };
 
 createServer(async (request, response) => {
   try {
     const pathname = new URL(request.url, "http://127.0.0.1").pathname;
     if (seeds.has(pathname)) return send(response, 200, "text/html; charset=utf-8", renderPrivateMarketSeedPage(seeds.get(pathname)));
-    if (["/styles.css", "/favicon.svg"].includes(pathname)) {
+    if (["/styles.css", "/favicon.svg"].includes(pathname) || pathname.startsWith("/src/")) {
       const file = resolve(root, pathname.slice(1));
+      if (!file.startsWith(root + sep)) return send(response, 403, "text/plain; charset=utf-8", "Forbidden");
       return send(response, 200, mime[extname(file)] || "application/octet-stream", await readFile(file));
     }
     return send(response, 404, "text/plain; charset=utf-8", "Not found");
