@@ -1,0 +1,31 @@
+export const PT_MARKET_SEED = Object.freeze({
+  key: "pt",
+  locale: "pt-PT",
+  currency: "EUR",
+  route: "/pt/",
+  private: true,
+  robots: "noindex,nofollow,noarchive",
+  affiliate: Object.freeze({
+    primaryMerchant: "allpowers_international",
+    program: "ALLPOWERS INTERNATIONAL",
+    awinMerchantId: 38934,
+    dedicatedProgram: Object.freeze({ name: "ALLPOWERS PT", awinMerchantId: 125820, status: "available-not-assumed-approved" }),
+    policy: "Start from the approved international/EU account and switch to the dedicated PT program only after approval is confirmed. Exact-product destinations only; fail closed otherwise.",
+  }),
+  copy: Object.freeze({
+    title: "Calculadora de bateria e painéis solares para autocaravana | MyPowerSetup",
+    description: "Calcula a bateria, os painéis solares, o inversor e o controlador MPPT necessários para a tua autocaravana, com cada resultado explicado.",
+    eyebrow: "Energia sem adivinhações",
+    heading: "De quanta bateria e energia solar precisas na autocaravana?",
+    lead: "Escolhe os consumos e a forma como viajas. O MyPowerSetup estima a energia diária, bateria, solar, inversor e carregamento com pressupostos transparentes.",
+    action: "Calcular o meu sistema",
+    privateNote: "Versão privada em validação para Portugal.",
+  }),
+  researchRequiredBeforePublic: Object.freeze([
+    "European Portuguese autocaravana/electrical terminology and search-intent review",
+    "local SERP/content-gap review for battery, solar, inverter, MPPT, DC-DC and 230 V charging",
+    "Portugal-specific solar-season assumptions and travel examples",
+    "affiliate shipping/market eligibility validation for each surfaced product",
+    "native-language review and 390x844 mobile journey smoke",
+  ]),
+});
