@@ -147,10 +147,12 @@ test("committed SK and HU catalogs share only verified EU panels and power stati
   }
 });
 
-test("committed European catalogs contain only eligible Power Queen service batteries", async () => {
+test("committed European catalogs contain eligible Power Queen batteries and one verified MPPT", async () => {
   for (const path of ["data/products-sk.json", "data/products-pl.json", "data/products-hu.json"]) {
     const catalog = JSON.parse(await readFile(path, "utf8"));
-    const batteries = catalog.products.filter(({ merchant }) => merchant === "powerqueen_eu");
+    const powerQueen = catalog.products.filter(({ merchant }) => merchant === "powerqueen_eu");
+    const batteries = powerQueen.filter(({ category }) => category === "battery");
+    const controllers = powerQueen.filter(({ category }) => category === "controller");
     assert.equal(batteries.length, 16);
     assert.ok(batteries.every(({ category, priceCurrency, specs, affiliateUrl, name }) =>
       category === "battery"
@@ -161,6 +163,15 @@ test("committed European catalogs contain only eligible Power Queen service batt
       && affiliateUrl.includes("awinmid=97025")
       && affiliateUrl.includes("awinaffid=3044971")
       && !/(?:0%\s*vat|tax[- ]?(?:free|exemption)|【ua】|trolling motor|electric motor)/i.test(name)
+    ));
+    assert.equal(controllers.length, 1);
+    assert.ok(controllers.every(({ priceCurrency, specs, affiliateUrl, productUrl, name }) =>
+      priceCurrency === "EUR"
+      && specs.currentA === 30
+      && affiliateUrl.includes("awinmid=97025")
+      && affiliateUrl.includes("awinaffid=3044971")
+      && productUrl.includes("/en/products/")
+      && !/0%\s*vat/i.test(name)
     ));
   }
 });
