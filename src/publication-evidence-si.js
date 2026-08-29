@@ -5,7 +5,7 @@ export const SI_VERIFIED_FOUNDATION = Object.freeze({
   localIntentResearch: true,
   contentCluster: true,
   affiliateValidation: true,
-  mobile390x844: false,
+  mobile390x844: true,
   analyticsParity: true,
   nativeLanguageReview: false,
 });
@@ -19,6 +19,18 @@ export const SI_AFFILIATE_EVIDENCE = Object.freeze({
   verifiedAt: "2026-08-29",
   catalog: "/data/products-si.json",
   policy: "fail-closed",
+});
+
+export const SI_MOBILE_EVIDENCE = Object.freeze({
+  viewport: "390x844",
+  smokeScript: "scripts/smoke-si-mobile.mjs",
+  workflow: "Test",
+  workflowRun: 372,
+  calculatorJourney: true,
+  exactAffiliateDestination: true,
+  noHorizontalOverflow: true,
+  privateNoindexPreserved: true,
+  verifiedAt: "2026-08-29",
 });
 
 export function assessSloveniaPublication(overrides = {}) {
