@@ -38,19 +38,38 @@ test("public market is healthy only when SEO, catalog, sources, guides and cover
   assert.equal(report.attention.length, 0);
 });
 
-test("private HU market is safe when noindex and sitemap exclusion agree", () => {
+test("private HU market is safe with noindex, sitemap exclusion and no canonical before launch", () => {
   const report = assessMarketHealth({
     key: "hu",
     locale: "hu-HU",
     expectedPublic: false,
-    homepageHtml: '<head><meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://mypowersetup.com/hu/"></head>',
+    homepageHtml: '<head><meta name="robots" content="noindex,nofollow"></head>',
     canonicalUrl: "https://mypowersetup.com/hu/",
     sitemapUrls: ["https://mypowersetup.com/"],
     catalogs: [healthyCatalog],
     guideCount: 9,
   });
   assert.equal(report.status, "healthy");
+  assert.equal(report.homepageCanonical, null);
+  assert.equal(report.safetyChecks.canonicalMatches, true);
   assert.equal(report.safetyChecks.publicationStateMatches, true);
+});
+
+test("private market may predeclare only its own future canonical", () => {
+  const url = "https://mypowersetup.com/hu/";
+  const ownCanonical = assessMarketHealth({
+    key: "hu", locale: "hu-HU", expectedPublic: false,
+    homepageHtml: `<head><meta name="robots" content="noindex"><link rel="canonical" href="${url}"></head>`,
+    canonicalUrl: url, sitemapUrls: [], catalogs: [healthyCatalog], guideCount: 9,
+  });
+  const foreignCanonical = assessMarketHealth({
+    key: "hu", locale: "hu-HU", expectedPublic: false,
+    homepageHtml: '<head><meta name="robots" content="noindex"><link rel="canonical" href="https://mypowersetup.com/pl/"></head>',
+    canonicalUrl: url, sitemapUrls: [], catalogs: [healthyCatalog], guideCount: 9,
+  });
+  assert.equal(ownCanonical.status, "healthy");
+  assert.equal(foreignCanonical.status, "blocked");
+  assert.ok(foreignCanonical.blockers.includes("CANONICAL_MISMATCH"));
 });
 
 test("private market leaking into sitemap is a blocker even if catalog is excellent", () => {
