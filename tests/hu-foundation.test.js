@@ -95,7 +95,7 @@ test("Hungarian headless app shell connects the shared engine to the verified lo
 
   assert.equal(HU_MARKET.published, false);
   assert.equal(HU_MARKET.indexable, false);
-  assert.equal(catalog.products.length, 37);
+  assert.equal(catalog.products.length, 53);
   assert.match(output.verdict, /rendszert ajánlunk/);
   assert.match(output.systemDiagram, /Napelemek/);
   assert.match(output.systemDiagram, /Tiszta szinuszos inverter/);
@@ -106,8 +106,10 @@ test("Hungarian headless app shell connects the shared engine to the verified lo
   assert.equal(output.recommendations.inverter[0].product.merchant, "ampul_hu");
   assert.equal(output.catalogSources.ampul_hu.status, "ok");
   assert.equal(output.catalogSources.allpowers_eu.status, "ok");
+  assert.equal(output.catalogSources.powerqueen_eu.status, "ok");
   assert.equal(hungarianMerchantLabel("ampul_hu"), "Ampul.eu");
   assert.equal(hungarianMerchantLabel("allpowers_eu"), "ALLPOWERS EU");
+  assert.equal(hungarianMerchantLabel("powerqueen_eu"), "Power Queen EU");
   assert.match(formatHungarianPrice(164.59), /164[,.]59/);
 });
 
@@ -181,7 +183,8 @@ test("Hungarian launch gate reports exact catalog and review blockers", async ()
   assert.equal(report.categoryCounts.dc_charger, 3);
   assert.equal(report.categoryCounts.shore_charger, 2);
   assert.equal(report.categoryCounts.solar_panel, 22);
-  assert.deepEqual(report.missingCategories.map(({ category }) => category), ["battery", "controller"]);
+  assert.equal(report.categoryCounts.battery, 16);
+  assert.deepEqual(report.missingCategories.map(({ category }) => category), ["controller"]);
   assert.match(report.blockers.join(" "), /HU_LANGUAGE_REVIEW_REQUIRED/);
   assert.match(report.blockers.join(" "), /HU_MOBILE_JOURNEY_REVIEW_REQUIRED/);
   assert.throws(() => requireHungarianLaunchReady({ catalog }), /HU_LAUNCH_BLOCKED/);
