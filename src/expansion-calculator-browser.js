@@ -1,4 +1,5 @@
 import { calculateSetup } from "./engine.js";
+import { buildPlainLanguageVerdict } from "./verdict.js";
 
 const root = document.querySelector("[data-expansion-calculator]");
 if (!root) throw new Error("EXPANSION_CALCULATOR_ROOT_MISSING");
@@ -79,7 +80,8 @@ function showStep(step) {
 
 function renderResult(value) {
   const warnings = value.warnings.length ? `<ul>${value.warnings.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : "";
-  result.innerHTML = `<div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div>${warnings}<div data-product-recommendations></div><button class="button button-secondary" type="button" data-edit>${labels.again}</button>`;
+  const verdict = buildPlainLanguageVerdict(value, locale);
+  result.innerHTML = `<p class="result-summary">${escapeHtml(verdict)}</p><div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div>${warnings}<div data-product-recommendations></div><button class="button button-secondary" type="button" data-edit>${labels.again}</button>`;
 }
 
 async function renderPortugalProducts(calculation) {
