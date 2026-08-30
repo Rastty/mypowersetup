@@ -611,7 +611,8 @@ function merchantLabel(merchant) {
     svetkaravanu: "SvětKaravanů.cz",
     solarimport: "Solar-import.cz",
     batterycz: "Battery.cz",
-    ampul_cz: "Ampul.eu"
+    ampul_cz: "Ampul.eu",
+    powerqueen_eu: "Power Queen EU"
   })[merchant] || merchant;
 }
 
