@@ -10,6 +10,7 @@ import { HU_SYSTEM_VOLTAGE_GUIDE_ROUTE, renderHungarianSystemVoltageGuide } from
 import { injectHungarianSystemGuideLink } from "../src/system-guide-link-hu.js";
 import { requireHungarianPublicationReady } from "../src/readiness-hu.js";
 import { HU_PUBLICATION_MANIFEST, addHungarianHomeAlternate, addHungarianRoutesToSitemap, publicizeHungarianHtml } from "../src/publication-hu.js";
+import { syncPublicHomepageLanguageNav } from "../src/public-language-nav.js";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const checkOnly = process.argv.includes("--check");
@@ -19,7 +20,9 @@ const readiness = requireHungarianPublicationReady({ catalog, languageReviewed: 
 const plannedWrites = [];
 for (const entry of HU_PUBLICATION_MANIFEST) {
   const privateHtml = renderEntry(entry);
-  plannedWrites.push({ path: resolve(root, entry.path), content: publicizeHungarianHtml(privateHtml, entry.route, { home: entry.source === "home" }) });
+  let content = publicizeHungarianHtml(privateHtml, entry.route, { home: entry.source === "home" });
+  if (entry.source === "home") content = syncPublicHomepageLanguageNav(content, "hu");
+  plannedWrites.push({ path: resolve(root, entry.path), content });
 }
 for (const relativePath of ["index.html", "sk/index.html", "pl/index.html"]) {
   const path = resolve(root, relativePath);
