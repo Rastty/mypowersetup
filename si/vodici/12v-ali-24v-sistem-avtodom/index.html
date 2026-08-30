@@ -1,0 +1,43 @@
+<!doctype html><html lang="sl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Primerjaj 12 V in 24 V sistem za avtodom glede porabe, moči inverterja, DC toka, kablov, padca napetosti in združljivosti opreme."><link rel="stylesheet" href="/styles.css"><title>12 V ali 24 V sistem za avtodom: kako izbrati</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"12 V ali 24 V sistem za avtodom: kako izbrati","description":"Primerjaj 12 V in 24 V sistem za avtodom glede porabe, moči inverterja, DC toka, kablov, padca napetosti in združljivosti opreme.","inLanguage":"sl-SI","mainEntityOfPage":"https://mypowersetup.com/si/vodici/12v-ali-24v-sistem-avtodom/","publisher":{"@type":"Organization","name":"MyPowerSetup","url":"https://mypowersetup.com/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ali 24 V zagotovi dvakrat daljšo avtonomijo kot 12 V?","acceptedAnswer":{"@type":"Answer","text":"Ne. Avtonomija je odvisna od shranjene energije v Wh in porabe. Glavna prednost višje napetosti je manjši tok pri isti moči."}},{"@type":"Question","name":"Je za inverter 2.000 W boljši 12 V ali 24 V sistem?","acceptedAnswer":{"@type":"Answer","text":"Oba sta lahko tehnično izvedljiva, vendar je pri 24 V tok na baterijski strani približno pol manjši. Končna izbira je odvisna od kablov, baterije, BMS in združljivosti druge opreme."}},{"@type":"Question","name":"Ali lahko pri 24 V bateriji obdržim 12 V porabnike?","acceptedAnswer":{"@type":"Answer","text":"Da, če jih napaja ustrezno dimenzioniran DC-DC pretvornik. Ne priključi jih neposredno na 24 V."}},{"@type":"Question","name":"Ali MyPowerSetup vedno izbere 24 V nad 1.200 W?","acceptedAnswer":{"@type":"Answer","text":"V samodejnem načinu kalkulator uporabi ta prag inverterja ali izračunano baterijo nad 2.400 Wh kot projektno hevristiko. To ne nadomesti preverjanja dejanske napeljave in navodil opreme."}}]}</script>  <link rel="canonical" href="https://mypowersetup.com/si/vodici/12v-ali-24v-sistem-avtodom/">
+</head><body><header class="site-header"><a class="brand" href="/si/">ϟ MyPowerSetup</a></header><main class="content-page"><p class="eyebrow">MyPowerSetup</p><h1>12 V ali 24 V v avtodomu?</h1><p>Napetosti sistema ne izbereš glede na velikost avtodoma. Izbereš jo glede na moč, ki jo mora električni sistem prenašati, posledične tokove in opremo, ki mora delovati skupaj.</p><p class="cta"><a class="button button-primary" href="/si/#calculator-preview">Izračunaj moj sistem</a></p>
+<section data-expansion-voltage-guide="si">
+  <h2>Osnovno pravilo: pri isti moči 24 V pomeni približno polovico toka</h2>
+  <p>Poenostavljena zveza je <strong>I ≈ P ÷ V</strong>. Brez upoštevanja izgub 1.200 W obremenitev pri 12 V pomeni približno 100 A, pri 24 V pa 50 A. Pri 2.000 W je to približno 167 A pri 12 V oziroma 83 A pri 24 V.</p>
+  <p>Nižji tok lahko zmanjša padec napetosti in olajša dimenzioniranje kablov, varovalk, zbiralk ter priključkov pri večjih močeh. Tehnični priročnik <a href="https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/dc-wiring.html" rel="external noopener">Wiring Unlimited podjetja Victron Energy</a> pojasnjuje isto načelo: višja sistemska napetost pri isti moči zmanjša DC tok.</p>
+
+  <h2>Kdaj je 12 V še vedno najpreprostejša izbira</h2>
+  <p>V številnih avtodomih so luči, vodna črpalka, hladilnik, USB in druga avtomobilska oprema že 12-voltni. Če so 230 V porabniki zmerni, kabli niso pretirano dolgi in je obstoječa napeljava ustrezna, lahko prehod celotnega bivalnega sistema na 24 V doda pretvornike in zapletenost brez dovolj velike koristi.</p>
+  <p><strong>12 V zato ni samodejno slabša rešitev.</strong> Pri zmernih močeh in veliko obstoječih 12 V porabnikih je pogosto najbolj neposredna arhitektura.</p>
+
+  <h2>Kdaj resno razmisliti o 24 V</h2>
+  <p>24 V postane zanimivejši pri močnejšem inverterju in drugih velikih porabnikih, ki na baterijski strani povzročajo zelo visok tok, pri daljših kabelskih poteh ali pri novi zasnovi, kjer te ne omejuje veliko obstoječih 12 V naprav.</p>
+  <p>Samodejni način MyPowerSetup uporablja 24 V kot <strong>projektno hevristiko</strong>, kadar izračunana baterija preseže 2.400 Wh ali kadar potreben inverter preseže 1.200 W. To ni univerzalno elektropravilo; opozori le na scenarije, kjer je treba tokove in ožičenje pri 12 V posebej skrbno preveriti.</p>
+
+  <h2>Na 24 V ne preklopi samo zaradi baterije</h2>
+  <p>Sistemska napetost vpliva na celotno verigo. Pred izbiro preveri:</p>
+  <ul>
+    <li>baterijski sklop in omejitve BMS;</li>
+    <li>inverter oziroma inverter/polnilnik;</li>
+    <li>MPPT regulator in konfiguracijo panelov;</li>
+    <li>DC-DC polnilnik, povezan z alternatorjem;</li>
+    <li>230 V polnilnik;</li>
+    <li>vse neposredne DC porabnike;</li>
+    <li>varovalke, ločilnike, zbiralke in druge komponente z ustrezno nazivno napetostjo.</li>
+  </ul>
+  <p>Če v 24 V baterijskem sistemu ohraniš 12 V porabnike, praviloma potrebuješ ustrezen DC-DC pretvornik. 12 V naprave ne priključi neposredno na 24 V.</p>
+
+  <h2>Praktičen primer: inverter 2.000 W</h2>
+  <p>Pri 12 V pomeni 2.000 W približno 167 A še pred izgubami inverterja; pri 24 V približno 83 A. V resnični napeljavi bo tok nekoliko večji, ker inverter ni 100-odstotno učinkovit. Zato je treba presek kabla, skupno dolžino tokokroga, priključke in zaščito izbrati glede na dejanski tok ter navodila opreme.</p>
+
+  <h2>Vrstni red odločitev, ki prepreči nepotrebno predelavo</h2>
+  <ol>
+    <li>Izračunaj dnevno porabo v Wh in želeno avtonomijo.</li>
+    <li>Določi največjo hkratno AC obremenitev in zagonske sunke.</li>
+    <li>Primerjaj pričakovani tok pri 12 V in 24 V.</li>
+    <li>Preveri dolžine kablov in sprejemljiv padec napetosti.</li>
+    <li>Zapiši vse naprave, ki sprejemajo samo 12 V ali samo 24 V.</li>
+    <li>Šele nato dokončno izberi baterijo, inverter, MPPT, DC-DC, polnilnik in zaščito.</li>
+  </ol>
+  <p>Začni z <a href="/si/#calculator-preview">MyPowerSetup kalkulatorjem</a>, nato preveri še vodnike za <a href="/si/vodici/kapaciteta-baterije-avtodom/">kapaciteto baterije</a>, <a href="/si/vodici/inverter-avtodom-moc/">moč inverterja</a> ter <a href="/si/vodici/kabli-varovalke-12v-avtodom/">kable in varovalke</a>.</p>
+</section><section class="faq" aria-labelledby="voltage-faq"><h2 id="voltage-faq">FAQ</h2><details><summary>Ali 24 V zagotovi dvakrat daljšo avtonomijo kot 12 V?</summary><p>Ne. Avtonomija je odvisna od shranjene energije v Wh in porabe. Glavna prednost višje napetosti je manjši tok pri isti moči.</p></details><details><summary>Je za inverter 2.000 W boljši 12 V ali 24 V sistem?</summary><p>Oba sta lahko tehnično izvedljiva, vendar je pri 24 V tok na baterijski strani približno pol manjši. Končna izbira je odvisna od kablov, baterije, BMS in združljivosti druge opreme.</p></details><details><summary>Ali lahko pri 24 V bateriji obdržim 12 V porabnike?</summary><p>Da, če jih napaja ustrezno dimenzioniran DC-DC pretvornik. Ne priključi jih neposredno na 24 V.</p></details><details><summary>Ali MyPowerSetup vedno izbere 24 V nad 1.200 W?</summary><p>V samodejnem načinu kalkulator uporabi ta prag inverterja ali izračunano baterijo nad 2.400 Wh kot projektno hevristiko. To ne nadomesti preverjanja dejanske napeljave in navodil opreme.</p></details></section><aside class="cta"><h2>Izračunaj moj sistem</h2><p>Napetosti sistema ne izbereš glede na velikost avtodoma. Izbereš jo glede na moč, ki jo mora električni sistem prenašati, posledične tokove in opremo, ki mora delovati skupaj.</p><a class="button button-primary" href="/si/#calculator-preview">Izračunaj moj sistem</a></aside></main><footer class="expansion-footer"><nav><a href="/si/vodici/">Vodniki</a></nav></footer><script type="module" src="/src/analytics.js"></script></body></html>

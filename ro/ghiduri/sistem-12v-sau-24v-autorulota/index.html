@@ -1,0 +1,43 @@
+<!doctype html><html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Compară 12 V și 24 V pentru autorulotă după consum, puterea invertorului, curentul DC, cabluri, căderea de tensiune și compatibilitatea echipamentelor."><link rel="stylesheet" href="/styles.css"><title>Sistem de 12 V sau 24 V în autorulotă: cum alegi</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Sistem de 12 V sau 24 V în autorulotă: cum alegi","description":"Compară 12 V și 24 V pentru autorulotă după consum, puterea invertorului, curentul DC, cabluri, căderea de tensiune și compatibilitatea echipamentelor.","inLanguage":"ro-RO","mainEntityOfPage":"https://mypowersetup.com/ro/ghiduri/sistem-12v-sau-24v-autorulota/","publisher":{"@type":"Organization","name":"MyPowerSetup","url":"https://mypowersetup.com/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"24 V oferă autonomie dublă față de 12 V?","acceptedAnswer":{"@type":"Answer","text":"Nu. Autonomia depinde de energia stocată în Wh și de consum. Avantajul principal al tensiunii mai mari este curentul mai mic la aceeași putere."}},{"@type":"Question","name":"Pentru un invertor de 2 000 W este mai bun 12 V sau 24 V?","acceptedAnswer":{"@type":"Answer","text":"Ambele pot fi posibile, dar la 24 V curentul pe partea bateriei este aproximativ la jumătate. Alegerea finală depinde de cabluri, baterie, BMS și compatibilitatea celorlalte echipamente."}},{"@type":"Question","name":"Pot păstra consumatorii de 12 V dacă bateria este de 24 V?","acceptedAnswer":{"@type":"Answer","text":"Da, printr-un convertor DC-DC potrivit și dimensionat pentru acele sarcini. Nu îi conecta direct la 24 V."}},{"@type":"Question","name":"MyPowerSetup alege întotdeauna 24 V peste 1 200 W?","acceptedAnswer":{"@type":"Answer","text":"În modul automat, calculatorul folosește acest prag al invertorului sau o baterie calculată peste 2 400 Wh ca euristică de proiectare. Nu înlocuiește verificarea instalației și a manualelor echipamentelor."}}]}</script>  <link rel="canonical" href="https://mypowersetup.com/ro/ghiduri/sistem-12v-sau-24v-autorulota/">
+</head><body><header class="site-header"><a class="brand" href="/ro/">ϟ MyPowerSetup</a></header><main class="content-page"><p class="eyebrow">MyPowerSetup</p><h1>12 V sau 24 V în autorulotă?</h1><p>Tensiunea sistemului nu se alege după dimensiunea autorulotei, ci după puterea pe care trebuie să o transporte instalația, curenții rezultați și echipamentele care trebuie să funcționeze împreună.</p><p class="cta"><a class="button button-primary" href="/ro/#calculator-preview">Calculează sistemul meu</a></p>
+<section data-expansion-voltage-guide="ro">
+  <h2>Regula de bază: la aceeași putere, 24 V înseamnă aproximativ jumătate din curent</h2>
+  <p>Relația simplificată este <strong>I ≈ P ÷ V</strong>. Fără a include pierderile, o sarcină de 1 200 W înseamnă aproximativ 100 A la 12 V și 50 A la 24 V. La 2 000 W, valorile sunt aproximativ 167 A la 12 V și 83 A la 24 V.</p>
+  <p>Curentul mai mic poate reduce căderea de tensiune și poate simplifica dimensionarea cablurilor, siguranțelor, barelor de distribuție și conexiunilor pentru sarcini mari. Ghidul tehnic <a href="https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/dc-wiring.html" rel="external noopener">Wiring Unlimited de la Victron Energy</a> explică același principiu: pentru aceeași putere, creșterea tensiunii sistemului reduce curentul DC.</p>
+
+  <h2>Când 12 V rămâne alegerea mai simplă</h2>
+  <p>Multe autorulote au deja consumatori de 12 V: iluminat, pompă de apă, frigider, USB și alte echipamente auto. Dacă sarcinile de 230 V sunt moderate, traseele de cablu sunt rezonabile și instalația existentă este sănătoasă, trecerea completă la 24 V poate adăuga convertoare și complexitate fără un avantaj suficient.</p>
+  <p><strong>12 V nu este o soluție mai slabă prin definiție.</strong> Pentru instalații cu puteri moderate și mulți consumatori DC de 12 V poate fi alegerea cea mai directă.</p>
+
+  <h2>Când merită evaluat serios un sistem de 24 V</h2>
+  <p>24 V devine mai atractiv când invertorul sau alte sarcini mari duc la curenți foarte mari pe partea bateriei, când traseele de cablu sunt lungi sau când proiectezi instalația de la zero și nu ești legat de multe echipamente existente de 12 V.</p>
+  <p>Modul automat MyPowerSetup trece la 24 V ca <strong>euristică de proiectare</strong> dacă bateria calculată depășește 2 400 Wh sau dacă invertorul necesar depășește 1 200 W. Nu este o regulă universală; semnalează doar că scenariul merită verificat atent din perspectiva curentului și cablării.</p>
+
+  <h2>Nu schimba tensiunea analizând doar bateria</h2>
+  <p>Tensiunea sistemului afectează întregul lanț. Verifică înainte de cumpărare:</p>
+  <ul>
+    <li>banca de baterii și limitele BMS;</li>
+    <li>invertorul sau invertorul/încărcătorul;</li>
+    <li>regulatorul MPPT și configurația panourilor;</li>
+    <li>încărcătorul DC-DC conectat la alternator;</li>
+    <li>încărcătorul de 230 V;</li>
+    <li>toți consumatorii DC direcți;</li>
+    <li>siguranțele, separatoarele, barele și celelalte componente cu tensiune nominală corespunzătoare.</li>
+  </ul>
+  <p>Dacă păstrezi consumatori de 12 V într-un sistem de baterii de 24 V, de regulă ai nevoie de un convertor DC-DC potrivit. Nu conecta direct un aparat de 12 V la 24 V.</p>
+
+  <h2>Exemplu practic: invertor de 2 000 W</h2>
+  <p>La 12 V, 2 000 W reprezintă aproximativ 167 A înainte de pierderile invertorului; la 24 V, aproximativ 83 A. În realitate curentul va fi puțin mai mare deoarece invertorul nu are eficiență de 100%. De aceea cablul, lungimea totală a circuitului, conexiunile și protecția trebuie alese după curentul real și manualul echipamentului.</p>
+
+  <h2>Ordinea deciziilor care reduce riscul de reproiectare</h2>
+  <ol>
+    <li>Calculează consumul zilnic în Wh și autonomia dorită.</li>
+    <li>Stabilește cea mai mare sarcină AC simultană și vârfurile de pornire.</li>
+    <li>Compară curentul estimat la 12 V și 24 V.</li>
+    <li>Verifică lungimile cablurilor și căderea de tensiune acceptabilă.</li>
+    <li>Notează toate echipamentele care acceptă doar 12 V sau doar 24 V.</li>
+    <li>Abia apoi finalizează bateria, invertorul, MPPT-ul, DC-DC-ul, încărcătorul și protecțiile.</li>
+  </ol>
+  <p>Poți porni de la <a href="/ro/#calculator-preview">calculatorul MyPowerSetup</a>, apoi verifică ghidurile despre <a href="/ro/ghiduri/capacitate-baterie-autorulota/">capacitatea bateriei</a>, <a href="/ro/ghiduri/invertor-autorulota-putere/">puterea invertorului</a> și <a href="/ro/ghiduri/cabluri-sigurante-12v-autorulota/">cabluri și siguranțe</a>.</p>
+</section><section class="faq" aria-labelledby="voltage-faq"><h2 id="voltage-faq">FAQ</h2><details><summary>24 V oferă autonomie dublă față de 12 V?</summary><p>Nu. Autonomia depinde de energia stocată în Wh și de consum. Avantajul principal al tensiunii mai mari este curentul mai mic la aceeași putere.</p></details><details><summary>Pentru un invertor de 2 000 W este mai bun 12 V sau 24 V?</summary><p>Ambele pot fi posibile, dar la 24 V curentul pe partea bateriei este aproximativ la jumătate. Alegerea finală depinde de cabluri, baterie, BMS și compatibilitatea celorlalte echipamente.</p></details><details><summary>Pot păstra consumatorii de 12 V dacă bateria este de 24 V?</summary><p>Da, printr-un convertor DC-DC potrivit și dimensionat pentru acele sarcini. Nu îi conecta direct la 24 V.</p></details><details><summary>MyPowerSetup alege întotdeauna 24 V peste 1 200 W?</summary><p>În modul automat, calculatorul folosește acest prag al invertorului sau o baterie calculată peste 2 400 Wh ca euristică de proiectare. Nu înlocuiește verificarea instalației și a manualelor echipamentelor.</p></details></section><aside class="cta"><h2>Calculează sistemul meu</h2><p>Tensiunea sistemului nu se alege după dimensiunea autorulotei, ci după puterea pe care trebuie să o transporte instalația, curenții rezultați și echipamentele care trebuie să funcționeze împreună.</p><a class="button button-primary" href="/ro/#calculator-preview">Calculează sistemul meu</a></aside></main><footer class="expansion-footer"><nav><a href="/ro/ghiduri/">Ghiduri</a></nav></footer><script type="module" src="/src/analytics.js"></script></body></html>
