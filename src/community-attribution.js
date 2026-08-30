@@ -7,6 +7,7 @@ const MARKET_PREFIX = Object.freeze({
   si: "/si/",
   ro: "/ro/",
 });
+const STORAGE_KEY = "mypowersetup_community_attribution";
 
 function sourceSlug(value) {
   const normalized = String(value || "community")
@@ -32,6 +33,20 @@ function assertMarketRoute(market, route) {
   if (!route.startsWith(prefix)) throw new Error("COMMUNITY_ATTRIBUTION_MARKET_ROUTE_MISMATCH");
 }
 
+function normalizeAttribution(value) {
+  if (!value || typeof value !== "object") return null;
+  const source = sourceSlug(value.community_source);
+  const campaign = String(value.community_campaign || "");
+  const opportunityId = String(value.community_opportunity_id || "");
+  if (!/^[a-z0-9_]{1,80}$/.test(campaign)) return null;
+  if (!/^[a-z0-9-]{1,120}$/.test(opportunityId)) return null;
+  return Object.freeze({
+    community_source: source,
+    community_campaign: campaign,
+    community_opportunity_id: opportunityId,
+  });
+}
+
 export function buildCommunityTrackedUrl(opportunity, { origin = "https://mypowersetup.com" } = {}) {
   if (!opportunity?.id || !opportunity?.market || !opportunity?.targetRoute) {
     throw new TypeError("COMMUNITY_ATTRIBUTION_OPPORTUNITY_REQUIRED");
@@ -51,13 +66,23 @@ export function buildCommunityTrackedUrl(opportunity, { origin = "https://mypowe
 export function readCommunityAttribution(search) {
   const params = new URLSearchParams(String(search || "").replace(/^\?/, ""));
   if (params.get("utm_medium") !== "community") return null;
-  const source = params.get("utm_source") || "community";
-  const opportunityId = params.get("utm_content");
-  const campaign = params.get("utm_campaign");
-  if (!opportunityId || !campaign) return null;
-  return Object.freeze({
-    community_source: source,
-    community_campaign: campaign,
-    community_opportunity_id: opportunityId,
+  return normalizeAttribution({
+    community_source: params.get("utm_source") || "community",
+    community_campaign: params.get("utm_campaign"),
+    community_opportunity_id: params.get("utm_content"),
   });
+}
+
+export function resolveCommunityAttribution({ search, storage = null } = {}) {
+  const landing = readCommunityAttribution(search);
+  if (landing) {
+    try { storage?.setItem?.(STORAGE_KEY, JSON.stringify(landing)); } catch {}
+    return landing;
+  }
+  try {
+    const stored = storage?.getItem?.(STORAGE_KEY);
+    return stored ? normalizeAttribution(JSON.parse(stored)) : null;
+  } catch {
+    return null;
+  }
 }
