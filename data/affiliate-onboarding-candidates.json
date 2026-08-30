@@ -46,14 +46,14 @@
       "targetScenarioIds": ["remote-work"]
     },
     {
-      "id": "butler-victron-smartsolar-150-60",
+      "id": "butler-victron-smartsolar-250-60-mc4",
       "merchant": "butler_technik",
       "status": "approval_pending",
       "category": "controller",
       "productUrl": null,
       "affiliateUrl": null,
-      "technicalEvidenceUrl": "https://www.victronenergy.com/solar-charge-controllers/smartsolar-mppt-150-60-up-to-250-70",
-      "merchantEvidenceUrl": "https://www.butlertechnik.com/victron-energy/solar-charge-controllers",
+      "technicalEvidenceUrl": "https://www.butlertechnik.com/downloads/cms/7826/victron-energy-bluesolar-smartsolar-mppt-technical-overview-manual.pdf",
+      "exactRetailPath": "/item/Victron/SmartSolar-MPPT-250-60-MC4/BT2",
       "marketEligibility": {
         "sk-SK": "unverified",
         "pl-PL": "unverified",
@@ -62,9 +62,9 @@
       "specs": {
         "technology": "mppt",
         "currentA": 60,
-        "systemVoltages": [12, 24, 36, 48],
+        "systemVoltages": [12, 24, 48],
         "nominalPvPowerW12V": 860,
-        "maxPvVocV": 150
+        "maxPvVocV": 250
       },
       "targetScenarioIds": ["family-touring", "winter-basic"]
     }

@@ -1,5 +1,15 @@
 import { classifyPublicGuideLink } from "./public-conversion-funnel.js";
 
+const CALCULATOR_HASH_BY_PATH = Object.freeze({
+  "/": "#kalkulator",
+  "/sk/": "#kalkulator",
+  "/pl/": "#kalkulator",
+  "/hu/": "#kalkulator",
+  "/pt/": "#calculator-preview",
+  "/si/": "#calculator-preview",
+  "/ro/": "#calculator-preview",
+});
+
 export function classifyGuideCalculatorLink(href, { origin = "https://mypowersetup.com" } = {}) {
   let url;
   try {
@@ -9,8 +19,9 @@ export function classifyGuideCalculatorLink(href, { origin = "https://mypowerset
   }
 
   const expectedOrigin = new URL(origin).origin;
-  if (url.origin !== expectedOrigin || url.hash !== "#kalkulator") return null;
-  if (!isCalculatorPath(url.pathname)) return null;
+  if (url.origin !== expectedOrigin) return null;
+  const expectedHash = CALCULATOR_HASH_BY_PATH[url.pathname];
+  if (!expectedHash || url.hash !== expectedHash) return null;
 
   return Object.freeze({ destination_path: url.pathname });
 }
@@ -26,10 +37,6 @@ export function classifyGuideClickZone({ inPrimaryCta = false, inRelated = false
   if (inRelated) return "related";
   if (inHeader) return "header";
   return "inline";
-}
-
-function isCalculatorPath(pathname) {
-  return pathname === "/" || /^\/[a-z]{2}\/$/i.test(pathname);
 }
 
 function normalizePath(pathname) {
