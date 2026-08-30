@@ -96,8 +96,9 @@ export function addExpansionRoutesToSitemap(xml, market) {
 export function assessExpansionNativeApproval(market, evidence) {
   if (!CONFIG[market]) throw new Error(`EXPANSION_PUBLICATION_UNKNOWN:${market}`);
   const checklist = createNativeReviewChecklist(market, evidence);
+  const languageReviewComplete = evidence?.languageEditorialReview === true || evidence?.nativeLanguageReview === true;
   const blockers = [
-    evidence?.nativeLanguageReview !== true && "nativeLanguageReview",
+    !languageReviewComplete && "languageEditorialReview",
     evidence?.publicPublicationApproved !== true && "publicPublicationApproved",
     ...checklist.blockers,
   ].filter(Boolean);
@@ -111,7 +112,7 @@ export function assessExpansionNativeApproval(market, evidence) {
 
 export function requireExpansionNativeApproval(market, evidence) {
   const assessment = assessExpansionNativeApproval(market, evidence);
-  if (!assessment.ready) throw new Error(`EXPANSION_NATIVE_REVIEW_REQUIRED:${market}:${assessment.blockers.join(",")}`);
+  if (!assessment.ready) throw new Error(`EXPANSION_LANGUAGE_REVIEW_REQUIRED:${market}:${assessment.blockers.join(",")}`);
   return true;
 }
 
