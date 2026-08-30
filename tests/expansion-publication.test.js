@@ -20,11 +20,14 @@ test("publicizer removes private robots only for the requested market and adds c
   assert.throws(() => publicizeExpansionHtml(html, "pt", "/si/vodici/"), /ROUTE_INVALID/);
 });
 
-test("home publication adds its locale hreflang and release marker idempotently", () => {
-  const html = '<html><head></head><body></body></html>';
+test("home publication adds all public hreflangs, static language links and release marker idempotently", () => {
+  const html = '<html><head></head><body><header><nav class="expansion-nav"><a class="header-link" href="/ro/ghiduri/">Ghiduri</a></nav></header></body></html>';
   const once = publicizeExpansionHtml(html, "ro", "/ro/", { home: true });
   const twice = publicizeExpansionHtml(once, "ro", "/ro/", { home: true });
-  assert.match(once, /hreflang="ro-RO"/);
+  for (const locale of ["cs-CZ", "sk-SK", "pl-PL", "hu-HU", "pt-PT", "sl-SI", "ro-RO"]) assert.match(once, new RegExp(`hreflang="${locale}"`));
+  for (const route of ["/", "/sk/", "/pl/", "/hu/", "/pt/", "/si/"]) assert.match(once, new RegExp(`class="header-link language-switch" href="${route.replaceAll("/", "\\/")}"`));
+  assert.doesNotMatch(once, /class="header-link language-switch" href="\/ro\/"/);
+  assert.equal((once.match(/class="header-link language-switch"/g) || []).length, 6);
   assert.match(once, /__MPS_RO_PUBLICATION__/);
   assert.equal(twice, once);
 });
