@@ -1,0 +1,35 @@
+name: Publish SI growth temp
+
+on:
+  push:
+    branches: [growth/publish-si-growth-v1]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: growth/publish-si-growth-v1
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - run: node scripts/publish-expansion.mjs --market si
+      - run: npm test
+      - name: Commit generated public pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add si/ sitemap.xml index.html sk/index.html pl/index.html hu/index.html pt/index.html ro/index.html
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m "Publish Slovenia growth content"
+            git push origin HEAD:growth/publish-si-growth-v1
+          fi
