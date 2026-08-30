@@ -1,0 +1,38 @@
+name: Publish expansion once
+
+on:
+  push:
+    branches:
+      - publish-expansion-pt-si-ro
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: publish-expansion-pt-si-ro
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Verify expansion release gate
+        run: npm run check:expansion:release:ready
+      - name: Publish Portugal
+        run: node scripts/publish-expansion.mjs --market pt
+      - name: Publish Slovenia
+        run: node scripts/publish-expansion.mjs --market si
+      - name: Publish Romania
+        run: node scripts/publish-expansion.mjs --market ro
+      - name: Remove one-shot workflow and commit generated publication
+        run: |
+          git rm .github/workflows/publish-expansion-once.yml
+          git add sitemap.xml index.html sk/index.html pl/index.html hu/index.html pt si ro
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m "Publish PT SI RO expansion markets"
+          git push origin HEAD:publish-expansion-pt-si-ro
