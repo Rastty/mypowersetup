@@ -71,6 +71,8 @@ function hasExactAffiliateDestination(product) {
 
 function recommendationView(product, { quantity = 1 } = {}) {
   return Object.freeze({
+    id: product.id,
+    merchant: product.merchant,
     category: product.category,
     name: product.name,
     productUrl: product.productUrl,
