@@ -1,5 +1,6 @@
 import { buildAnalyticsContext } from "./analytics-context.js";
 import { classifyGuideCalculatorLink, classifyGuideClickZone, classifyGuideInternalLink } from "./analytics-links.js";
+import { resolveCommunityAttribution } from "./community-attribution.js";
 import { enhanceHomepageLanguageSwitch } from "./language-switch.js";
 
 const MEASUREMENT_ID = "G-TDNRBM2V2J";
@@ -26,13 +27,18 @@ function saveChoice(value) { choice = value; try { window.localStorage.setItem(C
 function loadGoogleTag() {
   if (tagLoaded || choice !== "granted") return;
   tagLoaded = true;
+  currentContext();
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
   window.gtag("js", new Date());
   window.gtag("config", MEASUREMENT_ID, { anonymize_ip: true, allow_google_signals: false, allow_ad_personalization_signals: false });
   const script = document.createElement("script"); script.async = true; script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(MEASUREMENT_ID)}`; document.head.append(script);
 }
-function currentContext() { return buildAnalyticsContext({ lang: document.documentElement.lang, pathname: window.location.pathname, hasCalculator: Boolean(document.querySelector("#setup-form")) }); }
+function currentContext() {
+  const page = buildAnalyticsContext({ lang: document.documentElement.lang, pathname: window.location.pathname, hasCalculator: Boolean(document.querySelector("#setup-form")) });
+  const community = choice === "granted" ? resolveCommunityAttribution({ search: window.location.search, storage: window.sessionStorage }) : null;
+  return Object.freeze({ ...page, ...(community || {}) });
+}
 function track(event, parameters = {}) {
   if (choice !== "granted" || typeof window.gtag !== "function") return false;
   if (ONCE_PER_PAGE_EVENTS.has(event) && trackedOnce.has(event)) return true;
