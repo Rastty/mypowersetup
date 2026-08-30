@@ -3,6 +3,7 @@ import { SI_PRIVATE_CONTENT } from "./private-content-si.js";
 import { RO_PRIVATE_CONTENT } from "./private-content-ro.js";
 import { createNativeReviewChecklist } from "./native-review-packs.js";
 import { enhanceExpansionSearchContent } from "./expansion-search-content.js";
+import { enhanceRomaniaSearchContent } from "./expansion-search-content-ro.js";
 import { addContextualGrowthLinks } from "./contextual-growth-links.js";
 
 const CONFIG = Object.freeze({
@@ -68,6 +69,7 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
   if (typeof html !== "string" || !html.includes("<head")) throw new Error("EXPANSION_PUBLICATION_HTML_INVALID");
   let output = polishExpansionPublicationCopy(html, market).replace(/\s*<meta name="robots" content="noindex,nofollow,noarchive">\s*/g, "\n");
   output = enhanceExpansionSearchContent(output, market, route);
+  output = enhanceRomaniaSearchContent(output, market, route);
   output = addContextualGrowthLinks(output, market, route);
   const canonical = `https://mypowersetup.com${route}`;
   const additions = [];
