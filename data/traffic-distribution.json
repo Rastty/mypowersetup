@@ -212,12 +212,12 @@
         "/pl/poradnik/agm-czy-lifepo4/",
         "/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/"
       ],
-      "lastKnownActivity": "2026-06-23",
+      "lastKnownActivity": "2026-08-27",
       "priority": "high",
       "fit": "direct_camper_technical_current",
       "status": "ready_for_manual_reply",
       "postingRule": "answer_first_no_link_drop",
-      "notes": "Current LiFePO4 usage discussion compares winter versus summer daily consumption and solar replenishment. Useful for answering with Wh/day-first sizing and seasonal assumptions rather than a universal Ah recommendation."
+      "notes": "Active again on 2026-08-27. The current all-season camper discussion is sizing a 280Ah LiFePO4 bank with 910Wp solar and explicitly contrasts summer with spring/autumn autonomy. Strong answer-first fit for Wh/day-based battery sizing and seasonal solar assumptions before discussing brands or products."
     }
   ]
 }
