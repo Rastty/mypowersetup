@@ -1,5 +1,19 @@
 import { normalizeProduct } from "./products.js";
 
+const AMPUL_VERIFIED_FEED_PRODUCTS = Object.freeze({
+  "6195": Object.freeze({
+    category: "dc_charger",
+    verifiedAt: "2026-08-30",
+    specs: Object.freeze({
+      currentA: 30,
+      chargingVoltagesV: Object.freeze([12]),
+      chargingInputVoltagesV: Object.freeze([12, 24]),
+      chargingBatteryTypes: Object.freeze(["lifepo4"]),
+      batteryType: "lifepo4"
+    })
+  })
+});
+
 export function parseProductFeed(xml, merchantKey) {
   const itemPattern = /<SHOPITEM\b[^>]*>([\s\S]*?)<\/SHOPITEM>/gi;
   const googleItemPattern = /<item\b[^>]*>([\s\S]*?)<\/item>/gi;
@@ -23,11 +37,33 @@ export function parseProductFeed(xml, merchantKey) {
 
     if (!raw.name || !raw.url) return [];
     try {
-      return [normalizeProduct(raw, merchantKey)];
+      return [applyVerifiedFeedMetadata(normalizeProduct(raw, merchantKey), raw, merchantKey)];
     } catch {
       return [];
     }
   });
+}
+
+function applyVerifiedFeedMetadata(product, raw, merchantKey) {
+  if (!/^ampul_(?:cz|sk|pl|hu)$/.test(merchantKey)) return product;
+  const verified = AMPUL_VERIFIED_FEED_PRODUCTS[String(raw.id || "").trim()];
+  if (!verified) return product;
+
+  // Verification can tighten technical metadata but must never invent live
+  // availability, price or a destination URL. Those continue to come only
+  // from the current merchant feed and normalizeProduct's URL validation.
+  return {
+    ...product,
+    category: verified.category,
+    verifiedAt: verified.verifiedAt,
+    specs: {
+      ...product.specs,
+      ...verified.specs,
+      chargingVoltagesV: [...verified.specs.chargingVoltagesV],
+      chargingInputVoltagesV: [...verified.specs.chargingInputVoltagesV],
+      chargingBatteryTypes: [...verified.specs.chargingBatteryTypes]
+    }
+  };
 }
 
 function tag(xml, name) {

@@ -380,7 +380,16 @@ export function refreshCatalogProduct(product) {
   const fallbackText = [product.categoryPath, product.description].filter(Boolean).join(" ");
   const extractedSpecs = extractSpecs(product.name, fallbackText);
   const specs = Object.fromEntries(
-    Object.entries(extractedSpecs).map(([key, value]) => [key, value ?? product.specs?.[key] ?? null])
+    Object.entries(extractedSpecs).map(([key, value]) => {
+      const stored = product.specs?.[key];
+      const verifiedStoredValue = product.verifiedAt && (
+        (Array.isArray(stored) && stored.length > 0)
+        || stored === true
+        || typeof stored === "number" && Number.isFinite(stored)
+        || typeof stored === "string" && stored.length > 0
+      );
+      return [key, verifiedStoredValue ? stored : value ?? stored ?? null];
+    })
   );
   if (/solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)|napelemes töltésszabályozók|töltésszabályozók|battery charge controllers/i.test(product.categoryPath)) {
     specs.currentA = extractControllerCurrent(product.name, product.description);
@@ -388,7 +397,9 @@ export function refreshCatalogProduct(product) {
   return {
     ...product,
     specs,
-    category: classifyProduct({ name: product.name, categoryPath: product.categoryPath, specs })
+    category: product.verifiedAt && product.category && product.category !== "other"
+      ? product.category
+      : classifyProduct({ name: product.name, categoryPath: product.categoryPath, specs })
   };
 }
 
