@@ -1,3 +1,5 @@
+import { buildMarketHomeSearchSurface } from "./search-surface.js";
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>\"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]);
 }
@@ -48,6 +50,7 @@ export function renderPrivateMarketSeedPage(seed) {
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="${escapeHtml(seed.robots)}">
   <meta name="description" content="${escapeHtml(copy.description)}">
+  ${buildMarketHomeSearchSurface(seed)}
   <link rel="stylesheet" href="/styles.css">
   <title>${escapeHtml(copy.title)}</title>
 </head>
