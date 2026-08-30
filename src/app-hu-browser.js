@@ -123,7 +123,7 @@ function renderProducts(output) {
   document.querySelector("#result-next").hidden = false; document.querySelector("#result-product-count").textContent = total ? `${total} ellenőrzött műszaki találat ${entries.length} kategóriában. Terméklefedettség: ${coverage.covered.length}/${coverage.required.length} szükséges kategória.` : "Ehhez a konfigurációhoz még nincs elég ellenőrzött termék."; document.querySelector("#result-products-link").hidden = !total;
   document.querySelector("#product-heading").textContent = total ? HU_UI_COPY.products.heading : HU_UI_COPY.products.preparing;
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>A katalógusból még hiányzik:</strong> ${escapeHtml(coverage.message)}</p>`;
-  document.querySelector("#recommendation-groups").innerHTML = coverageNotice + entries.map(([category,items]) => `<section class="product-group" data-product-category="${category}"><h5>${labels[category]}</h5><div class="product-grid">${items.map(({product,reason,checks,verify}) => `<article class="product-card"><div class="product-card-copy"><span>${hungarianMerchantLabel(product.merchant)}</span><h6>${escapeHtml(product.name)}</h6><p><strong>Miért megfelelő:</strong> ${escapeHtml(reason)}</p><ul>${checks.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul><p><strong>Vásárlás előtt:</strong> ${escapeHtml(verify)}</p><div class="product-card-action"><span class="product-price"><strong>${formatHungarianPrice(product.priceCzk,product.priceCurrency)}</strong></span><a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-product-id="${escapeHtml(product.id)}" data-merchant="${product.merchant}" data-category="${category}">${HU_UI_COPY.products.exactProduct}</a></div></div></article>`).join("")}</div></section>`).join("");
+  document.querySelector("#recommendation-groups").innerHTML = coverageNotice + entries.map(([category,items]) => `<section class="product-group" data-product-category="${category}"><h5>${labels[category]}</h5><div class="product-grid">${items.map(({product,reason,checks,verify}) => `<article class="product-card"><div class="product-card-copy"><span>${hungarianMerchantLabel(product.merchant)}</span><h6>${escapeHtml(product.name)}</h6><p><strong>Miért megfelelő:</strong> ${escapeHtml(reason)}</p><ul>${checks.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul><p><strong>Vásárlás előtt:</strong> ${escapeHtml(verify)}</p><div class="product-card-action"><span class="product-price"><strong>${formatHungarianPrice(product.priceCzk,product.priceCurrency)}</strong></span><a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${HU_UI_COPY.products.exactProduct}</a></div></div></article>`).join("")}</div></section>`).join("");
 }
 
 function showStep(step) { currentStep=Math.max(1,Math.min(3,step)); document.querySelectorAll(".form-step").forEach((section) => { const visible=Number(section.dataset.step)===currentStep; section.hidden=!visible; section.classList.toggle("is-visible",visible); }); document.querySelectorAll(".step").forEach((button,index) => { button.disabled=index+1>currentStep; button.classList.toggle("is-active",index+1===currentStep); button.classList.toggle("is-complete",index+1<currentStep); }); document.querySelector("#kalkulator").scrollIntoView({ behavior:"smooth",block:"start" }); }
@@ -131,4 +131,17 @@ function setShareStatus(value) { document.querySelector("#result-share-status").
 function formatEnergy(wh) { return wh>=1000 ? `${(wh/1000).toLocaleString("hu-HU",{maximumFractionDigits:2})} kWh` : `${Math.round(wh).toLocaleString("hu-HU")} Wh`; }
 function escapeHtml(value) { return String(value||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"); }
 function track(event,parameters={}) { return Boolean(window.MyPowerSetupAnalytics?.track(event,parameters)); }
-document.addEventListener("click", (event) => { const link=event.target.closest("[data-affiliate-click]"); if (link) track("affiliate_click",{productId:link.dataset.productId,merchant:link.dataset.merchant,category:link.dataset.category,source:"product-card"}); });
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("[data-affiliate-click]");
+  if (!link) return;
+  const detail = {
+    event: "affiliate_click",
+    productId: link.dataset.productId,
+    merchant: link.dataset.merchant,
+    category: link.dataset.category,
+    source: link.dataset.source || "unknown",
+    packageId: link.dataset.packageId || undefined
+  };
+  track(detail.event, detail);
+  document.dispatchEvent(new CustomEvent("mypowersetup:affiliate-click", { detail }));
+});
