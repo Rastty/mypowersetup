@@ -61,26 +61,26 @@ test("sitemap publication adds all routes once", () => {
   assert.equal(twice, once);
 });
 
-test("native approval rejects a nominal approval with an incomplete review checklist", () => {
+test("language approval rejects a nominal approval with an incomplete review checklist", () => {
   assert.throws(
     () => requireExpansionNativeApproval("pt", {
-      nativeLanguageReview: true,
+      languageEditorialReview: true,
       publicPublicationApproved: true,
-      reviewer: "Native reviewer",
-      reviewedAt: "2026-08-29",
+      reviewer: "AI editorial language review",
+      reviewedAt: "2026-08-30",
     }),
-    /nativeSpeaker.*calculatorReviewed.*guidesReviewed.*trustReviewed.*terminologyReviewed.*blockingIssuesResolved/,
+    /reviewerQualification.*calculatorReviewed.*guidesReviewed.*trustReviewed.*terminologyReviewed.*blockingIssuesResolved/,
   );
 });
 
-test("native approval rejects malformed review dates", () => {
+test("language approval rejects malformed review dates", () => {
   assert.throws(
     () => requireExpansionNativeApproval("si", {
-      nativeLanguageReview: true,
+      languageEditorialReview: true,
       publicPublicationApproved: true,
-      nativeSpeaker: true,
-      reviewer: "Native reviewer",
-      reviewedAt: "29-08-2026",
+      reviewerType: "ai_editorial_review",
+      reviewer: "AI editorial language review",
+      reviewedAt: "30-08-2026",
       calculatorReviewed: true,
       guidesReviewed: true,
       trustReviewed: true,
@@ -91,13 +91,14 @@ test("native approval rejects malformed review dates", () => {
   );
 });
 
-test("native approval opens only after the complete explicit checklist and publication approval", () => {
+test("language approval opens only after the complete explicit checklist and publication approval", () => {
   const evidence = {
-    nativeLanguageReview: true,
+    languageEditorialReview: true,
     publicPublicationApproved: true,
-    nativeSpeaker: true,
-    reviewer: "Native reviewer",
-    reviewedAt: "2026-08-29",
+    nativeSpeaker: false,
+    reviewerType: "ai_editorial_review",
+    reviewer: "AI editorial language review",
+    reviewedAt: "2026-08-30",
     calculatorReviewed: true,
     guidesReviewed: true,
     trustReviewed: true,
