@@ -18,7 +18,7 @@ const markets = {
   ro: { seed: RO_MARKET_SEED, render: renderRomaniaPrivateContentPage },
 };
 
-test("private expansion source templates stay noindex after publication", () => {
+test("private expansion source templates stay noindex after public generation", () => {
   for (const [market, config] of Object.entries(markets)) {
     const manifest = expansionPublicationManifest(market);
     const home = renderPrivateMarketSeedPage(config.seed);
