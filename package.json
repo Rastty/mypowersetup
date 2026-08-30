@@ -30,6 +30,7 @@
     "check:expansion:ready": "node scripts/check-expansion-readiness.mjs --require-ready",
     "check:expansion:release": "node scripts/check-expansion-release.mjs",
     "check:expansion:release:ready": "node scripts/check-expansion-release.mjs --require-ready",
+    "check:expansion:native-review": "node scripts/check-expansion-native-review.mjs",
     "preview:hu": "node scripts/preview-hu.mjs",
     "preview:expansion": "node scripts/preview-expansion-markets.mjs",
     "smoke:public:mobile": "node scripts/smoke-public-mobile.mjs",
