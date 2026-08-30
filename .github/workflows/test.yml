@@ -24,6 +24,7 @@ jobs:
       - run: node --check src/analytics.js
       - run: node --check src/public-conversion-funnel.js
       - run: node --check src/commercial-coverage.js
+      - run: node --check src/commercial-near-miss.js
       - run: node --check src/market-health.js
       - run: node --check scripts/sync-products.mjs
       - run: node --check scripts/sync-products-pt.mjs
@@ -38,6 +39,7 @@ jobs:
       - run: node --check scripts/check-postlaunch-public.mjs
       - run: node --check scripts/check-commercial-coverage.mjs
       - run: node --check scripts/check-commercial-scenarios.mjs
+      - run: node --check scripts/check-commercial-near-misses.mjs
       - run: node --check scripts/check-affiliate-onboarding-candidates.mjs
       - run: node --check scripts/smoke-public-mobile.mjs
       - run: node --check scripts/smoke-hu-mobile.mjs
@@ -52,6 +54,7 @@ jobs:
       - run: node scripts/check-postlaunch-public.mjs
       - run: npm run check:commercial:coverage:safe
       - run: npm run check:commercial:scenarios:safe
+      - run: node scripts/check-commercial-near-misses.mjs
       - run: node scripts/check-affiliate-onboarding-candidates.mjs
       - run: npm run indexnow:check
       - run: google-chrome --version
