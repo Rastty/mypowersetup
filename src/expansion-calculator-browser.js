@@ -1,5 +1,7 @@
 import { calculateSetup } from "./engine.js";
 import { buildPlainLanguageVerdict } from "./verdict.js";
+import { buildExpansionSetupUrl, decodeExpansionSetupQuery } from "./expansion-setup-url.js";
+import { buildResultShareText, copyText } from "./share.js";
 
 const root = document.querySelector("[data-expansion-calculator]");
 if (!root) throw new Error("EXPANSION_CALCULATOR_ROOT_MISSING");
@@ -12,24 +14,34 @@ const error = root.querySelector("[data-calculator-error]");
 const result = root.querySelector("[data-result]");
 
 const labels = {
-  ro: { required: "Selectează cel puțin un consumator.", daily: "Consum zilnic", battery: "Baterie", solar: "Panouri solare", inverter: "Invertor", mppt: "Controler MPPT", voltage: "Sistem", again: "Modifică datele", products: "Produse compatibile verificate", productsIntro: "Afișăm doar produse cu destinația exactă, limitele electrice critice și livrarea în România verificate.", powerStationFit: "Limitele electrice verificate acoperă profilul calculat", powerStation: "Stație portabilă de energie", viewProduct: "Vezi produsul", affiliate: "Link afiliat; recomandarea tehnică nu depinde de comision." },
-  pt: { required: "Seleciona pelo menos um equipamento.", daily: "Consumo diário", battery: "Bateria", solar: "Painéis solares", inverter: "Inversor", mppt: "Controlador MPPT", voltage: "Sistema", again: "Alterar dados", products: "Produtos compatíveis verificados", productsIntro: "Mostramos apenas produtos cujo destino exato e requisitos técnicos conseguimos validar.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W cobre a potência solar calculada`, powerStationFit: "Os limites elétricos verificados cobrem o perfil calculado", powerStation: "Estação de energia portátil", viewProduct: "Ver produto", affiliate: "Ligação de afiliado; a recomendação técnica não depende da comissão." },
-  si: { required: "Izberi vsaj en porabnik.", daily: "Dnevna poraba", battery: "Baterija", solar: "Solarni paneli", inverter: "Inverter", mppt: "Regulator MPPT", voltage: "Sistem", again: "Spremeni podatke", products: "Preverjeni združljivi izdelki", productsIntro: "Prikažemo samo izdelke, pri katerih smo preverili točen cilj povezave, ključne električne omejitve in dostavo v Slovenijo.", powerStationFit: "Preverjene električne omejitve pokrivajo izračunani profil", powerStation: "Prenosna elektrarna", viewProduct: "Poglej izdelek", affiliate: "Partnerska povezava; tehnično priporočilo ni odvisno od provizije." },
+  ro: { required: "Selectează cel puțin un consumator.", daily: "Consum zilnic", battery: "Baterie", solar: "Panouri solare", inverter: "Invertor", mppt: "Controler MPPT", voltage: "Sistem", again: "Modifică datele", share: "Copiază rezultatul", copied: "Rezultat copiat", copyFailed: "Nu s-a putut copia", products: "Produse compatibile verificate", productsIntro: "Afișăm doar produse cu destinația exactă, limitele electrice critice și livrarea în România verificate.", powerStationFit: "Limitele electrice verificate acoperă profilul calculat", powerStation: "Stație portabilă de energie", viewProduct: "Vezi produsul", affiliate: "Link afiliat; recomandarea tehnică nu depinde de comision." },
+  pt: { required: "Seleciona pelo menos um equipamento.", daily: "Consumo diário", battery: "Bateria", solar: "Painéis solares", inverter: "Inversor", mppt: "Controlador MPPT", voltage: "Sistema", again: "Alterar dados", share: "Copiar resultado", copied: "Resultado copiado", copyFailed: "Não foi possível copiar", products: "Produtos compatíveis verificados", productsIntro: "Mostramos apenas produtos cujo destino exato e requisitos técnicos conseguimos validar.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W cobre a potência solar calculada`, powerStationFit: "Os limites elétricos verificados cobrem o perfil calculado", powerStation: "Estação de energia portátil", viewProduct: "Ver produto", affiliate: "Ligação de afiliado; a recomendação técnica não depende da comissão." },
+  si: { required: "Izberi vsaj en porabnik.", daily: "Dnevna poraba", battery: "Baterija", solar: "Solarni paneli", inverter: "Inverter", mppt: "Regulator MPPT", voltage: "Sistem", again: "Spremeni podatke", share: "Kopiraj rezultat", copied: "Rezultat kopiran", copyFailed: "Kopiranje ni uspelo", products: "Preverjeni združljivi izdelki", productsIntro: "Prikažemo samo izdelke, pri katerih smo preverili točen cilj povezave, ključne električne omejitve in dostavo v Slovenijo.", powerStationFit: "Preverjene električne omejitve pokrivajo izračunani profil", powerStation: "Prenosna elektrarna", viewProduct: "Poglej izdelek", affiliate: "Partnerska povezava; tehnično priporočilo ni odvisno od provizije." },
 }[locale];
 
 if (!labels) throw new Error(`EXPANSION_CALCULATOR_LOCALE_UNSUPPORTED:${locale || "missing"}`);
 
 let currentStep = 1;
+let latestResult = null;
+let latestShareUrl = "";
 showStep(1);
 
-root.addEventListener("click", (event) => {
+root.addEventListener("click", async (event) => {
   const next = event.target.closest("[data-next]");
   const back = event.target.closest("[data-back]");
   const edit = event.target.closest("[data-edit]");
+  const share = event.target.closest("[data-share-result]");
   const affiliate = event.target.closest("[data-affiliate-product]");
   if (next) { track("calculator_started", { source: "next_button" }); showStep(Math.min(3, currentStep + 1)); }
   if (back) showStep(Math.max(1, currentStep - 1));
   if (edit) showStep(2);
+  if (share && latestResult && latestShareUrl) {
+    const original = share.textContent;
+    const copied = await copyText(buildResultShareText(latestResult, locale, latestShareUrl));
+    share.textContent = copied ? labels.copied : labels.copyFailed;
+    if (copied) track("calculator_result_shared", { market: locale, method: "copy", source: "result" });
+    setTimeout(() => { if (share.isConnected) share.textContent = original; }, 1800);
+  }
   if (affiliate) {
     const detail = {
       event: "affiliate_click",
@@ -46,12 +58,41 @@ root.addEventListener("click", (event) => {
 form.addEventListener("input", () => track("calculator_started", { source: "form_input" }));
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+  await calculateAndRender({ source: "form_submit" });
+});
+
+const initialSetup = decodeExpansionSetupQuery(
+  window.location.search,
+  [...form.querySelectorAll("[data-appliance]")].map((input) => input.dataset.applianceId),
+);
+if (initialSetup) {
+  applyInitialSetup(initialSetup);
+  track("calculator_prefilled", { market: locale, source: "shared_url", applianceCount: initialSetup.applianceIds.length });
+  void calculateAndRender({ source: "shared_url" });
+}
+
+function showStep(step) {
+  currentStep = step;
+  for (const section of steps) { const active = Number(section.dataset.formStep) === step; section.hidden = !active; section.classList.toggle("is-visible", active); }
+  for (const button of stepButtons) { const target = Number(button.dataset.stepTarget); button.classList.toggle("is-active", target === step); button.disabled = target > step; }
+}
+
+async function calculateAndRender({ source }) {
   const selected = [...form.querySelectorAll("[data-appliance]:checked")];
-  if (!selected.length) { error.textContent = labels.required; error.hidden = false; return; }
+  if (!selected.length) { error.textContent = labels.required; error.hidden = false; return false; }
   error.hidden = true;
   const data = new FormData(form);
   const appliances = selected.map((input) => ({ selected: true, name: input.dataset.name, watts: Number(input.dataset.watts), hours: Number(input.dataset.hours), quantity: 1, ac: input.dataset.ac === "true", surge: Number(input.dataset.surge || 1) }));
   const calculation = calculateSetup({ locale, appliances, autonomyDays: Number(data.get("autonomyDays")), season: data.get("season"), batteryType: data.get("batteryType"), systemVoltage: data.get("systemVoltage") });
+  const shareConfig = {
+    appliances: [...form.querySelectorAll("[data-appliance]")].map((input) => ({ id: input.dataset.applianceId, selected: input.checked })),
+    autonomyDays: data.get("autonomyDays"),
+    season: data.get("season"),
+    batteryType: data.get("batteryType"),
+    systemVoltage: data.get("systemVoltage"),
+  };
+  latestResult = calculation;
+  latestShareUrl = buildExpansionSetupUrl(shareConfig, locale, window.location.origin);
   renderResult(calculation);
   track("calculation_completed", {
     dailyWh: calculation.dailyWh,
@@ -61,6 +102,7 @@ form.addEventListener("submit", async (event) => {
     applianceCount: selected.length,
     batteryType: calculation.batteryType,
     season: data.get("season"),
+    source,
   });
   showStep(3);
 
@@ -70,18 +112,27 @@ form.addEventListener("submit", async (event) => {
   if (locale === "pt") await renderPortugalProducts(calculation);
   if (locale === "si") await renderSloveniaProducts(calculation);
   if (locale === "ro") await renderRomaniaProducts(calculation);
-});
+  return true;
+}
 
-function showStep(step) {
-  currentStep = step;
-  for (const section of steps) { const active = Number(section.dataset.formStep) === step; section.hidden = !active; section.classList.toggle("is-visible", active); }
-  for (const button of stepButtons) { const target = Number(button.dataset.stepTarget); button.classList.toggle("is-active", target === step); button.disabled = target > step; }
+function applyInitialSetup(setup) {
+  const selectedIds = new Set(setup.applianceIds);
+  for (const input of form.querySelectorAll("[data-appliance]")) input.checked = selectedIds.has(input.dataset.applianceId);
+  setChecked("autonomyDays", setup.autonomyDays);
+  setChecked("season", setup.season);
+  form.elements.batteryType.value = setup.batteryType;
+  form.elements.systemVoltage.value = setup.systemVoltage;
+}
+
+function setChecked(name, value) {
+  const input = form.querySelector(`[name="${name}"][value="${value}"]`);
+  if (input) input.checked = true;
 }
 
 function renderResult(value) {
   const warnings = value.warnings.length ? `<ul>${value.warnings.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : "";
   const verdict = buildPlainLanguageVerdict(value, locale);
-  result.innerHTML = `<p class="result-summary">${escapeHtml(verdict)}</p><div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div>${warnings}<div data-product-recommendations></div><button class="button button-secondary" type="button" data-edit>${labels.again}</button>`;
+  result.innerHTML = `<p class="result-summary">${escapeHtml(verdict)}</p><div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div>${warnings}<div data-product-recommendations></div><div class="step-actions"><button class="button button-primary" type="button" data-share-result>${labels.share}</button><button class="button button-secondary" type="button" data-edit>${labels.again}</button></div>`;
 }
 
 async function renderPortugalProducts(calculation) {

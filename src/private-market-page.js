@@ -20,12 +20,12 @@ const PRIVATE_NAV = Object.freeze({
 });
 
 const APPLIANCES = Object.freeze([
-  { watts: 45, hours: 10, ac: false, surge: 1 },
-  { watts: 18, hours: 5, ac: false, surge: 1 },
-  { watts: 60, hours: 0.5, ac: false, surge: 2 },
-  { watts: 65, hours: 4, ac: true, surge: 1 },
-  { watts: 55, hours: 2, ac: true, surge: 1 },
-  { watts: 1400, hours: 0.15, ac: true, surge: 1.2 },
+  { id: "fridge", watts: 45, hours: 10, ac: false, surge: 1 },
+  { id: "lights", watts: 18, hours: 5, ac: false, surge: 1 },
+  { id: "pump", watts: 60, hours: 0.5, ac: false, surge: 2 },
+  { id: "laptop", watts: 65, hours: 4, ac: true, surge: 1 },
+  { id: "tv", watts: 55, hours: 2, ac: true, surge: 1 },
+  { id: "coffee", watts: 1400, hours: 0.15, ac: true, surge: 1.2 },
 ]);
 
 export function renderPrivateMarketSeedPage(seed) {
@@ -41,7 +41,7 @@ export function renderPrivateMarketSeedPage(seed) {
     .join("");
   const autonomyChoicesHtml = [1, 2, 3, 5].map((days) => `<label class="choice-card"><input type="radio" name="autonomyDays" value="${days}"${days === 2 ? " checked" : ""}><span><strong>${days}</strong></span></label>`).join("");
   const seasonChoicesHtml = ["summer", "shoulder", "winter"].map((season, index) => `<label class="choice-card"><input type="radio" name="season" value="${season}"${index === 0 ? " checked" : ""}><span><strong>${escapeHtml(calculator.seasons[index])}</strong></span></label>`).join("");
-  const applianceChoicesHtml = APPLIANCES.map((item, index) => `<label class="choice-card"><input type="checkbox" data-appliance data-name="${escapeHtml(calculator.appliances[index])}" data-watts="${item.watts}" data-hours="${item.hours}" data-ac="${item.ac}" data-surge="${item.surge}"${index < 3 ? " checked" : ""}><span><strong>${escapeHtml(calculator.appliances[index])}</strong><small>${item.watts} W · ${item.hours} ${escapeHtml(calculator.hoursPerDay)}</small></span></label>`).join("");
+  const applianceChoicesHtml = APPLIANCES.map((item, index) => `<label class="choice-card"><input type="checkbox" data-appliance data-appliance-id="${escapeHtml(item.id)}" data-name="${escapeHtml(calculator.appliances[index])}" data-watts="${item.watts}" data-hours="${item.hours}" data-ac="${item.ac}" data-surge="${item.surge}"${index < 3 ? " checked" : ""}><span><strong>${escapeHtml(calculator.appliances[index])}</strong><small>${item.watts} W · ${item.hours} ${escapeHtml(calculator.hoursPerDay)}</small></span></label>`).join("");
 
   return `<!doctype html>
 <html lang="${escapeHtml(seed.locale.split("-")[0])}">
