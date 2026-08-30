@@ -49,6 +49,6 @@ export function buildRomaniaRecommendations(catalog, setup, limit = 3) {
     .filter((product) => product.specs.solarInputW >= profile.solarInputWatts)
     .filter((product) => product.specs.dcOutputA >= profile.dcOutputAmpsAt12V)
     .slice(0, limit)
-    .map((product) => Object.freeze({ category: product.category, name: product.name, affiliateUrl: product.affiliateUrl, productUrl: product.productUrl, capacityWh: product.specs.capacityWh, powerW: product.specs.powerW, solarInputW: product.specs.solarInputW, dcOutputA: product.specs.dcOutputA, currency: "EUR", merchant: product.merchant }));
+    .map((product) => Object.freeze({ id: product.id, category: product.category, name: product.name, affiliateUrl: product.affiliateUrl, productUrl: product.productUrl, capacityWh: product.specs.capacityWh, powerW: product.specs.powerW, solarInputW: product.specs.solarInputW, dcOutputA: product.specs.dcOutputA, currency: "EUR", merchant: product.merchant }));
   return Object.freeze({ power_station: Object.freeze(matches) });
 }
