@@ -17,6 +17,12 @@
       "verifiedAt": "2026-08-28",
       "description": "Capacity 1152 Wh. Continuous AC output 1800 W with pure sine wave. Solar input up to 650 W. Regulated 12 V DC output up to 10 A. LiFePO4 battery.",
       "specs": { "capacityWh": 1152, "powerW": 1800, "pureSine": true, "solarInputW": 650, "dcOutputA": 10, "batteryType": "lifepo4" }
+    },
+    {
+      "productUrl": "https://iallpowers.eu/products/r2500-plus",
+      "verifiedAt": "2026-08-30",
+      "description": "Capacity 2016 Wh. Continuous AC output 2500 W with pure sine wave. Solar input up to 1000 W. Regulated 12 V DC output up to 10 A. LiFePO4 battery.",
+      "specs": { "capacityWh": 2016, "powerW": 2500, "pureSine": true, "solarInputW": 1000, "dcOutputA": 10, "batteryType": "lifepo4" }
     }
   ]
 }

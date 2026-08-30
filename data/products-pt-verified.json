@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "productUrl": "https://allpowers-pt.com/products/allpowers-r600-estacao-de-energia-portatil-bateria-lifep04-de-600w-299wh",
+      "verifiedAt": "2026-08-30",
+      "description": "Capacidade 299 Wh. Saída AC contínua de 600 W com onda sinusoidal pura. Entrada solar até 220 W. Saída DC regulada de 12 V até 10 A. Bateria LiFePO4.",
+      "specs": { "capacityWh": 299, "powerW": 600, "pureSine": true, "solarInputW": 220, "dcOutputA": 10, "batteryType": "lifepo4" }
+    },
+    {
+      "productUrl": "https://allpowers-pt.com/products/allpowers-r1500-lite-estacao-de-energia-portatil-1600w-1056wh",
+      "verifiedAt": "2026-08-30",
+      "description": "Capacidade 1056 Wh. Saída AC contínua de 1600 W com onda sinusoidal pura. Entrada solar até 650 W. Saída DC regulada de 12 V até 10 A. Bateria LiFePO4.",
+      "specs": { "capacityWh": 1056, "powerW": 1600, "pureSine": true, "solarInputW": 650, "dcOutputA": 10, "batteryType": "lifepo4" }
+    },
+    {
+      "productUrl": "https://allpowers-pt.com/products/allpowers-r1500-estacao-de-energia-portatil-1800w-1152wh",
+      "verifiedAt": "2026-08-30",
+      "description": "Capacidade 1152 Wh. Saída AC contínua de 1800 W com onda sinusoidal pura. Entrada solar até 650 W. Saída DC regulada de 12 V até 10 A. Bateria LiFePO4.",
+      "specs": { "capacityWh": 1152, "powerW": 1800, "pureSine": true, "solarInputW": 650, "dcOutputA": 10, "batteryType": "lifepo4" }
+    }
+  ]
+}

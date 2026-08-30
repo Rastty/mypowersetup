@@ -17,7 +17,7 @@ export function parseRomaniaAffiliateUrl(value) {
 }
 
 export function validateRomaniaCatalog(catalog) {
-  if (catalog?.market !== "ro-RO" || catalog?.currency !== "EUR" || catalog?.private !== true) throw new Error("RO_CATALOG_SHAPE_INVALID");
+  if (catalog?.market !== "ro-RO" || catalog?.currency !== "EUR" || catalog?.private !== false) throw new Error("RO_CATALOG_SHAPE_INVALID");
   if (catalog?.shippingEligibility?.country !== "Romania" || catalog?.shippingEligibility?.eligible !== true) throw new Error("RO_SHIPPING_ELIGIBILITY_MISSING");
   if (!Array.isArray(catalog.products) || !catalog.products.length) throw new Error("RO_CATALOG_EMPTY");
   for (const product of catalog.products) {
