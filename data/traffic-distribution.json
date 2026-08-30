@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-30",
+  "policy": {
+    "defaultPostingRule": "answer_first_no_link_drop",
+    "allowedStatuses": ["ready_for_manual_reply", "monitor", "research_only", "replied", "closed"],
+    "allowedPriorities": ["high", "medium", "low"],
+    "principles": [
+      "Answer the user's problem in the community itself before mentioning MyPowerSetup.",
+      "Link only when the calculator or guide materially helps the exact question.",
+      "Do not revive stale threads only to create a backlink.",
+      "Do not automate posting, account creation, votes, likes or repetitive replies.",
+      "Prefer current unresolved sizing questions over generic promotion opportunities."
+    ]
+  },
+  "opportunities": [
+    {
+      "id": "pt-ccp-electrical-opinions-2025",
+      "market": "pt",
+      "community": "CampingCar Portugal",
+      "sourceUrl": "https://campingcarportugal.com/forum/viewtopic.php?f=17&t=9727",
+      "sourceTitle": "Instalação Elétrica - Pedido de opiniões",
+      "problemIntent": ["battery_sizing", "solar_sizing", "inverter_sizing", "system_design"],
+      "targetRoute": "/pt/",
+      "supportingRoutes": [
+        "/pt/guias/capacidade-bateria-autocaravana/",
+        "/pt/guias/quantos-watts-paineis-solares-autocaravana/",
+        "/pt/guias/inversor-autocaravana-potencia/",
+        "/pt/guias/sistema-eletrico-completo-autocaravana/"
+      ],
+      "lastKnownActivity": "2025-02-25",
+      "priority": "medium",
+      "fit": "direct_camper_technical",
+      "status": "monitor",
+      "postingRule": "answer_first_no_link_drop",
+      "notes": "Excellent intent match but not currently fresh enough to revive purely for a link. Re-check if the thread becomes active or use its questions to find newer related discussions."
+    },
+    {
+      "id": "pt-ccp-electrical-help-2025",
+      "market": "pt",
+      "community": "CampingCar Portugal",
+      "sourceUrl": "https://campingcarportugal.com/forum/viewtopic.php?f=17&t=9668",
+      "sourceTitle": "Ajuda instalação elétrica",
+      "problemIntent": ["cable_sizing", "fuse_sizing", "battery_sizing", "solar_sizing", "inverter_sizing"],
+      "targetRoute": "/pt/guias/cabos-fusiveis-12v-autocaravana/",
+      "supportingRoutes": [
+        "/pt/guias/capacidade-bateria-autocaravana/",
+        "/pt/guias/quantos-watts-paineis-solares-autocaravana/",
+        "/pt/guias/inversor-autocaravana-potencia/"
+      ],
+      "lastKnownActivity": "2025-04-01",
+      "priority": "medium",
+      "fit": "direct_camper_technical",
+      "status": "monitor",
+      "postingRule": "answer_first_no_link_drop",
+      "notes": "Large technical thread with strong relevance. Prefer responding only to a new question rather than posting into an old discussion."
+    },
+    {
+      "id": "ro-clubrv-adria-442-2026",
+      "market": "ro",
+      "community": "ClubRV România",
+      "sourceUrl": "https://forum.clubrv.ro/viewtopic.php?f=98&t=10748",
+      "sourceTitle": "Rulota mea Adria 442 PH",
+      "problemIntent": ["lifepo4_migration", "battery_sizing", "mppt_sizing", "solar_sizing", "inverter_sizing", "system_design"],
+      "targetRoute": "/ro/",
+      "supportingRoutes": [
+        "/ro/ghiduri/capacitate-baterie-autorulota/",
+        "/ro/ghiduri/lifepo4-sau-agm-autorulota/",
+        "/ro/ghiduri/cate-panouri-solare-autorulota/",
+        "/ro/ghiduri/regulator-mppt-autorulota/",
+        "/ro/ghiduri/invertor-autorulota-putere/",
+        "/ro/ghiduri/sistem-electric-complet-autorulota/"
+      ],
+      "lastKnownActivity": "2026-05-01",
+      "priority": "high",
+      "fit": "direct_camper_technical_current",
+      "status": "ready_for_manual_reply",
+      "postingRule": "answer_first_no_link_drop",
+      "notes": "Current build log discusses 3x 12V 310Ah LiFePO4, separate MPPT, 1800W pure-sine inverter and PV installation. Best current RO community opportunity; a useful reply should focus on system-level checks rather than criticizing product choices."
+    },
+    {
+      "id": "si-elektronik-dcdc-solar-avtodom",
+      "market": "si",
+      "community": "Elektronik.si",
+      "sourceUrl": "https://www.elektronik.si/phpBB2/viewtopic.php?t=52222",
+      "sourceTitle": "Vezava DC DC polnilnca za polnjenje baterije v avtodomu",
+      "problemIntent": ["dc_dc_charging", "solar_sizing", "mppt_sizing", "series_parallel"],
+      "targetRoute": "/si/vodici/dc-dc-polnilnik-avtodom/",
+      "supportingRoutes": [
+        "/si/vodici/koliko-soncnih-panelov-avtodom/",
+        "/si/vodici/mppt-regulator-avtodom/",
+        "/si/vodici/kapaciteta-baterije-avtodom/"
+      ],
+      "lastKnownActivity": "2023-02-23",
+      "priority": "low",
+      "fit": "direct_avtodom_technical_stale",
+      "status": "research_only",
+      "postingRule": "answer_first_no_link_drop",
+      "notes": "Very strong topical match but stale. Use it as vocabulary/problem research, not as a backlink target unless new activity appears."
+    },
+    {
+      "id": "si-reddit-offgrid-2026",
+      "market": "si",
+      "community": "Reddit r/Slovenia",
+      "sourceUrl": "https://www.reddit.com/r/Slovenia/comments/1sl4qg1/off_grid_son%C4%8Dna_elektrarna/",
+      "sourceTitle": "Off grid sončna elektrarna",
+      "problemIntent": ["offgrid_system_design", "battery_sizing", "solar_sizing"],
+      "targetRoute": "/si/",
+      "supportingRoutes": [
+        "/si/vodici/kapaciteta-baterije-avtodom/",
+        "/si/vodici/koliko-soncnih-panelov-avtodom/",
+        "/si/vodici/elektricni-sistem-avtodom/"
+      ],
+      "lastKnownActivity": "2026-04-14",
+      "priority": "low",
+      "fit": "offgrid_adjacent_not_camper",
+      "status": "monitor",
+      "postingRule": "answer_first_no_link_drop",
+      "notes": "Fresh off-grid discussion, but the use case is a construction site rather than an avtodom. Do not force a MyPowerSetup link; monitor for caravan/trailer follow-ups."
+    },
+    {
+      "id": "pl-camperteam-lifepo4-2026",
+      "market": "pl",
+      "community": "CamperTeam",
+      "sourceUrl": "https://www.camperteam.pl/forum/viewforum.php?f=440",
+      "sourceTitle": "elektryka, solary, przetwornice i akumulatory",
+      "problemIntent": ["lifepo4_migration", "battery_sizing", "dc_dc_charging", "mppt_sizing", "solar_sizing"],
+      "targetRoute": "/pl/",
+      "supportingRoutes": [
+        "/pl/poradnik/agm-czy-lifepo4/",
+        "/pl/poradnik/pojemnosc-akumulatora-do-kampera/",
+        "/pl/poradnik/jak-dobrac-ladowarke-dc-dc/",
+        "/pl/poradnik/jak-dobrac-regulator-mppt/",
+        "/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/"
+      ],
+      "lastKnownActivity": "2026-04-17",
+      "priority": "high",
+      "fit": "direct_camper_technical_current",
+      "status": "ready_for_manual_reply",
+      "postingRule": "answer_first_no_link_drop",
+      "notes": "Active technical subforum with 2026 LiFePO4, solar, regulator and AGM-to-LiFePO4 discussions. Search new unresolved threads inside this forum before each reply rather than posting into the reference index page."
+    },
+    {
+      "id": "pl-camperteam-liitokala-2025",
+      "market": "pl",
+      "community": "CamperTeam",
+      "sourceUrl": "https://www.camperteam.pl/forum/viewtopic.php?t=41414",
+      "sourceTitle": "Akumulator lifepo4 Liitokala",
+      "problemIntent": ["lifepo4_migration", "dc_dc_charging", "solar_expansion", "mppt_sizing"],
+      "targetRoute": "/pl/poradnik/agm-czy-lifepo4/",
+      "supportingRoutes": [
+        "/pl/poradnik/jak-dobrac-ladowarke-dc-dc/",
+        "/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/",
+        "/pl/poradnik/jak-dobrac-regulator-mppt/"
+      ],
+      "lastKnownActivity": "2025-12-11",
+      "priority": "medium",
+      "fit": "direct_camper_technical_recent",
+      "status": "monitor",
+      "postingRule": "answer_first_no_link_drop",
+      "notes": "Relevant questions include adding a second LiFePO4 battery, expanding 320W solar by 100W and whether a 30A regulator remains adequate. Re-check for new replies before engaging."
+    },
+    {
+      "id": "sk-mypower-solarna-zostava-karavan",
+      "market": "sk",
+      "community": "MyPower.CZ",
+      "sourceUrl": "https://forum.mypower.cz/viewtopic.php?t=13269",
+      "sourceTitle": "Solarna zostava pre karavan",
+      "problemIntent": ["system_design", "battery_sizing", "solar_sizing", "mppt_sizing", "inverter_sizing", "dc_dc_charging"],
+      "targetRoute": "/sk/",
+      "supportingRoutes": [
+        "/sk/sprievodca/kapacita-baterie-do-karavanu/",
+        "/sk/sprievodca/kolko-w-solarnych-panelov/",
+        "/sk/sprievodca/ako-vybrat-mppt-regulator/"
+      ],
+      "lastKnownActivity": "2024-08-02",
+      "priority": "medium",
+      "fit": "direct_camper_technical_stale",
+      "status": "research_only",
+      "postingRule": "answer_first_no_link_drop",
+      "notes": "Excellent exact sizing problem and Slovak language, but stale. Useful as a pattern for finding fresh MyPower questions; do not revive only for promotion."
+    }
+  ]
+}
