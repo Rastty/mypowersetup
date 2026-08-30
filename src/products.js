@@ -391,6 +391,14 @@ export function refreshCatalogProduct(product) {
       return [key, verifiedStoredValue ? stored : value ?? stored ?? null];
     })
   );
+  const ampulVariantId = String(product.id || "").split(":").at(-1);
+  const ampulVariantVoltage = product.merchant?.startsWith("ampul_")
+    ? AMPUL_VERIFIED_INVERTER_VARIANTS[ampulVariantId]
+    : null;
+  if (ampulVariantVoltage) {
+    specs.voltageV = ampulVariantVoltage;
+    specs.pureSine = true;
+  }
   if (/solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)|napelemes töltésszabályozók|töltésszabályozók|battery charge controllers/i.test(product.categoryPath)) {
     specs.currentA = extractControllerCurrent(product.name, product.description);
   }
