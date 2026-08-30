@@ -26,6 +26,8 @@ jobs:
       - run: node --check src/commercial-coverage.js
       - run: node --check src/market-health.js
       - run: node --check scripts/sync-products.mjs
+      - run: node --check scripts/sync-products-pt.mjs
+      - run: node --check scripts/sync-products-expansion-eu.mjs
       - run: node --check scripts/check-market-health.mjs
       - run: node --check scripts/preaudit.mjs
       - run: node --check scripts/publish-hu.mjs
