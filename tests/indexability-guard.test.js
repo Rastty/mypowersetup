@@ -18,25 +18,28 @@ const markets = {
   ro: { seed: RO_MARKET_SEED, render: renderRomaniaPrivateContentPage },
 };
 
-test("currently private expansion homes and content stay noindex", () => {
+test("private expansion source templates stay noindex after publication", () => {
   for (const [market, config] of Object.entries(markets)) {
     const manifest = expansionPublicationManifest(market);
     const home = renderPrivateMarketSeedPage(config.seed);
-    assert.match(home, PRIVATE_ROBOTS, `${market} private home must stay noindex`);
+    assert.match(home, PRIVATE_ROBOTS, `${market} private home source must stay noindex`);
 
     for (const entry of manifest.filter(({ source }) => source === "content")) {
       const html = config.render(entry.route);
       assert.ok(html, `${market} private route must render: ${entry.route}`);
-      assert.match(html, PRIVATE_ROBOTS, `${market} private route must stay noindex: ${entry.route}`);
+      assert.match(html, PRIVATE_ROBOTS, `${market} private source route must stay noindex: ${entry.route}`);
     }
   }
 });
 
-test("private expansion routes are absent from the public sitemap", async () => {
+test("published expansion routes are present in sitemap and committed output is indexable", async () => {
   const sitemap = await readFile("sitemap.xml", "utf8");
   for (const market of Object.keys(markets)) {
-    for (const { route } of expansionPublicationManifest(market)) {
-      assert.doesNotMatch(sitemap, new RegExp(`<loc>https:\\/\\/mypowersetup\\.com${escapeRegExp(route)}<\\/loc>`), `${market} private route leaked into sitemap: ${route}`);
+    for (const { route, path } of expansionPublicationManifest(market)) {
+      assert.match(sitemap, new RegExp(`<loc>https:\\/\\/mypowersetup\\.com${escapeRegExp(route)}<\\/loc>`), `${market} public route missing from sitemap: ${route}`);
+      const html = await readFile(path, "utf8");
+      assert.doesNotMatch(html, PRIVATE_ROBOTS, `${market} committed public route must be indexable: ${route}`);
+      assert.match(html, new RegExp(`<link rel="canonical" href="https:\\/\\/mypowersetup\\.com${escapeRegExp(route)}">`), `${market} public route missing canonical: ${route}`);
     }
   }
 });
