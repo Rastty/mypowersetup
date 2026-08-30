@@ -38,6 +38,7 @@ jobs:
       - run: node --check scripts/check-postlaunch-public.mjs
       - run: node --check scripts/check-commercial-coverage.mjs
       - run: node --check scripts/check-commercial-scenarios.mjs
+      - run: node --check scripts/check-affiliate-onboarding-candidates.mjs
       - run: node --check scripts/smoke-public-mobile.mjs
       - run: node --check scripts/smoke-hu-mobile.mjs
       - run: node --check scripts/smoke-pt-mobile.mjs
@@ -51,6 +52,7 @@ jobs:
       - run: node scripts/check-postlaunch-public.mjs
       - run: npm run check:commercial:coverage:safe
       - run: npm run check:commercial:scenarios:safe
+      - run: node scripts/check-affiliate-onboarding-candidates.mjs
       - run: npm run indexnow:check
       - run: google-chrome --version
       - run: npm run smoke:public:mobile
