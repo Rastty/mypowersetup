@@ -10,44 +10,46 @@ import {
 } from "../src/indexnow.js";
 
 const origin = "https://mypowersetup.com";
+const publicHomes = [
+  `${origin}/`,
+  `${origin}/hu/`,
+  `${origin}/pl/`,
+  `${origin}/pt/`,
+  `${origin}/ro/`,
+  `${origin}/si/`,
+  `${origin}/sk/`,
+];
 
 test("current sitemap exposes every published market to IndexNow", async () => {
   const sitemap = await readFile("sitemap.xml", "utf8");
   const urls = extractSitemapUrls(sitemap);
-  assert.ok(urls.includes(`${origin}/`));
-  assert.ok(urls.includes(`${origin}/sk/`));
-  assert.ok(urls.includes(`${origin}/pl/`));
-  assert.ok(urls.includes(`${origin}/hu/`));
+  for (const home of publicHomes) assert.ok(urls.includes(home), `missing public market home: ${home}`);
 });
 
 test("first key deployment submits every currently public sitemap URL", async () => {
   const urls = extractSitemapUrls(await readFile("sitemap.xml", "utf8"));
   const selected = changedFilesToIndexNowUrls([INDEXNOW_KEY_FILE], urls);
   assert.deepEqual(selected, [...urls].sort());
-  assert.ok(selected.includes(`${origin}/hu/`));
+  for (const home of publicHomes) assert.ok(selected.includes(home));
 });
 
 test("shared calculator changes notify every public market homepage", async () => {
   const urls = extractSitemapUrls(await readFile("sitemap.xml", "utf8"));
   assert.deepEqual(
     changedFilesToIndexNowUrls(["src/products.js", "src/usage-profiles.js"], urls),
-    [`${origin}/`, `${origin}/hu/`, `${origin}/pl/`, `${origin}/sk/`]
+    publicHomes
   );
 });
 
-test("shared calculator changes include expansion homes only after sitemap publication", async () => {
+test("shared calculator changes include expansion homes only when those homes are in the sitemap", async () => {
   const currentUrls = extractSitemapUrls(await readFile("sitemap.xml", "utf8"));
-  const withPublishedExpansion = [
-    ...currentUrls,
-    `${origin}/pt/`,
-    `${origin}/si/`,
-    `${origin}/ro/`,
-  ];
-  assert.deepEqual(
-    changedFilesToIndexNowUrls(["src/engine.js"], withPublishedExpansion),
-    [`${origin}/`, `${origin}/hu/`, `${origin}/pl/`, `${origin}/pt/`, `${origin}/ro/`, `${origin}/si/`, `${origin}/sk/`]
-  );
-  assert.ok(!changedFilesToIndexNowUrls(["src/engine.js"], currentUrls).includes(`${origin}/pt/`));
+  assert.deepEqual(changedFilesToIndexNowUrls(["src/engine.js"], currentUrls), publicHomes);
+
+  const withoutExpansionHomes = currentUrls.filter((url) => ![`${origin}/pt/`, `${origin}/si/`, `${origin}/ro/`].includes(url));
+  const selectedWithoutExpansion = changedFilesToIndexNowUrls(["src/engine.js"], withoutExpansionHomes);
+  assert.ok(!selectedWithoutExpansion.includes(`${origin}/pt/`));
+  assert.ok(!selectedWithoutExpansion.includes(`${origin}/si/`));
+  assert.ok(!selectedWithoutExpansion.includes(`${origin}/ro/`));
 });
 
 test("market catalog changes notify only their public market", async () => {
