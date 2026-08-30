@@ -35,6 +35,21 @@ test("shared calculator changes notify every public market homepage", async () =
   );
 });
 
+test("shared calculator changes include expansion homes only after sitemap publication", async () => {
+  const currentUrls = extractSitemapUrls(await readFile("sitemap.xml", "utf8"));
+  const withPublishedExpansion = [
+    ...currentUrls,
+    `${origin}/pt/`,
+    `${origin}/si/`,
+    `${origin}/ro/`,
+  ];
+  assert.deepEqual(
+    changedFilesToIndexNowUrls(["src/engine.js"], withPublishedExpansion),
+    [`${origin}/`, `${origin}/hu/`, `${origin}/pl/`, `${origin}/pt/`, `${origin}/ro/`, `${origin}/si/`, `${origin}/sk/`]
+  );
+  assert.ok(!changedFilesToIndexNowUrls(["src/engine.js"], currentUrls).includes(`${origin}/pt/`));
+});
+
 test("market catalog changes notify only their public market", async () => {
   const urls = extractSitemapUrls(await readFile("sitemap.xml", "utf8"));
   assert.deepEqual(changedFilesToIndexNowUrls(["data/products-sk.json"], urls), [`${origin}/sk/`]);

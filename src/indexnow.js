@@ -2,7 +2,10 @@ export const INDEXNOW_HOST = "mypowersetup.com";
 export const INDEXNOW_ORIGIN = `https://${INDEXNOW_HOST}`;
 export const INDEXNOW_KEY_FILE = "f89b37b1edc8eb20d1ef7029ac1fd280.txt";
 
-const PUBLIC_HOME_ROUTES = Object.freeze(["/", "/sk/", "/pl/", "/hu/"]);
+// Candidate home routes are filtered against the live sitemap before submission.
+// Keeping expansion routes here is therefore safe while they remain private, and
+// automatically gives them parity once publication adds them to sitemap.xml.
+const PUBLIC_HOME_ROUTES = Object.freeze(["/", "/sk/", "/pl/", "/hu/", "/pt/", "/si/", "/ro/"]);
 const SHARED_CALCULATOR_FILES = new Set([
   "styles.css",
   "src/charging.js",
