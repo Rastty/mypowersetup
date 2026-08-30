@@ -19,9 +19,9 @@ test("Slovenia affiliate parser fails closed for generic and wrong-account links
   assert.throws(() => parseSloveniaAffiliateUrl("https://www.awin1.com/cread.php?awinmid=38934&awinaffid=1&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fr2500-plus"), /SI_AFFILIATE_ACCOUNT_INVALID/);
 });
 
-test("Slovenia recommendation appears only when every verified electrical limit fits", () => {
+test("Slovenia recommendation covers the standard two-day mobile-smoke load only when every verified electrical limit fits", () => {
   const fitting = buildSloveniaRecommendations(catalog, {
-    dailyWh: 300,
+    dailyWh: 540,
     autonomyDays: 2,
     solarWatts: 200,
     inverterWatts: 0,
@@ -32,9 +32,10 @@ test("Slovenia recommendation appears only when every verified electrical limit 
   });
   assert.ok(fitting.power_station.length >= 1);
   assert.equal(fitting.power_station[0].merchant, "allpowers_eu");
+  assert.ok(fitting.power_station[0].capacityWh >= 1600);
 
   const tooMuchDc = buildSloveniaRecommendations(catalog, {
-    dailyWh: 300,
+    dailyWh: 540,
     autonomyDays: 2,
     solarWatts: 200,
     inverterWatts: 0,
