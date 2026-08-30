@@ -10,16 +10,20 @@ const STATUS_SCORE = Object.freeze({
 });
 
 function parseUtcDate(value, label) {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value || ""))) throw new Error(`TRAFFIC_DISTRIBUTION_DATE_INVALID:${label}`);
-  const date = new Date(`${value}T00:00:00Z`);
-  if (Number.isNaN(date.getTime())) throw new Error(`TRAFFIC_DISTRIBUTION_DATE_INVALID:${label}`);
+  const normalized = String(value || "");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized)) throw new Error(`TRAFFIC_DISTRIBUTION_DATE_INVALID:${label}`);
+  const date = new Date(`${normalized}T00:00:00Z`);
+  if (Number.isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== normalized) {
+    throw new Error(`TRAFFIC_DISTRIBUTION_DATE_INVALID:${label}`);
+  }
   return date;
 }
 
 export function ageInDays(lastKnownActivity, asOf) {
   const start = parseUtcDate(lastKnownActivity, "activity");
   const end = parseUtcDate(asOf, "asOf");
-  return Math.max(0, Math.floor((end - start) / DAY_MS));
+  if (start > end) throw new Error("TRAFFIC_DISTRIBUTION_ACTIVITY_IN_FUTURE");
+  return Math.floor((end - start) / DAY_MS);
 }
 
 function freshnessScore(days) {
