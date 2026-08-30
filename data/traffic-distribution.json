@@ -179,6 +179,45 @@
       "status": "research_only",
       "postingRule": "answer_first_no_link_drop",
       "notes": "Excellent exact sizing problem and Slovak language, but stale. Useful as a pattern for finding fresh MyPower questions; do not revive only for promotion."
+    },
+    {
+      "id": "pl-camperteam-ford-dcdc-202608",
+      "market": "pl",
+      "community": "CamperTeam",
+      "sourceUrl": "https://camperteam.pl/forum/viewtopic.php?t=42375",
+      "sourceTitle": "Ford Transit + DC/DC",
+      "problemIntent": ["dc_dc_charging", "smart_alternator", "battery_sizing", "charging_diagnostics", "inverter_sizing", "solar_sizing"],
+      "targetRoute": "/pl/poradnik/jak-dobrac-ladowarke-dc-dc/",
+      "supportingRoutes": [
+        "/pl/poradnik/pojemnosc-akumulatora-do-kampera/",
+        "/pl/poradnik/agm-czy-lifepo4/",
+        "/pl/poradnik/schemat-instalacji-elektrycznej-kampera/"
+      ],
+      "lastKnownActivity": "2026-08-11",
+      "priority": "high",
+      "fit": "direct_camper_technical_current",
+      "status": "ready_for_manual_reply",
+      "postingRule": "answer_first_no_link_drop",
+      "notes": "Fresh diagnostic thread: 2022 Ford Transit with smart alternator, 40A DC-DC, 2x100Ah LiFePO4, 165W solar and 2000W inverter. Best response is diagnostic: establish why the habitation bank discharged, verify charger behavior and parasitic loads before recommending hardware."
+    },
+    {
+      "id": "pl-camperteam-lifepo4-use-202606",
+      "market": "pl",
+      "community": "CamperTeam",
+      "sourceUrl": "https://camperteam.pl/forum/viewtopic.php?p=975382",
+      "sourceTitle": "Zastosowanie LiFePO4 w zabudowie.",
+      "problemIntent": ["lifepo4_migration", "battery_sizing", "seasonal_consumption", "solar_sizing"],
+      "targetRoute": "/pl/poradnik/pojemnosc-akumulatora-do-kampera/",
+      "supportingRoutes": [
+        "/pl/poradnik/agm-czy-lifepo4/",
+        "/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/"
+      ],
+      "lastKnownActivity": "2026-06-23",
+      "priority": "high",
+      "fit": "direct_camper_technical_current",
+      "status": "ready_for_manual_reply",
+      "postingRule": "answer_first_no_link_drop",
+      "notes": "Current LiFePO4 usage discussion compares winter versus summer daily consumption and solar replenishment. Useful for answering with Wh/day-first sizing and seasonal assumptions rather than a universal Ah recommendation."
     }
   ]
 }
