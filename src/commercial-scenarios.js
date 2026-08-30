@@ -2,6 +2,7 @@ import { calculateSetup } from "./engine.js";
 import { calculateChargingPlan } from "./charging.js";
 import { recommendProducts } from "./products.js";
 import { isCommerciallyEligibleProduct } from "./commercial-coverage.js";
+import { acquisitionRequirement } from "./acquisition-requirements.js";
 
 export const COMMERCIAL_SCENARIOS = Object.freeze([
   Object.freeze({ id: "light-weekend", weight: 4, input: { autonomyDays: 1, season: "summer", batteryType: "lifepo4", systemVoltage: "auto", driveHoursPerDay: 2, shoreChargeHours: 8, appliances: [
@@ -41,9 +42,6 @@ export const COMMERCIAL_SCENARIOS = Object.freeze([
   ] } }),
 ]);
 
-// Floors deliberately sit just below the measured 2026-08-29 benchmark. They
-// protect the current commercial journey from regressions while allowing normal
-// parser/catalog movement. Raising these floors should follow verified product gains.
 export const PUBLIC_SCENARIO_BASELINES = Object.freeze({
   "cs-CZ": Object.freeze({ minPurchaseReadyRatio: 0.78, minWeightedCoverage: 0.94 }),
   "sk-SK": Object.freeze({ minPurchaseReadyRatio: 0.47, minWeightedCoverage: 0.79 }),
@@ -77,16 +75,31 @@ export function assessCommercialScenario(catalog, scenario, locale = "cs") {
   const missing = required.filter((category) => !(recommendations[category]?.length > 0));
   const chargingOpportunities = chargingOpportunityCategories(setup);
   const chargingMissing = chargingOpportunities.filter((category) => !(recommendations[category]?.length > 0));
+  const missingRequirements = missing.map((category) => acquisitionRequirement(category, setup)).filter(Boolean);
+  const chargingMissingRequirements = chargingMissing.map((category) => acquisitionRequirement(category, setup)).filter(Boolean);
   return Object.freeze({
     id: scenario.id,
     weight: scenario.weight,
-    setup: Object.freeze({ dailyWh: setup.dailyWh, batteryAh: setup.batteryAh, solarWatts: setup.solarWatts, controllerAmps: setup.controllerAmps, inverterWatts: setup.inverterWatts, systemVoltage: setup.systemVoltage }),
+    setup: Object.freeze({
+      dailyWh: setup.dailyWh,
+      batteryAh: setup.batteryAh,
+      batteryType: setup.batteryType,
+      solarWatts: setup.solarWatts,
+      controllerAmps: setup.controllerAmps,
+      inverterWatts: setup.inverterWatts,
+      systemVoltage: setup.systemVoltage,
+      dcDcAmps: setup.charging?.dcDc?.suggestedCurrentAmps || null,
+      shoreAmps: setup.charging?.shore?.suggestedCurrentAmps || null,
+      starterVoltage: setup.charging?.starterVoltage || null,
+    }),
     required,
     missing: Object.freeze(missing),
+    missingRequirements: Object.freeze(missingRequirements),
     purchaseReady: missing.length === 0,
     coverageRatio: required.length ? (required.length - missing.length) / required.length : 1,
     chargingOpportunities,
     chargingMissing: Object.freeze(chargingMissing),
+    chargingMissingRequirements: Object.freeze(chargingMissingRequirements),
   });
 }
 
@@ -116,11 +129,7 @@ export function assessMarketScenarioCoverage(catalog, locale = "cs", scenarios =
 export function assessScenarioBaseline(report, baseline = PUBLIC_SCENARIO_BASELINES[report?.market]) {
   if (!baseline) return Object.freeze({ ready: false, blockers: Object.freeze([`SCENARIO_BASELINE_MISSING:${report?.market || "unknown"}`]) });
   const blockers = [];
-  if (report.purchaseReadyRatio + Number.EPSILON < baseline.minPurchaseReadyRatio) {
-    blockers.push(`PURCHASE_READY_REGRESSION:${report.purchaseReadyRatio.toFixed(4)}<${baseline.minPurchaseReadyRatio.toFixed(4)}`);
-  }
-  if (report.weightedCoverage + Number.EPSILON < baseline.minWeightedCoverage) {
-    blockers.push(`WEIGHTED_COVERAGE_REGRESSION:${report.weightedCoverage.toFixed(4)}<${baseline.minWeightedCoverage.toFixed(4)}`);
-  }
+  if (report.purchaseReadyRatio + Number.EPSILON < baseline.minPurchaseReadyRatio) blockers.push(`PURCHASE_READY_REGRESSION:${report.purchaseReadyRatio.toFixed(4)}<${baseline.minPurchaseReadyRatio.toFixed(4)}`);
+  if (report.weightedCoverage + Number.EPSILON < baseline.minWeightedCoverage) blockers.push(`WEIGHTED_COVERAGE_REGRESSION:${report.weightedCoverage.toFixed(4)}<${baseline.minWeightedCoverage.toFixed(4)}`);
   return Object.freeze({ ready: blockers.length === 0, blockers: Object.freeze(blockers), baseline });
 }
