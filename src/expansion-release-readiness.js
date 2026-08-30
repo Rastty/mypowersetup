@@ -6,15 +6,15 @@ import { SI_REVIEW_EVIDENCE } from "./review-evidence-si.js";
 import { RO_REVIEW_EVIDENCE } from "./review-evidence-ro.js";
 
 export function assessExpansionReleaseReadiness(reviewOverrides = {}) {
-  const native = {
-    pt: reviewOverrides.pt ?? PT_REVIEW_EVIDENCE.nativeLanguageReview,
-    si: reviewOverrides.si ?? SI_REVIEW_EVIDENCE.nativeLanguageReview,
-    ro: reviewOverrides.ro ?? RO_REVIEW_EVIDENCE.nativeLanguageReview,
+  const reviewed = {
+    pt: reviewOverrides.pt ?? (PT_REVIEW_EVIDENCE.languageEditorialReview === true || PT_REVIEW_EVIDENCE.nativeLanguageReview === true),
+    si: reviewOverrides.si ?? (SI_REVIEW_EVIDENCE.languageEditorialReview === true || SI_REVIEW_EVIDENCE.nativeLanguageReview === true),
+    ro: reviewOverrides.ro ?? (RO_REVIEW_EVIDENCE.languageEditorialReview === true || RO_REVIEW_EVIDENCE.nativeLanguageReview === true),
   };
   const reports = Object.freeze({
-    pt: assessPortugalPublication({ mobileSmokePassed: true, nativeLanguageReview: native.pt === true }),
-    si: assessSloveniaPublication({ nativeLanguageReview: native.si === true }),
-    ro: assessRomaniaPublication({ nativeLanguageReview: native.ro === true }),
+    pt: assessPortugalPublication({ mobileSmokePassed: true, nativeLanguageReview: reviewed.pt === true }),
+    si: assessSloveniaPublication({ nativeLanguageReview: reviewed.si === true }),
+    ro: assessRomaniaPublication({ nativeLanguageReview: reviewed.ro === true }),
   });
   const ready = Object.values(reports).every((report) => report.publicationReady);
   return Object.freeze({
