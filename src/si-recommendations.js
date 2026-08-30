@@ -17,7 +17,7 @@ export function parseSloveniaAffiliateUrl(value) {
 }
 
 export function validateSloveniaCatalog(catalog) {
-  if (catalog?.market !== "sl-SI" || catalog?.currency !== "EUR" || catalog?.private !== true) throw new Error("SI_CATALOG_SHAPE_INVALID");
+  if (catalog?.market !== "sl-SI" || catalog?.currency !== "EUR" || catalog?.private !== false) throw new Error("SI_CATALOG_SHAPE_INVALID");
   if (catalog?.shippingEligibility?.country !== "Slovenia" || catalog?.shippingEligibility?.eligible !== true) throw new Error("SI_SHIPPING_ELIGIBILITY_MISSING");
   if (!Array.isArray(catalog.products) || !catalog.products.length) throw new Error("SI_CATALOG_EMPTY");
   for (const product of catalog.products) {
