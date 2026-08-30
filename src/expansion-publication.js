@@ -13,6 +13,16 @@ const CONFIG = Object.freeze({
   ro: Object.freeze({ locale: "ro-RO", prefix: "/ro/", content: RO_PRIVATE_CONTENT, homeAlternates: ["ro-RO"] }),
 });
 
+const PUBLIC_HOME_MARKETS = Object.freeze([
+  Object.freeze({ market: "cz", locale: "cs-CZ", lang: "cs", href: "/", label: "CZ" }),
+  Object.freeze({ market: "sk", locale: "sk-SK", lang: "sk", href: "/sk/", label: "SK" }),
+  Object.freeze({ market: "pl", locale: "pl-PL", lang: "pl", href: "/pl/", label: "PL" }),
+  Object.freeze({ market: "hu", locale: "hu-HU", lang: "hu", href: "/hu/", label: "HU" }),
+  Object.freeze({ market: "pt", locale: "pt-PT", lang: "pt", href: "/pt/", label: "PT" }),
+  Object.freeze({ market: "si", locale: "sl-SI", lang: "sl", href: "/si/", label: "SI" }),
+  Object.freeze({ market: "ro", locale: "ro-RO", lang: "ro", href: "/ro/", label: "RO" }),
+]);
+
 const PUBLICATION_COPY_REPLACEMENTS = Object.freeze({
   pt: Object.freeze([
     ["Falhar fechado", "Sem validação, sem recomendação"],
@@ -64,6 +74,19 @@ export function polishExpansionPublicationCopy(html, market) {
   return replacements.reduce((output, [from, to]) => output.split(from).join(to), html);
 }
 
+function addStaticHomeLanguageLinks(html, market) {
+  const navPattern = /(<nav class="(?:header-nav|expansion-nav)"[^>]*>)([\s\S]*?)(<\/nav>)/;
+  if (!navPattern.test(html)) return html;
+  return html.replace(navPattern, (_full, open, body, close) => {
+    const cleanBody = body.replace(/\s*<a\b[^>]*class="[^"]*\blanguage-switch\b[^"]*"[^>]*>[\s\S]*?<\/a>/g, "");
+    const links = PUBLIC_HOME_MARKETS
+      .filter((entry) => entry.market !== market)
+      .map((entry) => `<a class="header-link language-switch" href="${entry.href}" hreflang="${entry.locale}" lang="${entry.lang}" aria-label="${entry.label}">${entry.label}</a>`)
+      .join("");
+    return `${open}${cleanBody}${links}${close}`;
+  });
+}
+
 export function publicizeExpansionHtml(html, market, route, { home = false } = {}) {
   const config = CONFIG[market];
   if (!config || !route?.startsWith(config.prefix)) throw new Error(`EXPANSION_PUBLICATION_ROUTE_INVALID:${market}`);
@@ -77,7 +100,8 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
   const additions = [];
   if (!/rel="canonical"/.test(output)) additions.push(`<link rel="canonical" href="${canonical}">`);
   if (home) {
-    const alternates = [["cs-CZ", "https://mypowersetup.com/"], ["sk-SK", "https://mypowersetup.com/sk/"], ["pl-PL", "https://mypowersetup.com/pl/"], ["hu-HU", "https://mypowersetup.com/hu/"], [config.locale, canonical], ["x-default", "https://mypowersetup.com/"]];
+    output = addStaticHomeLanguageLinks(output, market);
+    const alternates = [...PUBLIC_HOME_MARKETS.map(({ locale, href }) => [locale, `https://mypowersetup.com${href}`]), ["x-default", "https://mypowersetup.com/"]];
     for (const [language, href] of alternates) if (!output.includes(`hreflang="${language}"`)) additions.push(`<link rel="alternate" hreflang="${language}" href="${href}">`);
     const marker = `__MPS_${market.toUpperCase()}_PUBLICATION__`;
     if (!output.includes(marker)) additions.push(`<script>globalThis.${marker}=true</script>`);
