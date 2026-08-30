@@ -1,6 +1,7 @@
 import { PT_PRIVATE_CONTENT } from "./private-content-pt.js";
 import { SI_PRIVATE_CONTENT } from "./private-content-si.js";
 import { RO_PRIVATE_CONTENT } from "./private-content-ro.js";
+import { createNativeReviewChecklist } from "./native-review-packs.js";
 
 const CONFIG = Object.freeze({
   pt: Object.freeze({ locale: "pt-PT", prefix: "/pt/", content: PT_PRIVATE_CONTENT, homeAlternates: ["pt-PT"] }),
@@ -60,8 +61,14 @@ export function addExpansionRoutesToSitemap(xml, market) {
 
 export function requireExpansionNativeApproval(market, evidence) {
   if (!CONFIG[market]) throw new Error(`EXPANSION_PUBLICATION_UNKNOWN:${market}`);
-  if (evidence?.nativeLanguageReview !== true || evidence?.publicPublicationApproved !== true || !String(evidence?.reviewer || "").trim() || !String(evidence?.reviewedAt || "").trim()) {
-    throw new Error(`EXPANSION_NATIVE_REVIEW_REQUIRED:${market}`);
+  const checklist = createNativeReviewChecklist(market, evidence);
+  if (evidence?.nativeLanguageReview !== true || evidence?.publicPublicationApproved !== true || !checklist.approved) {
+    const blockers = [
+      evidence?.nativeLanguageReview !== true && "nativeLanguageReview",
+      evidence?.publicPublicationApproved !== true && "publicPublicationApproved",
+      ...checklist.blockers,
+    ].filter(Boolean);
+    throw new Error(`EXPANSION_NATIVE_REVIEW_REQUIRED:${market}:${[...new Set(blockers)].join(",")}`);
   }
   return true;
 }

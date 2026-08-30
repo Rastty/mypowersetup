@@ -45,7 +45,48 @@ test("sitemap publication adds all routes once", () => {
   assert.equal(twice, once);
 });
 
-test("native approval requires explicit reviewer, date and publication approval", () => {
-  assert.throws(() => requireExpansionNativeApproval("pt", { nativeLanguageReview: true, publicPublicationApproved: true }), /NATIVE_REVIEW_REQUIRED/);
-  assert.equal(requireExpansionNativeApproval("pt", { nativeLanguageReview: true, publicPublicationApproved: true, reviewer: "Native reviewer", reviewedAt: "2026-08-29" }), true);
+test("native approval rejects a nominal approval with an incomplete review checklist", () => {
+  assert.throws(
+    () => requireExpansionNativeApproval("pt", {
+      nativeLanguageReview: true,
+      publicPublicationApproved: true,
+      reviewer: "Native reviewer",
+      reviewedAt: "2026-08-29",
+    }),
+    /nativeSpeaker.*calculatorReviewed.*guidesReviewed.*trustReviewed.*terminologyReviewed.*blockingIssuesResolved/,
+  );
+});
+
+test("native approval rejects malformed review dates", () => {
+  assert.throws(
+    () => requireExpansionNativeApproval("si", {
+      nativeLanguageReview: true,
+      publicPublicationApproved: true,
+      nativeSpeaker: true,
+      reviewer: "Native reviewer",
+      reviewedAt: "29-08-2026",
+      calculatorReviewed: true,
+      guidesReviewed: true,
+      trustReviewed: true,
+      terminologyReviewed: true,
+      blockingIssuesResolved: true,
+    }),
+    /reviewedAt/,
+  );
+});
+
+test("native approval opens only after the complete explicit checklist and publication approval", () => {
+  const evidence = {
+    nativeLanguageReview: true,
+    publicPublicationApproved: true,
+    nativeSpeaker: true,
+    reviewer: "Native reviewer",
+    reviewedAt: "2026-08-29",
+    calculatorReviewed: true,
+    guidesReviewed: true,
+    trustReviewed: true,
+    terminologyReviewed: true,
+    blockingIssuesResolved: true,
+  };
+  for (const market of ["pt", "si", "ro"]) assert.equal(requireExpansionNativeApproval(market, evidence), true);
 });
