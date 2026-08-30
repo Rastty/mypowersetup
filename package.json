@@ -18,6 +18,8 @@
     "check:commercial:scenarios": "node scripts/check-commercial-scenarios.mjs",
     "check:commercial:scenarios:safe": "node scripts/check-commercial-scenarios.mjs --require-baseline",
     "check:commercial:opportunities": "node scripts/check-commercial-opportunities.mjs",
+    "check:traffic:distribution": "node scripts/check-traffic-distribution.mjs",
+    "report:traffic:distribution": "node scripts/report-traffic-distribution.mjs",
     "check:hu": "node scripts/check-hu-readiness.mjs",
     "health:markets": "node scripts/check-market-health.mjs",
     "health:markets:safe": "node scripts/check-market-health.mjs --require-safe",

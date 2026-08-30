@@ -1,0 +1,29 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { ageInDays, rankTrafficOpportunities } from "../src/traffic-distribution.js";
+
+const registry = JSON.parse(readFileSync(new URL("../data/traffic-distribution.json", import.meta.url), "utf8"));
+
+test("invalid calendar dates are rejected instead of normalized", () => {
+  assert.throws(() => ageInDays("2026-02-31", "2026-08-30"), /TRAFFIC_DISTRIBUTION_DATE_INVALID:activity/);
+});
+
+test("future activity cannot be scored as fresh", () => {
+  assert.throws(() => ageInDays("2026-08-31", "2026-08-30"), /TRAFFIC_DISTRIBUTION_ACTIVITY_IN_FUTURE/);
+});
+
+test("live registry has actionable current opportunities and stale research is not top ranked", () => {
+  const ranked = rankTrafficOpportunities(registry.opportunities, { asOf: registry.updatedAt });
+  assert.ok(ranked.some((item) => item.actionable));
+  assert.notEqual(ranked[0].status, "research_only");
+  assert.ok(ranked[0].ageDays <= 90);
+});
+
+test("fresh Ford Transit DC-DC thread is ranked as actionable", () => {
+  const ranked = rankTrafficOpportunities(registry.opportunities, { asOf: registry.updatedAt, market: "pl" });
+  const ford = ranked.find((item) => item.id === "pl-camperteam-ford-dcdc-202608");
+  assert.ok(ford);
+  assert.equal(ford.actionable, true);
+  assert.equal(ford.ageDays, 19);
+});
