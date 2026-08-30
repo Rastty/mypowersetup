@@ -20,7 +20,10 @@ jobs:
         with:
           node-version: 22
       - name: Regenerate public expansion pages
-        run: npm run publish:expansion
+        run: |
+          npm run publish:expansion -- --market pt
+          npm run publish:expansion -- --market si
+          npm run publish:expansion -- --market ro
       - name: Require nav-only public diff
         shell: bash
         run: |
