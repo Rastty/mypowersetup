@@ -21,7 +21,7 @@ test("Slovenia affiliate parser fails closed for generic and wrong-account links
 
 test("Slovenia recommendation appears only when every verified electrical limit fits", () => {
   const fitting = buildSloveniaRecommendations(catalog, {
-    dailyWh: 540,
+    dailyWh: 300,
     autonomyDays: 2,
     solarWatts: 200,
     inverterWatts: 0,
@@ -34,7 +34,7 @@ test("Slovenia recommendation appears only when every verified electrical limit 
   assert.equal(fitting.power_station[0].merchant, "allpowers_eu");
 
   const tooMuchDc = buildSloveniaRecommendations(catalog, {
-    dailyWh: 540,
+    dailyWh: 300,
     autonomyDays: 2,
     solarWatts: 200,
     inverterWatts: 0,
