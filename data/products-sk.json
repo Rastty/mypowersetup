@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-30T09:34:50.734Z",
+  "generatedAt": "2026-08-30T14:23:04.890Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
@@ -886,7 +886,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
-        "capacityWh": 15.6,
+        "capacityWh": null,
         "powerW": null,
         "currentA": null,
         "chargingVoltagesV": [
@@ -921,7 +921,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
-        "capacityWh": 20480,
+        "capacityWh": null,
         "powerW": 1280,
         "currentA": 100,
         "chargingVoltagesV": [
@@ -956,7 +956,7 @@
       "specs": {
         "voltageV": 24,
         "capacityAh": 100,
-        "capacityWh": 20480,
+        "capacityWh": null,
         "powerW": null,
         "currentA": null,
         "chargingVoltagesV": [
@@ -1097,7 +1097,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 410,
-        "capacityWh": 83968,
+        "capacityWh": null,
         "powerW": 3200,
         "currentA": 250,
         "chargingVoltagesV": [
@@ -1132,7 +1132,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
-        "capacityWh": 20480,
+        "capacityWh": null,
         "powerW": null,
         "currentA": 100,
         "chargingVoltagesV": [
@@ -1167,7 +1167,7 @@
       "specs": {
         "voltageV": 24,
         "capacityAh": 200,
-        "capacityWh": 40.96,
+        "capacityWh": null,
         "powerW": 5120,
         "currentA": 200,
         "chargingVoltagesV": [
@@ -1203,7 +1203,7 @@
       "specs": {
         "voltageV": 24,
         "capacityAh": 100,
-        "capacityWh": 20480,
+        "capacityWh": null,
         "powerW": null,
         "currentA": 100,
         "chargingVoltagesV": [
@@ -1238,7 +1238,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 200,
-        "capacityWh": 133.33,
+        "capacityWh": null,
         "powerW": 2560,
         "currentA": 200,
         "chargingVoltagesV": [
@@ -1308,7 +1308,7 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
-        "capacityWh": 20480,
+        "capacityWh": null,
         "powerW": null,
         "currentA": 100,
         "chargingVoltagesV": [
