@@ -1,16 +1,19 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "updatedAt": "2026-08-30",
-  "policy": "Pending candidates are technical planning evidence only. They must not enter public catalogs, recommendation coverage, product cards or affiliate tracking until merchant approval, exact retail destination and shipping eligibility are verified.",
+  "policy": "Pending candidates are planning evidence only. They must not enter public catalogs, recommendation coverage, product cards or affiliate tracking until the relevant merchant programme is approved, an exact retail destination and deeplink are verified, and shipping eligibility is confirmed for each market.",
   "candidates": [
     {
-      "id": "butler-victron-phoenix-12-250",
-      "merchant": "butler_technik",
-      "status": "approval_pending",
+      "id": "offgridtec-victron-phoenix-12-250",
+      "merchant": "offgridtec",
+      "network": "adcell",
+      "programId": 12136,
+      "status": "application_required",
       "category": "inverter",
       "productUrl": null,
       "affiliateUrl": null,
-      "technicalEvidenceUrl": "https://www.butlertechnik.com/downloads/cms/7819/victron-energy-phoenix-inverter-technical-information-manual.pdf",
+      "retailEvidenceUrl": "https://www.offgridtec.com/victron-phoenix-12-250-ve.direct-12v-230v-200w-inverter.html",
+      "retailEvidenceVerifiedAt": "2026-08-30",
       "marketEligibility": {
         "sk-SK": "unverified",
         "pl-PL": "unverified",
@@ -25,13 +28,16 @@
       "targetScenarioIds": ["family-touring"]
     },
     {
-      "id": "butler-victron-phoenix-24-250",
-      "merchant": "butler_technik",
-      "status": "approval_pending",
+      "id": "offgridtec-victron-phoenix-24-250",
+      "merchant": "offgridtec",
+      "network": "adcell",
+      "programId": 12136,
+      "status": "application_required",
       "category": "inverter",
       "productUrl": null,
       "affiliateUrl": null,
-      "technicalEvidenceUrl": "https://www.butlertechnik.com/downloads/cms/7819/victron-energy-phoenix-inverter-technical-information-manual.pdf",
+      "retailEvidenceUrl": "https://www.offgridtec.com/en/brands/victron-energy/inverter/phoenix-ve.direct-250w-500w.html",
+      "retailEvidenceVerifiedAt": "2026-08-30",
       "marketEligibility": {
         "sk-SK": "unverified",
         "pl-PL": "unverified",
@@ -48,11 +54,15 @@
     {
       "id": "butler-victron-smartsolar-250-60-mc4",
       "merchant": "butler_technik",
+      "network": "awin",
+      "programId": 31291,
       "status": "approval_pending",
       "category": "controller",
       "productUrl": null,
       "affiliateUrl": null,
       "technicalEvidenceUrl": "https://www.butlertechnik.com/downloads/cms/7826/victron-energy-bluesolar-smartsolar-mppt-technical-overview-manual.pdf",
+      "retailEvidenceUrl": "https://www.butlertechnik.com/item/Victron/SmartSolar-MPPT-250-60-MC4/BT2",
+      "retailEvidenceVerifiedAt": "2026-08-30",
       "exactRetailPath": "/item/Victron/SmartSolar-MPPT-250-60-MC4/BT2",
       "marketEligibility": {
         "sk-SK": "unverified",
