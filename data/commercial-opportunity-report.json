@@ -1,0 +1,886 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-30T14:29:52.230Z",
+  "focusMarkets": [
+    "sk-SK",
+    "pl-PL",
+    "hu-HU"
+  ],
+  "focusPortfolio": [
+    {
+      "category": "inverter",
+      "label": "inverter",
+      "score": 24,
+      "markets": [
+        {
+          "market": "sk-SK",
+          "priority": "P0",
+          "score": 8,
+          "maxPurchaseReadyGain": 0.42105263157894735,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 12,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 24,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 3,
+              "scenarioIds": [
+                "remote-work"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "market": "pl-PL",
+          "priority": "P0",
+          "score": 8,
+          "maxPurchaseReadyGain": 0.42105263157894735,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 12,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 24,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 3,
+              "scenarioIds": [
+                "remote-work"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "market": "hu-HU",
+          "priority": "P0",
+          "score": 8,
+          "maxPurchaseReadyGain": 0.42105263157894735,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 12,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 24,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 3,
+              "scenarioIds": [
+                "remote-work"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        }
+      ],
+      "maxPurchaseReadyGain": 1.263157894736842
+    },
+    {
+      "category": "controller",
+      "label": "MPPT controller",
+      "score": 21,
+      "markets": [
+        {
+          "market": "sk-SK",
+          "priority": "P1",
+          "score": 7,
+          "maxPurchaseReadyGain": 0.3684210526315789,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 40,
+                "maxCurrentA": 120,
+                "systemVoltage": 12,
+                "minArrayWatts": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 60,
+                "maxCurrentA": 180,
+                "systemVoltage": 12,
+                "minArrayWatts": 550
+              },
+              "weight": 2,
+              "scenarioIds": [
+                "winter-basic"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "market": "pl-PL",
+          "priority": "P1",
+          "score": 7,
+          "maxPurchaseReadyGain": 0.3684210526315789,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 40,
+                "maxCurrentA": 120,
+                "systemVoltage": 12,
+                "minArrayWatts": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 60,
+                "maxCurrentA": 180,
+                "systemVoltage": 12,
+                "minArrayWatts": 550
+              },
+              "weight": 2,
+              "scenarioIds": [
+                "winter-basic"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "market": "hu-HU",
+          "priority": "P1",
+          "score": 7,
+          "maxPurchaseReadyGain": 0.3684210526315789,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 40,
+                "maxCurrentA": 120,
+                "systemVoltage": 12,
+                "minArrayWatts": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 60,
+                "maxCurrentA": 180,
+                "systemVoltage": 12,
+                "minArrayWatts": 550
+              },
+              "weight": 2,
+              "scenarioIds": [
+                "winter-basic"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        }
+      ],
+      "maxPurchaseReadyGain": 1.1052631578947367
+    }
+  ],
+  "portfolio": [
+    {
+      "category": "inverter",
+      "label": "inverter",
+      "score": 24,
+      "markets": [
+        {
+          "market": "sk-SK",
+          "priority": "P0",
+          "score": 8,
+          "maxPurchaseReadyGain": 0.42105263157894735,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 12,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 24,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 3,
+              "scenarioIds": [
+                "remote-work"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "market": "pl-PL",
+          "priority": "P0",
+          "score": 8,
+          "maxPurchaseReadyGain": 0.42105263157894735,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 12,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 24,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 3,
+              "scenarioIds": [
+                "remote-work"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "market": "hu-HU",
+          "priority": "P0",
+          "score": 8,
+          "maxPurchaseReadyGain": 0.42105263157894735,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 12,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 24,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 3,
+              "scenarioIds": [
+                "remote-work"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        }
+      ],
+      "maxPurchaseReadyGain": 1.263157894736842
+    },
+    {
+      "category": "controller",
+      "label": "MPPT controller",
+      "score": 21,
+      "markets": [
+        {
+          "market": "sk-SK",
+          "priority": "P1",
+          "score": 7,
+          "maxPurchaseReadyGain": 0.3684210526315789,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 40,
+                "maxCurrentA": 120,
+                "systemVoltage": 12,
+                "minArrayWatts": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 60,
+                "maxCurrentA": 180,
+                "systemVoltage": 12,
+                "minArrayWatts": 550
+              },
+              "weight": 2,
+              "scenarioIds": [
+                "winter-basic"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "market": "pl-PL",
+          "priority": "P1",
+          "score": 7,
+          "maxPurchaseReadyGain": 0.3684210526315789,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 40,
+                "maxCurrentA": 120,
+                "systemVoltage": 12,
+                "minArrayWatts": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 60,
+                "maxCurrentA": 180,
+                "systemVoltage": 12,
+                "minArrayWatts": 550
+              },
+              "weight": 2,
+              "scenarioIds": [
+                "winter-basic"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "market": "hu-HU",
+          "priority": "P1",
+          "score": 7,
+          "maxPurchaseReadyGain": 0.3684210526315789,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 40,
+                "maxCurrentA": 120,
+                "systemVoltage": 12,
+                "minArrayWatts": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 60,
+                "maxCurrentA": 180,
+                "systemVoltage": 12,
+                "minArrayWatts": 550
+              },
+              "weight": 2,
+              "scenarioIds": [
+                "winter-basic"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        }
+      ],
+      "maxPurchaseReadyGain": 1.1052631578947367
+    }
+  ],
+  "markets": [
+    {
+      "market": "cs-CZ",
+      "generatedAt": "2026-08-30T14:29:41.481Z",
+      "purchaseReadyRatio": 1,
+      "weightedCoverage": 1,
+      "topOpportunity": null,
+      "opportunities": []
+    },
+    {
+      "market": "sk-SK",
+      "generatedAt": "2026-08-30T14:29:45.124Z",
+      "purchaseReadyRatio": 0.47368421052631576,
+      "weightedCoverage": 0.793859649122807,
+      "topOpportunity": {
+        "category": "inverter",
+        "label": "inverter",
+        "priority": "P0",
+        "score": 8,
+        "maxPurchaseReadyGain": 0.42105263157894735,
+        "primaryScenarioIds": [
+          "family-touring",
+          "remote-work"
+        ],
+        "secondaryScenarioIds": [],
+        "primaryRequirements": [
+          {
+            "weight": 5,
+            "scenarioIds": [
+              "family-touring"
+            ],
+            "requirement": {
+              "category": "inverter",
+              "systemVoltage": 12,
+              "waveform": "pure_sine",
+              "minContinuousPowerW": 100,
+              "maxContinuousPowerW": 300
+            }
+          },
+          {
+            "weight": 3,
+            "scenarioIds": [
+              "remote-work"
+            ],
+            "requirement": {
+              "category": "inverter",
+              "systemVoltage": 24,
+              "waveform": "pure_sine",
+              "minContinuousPowerW": 100,
+              "maxContinuousPowerW": 300
+            }
+          }
+        ],
+        "secondaryRequirements": []
+      },
+      "opportunities": [
+        {
+          "category": "inverter",
+          "label": "inverter",
+          "priority": "P0",
+          "score": 8,
+          "maxPurchaseReadyGain": 0.42105263157894735,
+          "primaryScenarioIds": [
+            "family-touring",
+            "remote-work"
+          ],
+          "secondaryScenarioIds": [],
+          "primaryRequirements": [
+            {
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ],
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 12,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              }
+            },
+            {
+              "weight": 3,
+              "scenarioIds": [
+                "remote-work"
+              ],
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 24,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              }
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "category": "controller",
+          "label": "MPPT controller",
+          "priority": "P1",
+          "score": 7,
+          "maxPurchaseReadyGain": 0.3684210526315789,
+          "primaryScenarioIds": [
+            "family-touring",
+            "winter-basic"
+          ],
+          "secondaryScenarioIds": [],
+          "primaryRequirements": [
+            {
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ],
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 40,
+                "maxCurrentA": 120,
+                "systemVoltage": 12,
+                "minArrayWatts": 300
+              }
+            },
+            {
+              "weight": 2,
+              "scenarioIds": [
+                "winter-basic"
+              ],
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 60,
+                "maxCurrentA": 180,
+                "systemVoltage": 12,
+                "minArrayWatts": 550
+              }
+            }
+          ],
+          "secondaryRequirements": []
+        }
+      ]
+    },
+    {
+      "market": "pl-PL",
+      "generatedAt": "2026-08-30T14:29:48.957Z",
+      "purchaseReadyRatio": 0.47368421052631576,
+      "weightedCoverage": 0.793859649122807,
+      "topOpportunity": {
+        "category": "inverter",
+        "label": "inverter",
+        "priority": "P0",
+        "score": 8,
+        "maxPurchaseReadyGain": 0.42105263157894735,
+        "primaryScenarioIds": [
+          "family-touring",
+          "remote-work"
+        ],
+        "secondaryScenarioIds": [],
+        "primaryRequirements": [
+          {
+            "weight": 5,
+            "scenarioIds": [
+              "family-touring"
+            ],
+            "requirement": {
+              "category": "inverter",
+              "systemVoltage": 12,
+              "waveform": "pure_sine",
+              "minContinuousPowerW": 100,
+              "maxContinuousPowerW": 300
+            }
+          },
+          {
+            "weight": 3,
+            "scenarioIds": [
+              "remote-work"
+            ],
+            "requirement": {
+              "category": "inverter",
+              "systemVoltage": 24,
+              "waveform": "pure_sine",
+              "minContinuousPowerW": 100,
+              "maxContinuousPowerW": 300
+            }
+          }
+        ],
+        "secondaryRequirements": []
+      },
+      "opportunities": [
+        {
+          "category": "inverter",
+          "label": "inverter",
+          "priority": "P0",
+          "score": 8,
+          "maxPurchaseReadyGain": 0.42105263157894735,
+          "primaryScenarioIds": [
+            "family-touring",
+            "remote-work"
+          ],
+          "secondaryScenarioIds": [],
+          "primaryRequirements": [
+            {
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ],
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 12,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              }
+            },
+            {
+              "weight": 3,
+              "scenarioIds": [
+                "remote-work"
+              ],
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 24,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              }
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "category": "controller",
+          "label": "MPPT controller",
+          "priority": "P1",
+          "score": 7,
+          "maxPurchaseReadyGain": 0.3684210526315789,
+          "primaryScenarioIds": [
+            "family-touring",
+            "winter-basic"
+          ],
+          "secondaryScenarioIds": [],
+          "primaryRequirements": [
+            {
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ],
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 40,
+                "maxCurrentA": 120,
+                "systemVoltage": 12,
+                "minArrayWatts": 300
+              }
+            },
+            {
+              "weight": 2,
+              "scenarioIds": [
+                "winter-basic"
+              ],
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 60,
+                "maxCurrentA": 180,
+                "systemVoltage": 12,
+                "minArrayWatts": 550
+              }
+            }
+          ],
+          "secondaryRequirements": []
+        }
+      ]
+    },
+    {
+      "market": "hu-HU",
+      "generatedAt": "2026-08-30T14:29:52.230Z",
+      "purchaseReadyRatio": 0.47368421052631576,
+      "weightedCoverage": 0.793859649122807,
+      "topOpportunity": {
+        "category": "inverter",
+        "label": "inverter",
+        "priority": "P0",
+        "score": 8,
+        "maxPurchaseReadyGain": 0.42105263157894735,
+        "primaryScenarioIds": [
+          "family-touring",
+          "remote-work"
+        ],
+        "secondaryScenarioIds": [],
+        "primaryRequirements": [
+          {
+            "weight": 5,
+            "scenarioIds": [
+              "family-touring"
+            ],
+            "requirement": {
+              "category": "inverter",
+              "systemVoltage": 12,
+              "waveform": "pure_sine",
+              "minContinuousPowerW": 100,
+              "maxContinuousPowerW": 300
+            }
+          },
+          {
+            "weight": 3,
+            "scenarioIds": [
+              "remote-work"
+            ],
+            "requirement": {
+              "category": "inverter",
+              "systemVoltage": 24,
+              "waveform": "pure_sine",
+              "minContinuousPowerW": 100,
+              "maxContinuousPowerW": 300
+            }
+          }
+        ],
+        "secondaryRequirements": []
+      },
+      "opportunities": [
+        {
+          "category": "inverter",
+          "label": "inverter",
+          "priority": "P0",
+          "score": 8,
+          "maxPurchaseReadyGain": 0.42105263157894735,
+          "primaryScenarioIds": [
+            "family-touring",
+            "remote-work"
+          ],
+          "secondaryScenarioIds": [],
+          "primaryRequirements": [
+            {
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ],
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 12,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              }
+            },
+            {
+              "weight": 3,
+              "scenarioIds": [
+                "remote-work"
+              ],
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 24,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              }
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "category": "controller",
+          "label": "MPPT controller",
+          "priority": "P1",
+          "score": 7,
+          "maxPurchaseReadyGain": 0.3684210526315789,
+          "primaryScenarioIds": [
+            "family-touring",
+            "winter-basic"
+          ],
+          "secondaryScenarioIds": [],
+          "primaryRequirements": [
+            {
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ],
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 40,
+                "maxCurrentA": 120,
+                "systemVoltage": 12,
+                "minArrayWatts": 300
+              }
+            },
+            {
+              "weight": 2,
+              "scenarioIds": [
+                "winter-basic"
+              ],
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 60,
+                "maxCurrentA": 180,
+                "systemVoltage": 12,
+                "minArrayWatts": 550
+              }
+            }
+          ],
+          "secondaryRequirements": []
+        }
+      ]
+    }
+  ]
+}
