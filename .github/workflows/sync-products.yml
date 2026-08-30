@@ -14,9 +14,12 @@ on:
       - "scripts/sync-products-sk.mjs"
       - "scripts/sync-products-hu.mjs"
       - "scripts/sync-products-pt.mjs"
+      - "scripts/write-commercial-opportunity-report.mjs"
       - "scripts/lib/*.mjs"
       - "src/shopify.js"
       - "src/affiliate-allpowers-pt.js"
+      - "src/commercial-opportunity-backlog.js"
+      - "src/commercial-scenarios.js"
       - "data/products-pl-verified.json"
       - "tests/hu-foundation.test.js"
       - "tests/powerqueen-exact-products.test.js"
@@ -61,15 +64,16 @@ jobs:
         env:
           AMPUL_HU_FEED_URL: ${{ secrets.AMPUL_HU_FEED_URL }}
       - run: node scripts/sync-products-pt.mjs
+      - run: node scripts/write-commercial-opportunity-report.mjs
       - run: node --test
       - run: npm run check:commercial:coverage:safe
       - run: npm run check:commercial:scenarios:safe
       - run: npm run check:commercial:opportunities
       - name: Commit refreshed catalog
         run: |
-          if git diff --quiet -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json; then exit 0; fi
+          if git diff --quiet -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json data/commercial-opportunity-report.json; then exit 0; fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json
+          git add -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json data/commercial-opportunity-report.json
           git commit -m "data: refresh affiliate product catalog"
           git push
