@@ -54,6 +54,7 @@ export function buildSloveniaRecommendations(catalog, setup, limit = 3) {
     .filter((product) => product.specs.dcOutputA >= profile.dcOutputAmpsAt12V)
     .slice(0, limit)
     .map((product) => Object.freeze({
+      id: product.id,
       category: product.category,
       name: product.name,
       affiliateUrl: product.affiliateUrl,
