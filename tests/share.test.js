@@ -46,6 +46,21 @@ test("Hungarian share summary is localized for the private market foundation", (
   assert.match(text, /https:\/\/mypowersetup\.com\/hu\//);
 });
 
+for (const [language, title, route] of [
+  ["pt", "dimensionamento indicativo", "/pt/"],
+  ["ro", "dimensionare orientativă", "/ro/"],
+  ["si", "informativni izračun", "/si/"],
+]) {
+  test(`${language} expansion share summary is localized and keeps a supplied prefilled URL`, () => {
+    const resultUrl = `https://mypowersetup.com${route}?loads=fridge,lights&days=2#calculator-preview`;
+    const text = buildResultShareText(result, language, resultUrl);
+    assert.match(text, new RegExp(title));
+    assert.ok(text.includes(resultUrl));
+    assert.match(text, /220 Ah/);
+    assert.match(text, /480 Wp/);
+  });
+}
+
 test("copyText prefers the Clipboard API", async () => {
   let copied = "";
   const success = await copyText("návrh", {
