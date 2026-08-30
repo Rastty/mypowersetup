@@ -1,10 +1,13 @@
-import { PUBLIC_HREFLANG_GROUPS } from "./public-hreflang-map.js";
+import { PUBLIC_CONVERSION_ROUTES } from "./public-conversion-map.js";
 
 export const PUBLIC_MARKET_CALCULATORS = Object.freeze({
   cs: "/#kalkulator",
   sk: "/sk/#kalkulator",
   pl: "/pl/#kalkulator",
   hu: "/hu/#kalkulator",
+  pt: "/pt/#calculator-preview",
+  si: "/si/#calculator-preview",
+  ro: "/ro/#calculator-preview",
 });
 
 export const COMMERCIAL_GUIDE_TOPICS = Object.freeze([
@@ -12,7 +15,7 @@ export const COMMERCIAL_GUIDE_TOPICS = Object.freeze([
 ]);
 
 const ROUTE_INDEX = new Map();
-for (const [topic, routes] of Object.entries(PUBLIC_HREFLANG_GROUPS)) {
+for (const [topic, routes] of Object.entries(PUBLIC_CONVERSION_ROUTES)) {
   for (const [market, route] of Object.entries(routes)) ROUTE_INDEX.set(route, Object.freeze({ topic, market, route }));
 }
 
@@ -34,7 +37,7 @@ export function auditPublicGuideHtml(html, { market, topic, route }) {
   const blockers = [];
   if (!COMMERCIAL_GUIDE_TOPICS.includes(topic)) throw new Error(`PUBLIC_CONVERSION_TOPIC_INVALID:${topic}`);
   if (!PUBLIC_MARKET_CALCULATORS[market]) throw new Error(`PUBLIC_CONVERSION_MARKET_INVALID:${market}`);
-  if (PUBLIC_HREFLANG_GROUPS[topic]?.[market] !== route) throw new Error(`PUBLIC_CONVERSION_ROUTE_MISMATCH:${market}:${topic}`);
+  if (PUBLIC_CONVERSION_ROUTES[topic]?.[market] !== route) throw new Error(`PUBLIC_CONVERSION_ROUTE_MISMATCH:${market}:${topic}`);
   if (typeof html !== "string" || !html.includes("<html")) return Object.freeze({ ready: false, blockers: Object.freeze(["htmlInvalid"]) });
 
   if (/noindex/i.test(html)) blockers.push("unexpectedNoindex");
@@ -51,7 +54,11 @@ export function auditPublicGuideHtml(html, { market, topic, route }) {
   });
   if (crossMarketCalculator) blockers.push("crossMarketCalculatorCta");
 
-  const internalTopics = new Set(extractHrefs(html).map((href) => classifyPublicGuideLink(href, { sourcePath: route })).filter(Boolean).filter((link) => link.market === market && link.topic !== topic).map((link) => link.topic));
+  const internalTopics = new Set(extractHrefs(html)
+    .map((href) => classifyPublicGuideLink(href, { sourcePath: route }))
+    .filter(Boolean)
+    .filter((link) => link.market === market && link.topic !== topic)
+    .map((link) => link.topic));
   if (internalTopics.size < 2) blockers.push("weakInternalJourney");
 
   return Object.freeze({
