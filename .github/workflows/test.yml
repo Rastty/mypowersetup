@@ -42,6 +42,7 @@ jobs:
       - run: node --check scripts/check-postlaunch-public.mjs
       - run: node --check scripts/check-commercial-coverage.mjs
       - run: node --check scripts/check-commercial-scenarios.mjs
+      - run: node --check scripts/check-commercial-opportunities.mjs
       - run: node --check scripts/check-affiliate-onboarding-candidates.mjs
       - run: node --check scripts/check-traffic-distribution.mjs
       - run: node --check scripts/report-traffic-distribution.mjs
@@ -60,6 +61,14 @@ jobs:
       - run: node scripts/check-postlaunch-public.mjs
       - run: npm run check:commercial:coverage:safe
       - run: npm run check:commercial:scenarios:safe
+      - name: Build commercial opportunity report
+        run: npm run check:commercial:opportunities > commercial-opportunities.json
+      - name: Upload commercial opportunity report
+        uses: actions/upload-artifact@v4
+        with:
+          name: commercial-opportunities
+          path: commercial-opportunities.json
+          retention-days: 14
       - run: node scripts/check-affiliate-onboarding-candidates.mjs
       - run: npm run check:traffic:distribution
       - run: npm run report:community:links -- --market pl
