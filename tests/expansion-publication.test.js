@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { expansionPublicationManifest, publicizeExpansionHtml, addExpansionHomeAlternate, addExpansionRoutesToSitemap, requireExpansionNativeApproval } from "../src/expansion-publication.js";
+import { expansionPublicationManifest, publicizeExpansionHtml, addExpansionHomeAlternate, addExpansionRoutesToSitemap, publishedExpansionMarketsFromSitemap, requireExpansionNativeApproval } from "../src/expansion-publication.js";
 
 for (const market of ["pt", "si", "ro"]) {
   test(`${market} publication manifest covers home, hub, four trust pages and ten guides`, () => {
@@ -35,6 +35,22 @@ test("published-market alternate injection is idempotent", () => {
   const twice = addExpansionHomeAlternate(once, "si");
   assert.match(once, /hreflang="sl-SI" href="https:\/\/mypowersetup.com\/si\/"/);
   assert.equal(twice, once);
+});
+
+test("published expansion markets are detected only from sitemap home routes", () => {
+  const xml = '<?xml version="1.0"?><urlset><url><loc>https://mypowersetup.com/pt/</loc></url><url><loc>https://mypowersetup.com/si/vodici/</loc></url><url><loc>https://mypowersetup.com/ro/</loc></url></urlset>';
+  assert.deepEqual(publishedExpansionMarketsFromSitemap(xml), ["pt", "ro"]);
+  assert.deepEqual(publishedExpansionMarketsFromSitemap(xml, { exclude: "pt" }), ["ro"]);
+});
+
+test("sequential expansion homes can carry reciprocal hreflang alternates", () => {
+  const base = '<html><head></head><body></body></html>';
+  let pt = publicizeExpansionHtml(base, "pt", "/pt/", { home: true });
+  let si = publicizeExpansionHtml(base, "si", "/si/", { home: true });
+  pt = addExpansionHomeAlternate(pt, "si");
+  si = addExpansionHomeAlternate(si, "pt");
+  assert.match(pt, /hreflang="sl-SI" href="https:\/\/mypowersetup.com\/si\/"/);
+  assert.match(si, /hreflang="pt-PT" href="https:\/\/mypowersetup.com\/pt\/"/);
 });
 
 test("sitemap publication adds all routes once", () => {
