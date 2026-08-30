@@ -11,7 +11,7 @@ import { RO_MARKET_SEED } from "../src/market-seed-ro.js";
 import { PT_REVIEW_EVIDENCE } from "../src/review-evidence-pt.js";
 import { SI_REVIEW_EVIDENCE } from "../src/review-evidence-si.js";
 import { RO_REVIEW_EVIDENCE } from "../src/review-evidence-ro.js";
-import { addExpansionHomeAlternate, addExpansionRoutesToSitemap, assessExpansionNativeApproval, expansionPublicationManifest, publicizeExpansionHtml, requireExpansionNativeApproval } from "../src/expansion-publication.js";
+import { addExpansionHomeAlternate, addExpansionRoutesToSitemap, assessExpansionNativeApproval, expansionPublicationManifest, publicizeExpansionHtml, publishedExpansionMarketsFromSitemap, requireExpansionNativeApproval } from "../src/expansion-publication.js";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const market = argValue("--market");
@@ -37,21 +37,43 @@ if (!approval.ready && checkOnly) {
 } else {
   requireExpansionNativeApproval(market, config.review);
   const manifest = expansionPublicationManifest(market);
+  const sitemapPath = resolve(root, "sitemap.xml");
+  const sitemapXml = await readFile(sitemapPath, "utf8");
+  const existingExpansionMarkets = publishedExpansionMarketsFromSitemap(sitemapXml, { exclude: market });
   const plannedWrites = [];
+
   for (const entry of manifest) {
     const privateHtml = entry.source === "home" ? renderPrivateMarketSeedPage(config.seed) : config.render(entry.route);
     if (!privateHtml) throw new Error(`EXPANSION_PUBLICATION_RENDER_MISSING:${market}:${entry.route}`);
-    plannedWrites.push({ path: resolve(root, entry.path), content: publicizeExpansionHtml(privateHtml, market, entry.route, { home: entry.source === "home" }) });
+    let publicHtml = publicizeExpansionHtml(privateHtml, market, entry.route, { home: entry.source === "home" });
+    if (entry.source === "home") {
+      for (const existingMarket of existingExpansionMarkets) publicHtml = addExpansionHomeAlternate(publicHtml, existingMarket);
+    }
+    plannedWrites.push({ path: resolve(root, entry.path), content: publicHtml });
   }
 
   for (const relativePath of ["index.html", "sk/index.html", "pl/index.html", "hu/index.html"]) {
     const path = resolve(root, relativePath);
     plannedWrites.push({ path, content: addExpansionHomeAlternate(await readFile(path, "utf8"), market) });
   }
-  const sitemapPath = resolve(root, "sitemap.xml");
-  plannedWrites.push({ path: sitemapPath, content: addExpansionRoutesToSitemap(await readFile(sitemapPath, "utf8"), market) });
 
-  const report = { market, ready: true, dryRun, blockers: [], files: plannedWrites.map(({ path }) => path.slice(root.length + 1)), routes: manifest.map(({ route }) => route) };
+  for (const existingMarket of existingExpansionMarkets) {
+    const existingHome = expansionPublicationManifest(existingMarket)[0];
+    const path = resolve(root, existingHome.path);
+    plannedWrites.push({ path, content: addExpansionHomeAlternate(await readFile(path, "utf8"), market) });
+  }
+
+  plannedWrites.push({ path: sitemapPath, content: addExpansionRoutesToSitemap(sitemapXml, market) });
+
+  const report = {
+    market,
+    ready: true,
+    dryRun,
+    blockers: [],
+    existingExpansionMarkets,
+    files: plannedWrites.map(({ path }) => path.slice(root.length + 1)),
+    routes: manifest.map(({ route }) => route),
+  };
   if (dryRun) console.log(JSON.stringify(report, null, 2));
   else {
     for (const item of plannedWrites) {

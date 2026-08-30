@@ -51,6 +51,13 @@ export function addExpansionHomeAlternate(html, market) {
   return html.replace("</head>", `  ${tag}\n</head>`);
 }
 
+export function publishedExpansionMarketsFromSitemap(xml, { exclude = null } = {}) {
+  if (typeof xml !== "string") throw new TypeError("EXPANSION_SITEMAP_REQUIRED");
+  return Object.freeze(Object.entries(CONFIG)
+    .filter(([market, config]) => market !== exclude && xml.includes(`<loc>https://mypowersetup.com${config.prefix}</loc>`))
+    .map(([market]) => market));
+}
+
 export function addExpansionRoutesToSitemap(xml, market) {
   if (typeof xml !== "string" || !xml.includes("</urlset>")) throw new Error("EXPANSION_SITEMAP_INVALID");
   const additions = expansionPublicationManifest(market)
