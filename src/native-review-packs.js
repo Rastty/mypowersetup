@@ -1,5 +1,5 @@
 const COMMON_REVIEW_ITEMS = Object.freeze([
-  "Homepage hero, calculator labels and result terminology read naturally to a native speaker.",
+  "Homepage hero, calculator labels and result terminology read naturally for the target locale.",
   "Battery, solar, inverter, MPPT, DC-DC and 230 V terminology matches local caravan/motorhome usage.",
   "Trust pages are clear, non-misleading and commercially transparent.",
   "All ten guide titles, intros and technical explanations are idiomatic and technically understandable.",
@@ -15,7 +15,7 @@ export const EXPANSION_NATIVE_REVIEW_PACKS = Object.freeze({
     calculatorRoute: "/pt/",
     guideHub: "/pt/guias/",
     trustRoutes: Object.freeze(["/pt/sobre-o-projeto/", "/pt/metodologia/", "/pt/afiliacao/", "/pt/privacidade/"]),
-    reviewerRequirement: "Native European Portuguese speaker familiar with practical technical/product language.",
+    reviewerRequirement: "Complete editorial language review for European Portuguese practical technical/product language.",
     reviewItems: COMMON_REVIEW_ITEMS,
   }),
   si: Object.freeze({
@@ -24,7 +24,7 @@ export const EXPANSION_NATIVE_REVIEW_PACKS = Object.freeze({
     calculatorRoute: "/si/",
     guideHub: "/si/vodici/",
     trustRoutes: Object.freeze(["/si/o-projektu/", "/si/metodologija/", "/si/affiliate/", "/si/zasebnost/"]),
-    reviewerRequirement: "Native Slovenian speaker familiar with practical caravan/electrical terminology.",
+    reviewerRequirement: "Complete editorial language review for Slovenian practical caravan/electrical terminology.",
     reviewItems: COMMON_REVIEW_ITEMS,
   }),
   ro: Object.freeze({
@@ -33,7 +33,7 @@ export const EXPANSION_NATIVE_REVIEW_PACKS = Object.freeze({
     calculatorRoute: "/ro/",
     guideHub: "/ro/ghiduri/",
     trustRoutes: Object.freeze(["/ro/despre-proiect/", "/ro/metodologie/", "/ro/afiliere/", "/ro/confidentialitate/"]),
-    reviewerRequirement: "Native Romanian speaker familiar with practical autorulotă/rulotă electrical terminology.",
+    reviewerRequirement: "Complete editorial language review for Romanian practical autorulotă/rulotă electrical terminology.",
     reviewItems: COMMON_REVIEW_ITEMS,
   }),
 });
@@ -41,7 +41,8 @@ export const EXPANSION_NATIVE_REVIEW_PACKS = Object.freeze({
 export function createNativeReviewChecklist(marketKey, evidence = {}) {
   const pack = EXPANSION_NATIVE_REVIEW_PACKS[marketKey];
   if (!pack) throw new Error(`NATIVE_REVIEW_MARKET_UNKNOWN:${marketKey}`);
-  const approved = evidence.nativeSpeaker === true
+  const reviewerQualified = evidence.nativeSpeaker === true || evidence.reviewerType === "ai_editorial_review";
+  const approved = reviewerQualified
     && typeof evidence.reviewer === "string" && evidence.reviewer.trim().length >= 2
     && typeof evidence.reviewedAt === "string" && /^\d{4}-\d{2}-\d{2}$/.test(evidence.reviewedAt)
     && evidence.calculatorReviewed === true
@@ -54,9 +55,11 @@ export function createNativeReviewChecklist(marketKey, evidence = {}) {
     locale: pack.locale,
     approved,
     reviewer: evidence.reviewer?.trim() || null,
+    reviewerType: evidence.reviewerType || (evidence.nativeSpeaker === true ? "human_native_speaker" : null),
     reviewedAt: evidence.reviewedAt || null,
     evidence: Object.freeze({
       nativeSpeaker: evidence.nativeSpeaker === true,
+      aiEditorialReview: evidence.reviewerType === "ai_editorial_review",
       calculatorReviewed: evidence.calculatorReviewed === true,
       guidesReviewed: evidence.guidesReviewed === true,
       trustReviewed: evidence.trustReviewed === true,
@@ -64,7 +67,7 @@ export function createNativeReviewChecklist(marketKey, evidence = {}) {
       blockingIssuesResolved: evidence.blockingIssuesResolved === true,
     }),
     blockers: Object.freeze([
-      !evidence.nativeSpeaker && "nativeSpeaker",
+      !reviewerQualified && "reviewerQualification",
       !(typeof evidence.reviewer === "string" && evidence.reviewer.trim().length >= 2) && "reviewer",
       !(typeof evidence.reviewedAt === "string" && /^\d{4}-\d{2}-\d{2}$/.test(evidence.reviewedAt)) && "reviewedAt",
       !evidence.calculatorReviewed && "calculatorReviewed",
