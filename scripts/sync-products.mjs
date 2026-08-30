@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
+import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 
 const feeds = [
   ["reslshop", process.env.RESLSHOP_FEED_URL, true],
@@ -13,16 +14,26 @@ if (missing.length) {
   throw new Error(`Chybí URL feedu pro: ${missing.join(", ")}`);
 }
 
-let previousProducts = [];
+let previousCatalog = { generatedAt: null, sources: {}, products: [] };
 try {
-  const previousCatalog = JSON.parse(await readFile("data/products.json", "utf8"));
-  if (Array.isArray(previousCatalog.products)) previousProducts = previousCatalog.products;
+  const loaded = JSON.parse(await readFile("data/products.json", "utf8"));
+  if (Array.isArray(loaded.products)) previousCatalog = loaded;
 } catch {
   // A missing first-run catalog is fine. A feed still has to succeed below.
 }
+const previousProducts = previousCatalog.products || [];
 
 const products = [];
 const sources = {};
+
+// Power Queen EU is an approved EU affiliate source already used by SK/PL/HU.
+// Reuse the same fail-closed live sync for CZ instead of duplicating product
+// metadata or creating a Czech-only parser. The helper preserves stale items
+// as unavailable diagnostics if the live source fails.
+const powerqueen = await syncPowerQueenEu(previousCatalog);
+products.push(...powerqueen.products);
+sources.powerqueen_eu = powerqueen.source;
+
 for (const [merchant, url] of feeds) {
   if (!url) {
     const preserved = disablePreservedProducts(previousProducts, merchant);
