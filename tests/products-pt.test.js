@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { parseAllpowersPtProducts, validatePtCatalog } from "../src/products-pt.js";
 import { parseAllpowersPtDeeplink } from "../src/affiliate-allpowers-pt.js";
 import { syncAllpowersPt } from "../scripts/lib/sync-allpowers-pt.mjs";
@@ -59,6 +60,22 @@ test("Portugal power stations fail closed until electrical limits are explicitly
   assert.equal(verified.category, "power_station");
   assert.equal(verified.verifiedAt, "2026-08-29");
   assert.equal(verified.specs.solarInputW, 400);
+});
+
+test("Portugal verified power-station evidence contains exact local product pages and critical limits", async () => {
+  const evidence = JSON.parse(await readFile(new URL("../data/products-pt-verified.json", import.meta.url), "utf8"));
+  assert.ok(evidence.products.length >= 3);
+  for (const item of evidence.products) {
+    const url = new URL(item.productUrl);
+    assert.equal(url.hostname, "allpowers-pt.com");
+    assert.match(url.pathname, /^\/products\/[a-z0-9-]+$/i);
+    assert.ok(item.verifiedAt);
+    assert.ok(item.specs.capacityWh > 0);
+    assert.ok(item.specs.powerW > 0);
+    assert.ok(item.specs.solarInputW > 0);
+    assert.ok(item.specs.dcOutputA > 0);
+    assert.equal(item.specs.pureSine, true);
+  }
 });
 
 test("Portugal catalog rejects foreign merchants and accepts only pt-PT EUR shape", () => {
