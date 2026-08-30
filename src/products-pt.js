@@ -113,6 +113,7 @@ export function validatePtCatalog(payload) {
   }
   return Object.freeze({
     generatedAt: payload.generatedAt || null,
+    private: false,
     sources: Object.freeze({ ...payload.sources }),
     products: Object.freeze(products.map((product) => Object.freeze({ ...product }))),
   });
