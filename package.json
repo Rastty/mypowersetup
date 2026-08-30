@@ -13,6 +13,7 @@
     "sync:public:hreflang": "node scripts/sync-public-hreflang.mjs",
     "check:public:hreflang": "node scripts/sync-public-hreflang.mjs --check",
     "check:public:conversion": "node scripts/check-public-conversion.mjs",
+    "check:conversion:analytics": "node scripts/check-conversion-analytics.mjs",
     "check:commercial:coverage": "node scripts/check-commercial-coverage.mjs",
     "check:commercial:coverage:safe": "node scripts/check-commercial-coverage.mjs --require-core",
     "check:commercial:scenarios": "node scripts/check-commercial-scenarios.mjs",

@@ -22,6 +22,7 @@ jobs:
       - run: node --check src/app-hu.js
       - run: node --check src/analytics-context.js
       - run: node --check src/analytics.js
+      - run: node --check src/community-navigation.js
       - run: node --check src/public-conversion-funnel.js
       - run: node --check src/commercial-coverage.js
       - run: node --check src/market-health.js
@@ -37,6 +38,7 @@ jobs:
       - run: node --check scripts/check-expansion-release.mjs
       - run: node --check scripts/sync-public-hreflang.mjs
       - run: node --check scripts/check-public-conversion.mjs
+      - run: node --check scripts/check-conversion-analytics.mjs
       - run: node --check scripts/check-postlaunch-public.mjs
       - run: node --check scripts/check-commercial-coverage.mjs
       - run: node --check scripts/check-commercial-scenarios.mjs
@@ -54,6 +56,7 @@ jobs:
       - run: npm run check:expansion:release
       - run: npm run check:public:hreflang
       - run: npm run check:public:conversion
+      - run: npm run check:conversion:analytics
       - run: node scripts/check-postlaunch-public.mjs
       - run: npm run check:commercial:coverage:safe
       - run: npm run check:commercial:scenarios:safe

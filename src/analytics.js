@@ -1,6 +1,7 @@
 import { buildAnalyticsContext } from "./analytics-context.js";
 import { classifyGuideCalculatorLink, classifyGuideClickZone, classifyGuideInternalLink } from "./analytics-links.js";
 import { resolveCommunityAttribution } from "./community-attribution.js";
+import { carryCommunityAttributionToUrl } from "./community-navigation.js";
 import { enhanceHomepageLanguageSwitch } from "./language-switch.js";
 
 const MEASUREMENT_ID = "G-TDNRBM2V2J";
@@ -69,6 +70,8 @@ function trackGuideJourneyClick(event) {
   const href = link.getAttribute("href");
   const calculatorDestination = classifyGuideCalculatorLink(href, { origin: window.location.origin });
   if (calculatorDestination) {
+    const carriedHref = carryCommunityAttributionToUrl(href, { search: window.location.search, pageUrl: window.location.href });
+    if (carriedHref && carriedHref !== href) link.setAttribute("href", carriedHref);
     track("guide_to_calculator_click", { ...calculatorDestination, source_zone: guideClickZone(link) });
     return;
   }
