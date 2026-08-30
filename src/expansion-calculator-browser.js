@@ -217,11 +217,11 @@ function readAppliance(input) {
     id,
     selected: input.checked,
     name: custom ? card?.querySelector("[data-custom-name]")?.value.trim() : input.dataset.name,
-    watts: Number(custom ? card?.querySelector("[data-watts]")?.value : input.dataset.watts),
-    hours: Number(card?.querySelector("[data-hours]")?.value ?? input.dataset.hours),
-    quantity: Number(card?.querySelector("[data-quantity]")?.value ?? 1),
-    ac: custom ? card?.querySelector("[data-ac]")?.value === "true" : input.dataset.ac === "true",
-    surge: Number(custom ? card?.querySelector("[data-surge]")?.value : (input.dataset.surge || 1)),
+    watts: Number(custom ? card?.querySelector("[data-watts]:not([data-appliance])")?.value : input.dataset.watts),
+    hours: Number(card?.querySelector("[data-hours]:not([data-appliance])")?.value ?? input.dataset.hours),
+    quantity: Number(card?.querySelector("[data-quantity]:not([data-appliance])")?.value ?? 1),
+    ac: custom ? card?.querySelector("[data-ac]:not([data-appliance])")?.value === "true" : input.dataset.ac === "true",
+    surge: Number(custom ? card?.querySelector("[data-surge]:not([data-appliance])")?.value : (input.dataset.surge || 1)),
   };
 }
 
@@ -256,13 +256,13 @@ function applyInitialSetup(setup) {
     const state = setup.applianceState?.[input.dataset.applianceId];
     if (!state) continue;
     const card = input.closest("[data-appliance-card]");
-    if (card?.querySelector("[data-hours]")) card.querySelector("[data-hours]").value = state.hours;
-    if (card?.querySelector("[data-quantity]")) card.querySelector("[data-quantity]").value = state.quantity;
+    if (card?.querySelector("[data-hours]:not([data-appliance])")) card.querySelector("[data-hours]:not([data-appliance])").value = state.hours;
+    if (card?.querySelector("[data-quantity]:not([data-appliance])")) card.querySelector("[data-quantity]:not([data-appliance])").value = state.quantity;
     if (input.dataset.applianceId === "custom") {
       card.querySelector("[data-custom-name]").value = state.name;
-      card.querySelector("[data-watts]").value = state.watts;
-      card.querySelector("[data-ac]").value = String(state.ac);
-      card.querySelector("[data-surge]").value = state.surge;
+      card.querySelector("[data-watts]:not([data-appliance])").value = state.watts;
+      card.querySelector("[data-ac]:not([data-appliance])").value = String(state.ac);
+      card.querySelector("[data-surge]:not([data-appliance])").value = state.surge;
     }
   }
   setChecked("autonomyDays", setup.autonomyDays);
