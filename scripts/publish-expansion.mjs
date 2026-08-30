@@ -12,6 +12,7 @@ import { PT_REVIEW_EVIDENCE } from "../src/review-evidence-pt.js";
 import { SI_REVIEW_EVIDENCE } from "../src/review-evidence-si.js";
 import { RO_REVIEW_EVIDENCE } from "../src/review-evidence-ro.js";
 import { addExpansionHomeAlternate, addExpansionRoutesToSitemap, assessExpansionNativeApproval, expansionPublicationManifest, publicizeExpansionHtml, publishedExpansionMarketsFromSitemap, requireExpansionNativeApproval } from "../src/expansion-publication.js";
+import { syncPublicHomepageLanguageNav } from "../src/public-language-nav.js";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const market = argValue("--market");
@@ -48,6 +49,7 @@ if (!approval.ready && checkOnly) {
     let publicHtml = publicizeExpansionHtml(privateHtml, market, entry.route, { home: entry.source === "home" });
     if (entry.source === "home") {
       for (const existingMarket of existingExpansionMarkets) publicHtml = addExpansionHomeAlternate(publicHtml, existingMarket);
+      publicHtml = syncPublicHomepageLanguageNav(publicHtml, market);
     }
     plannedWrites.push({ path: resolve(root, entry.path), content: publicHtml });
   }
