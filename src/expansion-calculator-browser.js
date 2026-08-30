@@ -1,7 +1,4 @@
 import { calculateSetup } from "./engine.js";
-import { buildPortugalRecommendations, loadPortugalProductCatalog, portugalRecommendationCoverage } from "./pt-recommendations.js";
-import { buildSloveniaRecommendations, loadSloveniaProductCatalog } from "./si-recommendations.js";
-import { buildRomaniaRecommendations, loadRomaniaProductCatalog } from "./ro-recommendations.js";
 
 const root = document.querySelector("[data-expansion-calculator]");
 if (!root) throw new Error("EXPANSION_CALCULATOR_ROOT_MISSING");
@@ -18,6 +15,8 @@ const labels = {
   pt: { required: "Seleciona pelo menos um equipamento.", daily: "Consumo diário", battery: "Bateria", solar: "Painéis solares", inverter: "Inversor", mppt: "Controlador MPPT", voltage: "Sistema", again: "Alterar dados", products: "Produtos compatíveis verificados", productsIntro: "Mostramos apenas produtos cujo destino exato e requisitos técnicos conseguimos validar.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W cobre a potência solar calculada`, powerStationFit: "Os limites elétricos verificados cobrem o perfil calculado", powerStation: "Estação de energia portátil", viewProduct: "Ver produto", affiliate: "Ligação de afiliado; a recomendação técnica não depende da comissão." },
   si: { required: "Izberi vsaj en porabnik.", daily: "Dnevna poraba", battery: "Baterija", solar: "Solarni paneli", inverter: "Inverter", mppt: "Regulator MPPT", voltage: "Sistem", again: "Spremeni podatke", products: "Preverjeni združljivi izdelki", productsIntro: "Prikažemo samo izdelke, pri katerih smo preverili točen cilj povezave, ključne električne omejitve in dostavo v Slovenijo.", powerStationFit: "Preverjene električne omejitve pokrivajo izračunani profil", powerStation: "Prenosna elektrarna", viewProduct: "Poglej izdelek", affiliate: "Partnerska povezava; tehnično priporočilo ni odvisno od provizije." },
 }[locale];
+
+if (!labels) throw new Error(`EXPANSION_CALCULATOR_LOCALE_UNSUPPORTED:${locale || "missing"}`);
 
 let currentStep = 1;
 showStep(1);
@@ -45,6 +44,10 @@ form.addEventListener("submit", async (event) => {
   renderResult(calculation);
   track("calculation_completed", { daily_wh: calculation.dailyWh, battery_wh: calculation.batteryWh, solar_watts: calculation.solarWatts, system_voltage: calculation.systemVoltage, selected_appliances: selected.length });
   showStep(3);
+
+  // Recommendations are deliberately loaded only after the core calculation is
+  // complete. A broken catalog, affiliate parser or recommendation module must
+  // never prevent the calculator itself from starting or showing a result.
   if (locale === "pt") await renderPortugalProducts(calculation);
   if (locale === "si") await renderSloveniaProducts(calculation);
   if (locale === "ro") await renderRomaniaProducts(calculation);
@@ -63,17 +66,49 @@ function renderResult(value) {
 
 async function renderPortugalProducts(calculation) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
-  try { const catalog = await loadPortugalProductCatalog(); const recommendations = buildPortugalRecommendations(catalog, calculation, 3); const coverage = portugalRecommendationCoverage(recommendations); const products = [...recommendations.solar_panel, ...recommendations.power_station]; track("product_recommendations_rendered", { market: "pt", solar_panel_covered: coverage.solarPanel, power_station_covered: coverage.powerStation, product_count: products.length }); if (!products.length) return; target.innerHTML = `<section class="result-products" aria-labelledby="pt-products-title"><h4 id="pt-products-title">${labels.products}</h4><p>${labels.productsIntro}</p><div class="result-grid">${products.map(renderPortugalProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`; } catch { track("product_recommendations_rendered", { market: "pt", solar_panel_covered: false, power_station_covered: false, product_count: 0 }); target.replaceChildren(); }
+  try {
+    const { buildPortugalRecommendations, loadPortugalProductCatalog, portugalRecommendationCoverage } = await import("./pt-recommendations.js");
+    const catalog = await loadPortugalProductCatalog();
+    const recommendations = buildPortugalRecommendations(catalog, calculation, 3);
+    const coverage = portugalRecommendationCoverage(recommendations);
+    const products = [...recommendations.solar_panel, ...recommendations.power_station];
+    track("product_recommendations_rendered", { market: "pt", solar_panel_covered: coverage.solarPanel, power_station_covered: coverage.powerStation, product_count: products.length });
+    if (!products.length) return;
+    target.innerHTML = `<section class="result-products" aria-labelledby="pt-products-title"><h4 id="pt-products-title">${labels.products}</h4><p>${labels.productsIntro}</p><div class="result-grid">${products.map(renderPortugalProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`;
+  } catch {
+    track("product_recommendations_rendered", { market: "pt", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
+    target.replaceChildren();
+  }
 }
 
 async function renderSloveniaProducts(calculation) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
-  try { const catalog = await loadSloveniaProductCatalog(); const products = buildSloveniaRecommendations(catalog, calculation, 3).power_station; track("product_recommendations_rendered", { market: "si", power_station_covered: products.length > 0, product_count: products.length }); if (!products.length) return; target.innerHTML = renderPowerStationSection("si-products-title", products); } catch { track("product_recommendations_rendered", { market: "si", power_station_covered: false, product_count: 0 }); target.replaceChildren(); }
+  try {
+    const { buildSloveniaRecommendations, loadSloveniaProductCatalog } = await import("./si-recommendations.js");
+    const catalog = await loadSloveniaProductCatalog();
+    const products = buildSloveniaRecommendations(catalog, calculation, 3).power_station;
+    track("product_recommendations_rendered", { market: "si", power_station_covered: products.length > 0, product_count: products.length });
+    if (!products.length) return;
+    target.innerHTML = renderPowerStationSection("si-products-title", products);
+  } catch {
+    track("product_recommendations_rendered", { market: "si", power_station_covered: false, product_count: 0 });
+    target.replaceChildren();
+  }
 }
 
 async function renderRomaniaProducts(calculation) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
-  try { const catalog = await loadRomaniaProductCatalog(); const products = buildRomaniaRecommendations(catalog, calculation, 3).power_station; track("product_recommendations_rendered", { market: "ro", power_station_covered: products.length > 0, product_count: products.length }); if (!products.length) return; target.innerHTML = renderPowerStationSection("ro-products-title", products); } catch { track("product_recommendations_rendered", { market: "ro", power_station_covered: false, product_count: 0 }); target.replaceChildren(); }
+  try {
+    const { buildRomaniaRecommendations, loadRomaniaProductCatalog } = await import("./ro-recommendations.js");
+    const catalog = await loadRomaniaProductCatalog();
+    const products = buildRomaniaRecommendations(catalog, calculation, 3).power_station;
+    track("product_recommendations_rendered", { market: "ro", power_station_covered: products.length > 0, product_count: products.length });
+    if (!products.length) return;
+    target.innerHTML = renderPowerStationSection("ro-products-title", products);
+  } catch {
+    track("product_recommendations_rendered", { market: "ro", power_station_covered: false, product_count: 0 });
+    target.replaceChildren();
+  }
 }
 
 function renderPowerStationSection(id, products) { return `<section class="result-products" aria-labelledby="${id}"><h4 id="${id}">${labels.products}</h4><p>${labels.productsIntro}</p><div class="result-grid">${products.map(renderPowerStationProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`; }
