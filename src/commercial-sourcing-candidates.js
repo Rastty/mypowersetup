@@ -24,6 +24,54 @@ const CANDIDATES = Object.freeze([
     status: "blocked_stock",
     blocker: "exact_product_out_of_stock",
   }),
+  Object.freeze({
+    id: "ecoworthy-60a-mppt",
+    category: "controller",
+    merchant: "eco_worthy",
+    affiliateNetwork: "awin",
+    merchantId: "73461",
+    productName: "ECO-WORTHY 60A 12/24/36/48V MPPT OLED Solar Charge Controller",
+    markets: Object.freeze(["sk-SK", "pl-PL", "hu-HU"]),
+    specs: Object.freeze({ mppt: true, systemVoltagesV: Object.freeze([12, 24, 36, 48]), currentA: 60, maxPvWattsAt12V: 780 }),
+    status: "blocked_market_stock",
+    blocker: "verified_exact_page_is_us_and_sold_out",
+  }),
+  Object.freeze({
+    id: "mivvyenergy-12v-300w-pure-sine",
+    category: "inverter",
+    merchant: "mivvyenergy",
+    affiliateNetwork: null,
+    merchantId: null,
+    productName: "mivvyENERGY 300W 12V/230V pure sine wave inverter",
+    markets: Object.freeze(["sk-SK", "pl-PL", "hu-HU"]),
+    specs: Object.freeze({ systemVoltagesV: Object.freeze([12]), powerW: 300, pureSine: true }),
+    status: "blocked_affiliate_verification",
+    blocker: "affiliate_program_or_trackable_deeplink_not_verified",
+  }),
+  Object.freeze({
+    id: "haba-12v-300w-pure-sine",
+    category: "inverter",
+    merchant: "haba",
+    affiliateNetwork: null,
+    merchantId: null,
+    productName: "HABA Pure Sine Wave inverter 300W",
+    markets: Object.freeze(["sk-SK", "pl-PL", "hu-HU"]),
+    specs: Object.freeze({ systemVoltagesV: Object.freeze([12]), powerW: 300, pureSine: true }),
+    status: "blocked_affiliate_verification",
+    blocker: "affiliate_and_market_eligibility_not_verified",
+  }),
+  Object.freeze({
+    id: "eza-12v-300w-pure-sine",
+    category: "inverter",
+    merchant: "eza",
+    affiliateNetwork: null,
+    merchantId: null,
+    productName: "EZA Pure Sine Inverter 12V 300W",
+    markets: Object.freeze(["sk-SK", "pl-PL", "hu-HU"]),
+    specs: Object.freeze({ systemVoltagesV: Object.freeze([12]), powerW: 300, pureSine: true }),
+    status: "blocked_affiliate_verification",
+    blocker: "affiliate_and_market_eligibility_not_verified",
+  }),
 ]);
 
 export function listCommercialSourcingCandidates({ market, category } = {}) {
@@ -35,7 +83,13 @@ export function listCommercialSourcingCandidates({ market, category } = {}) {
 }
 
 export function bestCommercialSourcingCandidate({ market, category } = {}) {
-  const rank = { pending_affiliate_approval: 0, ready_for_ingest: 1, blocked_stock: 2 };
+  const rank = {
+    ready_for_ingest: 0,
+    pending_affiliate_approval: 1,
+    blocked_affiliate_verification: 2,
+    blocked_stock: 3,
+    blocked_market_stock: 4,
+  };
   return listCommercialSourcingCandidates({ market, category })
     .slice()
     .sort((a, b) => (rank[a.status] ?? 99) - (rank[b.status] ?? 99))[0] || null;
