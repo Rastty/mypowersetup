@@ -15,7 +15,7 @@
       "status": "verified-public",
       "awinMerchantId": 38934,
       "affiliateId": 3044971,
-      "exactProducts": 3
+      "exactProducts": 4
     }
   },
   "products": [
@@ -60,6 +60,20 @@
       "verifiedAt": "2026-08-30",
       "marketEligible": true,
       "specs": { "capacityWh": 1152, "powerW": 1800, "pureSine": true, "solarInputW": 650, "dcOutputA": 10, "batteryType": "lifepo4" }
+    },
+    {
+      "id": "allpowers_eu:r2500-plus",
+      "merchant": "allpowers_eu",
+      "name": "ALLPOWERS R2500 PLUS Portable Power Station 2500W 2016Wh",
+      "category": "power_station",
+      "available": true,
+      "priceCzk": 999,
+      "priceCurrency": "EUR",
+      "productUrl": "https://iallpowers.eu/products/r2500-plus",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fr2500-plus",
+      "verifiedAt": "2026-08-30",
+      "marketEligible": true,
+      "specs": { "capacityWh": 2016, "powerW": 2500, "pureSine": true, "solarInputW": 1000, "dcOutputA": 10, "batteryType": "lifepo4" }
     }
   ]
 }
