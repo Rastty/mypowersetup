@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-08-30",
+  "policy": "Pending candidates are technical planning evidence only. They must not enter public catalogs, recommendation coverage, product cards or affiliate tracking until merchant approval, exact retail destination and shipping eligibility are verified.",
+  "candidates": [
+    {
+      "id": "butler-victron-phoenix-12-250",
+      "merchant": "butler_technik",
+      "status": "approval_pending",
+      "category": "inverter",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "technicalEvidenceUrl": "https://www.butlertechnik.com/downloads/cms/7819/victron-energy-phoenix-inverter-technical-information-manual.pdf",
+      "marketEligibility": {
+        "sk-SK": "unverified",
+        "pl-PL": "unverified",
+        "hu-HU": "unverified"
+      },
+      "specs": {
+        "systemVoltage": 12,
+        "continuousPowerW": 200,
+        "peakPowerW": 400,
+        "waveform": "pure_sine"
+      },
+      "targetScenarioIds": ["family-touring"]
+    },
+    {
+      "id": "butler-victron-phoenix-24-250",
+      "merchant": "butler_technik",
+      "status": "approval_pending",
+      "category": "inverter",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "technicalEvidenceUrl": "https://www.butlertechnik.com/downloads/cms/7819/victron-energy-phoenix-inverter-technical-information-manual.pdf",
+      "marketEligibility": {
+        "sk-SK": "unverified",
+        "pl-PL": "unverified",
+        "hu-HU": "unverified"
+      },
+      "specs": {
+        "systemVoltage": 24,
+        "continuousPowerW": 200,
+        "peakPowerW": 400,
+        "waveform": "pure_sine"
+      },
+      "targetScenarioIds": ["remote-work"]
+    },
+    {
+      "id": "butler-victron-smartsolar-150-60",
+      "merchant": "butler_technik",
+      "status": "approval_pending",
+      "category": "controller",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "technicalEvidenceUrl": "https://www.victronenergy.com/solar-charge-controllers/smartsolar-mppt-150-60-up-to-250-70",
+      "merchantEvidenceUrl": "https://www.butlertechnik.com/victron-energy/solar-charge-controllers",
+      "marketEligibility": {
+        "sk-SK": "unverified",
+        "pl-PL": "unverified",
+        "hu-HU": "unverified"
+      },
+      "specs": {
+        "technology": "mppt",
+        "currentA": 60,
+        "systemVoltages": [12, 24, 36, 48],
+        "nominalPvPowerW12V": 860,
+        "maxPvVocV": 150
+      },
+      "targetScenarioIds": ["family-touring", "winter-basic"]
+    }
+  ]
+}
