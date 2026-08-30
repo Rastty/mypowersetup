@@ -1,5 +1,6 @@
 import { buildAnalyticsContext } from "./analytics-context.js";
 import { classifyGuideCalculatorLink, classifyGuideClickZone, classifyGuideInternalLink } from "./analytics-links.js";
+import { enhanceHomepageLanguageSwitch } from "./language-switch.js";
 
 const MEASUREMENT_ID = "G-TDNRBM2V2J";
 const CONSENT_KEY = "mypowersetup_analytics_consent";
@@ -83,6 +84,7 @@ function trackHungarianCalculatorInput(event) {
 }
 function init() {
   const stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = "/analytics.css?v=20260824-1"; document.head.append(stylesheet);
+  enhanceHomepageLanguageSwitch();
   document.addEventListener("click", (event) => { const trigger = event.target.closest?.("[data-analytics-settings]"); if (trigger) { event.preventDefault(); openSettings(); return; } trackGuideJourneyClick(event); trackSharedCalculatorClick(event); });
   document.addEventListener("input", trackHungarianCalculatorInput);
   if (choice === "granted") loadGoogleTag(); else if (choice === null) renderDialog();
