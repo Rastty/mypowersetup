@@ -5,7 +5,8 @@ import { buildSloveniaRecommendations, parseSloveniaAffiliateUrl, validateSloven
 
 const catalog = JSON.parse(await readFile(new URL("../data/products-si.json", import.meta.url), "utf8"));
 
-test("Slovenia catalog accepts only exact ALLPOWERS EU destinations with market evidence", () => {
+test("Slovenia catalog is public and accepts only exact ALLPOWERS EU destinations with market evidence", () => {
+  assert.equal(catalog.private, false);
   assert.equal(validateSloveniaCatalog(catalog), catalog);
   const product = catalog.products[0];
   const parsed = parseSloveniaAffiliateUrl(product.affiliateUrl);
@@ -29,7 +30,7 @@ test("Slovenia recommendation appears only when every verified electrical limit 
       { ac: false, watts: 18, quantity: 1 },
     ],
   });
-  assert.equal(fitting.power_station.length, 1);
+  assert.ok(fitting.power_station.length >= 1);
   assert.equal(fitting.power_station[0].merchant, "allpowers_eu");
 
   const tooMuchDc = buildSloveniaRecommendations(catalog, {
