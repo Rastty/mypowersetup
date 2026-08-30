@@ -39,6 +39,36 @@ const VERDICT_TEXT = {
     controller: (result) => `${result.controllerAmps} A-es MPPT szabályozót`,
     conjunction: "és",
   },
+  ro: {
+    lead: (voltage) => `Pentru acest mod de călătorie recomandăm un sistem de ${voltage} V:`,
+    battery: (result) => `o baterie de ${result.batteryAh} Ah ${result.batteryLabel}`,
+    solar: (result) => `panouri solare de ${result.solarWatts} Wp`,
+    inverter: (result) => result.inverterWatts
+      ? `un invertor cu undă sinusoidală pură de ${result.inverterWatts} W`
+      : "fără invertor separat de 230 V",
+    controller: (result) => `un regulator MPPT de ${result.controllerAmps} A`,
+    conjunction: "și",
+  },
+  pt: {
+    lead: (voltage) => `Para este perfil de viagem recomendamos um sistema de ${voltage} V:`,
+    battery: (result) => `uma bateria de ${result.batteryAh} Ah ${result.batteryLabel}`,
+    solar: (result) => `painéis solares de ${result.solarWatts} Wp`,
+    inverter: (result) => result.inverterWatts
+      ? `um inversor de onda sinusoidal pura de ${result.inverterWatts} W`
+      : "sem inversor dedicado de 230 V",
+    controller: (result) => `um controlador MPPT de ${result.controllerAmps} A`,
+    conjunction: "e",
+  },
+  si: {
+    lead: (voltage) => `Za ta način potovanja priporočamo ${voltage} V sistem:`,
+    battery: (result) => `baterijo ${result.batteryAh} Ah ${result.batteryLabel}`,
+    solar: (result) => `sončne panele ${result.solarWatts} Wp`,
+    inverter: (result) => result.inverterWatts
+      ? `inverter s čistim sinusnim izhodom ${result.inverterWatts} W`
+      : "brez ločenega 230 V inverterja",
+    controller: (result) => `MPPT regulator ${result.controllerAmps} A`,
+    conjunction: "in",
+  },
 };
 
 export function buildPlainLanguageVerdict(result, locale = result?.locale || "cs") {
