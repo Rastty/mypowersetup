@@ -29,7 +29,16 @@ root.addEventListener("click", (event) => {
   if (next) { track("calculator_started", { source: "next_button" }); showStep(Math.min(3, currentStep + 1)); }
   if (back) showStep(Math.max(1, currentStep - 1));
   if (edit) showStep(2);
-  if (affiliate) track("affiliate_product_click", { market: locale, category: affiliate.dataset.category || "unknown", merchant: affiliate.dataset.merchant || "unknown" });
+  if (affiliate) {
+    const detail = {
+      event: "affiliate_click",
+      merchant: affiliate.dataset.merchant || "unknown",
+      category: affiliate.dataset.category || "unknown",
+      source: "product-card",
+    };
+    track(detail.event, detail);
+    document.dispatchEvent(new CustomEvent("mypowersetup:affiliate-click", { detail }));
+  }
 });
 
 form.addEventListener("input", () => track("calculator_started", { source: "form_input" }));
@@ -42,7 +51,15 @@ form.addEventListener("submit", async (event) => {
   const appliances = selected.map((input) => ({ selected: true, name: input.dataset.name, watts: Number(input.dataset.watts), hours: Number(input.dataset.hours), quantity: 1, ac: input.dataset.ac === "true", surge: Number(input.dataset.surge || 1) }));
   const calculation = calculateSetup({ locale, appliances, autonomyDays: Number(data.get("autonomyDays")), season: data.get("season"), batteryType: data.get("batteryType"), systemVoltage: data.get("systemVoltage") });
   renderResult(calculation);
-  track("calculation_completed", { daily_wh: calculation.dailyWh, battery_wh: calculation.batteryWh, solar_watts: calculation.solarWatts, system_voltage: calculation.systemVoltage, selected_appliances: selected.length });
+  track("calculation_completed", {
+    dailyWh: calculation.dailyWh,
+    batteryAh: calculation.batteryAh,
+    solarWatts: calculation.solarWatts,
+    systemVoltage: calculation.systemVoltage,
+    applianceCount: selected.length,
+    batteryType: calculation.batteryType,
+    season: data.get("season"),
+  });
   showStep(3);
 
   // Recommendations are deliberately loaded only after the core calculation is
