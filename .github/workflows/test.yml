@@ -34,6 +34,7 @@ jobs:
       - run: node --check scripts/sync-public-hreflang.mjs
       - run: node --check scripts/check-public-conversion.mjs
       - run: node --check scripts/check-commercial-coverage.mjs
+      - run: node --check scripts/check-commercial-scenarios.mjs
       - run: node --check scripts/smoke-public-mobile.mjs
       - run: node --check scripts/smoke-hu-mobile.mjs
       - run: node --check scripts/smoke-pt-mobile.mjs
@@ -45,6 +46,7 @@ jobs:
       - run: npm run check:public:hreflang
       - run: npm run check:public:conversion
       - run: npm run check:commercial:coverage:safe
+      - run: npm run check:commercial:scenarios:safe
       - run: npm run indexnow:check
       - run: google-chrome --version
       - run: npm run smoke:public:mobile
