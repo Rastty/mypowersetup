@@ -27,7 +27,7 @@ export function parseShopifyProducts(payload, merchantKey, {
     const productUrl = new URL(`${productPathPrefix}${product.handle}`, storeOrigin).toString();
     const verified = verifiedByUrl.get(productUrl);
     try {
-      const normalized = normalizeProduct({
+      const normalized = sanitizeBatteryEnergy(normalizeProduct({
         id: product.id,
         name: verified?.name || product.title,
         description: verified?.description || product.body_html,
@@ -37,7 +37,7 @@ export function parseShopifyProducts(payload, merchantKey, {
         available: variants.some((item) => item?.available),
         imageUrl: product.images?.[0]?.src || product.image?.src,
         url: productUrl
-      }, merchantKey);
+      }, merchantKey));
       if (!verified) return [normalized];
       const specs = { ...normalized.specs, ...verified.specs };
       const categoryPath = verified.categoryPath || normalized.categoryPath;
@@ -53,4 +53,22 @@ export function parseShopifyProducts(payload, merchantKey, {
       return [];
     }
   });
+}
+
+function sanitizeBatteryEnergy(product) {
+  if (product.category !== "battery") return product;
+  const { voltageV, capacityAh, capacityWh } = product.specs || {};
+  if (!(voltageV > 0 && capacityAh > 0 && capacityWh > 0)) return product;
+
+  const nominalWh = voltageV * capacityAh;
+  const ratio = capacityWh / nominalWh;
+  if (ratio >= 0.5 && ratio <= 2) return product;
+
+  return {
+    ...product,
+    specs: {
+      ...product.specs,
+      capacityWh: null
+    }
+  };
 }
