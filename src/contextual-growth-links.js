@@ -53,11 +53,39 @@ const MARKET_LINKS = Object.freeze({
       ["Vezi sistemul electric complet", "/ro/ghiduri/sistem-electric-complet-autorulota/"],
     ]),
   }),
+  si: Object.freeze({
+    "/si/vodici/kapaciteta-baterije-avtodom/": Object.freeze([
+      ["LiFePO₄ ali AGM za avtodom?", "/si/vodici/lifepo4-ali-agm-avtodom/"],
+      ["Izračunaj potrebno solarno moč", "/si/vodici/koliko-soncnih-panelov-avtodom/"],
+      ["Poglej celoten električni sistem", "/si/vodici/elektricni-sistem-avtodom/"],
+    ]),
+    "/si/vodici/lifepo4-ali-agm-avtodom/": Object.freeze([
+      ["Izračunaj kapaciteto baterije", "/si/vodici/kapaciteta-baterije-avtodom/"],
+      ["Izberi DC-DC polnilnik", "/si/vodici/dc-dc-polnilnik-avtodom/"],
+      ["Poglej celoten električni sistem", "/si/vodici/elektricni-sistem-avtodom/"],
+    ]),
+    "/si/vodici/koliko-soncnih-panelov-avtodom/": Object.freeze([
+      ["Izberi MPPT regulator", "/si/vodici/mppt-regulator-avtodom/"],
+      ["Izračunaj kapaciteto baterije", "/si/vodici/kapaciteta-baterije-avtodom/"],
+      ["Poglej celoten električni sistem", "/si/vodici/elektricni-sistem-avtodom/"],
+    ]),
+    "/si/vodici/mppt-regulator-avtodom/": Object.freeze([
+      ["Izračunaj potrebno solarno moč", "/si/vodici/koliko-soncnih-panelov-avtodom/"],
+      ["Izračunaj kapaciteto baterije", "/si/vodici/kapaciteta-baterije-avtodom/"],
+      ["Preveri kable in varovalke", "/si/vodici/kabli-varovalke-12v-avtodom/"],
+    ]),
+    "/si/vodici/inverter-avtodom-moc/": Object.freeze([
+      ["Izračunaj kapaciteto baterije", "/si/vodici/kapaciteta-baterije-avtodom/"],
+      ["Preveri kable in varovalke", "/si/vodici/kabli-varovalke-12v-avtodom/"],
+      ["Poglej celoten električni sistem", "/si/vodici/elektricni-sistem-avtodom/"],
+    ]),
+  }),
 });
 
 const MARKET_HEADINGS = Object.freeze({
   pt: "Continua a dimensionar o sistema",
   ro: "Continuă dimensionarea sistemului",
+  si: "Nadaljuj z dimenzioniranjem sistema",
 });
 
 function escapeHtml(value) {
