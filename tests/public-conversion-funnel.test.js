@@ -3,8 +3,11 @@ import assert from "node:assert/strict";
 import { PUBLIC_HREFLANG_GROUPS } from "../src/public-hreflang-map.js";
 import { PUBLIC_MARKET_CALCULATORS, COMMERCIAL_GUIDE_TOPICS, classifyPublicGuideLink, auditPublicGuideHtml } from "../src/public-conversion-funnel.js";
 
-test("public funnel covers four public calculators and all commercial guide topics", () => {
-  assert.deepEqual(Object.keys(PUBLIC_MARKET_CALCULATORS).sort(), ["cs", "hu", "pl", "sk"]);
+test("public funnel covers all seven public calculators and all mature hreflang guide topics", () => {
+  assert.deepEqual(Object.keys(PUBLIC_MARKET_CALCULATORS).sort(), ["cs", "hu", "pl", "pt", "ro", "si", "sk"]);
+  assert.equal(PUBLIC_MARKET_CALCULATORS.pt, "/pt/#calculator-preview");
+  assert.equal(PUBLIC_MARKET_CALCULATORS.si, "/si/#calculator-preview");
+  assert.equal(PUBLIC_MARKET_CALCULATORS.ro, "/ro/#calculator-preview");
   assert.equal(COMMERCIAL_GUIDE_TOPICS.length, 12);
   for (const topic of COMMERCIAL_GUIDE_TOPICS) assert.deepEqual(Object.keys(PUBLIC_HREFLANG_GROUPS[topic]).sort(), ["cs", "hu", "pl", "sk"]);
 });
@@ -12,6 +15,9 @@ test("public funnel covers four public calculators and all commercial guide topi
 test("guide link classifier resolves localized topic and rejects external links", () => {
   assert.deepEqual(classifyPublicGuideLink("/pl/poradnik/jak-dobrac-regulator-mppt/"), {
     topic: "mppt", market: "pl", route: "/pl/poradnik/jak-dobrac-regulator-mppt/",
+  });
+  assert.deepEqual(classifyPublicGuideLink("/pt/guias/como-escolher-controlador-mppt/"), {
+    topic: "mppt", market: "pt", route: "/pt/guias/como-escolher-controlador-mppt/",
   });
   assert.equal(classifyPublicGuideLink("https://example.com/guide"), null);
 });
