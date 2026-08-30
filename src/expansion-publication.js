@@ -9,6 +9,27 @@ const CONFIG = Object.freeze({
   ro: Object.freeze({ locale: "ro-RO", prefix: "/ro/", content: RO_PRIVATE_CONTENT, homeAlternates: ["ro-RO"] }),
 });
 
+const PUBLICATION_COPY_REPLACEMENTS = Object.freeze({
+  pt: Object.freeze([
+    ["Falhar fechado", "Sem validação, sem recomendação"],
+  ]),
+  si: Object.freeze([
+    ["Affiliate politika", "Politika partnerskih povezav"],
+    ["Affiliate in neodvisnost", "Partnerske povezave in neodvisnost"],
+    ["affiliate monetizacije", "partnerskih provizij"],
+    ["affiliate povezave", "partnerske povezave"],
+    ["affiliate povezavo", "partnersko povezavo"],
+    ["affiliate omrežja", "partnerske mreže"],
+    ["Fail closed", "Brez preverjanja ni priporočila"],
+  ]),
+  ro: Object.freeze([
+    ["Calculul primul", "Calculul înaintea produsului"],
+    ["Fail closed", "Fără validare, fără recomandare"],
+    ["Ce capacitate de baterie are nevoie o autorulotă?", "Ce capacitate trebuie să aibă bateria unei autorulote?"],
+    ["Dimensionează solarul", "Dimensionează sistemul solar"],
+  ]),
+});
+
 export function expansionPublicationManifest(market) {
   const config = CONFIG[market];
   if (!config) throw new Error(`EXPANSION_PUBLICATION_UNKNOWN:${market}`);
@@ -23,11 +44,17 @@ export function expansionPublicationManifest(market) {
   ]);
 }
 
+export function polishExpansionPublicationCopy(html, market) {
+  const replacements = PUBLICATION_COPY_REPLACEMENTS[market];
+  if (!replacements || typeof html !== "string") return html;
+  return replacements.reduce((output, [from, to]) => output.split(from).join(to), html);
+}
+
 export function publicizeExpansionHtml(html, market, route, { home = false } = {}) {
   const config = CONFIG[market];
   if (!config || !route?.startsWith(config.prefix)) throw new Error(`EXPANSION_PUBLICATION_ROUTE_INVALID:${market}`);
   if (typeof html !== "string" || !html.includes("<head")) throw new Error("EXPANSION_PUBLICATION_HTML_INVALID");
-  let output = html.replace(/\s*<meta name="robots" content="noindex,nofollow,noarchive">\s*/g, "\n");
+  let output = polishExpansionPublicationCopy(html, market).replace(/\s*<meta name="robots" content="noindex,nofollow,noarchive">\s*/g, "\n");
   const canonical = `https://mypowersetup.com${route}`;
   const additions = [];
   if (!/rel="canonical"/.test(output)) additions.push(`<link rel="canonical" href="${canonical}">`);
