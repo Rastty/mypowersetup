@@ -55,21 +55,29 @@ export function addExpansionRoutesToSitemap(xml, market) {
   if (typeof xml !== "string" || !xml.includes("</urlset>")) throw new Error("EXPANSION_SITEMAP_INVALID");
   const additions = expansionPublicationManifest(market)
     .filter(({ route }) => !xml.includes(`<loc>https://mypowersetup.com${route}</loc>`))
-    .map(({ route, changefreq, priority }) => `  <url><loc>https://mypowersetup.com${route}</loc><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`);
+    .map(({ route, changefreq, priority }) => `  <url><loc>https://mypowersetup.com${route}</loc><changefreq>${changefreq}</changefreq><priority>${priority}</url>`);
   return additions.length ? xml.replace("</urlset>", `${additions.join("\n")}\n</urlset>`) : xml;
 }
 
-export function requireExpansionNativeApproval(market, evidence) {
+export function assessExpansionNativeApproval(market, evidence) {
   if (!CONFIG[market]) throw new Error(`EXPANSION_PUBLICATION_UNKNOWN:${market}`);
   const checklist = createNativeReviewChecklist(market, evidence);
-  if (evidence?.nativeLanguageReview !== true || evidence?.publicPublicationApproved !== true || !checklist.approved) {
-    const blockers = [
-      evidence?.nativeLanguageReview !== true && "nativeLanguageReview",
-      evidence?.publicPublicationApproved !== true && "publicPublicationApproved",
-      ...checklist.blockers,
-    ].filter(Boolean);
-    throw new Error(`EXPANSION_NATIVE_REVIEW_REQUIRED:${market}:${[...new Set(blockers)].join(",")}`);
-  }
+  const blockers = [
+    evidence?.nativeLanguageReview !== true && "nativeLanguageReview",
+    evidence?.publicPublicationApproved !== true && "publicPublicationApproved",
+    ...checklist.blockers,
+  ].filter(Boolean);
+  return Object.freeze({
+    market,
+    ready: blockers.length === 0,
+    blockers: Object.freeze([...new Set(blockers)]),
+    checklist,
+  });
+}
+
+export function requireExpansionNativeApproval(market, evidence) {
+  const assessment = assessExpansionNativeApproval(market, evidence);
+  if (!assessment.ready) throw new Error(`EXPANSION_NATIVE_REVIEW_REQUIRED:${market}:${assessment.blockers.join(",")}`);
   return true;
 }
 

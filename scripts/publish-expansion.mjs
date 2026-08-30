@@ -11,38 +11,55 @@ import { RO_MARKET_SEED } from "../src/market-seed-ro.js";
 import { PT_REVIEW_EVIDENCE } from "../src/review-evidence-pt.js";
 import { SI_REVIEW_EVIDENCE } from "../src/review-evidence-si.js";
 import { RO_REVIEW_EVIDENCE } from "../src/review-evidence-ro.js";
-import { addExpansionHomeAlternate, addExpansionRoutesToSitemap, expansionPublicationManifest, publicizeExpansionHtml, requireExpansionNativeApproval } from "../src/expansion-publication.js";
+import { addExpansionHomeAlternate, addExpansionRoutesToSitemap, assessExpansionNativeApproval, expansionPublicationManifest, publicizeExpansionHtml, requireExpansionNativeApproval } from "../src/expansion-publication.js";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const market = argValue("--market");
 const checkOnly = process.argv.includes("--check");
 const dryRun = process.argv.includes("--dry-run") || checkOnly;
 const config = marketConfig(market);
+const approval = assessExpansionNativeApproval(market, config.review);
 
-requireExpansionNativeApproval(market, config.review);
-const manifest = expansionPublicationManifest(market);
-const plannedWrites = [];
-for (const entry of manifest) {
-  const privateHtml = entry.source === "home" ? renderPrivateMarketSeedPage(config.seed) : config.render(entry.route);
-  if (!privateHtml) throw new Error(`EXPANSION_PUBLICATION_RENDER_MISSING:${market}:${entry.route}`);
-  plannedWrites.push({ path: resolve(root, entry.path), content: publicizeExpansionHtml(privateHtml, market, entry.route, { home: entry.source === "home" }) });
-}
-
-for (const relativePath of ["index.html", "sk/index.html", "pl/index.html", "hu/index.html"]) {
-  const path = resolve(root, relativePath);
-  plannedWrites.push({ path, content: addExpansionHomeAlternate(await readFile(path, "utf8"), market) });
-}
-const sitemapPath = resolve(root, "sitemap.xml");
-plannedWrites.push({ path: sitemapPath, content: addExpansionRoutesToSitemap(await readFile(sitemapPath, "utf8"), market) });
-
-const report = { market, ready: true, dryRun, files: plannedWrites.map(({ path }) => path.slice(root.length + 1)), routes: manifest.map(({ route }) => route) };
-if (dryRun) console.log(JSON.stringify(report, null, 2));
-else {
-  for (const item of plannedWrites) {
-    await mkdir(dirname(item.path), { recursive: true });
-    await writeFile(item.path, item.content, "utf8");
+if (!approval.ready && checkOnly) {
+  console.log(JSON.stringify({
+    market,
+    ready: false,
+    dryRun: true,
+    blockers: approval.blockers,
+    review: {
+      nativeLanguageReview: config.review.nativeLanguageReview === true,
+      publicPublicationApproved: config.review.publicPublicationApproved === true,
+      checklistApproved: approval.checklist.approved,
+    },
+    routes: expansionPublicationManifest(market).map(({ route }) => route),
+  }, null, 2));
+  process.exitCode = 1;
+} else {
+  requireExpansionNativeApproval(market, config.review);
+  const manifest = expansionPublicationManifest(market);
+  const plannedWrites = [];
+  for (const entry of manifest) {
+    const privateHtml = entry.source === "home" ? renderPrivateMarketSeedPage(config.seed) : config.render(entry.route);
+    if (!privateHtml) throw new Error(`EXPANSION_PUBLICATION_RENDER_MISSING:${market}:${entry.route}`);
+    plannedWrites.push({ path: resolve(root, entry.path), content: publicizeExpansionHtml(privateHtml, market, entry.route, { home: entry.source === "home" }) });
   }
-  console.log(JSON.stringify({ ...report, written: plannedWrites.length }, null, 2));
+
+  for (const relativePath of ["index.html", "sk/index.html", "pl/index.html", "hu/index.html"]) {
+    const path = resolve(root, relativePath);
+    plannedWrites.push({ path, content: addExpansionHomeAlternate(await readFile(path, "utf8"), market) });
+  }
+  const sitemapPath = resolve(root, "sitemap.xml");
+  plannedWrites.push({ path: sitemapPath, content: addExpansionRoutesToSitemap(await readFile(sitemapPath, "utf8"), market) });
+
+  const report = { market, ready: true, dryRun, blockers: [], files: plannedWrites.map(({ path }) => path.slice(root.length + 1)), routes: manifest.map(({ route }) => route) };
+  if (dryRun) console.log(JSON.stringify(report, null, 2));
+  else {
+    for (const item of plannedWrites) {
+      await mkdir(dirname(item.path), { recursive: true });
+      await writeFile(item.path, item.content, "utf8");
+    }
+    console.log(JSON.stringify({ ...report, written: plannedWrites.length }, null, 2));
+  }
 }
 
 function argValue(flag) {
