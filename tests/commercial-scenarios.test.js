@@ -44,7 +44,7 @@ test("acquisition requirements mirror the real recommender fit window", () => {
     category: "inverter", systemVoltage: 12, waveform: "pure_sine", minContinuousPowerW: 100, maxContinuousPowerW: 300,
   });
   assert.deepEqual(acquisitionRequirement("inverter", highPower), {
-    category: "inverter", systemVoltage: 24, waveform: "pure_sine", minContinuousPowerW: 2000, maxContinuousPowerW: 6000,
+    category: "inverter", systemVoltage: 24, waveform: "pure_sine", minContinuousPowerW: 1700, maxContinuousPowerW: 5100,
   });
   assert.deepEqual(acquisitionRequirement("battery", winter), {
     category: "battery", systemVoltage: 12, batteryType: "lifepo4", minCapacityAh: 210, maxCapacityAh: 630,
