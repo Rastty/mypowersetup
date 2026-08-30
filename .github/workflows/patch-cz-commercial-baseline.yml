@@ -1,0 +1,43 @@
+name: Lock CZ commercial baseline
+
+on:
+  push:
+    branches:
+      - quality/lock-cz-commercial-baseline
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: quality/lock-cz-commercial-baseline
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Raise CZ baseline only after verified live 100/100
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('src/commercial-scenarios.js')
+          s = p.read_text()
+          old = '  "cs-CZ": Object.freeze({ minPurchaseReadyRatio: 0.78, minWeightedCoverage: 0.94 }),'
+          new = '  "cs-CZ": Object.freeze({ minPurchaseReadyRatio: 1.0, minWeightedCoverage: 1.0 }),'
+          if old not in s:
+              raise SystemExit('CZ baseline target not found')
+          p.write_text(s.replace(old, new, 1))
+          PY
+          npm run check:commercial:scenarios:safe
+          node --test tests/commercial-scenarios.test.js
+      - name: Commit baseline and remove temporary workflow
+        run: |
+          rm .github/workflows/patch-cz-commercial-baseline.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add src/commercial-scenarios.js .github/workflows/patch-cz-commercial-baseline.yml
+          git commit -m "Lock Czech commercial scenario coverage at 100 percent"
+          git push origin HEAD:quality/lock-cz-commercial-baseline
