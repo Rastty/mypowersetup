@@ -24,7 +24,8 @@ test("Portugal product UI does not leak English power-station label", async () =
 
 test("automated language QA cannot stand in for native review", () => {
   assert.equal(PT_REVIEW_EVIDENCE.automatedLanguageQa, true);
-  assert.equal(PT_REVIEW_EVIDENCE.terminologyReviewed, true);
+  assert.equal(PT_REVIEW_EVIDENCE.terminologyReviewedByAutomation, true);
+  assert.equal(PT_REVIEW_EVIDENCE.terminologyReviewed, false);
   assert.equal(PT_REVIEW_EVIDENCE.mobileJourneyReviewed, true);
   assert.equal(PT_REVIEW_EVIDENCE.nativeLanguageReview, false);
   assert.equal(PT_REVIEW_EVIDENCE.publicPublicationApproved, false);
