@@ -1,6 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { expansionPublicationManifest, publicizeExpansionHtml } from "../src/expansion-publication.js";
 
+// One-shot branch normalizer; removed after the generated public output is committed.
 const markets = ["pt", "si", "ro"];
 let changed = 0;
 for (const market of markets) {
