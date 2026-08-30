@@ -4,7 +4,7 @@ const markets = [
   { key: "cz", app: "src/app.js", home: "index.html", public: true },
   { key: "sk", app: "src/app-sk.js", home: "sk/index.html", public: true },
   { key: "pl", app: "src/app-pl.js", home: "pl/index.html", public: true },
-  { key: "hu", app: "src/app-hu-browser.js", home: null, public: false },
+  { key: "hu", app: "src/app-hu-browser.js", home: "hu/index.html", public: true },
 ];
 
 const sharedRequired = ["calculation_completed", "product_coverage_calculated", "affiliate_click"];
