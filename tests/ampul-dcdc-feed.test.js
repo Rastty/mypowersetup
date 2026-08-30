@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { parseProductFeed } from "../src/feed.js";
-import { recommendProducts } from "../src/products.js";
+import { recommendProducts, refreshCatalogProduct } from "../src/products.js";
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:g="http://base.google.com/ns/1.0"><channel><item>
@@ -26,6 +26,17 @@ test("verified Ampul 6195 is ingested as a 12 V LiFePO4 DC-DC charger without ch
   assert.deepEqual(product.specs.chargingVoltagesV, [12]);
   assert.deepEqual(product.specs.chargingInputVoltagesV, [12, 24]);
   assert.deepEqual(product.specs.chargingBatteryTypes, ["lifepo4"]);
+});
+
+test("catalog refresh preserves explicitly verified exact-fit metadata", () => {
+  const [product] = parseProductFeed(xml, "ampul_sk");
+  const refreshed = refreshCatalogProduct(product);
+  assert.equal(refreshed.category, "dc_charger");
+  assert.equal(refreshed.verifiedAt, "2026-08-30");
+  assert.equal(refreshed.specs.currentA, 30);
+  assert.deepEqual(refreshed.specs.chargingVoltagesV, [12]);
+  assert.deepEqual(refreshed.specs.chargingInputVoltagesV, [12, 24]);
+  assert.deepEqual(refreshed.specs.chargingBatteryTypes, ["lifepo4"]);
 });
 
 test("verified Ampul 6195 can satisfy a compatible 12 V caravan charging setup", () => {
