@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Calcula a bateria, os painéis solares, o inversor e o controlador MPPT necessários para a tua autocaravana, com cada resultado explicado.">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Calculadora de bateria e painéis solares para autocaravana | MyPowerSetup</title>
+  <link rel="canonical" href="https://mypowersetup.com/pt/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/">
+  <link rel="alternate" hreflang="pt-PT" href="https://mypowersetup.com/pt/">
+  <link rel="alternate" hreflang="sl-SI" href="https://mypowersetup.com/si/" />
+    <link rel="alternate" hreflang="ro-RO" href="https://mypowersetup.com/ro/" />
+    <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/">
+  <script>globalThis.__MPS_PT_PUBLICATION__=true</script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/pt/">ϟ MyPowerSetup</a><nav class="expansion-nav" aria-label="Primary"><a class="header-link" href="/pt/guias/">Guias</a></nav></header>
+  <main id="top">
+    <section class="hero" aria-labelledby="market-title"><div class="hero-copy"><p class="eyebrow">Energia sem adivinhações</p><h1 id="market-title">De quanta bateria e energia solar precisas na autocaravana?</h1><p class="hero-lead">Escolhe os consumos e a forma como viajas. O MyPowerSetup estima a energia diária, bateria, solar, inversor e carregamento com pressupostos transparentes.</p><a class="button button-primary hero-button" href="#calculator-preview">Calcular o meu sistema</a></div></section>
+    <section class="calculator-section" id="calculator-preview" data-expansion-calculator data-market="pt" aria-labelledby="calculator-title">
+      <div class="section-heading"><p class="eyebrow">Versão privada em validação para Portugal.</p><h2 id="calculator-title">Três passos para o teu sistema</h2><p>Usa valores realistas para os equipamentos que pretendes alimentar todos os dias.</p></div>
+      <div class="calculator-shell">
+        <nav class="steps" aria-label="Calculator steps"><button class="step is-active" type="button" data-step-target="1"><span>1</span><small>Utilização</small></button><i></i><button class="step" type="button" data-step-target="2" disabled><span>2</span><small>Equipamentos</small></button><i></i><button class="step" type="button" data-step-target="3" disabled><span>3</span><small>Resultado</small></button></nav>
+        <p class="calculator-error" data-calculator-error role="alert" hidden></p>
+        <form id="setup-form" novalidate>
+          <section class="form-step is-visible" data-form-step="1"><div class="step-heading"><span class="step-kicker">1 / 3</span><h3>Quantos dias de autonomia queres e em que época viajas?</h3></div><fieldset><legend>Dias sem carregamento</legend><div class="choice-grid choice-grid-days"><label class="choice-card"><input type="radio" name="autonomyDays" value="1"><span><strong>1</strong></span></label><label class="choice-card"><input type="radio" name="autonomyDays" value="2" checked><span><strong>2</strong></span></label><label class="choice-card"><input type="radio" name="autonomyDays" value="3"><span><strong>3</strong></span></label><label class="choice-card"><input type="radio" name="autonomyDays" value="5"><span><strong>5</strong></span></label></div></fieldset><fieldset><legend>Época para dimensionar o solar</legend><div class="choice-grid choice-grid-season"><label class="choice-card"><input type="radio" name="season" value="summer" checked><span><strong>Verão</strong></span></label><label class="choice-card"><input type="radio" name="season" value="shoulder"><span><strong>Primavera / outono</strong></span></label><label class="choice-card"><input type="radio" name="season" value="winter"><span><strong>Inverno</strong></span></label></div></fieldset><div class="step-actions step-actions-end"><button class="button button-primary" type="button" data-next>Escolher equipamentos →</button></div></section>
+          <section class="form-step" data-form-step="2" hidden><div class="step-heading"><span class="step-kicker">2 / 3</span><h3>O que queres alimentar todos os dias?</h3></div><div class="appliance-grid"><label class="choice-card"><input type="checkbox" data-appliance data-name="Frigorífico de compressor" data-watts="45" data-hours="10" data-ac="false" data-surge="1" checked><span><strong>Frigorífico de compressor</strong><small>45 W · 10 h/dia</small></span></label><label class="choice-card"><input type="checkbox" data-appliance data-name="Iluminação LED" data-watts="18" data-hours="5" data-ac="false" data-surge="1" checked><span><strong>Iluminação LED</strong><small>18 W · 5 h/dia</small></span></label><label class="choice-card"><input type="checkbox" data-appliance data-name="Bomba de água" data-watts="60" data-hours="0.5" data-ac="false" data-surge="2" checked><span><strong>Bomba de água</strong><small>60 W · 0.5 h/dia</small></span></label><label class="choice-card"><input type="checkbox" data-appliance data-name="Portátil" data-watts="65" data-hours="4" data-ac="true" data-surge="1"><span><strong>Portátil</strong><small>65 W · 4 h/dia</small></span></label><label class="choice-card"><input type="checkbox" data-appliance data-name="Televisão" data-watts="55" data-hours="2" data-ac="true" data-surge="1"><span><strong>Televisão</strong><small>55 W · 2 h/dia</small></span></label><label class="choice-card"><input type="checkbox" data-appliance data-name="Máquina de café" data-watts="1400" data-hours="0.15" data-ac="true" data-surge="1.2"><span><strong>Máquina de café</strong><small>1400 W · 0.15 h/dia</small></span></label></div><div class="advanced-grid"><label>Tipo de bateria<select name="batteryType"><option value="lifepo4">LiFePO₄</option><option value="lead">AGM / chumbo-ácido</option></select></label><label>Tensão do sistema<select name="systemVoltage"><option value="auto">Automático</option><option value="12">12 V</option><option value="24">24 V</option></select></label></div><div class="step-actions"><button class="button button-secondary" type="button" data-back>← Voltar</button><button class="button button-primary" type="submit">Calcular o sistema</button></div></section>
+          <section class="form-step" data-form-step="3" hidden><div class="step-heading"><span class="step-kicker">3 / 3</span><h3>Estimativa do teu sistema</h3><p>Pré-visualização privada para Portugal — os resultados ainda não são publicados nem indexados.</p></div><div data-result></div></section>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="expansion-footer"><nav aria-label="Trust and guides"><a href="/pt/guias/">Guias</a><a href="/pt/metodologia/">Metodologia</a><a href="/pt/sobre-o-projeto/">Sobre</a><a href="/pt/afiliacao/">Afiliados</a><a href="/pt/privacidade/">Privacidade</a></nav></footer>
+  <script type="module" src="/src/analytics.js"></script>
+  <script type="module" src="/src/expansion-calculator-browser.js"></script>
+</body>
+</html>
