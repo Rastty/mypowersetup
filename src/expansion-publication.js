@@ -14,7 +14,7 @@ const CONFIG = Object.freeze({
 
 const PUBLICATION_COPY_REPLACEMENTS = Object.freeze({
   pt: Object.freeze([
-    ["Falhar fechado", "Sem validação, sem recomandação"],
+    ["Falhar fechado", "Sem validação, sem recomendação"],
     ["Versão privada em validação para Portugal.", "Calculadora para Portugal."],
     ["Versão privada em validação para Portugal", "Conteúdo publicado para Portugal"],
     ["Pré-visualização privada para Portugal — os resultados ainda não são publicados nem indexados.", "Estimativa com base nos consumos e no perfil de viagem selecionados."],
