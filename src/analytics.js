@@ -36,7 +36,7 @@ function loadGoogleTag() {
 }
 function currentContext() {
   const page = buildAnalyticsContext({ lang: document.documentElement.lang, pathname: window.location.pathname, hasCalculator: Boolean(document.querySelector("#setup-form")) });
-  const community = resolveCommunityAttribution({ search: window.location.search, storage: window.sessionStorage });
+  const community = choice === "granted" ? resolveCommunityAttribution({ search: window.location.search, storage: window.sessionStorage }) : null;
   return Object.freeze({ ...page, ...(community || {}) });
 }
 function track(event, parameters = {}) {
