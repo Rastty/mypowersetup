@@ -6,6 +6,7 @@ import { enhanceExpansionSearchContent } from "./expansion-search-content.js";
 import { enhanceRomaniaSearchContent } from "./expansion-search-content-ro.js";
 import { enhanceSloveniaSearchContent } from "./expansion-search-content-si.js";
 import { addContextualGrowthLinks } from "./contextual-growth-links.js";
+import { addExpansionVoltageGuideDiscovery, expansionVoltageGuideManifest } from "./expansion-voltage-guides.js";
 
 const CONFIG = Object.freeze({
   pt: Object.freeze({ locale: "pt-PT", prefix: "/pt/", content: PT_PRIVATE_CONTENT, homeAlternates: ["pt-PT"] }),
@@ -59,12 +60,14 @@ export function expansionPublicationManifest(market) {
   if (!config) throw new Error(`EXPANSION_PUBLICATION_UNKNOWN:${market}`);
   const trust = config.content.trust.map((page) => Object.freeze({ source: "content", route: `${config.prefix}${page.slug}/`, path: `${config.prefix.slice(1)}${page.slug}/index.html`, changefreq: "yearly", priority: "0.4" }));
   const guides = config.content.guides.map((page) => Object.freeze({ source: "content", route: `${config.prefix}${guideBase(market)}/${page.slug}/`, path: `${config.prefix.slice(1)}${guideBase(market)}/${page.slug}/index.html`, changefreq: "monthly", priority: "0.8" }));
+  const voltageGuides = expansionVoltageGuideManifest(market);
   const hubRoute = `${config.prefix}${guideBase(market)}/`;
   return Object.freeze([
     Object.freeze({ source: "home", route: config.prefix, path: `${config.prefix.slice(1)}index.html`, changefreq: "weekly", priority: "0.9" }),
     Object.freeze({ source: "content", route: hubRoute, path: `${hubRoute.slice(1)}index.html`, changefreq: "weekly", priority: "0.9" }),
     ...trust,
     ...guides,
+    ...voltageGuides,
   ]);
 }
 
@@ -96,6 +99,7 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
   output = enhanceRomaniaSearchContent(output, market, route);
   output = enhanceSloveniaSearchContent(output, market, route);
   output = addContextualGrowthLinks(output, market, route);
+  output = addExpansionVoltageGuideDiscovery(output, market, route);
   const canonical = `https://mypowersetup.com${route}`;
   const additions = [];
   if (!/rel="canonical"/.test(output)) additions.push(`<link rel="canonical" href="${canonical}">`);
