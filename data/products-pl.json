@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-30T01:22:44.707Z",
+  "generatedAt": "2026-08-30T07:48:35.543Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
@@ -21,7 +21,7 @@
     "ampul_pl": {
       "status": "ok",
       "parsedProducts": 7667,
-      "relevantProducts": 14
+      "relevantProducts": 15
     }
   },
   "products": [
@@ -1932,6 +1932,43 @@
         "solarInputW": null,
         "dcOutputA": null
       }
+    },
+    {
+      "id": "ampul_pl:6195",
+      "merchant": "ampul_pl",
+      "name": "Ładowarka akumulatorów LiFePO4 DC/DC 14,6 V, 30 A, 400 W, IP68",
+      "description": "Profesjonalna ładowarka DC-DC WG-12C400L to idealny wybór do bezpiecznego i wydajnego ładowania akumulatorów litowo-żelazowo-fosforanowych (LiFePO4). Dzięki zaawansowanej technologii PWM, wysokiej wydajności i solidnej aluminiowej obudowie, nadaje się do szerokiego zakresu zastosowań, w tym instalacji w pojazdach, przyczepach kempingowych, łodziach czy systemach solarnych. Funkcje ochronne i łatwa instalacja czynią ją niezawodnym partnerem dla wszystkich wymagających użytkowników. Dane techniczn",
+      "categoryPath": "Ładowarki",
+      "category": "dc_charger",
+      "brand": "",
+      "priceCzk": 1231.5,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://ampul.eu/pl/ladowarki/6195-ladowarka-akumulatorow-lifepo4-dc-dc-146-v-30-a-400-w-ip68",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fpl%2Fladowarki%2F6195-ladowarka-akumulatorow-lifepo4-dc-dc-146-v-30-a-400-w-ip68",
+      "imageUrl": "https://ampul.eu/25626-large_default/ladowarka-akumulatorow-lifepo4-dc-dc-146-v-30-a-400-w-ip68.jpg",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 400,
+        "currentA": 30,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12,
+          24
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
+      "verifiedAt": "2026-08-30"
     },
     {
       "id": "ampul_pl:6653",

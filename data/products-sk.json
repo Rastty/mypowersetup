@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-30T01:22:40.317Z",
+  "generatedAt": "2026-08-30T07:48:31.972Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
@@ -25,7 +25,7 @@
     "ampul_sk": {
       "status": "ok",
       "parsedProducts": 7667,
-      "relevantProducts": 14
+      "relevantProducts": 15
     }
   },
   "products": [
@@ -1839,6 +1839,43 @@
         "solarInputW": null,
         "dcOutputA": null
       }
+    },
+    {
+      "id": "ampul_sk:6195",
+      "merchant": "ampul_sk",
+      "name": "DC/DC nabíjačka LiFePO4 batérií 14.6V, 30A, 400W, IP68",
+      "description": "Profesionálna DC-DC nabíjačka WG-12C400L je ideálnou voľbou pre bezpečné a efektívne nabíjanie lítium-železo-fosfátových (LiFePO4) batérií. Vďaka pokročilej PWM technológii, vysokej účinnosti a robustnému hliníkovému puzdru je vhodná pre širokú škálu aplikácií, vrátane inštalácií vo vozidlách, karavanoch, lodiach či solárnych systémoch. Ochranné funkcie a jednoduchá inštalácia z nej robí spoľahlivého partnera pre všetkých náročných užívateľov. Technické špecifikácie Vstupný napäťový rozsah: 10-3",
+      "categoryPath": "Nabíjačky",
+      "category": "dc_charger",
+      "brand": "",
+      "priceCzk": 285.52,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://ampul.eu/sk/nabijacky/6195-dc-dc-nabijacka-lifepo4-baterii-146v-30a-400w-ip68",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fsk%2Fnabijacky%2F6195-dc-dc-nabijacka-lifepo4-baterii-146v-30a-400w-ip68",
+      "imageUrl": "https://ampul.eu/25626-large_default/dc-dc-nabijacka-lifepo4-baterii-146v-30a-400w-ip68.jpg",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 400,
+        "currentA": 30,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12,
+          24
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
+      "verifiedAt": "2026-08-30"
     },
     {
       "id": "ampul_sk:6653",
