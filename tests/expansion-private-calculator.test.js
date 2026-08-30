@@ -41,3 +41,17 @@ test("Slovenia calculator uses local avtodom electrical terminology", () => {
   assert.match(html, /sončne panele|solarnega sistema/);
   assert.match(html, /Napetost sistema/);
 });
+
+test("all expansion homepages expose three useful local primary destinations", () => {
+  const cases = [
+    [PT_MARKET_SEED, ["/pt/guias/", "/pt/metodologia/", "/pt/sobre-o-projeto/"]],
+    [RO_MARKET_SEED, ["/ro/ghiduri/", "/ro/metodologie/", "/ro/despre-proiect/"]],
+    [SI_MARKET_SEED, ["/si/vodici/", "/si/metodologija/", "/si/o-projektu/"]],
+  ];
+  for (const [seed, routes] of cases) {
+    const html = renderPrivateMarketSeedPage(seed);
+    const header = html.match(/<header class="site-header">([\s\S]*?)<\/header>/)?.[1] || "";
+    assert.match(header, /<nav class="expansion-nav"/);
+    for (const route of routes) assert.ok(header.includes(`href="${route}"`), `${seed.key} missing ${route}`);
+  }
+});
