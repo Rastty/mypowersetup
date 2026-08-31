@@ -22,6 +22,11 @@ for (const item of CASES) {
     assert.match(html, /Orion-Tr_Smart_DC-DC_Charger_-_Isolated/);
     assert.match(html, /900 Wh/);
     assert.match(html, /12→24 V/);
-    assert.ok(html.length > 8500, `${item.market} DC-DC guide is unexpectedly thin`);
+
+    // Guard editorial depth by rendered structure instead of language-dependent byte length.
+    assert.ok((html.match(/<h2(?:\s|>)/g) || []).length >= 10, `${item.market} DC-DC guide needs at least 10 decision sections`);
+    assert.ok((html.match(/<p(?:\s|>)/g) || []).length >= 14, `${item.market} DC-DC guide needs explanatory copy`);
+    assert.ok((html.match(/<li(?:\s|>)/g) || []).length >= 15, `${item.market} DC-DC guide needs actionable checklist coverage`);
+    assert.ok(html.length > 6500, `${item.market} DC-DC guide lost substantial published content`);
   });
 }
