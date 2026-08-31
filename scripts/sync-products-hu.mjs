@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { syncAllpowersEu } from "./lib/sync-allpowers-eu.mjs";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
+import { syncOxeMarket } from "./lib/sync-oxe.mjs";
 
 const feedUrl = process.env.AMPUL_HU_FEED_URL;
 const outputPath = "data/products-hu.json";
@@ -15,6 +16,7 @@ try {
 
 const allpowers = await syncAllpowersEu(previousCatalog);
 const powerqueen = await syncPowerQueenEu(previousCatalog);
+const oxe = await syncOxeMarket("hu", previousCatalog);
 let ampulProducts = previousCatalog.products.filter((product) => product.merchant === "ampul_hu");
 let ampulSource = previousCatalog.sources?.ampul_hu || { status: "disabled", error: "feed URL není nakonfigurována" };
 try {
@@ -46,8 +48,8 @@ const nextCatalog = {
   generatedAt: new Date().toISOString(),
   market: "hu-HU",
   currency: "EUR",
-  sources: { ampul_hu: ampulSource, allpowers_eu: allpowers.source, powerqueen_eu: powerqueen.source },
-  products: [...ampulProducts, ...allpowers.products, ...powerqueen.products],
+  sources: { ampul_hu: ampulSource, allpowers_eu: allpowers.source, powerqueen_eu: powerqueen.source, oxe_hu: oxe.source },
+  products: [...ampulProducts, ...allpowers.products, ...powerqueen.products, ...oxe.products],
 };
 
 await mkdir("data", { recursive: true });
