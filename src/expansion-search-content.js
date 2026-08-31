@@ -280,6 +280,65 @@ const PT_GROWTH_CONTENT = Object.freeze({
   }),
 
 
+  "/pt/guias/cabos-fusiveis-12v-autocaravana/": Object.freeze({
+    title: "Cabos e fusíveis 12 V na autocaravana: dimensionamento sem atalhos",
+    description: "Calcula corrente, queda de tensão, secção de cabo e proteção de cada circuito 12/24 V, com um exemplo de inversor de 1 000 W.",
+    body: `
+<section data-search-growth-content="cabos-fusiveis-12v-autocaravana">
+  <h2>Resposta curta: dimensiona cada circuito pela corrente e pelo percurso completo</h2>
+  <p>Não existe uma secção de cabo universal para “uma bateria de 200 Ah”. O cabo é escolhido para a <strong>corrente máxima do circuito, comprimento total de ida e volta, queda de tensão admissível, temperatura, agrupamento e método de instalação</strong>. O fusível protege o cabo contra sobrecorrente; não transforma um cabo subdimensionado num circuito seguro.</p>
+  <p>Começa pela corrente: em DC, <strong>I ≈ P ÷ (V × eficiência)</strong>. Para estimar a queda num condutor de cobre podes usar ΔV ≈ 2 × comprimento de ida × corrente × 0,0175 ÷ secção em mm². É uma triagem de projeto, não substitui a tabela e os limites do fabricante.</p>
+
+  <h2>Exemplo: inversor de 1 000 W num sistema de 12 V</h2>
+  <p>Com 90% de eficiência, 1 000 W exigem cerca de <strong>92,6 A</strong> da bateria. Num percurso de 3 m numa direção, portanto 6 m elétricos de ida e volta, um cabo de cobre de 35 mm² tem queda teórica de aproximadamente 0,28 V, ou 2,3% a 12 V. Com 25 mm² seriam cerca de 0,39 V, ou 3,2%, antes de perdas em terminais, fusíveis e interruptores.</p>
+  <p>Num sistema de 24 V a corrente para a mesma potência cai para cerca de 46,3 A. Isso reduz a queda relativa e as perdas, mas não autoriza copiar automaticamente a secção: confirma sempre corrente admissível, percurso, temperatura e terminais do equipamento.</p>
+
+  <h2>O comprimento é ida e volta</h2>
+  <p>Se a bateria está a 3 m do inversor, o circuito não tem 3 m elétricos: a corrente percorre o positivo e regressa pelo negativo. Em instalações que usam chassis, a resistência das ligações e os pontos de massa continuam a fazer parte do circuito. Para dimensionamento conservador, mede o trajeto real de ambos os condutores.</p>
+
+  <h2>O fusível protege o cabo</h2>
+  <p>Coloca a proteção tão perto da fonte quanto o projeto e as regras aplicáveis permitirem. O valor deve suportar a corrente normal e os picos legítimos, sem exceder a capacidade do cabo, dos terminais ou do equipamento. Cada derivação precisa de proteção própria; um fusível principal não substitui os fusíveis dos ramais.</p>
+  <p>O <a href="https://www.victronenergy.com/upload/documents/BatteryProtect_12V_24V/114439-Smart_BatteryProtect-pdf-en.pdf">manual oficial Victron BatteryProtect</a> exige um fusível corretamente dimensionado entre a bateria e o equipamento e alerta para cabos longos ou subdimensionados. Usa o manual do componente real para confirmar a proteção e o binário dos terminais.</p>
+
+  <h2>Queda de tensão muda conforme a carga</h2>
+  <ul>
+    <li><strong>Inversor:</strong> corrente alta e picos; ligação curta e robusta.</li>
+    <li><strong>MPPT e carregadores:</strong> queda excessiva altera a tensão que o equipamento mede na bateria.</li>
+    <li><strong>Frigorífico e bomba:</strong> arranque pode provocar desligamentos se a tensão cair demasiado.</li>
+    <li><strong>Iluminação e USB:</strong> menor corrente, mas cada ramal continua protegido.</li>
+  </ul>
+  <p>O <a href="https://www.victronenergy.com/upload/documents/Manual_SmartSolar_MPPT_100-30__100-50/29694-MPPT_solar_charger_manual-pdf-en.pdf">manual oficial SmartSolar MPPT</a> inclui a queda de tensão e as ligações defeituosas entre as causas de mau funcionamento. Dimensiona positivo e negativo para a mesma corrente.</p>
+
+  <h2>Terminais, barramentos e desconexão</h2>
+  <p>Uma secção correta pode falhar com cravação deficiente, terminal incompatível, parafuso solto ou barramento sem capacidade. Usa terminais adequados ao cabo e ao perno, ferramenta de cravar correta, proteção contra abrasão, alívio de tração e o binário indicado pelo fabricante. Planeia também um seccionador e acesso seguro para manutenção.</p>
+
+  <h2>Não copies um esquema sem medir a tua instalação</h2>
+  <p>O <a href="https://www.victronenergy.com/upload/documents/Van-Motorhome-Manual-%26-Drawing-3-monitoring-setups-MultiPlus-3kVA-12V-230V-50Hz-Li-SuperPack-NG.pdf">manual e esquema oficial Victron para van/motorhome</a> explica por que não apresenta uma única secção válida: o fabricante não conhece as distâncias físicas de cada projeto. O mesmo princípio aplica-se aos valores de fusível.</p>
+  <p>Não mistures a cablagem DC deste guia com a instalação de cais 230 V. Rede AC, terra e diferencial exigem projeto e verificação próprios por pessoa qualificada.</p>
+
+  <h2>Checklist antes de comprar cabo e proteção</h2>
+  <ul>
+    <li>potência contínua, pico e eficiência de cada carga;</li>
+    <li>tensão do sistema e corrente máxima calculada;</li>
+    <li>comprimento real do positivo e do negativo;</li>
+    <li>queda de tensão alvo e secção disponível nos terminais;</li>
+    <li>capacidade do cabo nas condições reais de temperatura e agrupamento;</li>
+    <li>fusível principal e fusível de cada ramal;</li>
+    <li>capacidade dos barramentos, interruptores e porta-fusíveis;</li>
+    <li>binário, cravação, ventilação e proteção mecânica.</li>
+  </ul>
+
+  <h2>Parte do cálculo do sistema, não da secção “habitual”</h2>
+  <p>Usa a <a href="/pt/#calculator-preview">calculadora da autocaravana</a> para obter bateria, solar e inversor. Depois aplica corrente e percurso a cada circuito e confirma os limites nos guias de <a href="/pt/guias/inversor-autocaravana-potencia/">inversor</a>, <a href="/pt/guias/como-escolher-controlador-mppt/">MPPT</a> e <a href="/pt/guias/carregador-dc-dc-autocaravana/">DC-DC</a>.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Que secção de cabo preciso para um inversor de 1 000 W a 12 V?", "Depende do comprimento, eficiência, queda admissível, temperatura e terminais. No exemplo de 3 m numa direção e 92,6 A, 35 mm² dá cerca de 2,3% de queda teórica; confirma sempre as tabelas e o manual do inversor."],
+      ["O fusível deve ser escolhido pela potência do aparelho?", "A corrente da carga é uma entrada, mas o fusível deve proteger o cabo e respeitar também terminais, picos legítimos e limites do fabricante. Cada ramal precisa de proteção adequada."],
+      ["Posso usar o chassis como negativo?", "Só quando a arquitetura do veículo e as regras aplicáveis o permitem. Tens de considerar resistência, ligações, corrosão e capacidade dos pontos de massa; não assumas que o chassis elimina o percurso de retorno."],
+    ]),
+  }),
+
+
 });
 
 function faqHtml(items) {
