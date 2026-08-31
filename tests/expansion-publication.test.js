@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { expansionPublicationManifest, publicizeExpansionHtml, addExpansionHomeAlternate, addExpansionRoutesToSitemap, publishedExpansionMarketsFromSitemap, requireExpansionNativeApproval } from "../src/expansion-publication.js";
 
 for (const market of ["pt", "si", "ro"]) {
@@ -109,4 +110,24 @@ test("language approval opens only after the complete explicit checklist and pub
     blockingIssuesResolved: true,
   };
   for (const market of ["pt", "si", "ro"]) assert.equal(requireExpansionNativeApproval(market, evidence), true);
+});
+
+test("committed expansion homes carry one complete reciprocal hreflang set", async () => {
+  const locales = Object.freeze({
+    "cs-CZ": "/",
+    "sk-SK": "/sk/",
+    "pl-PL": "/pl/",
+    "hu-HU": "/hu/",
+    "pt-PT": "/pt/",
+    "sl-SI": "/si/",
+    "ro-RO": "/ro/",
+    "x-default": "/",
+  });
+  for (const market of ["pt", "si", "ro"]) {
+    const html = await readFile(new URL(`../${market}/index.html`, import.meta.url), "utf8");
+    for (const [locale, route] of Object.entries(locales)) {
+      const tag = `<link rel="alternate" hreflang="${locale}" href="https://mypowersetup.com${route}">`;
+      assert.equal(html.split(tag).length - 1, 1, `${market} must contain one ${locale} alternate`);
+    }
+  }
 });
