@@ -37,6 +37,8 @@ try {
   await evaluate(cdp, `document.querySelector("#setup-form").requestSubmit()`);
   await waitFor(async () => evaluate(cdp, `document.querySelector('[data-form-step="3"]').hidden === false`));
   await waitFor(async () => evaluate(cdp, `document.querySelectorAll("[data-affiliate-product]").length > 0`));
+  const guideLinks = await evaluate(cdp, `[...document.querySelectorAll("[data-result-guide]")].map((link) => link.getAttribute("href"))`);
+  assert(guideLinks.length === 3, `result guides=${guideLinks.length}`); assert(guideLinks.every((href) => href.startsWith("/si/vodici/")), `wrong result guide=${guideLinks.join(",")}`);
   const result = await evaluate(cdp, `(() => {
     const links = [...document.querySelectorAll('[data-affiliate-product]')];
     return {
