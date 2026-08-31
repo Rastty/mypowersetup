@@ -26,6 +26,11 @@ const VERIFIED_POWER_STATIONS = Object.freeze([
     specs: Object.freeze({ capacityWh: 1028, powerW: 1000, solarInputW: null, dcOutputA: 10, pureSine: null }),
     evidenceUrl: "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
   }),
+  Object.freeze({
+    pattern: /\bS2400\b/i,
+    specs: Object.freeze({ capacityWh: 2047.5, powerW: 2400, solarInputW: 1200, dcOutputA: 10, pureSine: true }),
+    evidenceUrl: "https://www.oxe.ro/oxe-powerstation-newsmy-s2400-acumulator-de-incarcare-multifunctional-2400w20475wh/",
+  }),
 ]);
 
 export function parseOxeGoogleFeed(xml, market) {
