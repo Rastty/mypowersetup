@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { buildOxeDognetDeeplink } from "../src/oxe-affiliate.js";
 import { buildRomaniaRecommendations, validateRomaniaCatalog } from "../src/ro-recommendations.js";
 import { buildSloveniaRecommendations, validateSloveniaCatalog } from "../src/si-recommendations.js";
@@ -71,4 +72,20 @@ test("incomplete OXE technical evidence is rejected rather than recommended", ()
   const ro = oxeCatalog("ro");
   ro.products[0].specs.solarInputW = null;
   assert.throws(() => validateRomaniaCatalog(ro), /RO_POWER_STATION_SPECS_INVALID/);
+});
+
+
+test("committed RO and SI catalogs never expose a standalone SP solar panel as a power station", () => {
+  for (const [market, path] of [["ro", "../data/products-ro.json"], ["si", "../data/products-si.json"]]) {
+    const catalog = JSON.parse(readFileSync(new URL(path, import.meta.url), "utf8"));
+    const corrupted = catalog.products.filter((product) => {
+      const name = String(product.name || "");
+      const stationIndex = name.search(/power\s*station|powerstation/i);
+      const solarIndex = name.search(/solar|solarn|solár|słonecz|napelem|panou/i);
+      const standalonePanel = solarIndex >= 0 && (stationIndex < 0 || solarIndex < stationIndex);
+      return product.category === "power_station" && standalonePanel;
+    });
+    assert.deepEqual(corrupted, [], `${market} contains standalone panels with station specs`);
+    assert.equal(catalog.products.some((product) => product.id === `oxe_${market}:OXE8020` && product.category === "power_station"), false);
+  }
 });

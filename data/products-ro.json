@@ -33,7 +33,7 @@
       "powerStations": 18,
       "technicallyVerifiedPowerStations": 9,
       "solarPanels": 3,
-      "exactProducts": 9
+      "exactProducts": 8
     }
   },
   "products": [
@@ -167,31 +167,6 @@
         "dcOutputA": 10
       },
       "verifiedAt": "2026-08-28",
-      "marketEligible": true
-    },
-    {
-      "id": "oxe_ro:OXE8020",
-      "merchant": "oxe_ro",
-      "name": "OXE SP100W - Panou solar pentru centrala electrică OXE Powerstation S200, S400, P600, S1000",
-      "description": "OXE SP100W &ndash; PANOU SOLAR PENTRU CENTRALA ELECTRICĂ OXE POWERSTATION S200, S400, P600, S1000 OXE SP100W este un panou solar cu o putere de 100W, destinat în primul rând reîncărcării centralei&nbsp; OXE Powerstation S200,&nbsp;S400,&nbsp;P600&nbsp;a&nbsp;S1000 . &nbsp;Panoul solar are un port de ieșire USB și un port DC5521, astfel încât poate fi conectat cu ușurință la majoritatea dispozitivelor compatibile solare.&nbsp;Panoul solar este ușor și foarte subțire Este ușor de pliat și nu ocupă mult spațiu. Designul pliabil îl face ușor de transportat și se potrivește confortabil în portbagajul mașinii dvs. sau în orice spațiu de depozitare. Când este pliat, panoul solar este fixat cu două catarame. Este utilizată o curelușă pentru o relocare convenabilă. Reîncărcarea centralei cu ajutorul unui panou solar este ecologică. Totodată, poate fi folosit pentru reîncărcarea centralei în timpul călătoriilor, când posibilitățile de reîncărcare sunt limitate. Veți aprecia panoul solar și în cazul unei pene de curent neașteptate. Panoul solar OXE SP100W&nbsp; are un procent ridicat de conversie a radiației solare în energie (până la 21%). Pentru a încărca corect centrala electrică OXE Powerstation S1000, trebuie să utilizați două panouri solare OXE SP100W (sau un panou solar OXE SP200W poate fi folosit pentru a încărca OXE S1000). CONȚINUTUL PACHETULUI 1x OXE SP100W &ndash; Panou solar 1x cablu de alimentare (DC5521, Y adaptor) SPECIFICAȚII TEHNICE Putere nominală: &nbsp;100W Tensiune: &nbsp;18V Curent de funcționare: &nbsp;5,55A Conector: &nbsp;DC5521 Dimensiuni - panou desfăcut: &nbsp;1440*540*25 mm Dimensiuni - panou pliat: &nbsp;540*415*45 mm Număr de foi:&nbsp; 3 foi Rezistența la apă: &nbsp;IPX4 (rezistența la stropire) Culoare: &nbsp;gri Greutate: &nbsp;3,8 kg",
-      "categoryPath": "",
-      "category": "power_station",
-      "brand": "OXE",
-      "priceCzk": 991.42,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.oxe.ro/oxe-sp100w-panou-solar-pentru-centrala-electrica-oxe-powerstation-s200-s400-p600-s1000/",
-      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxe.ro%2Foxe-sp100w-panou-solar-pentru-centrala-electrica-oxe-powerstation-s200-s400-p600-s1000%2F",
-      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/25/oxe-sp100w-solarni-panel-k-elektrocentrale-oxe-powerstation-s200-s400-p600-s1000-8020-1643135739.jpg",
-      "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxepower.eu/oxe-powerstation-s200-and-solar-panel-sp100w/",
-      "specs": {
-        "capacityWh": 193,
-        "powerW": 200,
-        "solarInputW": 50,
-        "dcOutputA": 8,
-        "pureSine": true
-      },
       "marketEligible": true
     },
     {
