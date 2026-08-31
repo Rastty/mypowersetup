@@ -87,6 +87,12 @@ function addStaticHomeLanguageLinks(html, market) {
   });
 }
 
+function hasHeadAlternate(html, language) {
+  const head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/)?.[1] || "";
+  return new RegExp(`<link\\s+[^>]*rel=["']alternate["'][^>]*hreflang=["']${language}["']`, "i").test(head)
+    || new RegExp(`<link\\s+[^>]*hreflang=["']${language}["'][^>]*rel=["']alternate["']`, "i").test(head);
+}
+
 export function publicizeExpansionHtml(html, market, route, { home = false } = {}) {
   const config = CONFIG[market];
   if (!config || !route?.startsWith(config.prefix)) throw new Error(`EXPANSION_PUBLICATION_ROUTE_INVALID:${market}`);
@@ -102,7 +108,7 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
   if (home) {
     output = addStaticHomeLanguageLinks(output, market);
     const alternates = [...PUBLIC_HOME_MARKETS.map(({ locale, href }) => [locale, `https://mypowersetup.com${href}`]), ["x-default", "https://mypowersetup.com/"]];
-    for (const [language, href] of alternates) if (!output.includes(`hreflang="${language}"`)) additions.push(`<link rel="alternate" hreflang="${language}" href="${href}">`);
+    for (const [language, href] of alternates) if (!hasHeadAlternate(output, language)) additions.push(`<link rel="alternate" hreflang="${language}" href="${href}">`);
     const marker = `__MPS_${market.toUpperCase()}_PUBLICATION__`;
     if (!output.includes(marker)) additions.push(`<script>globalThis.${marker}=true</script>`);
   }
@@ -113,7 +119,7 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
 export function addExpansionHomeAlternate(html, market) {
   const config = CONFIG[market];
   if (!config || typeof html !== "string" || !html.includes("</head>")) throw new Error(`EXPANSION_HREFLANG_INVALID:${market}`);
-  if (html.includes(`hreflang="${config.locale}"`)) return html;
+  if (hasHeadAlternate(html, config.locale)) return html;
   const tag = `<link rel="alternate" hreflang="${config.locale}" href="https://mypowersetup.com${config.prefix}" />`;
   const xDefault = /<link rel="alternate" hreflang="x-default"[^>]*>/;
   if (xDefault.test(html)) return html.replace(xDefault, `${tag}\n    $&`);
