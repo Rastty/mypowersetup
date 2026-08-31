@@ -248,6 +248,65 @@ const RO_GROWTH_CONTENT = Object.freeze({
   }),
 
 
+  "/ro/ghiduri/cabluri-sigurante-12v-autorulota/": Object.freeze({
+    title: "Cabluri și siguranțe 12 V în autorulotă: dimensionare corectă",
+    description: "Calculează curentul, căderea de tensiune, secțiunea cablului și protecția fiecărui circuit 12/24 V, cu exemplu de invertor de 1.000 W.",
+    body: `
+<section data-ro-search-growth="cabluri-sigurante-12v-autorulota">
+  <h2>Răspuns scurt: dimensionează fiecare circuit după curent și traseul complet</h2>
+  <p>Nu există o secțiune universală de cablu pentru „o baterie de 200 Ah”. Cablul depinde de <strong>curentul maxim, lungimea dus-întors, căderea de tensiune admisă, temperatură, grupare și modul de montaj</strong>. Siguranța protejează cablul la supracurent; nu face sigur un cablu subdimensionat.</p>
+  <p>Pornește de la curent: în DC, <strong>I ≈ P ÷ (V × randament)</strong>. Pentru o estimare a căderii pe cupru poți folosi ΔV ≈ 2 × lungimea pe un sens × curent × 0,0175 ÷ secțiunea în mm². Este o verificare de proiect, nu înlocuiește tabelele producătorului.</p>
+
+  <h2>Exemplu: invertor de 1.000 W la 12 V</h2>
+  <p>La 90% randament, 1.000 W cer aproximativ <strong>92,6 A</strong> din baterie. Pentru 3 m pe un sens, adică 6 m electric dus-întors, 35 mm² cupru înseamnă teoretic aproximativ 0,28 V sau 2,3% la 12 V. Cu 25 mm² ar fi aproximativ 0,39 V sau 3,2%, înainte de pierderile din papuci, siguranțe și întrerupătoare.</p>
+  <p>La 24 V, aceeași putere cere aproximativ 46,3 A. Căderea relativă și pierderile scad, dar secțiunea trebuie tot verificată după traseu, temperatură, curent admisibil și borne.</p>
+
+  <h2>Lungimea înseamnă dus și întors</h2>
+  <p>Dacă invertorul este la 3 m de baterie, circuitul electric nu are doar 3 m. Curentul pleacă pe pozitiv și revine pe negativ. Dacă este folosit șasiul, rezistența îmbinărilor și punctelor de masă rămâne parte din circuit. Măsoară traseul real complet.</p>
+
+  <h2>Siguranța protejează cablul</h2>
+  <p>Protecția se montează cât mai aproape de sursă, conform proiectului și normelor aplicabile. Valoarea trebuie să permită curentul normal și vârfurile legitime, dar să nu depășească limita cablului, bornelor sau echipamentului. Fiecare ramură are nevoie de protecție proprie.</p>
+  <p><a href="https://www.victronenergy.com/upload/documents/BatteryProtect_12V_24V/114439-Smart_BatteryProtect-pdf-en.pdf">Manualul oficial Victron BatteryProtect</a> cere o siguranță corect dimensionată între baterie și echipament și avertizează asupra cablurilor lungi sau prea subțiri.</p>
+
+  <h2>Căderea de tensiune afectează diferit consumatorii</h2>
+  <ul>
+    <li><strong>Invertor:</strong> curent mare și vârfuri; traseu scurt și robust.</li>
+    <li><strong>MPPT și încărcătoare:</strong> căderea poate modifica tensiunea măsurată la baterie.</li>
+    <li><strong>Frigider și pompă:</strong> pornirea poate provoca opriri la tensiune joasă.</li>
+    <li><strong>Iluminat și USB:</strong> curent mai mic, dar fiecare circuit rămâne protejat.</li>
+  </ul>
+  <p><a href="https://www.victronenergy.com/upload/documents/Manual_SmartSolar_MPPT_100-30__100-50/29694-MPPT_solar_charger_manual-pdf-en.pdf">Manualul oficial SmartSolar MPPT</a> include căderea de tensiune și conexiunile slabe între cauzele problemelor. Pozitivul și negativul se dimensionează pentru același curent.</p>
+
+  <h2>Papuci, bare colectoare și întrerupere</h2>
+  <p>O secțiune corectă poate deveni nesigură prin sertizare slabă, papuc nepotrivit, șurub slăbit sau bară subdimensionată. Folosește scule corecte, protecție la abraziune, descărcare mecanică și cuplul indicat de producător. Planifică un întrerupător principal și acces sigur pentru service.</p>
+
+  <h2>Nu copia o schemă fără să măsori autorulota</h2>
+  <p><a href="https://www.victronenergy.com/upload/documents/Van-Motorhome-Manual-%26-Drawing-3-monitoring-setups-MultiPlus-3kVA-12V-230V-50Hz-Li-SuperPack-NG.pdf">Manualul și schema oficială Victron pentru van/motorhome</a> explică de ce nu publică o singură secțiune valabilă: distanțele fizice diferă de la un proiect la altul. Același lucru este valabil pentru siguranțe.</p>
+  <p>Nu combina cablarea DC cu instalația de 230 V. Racordul AC, împământarea și protecția diferențială cer proiect și verificare separată de către o persoană calificată.</p>
+
+  <h2>Checklist înainte de cumpărare</h2>
+  <ul>
+    <li>puterea continuă, vârful și randamentul fiecărui consumator;</li>
+    <li>tensiunea sistemului și curentul maxim;</li>
+    <li>lungimea reală a pozitivului și negativului;</li>
+    <li>căderea țintă și secțiunea acceptată de borne;</li>
+    <li>capacitatea cablului la temperatura și gruparea reale;</li>
+    <li>siguranța principală și protecția fiecărei ramuri;</li>
+    <li>capacitatea barelor, întrerupătoarelor și suporturilor;</li>
+    <li>cuplul, sertizarea, ventilația și protecția mecanică.</li>
+  </ul>
+
+  <h2>Pornește de la sistem, nu de la o secțiune „obișnuită”</h2>
+  <p>Folosește <a href="/ro/#calculator-preview">calculatorul autorulotei</a> pentru baterie, solar și invertor. Apoi aplică traseul și curentul fiecărui circuit și verifică ghidurile pentru <a href="/ro/ghiduri/invertor-autorulota-putere/">invertor</a>, <a href="/ro/ghiduri/regulator-mppt-autorulota/">MPPT</a> și <a href="/ro/ghiduri/incarcator-dc-dc-autorulota/">DC-DC</a>.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Ce secțiune de cablu trebuie pentru un invertor de 1.000 W la 12 V?", "Depinde de lungime, randament, căderea admisă, temperatură și borne. În exemplul de 3 m pe un sens și 92,6 A, 35 mm² înseamnă aproximativ 2,3% cădere teoretică; verifică manualul invertorului."],
+      ["Siguranța se alege după puterea aparatului?", "Curentul sarcinii este doar o intrare. Siguranța trebuie să protejeze cablul și să respecte bornele, vârfurile legitime și limitele producătorului. Fiecare ramură are protecție proprie."],
+      ["Pot folosi șasiul drept conductor negativ?", "Numai dacă arhitectura vehiculului și normele permit. Trebuie evaluate rezistența, îmbinările, coroziunea și capacitatea punctelor de masă."],
+    ]),
+  }),
+
+
 });
 
 function schemaFor(route, item) {

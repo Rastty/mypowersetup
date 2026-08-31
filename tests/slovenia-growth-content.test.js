@@ -13,6 +13,7 @@ const ROUTES = Object.freeze([
   "/si/vodici/inverter-avtodom-moc/",
   "/si/vodici/dc-dc-polnilnik-avtodom/",
   "/si/vodici/230v-polnilnik-baterije-avtodom/",
+  "/si/vodici/kabli-varovalke-12v-avtodom/",
 ]);
 
 for (const route of ROUTES) {

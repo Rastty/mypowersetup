@@ -200,6 +200,65 @@ const SI_GROWTH_CONTENT = Object.freeze({
   }),
 
 
+  "/si/vodici/kabli-varovalke-12v-avtodom/": Object.freeze({
+    title: "12 V kabli in varovalke v avtodomu: pravilno dimenzioniranje",
+    description: "Izračunaj tok, padec napetosti, presek kabla in zaščito vsakega 12/24 V tokokroga s primerom 1.000 W inverterja.",
+    body: `
+<section data-si-search-growth="kabli-varovalke-12v-avtodom">
+  <h2>Kratek odgovor: vsak tokokrog dimenzioniraj po toku in celotni poti</h2>
+  <p>Za »200 Ah baterijo« ne obstaja univerzalni presek kabla. Kabel izbereš glede na <strong>največji tok, skupno dolžino tja in nazaj, dovoljen padec napetosti, temperaturo, združevanje kablov in način vgradnje</strong>. Varovalka ščiti kabel pred nadtokom; pretankega kabla ne naredi varnega.</p>
+  <p>Začni s tokom: pri DC velja <strong>I ≈ P ÷ (V × izkoristek)</strong>. Za prvo oceno bakrenega kabla uporabi ΔV ≈ 2 × enosmerna dolžina × tok × 0,0175 ÷ presek v mm². To je projektna kontrola, ne nadomestilo za tabele proizvajalca.</p>
+
+  <h2>Primer: 1.000 W inverter pri 12 V</h2>
+  <p>Pri 90% izkoristku zahteva 1.000 W približno <strong>92,6 A</strong> iz baterije. Pri 3 m v eno smer oziroma 6 m električne poti ima 35 mm² baker teoretični padec približno 0,28 V ali 2,3% pri 12 V. Pri 25 mm² je približno 0,39 V ali 3,2%, še brez izgub na čevljih, varovalkah in stikalih.</p>
+  <p>Pri 24 V ista moč zahteva približno 46,3 A. Relativni padec in izgube so manjši, vendar moraš presek še vedno preveriti glede na pot, temperaturo, dovoljeni tok in priključke.</p>
+
+  <h2>Dolžina pomeni pot tja in nazaj</h2>
+  <p>Če je inverter 3 m od baterije, električna pot ni dolga le 3 m. Tok teče po pozitivnem in se vrne po negativnem vodniku. Če uporabiš šasijo, so upornost spojev in masnih točk še vedno del tokokroga. Izmeri dejansko celotno pot.</p>
+
+  <h2>Varovalka ščiti kabel</h2>
+  <p>Zaščito namesti čim bližje viru, kolikor dovoljujejo projekt in pravila. Vrednost mora dopuščati normalni tok in upravičene konice, vendar ne sme preseči zmogljivosti kabla, priključkov ali naprave. Vsaka veja potrebuje svojo zaščito.</p>
+  <p><a href="https://www.victronenergy.com/upload/documents/BatteryProtect_12V_24V/114439-Smart_BatteryProtect-pdf-en.pdf">Uradni priročnik Victron BatteryProtect</a> zahteva pravilno dimenzionirano varovalko med baterijo in napravo ter opozarja na dolge ali pretanke kable.</p>
+
+  <h2>Padec napetosti različno vpliva na porabnike</h2>
+  <ul>
+    <li><strong>Inverter:</strong> velik tok in konice; kratka in robustna povezava.</li>
+    <li><strong>MPPT in polnilniki:</strong> padec spremeni napetost, ki jo naprava vidi na bateriji.</li>
+    <li><strong>Hladilnik in črpalka:</strong> zagon lahko povzroči izklop zaradi nizke napetosti.</li>
+    <li><strong>Luči in USB:</strong> manjši tok, vendar vsaka veja ostane zaščitena.</li>
+  </ul>
+  <p><a href="https://www.victronenergy.com/upload/documents/Manual_SmartSolar_MPPT_100-30__100-50/29694-MPPT_solar_charger_manual-pdf-en.pdf">Uradni priročnik SmartSolar MPPT</a> med vzroki težav navaja padec napetosti in slabe povezave. Pozitivni in negativni vodnik dimenzioniraj za isti tok.</p>
+
+  <h2>Kabelski čevlji, zbiralke in odklop</h2>
+  <p>Pravilen presek je lahko nevaren ob slabi stisnitvi, napačnem čevlju, ohlapnem vijaku ali prešibki zbiralki. Uporabi ustrezno orodje, zaščito pred drgnjenjem, razbremenitev in navor proizvajalca. Načrtuj glavno stikalo ter varen dostop za servis.</p>
+
+  <h2>Ne kopiraj sheme brez merjenja svojega avtodoma</h2>
+  <p><a href="https://www.victronenergy.com/upload/documents/Van-Motorhome-Manual-%26-Drawing-3-monitoring-setups-MultiPlus-3kVA-12V-230V-50Hz-Li-SuperPack-NG.pdf">Uradni Victronov priročnik in shema za van/motorhome</a> pojasnjujeta, zakaj ni enega veljavnega preseka: proizvajalec ne pozna fizičnih razdalj posamezne vgradnje. Enako velja za varovalke.</p>
+  <p>DC kablov ne mešaj z 230 V napeljavo. AC priklop, ozemljitev in RCD zahtevajo ločeno načrtovanje ter pregled usposobljene osebe.</p>
+
+  <h2>Kontrolni seznam pred nakupom</h2>
+  <ul>
+    <li>stalna moč, konica in izkoristek vsakega porabnika;</li>
+    <li>sistemska napetost in največji izračunani tok;</li>
+    <li>dejanska dolžina pozitivnega in negativnega vodnika;</li>
+    <li>ciljni padec in največji presek za priključke;</li>
+    <li>zmogljivost kabla pri dejanski temperaturi in združevanju;</li>
+    <li>glavna varovalka in zaščita vsake veje;</li>
+    <li>zmogljivost zbiralk, stikal in nosilcev varovalk;</li>
+    <li>navor, stiskanje, prezračevanje in mehanska zaščita.</li>
+  </ul>
+
+  <h2>Začni s sistemom, ne z »običajnim« presekom</h2>
+  <p>Uporabi <a href="/si/#calculator-preview">kalkulator za avtodom</a> za baterijo, solar in inverter. Nato uporabi tok ter pot vsakega tokokroga in preveri vodnike za <a href="/si/vodici/inverter-avtodom-moc/">inverter</a>, <a href="/si/vodici/mppt-regulator-avtodom/">MPPT</a> in <a href="/si/vodici/dc-dc-polnilnik-avtodom/">DC-DC</a>.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Kakšen kabel potrebujem za 1.000 W inverter pri 12 V?", "Odvisno od dolžine, izkoristka, dovoljenega padca, temperature in priključkov. V primeru 3 m v eno smer in 92,6 A daje 35 mm² približno 2,3% teoretičnega padca; preveri priročnik inverterja."],
+      ["Ali varovalko izberem po moči naprave?", "Tok bremena je le ena vhodna vrednost. Varovalka mora zaščititi kabel ter upoštevati priključke, dovoljene konice in omejitve proizvajalca. Vsaka veja potrebuje svojo zaščito."],
+      ["Lahko šasijo uporabim kot negativni vodnik?", "Samo če arhitektura vozila in pravila to dovoljujejo. Upoštevati moraš upornost, spoje, korozijo in zmogljivost masnih točk."],
+    ]),
+  }),
+
+
 });
 
 function schemaFor(route, item) {
