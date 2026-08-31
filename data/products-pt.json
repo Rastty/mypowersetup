@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-08-30T14:29:52.982Z",
+  "generatedAt": "2026-08-31T08:36:22.478Z",
   "market": "pt-PT",
   "currency": "EUR",
-  "private": true,
+  "private": false,
   "sources": {
     "allpowers_pt": {
       "status": "ok",
-      "relevantProducts": 17,
+      "relevantProducts": 20,
       "solarPanels": 17,
-      "technicallyVerifiedPowerStations": 0
+      "technicallyVerifiedPowerStations": 3
     }
   },
   "products": [
@@ -83,6 +83,29 @@
         "powerW": 100
       },
       "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037470232893",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS R1500 Estação de Energia Portátil 1800W 1152Wh",
+      "description": "Potência de saída 1800W / Modo de aumento de potência 3200W Capacidade da bateria 1152Wh (Watt-hora) 4 formas flexíveis de carregamento (rede de corrente alternada / energia solar / veículo automóvel / gerador) Suporte a carregamento sem fios",
+      "category": "power_station",
+      "brand": "ALLPOWERS",
+      "priceCzk": 565,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-r1500-estacao-de-energia-portatil-1800w-1152wh",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-r1500-estacao-de-energia-portatil-1800w-1152wh",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/R1500_B1000_df399f79-09d7-4b2a-a8e5-ca7771ff214b.jpg?v=1767076821",
+      "specs": {
+        "capacityWh": 1152,
+        "powerW": 1800,
+        "pureSine": true,
+        "solarInputW": 650,
+        "dcOutputA": 10,
+        "batteryType": "lifepo4"
+      },
+      "verifiedAt": "2026-08-30"
     },
     {
       "id": "allpowers_pt-10037469806909",
@@ -301,6 +324,29 @@
       "verifiedAt": null
     },
     {
+      "id": "allpowers_pt-10037467709757",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS R600 Estação de energia portátil - Bateria LiFeP04 de 600W 299Wh",
+      "description": "Potência de saída 600W / Modo de aumento de potência 1200W Capacidade da bateria 299Wh (Watt-hora) 8 portos de saída para vários dispositivos Controlo e monitorização inteligentes através da aplicação ALLPOWERS Carregamento simultâneo de até 10 dispositivos.",
+      "category": "power_station",
+      "brand": "ALLPOWERS",
+      "priceCzk": 229,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-r600-estacao-de-energia-portatil-bateria-lifep04-de-600w-299wh",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-r600-estacao-de-energia-portatil-bateria-lifep04-de-600w-299wh",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/ALLPOWERS-Solar-Generator-Kit-600W-_R600-_-SOLAX-SE100-100W-Solar-Panel_-ALLPOWERS-105180228.webp?v=1775526070",
+      "specs": {
+        "capacityWh": 299,
+        "powerW": 600,
+        "pureSine": true,
+        "solarInputW": 220,
+        "dcOutputA": 10,
+        "batteryType": "lifepo4"
+      },
+      "verifiedAt": "2026-08-30"
+    },
+    {
       "id": "allpowers_pt-10037467480381",
       "merchant": "allpowers_pt",
       "name": "ALLPOWERS S200 Banco de energia portátil 200W 154Wh",
@@ -317,6 +363,29 @@
         "powerW": 200
       },
       "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037467414845",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS R1500 LITE Estação de energia portátil 1600W 1056Wh",
+      "description": "Potência de saída 1600W / Modo de aumento de potência 3200W Capacidade da bateria 1056Wh (Watt-hora) 4 formas flexíveis de carregamento (rede de corrente alternada / energia solar / veículo automóvel / gerador) Controlo e monitorização inteligentes através da aplicação ALLPOWERS",
+      "category": "power_station",
+      "brand": "ALLPOWERS",
+      "priceCzk": 469,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-r1500-lite-estacao-de-energia-portatil-1600w-1056wh",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-r1500-lite-estacao-de-energia-portatil-1600w-1056wh",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/Allpowers_R1500_LITE1.jpg?v=1767074956",
+      "specs": {
+        "capacityWh": 1056,
+        "powerW": 1600,
+        "pureSine": true,
+        "solarInputW": 650,
+        "dcOutputA": 10,
+        "batteryType": "lifepo4"
+      },
+      "verifiedAt": "2026-08-30"
     }
   ]
 }
