@@ -36,6 +36,17 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
   </item>
 </channel></rss>`;
 
+const s2400SiXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:g="http://base.google.com/ns/1.0"><channel><item>
+  <g:id>S2400</g:id>
+  <g:title>OXE Powerstation Newsmy S2400 - večnamenski polnilni napajalnik 2400W/2047,5Wh</g:title>
+  <g:link>https://www.oxepower.si/oxe-powerstation-newsmy-s2400-vecnamenski-polnilni-napajalnik-2400w20475wh/</g:link>
+  <g:price>1245.96 EUR</g:price>
+  <g:brand>OXE</g:brand>
+  <g:product_type>Generatorji električne energije</g:product_type>
+  <g:availability>in_stock</g:availability>
+</item></channel></rss>`;
+
 test("OXE Google feed keeps local products but classifies only relevant power products", () => {
   const products = parseOxeGoogleFeed(xml, "pl");
   assert.equal(products.length, 3);
@@ -50,6 +61,15 @@ test("OXE Google feed keeps local products but classifies only relevant power pr
   assert.equal(panel.category, "solar_panel");
   assert.equal(panel.specs.powerW, 100);
   assert.equal(gps.category, "other");
+});
+
+test("verified OXE S2400 carries the complete high-autonomy electrical envelope", () => {
+  const [station] = parseOxeGoogleFeed(s2400SiXml, "si");
+  assert.equal(station.category, "power_station");
+  assert.equal(station.available, true);
+  assert.deepEqual(station.specs, { capacityWh: 2047.5, powerW: 2400, solarInputW: 1200, dcOutputA: 10, pureSine: true });
+  assert.equal(isOxeTechnicallyCompletePowerStation(station), true);
+  assert.match(station.specEvidenceUrl, /oxe\.ro\/oxe-powerstation-newsmy-s2400/);
 });
 
 test("OXE feed products receive an exact Dognet deeplink to the feed destination", () => {
