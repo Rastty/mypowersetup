@@ -600,6 +600,12 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
     product.affiliateUrl.includes("awinmid=121776")
       || product.affiliateUrl.includes("awinmid=97025")
       || product.affiliateUrl.includes("a_bid=ddb5edae")
+      || (
+        product.merchant === "oxe_pl"
+        && new URL(product.affiliateUrl).hostname === "go.dognet.com"
+        && new URL(product.affiliateUrl).searchParams.get("chid") === "2mRVFbhJ"
+        && new URL(new URL(product.affiliateUrl).searchParams.get("url")).hostname === "www.oxepower.pl"
+      )
   ));
   assert.ok(sitemap.includes("<loc>https://mypowersetup.com/pl/</loc>"));
   assert.ok(czech.includes('hreflang="pl-PL" href="https://mypowersetup.com/pl/"'));

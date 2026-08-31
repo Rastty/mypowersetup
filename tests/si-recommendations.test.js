@@ -5,10 +5,11 @@ import { buildSloveniaRecommendations, parseSloveniaAffiliateUrl, validateSloven
 
 const catalog = JSON.parse(await readFile(new URL("../data/products-si.json", import.meta.url), "utf8"));
 
-test("Slovenia catalog is public and accepts only exact ALLPOWERS EU destinations with market evidence", () => {
+test("Slovenia catalog is public and keeps exact ALLPOWERS destinations alongside strict local merchants", () => {
   assert.equal(catalog.private, false);
   assert.equal(validateSloveniaCatalog(catalog), catalog);
-  const product = catalog.products[0];
+  const product = catalog.products.find(({ merchant }) => merchant === "allpowers_eu");
+  assert.ok(product);
   const parsed = parseSloveniaAffiliateUrl(product.affiliateUrl);
   assert.equal(parsed.destination, product.productUrl);
   assert.equal(catalog.shippingEligibility.country, "Slovenia");
@@ -31,7 +32,7 @@ test("Slovenia recommendation covers the standard two-day mobile-smoke load only
     ],
   });
   assert.ok(fitting.power_station.length >= 1);
-  assert.equal(fitting.power_station[0].merchant, "allpowers_eu");
+  assert.ok(["allpowers_eu", "oxe_si"].includes(fitting.power_station[0].merchant));
   assert.ok(fitting.power_station[0].capacityWh >= 1600);
 
   const tooMuchDc = buildSloveniaRecommendations(catalog, {
