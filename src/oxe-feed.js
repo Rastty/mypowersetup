@@ -60,6 +60,7 @@ export function parseOxeGoogleFeed(xml, market) {
 export function isOxeTechnicallyCompletePowerStation(product) {
   const specs = product?.specs || {};
   return product?.category === "power_station"
+    && isPrimaryPowerStationProduct(product?.name)
     && Boolean(product.verifiedAt)
     && specs.capacityWh > 0
     && specs.powerW > 0

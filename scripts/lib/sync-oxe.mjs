@@ -16,7 +16,9 @@ const LIVE_SUPPLEMENTS = Object.freeze({
 
 export async function syncOxeMarket(market, previousCatalog = { products: [] }, fetchImpl = globalThis.fetch) {
   const config = getOxeMarket(market);
-  const preserved = (previousCatalog.products || []).filter((product) => product.merchant === config.merchant);
+  const preserved = (previousCatalog.products || [])
+    .filter((product) => product.merchant === config.merchant)
+    .filter((product) => product.category !== "power_station" || isOxeTechnicallyCompletePowerStation(product));
   try {
     const response = await fetchImpl(config.feedUrl, requestOptions(config.feedUrl, market));
     if (!response.ok) throw new Error(`HTTP ${response.status}`);

@@ -44,3 +44,12 @@ test("Slovenia recommendation covers the standard two-day mobile-smoke load only
   });
   assert.equal(tooMuchDc.power_station.length, 0);
 });
+
+
+test("Slovenia catalog cannot publish OXE SP100W with S200 power-station specs", () => {
+  const corruptedPanel = catalog.products.find((product) =>
+    product.id === "oxe_si:OXE8020"
+    || /oxe-sp100w-solarni-panel-za-elektrarno/.test(product.productUrl || "")
+  );
+  assert.equal(corruptedPanel, undefined);
+});

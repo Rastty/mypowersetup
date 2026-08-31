@@ -81,6 +81,15 @@ test("OXE solar panel stays a panel when its title lists compatible power statio
   assert.equal(panel.specs.capacityWh, null);
   assert.equal(panel.specEvidenceUrl, null);
   assert.equal(isOxeTechnicallyCompletePowerStation(panel), false);
+
+  const legacyCorruptedPanel = {
+    ...panel,
+    category: "power_station",
+    verifiedAt: "2026-08-31",
+    specEvidenceUrl: "https://www.oxepower.eu/oxe-powerstation-s200-and-solar-panel-sp100w/",
+    specs: { capacityWh: 193, powerW: 200, solarInputW: 50, dcOutputA: 8, pureSine: true },
+  };
+  assert.equal(isOxeTechnicallyCompletePowerStation(legacyCorruptedPanel), false);
 });
 
 test("verified OXE S2400 carries the complete high-autonomy electrical envelope", () => {
