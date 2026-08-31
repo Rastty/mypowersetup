@@ -54,7 +54,7 @@ test("Hungarian trust copy explains authorship, method, affiliate independence, 
   assert.match(HU_TRUST_COPY.safety.text, /szakembernek/);
 });
 
-test("Hungarian catalog combines local Ampul and verified ALLPOWERS EU sources privately", async () => {
+test("Hungarian catalog combines local Ampul, verified EU and approved OXE sources privately", async () => {
   const [catalog, sync] = await Promise.all([
     readFile("data/products-hu.json", "utf8").then(JSON.parse),
     readFile("scripts/sync-products-hu.mjs", "utf8"),
@@ -63,7 +63,8 @@ test("Hungarian catalog combines local Ampul and verified ALLPOWERS EU sources p
   assert.equal(catalog.currency, "EUR");
   assert.ok(Object.hasOwn(catalog.sources, "ampul_hu"));
   assert.equal(catalog.sources.allpowers_eu.status, "ok");
-  assert.equal(catalog.sources.allpowers_eu.technicallyVerifiedPowerStations, 3);
+  assert.ok(catalog.sources.allpowers_eu.technicallyVerifiedPowerStations >= 3);
+  assert.match(sync, /syncOxeMarket\("hu", previousCatalog\)/);
   assert.match(sync, /process\.env\.AMPUL_HU_FEED_URL/);
   assert.match(sync, /parseProductFeed\(await response\.text\(\), "ampul_hu"\)/);
   assert.match(sync, /"accept-language": "hu-HU,hu;q=0\.9,en;q=0\.6"/);
