@@ -61,11 +61,13 @@ for (const fixture of fixtures) {
 
     const recommendations = fixture.build(catalog, setup, 3);
     assert.equal(recommendations.power_station.length, 0);
-    assert.equal(recommendations.solar_panel.length, 1);
-    assert.equal(recommendations.solar_panel[0].category, "solar_panel");
-    assert.equal(recommendations.solar_panel[0].quantity, 2);
-    assert.equal(recommendations.solar_panel[0].powerW, 200);
-    assert.equal(new URL(recommendations.solar_panel[0].affiliateUrl).searchParams.get("ued"), recommendations.solar_panel[0].productUrl);
+    assert.ok(recommendations.solar_panel.length >= 1);
+    const panel = recommendations.solar_panel.find((item) => item.id === "allpowers_eu:solar-sp035");
+    assert.ok(panel, "synthetic exact-fit panel should remain in the top recommendations");
+    assert.equal(panel.category, "solar_panel");
+    assert.equal(panel.quantity, 2);
+    assert.equal(panel.powerW, 200);
+    assert.equal(new URL(panel.affiliateUrl).searchParams.get("ued"), panel.productUrl);
   });
 
   test(`${fixture.market.toUpperCase()} rejects an unverified or electrically incomplete solar panel`, async () => {

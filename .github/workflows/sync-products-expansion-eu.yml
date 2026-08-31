@@ -1,0 +1,61 @@
+name: Sync RO and SI affiliate products
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "src/ro-recommendations.js"
+      - "src/si-recommendations.js"
+      - "src/shopify.js"
+      - "src/oxe-affiliate.js"
+      - "src/oxe-feed.js"
+      - "scripts/sync-products-expansion-eu.mjs"
+      - "scripts/lib/sync-allpowers-eu.mjs"
+      - "scripts/lib/sync-oxe.mjs"
+      - "data/products-eu-verified.json"
+      - "tests/expansion-eu-solar-recommendations.test.js"
+      - "tests/oxe-expansion-recommendations.test.js"
+      - "tests/oxe-feed.test.js"
+      - "tests/oxe-affiliate.test.js"
+      - "tests/si-recommendations.test.js"
+      - ".github/workflows/sync-products-expansion-eu.yml"
+  schedule:
+    - cron: "27 3 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: expansion-eu-product-sync
+  cancel-in-progress: false
+
+jobs:
+  products:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - run: node --check scripts/sync-products-expansion-eu.mjs
+      - run: node --check src/ro-recommendations.js
+      - run: node --check src/si-recommendations.js
+      - run: node scripts/sync-products-expansion-eu.mjs
+      - name: Test expansion catalogs and recommendation safety
+        run: >-
+          node --test
+          tests/expansion-eu-solar-recommendations.test.js
+          tests/oxe-expansion-recommendations.test.js
+          tests/oxe-feed.test.js
+          tests/oxe-affiliate.test.js
+          tests/si-recommendations.test.js
+      - name: Commit refreshed RO and SI catalogs
+        run: |
+          if git diff --quiet -- data/products-ro.json data/products-si.json; then exit 0; fi
+          git config user.name "mypowersetup-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -- data/products-ro.json data/products-si.json
+          git commit -m "data: refresh RO and SI affiliate catalogs"
+          git push

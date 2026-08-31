@@ -73,7 +73,6 @@ jobs:
         env:
           AMPUL_HU_FEED_URL: ${{ secrets.AMPUL_HU_FEED_URL }}
       - run: node scripts/sync-products-pt.mjs
-      - run: node scripts/sync-products-expansion-eu.mjs
       - run: node scripts/write-commercial-opportunity-report.mjs
       - run: node --test
       - run: npm run check:commercial:coverage:safe
@@ -81,9 +80,9 @@ jobs:
       - run: npm run check:commercial:opportunities
       - name: Commit refreshed catalog
         run: |
-          if git diff --quiet -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json data/products-ro.json data/products-si.json data/commercial-opportunity-report.json; then exit 0; fi
+          if git diff --quiet -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json data/commercial-opportunity-report.json; then exit 0; fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json data/products-ro.json data/products-si.json data/commercial-opportunity-report.json
+          git add -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json data/commercial-opportunity-report.json
           git commit -m "data: refresh affiliate product catalog"
           git push
