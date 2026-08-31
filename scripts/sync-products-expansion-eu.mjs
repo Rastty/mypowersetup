@@ -1,9 +1,11 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { syncAllpowersEu } from "./lib/sync-allpowers-eu.mjs";
+import { syncOxeMarket } from "./lib/sync-oxe.mjs";
+import { isOxeTechnicallyCompletePowerStation } from "../src/oxe-feed.js";
 
 const targets = Object.freeze([
-  Object.freeze({ path: "data/products-ro.json", market: "ro-RO", country: "Romania" }),
-  Object.freeze({ path: "data/products-si.json", market: "sl-SI", country: "Slovenia" }),
+  Object.freeze({ path: "data/products-ro.json", market: "ro-RO", country: "Romania", oxeMarket: "ro", oxeMerchant: "oxe_ro" }),
+  Object.freeze({ path: "data/products-si.json", market: "sl-SI", country: "Slovenia", oxeMarket: "si", oxeMerchant: "oxe_si" }),
 ]);
 
 async function readCatalog(path, market) {
@@ -15,22 +17,30 @@ async function readCatalog(path, market) {
 }
 
 const previousCatalogs = await Promise.all(targets.map((target) => readCatalog(target.path, target.market)));
-const preservedProducts = [...new Map(
+const preservedAllpowers = [...new Map(
   previousCatalogs
     .flatMap((catalog) => catalog.products || [])
     .filter((product) => product?.merchant === "allpowers_eu")
     .map((product) => [product.productUrl, product])
 ).values()];
 
-const synced = await syncAllpowersEu({ products: preservedProducts });
-const powerStations = synced.products
+const syncedAllpowers = await syncAllpowersEu({ products: preservedAllpowers });
+const allpowersPowerStations = syncedAllpowers.products
   .filter((product) => product.category === "power_station" && product.verifiedAt)
   .map((product) => ({ ...product, marketEligible: true }));
 
-if (!powerStations.length) throw new Error("EXPANSION_EU_HAS_NO_VERIFIED_POWER_STATIONS");
+if (!allpowersPowerStations.length) throw new Error("EXPANSION_EU_HAS_NO_VERIFIED_POWER_STATIONS");
 
 await mkdir("data", { recursive: true });
-for (const target of targets) {
+for (let index = 0; index < targets.length; index += 1) {
+  const target = targets[index];
+  const previousCatalog = previousCatalogs[index];
+  const syncedOxe = await syncOxeMarket(target.oxeMarket, previousCatalog);
+  const oxePowerStations = syncedOxe.products
+    .filter(isOxeTechnicallyCompletePowerStation)
+    .map((product) => ({ ...product, marketEligible: true }));
+  const products = [...allpowersPowerStations, ...oxePowerStations];
+
   const catalog = {
     generatedAt: new Date().toISOString(),
     market: target.market,
@@ -39,20 +49,26 @@ for (const target of targets) {
     shippingEligibility: {
       country: target.country,
       merchant: "allpowers_eu",
+      merchants: ["allpowers_eu", target.oxeMerchant],
       eligible: true,
-      verifiedAt: "2026-08-30",
+      verifiedAt: "2026-08-31",
       evidenceUrl: "https://iallpowers.eu/",
+      localMerchantEvidence: syncedOxe.source.feedUrl,
     },
     sources: {
       allpowers_eu: {
-        status: synced.source.status,
+        status: syncedAllpowers.source.status,
         awinMerchantId: 38934,
         affiliateId: 3044971,
-        exactProducts: powerStations.length,
+        exactProducts: allpowersPowerStations.length,
+      },
+      [target.oxeMerchant]: {
+        ...syncedOxe.source,
+        exactProducts: oxePowerStations.length,
       },
     },
-    products: powerStations,
+    products,
   };
   await writeFile(target.path, `${JSON.stringify(catalog, null, 2)}\n`);
-  console.log(`${target.market}: ${powerStations.length} verified ALLPOWERS EU power stations (${synced.source.status}).`);
+  console.log(`${target.market}: ${allpowersPowerStations.length} ALLPOWERS + ${oxePowerStations.length} verified OXE power stations.`);
 }
