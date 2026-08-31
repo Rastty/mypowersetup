@@ -109,6 +109,47 @@ const SI_GROWTH_CONTENT = Object.freeze({
       ["Ali je čisti sinus smiseln v avtodomu?", "Je konservativna izbira za občutljivo elektroniko in zahtevnejše naprave. Vedno preveri zahteve konkretnega porabnika."],
     ]),
   }),
+  "/si/vodici/dc-dc-polnilnik-avtodom/": Object.freeze({
+    title: "Kako izbrati DC-DC polnilnik za avtodom?",
+    description: "Izberi DC-DC polnilnik glede na bivalno baterijo, alternator, čas vožnje, sistem 12/24 V in delovanje pametnega alternatorja.",
+    body: `
+<section data-si-search-growth="dc-dc-polnilnik-avtodom">
+  <h2>Kratek odgovor: tok omejujeta baterija in alternator</h2>
+  <p>DC-DC polnilnik nadzoruje prenos energije iz zagonskega sistema v bivalno baterijo. Vrednosti 30 A, 40 A ali 50 A ne izberi samo po kapaciteti v Ah. Preveri <strong>dovoljeni polnilni tok baterije in BMS, dejansko rezervo alternatorja ter energijo, ki jo želiš pridobiti v času vožnje</strong>.</p>
+  <p>Pri približno 14 V pomeni 30 A okoli 400–450 W, 50 A pa okoli 700 W. V dveh urah je to lahko približno 0,8 oziroma 1,4 kWh pred izgubami in omejitvami. Temperatura, vhodna napetost, stanje baterije in zmanjšanje moči lahko rezultat znižajo.</p>
+
+  <h2>Pametni alternator in vozila Euro 6</h2>
+  <p>Alternator, ki ga krmili ECU, ne vzdržuje vedno stalne napetosti. Uradni priročnik <a href="https://www.victronenergy.com/upload/documents/Orion_XS_12-12-70A_DC-DC_Battery_Charger/124067-Orion_XS_DC-DC_battery_charger-pdf-en.pdf" rel="external noopener">Victron Orion XS</a> navaja približno 12,5–15 V pri pametnih alternatorjih in opozarja, da je pri nekaterih strategijah Euro 6 treba prilagoditi zaznavanje delovanja motorja.</p>
+  <p>Preveri, ali sistem uporablja zaznavanje napetosti, signal kontakta ali zunanji ukaz. Napačno prisiljeno polnjenje lahko prazni zagonsko baterijo tudi pri ugasnjenem motorju.</p>
+
+  <h2>LiFePO₄ in zaščita alternatorja</h2>
+  <p>Litijeva baterija lahko zaradi nizke notranje upornosti sprejme velik tok. Dokumentacija <a href="https://www.victronenergy.com/upload/documents/Orion-Tr_Smart_DC-DC_Charger_-_Isolated/34439-Orion-Tr_Smart_DC-DC_Charger-pdf-en.pdf" rel="external noopener">Orion-Tr Smart</a> opisuje nadzorovano polnjenje kot zaščito alternatorja in način uporabe pravilnega polnilnega profila. Še vedno veljajo omejitve BMS, temperature, kablov in neprekinjenega toka naprave.</p>
+
+  <h2>Primer: med vožnjo želiš nadomestiti 900 Wh</h2>
+  <p>Za 900 Wh v treh urah potrebuješ približno 300 W povprečne uporabne moči. DC-DC z 30 A pri 12 V je lahko primeren, če ga alternator in baterija varno podpirata. Pri samo eni uri vožnje močnejši model ni samodejno prava rešitev; najprej preveri alternator, baterijo, hlajenje in napeljavo.</p>
+  <p>Pri pretvorbi 12→24 V je vhodni tok na strani alternatorja višji od izhodnega toka proti 24 V bateriji. Obe strani dimenzioniraj ločeno.</p>
+
+  <h2>Kontrolni seznam pred nakupom</h2>
+  <ul>
+    <li>pravilna vhodna in izhodna napetost;</li>
+    <li>neprekinjeni tok pri dejanski temperaturi namestitve;</li>
+    <li>največji polnilni tok baterije in BMS;</li>
+    <li>rezerva alternatorja po obstoječih porabnikih vozila;</li>
+    <li>združljivost s pametnim alternatorjem in način vklopa;</li>
+    <li>ustrezen profil za LiFePO₄, AGM ali svinčeno baterijo;</li>
+    <li>izolirana ali neizolirana izvedba glede na arhitekturo;</li>
+    <li>varovalke in kabli na obeh straneh glede na tok, dolžino in padec napetosti;</li>
+    <li>prezračevanje, temperaturno zmanjšanje moči in zaščita mesta namestitve.</li>
+  </ul>
+  <p>Ne prepisuj preseka kabla ali varovalke iz drugega avtodoma. Upoštevaj priročnik naprave in preveri dejansko traso.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Kakšen DC-DC tok je primeren za 100 Ah LiFePO4 baterijo?", "Odvisen je od omejitve baterije in BMS, alternatorja, časa vožnje, temperature in kablov. Sama kapaciteta 100 Ah ni dovolj za izbiro."],
+      ["Ali pri pametnem alternatorju potrebujem DC-DC?", "Pogosto je to nadzorovana rešitev, vendar preveri strategijo vozila ter način zaznavanja motorja ali vklopa, ki ga določa proizvajalec."],
+      ["Lahko LiFePO4 baterijo priključim neposredno na alternator?", "Ne predpostavljaj, da je varno. Nenadzorovan tok lahko preobremeni alternator, baterija pa potrebuje združljiv polnilni profil."],
+    ]),
+  }),
+
 });
 
 function schemaFor(route, item) {

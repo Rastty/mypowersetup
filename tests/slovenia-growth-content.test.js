@@ -11,6 +11,7 @@ const ROUTES = Object.freeze([
   "/si/vodici/lifepo4-ali-agm-avtodom/",
   "/si/vodici/mppt-regulator-avtodom/",
   "/si/vodici/inverter-avtodom-moc/",
+  "/si/vodici/dc-dc-polnilnik-avtodom/",
 ]);
 
 for (const route of ROUTES) {
@@ -56,4 +57,15 @@ test("Slovenia growth layer leaves other markets and untargeted routes unchanged
   const html = '<html><head></head><body><aside class="cta"></aside></body></html>';
   assert.equal(enhanceSloveniaSearchContent(html, "pt", "/pt/guias/capacidade-bateria-autocaravana/"), html);
   assert.equal(enhanceSloveniaSearchContent(html, "si", "/si/vodici/poraba-kompresorski-hladilnik-avtodom/"), html);
+});
+
+
+test("Slovenia DC-DC guide keeps smart-alternator and lithium safety evidence explicit", () => {
+  const route = "/si/vodici/dc-dc-polnilnik-avtodom/";
+  const html = publicizeExpansionHtml(renderSloveniaPrivateContentPage(route), "si", route);
+  assert.match(html, /Orion_XS_12-12-70A_DC-DC_Battery_Charger/);
+  assert.match(html, /Orion-Tr_Smart_DC-DC_Charger_-_Isolated/);
+  assert.match(html, /12[,.]5[^<]{0,30}15 V/);
+  assert.match(html, /900 Wh/);
+  assert.match(html, /12→24 V/);
 });

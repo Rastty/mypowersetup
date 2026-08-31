@@ -10,6 +10,7 @@ const EXPECTED = Object.freeze([
   "/pt/guias/lifepo4-vs-agm-autocaravana/",
   "/pt/guias/como-escolher-controlador-mppt/",
   "/pt/guias/inversor-autocaravana-potencia/",
+  "/pt/guias/carregador-dc-dc-autocaravana/",
 ]);
 
 test("Portugal growth layer targets the five highest-intent guide routes", () => {
@@ -65,4 +66,15 @@ test("non-target Portugal content is unchanged by the growth layer", () => {
 test("other markets are untouched", () => {
   const html = '<html><head></head><body><aside class="cta"></aside></body></html>';
   assert.equal(enhanceExpansionSearchContent(html, "ro", "/ro/ghiduri/example/"), html);
+});
+
+
+test("Portugal DC-DC guide keeps smart-alternator and lithium safety evidence explicit", () => {
+  const route = "/pt/guias/carregador-dc-dc-autocaravana/";
+  const html = publicizeExpansionHtml(renderPortugalPrivateContentPage(route), "pt", route);
+  assert.match(html, /Orion_XS_12-12-70A_DC-DC_Battery_Charger/);
+  assert.match(html, /Orion-Tr_Smart_DC-DC_Charger_-_Isolated/);
+  assert.match(html, /12[,.]5[^<]{0,30}15 V/);
+  assert.match(html, /900 Wh/);
+  assert.match(html, /12→24 V/);
 });

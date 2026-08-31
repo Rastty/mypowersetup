@@ -157,6 +157,47 @@ const RO_GROWTH_CONTENT = Object.freeze({
       ["Merită sinus pur în autorulotă?", "Este alegerea conservatoare pentru electronice și sarcini sensibile. Verifică întotdeauna cerințele aparatelor pe care vrei să le alimentezi."],
     ]),
   }),
+  "/ro/ghiduri/incarcator-dc-dc-autorulota/": Object.freeze({
+    title: "Cum alegi încărcătorul DC-DC pentru autorulotă?",
+    description: "Alege încărcătorul DC-DC după bateria auxiliară, alternator, timpul de condus, sistemul 12/24 V și comportamentul alternatorului inteligent.",
+    body: `
+<section data-ro-search-growth="incarcator-dc-dc-autorulota">
+  <h2>Răspuns scurt: curentul este limitat de baterie și alternator</h2>
+  <p>Un încărcător DC-DC controlează energia transferată de la bateria de pornire și alternator către bateria de servicii. Nu alege 30 A, 40 A sau 50 A doar după capacitatea în Ah. Verifică <strong>curentul de încărcare acceptat de baterie și BMS, rezerva reală a alternatorului și energia pe care vrei să o recuperezi în orele de condus</strong>.</p>
+  <p>La aproximativ 14 V, 30 A înseamnă ordinul a 400–450 W, iar 50 A aproximativ 700 W. În două ore ar putea fi transferați circa 0,8 kWh, respectiv 1,4 kWh înainte de pierderi și limitări. Temperatura, tensiunea de intrare, starea bateriei și reducerea automată a puterii pot micșora rezultatul.</p>
+
+  <h2>Alternator inteligent și vehicule Euro 6</h2>
+  <p>Un alternator controlat de ECU poate varia tensiunea sau se poate opri temporar în mers. Manualul oficial <a href="https://www.victronenergy.com/upload/documents/Orion_XS_12-12-70A_DC-DC_Battery_Charger/124067-Orion_XS_DC-DC_battery_charger-pdf-en.pdf" rel="external noopener">Victron Orion XS</a> descrie valori variabile de aproximativ 12,5–15 V și situații Euro 6 în care detecția implicită a motorului trebuie verificată pentru vehiculul concret.</p>
+  <p>Confirmă dacă instalația folosește detecția tensiunii, un semnal de contact sau o comandă externă. O configurare forțată greșită poate consuma bateria de pornire când motorul este oprit.</p>
+
+  <h2>LiFePO₄ și protecția alternatorului</h2>
+  <p>Bateriile cu litiu pot accepta curent mare datorită rezistenței interne reduse. Documentația <a href="https://www.victronenergy.com/upload/documents/Orion-Tr_Smart_DC-DC_Charger_-_Isolated/34439-Orion-Tr_Smart_DC-DC_Charger-pdf-en.pdf" rel="external noopener">Orion-Tr Smart</a> explică rolul încărcării controlate pentru protecția alternatorului și pentru aplicarea unui profil de încărcare în trepte. Limita BMS-ului, temperatura și curentul continuu al încărcătorului rămân obligatorii.</p>
+
+  <h2>Exemplu: vrei să recuperezi 900 Wh</h2>
+  <p>Pentru 900 Wh în trei ore de condus ai nevoie de aproximativ 300 W utili în medie. Un DC-DC de 30 A la 12 V poate fi în zona corectă dacă alternatorul și bateria îl permit. Dacă ai doar o oră de condus, un model mai puternic nu devine automat sigur: verifică alternatorul, bateria, cablurile și disiparea termică.</p>
+  <p>La conversia 12→24 V, curentul de intrare de pe partea alternatorului este mai mare decât curentul de ieșire spre bateria de 24 V. Dimensionează separat ambele trasee.</p>
+
+  <h2>Checklist înainte de cumpărare</h2>
+  <ul>
+    <li>tensiunea corectă de intrare și ieșire;</li>
+    <li>curentul continuu la temperatura reală de montaj;</li>
+    <li>curentul maxim de încărcare permis de baterie și BMS;</li>
+    <li>rezerva alternatorului după consumatorii originali ai vehiculului;</li>
+    <li>compatibilitatea cu alternatorul inteligent și metoda de activare;</li>
+    <li>profilul LiFePO₄, AGM sau plumb necesar;</li>
+    <li>versiune izolată sau neizolată conform arhitecturii;</li>
+    <li>siguranțe și cabluri pe ambele părți, calculate după curent, lungime și cădere de tensiune;</li>
+    <li>ventilație, temperatură și protecția locului de montaj.</li>
+  </ul>
+  <p>Nu copia secțiunea cablului sau valoarea siguranței din altă autorulotă. Respectă manualul produsului și verifică instalația reală.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Ce curent DC-DC este potrivit pentru o baterie LiFePO4 de 100 Ah?", "Depinde de limita bateriei și BMS-ului, alternator, timpul de condus, temperatură și cabluri. Capacitatea de 100 Ah singură nu stabilește curentul corect."],
+      ["Am nevoie de DC-DC pentru un alternator inteligent?", "Este frecvent soluția controlată, dar trebuie verificată strategia vehiculului și metoda de detecție sau activare recomandată de producător."],
+      ["Pot conecta direct bateria LiFePO4 la alternator?", "Nu presupune că este sigur. Curentul necontrolat poate solicita alternatorul, iar bateria are nevoie de un profil de încărcare compatibil."],
+    ]),
+  }),
+
 });
 
 function schemaFor(route, item) {

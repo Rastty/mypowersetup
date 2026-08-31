@@ -189,6 +189,47 @@ const PT_GROWTH_CONTENT = Object.freeze({
       ["Preciso sempre de inversor numa autocaravana?", "Não. Se todos os consumidores relevantes forem DC, um inversor de 230 V pode ser dispensável."],
     ]),
   }),
+  "/pt/guias/carregador-dc-dc-autocaravana/": Object.freeze({
+    title: "Como escolher um carregador DC-DC para autocaravana?",
+    description: "Dimensiona o carregador DC-DC da autocaravana pela bateria, alternador, horas de condução, sistema 12/24 V e comportamento do alternador inteligente.",
+    body: `
+<section data-search-growth-content="carregador-dc-dc-autocaravana">
+  <h2>Resposta curta: 30 A ou 50 A não se escolhem apenas pelos Ah da bateria</h2>
+  <p>Um carregador DC-DC controla a energia que passa do sistema de arranque para a bateria de serviço. A corrente correta fica limitada por três elementos: <strong>a reserva térmica e elétrica do alternador, a corrente de carga permitida pela bateria/BMS e a energia que pretendes recuperar durante as horas reais de condução</strong>. O menor destes limites deve prevalecer.</p>
+  <p>Num sistema de 12 V, uma saída de 30 A perto da tensão de carga representa aproximadamente 400–450 W; 50 A representam aproximadamente 700 W. Duas horas de viagem podem, em condições favoráveis, acrescentar perto de 0,8 kWh ou 1,4 kWh antes de perdas, redução térmica e fase final de carga. Não uses estes números como promessa: a corrente pode diminuir por temperatura, limites de entrada, estado da bateria ou configuração.</p>
+
+  <h2>Alternador inteligente: verifica o método de ativação</h2>
+  <p>Alternadores controlados pela ECU não mantêm sempre uma tensão fixa. O manual atual do <a href="https://www.victronenergy.com/upload/documents/Orion_XS_12-12-70A_DC-DC_Battery_Charger/124067-Orion_XS_DC-DC_battery_charger-pdf-en.pdf" rel="external noopener">Victron Orion XS</a> descreve variações típicas entre 12,5 e 15 V e avisa que estratégias Euro 6 podem desligar o alternador durante a condução. Por isso, “compatível com alternador inteligente” não basta: confirma deteção de motor, limiares de tensão e, quando necessário, sinal de ignição ou comando externo segundo o manual do veículo e do carregador.</p>
+  <p>Desativar a deteção do motor sem um comando correto pode permitir consumo da bateria de arranque com o motor parado. O objetivo é carregar em viagem sem descarregar o sistema de arranque.</p>
+
+  <h2>Porque a carga direta pode ser inadequada para LiFePO₄</h2>
+  <p>Uma bateria de lítio com baixa resistência interna pode aceitar corrente elevada. A documentação oficial do <a href="https://www.victronenergy.com/upload/documents/Orion-Tr_Smart_DC-DC_Charger_-_Isolated/34439-Orion-Tr_Smart_DC-DC_Charger-pdf-en.pdf" rel="external noopener">Orion-Tr Smart</a> explica que a carga controlada protege o alternador e fornece um perfil de carga definido. Isso não significa que qualquer DC-DC resolva qualquer instalação: a corrente contínua, ventilação, temperatura, BMS e cablagem continuam a ser limites reais.</p>
+
+  <h2>Exemplo de planeamento: repor 900 Wh durante a viagem</h2>
+  <p>Se queres recuperar 900 Wh e conduzes três horas, a potência média útil necessária é cerca de 300 W. Um carregador de 30 A num sistema de 12 V pode estar na ordem de grandeza correta, desde que alternador e bateria suportem a carga. Se só conduzes uma hora, aumentar a corrente pode parecer atraente, mas só é válido depois de confirmar a reserva do alternador, a corrente máxima da bateria e a dissipação térmica.</p>
+  <p>Num sistema 12→24 V, não compares apenas os amperes de saída. A potência vem do lado de entrada: a corrente retirada do alternador de 12 V será superior à corrente entregue à bateria de 24 V, acrescida das perdas. Entrada e saída precisam de cabos e proteção próprios.</p>
+
+  <h2>Checklist antes de comprar</h2>
+  <ul>
+    <li>tensão de entrada e de saída: 12→12, 12→24 ou outra combinação realmente necessária;</li>
+    <li>corrente contínua disponível à temperatura de instalação, não apenas o valor de marketing;</li>
+    <li>corrente de carga permitida pela bateria, BMS e fabricante;</li>
+    <li>capacidade do alternador e cargas que o veículo já alimenta;</li>
+    <li>compatibilidade com alternador inteligente e método de deteção do motor;</li>
+    <li>perfil de carga para LiFePO₄, AGM ou outra química;</li>
+    <li>modelo isolado ou não isolado conforme a arquitetura e as instruções do fabricante;</li>
+    <li>fusível e secção de cabo em ambos os lados, calculados pela corrente, comprimento, queda de tensão e método de instalação;</li>
+    <li>ventilação, redução térmica, localização e proteção contra água.</li>
+  </ul>
+  <p>Não copies um valor de fusível ou cabo de outra autocaravana. Usa as recomendações do fabricante como ponto de partida e valida a instalação real com um profissional quando não conheces a arquitetura do veículo.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Que carregador DC-DC escolher para uma bateria LiFePO4 de 100 Ah?", "Não existe uma corrente universal. Confirma a corrente de carga permitida pela bateria e BMS, a reserva do alternador, as horas de condução, a temperatura e a cablagem; 20 A, 30 A ou 50 A podem ser corretos em sistemas diferentes."],
+      ["Preciso de DC-DC com alternador inteligente?", "É frequentemente a solução controlada para tensão variável, mas deves confirmar a estratégia do veículo, a deteção de motor e o método de ativação indicado pelo fabricante."],
+      ["Posso ligar diretamente a bateria LiFePO4 ao alternador?", "Não assumas que é seguro. A baixa resistência da bateria pode exigir controlo de corrente para proteger o alternador e aplicar o perfil de carga correto."],
+    ]),
+  }),
+
 });
 
 function faqHtml(items) {
