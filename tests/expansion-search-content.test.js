@@ -11,9 +11,10 @@ const EXPECTED = Object.freeze([
   "/pt/guias/como-escolher-controlador-mppt/",
   "/pt/guias/inversor-autocaravana-potencia/",
   "/pt/guias/carregador-dc-dc-autocaravana/",
+  "/pt/guias/carregador-230v-bateria-autocaravana/",
 ]);
 
-test("Portugal growth layer targets the five highest-intent guide routes", () => {
+test("Portugal growth layer targets the seven highest-intent guide routes", () => {
   assert.deepEqual([...PT_SEARCH_GROWTH_ROUTES].sort(), [...EXPECTED].sort());
 });
 

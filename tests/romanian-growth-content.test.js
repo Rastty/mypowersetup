@@ -12,6 +12,7 @@ const ROUTES = Object.freeze([
   "/ro/ghiduri/regulator-mppt-autorulota/",
   "/ro/ghiduri/invertor-autorulota-putere/",
   "/ro/ghiduri/incarcator-dc-dc-autorulota/",
+  "/ro/ghiduri/incarcator-230v-baterie-autorulota/",
 ]);
 
 for (const route of ROUTES) {
