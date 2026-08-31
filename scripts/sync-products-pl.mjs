@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { parseShopifyProducts } from "../src/shopify.js";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
+import { syncOxeMarket } from "./lib/sync-oxe.mjs";
 
 const endpoint = "https://allpowers.com.pl/products.json?limit=250";
 const outputPath = "data/products-pl.json";
@@ -19,6 +20,9 @@ const sources = {};
 const powerqueen = await syncPowerQueenEu(previousCatalog);
 products.push(...powerqueen.products);
 sources.powerqueen_eu = powerqueen.source;
+const oxe = await syncOxeMarket("pl", previousCatalog);
+products.push(...oxe.products);
+sources.oxe_pl = oxe.source;
 
 try {
   const response = await fetch(endpoint, {
