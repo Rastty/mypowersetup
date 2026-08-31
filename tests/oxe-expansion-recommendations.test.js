@@ -78,11 +78,13 @@ test("incomplete OXE technical evidence is rejected rather than recommended", ()
 test("committed RO and SI catalogs never expose a standalone SP solar panel as a power station", () => {
   for (const [market, path] of [["ro", "../data/products-ro.json"], ["si", "../data/products-si.json"]]) {
     const catalog = JSON.parse(readFileSync(new URL(path, import.meta.url), "utf8"));
-    const corrupted = catalog.products.filter((product) =>
-      product.category === "power_station"
-      && /\bSP\s*\d{2,4}W\b/i.test(product.name)
-      && !/\b(power\s*station|powerstation|centrala electrica|elektrarna)\b.*\b(S|P)\d{3,4}\b/i.test(product.name),
-    );
+    const corrupted = catalog.products.filter((product) => {
+      const name = String(product.name || "");
+      const stationIndex = name.search(/power\s*station|powerstation/i);
+      const solarIndex = name.search(/solar|solarn|solár|słonecz|napelem|panou/i);
+      const standalonePanel = solarIndex >= 0 && (stationIndex < 0 || solarIndex < stationIndex);
+      return product.category === "power_station" && standalonePanel;
+    });
     assert.deepEqual(corrupted, [], `${market} contains standalone panels with station specs`);
     assert.equal(catalog.products.some((product) => product.id === `oxe_${market}:OXE8020` && product.category === "power_station"), false);
   }
