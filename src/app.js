@@ -514,7 +514,7 @@ function renderProductRecommendations(result) {
   intro.textContent = `Nejdříve ověřujeme technickou kompatibilitu. Pořadí následně zohledňuje shodu parametrů, dostupnost a úplnost produktových dat.${freshness}`;
   renderProductPackages(buildProductPackages(rankedRecommendations, result));
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Co katalog zatím nepokrývá:</strong> ${coverage.message}</p>`;
-  groups.innerHTML = coverageNotice + Object.entries(recommendations)
+  const productGroups = Object.entries(recommendations)
     .filter(([, items]) => items.length)
     .map(([category, items]) => `
       <section class="product-group" id="product-group-${category}" data-product-category="${category}">
@@ -524,6 +524,7 @@ function renderProductRecommendations(result) {
         </div>
       </section>
     `).join("");
+  groups.innerHTML = `${coverageNotice}<details class="product-comparison-details"><summary><span>Porovnat jednotlivé produkty</span><small>${total} ověřených shod v ${categoryCount} kategoriích</small></summary><div class="product-comparison-groups">${productGroups}</div></details>`;
 }
 
 function renderProductPackages(variants) {
