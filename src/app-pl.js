@@ -512,7 +512,7 @@ function renderProductRecommendations(result) {
   intro.textContent = `Najpierw sprawdzamy zgodność techniczną. Kolejność uwzględnia następnie dopasowanie parametrów, dostępność i kompletność danych.${freshness}`;
   renderProductPackages(buildProductPackages(rankedRecommendations, result));
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Czego katalog jeszcze nie obejmuje:</strong> ${coverage.message}</p>`;
-  groups.innerHTML = coverageNotice + Object.entries(recommendations)
+  const productGroups = Object.entries(recommendations)
     .filter(([, items]) => items.length)
     .map(([category, items]) => `
       <section class="product-group" id="product-group-${category}" data-product-category="${category}">
@@ -522,6 +522,7 @@ function renderProductRecommendations(result) {
         </div>
       </section>
     `).join("");
+  groups.innerHTML = `${coverageNotice}<details class="product-comparison-details"><summary><span>Porównaj pojedyncze produkty</span><small>${total} zweryfikowanych dopasowań w ${categoryCount} kategoriach</small></summary><div class="product-comparison-groups">${productGroups}</div></details>`;
 }
 
 function renderProductPackages(variants) {

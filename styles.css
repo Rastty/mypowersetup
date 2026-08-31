@@ -530,3 +530,41 @@ footer small { font-size: 12px; }
   .result-card, .decision-grid article, .result-panel, .diagram-panel,
   .charging-card, .roof-panel, .roof-fit-card, .installation-card, .package-card, .breakdown-row { break-inside: avoid; page-break-inside: avoid; }
 }
+
+.product-comparison-details {
+  margin-top: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fafbf8;
+}
+.product-comparison-details > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 64px;
+  padding: 16px 20px;
+  color: var(--ink);
+  font-weight: 800;
+  cursor: pointer;
+}
+.product-comparison-details > summary small {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+.product-comparison-details[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+.product-comparison-groups {
+  padding: 4px 20px 20px;
+}
+@media (max-width: 640px) {
+  .product-comparison-details > summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .product-comparison-groups {
+    padding-inline: 14px;
+  }
+}
