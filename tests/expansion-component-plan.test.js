@@ -36,7 +36,7 @@ for (const { market, prefix } of markets) {
     assert.match(plan.items.find((item) => item.topic === "inverter").spec, /1200 W/);
 
     for (const item of plan.items) {
-      const html = await readFile(new URL(`../public${item.href}index.html`, import.meta.url), "utf8");
+      const html = await readFile(new URL(`..${item.href}index.html`, import.meta.url), "utf8");
       assert.doesNotMatch(html, /<meta name="robots" content="noindex/);
       assert.ok(html.includes(`<link rel="canonical" href="https://mypowersetup.com${item.href}">`));
     }
