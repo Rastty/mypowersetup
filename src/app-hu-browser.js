@@ -120,10 +120,40 @@ function renderProducts(output) {
   const total = entries.reduce((sum,[,items]) => sum + items.length,0);
   const coverage = output.recommendationCoverage;
   track("product_coverage_calculated", { locale:"hu", required_categories:coverage.required.length, covered_categories:coverage.covered.length, missing_categories:coverage.missing.join(",") });
-  document.querySelector("#result-next").hidden = false; document.querySelector("#result-product-count").textContent = total ? `${total} ellenőrzött műszaki találat ${entries.length} kategóriában. Terméklefedettség: ${coverage.covered.length}/${coverage.required.length} szükséges kategória.` : "Ehhez a konfigurációhoz még nincs elég ellenőrzött termék."; document.querySelector("#result-products-link").hidden = !total;
+  document.querySelector("#result-next").hidden = false;
+  document.querySelector("#result-product-count").textContent = total ? `${total} ellenőrzött műszaki találat ${entries.length} kategóriában. Terméklefedettség: ${coverage.covered.length}/${coverage.required.length} szükséges kategória.` : "Ehhez a konfigurációhoz még nincs elég ellenőrzött termék.";
+  document.querySelector("#result-products-link").hidden = !total;
   document.querySelector("#product-heading").textContent = total ? HU_UI_COPY.products.heading : HU_UI_COPY.products.preparing;
+  renderHungarianProductPackages(total ? output.packages : []);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>A katalógusból még hiányzik:</strong> ${escapeHtml(coverage.message)}</p>`;
-  document.querySelector("#recommendation-groups").innerHTML = coverageNotice + entries.map(([category,items]) => `<section class="product-group" data-product-category="${category}"><h5>${labels[category]}</h5><div class="product-grid">${items.map(({product,reason,checks,verify}) => `<article class="product-card"><div class="product-card-copy"><span>${hungarianMerchantLabel(product.merchant)}</span><h6>${escapeHtml(product.name)}</h6><p><strong>Miért megfelelő:</strong> ${escapeHtml(reason)}</p><ul>${checks.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul><p><strong>Vásárlás előtt:</strong> ${escapeHtml(verify)}</p><div class="product-card-action"><span class="product-price"><strong>${formatHungarianPrice(product.priceCzk,product.priceCurrency)}</strong></span><a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${HU_UI_COPY.products.exactProduct}</a></div></div></article>`).join("")}</div></section>`).join("");
+  const productGroups = entries.map(([category,items]) => `<section class="product-group" data-product-category="${category}"><h5>${labels[category]}</h5><div class="product-grid">${items.map(({product,reason,checks,verify}) => `<article class="product-card"><div class="product-card-copy"><span>${hungarianMerchantLabel(product.merchant)}</span><h6>${escapeHtml(product.name)}</h6><p><strong>Miért megfelelő:</strong> ${escapeHtml(reason)}</p><ul>${checks.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul><p><strong>Vásárlás előtt:</strong> ${escapeHtml(verify)}</p><div class="product-card-action"><span class="product-price"><strong>${formatHungarianPrice(product.priceCzk,product.priceCurrency)}</strong></span><a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${HU_UI_COPY.products.exactProduct}</a></div></div></article>`).join("")}</div></section>`).join("");
+  document.querySelector("#recommendation-groups").innerHTML = total
+    ? `${coverageNotice}<details class="product-comparison-details"><summary><span>Egyedi termékek összehasonlítása</span><small>${total} ellenőrzött találat ${entries.length} kategóriában</small></summary><div class="product-comparison-groups">${productGroups}</div></details>`
+    : coverageNotice;
+}
+
+function renderHungarianProductPackages(variants) {
+  const target = document.querySelector("#package-variants");
+  const copy = {
+    economy: ["Takarékos", "A legalacsonyabb ismert ár a kompatibilis lehetőségek között."],
+    recommended: ["Ajánlott", "A paraméterek és az adatminőség legjobb egyensúlya."],
+    reserve: ["Nagyobb tartalékkal", "Nagyobb műszaki tartalék, ahol a katalógus ezt lehetővé teszi."],
+  };
+  if (!variants?.length) {
+    target.innerHTML = "";
+    return;
+  }
+  target.innerHTML = `<div class="package-intro"><strong>Három biztonságos vásárlási út</strong><p>Mindhárom változat ugyanazt a számított igényt teljesíti. A fő alkatrészeket és az elérhető töltést tartalmazza, de nem teljes szerelési anyaglista.</p></div><div class="package-grid">${variants.map((variant) => {
+    const [label, description] = copy[variant.id];
+    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => hungarianPackageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Ár a webáruházban" : formatHungarianPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Tájékoztató termékösszeg; szállítás és szerelés nélkül.</small></article>`;
+  }).join("")}</div>`;
+}
+
+function hungarianPackageProductLink(category, product, packageId) {
+  const labels = { battery:"Akkumulátor",solar_panel:"Napelem",inverter:"Inverter",controller:"MPPT",dc_charger:"DC–DC töltő",shore_charger:"230 V-os töltő" };
+  const quantity = product.recommendedQuantity || 1;
+  const quantityLabel = quantity > 1 ? `${quantity} db · ` : "";
+  return `<li><small>${labels[category] || category}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(hungarianMerchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">A pontos termék megjelenítése →</a></li>`;
 }
 
 function showStep(step) { currentStep=Math.max(1,Math.min(3,step)); document.querySelectorAll(".form-step").forEach((section) => { const visible=Number(section.dataset.step)===currentStep; section.hidden=!visible; section.classList.toggle("is-visible",visible); }); document.querySelectorAll(".step").forEach((button,index) => { button.disabled=index+1>currentStep; button.classList.toggle("is-active",index+1===currentStep); button.classList.toggle("is-complete",index+1<currentStep); }); document.querySelector("#kalkulator").scrollIntoView({ behavior:"smooth",block:"start" }); }
