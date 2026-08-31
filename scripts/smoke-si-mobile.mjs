@@ -39,6 +39,8 @@ try {
   await waitFor(async () => evaluate(cdp, `document.querySelectorAll("[data-affiliate-product]").length > 0`));
   const guideLinks = await evaluate(cdp, `[...document.querySelectorAll("[data-result-guide]")].map((link) => link.getAttribute("href"))`);
   assert(guideLinks.length === 3, `result guides=${guideLinks.length}`); assert(guideLinks.every((href) => href.startsWith("/si/vodici/")), `wrong result guide=${guideLinks.join(",")}`);
+  const componentLinks = await evaluate(cdp, `[...document.querySelectorAll("[data-component-guide]")].map((link) => link.getAttribute("href"))`);
+  assert(componentLinks.length === 4, `component guides=${componentLinks.length}`); assert(componentLinks.every((href) => href.startsWith("/si/vodici/")), `wrong component guide=${componentLinks.join(",")}`);
   const result = await evaluate(cdp, `(() => {
     const links = [...document.querySelectorAll('[data-affiliate-product]')];
     return {
