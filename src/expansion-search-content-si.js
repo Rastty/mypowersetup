@@ -174,7 +174,7 @@ const SI_GROWTH_CONTENT = Object.freeze({
   <p>12 V in 30 A polnilnik v glavni fazi odda približno 430 W, zaradi izgub pa na AC vhodu zahteva več. Preden predpostaviš, da priklop zmore vse hkrati, prištej hladilnik, ogrevanje, grelnik vode in druge 230 V porabnike.</p>
 
   <h2>230 V zahteva lastno zaščito</h2>
-  <p>Vhod iz kampa potrebuje pravilno dimenzionirana RCD in odklopnik, zaščitni vodnik ter ustrezne kable. <a href="https://www.victronenergy.com/upload/documents/VE-Direct-drawing-with-IP43-Smart-Charger-12_50-1-Inverter-375W-2x125Ah-SC-AGM-MPPT_100_30-Argofet-Isolator-BMV-712.pdf">Uradna Victronova shema s polnilnikom IP43</a> prikazuje MCB/RCD na AC vhodu in zahteva prilagoditev kablov ter varovalk dejanski namestitvi.</p>
+  <p>Vhod iz kampa potrebuje pravilno dimenzionirana RCD in odklopnik, zaščitni vodnik ter ustrezne kable. <a href="https://www.victronenergy.com/upload/documents/VE-Direct-drawing-with-IP43-Smart-Charger-12_50-1-Inverter-375W-2x125Ah-SC-AGM-MPPT-100_30-Argofet-Isolator-BMV-712.pdf">Uradna Victronova shema s polnilnikom IP43</a> prikazuje MCB/RCD na AC vhodu in zahteva prilagoditev kablov ter varovalk dejanski namestitvi.</p>
   <p><strong>230 V je lahko smrtno nevarnih.</strong> Če ne znaš preveriti ozemljitve, RCD, polaritete, ločitve AC/DC in lokalnih pravil, naj ta del izvede usposobljen električar.</p>
 
   <h2>Kontrolni seznam pred nakupom</h2>
