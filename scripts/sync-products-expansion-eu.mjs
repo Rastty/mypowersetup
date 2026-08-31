@@ -25,11 +25,22 @@ const preservedAllpowers = [...new Map(
 ).values()];
 
 const syncedAllpowers = await syncAllpowersEu({ products: preservedAllpowers });
-const allpowersPowerStations = syncedAllpowers.products
-  .filter((product) => product.category === "power_station" && product.verifiedAt)
-  .map((product) => ({ ...product, marketEligible: true }));
+const catalogVerifiedAt = new Date().toISOString().slice(0, 10);
+const allpowersProducts = syncedAllpowers.products
+  .filter((product) =>
+    (product.category === "solar_panel" && product.specs?.powerW >= 60)
+    || (product.category === "power_station" && product.verifiedAt)
+  )
+  .map((product) => ({
+    ...product,
+    marketEligible: true,
+    verifiedAt: product.verifiedAt || catalogVerifiedAt,
+  }));
+const allpowersPowerStations = allpowersProducts.filter((product) => product.category === "power_station");
+const allpowersSolarPanels = allpowersProducts.filter((product) => product.category === "solar_panel");
 
 if (!allpowersPowerStations.length) throw new Error("EXPANSION_EU_HAS_NO_VERIFIED_POWER_STATIONS");
+if (!allpowersSolarPanels.length) throw new Error("EXPANSION_EU_HAS_NO_VERIFIED_SOLAR_PANELS");
 
 await mkdir("data", { recursive: true });
 for (let index = 0; index < targets.length; index += 1) {
@@ -39,7 +50,7 @@ for (let index = 0; index < targets.length; index += 1) {
   const oxePowerStations = syncedOxe.products
     .filter(isOxeTechnicallyCompletePowerStation)
     .map((product) => ({ ...product, marketEligible: true }));
-  const products = [...allpowersPowerStations, ...oxePowerStations];
+  const products = [...allpowersProducts, ...oxePowerStations];
 
   const catalog = {
     generatedAt: new Date().toISOString(),
@@ -60,7 +71,7 @@ for (let index = 0; index < targets.length; index += 1) {
         status: syncedAllpowers.source.status,
         awinMerchantId: 38934,
         affiliateId: 3044971,
-        exactProducts: allpowersPowerStations.length,
+        exactProducts: allpowersProducts.length,
       },
       [target.oxeMerchant]: {
         ...syncedOxe.source,
@@ -70,5 +81,5 @@ for (let index = 0; index < targets.length; index += 1) {
     products,
   };
   await writeFile(target.path, `${JSON.stringify(catalog, null, 2)}\n`);
-  console.log(`${target.market}: ${allpowersPowerStations.length} ALLPOWERS + ${oxePowerStations.length} verified OXE power stations.`);
+  console.log(`${target.market}: ${allpowersPowerStations.length} ALLPOWERS power stations + ${allpowersSolarPanels.length} solar panels + ${oxePowerStations.length} verified OXE power stations.`);
 }

@@ -33,9 +33,20 @@ export async function loadSloveniaProductCatalog(fetchImpl = globalThis.fetch) {
 
 export function buildSloveniaRecommendations(catalog, setup, limit = 3) {
   validateSloveniaCatalog(catalog);
+  const solarTargetWatts = Number(setup.solarWatts) || 0;
+  const solarPanels = solarTargetWatts > 0 ? catalog.products
+    .filter((product) => product.category === "solar_panel" && product.available !== false)
+    .map((product) => {
+      const quantity = Math.max(1, Math.ceil(solarTargetWatts / product.specs.powerW));
+      return { product, quantity, fit: (product.specs.powerW * quantity) / solarTargetWatts };
+    })
+    .filter(({ quantity, fit }) => quantity <= 4 && fit > 0 && fit <= 3)
+    .sort((a, b) => Math.abs(1 - a.fit) - Math.abs(1 - b.fit) || Number(a.product.priceCzk ?? Infinity) - Number(b.product.priceCzk ?? Infinity))
+    .slice(0, limit)
+    .map(({ product, quantity }) => recommendationView(product, { quantity })) : [];
+
   const profile = calculatePowerStationProfile(setup);
-  if (profile.profile === "individual") return Object.freeze({ power_station: Object.freeze([]) });
-  const matches = catalog.products
+  const powerStations = profile.profile === "individual" ? [] : catalog.products
     .filter((product) => product.category === "power_station" && product.available !== false)
     .filter((product) => product.specs.capacityWh >= profile.capacityWh)
     .filter((product) => product.specs.powerW >= profile.acOutputWatts)
@@ -43,20 +54,12 @@ export function buildSloveniaRecommendations(catalog, setup, limit = 3) {
     .filter((product) => product.specs.dcOutputA >= profile.dcOutputAmpsAt12V)
     .sort((a, b) => fitScore(a, profile) - fitScore(b, profile))
     .slice(0, limit)
-    .map((product) => Object.freeze({
-      id: product.id,
-      category: product.category,
-      name: product.name,
-      affiliateUrl: product.affiliateUrl,
-      productUrl: product.productUrl,
-      capacityWh: product.specs.capacityWh,
-      powerW: product.specs.powerW,
-      solarInputW: product.specs.solarInputW,
-      dcOutputA: product.specs.dcOutputA,
-      currency: product.priceCurrency || "EUR",
-      merchant: product.merchant,
-    }));
-  return Object.freeze({ power_station: Object.freeze(matches) });
+    .map((product) => recommendationView(product));
+
+  return Object.freeze({
+    solar_panel: Object.freeze(solarPanels),
+    power_station: Object.freeze(powerStations),
+  });
 }
 
 function validateSloveniaProduct(product) {
@@ -75,10 +78,33 @@ function validateSloveniaProduct(product) {
   } else {
     throw new Error("SI_PRODUCT_MERCHANT_INVALID");
   }
+
   const specs = product.specs || {};
+  if (product.category === "solar_panel") {
+    if (product.merchant !== "allpowers_eu" || !(specs.powerW >= 60 && specs.powerW <= 1000)) throw new Error("SI_SOLAR_PANEL_SPECS_INVALID");
+    return;
+  }
   if (product.category !== "power_station" || !(specs.capacityWh > 0 && specs.powerW > 0 && specs.solarInputW > 0 && specs.dcOutputA > 0 && specs.pureSine === true)) {
     throw new Error("SI_POWER_STATION_SPECS_INVALID");
   }
+}
+
+function recommendationView(product, { quantity = 1 } = {}) {
+  return Object.freeze({
+    id: product.id,
+    category: product.category,
+    name: product.name,
+    affiliateUrl: product.affiliateUrl,
+    productUrl: product.productUrl,
+    capacityWh: product.specs.capacityWh || null,
+    powerW: product.specs.powerW || null,
+    solarInputW: product.specs.solarInputW || null,
+    dcOutputA: product.specs.dcOutputA || null,
+    price: Number.isFinite(product.priceCzk) ? product.priceCzk : null,
+    currency: product.priceCurrency || "EUR",
+    quantity,
+    merchant: product.merchant,
+  });
 }
 
 function fitScore(product, profile) {

@@ -17,8 +17,8 @@ const result = root.querySelector("[data-result]");
 const labels = {
   ro: {
     required: "Selectează cel puțin un consumator.", invalid: "Verifică numele, puterea, orele pe zi și cantitatea consumatorilor selectați.",
-    daily: "Consum zilnic", battery: "Baterie", solar: "Panouri solare", inverter: "Invertor", mppt: "Controler MPPT", voltage: "Sistem", again: "Modifică datele", share: "Copiază rezultatul", copied: "Rezultat copiat", copyFailed: "Nu s-a putut copia", products: "Produse compatibile verificate", productsIntro: "Afișăm doar produse cu destinația exactă, limitele electrice critice și livrarea în România verificate.", powerStationFit: "Limitele electrice verificate acoperă profilul calculat", powerStation: "Stație portabilă de energie", viewProduct: "Vezi produsul", affiliate: "Link afiliat; recomandarea tehnică nu depinde de comision.",
-    noProducts: "Niciun produs verificat nu acoperă încă toate limitele calculate. Folosește ghidurile de mai sus pentru o instalație pe componente; nu micșora cerințele doar pentru a forța o recomandare.",
+    daily: "Consum zilnic", battery: "Baterie", solar: "Panouri solare", inverter: "Invertor", mppt: "Controler MPPT", voltage: "Sistem", again: "Modifică datele", share: "Copiază rezultatul", copied: "Rezultat copiat", copyFailed: "Nu s-a putut copia", products: "Produse compatibile verificate", productsIntro: "Afișăm doar produse cu destinația exactă, limitele electrice critice și livrarea în România verificate.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W acoperă puterea solară calculată`, powerStationFit: "Limitele electrice verificate acoperă profilul calculat", powerStation: "Stație portabilă de energie", viewProduct: "Vezi produsul", affiliate: "Link afiliat; recomandarea tehnică nu depinde de comision.",
+    noProducts: "Niciun produs verificat nu acoperă încă toate limitele calculate. Folosește ghidurile de mai sus pentru o instalație pe componente; nu micșora cerințele doar pentru a forța o recomandare.", noPortableFit: "Panourile de mai jos acoperă puterea solară calculată, dar nicio stație portabilă verificată nu acoperă întregul profil. Pentru baterie, invertor și încărcare, urmează ghidurile de mai sus.",
     hours: "h/zi", quantity: "buc.", custom: "Alt consumator", customHint: "Adaugă un consumator care nu este în listă.", customName: "Nume", watts: "W", dc: "12/24 V DC", ac: "230 V AC", noSurge: "Fără vârf cunoscut", motorSurge: "Motor / compresor · 2×", selected: "Selectate", estimated: "Consum estimat",
   },
   pt: {
@@ -29,8 +29,8 @@ const labels = {
   },
   si: {
     required: "Izberi vsaj en porabnik.", invalid: "Preveri ime, moč, ure na dan in količino izbranih porabnikov.",
-    daily: "Dnevna poraba", battery: "Baterija", solar: "Solarni paneli", inverter: "Inverter", mppt: "Regulator MPPT", voltage: "Sistem", again: "Spremeni podatke", share: "Kopiraj rezultat", copied: "Rezultat kopiran", copyFailed: "Kopiranje ni uspelo", products: "Preverjeni združljivi izdelki", productsIntro: "Prikažemo samo izdelke, pri katerih smo preverili točen cilj povezave, ključne električne omejitve in dostavo v Slovenijo.", powerStationFit: "Preverjene električne omejitve pokrivajo izračunani profil", powerStation: "Prenosna elektrarna", viewProduct: "Poglej izdelek", affiliate: "Partnerska povezava; tehnično priporočilo ni odvisno od provizije.",
-    noProducts: "Noben preverjen izdelek še ne pokriva vseh izračunanih omejitev. Uporabi zgornje vodnike za sistem iz posameznih komponent; zahtev ne zmanjšuj samo zato, da bi dobil priporočilo.",
+    daily: "Dnevna poraba", battery: "Baterija", solar: "Solarni paneli", inverter: "Inverter", mppt: "Regulator MPPT", voltage: "Sistem", again: "Spremeni podatke", share: "Kopiraj rezultat", copied: "Rezultat kopiran", copyFailed: "Kopiranje ni uspelo", products: "Preverjeni združljivi izdelki", productsIntro: "Prikažemo samo izdelke, pri katerih smo preverili točen cilj povezave, ključne električne omejitve in dostavo v Slovenijo.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W pokrije izračunano solarno moč`, powerStationFit: "Preverjene električne omejitve pokrivajo izračunani profil", powerStation: "Prenosna elektrarna", viewProduct: "Poglej izdelek", affiliate: "Partnerska povezava; tehnično priporočilo ni odvisno od provizije.",
+    noProducts: "Noben preverjen izdelek še ne pokriva vseh izračunanih omejitev. Uporabi zgornje vodnike za sistem iz posameznih komponent; zahtev ne zmanjšuj samo zato, da bi dobil priporočilo.", noPortableFit: "Spodnji paneli pokrijejo izračunano solarno moč, vendar nobena preverjena prenosna elektrarna ne pokrije celotnega profila. Za baterijo, inverter in polnjenje uporabi zgornje vodnike.",
     hours: "h/dan", quantity: "kos", custom: "Drug porabnik", customHint: "Dodaj porabnik, ki ga ni na seznamu.", customName: "Ime", watts: "W", dc: "12/24 V DC", ac: "230 V AC", noSurge: "Brez znane konice", motorSurge: "Motor / kompresor · 2×", selected: "Izbrano", estimated: "Ocenjena poraba",
   },
 }[locale];
@@ -302,7 +302,7 @@ async function renderPortugalProducts(calculation) {
     track("product_recommendations_rendered", { market: "pt", solar_panel_covered: coverage.solarPanel, power_station_covered: coverage.powerStation, product_count: products.length });
     if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); return; }
     const portableGap = coverage.powerStation ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
-    target.innerHTML = `<section class="result-products" aria-labelledby="pt-products-title"><h4 id="pt-products-title">${labels.products}</h4><p>${labels.productsIntro}</p>${portableGap}<div class="result-grid">${products.map(renderPortugalProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`;
+    target.innerHTML = renderProductSection("pt-products-title", products, portableGap);
   } catch {
     track("product_recommendations_rendered", { market: "pt", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
     target.innerHTML = renderNoVerifiedProducts();
@@ -314,12 +314,14 @@ async function renderSloveniaProducts(calculation) {
   try {
     const { buildSloveniaRecommendations, loadSloveniaProductCatalog } = await import("./si-recommendations.js");
     const catalog = await loadSloveniaProductCatalog();
-    const products = buildSloveniaRecommendations(catalog, calculation, 3).power_station;
-    track("product_recommendations_rendered", { market: "si", power_station_covered: products.length > 0, product_count: products.length });
+    const recommendations = buildSloveniaRecommendations(catalog, calculation, 3);
+    const products = [...recommendations.solar_panel, ...recommendations.power_station];
+    track("product_recommendations_rendered", { market: "si", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
     if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); return; }
-    target.innerHTML = renderPowerStationSection("si-products-title", products);
+    const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
+    target.innerHTML = renderProductSection("si-products-title", products, portableGap);
   } catch {
-    track("product_recommendations_rendered", { market: "si", power_station_covered: false, product_count: 0 });
+    track("product_recommendations_rendered", { market: "si", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
     target.innerHTML = renderNoVerifiedProducts();
   }
 }
@@ -329,21 +331,22 @@ async function renderRomaniaProducts(calculation) {
   try {
     const { buildRomaniaRecommendations, loadRomaniaProductCatalog } = await import("./ro-recommendations.js");
     const catalog = await loadRomaniaProductCatalog();
-    const products = buildRomaniaRecommendations(catalog, calculation, 3).power_station;
-    track("product_recommendations_rendered", { market: "ro", power_station_covered: products.length > 0, product_count: products.length });
+    const recommendations = buildRomaniaRecommendations(catalog, calculation, 3);
+    const products = [...recommendations.solar_panel, ...recommendations.power_station];
+    track("product_recommendations_rendered", { market: "ro", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
     if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); return; }
-    target.innerHTML = renderPowerStationSection("ro-products-title", products);
+    const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
+    target.innerHTML = renderProductSection("ro-products-title", products, portableGap);
   } catch {
-    track("product_recommendations_rendered", { market: "ro", power_station_covered: false, product_count: 0 });
+    track("product_recommendations_rendered", { market: "ro", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
     target.innerHTML = renderNoVerifiedProducts();
   }
 }
 
 function renderNoVerifiedProducts() { return `<p class="result-products-empty" data-recommendation-empty>${escapeHtml(labels.noProducts)}</p>`; }
 function renderResultGuides() { const config = expansionResultGuides(locale); return `<aside class="related result-guides" data-result-guides><h4>${escapeHtml(config.title)}</h4><p>${escapeHtml(config.intro)}</p><ul>${config.links.map((item) => `<li><a data-result-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`).join("")}</ul></aside>`; }
-function renderPowerStationSection(id, products) { return `<section class="result-products" aria-labelledby="${id}"><h4 id="${id}">${labels.products}</h4><p>${labels.productsIntro}</p><div class="result-grid">${products.map(renderPowerStationProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`; }
-function renderPowerStationProduct(item) { return `<article class="result-card"><span>${labels.powerStation}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(labels.powerStationFit)}</small><small>${item.capacityWh} Wh · ${item.powerW} W · PV ${item.solarInputW} W · 12 V ${item.dcOutputA} A</small><a class="button button-primary" data-affiliate-product data-product-id="${escapeHtml(item.id)}" data-category="power_station" data-merchant="${escapeHtml(item.merchant || "allpowers_eu")}" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`; }
-function renderPortugalProduct(item) { const fit = item.category === "solar_panel" ? labels.solarFit(item.quantity, item.powerW) : labels.powerStationFit; const price = Number.isFinite(item.price) ? `<small>${new Intl.NumberFormat("pt-PT", { style: "currency", currency: item.currency || "EUR" }).format(item.price)}</small>` : ""; return `<article class="result-card"><span>${item.category === "solar_panel" ? labels.solar : labels.powerStation}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(fit)}</small>${price}<a class="button button-primary" data-affiliate-product data-product-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-merchant="${escapeHtml(item.merchant || "allpowers_pt")}" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`; }
+function renderProductSection(id, products, gap = "") { return `<section class="result-products" aria-labelledby="${id}"><h4 id="${id}">${labels.products}</h4><p>${labels.productsIntro}</p>${gap}<div class="result-grid">${products.map(renderExpansionProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`; }
+function renderExpansionProduct(item) { const solar = item.category === "solar_panel"; const fit = solar ? labels.solarFit(item.quantity, item.powerW) : labels.powerStationFit; const localeTag = { pt: "pt-PT", ro: "ro-RO", si: "sl-SI" }[locale]; const price = Number.isFinite(item.price) ? `<small>${new Intl.NumberFormat(localeTag, { style: "currency", currency: item.currency || "EUR" }).format(item.price)}</small>` : ""; const specs = solar ? "" : `<small>${item.capacityWh} Wh · ${item.powerW} W · PV ${item.solarInputW} W · 12 V ${item.dcOutputA} A</small>`; return `<article class="result-card"><span>${solar ? labels.solar : labels.powerStation}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(fit)}</small>${specs}${price}<a class="button button-primary" data-affiliate-product data-product-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-merchant="${escapeHtml(item.merchant || (locale === "pt" ? "allpowers_pt" : "allpowers_eu"))}" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`; }
 function track(event, parameters) { return window.MyPowerSetupAnalytics?.track?.(event, parameters) ?? false; }
 function cssEscape(value) { return globalThis.CSS?.escape ? CSS.escape(String(value)) : String(value).replace(/[^a-zA-Z0-9_-]/g, "\\$&"); }
 function escapeHtml(value) { return String(value).replace(/[&<>\"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]); }
