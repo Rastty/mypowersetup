@@ -9,7 +9,7 @@ class CdpClient {
     this.opened = new Promise((resolve, reject) => { this.socket.addEventListener("open", resolve, { once: true }); this.socket.addEventListener("error", reject, { once: true }); });
     this.socket.addEventListener("message", (event) => { const message = JSON.parse(event.data); if (!message.id || !this.pending.has(message.id)) return; const { resolve, reject } = this.pending.get(message.id); this.pending.delete(message.id); if (message.error) reject(new Error(message.error.message)); else resolve(message.result || {}); });
   }
-  send(method, params = {}) { const id = this.nextId++; return new Promise((resolve, reject) => { this.pending.set(id, { resolve, reject }); this.socket.send(JSON.stringify({ id, method, params })); }); }
+  send(method, params = {}) { const id = this.nextId++; return new Promise((resolve, reject) => { const timeout = setTimeout(() => { this.pending.delete(id); reject(new Error(`CDP_COMMAND_TIMEOUT:${method}`)); }, 10000); const settle = (callback, value) => { clearTimeout(timeout); callback(value); }; this.pending.set(id, { resolve: (value) => settle(resolve, value), reject: (error) => settle(reject, error) }); try { this.socket.send(JSON.stringify({ id, method, params })); } catch (error) { this.pending.delete(id); clearTimeout(timeout); reject(error); } }); }
   async close() { if (this.socket.readyState === WebSocket.CLOSED) return; this.socket.close(); await delay(100); }
 }
 
