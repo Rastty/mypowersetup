@@ -230,6 +230,56 @@ const PT_GROWTH_CONTENT = Object.freeze({
     ]),
   }),
 
+  "/pt/guias/carregador-230v-bateria-autocaravana/": Object.freeze({
+    title: "Como escolher um carregador 230 V para a bateria da autocaravana",
+    description: "Dimensiona o carregador de cais 230 V por química, capacidade, tempo disponível e limite do BMS, com exemplos para LiFePO4 e AGM.",
+    body: `
+<section data-search-growth-content="carregador-230v-bateria-autocaravana">
+  <h2>Resposta curta: escolhe amperes pelo tempo de carga e pelos limites da bateria</h2>
+  <p>Um carregador de 230 V transforma a alimentação do parque de campismo numa carga DC controlada. A corrente correta não depende apenas dos Ah impressos na bateria: confirma a química, a corrente máxima recomendada pelo fabricante, o limite do BMS, o tempo habitual ligado à rede e os consumos que ficam ativos durante a carga.</p>
+  <p>Como primeira estimativa, <strong>tempo ideal em horas ≈ energia a repor em Ah ÷ corrente do carregador</strong>. Na prática será maior por causa das perdas, da fase de absorção e dos consumos simultâneos.</p>
+
+  <h2>Exemplo: bateria LiFePO₄ de 200 Ah</h2>
+  <p>Se for preciso repor 120 Ah, um carregador de 20 A precisa de pelo menos 6 horas ideais; um de 30 A, pelo menos 4 horas. Se o frigorífico, iluminação e eletrónica usarem 5 A enquanto estás ligado, um carregador de 20 A deixa aproximadamente 15 A líquidos para a bateria.</p>
+  <p>Não subas automaticamente para 50 A. A bateria e o BMS têm de aceitar essa corrente, a cablagem DC tem de suportá-la e o carregador precisa de ventilação para não reduzir a potência por temperatura.</p>
+
+  <h2>LiFePO₄ e AGM precisam de perfis diferentes</h2>
+  <p>Seleciona um perfil explicitamente compatível com a química instalada. Tensão de absorção, manutenção e comportamento a baixa temperatura não devem ser copiados de outra bateria. Em LiFePO₄, o BMS ou um sensor compatível deve impedir carga abaixo da temperatura permitida pelo fabricante.</p>
+  <p>O <a href="https://www.victronenergy.com/upload/documents/Blue_Smart_IP65_Charger_230V_manual/181363-Blue_Smart_Charger-pdf-pt.pdf">manual oficial do Victron Blue Smart IP65 230 V</a> documenta os modos de carga e a configuração do equipamento. Usa sempre o manual da versão exata que compras.</p>
+
+  <h2>Uma saída ou duas saídas</h2>
+  <p>Uma saída é suficiente quando o carregador alimenta apenas a bateria de serviço. Uma segunda saída pode ser útil para manutenção da bateria de arranque, mas não substitui um esquema correto de separação e proteção. Confirma se as saídas são independentes e qual a corrente realmente disponível em cada uma.</p>
+
+  <h2>Potência do carregador e ligação ao cais</h2>
+  <p>Um carregador de 12 V e 30 A entrega cerca de 430 W na fase forte de carga; com perdas, pede mais à entrada AC. Soma frigorífico, aquecimento, chaleira e restantes cargas antes de assumir que a tomada do parque suporta tudo. A corrente indicada no pedestal e a proteção do veículo são limites, não metas de utilização.</p>
+
+  <h2>230 V exige proteção própria</h2>
+  <p>A entrada de cais deve ter proteção diferencial e disjuntor dimensionados para a instalação, ligação de terra e cabos adequados. O <a href="https://www.victronenergy.com/upload/documents/VE-Direct-drawing-with-IP43-Smart-Charger-12_50-1-Inverter-375W-2x125Ah-SC-AGM-MPPT-100_30-Argofet-Isolator-BMV-712.pdf">esquema oficial Victron com carregador IP43</a> mostra proteção MCB/RCD na entrada AC e recomenda ajustar cabos e fusíveis à instalação.</p>
+  <p><strong>230 V pode matar.</strong> Se não tens competência para verificar terra, diferencial, polaridade, separação AC/DC e regras locais, entrega esta parte a um eletricista qualificado.</p>
+
+  <h2>Checklist antes da compra</h2>
+  <ul>
+    <li>12 V ou 24 V igual à tensão da bateria de serviço;</li>
+    <li>perfil compatível com LiFePO₄, AGM ou chumbo;</li>
+    <li>corrente permitida pela bateria e pelo BMS;</li>
+    <li>tempo real disponível no cais e cargas simultâneas;</li>
+    <li>compensação ou bloqueio por baixa temperatura quando necessário;</li>
+    <li>ventilação, ruído, dimensões e grau de proteção do local;</li>
+    <li>secção de cabo DC e fusível junto da bateria segundo o manual;</li>
+    <li>proteção diferencial, disjuntor e terra no lado AC.</li>
+  </ul>
+
+  <h2>Liga o carregador ao sistema completo</h2>
+  <p>Usa a <a href="/pt/#calculator-preview">calculadora da autocaravana</a> para estimar bateria e consumo diário. Depois confirma a cablagem no <a href="/pt/guias/cabos-fusiveis-12v-autocaravana/">guia de cabos e fusíveis</a> e combina rede, solar e alternador sem ultrapassar a corrente de carga total aceite pela bateria.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Quantos amperes deve ter um carregador 230 V para 200 Ah LiFePO4?", "Depende do limite da bateria e BMS e do tempo disponível. Para repor 120 Ah, 20 A representam pelo menos 6 horas ideais e 30 A pelo menos 4 horas, antes de perdas e consumos simultâneos."],
+      ["Posso usar um carregador AGM numa bateria LiFePO4?", "Só se o fabricante confirmar um perfil LiFePO4 adequado. Não assumes compatibilidade apenas porque a tensão nominal é 12 V."],
+      ["Preciso de eletricista para instalar a entrada de cais?", "Se não consegues verificar proteção diferencial, disjuntor, terra, cabos e regras locais, sim. A instalação de 230 V não é uma tarefa segura para tentativa e erro."],
+    ]),
+  }),
+
+
 });
 
 function faqHtml(items) {
