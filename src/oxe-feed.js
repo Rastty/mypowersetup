@@ -60,6 +60,7 @@ export function parseOxeGoogleFeed(xml, market) {
 export function isOxeTechnicallyCompletePowerStation(product) {
   const specs = product?.specs || {};
   return product?.category === "power_station"
+    && isPrimaryPowerStationProduct(product?.name)
     && Boolean(product.verifiedAt)
     && specs.capacityWh > 0
     && specs.powerW > 0
@@ -72,10 +73,10 @@ function normalizeOxeProduct(raw, config, market) {
   const productUrl = validateOxeProductUrl(market, raw.url);
   const name = cleanText(raw.name);
   const description = cleanText(raw.description);
-  const station = /power\s*station|powerstation|elektrocentr|stacja\s+zasilania|generator\s+de\s+incarcare|polniln/i.test(`${name} ${raw.productType}`)
+  const solarWatts = extractSolarPanelWatts(name, raw.productType);
+  const station = isPrimaryPowerStationProduct(name)
     ? VERIFIED_POWER_STATIONS.find((entry) => entry.pattern.test(name))
     : null;
-  const solarWatts = extractSolarPanelWatts(name, raw.productType);
   const category = station ? "power_station" : solarWatts ? "solar_panel" : "other";
   const specs = station
     ? station.specs
@@ -102,6 +103,14 @@ function normalizeOxeProduct(raw, config, market) {
     specEvidenceUrl: station?.evidenceUrl || null,
     specs: { ...specs },
   };
+}
+
+function isPrimaryPowerStationProduct(name) {
+  const normalized = String(name || "");
+  const stationIndex = normalized.search(/power\s*station|powerstation/i);
+  if (stationIndex < 0) return false;
+  const solarIndex = normalized.search(/solar|solarn|solár|słonecz|napelem|panou/i);
+  return solarIndex < 0 || stationIndex < solarIndex;
 }
 
 function extractSolarPanelWatts(name, categoryPath) {

@@ -47,6 +47,17 @@ const s2400SiXml = `<?xml version="1.0" encoding="UTF-8"?>
   <g:availability>in_stock</g:availability>
 </item></channel></rss>`;
 
+const panelMentioningStationsSiXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:g="http://base.google.com/ns/1.0"><channel><item>
+  <g:id>OXE8020</g:id>
+  <g:title>OXE SP100W - Solarni panel za elektrarno OXE Powerstation S200, S400, P600, S1000</g:title>
+  <g:link>https://www.oxepower.si/oxe-sp100w-solarni-panel-za-elektrarno/</g:link>
+  <g:price>419.69 EUR</g:price>
+  <g:brand>OXE</g:brand>
+  <g:product_type>Solarni paneli</g:product_type>
+  <g:availability>in_stock</g:availability>
+</item></channel></rss>`;
+
 test("OXE Google feed keeps local products but classifies only relevant power products", () => {
   const products = parseOxeGoogleFeed(xml, "pl");
   assert.equal(products.length, 3);
@@ -61,6 +72,24 @@ test("OXE Google feed keeps local products but classifies only relevant power pr
   assert.equal(panel.category, "solar_panel");
   assert.equal(panel.specs.powerW, 100);
   assert.equal(gps.category, "other");
+});
+
+test("OXE solar panel stays a panel when its title lists compatible power stations", () => {
+  const [panel] = parseOxeGoogleFeed(panelMentioningStationsSiXml, "si");
+  assert.equal(panel.category, "solar_panel");
+  assert.equal(panel.specs.powerW, 100);
+  assert.equal(panel.specs.capacityWh, null);
+  assert.equal(panel.specEvidenceUrl, null);
+  assert.equal(isOxeTechnicallyCompletePowerStation(panel), false);
+
+  const legacyCorruptedPanel = {
+    ...panel,
+    category: "power_station",
+    verifiedAt: "2026-08-31",
+    specEvidenceUrl: "https://www.oxepower.eu/oxe-powerstation-s200-and-solar-panel-sp100w/",
+    specs: { capacityWh: 193, powerW: 200, solarInputW: 50, dcOutputA: 8, pureSine: true },
+  };
+  assert.equal(isOxeTechnicallyCompletePowerStation(legacyCorruptedPanel), false);
 });
 
 test("verified OXE S2400 carries the complete high-autonomy electrical envelope", () => {

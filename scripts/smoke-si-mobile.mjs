@@ -37,10 +37,31 @@ try {
   await evaluate(cdp, `document.querySelector("#setup-form").requestSubmit()`);
   await waitFor(async () => evaluate(cdp, `document.querySelector('[data-form-step="3"]').hidden === false`));
   await waitFor(async () => evaluate(cdp, `document.querySelectorAll("[data-affiliate-product]").length > 0`));
-  const result = await evaluate(cdp, `({cards:document.querySelectorAll('[data-affiliate-product]').length,href:document.querySelector('[data-affiliate-product]')?.href,rel:document.querySelector('[data-affiliate-product]')?.rel,merchant:document.querySelector('[data-affiliate-product]')?.dataset.merchant,scrollWidth:document.documentElement.scrollWidth,width:innerWidth})`);
-  assert(result.cards > 0, "no verified SI recommendation"); assert(result.href?.includes("awinmid=38934"), `wrong affiliate ${result.href}`); assert(result.href?.includes("ued="), "exact destination missing"); assert(result.rel?.includes("sponsored"), "rel sponsored missing"); assert(result.merchant === "allpowers_eu", `merchant=${result.merchant}`); assert(result.scrollWidth <= result.width + 2, `result overflow=${result.scrollWidth}`);
+  const result = await evaluate(cdp, `(() => {
+    const links = [...document.querySelectorAll('[data-affiliate-product]')];
+    return {
+      cards: links.length,
+      links: links.map((link) => ({ href: link.href, rel: link.rel, merchant: link.dataset.merchant })),
+      merchants: [...new Set(links.map((link) => link.dataset.merchant).filter(Boolean))],
+      invalidPanel: links.some((link) => /oxe-sp100w-solarni-panel-za-elektrarno/i.test(decodeURIComponent(link.href))),
+      scrollWidth: document.documentElement.scrollWidth,
+      width: innerWidth
+    };
+  })()`);
+  assert(result.cards > 0, "no verified SI recommendation");
+  assert(result.invalidPanel === false, "OXE SP100W panel was recommended as a power station");
+  assert(result.merchants.every((merchant) => ["allpowers_eu", "oxe_si"].includes(merchant)), `unexpected merchants=${result.merchants.join(",")}`);
+  for (const link of result.links) {
+    assert(link.rel?.includes("sponsored"), `rel sponsored missing for ${link.merchant}`);
+    if (link.merchant === "allpowers_eu") {
+      assert(link.href.includes("awinmid=38934") && link.href.includes("ued="), `invalid ALLPOWERS destination ${link.href}`);
+    } else {
+      assert(link.href.includes("go.dognet.com") && link.href.includes("chid=2mRVFbhJ") && link.href.includes("url="), `invalid OXE destination ${link.href}`);
+    }
+  }
+  assert(result.scrollWidth <= result.width + 2, `result overflow=${result.scrollWidth}`);
   for (const route of ["/si/vodici/","/si/metodologija/","/si/zasebnost/","/si/affiliate/"]) { const response = await fetch(`http://127.0.0.1:${port}${route}`); assert(response.ok, `${route}:${response.status}`); const html = await response.text(); assert(/noindex/.test(html), `${route}:noindex missing`); }
-  console.log(JSON.stringify({ ok:true, market:"si", viewport:"390x844", affiliateCards:result.cards, exactMerchant:38934, horizontalOverflow:false }, null, 2));
+  console.log(JSON.stringify({ ok:true, market:"si", viewport:"390x844", affiliateCards:result.cards, merchants:result.merchants, invalidPanel:false, horizontalOverflow:false }, null, 2));
 } finally {
   if (cdp) await cdp.send("Browser.close").catch(() => {}); await cdp?.close().catch(() => {}); preview.kill("SIGTERM"); if (chrome.exitCode === null) chrome.kill("SIGTERM"); await rm(profileDir, { recursive:true, force:true }).catch(() => {});
 }

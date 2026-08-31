@@ -67,3 +67,23 @@ test("Slovenia sync does not accept a stock marker from an unrelated page", asyn
   assert.equal(catalog.products.some((product) => /S2400/.test(product.name)), false);
   assert.equal(catalog.source.liveSupplements, 0);
 });
+
+
+test("stale fallback drops a legacy solar panel carrying copied power-station specs", async () => {
+  const legacyCorruptedPanel = {
+    id: "oxe_si:OXE8020",
+    merchant: "oxe_si",
+    name: "OXE SP100W - Solarni panel za elektrarno OXE Powerstation S200, S400, P600, S1000",
+    category: "power_station",
+    verifiedAt: "2026-08-31",
+    specs: { capacityWh: 193, powerW: 200, solarInputW: 50, dcOutputA: 8, pureSine: true },
+  };
+  const catalog = await syncOxeMarket(
+    "si",
+    { products: [legacyCorruptedPanel] },
+    async () => response("", 503),
+  );
+
+  assert.equal(catalog.source.status, "error");
+  assert.deepEqual(catalog.products, []);
+});

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T08:36:25.872Z",
+  "generatedAt": "2026-08-31T12:32:12.823Z",
   "market": "sl-SI",
   "currency": "EUR",
   "private": false,
@@ -30,10 +30,10 @@
       "parsedProducts": 141,
       "relevantProducts": 8,
       "liveSupplements": 1,
-      "powerStations": 8,
-      "technicallyVerifiedPowerStations": 4,
-      "solarPanels": 0,
-      "exactProducts": 4
+      "powerStations": 5,
+      "technicallyVerifiedPowerStations": 3,
+      "solarPanels": 3,
+      "exactProducts": 3
     }
   },
   "products": [
@@ -167,31 +167,6 @@
         "dcOutputA": 10
       },
       "verifiedAt": "2026-08-28",
-      "marketEligible": true
-    },
-    {
-      "id": "oxe_si:OXE8020",
-      "merchant": "oxe_si",
-      "name": "OXE SP100W - Solarni panel za elektrarno OXE Powerstation S200, S400, P600, S1000",
-      "description": "OXE SP100W - Solarni panel za elektrarno OXE Powerstation S200, S400, P600, S1000 OXE SP100W je 100W solarni panel namenjen predvsem polnjenju elektrarn OXE Powerstation S200, S400, P600 in S1000. Solarna plošča ima ena izhodna vrata USB in ena vrata DC5521, kar olajša povezavo z večino naprav, združljivih s sončno energijo. Solarna plošča je lahka in zelo tanka. Enostavno se zloži in ne zavzame veliko prostora. Zložljiva oblika omogoča enostaven transport in se udobno prilega v prtljažnik vašega avtomobila ali kateri koli prostor za shranjevanje. Ko je solarna plošča zložena, je pritrjena z dvema zaponkama. Za priročno premikanje se uporablja trak. Polnjenje elektrarne s pomočjo sončne celice je ekološko. Hkrati je primeren za polnjenje elektrarn na poti, ko imate omejene načine polnjenja. Cenili boste tudi sončne celice v primeru nepričakovanega izpada elektrike. Solarni panel OXE SP100W ima visok odstotek pretvorbe sončnega sevanja v energijo (do 21%). Za pravilno polnjenje OXE Powerstation S1000 je treba uporabiti dve sončni plošči OXE SP100W (ali pa lahko za polnjenje OXE S1000 uporabite eno sončno ploščo OXE SP200W). VSEBINA PAKETA 1x OXE SP100W - Solarni panel 1x napajalni kabel (DC5521, Y adapter) TEHNIČNE SPECIFIKACIJE Nazivna moč: 100W Napetost: 18V Delovni tok: 5,55A Konektor: DC5521 Velikost - raztegnjena plošča: 1440*540*25 mm Velikost - zložena plošča: 540*415*45 mm Število listov: 3 listi Vodotesen: IPX4 (odporen na škropljenje) Barva: siva Teža: 3,8 kg",
-      "categoryPath": "",
-      "category": "power_station",
-      "brand": "OXE",
-      "priceCzk": 419.69,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.oxepower.si/oxe-sp100w-solarni-panel-za-elektrarno/",
-      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.si%2Foxe-sp100w-solarni-panel-za-elektrarno%2F",
-      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/25/oxe-sp100w-solarni-panel-k-elektrocentrale-oxe-powerstation-s200-s400-p600-s1000-8020-1643135739.jpg",
-      "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxepower.eu/oxe-powerstation-s200-and-solar-panel-sp100w/",
-      "specs": {
-        "capacityWh": 193,
-        "powerW": 200,
-        "solarInputW": 50,
-        "dcOutputA": 8,
-        "pureSine": true
-      },
       "marketEligible": true
     },
     {

@@ -31,6 +31,7 @@ try {
   await waitFor(async () => evaluate(cdp, `document.readyState === "complete" && Boolean(document.querySelector("#setup-form"))`));
   const initial = await evaluate(cdp, `({lang:document.documentElement.lang,width:innerWidth,scrollWidth:document.documentElement.scrollWidth,robots:document.querySelector('meta[name="robots"]')?.content})`);
   assert(initial.lang === "ro", `lang=${initial.lang}`); assert(initial.width === 390, `width=${initial.width}`); assert(initial.scrollWidth <= 392, `overflow=${initial.scrollWidth}`); assert(/noindex/.test(initial.robots || ""), "noindex missing");
+  await evaluate(cdp, `document.querySelector('input[name="autonomyDays"][value="1"]').checked = true`);
   await evaluate(cdp, `document.querySelector("[data-next]").click()`);
   await waitFor(async () => evaluate(cdp, `document.querySelector('[data-form-step="2"]').hidden === false`));
   await evaluate(cdp, `document.querySelectorAll('[data-appliance]')[2].checked = false`);
