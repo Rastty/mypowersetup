@@ -56,7 +56,7 @@ const setup = Object.freeze({
 for (const fixture of fixtures) {
   test(`${fixture.market.toUpperCase()} recommends exact verified EU solar panels even when no portable station fits`, async () => {
     const committed = JSON.parse(await readFile(fixture.path, "utf8"));
-    const catalog = { ...committed, products: [...committed.products, solarPanel()] };
+    const catalog = { ...committed, products: [...committed.products.filter((product) => product.category !== "solar_panel"), solarPanel()] };
     assert.equal(fixture.validate(catalog), catalog);
 
     const recommendations = fixture.build(catalog, setup, 3);
