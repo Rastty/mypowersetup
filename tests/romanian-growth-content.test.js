@@ -11,6 +11,7 @@ const ROUTES = Object.freeze([
   "/ro/ghiduri/lifepo4-sau-agm-autorulota/",
   "/ro/ghiduri/regulator-mppt-autorulota/",
   "/ro/ghiduri/invertor-autorulota-putere/",
+  "/ro/ghiduri/incarcator-dc-dc-autorulota/",
 ]);
 
 for (const route of ROUTES) {
@@ -56,4 +57,15 @@ test("Romania growth layer leaves Portugal and untargeted Romania routes unchang
   const html = '<html><head></head><body><aside class="cta"></aside></body></html>';
   assert.equal(enhanceRomaniaSearchContent(html, "pt", "/pt/guias/capacidade-bateria-autocaravana/"), html);
   assert.equal(enhanceRomaniaSearchContent(html, "ro", "/ro/ghiduri/consum-frigider-compresor-autorulota/"), html);
+});
+
+
+test("Romania DC-DC guide keeps smart-alternator and lithium safety evidence explicit", () => {
+  const route = "/ro/ghiduri/incarcator-dc-dc-autorulota/";
+  const html = publicizeExpansionHtml(renderRomaniaPrivateContentPage(route), "ro", route);
+  assert.match(html, /Orion_XS_12-12-70A_DC-DC_Battery_Charger/);
+  assert.match(html, /Orion-Tr_Smart_DC-DC_Charger_-_Isolated/);
+  assert.match(html, /12[,.]5[^<]{0,30}15 V/);
+  assert.match(html, /900 Wh/);
+  assert.match(html, /12→24 V/);
 });
