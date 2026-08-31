@@ -31,7 +31,7 @@ Sprawdziłbym jeszcze cztery rzeczy:
 
 Dopiero po tych danych da się uczciwie powiedzieć, czy 280 Ah jest przewymiarowane, trafione czy za małe. Najważniejsza liczba do dalszej oceny to zmierzone dobowe zużycie w Wh i minimalny poziom naładowania po dwóch–trzech pochmurnych dniach.
 
-Opcjonalnie, jeżeli autor chce porównać warianty lato / okres przejściowy: https://mypowersetup.com/pl/?utm_source=camperteam&utm_medium=community&utm_campaign=answer_first&utm_content=lifepo4_280ah_910wp
+Opcjonalnie, jeżeli autor chce porównać warianty lato / okres przejściowy: https://mypowersetup.com/pl/poradnik/pojemnosc-akumulatora-do-kampera/?utm_source=camperteam&utm_medium=community&utm_campaign=pl_technical_help&utm_content=pl-camperteam-lifepo4-use-202606
 
 ## Ford Transit 2022 + 40 A DC/DC
 
@@ -57,4 +57,4 @@ Do znalezienia przyczyny wystarczą cztery pomiary: stan SOC rano i wieczorem, p
 
 Jeżeli problemem jest rozładowanie podczas postoju, podałbym jeszcze listę odbiorników i czas ich pracy. Jeżeli podczas jazdy — napięcie wejścia/wyjścia DC/DC oraz zmierzony prąd. Wtedy można odróżnić brak energii od usterki sterowania lub instalacji.
 
-Opcjonalny link dopiero po pełnej odpowiedzi, jeśli potrzebne jest policzenie bilansu odbiorników: https://mypowersetup.com/pl/?utm_source=camperteam&utm_medium=community&utm_campaign=answer_first&utm_content=ford_transit_dcdc
+Opcjonalny link dopiero po pełnej odpowiedzi, jeśli potrzebne jest policzenie bilansu odbiorników: https://mypowersetup.com/pl/poradnik/jak-dobrac-ladowarke-dc-dc/?utm_source=camperteam&utm_medium=community&utm_campaign=pl_technical_help&utm_content=pl-camperteam-ford-dcdc-202608
