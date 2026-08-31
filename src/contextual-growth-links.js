@@ -1,91 +1,98 @@
-const MARKET_LINKS = Object.freeze({
-  pt: Object.freeze({
-    "/pt/guias/capacidade-bateria-autocaravana/": Object.freeze([
-      ["LiFePO₄ ou AGM: qual faz mais sentido?", "/pt/guias/lifepo4-vs-agm-autocaravana/"],
-      ["Quantos Wp de solar precisas?", "/pt/guias/quantos-watts-paineis-solares-autocaravana/"],
-      ["Ver o sistema elétrico completo", "/pt/guias/sistema-eletrico-completo-autocaravana/"],
-    ]),
-    "/pt/guias/lifepo4-vs-agm-autocaravana/": Object.freeze([
-      ["Calcular a capacidade da bateria", "/pt/guias/capacidade-bateria-autocaravana/"],
-      ["Dimensionar carregamento DC-DC", "/pt/guias/carregador-dc-dc-autocaravana/"],
-      ["Ver o sistema elétrico completo", "/pt/guias/sistema-eletrico-completo-autocaravana/"],
-    ]),
-    "/pt/guias/quantos-watts-paineis-solares-autocaravana/": Object.freeze([
-      ["Dimensionar o controlador MPPT", "/pt/guias/como-escolher-controlador-mppt/"],
-      ["Calcular a capacidade da bateria", "/pt/guias/capacidade-bateria-autocaravana/"],
-      ["Ver o sistema elétrico completo", "/pt/guias/sistema-eletrico-completo-autocaravana/"],
-    ]),
-    "/pt/guias/como-escolher-controlador-mppt/": Object.freeze([
-      ["Calcular os Wp de painéis solares", "/pt/guias/quantos-watts-paineis-solares-autocaravana/"],
-      ["Calcular a capacidade da bateria", "/pt/guias/capacidade-bateria-autocaravana/"],
-      ["Ver cabos e proteção 12/24 V", "/pt/guias/cabos-fusiveis-12v-autocaravana/"],
-    ]),
-    "/pt/guias/inversor-autocaravana-potencia/": Object.freeze([
-      ["Calcular a capacidade da bateria", "/pt/guias/capacidade-bateria-autocaravana/"],
-      ["Ver cabos e proteção 12/24 V", "/pt/guias/cabos-fusiveis-12v-autocaravana/"],
-      ["Ver o sistema elétrico completo", "/pt/guias/sistema-eletrico-completo-autocaravana/"],
-    ]),
-  }),
-  ro: Object.freeze({
-    "/ro/ghiduri/capacitate-baterie-autorulota/": Object.freeze([
-      ["LiFePO₄ sau AGM pentru autorulotă?", "/ro/ghiduri/lifepo4-sau-agm-autorulota/"],
-      ["Calculează puterea panourilor solare", "/ro/ghiduri/cate-panouri-solare-autorulota/"],
-      ["Vezi sistemul electric complet", "/ro/ghiduri/sistem-electric-complet-autorulota/"],
-    ]),
-    "/ro/ghiduri/lifepo4-sau-agm-autorulota/": Object.freeze([
-      ["Calculează capacitatea bateriei", "/ro/ghiduri/capacitate-baterie-autorulota/"],
-      ["Dimensionează încărcătorul DC-DC", "/ro/ghiduri/incarcator-dc-dc-autorulota/"],
-      ["Vezi sistemul electric complet", "/ro/ghiduri/sistem-electric-complet-autorulota/"],
-    ]),
-    "/ro/ghiduri/cate-panouri-solare-autorulota/": Object.freeze([
-      ["Alege regulatorul MPPT", "/ro/ghiduri/regulator-mppt-autorulota/"],
-      ["Calculează capacitatea bateriei", "/ro/ghiduri/capacitate-baterie-autorulota/"],
-      ["Vezi sistemul electric complet", "/ro/ghiduri/sistem-electric-complet-autorulota/"],
-    ]),
-    "/ro/ghiduri/regulator-mppt-autorulota/": Object.freeze([
-      ["Calculează puterea panourilor solare", "/ro/ghiduri/cate-panouri-solare-autorulota/"],
-      ["Calculează capacitatea bateriei", "/ro/ghiduri/capacitate-baterie-autorulota/"],
-      ["Vezi cabluri și siguranțe 12/24 V", "/ro/ghiduri/cabluri-sigurante-12v-autorulota/"],
-    ]),
-    "/ro/ghiduri/invertor-autorulota-putere/": Object.freeze([
-      ["Calculează capacitatea bateriei", "/ro/ghiduri/capacitate-baterie-autorulota/"],
-      ["Vezi cabluri și siguranțe 12/24 V", "/ro/ghiduri/cabluri-sigurante-12v-autorulota/"],
-      ["Vezi sistemul electric complet", "/ro/ghiduri/sistem-electric-complet-autorulota/"],
-    ]),
-  }),
-  si: Object.freeze({
-    "/si/vodici/kapaciteta-baterije-avtodom/": Object.freeze([
-      ["LiFePO₄ ali AGM za avtodom?", "/si/vodici/lifepo4-ali-agm-avtodom/"],
-      ["Izračunaj potrebno solarno moč", "/si/vodici/koliko-soncnih-panelov-avtodom/"],
-      ["Poglej celoten električni sistem", "/si/vodici/elektricni-sistem-avtodom/"],
-    ]),
-    "/si/vodici/lifepo4-ali-agm-avtodom/": Object.freeze([
-      ["Izračunaj kapaciteto baterije", "/si/vodici/kapaciteta-baterije-avtodom/"],
-      ["Izberi DC-DC polnilnik", "/si/vodici/dc-dc-polnilnik-avtodom/"],
-      ["Poglej celoten električni sistem", "/si/vodici/elektricni-sistem-avtodom/"],
-    ]),
-    "/si/vodici/koliko-soncnih-panelov-avtodom/": Object.freeze([
-      ["Izberi MPPT regulator", "/si/vodici/mppt-regulator-avtodom/"],
-      ["Izračunaj kapaciteto baterije", "/si/vodici/kapaciteta-baterije-avtodom/"],
-      ["Poglej celoten električni sistem", "/si/vodici/elektricni-sistem-avtodom/"],
-    ]),
-    "/si/vodici/mppt-regulator-avtodom/": Object.freeze([
-      ["Izračunaj potrebno solarno moč", "/si/vodici/koliko-soncnih-panelov-avtodom/"],
-      ["Izračunaj kapaciteto baterije", "/si/vodici/kapaciteta-baterije-avtodom/"],
-      ["Preveri kable in varovalke", "/si/vodici/kabli-varovalke-12v-avtodom/"],
-    ]),
-    "/si/vodici/inverter-avtodom-moc/": Object.freeze([
-      ["Izračunaj kapaciteto baterije", "/si/vodici/kapaciteta-baterije-avtodom/"],
-      ["Preveri kable in varovalke", "/si/vodici/kabli-varovalke-12v-avtodom/"],
-      ["Poglej celoten električni sistem", "/si/vodici/elektricni-sistem-avtodom/"],
-    ]),
-  }),
+const TOPIC_GRAPH = Object.freeze({
+  battery: Object.freeze(["chemistry", "solar", "system"]),
+  chemistry: Object.freeze(["battery", "dcdc", "system"]),
+  solar: Object.freeze(["mppt", "battery", "system"]),
+  mppt: Object.freeze(["solar", "battery", "wiring"]),
+  inverter: Object.freeze(["battery", "wiring", "system"]),
+  dcdc: Object.freeze(["battery", "chemistry", "system"]),
+  shore: Object.freeze(["chemistry", "battery", "system"]),
+  wiring: Object.freeze(["inverter", "mppt", "system"]),
+  fridge: Object.freeze(["battery", "solar", "system"]),
+  system: Object.freeze(["battery", "solar", "inverter"]),
 });
 
-const MARKET_HEADINGS = Object.freeze({
-  pt: "Continua a dimensionar o sistema",
-  ro: "Continuă dimensionarea sistemului",
-  si: "Nadaljuj z dimenzioniranjem sistema",
+const MARKET_CONFIG = Object.freeze({
+  pt: Object.freeze({
+    heading: "Continua a dimensionar o sistema",
+    routes: Object.freeze({
+      battery: "/pt/guias/capacidade-bateria-autocaravana/",
+      chemistry: "/pt/guias/lifepo4-vs-agm-autocaravana/",
+      solar: "/pt/guias/quantos-watts-paineis-solares-autocaravana/",
+      mppt: "/pt/guias/como-escolher-controlador-mppt/",
+      inverter: "/pt/guias/inversor-autocaravana-potencia/",
+      dcdc: "/pt/guias/carregador-dc-dc-autocaravana/",
+      shore: "/pt/guias/carregador-230v-bateria-autocaravana/",
+      wiring: "/pt/guias/cabos-fusiveis-12v-autocaravana/",
+      fridge: "/pt/guias/consumo-frigorifico-compressor-autocaravana/",
+      system: "/pt/guias/sistema-eletrico-completo-autocaravana/",
+    }),
+    labels: Object.freeze({
+      battery: "Calcular a capacidade da bateria",
+      chemistry: "LiFePO₄ ou AGM: qual faz mais sentido?",
+      solar: "Calcular os Wp de painéis solares",
+      mppt: "Dimensionar o controlador MPPT",
+      inverter: "Dimensionar o inversor",
+      dcdc: "Dimensionar o carregador DC-DC",
+      shore: "Escolher o carregador de 230 V",
+      wiring: "Ver cabos e proteção 12/24 V",
+      fridge: "Estimar o consumo do frigorífico",
+      system: "Ver o sistema elétrico completo",
+    }),
+  }),
+  ro: Object.freeze({
+    heading: "Continuă dimensionarea sistemului",
+    routes: Object.freeze({
+      battery: "/ro/ghiduri/capacitate-baterie-autorulota/",
+      chemistry: "/ro/ghiduri/lifepo4-sau-agm-autorulota/",
+      solar: "/ro/ghiduri/cate-panouri-solare-autorulota/",
+      mppt: "/ro/ghiduri/regulator-mppt-autorulota/",
+      inverter: "/ro/ghiduri/invertor-autorulota-putere/",
+      dcdc: "/ro/ghiduri/incarcator-dc-dc-autorulota/",
+      shore: "/ro/ghiduri/incarcator-230v-baterie-autorulota/",
+      wiring: "/ro/ghiduri/cabluri-sigurante-12v-autorulota/",
+      fridge: "/ro/ghiduri/consum-frigider-compresor-autorulota/",
+      system: "/ro/ghiduri/sistem-electric-complet-autorulota/",
+    }),
+    labels: Object.freeze({
+      battery: "Calculează capacitatea bateriei",
+      chemistry: "LiFePO₄ sau AGM pentru autorulotă?",
+      solar: "Calculează puterea panourilor solare",
+      mppt: "Alege regulatorul MPPT",
+      inverter: "Dimensionează invertorul",
+      dcdc: "Dimensionează încărcătorul DC-DC",
+      shore: "Alege încărcătorul de 230 V",
+      wiring: "Vezi cabluri și siguranțe 12/24 V",
+      fridge: "Estimează consumul frigiderului",
+      system: "Vezi sistemul electric complet",
+    }),
+  }),
+  si: Object.freeze({
+    heading: "Nadaljuj z dimenzioniranjem sistema",
+    routes: Object.freeze({
+      battery: "/si/vodici/kapaciteta-baterije-avtodom/",
+      chemistry: "/si/vodici/lifepo4-ali-agm-avtodom/",
+      solar: "/si/vodici/koliko-soncnih-panelov-avtodom/",
+      mppt: "/si/vodici/mppt-regulator-avtodom/",
+      inverter: "/si/vodici/inverter-avtodom-moc/",
+      dcdc: "/si/vodici/dc-dc-polnilnik-avtodom/",
+      shore: "/si/vodici/230v-polnilnik-baterije-avtodom/",
+      wiring: "/si/vodici/kabli-varovalke-12v-avtodom/",
+      fridge: "/si/vodici/poraba-kompresorski-hladilnik-avtodom/",
+      system: "/si/vodici/elektricni-sistem-avtodom/",
+    }),
+    labels: Object.freeze({
+      battery: "Izračunaj kapaciteto baterije",
+      chemistry: "LiFePO₄ ali AGM za avtodom?",
+      solar: "Izračunaj potrebno solarno moč",
+      mppt: "Izberi MPPT regulator",
+      inverter: "Dimenzioniraj inverter",
+      dcdc: "Izberi DC-DC polnilnik",
+      shore: "Izberi 230 V polnilnik",
+      wiring: "Preveri kable in varovalke",
+      fridge: "Oceni porabo hladilnika",
+      system: "Poglej celoten električni sistem",
+    }),
+  }),
 });
 
 function escapeHtml(value) {
@@ -98,17 +105,21 @@ function escapeHtml(value) {
 }
 
 export function contextualGrowthLinks(market, route) {
-  return MARKET_LINKS[market]?.[route] || Object.freeze([]);
+  const config = MARKET_CONFIG[market];
+  if (!config) return Object.freeze([]);
+  const topic = Object.entries(config.routes).find(([, candidate]) => candidate === route)?.[0];
+  if (!topic) return Object.freeze([]);
+  return Object.freeze(TOPIC_GRAPH[topic].map((target) => Object.freeze([config.labels[target], config.routes[target]])));
 }
 
 export function addContextualGrowthLinks(html, market, route) {
   if (typeof html !== "string") return html;
+  const config = MARKET_CONFIG[market];
   const links = contextualGrowthLinks(market, route);
-  if (!links.length || html.includes("data-contextual-growth-links")) return html;
+  if (!config || !links.length || html.includes("data-contextual-growth-links")) return html;
   if (!html.includes('<aside class="cta">')) return html;
 
-  const heading = MARKET_HEADINGS[market] || "Continue sizing the system";
-  const block = `<aside class="related" data-contextual-growth-links><h2>${escapeHtml(heading)}</h2><ul>${links
+  const block = `<aside class="related" data-contextual-growth-links><h2>${escapeHtml(config.heading)}</h2><ul>${links
     .map(([label, href]) => `<li><a href="${escapeHtml(href)}">${escapeHtml(label)}</a></li>`)
     .join("")}</ul></aside>`;
   return html.replace('<aside class="cta">', `${block}<aside class="cta">`);
