@@ -1,4 +1,5 @@
 import { calculatePowerStationProfile } from "./power-station.js";
+import { validateOxeDognetDeeplink, validateOxeProductUrl } from "./oxe-affiliate.js";
 
 export const RO_CATALOG_URL = "/data/products-ro.json";
 const AWIN_MERCHANT_ID = "38934";
@@ -20,15 +21,7 @@ export function validateRomaniaCatalog(catalog) {
   if (catalog?.market !== "ro-RO" || catalog?.currency !== "EUR" || catalog?.private !== false) throw new Error("RO_CATALOG_SHAPE_INVALID");
   if (catalog?.shippingEligibility?.country !== "Romania" || catalog?.shippingEligibility?.eligible !== true) throw new Error("RO_SHIPPING_ELIGIBILITY_MISSING");
   if (!Array.isArray(catalog.products) || !catalog.products.length) throw new Error("RO_CATALOG_EMPTY");
-  for (const product of catalog.products) {
-    if (product.merchant !== "allpowers_eu" || product.marketEligible !== true || !product.verifiedAt) throw new Error("RO_PRODUCT_EVIDENCE_INVALID");
-    const productUrl = new URL(product.productUrl);
-    if (productUrl.protocol !== "https:" || productUrl.hostname !== PRODUCT_HOST || !/^\/products\/[a-z0-9-]+\/?$/i.test(productUrl.pathname)) throw new Error("RO_PRODUCT_URL_INVALID");
-    const parsed = parseRomaniaAffiliateUrl(product.affiliateUrl);
-    if (parsed.destination !== productUrl.toString()) throw new Error("RO_AFFILIATE_DESTINATION_MISMATCH");
-    const specs = product.specs || {};
-    if (product.category !== "power_station" || !(specs.capacityWh > 0 && specs.powerW > 0 && specs.solarInputW > 0 && specs.dcOutputA > 0 && specs.pureSine === true)) throw new Error("RO_POWER_STATION_SPECS_INVALID");
-  }
+  for (const product of catalog.products) validateRomaniaProduct(product);
   return catalog;
 }
 
@@ -48,7 +41,52 @@ export function buildRomaniaRecommendations(catalog, setup, limit = 3) {
     .filter((product) => product.specs.powerW >= profile.acOutputWatts)
     .filter((product) => product.specs.solarInputW >= profile.solarInputWatts)
     .filter((product) => product.specs.dcOutputA >= profile.dcOutputAmpsAt12V)
+    .sort((a, b) => fitScore(a, profile) - fitScore(b, profile))
     .slice(0, limit)
-    .map((product) => Object.freeze({ id: product.id, category: product.category, name: product.name, affiliateUrl: product.affiliateUrl, productUrl: product.productUrl, capacityWh: product.specs.capacityWh, powerW: product.specs.powerW, solarInputW: product.specs.solarInputW, dcOutputA: product.specs.dcOutputA, currency: "EUR", merchant: product.merchant }));
+    .map((product) => Object.freeze({
+      id: product.id,
+      category: product.category,
+      name: product.name,
+      affiliateUrl: product.affiliateUrl,
+      productUrl: product.productUrl,
+      capacityWh: product.specs.capacityWh,
+      powerW: product.specs.powerW,
+      solarInputW: product.specs.solarInputW,
+      dcOutputA: product.specs.dcOutputA,
+      currency: product.priceCurrency || "EUR",
+      merchant: product.merchant,
+    }));
   return Object.freeze({ power_station: Object.freeze(matches) });
+}
+
+function validateRomaniaProduct(product) {
+  if (product?.marketEligible !== true || !product?.verifiedAt) throw new Error("RO_PRODUCT_EVIDENCE_INVALID");
+  let productUrl;
+  if (product.merchant === "allpowers_eu") {
+    const parsedUrl = new URL(product.productUrl);
+    if (parsedUrl.protocol !== "https:" || parsedUrl.hostname !== PRODUCT_HOST || !/^\/products\/[a-z0-9-]+\/?$/i.test(parsedUrl.pathname)) throw new Error("RO_PRODUCT_URL_INVALID");
+    productUrl = parsedUrl.toString();
+    const parsedAffiliate = parseRomaniaAffiliateUrl(product.affiliateUrl);
+    if (parsedAffiliate.destination !== productUrl) throw new Error("RO_AFFILIATE_DESTINATION_MISMATCH");
+  } else if (product.merchant === "oxe_ro") {
+    productUrl = validateOxeProductUrl("ro", product.productUrl);
+    const parsedAffiliate = validateOxeDognetDeeplink("ro", product.affiliateUrl);
+    if (parsedAffiliate.destination !== productUrl) throw new Error("RO_AFFILIATE_DESTINATION_MISMATCH");
+  } else {
+    throw new Error("RO_PRODUCT_MERCHANT_INVALID");
+  }
+  const specs = product.specs || {};
+  if (product.category !== "power_station" || !(specs.capacityWh > 0 && specs.powerW > 0 && specs.solarInputW > 0 && specs.dcOutputA > 0 && specs.pureSine === true)) {
+    throw new Error("RO_POWER_STATION_SPECS_INVALID");
+  }
+}
+
+function fitScore(product, profile) {
+  const ratios = [
+    product.specs.capacityWh / Math.max(profile.capacityWh, 1),
+    ...(profile.acOutputWatts > 0 ? [product.specs.powerW / profile.acOutputWatts] : []),
+    ...(profile.solarInputWatts > 0 ? [product.specs.solarInputW / profile.solarInputWatts] : []),
+    ...(profile.dcOutputAmpsAt12V > 0 ? [product.specs.dcOutputA / profile.dcOutputAmpsAt12V] : []),
+  ];
+  return Math.max(...ratios);
 }

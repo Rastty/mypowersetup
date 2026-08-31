@@ -3,6 +3,7 @@ import { parseProductFeed } from "../src/feed.js";
 import { configureMerchantAffiliate } from "../src/products.js";
 import { syncAllpowersEu } from "./lib/sync-allpowers-eu.mjs";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
+import { syncOxeMarket } from "./lib/sync-oxe.mjs";
 
 const outputPath = "data/products-sk.json";
 let previousCatalog = { generatedAt: null, market: "sk-SK", currency: "EUR", sources: {}, products: [] };
@@ -25,6 +26,9 @@ sources.allpowers_eu = allpowers.source;
 const powerqueen = await syncPowerQueenEu(previousCatalog);
 products.push(...powerqueen.products);
 sources.powerqueen_eu = powerqueen.source;
+const oxe = await syncOxeMarket("sk", previousCatalog);
+products.push(...oxe.products);
+sources.oxe_sk = oxe.source;
 for (const [merchant, feedUrl, affiliateBaseUrl] of feeds) {
   const preserved = previousCatalog.products.filter((product) => product.merchant === merchant);
   if (!feedUrl || (merchant === "padabo" && !affiliateBaseUrl)) {
