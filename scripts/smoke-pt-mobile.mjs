@@ -36,6 +36,8 @@ try {
   await evaluate(cdp, `document.querySelector("#setup-form").requestSubmit()`);
   await waitFor(async () => evaluate(cdp, `document.querySelector('[data-form-step="3"]').hidden === false`));
   await waitFor(async () => evaluate(cdp, `document.querySelectorAll("[data-affiliate-product]").length > 0`));
+  const guideLinks = await evaluate(cdp, `[...document.querySelectorAll("[data-result-guide]")].map((link) => link.getAttribute("href"))`);
+  assert(guideLinks.length === 3, `result guides=${guideLinks.length}`); assert(guideLinks.every((href) => href.startsWith("/pt/guias/")), `wrong result guide=${guideLinks.join(",")}`);
   const result = await evaluate(cdp, `({cards:document.querySelectorAll('[data-affiliate-product]').length,href:document.querySelector('[data-affiliate-product]')?.href,rel:document.querySelector('[data-affiliate-product]')?.rel,scrollWidth:document.documentElement.scrollWidth,width:innerWidth})`);
   assert(result.cards > 0, "no verified PT recommendation"); assert(result.href?.includes("awinmid=125820"), `wrong affiliate ${result.href}`); assert(result.rel?.includes("sponsored"), "rel sponsored missing"); assert(result.scrollWidth <= result.width + 2, `result overflow=${result.scrollWidth}`);
   for (const route of ["/pt/guias/","/pt/metodologia/","/pt/privacidade/","/pt/afiliacao/"]) { const response = await fetch(`http://127.0.0.1:${port}${route}`); assert(response.ok, `${route}:${response.status}`); const html = await response.text(); assert(/noindex/.test(html), `${route}:noindex missing`); }
