@@ -9,6 +9,7 @@ const LIVE_SUPPLEMENTS = Object.freeze({
       productUrl: "https://www.oxepower.si/oxe-powerstation-newsmy-s2400-vecnamenski-polnilni-napajalnik-2400w20475wh/",
       productType: "Generatorji električne energije",
       inStockPattern: /\bNa zalogi\b/i,
+      outOfStockPattern: /\bni na zalogi\b/i,
     }),
   ]),
 });
@@ -67,7 +68,8 @@ async function loadLiveSupplements(market, feedProducts, fetchImpl) {
       const response = await fetchImpl(supplement.productUrl, requestOptions(supplement.productUrl, market));
       if (!response.ok) continue;
       const html = await response.text();
-      if (!html.includes("OXE Powerstation Newsmy S2400") || !supplement.inStockPattern.test(html)) continue;
+      if (!html.includes("OXE Powerstation Newsmy S2400")) continue;
+      if (supplement.outOfStockPattern.test(html) || !supplement.inStockPattern.test(html)) continue;
       const [product] = parseOxeGoogleFeed(buildSupplementXml(supplement), market);
       if (product && isOxeTechnicallyCompletePowerStation(product)) loaded.push(product);
     } catch {
