@@ -150,6 +150,56 @@ const SI_GROWTH_CONTENT = Object.freeze({
     ]),
   }),
 
+  "/si/vodici/230v-polnilnik-baterije-avtodom/": Object.freeze({
+    title: "Kako izbrati 230 V polnilnik baterije za avtodom",
+    description: "Izberi omrežni polnilnik glede na kemijo, kapaciteto, čas priklopa in omejitev BMS, s primeri za LiFePO4 in AGM.",
+    body: `
+<section data-si-search-growth="230v-polnilnik-baterije-avtodom">
+  <h2>Kratek odgovor: tok izberi glede na čas polnjenja in omejitve baterije</h2>
+  <p>230 V polnilnik spremeni priklop v kampu v nadzorovano DC polnjenje. Pravi tok je odvisen od kemije baterije, dovoljenega polnilnega toka, omejitve BMS, časa na omrežju in porabnikov, ki med polnjenjem ostanejo vključeni.</p>
+  <p>Za prvi približek velja <strong>idealni čas v urah ≈ Ah za dopolnitev ÷ tok polnilnika</strong>. Dejanski čas je daljši zaradi izgub, absorpcijske faze in sočasne porabe.</p>
+
+  <h2>Primer: 200 Ah LiFePO₄ baterija</h2>
+  <p>Za dopolnitev 120 Ah potrebuje 20 A polnilnik najmanj 6 idealnih ur, 30 A pa najmanj 4 ure. Če hladilnik, luči in elektronika porabijo 5 A, ostane od 20 A polnilnika približno 15 A za baterijo.</p>
+  <p>Ne izberi samodejno 50 A. Baterija in BMS morata tok dovoljevati, DC kabli ga morajo prenesti, polnilnik pa potrebuje prezračevanje, da ne zmanjša moči zaradi temperature.</p>
+
+  <h2>LiFePO₄ in AGM potrebujeta različna profila</h2>
+  <p>Izberi profil, ki ga proizvajalec potrjuje za vgrajeno kemijo. Absorpcijske napetosti, vzdrževanja in polnjenja pri nizki temperaturi ne prepisuj z druge baterije. Pri LiFePO₄ mora BMS ali združljiv senzor preprečiti polnjenje pod dovoljeno temperaturo.</p>
+  <p><a href="https://www.victronenergy.com/upload/documents/Blue_Smart_IP65_Charger_230V_manual/181363-Blue_Smart_Charger-pdf-pt.pdf">Uradni priročnik Victron Blue Smart IP65 230 V</a> opisuje faze polnjenja in nastavitve. Vedno uporabi priročnik natančne različice naprave.</p>
+
+  <h2>En ali dva izhoda</h2>
+  <p>En izhod zadostuje, če polnilnik polni samo bivalno baterijo. Drugi izhod je lahko uporaben za vzdrževanje zagonske baterije, vendar ne nadomesti pravilne ločitve in zaščite. Preveri, ali sta izhoda neodvisna in koliko toka dejansko zmore vsak.</p>
+
+  <h2>Moč polnilnika in omejitev priklopa</h2>
+  <p>12 V in 30 A polnilnik v glavni fazi odda približno 430 W, zaradi izgub pa na AC vhodu zahteva več. Preden predpostaviš, da priklop zmore vse hkrati, prištej hladilnik, ogrevanje, grelnik vode in druge 230 V porabnike.</p>
+
+  <h2>230 V zahteva lastno zaščito</h2>
+  <p>Vhod iz kampa potrebuje pravilno dimenzionirana RCD in odklopnik, zaščitni vodnik ter ustrezne kable. <a href="https://www.victronenergy.com/upload/documents/VE-Direct-drawing-with-IP43-Smart-Charger-12_50-1-Inverter-375W-2x125Ah-SC-AGM-MPPT_100_30-Argofet-Isolator-BMV-712.pdf">Uradna Victronova shema s polnilnikom IP43</a> prikazuje MCB/RCD na AC vhodu in zahteva prilagoditev kablov ter varovalk dejanski namestitvi.</p>
+  <p><strong>230 V je lahko smrtno nevarnih.</strong> Če ne znaš preveriti ozemljitve, RCD, polaritete, ločitve AC/DC in lokalnih pravil, naj ta del izvede usposobljen električar.</p>
+
+  <h2>Kontrolni seznam pred nakupom</h2>
+  <ul>
+    <li>12 V ali 24 V enako bivalni bateriji;</li>
+    <li>profil za LiFePO₄, AGM ali svinčeno baterijo;</li>
+    <li>tok, ki ga dovoljujeta baterija in BMS;</li>
+    <li>dejanski čas na omrežju in sočasna poraba;</li>
+    <li>blokada polnjenja pri nizki temperaturi, kadar je potrebna;</li>
+    <li>prezračevanje, hrup, mere in zaščita ohišja;</li>
+    <li>DC kabel in varovalka ob bateriji po priročniku;</li>
+    <li>RCD, odklopnik in ozemljitev na AC strani.</li>
+  </ul>
+
+  <h2>Poveži polnilnik s celotnim sistemom</h2>
+  <p>Uporabi <a href="/si/#calculator-preview">kalkulator za avtodom</a> za oceno baterije in dnevne porabe, nato preveri <a href="/si/vodici/kabli-varovalke-12v-avtodom/">vodnik za kable in varovalke</a>. Skupni tok omrežja, sonca in alternatorja ne sme preseči omejitve baterije.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Kakšen 230 V polnilnik potrebujem za 200 Ah LiFePO4?", "Odvisno od omejitve baterije in BMS ter časa priklopa. Za 120 Ah dopolnitve pomeni 20 A najmanj 6 idealnih ur, 30 A pa najmanj 4 ure, še pred izgubami in porabo."],
+      ["Lahko AGM polnilnik uporabim za LiFePO4?", "Samo če proizvajalec potrjuje ustrezen LiFePO4 profil. Enaka nazivna napetost 12 V še ne pomeni združljivosti."],
+      ["Ali za priklop v kampu potrebujem električarja?", "Da, če ne znaš preveriti RCD, odklopnika, ozemljitve, kablov in lokalnih pravil. Delo z 230 V ni primerno za poskušanje."],
+    ]),
+  }),
+
+
 });
 
 function schemaFor(route, item) {
