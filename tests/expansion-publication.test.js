@@ -20,11 +20,14 @@ test("publicizer removes private robots only for the requested market and adds c
   assert.throws(() => publicizeExpansionHtml(html, "pt", "/si/vodici/"), /ROUTE_INVALID/);
 });
 
-test("home publication adds all public hreflangs, static language links and release marker idempotently", () => {
-  const html = '<html><head></head><body><header><nav class="expansion-nav"><a class="header-link" href="/ro/ghiduri/">Ghiduri</a></nav></header></body></html>';
+test("home publication adds all public head hreflangs even when body language links already exist", () => {
+  const html = '<html><head></head><body><header><nav class="expansion-nav"><a class="header-link" href="/ro/ghiduri/">Ghiduri</a><a class="header-link language-switch" href="/" hreflang="cs-CZ">CZ</a></nav></header></body></html>';
   const once = publicizeExpansionHtml(html, "ro", "/ro/", { home: true });
   const twice = publicizeExpansionHtml(once, "ro", "/ro/", { home: true });
-  for (const locale of ["cs-CZ", "sk-SK", "pl-PL", "hu-HU", "pt-PT", "sl-SI", "ro-RO"]) assert.match(once, new RegExp(`hreflang="${locale}"`));
+  const head = once.match(/<head>([\s\S]*?)<\/head>/)?.[1] || "";
+  for (const locale of ["cs-CZ", "sk-SK", "pl-PL", "hu-HU", "pt-PT", "sl-SI", "ro-RO", "x-default"]) {
+    assert.match(head, new RegExp(`<link rel="alternate" hreflang="${locale}"`));
+  }
   for (const route of ["/", "/sk/", "/pl/", "/hu/", "/pt/", "/si/"]) assert.match(once, new RegExp(`class="header-link language-switch" href="${route.replaceAll("/", "\\/")}"`));
   assert.doesNotMatch(once, /class="header-link language-switch" href="\/ro\/"/);
   assert.equal((once.match(/class="header-link language-switch"/g) || []).length, 6);
@@ -32,11 +35,12 @@ test("home publication adds all public hreflangs, static language links and rele
   assert.equal(twice, once);
 });
 
-test("published-market alternate injection is idempotent", () => {
-  const html = '<html><head><link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/" /></head></html>';
+test("published-market alternate injection is idempotent and ignores body hreflang attributes", () => {
+  const html = '<html><head><link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/" /></head><body><a hreflang="sl-SI" href="/si/">SI</a></body></html>';
   const once = addExpansionHomeAlternate(html, "si");
   const twice = addExpansionHomeAlternate(once, "si");
-  assert.match(once, /hreflang="sl-SI" href="https:\/\/mypowersetup.com\/si\/"/);
+  const head = once.match(/<head>([\s\S]*?)<\/head>/)?.[1] || "";
+  assert.match(head, /hreflang="sl-SI" href="https:\/\/mypowersetup.com\/si\/"/);
   assert.equal(twice, once);
 });
 
