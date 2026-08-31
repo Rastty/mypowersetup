@@ -2,6 +2,7 @@ import { calculateSetup } from "./engine.js";
 import { buildPlainLanguageVerdict } from "./verdict.js";
 import { buildExpansionSetupUrl, decodeExpansionSetupQuery } from "./expansion-setup-url.js";
 import { buildResultShareText, copyText } from "./share.js";
+import { expansionResultGuides } from "./expansion-result-guides.js";
 
 const root = document.querySelector("[data-expansion-calculator]");
 if (!root) throw new Error("EXPANSION_CALCULATOR_ROOT_MISSING");
@@ -47,6 +48,7 @@ root.addEventListener("click", async (event) => {
   const edit = event.target.closest("[data-edit]");
   const share = event.target.closest("[data-share-result]");
   const affiliate = event.target.closest("[data-affiliate-product]");
+  const resultGuide = event.target.closest("[data-result-guide]");
   const stepTarget = event.target.closest("[data-step-target]");
   const applianceCard = event.target.closest("[data-appliance-card]");
 
@@ -67,6 +69,9 @@ root.addEventListener("click", async (event) => {
     share.textContent = copied ? labels.copied : labels.copyFailed;
     if (copied) track("calculator_result_shared", { market: locale, method: "copy", source: "result" });
     setTimeout(() => { if (share.isConnected) share.textContent = original; }, 1800);
+  }
+  if (resultGuide) {
+    track("calculator_result_guide_click", { market: locale, topic: resultGuide.dataset.topic || "unknown", destination: resultGuide.getAttribute("href") });
   }
   if (affiliate) {
     const detail = {
@@ -280,7 +285,7 @@ function setChecked(name, value) {
 function renderResult(value) {
   const warnings = value.warnings.length ? `<ul>${value.warnings.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : "";
   const verdict = buildPlainLanguageVerdict(value, locale);
-  result.innerHTML = `<p class="result-summary">${escapeHtml(verdict)}</p><div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div>${warnings}<div data-product-recommendations></div><div class="step-actions"><button class="button button-primary" type="button" data-share-result>${labels.share}</button><button class="button button-secondary" type="button" data-edit>${labels.again}</button></div>`;
+  result.innerHTML = `<p class="result-summary">${escapeHtml(verdict)}</p><div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div>${warnings}${renderResultGuides()}<div data-product-recommendations></div><div class="step-actions"><button class="button button-primary" type="button" data-share-result>${labels.share}</button><button class="button button-secondary" type="button" data-edit>${labels.again}</button></div>`;
 }
 
 async function renderPortugalProducts(calculation) {
@@ -330,6 +335,7 @@ async function renderRomaniaProducts(calculation) {
   }
 }
 
+function renderResultGuides() { const config = expansionResultGuides(locale); return `<aside class="related result-guides" data-result-guides><h4>${escapeHtml(config.title)}</h4><p>${escapeHtml(config.intro)}</p><ul>${config.links.map((item) => `<li><a data-result-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`).join("")}</ul></aside>`; }
 function renderPowerStationSection(id, products) { return `<section class="result-products" aria-labelledby="${id}"><h4 id="${id}">${labels.products}</h4><p>${labels.productsIntro}</p><div class="result-grid">${products.map(renderPowerStationProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`; }
 function renderPowerStationProduct(item) { return `<article class="result-card"><span>${labels.powerStation}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(labels.powerStationFit)}</small><small>${item.capacityWh} Wh · ${item.powerW} W · PV ${item.solarInputW} W · 12 V ${item.dcOutputA} A</small><a class="button button-primary" data-affiliate-product data-product-id="${escapeHtml(item.id)}" data-category="power_station" data-merchant="${escapeHtml(item.merchant || "allpowers_eu")}" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`; }
 function renderPortugalProduct(item) { const fit = item.category === "solar_panel" ? labels.solarFit(item.quantity, item.powerW) : labels.powerStationFit; const price = Number.isFinite(item.price) ? `<small>${new Intl.NumberFormat("pt-PT", { style: "currency", currency: item.currency || "EUR" }).format(item.price)}</small>` : ""; return `<article class="result-card"><span>${item.category === "solar_panel" ? labels.solar : labels.powerStation}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(fit)}</small>${price}<a class="button button-primary" data-affiliate-product data-product-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-merchant="${escapeHtml(item.merchant || "allpowers_pt")}" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`; }
