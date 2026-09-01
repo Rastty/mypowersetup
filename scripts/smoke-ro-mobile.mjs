@@ -14,7 +14,7 @@ class CdpClient {
 }
 
 const VERIFIED_BATTERY_MERCHANTS = {
-  allpowers_eu: { awinmid: "38934", destinationPrefix: "https://allpowers.com/" },
+  allpowers_eu: { awinmid: "38934", destinationPrefix: "https://iallpowers.eu/" },
   powerqueen_eu: { awinmid: "97025", destinationPrefix: "https://www.ipowerqueen.de/" },
 };
 const AWIN_AFFILIATE_ID = "3044971";
