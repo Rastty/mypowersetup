@@ -29,3 +29,20 @@ test("portfolio aggregation ranks shared gaps above isolated ones", () => {
   assert.equal(portfolio[0].score, 12);
   assert.equal(portfolio[0].markets.length, 2);
 });
+
+test("portable-ready scenarios do not inflate maximum component sourcing gain", () => {
+  const station = {
+    id: "station", merchant: "safe", category: "power_station", available: true,
+    name: "Portable power station", categoryPath: "Power stations", description: "",
+    productUrl: "https://shop.example/products/station",
+    affiliateUrl: "https://affiliate.example/click?desturl=https%3A%2F%2Fshop.example%2Fproducts%2Fstation",
+    priceCzk: 1000,
+    specs: { capacityWh: 2000, powerW: 1000, solarInputW: 800, dcOutputA: 15, pureSine: true },
+  };
+  const backlog = buildCommercialOpportunityBacklog({ ...synthetic, products: [station] }, "cs");
+  const controller = backlog.opportunities.find((item) => item.category === "controller");
+  assert.ok(controller.affectedWeight >= controller.unlockWeight);
+  assert.ok(controller.primaryScenarioIds.length >= controller.unlockScenarioIds.length);
+  assert.ok(controller.maxPurchaseReadyGain <= controller.affectedWeight / 19);
+  assert.ok(backlog.portableFitRatio > 0);
+});

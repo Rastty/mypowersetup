@@ -26,6 +26,15 @@ function product(category, suffix, specs = {}) {
   };
 }
 
+function powerStation(suffix, specs = {}) {
+  return {
+    ...product("power_station", suffix, specs),
+    name: "Portable power station",
+    categoryPath: "Power stations",
+    verifiedAt: "2026-09-01",
+  };
+}
+
 test("scenario suite covers light, AC, seasonal and high-power demand", () => {
   assert.equal(COMMERCIAL_SCENARIOS.length, 6);
   const ids = COMMERCIAL_SCENARIOS.map((scenario) => scenario.id);
@@ -82,6 +91,33 @@ test("missing exact-fit categories become weighted commercial opportunities", ()
   assert.equal(report.opportunities[0].score, scenario.weight);
 });
 
+test("a verified exact-fit power station is a separate purchase-ready route", () => {
+  const scenario = COMMERCIAL_SCENARIOS[4];
+  const setup = buildScenarioSetup(scenario, "sl");
+  const catalog = {
+    market: "sl-SI",
+    sources: { safe: { status: "ok" } },
+    products: [powerStation("portable", {
+      capacityWh: 2000,
+      powerW: 1000,
+      solarInputW: 800,
+      dcOutputA: 15,
+      pureSine: true,
+    })],
+  };
+  const result = assessCommercialScenario(catalog, scenario, "sl");
+  assert.equal(result.componentReady, false);
+  assert.equal(result.portableReady, true);
+  assert.equal(result.purchaseReady, true);
+  assert.equal(result.purchaseRoute, "portable");
+  assert.ok(result.missing.length > 0);
+
+  const report = assessMarketScenarioCoverage(catalog, "sl", [scenario]);
+  assert.equal(report.purchaseReadyRatio, 1);
+  assert.equal(report.componentReadyRatio, 0);
+  assert.equal(report.portableFitRatio, 1);
+});
+
 test("baseline assessment fails closed on missing baseline and measurable regression", () => {
   const missing = assessScenarioBaseline({ market: "xx-XX", purchaseReadyRatio: 1, weightedCoverage: 1 });
   assert.equal(missing.ready, false);
@@ -116,4 +152,14 @@ test("current Portugal catalog covers solar sizing in every commercial scenario"
   const report = assessMarketScenarioCoverage(catalog, "pt");
   assert.ok(report.scenarios.every((scenario) => !scenario.missing.includes("solar_panel")));
   assert.ok(!report.opportunities.some((opportunity) => opportunity.category === "solar_panel"));
+});
+
+test("current Slovenia audit recognizes the verified portable winter route", async () => {
+  const catalog = JSON.parse(await readFile(new URL("../data/products-si.json", import.meta.url), "utf8"));
+  const report = assessMarketScenarioCoverage(catalog, "sl");
+  const winter = report.scenarios.find((scenario) => scenario.id === "winter-basic");
+  assert.equal(winter.componentReady, false);
+  assert.equal(winter.portableReady, true);
+  assert.equal(winter.purchaseRoute, "portable");
+  assert.ok(report.purchaseReadyRatio > report.componentReadyRatio);
 });
