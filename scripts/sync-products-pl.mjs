@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { parseShopifyProducts } from "../src/shopify.js";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
+import { syncPadaboMarket } from "./lib/sync-padabo.mjs";
 import { syncOxeMarket } from "./lib/sync-oxe.mjs";
 
 const endpoint = "https://allpowers.com.pl/products.json?limit=250";
@@ -17,6 +18,9 @@ try {
 const verifiedCatalog = JSON.parse(await readFile("data/products-pl-verified.json", "utf8"));
 const products = [];
 const sources = {};
+const padabo = await syncPadaboMarket("pl", previousCatalog, { feedUrl: process.env.PADABO_PL_FEED_URL });
+products.push(...padabo.products);
+sources.padabo_pl = padabo.source;
 const powerqueen = await syncPowerQueenEu(previousCatalog);
 products.push(...powerqueen.products);
 sources.powerqueen_eu = powerqueen.source;

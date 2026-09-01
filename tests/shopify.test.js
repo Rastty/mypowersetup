@@ -121,7 +121,17 @@ test("committed Polish catalog offers panels and only fully verified power stati
     new Set(recommendations.power_station.map(({ product }) => product.id)),
     new Set(["allpowers_pl:8562503319707", "allpowers_pl:8428259246235"])
   );
-  assert.ok(recommendations.solar_panel.every(({ product }) => product.affiliateUrl.includes("awinaffid=3044971")));
+  assert.ok(recommendations.solar_panel.some(({ product }) => product.merchant === "padabo_pl"));
+  assert.ok(recommendations.solar_panel.every(({ product }) => {
+    if (product.affiliateUrl.includes("awinaffid=3044971")) return true;
+    const affiliate = new URL(product.affiliateUrl);
+    return product.merchant === "padabo_pl"
+      && affiliate.hostname === "ehub.cz"
+      && affiliate.searchParams.get("a_aid") === "f34c86c8"
+      && affiliate.searchParams.get("a_bid") === "95d61abf"
+      && affiliate.searchParams.get("desturl") === product.productUrl
+      && new URL(product.productUrl).hostname === "www.padabo.pl";
+  }));
 
   const compactRecommendations = recommendProducts(catalog.products, {
     ...setup,

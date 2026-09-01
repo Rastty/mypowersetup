@@ -442,27 +442,43 @@ test("affiliate deeplink refuses a merchant homepage", () => {
   );
 });
 
-test("Padabo stays disabled until approved eHub.sk tracking is configured", () => {
+test("legacy Padabo adapter accepts only a complete approved eHub click URL", () => {
   assert.throws(
     () => buildAffiliateUrl("padabo", "https://www.padabo.sk/solarny-panel-200-w/"),
     /není nakonfigurován/
   );
   assert.throws(
     () => configureMerchantAffiliate("padabo", "https://example.com/click"),
-    /eHub\.sk/
+    /eHub HTTPS click URL/
   );
   configureMerchantAffiliate(
     "padabo",
-    "https://ehub.sk/system/scripts/click.php?a_aid=test&a_bid=program"
+    "https://ehub.cz/system/scripts/click.php?a_aid=test&a_bid=program"
   );
   const affiliate = new URL(
     buildAffiliateUrl("padabo", "https://www.padabo.sk/solarny-panel-200-w/")
   );
-  assert.equal(affiliate.hostname, "ehub.sk");
+  assert.equal(affiliate.hostname, "ehub.cz");
   assert.equal(
     affiliate.searchParams.get("desturl"),
     "https://www.padabo.sk/solarny-panel-200-w/"
   );
+});
+
+test("approved Padabo campaigns keep exact localized product destinations", () => {
+  const cases = [
+    ["padabo_sk", "7aed5c13", "https://www.padabo.sk/solarne-panely-solara-s-series_z16618/"],
+    ["padabo_pl", "95d61abf", "https://www.padabo.pl/klimatyzator-dachowy-mestic-rta-2500l_z101492/"],
+    ["padabo_hu", "0f2a2252", "https://www.padabo.hu/outwell-arctic-frost-hutodoboz-12-230-v_z104008/"],
+  ];
+  for (const [merchant, campaign, destination] of cases) {
+    const affiliate = new URL(buildAffiliateUrl(merchant, destination));
+    assert.equal(affiliate.hostname, "ehub.cz");
+    assert.equal(affiliate.searchParams.get("a_aid"), "f34c86c8");
+    assert.equal(affiliate.searchParams.get("a_bid"), campaign);
+    assert.equal(affiliate.searchParams.get("desturl"), destination);
+  }
+  assert.throws(() => buildAffiliateUrl("padabo_pl", "https://www.padabo.sk/cizi-produkt/"), /Neplatná produktová URL/);
 });
 
 test("Heureka XML is normalized and technical values are extracted", () => {

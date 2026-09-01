@@ -31,6 +31,24 @@ const MERCHANTS = {
     destinationParam: "desturl",
     currency: "EUR"
   },
+  padabo_sk: {
+    hostname: "www.padabo.sk",
+    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13",
+    destinationParam: "desturl",
+    currency: "EUR"
+  },
+  padabo_pl: {
+    hostname: "www.padabo.pl",
+    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf",
+    destinationParam: "desturl",
+    currency: "PLN"
+  },
+  padabo_hu: {
+    hostname: "www.padabo.hu",
+    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252",
+    destinationParam: "desturl",
+    currency: "HUF"
+  },
   bluetti: {
     hostname: "www.bluettipower.com",
     affiliateBaseUrl: "https://www.dpbolvw.net/click-101869970-17110660",
@@ -215,8 +233,8 @@ export function configureMerchantAffiliate(merchantKey, affiliateBaseUrl) {
   const merchant = MERCHANTS[merchantKey];
   if (!merchant) throw new Error(`Neznámý obchod: ${merchantKey}`);
   const url = new URL(affiliateBaseUrl);
-  if (url.protocol !== "https:" || url.hostname !== "ehub.sk") {
-    throw new Error("Affiliate odkaz musí být platná HTTPS adresa na eHub.sk.");
+  if (url.protocol !== "https:" || !["ehub.cz", "ehub.sk"].includes(url.hostname) || url.pathname !== "/system/scripts/click.php" || !url.searchParams.get("a_aid") || !url.searchParams.get("a_bid")) {
+    throw new Error("Affiliate odkaz musí být platná eHub HTTPS click URL s publisher a campaign ID.");
   }
   merchant.affiliateBaseUrl = url.toString();
 }
