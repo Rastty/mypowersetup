@@ -14,7 +14,7 @@ import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
 import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
-import { trackAffiliateClick } from "./affiliate-analytics.js?v=20260901-route1";
+import { trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20260901-impressions1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -506,6 +506,7 @@ function renderProductRecommendations(result) {
     heading.textContent = "Przygotowujemy dokładne rekomendacje produktów";
     intro.textContent = "Produkty opublikujemy dopiero po sprawdzeniu ich parametrów względem wyniku. Nie przekierujemy Cię na ogólną stronę sklepu ani nie oznaczymy niesprawdzonego produktu jako zgodnego.";
     groups.innerHTML = '<button class="button button-disabled" type="button" disabled>Dopasowanie produktów jest przygotowywane</button>';
+    trackAffiliateImpressions([], trackEvent);
     return;
   }
 
@@ -524,6 +525,7 @@ function renderProductRecommendations(result) {
       </section>
     `).join("");
   groups.innerHTML = `${coverageNotice}<details class="product-comparison-details"><summary><span>Porównaj pojedyncze produkty</span><small>${total} zweryfikowanych dopasowań w ${categoryCount} kategoriach</small></summary><div class="product-comparison-groups">${productGroups}</div></details>`;
+  trackAffiliateImpressions(document.querySelectorAll("#package-variants [data-affiliate-click], #recommendation-groups [data-affiliate-click]"), trackEvent);
 }
 
 function renderProductPackages(variants) {
@@ -549,7 +551,7 @@ function renderProductPackages(variants) {
 function packageProductLink(category, product, packageId) {
   const quantity = product.recommendedQuantity || 1;
   const quantityLabel = quantity > 1 ? `${quantity} szt. · ` : "";
-  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(merchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Pokaż dokładny produkt →</a></li>`;
+  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(merchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Pokaż dokładny produkt →</a></li>`;
 }
 
 function packageCategoryLabel(category) {

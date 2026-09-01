@@ -6,7 +6,7 @@ import { expansionResultGuides } from "./expansion-result-guides.js";
 import { expansionComponentPlan } from "./expansion-component-plan.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js";
-import { trackAffiliateClick } from "./affiliate-analytics.js?v=20260901-route1";
+import { trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20260901-impressions1";
 import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js";
 
 const root = document.querySelector("[data-expansion-calculator]");
@@ -311,13 +311,15 @@ async function renderPortugalProducts(calculation) {
     const products = orderedExpansionProducts(recommendations);
     trackProductCoverage(recommendations, calculation);
     track("product_recommendations_rendered", { market: "pt", solar_panel_covered: coverage.solarPanel, power_station_covered: coverage.powerStation, product_count: products.length });
-    if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); return; }
+    if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
     const portableGap = coverage.powerStation ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
     target.innerHTML = renderProductSection("pt-products-title", products, portableGap);
+    trackRenderedProductChoices(target);
   } catch {
     trackProductCoverage({}, calculation);
     track("product_recommendations_rendered", { market: "pt", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
     target.innerHTML = renderNoVerifiedProducts();
+    trackRenderedProductChoices(target);
   }
 }
 
@@ -330,13 +332,15 @@ async function renderSloveniaProducts(calculation) {
     const products = orderedExpansionProducts(recommendations);
     trackProductCoverage(recommendations, calculation);
     track("product_recommendations_rendered", { market: "si", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
-    if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); return; }
+    if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
     const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
     target.innerHTML = renderProductSection("si-products-title", products, portableGap);
+    trackRenderedProductChoices(target);
   } catch {
     trackProductCoverage({}, calculation);
     track("product_recommendations_rendered", { market: "si", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
     target.innerHTML = renderNoVerifiedProducts();
+    trackRenderedProductChoices(target);
   }
 }
 
@@ -349,13 +353,15 @@ async function renderRomaniaProducts(calculation) {
     const products = orderedExpansionProducts(recommendations);
     trackProductCoverage(recommendations, calculation);
     track("product_recommendations_rendered", { market: "ro", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
-    if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); return; }
+    if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
     const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
     target.innerHTML = renderProductSection("ro-products-title", products, portableGap);
+    trackRenderedProductChoices(target);
   } catch {
     trackProductCoverage({}, calculation);
     track("product_recommendations_rendered", { market: "ro", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
     target.innerHTML = renderNoVerifiedProducts();
+    trackRenderedProductChoices(target);
   }
 }
 
@@ -370,11 +376,12 @@ function trackProductCoverage(recommendations, calculation) {
 }
 
 function renderNoVerifiedProducts() { return `<p class="result-products-empty" data-recommendation-empty>${escapeHtml(labels.noProducts)}</p>`; }
+function trackRenderedProductChoices(target) { return trackAffiliateImpressions(target?.querySelectorAll("[data-affiliate-product]") || [], track); }
 function renderResultGuides() { const config = expansionResultGuides(locale); return `<aside class="related result-guides" data-result-guides><h4>${escapeHtml(config.title)}</h4><p>${escapeHtml(config.intro)}</p><ul>${config.links.map((item) => `<li><a data-result-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`).join("")}</ul></aside>`; }
 function renderComponentPlan(value) { const plan = expansionComponentPlan(locale, value); return `<section class="result-products component-plan" data-component-plan><h4>${escapeHtml(plan.title)}</h4><p>${escapeHtml(plan.intro)}</p><div class="result-grid">${plan.items.map((item) => `<article class="result-card" data-component-item="${escapeHtml(item.topic)}" data-required="${item.required}"><span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.spec)}</strong><a data-component-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.guideLabel)}</a></article>`).join("")}</div><p><small>${escapeHtml(plan.notice)}</small></p></section>`; }
 function renderProductSection(id, products, gap = "") { return `<section class="result-products" aria-labelledby="${id}"><h4 id="${id}">${labels.products}</h4><p>${labels.productsIntro}</p>${gap}<div class="result-grid">${products.map(renderExpansionProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`; }
 function orderedExpansionProducts(recommendations) { const ordered = Object.fromEntries(["battery", "solar_panel", "controller", "inverter", "dc_charger", "shore_charger", "power_station"].map((category) => [category, recommendations?.[category] || []])); return decorateExpansionRecommendations(ordered); }
-function renderExpansionProduct(item) { const solar = item.category === "solar_panel"; const portable = item.category === "power_station"; const fit = solar ? labels.solarFit(item.quantity, item.powerW) : portable ? labels.powerStationFit : labels.componentFit; const localeTag = { pt: "pt-PT", ro: "ro-RO", si: "sl-SI" }[locale]; const price = Number.isFinite(item.price) ? `<small class="expansion-product-price">${new Intl.NumberFormat(localeTag, { style: "currency", currency: item.currency || "EUR" }).format(item.price)}</small>` : ""; const category = ({ battery: labels.battery, solar_panel: labels.solar, controller: labels.mppt, inverter: labels.inverter, dc_charger: labels.dcCharger, shore_charger: labels.shoreCharger, power_station: labels.powerStation })[item.category] || item.category; const specs = expansionProductSpecs(item); const roles = item.recommendationBadges || ["alternative"]; const badges = roles.map((role) => `<span class="recommendation-role recommendation-role-${escapeHtml(role)}">${escapeHtml(labels.recommendationBadges[role])}</span>`).join(""); return `<article class="result-card expansion-product-card"><div class="recommendation-roles">${badges}</div><span>${escapeHtml(category)}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(fit)}</small>${specs ? `<small>${escapeHtml(specs)}</small>` : ""}${price}<a class="button button-primary" data-affiliate-product data-source="product-card" data-recommendation-role="${escapeHtml(roles.join(","))}" data-product-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-merchant="${escapeHtml(item.merchant || (locale === "pt" ? "allpowers_pt" : "allpowers_eu"))}" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`; }
+function renderExpansionProduct(item) { const solar = item.category === "solar_panel"; const portable = item.category === "power_station"; const fit = solar ? labels.solarFit(item.quantity, item.powerW) : portable ? labels.powerStationFit : labels.componentFit; const localeTag = { pt: "pt-PT", ro: "ro-RO", si: "sl-SI" }[locale]; const price = Number.isFinite(item.price) ? `<small class="expansion-product-price">${new Intl.NumberFormat(localeTag, { style: "currency", currency: item.currency || "EUR" }).format(item.price)}</small>` : ""; const category = ({ battery: labels.battery, solar_panel: labels.solar, controller: labels.mppt, inverter: labels.inverter, dc_charger: labels.dcCharger, shore_charger: labels.shoreCharger, power_station: labels.powerStation })[item.category] || item.category; const specs = expansionProductSpecs(item); const roles = item.recommendationBadges || ["alternative"]; const badges = roles.map((role) => `<span class="recommendation-role recommendation-role-${escapeHtml(role)}">${escapeHtml(labels.recommendationBadges[role])}</span>`).join(""); return `<article class="result-card expansion-product-card"><div class="recommendation-roles">${badges}</div><span>${escapeHtml(category)}</span><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(fit)}</small>${specs ? `<small>${escapeHtml(specs)}</small>` : ""}${price}<a class="button button-primary" data-affiliate-product data-source="product-card" data-recommendation-role="${escapeHtml(roles[0])}" data-product-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-merchant="${escapeHtml(item.merchant || (locale === "pt" ? "allpowers_pt" : "allpowers_eu"))}" href="${escapeHtml(item.affiliateUrl)}" rel="sponsored nofollow noopener" target="_blank">${labels.viewProduct}</a></article>`; }
 function expansionProductSpecs(item) { const specs = item.specs || {}; if (item.category === "power_station") return `${item.capacityWh} Wh · ${item.powerW} W · PV ${item.solarInputW} W · 12 V ${item.dcOutputA} A`; if (item.category === "battery") return `${specs.voltageV} V · ${specs.capacityAh} Ah${specs.batteryType ? ` · ${specs.batteryType.toUpperCase()}` : ""}`; if (item.category === "controller") return `MPPT · ${specs.currentA} A`; if (item.category === "inverter") return `${specs.voltageV} V · ${specs.powerW} W · ${labels.pureSine}`; if (item.category === "dc_charger" || item.category === "shore_charger") return `${specs.currentA} A · ${(specs.chargingVoltagesV || []).join("/")} V`; return ""; }
 function track(event, parameters) { return window.MyPowerSetupAnalytics?.track?.(event, parameters) ?? false; }
 function cssEscape(value) { return globalThis.CSS?.escape ? CSS.escape(String(value)) : String(value).replace(/[^a-zA-Z0-9_-]/g, "\\$&"); }
