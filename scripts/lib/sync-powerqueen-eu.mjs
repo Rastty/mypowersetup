@@ -3,6 +3,7 @@ import { parseShopifyProducts } from "../../src/shopify.js";
 const endpoint = "https://www.ipowerqueen.de/en/products.json?limit=250";
 const origin = "https://www.ipowerqueen.de/en/";
 const verifiedAt = "2026-08-29";
+const RETRYABLE_STATUSES = new Set([408, 425, 429, 500, 502, 503, 504]);
 
 const VERIFIED_EXACT_PRODUCTS = Object.freeze([
   Object.freeze({
@@ -38,15 +39,43 @@ const VERIFIED_EXACT_PRODUCTS = Object.freeze([
   }),
 ]);
 
-export async function syncPowerQueenEu(previousCatalog = { products: [] }) {
+export async function fetchPowerQueenPayload(fetchImpl = globalThis.fetch, {
+  attempts = 3,
+  timeoutMs = 12000,
+  sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
+} = {}) {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetchImpl(endpoint, {
+        redirect: "follow",
+        signal: controller.signal,
+        headers: { "user-agent": "MyPowerSetup/1.0 (+https://mypowersetup.com/)", accept: "application/json", "accept-language": "en-GB,en;q=0.9", "cache-control": "no-cache" },
+      });
+      if (!response.ok) {
+        const error = new Error(`HTTP ${response.status}`);
+        error.status = response.status;
+        throw error;
+      }
+      return await response.json();
+    } catch (error) {
+      lastError = error;
+      const retryable = error?.name === "AbortError" || error?.status == null || RETRYABLE_STATUSES.has(error.status);
+      if (!retryable || attempt === attempts) break;
+      await sleep(250 * attempt);
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+  throw new Error(`POWERQUEEN_FETCH_FAILED:${lastError?.message || "unknown error"}`);
+}
+
+export async function syncPowerQueenEu(previousCatalog = { products: [] }, { fetchImpl = globalThis.fetch } = {}) {
   const preserved = (previousCatalog.products || []).filter((product) => product.merchant === "powerqueen_eu");
   try {
-    const response = await fetch(endpoint, {
-      redirect: "follow",
-      headers: { "user-agent": "MyPowerSetup/1.0 (+https://mypowersetup.com/)", accept: "application/json", "accept-language": "en-GB,en;q=0.9", "cache-control": "no-cache" },
-    });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const parsed = parseShopifyProducts(await response.json(), "powerqueen_eu", {
+    const parsed = parseShopifyProducts(await fetchPowerQueenPayload(fetchImpl), "powerqueen_eu", {
       origin,
       verifiedProducts: VERIFIED_EXACT_PRODUCTS,
       productPathPrefix: "/en/products/",
