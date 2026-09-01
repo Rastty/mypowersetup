@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-09-01T19:55:00.678Z",
+  "generatedAt": "2026-09-01T20:24:47.056Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -1047,7 +1047,7 @@
   "markets": [
     {
       "market": "cs-CZ",
-      "generatedAt": "2026-09-01T19:54:23.914Z",
+      "generatedAt": "2026-09-01T20:24:12.885Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
@@ -1057,7 +1057,7 @@
     },
     {
       "market": "sk-SK",
-      "generatedAt": "2026-09-01T19:54:36.024Z",
+      "generatedAt": "2026-09-01T20:24:22.985Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
@@ -1067,7 +1067,7 @@
     },
     {
       "market": "pl-PL",
-      "generatedAt": "2026-09-01T19:54:48.701Z",
+      "generatedAt": "2026-09-01T20:24:34.203Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
@@ -1077,7 +1077,7 @@
     },
     {
       "market": "hu-HU",
-      "generatedAt": "2026-09-01T19:54:59.570Z",
+      "generatedAt": "2026-09-01T20:24:44.745Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.10526315789473684,
@@ -1087,7 +1087,7 @@
     },
     {
       "market": "pt-PT",
-      "generatedAt": "2026-09-01T19:55:00.678Z",
+      "generatedAt": "2026-09-01T20:24:47.056Z",
       "purchaseReadyRatio": 0.21052631578947367,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0,
