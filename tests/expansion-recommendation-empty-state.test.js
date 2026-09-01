@@ -13,8 +13,8 @@ test("PT, RO and SI recommendation gaps are explicit instead of silently empty",
   assert.match(source, /Noben preverjen izdelek/);
 });
 
-test("Portugal distinguishes solar matches from a missing full portable-system match", () => {
+test("Portugal distinguishes component matches from a missing full portable-system match", () => {
   assert.match(source, /noPortableFit/);
   assert.match(source, /coverage\.powerStation \? ""/);
-  assert.match(source, /painéis abaixo cobrem a potência solar calculada/);
+  assert.match(source, /produtos abaixo cobrem partes da instalação por componentes/);
 });

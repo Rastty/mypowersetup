@@ -59,7 +59,7 @@ test("Portugal recommendations choose a bounded solar quantity and exact affilia
   assert.equal(recommendations.solar_panel[0].quantity, 3);
   assert.equal(recommendations.solar_panel[0].powerW, 100);
   assert.match(recommendations.solar_panel[0].affiliateUrl, /awinmid=125820/);
-  assert.deepEqual(portugalRecommendationCoverage(recommendations), { solarPanel: true, powerStation: false });
+  assert.deepEqual(portugalRecommendationCoverage(recommendations), { battery: false, solarPanel: true, controller: false, inverter: false, powerStation: false });
 });
 
 test("Portugal catalog validation rejects a mismatched affiliate destination", () => {
@@ -90,5 +90,5 @@ test("Portugal power stations require verified limits and must fit the calculate
 
 test("Portugal recommendations fail closed when the catalog is empty", () => {
   const recommendations = buildPortugalRecommendations(catalog([]), setup);
-  assert.deepEqual(portugalRecommendationCoverage(recommendations), { solarPanel: false, powerStation: false });
+  assert.deepEqual(portugalRecommendationCoverage(recommendations), { battery: false, solarPanel: false, controller: false, inverter: false, powerStation: false });
 });

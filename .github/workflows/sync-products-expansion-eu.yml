@@ -8,6 +8,7 @@ on:
       - "src/ro-recommendations.js"
       - "src/si-recommendations.js"
       - "src/powerqueen-expansion.js"
+      - "src/expansion-component-recommendations.js"
       - "src/shopify.js"
       - "src/oxe-affiliate.js"
       - "src/oxe-feed.js"
@@ -18,6 +19,7 @@ on:
       - "data/products-eu-verified.json"
       - "tests/expansion-eu-solar-recommendations.test.js"
       - "tests/powerqueen-expansion-components.test.js"
+      - "tests/expansion-component-product-recommendations.test.js"
       - "tests/powerqueen-fetch-resilience.test.js"
       - "tests/oxe-expansion-recommendations.test.js"
       - "tests/oxe-feed.test.js"
@@ -54,6 +56,7 @@ jobs:
           node --test
           tests/expansion-eu-solar-recommendations.test.js
           tests/powerqueen-expansion-components.test.js
+          tests/expansion-component-product-recommendations.test.js
           tests/powerqueen-fetch-resilience.test.js
           tests/oxe-expansion-recommendations.test.js
           tests/oxe-feed.test.js
