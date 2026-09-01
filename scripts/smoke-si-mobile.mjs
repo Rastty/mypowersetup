@@ -13,6 +13,12 @@ class CdpClient {
   async close() { if (this.socket.readyState === WebSocket.CLOSED) return; this.socket.close(); await delay(100); }
 }
 
+const VERIFIED_AWIN_MERCHANTS = {
+  allpowers_eu: { awinmid: "38934", destinationPrefix: "https://iallpowers.eu/" },
+  powerqueen_eu: { awinmid: "97025", destinationPrefix: "https://www.ipowerqueen.de/" },
+};
+const AWIN_AFFILIATE_ID = "3044971";
+
 const port = Number(process.env.SI_SMOKE_PORT || 4186);
 const previewUrl = `http://127.0.0.1:${port}/si/`;
 const profileDir = `/tmp/mypowersetup-si-chrome-${process.pid}`;
@@ -54,11 +60,16 @@ try {
   })()`);
   assert(result.cards > 0, "no verified SI recommendation");
   assert(result.invalidPanel === false, "OXE SP100W panel was recommended as a power station");
-  assert(result.merchants.every((merchant) => ["allpowers_eu", "oxe_si"].includes(merchant)), `unexpected merchants=${result.merchants.join(",")}`);
+  assert(result.merchants.every((merchant) => Object.hasOwn(VERIFIED_AWIN_MERCHANTS, merchant) || merchant === "oxe_si"), `unexpected merchants=${result.merchants.join(",")}`);
   for (const link of result.links) {
     assert(link.rel?.includes("sponsored"), `rel sponsored missing for ${link.merchant}`);
-    if (link.merchant === "allpowers_eu") {
-      assert(link.href.includes("awinmid=38934") && link.href.includes("ued="), `invalid ALLPOWERS destination ${link.href}`);
+    if (Object.hasOwn(VERIFIED_AWIN_MERCHANTS, link.merchant)) {
+      const merchant = VERIFIED_AWIN_MERCHANTS[link.merchant];
+      const url = new URL(link.href);
+      assert(["awin1.com", "www.awin1.com"].includes(url.hostname), `invalid Awin host ${link.href}`);
+      assert(url.searchParams.get("awinmid") === merchant.awinmid, `awinmid=${url.searchParams.get("awinmid")}`);
+      assert(url.searchParams.get("awinaffid") === AWIN_AFFILIATE_ID, `awinaffid=${url.searchParams.get("awinaffid")}`);
+      assert(url.searchParams.get("ued")?.startsWith(merchant.destinationPrefix), `destination=${url.searchParams.get("ued")}`);
     } else {
       assert(link.href.includes("go.dognet.com") && link.href.includes("chid=2mRVFbhJ") && link.href.includes("url="), `invalid OXE destination ${link.href}`);
     }
