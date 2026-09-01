@@ -11,10 +11,12 @@ export const BUTLER_VICTRON_MPPT_250_60_MC4 = Object.freeze({
   mppt: true,
   currentA: 60,
   chargingVoltagesV: [12, 24, 48],
-  pvWattsBySystemVoltage: Object.freeze({ 12: 860 }),
+  pvWattsBySystemVoltage: Object.freeze({ 12: 860, 24: 1720 }),
   exactPath: "/item/Victron/SmartSolar-MPPT-250-60-MC4/BT2",
-  verifiedAt: "2026-08-30"
+  verifiedAt: "2026-09-01"
 });
+
+export const BUTLER_SUPPORTED_MARKETS = Object.freeze(["sk", "pl", "hu", "pt", "ro", "si"]);
 
 function isExactCandidateDestination(destination) {
   let url;
@@ -46,8 +48,7 @@ export function createButlerVictronCandidate({
   approvalConfirmed = BUTLER_TECHNIK_AWIN.approvalConfirmed
 } = {}) {
   const affiliateUrl = buildButlerAffiliateUrl(destination, { approvalConfirmed });
-  const allowedMarkets = ["sk", "pl", "hu"];
-  const verifiedMarkets = allowedMarkets.filter((market) => shippableMarkets.includes(market));
+  const verifiedMarkets = BUTLER_SUPPORTED_MARKETS.filter((market) => shippableMarkets.includes(market));
 
   return {
     id: `butler-${BUTLER_VICTRON_MPPT_250_60_MC4.partNumber}`,
