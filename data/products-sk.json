@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-01T18:26:29.531Z",
+  "generatedAt": "2026-09-01T18:49:19.273Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
-      "status": "stale",
-      "error": "feed URL není nakonfigurována",
-      "preservedProducts": 252
+      "status": "ok",
+      "parsedProducts": 16584,
+      "relevantProducts": 251
     },
     "allpowers_eu": {
       "status": "ok",
@@ -52,7 +52,7 @@
       "brand": "EXIDE",
       "priceCzk": 357.61,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-exide-dual-50-ah_z49/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-exide-dual-50-ah_z49%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/127636_102.jpg?1704378225_1",
@@ -71,8 +71,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:50_80",
@@ -84,7 +83,7 @@
       "brand": "Optima Batteries",
       "priceCzk": 337.28,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-optima-12-v_z50/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-optima-12-v_z50%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/127637_102.jpg?1704378225_1",
@@ -107,8 +106,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:50_81",
@@ -120,7 +118,7 @@
       "brand": "Optima Batteries",
       "priceCzk": 412.38,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-optima-12-v_z50/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-optima-12-v_z50%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/127637_102.jpg?1704378225_1",
@@ -143,8 +141,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:146",
@@ -156,7 +153,7 @@
       "brand": "Nissen Germany",
       "priceCzk": 8.25,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-nissen-6-v_z146/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-nissen-6-v_z146%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/146007_102.jpg?1704378911_1",
@@ -173,8 +170,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:6869",
@@ -186,7 +182,7 @@
       "brand": "Banner",
       "priceCzk": 228.17,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/tazna-bateria-banner-energy-bull_z6869/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Ftazna-bateria-banner-energy-bull_z6869%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/132550_102.jpg?1704378275_1",
@@ -205,8 +201,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:15255_15112",
@@ -218,7 +213,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 1109.02,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/buttner-dometic-mt-menic-napatia-z-12-v-na-230-v_z15255/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbuttner-dometic-mt-menic-napatia-z-12-v-na-230-v_z15255%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/183400_102.jpg?1746201707_1",
@@ -237,8 +232,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:15255_26049",
@@ -250,7 +244,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 766.71,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/buttner-dometic-mt-menic-napatia-z-12-v-na-230-v_z15255/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbuttner-dometic-mt-menic-napatia-z-12-v-na-230-v_z15255%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/183401_102.jpg?1746201906_1",
@@ -269,8 +263,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:15459_15877",
@@ -282,7 +275,7 @@
       "brand": "Banner",
       "priceCzk": 252.22,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/baterie-agm-running-bull_z15459/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbaterie-agm-running-bull_z15459%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/154200_102.jpg?1704380076_1",
@@ -301,8 +294,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:15459_15878",
@@ -314,7 +306,7 @@
       "brand": "Banner",
       "priceCzk": 264.67,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/baterie-agm-running-bull_z15459/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbaterie-agm-running-bull_z15459%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/154201_102.jpg?1704380076_1",
@@ -333,8 +325,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:15459_15879",
@@ -346,7 +337,7 @@
       "brand": "Banner",
       "priceCzk": 309.48,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/baterie-agm-running-bull_z15459/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbaterie-agm-running-bull_z15459%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/154202_102.jpg?1704380076_1",
@@ -365,8 +356,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:16597_17411",
@@ -378,7 +368,7 @@
       "brand": "EXIDE",
       "priceCzk": 475.86,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/exide-dualna-bateria-agm_z16597/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fexide-dualna-bateria-agm_z16597%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/154563_102.jpg?1704380087_1",
@@ -397,8 +387,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:16597_17412",
@@ -410,7 +399,7 @@
       "brand": "EXIDE",
       "priceCzk": 532.7,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/exide-dualna-bateria-agm_z16597/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fexide-dualna-bateria-agm_z16597%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/154564_102.jpg?1704380087_1",
@@ -429,8 +418,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:19284_21274",
@@ -442,7 +430,7 @@
       "brand": "Dometic",
       "priceCzk": 144.35,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-dometic-sinepower-dsp_z19284/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-dometic-sinepower-dsp_z19284%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/183564_102.jpg?1746373072_1",
@@ -463,8 +451,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:19284_21277",
@@ -476,7 +463,7 @@
       "brand": "Dometic",
       "priceCzk": 517.77,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-dometic-sinepower-dsp_z19284/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-dometic-sinepower-dsp_z19284%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/183580_102.jpg?1746376154_1",
@@ -497,8 +484,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:19287_21290",
@@ -510,7 +496,7 @@
       "brand": "Dometic",
       "priceCzk": 922.3,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-dometic-sinepower-dsp-t_z19287/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-dometic-sinepower-dsp-t_z19287%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/183588_102.jpg?1746377752_1",
@@ -531,8 +517,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:19287_21291",
@@ -544,7 +529,7 @@
       "brand": "Dometic",
       "priceCzk": 1160.87,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-dometic-sinepower-dsp-t_z19287/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-dometic-sinepower-dsp-t_z19287%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/183588_102.jpg?1746377752_1",
@@ -565,20 +550,19 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
+      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
       "brand": "Dometic",
       "priceCzk": 1881.58,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-dometic-sinepower-dsp-t_z19287/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-dometic-sinepower-dsp-t_z19287%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/183588_102.jpg?1746377752_1",
@@ -599,8 +583,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:19296_21309",
@@ -612,7 +595,7 @@
       "brand": "Dometic",
       "priceCzk": 96.63,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sada-kablov-pre-sinusove-menice-dometic-sinepower-dsp_z19296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsada-kablov-pre-sinusove-menice-dometic-sinepower-dsp_z19296%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/143034_102.jpg?1704378458_1",
@@ -629,8 +612,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:19296_21310",
@@ -642,7 +624,7 @@
       "brand": "Dometic",
       "priceCzk": 109.08,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sada-kablov-pre-sinusove-menice-dometic-sinepower-dsp_z19296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsada-kablov-pre-sinusove-menice-dometic-sinepower-dsp_z19296%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/143034_102.jpg?1704378458_1",
@@ -659,8 +641,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22313_22215",
@@ -672,7 +653,7 @@
       "brand": "VARTA",
       "priceCzk": 339.36,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/trakcna-bateria-varta-professional-agm_z22313/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Ftrakcna-bateria-varta-professional-agm_z22313%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/156005_102.jpg?1704380136_1",
@@ -691,8 +672,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22313_22216",
@@ -704,7 +684,7 @@
       "brand": "VARTA",
       "priceCzk": 389.15,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/trakcna-bateria-varta-professional-agm_z22313/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Ftrakcna-bateria-varta-professional-agm_z22313%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/156006_102.jpg?1704380136_1",
@@ -723,8 +703,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22317_22225",
@@ -736,7 +715,7 @@
       "brand": "EXIDE",
       "priceCzk": 274.22,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/156012_102.jpg?1704380137_1",
@@ -755,8 +734,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22317_22226",
@@ -768,7 +746,7 @@
       "brand": "EXIDE",
       "priceCzk": 338.11,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/156013_102.jpg?1704380137_1",
@@ -787,8 +765,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22317_22228",
@@ -800,7 +777,7 @@
       "brand": "EXIDE",
       "priceCzk": 514.45,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/156015_102.jpg?1704380137_1",
@@ -819,8 +796,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22317_22229",
@@ -832,7 +808,7 @@
       "brand": "EXIDE",
       "priceCzk": 577.1,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/156016_102.jpg?1704380137_1",
@@ -851,8 +827,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22317_22230",
@@ -864,7 +839,7 @@
       "brand": "EXIDE",
       "priceCzk": 600.74,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/156017_102.jpg?1704380137_1",
@@ -883,8 +858,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22319",
@@ -896,7 +870,7 @@
       "brand": "Optima Batteries",
       "priceCzk": 231.47,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-optima-yts_z22319/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-optima-yts_z22319%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/139549_102.jpg?1704378390_1",
@@ -915,8 +889,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22540_22991",
@@ -928,7 +901,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 1794.45,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/kombinovany-menic-napatia-buttner-elektronik_z22540/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fkombinovany-menic-napatia-buttner-elektronik_z22540%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/156484_102.jpg?1704380152_1",
@@ -945,8 +918,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22540_22992",
@@ -958,7 +930,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 2582.77,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/kombinovany-menic-napatia-buttner-elektronik_z22540/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fkombinovany-menic-napatia-buttner-elektronik_z22540%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/156485_102.jpg?1704380152_1",
@@ -975,8 +947,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22577_23136",
@@ -988,7 +959,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 1630.55,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-palubna-bateria-lifepo4-buttner-mt-li_z22577/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-palubna-bateria-lifepo4-buttner-mt-li_z22577%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/156562_102.jpg?1704380155_1",
@@ -1007,8 +978,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22953_24854",
@@ -1020,7 +990,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 2614.72,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sada-litiovych-baterii-buttner-elektronik-85-ah_z22953/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsada-litiovych-baterii-buttner-elektronik-85-ah_z22953%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/157657_102.jpg?1704380196_1",
@@ -1039,8 +1009,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:22953_25240",
@@ -1052,7 +1021,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 2867.82,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sada-litiovych-baterii-buttner-elektronik-85-ah_z22953/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsada-litiovych-baterii-buttner-elektronik-85-ah_z22953%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/140110_102.jpg?1704378400_1",
@@ -1071,8 +1040,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:23822_25452",
@@ -1084,7 +1052,7 @@
       "brand": "Rkb Electronic",
       "priceCzk": 2764.09,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiove-baterie-rkb-smart_z23822/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiove-baterie-rkb-smart_z23822%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/158381_102.jpg?1704380221_1",
@@ -1103,8 +1071,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24087_26040",
@@ -1116,7 +1083,7 @@
       "brand": "Dometic",
       "priceCzk": 320.69,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/nabijacka-baterii-perfectcharge-12-v_z24087/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-perfectcharge-12-v_z24087%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/158411_102.jpg?1704380222_1",
@@ -1139,8 +1106,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24087_26042",
@@ -1152,7 +1118,7 @@
       "brand": "Dometic",
       "priceCzk": 461.75,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/nabijacka-baterii-perfectcharge-12-v_z24087/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-perfectcharge-12-v_z24087%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/158413_102.jpg?1704380222_1",
@@ -1175,8 +1141,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24088_26048",
@@ -1188,7 +1153,7 @@
       "brand": "Dometic",
       "priceCzk": 975,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/nabijacka-baterii-dometic-perfectcharge-24-v_z24088/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-dometic-perfectcharge-24-v_z24088%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/158418_102.jpg?1704380222_1",
@@ -1211,8 +1176,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24791",
@@ -1224,7 +1188,7 @@
       "brand": "PowerBoozt",
       "priceCzk": 289.57,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-powerboozt-pb-80-gel_z24791/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-powerboozt-pb-80-gel_z24791%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/145010_102.jpg?1704378886_1",
@@ -1243,8 +1207,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24792_26574",
@@ -1256,7 +1219,7 @@
       "brand": "EXIDE",
       "priceCzk": 242.26,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/agm-baterie-exide_z24792/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-baterie-exide_z24792%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/158711_102.jpg?1704380233_1",
@@ -1275,8 +1238,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24792_26575",
@@ -1288,7 +1250,7 @@
       "brand": "EXIDE",
       "priceCzk": 281.26,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/agm-baterie-exide_z24792/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-baterie-exide_z24792%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/158712_102.jpg?1704380233_1",
@@ -1307,8 +1269,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24792_26576",
@@ -1320,7 +1281,7 @@
       "brand": "EXIDE",
       "priceCzk": 517.77,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/agm-baterie-exide_z24792/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-baterie-exide_z24792%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/158713_102.jpg?1704380233_1",
@@ -1339,8 +1300,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24820_26587",
@@ -1352,7 +1312,7 @@
       "brand": "Victron Energy",
       "priceCzk": 99.13,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-phoenix-ve-priamy-menic-napatia_z24820/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-phoenix-ve-priamy-menic-napatia_z24820%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/158723_102.jpg?1704380233_1",
@@ -1373,8 +1333,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24820_26588",
@@ -1386,7 +1345,7 @@
       "brand": "Victron Energy",
       "priceCzk": 259.27,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-phoenix-ve-priamy-menic-napatia_z24820/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-phoenix-ve-priamy-menic-napatia_z24820%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/158724_102.jpg?1704380233_1",
@@ -1407,42 +1366,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
-    },
-    {
-      "id": "padabo_sk:24820_26589",
-      "merchant": "padabo_sk",
-      "name": "Victron Energy Phoenix VE.Priamy menič napätia variant 1 200 VA napätie 12 V",
-      "description": "Victron Energy sínusový menič napätiaVictron Energy Phoenix VE.Direct je plne konfigurovateľný sínusový menič vhodný na inštaláciu do obytných automobilov, karavanov a lodí. Vyznačuje sa mnohými funkciami opísanými nižšie, jednoduchým používaním a prijateľnou cenou. Obsahuje účinný robustný toroidný transformátor. Inštalácia meniča je teraz jednoduchšia ako kedykoľvek predtým - svorky sú prístupnejšie. Vďaka portu VE.Direct možno menič pripojiť k počítaču (potrebný kábel - príslušenstvo) alebo k",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
-      "category": "inverter",
-      "brand": "Victron Energy",
-      "priceCzk": 304.92,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://www.padabo.sk/victron-energy-phoenix-ve-priamy-menic-napatia_z24820/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-phoenix-ve-priamy-menic-napatia_z24820%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/158725_102.jpg?1704380233_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 200,
-        "currentA": 40,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24820_26877",
@@ -1454,7 +1378,7 @@
       "brand": "Victron Energy",
       "priceCzk": 160.11,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-phoenix-ve-priamy-menic-napatia_z24820/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-phoenix-ve-priamy-menic-napatia_z24820%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/159096_102.jpg?1704380245_1",
@@ -1475,8 +1399,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24827_26595",
@@ -1488,7 +1411,7 @@
       "brand": "Victron Energy",
       "priceCzk": 67.17,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/158728_102.jpg?1704380233_1",
@@ -1505,8 +1428,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24827_26596",
@@ -1518,7 +1440,7 @@
       "brand": "Victron Energy",
       "priceCzk": 72.57,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/158729_102.jpg?1704380233_1",
@@ -1535,8 +1457,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24827_26597",
@@ -1548,7 +1469,7 @@
       "brand": "Victron Energy",
       "priceCzk": 89.58,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/158730_102.jpg?1704380234_1",
@@ -1565,8 +1486,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24827_26598",
@@ -1578,7 +1498,7 @@
       "brand": "Victron Energy",
       "priceCzk": 102.45,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/158731_102.jpg?1704380234_1",
@@ -1595,8 +1515,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24828",
@@ -1608,7 +1527,7 @@
       "brand": "Victron Energy",
       "priceCzk": 146,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-mppt-victron-energy-smartsolar-100-30_z24828/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-mppt-victron-energy-smartsolar-100-30_z24828%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/145093_102.jpg?1704378888_1",
@@ -1625,8 +1544,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24830_26601",
@@ -1638,7 +1556,7 @@
       "brand": "Victron Energy",
       "priceCzk": 382.09,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/gelova-bateria-victron-energy-vrla-gel_z24830/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fgelova-bateria-victron-energy-vrla-gel_z24830%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/158734_102.jpg?1704380234_1",
@@ -1657,8 +1575,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24830_26602",
@@ -1670,7 +1587,7 @@
       "brand": "Victron Energy",
       "priceCzk": 491.63,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/gelova-bateria-victron-energy-vrla-gel_z24830/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fgelova-bateria-victron-energy-vrla-gel_z24830%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/158735_102.jpg?1704380234_1",
@@ -1689,8 +1606,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24830_26603",
@@ -1702,7 +1618,7 @@
       "brand": "Victron Energy",
       "priceCzk": 601.58,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/gelova-bateria-victron-energy-vrla-gel_z24830/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fgelova-bateria-victron-energy-vrla-gel_z24830%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/158736_102.jpg?1704380234_1",
@@ -1721,8 +1637,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24830_26604",
@@ -1734,7 +1649,7 @@
       "brand": "Victron Energy",
       "priceCzk": 794.92,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/gelova-bateria-victron-energy-vrla-gel_z24830/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fgelova-bateria-victron-energy-vrla-gel_z24830%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/158737_102.jpg?1704380234_1",
@@ -1753,8 +1668,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24831_26605",
@@ -1766,7 +1680,7 @@
       "brand": "Victron Energy",
       "priceCzk": 402,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z24831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z24831%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/158738_102.jpg?1704380234_1",
@@ -1785,8 +1699,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24831_26606",
@@ -1798,7 +1711,7 @@
       "brand": "Victron Energy",
       "priceCzk": 506.56,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z24831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z24831%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/158739_102.jpg?1704380234_1",
@@ -1817,8 +1730,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:24831_26607",
@@ -1830,7 +1742,7 @@
       "brand": "Victron Energy",
       "priceCzk": 670.87,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z24831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z24831%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/158740_102.jpg?1704380234_1",
@@ -1849,8 +1761,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25052_26736",
@@ -1862,7 +1773,7 @@
       "brand": "PowerBoozt",
       "priceCzk": 893.67,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-powerboozt_z25052/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-powerboozt_z25052%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/158817_102.jpg?1704380236_1",
@@ -1882,8 +1793,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25062_26761",
@@ -1895,7 +1805,7 @@
       "brand": "PowerBoozt",
       "priceCzk": 185.84,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dvojucelova-bateria-agm-powerboozt_z25062/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdvojucelova-bateria-agm-powerboozt_z25062%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/158825_102.jpg?1704380237_1",
@@ -1914,8 +1824,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25062_26762",
@@ -1927,7 +1836,7 @@
       "brand": "PowerBoozt",
       "priceCzk": 243.92,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dvojucelova-bateria-agm-powerboozt_z25062/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdvojucelova-bateria-agm-powerboozt_z25062%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/158826_102.jpg?1704380237_1",
@@ -1946,8 +1855,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25064_26765",
@@ -1959,7 +1867,7 @@
       "brand": "PowerBoozt",
       "priceCzk": 440.6,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/hlboka-bateria-agm-powerboozt_z25064/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlboka-bateria-agm-powerboozt_z25064%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/158827_102.jpg?1704380237_1",
@@ -1978,8 +1886,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25067_26774",
@@ -1991,7 +1898,7 @@
       "brand": "Super B",
       "priceCzk": 1906.88,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-super-b-epsilon_z25067/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-super-b-epsilon_z25067%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/145686_102.jpg?1704378903_1",
@@ -2010,8 +1917,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25067_26775",
@@ -2023,7 +1929,7 @@
       "brand": "Super B",
       "priceCzk": 2406.85,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-super-b-epsilon_z25067/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-super-b-epsilon_z25067%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/145686_102.jpg?1704378903_1",
@@ -2042,8 +1948,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25297_26952",
@@ -2055,7 +1960,7 @@
       "brand": "Victron Energy",
       "priceCzk": 780.82,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-victron-energy-smartsolar-mppt-ve-can_z25297/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-victron-energy-smartsolar-mppt-ve-can_z25297%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/159226_102.jpg?1704380250_1",
@@ -2072,8 +1977,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25768_28263",
@@ -2085,7 +1989,7 @@
       "brand": "Carbest",
       "priceCzk": 341.42,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-carbest-cb-silver-12-v_z25768/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-carbest-cb-silver-12-v_z25768%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/152798_102.jpg?1704379099_1",
@@ -2106,8 +2010,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25768_28264",
@@ -2119,7 +2022,7 @@
       "brand": "Carbest",
       "priceCzk": 362.17,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-carbest-cb-silver-12-v_z25768/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-carbest-cb-silver-12-v_z25768%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/152798_102.jpg?1704379099_1",
@@ -2140,8 +2043,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25850",
@@ -2153,7 +2055,7 @@
       "brand": "Carbest",
       "priceCzk": 1140.14,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-carbest-li100bt-h-s-bluetooth-a-vyhrievanim_z25850/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-carbest-li100bt-h-s-bluetooth-a-vyhrievanim_z25850%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/149398_102.jpg?1704379002_1",
@@ -2173,8 +2075,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25851_27314",
@@ -2186,7 +2087,7 @@
       "brand": "Carbest",
       "priceCzk": 242.68,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-power-line_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-power-line_z25851%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/160166_102.jpg?1704380282_1",
@@ -2205,8 +2106,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25851_27315",
@@ -2218,7 +2118,7 @@
       "brand": "Carbest",
       "priceCzk": 260.53,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-power-line_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-power-line_z25851%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/160167_102.jpg?1704380282_1",
@@ -2237,8 +2137,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25851_28121",
@@ -2250,7 +2149,7 @@
       "brand": "Carbest",
       "priceCzk": 254.3,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-power-line_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-power-line_z25851%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/160168_102.jpg?1704380282_1",
@@ -2269,8 +2168,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25851_28122",
@@ -2282,7 +2180,7 @@
       "brand": "Carbest",
       "priceCzk": 306.16,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-power-line_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-power-line_z25851%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/160169_102.jpg?1704380282_1",
@@ -2301,8 +2199,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25851_28123",
@@ -2314,7 +2211,7 @@
       "brand": "Carbest",
       "priceCzk": 331.47,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-power-line_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-power-line_z25851%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/160170_102.jpg?1704380282_1",
@@ -2333,8 +2230,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25851_28124",
@@ -2346,7 +2242,7 @@
       "brand": "Carbest",
       "priceCzk": 421.51,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-power-line_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-power-line_z25851%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/160171_102.jpg?1704380282_1",
@@ -2365,8 +2261,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25852",
@@ -2378,7 +2273,7 @@
       "brand": "Carbest",
       "priceCzk": 293.31,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-t-power-line-100-ah_z25852/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-t-power-line-100-ah_z25852%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/152538_102.jpg?1704379091_1",
@@ -2397,8 +2292,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25869_27324",
@@ -2410,7 +2304,7 @@
       "brand": "Carbest",
       "priceCzk": 133.97,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-nabijacka-carbest-12-v-s-2-vystupmi_z25869/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-nabijacka-carbest-12-v-s-2-vystupmi_z25869%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/149415_102.jpg?1704379002_1",
@@ -2434,8 +2328,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25869_27325",
@@ -2447,7 +2340,7 @@
       "brand": "Carbest",
       "priceCzk": 215.72,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-nabijacka-carbest-12-v-s-2-vystupmi_z25869/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-nabijacka-carbest-12-v-s-2-vystupmi_z25869%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/149415_102.jpg?1704379002_1",
@@ -2471,8 +2364,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25869_27326",
@@ -2484,7 +2376,7 @@
       "brand": "Carbest",
       "priceCzk": 250.15,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-nabijacka-carbest-12-v-s-2-vystupmi_z25869/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-nabijacka-carbest-12-v-s-2-vystupmi_z25869%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/149415_102.jpg?1704379002_1",
@@ -2508,8 +2400,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25871_27329",
@@ -2521,7 +2412,7 @@
       "brand": "Carbest",
       "priceCzk": 43.11,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/12-v-sinusovy-menic-napatia-carbest_z25871/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2F12-v-sinusovy-menic-napatia-carbest_z25871%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/149417_102.jpg?1704379002_1",
@@ -2542,8 +2433,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25871_27330",
@@ -2555,7 +2445,7 @@
       "brand": "Carbest",
       "priceCzk": 51,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/12-v-sinusovy-menic-napatia-carbest_z25871/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2F12-v-sinusovy-menic-napatia-carbest_z25871%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/149417_102.jpg?1704379002_1",
@@ -2576,8 +2466,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25871_27331",
@@ -2589,7 +2478,7 @@
       "brand": "Carbest",
       "priceCzk": 64.69,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/12-v-sinusovy-menic-napatia-carbest_z25871/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2F12-v-sinusovy-menic-napatia-carbest_z25871%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/149417_102.jpg?1704379002_1",
@@ -2610,8 +2499,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25871_27332",
@@ -2623,7 +2511,7 @@
       "brand": "Carbest",
       "priceCzk": 108.67,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/12-v-sinusovy-menic-napatia-carbest_z25871/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2F12-v-sinusovy-menic-napatia-carbest_z25871%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/149417_102.jpg?1704379002_1",
@@ -2644,8 +2532,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25872_27340",
@@ -2657,7 +2544,7 @@
       "brand": "Carbest",
       "priceCzk": 414.04,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-ps_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-ps_z25872%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/183406_102.jpg?1746259641_1",
@@ -2674,8 +2561,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25872_27342",
@@ -2687,7 +2573,7 @@
       "brand": "Carbest",
       "priceCzk": 517.77,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-ps_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-ps_z25872%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/183406_102.jpg?1746259641_1",
@@ -2704,8 +2590,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25872_27343",
@@ -2717,7 +2602,7 @@
       "brand": "Carbest",
       "priceCzk": 441,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-ps_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-ps_z25872%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/183406_102.jpg?1746259641_1",
@@ -2734,8 +2619,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25872_27344",
@@ -2747,7 +2631,7 @@
       "brand": "Carbest",
       "priceCzk": 517.77,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-ps_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-ps_z25872%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/183406_102.jpg?1746259641_1",
@@ -2764,8 +2648,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:25872_27345",
@@ -2777,7 +2660,7 @@
       "brand": "Carbest",
       "priceCzk": 888.28,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-ps_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-ps_z25872%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/183406_102.jpg?1746259641_1",
@@ -2794,8 +2677,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26743",
@@ -2807,7 +2689,7 @@
       "brand": "Carbest",
       "priceCzk": 527.72,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-carbest-sfx135_z26743/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-carbest-sfx135_z26743%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/152486_102.jpg?1704379090_1",
@@ -2824,8 +2706,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26746",
@@ -2837,7 +2718,7 @@
       "brand": "Carbest",
       "priceCzk": 673.35,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-carbest-sc200-200-w_z26746/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-carbest-sc200-200-w_z26746%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/152501_102.jpg?1704379090_1",
@@ -2854,8 +2735,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26747",
@@ -2867,7 +2747,7 @@
       "brand": "Carbest",
       "priceCzk": 465.9,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-carbest-hc130-130-w_z26747/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-carbest-hc130-130-w_z26747%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/152511_102.jpg?1704379090_1",
@@ -2884,8 +2764,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26751",
@@ -2897,7 +2776,7 @@
       "brand": "Carbest",
       "priceCzk": 76.3,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-carbest-mppt-12-v-12-a-165-wp_z26751/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-carbest-mppt-12-v-12-a-165-wp_z26751%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/152516_102.jpg?1704379090_1",
@@ -2921,8 +2800,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26752",
@@ -2934,7 +2812,7 @@
       "brand": "Carbest",
       "priceCzk": 108.67,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-carbest-mppt-12-v-12-a-350-wp_z26752/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-carbest-mppt-12-v-12-a-350-wp_z26752%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/152517_102.jpg?1704379090_1",
@@ -2958,8 +2836,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26753",
@@ -2971,7 +2848,7 @@
       "brand": "Carbest",
       "priceCzk": 932.67,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-lifepo4-carbest-li100_z26753/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-lifepo4-carbest-li100_z26753%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/152518_102.jpg?1704379090_1",
@@ -2991,8 +2868,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26754",
@@ -3004,7 +2880,7 @@
       "brand": "Carbest",
       "priceCzk": 1036.4,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-carbest-lifepo4-li100bh6-pre-vw-t5-t6_z26754/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-carbest-lifepo4-li100bh6-pre-vw-t5-t6_z26754%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/152520_102.jpg?1704379091_1",
@@ -3024,8 +2900,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26755",
@@ -3037,7 +2912,7 @@
       "brand": "Carbest",
       "priceCzk": 1960.41,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/lifepo4-bateria-carbest-li200bhd-pre-fiat-ducato-12-8-v_z26755/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flifepo4-bateria-carbest-li200bhd-pre-fiat-ducato-12-8-v_z26755%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/152522_102.jpg?1704379091_1",
@@ -3057,8 +2932,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26861_28266",
@@ -3070,7 +2944,7 @@
       "brand": "Carbest",
       "priceCzk": 382.92,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-carbest-full-black-12-v_z26861/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-carbest-full-black-12-v_z26861%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/152799_102.jpg?1704379099_1",
@@ -3091,8 +2965,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26939_32735",
@@ -3104,7 +2977,7 @@
       "brand": "Victron Energy",
       "priceCzk": 84.18,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-victron-energy_z26939/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-victron-energy_z26939%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/152942_102.jpg?1704379104_1",
@@ -3121,8 +2994,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26939_32736",
@@ -3134,7 +3006,7 @@
       "brand": "Victron Energy",
       "priceCzk": 48.09,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-victron-energy_z26939/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-victron-energy_z26939%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/152942_102.jpg?1704379104_1",
@@ -3151,8 +3023,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26939_32737",
@@ -3164,7 +3035,7 @@
       "brand": "Victron Energy",
       "priceCzk": 35.23,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-victron-energy_z26939/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-victron-energy_z26939%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/152942_102.jpg?1704379104_1",
@@ -3181,8 +3052,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26961_28352",
@@ -3194,7 +3064,7 @@
       "brand": "Victron Energy",
       "priceCzk": 68.41,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z26961%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/160239_102.jpg?1704380285_1",
@@ -3213,8 +3083,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26961_28353",
@@ -3226,7 +3095,7 @@
       "brand": "Victron Energy",
       "priceCzk": 123.6,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z26961%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/160240_102.jpg?1704380285_1",
@@ -3245,40 +3114,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
-    },
-    {
-      "id": "padabo_sk:26961_28354",
-      "merchant": "padabo_sk",
-      "name": "Solárna batéria Victron Energy AGM Super Cycle kapacita 60 Ah",
-      "description": "Solárna batéria AGM Victron Energy Super CycleSolárna batéria AGM Super Cycle od spoločnosti Victron Energy je vhodná pre menšie batériové systémy. Zvládne častejšie hlboké vybíjanie. Nové prísady v elektrolyte znižujú sulfatáciu batérie. Pasta na kladné dosky je menej náchylná na zmäknutie. Batéria vydrží minimálne 300 cyklov pri 100 % vybití. Nový chemický zloženie batérie ponúka menšie rozmery a nižšiu hmotnosť ako bežné batérie AGM. Pri sériovom zapojení batérií je potrebné použiť vyvažovač ",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
-      "category": "battery",
-      "brand": "Victron Energy",
-      "priceCzk": 180.44,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z26961/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z26961%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/160241_102.jpg?1704380285_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 60,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26961_28355",
@@ -3290,7 +3126,7 @@
       "brand": "Victron Energy",
       "priceCzk": 316.95,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z26961%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/160242_102.jpg?1704380286_1",
@@ -3309,8 +3145,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26962_28356",
@@ -3322,7 +3157,7 @@
       "brand": "Victron Energy",
       "priceCzk": 199.53,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-gel_z26962/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-gel_z26962%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/160243_102.jpg?1704380286_1",
@@ -3339,8 +3174,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26962_28357",
@@ -3352,7 +3186,7 @@
       "brand": "Victron Energy",
       "priceCzk": 325.25,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-gel_z26962/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-gel_z26962%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/160244_102.jpg?1704380286_1",
@@ -3369,8 +3203,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26963_28360",
@@ -3382,7 +3215,7 @@
       "brand": "Victron Energy",
       "priceCzk": 245.18,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/nabijacka-victron-energy-orion-tr-smart-dc-dc-neizolovana_z26963/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-victron-energy-orion-tr-smart-dc-dc-neizolovana_z26963%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/160247_102.jpg?1704380286_1",
@@ -3405,8 +3238,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26964_28362",
@@ -3418,7 +3250,7 @@
       "brand": "Victron Energy",
       "priceCzk": 777.5,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-smart-12-8-v_z26964/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-smart-12-8-v_z26964%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/160249_102.jpg?1704380286_1",
@@ -3437,8 +3269,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26964_28364",
@@ -3450,7 +3281,7 @@
       "brand": "Victron Energy",
       "priceCzk": 1139.3,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-smart-12-8-v_z26964/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-smart-12-8-v_z26964%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/160251_102.jpg?1704380286_1",
@@ -3469,8 +3300,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26965_28366",
@@ -3482,7 +3312,7 @@
       "brand": "Victron Energy",
       "priceCzk": 194.13,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/160253_102.jpg?1704380286_1",
@@ -3502,8 +3332,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26965_28367",
@@ -3515,7 +3344,7 @@
       "brand": "Victron Energy",
       "priceCzk": 438.52,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/160254_102.jpg?1704380286_1",
@@ -3535,8 +3364,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26965_28368",
@@ -3548,7 +3376,7 @@
       "brand": "Victron Energy",
       "priceCzk": 581.25,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/160255_102.jpg?1704380286_1",
@@ -3568,8 +3396,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26965_28369",
@@ -3581,7 +3408,7 @@
       "brand": "Victron Energy",
       "priceCzk": 1023.95,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/160256_102.jpg?1704380286_1",
@@ -3601,8 +3428,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26971_28395",
@@ -3614,7 +3440,7 @@
       "brand": "Victron Energy",
       "priceCzk": 556.77,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-multiplus-12-v-menic-nabijacka_z26971/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-multiplus-12-v-menic-nabijacka_z26971%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/160261_102.jpg?1704380286_1",
@@ -3635,8 +3461,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26971_28396",
@@ -3648,7 +3473,7 @@
       "brand": "Victron Energy",
       "priceCzk": 777.5,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-multiplus-12-v-menic-nabijacka_z26971/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-multiplus-12-v-menic-nabijacka_z26971%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/160263_102.jpg?1704380286_1",
@@ -3669,8 +3494,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:26971_28397",
@@ -3682,7 +3506,7 @@
       "brand": "Victron Energy",
       "priceCzk": 712.77,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-multiplus-12-v-menic-nabijacka_z26971/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-multiplus-12-v-menic-nabijacka_z26971%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/160265_102.jpg?1704380286_1",
@@ -3703,8 +3527,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:70557",
@@ -3716,7 +3539,7 @@
       "brand": "Brennenstuhl",
       "priceCzk": 16.14,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-brennenstuhl-ap18650-3-7-v-2-5-ah_z70557/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-brennenstuhl-ap18650-3-7-v-2-5-ah_z70557%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/177870_102.jpg?1738318451_1",
@@ -3735,8 +3558,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:101357",
@@ -3748,7 +3570,7 @@
       "brand": "Victron Energy",
       "priceCzk": 354.29,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dc-dc-neizolovana-nabijacka-victron-energy-orion-xs-12-12-50-a_z101357/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdc-dc-neizolovana-nabijacka-victron-energy-orion-xs-12-12-50-a_z101357%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/163152_102.jpg?1717083863_1",
@@ -3771,8 +3593,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:101622",
@@ -3784,7 +3605,7 @@
       "brand": "Pundmann",
       "priceCzk": 1566.25,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/mobilny-ohrievac-pundmann-s-nadrzou-na-naftu-a-bateriou-agm_z101622/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmobilny-ohrievac-pundmann-s-nadrzou-na-naftu-a-bateriou-agm_z101622%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/164492_102.jpg?1719409638_1",
@@ -3803,8 +3624,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:101623",
@@ -3816,7 +3636,7 @@
       "brand": "Pundmann",
       "priceCzk": 2080.31,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/mobilny-ohrievac-pundmann-s-nadrzou-na-naftu-a-bateriou-lifepo_z101623/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmobilny-ohrievac-pundmann-s-nadrzou-na-naftu-a-bateriou-lifepo_z101623%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/164494_102.jpg?1719410771_1",
@@ -3835,8 +3655,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:101755_28760",
@@ -3848,7 +3667,7 @@
       "brand": "Phaesun",
       "priceCzk": 285.42,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-phaesun-fly-weight_z101755/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-phaesun-fly-weight_z101755%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/165310_102.jpg?1720512371_1",
@@ -3865,8 +3684,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:101755_28761",
@@ -3878,7 +3696,7 @@
       "brand": "Phaesun",
       "priceCzk": 407.82,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-phaesun-fly-weight_z101755/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-phaesun-fly-weight_z101755%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/165311_102.jpg?1720512372_1",
@@ -3895,8 +3713,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:101756_28762",
@@ -3908,7 +3725,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 218.2,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-mppt-bluetooth-regulator-buttner_z101756/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-mppt-bluetooth-regulator-buttner_z101756%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/183943_102.jpg?1747538682_1",
@@ -3927,8 +3744,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:101756_28763",
@@ -3940,7 +3756,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 174.22,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-mppt-bluetooth-regulator-buttner_z101756/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-mppt-bluetooth-regulator-buttner_z101756%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/183944_102.jpg?1747538683_1",
@@ -3959,8 +3775,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:101948",
@@ -3972,7 +3787,7 @@
       "brand": "Victron Energy",
       "priceCzk": 262.59,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-gel-90-ah_z101948/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-gel-90-ah_z101948%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/167100_102.jpg?1722509006_1",
@@ -3991,8 +3806,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:101960_29196",
@@ -4004,7 +3818,7 @@
       "brand": "Hoppecke",
       "priceCzk": 610.29,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-hoppecke-105-150-sun-power-vr-m-12-v_z101960/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-hoppecke-105-150-sun-power-vr-m-12-v_z101960%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/178700_102.jpg?1739366470_1",
@@ -4027,8 +3841,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:101961_29201",
@@ -4040,7 +3853,7 @@
       "brand": "Hoppecke",
       "priceCzk": 365.91,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-hoppecke-sun-power-vr-m-6-v_z101961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-hoppecke-sun-power-vr-m-6-v_z101961%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/167346_102.jpg?1722879952_1",
@@ -4059,8 +3872,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:101984",
@@ -4072,7 +3884,7 @@
       "brand": "Victron Energy",
       "priceCzk": 126.92,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-mppt-victron-energy-bluesolar-100-30_z101984/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-mppt-victron-energy-bluesolar-100-30_z101984%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/167404_102.jpg?1723110413_1",
@@ -4091,8 +3903,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:101985",
@@ -4104,7 +3915,7 @@
       "brand": "Victron Energy",
       "priceCzk": 210.32,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-mppt-victron-energy-smartsolar-100-50_z101985/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-mppt-victron-energy-smartsolar-100-50_z101985%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/167410_102.jpg?1723111301_1",
@@ -4123,8 +3934,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:103627",
@@ -4136,7 +3946,7 @@
       "brand": "Victron Energy",
       "priceCzk": 113.23,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-baterie-victron-energy-bmv-700_z103627/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-baterie-victron-energy-bmv-700_z103627%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/175676_102.jpg?1733579563_1",
@@ -4156,8 +3966,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:103628",
@@ -4169,7 +3978,7 @@
       "brand": "Victron Energy",
       "priceCzk": 140.61,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-bmv-702_z103628/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-bmv-702_z103628%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/175677_102.jpg?1733582893_1",
@@ -4189,8 +3998,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:103629",
@@ -4202,7 +4010,7 @@
       "brand": "Victron Energy",
       "priceCzk": 162.19,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-bmv-712-smart_z103629/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-bmv-712-smart_z103629%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/175678_102.jpg?1733583878_1",
@@ -4222,8 +4030,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:103630_30040",
@@ -4235,7 +4042,7 @@
       "brand": "Victron Energy",
       "priceCzk": 80.86,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/175681_102.jpg?1733586579_1",
@@ -4255,8 +4062,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:103630_30041",
@@ -4268,7 +4074,7 @@
       "brand": "Victron Energy",
       "priceCzk": 114.06,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/175684_102.jpg?1733586661_1",
@@ -4288,8 +4094,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:103630_30042",
@@ -4301,7 +4106,7 @@
       "brand": "Victron Energy",
       "priceCzk": 188.74,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/175687_102.jpg?1733586743_1",
@@ -4321,8 +4126,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:103630_30043",
@@ -4334,7 +4138,7 @@
       "brand": "Victron Energy",
       "priceCzk": 257.21,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/175690_102.jpg?1733586828_1",
@@ -4354,8 +4158,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:103631_30044",
@@ -4367,7 +4170,7 @@
       "brand": "Victron Energy",
       "priceCzk": 80.86,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/175702_102.jpg?1733590559_1",
@@ -4387,8 +4190,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:103631_30045",
@@ -4400,7 +4202,7 @@
       "brand": "Victron Energy",
       "priceCzk": 114.06,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/175707_102.jpg?1733590679_1",
@@ -4420,8 +4222,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:103631_30047",
@@ -4433,7 +4234,7 @@
       "brand": "Victron Energy",
       "priceCzk": 188.74,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/175711_102.jpg?1733590808_1",
@@ -4453,8 +4254,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:103631_30048",
@@ -4466,7 +4266,7 @@
       "brand": "Victron Energy",
       "priceCzk": 257.21,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/175715_102.jpg?1733590929_1",
@@ -4486,8 +4286,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104292_30464",
@@ -4499,7 +4298,7 @@
       "brand": "Dometic",
       "priceCzk": 158.45,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180081_102.jpg?1740987730_1",
@@ -4521,8 +4320,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104292_30465",
@@ -4534,7 +4332,7 @@
       "brand": "Dometic",
       "priceCzk": 169.65,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180081_102.jpg?1740987730_1",
@@ -4556,8 +4354,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104292_30466",
@@ -4569,7 +4366,7 @@
       "brand": "Dometic",
       "priceCzk": 381.68,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/180080_102.jpg?1740987682_1",
@@ -4591,8 +4388,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104292_30467",
@@ -4604,7 +4400,7 @@
       "brand": "Dometic",
       "priceCzk": 540.59,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/180080_102.jpg?1740987682_1",
@@ -4626,8 +4422,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104292_30468",
@@ -4639,7 +4434,7 @@
       "brand": "Dometic",
       "priceCzk": 746.79,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180079_102.jpg?1740987646_1",
@@ -4661,8 +4456,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104292_30469",
@@ -4674,7 +4468,7 @@
       "brand": "Dometic",
       "priceCzk": 952.59,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180079_102.jpg?1740987646_1",
@@ -4696,8 +4490,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104292_30470",
@@ -4709,7 +4502,7 @@
       "brand": "Dometic",
       "priceCzk": 158.45,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180081_102.jpg?1740987730_1",
@@ -4731,8 +4524,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104292_30471",
@@ -4744,7 +4536,7 @@
       "brand": "Dometic",
       "priceCzk": 169.65,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180081_102.jpg?1740987730_1",
@@ -4766,8 +4558,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104292_30472",
@@ -4779,7 +4570,7 @@
       "brand": "Dometic",
       "priceCzk": 381.68,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/180080_102.jpg?1740987682_1",
@@ -4801,8 +4592,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104292_30473",
@@ -4814,7 +4604,7 @@
       "brand": "Dometic",
       "priceCzk": 540.59,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/180080_102.jpg?1740987682_1",
@@ -4836,8 +4626,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104292_30474",
@@ -4849,7 +4638,7 @@
       "brand": "Dometic",
       "priceCzk": 746.79,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180079_102.jpg?1740987646_1",
@@ -4871,8 +4660,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104292_30475",
@@ -4884,7 +4672,7 @@
       "brand": "Dometic",
       "priceCzk": 952.59,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180079_102.jpg?1740987646_1",
@@ -4906,8 +4694,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104293_30476",
@@ -4919,7 +4706,7 @@
       "brand": "Dometic",
       "priceCzk": 420.27,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/180084_102.jpg?1740996469_1",
@@ -4941,8 +4728,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104293_30477",
@@ -4954,7 +4740,7 @@
       "brand": "Dometic",
       "priceCzk": 821.06,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
@@ -4976,8 +4762,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104293_30478",
@@ -4989,7 +4774,7 @@
       "brand": "Dometic",
       "priceCzk": 821.06,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
@@ -5011,8 +4796,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104293_30479",
@@ -5024,7 +4808,7 @@
       "brand": "Dometic",
       "priceCzk": 1047.6,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
@@ -5046,8 +4830,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104293_30480",
@@ -5059,7 +4842,7 @@
       "brand": "Dometic",
       "priceCzk": 1047.6,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
@@ -5081,8 +4864,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104293_30481",
@@ -5094,7 +4876,7 @@
       "brand": "Dometic",
       "priceCzk": 1572.05,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
@@ -5116,8 +4898,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104293_30482",
@@ -5129,7 +4910,7 @@
       "brand": "Dometic",
       "priceCzk": 1572.05,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
@@ -5151,8 +4932,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104293_30483",
@@ -5164,7 +4944,7 @@
       "brand": "Dometic",
       "priceCzk": 594.94,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/180084_102.jpg?1740996469_1",
@@ -5186,8 +4966,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104294_30485",
@@ -5199,7 +4978,7 @@
       "brand": "Dometic",
       "priceCzk": 1276.64,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-its-12-v-alebo-24-v-menic-napatia_z104294/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-its-12-v-alebo-24-v-menic-napatia_z104294%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/180087_102.jpg?1740999092_1",
@@ -5221,8 +5000,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104294_30486",
@@ -5234,7 +5012,7 @@
       "brand": "Dometic",
       "priceCzk": 1276.64,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-its-12-v-alebo-24-v-menic-napatia_z104294/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-its-12-v-alebo-24-v-menic-napatia_z104294%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/180087_102.jpg?1740999092_1",
@@ -5256,8 +5034,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104295_30487",
@@ -5269,7 +5046,7 @@
       "brand": "Dometic",
       "priceCzk": 933.09,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180089_102.jpg?1741000726_1",
@@ -5291,8 +5068,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104295_30488",
@@ -5304,7 +5080,7 @@
       "brand": "Dometic",
       "priceCzk": 1094.49,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180089_102.jpg?1741000726_1",
@@ -5326,8 +5102,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104295_30489",
@@ -5339,7 +5114,7 @@
       "brand": "Dometic",
       "priceCzk": 933.09,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180089_102.jpg?1741000726_1",
@@ -5361,8 +5136,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104295_30490",
@@ -5374,7 +5148,7 @@
       "brand": "Dometic",
       "priceCzk": 1094.49,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180089_102.jpg?1741000726_1",
@@ -5396,8 +5170,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104333_30512",
@@ -5409,7 +5182,7 @@
       "brand": "Dometic",
       "priceCzk": 358.03,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-dometic-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-dometic-nds-greenpower-gp_z104333%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/180280_102.jpg?1741255029_1",
@@ -5428,8 +5201,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104333_30513",
@@ -5441,7 +5213,7 @@
       "brand": "Dometic",
       "priceCzk": 541.83,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-dometic-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-dometic-nds-greenpower-gp_z104333%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180279_102.jpg?1741254997_1",
@@ -5460,8 +5232,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104333_30514",
@@ -5473,7 +5244,7 @@
       "brand": "Dometic",
       "priceCzk": 694.52,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-dometic-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-dometic-nds-greenpower-gp_z104333%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/180278_102.jpg?1741254964_1",
@@ -5492,8 +5263,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104333_30515",
@@ -5505,7 +5275,7 @@
       "brand": "Dometic",
       "priceCzk": 318.19,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-dometic-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-dometic-nds-greenpower-gp_z104333%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/180277_102.jpg?1741254929_1",
@@ -5524,8 +5294,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104333_30516",
@@ -5537,7 +5306,7 @@
       "brand": "Dometic",
       "priceCzk": 877.08,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-dometic-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-dometic-nds-greenpower-gp_z104333%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180276_102.jpg?1741254877_1",
@@ -5556,8 +5325,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104334_30518",
@@ -5569,7 +5337,7 @@
       "brand": "Dometic",
       "priceCzk": 1340.53,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-dometic-buttner-tempra-tlb_z104334/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-dometic-buttner-tempra-tlb_z104334%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180281_102.jpg?1741257059_1",
@@ -5589,8 +5357,39 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
+    },
+    {
+      "id": "padabo_sk:104335_30520",
+      "merchant": "padabo_sk",
+      "name": "Lítiová batéria Dometic Büttner Tempra TLBF s ohrevom kapacita 120 Ah",
+      "description": "Vyhrievaná batéria pre všetky nabíjačkyLítiová batéria Dometic Büttner Tempra TLBF s najlepším pomerom výkonu a hmotnosti na trhu vďaka článkom s vysokou hustotou výkonu (HDP). Batéria s veľkosťou štandardného boxu L5, ktorý sa zmestí pod sedadlo Fiatu Ducato, má o 50 % väčšiu kapacitu, čo pre vás znamená o 50 % väčšiu nezávislosť od elektrickej siete. Inteligentný systém riadenia batérie zabezpečuje optimálne nabíjanie, takže batériu Tempra môžete pripojiť k akejkoľvek nabíjačke, dokonca aj k t",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
+      "category": "battery",
+      "brand": "Dometic",
+      "priceCzk": 1459.2,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/litiova-bateria-dometic-buttner-tempra-tlbf-s-ohrevom_z104335/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-dometic-buttner-tempra-tlbf-s-ohrevom_z104335%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/180283_102.jpg?1741262849_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 120,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
     },
     {
       "id": "padabo_sk:104338_30525",
@@ -5602,7 +5401,7 @@
       "brand": "Dometic",
       "priceCzk": 512.37,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-mt-power-black-line_z104338%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180291_102.jpg?1741272539_1",
@@ -5619,8 +5418,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104338_30526",
@@ -5632,7 +5430,7 @@
       "brand": "Dometic",
       "priceCzk": 536.02,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-mt-power-black-line_z104338%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180291_102.jpg?1741272539_1",
@@ -5649,8 +5447,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104338_30527",
@@ -5662,7 +5459,7 @@
       "brand": "Dometic",
       "priceCzk": 671.7,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-mt-power-black-line_z104338%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180291_102.jpg?1741272539_1",
@@ -5679,8 +5476,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104338_30528",
@@ -5692,7 +5488,7 @@
       "brand": "Dometic",
       "priceCzk": 797.41,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-mt-power-black-line_z104338%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180291_102.jpg?1741272539_1",
@@ -5709,8 +5505,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104338_30529",
@@ -5722,7 +5517,7 @@
       "brand": "Dometic",
       "priceCzk": 1026.45,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-mt-power-black-line_z104338%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180291_102.jpg?1741272539_1",
@@ -5739,8 +5534,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104343_30547",
@@ -5752,7 +5546,7 @@
       "brand": "Dometic",
       "priceCzk": 211.98,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-solenergy-psm_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-solenergy-psm_z104343%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180311_102.jpg?1741341000_1",
@@ -5769,8 +5563,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104343_30548",
@@ -5782,7 +5575,7 @@
       "brand": "Dometic",
       "priceCzk": 233.97,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-solenergy-psm_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-solenergy-psm_z104343%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180311_102.jpg?1741341000_1",
@@ -5799,8 +5592,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104343_30549",
@@ -5812,7 +5604,7 @@
       "brand": "Dometic",
       "priceCzk": 267.99,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-solenergy-psm_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-solenergy-psm_z104343%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180311_102.jpg?1741341000_1",
@@ -5829,8 +5621,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104343_30550",
@@ -5842,7 +5633,7 @@
       "brand": "Dometic",
       "priceCzk": 303.67,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-solenergy-psm_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-solenergy-psm_z104343%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180311_102.jpg?1741341000_1",
@@ -5859,8 +5650,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104343_30551",
@@ -5872,7 +5662,7 @@
       "brand": "Dometic",
       "priceCzk": 337.7,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-solenergy-psm_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-solenergy-psm_z104343%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180311_102.jpg?1741341000_1",
@@ -5889,8 +5679,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104344",
@@ -5902,7 +5691,7 @@
       "brand": "Dometic",
       "priceCzk": 250.98,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-solenergy-psm-slim_z104344/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-solenergy-psm-slim_z104344%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/180312_102.jpg?1741342404_1",
@@ -5919,8 +5708,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104849_30966",
@@ -5932,7 +5720,7 @@
       "brand": "LILIE",
       "priceCzk": 192.48,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-lilie-campere_z104849/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-lilie-campere_z104849%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/182055_102.jpg?1743999483_1",
@@ -5949,8 +5737,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104849_30967",
@@ -5962,7 +5749,7 @@
       "brand": "LILIE",
       "priceCzk": 65.1,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-lilie-campere_z104849/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-lilie-campere_z104849%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/182054_102.jpg?1743999481_1",
@@ -5979,8 +5766,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104850_30968",
@@ -5992,7 +5778,7 @@
       "brand": "LILIE",
       "priceCzk": 205.34,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-lilie-mppt-seria-lsr_z104850/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-lilie-mppt-seria-lsr_z104850%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/182059_102.jpg?1744001757_1",
@@ -6012,8 +5798,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104878_30998",
@@ -6025,7 +5810,7 @@
       "brand": "",
       "priceCzk": 828.95,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-antarion_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-antarion_z104878%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/182149_102.jpg?1744180166_1",
@@ -6042,8 +5827,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104878_30999",
@@ -6055,7 +5839,7 @@
       "brand": "",
       "priceCzk": 621.49,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-antarion_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-antarion_z104878%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/182149_102.jpg?1744180166_1",
@@ -6072,8 +5856,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104878_31000",
@@ -6085,7 +5868,7 @@
       "brand": "",
       "priceCzk": 248.08,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-antarion_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-antarion_z104878%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/182149_102.jpg?1744180166_1",
@@ -6102,8 +5885,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104878_31001",
@@ -6115,7 +5897,7 @@
       "brand": "",
       "priceCzk": 123.6,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-antarion_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-antarion_z104878%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/182149_102.jpg?1744180166_1",
@@ -6132,8 +5914,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104885_31008",
@@ -6145,7 +5926,7 @@
       "brand": "Votronic",
       "priceCzk": 977.48,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-smi-votronic_z104885/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-smi-votronic_z104885%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/182181_102.jpg?1744260671_1",
@@ -6162,8 +5943,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104885_31009",
@@ -6175,7 +5955,7 @@
       "brand": "Votronic",
       "priceCzk": 638.92,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-smi-votronic_z104885/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-smi-votronic_z104885%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/182180_102.jpg?1744260669_1",
@@ -6192,8 +5972,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:104885_31010",
@@ -6205,7 +5984,7 @@
       "brand": "Votronic",
       "priceCzk": 1150.51,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-smi-votronic_z104885/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-smi-votronic_z104885%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/182182_102.jpg?1744260672_1",
@@ -6222,8 +6001,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:105296_31361",
@@ -6235,7 +6013,7 @@
       "brand": "EcoFlow",
       "priceCzk": 260.98,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/pridavna-bateria-pre-nabijaciu-stanicu-ecoflow-river-3-plus_z105296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fpridavna-bateria-pre-nabijaciu-stanicu-ecoflow-river-3-plus_z105296%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/184720_102.jpg?1748879839_1",
@@ -6254,8 +6032,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:105296_31362",
@@ -6267,7 +6044,7 @@
       "brand": "EcoFlow",
       "priceCzk": 364.71,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/pridavna-bateria-pre-nabijaciu-stanicu-ecoflow-river-3-plus_z105296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fpridavna-bateria-pre-nabijaciu-stanicu-ecoflow-river-3-plus_z105296%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/184726_102.jpg?1748880091_1",
@@ -6286,8 +6063,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:105298",
@@ -6299,7 +6075,7 @@
       "brand": "EcoFlow",
       "priceCzk": 157.26,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-ecoflow-175-w_z105298/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-ecoflow-175-w_z105298%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/184800_102.jpg?1748943827_1",
@@ -6316,8 +6092,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:105299",
@@ -6329,7 +6104,7 @@
       "brand": "EcoFlow",
       "priceCzk": 124.06,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/ohybny-solarny-panel-ecoflow-100-w_z105299/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fohybny-solarny-panel-ecoflow-100-w_z105299%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/184828_102.jpg?1748952823_1",
@@ -6348,8 +6123,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:105300",
@@ -6361,7 +6135,7 @@
       "brand": "EcoFlow",
       "priceCzk": 82.57,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-ecoflow-45-w_z105300/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-ecoflow-45-w_z105300%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/184849_102.jpg?1748958338_1",
@@ -6378,8 +6152,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:105305",
@@ -6391,7 +6164,7 @@
       "brand": "EcoFlow",
       "priceCzk": 725.68,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/pridavna-bateria-pre-klimatizaciu-ecoflow-wave-3_z105305/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fpridavna-bateria-pre-klimatizaciu-ecoflow-wave-3_z105305%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/185015_102.jpg?1749055453_1",
@@ -6408,8 +6181,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:105444",
@@ -6421,7 +6193,7 @@
       "brand": "Carbest",
       "priceCzk": 347.65,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/ohybny-solarny-panel-carbest-flex-120-w_z105444/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fohybny-solarny-panel-carbest-flex-120-w_z105444%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/185501_102.jpg?1750235483_1",
@@ -6438,8 +6210,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:105445",
@@ -6451,7 +6222,7 @@
       "brand": "Carbest",
       "priceCzk": 362.17,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/ohybny-solarny-panel-carbest-flex-135-w_z105445/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fohybny-solarny-panel-carbest-flex-135-w_z105445%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/185502_102.jpg?1750242420_1",
@@ -6468,8 +6239,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:105448",
@@ -6481,7 +6251,7 @@
       "brand": "Carbest",
       "priceCzk": 294.55,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-carbest-cb-190-full-black-190-w_z105448/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-carbest-cb-190-full-black-190-w_z105448%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/185509_102.jpg?1750246744_1",
@@ -6498,8 +6268,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:105450",
@@ -6511,7 +6280,7 @@
       "brand": "Carbest",
       "priceCzk": 176.3,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-carbest-mppt-dualcontroller-12-24-v-30-a_z105450/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-carbest-mppt-dualcontroller-12-24-v-30-a_z105450%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/185514_102.jpg?1750251196_1",
@@ -6535,8 +6304,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:105599",
@@ -6548,7 +6316,7 @@
       "brand": "",
       "priceCzk": 2390.66,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-lifepo4-leuchtwert_z105599/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-lifepo4-leuchtwert_z105599%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/186194_102.jpg?1752750398_1",
@@ -6567,8 +6335,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:106253",
@@ -6580,7 +6347,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 1343.43,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-buttner-dometic-mt-sm-120-tl_z106253/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-buttner-dometic-mt-sm-120-tl_z106253%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/187751_102.jpg?1758205489_1",
@@ -6599,8 +6366,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:106258",
@@ -6612,7 +6378,7 @@
       "brand": "Carbest",
       "priceCzk": 93.27,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-mppt-carbest-12-24-v_z106258/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-mppt-carbest-12-24-v_z106258%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/187763_102.jpg?1758263649_1",
@@ -6621,7 +6387,7 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 520,
-        "currentA": 24,
+        "currentA": 20,
         "chargingVoltagesV": [
           24
         ],
@@ -6636,8 +6402,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:106296_33729",
@@ -6649,7 +6414,7 @@
       "brand": "Renogy",
       "priceCzk": 192.89,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-renogy-12-v_z106296%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/187879_102.jpg?1759325853_1",
@@ -6670,42 +6435,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
-    },
-    {
-      "id": "padabo_sk:106296_33732",
-      "merchant": "padabo_sk",
-      "name": "Menič napätia Renogy 12 V výkon 3000 W",
-      "description": "Výkonný usmerňovač napätia pre širokú škálu spotrebičov Menič napätia Renogy využíva pokročilú technológiu čistej sínusoidy na dosiahnutie maximálnej účinnosti vášho systému. Nastavenie meniča je také jednoduché, že ho zvládne aj úplný laik. Výstup s čistou sínusoidou zabezpečuje plynulé a stabilné napájanie, ktoré plnohodnotne nahrádza napájanie z verejnej siete. Menič je univerzálny a kompatibilný so širokou škálou elektrických spotrebičov, vrátane tých citlivejších, bez akýchkoľvek problémov ",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
-      "category": "inverter",
-      "brand": "Renogy",
-      "priceCzk": 364.08,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-renogy-12-v_z106296%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/187879_102.jpg?1759325853_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 3000,
-        "currentA": 1,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:106299",
@@ -6717,7 +6447,7 @@
       "brand": "Renogy",
       "priceCzk": 216.12,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/nabijacka-baterii-renogy-dc-dc-12v-60a_z106299/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-renogy-dc-dc-12v-60a_z106299%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/187901_102.jpg?1759387751_1",
@@ -6740,8 +6470,42 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
+    },
+    {
+      "id": "padabo_sk:107308",
+      "merchant": "padabo_sk",
+      "name": "Nabíjačka Renogy DC-DC 12V/40 A",
+      "description": "Smart, robustná a kompaktná nabíjačka Pomocou nabíjačky Renogy DC-DC 12V/40A môžete efektívne nabíjať akumulátory počas chodu motora. Nabíjačka batérií DC-DC je kompatibilná s mnohými typmi alternátorov a umožňuje správne nabíjať batérie AGM, trakčné, gélové a dokonca aj lítiové batérie s hlbokým cyklom. Vďaka 3-stupňovej nabíjačke akumulátorov a viacerým elektronickým ochranám budete mať istotu, že sa vaše akumulátory nabíjajú optimálne a automaticky. Pre zvýšenie bezpečnosti izoluje vstup od v",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Nabíjačky a boostery | Nabíjačky",
+      "category": "dc_charger",
+      "brand": "Renogy",
+      "priceCzk": 161.77,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/nabijacka-renogy-dc-dc-12v-40-a_z107308/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-renogy-dc-dc-12v-40-a_z107308%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/190963_102.jpg?1772370977_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 500,
+        "currentA": 40,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
     },
     {
       "id": "padabo_sk:107312_33733",
@@ -6753,7 +6517,7 @@
       "brand": "Renogy",
       "priceCzk": 165.93,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-renogy-shadowflux_z107312/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-renogy-shadowflux_z107312%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/190976_102.jpg?1772443593_1",
@@ -6770,8 +6534,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107331",
@@ -6783,7 +6546,7 @@
       "brand": "Renogy",
       "priceCzk": 248.53,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/nabijacka-baterii-renogy-12v-30a-dc-dc-mppt_z107331/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-renogy-12v-30a-dc-dc-mppt_z107331%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/191035_102.jpg?1772530391_1",
@@ -6806,8 +6569,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107353",
@@ -6819,7 +6581,7 @@
       "brand": "Victron Energy",
       "priceCzk": 1695.28,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo4-12-8v-300ah-ng_z107353/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo4-12-8v-300ah-ng_z107353%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/191104_102.jpg?1772719234_1",
@@ -6838,8 +6600,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107356_32721",
@@ -6851,7 +6612,7 @@
       "brand": "Victron Energy",
       "priceCzk": 746.79,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-12-8v-ng_z107356/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-lithium-superpack-12-8v-ng_z107356%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/191111_102.jpg?1772790227_1",
@@ -6871,8 +6632,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107358",
@@ -6884,7 +6644,7 @@
       "brand": "Victron Energy",
       "priceCzk": 1346.35,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-25-6v-100ah-ng_z107358/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-lithium-superpack-25-6v-100ah-ng_z107358%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/191118_102.jpg?1772808346_1",
@@ -6904,8 +6664,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107361",
@@ -6917,7 +6676,7 @@
       "brand": "Victron Energy",
       "priceCzk": 182.52,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-12-24-10a-240-w-dc-dc_z107361/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-12-24-10a-240-w-dc-dc_z107361%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/191123_102.jpg?1772883027_1",
@@ -6940,8 +6699,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107362",
@@ -6953,7 +6711,7 @@
       "brand": "Victron Energy",
       "priceCzk": 278.36,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-12-48-8a-380-w-dc-dc_z107362/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-12-48-8a-380-w-dc-dc_z107362%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/191128_102.jpg?1772885953_1",
@@ -6976,8 +6734,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107371",
@@ -6989,7 +6746,7 @@
       "brand": "Victron Energy",
       "priceCzk": 182.52,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-24-24-12a-280-w-dc-dc_z107371/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-24-24-12a-280-w-dc-dc_z107371%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/191149_102.jpg?1772981004_1",
@@ -7012,8 +6769,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107372",
@@ -7025,7 +6781,7 @@
       "brand": "Victron Energy",
       "priceCzk": 278.36,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-24-48-8-5a-400-w-dc-dc_z107372/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-24-48-8-5a-400-w-dc-dc_z107372%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/191158_102.jpg?1773041843_1",
@@ -7048,8 +6804,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107373",
@@ -7061,7 +6816,7 @@
       "brand": "Victron Energy",
       "priceCzk": 182.52,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-48-12-20a-240-w-dc-dc_z107373/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-48-12-20a-240-w-dc-dc_z107373%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/191160_102.jpg?1773042753_1",
@@ -7084,8 +6839,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107374",
@@ -7097,7 +6851,7 @@
       "brand": "Victron Energy",
       "priceCzk": 278.36,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-48-12-30a-360-w-dc-dc_z107374/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-48-12-30a-360-w-dc-dc_z107374%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/191163_102.jpg?1773043881_1",
@@ -7120,8 +6874,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107375",
@@ -7133,7 +6886,7 @@
       "brand": "Victron Energy",
       "priceCzk": 278.36,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-48-24-16a-380-w-dc-dc_z107375/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-48-24-16a-380-w-dc-dc_z107375%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/191166_102.jpg?1773044734_1",
@@ -7156,8 +6909,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107376",
@@ -7169,7 +6921,7 @@
       "brand": "Victron Energy",
       "priceCzk": 278.36,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-48-48-8a-380-w-dc-dc_z107376/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-48-48-8a-380-w-dc-dc_z107376%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/191169_102.jpg?1773045746_1",
@@ -7192,8 +6944,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107382",
@@ -7205,7 +6956,7 @@
       "brand": "Victron Energy",
       "priceCzk": 965.45,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-a-nabijacka-victron-energy-multiplus-ii-48-4k5-55-32-gx_z107382/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-a-nabijacka-victron-energy-multiplus-ii-48-4k5-55-32-gx_z107382%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/191182_102.jpg?1773130698_1",
@@ -7224,8 +6975,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107384",
@@ -7237,7 +6987,7 @@
       "brand": "Victron Energy",
       "priceCzk": 1042.22,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-a-nabijacka-victron-energy-multiplus-ii-48-6k5-100-50_z107384/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-a-nabijacka-victron-energy-multiplus-ii-48-6k5-100-50_z107384%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/191185_102.jpg?1773132143_1",
@@ -7257,8 +7007,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107385",
@@ -7270,7 +7019,7 @@
       "brand": "Victron Energy",
       "priceCzk": 1239.7,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/menic-a-nabijacka-victron-energy-multiplus-ii-48-6k5-100-50-gx_z107385/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-a-nabijacka-victron-energy-multiplus-ii-48-6k5-100-50-gx_z107385%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/191187_102.jpg?1773133388_1",
@@ -7289,8 +7038,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107393_32739",
@@ -7302,7 +7050,7 @@
       "brand": "Victron Energy",
       "priceCzk": 60.95,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-victron-energy-12-v-mono_z107393/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-victron-energy-12-v-mono_z107393%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/191226_102.jpg?1773236195_1",
@@ -7323,8 +7071,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107393_32740",
@@ -7336,7 +7083,7 @@
       "brand": "Victron Energy",
       "priceCzk": 91.66,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-victron-energy-12-v-mono_z107393/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-victron-energy-12-v-mono_z107393%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/191226_102.jpg?1773236195_1",
@@ -7357,8 +7104,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107517",
@@ -7370,7 +7116,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 880.82,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-buttner-dometic-tempra-tlb100s-l3-100-ah_z107517/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-buttner-dometic-tempra-tlb100s-l3-100-ah_z107517%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/191708_102.jpg?1774286380_1",
@@ -7390,8 +7136,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107518",
@@ -7403,7 +7148,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 974.17,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-buttner-dometic-tempra-tlb100sf-l3-100-ah_z107518/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-buttner-dometic-tempra-tlb100sf-l3-100-ah_z107518%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/191709_102.jpg?1774290779_1",
@@ -7423,8 +7168,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107522_32861",
@@ -7436,7 +7180,7 @@
       "brand": "BullTron",
       "priceCzk": 621.49,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/startovacia-litiova-bateria-bulltron_z107522/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fstartovacia-litiova-bateria-bulltron_z107522%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/191723_102.jpg?1774301015_1",
@@ -7456,8 +7200,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107532_32871",
@@ -7469,7 +7212,7 @@
       "brand": "Votronic",
       "priceCzk": 328.99,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-votronic-mppt_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-votronic-mppt_z107532%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/191810_102.jpg?1774371842_1",
@@ -7486,8 +7229,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107532_32872",
@@ -7499,7 +7241,7 @@
       "brand": "Votronic",
       "priceCzk": 240.6,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-votronic-mppt_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-votronic-mppt_z107532%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/191811_102.jpg?1774371843_1",
@@ -7516,8 +7258,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107532_32873",
@@ -7529,7 +7270,7 @@
       "brand": "Votronic",
       "priceCzk": 210.74,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-votronic-mppt_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-votronic-mppt_z107532%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/191812_102.jpg?1774371844_1",
@@ -7546,8 +7287,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107532_32874",
@@ -7559,7 +7299,7 @@
       "brand": "Votronic",
       "priceCzk": 146.42,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-votronic-mppt_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-votronic-mppt_z107532%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/191813_102.jpg?1774371845_1",
@@ -7576,8 +7316,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107543_32887",
@@ -7589,7 +7328,7 @@
       "brand": "BullTron",
       "priceCzk": 2903.5,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-pod-sedadlo-bulltron-polar_z107543/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-pod-sedadlo-bulltron-polar_z107543%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/191721_102.jpg?1774298722_1",
@@ -7608,8 +7347,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107543_32888",
@@ -7621,7 +7359,7 @@
       "brand": "BullTron",
       "priceCzk": 5704.14,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-pod-sedadlo-bulltron-polar_z107543/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-pod-sedadlo-bulltron-polar_z107543%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/191842_102.jpg?1774456502_1",
@@ -7640,8 +7378,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107544",
@@ -7653,7 +7390,7 @@
       "brand": "BullTron",
       "priceCzk": 102.85,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-bulltron-pre-clesana-c1_z107544/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-bulltron-pre-clesana-c1_z107544%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/191844_102.jpg?1774458249_1",
@@ -7672,8 +7409,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107546_32889",
@@ -7685,7 +7421,7 @@
       "brand": "Caratec",
       "priceCzk": 1513.55,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-caratec-ceb_z107546/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-caratec-ceb_z107546%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/191853_102.jpg?1774474741_1",
@@ -7705,8 +7441,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107546_32890",
@@ -7718,7 +7453,7 @@
       "brand": "Caratec",
       "priceCzk": 1202.36,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-caratec-ceb_z107546/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-caratec-ceb_z107546%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/191854_102.jpg?1774474742_1",
@@ -7738,8 +7473,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107546_32891",
@@ -7751,7 +7485,7 @@
       "brand": "Caratec",
       "priceCzk": 1036.4,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-caratec-ceb_z107546/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-caratec-ceb_z107546%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/5/191855_102.jpg?1774474742_1",
@@ -7771,8 +7505,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107546_32892",
@@ -7784,7 +7517,7 @@
       "brand": "Caratec",
       "priceCzk": 704.47,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-caratec-ceb_z107546/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-caratec-ceb_z107546%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/191856_102.jpg?1774474743_1",
@@ -7804,8 +7537,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107547",
@@ -7817,7 +7549,7 @@
       "brand": "ECTIVE",
       "priceCzk": 1036.4,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sodikova-bateria-ective-mover-nac-120-bt-120-ah_z107547/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsodikova-bateria-ective-mover-nac-120-bt-120-ah_z107547%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/7/191857_102.jpg?1774478024_1",
@@ -7834,8 +7566,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107554",
@@ -7847,7 +7578,7 @@
       "brand": "BullTron",
       "priceCzk": 268.82,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-bulltron-pre-clesana-c1-vratane-spravy-napajania_z107554/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-bulltron-pre-clesana-c1-vratane-spravy-napajania_z107554%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/191871_102.jpg?1774529522_1",
@@ -7866,8 +7597,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:107831",
@@ -7879,7 +7609,7 @@
       "brand": "EcoFlow",
       "priceCzk": 186.3,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-ecoflow-110-w-2-generacie_z107831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-ecoflow-110-w-2-generacie_z107831%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/8/192918_102.jpg?1777033573_1",
@@ -7896,8 +7626,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:108152",
@@ -7909,7 +7638,7 @@
       "brand": "ECTIVE",
       "priceCzk": 102.85,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-ective-x-clesana-lc4cs-4-ah_z108152/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-ective-x-clesana-lc4cs-4-ah_z108152%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/193720_102.jpg?1779637453_1",
@@ -7928,8 +7657,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:108321",
@@ -7941,7 +7669,7 @@
       "brand": "Mestic",
       "priceCzk": 241.85,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/pridavna-bateria-pre-kompresorove-chladnicky-mestic-mccm-mcc_z108321/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fpridavna-bateria-pre-kompresorove-chladnicky-mestic-mccm-mcc_z108321%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/194300_102.jpg?1780743352_1",
@@ -7958,8 +7686,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:108740_33862",
@@ -7971,7 +7698,7 @@
       "brand": "Carbest",
       "priceCzk": 208.24,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/195952_102.jpg?1783252189_1",
@@ -7988,8 +7715,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:108740_33863",
@@ -8001,7 +7727,7 @@
       "brand": "Carbest",
       "priceCzk": 765.88,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/195963_102.jpg?1783252526_1",
@@ -8018,8 +7744,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:108740_33865",
@@ -8031,7 +7756,7 @@
       "brand": "Carbest",
       "priceCzk": 367.57,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/9/195959_102.jpg?1783252344_1",
@@ -8048,8 +7773,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:108759",
@@ -8061,7 +7785,7 @@
       "brand": "Mestic",
       "priceCzk": 2020.57,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-mestic-mlb-300-smart_z108759/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-mestic-mlb-300-smart_z108759%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/0/196030_102.jpg?1783578776_1",
@@ -8080,8 +7804,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:108760",
@@ -8093,7 +7816,7 @@
       "brand": "Mestic",
       "priceCzk": 427.31,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/trakcna-agm-bateria-mestic-mab-170_z108760/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Ftrakcna-agm-bateria-mestic-mab-170_z108760%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/3/196033_102.jpg?1783579826_1",
@@ -8112,8 +7835,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:108761",
@@ -8125,7 +7847,7 @@
       "brand": "Mestic",
       "priceCzk": 228.17,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/trakcna-agm-bateria-mestic-mab-170_z108761/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Ftrakcna-agm-bateria-mestic-mab-170_z108761%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/196034_102.jpg?1783580615_1",
@@ -8144,8 +7866,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:109017",
@@ -8157,7 +7878,7 @@
       "brand": "Victron Energy",
       "priceCzk": 331.47,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-victron-energy-12-v-1600-va-ve-direct_z109017/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-victron-energy-12-v-1600-va-ve-direct_z109017%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/2/196512_102.jpg?1785318880_1",
@@ -8178,8 +7899,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:109069",
@@ -8191,7 +7911,7 @@
       "brand": "Victron Energy",
       "priceCzk": 109.49,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-victron-energy-bluesolar-190-wp-mono-12-v_z109069/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-victron-energy-bluesolar-190-wp-mono-12-v_z109069%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/1/196671_102.jpg?1785940567_1",
@@ -8212,8 +7932,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_sk:109090",
@@ -8225,7 +7944,7 @@
       "brand": "Renogy",
       "priceCzk": 1051.8,
       "priceCurrency": "EUR",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.sk/vyhrievana-bateria-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvyhrievana-bateria-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/6/196766_102.jpg?1786433504_1",
@@ -8244,8 +7963,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "allpowers_eu:8205921124659",

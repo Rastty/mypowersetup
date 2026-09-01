@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-01T18:26:40.262Z",
+  "generatedAt": "2026-09-01T18:49:42.517Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
-      "status": "stale",
-      "error": "feed URL není nakonfigurována",
-      "preservedProducts": 159
+      "status": "ok",
+      "parsedProducts": 12560,
+      "relevantProducts": 157
     },
     "ampul_hu": {
       "status": "ok",
@@ -52,7 +52,7 @@
       "brand": "Optima Batteries",
       "priceCzk": 124010,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulator-optima-12-v_z50/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-optima-12-v_z50%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/7/127637_102.jpg?1704378225_1",
@@ -75,8 +75,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:50_81",
@@ -88,7 +87,7 @@
       "brand": "Optima Batteries",
       "priceCzk": 173870,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulator-optima-12-v_z50/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-optima-12-v_z50%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/7/127637_102.jpg?1704378225_1",
@@ -111,8 +110,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:15459_15877",
@@ -124,7 +122,7 @@
       "brand": "Banner",
       "priceCzk": 106345,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-running-bull-akkumulator_z15459/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-running-bull-akkumulator_z15459%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/154200_102.jpg?1704380076_1",
@@ -143,8 +141,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:15459_15878",
@@ -156,7 +153,7 @@
       "brand": "Banner",
       "priceCzk": 111590,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-running-bull-akkumulator_z15459/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-running-bull-akkumulator_z15459%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/154201_102.jpg?1704380076_1",
@@ -175,8 +172,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:15459_15879",
@@ -188,7 +184,7 @@
       "brand": "Banner",
       "priceCzk": 130490,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-running-bull-akkumulator_z15459/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-running-bull-akkumulator_z15459%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/154202_102.jpg?1704380076_1",
@@ -207,8 +203,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:16597_17411",
@@ -220,7 +215,7 @@
       "brand": "EXIDE",
       "priceCzk": 200630,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/exide-dual-agm-akkumulator_z16597/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fexide-dual-agm-akkumulator_z16597%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/3/154563_102.jpg?1704380087_1",
@@ -239,8 +234,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:22313_22215",
@@ -252,7 +246,7 @@
       "brand": "VARTA",
       "priceCzk": 143080,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/varta-professional-agm-vontato-akkumulator_z22313/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvarta-professional-agm-vontato-akkumulator_z22313%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/5/156005_102.jpg?1704380136_1",
@@ -271,8 +265,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:22313_22216",
@@ -284,7 +277,7 @@
       "brand": "VARTA",
       "priceCzk": 164075,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/varta-professional-agm-vontato-akkumulator_z22313/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvarta-professional-agm-vontato-akkumulator_z22313%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/156006_102.jpg?1704380136_1",
@@ -303,8 +296,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:22577_23136",
@@ -316,7 +308,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 687465,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/litium-fedelzeti-akkumulator-lifepo4-buttner-mt-li_z22577/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flitium-fedelzeti-akkumulator-lifepo4-buttner-mt-li_z22577%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/156562_102.jpg?1704380155_1",
@@ -335,8 +327,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24087_26040",
@@ -348,7 +339,7 @@
       "brand": "Dometic",
       "priceCzk": 135205,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/perfectcharge-12-v-os-akkumulatortolto_z24087/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fperfectcharge-12-v-os-akkumulatortolto_z24087%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/158411_102.jpg?1704380222_1",
@@ -372,8 +363,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24087_26042",
@@ -385,7 +375,7 @@
       "brand": "Dometic",
       "priceCzk": 208155,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/perfectcharge-12-v-os-akkumulatortolto_z24087/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fperfectcharge-12-v-os-akkumulatortolto_z24087%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/3/158413_102.jpg?1704380222_1",
@@ -409,8 +399,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24827_26595",
@@ -422,7 +411,7 @@
       "brand": "Victron Energy",
       "priceCzk": 30425,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelemes-vezerlo-victron-energy-smartsolar-mppt-75-100-v_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelemes-vezerlo-victron-energy-smartsolar-mppt-75-100-v_z24827%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/158728_102.jpg?1704380233_1",
@@ -439,8 +428,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24827_26597",
@@ -452,7 +440,7 @@
       "brand": "Victron Energy",
       "priceCzk": 37770,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelemes-vezerlo-victron-energy-smartsolar-mppt-75-100-v_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelemes-vezerlo-victron-energy-smartsolar-mppt-75-100-v_z24827%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/158730_102.jpg?1704380234_1",
@@ -469,8 +457,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24827_26598",
@@ -482,7 +469,7 @@
       "brand": "Victron Energy",
       "priceCzk": 44420,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelemes-vezerlo-victron-energy-smartsolar-mppt-75-100-v_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelemes-vezerlo-victron-energy-smartsolar-mppt-75-100-v_z24827%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/158731_102.jpg?1704380234_1",
@@ -499,8 +486,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24828",
@@ -512,7 +498,7 @@
       "brand": "Victron Energy",
       "priceCzk": 63310,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/mppt-napelemes-vezerlo-victron-smartsolar-100-30_z24828/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmppt-napelemes-vezerlo-victron-smartsolar-100-30_z24828%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/3/145093_102.jpg?1704378888_1",
@@ -529,8 +515,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24831_26605",
@@ -542,7 +527,7 @@
       "brand": "Victron Energy",
       "priceCzk": 174395,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-szuperciklusu-napelemes-akkumulator_z24831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-szuperciklusu-napelemes-akkumulator_z24831%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/158738_102.jpg?1704380234_1",
@@ -561,8 +546,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24831_26606",
@@ -574,7 +558,7 @@
       "brand": "Victron Energy",
       "priceCzk": 213580,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-szuperciklusu-napelemes-akkumulator_z24831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-szuperciklusu-napelemes-akkumulator_z24831%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/158739_102.jpg?1704380234_1",
@@ -593,8 +577,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25062_26761",
@@ -606,7 +589,7 @@
       "brand": "PowerBoozt",
       "priceCzk": 98470,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/powerboozt-agm-ketcelu-akkumulator_z25062/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fpowerboozt-agm-ketcelu-akkumulator_z25062%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/5/158825_102.jpg?1704380237_1",
@@ -625,8 +608,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25062_26762",
@@ -638,7 +620,7 @@
       "brand": "PowerBoozt",
       "priceCzk": 115440,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/powerboozt-agm-ketcelu-akkumulator_z25062/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fpowerboozt-agm-ketcelu-akkumulator_z25062%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/158826_102.jpg?1704380237_1",
@@ -657,8 +639,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25064_26765",
@@ -670,7 +651,7 @@
       "brand": "PowerBoozt",
       "priceCzk": 185765,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/powerboozt-agm-melyciklusu-akkumulator_z25064/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fpowerboozt-agm-melyciklusu-akkumulator_z25064%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/7/158827_102.jpg?1704380237_1",
@@ -689,8 +670,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25768_28263",
@@ -702,7 +682,7 @@
       "brand": "Carbest",
       "priceCzk": 143955,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-carbest-cb-silver-12-v_z25768/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-carbest-cb-silver-12-v_z25768%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152798_102.jpg?1704379099_1",
@@ -723,8 +703,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25768_28264",
@@ -736,7 +715,7 @@
       "brand": "Carbest",
       "priceCzk": 152700,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-carbest-cb-silver-12-v_z25768/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-carbest-cb-silver-12-v_z25768%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152798_102.jpg?1704379099_1",
@@ -757,8 +736,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25851_27314",
@@ -770,7 +748,7 @@
       "brand": "Carbest",
       "priceCzk": 97245,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-power-line-melyciklusu-akkumulator_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-melyciklusu-akkumulator_z25851%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/160166_102.jpg?1704380282_1",
@@ -789,8 +767,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25851_27315",
@@ -802,7 +779,7 @@
       "brand": "Carbest",
       "priceCzk": 109845,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-power-line-melyciklusu-akkumulator_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-melyciklusu-akkumulator_z25851%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/7/160167_102.jpg?1704380282_1",
@@ -821,8 +798,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25851_28121",
@@ -834,7 +810,7 @@
       "brand": "Carbest",
       "priceCzk": 107220,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-power-line-melyciklusu-akkumulator_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-melyciklusu-akkumulator_z25851%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/160168_102.jpg?1704380282_1",
@@ -853,8 +829,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25851_28122",
@@ -866,7 +841,7 @@
       "brand": "Carbest",
       "priceCzk": 129085,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-power-line-melyciklusu-akkumulator_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-melyciklusu-akkumulator_z25851%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/160169_102.jpg?1704380282_1",
@@ -885,8 +860,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25851_28123",
@@ -898,7 +872,7 @@
       "brand": "Carbest",
       "priceCzk": 139760,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-power-line-melyciklusu-akkumulator_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-melyciklusu-akkumulator_z25851%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/160170_102.jpg?1704380282_1",
@@ -917,8 +891,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25851_28124",
@@ -930,7 +903,7 @@
       "brand": "Carbest",
       "priceCzk": 177720,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-power-line-melyciklusu-akkumulator_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-melyciklusu-akkumulator_z25851%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/160171_102.jpg?1704380282_1",
@@ -949,8 +922,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25852",
@@ -962,7 +934,7 @@
       "brand": "Carbest",
       "priceCzk": 123660,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-t-power-line-melyciklusu-akkumulator-100-ah_z25852/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-t-power-line-melyciklusu-akkumulator-100-ah_z25852%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152538_102.jpg?1704379091_1",
@@ -981,8 +953,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26746",
@@ -994,7 +965,7 @@
       "brand": "Carbest",
       "priceCzk": 283900,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/osszecsukhato-napelem-carbest-sc200-200-w_z26746/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fosszecsukhato-napelem-carbest-sc200-200-w_z26746%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/152501_102.jpg?1704379090_1",
@@ -1011,8 +982,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26747",
@@ -1024,7 +994,7 @@
       "brand": "Carbest",
       "priceCzk": 196435,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/osszecsukhato-napelem-carbest-hc130-130-w_z26747/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fosszecsukhato-napelem-carbest-hc130-130-w_z26747%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/152511_102.jpg?1704379090_1",
@@ -1041,8 +1011,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26751",
@@ -1054,7 +1023,7 @@
       "brand": "Carbest",
       "priceCzk": 32180,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-mppt-napelem-vezerlo-12-v-12-a-165-wp_z26751/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-mppt-napelem-vezerlo-12-v-12-a-165-wp_z26751%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/152516_102.jpg?1704379090_1",
@@ -1078,8 +1047,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26752",
@@ -1091,7 +1059,7 @@
       "brand": "Carbest",
       "priceCzk": 45820,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-mppt-napelem-vezerlo-12-v-12-a-350-wp_z26752/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-mppt-napelem-vezerlo-12-v-12-a-350-wp_z26752%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/7/152517_102.jpg?1704379090_1",
@@ -1115,8 +1083,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26753",
@@ -1128,7 +1095,7 @@
       "brand": "Carbest",
       "priceCzk": 393235,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/lifepo4-akkumulator-carbest-li100_z26753/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flifepo4-akkumulator-carbest-li100_z26753%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152518_102.jpg?1704379090_1",
@@ -1148,8 +1115,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26754",
@@ -1161,7 +1127,7 @@
       "brand": "Carbest",
       "priceCzk": 436965,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-lifepo4-akkumulator-li100bh6-a-vw-t5-t6-szamara_z26754/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-lifepo4-akkumulator-li100bh6-a-vw-t5-t6-szamara_z26754%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/152520_102.jpg?1704379091_1",
@@ -1181,8 +1147,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26755",
@@ -1194,7 +1159,7 @@
       "brand": "Carbest",
       "priceCzk": 826540,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/lifepo4-akkumulator-carbest-li200bhd-a-fiat-ducato-12-8-v-os-akkumulatorahoz_z26755/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flifepo4-akkumulator-carbest-li200bhd-a-fiat-ducato-12-8-v-os-akkumulatorahoz_z26755%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/152522_102.jpg?1704379091_1",
@@ -1214,8 +1179,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26861_28266",
@@ -1227,7 +1191,7 @@
       "brand": "Carbest",
       "priceCzk": 161450,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-carbest-full-black-12-v_z26861/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-carbest-full-black-12-v_z26861%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/152799_102.jpg?1704379099_1",
@@ -1248,8 +1212,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:101622",
@@ -1261,7 +1224,7 @@
       "brand": "Pundmann",
       "priceCzk": 660350,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/pundmann-mobil-futoberendezes-dizeltartallyal-es-agm-akkumulatorral_z101622/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fpundmann-mobil-futoberendezes-dizeltartallyal-es-agm-akkumulatorral_z101622%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/164492_102.jpg?1719409638_1",
@@ -1280,8 +1243,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:101756_28762",
@@ -1293,7 +1255,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 92000,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/solar-mppt-bluetooth-vezerlo-buttner_z101756/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fsolar-mppt-bluetooth-vezerlo-buttner_z101756%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/3/183943_102.jpg?1747538682_1",
@@ -1312,8 +1274,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:101756_28763",
@@ -1325,7 +1286,7 @@
       "brand": "Büttner Elektronik",
       "priceCzk": 73460,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/solar-mppt-bluetooth-vezerlo-buttner_z101756/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fsolar-mppt-bluetooth-vezerlo-buttner_z101756%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/183944_102.jpg?1747538683_1",
@@ -1344,8 +1305,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:101985",
@@ -1357,7 +1317,7 @@
       "brand": "Victron Energy",
       "priceCzk": 153050,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/mppt-napelemes-vezerlo-victron-energy-smartsolar-100-50_z101985/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmppt-napelemes-vezerlo-victron-energy-smartsolar-100-50_z101985%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/167410_102.jpg?1723111301_1",
@@ -1374,8 +1334,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104292_30464",
@@ -1387,7 +1346,7 @@
       "brand": "Dometic",
       "priceCzk": 66810,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180081_102.jpg?1740987730_1",
@@ -1409,8 +1368,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104292_30465",
@@ -1422,7 +1380,7 @@
       "brand": "Dometic",
       "priceCzk": 71535,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180081_102.jpg?1740987730_1",
@@ -1444,8 +1402,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104292_30466",
@@ -1457,7 +1414,7 @@
       "brand": "Dometic",
       "priceCzk": 160925,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/180080_102.jpg?1740987682_1",
@@ -1479,8 +1436,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104292_30468",
@@ -1492,7 +1448,7 @@
       "brand": "Dometic",
       "priceCzk": 314860,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180079_102.jpg?1740987646_1",
@@ -1514,8 +1470,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104292_30470",
@@ -1527,7 +1482,7 @@
       "brand": "Dometic",
       "priceCzk": 66810,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180081_102.jpg?1740987730_1",
@@ -1549,8 +1504,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104292_30471",
@@ -1562,7 +1516,7 @@
       "brand": "Dometic",
       "priceCzk": 71535,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180081_102.jpg?1740987730_1",
@@ -1584,8 +1538,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104292_30472",
@@ -1597,7 +1550,7 @@
       "brand": "Dometic",
       "priceCzk": 160925,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/180080_102.jpg?1740987682_1",
@@ -1619,8 +1572,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104292_30473",
@@ -1632,7 +1584,7 @@
       "brand": "Dometic",
       "priceCzk": 227925,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/180080_102.jpg?1740987682_1",
@@ -1654,8 +1606,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104292_30474",
@@ -1667,7 +1618,7 @@
       "brand": "Dometic",
       "priceCzk": 314860,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180079_102.jpg?1740987646_1",
@@ -1689,8 +1640,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104292_30475",
@@ -1702,7 +1652,7 @@
       "brand": "Dometic",
       "priceCzk": 401625,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180079_102.jpg?1740987646_1",
@@ -1724,8 +1674,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104293_30478",
@@ -1737,7 +1686,7 @@
       "brand": "Dometic",
       "priceCzk": 346180,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180086_102.jpg?1740996813_1",
@@ -1759,8 +1708,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104293_30480",
@@ -1772,7 +1720,7 @@
       "brand": "Dometic",
       "priceCzk": 441690,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180086_102.jpg?1740996813_1",
@@ -1794,8 +1742,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104293_30482",
@@ -1807,7 +1754,7 @@
       "brand": "Dometic",
       "priceCzk": 662805,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180086_102.jpg?1740996813_1",
@@ -1829,8 +1776,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104294_30485",
@@ -1842,7 +1788,7 @@
       "brand": "Dometic",
       "priceCzk": 538250,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-its-12-v-vagy-24-v-os-feszultsegatalakito_z104294/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-its-12-v-vagy-24-v-os-feszultsegatalakito_z104294%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/7/180087_102.jpg?1740999092_1",
@@ -1864,8 +1810,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104294_30486",
@@ -1877,7 +1822,7 @@
       "brand": "Dometic",
       "priceCzk": 538250,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-its-12-v-vagy-24-v-os-feszultsegatalakito_z104294/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-its-12-v-vagy-24-v-os-feszultsegatalakito_z104294%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/7/180087_102.jpg?1740999092_1",
@@ -1899,8 +1844,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104295_30487",
@@ -1912,7 +1856,7 @@
       "brand": "Dometic",
       "priceCzk": 393410,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/feszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Ffeszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180089_102.jpg?1741000726_1",
@@ -1934,8 +1878,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104295_30488",
@@ -1947,7 +1890,7 @@
       "brand": "Dometic",
       "priceCzk": 461455,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/feszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Ffeszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180089_102.jpg?1741000726_1",
@@ -1969,8 +1912,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104295_30489",
@@ -1982,7 +1924,7 @@
       "brand": "Dometic",
       "priceCzk": 393410,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/feszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Ffeszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180089_102.jpg?1741000726_1",
@@ -2004,8 +1946,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104295_30490",
@@ -2017,7 +1958,7 @@
       "brand": "Dometic",
       "priceCzk": 461455,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/feszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Ffeszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180089_102.jpg?1741000726_1",
@@ -2039,8 +1980,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104333_30513",
@@ -2052,7 +1992,7 @@
       "brand": "Dometic",
       "priceCzk": 228450,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180279_102.jpg?1741254997_1",
@@ -2071,8 +2011,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104333_30515",
@@ -2084,7 +2023,7 @@
       "brand": "Dometic",
       "priceCzk": 134160,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/7/180277_102.jpg?1741254929_1",
@@ -2103,8 +2042,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104333_30516",
@@ -2116,7 +2054,7 @@
       "brand": "Dometic",
       "priceCzk": 369795,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180276_102.jpg?1741254877_1",
@@ -2135,8 +2073,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104338_30525",
@@ -2148,7 +2085,7 @@
       "brand": "Dometic",
       "priceCzk": 216030,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180291_102.jpg?1741272539_1",
@@ -2165,8 +2102,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104338_30526",
@@ -2178,7 +2114,7 @@
       "brand": "Dometic",
       "priceCzk": 226000,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180291_102.jpg?1741272539_1",
@@ -2195,8 +2131,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104338_30527",
@@ -2208,7 +2143,7 @@
       "brand": "Dometic",
       "priceCzk": 283200,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180291_102.jpg?1741272539_1",
@@ -2225,8 +2160,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104338_30529",
@@ -2238,7 +2172,7 @@
       "brand": "Dometic",
       "priceCzk": 432770,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180291_102.jpg?1741272539_1",
@@ -2255,8 +2189,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104343_30547",
@@ -2268,7 +2201,7 @@
       "brand": "Dometic",
       "priceCzk": 89380,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-solenergy-psm-napkollektor_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-solenergy-psm-napkollektor_z104343%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180311_102.jpg?1741341000_1",
@@ -2285,8 +2218,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104343_30548",
@@ -2298,7 +2230,7 @@
       "brand": "Dometic",
       "priceCzk": 98650,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-solenergy-psm-napkollektor_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-solenergy-psm-napkollektor_z104343%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180311_102.jpg?1741341000_1",
@@ -2315,8 +2247,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104343_30549",
@@ -2328,7 +2259,7 @@
       "brand": "Dometic",
       "priceCzk": 112995,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-solenergy-psm-napkollektor_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-solenergy-psm-napkollektor_z104343%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180311_102.jpg?1741341000_1",
@@ -2345,8 +2276,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104343_30550",
@@ -2358,7 +2288,7 @@
       "brand": "Dometic",
       "priceCzk": 128040,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-solenergy-psm-napkollektor_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-solenergy-psm-napkollektor_z104343%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180311_102.jpg?1741341000_1",
@@ -2375,8 +2305,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104343_30551",
@@ -2388,7 +2317,7 @@
       "brand": "Dometic",
       "priceCzk": 142380,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-solenergy-psm-napkollektor_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-solenergy-psm-napkollektor_z104343%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180311_102.jpg?1741341000_1",
@@ -2405,8 +2334,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104344",
@@ -2418,7 +2346,7 @@
       "brand": "Dometic",
       "priceCzk": 105820,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-solenergy-psm-slim-napelem-dometic-buttner-solenergy-psm-slim_z104344/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-solenergy-psm-slim-napelem-dometic-buttner-solenergy-psm-slim_z104344%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/180312_102.jpg?1741342404_1",
@@ -2435,8 +2363,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104849_30966",
@@ -2448,7 +2375,7 @@
       "brand": "LILIE",
       "priceCzk": 81155,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/lilie-campere-napelem_z104849/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flilie-campere-napelem_z104849%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/5/182055_102.jpg?1743999483_1",
@@ -2465,8 +2392,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104849_30967",
@@ -2478,7 +2404,7 @@
       "brand": "LILIE",
       "priceCzk": 27455,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/lilie-campere-napelem_z104849/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flilie-campere-napelem_z104849%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/182054_102.jpg?1743999481_1",
@@ -2495,8 +2421,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104850_30968",
@@ -2508,7 +2433,7 @@
       "brand": "LILIE",
       "priceCzk": 86580,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelemes-toltesvezerlo-lilie-mppt-lsr-termekcsalad_z104850/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelemes-toltesvezerlo-lilie-mppt-lsr-termekcsalad_z104850%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/182059_102.jpg?1744001757_1",
@@ -2528,8 +2453,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104878_30998",
@@ -2541,7 +2465,7 @@
       "brand": "",
       "priceCzk": 326585,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/antarion-szinuszos-feszultsegatalakito_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fantarion-szinuszos-feszultsegatalakito_z104878%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/182149_102.jpg?1744180166_1",
@@ -2558,8 +2482,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104878_30999",
@@ -2571,7 +2494,7 @@
       "brand": "",
       "priceCzk": 244720,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/antarion-szinuszos-feszultsegatalakito_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fantarion-szinuszos-feszultsegatalakito_z104878%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/182149_102.jpg?1744180166_1",
@@ -2588,8 +2511,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104878_31000",
@@ -2601,7 +2523,7 @@
       "brand": "",
       "priceCzk": 96725,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/antarion-szinuszos-feszultsegatalakito_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fantarion-szinuszos-feszultsegatalakito_z104878%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/182149_102.jpg?1744180166_1",
@@ -2618,8 +2540,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104878_31001",
@@ -2631,7 +2552,7 @@
       "brand": "",
       "priceCzk": 48270,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/antarion-szinuszos-feszultsegatalakito_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fantarion-szinuszos-feszultsegatalakito_z104878%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/182149_102.jpg?1744180166_1",
@@ -2648,8 +2569,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104885_31008",
@@ -2661,7 +2581,7 @@
       "brand": "Votronic",
       "priceCzk": 412125,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/smi-votronic-szinuszos-feszultsegatalakito_z104885/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fsmi-votronic-szinuszos-feszultsegatalakito_z104885%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/182181_102.jpg?1744260671_1",
@@ -2678,8 +2598,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104885_31009",
@@ -2691,7 +2610,7 @@
       "brand": "Votronic",
       "priceCzk": 264835,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/smi-votronic-szinuszos-feszultsegatalakito_z104885/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fsmi-votronic-szinuszos-feszultsegatalakito_z104885%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/182180_102.jpg?1744260669_1",
@@ -2708,8 +2627,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:105298",
@@ -2721,7 +2639,7 @@
       "brand": "EcoFlow",
       "priceCzk": 66305,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-ecoflow-175-w_z105298/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-ecoflow-175-w_z105298%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/184800_102.jpg?1748943827_1",
@@ -2738,8 +2656,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:105299",
@@ -2751,7 +2668,7 @@
       "brand": "EcoFlow",
       "priceCzk": 52305,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/ecoflow-100-w-os-napelem_z105299/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fecoflow-100-w-os-napelem_z105299%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/184828_102.jpg?1748952823_1",
@@ -2768,8 +2685,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:105300",
@@ -2781,7 +2697,7 @@
       "brand": "EcoFlow",
       "priceCzk": 34815,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/ecoflow-45-w-os-osszecsukhato-napelem_z105300/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fecoflow-45-w-os-osszecsukhato-napelem_z105300%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/184849_102.jpg?1748958338_1",
@@ -2798,8 +2714,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:105445",
@@ -2811,7 +2726,7 @@
       "brand": "Carbest",
       "priceCzk": 152700,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-flex-135-w-hajlithato-napelem_z105445/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-flex-135-w-hajlithato-napelem_z105445%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/185502_102.jpg?1750242420_1",
@@ -2828,8 +2743,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:105448",
@@ -2841,7 +2755,7 @@
       "brand": "Carbest",
       "priceCzk": 124190,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-cb-190-full-black-190-w-napelem_z105448/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-cb-190-full-black-190-w-napelem_z105448%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/185509_102.jpg?1750246744_1",
@@ -2858,8 +2772,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:105450",
@@ -2871,7 +2784,7 @@
       "brand": "Carbest",
       "priceCzk": 74335,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-mppt-dualcontroller-12-24-v-30-a-napelemes-szabalyozo_z105450/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-mppt-dualcontroller-12-24-v-30-a-napelemes-szabalyozo_z105450%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/185514_102.jpg?1750251196_1",
@@ -2895,8 +2808,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104885_31010",
@@ -2908,7 +2820,7 @@
       "brand": "Votronic",
       "priceCzk": 467755,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/smi-votronic-szinuszos-feszultsegatalakito_z104885/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fsmi-votronic-szinuszos-feszultsegatalakito_z104885%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/182182_102.jpg?1744260672_1",
@@ -2925,8 +2837,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24792_26575",
@@ -2938,7 +2849,7 @@
       "brand": "EXIDE",
       "priceCzk": 118590,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulatorok-exide_z24792/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulatorok-exide_z24792%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/158712_102.jpg?1704380233_1",
@@ -2957,8 +2868,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:16597_17412",
@@ -2970,7 +2880,7 @@
       "brand": "EXIDE",
       "priceCzk": 224600,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/exide-dual-agm-akkumulator_z16597/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fexide-dual-agm-akkumulator_z16597%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/154564_102.jpg?1704380087_1",
@@ -2989,8 +2899,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:106299",
@@ -3002,7 +2911,7 @@
       "brand": "Renogy",
       "priceCzk": 91125,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/renogy-dc-dc-akkumulatortolto-12v-60a_z106299/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-dc-dc-akkumulatortolto-12v-60a_z106299%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/187901_102.jpg?1759387751_1",
@@ -3026,8 +2935,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104293_30476",
@@ -3039,7 +2947,7 @@
       "brand": "Dometic",
       "priceCzk": 177195,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/180084_102.jpg?1740996469_1",
@@ -3061,8 +2969,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104293_30483",
@@ -3074,7 +2981,7 @@
       "brand": "Dometic",
       "priceCzk": 250840,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/180084_102.jpg?1740996469_1",
@@ -3096,8 +3003,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:106258",
@@ -3109,7 +3015,7 @@
       "brand": "Carbest",
       "priceCzk": 39330,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/mppt-carbest-napelemes-toltesvezerlo-12-24-v_z106258/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmppt-carbest-napelemes-toltesvezerlo-12-24-v_z106258%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/3/187763_102.jpg?1758263649_1",
@@ -3133,8 +3039,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:19284_21274",
@@ -3146,7 +3051,7 @@
       "brand": "Dometic",
       "priceCzk": 62085,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-szinuszos-feszultsegatalakito_z19284/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-szinuszos-feszultsegatalakito_z19284%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/183564_102.jpg?1746373072_1",
@@ -3167,8 +3072,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:19284_21277",
@@ -3180,7 +3084,7 @@
       "brand": "Dometic",
       "priceCzk": 218305,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-szinuszos-feszultsegatalakito_z19284/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-szinuszos-feszultsegatalakito_z19284%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/183580_102.jpg?1746376154_1",
@@ -3201,8 +3105,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25872_27340",
@@ -3214,7 +3117,7 @@
       "brand": "Carbest",
       "priceCzk": 174570,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-ps-szinuszos-feszultsegatalakito_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-ps-szinuszos-feszultsegatalakito_z25872%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/183406_102.jpg?1746259641_1",
@@ -3231,8 +3134,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25872_27342",
@@ -3244,7 +3146,7 @@
       "brand": "Carbest",
       "priceCzk": 218305,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-ps-szinuszos-feszultsegatalakito_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-ps-szinuszos-feszultsegatalakito_z25872%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/183406_102.jpg?1746259641_1",
@@ -3261,8 +3163,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25872_27344",
@@ -3274,7 +3175,7 @@
       "brand": "Carbest",
       "priceCzk": 218305,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-ps-szinuszos-feszultsegatalakito_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-ps-szinuszos-feszultsegatalakito_z25872%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/183406_102.jpg?1746259641_1",
@@ -3291,8 +3192,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:19287_21290",
@@ -3304,7 +3204,7 @@
       "brand": "Dometic",
       "priceCzk": 373645,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/183588_102.jpg?1746377752_1",
@@ -3325,8 +3225,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:19287_21291",
@@ -3338,7 +3237,7 @@
       "brand": "Dometic",
       "priceCzk": 473000,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/183588_102.jpg?1746377752_1",
@@ -3359,8 +3258,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:19287_21292",
@@ -3372,7 +3270,7 @@
       "brand": "Dometic",
       "priceCzk": 763040,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/183588_102.jpg?1746377752_1",
@@ -3393,8 +3291,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:19296_21309",
@@ -3406,7 +3303,7 @@
       "brand": "Dometic",
       "priceCzk": 39000,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/kabelkeszlet-a-dometic-sinepower-dsp-szinuszos-feszultsegatalakitokhoz_z19296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fkabelkeszlet-a-dometic-sinepower-dsp-szinuszos-feszultsegatalakitokhoz_z19296%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/143034_102.jpg?1704378458_1",
@@ -3423,8 +3320,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:19296_21310",
@@ -3436,7 +3332,7 @@
       "brand": "Dometic",
       "priceCzk": 44070,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/kabelkeszlet-a-dometic-sinepower-dsp-szinuszos-feszultsegatalakitokhoz_z19296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fkabelkeszlet-a-dometic-sinepower-dsp-szinuszos-feszultsegatalakitokhoz_z19296%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/143034_102.jpg?1704378458_1",
@@ -3453,8 +3349,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104338_30528",
@@ -3466,7 +3361,7 @@
       "brand": "Dometic",
       "priceCzk": 336205,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180291_102.jpg?1741272539_1",
@@ -3483,8 +3378,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104292_30467",
@@ -3496,7 +3390,7 @@
       "brand": "Dometic",
       "priceCzk": 227925,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/180080_102.jpg?1740987682_1",
@@ -3518,8 +3412,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104293_30477",
@@ -3531,7 +3424,7 @@
       "brand": "Dometic",
       "priceCzk": 346180,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180086_102.jpg?1740996813_1",
@@ -3553,8 +3446,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104293_30479",
@@ -3566,7 +3458,7 @@
       "brand": "Dometic",
       "priceCzk": 441690,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180086_102.jpg?1740996813_1",
@@ -3588,8 +3480,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104292_30469",
@@ -3601,7 +3492,7 @@
       "brand": "Dometic",
       "priceCzk": 401625,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180079_102.jpg?1740987646_1",
@@ -3623,8 +3514,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104293_30481",
@@ -3636,7 +3526,7 @@
       "brand": "Dometic",
       "priceCzk": 662805,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180086_102.jpg?1740996813_1",
@@ -3658,8 +3548,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24827_26596",
@@ -3671,7 +3560,7 @@
       "brand": "Victron Energy",
       "priceCzk": 33225,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelemes-vezerlo-victron-energy-smartsolar-mppt-75-100-v_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelemes-vezerlo-victron-energy-smartsolar-mppt-75-100-v_z24827%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/158729_102.jpg?1704380233_1",
@@ -3688,8 +3577,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24831_26607",
@@ -3701,7 +3589,7 @@
       "brand": "Victron Energy",
       "priceCzk": 290895,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-szuperciklusu-napelemes-akkumulator_z24831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-szuperciklusu-napelemes-akkumulator_z24831%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/158740_102.jpg?1704380234_1",
@@ -3720,8 +3608,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26961_28352",
@@ -3733,7 +3620,7 @@
       "brand": "Victron Energy",
       "priceCzk": 29725,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-szuperciklusu-napelemes-akkumulator_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-szuperciklusu-napelemes-akkumulator_z26961%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/160239_102.jpg?1704380285_1",
@@ -3752,8 +3639,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26961_28353",
@@ -3765,7 +3651,7 @@
       "brand": "Victron Energy",
       "priceCzk": 52465,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-szuperciklusu-napelemes-akkumulator_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-szuperciklusu-napelemes-akkumulator_z26961%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/160240_102.jpg?1704380285_1",
@@ -3784,40 +3670,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
-    },
-    {
-      "id": "padabo_hu:26961_28354",
-      "merchant": "padabo_hu",
-      "name": "Victron Energy AGM szuperciklusú napelemes akkumulátor kapacitás 60 Ah",
-      "description": "AGM akkumulátorok Victron Energy Super CycleA Victron Energy AGM Super Cycle napelemes akkumulátor kisebb akkumulátorrendszerekhez alkalmas. Kezeli a gyakoribb mélykisüléseket. Az elektrolitban lévő új adalékanyagok csökkentik az akkumulátor szulfátosodását. A pozitív lemezpaszta kevésbé hajlamos a lágyulásra. Az akkumulátor legalább 300 ciklust bír ki 100%-os kisütés mellett. Az új akkumulátorkémia kisebb méretet és kisebb súlyt kínál, mint a hagyományos AGM akkumulátorok. Az akkumulátorok soro",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Victron Energy",
-      "priceCzk": 76080,
-      "priceCurrency": "HUF",
-      "available": false,
-      "productUrl": "https://www.padabo.hu/victron-energy-agm-szuperciklusu-napelemes-akkumulator_z26961/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-szuperciklusu-napelemes-akkumulator_z26961%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/160241_102.jpg?1704380285_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 60,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26961_28355",
@@ -3829,7 +3682,7 @@
       "brand": "Victron Energy",
       "priceCzk": 134160,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-szuperciklusu-napelemes-akkumulator_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-szuperciklusu-napelemes-akkumulator_z26961%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/160242_102.jpg?1704380286_1",
@@ -3848,8 +3701,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26971_28397",
@@ -3861,7 +3713,7 @@
       "brand": "Victron Energy",
       "priceCzk": 380990,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-multiplus-12-v-inverter-tolto_z26971/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-multiplus-12-v-inverter-tolto_z26971%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/5/160265_102.jpg?1704380286_1",
@@ -3882,8 +3734,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:101984",
@@ -3895,7 +3746,7 @@
       "brand": "Victron Energy",
       "priceCzk": 55090,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/mppt-napelemes-vezerlo-victron-energy-bluesolar-100-30_z101984/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmppt-napelemes-vezerlo-victron-energy-bluesolar-100-30_z101984%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/167404_102.jpg?1723110413_1",
@@ -3912,8 +3763,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26939_32735",
@@ -3925,7 +3775,7 @@
       "brand": "Victron Energy",
       "priceCzk": 35500,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-victron-energy_z26939/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-victron-energy_z26939%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/152942_102.jpg?1704379104_1",
@@ -3942,8 +3792,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26939_32736",
@@ -3955,7 +3804,7 @@
       "brand": "Victron Energy",
       "priceCzk": 20280,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-victron-energy_z26939/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-victron-energy_z26939%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/152942_102.jpg?1704379104_1",
@@ -3972,8 +3821,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:26939_32737",
@@ -3985,7 +3833,7 @@
       "brand": "Victron Energy",
       "priceCzk": 14855,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/napelem-victron-energy_z26939/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-victron-energy_z26939%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/152942_102.jpg?1704379104_1",
@@ -4002,8 +3850,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107353",
@@ -4015,7 +3862,7 @@
       "brand": "Victron Energy",
       "priceCzk": 714760,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-lifepo4-12-8v-300ah-ng-akkumulator_z107353/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-lifepo4-12-8v-300ah-ng-akkumulator_z107353%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/191104_102.jpg?1772719234_1",
@@ -4034,8 +3881,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107358",
@@ -4047,7 +3893,7 @@
       "brand": "Victron Energy",
       "priceCzk": 567640,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-lifepo-lithium-superpack-25-6v-100ah-ng-akkumulator_z107358/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-lifepo-lithium-superpack-25-6v-100ah-ng-akkumulator_z107358%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/191118_102.jpg?1772808346_1",
@@ -4067,8 +3913,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107382",
@@ -4080,7 +3925,7 @@
       "brand": "Victron Energy",
       "priceCzk": 407050,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-multiplus-ii-48-4k5-55-32-gx-inverter-es-tolto_z107382/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-multiplus-ii-48-4k5-55-32-gx-inverter-es-tolto_z107382%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/191182_102.jpg?1773130698_1",
@@ -4100,8 +3945,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107384",
@@ -4113,7 +3957,7 @@
       "brand": "Victron Energy",
       "priceCzk": 439415,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-multiplus-ii-48-6k5-100-50-inverter-es-tolto_z107384/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-multiplus-ii-48-6k5-100-50-inverter-es-tolto_z107384%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/5/191185_102.jpg?1773132143_1",
@@ -4133,8 +3977,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107385",
@@ -4146,7 +3989,7 @@
       "brand": "Victron Energy",
       "priceCzk": 522685,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-multiplus-ii-48-6k5-100-50-gx-inverter-es-tolto_z107385/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-multiplus-ii-48-6k5-100-50-gx-inverter-es-tolto_z107385%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/7/191187_102.jpg?1773133388_1",
@@ -4166,8 +4009,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107356_32721",
@@ -4179,7 +4021,7 @@
       "brand": "Victron Energy",
       "priceCzk": 314860,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-lifepo-lithium-superpack-12-8-v-ng-akkumulator_z107356/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-lifepo-lithium-superpack-12-8-v-ng-akkumulator_z107356%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/191111_102.jpg?1772790227_1",
@@ -4199,8 +4041,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107393_32739",
@@ -4212,7 +4053,7 @@
       "brand": "Victron Energy",
       "priceCzk": 25700,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-12-v-mono-napelem_z107393/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-12-v-mono-napelem_z107393%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/191226_102.jpg?1773236195_1",
@@ -4233,8 +4074,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107393_32740",
@@ -4246,7 +4086,7 @@
       "brand": "Victron Energy",
       "priceCzk": 38650,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-12-v-mono-napelem_z107393/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-12-v-mono-napelem_z107393%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/191226_102.jpg?1773236195_1",
@@ -4267,8 +4107,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24792_26574",
@@ -4280,7 +4119,7 @@
       "brand": "EXIDE",
       "priceCzk": 102150,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulatorok-exide_z24792/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulatorok-exide_z24792%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/158711_102.jpg?1704380233_1",
@@ -4299,8 +4138,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:103559",
@@ -4312,7 +4150,7 @@
       "brand": "Mestic",
       "priceCzk": 474050,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/mestic-power-station-mps-1800_z103559/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmestic-power-station-mps-1800_z103559%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/3/175253_102.jpg?1732972504_1",
@@ -4331,8 +4169,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107532_32871",
@@ -4344,7 +4181,7 @@
       "brand": "Votronic",
       "priceCzk": 138705,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/votronic-mppt-napelemes-toltesvezerlo_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvotronic-mppt-napelemes-toltesvezerlo_z107532%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/191810_102.jpg?1774371842_1",
@@ -4361,8 +4198,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107532_32872",
@@ -4374,7 +4210,7 @@
       "brand": "Votronic",
       "priceCzk": 101450,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/votronic-mppt-napelemes-toltesvezerlo_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvotronic-mppt-napelemes-toltesvezerlo_z107532%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/191811_102.jpg?1774371843_1",
@@ -4391,8 +4227,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107532_32873",
@@ -4404,7 +4239,7 @@
       "brand": "Votronic",
       "priceCzk": 88850,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/votronic-mppt-napelemes-toltesvezerlo_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvotronic-mppt-napelemes-toltesvezerlo_z107532%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/191812_102.jpg?1774371844_1",
@@ -4421,8 +4256,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107532_32874",
@@ -4434,7 +4268,7 @@
       "brand": "Votronic",
       "priceCzk": 61735,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/votronic-mppt-napelemes-toltesvezerlo_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvotronic-mppt-napelemes-toltesvezerlo_z107532%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/3/191813_102.jpg?1774371845_1",
@@ -4451,8 +4285,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:24792_26576",
@@ -4464,7 +4297,7 @@
       "brand": "EXIDE",
       "priceCzk": 204305,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulatorok-exide_z24792/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulatorok-exide_z24792%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/3/158713_102.jpg?1704380233_1",
@@ -4483,8 +4316,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104333_30514",
@@ -4496,7 +4328,7 @@
       "brand": "Dometic",
       "priceCzk": 292820,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/8/180278_102.jpg?1741254964_1",
@@ -4515,8 +4347,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25297_26952",
@@ -4528,7 +4359,7 @@
       "brand": "Victron Energy",
       "priceCzk": 329205,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/mppt-napelemes-vezerlo-victron-energy-smartsolar-ve-can_z25297/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmppt-napelemes-vezerlo-victron-energy-smartsolar-ve-can_z25297%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/159226_102.jpg?1704380250_1",
@@ -4545,8 +4376,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25872_27343",
@@ -4558,7 +4388,7 @@
       "brand": "Carbest",
       "priceCzk": 185935,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-ps-szinuszos-feszultsegatalakito_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-ps-szinuszos-feszultsegatalakito_z25872%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/183406_102.jpg?1746259641_1",
@@ -4575,8 +4405,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:25872_27345",
@@ -4588,7 +4417,7 @@
       "brand": "Carbest",
       "priceCzk": 374515,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-ps-szinuszos-feszultsegatalakito_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-ps-szinuszos-feszultsegatalakito_z25872%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/183406_102.jpg?1746259641_1",
@@ -4605,8 +4434,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:105444",
@@ -4618,7 +4446,7 @@
       "brand": "Carbest",
       "priceCzk": 146580,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-flex-120-w-hajlithato-napelem_z105444/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-flex-120-w-hajlithato-napelem_z105444%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/185501_102.jpg?1750235483_1",
@@ -4635,8 +4463,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107331",
@@ -4648,7 +4475,7 @@
       "brand": "Renogy",
       "priceCzk": 104790,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/renogy-12v-30a-dc-dc-mppt-akkumulatortolto_z107331/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-12v-30a-dc-dc-mppt-akkumulatortolto_z107331%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/5/191035_102.jpg?1772530391_1",
@@ -4672,8 +4499,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:108152",
@@ -4685,7 +4511,7 @@
       "brand": "ECTIVE",
       "priceCzk": 43375,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/lithiova-baterie-ective-x-clesana-lc4cs-4-ah_z108152/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flithiova-baterie-ective-x-clesana-lc4cs-4-ah_z108152%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/193720_102.jpg?1779637453_1",
@@ -4704,8 +4530,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:106296_33729",
@@ -4717,7 +4542,7 @@
       "brand": "Renogy",
       "priceCzk": 81335,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/renogy-12-v-os-feszultsegatalakito_z106296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-12-v-os-feszultsegatalakito_z106296%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/187879_102.jpg?1759325853_1",
@@ -4738,42 +4563,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
-    },
-    {
-      "id": "padabo_hu:106296_33732",
-      "merchant": "padabo_hu",
-      "name": "Renogy 12 V-os feszültségátalakító teljesítmény 3000 W",
-      "description": "Nagy teljesítményű feszültségegyenirányító a készülékek széles skálájához A Renogy feszültségátalakító fejlett tiszta szinuszhullámú technológiával rendelkezik, hogy maximalizálja a rendszer hatékonyságát. Az inverter beállítása olyan egyszerű, hogy még egy teljes analfabéta is meg tudja csinálni. A tiszta szinuszos kimenet folyamatos és stabil áramellátást biztosít, amely helyettesíti a közüzemi áramellátást. Az inverter sokoldalú és kompatibilis az elektromos készülékek széles skálájával, bele",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
-      "category": "inverter",
-      "brand": "Renogy",
-      "priceCzk": 153505,
-      "priceCurrency": "HUF",
-      "available": false,
-      "productUrl": "https://www.padabo.hu/renogy-12-v-os-feszultsegatalakito_z106296/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-12-v-os-feszultsegatalakito_z106296%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/187879_102.jpg?1759325853_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 3000,
-        "currentA": 1,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:107312_33733",
@@ -4785,7 +4575,7 @@
       "brand": "Renogy",
       "priceCzk": 69960,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/renogy-shadowflux-napelem_z107312/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-shadowflux-napelem_z107312%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/190976_102.jpg?1772443593_1",
@@ -4802,8 +4592,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:105599",
@@ -4815,7 +4604,7 @@
       "brand": "",
       "priceCzk": 1007940,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/lifepo4-leuchtwert-litium-akkumulator_z105599/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flifepo4-leuchtwert-litium-akkumulator_z105599%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/186194_102.jpg?1752750398_1",
@@ -4834,8 +4623,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:108760",
@@ -4847,7 +4635,7 @@
       "brand": "Mestic",
       "priceCzk": 180165,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/mestic-mab-170-agm-vontatoakkumulator_z108760/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmestic-mab-170-agm-vontatoakkumulator_z108760%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/3/196033_102.jpg?1783579826_1",
@@ -4866,8 +4654,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:108761",
@@ -4879,7 +4666,7 @@
       "brand": "Mestic",
       "priceCzk": 96200,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/mestic-mab-85-agm-vontatoakkumulator_z108761/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmestic-mab-85-agm-vontatoakkumulator_z108761%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/4/196034_102.jpg?1783580615_1",
@@ -4898,8 +4685,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:108740_33862",
@@ -4911,7 +4697,7 @@
       "brand": "Carbest",
       "priceCzk": 87805,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/195952_102.jpg?1783252189_1",
@@ -4928,8 +4714,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:108740_33863",
@@ -4941,7 +4726,7 @@
       "brand": "Carbest",
       "priceCzk": 322915,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/3/195963_102.jpg?1783252526_1",
@@ -4958,8 +4743,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:108740_33865",
@@ -4971,7 +4755,7 @@
       "brand": "Carbest",
       "priceCzk": 154975,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/9/195959_102.jpg?1783252344_1",
@@ -4988,8 +4772,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:108875",
@@ -5001,7 +4784,7 @@
       "brand": "Victron Energy",
       "priceCzk": 76430,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-caravan-pwm-190-wp-napelem-rendszer_z108875/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-caravan-pwm-190-wp-napelem-rendszer_z108875%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/196212_102.jpg?1784281803_1",
@@ -5020,8 +4803,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:109017",
@@ -5033,7 +4815,7 @@
       "brand": "Victron Energy",
       "priceCzk": 139760,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/tiszta-szinuszos-inverter-victron-energy-12-v-1600-va-ve-direct_z109017/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Ftiszta-szinuszos-inverter-victron-energy-12-v-1600-va-ve-direct_z109017%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/2/196512_102.jpg?1785318880_1",
@@ -5054,8 +4836,7 @@
         "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:49",
@@ -5067,7 +4848,7 @@
       "brand": "EXIDE",
       "priceCzk": 150775,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulator-exide-dual-50-ah_z49/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-exide-dual-50-ah_z49%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/127636_102.jpg?1704378225_1",
@@ -5086,8 +4867,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:109090",
@@ -5099,7 +4879,7 @@
       "brand": "Renogy",
       "priceCzk": 443455,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/renogy-pro-12-8-v-200-ah-smart-lifepo4-futott-akkumulator_z109090/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-pro-12-8-v-200-ah-smart-lifepo4-futott-akkumulator_z109090%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/6/196766_102.jpg?1786433504_1",
@@ -5118,8 +4898,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:109069",
@@ -5131,7 +4910,7 @@
       "brand": "Victron Energy",
       "priceCzk": 46165,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-bluesolar-190-wp-mono-12-v-napelem_z109069/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-bluesolar-190-wp-mono-12-v-napelem_z109069%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/1/196671_102.jpg?1785940567_1",
@@ -5152,8 +4931,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "padabo_hu:104333_30512",
@@ -5165,7 +4943,7 @@
       "brand": "Dometic",
       "priceCzk": 150955,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333%2F",
       "imageUrl": "https://www.padabo.hu/data/tmp/102/0/180280_102.jpg?1741255029_1",
@@ -5184,8 +4962,7 @@
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "ampul_hu:5479",
