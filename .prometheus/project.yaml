@@ -1,0 +1,22 @@
+schema_version: 1
+project_id: mypowersetup
+repository: Rastty/mypowersetup
+default_branch: main
+portfolio_role: caravan-power-affiliate-builder
+prometheus_core:
+  repository: Rastty/prometheus-growth-os
+  handover_file: PROMETHEUS_HANDOVER.md
+  mode: repo-driven
+reusable_domains:
+  - seo-content
+  - affiliate-product-selection
+  - localization
+  - calculators
+  - product-feeds
+  - measurement
+handover_policy:
+  emit_when_reusable: true
+  require_evidence: true
+  no_cross_repo_production_writes: true
+  no_secret_transfer: true
+  adoption_requires_project_validation: true
