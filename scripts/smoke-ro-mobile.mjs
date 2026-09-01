@@ -13,6 +13,12 @@ class CdpClient {
   async close() { if (this.socket.readyState === WebSocket.CLOSED) return; this.socket.close(); await delay(100); }
 }
 
+const VERIFIED_BATTERY_MERCHANTS = {
+  allpowers_eu: { awinmid: "38934", destinationPrefix: "https://allpowers.com/" },
+  powerqueen_eu: { awinmid: "97025", destinationPrefix: "https://www.ipowerqueen.de/" },
+};
+const AWIN_AFFILIATE_ID = "3044971";
+
 const port = Number(process.env.RO_SMOKE_PORT || 4187);
 const previewUrl = `http://127.0.0.1:${port}/ro/`;
 const profileDir = `/tmp/mypowersetup-ro-chrome-${process.pid}`;
@@ -42,10 +48,18 @@ try {
   assert(guideLinks.length === 3, `result guides=${guideLinks.length}`); assert(guideLinks.every((href) => href.startsWith("/ro/ghiduri/")), `wrong result guide=${guideLinks.join(",")}`);
   const componentLinks = await evaluate(cdp, `[...document.querySelectorAll("[data-component-guide]")].map((link) => link.getAttribute("href"))`);
   assert(componentLinks.length === 4, `component guides=${componentLinks.length}`); assert(componentLinks.every((href) => href.startsWith("/ro/ghiduri/")), `wrong component guide=${componentLinks.join(",")}`);
-  const result = await evaluate(cdp, `({cards:document.querySelectorAll('[data-affiliate-product]').length,href:document.querySelector('[data-affiliate-product]')?.href,rel:document.querySelector('[data-affiliate-product]')?.rel,merchant:document.querySelector('[data-affiliate-product]')?.dataset.merchant,scrollWidth:document.documentElement.scrollWidth,width:innerWidth})`);
-  assert(result.cards > 0, "no verified RO recommendation"); assert(result.href?.includes("awinmid=38934"), `wrong affiliate ${result.href}`); assert(result.href?.includes("ued="), "exact destination missing"); assert(result.rel?.includes("sponsored"), "rel sponsored missing"); assert(result.merchant === "allpowers_eu", `merchant=${result.merchant}`); assert(result.scrollWidth <= result.width + 2, `result overflow=${result.scrollWidth}`);
+  const result = await evaluate(cdp, `(() => { const link=document.querySelector('[data-affiliate-product]'); if(!link)return {cards:0,scrollWidth:document.documentElement.scrollWidth,width:innerWidth}; const url=new URL(link.href); return {cards:document.querySelectorAll('[data-affiliate-product]').length,href:link.href,rel:link.rel,merchant:link.dataset.merchant,awinmid:url.searchParams.get('awinmid'),awinaffid:url.searchParams.get('awinaffid'),ued:url.searchParams.get('ued'),scrollWidth:document.documentElement.scrollWidth,width:innerWidth}; })()`);
+  assert(result.cards > 0, "no verified RO recommendation");
+  const merchantConfig = VERIFIED_BATTERY_MERCHANTS[result.merchant];
+  assert(Boolean(merchantConfig), `merchant=${result.merchant}`);
+  assert(result.href?.includes("awin1.com"), `wrong affiliate host ${result.href}`);
+  assert(result.awinmid === merchantConfig.awinmid, `awinmid=${result.awinmid}`);
+  assert(result.awinaffid === AWIN_AFFILIATE_ID, `awinaffid=${result.awinaffid}`);
+  assert(result.ued?.startsWith(merchantConfig.destinationPrefix), `destination=${result.ued}`);
+  assert(result.rel?.includes("sponsored"), "rel sponsored missing");
+  assert(result.scrollWidth <= result.width + 2, `result overflow=${result.scrollWidth}`);
   for (const route of ["/ro/ghiduri/","/ro/metodologie/","/ro/confidentialitate/","/ro/afiliere/"]) { const response = await fetch(`http://127.0.0.1:${port}${route}`); assert(response.ok, `${route}:${response.status}`); const html = await response.text(); assert(/noindex/.test(html), `${route}:noindex missing`); }
-  console.log(JSON.stringify({ ok:true, market:"ro", viewport:"390x844", affiliateCards:result.cards, exactMerchant:38934, horizontalOverflow:false }, null, 2));
+  console.log(JSON.stringify({ ok:true, market:"ro", viewport:"390x844", affiliateCards:result.cards, exactMerchant:result.merchant, horizontalOverflow:false }, null, 2));
 } finally {
   if (cdp) await cdp.send("Browser.close").catch(() => {}); await cdp?.close().catch(() => {}); preview.kill("SIGTERM"); if (chrome.exitCode === null) chrome.kill("SIGTERM"); await rm(profileDir, { recursive:true, force:true }).catch(() => {});
 }
