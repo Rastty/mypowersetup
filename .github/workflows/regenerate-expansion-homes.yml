@@ -1,0 +1,52 @@
+name: Regenerate expansion homes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/private-market-page.js"
+      - "src/expansion-publication.js"
+      - "src/search-surface.js"
+      - "src/market-seed-pt.js"
+      - "src/market-seed-ro.js"
+      - "src/market-seed-si.js"
+      - "scripts/publish-expansion.mjs"
+      - ".github/workflows/regenerate-expansion-homes.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: expansion-home-publication
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - name: Regenerate public expansion pages
+        run: |
+          node scripts/publish-expansion.mjs --market pt
+          node scripts/publish-expansion.mjs --market ro
+          node scripts/publish-expansion.mjs --market si
+      - name: Commit homepage drift only
+        shell: bash
+        run: |
+          git add pt/index.html ro/index.html si/index.html
+          if git diff --cached --quiet; then
+            echo "Expansion homes already match their source."
+            exit 0
+          fi
+          git config user.name "mypowersetup-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "chore: regenerate expansion homes"
+          git reset --hard HEAD
+          git pull --rebase origin main
+          git push origin HEAD:main
