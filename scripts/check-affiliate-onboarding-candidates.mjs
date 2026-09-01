@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { BUTLER_TECHNIK_AWIN, BUTLER_VICTRON_MPPT_250_60_MC4 } from "../src/affiliate-butler.js";
+import { listCommercialSourcingCandidates } from "../src/commercial-sourcing-candidates.js";
 
 const candidateFile = new URL("../data/affiliate-onboarding-candidates.json", import.meta.url);
 const publicCatalogFiles = [
@@ -55,6 +56,16 @@ for (const [candidate, voltage] of [[phoenix12, 12], [phoenix24, 24]]) {
   assert(candidate.specs?.waveform === "pure_sine", `${candidate.id}: pure-sine evidence missing`);
   assert(candidate.specs?.continuousPowerW >= 100 && candidate.specs?.continuousPowerW <= 300, `${candidate.id}: does not fit the current P0 100-300 W gap`);
   assert(new URL(candidate.retailEvidenceUrl).hostname === "www.offgridtec.com", `${candidate.id}: retail evidence must be Offgridtec`);
+  const applicationUrl = new URL(candidate.applicationUrl);
+  assert(applicationUrl.hostname === "www.adcell.de" && applicationUrl.pathname === "/partnerprogramme/offgridtec", `${candidate.id}: exact ADCELL application URL missing`);
+  assert(candidate.commissionPercent === 5, `${candidate.id}: verified Offgridtec commission must be 5%`);
+  assert(sameValues(Object.keys(candidate.marketEligibility || {}), ["pt-PT", "ro-RO", "sl-SI"]), `${candidate.id}: targets must match the current PT/RO/SI inverter gap`);
+
+  const sourcingCandidate = listCommercialSourcingCandidates({ category: "inverter" }).find(({ id }) => id === candidate.id);
+  assert(sourcingCandidate, `${candidate.id}: missing from commercial sourcing queue`);
+  assert(sourcingCandidate.status === candidate.status, `${candidate.id}: onboarding and sourcing statuses diverge`);
+  assert(sourcingCandidate.merchantId === String(candidate.programId), `${candidate.id}: onboarding and sourcing programme IDs diverge`);
+  assert(sameValues(sourcingCandidate.markets, Object.keys(candidate.marketEligibility)), `${candidate.id}: onboarding and sourcing target markets diverge`);
 }
 
 assert(smartSolar.merchant === "butler_technik", "SmartSolar merchant invalid");
@@ -84,7 +95,11 @@ console.log(JSON.stringify({
   publicLeakage: false,
   commercialCoverageImpact: 0,
   blockers: {
-    inverter: "Apply to Offgridtec via ADCELL, then verify deeplinks and checkout before activation",
+    inverter: {
+      action: "Apply to Offgridtec via ADCELL, then verify deeplinks and checkout before activation",
+      applicationUrl: phoenix12.applicationUrl,
+      targetMarkets: Object.keys(phoenix12.marketEligibility)
+    },
     controller: "Wait for Butler Technik Awin approval; shipping and exact product evidence now cover SK/PL/HU/PT/RO/SI"
   }
 }, null, 2));
@@ -97,4 +112,8 @@ function required(id) {
 
 function assert(condition, message) {
   if (!condition) throw new Error(`AFFILIATE_ONBOARDING_GUARD:${message}`);
+}
+
+function sameValues(left, right) {
+  return left.length === right.length && left.every((value) => right.includes(value));
 }

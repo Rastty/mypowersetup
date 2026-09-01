@@ -40,3 +40,26 @@ test("small pure-sine inverter sourcing remains fail-closed until affiliate veri
     assert.ok(candidates.every((candidate) => candidate.status === "blocked_affiliate_verification"));
   }
 });
+
+test("Offgridtec Phoenix inverters are the actionable PT, RO and SI sourcing candidates", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const candidates = listCommercialSourcingCandidates({ market, category: "inverter" });
+    assert.deepEqual(candidates.map(({ id }) => id), [
+      "offgridtec-victron-phoenix-12-250",
+      "offgridtec-victron-phoenix-24-250",
+    ]);
+    assert.ok(candidates.every((candidate) => candidate.affiliateNetwork === "adcell"));
+    assert.ok(candidates.every((candidate) => candidate.merchantId === "12136"));
+    assert.ok(candidates.every((candidate) => candidate.status === "application_required"));
+    assert.ok(candidates.every((candidate) => candidate.blocker === "adcell_program_application"));
+    assert.equal(bestCommercialSourcingCandidate({ market, category: "inverter" }).merchant, "offgridtec");
+  }
+});
+
+test("pending Butler controller is also tracked for the expansion markets", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const candidate = bestCommercialSourcingCandidate({ market, category: "controller" });
+    assert.equal(candidate.id, "butler-victron-scc125060321");
+    assert.equal(candidate.status, "pending_affiliate_approval");
+  }
+});

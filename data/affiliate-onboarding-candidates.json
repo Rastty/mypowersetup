@@ -8,6 +8,8 @@
       "merchant": "offgridtec",
       "network": "adcell",
       "programId": 12136,
+      "applicationUrl": "https://www.adcell.de/partnerprogramme/offgridtec",
+      "commissionPercent": 5,
       "status": "application_required",
       "category": "inverter",
       "productUrl": null,
@@ -15,9 +17,9 @@
       "retailEvidenceUrl": "https://www.offgridtec.com/victron-phoenix-12-250-ve.direct-12v-230v-200w-inverter.html",
       "retailEvidenceVerifiedAt": "2026-08-30",
       "marketEligibility": {
-        "sk-SK": "unverified",
-        "pl-PL": "unverified",
-        "hu-HU": "unverified"
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
       },
       "specs": {
         "systemVoltage": 12,
@@ -32,6 +34,8 @@
       "merchant": "offgridtec",
       "network": "adcell",
       "programId": 12136,
+      "applicationUrl": "https://www.adcell.de/partnerprogramme/offgridtec",
+      "commissionPercent": 5,
       "status": "application_required",
       "category": "inverter",
       "productUrl": null,
@@ -39,9 +43,9 @@
       "retailEvidenceUrl": "https://www.offgridtec.com/en/brands/victron-energy/inverter/phoenix-ve.direct-250w-500w.html",
       "retailEvidenceVerifiedAt": "2026-08-30",
       "marketEligibility": {
-        "sk-SK": "unverified",
-        "pl-PL": "unverified",
-        "hu-HU": "unverified"
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
       },
       "specs": {
         "systemVoltage": 24,

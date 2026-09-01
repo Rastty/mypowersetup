@@ -19,6 +19,7 @@
     "check:commercial:scenarios": "node scripts/check-commercial-scenarios.mjs",
     "check:commercial:scenarios:safe": "node scripts/check-commercial-scenarios.mjs --require-baseline",
     "check:commercial:opportunities": "node scripts/check-commercial-opportunities.mjs",
+    "check:affiliate:onboarding": "node scripts/check-affiliate-onboarding-candidates.mjs",
     "check:traffic:distribution": "node scripts/check-traffic-distribution.mjs",
     "report:traffic:distribution": "node scripts/report-traffic-distribution.mjs",
     "report:community:links": "node scripts/report-community-links.mjs",
