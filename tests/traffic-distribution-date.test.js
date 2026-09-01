@@ -20,10 +20,11 @@ test("live registry has actionable current opportunities and stale research is n
   assert.ok(ranked[0].ageDays <= 90);
 });
 
-test("fresh Ford Transit DC-DC thread is ranked as actionable", () => {
+test("Ford Transit DC-DC thread waits for the author's promised follow-up", () => {
   const ranked = rankTrafficOpportunities(registry.opportunities, { asOf: registry.updatedAt, market: "pl" });
   const ford = ranked.find((item) => item.id === "pl-camperteam-ford-dcdc-202608");
   assert.ok(ford);
-  assert.equal(ford.actionable, true);
+  assert.equal(ford.status, "monitor");
+  assert.equal(ford.actionable, false);
   assert.equal(ford.ageDays, 21);
 });
