@@ -25,6 +25,7 @@ test("affiliate clicks are sent exactly once with stable product dimensions", ()
     productId: "panel-200w",
     merchant: "padabo_sk",
     category: "solar_panel",
+    purchaseRoute: "components",
     source: "package",
     packageId: "recommended",
     recommendationRole: "recommended,budget",
@@ -36,9 +37,15 @@ test("affiliate click dimensions use explicit fallbacks", () => {
     productId: "unknown",
     merchant: "unknown",
     category: "unknown",
+    purchaseRoute: "unknown",
     source: "unknown",
     packageId: undefined,
     recommendationRole: undefined,
   });
   assert.equal(trackAffiliateClick(null, null), false);
+});
+
+test("affiliate clicks distinguish portable and component purchase routes", () => {
+  assert.equal(buildAffiliateClickParameters({ dataset: { category: "power_station" } }).purchaseRoute, "portable");
+  assert.equal(buildAffiliateClickParameters({ dataset: { category: "battery" } }).purchaseRoute, "components");
 });
