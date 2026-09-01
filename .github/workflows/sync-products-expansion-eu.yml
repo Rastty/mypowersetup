@@ -7,14 +7,18 @@ on:
     paths:
       - "src/ro-recommendations.js"
       - "src/si-recommendations.js"
+      - "src/powerqueen-expansion.js"
       - "src/shopify.js"
       - "src/oxe-affiliate.js"
       - "src/oxe-feed.js"
       - "scripts/sync-products-expansion-eu.mjs"
       - "scripts/lib/sync-allpowers-eu.mjs"
+      - "scripts/lib/sync-powerqueen-eu.mjs"
       - "scripts/lib/sync-oxe.mjs"
       - "data/products-eu-verified.json"
       - "tests/expansion-eu-solar-recommendations.test.js"
+      - "tests/powerqueen-expansion-components.test.js"
+      - "tests/powerqueen-fetch-resilience.test.js"
       - "tests/oxe-expansion-recommendations.test.js"
       - "tests/oxe-feed.test.js"
       - "tests/oxe-affiliate.test.js"
@@ -49,6 +53,8 @@ jobs:
         run: >-
           node --test
           tests/expansion-eu-solar-recommendations.test.js
+          tests/powerqueen-expansion-components.test.js
+          tests/powerqueen-fetch-resilience.test.js
           tests/oxe-expansion-recommendations.test.js
           tests/oxe-feed.test.js
           tests/oxe-affiliate.test.js
