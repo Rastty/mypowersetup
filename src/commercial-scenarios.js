@@ -78,6 +78,8 @@ export function assessCommercialScenario(catalog, scenario, locale = "cs") {
   const chargingMissing = chargingOpportunities.filter((category) => !(recommendations[category]?.length > 0));
   const missingRequirements = missing.map((category) => acquisitionRequirement(category, setup)).filter(Boolean);
   const chargingMissingRequirements = chargingMissing.map((category) => acquisitionRequirement(category, setup)).filter(Boolean);
+  const componentReady = missing.length === 0;
+  const portableReady = (recommendations.power_station?.length || 0) > 0;
   return Object.freeze({
     id: scenario.id,
     weight: scenario.weight,
@@ -96,7 +98,10 @@ export function assessCommercialScenario(catalog, scenario, locale = "cs") {
     required,
     missing: Object.freeze(missing),
     missingRequirements: Object.freeze(missingRequirements),
-    purchaseReady: missing.length === 0,
+    componentReady,
+    portableReady,
+    purchaseReady: componentReady || portableReady,
+    purchaseRoute: componentReady ? "components" : portableReady ? "portable" : "none",
     coverageRatio: required.length ? (required.length - missing.length) / required.length : 1,
     chargingOpportunities,
     chargingMissing: Object.freeze(chargingMissing),
@@ -108,6 +113,8 @@ export function assessMarketScenarioCoverage(catalog, locale = "cs", scenarios =
   const results = scenarios.map((scenario) => assessCommercialScenario(catalog, scenario, locale));
   const totalWeight = results.reduce((sum, result) => sum + result.weight, 0);
   const readyWeight = results.reduce((sum, result) => sum + (result.purchaseReady ? result.weight : 0), 0);
+  const componentReadyWeight = results.reduce((sum, result) => sum + (result.componentReady ? result.weight : 0), 0);
+  const portableReadyWeight = results.reduce((sum, result) => sum + (result.portableReady ? result.weight : 0), 0);
   const weightedCoverage = results.reduce((sum, result) => sum + result.coverageRatio * result.weight, 0) / totalWeight;
   const opportunityScore = {};
   for (const result of results) {
@@ -120,7 +127,11 @@ export function assessMarketScenarioCoverage(catalog, locale = "cs", scenarios =
     scenarioCount: results.length,
     totalWeight,
     readyWeight,
+    componentReadyWeight,
+    portableReadyWeight,
     purchaseReadyRatio: totalWeight ? readyWeight / totalWeight : 1,
+    componentReadyRatio: totalWeight ? componentReadyWeight / totalWeight : 1,
+    portableFitRatio: totalWeight ? portableReadyWeight / totalWeight : 0,
     weightedCoverage,
     opportunities: Object.freeze(opportunities),
     scenarios: Object.freeze(results),

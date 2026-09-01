@@ -32,10 +32,12 @@ export function buildCommercialOpportunityBacklog(catalog, locale = "cs") {
   const scenariosById = new Map(report.scenarios.map((scenario) => [scenario.id, scenario]));
   const opportunities = report.opportunities.map(({ category, score }) => {
     const primaryScenarioIds = report.scenarios.filter((scenario) => scenario.missing.includes(category)).map((scenario) => scenario.id);
+    const unlockScenarioIds = report.scenarios.filter((scenario) => !scenario.purchaseReady && scenario.missing.includes(category)).map((scenario) => scenario.id);
     const secondaryScenarioIds = report.scenarios.filter((scenario) => scenario.chargingMissing.includes(category)).map((scenario) => scenario.id);
     const affectedWeight = primaryScenarioIds.reduce((sum, id) => sum + scenariosById.get(id).weight, 0);
+    const unlockWeight = unlockScenarioIds.reduce((sum, id) => sum + scenariosById.get(id).weight, 0);
     const secondaryWeight = secondaryScenarioIds.reduce((sum, id) => sum + scenariosById.get(id).weight, 0);
-    const maxPurchaseReadyGain = report.totalWeight ? affectedWeight / report.totalWeight : 0;
+    const maxPurchaseReadyGain = report.totalWeight ? unlockWeight / report.totalWeight : 0;
     const priority = score >= 8 ? "P0" : score >= 4 ? "P1" : "P2";
     return Object.freeze({
       category,
@@ -43,9 +45,11 @@ export function buildCommercialOpportunityBacklog(catalog, locale = "cs") {
       priority,
       score,
       affectedWeight,
+      unlockWeight,
       secondaryWeight,
       maxPurchaseReadyGain,
       primaryScenarioIds: Object.freeze(primaryScenarioIds),
+      unlockScenarioIds: Object.freeze(unlockScenarioIds),
       secondaryScenarioIds: Object.freeze(secondaryScenarioIds),
       primaryRequirements: requirementProfiles(report, category, "missingRequirements"),
       secondaryRequirements: requirementProfiles(report, category, "chargingMissingRequirements"),
@@ -54,6 +58,8 @@ export function buildCommercialOpportunityBacklog(catalog, locale = "cs") {
   return Object.freeze({
     market: report.market,
     purchaseReadyRatio: report.purchaseReadyRatio,
+    componentReadyRatio: report.componentReadyRatio,
+    portableFitRatio: report.portableFitRatio,
     weightedCoverage: report.weightedCoverage,
     opportunities: Object.freeze(opportunities),
   });
