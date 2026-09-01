@@ -4,6 +4,7 @@ import { syncAllpowersEu } from "./lib/sync-allpowers-eu.mjs";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 import { syncOxeMarket } from "./lib/sync-oxe.mjs";
 import { syncPadaboMarket } from "./lib/sync-padabo.mjs";
+import { disableStaleProducts } from "./lib/stale-products.mjs";
 
 const feedUrl = process.env.AMPUL_HU_FEED_URL;
 const outputPath = "data/products-hu.json";
@@ -41,6 +42,7 @@ try {
   ampulSource = { status: "ok", parsedProducts: parsed.length, relevantProducts: ampulProducts.length };
   console.log(`Ampul HU: ${ampulProducts.length} releváns termék mentve ${parsed.length} tételből.`);
 } catch (error) {
+  ampulProducts = disableStaleProducts(ampulProducts);
   ampulSource = ampulProducts.length
     ? { status: "stale", error: error.message, preservedProducts: ampulProducts.length }
     : { status: "error", error: error.message };

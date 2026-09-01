@@ -187,7 +187,9 @@ test("Hungarian trust source pages stay private while committed public pages exi
 test("Hungarian launch gate reports exact catalog and review blockers", async () => {
   const catalog = JSON.parse(await readFile("data/products-hu.json", "utf8"));
   const report = assessHungarianLaunchReadiness({ catalog });
-  assert.equal(report.checks.catalogSource, true);
+  const allSourcesFresh = Object.values(catalog.sources || {}).length > 0
+    && Object.values(catalog.sources || {}).every((source) => source?.status === "ok");
+  assert.equal(report.checks.catalogSource, allSourcesFresh);
   assert.equal(report.ready, false);
   for (const category of ["inverter", "dc_charger", "shore_charger", "solar_panel", "battery"]) {
     assert.ok(

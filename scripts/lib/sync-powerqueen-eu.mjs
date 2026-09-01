@@ -1,4 +1,5 @@
 import { parseShopifyProducts } from "../../src/shopify.js";
+import { disableStaleProducts } from "./stale-products.mjs";
 
 const endpoint = "https://www.ipowerqueen.de/en/products.json?limit=250";
 const origin = "https://www.ipowerqueen.de/en/";
@@ -113,6 +114,6 @@ export async function syncPowerQueenEu(previousCatalog = { products: [] }, { fet
     };
   } catch (error) {
     if (!preserved.length) throw error;
-    return { products: preserved, source: { status: "stale", error: error.message, preservedProducts: preserved.length } };
+    return { products: disableStaleProducts(preserved), source: { status: "stale", error: error.message, preservedProducts: preserved.length } };
   }
 }

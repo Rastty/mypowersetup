@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
+import { disableStaleProducts } from "./lib/stale-products.mjs";
 
 const feedUrl = process.env.AMPUL_CZ_FEED_URL;
 const outputPath = "data/products-ampul-cz.json";
@@ -44,7 +45,8 @@ try {
   if (!previousCatalog.products.length) throw error;
   nextCatalog = {
     ...previousCatalog,
-    sources: { ampul_cz: { status: "stale", error: error.message, preservedProducts: previousCatalog.products.length } }
+    sources: { ampul_cz: { status: "stale", error: error.message, preservedProducts: previousCatalog.products.length } },
+    products: disableStaleProducts(previousCatalog.products),
   };
 }
 
