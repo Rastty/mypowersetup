@@ -579,6 +579,41 @@ test("charger matcher requires calculated current and exact battery voltage", ()
   assert.match(recommendations.dc_charger[0].verify, /chytrého alternátoru/);
 });
 
+test("catalog refresh keeps feed charger compatibility when the stored description is truncated", () => {
+  const product = {
+    id: "padabo_hu:shore-12v",
+    merchant: "padabo_hu",
+    name: "PerfectCharge 12 V-os akkumulátortöltő töltési áram 15 A",
+    description: "Intelligens többfázisú töltő 12V-os akkumulátorokhoz.",
+    categoryPath: "Töltők és boosterek | Akkumulátor töltők",
+    category: "shore_charger",
+    available: true,
+    productUrl: "https://www.padabo.hu/perfectcharge-12-v-os-akkumulatortolto_z24087/",
+    priceCzk: 135205,
+    specs: {
+      voltageV: 12,
+      currentA: 15,
+      chargingVoltagesV: [12],
+      chargingInputVoltagesV: [12],
+      chargingBatteryTypes: ["lifepo4", "lead"],
+      batteryType: "lifepo4"
+    }
+  };
+  const setup = {
+    locale: "hu", systemVoltage: 12, batteryAh: 100, batteryType: "lifepo4",
+    solarWatts: 300, inverterWatts: 800, controllerAmps: 30,
+    charging: {
+      starterVoltage: 12,
+      dcDc: { suggestedCurrentAmps: 20 },
+      shore: { suggestedCurrentAmps: 10 }
+    }
+  };
+
+  const [recommendation] = recommendProducts([product], setup).shore_charger;
+  assert.equal(recommendation.product.id, product.id);
+  assert.deepEqual(recommendation.product.specs.chargingBatteryTypes, ["lifepo4", "lead"]);
+});
+
 test("DC-DC matcher rejects a charger with the wrong starter-system input voltage", () => {
   const converter = normalizeProduct({
     id: "48-to-12",
