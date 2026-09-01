@@ -5,11 +5,12 @@ import { APPLIANCES as CZECH_APPLIANCES } from "../src/catalog.js";
 import { APPLIANCES as SLOVAK_APPLIANCES } from "../src/catalog-sk.js";
 import { APPLIANCES as POLISH_APPLIANCES } from "../src/catalog-pl.js";
 import { APPLIANCES as HUNGARIAN_APPLIANCES } from "../src/catalog-hu.js";
+import { EXPANSION_APPLIANCES } from "../src/private-market-page.js";
 import { getUsageProfiles } from "../src/usage-profiles.js";
 import { buildPlainLanguageVerdict } from "../src/verdict.js";
 
 test("usage profiles remain localized views of one shared technical definition", () => {
-  const catalogs = { cs: CZECH_APPLIANCES, sk: SLOVAK_APPLIANCES, pl: POLISH_APPLIANCES, hu: HUNGARIAN_APPLIANCES };
+  const catalogs = { cs: CZECH_APPLIANCES, sk: SLOVAK_APPLIANCES, pl: POLISH_APPLIANCES, hu: HUNGARIAN_APPLIANCES, pt: EXPANSION_APPLIANCES, ro: EXPANSION_APPLIANCES, si: EXPANSION_APPLIANCES };
   const technicalSignatures = [];
 
   for (const [locale, appliances] of Object.entries(catalogs)) {
@@ -28,6 +29,12 @@ test("usage profiles remain localized views of one shared technical definition",
   }
 
   assert.equal(new Set(technicalSignatures).size, 1);
+});
+
+test("expansion usage profiles use native market copy instead of Czech fallback", () => {
+  assert.match(getUsageProfiles("pt")[0].label, /Fim de semana/);
+  assert.match(getUsageProfiles("ro")[1].label, /Vacanță în familie/);
+  assert.match(getUsageProfiles("si")[2].label, /Delo iz avtodoma/);
 });
 
 test("plain-language verdict presents the same result in every active language", () => {
