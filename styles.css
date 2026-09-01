@@ -247,6 +247,13 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .result-card strong { display: block; margin: 18px 0 5px; font: 800 29px/1 "Manrope", sans-serif; letter-spacing: -.04em; }
 .result-card small { color: #d2dfd9; line-height: 1.35; }
 .result-card.is-accent small { color: #445620; }
+.expansion-product-card { display: flex; min-height: 260px; flex-direction: column; }
+.expansion-product-card strong { font-size: 20px; line-height: 1.15; }
+.expansion-product-card .button { width: 100%; margin-top: auto; }
+.recommendation-roles { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.result-card .recommendation-role { display: inline-flex; width: fit-content; padding: 5px 8px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; color: white; background: rgba(255,255,255,.1); font-size: 10px; font-weight: 900; letter-spacing: .02em; text-transform: uppercase; }
+.result-card .recommendation-role-recommended { border-color: var(--lime); color: var(--forest-deep); background: var(--lime); }
+.expansion-product-price { display: block; margin: 10px 0 14px; color: white !important; font-size: 16px; font-weight: 900; }
 .result-next-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 18px; margin-top: 16px; padding: 20px 22px; border-radius: var(--radius-md); color: white; background: var(--forest-deep); }
 .result-next-card h4 { margin: 5px 0 4px; font-size: 18px; }
 .result-next-card p { max-width: 650px; margin: 0; color: #c8d8d1; font-size: 13px; line-height: 1.45; }

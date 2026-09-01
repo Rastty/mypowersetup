@@ -11,6 +11,7 @@ test("affiliate clicks are sent exactly once with stable product dimensions", ()
       category: "solar_panel",
       source: "package",
       packageId: "recommended",
+      recommendationRole: "recommended,budget",
     },
   };
 
@@ -26,6 +27,7 @@ test("affiliate clicks are sent exactly once with stable product dimensions", ()
     category: "solar_panel",
     source: "package",
     packageId: "recommended",
+    recommendationRole: "recommended,budget",
   }]]);
 });
 
@@ -36,6 +38,7 @@ test("affiliate click dimensions use explicit fallbacks", () => {
     category: "unknown",
     source: "unknown",
     packageId: undefined,
+    recommendationRole: undefined,
   });
   assert.equal(trackAffiliateClick(null, null), false);
 });
