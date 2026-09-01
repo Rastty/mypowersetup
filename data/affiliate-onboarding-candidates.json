@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-08-30",
+  "updatedAt": "2026-09-01",
   "policy": "Pending candidates are planning evidence only. They must not enter public catalogs, recommendation coverage, product cards or affiliate tracking until the relevant merchant programme is approved, an exact retail destination and deeplink are verified, and shipping eligibility is confirmed for each market.",
   "candidates": [
     {
@@ -62,21 +62,28 @@
       "affiliateUrl": null,
       "technicalEvidenceUrl": "https://www.butlertechnik.com/downloads/cms/7826/victron-energy-bluesolar-smartsolar-mppt-technical-overview-manual.pdf",
       "retailEvidenceUrl": "https://www.butlertechnik.com/item/Victron/SmartSolar-MPPT-250-60-MC4/BT2",
-      "retailEvidenceVerifiedAt": "2026-08-30",
+      "retailEvidenceVerifiedAt": "2026-09-01",
+      "shippingEvidenceUrl": "https://www.butlertechnik.com/helpdesk",
+      "shippingEvidenceVerifiedAt": "2026-09-01",
       "exactRetailPath": "/item/Victron/SmartSolar-MPPT-250-60-MC4/BT2",
       "marketEligibility": {
         "sk-SK": "unverified",
         "pl-PL": "unverified",
-        "hu-HU": "unverified"
+        "hu-HU": "unverified",
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
       },
+      "shippingEligibleMarkets": ["sk-SK", "pl-PL", "hu-HU", "pt-PT", "ro-RO", "sl-SI"],
       "specs": {
         "technology": "mppt",
         "currentA": 60,
         "systemVoltages": [12, 24, 48],
         "nominalPvPowerW12V": 860,
+        "nominalPvPowerW24V": 1720,
         "maxPvVocV": 250
       },
-      "targetScenarioIds": ["family-touring", "winter-basic"]
+      "targetScenarioIds": ["light-weekend", "family-touring", "remote-work", "coffee-offgrid", "winter-basic", "high-power-tools"]
     }
   ]
 }
