@@ -1,5 +1,6 @@
 import { getOxeMarket } from "../../src/oxe-affiliate.js";
 import { isOxeTechnicallyCompletePowerStation, parseOxeGoogleFeed } from "../../src/oxe-feed.js";
+import { disableStaleProducts } from "./stale-products.mjs";
 
 const LIVE_SUPPLEMENTS = Object.freeze({
   si: Object.freeze([
@@ -48,7 +49,7 @@ export async function syncOxeMarket(market, previousCatalog = { products: [] }, 
       return { products: [], source: { status: "error", feedUrl: config.feedUrl, merchant: config.merchant, error: error.message } };
     }
     return {
-      products: preserved,
+      products: disableStaleProducts(preserved),
       source: {
         status: "stale",
         feedUrl: config.feedUrl,

@@ -1,4 +1,5 @@
 import { parseProductFeed } from "../../src/feed.js";
+import { disableStaleProducts } from "./stale-products.mjs";
 
 const CONFIG = Object.freeze({
   sk: Object.freeze({ merchant: "padabo_sk", language: "sk-SK,sk;q=0.9,cs;q=0.7,en;q=0.5" }),
@@ -13,9 +14,10 @@ export async function syncPadaboMarket(market, previousCatalog = { products: [] 
   const config = CONFIG[market];
   if (!config) throw new Error(`PADABO_MARKET_UNSUPPORTED:${market}`);
   const preserved = (previousCatalog.products || []).filter((product) => product.merchant === config.merchant);
+  const disabledPreserved = disableStaleProducts(preserved);
   if (!feedUrl) {
     return {
-      products: preserved,
+      products: disabledPreserved,
       source: preserved.length
         ? { status: "stale", error: "feed URL není nakonfigurována", preservedProducts: preserved.length }
         : { status: "disabled", error: "feed URL není nakonfigurována" },
@@ -44,7 +46,7 @@ export async function syncPadaboMarket(market, previousCatalog = { products: [] 
     return { products, source: { status: "ok", parsedProducts: parsed.length, relevantProducts: products.length } };
   } catch (error) {
     return {
-      products: preserved,
+      products: disabledPreserved,
       source: preserved.length
         ? { status: "stale", error: error.message, preservedProducts: preserved.length }
         : { status: "error", error: error.message },

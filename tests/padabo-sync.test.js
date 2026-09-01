@@ -44,12 +44,20 @@ test("Padabo Atom entry feed is parsed for SK and PL exports", async () => {
   assert.equal(result.products[0].category, "solar_panel");
 });
 
-test("Padabo sync preserves the last safe catalog on a feed failure", async () => {
-  const previous = { products: [{ merchant: "padabo_pl", id: "safe" }] };
+test("Padabo sync preserves stale diagnostics but disables recommendations on a feed failure", async () => {
+  const previous = { products: [{ merchant: "padabo_pl", id: "safe", available: true }] };
   const result = await syncPadaboMarket("pl", previous, {
     feedUrl: "https://feeds.example.test/pl.xml",
     fetchImpl: async () => { throw new TypeError("fetch failed"); },
   });
   assert.equal(result.source.status, "stale");
-  assert.deepEqual(result.products, previous.products);
+  assert.deepEqual(result.products, [{ ...previous.products[0], available: false, staleSource: true }]);
+});
+
+test("Padabo sync disables preserved recommendations when the workflow secret is missing", async () => {
+  const previous = { products: [{ merchant: "padabo_sk", id: "safe", available: true }] };
+  const result = await syncPadaboMarket("sk", previous);
+  assert.equal(result.source.status, "stale");
+  assert.equal(result.products[0].available, false);
+  assert.equal(result.products[0].staleSource, true);
 });

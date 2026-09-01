@@ -1,4 +1,5 @@
 import { parseAllpowersPtProducts } from "../../src/products-pt.js";
+import { disableStaleProducts } from "./stale-products.mjs";
 
 const endpoint = "https://allpowers-pt.com/products.json?limit=250";
 
@@ -35,7 +36,7 @@ export async function syncAllpowersPt(previousCatalog = { products: [] }, {
   } catch (error) {
     if (!preserved.length) throw error;
     return {
-      products: preserved,
+      products: disableStaleProducts(preserved),
       source: { status: "stale", error: error.message, preservedProducts: preserved.length },
     };
   }

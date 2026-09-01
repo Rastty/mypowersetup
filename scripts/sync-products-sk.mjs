@@ -4,6 +4,7 @@ import { syncAllpowersEu } from "./lib/sync-allpowers-eu.mjs";
 import { syncPadaboMarket } from "./lib/sync-padabo.mjs";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 import { syncOxeMarket } from "./lib/sync-oxe.mjs";
+import { disableStaleProducts } from "./lib/stale-products.mjs";
 
 const outputPath = "data/products-sk.json";
 let previousCatalog = { generatedAt: null, market: "sk-SK", currency: "EUR", sources: {}, products: [] };
@@ -33,8 +34,9 @@ products.push(...oxe.products);
 sources.oxe_sk = oxe.source;
 for (const [merchant, feedUrl, affiliateBaseUrl] of feeds) {
   const preserved = previousCatalog.products.filter((product) => product.merchant === merchant);
+  const disabledPreserved = disableStaleProducts(preserved);
   if (!feedUrl) {
-    products.push(...preserved);
+    products.push(...disabledPreserved);
     sources[merchant] = preserved.length
       ? { status: "stale", error: "feed nebo affiliate odkaz není nakonfigurován", preservedProducts: preserved.length }
       : { status: "disabled", error: "feed nebo affiliate odkaz není nakonfigurován" };
@@ -59,7 +61,7 @@ for (const [merchant, feedUrl, affiliateBaseUrl] of feeds) {
     sources[merchant] = { status: "ok", parsedProducts: parsed.length, relevantProducts: relevant.length };
     console.log(`${merchant}: uloženo ${relevant.length} relevantních produktů z ${parsed.length} položek.`);
   } catch (error) {
-    products.push(...preserved);
+    products.push(...disabledPreserved);
     sources[merchant] = preserved.length
       ? { status: "stale", error: error.message, preservedProducts: preserved.length }
       : { status: "error", error: error.message };
