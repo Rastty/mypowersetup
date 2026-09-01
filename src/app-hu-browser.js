@@ -4,7 +4,7 @@ import { HU_UI_COPY } from "./ui-copy-hu.js";
 import { copyText } from "./share.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { mountExistingSetupCheck } from "./existing-setup.js";
-import { trackAffiliateClick } from "./affiliate-analytics.js?v=20260901-route1";
+import { trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20260901-impressions1";
 
 const form = document.querySelector("#setup-form");
 const grid = document.querySelector("#appliance-grid");
@@ -131,6 +131,7 @@ function renderProducts(output) {
   document.querySelector("#recommendation-groups").innerHTML = total
     ? `${coverageNotice}<details class="product-comparison-details"><summary><span>Egyedi termékek összehasonlítása</span><small>${total} ellenőrzött találat ${entries.length} kategóriában</small></summary><div class="product-comparison-groups">${productGroups}</div></details>`
     : coverageNotice;
+  trackAffiliateImpressions(document.querySelectorAll("#package-variants [data-affiliate-click], #recommendation-groups [data-affiliate-click]"), track);
 }
 
 function renderHungarianProductPackages(variants) {
@@ -154,7 +155,7 @@ function hungarianPackageProductLink(category, product, packageId) {
   const labels = { battery:"Akkumulátor",solar_panel:"Napelem",inverter:"Inverter",controller:"MPPT",dc_charger:"DC–DC töltő",shore_charger:"230 V-os töltő" };
   const quantity = product.recommendedQuantity || 1;
   const quantityLabel = quantity > 1 ? `${quantity} db · ` : "";
-  return `<li><small>${labels[category] || category}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(hungarianMerchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">A pontos termék megjelenítése →</a></li>`;
+  return `<li><small>${labels[category] || category}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(hungarianMerchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">A pontos termék megjelenítése →</a></li>`;
 }
 
 function showStep(step) { currentStep=Math.max(1,Math.min(3,step)); document.querySelectorAll(".form-step").forEach((section) => { const visible=Number(section.dataset.step)===currentStep; section.hidden=!visible; section.classList.toggle("is-visible",visible); }); document.querySelectorAll(".step").forEach((button,index) => { button.disabled=index+1>currentStep; button.classList.toggle("is-active",index+1===currentStep); button.classList.toggle("is-complete",index+1<currentStep); }); document.querySelector("#kalkulator").scrollIntoView({ behavior:"smooth",block:"start" }); }

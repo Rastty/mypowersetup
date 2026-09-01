@@ -9,6 +9,7 @@ test("every mature market measures recommendation role on package and product-ca
     const source = await readFile(new URL(`../src/${application}`, import.meta.url), "utf8");
     assert.match(source, /data-source="package"[^>]*data-recommendation-role=/, application);
     assert.match(source, /data-source="product-card"[^>]*data-recommendation-role=/, application);
-    assert.match(source, /affiliate-analytics\.js\?v=20260901-route1/, application);
+    assert.match(source, /packageId === "economy" \? "budget" : packageId/, application);
+    assert.match(source, /affiliate-analytics\.js\?v=20260901-impressions1/, application);
   }
 });
