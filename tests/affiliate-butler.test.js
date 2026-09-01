@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  BUTLER_SUPPORTED_MARKETS,
   BUTLER_TECHNIK_AWIN,
   BUTLER_VICTRON_MPPT_250_60_MC4,
   buildButlerAffiliateUrl,
@@ -18,7 +19,7 @@ test("Butler Technik candidate stays fail-closed before Awin approval", () => {
   const candidate = createButlerVictronCandidate({
     destination: exactDestination,
     inStock: true,
-    shippableMarkets: ["sk", "pl", "hu"]
+    shippableMarkets: ["sk", "pl", "hu", "pt", "ro", "si"]
   });
 
   assert.equal(candidate.affiliateUrl, null);
@@ -38,39 +39,48 @@ test("approved adapter preserves only the exact Butler product destination", () 
   assert.equal(buildButlerAffiliateUrl("https://example.com/item/Victron/SmartSolar-MPPT-250-60-MC4/BT2", { approvalConfirmed: true }), null);
 });
 
-test("Victron 60A evidence satisfies both remaining 12V controller bands", () => {
+test("Victron 60A evidence satisfies every PT RO SI controller band", () => {
   assert.equal(BUTLER_VICTRON_MPPT_250_60_MC4.category, "controller");
   assert.equal(BUTLER_VICTRON_MPPT_250_60_MC4.mppt, true);
   assert.equal(BUTLER_VICTRON_MPPT_250_60_MC4.currentA, 60);
   assert.ok(BUTLER_VICTRON_MPPT_250_60_MC4.chargingVoltagesV.includes(12));
+  assert.ok(BUTLER_VICTRON_MPPT_250_60_MC4.chargingVoltagesV.includes(24));
   assert.equal(BUTLER_VICTRON_MPPT_250_60_MC4.pvWattsBySystemVoltage[12], 860);
+  assert.equal(BUTLER_VICTRON_MPPT_250_60_MC4.pvWattsBySystemVoltage[24], 1720);
 
   const requirements = [
-    { minCurrentA: 40, minArrayWatts: 350 },
-    { minCurrentA: 60, minArrayWatts: 650 }
+    { systemVoltage: 12, minCurrentA: 30, maxCurrentA: 90, minArrayWatts: 200 },
+    { systemVoltage: 12, minCurrentA: 40, maxCurrentA: 120, minArrayWatts: 300 },
+    { systemVoltage: 12, minCurrentA: 60, maxCurrentA: 180, minArrayWatts: 550 },
+    { systemVoltage: 24, minCurrentA: 20, maxCurrentA: 60, minArrayWatts: 250 },
+    { systemVoltage: 24, minCurrentA: 30, maxCurrentA: 90, minArrayWatts: 500 },
+    { systemVoltage: 24, minCurrentA: 20, maxCurrentA: 60, minArrayWatts: 350 }
   ];
 
   for (const requirement of requirements) {
     assert.ok(BUTLER_VICTRON_MPPT_250_60_MC4.currentA >= requirement.minCurrentA);
-    assert.ok(BUTLER_VICTRON_MPPT_250_60_MC4.pvWattsBySystemVoltage[12] >= requirement.minArrayWatts);
+    assert.ok(BUTLER_VICTRON_MPPT_250_60_MC4.currentA <= requirement.maxCurrentA);
+    assert.ok(BUTLER_VICTRON_MPPT_250_60_MC4.pvWattsBySystemVoltage[requirement.systemVoltage] >= requirement.minArrayWatts);
   }
 });
 
-test("candidate becomes eligible only for explicitly verified shipping markets", () => {
+test("candidate becomes eligible only for explicitly verified supported shipping markets", () => {
+  assert.deepEqual(BUTLER_SUPPORTED_MARKETS, ["sk", "pl", "hu", "pt", "ro", "si"]);
+
   const candidate = createButlerVictronCandidate({
     destination: exactDestination,
     inStock: true,
-    shippableMarkets: ["sk", "hu", "cz"],
+    shippableMarkets: ["sk", "hu", "pt", "ro", "si", "cz"],
     approvalConfirmed: true
   });
 
-  assert.deepEqual(candidate.verifiedMarkets, ["sk", "hu"]);
+  assert.deepEqual(candidate.verifiedMarkets, ["sk", "hu", "pt", "ro", "si"]);
   assert.equal(candidate.recommendationEligible, true);
 
   const outOfStock = createButlerVictronCandidate({
     destination: exactDestination,
     inStock: false,
-    shippableMarkets: ["sk", "pl", "hu"],
+    shippableMarkets: ["sk", "pl", "hu", "pt", "ro", "si"],
     approvalConfirmed: true
   });
   assert.equal(outOfStock.recommendationEligible, false);
