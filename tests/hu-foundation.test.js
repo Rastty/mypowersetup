@@ -140,9 +140,10 @@ test("Hungarian catalog loader rejects another market or merchant", async () => 
 });
 
 test("Hungarian private page template stays noindex while committed HU output is public", async () => {
-  const [html, browser, sitemap, robots] = await Promise.all([
+  const [html, browser, app, sitemap, robots] = await Promise.all([
     Promise.resolve(renderHungarianPrivatePage()),
     readFile("src/app-hu-browser.js", "utf8"),
+    readFile("src/app-hu.js", "utf8"),
     readFile("sitemap.xml", "utf8"),
     readFile("robots.txt", "utf8"),
   ]);
@@ -153,6 +154,9 @@ test("Hungarian private page template stays noindex while committed HU output is
     assert.match(html, new RegExp(`id="${id}"`));
   }
   assert.match(browser, /buildHungarianApplicationResult/);
+  assert.match(html, /app-hu-browser\.js\?v=20260901-padabo2/);
+  assert.match(browser, /app-hu\.js\?v=20260901-padabo2/);
+  assert.match(app, /products\.js\?v=20260901-padabo2/);
   assert.match(browser, /loadHungarianProductCatalog/);
   assert.match(browser, /mountExistingSetupCheck/);
   assert.match(browser, /data-affiliate-click/);
