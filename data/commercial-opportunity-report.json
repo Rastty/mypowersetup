@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-01T05:51:53.649Z",
+  "generatedAt": "2026-09-01T08:44:10.627Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -1795,7 +1795,7 @@
   "markets": [
     {
       "market": "cs-CZ",
-      "generatedAt": "2026-09-01T05:51:38.288Z",
+      "generatedAt": "2026-09-01T08:43:52.484Z",
       "purchaseReadyRatio": 1,
       "weightedCoverage": 1,
       "topOpportunity": null,
@@ -1803,7 +1803,7 @@
     },
     {
       "market": "sk-SK",
-      "generatedAt": "2026-09-01T05:51:43.169Z",
+      "generatedAt": "2026-09-01T08:43:58.340Z",
       "purchaseReadyRatio": 0.47368421052631576,
       "weightedCoverage": 0.793859649122807,
       "topOpportunity": {
@@ -1968,7 +1968,7 @@
     },
     {
       "market": "pl-PL",
-      "generatedAt": "2026-09-01T05:51:47.733Z",
+      "generatedAt": "2026-09-01T08:44:04.458Z",
       "purchaseReadyRatio": 0.47368421052631576,
       "weightedCoverage": 0.793859649122807,
       "topOpportunity": {
@@ -2133,7 +2133,7 @@
     },
     {
       "market": "hu-HU",
-      "generatedAt": "2026-09-01T05:51:52.633Z",
+      "generatedAt": "2026-09-01T08:44:09.541Z",
       "purchaseReadyRatio": 0.47368421052631576,
       "weightedCoverage": 0.793859649122807,
       "topOpportunity": {
@@ -2298,7 +2298,7 @@
     },
     {
       "market": "pt-PT",
-      "generatedAt": "2026-09-01T05:51:53.649Z",
+      "generatedAt": "2026-09-01T08:44:10.627Z",
       "purchaseReadyRatio": 0,
       "weightedCoverage": 0.45175438596491224,
       "topOpportunity": {
