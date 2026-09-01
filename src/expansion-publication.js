@@ -29,7 +29,7 @@ const PUBLICATION_COPY_REPLACEMENTS = Object.freeze({
   pt: Object.freeze([
     ["Falhar fechado", "Sem validação, sem recomendação"],
     ["Versão privada em validação para Portugal.", "Calculadora para Portugal."],
-    ["Versão privada em validação para Portugal", "Conteúdo publicado para Portugal"],
+    ["Versão privada em validação para Portugal", "Energia para autocaravanas"],
     ["Pré-visualização privada para Portugal — os resultados ainda não são publicados nem indexados.", "Estimativa com base nos consumos e no perfil de viagem selecionados."],
   ]),
   si: Object.freeze([
@@ -41,7 +41,7 @@ const PUBLICATION_COPY_REPLACEMENTS = Object.freeze({
     ["affiliate omrežja", "partnerske mreže"],
     ["Fail closed", "Brez preverjanja ni priporočila"],
     ["Zasebna različica v preverjanju za Slovenijo.", "Kalkulator za Slovenijo."],
-    ["Zasebna različica v preverjanju za Slovenijo", "Objavljena vsebina za Slovenijo"],
+    ["Zasebna različica v preverjanju za Slovenijo", "Elektrika za avtodome"],
     ["Zasebni predogled za Slovenijo — rezultati še niso javno objavljeni ali indeksirani.", "Ocena temelji na izbranih porabnikih in načinu potovanja."],
   ]),
   ro: Object.freeze([
@@ -49,7 +49,7 @@ const PUBLICATION_COPY_REPLACEMENTS = Object.freeze({
     ["Fail closed", "Fără validare, fără recomandare"],
     ["Ce capacitate de baterie are nevoie o autorulotă?", "Ce capacitate trebuie să aibă bateria unei autorulote?"],
     ["Versiune privată în validare pentru România.", "Calculator pentru România."],
-    ["Versiune privată în validare pentru România", "Conținut publicat pentru România"],
+    ["Versiune privată în validare pentru România", "Energie pentru autorulote"],
     ["Previzualizare privată pentru România — rezultatele nu sunt încă publicate sau indexate.", "Estimarea folosește consumatorii aleși și modul de utilizare selectat."],
     [" h/day", " h/zi"],
     ["Dimensionează solarul", "Dimensionează sistemul solar"],

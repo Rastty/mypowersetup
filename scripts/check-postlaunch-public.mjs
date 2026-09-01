@@ -7,9 +7,9 @@ const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const markets = Object.freeze({ pt: "pt-PT", si: "sl-SI", ro: "ro-RO" });
 const allHomeLocales = Object.freeze(["cs-CZ", "sk-SK", "pl-PL", "hu-HU", "pt-PT", "sl-SI", "ro-RO", "x-default"]);
 const privateCopyMarkers = Object.freeze({
-  pt: ["Versão privada em validação", "Pré-visualização privada", "ainda não são publicados nem indexados"],
-  si: ["Zasebna različica v preverjanju", "Zasebni predogled", "še niso javno objavljeni ali indeksirani"],
-  ro: ["Versiune privată în validare", "Previzualizare privată", "nu sunt încă publicate sau indexate"],
+  pt: ["Versão privada em validação", "Pré-visualização privada", "ainda não são publicados nem indexados", "Conteúdo publicado para Portugal"],
+  si: ["Zasebna različica v preverjanju", "Zasebni predogled", "še niso javno objavljeni ali indeksirani", "Objavljena vsebina za Slovenijo"],
+  ro: ["Versiune privată în validare", "Previzualizare privată", "nu sunt încă publicate sau indexate", "Conținut publicat pentru România"],
 });
 
 const failures = [];
