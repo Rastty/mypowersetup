@@ -22,7 +22,7 @@ for (const [market, url] of publicCatalogFiles) catalogs.set(market, JSON.parse(
 
 const merchantPolicies = new Map([
   ["butler_technik", new Set(["approval_pending"])],
-  ["offgridtec", new Set(["application_required", "approval_pending"])],
+  ["offgridtec", new Set(["skipped_by_owner"])],
 ]);
 
 const ids = new Set();
@@ -51,7 +51,7 @@ const smartSolar = required("butler-victron-smartsolar-250-60-mc4");
 for (const [candidate, voltage] of [[phoenix12, 12], [phoenix24, 24]]) {
   assert(candidate.merchant === "offgridtec", `${candidate.id}: wrong merchant for current Phoenix evidence`);
   assert(candidate.network === "adcell" && candidate.programId === 12136, `${candidate.id}: Offgridtec affiliate programme metadata invalid`);
-  assert(candidate.status === "application_required", `${candidate.id}: Offgridtec must remain application_required until the user applies`);
+  assert(candidate.status === "skipped_by_owner", `${candidate.id}: Offgridtec must remain skipped after the owner's decision`);
   assert(candidate.category === "inverter" && candidate.specs?.systemVoltage === voltage, `${candidate.id}: Phoenix voltage shape invalid`);
   assert(candidate.specs?.waveform === "pure_sine", `${candidate.id}: pure-sine evidence missing`);
   assert(candidate.specs?.continuousPowerW >= 100 && candidate.specs?.continuousPowerW <= 300, `${candidate.id}: does not fit the current P0 100-300 W gap`);
@@ -61,7 +61,8 @@ for (const [candidate, voltage] of [[phoenix12, 12], [phoenix24, 24]]) {
   assert(candidate.commissionPercent === 5, `${candidate.id}: verified Offgridtec commission must be 5%`);
   assert(sameValues(Object.keys(candidate.marketEligibility || {}), ["pt-PT", "ro-RO", "sl-SI"]), `${candidate.id}: targets must match the current PT/RO/SI inverter gap`);
 
-  const sourcingCandidate = listCommercialSourcingCandidates({ category: "inverter" }).find(({ id }) => id === candidate.id);
+  assert(!listCommercialSourcingCandidates({ category: "inverter" }).some(({ id }) => id === candidate.id), `${candidate.id}: skipped candidate leaked into actionable sourcing queue`);
+  const sourcingCandidate = listCommercialSourcingCandidates({ category: "inverter", includeSkipped: true }).find(({ id }) => id === candidate.id);
   assert(sourcingCandidate, `${candidate.id}: missing from commercial sourcing queue`);
   assert(sourcingCandidate.status === candidate.status, `${candidate.id}: onboarding and sourcing statuses diverge`);
   assert(sourcingCandidate.merchantId === String(candidate.programId), `${candidate.id}: onboarding and sourcing programme IDs diverge`);
@@ -95,11 +96,7 @@ console.log(JSON.stringify({
   publicLeakage: false,
   commercialCoverageImpact: 0,
   blockers: {
-    inverter: {
-      action: "Apply to Offgridtec via ADCELL, then verify deeplinks and checkout before activation",
-      applicationUrl: phoenix12.applicationUrl,
-      targetMarkets: Object.keys(phoenix12.marketEligibility)
-    },
+    inverter: "Offgridtec skipped by owner; no application action",
     controller: "Wait for Butler Technik Awin approval; shipping and exact product evidence now cover SK/PL/HU/PT/RO/SI"
   }
 }, null, 2));

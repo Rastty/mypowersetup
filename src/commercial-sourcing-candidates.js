@@ -8,8 +8,8 @@ const CANDIDATES = Object.freeze([
     productName: "Victron Phoenix 12/250 VE.Direct",
     markets: Object.freeze(["pt-PT", "ro-RO", "sl-SI"]),
     specs: Object.freeze({ systemVoltagesV: Object.freeze([12]), powerW: 200, pureSine: true }),
-    status: "application_required",
-    blocker: "adcell_program_application",
+    status: "skipped_by_owner",
+    blocker: "owner_declined_application",
   }),
   Object.freeze({
     id: "offgridtec-victron-phoenix-24-250",
@@ -20,8 +20,8 @@ const CANDIDATES = Object.freeze([
     productName: "Victron Phoenix 24/250 VE.Direct",
     markets: Object.freeze(["pt-PT", "ro-RO", "sl-SI"]),
     specs: Object.freeze({ systemVoltagesV: Object.freeze([24]), powerW: 200, pureSine: true }),
-    status: "application_required",
-    blocker: "adcell_program_application",
+    status: "skipped_by_owner",
+    blocker: "owner_declined_application",
   }),
   Object.freeze({
     id: "butler-victron-scc125060321",
@@ -98,8 +98,9 @@ const CANDIDATES = Object.freeze([
   }),
 ]);
 
-export function listCommercialSourcingCandidates({ market, category } = {}) {
+export function listCommercialSourcingCandidates({ market, category, includeSkipped = false } = {}) {
   return Object.freeze(CANDIDATES.filter((candidate) => {
+    if (!includeSkipped && candidate.status === "skipped_by_owner") return false;
     if (market && !candidate.markets.includes(market)) return false;
     if (category && candidate.category !== category) return false;
     return true;
@@ -110,10 +111,9 @@ export function bestCommercialSourcingCandidate({ market, category } = {}) {
   const rank = {
     ready_for_ingest: 0,
     pending_affiliate_approval: 1,
-    application_required: 2,
-    blocked_affiliate_verification: 3,
-    blocked_stock: 4,
-    blocked_market_stock: 5,
+    blocked_affiliate_verification: 2,
+    blocked_stock: 3,
+    blocked_market_stock: 4,
   };
   return listCommercialSourcingCandidates({ market, category })
     .slice()
