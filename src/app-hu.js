@@ -1,6 +1,6 @@
 import { APPLIANCES } from "./catalog-hu.js";
 import { calculateSetup } from "./engine.js";
-import { recommendProducts } from "./products.js?v=20260901-padabo1";
+import { recommendProducts } from "./products.js?v=20260901-padabo2";
 import { buildResultShareText } from "./share.js";
 import { buildSetupUrl } from "./setup-url.js";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js";
