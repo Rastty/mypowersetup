@@ -9,6 +9,20 @@ test("Portugal removes literal fail-closed wording from public copy", () => {
   assert.doesNotMatch(polished, /Falhar fechado/);
 });
 
+test("public expansion eyebrows describe the topic instead of publication status", () => {
+  const cases = [
+    ["pt", "Versão privada em validação para Portugal", "Energia para autocaravanas"],
+    ["si", "Zasebna različica v preverjanju za Slovenijo", "Elektrika za avtodome"],
+    ["ro", "Versiune privată în validare pentru România", "Energie pentru autorulote"],
+  ];
+
+  for (const [market, privateCopy, topicCopy] of cases) {
+    const polished = polishExpansionPublicationCopy(`<p class="eyebrow">${privateCopy}</p>`, market);
+    assert.match(polished, new RegExp(topicCopy));
+    assert.doesNotMatch(polished, /publik|publicat|Objavljena|Conteúdo publicado|Conținut publicat/i);
+  }
+});
+
 test("Slovenia replaces untranslated affiliate and fail-closed wording", () => {
   const html = "<h1>Affiliate politika</h1><p>affiliate povezave</p><h2>Fail closed</h2>";
   const polished = polishExpansionPublicationCopy(html, "si");
