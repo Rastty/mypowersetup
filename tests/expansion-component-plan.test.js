@@ -53,9 +53,13 @@ test("DC-only results explicitly say that a separate inverter is not required", 
 });
 
 test("calculator renders the shopping plan before affiliate products and tracks its guide clicks", async () => {
-  const source = await readFile(new URL("../src/expansion-calculator-browser.js", import.meta.url), "utf8");
+  const [source, analytics] = await Promise.all([
+    readFile(new URL("../src/expansion-calculator-browser.js", import.meta.url), "utf8"),
+    readFile(new URL("../src/analytics.js", import.meta.url), "utf8"),
+  ]);
   assert.ok(source.indexOf("renderComponentPlan(value)") < source.indexOf("<div data-product-recommendations>"));
   assert.match(source, /data-component-plan/);
   assert.match(source, /data-component-item/);
-  assert.match(source, /calculator_component_guide_click/);
+  assert.match(analytics, /calculator_to_guide_click/);
+  assert.doesNotMatch(source, /calculator_(?:result|component)_guide_click/);
 });

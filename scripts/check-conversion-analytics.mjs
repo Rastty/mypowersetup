@@ -19,6 +19,8 @@ const affiliateAnalytics = read("src/affiliate-analytics.js");
 requireMatch(analytics, /choice === "granted" \? resolveCommunityAttribution/, "community_persistence_requires_consent");
 requireMatch(analytics, /carryCommunityAttributionToUrl\(/, "community_attribution_carried_to_calculator");
 requireMatch(analytics, /window\.gtag\("event", event/, "events_use_shared_analytics_context");
+requireMatch(analytics, /track\("calculator_to_guide_click"/, "calculator_to_guide_click_shared_across_markets");
+forbidMatch(analytics, /calculator_(?:result|component)_guide_click/, "calculator_to_guide_click_has_one_event_name");
 requireMatch(navigation, /destination\.origin !== page\.origin/, "community_carry_is_same_origin_only");
 requireMatch(navigation, /searchParams\.set\("utm_medium", "community"\)/, "community_carry_keeps_medium");
 forbidMatch(navigation, /sessionStorage|localStorage|gtag\(|fetch\(/, "community_navigation_must_not_persist_track_or_send");
@@ -49,6 +51,7 @@ requireMatch(expansion, /track\("calculation_completed"/, "expansion_calculation
 requireMatch(expansion, /track\("product_coverage_calculated"/, "expansion_product_coverage_calculated");
 requireMatch(expansion, /trackAffiliateClick\(/, "expansion_affiliate_click");
 forbidMatch(expansion, /mypowersetup:affiliate-click/, "expansion_affiliate_click_must_not_fan_out");
+forbidMatch(expansion, /calculator_(?:result|component)_guide_click/, "expansion_guide_click_uses_shared_tracker");
 for (const market of ["pt", "si", "ro"]) {
   requireMatch(expansion, new RegExp(`\\b${market}:\\s*\\{`), `${market}_expansion_locale`);
 }
@@ -68,4 +71,4 @@ for (const [market, path, appPattern] of [
   requireMatch(html, /id="setup-form"/, `${market}_calculator_form_present`);
 }
 
-console.log("Conversion analytics guard passed: 7/7 markets track calculator start, calculation completion, product coverage and affiliate click; community attribution remains consent-gated and survives guide-to-calculator navigation without storage.");
+console.log("Conversion analytics guard passed: 7/7 markets track calculator start, calculation completion, product coverage, calculator-to-guide journeys and affiliate clicks; community attribution remains consent-gated and survives guide-to-calculator navigation without storage.");

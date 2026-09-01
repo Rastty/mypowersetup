@@ -69,8 +69,6 @@ root.addEventListener("click", async (event) => {
   const edit = event.target.closest("[data-edit]");
   const share = event.target.closest("[data-share-result]");
   const affiliate = event.target.closest("[data-affiliate-product]");
-  const resultGuide = event.target.closest("[data-result-guide]");
-  const componentGuide = event.target.closest("[data-component-guide]");
   const stepTarget = event.target.closest("[data-step-target]");
   const applianceCard = event.target.closest("[data-appliance-card]");
 
@@ -91,12 +89,6 @@ root.addEventListener("click", async (event) => {
     share.textContent = copied ? labels.copied : labels.copyFailed;
     if (copied) track("calculator_result_shared", { market: locale, method: "copy", source: "result" });
     setTimeout(() => { if (share.isConnected) share.textContent = original; }, 1800);
-  }
-  if (resultGuide) {
-    track("calculator_result_guide_click", { market: locale, topic: resultGuide.dataset.topic || "unknown", destination: resultGuide.getAttribute("href") });
-  }
-  if (componentGuide) {
-    track("calculator_component_guide_click", { market: locale, topic: componentGuide.dataset.topic || "unknown", destination: componentGuide.getAttribute("href") });
   }
   if (affiliate) {
     trackAffiliateClick(affiliate, track);
