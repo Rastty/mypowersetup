@@ -5,6 +5,7 @@ export function buildAffiliateClickParameters(link) {
     category: link?.dataset?.category || "unknown",
     source: link?.dataset?.source || "unknown",
     packageId: link?.dataset?.packageId || undefined,
+    recommendationRole: link?.dataset?.recommendationRole || undefined,
   };
 }
 
