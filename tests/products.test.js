@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { parseProductFeed } from "../src/feed.js";
-import { buildAffiliateUrl, configureMerchantAffiliate, normalizeProduct, recommendProducts, refreshCatalogProduct } from "../src/products.js";
+import { buildAffiliateUrl, classifyProduct, configureMerchantAffiliate, normalizeProduct, recommendProducts, refreshCatalogProduct } from "../src/products.js";
 
 test("affiliate deeplink keeps the exact product destination", () => {
   const destination = "https://www.reslshop.cz/markyza-pro-obytne-dodavky-charly-charlyne/";
@@ -1135,6 +1135,12 @@ test("classifier recognizes Slovak Padabo category and product wording", () => {
     [battery.category, panel.category, inverter.category, controller.category],
     ["battery", "solar_panel", "inverter", "controller"]
   );
+});
+
+test("classifier recognizes Portuguese solar panels but rejects their accessories", () => {
+  assert.equal(classifyProduct({ name: "ALLPOWERS SF200 Painel Solar Flexível 200W", specs: { powerW: 200 } }), "solar_panel");
+  assert.equal(classifyProduct({ name: "Cabo adaptador para conector de painel solar 120W", specs: { powerW: 120 } }), "other");
+  assert.equal(classifyProduct({ name: "Suporte para painel solar 200W", specs: { powerW: 200 } }), "other");
 });
 
 test("classifier recognizes localized Padabo PL and HU MPPT controller categories", () => {

@@ -110,3 +110,10 @@ test("current public catalogs meet their commercial scenario no-regression floor
     assert.equal(baseline.ready, true, `${config.market}: ${baseline.blockers.join(", ")}`);
   }
 });
+
+test("current Portugal catalog covers solar sizing in every commercial scenario", async () => {
+  const catalog = JSON.parse(await readFile(new URL("../data/products-pt.json", import.meta.url), "utf8"));
+  const report = assessMarketScenarioCoverage(catalog, "pt");
+  assert.ok(report.scenarios.every((scenario) => !scenario.missing.includes("solar_panel")));
+  assert.ok(!report.opportunities.some((opportunity) => opportunity.category === "solar_panel"));
+});

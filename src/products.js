@@ -322,7 +322,7 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
 }
 
 export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {}) {
-  const accessory = /\b(pouzdro|puzdro|obal|box|držák|držiak|rámeček|rámček|kabel|kábel|konektor|svorka|displej|ukazatel|modul|adaptér|průchodka|priechodka|spojler|ventil|etui|obudowa|uchwyt|rama|przewód|złącze|zacisk|wyświetlacz|wskaźnik|przelotka|wentyl|tok(?:ja)?|keret|csatlakozó|kapocs|kijelző|jelző|átvezető|ventilátor)\b/i;
+  const accessory = /\b(pouzdro|puzdro|obal|box|držák|držiak|rámeček|rámček|kabel|kábel|konektor|svorka|displej|ukazatel|modul|adaptér|průchodka|priechodka|spojler|ventil|etui|obudowa|uchwyt|rama|przewód|złącze|zacisk|wyświetlacz|wskaźnik|przelotka|wentyl|tok(?:ja)?|keret|csatlakozó|kapocs|kijelző|jelző|átvezető|ventilátor|cabo|conector|adaptador|suporte)\b/i;
   const multiComponentBundle = /\b(set|sestava|zostava|kit)\b/i.test(name);
   const chargerPath = /nabíječky|nabíjačky|ładowarki|töltők/i.test(categoryPath);
   const chargerAccessory = /\b(usb|startér|štartér|powerbank|čidlo|snímač|ovládání|ovládanie|kabel|kábel|zástrčka|pohotovostní|indító|érzékelő|vezérlő|csatlakozó)\b/i.test(name);
@@ -352,7 +352,7 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
   const isSolarPanel =
     (/\b(solární|solárny|fotovoltaický|fotovoltický)\s+(?:skládací\s+|skladací\s+|přenosný\s+|prenosný\s+)?panel\b/i.test(name)
       || /\b(?:portable\s+|foldable\s+|flexible\s+|monocrystalline\s+)?solar\s+panel\b/i.test(name)
-      || /\bpanel(?:e)?\s+(?:słoneczn\w*|fotowoltaiczn\w*)\b|\b(?:słoneczn\w*|fotowoltaiczn\w*)\s+panel(?:e)?\b|\bnapelem(?:panel)?\b|\bfotovoltaikus\s+panel\b/i.test(name)) &&
+      || /\bpanel(?:e)?\s+(?:słoneczn\w*|fotowoltaiczn\w*)\b|\b(?:słoneczn\w*|fotowoltaiczn\w*)\s+panel(?:e)?\b|\bnapelem(?:panel)?\b|\bfotovoltaikus\s+panel\b|\bpain(?:el|éis)\s+solar(?:es)?\b/i.test(name)) &&
     !accessory.test(name) &&
     specs.powerW > 0;
   if (isSolarPanel) return "solar_panel";

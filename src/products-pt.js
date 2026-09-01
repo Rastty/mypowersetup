@@ -27,22 +27,24 @@ function exactProductUrl(handle) {
 
 function classifyPortugueseProduct(product, verifiedByUrl) {
   const text = `${cleanText(product?.title)} ${cleanText(product?.body_html)} ${cleanText(product?.product_type)}`;
+  const identity = `${cleanText(product?.title)} ${cleanText(product?.product_type)}`;
   const productUrl = exactProductUrl(product.handle);
   const isBundle = /\b(?:kit|conjunto|bundle|gerador solar)\b/i.test(text);
-  if (isBundle) return null;
+  const isAccessory = /\b(?:cabo|conector|adaptador|suporte)\b/i.test(identity);
+  if (isBundle || isAccessory) return null;
 
-  if (/\bpain(?:el|éis)\s+solar(?:es)?\b|\bsolar\s+panel\b/i.test(text)) {
-    const powerW = numberFrom(text, /(?:^|\D)(\d{2,4}(?:[.,]\d+)?)\s*w(?:p)?\b/i);
-    if (!powerW || powerW < 60 || powerW > 1000) return null;
-    return { category: "solar_panel", specs: { powerW }, verifiedAt: null };
-  }
-
-  if (/\besta(?:ção|cao)\s+(?:de\s+)?energia\b|\bportable\s+power\s+station\b/i.test(text)) {
+  if (/\besta(?:ção|cao)\s+(?:de\s+)?energia\b|\bbanco\s+de\s+energia\b|\bportable\s+power\s+station\b/i.test(identity)) {
     const verified = verifiedByUrl.get(productUrl);
     if (!verified) return null;
     const specs = verified.specs || {};
     if (!(specs.capacityWh > 0 && specs.powerW > 0 && specs.solarInputW > 0 && specs.dcOutputA > 0)) return null;
     return { category: "power_station", specs: { ...specs }, verifiedAt: verified.verifiedAt || null };
+  }
+
+  if (/\bpain(?:el|éis)\s+solar(?:es)?\b|\bsolar\s+panel\b/i.test(text)) {
+    const powerW = numberFrom(text, /(?:^|\D)(\d{2,4}(?:[.,]\d+)?)\s*w(?:p)?\b/i);
+    if (!powerW || powerW < 60 || powerW > 1000) return null;
+    return { category: "solar_panel", specs: { powerW }, verifiedAt: null };
   }
 
   return null;
@@ -78,6 +80,7 @@ export function parseAllpowersPtProducts(payload, { verifiedProducts = [] } = {}
       merchant: "allpowers_pt",
       name: cleanText(product.title),
       description: cleanText(product.body_html).slice(0, 500),
+      categoryPath: classified.category === "solar_panel" ? "Solar Panel" : "Portable Power Station",
       category: classified.category,
       brand: cleanText(product.vendor || "ALLPOWERS"),
       priceCzk: Number.isFinite(price) && price >= 0 ? price : null,
