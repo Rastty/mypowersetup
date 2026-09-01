@@ -14,3 +14,11 @@ test("the active CamperTeam LiFePO4 thread is ranked from its latest verified ac
   assert.equal(scored.actionable, true);
   assert.ok(scored.score >= 100, `expected a top-tier live opportunity, got ${scored.score}`);
 });
+
+test("a fresh thread awaiting author follow-up is not treated as a reply opportunity", () => {
+  const item = registry.opportunities.find((entry) => entry.id === "pl-camperteam-ford-dcdc-202608");
+  assert.ok(item);
+  const scored = scoreTrafficOpportunity(item, { asOf: registry.updatedAt });
+  assert.equal(item.status, "monitor");
+  assert.equal(scored.actionable, false);
+});

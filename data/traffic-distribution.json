@@ -196,15 +196,15 @@
       "lastKnownActivity": "2026-08-11",
       "priority": "high",
       "fit": "direct_camper_technical_current",
-      "status": "ready_for_manual_reply",
+      "status": "monitor",
       "postingRule": "answer_first_no_link_drop",
-      "notes": "Fresh diagnostic thread: 2022 Ford Transit with smart alternator, 40A DC-DC, 2x100Ah LiFePO4, 165W solar and 2000W inverter. Best response is diagnostic: establish why the habitation bank discharged, verify charger behavior and parasitic loads before recommending hardware."
+      "notes": "The diagnostic thread reached a concrete repair and test state. On 2026-08-11 the author thanked participants and said he would report back after the trip. Do not add another reply now; wait for a new author update or a fresh unresolved question."
     },
     {
       "id": "pl-camperteam-lifepo4-use-202606",
       "market": "pl",
       "community": "CamperTeam",
-      "sourceUrl": "https://camperteam.pl/forum/viewtopic.php?p=975382",
+      "sourceUrl": "https://www.camperteam.pl/forum/viewtopic.php?start=2355&t=34002",
       "sourceTitle": "Zastosowanie LiFePO4 w zabudowie.",
       "problemIntent": ["lifepo4_migration", "battery_sizing", "seasonal_consumption", "solar_sizing"],
       "targetRoute": "/pl/poradnik/pojemnosc-akumulatora-do-kampera/",
