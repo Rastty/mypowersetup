@@ -25,5 +25,5 @@ test("fresh Ford Transit DC-DC thread is ranked as actionable", () => {
   const ford = ranked.find((item) => item.id === "pl-camperteam-ford-dcdc-202608");
   assert.ok(ford);
   assert.equal(ford.actionable, true);
-  assert.equal(ford.ageDays, 19);
+  assert.equal(ford.ageDays, 21);
 });

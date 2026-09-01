@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-30",
+  "updatedAt": "2026-09-01",
   "policy": {
     "defaultPostingRule": "answer_first_no_link_drop",
     "allowedStatuses": ["ready_for_manual_reply", "monitor", "research_only", "replied", "closed"],
