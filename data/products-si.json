@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T15:10:00.261Z",
+  "generatedAt": "2026-09-01T05:41:56.289Z",
   "market": "sl-SI",
   "currency": "EUR",
   "private": false,
@@ -8,11 +8,13 @@
     "merchant": "allpowers_eu",
     "merchants": [
       "allpowers_eu",
+      "powerqueen_eu",
       "oxe_si"
     ],
     "eligible": true,
-    "verifiedAt": "2026-08-31",
+    "verifiedAt": "2026-09-01",
     "evidenceUrl": "https://iallpowers.eu/",
+    "powerQueenEvidenceUrl": "https://www.ipowerqueen.de/en/pages/shipping-policy",
     "localMerchantEvidence": "https://www.oxepower.si/export/google-dognet-si.xml"
   },
   "sources": {
@@ -21,6 +23,16 @@
       "awinMerchantId": 38934,
       "affiliateId": 3044971,
       "exactProducts": 26
+    },
+    "powerqueen_eu": {
+      "status": "error",
+      "error": "fetch failed",
+      "awinMerchantId": 97025,
+      "affiliateId": 3044971,
+      "shippingEligible": true,
+      "shippingEvidenceUrl": "https://www.ipowerqueen.de/en/pages/shipping-policy",
+      "shippingVerifiedAt": "2026-09-01",
+      "exactProducts": 0
     },
     "oxe_si": {
       "status": "ok",
@@ -66,7 +78,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:10257573445939",
@@ -130,7 +142,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:8205919715635",
@@ -161,7 +173,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:10143263129907",
@@ -192,7 +204,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:10143246418227",
@@ -223,7 +235,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:9948837937459",
@@ -254,7 +266,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:9875554074931",
@@ -285,7 +297,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:9855868961075",
@@ -316,7 +328,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:9802731815219",
@@ -347,7 +359,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:9801383051571",
@@ -378,7 +390,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:9763001073971",
@@ -442,7 +454,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:9598354719027",
@@ -473,7 +485,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:9598338564403",
@@ -504,7 +516,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:8630287532339",
@@ -568,7 +580,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:8431037645107",
@@ -599,7 +611,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:8300246663475",
@@ -630,7 +642,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:8205920469299",
@@ -661,7 +673,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:8205916733747",
@@ -692,7 +704,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:8205905887539",
@@ -723,7 +735,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:8205901234483",
@@ -754,7 +766,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:8205897105715",
@@ -785,7 +797,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:8205889012019",
@@ -816,7 +828,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-08-31"
+      "verifiedAt": "2026-09-01"
     },
     {
       "id": "allpowers_eu:8205013549363",
