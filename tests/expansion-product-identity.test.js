@@ -22,11 +22,11 @@ test("expansion recommendation views preserve stable product identity", async ()
   }
 });
 
-test("expansion affiliate cards send exact product identity through the shared click event", async () => {
+test("expansion affiliate cards send exact product identity through the shared tracker", async () => {
   const source = await read("src/expansion-calculator-browser.js");
-  assert.match(source, /productId:\s*affiliate\.dataset\.productId/);
   assert.match(source, /data-product-id=/);
-  assert.match(source, /event:\s*"affiliate_click"/);
-  assert.match(source, /mypowersetup:affiliate-click/);
+  assert.match(source, /data-source="product-card"/);
+  assert.match(source, /trackAffiliateClick\(affiliate, track\)/);
+  assert.doesNotMatch(source, /mypowersetup:affiliate-click/);
   assert.doesNotMatch(source, /affiliate_product_click/);
 });

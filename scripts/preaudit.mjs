@@ -14,13 +14,14 @@ const markets = [
 const sharedRequired = ["calculation_completed", "product_coverage_calculated", "affiliate_click"];
 const parityEvents = ["calculator_started", "result_share_requested", "result_print_requested"];
 const sharedAnalytics = await readFile("src/analytics.js", "utf8");
+const sharedAffiliateAnalytics = await readFile("src/affiliate-analytics.js", "utf8");
 const sitemapXml = await readFile("sitemap.xml", "utf8");
 const publicSeo = await auditPublicSeo({ sitemapXml, readPage: (path) => readFile(path, "utf8") });
 const reports = [];
 
 for (const market of markets) {
   const app = await readFile(market.app, "utf8");
-  const capabilities = `${app}\n${sharedAnalytics}`;
+  const capabilities = `${app}\n${sharedAnalytics}\n${sharedAffiliateAnalytics}`;
   const hardMissing = sharedRequired.filter((event) => !capabilities.includes(event));
   const parityMissing = parityEvents.filter((event) => !capabilities.includes(event));
   let seo = { state: market.public ? "unknown" : "private" };

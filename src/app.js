@@ -14,6 +14,7 @@ import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
 import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
+import { trackAffiliateClick } from "./affiliate-analytics.js?v=20260901-1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -584,16 +585,7 @@ function productCard(product, reason, checks, verify) {
 document.addEventListener("click", (event) => {
   const link = event.target.closest("[data-affiliate-click]");
   if (!link) return;
-  const detail = {
-    event: "affiliate_click",
-    productId: link.dataset.productId,
-    merchant: link.dataset.merchant,
-    category: link.dataset.category,
-    source: link.dataset.source || "unknown",
-    packageId: link.dataset.packageId || undefined
-  };
-  trackEvent(detail.event, detail);
-  document.dispatchEvent(new CustomEvent("mypowersetup:affiliate-click", { detail }));
+  trackAffiliateClick(link, trackEvent);
 });
 
 function trackEvent(event, parameters = {}) {
