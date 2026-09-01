@@ -554,7 +554,9 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('href="/sk/sprievodca/"'));
   assert.ok(html.includes('href="/sk/sprievodca/kapacita-baterie-do-karavanu/"'));
   assert.ok(html.includes('href="/sk/sprievodca/agm-vs-lifepo4/"'));
+  assert.ok(html.includes('href="/sk/sprievodca/kolko-w-solarnych-panelov/"'));
   assert.doesNotMatch(html, /href="\/pruvodce\/agm-vs-lifepo4\/"/);
+  assert.doesNotMatch(html, /href="\/pruvodce\/kolik-w-solarnich-panelu\/"/);
 });
 
 test("Polish calculator is localized, indexable and isolated to its verified catalog", async () => {

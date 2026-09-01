@@ -23,6 +23,17 @@ test("all calculator implementations use the same affiliate click event", async 
   assert.doesNotMatch(expansion, /mypowersetup:affiliate-click/);
 });
 
+test("all markets use one shared calculator-to-guide event", async () => {
+  const analytics = await readFile(new URL("../src/analytics.js", import.meta.url), "utf8");
+  const expansion = await readFile(expansionBrowserFile, "utf8");
+  assert.match(analytics, /track\("calculator_to_guide_click"/);
+  for (const zone of ["result_component", "result_related", "homepage_guide_preview", "inline"]) {
+    assert.match(analytics, new RegExp(`return ["']${zone}["']`));
+  }
+  assert.doesNotMatch(analytics, /calculator_(?:result|component)_guide_click/);
+  assert.doesNotMatch(expansion, /calculator_(?:result|component)_guide_click/);
+});
+
 test("expansion calculation_completed uses mature-market parameter names", async () => {
   const expansion = await readFile(expansionBrowserFile, "utf8");
   for (const parameter of ["dailyWh", "batteryAh", "solarWatts", "systemVoltage", "applianceCount", "batteryType", "season"]) {

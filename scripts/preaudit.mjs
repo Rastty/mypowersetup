@@ -11,7 +11,7 @@ const markets = [
   { key: "si", app: "src/expansion-calculator-browser.js", home: "si/index.html", public: true },
 ];
 
-const sharedRequired = ["calculation_completed", "product_coverage_calculated", "affiliate_click"];
+const sharedRequired = ["calculation_completed", "product_coverage_calculated", "affiliate_click", "calculator_to_guide_click"];
 const parityEvents = ["calculator_started", "result_share_requested", "result_print_requested"];
 const sharedAnalytics = await readFile("src/analytics.js", "utf8");
 const sharedAffiliateAnalytics = await readFile("src/affiliate-analytics.js", "utf8");
