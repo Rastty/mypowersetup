@@ -42,6 +42,7 @@ requireMatch(hu, /affiliate_click/, "hu_affiliate_click");
 const expansion = read("src/expansion-calculator-browser.js");
 requireMatch(expansion, /track\("calculator_started"/, "expansion_calculator_started");
 requireMatch(expansion, /track\("calculation_completed"/, "expansion_calculation_completed");
+requireMatch(expansion, /track\("product_coverage_calculated"/, "expansion_product_coverage_calculated");
 requireMatch(expansion, /affiliate_click/, "expansion_affiliate_click");
 for (const market of ["pt", "si", "ro"]) {
   requireMatch(expansion, new RegExp(`\\b${market}:\\s*\\{`), `${market}_expansion_locale`);
@@ -62,4 +63,4 @@ for (const [market, path, appPattern] of [
   requireMatch(html, /id="setup-form"/, `${market}_calculator_form_present`);
 }
 
-console.log("Conversion analytics guard passed: 7/7 markets track calculator start, calculation completion and affiliate click; community attribution remains consent-gated and survives guide-to-calculator navigation without storage.");
+console.log("Conversion analytics guard passed: 7/7 markets track calculator start, calculation completion, product coverage and affiliate click; community attribution remains consent-gated and survives guide-to-calculator navigation without storage.");

@@ -1,15 +1,21 @@
 import { readFile } from "node:fs/promises";
+import { auditPublicSeo } from "../src/public-seo-audit.js";
 
 const markets = [
   { key: "cz", app: "src/app.js", home: "index.html", public: true },
   { key: "sk", app: "src/app-sk.js", home: "sk/index.html", public: true },
   { key: "pl", app: "src/app-pl.js", home: "pl/index.html", public: true },
   { key: "hu", app: "src/app-hu-browser.js", home: "hu/index.html", public: true },
+  { key: "pt", app: "src/expansion-calculator-browser.js", home: "pt/index.html", public: true },
+  { key: "ro", app: "src/expansion-calculator-browser.js", home: "ro/index.html", public: true },
+  { key: "si", app: "src/expansion-calculator-browser.js", home: "si/index.html", public: true },
 ];
 
 const sharedRequired = ["calculation_completed", "product_coverage_calculated", "affiliate_click"];
 const parityEvents = ["calculator_started", "result_share_requested", "result_print_requested"];
 const sharedAnalytics = await readFile("src/analytics.js", "utf8");
+const sitemapXml = await readFile("sitemap.xml", "utf8");
+const publicSeo = await auditPublicSeo({ sitemapXml, readPage: (path) => readFile(path, "utf8") });
 const reports = [];
 
 for (const market of markets) {
@@ -34,13 +40,16 @@ const parityGaps = reports.flatMap((report) => report.parityMissing.map((event) 
 const seoFailures = reports
   .filter((report) => report.public)
   .flatMap((report) => Object.entries(report.seo).filter(([, ok]) => ok !== true).map(([key]) => `${report.market}:${key}`));
+const allSeoFailures = [...seoFailures, ...publicSeo.failures];
 
 const output = {
   generatedAt: new Date().toISOString(),
-  safe: hardFailures.length === 0 && seoFailures.length === 0,
-  auditReady: hardFailures.length === 0 && seoFailures.length === 0 && parityGaps.length === 0,
+  safe: hardFailures.length === 0 && allSeoFailures.length === 0,
+  auditReady: hardFailures.length === 0 && allSeoFailures.length === 0 && parityGaps.length === 0,
   hardFailures,
   parityGaps,
+  seoFailures: allSeoFailures,
+  publicSeo,
   markets: reports,
 };
 console.log(JSON.stringify(output, null, 2));
