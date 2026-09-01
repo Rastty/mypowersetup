@@ -16,14 +16,35 @@ const INTENT_GUIDANCE = Object.freeze({
   offgrid_system_design: "Start from measured daily Wh and worst useful season, then size storage and generation around the actual duty cycle.",
 });
 
+const LOCALIZED_INTENT_GUIDANCE = Object.freeze({
+  pl: Object.freeze({
+    battery_sizing: "Zacznij od dobowego zużycia energii w Wh i oczekiwanej autonomii; na Ah przeliczaj dopiero po ustaleniu napięcia systemu, chemii akumulatora i użytecznej głębokości rozładowania.",
+    solar_sizing: "Porównaj dobowe zapotrzebowanie w Wh z uzyskiem solarnym skorygowanym o porę roku; moc znamionowa paneli w Wp nie określa energii dostępnej każdego dnia.",
+    lifepo4_migration: "Przed przejściem na LiFePO₄ sprawdź wszystkie źródła ładowania, blokadę ładowania w niskiej temperaturze, limity BMS, przekroje przewodów i zabezpieczenia.",
+    dc_dc_charging: "Przed zmianą ładowarki sprawdź pracę inteligentnego alternatora, limit prądu DC/DC, przekroje przewodów i bezpieczniki oraz separację akumulatora rozruchowego od pokładowego.",
+    charging_diagnostics: "Najpierw zdiagnozuj cały przepływ energii: pobór spoczynkowy, napięcie i prąd ładowania oraz stan akumulatora; dopiero potem wymieniaj sprawne urządzenia.",
+    smart_alternator: "Zmierz napięcie alternatora pod obciążeniem i potwierdź sposób sterowania ładowarką zamiast zakładać, że układ zachowuje się jak klasyczny alternator.",
+    mppt_sizing: "Sprawdź Voc i Isc paneli oraz limity wejściowe regulatora, w tym zapas napięcia na mróz; nie dobieraj MPPT wyłącznie z mocy paneli.",
+    inverter_sizing: "Dobierz przetwornicę do jednoczesnego obciążenia AC i prądu rozruchowego, a następnie sprawdź wynikowy prąd DC, przekrój przewodów i bezpiecznik.",
+    seasonal_consumption: "Rozdziel założenia letnie od wiosenno-jesiennych i zimowych, bo krótszy dzień oraz dłuższa praca oświetlenia i ogrzewania istotnie zmieniają autonomię.",
+    system_design: "Zacznij od profilu odbiorników: dobowe Wh, autonomia, akumulator, źródła ładowania, solar, przetwornica, a na końcu przewody i zabezpieczenia.",
+    cable_sizing: "Przekrój przewodu dobierz do prądu, długości trasy i dopuszczalnego spadku napięcia; zabezpieczenie ma chronić przewód i uwzględniać wydajność źródła.",
+    fuse_sizing: "Umieść zabezpieczenie blisko źródła energii i dobierz je tak, aby chroniło przewód, a nie tylko podłączone urządzenie.",
+    solar_expansion: "Przed dołożeniem paneli sprawdź ich zgodność elektryczną oraz limity napięcia i prądu MPPT, zanim połączysz stare moduły z nowymi.",
+    series_parallel: "Przed wyborem połączenia szeregowego lub równoległego sprawdź Voc, prąd paneli, niedopasowanie modułów i limity regulatora.",
+    offgrid_system_design: "Zacznij od zmierzonego dobowego zużycia w Wh i najgorszego istotnego sezonu, a następnie dobierz magazyn i produkcję do rzeczywistego profilu pracy.",
+  }),
+});
+
 export function buildCommunityReplyBrief(opportunity, { maxPoints = 4 } = {}) {
   if (!opportunity?.id || !Array.isArray(opportunity.problemIntent)) {
     throw new TypeError("COMMUNITY_REPLY_BRIEF_OPPORTUNITY_REQUIRED");
   }
 
   const points = [];
+  const guidanceByIntent = LOCALIZED_INTENT_GUIDANCE[opportunity.market] || INTENT_GUIDANCE;
   for (const intent of opportunity.problemIntent) {
-    const guidance = INTENT_GUIDANCE[intent];
+    const guidance = guidanceByIntent[intent] || INTENT_GUIDANCE[intent];
     if (guidance && !points.includes(guidance)) points.push(guidance);
     if (points.length >= maxPoints) break;
   }

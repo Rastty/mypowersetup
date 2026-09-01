@@ -12,9 +12,21 @@ test("fresh Polish CamperTeam opportunities produce answer-first technical brief
   const brief = buildCommunityReplyBrief(opportunity);
   assert.equal(brief.linkRule, "answer_first_no_link_drop");
   assert.ok(brief.points.length >= 3);
-  assert.match(brief.points.join(" "), /smart-alternator|alternator/i);
-  assert.match(brief.points.join(" "), /DC\/DC|charger|charging/i);
+  assert.match(brief.points.join(" "), /alternatora/i);
+  assert.match(brief.points.join(" "), /DC\/DC|ładowark/i);
+  assert.match(brief.points.join(" "), /bezpiecznik|zabezpieczeni/i);
   assert.ok(brief.supportingRoutes.every((route) => route.startsWith("/pl/")));
+});
+
+test("active all-season CamperTeam brief is written in Polish", () => {
+  const opportunity = registry.opportunities.find((item) => item.id === "pl-camperteam-lifepo4-use-202606");
+  assert.ok(opportunity);
+
+  const brief = buildCommunityReplyBrief(opportunity);
+  assert.match(brief.points.join(" "), /dobowego zużycia energii|dobowe zapotrzebowanie/i);
+  assert.match(brief.points.join(" "), /LiFePO₄/);
+  assert.match(brief.points.join(" "), /zimow|porę roku/i);
+  assert.doesNotMatch(brief.points.join(" "), /Start with|Before changing|Compare daily/i);
 });
 
 test("reply briefs cap the answer checklist and never invent a promotional fallback", () => {

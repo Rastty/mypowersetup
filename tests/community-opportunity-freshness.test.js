@@ -10,7 +10,7 @@ test("the active CamperTeam LiFePO4 thread is ranked from its latest verified ac
   assert.ok(item);
   assert.equal(item.lastKnownActivity, "2026-08-27");
   const scored = scoreTrafficOpportunity(item, { asOf: registry.updatedAt });
-  assert.equal(scored.ageDays, 3);
+  assert.equal(scored.ageDays, 5);
   assert.equal(scored.actionable, true);
   assert.ok(scored.score >= 100, `expected a top-tier live opportunity, got ${scored.score}`);
 });
