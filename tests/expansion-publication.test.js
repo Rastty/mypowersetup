@@ -21,6 +21,28 @@ test("publicizer removes private robots only for the requested market and adds c
   assert.throws(() => publicizeExpansionHtml(html, "pt", "/si/vodici/"), /ROUTE_INVALID/);
 });
 
+test("publicizer supplies one localized Article schema only when an expansion guide lacks one", async () => {
+  const cases = [
+    ["pt", "/pt/guias/consumo-frigorifico-compressor-autocaravana/", "pt-PT"],
+    ["pt", "/pt/guias/sistema-eletrico-completo-autocaravana/", "pt-PT"],
+    ["ro", "/ro/ghiduri/consum-frigider-compresor-autorulota/", "ro-RO"],
+    ["ro", "/ro/ghiduri/sistem-electric-complet-autorulota/", "ro-RO"],
+    ["si", "/si/vodici/poraba-kompresorski-hladilnik-avtodom/", "sl-SI"],
+    ["si", "/si/vodici/elektricni-sistem-avtodom/", "sl-SI"],
+  ];
+  for (const [market, route, locale] of cases) {
+    const privateHtml = '<html><head><meta name="robots" content="noindex,nofollow,noarchive"></head><body></body></html>';
+    const once = publicizeExpansionHtml(privateHtml, market, route);
+    const twice = publicizeExpansionHtml(once, market, route);
+    assert.equal((once.match(/data-expansion-article-fallback/g) || []).length, 1, route);
+    assert.match(once, new RegExp(`"inLanguage":"${locale}"`));
+    assert.equal(twice, once, route);
+  }
+
+  const existingArticle = '<html><head><script type="application/ld+json">{"@type":"Article","inLanguage":"pt-PT"}</script></head><body></body></html>';
+  assert.doesNotMatch(publicizeExpansionHtml(existingArticle, "pt", "/pt/guias/capacidade-bateria-autocaravana/"), /data-expansion-article-fallback/);
+});
+
 test("home publication adds all public hreflangs, static language links and release marker idempotently", () => {
   const html = '<html><head></head><body><header><nav class="expansion-nav"><a class="header-link" href="/ro/ghiduri/">Ghiduri</a></nav></header></body></html>';
   const once = publicizeExpansionHtml(html, "ro", "/ro/", { home: true });

@@ -5,6 +5,7 @@ import { buildResultShareText, copyText } from "./share.js";
 import { expansionResultGuides } from "./expansion-result-guides.js";
 import { expansionComponentPlan } from "./expansion-component-plan.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
+import { assessRecommendationCoverage } from "./recommendation-coverage.js";
 
 const root = document.querySelector("[data-expansion-calculator]");
 if (!root) throw new Error("EXPANSION_CALCULATOR_ROOT_MISSING");
@@ -319,11 +320,13 @@ async function renderPortugalProducts(calculation) {
     const recommendations = buildPortugalRecommendations(catalog, calculation, 3);
     const coverage = portugalRecommendationCoverage(recommendations);
     const products = [...recommendations.solar_panel, ...recommendations.power_station];
+    trackProductCoverage(recommendations, calculation);
     track("product_recommendations_rendered", { market: "pt", solar_panel_covered: coverage.solarPanel, power_station_covered: coverage.powerStation, product_count: products.length });
     if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); return; }
     const portableGap = coverage.powerStation ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
     target.innerHTML = renderProductSection("pt-products-title", products, portableGap);
   } catch {
+    trackProductCoverage({}, calculation);
     track("product_recommendations_rendered", { market: "pt", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
     target.innerHTML = renderNoVerifiedProducts();
   }
@@ -336,11 +339,13 @@ async function renderSloveniaProducts(calculation) {
     const catalog = await loadSloveniaProductCatalog();
     const recommendations = buildSloveniaRecommendations(catalog, calculation, 3);
     const products = [...recommendations.solar_panel, ...recommendations.power_station];
+    trackProductCoverage(recommendations, calculation);
     track("product_recommendations_rendered", { market: "si", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
     if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); return; }
     const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
     target.innerHTML = renderProductSection("si-products-title", products, portableGap);
   } catch {
+    trackProductCoverage({}, calculation);
     track("product_recommendations_rendered", { market: "si", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
     target.innerHTML = renderNoVerifiedProducts();
   }
@@ -353,14 +358,26 @@ async function renderRomaniaProducts(calculation) {
     const catalog = await loadRomaniaProductCatalog();
     const recommendations = buildRomaniaRecommendations(catalog, calculation, 3);
     const products = [...recommendations.solar_panel, ...recommendations.power_station];
+    trackProductCoverage(recommendations, calculation);
     track("product_recommendations_rendered", { market: "ro", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
     if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); return; }
     const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
     target.innerHTML = renderProductSection("ro-products-title", products, portableGap);
   } catch {
+    trackProductCoverage({}, calculation);
     track("product_recommendations_rendered", { market: "ro", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
     target.innerHTML = renderNoVerifiedProducts();
   }
+}
+
+function trackProductCoverage(recommendations, calculation) {
+  const coverage = assessRecommendationCoverage(recommendations, calculation, locale);
+  track("product_coverage_calculated", {
+    market: locale,
+    required_categories: coverage.required.length,
+    covered_categories: coverage.covered.length,
+    missing_categories: coverage.missing.join(","),
+  });
 }
 
 function renderNoVerifiedProducts() { return `<p class="result-products-empty" data-recommendation-empty>${escapeHtml(labels.noProducts)}</p>`; }

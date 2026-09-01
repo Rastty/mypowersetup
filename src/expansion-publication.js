@@ -97,6 +97,25 @@ function hasHeadAlternate(html, language) {
     || new RegExp(`<link\\s+[^>]*hreflang=["']${language}["'][^>]*rel=["']alternate["']`, "i").test(head);
 }
 
+function ensureExpansionArticleSchema(html, market, route) {
+  if (/"@type"\s*:\s*"Article"/.test(html)) return html;
+  const config = CONFIG[market];
+  const base = guideBase(market);
+  const page = config?.content.guides.find((guide) => route === `${config.prefix}${base}/${guide.slug}/`);
+  if (!page) return html;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: page.heading || page.title,
+    description: page.description || page.intro,
+    inLanguage: config.locale,
+    mainEntityOfPage: `https://mypowersetup.com${route}`,
+    author: { "@type": "Person", name: "Petr Gálík" },
+    publisher: { "@type": "Organization", name: "MyPowerSetup", url: "https://mypowersetup.com/" },
+  };
+  return html.replace("</head>", `<script type="application/ld+json" data-expansion-article-fallback>${JSON.stringify(schema)}</script></head>`);
+}
+
 export function publicizeExpansionHtml(html, market, route, { home = false } = {}) {
   const config = CONFIG[market];
   if (!config || !route?.startsWith(config.prefix)) throw new Error(`EXPANSION_PUBLICATION_ROUTE_INVALID:${market}`);
@@ -108,6 +127,7 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
   output = enhanceExpansionPowerStationContent(output, market, route);
   output = addContextualGrowthLinks(output, market, route);
   output = addExpansionVoltageGuideDiscovery(output, market, route);
+  output = ensureExpansionArticleSchema(output, market, route);
   const canonical = `https://mypowersetup.com${route}`;
   const additions = [];
   if (!/rel="canonical"/.test(output)) additions.push(`<link rel="canonical" href="${canonical}">`);

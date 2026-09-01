@@ -52,3 +52,10 @@ test("public expansion browser progressively upgrades the MVP controls", () => {
   assert.match(source, /mountUsageProfiles/);
   assert.match(source, /usage_profile_selected/);
 });
+
+test("every expansion homepage ships the current calculator asset", () => {
+  for (const market of ["pt", "ro", "si"]) {
+    const html = readFileSync(new URL(`../${market}/index.html`, import.meta.url), "utf8");
+    assert.match(html, /\/src\/expansion-calculator-browser\.js\?v=20260901-audit1/);
+  }
+});
