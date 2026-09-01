@@ -41,6 +41,14 @@ test("Portugal parser refuses bundles, tiny panels and malformed handles", () =>
   assert.deepEqual(parseAllpowersPtProducts(payload), []);
 });
 
+test("Portugal parser refuses solar accessories and does not disguise a power bank as a panel", () => {
+  const payload = { products: [
+    product({ id: 4, title: "Cabo adaptador para conector solar ALLPOWERS", handle: "cabo-adaptador-solar", body_html: "Compatível com painel solar 120 W." }),
+    product({ id: 5, title: "ALLPOWERS S200 Banco de energia portátil 200W 154Wh", handle: "allpowers-s200-banco-de-energia", body_html: "Pode ser carregado por painel solar 100 W." }),
+  ] };
+  assert.deepEqual(parseAllpowersPtProducts(payload), []);
+});
+
 test("Portugal power stations fail closed until electrical limits are explicitly verified", () => {
   const station = product({
     id: 2001,
