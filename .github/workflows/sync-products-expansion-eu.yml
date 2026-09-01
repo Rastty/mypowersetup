@@ -27,7 +27,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: expansion-eu-product-sync
+  group: affiliate-catalog-write
   cancel-in-progress: false
 
 jobs:
@@ -35,6 +35,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: main
       - uses: actions/setup-node@v5
         with:
           node-version: 22
