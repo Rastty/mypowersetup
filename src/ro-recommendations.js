@@ -1,5 +1,6 @@
 import { calculatePowerStationProfile } from "./power-station.js";
 import { validateOxeDognetDeeplink, validateOxeProductUrl } from "./oxe-affiliate.js";
+import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js";
 
 export const RO_CATALOG_URL = "/data/products-ro.json";
 const AWIN_MERCHANT_ID = "38934";
@@ -21,6 +22,8 @@ export function validateRomaniaCatalog(catalog) {
   if (catalog?.market !== "ro-RO" || catalog?.currency !== "EUR" || catalog?.private !== false) throw new Error("RO_CATALOG_SHAPE_INVALID");
   if (catalog?.shippingEligibility?.country !== "Romania" || catalog?.shippingEligibility?.eligible !== true) throw new Error("RO_SHIPPING_ELIGIBILITY_MISSING");
   if (!Array.isArray(catalog.products) || !catalog.products.length) throw new Error("RO_CATALOG_EMPTY");
+  const powerQueenProducts = catalog.products.filter(isPowerQueenExpansionProduct);
+  if (powerQueenProducts.length && catalog.sources?.powerqueen_eu?.status !== "ok") throw new Error("RO_POWERQUEEN_SOURCE_INVALID");
   for (const product of catalog.products) validateRomaniaProduct(product);
   return catalog;
 }
@@ -63,7 +66,13 @@ export function buildRomaniaRecommendations(catalog, setup, limit = 3) {
 }
 
 function validateRomaniaProduct(product) {
-  if (product?.marketEligible !== true || !product?.verifiedAt) throw new Error("RO_PRODUCT_EVIDENCE_INVALID");
+  if (product?.marketEligible !== true) throw new Error("RO_PRODUCT_EVIDENCE_INVALID");
+  if (isPowerQueenExpansionProduct(product)) {
+    validatePowerQueenExpansionProduct(product);
+    return;
+  }
+  if (!product?.verifiedAt) throw new Error("RO_PRODUCT_EVIDENCE_INVALID");
+
   let productUrl;
   if (product.merchant === "allpowers_eu") {
     const parsedUrl = new URL(product.productUrl);
