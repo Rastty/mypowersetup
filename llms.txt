@@ -63,6 +63,9 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 - [Kabely a pojistky 12 V](https://mypowersetup.com/pruvodce/kabely-a-pojistky-12-v/): Výpočet průřezu podle proudu, délky a úbytku napětí a bezpečnostní omezení jištění.
 - [Jak velký měnič](https://mypowersetup.com/pruvodce/jak-velky-menic-do-karavanu/): Trvalý výkon, rozběhové špičky a proud z baterie.
 - [Spotřeba kompresorové lednice](https://mypowersetup.com/pruvodce/spotreba-kompresorove-lednice/): Odhad Wh za 24 hodin a vliv teploty a cyklování.
+- [12 V ou 24 V na autocaravana](https://mypowersetup.com/pt/guias/sistema-12v-ou-24v-autocaravana/): Rozhodnutí podle výkonu, proudu, kabeláže a kompatibility portugalské instalace.
+- [Sistem de 12 V sau 24 V în autorulotă](https://mypowersetup.com/ro/ghiduri/sistem-12v-sau-24v-autorulota/): Rozhodnutí podle výkonu, proudu, kabeláže a kompatibility rumunské instalace.
+- [12 V ali 24 V sistem za avtodom](https://mypowersetup.com/si/vodici/12v-ali-24v-sistem-avtodom/): Rozhodnutí podle výkonu, proudu, kabeláže a kompatibility slovinské instalace.
 
 ## Důvěryhodnost a pravidla
 
