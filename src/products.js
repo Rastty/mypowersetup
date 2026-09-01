@@ -257,7 +257,7 @@ export function normalizeProduct(raw, merchantKey) {
     specs.pureSine = true;
     name = name.replace(/-\s*12\s*V\s*DC\s*$/i, `- ${ampulVariantVoltage} V DC`);
   }
-  if (/solární regulátory|solárne regulátory|napelemes töltésszabályozók|töltésszabályozók/i.test(categoryPath)) {
+  if (isControllerCategory(categoryPath)) {
     specs.currentA = extractControllerCurrent(name, description);
   }
 
@@ -322,7 +322,7 @@ export function extractSpecs(primaryText = "", fallbackText = "") {
 }
 
 export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {}) {
-  const accessory = /\b(pouzdro|puzdro|obal|box|držák|držiak|rámeček|rámček|kabel|kábel|konektor|svorka|displej|ukazatel|modul|adaptér|průchodka|priechodka|spojler|ventil|etui|obudowa|uchwyt|rama|przewód|złącze|zacisk|wyświetlacz|wskaźnik|przelotka|wentyl|tok|keret|csatlakozó|kapocs|kijelző|jelző|átvezető|ventilátor)\b/i;
+  const accessory = /\b(pouzdro|puzdro|obal|box|držák|držiak|rámeček|rámček|kabel|kábel|konektor|svorka|displej|ukazatel|modul|adaptér|průchodka|priechodka|spojler|ventil|etui|obudowa|uchwyt|rama|przewód|złącze|zacisk|wyświetlacz|wskaźnik|przelotka|wentyl|tok(?:ja)?|keret|csatlakozó|kapocs|kijelző|jelző|átvezető|ventilátor)\b/i;
   const multiComponentBundle = /\b(set|sestava|zostava|kit)\b/i.test(name);
   const chargerPath = /nabíječky|nabíjačky|ładowarki|töltők/i.test(categoryPath);
   const chargerAccessory = /\b(usb|startér|štartér|powerbank|čidlo|snímač|ovládání|ovládanie|kabel|kábel|zástrčka|pohotovostní|indító|érzékelő|vezérlő|csatlakozó)\b/i.test(name);
@@ -366,7 +366,7 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
   if (isInverter) return "inverter";
 
   const isController =
-    /solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)|napelemes töltésszabályozók|töltésszabályozók|battery charge controllers/i.test(categoryPath) &&
+    isControllerCategory(categoryPath) &&
     /\bmppt\b/i.test(name) &&
     !accessory.test(name) &&
     specs.currentA > 0;
@@ -417,7 +417,7 @@ export function refreshCatalogProduct(product) {
     specs.voltageV = ampulVariantVoltage;
     specs.pureSine = true;
   }
-  if (/solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)|napelemes töltésszabályozók|töltésszabályozók|battery charge controllers/i.test(product.categoryPath)) {
+  if (isControllerCategory(product.categoryPath)) {
     specs.currentA = extractControllerCurrent(product.name, product.description);
   }
   return {
@@ -732,13 +732,17 @@ function extractControllerCurrent(name, description) {
   const explicitInName = matchNumber(name, /(\d+(?:[.,]\d+)?)\s*a\b/i);
   if (explicitInName) return explicitInName;
 
-  const model = name.match(/(?:mppt|smartsolar|bluesolar)[^\n]{0,80}?\b\d{2,3}\s*[\/-]\s*(\d{1,3})\b/i);
+  const model = name.match(/(?:mppt|smartsolar|bluesolar)[^\n]{0,80}?\b\d{2,3}\s*[\/-]\s*(\d{1,3})\b(?!\s*v\b)/i);
   if (model) return parseLocalizedNumber(model[1]);
 
   return matchNumber(
     description,
     /(?:nabíjecí|výstupní|max(?:imální)?\.?|töltőáram|kimeneti|maximális)[^\d]{0,24}(\d+(?:[.,]\d+)?)\s*a\b/i
   );
+}
+
+function isControllerCategory(categoryPath) {
+  return /solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)|kontrolery solarne|napelemes töltésszabályozók|töltésszabályozók|töltésvezérlők|battery charge controllers/i.test(categoryPath);
 }
 
 function parseLocalizedNumber(value) {

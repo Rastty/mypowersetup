@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-01T09:33:09.420Z",
+  "generatedAt": "2026-09-01T09:52:55.377Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
       "parsedProducts": 16639,
-      "relevantProducts": 192
+      "relevantProducts": 209
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -1204,6 +1204,151 @@
       }
     },
     {
+      "id": "padabo_pl:24827_26595",
+      "merchant": "padabo_pl",
+      "name": "Solarny regulator Victron Energy SmartSolar MPPT 75–100 V wersja 75/10",
+      "description": "Regulator solarny MPPT Victron EnergyRegulator solarny Victron Energy SmartSolar MPPT 75–100 W należy do absolutnej światowej czołówki. Jest to bardzo odpowiedni dodatek do Twojego systemu solarnego, który maksymalizuje zysk energii słonecznej (o 30% więcej przy pochmurnym niebie niż regulatory PWM oraz o 10% więcej niż inne regulatory MPPT) i inteligentnie dystrybuuje ją do ładowanych urządzeń, zapewniając jak najbardziej efektywne i szybkie ładowanie. Kontrola mocy i ochrona regulatora paneli ",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Victron",
+      "priceCzk": 299.23,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/solarny-regulator-victron-energy-smartsolar-mppt-75-100-v_z24827/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fsolarny-regulator-victron-energy-smartsolar-mppt-75-100-v_z24827%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/8/158728_102.jpg?1704380233_1",
+      "specs": {
+        "voltageV": 48,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 100,
+        "currentA": 10,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:24827_26596",
+      "merchant": "padabo_pl",
+      "name": "Solarny regulator Victron Energy SmartSolar MPPT 75–100 V wersja 75/15",
+      "description": "Regulator solarny MPPT Victron EnergyRegulator solarny Victron Energy SmartSolar MPPT 75–100 W należy do absolutnej światowej czołówki. Jest to bardzo odpowiedni dodatek do Twojego systemu solarnego, który maksymalizuje zysk energii słonecznej (o 30% więcej przy pochmurnym niebie niż regulatory PWM oraz o 10% więcej niż inne regulatory MPPT) i inteligentnie dystrybuuje ją do ładowanych urządzeń, zapewniając jak najbardziej efektywne i szybkie ładowanie. Kontrola mocy i ochrona regulatora paneli ",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Victron",
+      "priceCzk": 323.26,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/solarny-regulator-victron-energy-smartsolar-mppt-75-100-v_z24827/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fsolarny-regulator-victron-energy-smartsolar-mppt-75-100-v_z24827%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/9/158729_102.jpg?1704380233_1",
+      "specs": {
+        "voltageV": 48,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 100,
+        "currentA": 15,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:24827_26597",
+      "merchant": "padabo_pl",
+      "name": "Solarny regulator Victron Energy SmartSolar MPPT 75–100 V wersja 100/15",
+      "description": "Regulator solarny MPPT Victron EnergyRegulator solarny Victron Energy SmartSolar MPPT 75–100 W należy do absolutnej światowej czołówki. Jest to bardzo odpowiedni dodatek do Twojego systemu solarnego, który maksymalizuje zysk energii słonecznej (o 30% więcej przy pochmurnym niebie niż regulatory PWM oraz o 10% więcej niż inne regulatory MPPT) i inteligentnie dystrybuuje ją do ładowanych urządzeń, zapewniając jak najbardziej efektywne i szybkie ładowanie. Kontrola mocy i ochrona regulatora paneli ",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Victron",
+      "priceCzk": 3998.39,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/solarny-regulator-victron-energy-smartsolar-mppt-75-100-v_z24827/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fsolarny-regulator-victron-energy-smartsolar-mppt-75-100-v_z24827%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/0/158730_102.jpg?1704380234_1",
+      "specs": {
+        "voltageV": 48,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 100,
+        "currentA": 15,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:24827_26598",
+      "merchant": "padabo_pl",
+      "name": "Solarny regulator Victron Energy SmartSolar MPPT 75–100 V wersja 100/20",
+      "description": "Regulator solarny MPPT Victron EnergyRegulator solarny Victron Energy SmartSolar MPPT 75–100 W należy do absolutnej światowej czołówki. Jest to bardzo odpowiedni dodatek do Twojego systemu solarnego, który maksymalizuje zysk energii słonecznej (o 30% więcej przy pochmurnym niebie niż regulatory PWM oraz o 10% więcej niż inne regulatory MPPT) i inteligentnie dystrybuuje ją do ładowanych urządzeń, zapewniając jak najbardziej efektywne i szybkie ładowanie. Kontrola mocy i ochrona regulatora paneli ",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Victron",
+      "priceCzk": 456.33,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/solarny-regulator-victron-energy-smartsolar-mppt-75-100-v_z24827/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fsolarny-regulator-victron-energy-smartsolar-mppt-75-100-v_z24827%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/1/158731_102.jpg?1704380234_1",
+      "specs": {
+        "voltageV": 48,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 100,
+        "currentA": 20,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:24828",
+      "merchant": "padabo_pl",
+      "name": "MPPT regulator solarny Victron SmartSolar 100/30",
+      "description": "Regulator ładowania solarnego MPPTSolarny regulator ładowania Victron Energy SmartSolar MPPT 100/30 zdobył miejsce w absolutnej światowej czołówce urządzeń do wykorzystania energii słonecznej. Jego największą zaletą jest to, że przy pochmurnym niebie z częstymi zmianami intensywności oświetlenia zyski energetyczne regulatorów Victron są o 30% wyższe w porównaniu z klasycznymi regulatorami PWM, a o 10% wyższe w porównaniu z innymi regulatorami MPPT. Regulator posiada także inteligentną funkcję ró",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Victron",
+      "priceCzk": 650.4,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/mppt-regulator-solarny-victron-smartsolar-100-30_z24828/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fmppt-regulator-solarny-victron-smartsolar-100-30_z24828%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/3/145093_102.jpg?1704378888_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 440,
+        "currentA": 30,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_pl:24829_26599",
       "merchant": "padabo_pl",
       "name": "Ładowarka Victron Energy Orion-Tr Smart DC-DC izolowana prąd 12/12-18A",
@@ -1674,6 +1819,35 @@
           "lifepo4"
         ],
         "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:25297_26952",
+      "merchant": "padabo_pl",
+      "name": "Kontroler ładowania Victron Energy SmartSolar MPPT VE.Can model MPPT 150/85-Tr",
+      "description": "Kontroler ładowania słonecznego Victron Energy MPPT VE.CanRegulator ładowania Victron Energy SmartSolar MPPT VE.Can wykorzystuje najnowszą i najszybszą technologię do optymalnego magazynowania energii z paneli słonecznych do podłączonych akumulatorów i innych urządzeń. Regulator umożliwia ładowanie nawet mocno rozładowanych urządzeń, ponieważ może obsługiwać napięcia akumulatora do 0 V, o ile ogniwa nie są trwale zasiarczone lub w inny sposób uszkodzone. Maksymalne wykorzystanie energii słoneczn",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Victron",
+      "priceCzk": 3998.39,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/kontroler-ladowania-victron-energy-smartsolar-mppt-ve-can_z25297/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fkontroler-ladowania-victron-energy-smartsolar-mppt-ve-can_z25297%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/6/159226_102.jpg?1704380250_1",
+      "specs": {
+        "voltageV": 48,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 1200,
+        "currentA": 85,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -2184,6 +2358,78 @@
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:26751",
+      "merchant": "padabo_pl",
+      "name": "Kontroler słoneczny Carbest MPPT 12 V/12 A/165 Wp",
+      "description": "Regulator ładowania słonecznego Carbest MPPT 12 V/12 A/165 WpKontroler słoneczny Carbest MPPT 12 V/12 A/165 Wp jest przeznaczony do ładowania akumulatorów ołowiowych żelowych, kwasowych lub AGM lub akumulatorów LiFePO4 ze zintegrowanym systemem BMS i jednoczesnego zasilania urządzeń podłączonych do tych akumulatorów. Całkowita maksymalna moc paneli słonecznych o odpowiednim napięciu znamionowym powinna być mniejsza niż maksymalna moc kontrolera słonecznego. W przypadku korzystania z modułu Bluet",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Carbest",
+      "priceCzk": 339.89,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/kontroler-sloneczny-carbest-mppt-12-v-12-a-165-wp_z26751/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fkontroler-sloneczny-carbest-mppt-12-v-12-a-165-wp_z26751%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/6/152516_102.jpg?1704379090_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 165,
+        "currentA": 12,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:26752",
+      "merchant": "padabo_pl",
+      "name": "Kontroler słoneczny Carbest MPPT 12 V, 12 A, 350 Wp",
+      "description": "Regulator ładowania słonecznego Carbest MPPT 12 V/12 A/350 WpKontroler słoneczny Carbest MPPT 12 V/12 A/350 Wp jest przeznaczony do ładowania akumulatorów ołowiowych żelowych, kwasowych lub AGM lub akumulatorów LiFePO4 ze zintegrowanym systemem BMS i jednoczesnego zasilania urządzeń podłączonych do tych akumulatorów. Całkowita maksymalna moc paneli słonecznych o odpowiednim napięciu znamionowym powinna być mniejsza niż maksymalna moc kontrolera słonecznego. W przypadku korzystania z modułu Bluet",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Carbest",
+      "priceCzk": 484.05,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/kontroler-sloneczny-carbest-mppt-12-v-12-a-350-wp_z26752/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fkontroler-sloneczny-carbest-mppt-12-v-12-a-350-wp_z26752%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/7/152517_102.jpg?1704379090_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 350,
+        "currentA": 12,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -3062,6 +3308,68 @@
           "lead"
         ],
         "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:101984",
+      "merchant": "padabo_pl",
+      "name": "Kontroler słoneczny MPPT Victron Energy BlueSolar 100/30",
+      "description": "Maksymalne wykorzystanie energii słonecznej dla akumulatorówTen kontroler słoneczny to urządzenie, które pozwala efektywnie konwertować energię z paneli słonecznych i przechowywać ją w akumulatorach. Pomaga zmaksymalizować zyski z energii słonecznej, utrzymuje optymalny stan baterii i znacznie wydłuża jej żywotność. Zaawansowana technologia MPPTKontroler BlueSolar został zaprojektowany w celu optymalizacji wydajności systemu solarnego. Monitoruje on napięcie i natężenie prądu z paneli i wykorzys",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Victron",
+      "priceCzk": 565.37,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/kontroler-sloneczny-mppt-victron-energy-bluesolar-100-30_z101984/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fkontroler-sloneczny-mppt-victron-energy-bluesolar-100-30_z101984%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/4/167404_102.jpg?1723110413_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 440,
+        "currentA": 30,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:101985",
+      "merchant": "padabo_pl",
+      "name": "Kontroler słoneczny MPPT Victron Energy SmartSolar 100/50",
+      "description": "Inteligentna kontrola ładowania z ultraszybkim MPPT i łącznością BluetoothJeśli chcesz uzyskać maksymalną energię z paneli słonecznych i przedłużyć żywotność baterii, kontroler słoneczny Victron Energy SmartSolar 100/50 MPPT jest właściwym wyborem. Ten potężny kontroler zapewnia wydajne ładowanie i optymalizację energii, nawet w zmiennych warunkach słonecznych. Kontroler słoneczny MPPT to urządzenie, które przetwarza energię z paneli słonecznych i przechowuje ją w akumulatorach. Dzięki zaawansow",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Victron",
+      "priceCzk": 936.87,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/kontroler-sloneczny-mppt-victron-energy-smartsolar-100-50_z101985/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fkontroler-sloneczny-mppt-victron-energy-smartsolar-100-50_z101985%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/0/167410_102.jpg?1723111301_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 700,
+        "currentA": 50,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -4675,6 +4983,38 @@
       }
     },
     {
+      "id": "padabo_pl:104850_30968",
+      "merchant": "padabo_pl",
+      "name": "Regulator ładowania słonecznego LILIE MPPT serii LSR prąd ładowania 40 A",
+      "description": "Inteligentny kontroler o wysokiej wydajności i uniwersalnym zastosowaniuKontroler ładowania LILIE MPPT Series LSR Solar Charge Controller wykorzystuje zaawansowaną technologię MPPT ze sprawnością śledzenia do 99,5% i sprawnością szczytową 98%, zapewniając maksymalny odzysk energii z podłączonych paneli słonecznych. Automatycznie wykrywa napięcie 12V lub 24V i inteligentnie zarządza ładowaniem różnych typów akumulatorów, w tym mokrych, AGM, żelowych i litowych. Prąd ładowania 20 A, 30 A lub 40 A.",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "LILIE",
+      "priceCzk": 914.69,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/regulator-ladowania-slonecznego-lilie-mppt-serii-lsr_z104850/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fregulator-ladowania-slonecznego-lilie-mppt-serii-lsr_z104850%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/9/182059_102.jpg?1744001757_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 260,
+        "currentA": 40,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_pl:105296_31361",
       "merchant": "padabo_pl",
       "name": "Dodatkowy akumulator do stacji ładującej EcoFlow River 3 Plus pojemność 286 Wh",
@@ -4882,6 +5222,42 @@
       }
     },
     {
+      "id": "padabo_pl:105450",
+      "merchant": "padabo_pl",
+      "name": "Regulator solarny Carbest MPPT DualController 12/24 V, 30 A",
+      "description": "Regulator ładowania słonecznego dla 2 akumulatorów Regulator słoneczny Carbest MPPT DualController jest przeznaczony do ładowania dwóch akumulatorów kwasowo-ołowiowych, żelowych, AGM lub LiFePO4, 12 i 24 V. Kontroler słoneczny z technologią MPPT ma maksymalną moc wyjściową 30 A. Do kontrolera można podłączyć jednocześnie dwa akumulatory o różnych napięciach i typach. Ładowanie odbywa się sekwencyjnie z maksymalnym możliwym prądem ładowania, w kolejności ustawionej przez użytkownika. Kluczowe cec",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Carbest",
+      "priceCzk": 785.32,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/regulator-solarny-carbest-mppt-dualcontroller-12-24-v-30-a_z105450/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fregulator-solarny-carbest-mppt-dualcontroller-12-24-v-30-a_z105450%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/4/185514_102.jpg?1750251196_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 390,
+        "currentA": 30,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_pl:105599",
       "merchant": "padabo_pl",
       "name": "Bateria litowa LiFePO4 Leuchtwert",
@@ -4938,6 +5314,42 @@
           "lead"
         ],
         "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:106258",
+      "merchant": "padabo_pl",
+      "name": "Regulator ładowania słonecznego MPPT Carbest, 12/24 V",
+      "description": "Regulator napięcia słonecznego MPPT ze zintegrowaną funkcją Bluetooth Kontroler ładowania MPPT Carbest Solar Charge Controller, 12/24 V jest wyposażony w nowoczesną zintegrowaną funkcję Bluetooth, która umożliwia łatwą komunikację z urządzeniem. Wszystkie ustawienia i konfiguracje kontrolera są wykonywane wygodnie za pośrednictwem bezpłatnej aplikacji, którą użytkownik może pobrać na swój smartfon lub tablet. Regulator jest idealnym wyborem dla wszystkich popularnych typów akumulatorów, w tym że",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "other",
+      "brand": "Carbest",
+      "priceCzk": 415.48,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/regulator-ladowania-slonecznego-mppt-carbest-12-24-v_z106258/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fregulator-ladowania-slonecznego-mppt-carbest-12-24-v_z106258%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/3/187763_102.jpg?1758263649_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 520,
+        "currentA": null,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -5569,6 +5981,122 @@
           "lead"
         ],
         "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:107532_32871",
+      "merchant": "padabo_pl",
+      "name": "Regulator ładowania VOTRONIC MPPT prąd ładowania 32 A",
+      "description": "Kontroler ładowania słonecznego MPP do kamperów, przyczep kempingowych i łodzi Regulator ładowania VOTRONIC ma charakterystykę ładowania IU1oU2 i jest podłączony jako interfejs między panelem słonecznym a akumulatorem. Technologia MPP umożliwia kontrolerowi określenie maksymalnej mocy wyjściowej (MPP) modułów słonecznych w sposób ciągły i automatyczny. Następnie nadwyżka napięcia z modułu solarnego jest przekształcana w wyższy prąd ładowania akumulatora. Zwiększony prąd ładowania skraca czas ład",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Votronic",
+      "priceCzk": 1465.47,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/regulator-ladowania-votronic-mppt_z107532/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fregulator-ladowania-votronic-mppt_z107532%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/0/191810_102.jpg?1774371842_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 170,
+        "currentA": 32,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:107532_32872",
+      "merchant": "padabo_pl",
+      "name": "Regulator ładowania VOTRONIC MPPT prąd ładowania 26 A",
+      "description": "Kontroler ładowania słonecznego MPP do kamperów, przyczep kempingowych i łodzi Regulator ładowania VOTRONIC ma charakterystykę ładowania IU1oU2 i jest podłączony jako interfejs między panelem słonecznym a akumulatorem. Technologia MPP umożliwia kontrolerowi określenie maksymalnej mocy wyjściowej (MPP) modułów słonecznych w sposób ciągły i automatyczny. Następnie nadwyżka napięcia z modułu solarnego jest przekształcana w wyższy prąd ładowania akumulatora. Zwiększony prąd ładowania skraca czas ład",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Votronic",
+      "priceCzk": 1071.79,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/regulator-ladowania-votronic-mppt_z107532/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fregulator-ladowania-votronic-mppt_z107532%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/1/191811_102.jpg?1774371843_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 170,
+        "currentA": 26,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:107532_32873",
+      "merchant": "padabo_pl",
+      "name": "Regulator ładowania VOTRONIC MPPT prąd ładowania 18,5 A",
+      "description": "Kontroler ładowania słonecznego MPP do kamperów, przyczep kempingowych i łodzi Regulator ładowania VOTRONIC ma charakterystykę ładowania IU1oU2 i jest podłączony jako interfejs między panelem słonecznym a akumulatorem. Technologia MPP umożliwia kontrolerowi określenie maksymalnej mocy wyjściowej (MPP) modułów słonecznych w sposób ciągły i automatyczny. Następnie nadwyżka napięcia z modułu solarnego jest przekształcana w wyższy prąd ładowania akumulatora. Zwiększony prąd ładowania skraca czas ład",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Votronic",
+      "priceCzk": 938.72,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/regulator-ladowania-votronic-mppt_z107532/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fregulator-ladowania-votronic-mppt_z107532%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/2/191812_102.jpg?1774371844_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 170,
+        "currentA": 18.5,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:107532_32874",
+      "merchant": "padabo_pl",
+      "name": "Regulator ładowania VOTRONIC MPPT prąd ładowania 13 A",
+      "description": "Kontroler ładowania słonecznego MPP do kamperów, przyczep kempingowych i łodzi Regulator ładowania VOTRONIC ma charakterystykę ładowania IU1oU2 i jest podłączony jako interfejs między panelem słonecznym a akumulatorem. Technologia MPP umożliwia kontrolerowi określenie maksymalnej mocy wyjściowej (MPP) modułów słonecznych w sposób ciągły i automatyczny. Następnie nadwyżka napięcia z modułu solarnego jest przekształcana w wyższy prąd ładowania akumulatora. Zwiększony prąd ładowania skraca czas ład",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Votronic",
+      "priceCzk": 652.24,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/regulator-ladowania-votronic-mppt_z107532/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fregulator-ladowania-votronic-mppt_z107532%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/3/191813_102.jpg?1774371845_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 170,
+        "currentA": 13,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null

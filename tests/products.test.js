@@ -760,6 +760,19 @@ test("controller model number is not mistaken for amperage", () => {
   assert.equal(controller.specs.currentA, 20);
 });
 
+test("controller voltage range before the model suffix is not mistaken for current", () => {
+  const controller = normalizeProduct({
+    id: "hu-range-model",
+    name: "Napelemes vezérlő Victron Energy SmartSolar MPPT 75-100 V opció 75/10",
+    description: "MPPT töltésvezérlő.",
+    category: "Elektromos berendezések | Töltésvezérlők",
+    url: "https://www.padabo.hu/napelemes-vezerlo-victron-smartsolar-mppt_z24827/",
+    price: "39900 HUF",
+  }, "padabo_hu");
+  assert.equal(controller.category, "controller");
+  assert.equal(controller.specs.currentA, 10);
+});
+
 test("decimal lithium voltage is normalized to nominal system voltage", () => {
   const battery = normalizeProduct({
     id: "lifepo-128",
@@ -1087,4 +1100,37 @@ test("classifier recognizes Slovak Padabo category and product wording", () => {
     [battery.category, panel.category, inverter.category, controller.category],
     ["battery", "solar_panel", "inverter", "controller"]
   );
+});
+
+test("classifier recognizes localized Padabo PL and HU MPPT controller categories", () => {
+  const polish = normalizeProduct({
+    id: "pl-mppt",
+    name: "Kontroler słoneczny MPPT Victron Energy SmartSolar 100/50",
+    description: "Regulator ładowania do instalacji solarnej.",
+    category: "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+    url: "https://www.padabo.pl/kontroler-sloneczny-mppt-victron-energy-smartsolar-100-50_z101985/",
+    price: "999 PLN",
+  }, "padabo_pl");
+  const hungarian = normalizeProduct({
+    id: "hu-mppt",
+    name: "Carbest MPPT DualController 12/24 V, 30 A napelemes szabályozó",
+    description: "Napelemes töltésvezérlő lakóautókhoz.",
+    category: "Elektromos berendezések lakóautókhoz | Töltésvezérlők",
+    url: "https://www.padabo.hu/carbest-mppt-dualcontroller-12-24-v-30-a-napelemes-szabalyozo_z105450/",
+    price: "99900 HUF",
+  }, "padabo_hu");
+
+  assert.deepEqual([polish.category, polish.specs.currentA], ["controller", 50]);
+  assert.deepEqual([hungarian.category, hungarian.specs.currentA], ["controller", 30]);
+});
+
+test("localized Padabo controller categories still reject PWM and accessories", () => {
+  const cases = [
+    ["padabo_pl", "Kontroler ładowania Victron BlueSolar PWM 30 A", "Elektryka | Kontrolery solarne", "https://www.padabo.pl/kontroler-pwm_z1/"],
+    ["padabo_hu", "Victron Energy MPPT WireBox-M napelemes vezérlő tokja 30 A", "Elektromos berendezések | Töltésvezérlők", "https://www.padabo.hu/mppt-wirebox-tokja_z2/"],
+  ];
+  for (const [merchant, name, category, url] of cases) {
+    const product = normalizeProduct({ id: name, name, description: "", category, url, price: "99 EUR" }, merchant);
+    assert.equal(product.category, "other");
+  }
 });

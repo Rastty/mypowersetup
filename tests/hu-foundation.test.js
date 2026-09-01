@@ -191,8 +191,8 @@ test("Hungarian launch gate reports exact catalog and review blockers", async ()
       `${category} should meet the Hungarian launch minimum without freezing catalog growth`
     );
   }
-  assert.ok(report.categoryCounts.controller < HU_REQUIRED_PRODUCT_COVERAGE.controller);
-  assert.deepEqual(report.missingCategories.map(({ category }) => category), ["controller"]);
+  assert.ok(report.categoryCounts.controller >= HU_REQUIRED_PRODUCT_COVERAGE.controller);
+  assert.deepEqual(report.missingCategories, []);
   assert.match(report.blockers.join(" "), /HU_LANGUAGE_REVIEW_REQUIRED/);
   assert.match(report.blockers.join(" "), /HU_MOBILE_JOURNEY_REVIEW_REQUIRED/);
   assert.throws(() => requireHungarianLaunchReady({ catalog }), /HU_LAUNCH_BLOCKED/);
