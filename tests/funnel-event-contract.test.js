@@ -13,13 +13,14 @@ const expansionBrowserFile = new URL("../src/expansion-calculator-browser.js", i
 test("all calculator implementations use the same affiliate click event", async () => {
   for (const file of matureBrowserFiles) {
     const source = await readFile(file, "utf8");
-    assert.match(source, /event:\s*["']affiliate_click["']/);
+    assert.match(source, /trackAffiliateClick\(/);
+    assert.doesNotMatch(source, /mypowersetup:affiliate-click/);
   }
 
   const expansion = await readFile(expansionBrowserFile, "utf8");
-  assert.match(expansion, /event:\s*["']affiliate_click["']/);
+  assert.match(expansion, /trackAffiliateClick\(/);
   assert.doesNotMatch(expansion, /affiliate_product_click/);
-  assert.match(expansion, /mypowersetup:affiliate-click/);
+  assert.doesNotMatch(expansion, /mypowersetup:affiliate-click/);
 });
 
 test("expansion calculation_completed uses mature-market parameter names", async () => {

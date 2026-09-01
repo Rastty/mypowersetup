@@ -298,14 +298,16 @@ test("Polish guide hub reaches complete CZ and SK topic parity", async () => {
 });
 
 test("affiliate recommendations are disclosed and measurable", async () => {
-  const [html, app] = await Promise.all([
+  const [html, app, affiliateAnalytics] = await Promise.all([
     readFile("index.html", "utf8"),
     readFile("src/app.js", "utf8"),
+    readFile("src/affiliate-analytics.js", "utf8"),
   ]);
   assert.ok(html.includes('href="/affiliate/"'));
   assert.match(html, /affiliate/i);
   assert.ok(app.includes('rel="sponsored noopener"'));
-  assert.ok(app.includes('event: "affiliate_click"'));
+  assert.ok(app.includes("trackAffiliateClick(link, trackEvent)"));
+  assert.ok(affiliateAnalytics.includes('tracker("affiliate_click"'));
   assert.ok(app.includes('data-product-id'));
 });
 
@@ -776,12 +778,13 @@ test("both calculators produce a localized circuit-by-circuit installation plan"
 });
 
 test("both calculators explain product packages without weakening technical requirements", async () => {
-  const [czech, slovak, app, appSk, packages] = await Promise.all([
+  const [czech, slovak, app, appSk, packages, affiliateAnalytics] = await Promise.all([
     readFile("index.html", "utf8"),
     readFile("sk/index.html", "utf8"),
     readFile("src/app.js", "utf8"),
     readFile("src/app-sk.js", "utf8"),
     readFile("src/packages.js", "utf8"),
+    readFile("src/affiliate-analytics.js", "utf8"),
   ]);
   for (const html of [czech, slovak]) assert.ok(html.includes('id="package-variants"'));
   assert.ok(app.includes("Všechny varianty splňují stejný vypočtený požadavek"));
@@ -797,8 +800,9 @@ test("both calculators explain product packages without weakening technical requ
     assert.ok(source.includes('data-package-id='));
     assert.ok(source.includes('class="package-product-link"'));
     assert.ok(source.includes('rel="sponsored noopener"'));
-    assert.ok(source.includes('packageId: link.dataset.packageId'));
+    assert.ok(source.includes("trackAffiliateClick(link"));
   }
+  assert.ok(affiliateAnalytics.includes("packageId: link?.dataset?.packageId"));
   assert.match(app, /Zobrazit přesný produkt/);
   assert.match(appSk, /Zobraziť presný produkt/);
 });

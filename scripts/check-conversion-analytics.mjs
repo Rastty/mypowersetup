@@ -14,6 +14,7 @@ function forbidMatch(source, pattern, label) {
 
 const analytics = read("src/analytics.js");
 const navigation = read("src/community-navigation.js");
+const affiliateAnalytics = read("src/affiliate-analytics.js");
 
 requireMatch(analytics, /choice === "granted" \? resolveCommunityAttribution/, "community_persistence_requires_consent");
 requireMatch(analytics, /carryCommunityAttributionToUrl\(/, "community_attribution_carried_to_calculator");
@@ -21,6 +22,7 @@ requireMatch(analytics, /window\.gtag\("event", event/, "events_use_shared_analy
 requireMatch(navigation, /destination\.origin !== page\.origin/, "community_carry_is_same_origin_only");
 requireMatch(navigation, /searchParams\.set\("utm_medium", "community"\)/, "community_carry_keeps_medium");
 forbidMatch(navigation, /sessionStorage|localStorage|gtag\(|fetch\(/, "community_navigation_must_not_persist_track_or_send");
+requireMatch(affiliateAnalytics, /tracker\("affiliate_click",/, "affiliate_click_has_one_shared_tracker");
 
 for (const [market, path] of [
   ["cz", "src/app.js"],
@@ -30,20 +32,23 @@ for (const [market, path] of [
   const source = read(path);
   requireMatch(source, /trackCalculatorStarted\(/, `${market}_calculator_started`);
   requireMatch(source, /calculation_completed/, `${market}_calculation_completed`);
-  requireMatch(source, /affiliate_click/, `${market}_affiliate_click`);
+  requireMatch(source, /trackAffiliateClick\(/, `${market}_affiliate_click`);
+  forbidMatch(source, /mypowersetup:affiliate-click/, `${market}_affiliate_click_must_not_fan_out`);
 }
 
 const hu = read("src/app-hu-browser.js");
 requireMatch(analytics, /context\.market !== "hu"/, "hu_shared_start_tracking_scope");
 requireMatch(analytics, /track\("calculator_started"/, "hu_calculator_started");
 requireMatch(hu, /calculation_completed/, "hu_calculation_completed");
-requireMatch(hu, /affiliate_click/, "hu_affiliate_click");
+requireMatch(hu, /trackAffiliateClick\(/, "hu_affiliate_click");
+forbidMatch(hu, /mypowersetup:affiliate-click/, "hu_affiliate_click_must_not_fan_out");
 
 const expansion = read("src/expansion-calculator-browser.js");
 requireMatch(expansion, /track\("calculator_started"/, "expansion_calculator_started");
 requireMatch(expansion, /track\("calculation_completed"/, "expansion_calculation_completed");
 requireMatch(expansion, /track\("product_coverage_calculated"/, "expansion_product_coverage_calculated");
-requireMatch(expansion, /affiliate_click/, "expansion_affiliate_click");
+requireMatch(expansion, /trackAffiliateClick\(/, "expansion_affiliate_click");
+forbidMatch(expansion, /mypowersetup:affiliate-click/, "expansion_affiliate_click_must_not_fan_out");
 for (const market of ["pt", "si", "ro"]) {
   requireMatch(expansion, new RegExp(`\\b${market}:\\s*\\{`), `${market}_expansion_locale`);
 }

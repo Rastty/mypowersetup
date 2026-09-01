@@ -4,6 +4,7 @@ import { HU_UI_COPY } from "./ui-copy-hu.js";
 import { copyText } from "./share.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { mountExistingSetupCheck } from "./existing-setup.js";
+import { trackAffiliateClick } from "./affiliate-analytics.js?v=20260901-1";
 
 const form = document.querySelector("#setup-form");
 const grid = document.querySelector("#appliance-grid");
@@ -164,14 +165,5 @@ function track(event,parameters={}) { return Boolean(window.MyPowerSetupAnalytic
 document.addEventListener("click", (event) => {
   const link = event.target.closest("[data-affiliate-click]");
   if (!link) return;
-  const detail = {
-    event: "affiliate_click",
-    productId: link.dataset.productId,
-    merchant: link.dataset.merchant,
-    category: link.dataset.category,
-    source: link.dataset.source || "unknown",
-    packageId: link.dataset.packageId || undefined
-  };
-  track(detail.event, detail);
-  document.dispatchEvent(new CustomEvent("mypowersetup:affiliate-click", { detail }));
+  trackAffiliateClick(link, track);
 });
