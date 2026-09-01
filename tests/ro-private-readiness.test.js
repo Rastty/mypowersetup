@@ -7,9 +7,9 @@ import { readFile } from "node:fs/promises";
 const catalog = JSON.parse(await readFile(new URL("../data/products-ro.json", import.meta.url), "utf8"));
 const analyticsSource = await readFile(new URL("../src/analytics.js", import.meta.url), "utf8");
 
-test("Romania has four trust pages and ten private source guides", () => {
+test("Romania has four trust pages and eleven private source guides", () => {
   assert.equal(RO_PRIVATE_CONTENT.trust.length, 4);
-  assert.equal(RO_PRIVATE_CONTENT.guides.length, 10);
+  assert.equal(RO_PRIVATE_CONTENT.guides.length, 11);
   for (const route of ["/ro/ghiduri/", "/ro/metodologie/", "/ro/confidentialitate/", "/ro/afiliere/"]) {
     const html = renderRomaniaPrivateContentPage(route);
     assert.match(html, /<html lang="ro">/);

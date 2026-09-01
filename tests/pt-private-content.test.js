@@ -2,11 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { PT_PRIVATE_CONTENT, getPortugalPrivatePage, renderPortugalPrivateContentPage } from "../src/private-content-pt.js";
 
-test("Portugal private foundation contains four trust pages and a ten-guide cluster", () => {
+test("Portugal private foundation contains four trust pages and an eleven-guide cluster", () => {
   assert.equal(PT_PRIVATE_CONTENT.trust.length, 4);
-  assert.equal(PT_PRIVATE_CONTENT.guides.length, 10);
+  assert.equal(PT_PRIVATE_CONTENT.guides.length, 11);
   assert.deepEqual(PT_PRIVATE_CONTENT.trust.map((page) => page.slug), ["sobre-o-projeto", "metodologia", "afiliacao", "privacidade"]);
-  assert.equal(new Set(PT_PRIVATE_CONTENT.guides.map((page) => page.slug)).size, 10);
+  assert.equal(new Set(PT_PRIVATE_CONTENT.guides.map((page) => page.slug)).size, 11);
 });
 
 test("every Portugal private content page stays outside public discovery", () => {

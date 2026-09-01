@@ -18,6 +18,7 @@ const GUIDE_PAGES = Object.freeze([
   { slug: "cabluri-sigurante-12v-autorulota", title: "Cabluri și siguranțe 12 V în autorulotă", heading: "Cabluri și protecții 12/24 V", intro: "Secțiunea cablului depinde de curent, lungimea totală a circuitului și căderea de tensiune admisă." },
   { slug: "consum-frigider-compresor-autorulota", title: "Cât consumă un frigider cu compresor în autorulotă?", heading: "Consum zilnic al frigiderului", intro: "Puterea nominală nu se consumă 24 de ore; ciclul de funcționare și temperatura exterioară contează decisiv." },
   { slug: "sistem-electric-complet-autorulota", title: "Sistem electric complet pentru autorulotă", heading: "Baterie, solar, alternator și 230 V ca un singur sistem", intro: "Toate componentele trebuie dimensionate din același scenariu de consum și aceeași tensiune de sistem." },
+  { slug: "statie-portabila-sau-instalatie-fixa-autorulota", title: "Stație portabilă sau instalație fixă în autorulotă?", description: "Compară o stație portabilă cu un sistem electric fix după capacitate, putere, solar, ieșire 12 V, încărcare și posibilitatea de extindere.", heading: "Stație portabilă sau instalație fixă: ce alegi?", intro: "Alegerea corectă pornește de la consumul zilnic, autonomia dorită și modul real de utilizare, nu de la cea mai mare cifră din reclamă." },
 ]);
 
 const GUIDE_SECTIONS = Object.freeze([

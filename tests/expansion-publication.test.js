@@ -4,9 +4,9 @@ import { readFile } from "node:fs/promises";
 import { expansionPublicationManifest, publicizeExpansionHtml, addExpansionHomeAlternate, addExpansionRoutesToSitemap, publishedExpansionMarketsFromSitemap, requireExpansionNativeApproval } from "../src/expansion-publication.js";
 
 for (const market of ["pt", "si", "ro"]) {
-  test(`${market} publication manifest covers home, hub, four trust pages and ten guides`, () => {
+  test(`${market} publication manifest covers home, hub, four trust pages and eleven guides`, () => {
     const manifest = expansionPublicationManifest(market);
-    assert.equal(manifest.length, 16);
+    assert.equal(manifest.length, 17);
     assert.equal(manifest[0].source, "home");
     assert.equal(new Set(manifest.map((entry) => entry.route)).size, manifest.length);
     assert.ok(manifest.every((entry) => entry.path.endsWith("index.html")));
@@ -61,7 +61,7 @@ test("sitemap publication adds all routes once", () => {
   const xml = '<?xml version="1.0"?><urlset></urlset>';
   const once = addExpansionRoutesToSitemap(xml, "pt");
   const twice = addExpansionRoutesToSitemap(once, "pt");
-  assert.equal((once.match(/<loc>/g) || []).length, 16);
+  assert.equal((once.match(/<loc>/g) || []).length, 17);
   assert.equal(twice, once);
 });
 

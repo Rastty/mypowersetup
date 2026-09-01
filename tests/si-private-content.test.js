@@ -3,9 +3,9 @@ import assert from "node:assert/strict";
 import { SI_PRIVATE_CONTENT, getSloveniaPrivatePage, renderSloveniaPrivateContentPage } from "../src/private-content-si.js";
 import { SI_MARKET_RESEARCH } from "../src/market-research-si.js";
 
-test("Slovenia private foundation has four trust pages and ten guides", () => {
+test("Slovenia private foundation has four trust pages and eleven guides", () => {
   assert.equal(SI_PRIVATE_CONTENT.trust.length, 4);
-  assert.equal(SI_PRIVATE_CONTENT.guides.length, 10);
+  assert.equal(SI_PRIVATE_CONTENT.guides.length, 11);
   assert.equal(SI_MARKET_RESEARCH.priorityIntents.length, 10);
 });
 

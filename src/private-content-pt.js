@@ -177,6 +177,18 @@ const GUIDE_PAGES = Object.freeze([
       ["4. Verifica gargalos", "Um inversor de alta potência com bateria pequena, um MPPT insuficiente ou cabos demasiado finos tornam o conjunto incoerente. A decisão final deve ser feita ao nível do sistema."],
     ],
   },
+  {
+    slug: "power-station-ou-instalacao-fixa-autocaravana",
+    title: "Power station ou instalação fixa na autocaravana?",
+    description: "Compara power station portátil e sistema elétrico fixo para autocaravana por capacidade, potência, solar, 12 V, carregamento e expansão.",
+    heading: "Power station ou instalação fixa: qual escolher?",
+    intro: "A melhor opção depende dos consumos, dos dias sem carregamento e da forma como usas a autocaravana. Compara limites elétricos concretos, não apenas a capacidade anunciada.",
+    sections: [
+      ["Quando uma power station faz sentido", "É uma solução compacta e removível para consumos moderados, utilização ocasional e quem prefere evitar uma instalação elétrica completa."],
+      ["Quando a instalação fixa ganha", "Um sistema por componentes oferece maior liberdade para dimensionar bateria, solar, inverter, DC-DC, 230 V e circuitos 12 V, sobretudo em uso frequente ou exigente."],
+      ["Compara o sistema completo", "Verifica Wh utilizáveis, potência AC contínua e de pico, entrada solar, saída DC, velocidade de carregamento, expansão e compatibilidade com cada equipamento."],
+    ],
+  },
 ]);
 
 export const PT_PRIVATE_CONTENT = Object.freeze({ trust: TRUST_PAGES, guides: GUIDE_PAGES });
