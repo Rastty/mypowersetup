@@ -406,7 +406,10 @@ export function refreshCatalogProduct(product) {
         || typeof stored === "number" && Number.isFinite(stored)
         || typeof stored === "string" && stored.length > 0
       );
-      return [key, verifiedStoredValue ? stored : value ?? stored ?? null];
+      const extractedValue = Array.isArray(value) && value.length === 0 && Array.isArray(stored) && stored.length > 0
+        ? stored
+        : value;
+      return [key, verifiedStoredValue ? stored : extractedValue ?? stored ?? null];
     })
   );
   const ampulVariantId = String(product.id || "").split(":").at(-1);
