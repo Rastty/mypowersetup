@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-31T08:36:21.457Z",
+  "generatedAt": "2026-09-01T05:45:40.987Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "ampul_hu": {
       "status": "ok",
-      "parsedProducts": 7667,
+      "parsedProducts": 7666,
       "relevantProducts": 13
     },
     "allpowers_eu": {
@@ -17,11 +17,11 @@
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 58,
-      "relevantProducts": 21,
+      "relevantProducts": 20,
       "batteries": 16,
       "controllers": 1,
       "inverters": 1,
-      "shoreChargers": 3
+      "shoreChargers": 2
     },
     "oxe_hu": {
       "status": "ok",
@@ -31,9 +31,9 @@
       "parsedProducts": 283,
       "relevantProducts": 26,
       "liveSupplements": 0,
-      "powerStations": 21,
-      "technicallyVerifiedPowerStations": 11,
-      "solarPanels": 5
+      "powerStations": 18,
+      "technicallyVerifiedPowerStations": 10,
+      "solarPanels": 8
     }
   },
   "products": [
@@ -45,7 +45,7 @@
       "categoryPath": "Töltők",
       "category": "dc_charger",
       "brand": "",
-      "priceCzk": 169.94,
+      "priceCzk": 170.54,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/hu/toltok/5479-akkumulatortolto-12v-tol-292v-ig-20a-584w-ip65-vek",
@@ -80,7 +80,7 @@
       "categoryPath": "Töltők",
       "category": "dc_charger",
       "brand": "",
-      "priceCzk": 169.94,
+      "priceCzk": 170.54,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/hu/toltok/5522-akkumulatortolto-12v-tol-438v-ig-13a-569w-ip65-vek",
@@ -115,7 +115,7 @@
       "categoryPath": "Töltők",
       "category": "dc_charger",
       "brand": "",
-      "priceCzk": 169.94,
+      "priceCzk": 170.54,
       "priceCurrency": "EUR",
       "available": null,
       "productUrl": "https://ampul.eu/hu/toltok/5523-akkumulatortolto-12v-24v-tol-584v-ig-10a-584w-ip65",
@@ -151,7 +151,7 @@
       "categoryPath": "Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 364.08,
+      "priceCzk": 365.37,
       "priceCurrency": "EUR",
       "available": null,
       "productUrl": "https://ampul.eu/hu/feszultseg-atalakitok/5577-7391-feszultseg-atalakito-dc-rol-230v-ac-ra-50hz-2000w",
@@ -184,7 +184,7 @@
       "categoryPath": "Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 364.08,
+      "priceCzk": 365.37,
       "priceCurrency": "EUR",
       "available": null,
       "productUrl": "https://ampul.eu/hu/feszultseg-atalakitok/5577-7392-feszultseg-atalakito-dc-rol-230v-ac-ra-50hz-2000w",
@@ -217,7 +217,7 @@
       "categoryPath": "Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 364.08,
+      "priceCzk": 365.37,
       "priceCurrency": "EUR",
       "available": null,
       "productUrl": "https://ampul.eu/hu/feszultseg-atalakitok/5577-7393-feszultseg-atalakito-dc-rol-230v-ac-ra-50hz-2000w",
@@ -250,7 +250,7 @@
       "categoryPath": "Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 364.08,
+      "priceCzk": 365.37,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/hu/feszultseg-atalakitok/5577-7394-feszultseg-atalakito-dc-rol-230v-ac-ra-50hz-2000w",
@@ -283,7 +283,7 @@
       "categoryPath": "Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 364.08,
+      "priceCzk": 365.37,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/hu/feszultseg-atalakitok/5577-7395-feszultseg-atalakito-dc-rol-230v-ac-ra-50hz-2000w",
@@ -316,7 +316,7 @@
       "categoryPath": "Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 364.08,
+      "priceCzk": 365.37,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/hu/feszultseg-atalakitok/5577-7396-feszultseg-atalakito-dc-rol-230v-ac-ra-50hz-2000w",
@@ -349,7 +349,7 @@
       "categoryPath": "Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 364.08,
+      "priceCzk": 365.37,
       "priceCurrency": "EUR",
       "available": null,
       "productUrl": "https://ampul.eu/hu/feszultseg-atalakitok/5577-7397-feszultseg-atalakito-dc-rol-230v-ac-ra-50hz-2000w",
@@ -382,7 +382,7 @@
       "categoryPath": "Töltők",
       "category": "dc_charger",
       "brand": "",
-      "priceCzk": 294.8,
+      "priceCzk": 295.84,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/hu/toltok/6195-dc-dc-lifepo4-akkumulatortolto-146-v-30-a-400-w-ip68",
@@ -419,7 +419,7 @@
       "categoryPath": "Töltők",
       "category": "shore_charger",
       "brand": "",
-      "priceCzk": 28.18,
+      "priceCzk": 28.28,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/hu/toltok/6653-tapegyseg-aljzat-36v-2a-55x21mm-olomakkumulator-tolto",
@@ -455,7 +455,7 @@
       "categoryPath": "Töltők",
       "category": "shore_charger",
       "brand": "",
-      "priceCzk": 40.58,
+      "priceCzk": 40.72,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/hu/toltok/6692-tapegyseg-aljzat-24v-5a-55x21mm-olom-savas-akkumulator-tolto",
@@ -1256,7 +1256,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 649.99,
+      "priceCzk": 699.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-320ah-dense-smart-lifepo4-batterie-fur-wohnmobil-untersitz",
@@ -1953,48 +1953,12 @@
       "verifiedAt": "2026-08-29"
     },
     {
-      "id": "powerqueen_eu:7752846115036",
-      "merchant": "powerqueen_eu",
-      "name": "Power Queen 14.6V 20A LiFePO4 battery charger for 12V LiFePO4 battery",
-      "description": "Power Queen AC to DC charger for 12.8 V LiFePO4 batteries; 14.6 V charging output at 20 A and 100-240 V AC input.",
-      "categoryPath": "Nabíječky",
-      "category": "shore_charger",
-      "brand": "PQ-DE",
-      "priceCzk": 85.99,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PowerQueen14_6V20ALiFePO4Ladegeratfur12VLiFePO4-Batterie.webp?v=1785835445",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 20,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "verifiedAt": "2026-08-29"
-    },
-    {
       "id": "oxe_hu:OXE8020",
       "merchant": "oxe_hu",
       "name": "OXE SP100W - Napelem az OXE Powerstation S200, S400, P600, S1000 erőműhöz",
       "description": "OXE SP100W - Napelem az OXE Powerstation S200, S400, P600, S1000 erőműhöz Az OXE SP100W egy 100 W teljesítményű napelem, amelyet elsősorban az&nbsp;OXE Powerstation S200, S400,&nbsp;P600 és S1000 töltésére terveztek. A napelem panel egy USB kimeneti porttal és egy DC5521 porttal rendelkezik, így könnyen csatlakoztatható a legtöbb napenergiával kompatibilis eszközhöz. A napelem könnyű és extra vékony . Könnyen összecsukható és nem foglal sok helyet. Az összecsukható kialakítás leegyszerűsíti a szállítást, és kényelmesen elfér az autó csomagtartójában vagy bármilyen tárolóhelyen. Összecsukott állapotban a napelem két csattal van rögzítve. A hurkot a kényelmes áthelyezéshez használják. Az erőmű napelemmel való feltöltése környezetbarát . Ugyanakkor alkalmas a generátor feltöltésére útközben is, amikor korlátozott töltési módok állnak rendelkezésre. Váratlan áramszünet esetén is értékelni fogja a napelemet. Az OXE SP100W napelem nagy százalékban (akár 21%-ban) alakítja át a napsugárzást energiává . Két OXE SP100W napelemet kell használni az OXE Powerstation S1000 megfelelő töltéséhez (vagy egy OXE SP200W napelemet lehet használni az OXE S1000 töltéséhez). CSOMAG TARTALMA 1x OXE SP100W - Napelem 1x tápkábel (DC5521, Y adapter) MŰSZAKI ADATOK Névleges teljesítmény: 100W Feszültség: 18V Üzemi áram: 5,55A Csatlakozó: DC5521 Méret - széthajtott panel: 1440 * 540 * 25 mm Méret - összecsukott panel: 540 * 415 * 45 mm Levélszám: 3 levél Vízállóság: IPX4 (fröccsenő vízállóság) Szín: szürke Súly: 3,8 kg",
       "categoryPath": "",
-      "category": "power_station",
+      "category": "solar_panel",
       "brand": "OXE",
       "priceCzk": 86418,
       "priceCurrency": "HUF",
@@ -2003,13 +1967,13 @@
       "affiliateUrl": "https://go.dognet.com/?chid=v9mcMMKw&url=https%3A%2F%2Fwww.oxe.hu%2Foxe-sp100w-toltogenerator-napelem%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/25/oxe-sp100w-solarni-panel-k-elektrocentrale-oxe-powerstation-s200-s400-p600-s1000-8020-1643135739.jpg",
       "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxepower.eu/oxe-powerstation-s200-and-solar-panel-sp100w/",
+      "specEvidenceUrl": null,
       "specs": {
-        "capacityWh": 193,
-        "powerW": 200,
-        "solarInputW": 50,
-        "dcOutputA": 8,
-        "pureSine": true
+        "capacityWh": null,
+        "powerW": 100,
+        "solarInputW": null,
+        "dcOutputA": null,
+        "pureSine": null
       }
     },
     {
@@ -2162,7 +2126,7 @@
       "name": "OXE SP200W - Napelem az OXE Powerstation S1000 akkumulátorhoz",
       "description": "OXE SP200W - NAPELEM AZ OXE POWERSTATION S1000 AKKUMULÁTORHOZ Az OXE SP200W egy napelem, amely elsősorban az OXE Powerstation S1000 akkumulátor feltöltésére szolgál &nbsp;(az MC4 csatlakozónak köszönhetően könnyen csatlakoztatható a legtöbb napenergiával kompatibilis eszközhöz). A napelem könnyű és extra vékony. Egyszerűen összecsukható és nem foglal sok helyet. Az összecsukható kialakítás megkönnyíti a szállítást, így kényelmesen elfér az autó csomagtartójában vagy bármilyen tárolóhelyen. Összecsukott állapotban a napelem két csattal van rögzítve. A kényelmes áthelyezéshez a heveder használható. Az akkumulátor napelemes újratöltése környezetbarát megoldás. Ugyanakkor alkalmas az akkumulátor útközbeni újratöltésére, amikor korlátozott töltési módok állnak rendelkezésre. Váratlan áramszünet esetén is értékelni fogja a napelemet. Az OXE SP200W napelem nagy százalékban (akár 21%-ban) alakítja át a napsugárzást energiává. CSOMAG TARTALMA 1x OXE SP200W - Napelem 1x tápkábel (MC4) MŰSZAKI ADATOK Névleges teljesítmény: 200W Feszültség: 36V Üzemi áram: 5,55A Csatlakozó: MC4 Méret - széthajtott panel: 2086*705*25 mm Méret - összecsukott panel: 705*470*60 mm Lapok száma: 4 lap Vízálló: IPX4 (ellenáll a fröccsenő víznek) Szín: szürke Súly: 8,0 kg",
       "categoryPath": "",
-      "category": "power_station",
+      "category": "solar_panel",
       "brand": "OXE",
       "priceCzk": 207645,
       "priceCurrency": "HUF",
@@ -2171,12 +2135,12 @@
       "affiliateUrl": "https://go.dognet.com/?chid=v9mcMMKw&url=https%3A%2F%2Fwww.oxe.hu%2Foxe-sp200w-napelem-az-oxe-powerstation-s1000-akkumulatorhoz%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/25/oxe-sp200w-solarni-panel-k-elektrocentrale-oxe-powerstation-s1000-8819-1643120265.jpg",
       "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
+      "specEvidenceUrl": null,
       "specs": {
-        "capacityWh": 1028,
-        "powerW": 1000,
+        "capacityWh": null,
+        "powerW": 200,
         "solarInputW": null,
-        "dcOutputA": 10,
+        "dcOutputA": null,
         "pureSine": null
       }
     },
@@ -2258,7 +2222,7 @@
       "name": "OXE SP200W II - Napelem az OXE Powerstation S1000 akkumulátorhoz",
       "description": "OXE SP200W II - NAPELEM AZ OXE POWERSTATION S1000 AKKUMULÁTORHOZ Az OXE SP200W II egy napelem, amely elsősorban az OXE Powerstation S1000 akkumulátor feltöltésére szolgál &nbsp;(az MC4 csatlakozónak köszönhetően könnyen csatlakoztatható a legtöbb napenergiával kompatibilis eszközhöz). A napelem könnyű és extra vékony. Egyszerűen összecsukható és nem foglal sok helyet. Az összecsukható kialakítás megkönnyíti a szállítást, így kényelmesen elfér az autó csomagtartójában vagy bármilyen tárolóhelyen.&nbsp;Összecsukott állapotban a napelem csattal van rögzítve. A kényelmes áthelyezéshez a heveder használható. Az akkumulátor napelemes újratöltése környezetbarát megoldás. Ugyanakkor alkalmas az akkumulátor útközbeni újratöltésére, amikor korlátozott töltési módok állnak rendelkezésre. Váratlan áramszünet esetén is értékelni fogja a napelemet. Az OXE SP200W II&nbsp;napelem nagy százalékban &nbsp; alakítja át a napsugárzást energiává. CSOMAG TARTALMA 1x OXE SP200W II - Napelem 1x tápkábel (MC4) 1x töltésvezérlő 4x karabiner MŰSZAKI ADATOK Névleges teljesítmény: 200W (max) Feszültség: 36V Üzemi áram: 5,55A Csatlakozó: MC4 Méret (összecsukott panel): 370*440*50 mm Méret (széthajtott panel): 1500*900*5 mm Lapok száma: 8&nbsp;lap Vízálló: IPX4 (ellenáll a fröccsenő víznek) Súly: 5,15&nbsp;kg",
       "categoryPath": "",
-      "category": "power_station",
+      "category": "solar_panel",
       "brand": "OXE",
       "priceCzk": 112395,
       "priceCurrency": "HUF",
@@ -2267,12 +2231,12 @@
       "affiliateUrl": "https://go.dognet.com/?chid=v9mcMMKw&url=https%3A%2F%2Fwww.oxe.hu%2Foxe-sp200w-ii-napelem-az-oxe-powerstation-s1000-akkumulatorhoz%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/08/25/oxe-sp200w-ii-solarni-panel-k-elektrocentrale-oxe-powerstation-s1000-9304-1661408185.jpg",
       "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
+      "specEvidenceUrl": null,
       "specs": {
-        "capacityWh": 1028,
-        "powerW": 1000,
+        "capacityWh": null,
+        "powerW": 200,
         "solarInputW": null,
-        "dcOutputA": 10,
+        "dcOutputA": null,
         "pureSine": null
       }
     },

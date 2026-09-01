@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T08:36:12.951Z",
+  "generatedAt": "2026-09-01T05:45:32.302Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
@@ -12,11 +12,11 @@
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 58,
-      "relevantProducts": 21,
+      "relevantProducts": 20,
       "batteries": 16,
       "controllers": 1,
       "inverters": 1,
-      "shoreChargers": 3
+      "shoreChargers": 2
     },
     "oxe_sk": {
       "status": "ok",
@@ -26,9 +26,9 @@
       "parsedProducts": 157,
       "relevantProducts": 15,
       "liveSupplements": 0,
-      "powerStations": 15,
-      "technicallyVerifiedPowerStations": 7,
-      "solarPanels": 0
+      "powerStations": 12,
+      "technicallyVerifiedPowerStations": 6,
+      "solarPanels": 3
     },
     "padabo": {
       "status": "disabled",
@@ -36,7 +36,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7667,
+      "parsedProducts": 7666,
       "relevantProducts": 15
     }
   },
@@ -815,7 +815,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 649.99,
+      "priceCzk": 699.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-320ah-dense-smart-lifepo4-batterie-fur-wohnmobil-untersitz",
@@ -1512,48 +1512,12 @@
       "verifiedAt": "2026-08-29"
     },
     {
-      "id": "powerqueen_eu:7752846115036",
-      "merchant": "powerqueen_eu",
-      "name": "Power Queen 14.6V 20A LiFePO4 battery charger for 12V LiFePO4 battery",
-      "description": "Power Queen AC to DC charger for 12.8 V LiFePO4 batteries; 14.6 V charging output at 20 A and 100-240 V AC input.",
-      "categoryPath": "Nabíječky",
-      "category": "shore_charger",
-      "brand": "PQ-DE",
-      "priceCzk": 85.99,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PowerQueen14_6V20ALiFePO4Ladegeratfur12VLiFePO4-Batterie.webp?v=1785835445",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 20,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "verifiedAt": "2026-08-29"
-    },
-    {
       "id": "oxe_sk:OXE8020",
       "merchant": "oxe_sk",
       "name": "OXE SP100W - Solárny panel k elektrocentrále OXE Powerstation S200, S400, P600, S1000",
       "description": "OXE SP100W - Solárny panel k elektrocentrále OXE Powerstation S200, S400, P600, S1000 OXE SP100W je solárny&nbsp;panel s výkonom 100W primárne&nbsp;určený na&nbsp;&nbsp;dobíjanie elektrocentrály OXE Powerstation S200, S400, P600 a S1000. Solárny&nbsp;panel disponuje jednym výstupným portom USB jednym portom DC5521, vďaka čomu ho možno jednoducho&nbsp;pripojiť&nbsp;k väčšine&nbsp;solárne&nbsp;kompatibilných zariadení.&nbsp;Solárny&nbsp;panel je ľahký a extra tenký . Ľahko sa zloží&nbsp;a nezaberi",
       "categoryPath": "",
-      "category": "power_station",
+      "category": "solar_panel",
       "brand": "OXE",
       "priceCzk": 412.81,
       "priceCurrency": "EUR",
@@ -1562,13 +1526,13 @@
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.sk%2Foxe-sp100w-solarny-panel-k-elektrocentrale%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/25/oxe-sp100w-solarni-panel-k-elektrocentrale-oxe-powerstation-s200-s400-p600-s1000-8020-1643135739.jpg",
       "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxepower.eu/oxe-powerstation-s200-and-solar-panel-sp100w/",
+      "specEvidenceUrl": null,
       "specs": {
-        "capacityWh": 193,
-        "powerW": 200,
-        "solarInputW": 50,
-        "dcOutputA": 8,
-        "pureSine": true
+        "capacityWh": null,
+        "powerW": 100,
+        "solarInputW": null,
+        "dcOutputA": null,
+        "pureSine": null
       }
     },
     {
@@ -1721,7 +1685,7 @@
       "name": "OXE SP200W - Solárny panel k elektrocentrále OXE Powerstation S1000",
       "description": "OXE SP200W - SOLÁRNY&nbsp;PANEL K ELEKTROCENTRÁLE OXE POWERSTATION&nbsp;S1000 OXE SP200W je solárny&nbsp;panel primárne&nbsp;určený na&nbsp;dobíjanie&nbsp;elektrocentrály OXE Powerstation S1000 &nbsp;(vďaka&nbsp;konektoru MC4 ho možno jednoducho pripojiť&nbsp;k väčšine&nbsp;solárne&nbsp;kompatibilných zariadení). Solárny&nbsp;panel je ľahký&nbsp;a extra tenký . Jednoducho sa zloží a nezaberie veľa miesta.&nbsp;Skladací design uľahčuje prepravu&nbsp;a pohodlne&nbsp;sa&nbsp;vojde do kufra vášho&nb",
       "categoryPath": "",
-      "category": "power_station",
+      "category": "solar_panel",
       "brand": "OXE",
       "priceCzk": 495.45,
       "priceCurrency": "EUR",
@@ -1730,12 +1694,12 @@
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.sk%2Foxe-sp200w-solarny-panel-k-elektrocentrale-oxe-powerstation-s1000%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/25/oxe-sp200w-solarni-panel-k-elektrocentrale-oxe-powerstation-s1000-8819-1643120265.jpg",
       "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
+      "specEvidenceUrl": null,
       "specs": {
-        "capacityWh": 1028,
-        "powerW": 1000,
+        "capacityWh": null,
+        "powerW": 200,
         "solarInputW": null,
-        "dcOutputA": 10,
+        "dcOutputA": null,
         "pureSine": null
       }
     },
@@ -1817,7 +1781,7 @@
       "name": "OXE SP200W II - Solárny panel k elektrocentrále OXE Powerstation S1000",
       "description": "OXE SP200W II - SOLÁRNY&nbsp;PANEL K ELEKTROCENTRÁLE OXE POWERSTATION&nbsp;S1000 OXE SP200W II je solárny&nbsp;panel primárne&nbsp;určený na&nbsp;dobíjanie&nbsp;elektrocentrály OXE Powerstation S1000 &nbsp;(vďaka&nbsp;konektoru MC4 ho možno jednoducho pripojiť&nbsp;k väčšine&nbsp;solárne&nbsp;kompatibilných zariadení). Solárny&nbsp;panel je ľahký&nbsp;a extra tenký . Jednoducho sa zloží a nezaberie veľa miesta.&nbsp;Skladací design uľahčuje prepravu&nbsp;a pohodlne&nbsp;sa&nbsp;vojde do kufra vá",
       "categoryPath": "",
-      "category": "power_station",
+      "category": "solar_panel",
       "brand": "OXE",
       "priceCzk": 454.13,
       "priceCurrency": "EUR",
@@ -1826,12 +1790,12 @@
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.sk%2Foxe-sp200w-ii-solarny-panel-k-elektrocentrale-oxe-powerstation-s1000%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/08/25/oxe-sp200w-ii-solarni-panel-k-elektrocentrale-oxe-powerstation-s1000-9304-1661408185.jpg",
       "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
+      "specEvidenceUrl": null,
       "specs": {
-        "capacityWh": 1028,
-        "powerW": 1000,
+        "capacityWh": null,
+        "powerW": 200,
         "solarInputW": null,
-        "dcOutputA": 10,
+        "dcOutputA": null,
         "pureSine": null
       }
     },
@@ -1915,7 +1879,7 @@
       "categoryPath": "Nabíjačky",
       "category": "dc_charger",
       "brand": "",
-      "priceCzk": 164.59,
+      "priceCzk": 165.17,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/sk/nabijacky/5479-nabijacka-bateriu-z-12v-na-292v-20a-584w-ip65-slim",
@@ -1950,7 +1914,7 @@
       "categoryPath": "Nabíjačky",
       "category": "dc_charger",
       "brand": "",
-      "priceCzk": 164.59,
+      "priceCzk": 165.17,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/sk/nabijacky/5522-nabijacka-bateriu-z-12v-na-438v-13a-569w-ip65-slim",
@@ -1985,7 +1949,7 @@
       "categoryPath": "Nabíjačky",
       "category": "dc_charger",
       "brand": "",
-      "priceCzk": 164.59,
+      "priceCzk": 165.17,
       "priceCurrency": "EUR",
       "available": null,
       "productUrl": "https://ampul.eu/sk/nabijacky/5523-nabijacka-bateriu-z-12v-24v-na-584v-10a-584w-ip65-",
@@ -2021,7 +1985,7 @@
       "categoryPath": "Meniče napätia",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 352.61,
+      "priceCzk": 353.86,
       "priceCurrency": "EUR",
       "available": null,
       "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7391-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
@@ -2054,7 +2018,7 @@
       "categoryPath": "Meniče napätia",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 352.61,
+      "priceCzk": 353.86,
       "priceCurrency": "EUR",
       "available": null,
       "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7392-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
@@ -2087,7 +2051,7 @@
       "categoryPath": "Meniče napätia",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 352.61,
+      "priceCzk": 353.86,
       "priceCurrency": "EUR",
       "available": null,
       "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7393-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
@@ -2120,7 +2084,7 @@
       "categoryPath": "Meniče napätia",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 352.61,
+      "priceCzk": 353.86,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7394-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
@@ -2153,7 +2117,7 @@
       "categoryPath": "Meniče napätia",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 352.61,
+      "priceCzk": 353.86,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7395-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
@@ -2186,7 +2150,7 @@
       "categoryPath": "Meniče napätia",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 352.61,
+      "priceCzk": 353.86,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7396-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
@@ -2219,7 +2183,7 @@
       "categoryPath": "Meniče napätia",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 352.61,
+      "priceCzk": 353.86,
       "priceCurrency": "EUR",
       "available": null,
       "productUrl": "https://ampul.eu/sk/menice-napatia/5577-7397-menic-napatia-z-dc-na-230v-ac-50hz-2000w",
@@ -2252,7 +2216,7 @@
       "categoryPath": "Nabíjačky",
       "category": "dc_charger",
       "brand": "",
-      "priceCzk": 285.52,
+      "priceCzk": 286.53,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/sk/nabijacky/6195-dc-dc-nabijacka-lifepo4-baterii-146v-30a-400w-ip68",
@@ -2289,7 +2253,7 @@
       "categoryPath": "Nabíjačky",
       "category": "shore_charger",
       "brand": "",
-      "priceCzk": 27.29,
+      "priceCzk": 27.39,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/sk/nabijacky/6653-napajaci-zdroj-zasuvkovy-36v-2a-55x21mm-nabijacka-olovenych-baterii",
@@ -2325,7 +2289,7 @@
       "categoryPath": "Nabíjačky",
       "category": "shore_charger",
       "brand": "",
-      "priceCzk": 39.3,
+      "priceCzk": 39.44,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://ampul.eu/sk/nabijacky/6692-napajaci-zdroj-zasuvkovy-24v-5a-55x21mm-nabijacka-olovenych-baterii",
@@ -2360,7 +2324,7 @@
       "categoryPath": "Meniče napätia",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 3624.38,
+      "priceCzk": 3637.19,
       "priceCurrency": "EUR",
       "available": null,
       "productUrl": "https://ampul.eu/sk/menice-napatia/6880-menic-napatia-110v-dc-230v-ac-12-kva-9600-w-19-4u-rs485",
@@ -2389,7 +2353,7 @@
       "categoryPath": "Meniče napätia",
       "category": "inverter",
       "brand": "",
-      "priceCzk": 3168.39,
+      "priceCzk": 3179.59,
       "priceCurrency": "EUR",
       "available": null,
       "productUrl": "https://ampul.eu/sk/menice-napatia/6907-menic-napatia-48v-230v-ac-10-kva-8000-w-19-4u-rs485",
