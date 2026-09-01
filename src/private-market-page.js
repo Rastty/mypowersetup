@@ -37,7 +37,7 @@ export function renderPrivateMarketSeedPage(seed) {
   if (!calculator) throw new Error(`PRIVATE_CALCULATOR_COPY_MISSING:${seed.key}`);
   const navItems = PRIVATE_NAV[seed.key] || [];
   const navHtml = navItems.slice(0, 3).map(([label, href]) => `<a class="header-link" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("");
-  const footerHtml = navItems.length ? `<footer class="expansion-footer"><nav aria-label="Trust and guides">${navItems.map(([label, href]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("")}</nav></footer>` : "";
+  const footerHtml = navItems.length ? `<footer class="expansion-footer"><nav aria-label="Trust and guides">${navItems.map(([label, href]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join(" ")}</nav></footer>` : "";
 
   const stepNavigationHtml = calculator.steps
     .map((label, index) => `<button class="step${index === 0 ? " is-active" : ""}" type="button" data-step-target="${index + 1}"${index ? " disabled" : ""}><span>${index + 1}</span><small>${escapeHtml(label)}</small></button>${index < 2 ? "<i></i>" : ""}`)
