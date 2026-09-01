@@ -9,7 +9,7 @@ const CASES = [
 ];
 
 function feed(url, title) {
-  return `<rss><channel><item><g:id>panel-200</g:id><g:title>${title}</g:title><g:description>Monocrystalline caravan panel</g:description><g:link>${url}</g:link><g:price>199 EUR</g:price><g:availability>in_stock</g:availability></item></channel></rss>`;
+  return `<rss><channel><item><g:id>panel-200</g:id><g:title>${title}</g:title><g:description>${"Monocrystalline caravan panel with verified specifications. ".repeat(20)}</g:description><g:link>${url}</g:link><g:price>199 EUR</g:price><g:availability>in_stock</g:availability></item></channel></rss>`;
 }
 
 function atomFeed(url, title) {
@@ -27,6 +27,7 @@ for (const [market, merchant, destination, title] of CASES) {
     assert.equal(result.products[0].merchant, merchant);
     assert.equal(result.products[0].category, "solar_panel");
     assert.equal(result.products[0].available, true);
+    assert.equal(result.products[0].description.length, 500);
     assert.equal(new URL(result.products[0].affiliateUrl).searchParams.get("desturl"), destination);
   });
 }

@@ -37,7 +37,9 @@ export async function syncPadaboMarket(market, previousCatalog = { products: [] 
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const parsed = parseProductFeed(await response.text(), config.merchant);
-    const products = parsed.filter((product) => product.category !== "other");
+    const products = parsed
+      .filter((product) => product.category !== "other")
+      .map((product) => ({ ...product, description: product.description.slice(0, 500) }));
     if (!products.length) throw new Error("feed neobsahuje použitelné produkty");
     return { products, source: { status: "ok", parsedProducts: parsed.length, relevantProducts: products.length } };
   } catch (error) {
