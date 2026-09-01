@@ -1,4 +1,5 @@
 import { buildAllpowersPtDeeplink, parseAllpowersPtDeeplink } from "./affiliate-allpowers-pt.js";
+import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js";
 
 const PT_ORIGIN = "https://allpowers-pt.com";
 const PRODUCT_PATH_PREFIX = "/products/";
@@ -96,9 +97,15 @@ export function validatePtCatalog(payload) {
   if (!Array.isArray(payload?.products) || !payload?.sources || typeof payload.sources !== "object") {
     throw new Error("PT_CATALOG_SHAPE_INVALID");
   }
-  const products = payload.products.filter((product) => product?.merchant === "allpowers_pt");
-  if (products.length !== payload.products.length) throw new Error("PT_CATALOG_FOREIGN_MERCHANT");
-  for (const product of products) {
+  const powerQueenProducts = payload.products.filter(isPowerQueenExpansionProduct);
+  if (powerQueenProducts.length && payload.sources?.powerqueen_eu?.status !== "ok") throw new Error("PT_POWERQUEEN_SOURCE_INVALID");
+
+  for (const product of payload.products) {
+    if (isPowerQueenExpansionProduct(product)) {
+      validatePowerQueenExpansionProduct(product);
+      continue;
+    }
+    if (product?.merchant !== "allpowers_pt") throw new Error("PT_CATALOG_FOREIGN_MERCHANT");
     if (!product.productUrl || !product.affiliateUrl) throw new Error("PT_CATALOG_DESTINATION_MISSING");
     const destination = new URL(product.productUrl);
     if (!["allpowers-pt.com", "www.allpowers-pt.com"].includes(destination.hostname)
@@ -115,6 +122,6 @@ export function validatePtCatalog(payload) {
     generatedAt: payload.generatedAt || null,
     private: false,
     sources: Object.freeze({ ...payload.sources }),
-    products: Object.freeze(products.map((product) => Object.freeze({ ...product }))),
+    products: Object.freeze(payload.products.map((product) => Object.freeze({ ...product }))),
   });
 }
