@@ -41,18 +41,19 @@ test("small pure-sine inverter sourcing remains fail-closed until affiliate veri
   }
 });
 
-test("Offgridtec Phoenix inverters are the actionable PT, RO and SI sourcing candidates", () => {
+test("owner-skipped Offgridtec candidates never surface as PT, RO or SI actions", () => {
   for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
     const candidates = listCommercialSourcingCandidates({ market, category: "inverter" });
-    assert.deepEqual(candidates.map(({ id }) => id), [
+    assert.deepEqual(candidates, []);
+    assert.equal(bestCommercialSourcingCandidate({ market, category: "inverter" }), null);
+
+    const skipped = listCommercialSourcingCandidates({ market, category: "inverter", includeSkipped: true });
+    assert.deepEqual(skipped.map(({ id }) => id), [
       "offgridtec-victron-phoenix-12-250",
       "offgridtec-victron-phoenix-24-250",
     ]);
-    assert.ok(candidates.every((candidate) => candidate.affiliateNetwork === "adcell"));
-    assert.ok(candidates.every((candidate) => candidate.merchantId === "12136"));
-    assert.ok(candidates.every((candidate) => candidate.status === "application_required"));
-    assert.ok(candidates.every((candidate) => candidate.blocker === "adcell_program_application"));
-    assert.equal(bestCommercialSourcingCandidate({ market, category: "inverter" }).merchant, "offgridtec");
+    assert.ok(skipped.every((candidate) => candidate.status === "skipped_by_owner"));
+    assert.ok(skipped.every((candidate) => candidate.blocker === "owner_declined_application"));
   }
 });
 
