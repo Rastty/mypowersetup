@@ -14,7 +14,7 @@ import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
 import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
-import { trackAffiliateClick } from "./affiliate-analytics.js?v=20260901-1";
+import { trackAffiliateClick } from "./affiliate-analytics.js?v=20260901-route1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -519,7 +519,7 @@ function renderProductRecommendations(result) {
       <section class="product-group" id="product-group-${category}" data-product-category="${category}">
         <h5>${categoryLabels[category]}</h5>
         <div class="product-grid">
-          ${items.map(({ product, reason, checks, verify }) => productCard(product, reason, checks, verify)).join("")}
+          ${items.map(({ product, reason, checks, verify }, index) => productCard(product, reason, checks, verify, index === 0 ? "recommended" : "alternative")).join("")}
         </div>
       </section>
     `).join("");
@@ -549,14 +549,14 @@ function renderProductPackages(variants) {
 function packageProductLink(category, product, packageId) {
   const quantity = product.recommendedQuantity || 1;
   const quantityLabel = quantity > 1 ? `${quantity} szt. · ` : "";
-  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(merchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Pokaż dokładny produkt →</a></li>`;
+  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(merchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Pokaż dokładny produkt →</a></li>`;
 }
 
 function packageCategoryLabel(category) {
   return ({ battery: "Akumulator", solar_panel: "Panel PV", inverter: "Przetwornica", controller: "MPPT", dc_charger: "Ładowarka DC–DC", shore_charger: "Ładowarka 230 V" })[category] || category;
 }
 
-function productCard(product, reason, checks, verify) {
+function productCard(product, reason, checks, verify, recommendationRole) {
   const sourceIsStale = productCatalogSources[product.merchant]?.status === "stale";
   const sourceNote = sourceIsStale
     ? '<p class="product-source-status is-stale"><strong>Starszy katalog produktowy:</strong> Parametry przeszły kontrolę zgodności, ale cenę i dostępność sprawdź po przejściu do sklepu.</p>'
@@ -573,7 +573,7 @@ function productCard(product, reason, checks, verify) {
         ${sourceNote}
         <div class="product-card-action">
           <span class="product-price"><strong>${formatPrice(product.priceCzk, product.priceCurrency)}</strong><small>${sourceIsStale ? "Cena z ostatniego poprawnego importu" : "Cena z katalogu produktowego"}</small></span>
-          <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Pokaż produkt →</a>
+          <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-recommendation-role="${escapeHtml(recommendationRole)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">Pokaż produkt →</a>
         </div>
       </div>
     </article>

@@ -154,7 +154,7 @@ test("Hungarian private page template stays noindex while committed HU output is
     assert.match(html, new RegExp(`id="${id}"`));
   }
   assert.match(browser, /buildHungarianApplicationResult/);
-  assert.match(html, /app-hu-browser\.js\?v=20260901-padabo2/);
+  assert.match(html, /app-hu-browser\.js\?v=20260901-route1/);
   assert.match(browser, /app-hu\.js\?v=20260901-padabo2/);
   assert.match(app, /products\.js\?v=20260901-padabo2/);
   assert.match(browser, /loadHungarianProductCatalog/);
