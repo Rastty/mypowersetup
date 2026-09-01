@@ -13,6 +13,12 @@ class CdpClient {
   async close() { if (this.socket.readyState === WebSocket.CLOSED) return; this.socket.close(); await delay(100); }
 }
 
+const VERIFIED_AWIN_MERCHANTS = {
+  allpowers_pt: { awinmid: "125820", destinationPrefix: "https://allpowers-pt.com/" },
+  powerqueen_eu: { awinmid: "97025", destinationPrefix: "https://www.ipowerqueen.de/" },
+};
+const AWIN_AFFILIATE_ID = "3044971";
+
 const port = Number(process.env.PT_SMOKE_PORT || 4185);
 const previewUrl = `http://127.0.0.1:${port}/pt/`;
 const profileDir = `/tmp/mypowersetup-pt-chrome-${process.pid}`;
@@ -40,10 +46,21 @@ try {
   assert(guideLinks.length === 3, `result guides=${guideLinks.length}`); assert(guideLinks.every((href) => href.startsWith("/pt/guias/")), `wrong result guide=${guideLinks.join(",")}`);
   const componentLinks = await evaluate(cdp, `[...document.querySelectorAll("[data-component-guide]")].map((link) => link.getAttribute("href"))`);
   assert(componentLinks.length === 4, `component guides=${componentLinks.length}`); assert(componentLinks.every((href) => href.startsWith("/pt/guias/")), `wrong component guide=${componentLinks.join(",")}`);
-  const result = await evaluate(cdp, `({cards:document.querySelectorAll('[data-affiliate-product]').length,href:document.querySelector('[data-affiliate-product]')?.href,rel:document.querySelector('[data-affiliate-product]')?.rel,scrollWidth:document.documentElement.scrollWidth,width:innerWidth})`);
-  assert(result.cards > 0, "no verified PT recommendation"); assert(result.href?.includes("awinmid=125820"), `wrong affiliate ${result.href}`); assert(result.rel?.includes("sponsored"), "rel sponsored missing"); assert(result.scrollWidth <= result.width + 2, `result overflow=${result.scrollWidth}`);
+  const result = await evaluate(cdp, `(() => { const links=[...document.querySelectorAll('[data-affiliate-product]')]; return {cards:links.length,links:links.map((link)=>({href:link.href,rel:link.rel,merchant:link.dataset.merchant})),merchants:[...new Set(links.map((link)=>link.dataset.merchant).filter(Boolean))],scrollWidth:document.documentElement.scrollWidth,width:innerWidth}; })()`);
+  assert(result.cards > 0, "no verified PT recommendation");
+  for (const link of result.links) {
+    const merchant = VERIFIED_AWIN_MERCHANTS[link.merchant];
+    assert(Boolean(merchant), `merchant=${link.merchant}`);
+    const url = new URL(link.href);
+    assert(["awin1.com", "www.awin1.com"].includes(url.hostname), `wrong affiliate host ${link.href}`);
+    assert(url.searchParams.get("awinmid") === merchant.awinmid, `awinmid=${url.searchParams.get("awinmid")}`);
+    assert(url.searchParams.get("awinaffid") === AWIN_AFFILIATE_ID, `awinaffid=${url.searchParams.get("awinaffid")}`);
+    assert(url.searchParams.get("ued")?.startsWith(merchant.destinationPrefix), `destination=${url.searchParams.get("ued")}`);
+    assert(link.rel?.includes("sponsored"), `rel sponsored missing for ${link.merchant}`);
+  }
+  assert(result.scrollWidth <= result.width + 2, `result overflow=${result.scrollWidth}`);
   for (const route of ["/pt/guias/","/pt/metodologia/","/pt/privacidade/","/pt/afiliacao/"]) { const response = await fetch(`http://127.0.0.1:${port}${route}`); assert(response.ok, `${route}:${response.status}`); const html = await response.text(); assert(/noindex/.test(html), `${route}:noindex missing`); }
-  console.log(JSON.stringify({ ok:true, market:"pt", viewport:"390x844", affiliateCards:result.cards, exactMerchant:125820, horizontalOverflow:false }, null, 2));
+  console.log(JSON.stringify({ ok:true, market:"pt", viewport:"390x844", affiliateCards:result.cards, merchants:result.merchants, horizontalOverflow:false }, null, 2));
 } finally {
   if (cdp) await cdp.send("Browser.close").catch(() => {}); await cdp?.close().catch(() => {}); preview.kill("SIGTERM"); if (chrome.exitCode === null) chrome.kill("SIGTERM"); await rm(profileDir, { recursive:true, force:true }).catch(() => {});
 }

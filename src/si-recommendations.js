@@ -1,6 +1,7 @@
 import { calculatePowerStationProfile } from "./power-station.js";
 import { validateOxeDognetDeeplink, validateOxeProductUrl } from "./oxe-affiliate.js";
 import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js";
+import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
 
 export const SI_CATALOG_URL = "/data/products-si.json";
 const AWIN_MERCHANT_ID = "38934";
@@ -58,8 +59,10 @@ export function buildSloveniaRecommendations(catalog, setup, limit = 3) {
     .sort((a, b) => fitScore(a, profile) - fitScore(b, profile))
     .slice(0, limit)
     .map((product) => recommendationView(product));
+  const components = buildExpansionComponentRecommendations(catalog.products, setup, limit);
 
   return Object.freeze({
+    ...components,
     solar_panel: Object.freeze(solarPanels),
     power_station: Object.freeze(powerStations),
   });

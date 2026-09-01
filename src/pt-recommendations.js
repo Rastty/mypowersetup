@@ -1,6 +1,7 @@
 import { parseAllpowersPtDeeplink } from "./affiliate-allpowers-pt.js";
 import { calculatePowerStationProfile } from "./power-station.js";
 import { validatePtCatalog } from "./products-pt.js";
+import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
 
 export const PT_CATALOG_URL = "/data/products-pt.json";
 
@@ -46,8 +47,10 @@ export function buildPortugalRecommendations(catalog, setup, limitPerCategory = 
     .sort((a, b) => Number(a.priceCzk ?? Infinity) - Number(b.priceCzk ?? Infinity))
     .slice(0, limitPerCategory)
     .map((product) => recommendationView(product));
+  const components = buildExpansionComponentRecommendations(safeCatalog.products, setup, limitPerCategory);
 
   return Object.freeze({
+    ...components,
     solar_panel: Object.freeze(solar),
     power_station: Object.freeze(powerStations),
   });
@@ -55,7 +58,10 @@ export function buildPortugalRecommendations(catalog, setup, limitPerCategory = 
 
 export function portugalRecommendationCoverage(recommendations) {
   return Object.freeze({
+    battery: (recommendations?.battery?.length || 0) > 0,
     solarPanel: (recommendations?.solar_panel?.length || 0) > 0,
+    controller: (recommendations?.controller?.length || 0) > 0,
+    inverter: (recommendations?.inverter?.length || 0) > 0,
     powerStation: (recommendations?.power_station?.length || 0) > 0,
   });
 }
