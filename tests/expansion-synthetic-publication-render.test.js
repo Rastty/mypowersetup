@@ -4,6 +4,7 @@ import { renderPrivateMarketSeedPage } from "../src/private-market-page.js";
 import { renderPortugalPrivateContentPage } from "../src/private-content-pt.js";
 import { renderSloveniaPrivateContentPage } from "../src/private-content-si.js";
 import { renderRomaniaPrivateContentPage } from "../src/private-content-ro.js";
+import { renderExpansionVoltageGuidePage } from "../src/expansion-voltage-guides.js";
 import { PT_MARKET_SEED } from "../src/market-seed-pt.js";
 import { SI_MARKET_SEED } from "../src/market-seed-si.js";
 import { RO_MARKET_SEED } from "../src/market-seed-ro.js";
@@ -32,12 +33,12 @@ for (const [market, config] of Object.entries(MARKETS)) {
   test(`${market} synthetic approved release renders every publication route safely`, () => {
     assert.equal(requireExpansionNativeApproval(market, APPROVED_REVIEW), true);
     const manifest = expansionPublicationManifest(market);
-    assert.equal(manifest.length, 17);
+    assert.equal(manifest.length, 18);
 
     for (const entry of manifest) {
       const privateHtml = entry.source === "home"
         ? renderPrivateMarketSeedPage(config.seed)
-        : config.render(entry.route);
+        : config.render(entry.route) || renderExpansionVoltageGuidePage(market, entry.route);
       assert.ok(privateHtml, `missing private render for ${entry.route}`);
 
       const publicHtml = publicizeExpansionHtml(privateHtml, market, entry.route, { home: entry.source === "home" });

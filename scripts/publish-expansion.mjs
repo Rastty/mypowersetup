@@ -5,6 +5,7 @@ import { renderPrivateMarketSeedPage } from "../src/private-market-page.js";
 import { renderPortugalPrivateContentPage } from "../src/private-content-pt.js";
 import { renderSloveniaPrivateContentPage } from "../src/private-content-si.js";
 import { renderRomaniaPrivateContentPage } from "../src/private-content-ro.js";
+import { renderExpansionVoltageGuidePage } from "../src/expansion-voltage-guides.js";
 import { PT_MARKET_SEED } from "../src/market-seed-pt.js";
 import { SI_MARKET_SEED } from "../src/market-seed-si.js";
 import { RO_MARKET_SEED } from "../src/market-seed-ro.js";
@@ -43,7 +44,9 @@ if (!approval.ready && checkOnly) {
   const plannedWrites = [];
 
   for (const entry of manifest) {
-    const privateHtml = entry.source === "home" ? renderPrivateMarketSeedPage(config.seed) : config.render(entry.route);
+    const privateHtml = entry.source === "home"
+      ? renderPrivateMarketSeedPage(config.seed)
+      : config.render(entry.route) || renderExpansionVoltageGuidePage(market, entry.route);
     if (!privateHtml) throw new Error(`EXPANSION_PUBLICATION_RENDER_MISSING:${market}:${entry.route}`);
     let publicHtml = publicizeExpansionHtml(privateHtml, market, entry.route, { home: entry.source === "home" });
     if (entry.source === "home") {
