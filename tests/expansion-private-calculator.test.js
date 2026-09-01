@@ -14,6 +14,9 @@ for (const seed of [RO_MARKET_SEED, PT_MARKET_SEED, SI_MARKET_SEED]) {
     assert.match(html, /data-form-step="2"/);
     assert.match(html, /data-form-step="3"/);
     assert.match(html, /data-appliance/);
+    assert.match(html, /name="appliance"/);
+    assert.match(html, /id="usage-profiles"/);
+    assert.match(html, /data-appliance-id="phones"/);
     assert.match(html, /name="batteryType"/);
     assert.match(html, /name="systemVoltage"/);
     assert.match(html, /expansion-calculator-browser\.js/);
@@ -26,6 +29,7 @@ test("Portugal calculator uses European Portuguese decision copy", () => {
   assert.match(html, /Equipamentos/);
   assert.match(html, /Frigorífico de compressor/);
   assert.match(html, /Primavera \/ outono/);
+  assert.match(html, /Perfis rápidos de utilização/);
 });
 
 test("Romania calculator uses local motorhome and electrical terms", () => {
@@ -33,6 +37,7 @@ test("Romania calculator uses local motorhome and electrical terms", () => {
   assert.match(html, /Consumatori/);
   assert.match(html, /Panouri solare|dimensionarea solarului/);
   assert.match(html, /Tensiune sistem/);
+  assert.match(html, /Profiluri rapide de utilizare/);
 });
 
 test("Slovenia calculator uses local avtodom electrical terminology", () => {
@@ -40,4 +45,5 @@ test("Slovenia calculator uses local avtodom electrical terminology", () => {
   assert.match(html, /Porabniki/);
   assert.match(html, /sončne panele|solarnega sistema/);
   assert.match(html, /Napetost sistema/);
+  assert.match(html, /Hitri profili uporabe/);
 });

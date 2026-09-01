@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { decodeExpansionSetupQuery, encodeExpansionSetupQuery } from "../src/expansion-setup-url.js";
 
-const ALLOWED_IDS = ["fridge", "lights", "pump", "laptop", "tv", "coffee", "custom"];
+const ALLOWED_IDS = ["fridge", "lights", "phones", "pump", "laptop", "tv", "coffee", "custom"];
 
 test("expansion shared setup preserves edited usage and a bounded custom appliance", () => {
   const query = encodeExpansionSetupQuery({
@@ -49,4 +49,6 @@ test("public expansion browser progressively upgrades the MVP controls", () => {
   assert.match(source, /classList\.toggle\("is-complete"/);
   assert.match(source, /validAppliance\(item\)/);
   assert.match(source, /hasCustomAppliance/);
+  assert.match(source, /mountUsageProfiles/);
+  assert.match(source, /usage_profile_selected/);
 });

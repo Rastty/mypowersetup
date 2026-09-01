@@ -95,6 +95,39 @@ const PROFILE_TEXT = {
       comfort: ["Nagyobb kényelem", "Több fogyasztó és háromnapos tartalék"],
     },
   },
+  pt: {
+    eyebrow: "Início rápido",
+    title: "Não sabes exatamente quanto consomes? Começa com um perfil típico",
+    note: "O perfil apenas preenche os equipamentos e as condições iniciais. Podes ajustar imediatamente todos os valores segundo as etiquetas e a tua utilização.",
+    profiles: {
+      weekend: ["Fim de semana", "Frigorífico, luzes, telemóveis e água"],
+      family: ["Férias em família", "Utilização habitual, incluindo televisão"],
+      work: ["Trabalho na autocaravana", "Portátil durante todo o dia e consumos básicos"],
+      comfort: ["Mais conforto", "Mais equipamentos e reserva para três dias"],
+    },
+  },
+  ro: {
+    eyebrow: "Pornire rapidă",
+    title: "Nu știi consumul exact? Începe cu un profil tipic",
+    note: "Profilul doar precompletează consumatorii și condițiile inițiale. Poți modifica imediat toate valorile după etichetele aparatelor și modul tău de utilizare.",
+    profiles: {
+      weekend: ["Weekend", "Frigider, lumini, telefoane și apă"],
+      family: ["Vacanță în familie", "Utilizare obișnuită, inclusiv televizor"],
+      work: ["Lucru din autorulotă", "Laptop folosit toată ziua și consumatori de bază"],
+      comfort: ["Confort sporit", "Mai mulți consumatori și rezervă pentru trei zile"],
+    },
+  },
+  si: {
+    eyebrow: "Hiter začetek",
+    title: "Ne poznaš natančne porabe? Začni z značilnim profilom",
+    note: "Profil samo predizpolni porabnike in začetne pogoje. Vse vrednosti lahko takoj prilagodiš podatkom na napravah in svojemu načinu uporabe.",
+    profiles: {
+      weekend: ["Vikend", "Hladilnik, luči, telefoni in voda"],
+      family: ["Družinske počitnice", "Običajna uporaba, vključno s televizorjem"],
+      work: ["Delo iz avtodoma", "Prenosnik ves dan in osnovni porabniki"],
+      comfort: ["Več udobja", "Več porabnikov in tridnevna rezerva"],
+    },
+  },
 };
 
 export function getUsageProfiles(locale = "cs") {

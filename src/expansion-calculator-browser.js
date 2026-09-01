@@ -4,6 +4,7 @@ import { buildExpansionSetupUrl, decodeExpansionSetupQuery } from "./expansion-s
 import { buildResultShareText, copyText } from "./share.js";
 import { expansionResultGuides } from "./expansion-result-guides.js";
 import { expansionComponentPlan } from "./expansion-component-plan.js";
+import { mountUsageProfiles } from "./usage-profiles.js";
 
 const root = document.querySelector("[data-expansion-calculator]");
 if (!root) throw new Error("EXPANSION_CALCULATOR_ROOT_MISSING");
@@ -39,6 +40,20 @@ const labels = {
 if (!labels) throw new Error(`EXPANSION_CALCULATOR_LOCALE_UNSUPPORTED:${locale || "missing"}`);
 
 enhanceApplianceUi();
+const applianceGrid = form.querySelector(".appliance-grid");
+const profileAppliances = [...form.querySelectorAll("[data-appliance]")].map((input) => ({
+  id: input.dataset.applianceId,
+  hours: Number(input.dataset.hours),
+  quantity: 1,
+}));
+mountUsageProfiles({
+  locale,
+  form,
+  applianceGrid,
+  appliances: profileAppliances,
+  onChange: updateApplianceUi,
+  onSelect: (profile) => track("usage_profile_selected", { market: locale, profile }),
+});
 
 let currentStep = 1;
 let latestResult = null;
@@ -214,7 +229,7 @@ function enhanceApplianceUi() {
     choice.replaceWith(article);
   }
 
-  grid.insertAdjacentHTML("beforeend", `<article class="appliance-card is-custom" data-appliance-card="custom"><input id="expansion-${locale}-custom" type="checkbox" data-appliance data-appliance-id="custom" data-name="${escapeHtml(labels.custom)}" data-watts="50" data-hours="1" data-ac="false" data-surge="1"><label class="appliance-copy" for="expansion-${locale}-custom"><strong>${escapeHtml(labels.custom)}</strong><small>${escapeHtml(labels.customHint)}</small></label><span class="appliance-controls custom-appliance-controls"><label class="mini-field custom-name-field"><input type="text" maxlength="60" value="${escapeHtml(labels.custom)}" data-custom-name aria-label="${escapeHtml(labels.customName)}"></label><label class="mini-field"><input type="number" min="1" max="10000" step="1" inputmode="numeric" value="50" data-watts aria-label="${escapeHtml(labels.watts)}"> ${escapeHtml(labels.watts)}</label><label class="mini-field"><input type="number" min="0.01" max="24" step="0.05" inputmode="decimal" value="1" data-hours aria-label="${escapeHtml(labels.hours)}"> ${escapeHtml(labels.hours)}</label><label class="mini-field"><input type="number" min="1" max="20" step="1" inputmode="numeric" value="1" data-quantity aria-label="${escapeHtml(labels.quantity)}"> ${escapeHtml(labels.quantity)}</label><label class="mini-field custom-select-field"><select data-ac aria-label="AC/DC"><option value="false">${escapeHtml(labels.dc)}</option><option value="true">${escapeHtml(labels.ac)}</option></select></label><label class="mini-field custom-select-field"><select data-surge aria-label="Surge"><option value="1">${escapeHtml(labels.noSurge)}</option><option value="2">${escapeHtml(labels.motorSurge)}</option></select></label></span></article>`);
+  grid.insertAdjacentHTML("beforeend", `<article class="appliance-card is-custom" data-appliance-card="custom"><input id="expansion-${locale}-custom" type="checkbox" name="appliance" value="custom" data-appliance data-appliance-id="custom" data-name="${escapeHtml(labels.custom)}" data-watts="50" data-hours="1" data-ac="false" data-surge="1"><label class="appliance-copy" for="expansion-${locale}-custom"><strong>${escapeHtml(labels.custom)}</strong><small>${escapeHtml(labels.customHint)}</small></label><span class="appliance-controls custom-appliance-controls"><label class="mini-field custom-name-field"><input type="text" maxlength="60" value="${escapeHtml(labels.custom)}" data-custom-name aria-label="${escapeHtml(labels.customName)}"></label><label class="mini-field"><input type="number" min="1" max="10000" step="1" inputmode="numeric" value="50" data-watts aria-label="${escapeHtml(labels.watts)}"> ${escapeHtml(labels.watts)}</label><label class="mini-field"><input type="number" min="0.01" max="24" step="0.05" inputmode="decimal" value="1" data-hours aria-label="${escapeHtml(labels.hours)}"> ${escapeHtml(labels.hours)}</label><label class="mini-field"><input type="number" min="1" max="20" step="1" inputmode="numeric" value="1" data-quantity aria-label="${escapeHtml(labels.quantity)}"> ${escapeHtml(labels.quantity)}</label><label class="mini-field custom-select-field"><select data-ac aria-label="AC/DC"><option value="false">${escapeHtml(labels.dc)}</option><option value="true">${escapeHtml(labels.ac)}</option></select></label><label class="mini-field custom-select-field"><select data-surge aria-label="Surge"><option value="1">${escapeHtml(labels.noSurge)}</option><option value="2">${escapeHtml(labels.motorSurge)}</option></select></label></span></article>`);
 
   const advanced = form.querySelector(".advanced-grid");
   if (advanced && !form.querySelector("[data-appliance-summary]")) {
