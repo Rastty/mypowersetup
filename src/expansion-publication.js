@@ -5,6 +5,7 @@ import { createNativeReviewChecklist } from "./native-review-packs.js";
 import { enhanceExpansionSearchContent } from "./expansion-search-content.js";
 import { enhanceRomaniaSearchContent } from "./expansion-search-content-ro.js";
 import { enhanceSloveniaSearchContent } from "./expansion-search-content-si.js";
+import { enhanceExpansionPowerStationContent, EXPANSION_POWER_STATION_ROUTES } from "./expansion-power-station-content.js";
 import { addContextualGrowthLinks } from "./contextual-growth-links.js";
 
 const CONFIG = Object.freeze({
@@ -101,6 +102,7 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
   output = enhanceExpansionSearchContent(output, market, route);
   output = enhanceRomaniaSearchContent(output, market, route);
   output = enhanceSloveniaSearchContent(output, market, route);
+  output = enhanceExpansionPowerStationContent(output, market, route);
   output = addContextualGrowthLinks(output, market, route);
   const canonical = `https://mypowersetup.com${route}`;
   const additions = [];
@@ -111,6 +113,12 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
     for (const [language, href] of alternates) if (!hasHeadAlternate(output, language)) additions.push(`<link rel="alternate" hreflang="${language}" href="${href}">`);
     const marker = `__MPS_${market.toUpperCase()}_PUBLICATION__`;
     if (!output.includes(marker)) additions.push(`<script>globalThis.${marker}=true</script>`);
+  }
+  if (route === EXPANSION_POWER_STATION_ROUTES[market]) {
+    for (const [alternateMarket, alternateRoute] of Object.entries(EXPANSION_POWER_STATION_ROUTES)) {
+      const language = CONFIG[alternateMarket].locale;
+      if (!hasHeadAlternate(output, language)) additions.push(`<link rel="alternate" hreflang="${language}" href="https://mypowersetup.com${alternateRoute}">`);
+    }
   }
   if (additions.length) output = output.replace("</head>", `  ${additions.join("\n  ")}\n</head>`);
   return output;

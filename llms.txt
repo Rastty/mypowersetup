@@ -9,6 +9,9 @@ MyPowerSetup vytvořil Petr Gálík na základě vlastní zkušenosti s karavane
 - [Kalkulátor sestavy](https://mypowersetup.com/): Výpočet denní spotřeby, baterie, soláru, měniče a regulátoru podle zadaných spotřebičů.
 - [Slovenská kalkulačka zostavy](https://mypowersetup.com/sk/): Slovenská lokalizácia výpočtu spotreby, batérie, soláru, meniča a regulátora.
 - [Polski kalkulator zestawu](https://mypowersetup.com/pl/): Polski dobór akumulatora, paneli fotowoltaicznych, przetwornicy, MPPT i ładowania do kampera.
+- [Power station ou instalação fixa – Portugal](https://mypowersetup.com/pt/guias/power-station-ou-instalacao-fixa-autocaravana/): Decisão por energia diária, potência AC, saída 12 V, entrada solar, recarga e possibilidade de expansão.
+- [Stație portabilă sau instalație fixă – România](https://mypowersetup.com/ro/ghiduri/statie-portabila-sau-instalatie-fixa-autorulota/): Comparație după Wh, putere, ieșire 12 V, limite PV, încărcare și extindere.
+- [Prenosna elektrarna ali fiksna instalacija – Slovenija](https://mypowersetup.com/si/vodici/prenosna-elektrarna-ali-fiksna-instalacija-avtodom/): Odločitev glede na dnevno porabo, AC moč, 12 V izhod, solarni vhod, polnjenje in razširljivost.
 - [Polska metodologia](https://mypowersetup.com/pl/metodologia/): Wzory, założenia, zapasy oraz reguły technicznego dopasowywania produktów.
 - [O projekcie – Polska](https://mypowersetup.com/pl/o-projekcie/): Autor, doświadczenie, zasady redakcyjne i kontakt.
 - [Afiliacja – Polska](https://mypowersetup.com/pl/afiliacja/): Jak działa prowizja i dlaczego nie zmienia wyniku technicznego.

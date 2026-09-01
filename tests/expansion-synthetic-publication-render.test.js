@@ -32,7 +32,7 @@ for (const [market, config] of Object.entries(MARKETS)) {
   test(`${market} synthetic approved release renders every publication route safely`, () => {
     assert.equal(requireExpansionNativeApproval(market, APPROVED_REVIEW), true);
     const manifest = expansionPublicationManifest(market);
-    assert.equal(manifest.length, 16);
+    assert.equal(manifest.length, 17);
 
     for (const entry of manifest) {
       const privateHtml = entry.source === "home"
