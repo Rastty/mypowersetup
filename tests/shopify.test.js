@@ -121,7 +121,16 @@ test("committed Polish catalog offers panels and only fully verified power stati
     new Set(recommendations.power_station.map(({ product }) => product.id)),
     new Set(["allpowers_pl:8562503319707", "allpowers_pl:8428259246235"])
   );
-  assert.ok(recommendations.solar_panel.some(({ product }) => product.merchant === "padabo_pl"));
+  const padaboFresh = catalog.sources?.padabo_pl?.status === "ok";
+  assert.equal(
+    recommendations.solar_panel.some(({ product }) => product.merchant === "padabo_pl"),
+    padaboFresh,
+  );
+  if (!padaboFresh) {
+    const stalePadaboProducts = catalog.products.filter((product) => product.merchant === "padabo_pl");
+    assert.ok(stalePadaboProducts.length > 0);
+    assert.ok(stalePadaboProducts.every((product) => product.available === false && product.staleSource === true));
+  }
   assert.ok(recommendations.solar_panel.every(({ product }) => {
     if (product.affiliateUrl.includes("awinaffid=3044971")) return true;
     const affiliate = new URL(product.affiliateUrl);
