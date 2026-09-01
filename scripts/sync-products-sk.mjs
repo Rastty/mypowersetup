@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
-import { configureMerchantAffiliate } from "../src/products.js";
 import { syncAllpowersEu } from "./lib/sync-allpowers-eu.mjs";
+import { syncPadaboMarket } from "./lib/sync-padabo.mjs";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 import { syncOxeMarket } from "./lib/sync-oxe.mjs";
 
@@ -14,12 +14,14 @@ try {
 }
 
 const feeds = [
-  ["padabo", process.env.PADABO_FEED_URL, process.env.PADABO_AFFILIATE_BASE_URL],
   ["ampul_sk", process.env.AMPUL_SK_FEED_URL, null]
 ];
 
 const products = [];
 const sources = {};
+const padabo = await syncPadaboMarket("sk", previousCatalog, { feedUrl: process.env.PADABO_SK_FEED_URL || process.env.PADABO_FEED_URL });
+products.push(...padabo.products);
+sources.padabo_sk = padabo.source;
 const allpowers = await syncAllpowersEu(previousCatalog);
 products.push(...allpowers.products);
 sources.allpowers_eu = allpowers.source;
@@ -31,7 +33,7 @@ products.push(...oxe.products);
 sources.oxe_sk = oxe.source;
 for (const [merchant, feedUrl, affiliateBaseUrl] of feeds) {
   const preserved = previousCatalog.products.filter((product) => product.merchant === merchant);
-  if (!feedUrl || (merchant === "padabo" && !affiliateBaseUrl)) {
+  if (!feedUrl) {
     products.push(...preserved);
     sources[merchant] = preserved.length
       ? { status: "stale", error: "feed nebo affiliate odkaz není nakonfigurován", preservedProducts: preserved.length }
@@ -40,7 +42,6 @@ for (const [merchant, feedUrl, affiliateBaseUrl] of feeds) {
   }
 
   try {
-    if (affiliateBaseUrl) configureMerchantAffiliate(merchant, affiliateBaseUrl);
     const response = await fetch(feedUrl, {
       redirect: "follow",
       headers: {

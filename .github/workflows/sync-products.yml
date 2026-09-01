@@ -73,14 +73,15 @@ jobs:
           AMPUL_CZ_FEED_URL: ${{ secrets.AMPUL_CZ_FEED_URL }}
       - run: node scripts/sync-products-sk.mjs
         env:
-          PADABO_FEED_URL: ${{ secrets.PADABO_FEED_URL }}
-          PADABO_AFFILIATE_BASE_URL: ${{ secrets.PADABO_AFFILIATE_BASE_URL }}
+          PADABO_SK_FEED_URL: ${{ secrets.PADABO_SK_FEED_URL }}
           AMPUL_SK_FEED_URL: ${{ secrets.AMPUL_SK_FEED_URL }}
       - run: node scripts/sync-products-pl.mjs
         env:
+          PADABO_PL_FEED_URL: ${{ secrets.PADABO_PL_FEED_URL }}
           AMPUL_PL_FEED_URL: ${{ secrets.AMPUL_PL_FEED_URL }}
       - run: node scripts/sync-products-hu.mjs
         env:
+          PADABO_HU_FEED_URL: ${{ secrets.PADABO_HU_FEED_URL }}
           AMPUL_HU_FEED_URL: ${{ secrets.AMPUL_HU_FEED_URL }}
       - run: node scripts/sync-products-pt.mjs
       - run: node scripts/write-commercial-opportunity-report.mjs

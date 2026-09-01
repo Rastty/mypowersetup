@@ -17,9 +17,13 @@ const AMPUL_VERIFIED_FEED_PRODUCTS = Object.freeze({
 export function parseProductFeed(xml, merchantKey) {
   const itemPattern = /<SHOPITEM\b[^>]*>([\s\S]*?)<\/SHOPITEM>/gi;
   const googleItemPattern = /<item\b[^>]*>([\s\S]*?)<\/item>/gi;
+  const atomEntryPattern = /<entry\b[^>]*>([\s\S]*?)<\/entry>/gi;
   const blocks = [...xml.matchAll(itemPattern)].map((match) => match[1]);
   if (blocks.length === 0) {
     blocks.push(...[...xml.matchAll(googleItemPattern)].map((match) => match[1]));
+  }
+  if (blocks.length === 0) {
+    blocks.push(...[...xml.matchAll(atomEntryPattern)].map((match) => match[1]));
   }
 
   return blocks.flatMap((block) => {

@@ -1,6 +1,6 @@
 import { APPLIANCES } from "./catalog-pl.js?v=20260823-custom1";
 import { calculateSetup } from "./engine.js?v=20260821-sk1";
-import { recommendProducts } from "./products.js?v=20260828-ampul1";
+import { recommendProducts } from "./products.js?v=20260901-padabo1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20260823-custom1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -605,7 +605,7 @@ function formatPrice(price, currency = "PLN") {
 }
 
 function merchantLabel(merchant) {
-  if (merchant === "padabo") return "Padabo.sk";
+  if (merchant === "padabo_pl") return "Padabo.pl";
   if (merchant === "allpowers_pl") return "ALLPOWERS PL";
   if (merchant === "powerqueen_eu") return "Power Queen EU";
   if (merchant === "ampul_pl") return "Ampul.eu";

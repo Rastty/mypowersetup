@@ -542,7 +542,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260828-coverage1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260901-padabo1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency = "EUR"'));
@@ -576,8 +576,8 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
   assert.ok(html.includes('"@id": "https://mypowersetup.com/pl/o-projekcie/#petr-galik"'));
   assert.ok(html.includes('"url": "https://mypowersetup.com/pl/o-projekcie/"'));
   assert.doesNotMatch(html, /placeholder="napr\./);
-  assert.ok(html.includes('src="/src/app-pl.js?v=20260828-coverage1"'));
-  assert.ok(app.includes('products.js?v=20260828-ampul1'));
+  assert.ok(html.includes('src="/src/app-pl.js?v=20260901-padabo1"'));
+  assert.ok(app.includes('products.js?v=20260901-padabo1'));
   assert.match(html, /Jakiego akumulatora i paneli naprawdę potrzebujesz/);
   assert.match(html, /Zanim zaczniesz kupować/);
   assert.doesNotMatch(html, /sprievodca|sukromie|Vypočítať|Koľko batérie|slovenské návody/);
@@ -600,6 +600,14 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
     product.affiliateUrl.includes("awinmid=121776")
       || product.affiliateUrl.includes("awinmid=97025")
       || product.affiliateUrl.includes("a_bid=ddb5edae")
+      || (
+        product.merchant === "padabo_pl"
+        && new URL(product.affiliateUrl).hostname === "ehub.cz"
+        && new URL(product.affiliateUrl).searchParams.get("a_aid") === "f34c86c8"
+        && new URL(product.affiliateUrl).searchParams.get("a_bid") === "95d61abf"
+        && new URL(product.affiliateUrl).searchParams.get("desturl") === product.productUrl
+        && new URL(product.productUrl).hostname === "www.padabo.pl"
+      )
       || (
         product.merchant === "oxe_pl"
         && new URL(product.affiliateUrl).hostname === "go.dognet.com"

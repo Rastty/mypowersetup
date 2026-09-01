@@ -1,6 +1,6 @@
 import { APPLIANCES } from "./catalog-hu.js";
 import { calculateSetup } from "./engine.js";
-import { recommendProducts } from "./products.js";
+import { recommendProducts } from "./products.js?v=20260901-padabo1";
 import { buildResultShareText } from "./share.js";
 import { buildSetupUrl } from "./setup-url.js";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js";
@@ -29,7 +29,7 @@ export const HU_MARKET = Object.freeze({
   catalogUrl: "/data/products-hu.json",
   published: publishedRuntime,
   indexable: publishedRuntime,
-  merchantLabels: Object.freeze({ ampul_hu: "Ampul.eu", allpowers_eu: "ALLPOWERS EU", powerqueen_eu: "Power Queen EU" }),
+  merchantLabels: Object.freeze({ padabo_hu: "Padabo.hu", ampul_hu: "Ampul.eu", allpowers_eu: "ALLPOWERS EU", powerqueen_eu: "Power Queen EU" }),
   copy: HU_UI_COPY,
   trust: HU_TRUST_COPY,
 });
@@ -43,7 +43,7 @@ export async function loadHungarianProductCatalog(fetchImpl = globalThis.fetch) 
     || !Array.isArray(payload?.products) || typeof payload?.sources !== "object") {
     throw new Error("HU_CATALOG_INVALID");
   }
-  const products = payload.products.filter((product) => ["ampul_hu", "allpowers_eu", "powerqueen_eu"].includes(product?.merchant));
+  const products = payload.products.filter((product) => ["padabo_hu", "ampul_hu", "allpowers_eu", "powerqueen_eu"].includes(product?.merchant));
   return Object.freeze({
     generatedAt: payload.generatedAt || null,
     sources: Object.freeze({ ...payload.sources }),
