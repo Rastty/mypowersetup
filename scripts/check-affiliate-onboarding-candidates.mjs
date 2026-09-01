@@ -6,6 +6,9 @@ const publicCatalogFiles = [
   ["sk-SK", new URL("../data/products-sk.json", import.meta.url)],
   ["pl-PL", new URL("../data/products-pl.json", import.meta.url)],
   ["hu-HU", new URL("../data/products-hu.json", import.meta.url)],
+  ["pt-PT", new URL("../data/products-pt.json", import.meta.url)],
+  ["ro-RO", new URL("../data/products-ro.json", import.meta.url)],
+  ["sl-SI", new URL("../data/products-si.json", import.meta.url)],
 ];
 
 const onboarding = JSON.parse(await readFile(candidateFile, "utf8"));
@@ -32,7 +35,7 @@ for (const candidate of onboarding.candidates) {
   assert(candidate.affiliateUrl === null, `${candidate.id}: inactive candidate must not have an affiliateUrl`);
   assert(typeof candidate.retailEvidenceUrl === "string" && candidate.retailEvidenceUrl.startsWith("https://"), `${candidate.id}: current retail evidence missing`);
   assert(/^\d{4}-\d{2}-\d{2}$/.test(candidate.retailEvidenceVerifiedAt || ""), `${candidate.id}: retail evidence date missing`);
-  for (const market of ["sk-SK", "pl-PL", "hu-HU"]) {
+  for (const market of Object.keys(candidate.marketEligibility || {})) {
     assert(candidate.marketEligibility?.[market] === "unverified", `${candidate.id}: ${market} must remain unverified before activation`);
     const publicProducts = catalogs.get(market)?.products || [];
     assert(!publicProducts.some((product) => product.merchant === candidate.merchant), `${candidate.id}: inactive merchant leaked into ${market} public catalog`);
@@ -60,10 +63,14 @@ assert(smartSolar.status === "approval_pending", "SmartSolar must remain approva
 assert(smartSolar.category === BUTLER_VICTRON_MPPT_250_60_MC4.category, "SmartSolar category diverges from Butler source");
 assert(smartSolar.exactRetailPath === BUTLER_VICTRON_MPPT_250_60_MC4.exactPath, "SmartSolar retail path diverges from Butler source");
 assert(new URL(smartSolar.retailEvidenceUrl).hostname === BUTLER_TECHNIK_AWIN.hostname, "SmartSolar retail evidence must be Butler Technik");
+assert(new URL(smartSolar.shippingEvidenceUrl).hostname === BUTLER_TECHNIK_AWIN.hostname, "SmartSolar shipping evidence must be Butler Technik");
 assert(smartSolar.specs?.technology === "mppt" && BUTLER_VICTRON_MPPT_250_60_MC4.mppt === true, "SmartSolar must be MPPT");
 assert(smartSolar.specs?.currentA === BUTLER_VICTRON_MPPT_250_60_MC4.currentA && smartSolar.specs.currentA >= 60, "SmartSolar current does not cover 60 A scenario");
 assert(smartSolar.specs?.systemVoltages?.includes(12) && BUTLER_VICTRON_MPPT_250_60_MC4.chargingVoltagesV.includes(12), "SmartSolar 12 V support missing");
+assert(smartSolar.specs?.systemVoltages?.includes(24) && BUTLER_VICTRON_MPPT_250_60_MC4.chargingVoltagesV.includes(24), "SmartSolar 24 V support missing");
 assert(smartSolar.specs?.nominalPvPowerW12V === BUTLER_VICTRON_MPPT_250_60_MC4.pvWattsBySystemVoltage[12] && smartSolar.specs.nominalPvPowerW12V >= 550, "SmartSolar 12 V PV capability does not cover 550 W scenario");
+assert(smartSolar.specs?.nominalPvPowerW24V === BUTLER_VICTRON_MPPT_250_60_MC4.pvWattsBySystemVoltage[24] && smartSolar.specs.nominalPvPowerW24V >= 500, "SmartSolar 24 V PV capability does not cover 500 W scenario");
+assert(["sk-SK", "pl-PL", "hu-HU", "pt-PT", "ro-RO", "sl-SI"].every((market) => smartSolar.shippingEligibleMarkets.includes(market)), "SmartSolar shipping evidence does not cover all target markets");
 
 const statusCounts = onboarding.candidates.reduce((counts, candidate) => {
   counts[candidate.status] = (counts[candidate.status] || 0) + 1;
@@ -77,8 +84,8 @@ console.log(JSON.stringify({
   publicLeakage: false,
   commercialCoverageImpact: 0,
   blockers: {
-    inverter: "Apply to Offgridtec via ADCELL, then verify deeplinks and SK/PL/HU checkout before activation",
-    controller: "Wait for Butler Technik Awin approval, then verify deeplink and checkout before activation"
+    inverter: "Apply to Offgridtec via ADCELL, then verify deeplinks and checkout before activation",
+    controller: "Wait for Butler Technik Awin approval; shipping and exact product evidence now cover SK/PL/HU/PT/RO/SI"
   }
 }, null, 2));
 
