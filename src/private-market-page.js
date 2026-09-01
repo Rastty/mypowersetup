@@ -14,6 +14,9 @@ const PRIVATE_NAV = Object.freeze({
   pt: Object.freeze([
     ["Guias", "/pt/guias/"], ["Metodologia", "/pt/metodologia/"], ["Sobre", "/pt/sobre-o-projeto/"], ["Afiliados", "/pt/afiliacao/"], ["Privacidade", "/pt/privacidade/"],
   ]),
+  ro: Object.freeze([
+    ["Ghiduri", "/ro/ghiduri/"], ["Metodologie", "/ro/metodologie/"], ["Despre", "/ro/despre-proiect/"], ["Afiliere", "/ro/afiliere/"], ["Confidențialitate", "/ro/confidentialitate/"],
+  ]),
   si: Object.freeze([
     ["Vodniki", "/si/vodici/"], ["Metodologija", "/si/metodologija/"], ["O projektu", "/si/o-projektu/"], ["Affiliate", "/si/affiliate/"], ["Zasebnost", "/si/zasebnost/"],
   ]),
@@ -33,7 +36,7 @@ export function renderPrivateMarketSeedPage(seed) {
   const calculator = CALCULATOR_COPY[seed.key];
   if (!calculator) throw new Error(`PRIVATE_CALCULATOR_COPY_MISSING:${seed.key}`);
   const navItems = PRIVATE_NAV[seed.key] || [];
-  const navHtml = navItems.slice(0, 1).map(([label, href]) => `<a class="header-link" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("");
+  const navHtml = navItems.slice(0, 3).map(([label, href]) => `<a class="header-link" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("");
   const footerHtml = navItems.length ? `<footer class="expansion-footer"><nav aria-label="Trust and guides">${navItems.map(([label, href]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("")}</nav></footer>` : "";
 
   const stepNavigationHtml = calculator.steps
@@ -73,7 +76,7 @@ export function renderPrivateMarketSeedPage(seed) {
   </main>
   ${footerHtml}
   <script type="module" src="/src/analytics.js"></script>
-  <script type="module" src="/src/expansion-calculator-browser.js"></script>
+  <script type="module" src="/src/expansion-calculator-browser.js?v=20260830-3"></script>
 </body>
 </html>`;
 }
