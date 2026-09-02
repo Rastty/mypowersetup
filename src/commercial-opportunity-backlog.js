@@ -33,11 +33,16 @@ export function buildCommercialOpportunityBacklog(catalog, locale = "cs") {
   const opportunities = report.opportunities.map(({ category, score }) => {
     const primaryScenarioIds = report.scenarios.filter((scenario) => scenario.missing.includes(category)).map((scenario) => scenario.id);
     const unlockScenarioIds = report.scenarios.filter((scenario) => !scenario.purchaseReady && scenario.missing.includes(category)).map((scenario) => scenario.id);
+    const standaloneUnlockScenarioIds = report.scenarios
+      .filter((scenario) => !scenario.purchaseReady && scenario.missing.length === 1 && scenario.missing[0] === category)
+      .map((scenario) => scenario.id);
     const secondaryScenarioIds = report.scenarios.filter((scenario) => scenario.chargingMissing.includes(category)).map((scenario) => scenario.id);
     const affectedWeight = primaryScenarioIds.reduce((sum, id) => sum + scenariosById.get(id).weight, 0);
     const unlockWeight = unlockScenarioIds.reduce((sum, id) => sum + scenariosById.get(id).weight, 0);
+    const standaloneUnlockWeight = standaloneUnlockScenarioIds.reduce((sum, id) => sum + scenariosById.get(id).weight, 0);
     const secondaryWeight = secondaryScenarioIds.reduce((sum, id) => sum + scenariosById.get(id).weight, 0);
     const maxPurchaseReadyGain = report.totalWeight ? unlockWeight / report.totalWeight : 0;
+    const standalonePurchaseReadyGain = report.totalWeight ? standaloneUnlockWeight / report.totalWeight : 0;
     const priority = score >= 8 ? "P0" : score >= 4 ? "P1" : "P2";
     return Object.freeze({
       category,
@@ -46,10 +51,13 @@ export function buildCommercialOpportunityBacklog(catalog, locale = "cs") {
       score,
       affectedWeight,
       unlockWeight,
+      standaloneUnlockWeight,
       secondaryWeight,
       maxPurchaseReadyGain,
+      standalonePurchaseReadyGain,
       primaryScenarioIds: Object.freeze(primaryScenarioIds),
       unlockScenarioIds: Object.freeze(unlockScenarioIds),
+      standaloneUnlockScenarioIds: Object.freeze(standaloneUnlockScenarioIds),
       secondaryScenarioIds: Object.freeze(secondaryScenarioIds),
       primaryRequirements: requirementProfiles(report, category, "missingRequirements"),
       secondaryRequirements: requirementProfiles(report, category, "chargingMissingRequirements"),
@@ -69,21 +77,33 @@ export function aggregateCommercialOpportunityBacklogs(backlogs) {
   const categories = new Map();
   for (const backlog of backlogs) {
     for (const item of backlog.opportunities) {
-      const current = categories.get(item.category) || { category: item.category, label: item.label, score: 0, markets: [], maxPurchaseReadyGain: 0 };
+      const current = categories.get(item.category) || {
+        category: item.category,
+        label: item.label,
+        score: 0,
+        markets: [],
+        maxPurchaseReadyGain: 0,
+        standalonePurchaseReadyGain: 0,
+      };
       current.score += item.score;
       current.markets.push(Object.freeze({
         market: backlog.market,
         priority: item.priority,
         score: item.score,
         maxPurchaseReadyGain: item.maxPurchaseReadyGain,
+        standalonePurchaseReadyGain: item.standalonePurchaseReadyGain || 0,
         primaryRequirements: item.primaryRequirements,
         secondaryRequirements: item.secondaryRequirements,
       }));
       current.maxPurchaseReadyGain += item.maxPurchaseReadyGain;
+      current.standalonePurchaseReadyGain += item.standalonePurchaseReadyGain || 0;
       categories.set(item.category, current);
     }
   }
   return Object.freeze([...categories.values()]
     .map((item) => Object.freeze({ ...item, markets: Object.freeze(item.markets) }))
-    .sort((a, b) => b.score - a.score || b.maxPurchaseReadyGain - a.maxPurchaseReadyGain || a.category.localeCompare(b.category)));
+    .sort((a, b) => b.score - a.score
+      || b.standalonePurchaseReadyGain - a.standalonePurchaseReadyGain
+      || b.maxPurchaseReadyGain - a.maxPurchaseReadyGain
+      || a.category.localeCompare(b.category)));
 }
