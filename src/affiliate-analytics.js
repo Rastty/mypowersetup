@@ -44,7 +44,9 @@ export function trackAffiliateImpressions(links, tracker) {
   if (typeof tracker !== "function") return false;
   const candidates = [...(links || [])].filter((link) => link?.dataset?.affiliateImpressionTracked !== "true");
   if ((links?.length || 0) > 0 && candidates.length === 0) return true;
-  const tracked = tracker("product_choices_rendered", buildAffiliateImpressionParameters(candidates));
+  const choiceResults = candidates.map((link) => tracker("product_choice_impression", buildAffiliateClickParameters(link)));
+  const summaryTracked = tracker("product_choices_rendered", buildAffiliateImpressionParameters(candidates));
+  const tracked = summaryTracked && choiceResults.every(Boolean);
   if (tracked) {
     for (const link of candidates) link.dataset.affiliateImpressionTracked = "true";
   }

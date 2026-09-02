@@ -21,7 +21,7 @@ for (const [market, seed, headerLinks, footerOnlyLinks] of CASES) {
     for (const href of headerLinks) assert.match(header, new RegExp(`href="${href.replaceAll("/", "\\/")}"`));
     for (const href of [...headerLinks, ...footerOnlyLinks]) assert.match(footer, new RegExp(`href="${href.replaceAll("/", "\\/")}"`));
     assert.equal(footer.includes("</a><a"), false, "footer links need a wrapping opportunity on narrow screens");
-    assert.match(html, /expansion-calculator-browser\.js\?v=20260902-visible-impressions1/);
+    assert.match(html, /expansion-calculator-browser\.js\?v=20260902-product-impressions1/);
   });
 }
 

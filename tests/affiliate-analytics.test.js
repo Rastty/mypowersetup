@@ -71,7 +71,9 @@ test("choice impressions provide exclusive CTR denominators by role and purchase
 
   const calls = [];
   assert.equal(trackAffiliateImpressions(links, (...args) => { calls.push(args); return true; }), true);
-  assert.deepEqual(calls, [["product_choices_rendered", buildAffiliateImpressionParameters(links)]]);
+  assert.equal(calls.length, 6);
+  assert.deepEqual(calls.slice(0, 5), links.map((link) => ["product_choice_impression", buildAffiliateClickParameters(link)]));
+  assert.deepEqual(calls[5], ["product_choices_rendered", buildAffiliateImpressionParameters(links)]);
 });
 
 test("choice impressions count each rendered link once", () => {
@@ -81,7 +83,9 @@ test("choice impressions count each rendered link once", () => {
 
   assert.equal(trackAffiliateImpressions([link], tracker), true);
   assert.equal(trackAffiliateImpressions([link], tracker), true);
-  assert.equal(calls.length, 1);
+  assert.equal(calls.length, 2);
+  assert.equal(calls[0][0], "product_choice_impression");
+  assert.equal(calls[1][0], "product_choices_rendered");
   assert.equal(link.dataset.affiliateImpressionTracked, "true");
 });
 
@@ -92,10 +96,11 @@ test("choice impressions exclude links hidden in closed comparisons", () => {
   const calls = [];
 
   assert.equal(trackVisibleAffiliateImpressions(root, (...args) => { calls.push(args); return true; }), true);
-  assert.equal(calls.length, 1);
-  assert.equal(calls[0][1].productCount, 1);
-  assert.equal(calls[0][1].recommendedCount, 1);
-  assert.equal(calls[0][1].alternativeCount, 0);
+  assert.equal(calls.length, 2);
+  assert.equal(calls[0][0], "product_choice_impression");
+  assert.equal(calls[1][1].productCount, 1);
+  assert.equal(calls[1][1].recommendedCount, 1);
+  assert.equal(calls[1][1].alternativeCount, 0);
   assert.equal(hidden.dataset.affiliateImpressionTracked, undefined);
 });
 
@@ -106,6 +111,24 @@ test("failed consent-gated tracking remains eligible after consent", () => {
 
   const calls = [];
   assert.equal(trackAffiliateImpressions([link], (...args) => { calls.push(args); return true; }), true);
-  assert.equal(calls.length, 1);
-  assert.equal(calls[0][1].portableCount, 1);
+  assert.equal(calls.length, 2);
+  assert.equal(calls[0][0], "product_choice_impression");
+  assert.equal(calls[0][1].purchaseRoute, "portable");
+  assert.equal(calls[1][1].portableCount, 1);
+});
+
+test("product-choice impressions share the exact click dimensions", () => {
+  const link = {
+    dataset: {
+      productId: "ps-1000",
+      merchant: "allpowers_pt",
+      category: "power_station",
+      source: "product-card",
+      packageId: "recommended",
+      recommendationRole: "recommended",
+    },
+  };
+  const calls = [];
+  trackAffiliateImpressions([link], (...args) => { calls.push(args); return true; });
+  assert.deepEqual(calls[0], ["product_choice_impression", buildAffiliateClickParameters(link)]);
 });

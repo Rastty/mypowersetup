@@ -26,6 +26,7 @@ requireMatch(navigation, /destination\.origin !== page\.origin/, "community_carr
 requireMatch(navigation, /searchParams\.set\("utm_medium", "community"\)/, "community_carry_keeps_medium");
 forbidMatch(navigation, /sessionStorage|localStorage|gtag\(|fetch\(/, "community_navigation_must_not_persist_track_or_send");
 requireMatch(affiliateAnalytics, /tracker\("affiliate_click",/, "affiliate_click_has_one_shared_tracker");
+requireMatch(affiliateAnalytics, /tracker\("product_choice_impression", buildAffiliateClickParameters\(link\)\)/, "product_impressions_share_click_dimensions");
 requireMatch(affiliateAnalytics, /details:not\(\[open\]\)/, "closed_product_comparisons_are_not_impressions");
 requireMatch(affiliateAnalytics, /affiliateImpressionTracked/, "product_impressions_are_deduplicated");
 
