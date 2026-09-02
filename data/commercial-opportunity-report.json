@@ -1092,7 +1092,7 @@
       "generatedAt": "2026-09-02T07:59:38.731Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
-      "portableFitRatio": 0,
+      "portableFitRatio": 0.21052631578947367,
       "weightedCoverage": 1,
       "topOpportunity": null,
       "opportunities": []
@@ -1102,7 +1102,7 @@
       "generatedAt": "2026-09-02T07:59:50.945Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
-      "portableFitRatio": 0,
+      "portableFitRatio": 0.21052631578947367,
       "weightedCoverage": 1,
       "topOpportunity": null,
       "opportunities": []
@@ -1112,7 +1112,7 @@
       "generatedAt": "2026-09-02T08:00:02.108Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
-      "portableFitRatio": 0.10526315789473684,
+      "portableFitRatio": 0.3157894736842105,
       "weightedCoverage": 1,
       "topOpportunity": null,
       "opportunities": []
@@ -1122,7 +1122,7 @@
       "generatedAt": "2026-09-02T08:00:02.967Z",
       "purchaseReadyRatio": 0.21052631578947367,
       "componentReadyRatio": 0.21052631578947367,
-      "portableFitRatio": 0,
+      "portableFitRatio": 0.21052631578947367,
       "weightedCoverage": 0.7280701754385965,
       "topOpportunity": {
         "category": "inverter",
@@ -1443,7 +1443,7 @@
       "generatedAt": "2026-09-01T18:23:19.971Z",
       "purchaseReadyRatio": 0.21052631578947367,
       "componentReadyRatio": 0.21052631578947367,
-      "portableFitRatio": 0,
+      "portableFitRatio": 0.21052631578947367,
       "weightedCoverage": 0.7280701754385965,
       "topOpportunity": {
         "category": "inverter",
@@ -1764,7 +1764,7 @@
       "generatedAt": "2026-09-01T18:23:22.156Z",
       "purchaseReadyRatio": 0.3157894736842105,
       "componentReadyRatio": 0.21052631578947367,
-      "portableFitRatio": 0.10526315789473684,
+      "portableFitRatio": 0.3157894736842105,
       "weightedCoverage": 0.7280701754385965,
       "topOpportunity": {
         "category": "inverter",
