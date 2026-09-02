@@ -27,7 +27,9 @@
         "peakPowerW": 400,
         "waveform": "pure_sine"
       },
-      "targetScenarioIds": ["family-touring"]
+      "targetScenarioIds": [
+        "family-touring"
+      ]
     },
     {
       "id": "offgridtec-victron-phoenix-24-250",
@@ -53,7 +55,9 @@
         "peakPowerW": 400,
         "waveform": "pure_sine"
       },
-      "targetScenarioIds": ["remote-work"]
+      "targetScenarioIds": [
+        "remote-work"
+      ]
     },
     {
       "id": "butler-victron-multiplus-ii-24-3000-70-32",
@@ -78,7 +82,11 @@
         "ro-RO": "unverified",
         "sl-SI": "unverified"
       },
-      "shippingEligibleMarkets": ["pt-PT", "ro-RO", "sl-SI"],
+      "shippingEligibleMarkets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
       "specs": {
         "systemVoltage": 24,
         "ratedPowerVA": 3000,
@@ -88,7 +96,10 @@
         "waveform": "pure_sine",
         "chargerCurrentA": 70
       },
-      "targetScenarioIds": ["coffee-offgrid", "high-power-tools"]
+      "targetScenarioIds": [
+        "coffee-offgrid",
+        "high-power-tools"
+      ]
     },
     {
       "id": "butler-victron-smartsolar-250-60-mc4",
@@ -113,16 +124,76 @@
         "ro-RO": "unverified",
         "sl-SI": "unverified"
       },
-      "shippingEligibleMarkets": ["sk-SK", "pl-PL", "hu-HU", "pt-PT", "ro-RO", "sl-SI"],
+      "shippingEligibleMarkets": [
+        "sk-SK",
+        "pl-PL",
+        "hu-HU",
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
       "specs": {
         "technology": "mppt",
         "currentA": 60,
-        "systemVoltages": [12, 24, 48],
+        "systemVoltages": [
+          12,
+          24,
+          48
+        ],
         "nominalPvPowerW12V": 860,
         "nominalPvPowerW24V": 1720,
         "maxPvVocV": 250
       },
-      "targetScenarioIds": ["light-weekend", "family-touring", "remote-work", "coffee-offgrid", "winter-basic", "high-power-tools"]
+      "targetScenarioIds": [
+        "light-weekend",
+        "family-touring",
+        "remote-work",
+        "coffee-offgrid",
+        "winter-basic",
+        "high-power-tools"
+      ]
+    },
+    {
+      "id": "xdatou-datouboss-2000w-24v",
+      "merchant": "xdatou",
+      "network": "goaffpro",
+      "programId": null,
+      "applicationUrl": "https://eu.xdatou.com/pages/affiliate-program",
+      "commissionPercent": null,
+      "status": "blocked_affiliate_verification",
+      "category": "inverter",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "retailEvidenceUrl": "https://eu.xdatou.com/collections/xdatou-portable-inverter/products/datouboss-2000w-pure-sine-wave-inverter-24v-car-truck",
+      "retailEvidenceVerifiedAt": "2026-09-02",
+      "stockEvidenceVerifiedAt": "2026-09-02",
+      "stockStatus": "in_stock",
+      "shippingEvidenceUrl": "https://eu.xdatou.com/pages/shipping-policy",
+      "shippingEvidenceVerifiedAt": "2026-09-02",
+      "exactRetailPath": "/collections/xdatou-portable-inverter/products/datouboss-2000w-pure-sine-wave-inverter-24v-car-truck",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "shippingEligibleMarkets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "specs": {
+        "systemVoltage": 24,
+        "continuousPowerW": 2000,
+        "peakPowerW": 4000,
+        "waveform": "pure_sine",
+        "outputVoltageV": 230,
+        "thdPercentMax": 3,
+        "efficiencyPercent": 95
+      },
+      "targetScenarioIds": [
+        "coffee-offgrid",
+        "high-power-tools"
+      ]
     }
   ]
 }
