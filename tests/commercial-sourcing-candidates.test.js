@@ -41,15 +41,18 @@ test("small pure-sine inverter sourcing remains fail-closed until affiliate veri
   }
 });
 
-test("PT, RO and SI inverter sourcing exposes only the stock-blocked Butler exact fit", () => {
+test("PT, RO and SI inverter sourcing prefers the in-stock Xdatou exact fit behind its affiliate gate", () => {
   for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
     const candidates = listCommercialSourcingCandidates({ market, category: "inverter" });
-    assert.deepEqual(candidates.map(({ id }) => id), ["butler-victron-pmp242305010"]);
+    assert.deepEqual(candidates.map(({ id }) => id), [
+      "butler-victron-pmp242305010",
+      "xdatou-datouboss-2000w-24v",
+    ]);
     const best = bestCommercialSourcingCandidate({ market, category: "inverter" });
-    assert.equal(best.status, "blocked_stock");
-    assert.equal(best.blocker, "exact_product_out_of_stock");
-    assert.equal(best.secondaryBlocker, "awin_program_approval");
-    assert.equal(best.specs.powerW, 2400);
+    assert.equal(best.id, "xdatou-datouboss-2000w-24v");
+    assert.equal(best.status, "blocked_affiliate_verification");
+    assert.equal(best.blocker, "goaffpro_terms_and_account_approval_not_verified");
+    assert.equal(best.specs.powerW, 2000);
     assert.equal(best.specs.pureSine, true);
 
     const skipped = listCommercialSourcingCandidates({ market, category: "inverter", includeSkipped: true });
@@ -57,6 +60,7 @@ test("PT, RO and SI inverter sourcing exposes only the stock-blocked Butler exac
       "offgridtec-victron-phoenix-12-250",
       "offgridtec-victron-phoenix-24-250",
       "butler-victron-pmp242305010",
+      "xdatou-datouboss-2000w-24v",
     ]);
     assert.ok(skipped.slice(0, 2).every((candidate) => candidate.status === "skipped_by_owner"));
     assert.ok(skipped.slice(0, 2).every((candidate) => candidate.blocker === "owner_declined_application"));
