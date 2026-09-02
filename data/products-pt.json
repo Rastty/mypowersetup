@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-09-02T14:29:34.673Z",
+  "generatedAt": "2026-09-02T14:34:43.042Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": false,
   "sources": {
     "allpowers_pt": {
       "status": "ok",
-      "relevantProducts": 14,
+      "relevantProducts": 16,
       "solarPanels": 11,
-      "technicallyVerifiedPowerStations": 3
+      "technicallyVerifiedPowerStations": 5
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -44,6 +44,30 @@
         "powerW": 200
       },
       "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10321736073533",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS R3500 V2 Estação de energia de reserva doméstica 3500W 2880Wh",
+      "description": "Capacidade de 2880 Wh; Inversor de onda senoidal pura de 3500W (pico de 7000 W); Entrada dupla máxima de 3300 W em 1,5 horas (CA + Solar); 4 formas de carregamento (CA/Solar/Automático/Gerador/CA duplo + Solar); UPS de backup doméstico ininterrupta de 15 ms; Bateria LiFeP04 de longa duração com mais de 3500 ciclos de carregamento;",
+      "categoryPath": "Portable Power Station",
+      "category": "power_station",
+      "brand": "ALLPOWERS",
+      "priceCzk": 2199,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-r3500-v2-estacao-de-energia-de-reserva-domestica-3500w-2880wh",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-r3500-v2-estacao-de-energia-de-reserva-domestica-3500w-2880wh",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/R3500-EU_1_1.jpg?v=1767074641",
+      "specs": {
+        "capacityWh": 2880,
+        "powerW": 3500,
+        "pureSine": true,
+        "solarInputW": 1300,
+        "dcOutputA": 10,
+        "batteryType": "lifepo4"
+      },
+      "verifiedAt": "2026-09-02"
     },
     {
       "id": "allpowers_pt-10037470232893",
@@ -258,6 +282,30 @@
         "powerW": 100
       },
       "verifiedAt": null
+    },
+    {
+      "id": "allpowers_pt-10037467742525",
+      "merchant": "allpowers_pt",
+      "name": "ALLPOWERS R4000 Estação de energia portátil 4000W 3456Wh",
+      "description": "Capacidade de 3456 Wh e saída AC de senóide pura de 4000 W (pico de 6000 W); Bateria LiFePO₄ com vida útil superior a 3500 ciclos até 80%; Carregamento rápido: 0–100% em 2 horas com uma única entrada AC de alta tensão; UPS, ecrã sensível ao toque e controlo via Wi-Fi/Bluetooth;",
+      "categoryPath": "Portable Power Station",
+      "category": "power_station",
+      "brand": "ALLPOWERS",
+      "priceCzk": 1895,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://allpowers-pt.com/products/allpowers-r4000-estacao-de-energia-portatil-4000w-3456wh",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-r4000-estacao-de-energia-portatil-4000w-3456wh",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/ALLPOWERSR4000_2_530785f3-1c95-4bc5-b7be-2198305767bf.jpg?v=1767075242",
+      "specs": {
+        "capacityWh": 3456,
+        "powerW": 4000,
+        "pureSine": true,
+        "solarInputW": 2000,
+        "dcOutputA": 10,
+        "batteryType": "lifepo4"
+      },
+      "verifiedAt": "2026-09-02"
     },
     {
       "id": "allpowers_pt-10037467709757",
