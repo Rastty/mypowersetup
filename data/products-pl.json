@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-02T07:59:50.945Z",
+  "generatedAt": "2026-09-02T13:35:54.680Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16588,
+      "parsedProducts": 16597,
       "relevantProducts": 209
     },
     "powerqueen_eu": {
@@ -6454,7 +6454,7 @@
       "categoryPath": "Chłodzenie i ogrzewanie | Lodówki turystyczne i torby termiczne | Akcesoria do lodówek samochodowych",
       "category": "battery",
       "brand": "Mestic",
-      "priceCzk": 966.2,
+      "priceCzk": 965.51,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/dodatkowy-akumulator-do-lodowek-kompresorowych-mestic-mccm-mcc_z108321/",
@@ -6576,7 +6576,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Przetwornice napięcia",
       "category": "inverter",
       "brand": "Victron",
-      "priceCzk": 1456.69,
+      "priceCzk": 1455.65,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/przetwornica-sinusoidalna-victron-energy-12-v-1600-va-ve-direct_z109017/",
@@ -6609,7 +6609,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
       "category": "solar_panel",
       "brand": "Victron",
-      "priceCzk": 481.19,
+      "priceCzk": 480.84,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/panel-sloneczny-victron-energy-bluesolar-190-wp-mono-12-v_z109069/",
@@ -6642,7 +6642,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
       "category": "battery",
       "brand": "Renogy",
-      "priceCzk": 4085.99,
+      "priceCzk": 4083.06,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/akumulator-z-ogrzewaniem-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090/",

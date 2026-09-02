@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-02T07:59:38.731Z",
+  "generatedAt": "2026-09-02T13:35:43.274Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16587,
-      "relevantProducts": 251
+      "parsedProducts": 16581,
+      "relevantProducts": 250
     },
     "allpowers_eu": {
       "status": "ok",
@@ -555,7 +555,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
+      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -7707,35 +7707,6 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 500,
-        "currentA": 0.6,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:108740_33863",
-      "merchant": "padabo_sk",
-      "name": "Sinusový menič napätia Carbest PowerWave, 12/230 V výkon 3000 W",
-      "description": "Menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie Carbest PowerWave je menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie. Integrovaný prepínač priority sieťového napájania 230 V preruší prevádzku hneď, ako je obytný automobil alebo karavan pripojený k napájaniu 230 V (napríklad v kempingu). Prevádzka meniča sa obnoví po odpojení od externého napájania. Prevodník tak mení napätie 12 V na 230 V s čistou sínusovou vlnou. ",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 765.88,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/195963_102.jpg?1783252526_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 3000,
         "currentA": 0.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],

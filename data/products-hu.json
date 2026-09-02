@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-02T08:00:02.108Z",
+  "generatedAt": "2026-09-02T13:36:03.366Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12576,
-      "relevantProducts": 157
+      "parsedProducts": 12580,
+      "relevantProducts": 156
     },
     "ampul_hu": {
       "status": "ok",
@@ -3263,7 +3263,7 @@
     {
       "id": "padabo_hu:19287_21292",
       "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
       "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
       "category": "inverter",
@@ -4706,35 +4706,6 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 500,
-        "currentA": 0.6,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:108740_33863",
-      "merchant": "padabo_hu",
-      "name": "Carbest PowerWave szinuszos feszültségátalakító, 12/230 V teljesítmény 3000 W",
-      "description": "A legújabb generációs szinuszos kimenetű átalakító hálózati tápellátás-prioritás kapcsolóval A Carbest PowerWave egy szinuszos kimenettel rendelkező, legújabb generációs hálózati tápellátás-prioritáskapcsolóval ellátott áramátalakító. A beépített 230 V-os hálózati tápellátás-prioritás kapcsoló leállítja a működését, amint a lakóautót vagy lakókocsit 230 V-os hálózati tápellátáshoz csatlakoztatják (például egy kempingben). Az inverter működése a külső tápellátásról való leválasztás után újraindul",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 322915,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/195963_102.jpg?1783252526_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 3000,
         "currentA": 0.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
