@@ -21,7 +21,7 @@ const catalogs = new Map();
 for (const [market, url] of publicCatalogFiles) catalogs.set(market, JSON.parse(await readFile(url, "utf8")));
 
 const merchantPolicies = new Map([
-  ["butler_technik", new Set(["approval_pending"])],
+  ["butler_technik", new Set(["approval_pending", "blocked_stock"])],
   ["offgridtec", new Set(["skipped_by_owner"])],
 ]);
 
@@ -46,6 +46,7 @@ for (const candidate of onboarding.candidates) {
 const byId = new Map(onboarding.candidates.map((candidate) => [candidate.id, candidate]));
 const phoenix12 = required("offgridtec-victron-phoenix-12-250");
 const phoenix24 = required("offgridtec-victron-phoenix-24-250");
+const multiPlus = required("butler-victron-multiplus-ii-24-3000-70-32");
 const smartSolar = required("butler-victron-smartsolar-250-60-mc4");
 
 for (const [candidate, voltage] of [[phoenix12, 12], [phoenix24, 24]]) {
@@ -68,6 +69,23 @@ for (const [candidate, voltage] of [[phoenix12, 12], [phoenix24, 24]]) {
   assert(sourcingCandidate.merchantId === String(candidate.programId), `${candidate.id}: onboarding and sourcing programme IDs diverge`);
   assert(sameValues(sourcingCandidate.markets, Object.keys(candidate.marketEligibility)), `${candidate.id}: onboarding and sourcing target markets diverge`);
 }
+
+assert(multiPlus.merchant === "butler_technik", "MultiPlus merchant invalid");
+assert(multiPlus.network === "awin" && multiPlus.programId === BUTLER_TECHNIK_AWIN.merchantId, "MultiPlus affiliate programme metadata invalid");
+assert(multiPlus.status === "blocked_stock", "MultiPlus must remain blocked while the exact Butler SKU is out of stock");
+assert(multiPlus.secondaryBlocker === "approval_pending", "MultiPlus must retain the pending Butler approval blocker");
+assert(multiPlus.category === "inverter", "MultiPlus category invalid");
+assert(new URL(multiPlus.retailEvidenceUrl).hostname === BUTLER_TECHNIK_AWIN.hostname, "MultiPlus retail evidence must be Butler Technik");
+assert(new URL(multiPlus.technicalEvidenceUrl).hostname === "www.victronenergy.com", "MultiPlus technical evidence must be Victron Energy");
+assert(multiPlus.stockStatus === "out_of_stock" && /^\d{4}-\d{2}-\d{2}$/.test(multiPlus.stockEvidenceVerifiedAt || ""), "MultiPlus stock evidence invalid");
+assert(multiPlus.specs?.systemVoltage === 24, "MultiPlus must fit the 24 V inverter gap");
+assert(multiPlus.specs?.continuousPowerW >= 1300 && multiPlus.specs?.continuousPowerW <= 3900, "MultiPlus does not fit the 1300-3900 W gap");
+assert(multiPlus.specs?.waveform === "pure_sine", "MultiPlus pure-sine evidence missing");
+assert(sameValues(Object.keys(multiPlus.marketEligibility || {}), ["pt-PT", "ro-RO", "sl-SI"]), "MultiPlus targets must match the PT/RO/SI inverter gap");
+const sourcingMultiPlus = listCommercialSourcingCandidates({ category: "inverter" }).find(({ id }) => id === "butler-victron-pmp242305010");
+assert(sourcingMultiPlus?.status === multiPlus.status, "MultiPlus onboarding and sourcing statuses diverge");
+assert(sourcingMultiPlus?.blocker === "exact_product_out_of_stock", "MultiPlus stock blocker missing from sourcing queue");
+assert(sourcingMultiPlus?.secondaryBlocker === "awin_program_approval", "MultiPlus approval blocker missing from sourcing queue");
 
 assert(smartSolar.merchant === "butler_technik", "SmartSolar merchant invalid");
 assert(smartSolar.network === "awin" && smartSolar.programId === BUTLER_TECHNIK_AWIN.merchantId, "SmartSolar affiliate programme metadata invalid");
@@ -96,7 +114,7 @@ console.log(JSON.stringify({
   publicLeakage: false,
   commercialCoverageImpact: 0,
   blockers: {
-    inverter: "Offgridtec skipped by owner; no application action",
+    inverter: "Butler MultiPlus exact SKU is out of stock and Awin approval remains pending; Offgridtec stays skipped by owner",
     controller: "Wait for Butler Technik Awin approval; shipping and exact product evidence now cover SK/PL/HU/PT/RO/SI"
   }
 }, null, 2));
