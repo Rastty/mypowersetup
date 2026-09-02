@@ -10,13 +10,13 @@ Known scenario: 280 Ah LiFePO₄, 910 Wp PV, camper used throughout the year.
 
 ### Polish reply draft
 
-Przy 280 Ah LiFePO₄ najpierw przeliczyłbym cały bilans na Wh, a nie oceniał zestawu tylko po Ah i Wp. Jeżeli jest to bank 12,8 V, ma około 3,58 kWh energii nominalnej. Przy rozsądnym wykorzystaniu około 90% zostaje mniej więcej 3,2 kWh użyteczne. To dużo, ale o autonomii decyduje faktyczne zużycie na dobę.
+Przy 280 Ah LiFePO₄ najpierw przeliczyłbym cały bilans na Wh, a nie oceniał zestawu tylko po Ah i Wp. Jeżeli jest to bank 12,8 V, ma około 3,58 kWh energii nominalnej. Do konserwatywnego planowania warto przyjąć około 80% pojemności użytecznej, czyli mniej więcej 2,87 kWh. To dużo, ale o autonomii decyduje faktyczne zużycie na dobę.
 
 Dla przykładu:
 
-- 800 Wh/dobę daje teoretycznie około 4 dni bez ładowania,
-- 1,2 kWh/dobę — około 2,5 dnia,
-- 1,8 kWh/dobę — niecałe 2 dni.
+- 800 Wh/dobę daje teoretycznie około 3,5 dnia bez ładowania,
+- 1,2 kWh/dobę — około 2,4 dnia,
+- 1,8 kWh/dobę — około 1,5 dnia.
 
 Od tych wartości trzeba jeszcze odjąć straty przetwornicy i uwzględnić temperaturę oraz rezerwę, więc w praktyce wynik będzie trochę niższy.
 
