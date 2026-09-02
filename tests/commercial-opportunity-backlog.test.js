@@ -46,3 +46,19 @@ test("portable-ready scenarios do not inflate maximum component sourcing gain", 
   assert.ok(controller.maxPurchaseReadyGain <= controller.affectedWeight / 19);
   assert.ok(backlog.portableFitRatio > 0);
 });
+
+test("standalone gain excludes scenarios that need another missing category", () => {
+  const backlog = buildCommercialOpportunityBacklog(synthetic, "cs");
+  for (const opportunity of backlog.opportunities) {
+    assert.ok(opportunity.standaloneUnlockWeight <= opportunity.unlockWeight);
+    assert.ok(opportunity.standalonePurchaseReadyGain <= opportunity.maxPurchaseReadyGain);
+    assert.deepEqual(
+      opportunity.standaloneUnlockScenarioIds,
+      opportunity.unlockScenarioIds.filter((id) => {
+        const scenario = backlog.opportunities
+          .filter((item) => item.unlockScenarioIds.includes(id));
+        return scenario.length === 1 && scenario[0].category === opportunity.category;
+      }),
+    );
+  }
+});
