@@ -30,3 +30,15 @@ test("expansion affiliate cards send exact product identity through the shared t
   assert.doesNotMatch(source, /mypowersetup:affiliate-click/);
   assert.doesNotMatch(source, /affiliate_product_click/);
 });
+
+test("expansion product cards expose purchase confidence and merchant-specific CTAs", async () => {
+  const source = await read("src/expansion-calculator-browser.js");
+  const styles = await read("styles.css");
+  for (const merchant of ["ALLPOWERS", "Power Queen", "OXE"]) assert.match(source, new RegExp(merchant));
+  for (const marketCopy of ["Ver preço na", "Vezi prețul la", "Preveri ceno pri"]) assert.match(source, new RegExp(marketCopy));
+  assert.match(source, /expansion-purchase-checks/);
+  assert.match(source, /Ligação exata/);
+  assert.match(source, /Link exact/);
+  assert.match(source, /Točna povezava/);
+  assert.match(styles, /\.expansion-purchase-checks\s*\{/);
+});
