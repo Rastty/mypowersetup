@@ -74,3 +74,15 @@ test("pending Butler controller is also tracked for the expansion markets", () =
     assert.equal(candidate.status, "pending_affiliate_approval");
   }
 });
+
+test("BLUETTI AC240+B210 is tracked as the exact family portable route without leaking before activation", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const candidate = bestCommercialSourcingCandidate({ market, category: "power_station" });
+    assert.equal(candidate.id, "bluetti-eu-ac240-b210");
+    assert.equal(candidate.status, "blocked_stock");
+    assert.equal(candidate.blocker, "exact_eu_bundle_out_of_stock");
+    assert.equal(candidate.secondaryBlocker, "eu_affiliate_deeplink_not_verified");
+    assert.equal(candidate.specs.capacityWh, 3686);
+    assert.equal(candidate.specs.dcOutputA, 30);
+  }
+});
