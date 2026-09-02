@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "generatedAt": "2026-09-02T06:11:29.179Z",
   "focusMarkets": [
     "cs-CZ",
@@ -21,6 +21,7 @@
           "priority": "P0",
           "score": 13,
           "maxPurchaseReadyGain": 0.6842105263157895,
+          "standalonePurchaseReadyGain": 0.42105263157894735,
           "primaryRequirements": [
             {
               "requirement": {
@@ -82,6 +83,7 @@
           "priority": "P0",
           "score": 13,
           "maxPurchaseReadyGain": 0.6842105263157895,
+          "standalonePurchaseReadyGain": 0.42105263157894735,
           "primaryRequirements": [
             {
               "requirement": {
@@ -143,6 +145,7 @@
           "priority": "P0",
           "score": 13,
           "maxPurchaseReadyGain": 0.6842105263157895,
+          "standalonePurchaseReadyGain": 0.42105263157894735,
           "primaryRequirements": [
             {
               "requirement": {
@@ -200,7 +203,8 @@
           "secondaryRequirements": []
         }
       ],
-      "maxPurchaseReadyGain": 2.0526315789473686
+      "maxPurchaseReadyGain": 2.0526315789473686,
+      "standalonePurchaseReadyGain": 1.263157894736842
     },
     {
       "category": "controller",
@@ -212,6 +216,7 @@
           "priority": "P1",
           "score": 7,
           "maxPurchaseReadyGain": 0.3684210526315789,
+          "standalonePurchaseReadyGain": 0.10526315789473684,
           "primaryRequirements": [
             {
               "requirement": {
@@ -249,6 +254,7 @@
           "priority": "P1",
           "score": 7,
           "maxPurchaseReadyGain": 0.3684210526315789,
+          "standalonePurchaseReadyGain": 0.10526315789473684,
           "primaryRequirements": [
             {
               "requirement": {
@@ -286,6 +292,7 @@
           "priority": "P1",
           "score": 7,
           "maxPurchaseReadyGain": 0.2631578947368421,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [
             {
               "requirement": {
@@ -319,7 +326,8 @@
           "secondaryRequirements": []
         }
       ],
-      "maxPurchaseReadyGain": 1
+      "maxPurchaseReadyGain": 1,
+      "standalonePurchaseReadyGain": 0.21052631578947367
     },
     {
       "category": "shore_charger",
@@ -331,6 +339,7 @@
           "priority": "P1",
           "score": 5.5,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [],
           "secondaryRequirements": [
             {
@@ -356,6 +365,7 @@
           "priority": "P1",
           "score": 5.5,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [],
           "secondaryRequirements": [
             {
@@ -381,6 +391,7 @@
           "priority": "P1",
           "score": 5.5,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [],
           "secondaryRequirements": [
             {
@@ -402,7 +413,8 @@
           ]
         }
       ],
-      "maxPurchaseReadyGain": 0
+      "maxPurchaseReadyGain": 0,
+      "standalonePurchaseReadyGain": 0
     },
     {
       "category": "dc_charger",
@@ -414,6 +426,7 @@
           "priority": "P1",
           "score": 4,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [],
           "secondaryRequirements": [
             {
@@ -452,6 +465,7 @@
           "priority": "P1",
           "score": 4,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [],
           "secondaryRequirements": [
             {
@@ -490,6 +504,7 @@
           "priority": "P1",
           "score": 4,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [],
           "secondaryRequirements": [
             {
@@ -524,7 +539,8 @@
           ]
         }
       ],
-      "maxPurchaseReadyGain": 0
+      "maxPurchaseReadyGain": 0,
+      "standalonePurchaseReadyGain": 0
     }
   ],
   "portfolio": [
@@ -538,6 +554,7 @@
           "priority": "P0",
           "score": 13,
           "maxPurchaseReadyGain": 0.6842105263157895,
+          "standalonePurchaseReadyGain": 0.42105263157894735,
           "primaryRequirements": [
             {
               "requirement": {
@@ -599,6 +616,7 @@
           "priority": "P0",
           "score": 13,
           "maxPurchaseReadyGain": 0.6842105263157895,
+          "standalonePurchaseReadyGain": 0.42105263157894735,
           "primaryRequirements": [
             {
               "requirement": {
@@ -660,6 +678,7 @@
           "priority": "P0",
           "score": 13,
           "maxPurchaseReadyGain": 0.6842105263157895,
+          "standalonePurchaseReadyGain": 0.42105263157894735,
           "primaryRequirements": [
             {
               "requirement": {
@@ -717,7 +736,8 @@
           "secondaryRequirements": []
         }
       ],
-      "maxPurchaseReadyGain": 2.0526315789473686
+      "maxPurchaseReadyGain": 2.0526315789473686,
+      "standalonePurchaseReadyGain": 1.263157894736842
     },
     {
       "category": "controller",
@@ -729,6 +749,7 @@
           "priority": "P1",
           "score": 7,
           "maxPurchaseReadyGain": 0.3684210526315789,
+          "standalonePurchaseReadyGain": 0.10526315789473684,
           "primaryRequirements": [
             {
               "requirement": {
@@ -766,6 +787,7 @@
           "priority": "P1",
           "score": 7,
           "maxPurchaseReadyGain": 0.3684210526315789,
+          "standalonePurchaseReadyGain": 0.10526315789473684,
           "primaryRequirements": [
             {
               "requirement": {
@@ -803,6 +825,7 @@
           "priority": "P1",
           "score": 7,
           "maxPurchaseReadyGain": 0.2631578947368421,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [
             {
               "requirement": {
@@ -836,7 +859,8 @@
           "secondaryRequirements": []
         }
       ],
-      "maxPurchaseReadyGain": 1
+      "maxPurchaseReadyGain": 1,
+      "standalonePurchaseReadyGain": 0.21052631578947367
     },
     {
       "category": "shore_charger",
@@ -848,6 +872,7 @@
           "priority": "P1",
           "score": 5.5,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [],
           "secondaryRequirements": [
             {
@@ -873,6 +898,7 @@
           "priority": "P1",
           "score": 5.5,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [],
           "secondaryRequirements": [
             {
@@ -898,6 +924,7 @@
           "priority": "P1",
           "score": 5.5,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [],
           "secondaryRequirements": [
             {
@@ -919,7 +946,8 @@
           ]
         }
       ],
-      "maxPurchaseReadyGain": 0
+      "maxPurchaseReadyGain": 0,
+      "standalonePurchaseReadyGain": 0
     },
     {
       "category": "dc_charger",
@@ -931,6 +959,7 @@
           "priority": "P1",
           "score": 4,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [],
           "secondaryRequirements": [
             {
@@ -969,6 +998,7 @@
           "priority": "P1",
           "score": 4,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [],
           "secondaryRequirements": [
             {
@@ -1007,6 +1037,7 @@
           "priority": "P1",
           "score": 4,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "primaryRequirements": [],
           "secondaryRequirements": [
             {
@@ -1041,7 +1072,8 @@
           ]
         }
       ],
-      "maxPurchaseReadyGain": 0
+      "maxPurchaseReadyGain": 0,
+      "standalonePurchaseReadyGain": 0
     }
   ],
   "markets": [
@@ -1098,8 +1130,10 @@
         "priority": "P0",
         "score": 13,
         "maxPurchaseReadyGain": 0.6842105263157895,
+        "standalonePurchaseReadyGain": 0.42105263157894735,
         "affectedWeight": 13,
         "unlockWeight": 13,
+        "standaloneUnlockWeight": 8,
         "primaryScenarioIds": [
           "family-touring",
           "remote-work",
@@ -1108,6 +1142,11 @@
         ],
         "unlockScenarioIds": [
           "family-touring",
+          "remote-work",
+          "coffee-offgrid",
+          "high-power-tools"
+        ],
+        "standaloneUnlockScenarioIds": [
           "remote-work",
           "coffee-offgrid",
           "high-power-tools"
@@ -1176,8 +1215,10 @@
           "priority": "P0",
           "score": 13,
           "maxPurchaseReadyGain": 0.6842105263157895,
+          "standalonePurchaseReadyGain": 0.42105263157894735,
           "affectedWeight": 13,
           "unlockWeight": 13,
+          "standaloneUnlockWeight": 8,
           "primaryScenarioIds": [
             "family-touring",
             "remote-work",
@@ -1186,6 +1227,11 @@
           ],
           "unlockScenarioIds": [
             "family-touring",
+            "remote-work",
+            "coffee-offgrid",
+            "high-power-tools"
+          ],
+          "standaloneUnlockScenarioIds": [
             "remote-work",
             "coffee-offgrid",
             "high-power-tools"
@@ -1253,14 +1299,19 @@
           "priority": "P1",
           "score": 7,
           "maxPurchaseReadyGain": 0.3684210526315789,
+          "standalonePurchaseReadyGain": 0.10526315789473684,
           "affectedWeight": 7,
           "unlockWeight": 7,
+          "standaloneUnlockWeight": 2,
           "primaryScenarioIds": [
             "family-touring",
             "winter-basic"
           ],
           "unlockScenarioIds": [
             "family-touring",
+            "winter-basic"
+          ],
+          "standaloneUnlockScenarioIds": [
             "winter-basic"
           ],
           "secondaryScenarioIds": [],
@@ -1302,10 +1353,13 @@
           "priority": "P1",
           "score": 5.5,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "affectedWeight": 0,
           "unlockWeight": 0,
+          "standaloneUnlockWeight": 0,
           "primaryScenarioIds": [],
           "unlockScenarioIds": [],
+          "standaloneUnlockScenarioIds": [],
           "secondaryScenarioIds": [
             "light-weekend",
             "family-touring",
@@ -1337,10 +1391,13 @@
           "priority": "P1",
           "score": 4,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "affectedWeight": 0,
           "unlockWeight": 0,
+          "standaloneUnlockWeight": 0,
           "primaryScenarioIds": [],
           "unlockScenarioIds": [],
+          "standaloneUnlockScenarioIds": [],
           "secondaryScenarioIds": [
             "family-touring",
             "winter-basic",
@@ -1394,8 +1451,10 @@
         "priority": "P0",
         "score": 13,
         "maxPurchaseReadyGain": 0.6842105263157895,
+        "standalonePurchaseReadyGain": 0.42105263157894735,
         "affectedWeight": 13,
         "unlockWeight": 13,
+        "standaloneUnlockWeight": 8,
         "primaryScenarioIds": [
           "family-touring",
           "remote-work",
@@ -1404,6 +1463,11 @@
         ],
         "unlockScenarioIds": [
           "family-touring",
+          "remote-work",
+          "coffee-offgrid",
+          "high-power-tools"
+        ],
+        "standaloneUnlockScenarioIds": [
           "remote-work",
           "coffee-offgrid",
           "high-power-tools"
@@ -1472,8 +1536,10 @@
           "priority": "P0",
           "score": 13,
           "maxPurchaseReadyGain": 0.6842105263157895,
+          "standalonePurchaseReadyGain": 0.42105263157894735,
           "affectedWeight": 13,
           "unlockWeight": 13,
+          "standaloneUnlockWeight": 8,
           "primaryScenarioIds": [
             "family-touring",
             "remote-work",
@@ -1482,6 +1548,11 @@
           ],
           "unlockScenarioIds": [
             "family-touring",
+            "remote-work",
+            "coffee-offgrid",
+            "high-power-tools"
+          ],
+          "standaloneUnlockScenarioIds": [
             "remote-work",
             "coffee-offgrid",
             "high-power-tools"
@@ -1549,14 +1620,19 @@
           "priority": "P1",
           "score": 7,
           "maxPurchaseReadyGain": 0.3684210526315789,
+          "standalonePurchaseReadyGain": 0.10526315789473684,
           "affectedWeight": 7,
           "unlockWeight": 7,
+          "standaloneUnlockWeight": 2,
           "primaryScenarioIds": [
             "family-touring",
             "winter-basic"
           ],
           "unlockScenarioIds": [
             "family-touring",
+            "winter-basic"
+          ],
+          "standaloneUnlockScenarioIds": [
             "winter-basic"
           ],
           "secondaryScenarioIds": [],
@@ -1598,10 +1674,13 @@
           "priority": "P1",
           "score": 5.5,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "affectedWeight": 0,
           "unlockWeight": 0,
+          "standaloneUnlockWeight": 0,
           "primaryScenarioIds": [],
           "unlockScenarioIds": [],
+          "standaloneUnlockScenarioIds": [],
           "secondaryScenarioIds": [
             "light-weekend",
             "family-touring",
@@ -1633,10 +1712,13 @@
           "priority": "P1",
           "score": 4,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "affectedWeight": 0,
           "unlockWeight": 0,
+          "standaloneUnlockWeight": 0,
           "primaryScenarioIds": [],
           "unlockScenarioIds": [],
+          "standaloneUnlockScenarioIds": [],
           "secondaryScenarioIds": [
             "family-touring",
             "winter-basic",
@@ -1690,8 +1772,10 @@
         "priority": "P0",
         "score": 13,
         "maxPurchaseReadyGain": 0.6842105263157895,
+        "standalonePurchaseReadyGain": 0.42105263157894735,
         "affectedWeight": 13,
         "unlockWeight": 13,
+        "standaloneUnlockWeight": 8,
         "primaryScenarioIds": [
           "family-touring",
           "remote-work",
@@ -1700,6 +1784,11 @@
         ],
         "unlockScenarioIds": [
           "family-touring",
+          "remote-work",
+          "coffee-offgrid",
+          "high-power-tools"
+        ],
+        "standaloneUnlockScenarioIds": [
           "remote-work",
           "coffee-offgrid",
           "high-power-tools"
@@ -1768,8 +1857,10 @@
           "priority": "P0",
           "score": 13,
           "maxPurchaseReadyGain": 0.6842105263157895,
+          "standalonePurchaseReadyGain": 0.42105263157894735,
           "affectedWeight": 13,
           "unlockWeight": 13,
+          "standaloneUnlockWeight": 8,
           "primaryScenarioIds": [
             "family-touring",
             "remote-work",
@@ -1778,6 +1869,11 @@
           ],
           "unlockScenarioIds": [
             "family-touring",
+            "remote-work",
+            "coffee-offgrid",
+            "high-power-tools"
+          ],
+          "standaloneUnlockScenarioIds": [
             "remote-work",
             "coffee-offgrid",
             "high-power-tools"
@@ -1845,8 +1941,10 @@
           "priority": "P1",
           "score": 7,
           "maxPurchaseReadyGain": 0.2631578947368421,
+          "standalonePurchaseReadyGain": 0,
           "affectedWeight": 7,
           "unlockWeight": 5,
+          "standaloneUnlockWeight": 0,
           "primaryScenarioIds": [
             "family-touring",
             "winter-basic"
@@ -1854,6 +1952,7 @@
           "unlockScenarioIds": [
             "family-touring"
           ],
+          "standaloneUnlockScenarioIds": [],
           "secondaryScenarioIds": [],
           "primaryRequirements": [
             {
@@ -1893,10 +1992,13 @@
           "priority": "P1",
           "score": 5.5,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "affectedWeight": 0,
           "unlockWeight": 0,
+          "standaloneUnlockWeight": 0,
           "primaryScenarioIds": [],
           "unlockScenarioIds": [],
+          "standaloneUnlockScenarioIds": [],
           "secondaryScenarioIds": [
             "light-weekend",
             "family-touring",
@@ -1928,10 +2030,13 @@
           "priority": "P1",
           "score": 4,
           "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
           "affectedWeight": 0,
           "unlockWeight": 0,
+          "standaloneUnlockWeight": 0,
           "primaryScenarioIds": [],
           "unlockScenarioIds": [],
+          "standaloneUnlockScenarioIds": [],
           "secondaryScenarioIds": [
             "family-touring",
             "winter-basic",
