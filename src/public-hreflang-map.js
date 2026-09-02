@@ -3,9 +3,29 @@ export const PUBLIC_LOCALES = Object.freeze({
   sk: "sk-SK",
   pl: "pl-PL",
   hu: "hu-HU",
+  pt: "pt-PT",
+  si: "sl-SI",
+  ro: "ro-RO",
 });
 
-export const PUBLIC_HREFLANG_GROUPS = Object.freeze({
+const EXPANSION_HREFLANG_ROUTES = Object.freeze({
+  home: Object.freeze({ pt: "/pt/", si: "/si/", ro: "/ro/" }),
+  guides: Object.freeze({ pt: "/pt/guias/", si: "/si/vodici/", ro: "/ro/ghiduri/" }),
+  battery: Object.freeze({ pt: "/pt/guias/capacidade-bateria-autocaravana/", si: "/si/vodici/kapaciteta-baterije-avtodom/", ro: "/ro/ghiduri/capacitate-baterie-autorulota/" }),
+  chemistry: Object.freeze({ pt: "/pt/guias/lifepo4-vs-agm-autocaravana/", si: "/si/vodici/lifepo4-ali-agm-avtodom/", ro: "/ro/ghiduri/lifepo4-sau-agm-autorulota/" }),
+  solar: Object.freeze({ pt: "/pt/guias/quantos-watts-paineis-solares-autocaravana/", si: "/si/vodici/koliko-soncnih-panelov-avtodom/", ro: "/ro/ghiduri/cate-panouri-solare-autorulota/" }),
+  mppt: Object.freeze({ pt: "/pt/guias/como-escolher-controlador-mppt/", si: "/si/vodici/mppt-regulator-avtodom/", ro: "/ro/ghiduri/regulator-mppt-autorulota/" }),
+  dcDc: Object.freeze({ pt: "/pt/guias/carregador-dc-dc-autocaravana/", si: "/si/vodici/dc-dc-polnilnik-avtodom/", ro: "/ro/ghiduri/incarcator-dc-dc-autorulota/" }),
+  shore: Object.freeze({ pt: "/pt/guias/carregador-230v-bateria-autocaravana/", si: "/si/vodici/230v-polnilnik-baterije-avtodom/", ro: "/ro/ghiduri/incarcator-230v-baterie-autorulota/" }),
+  inverter: Object.freeze({ pt: "/pt/guias/inversor-autocaravana-potencia/", si: "/si/vodici/inverter-avtodom-moc/", ro: "/ro/ghiduri/invertor-autorulota-putere/" }),
+  wiring: Object.freeze({ pt: "/pt/guias/cabos-fusiveis-12v-autocaravana/", si: "/si/vodici/kabli-varovalke-12v-avtodom/", ro: "/ro/ghiduri/cabluri-sigurante-12v-autorulota/" }),
+  fridge: Object.freeze({ pt: "/pt/guias/consumo-frigorifico-compressor-autocaravana/", si: "/si/vodici/poraba-kompresorski-hladilnik-avtodom/", ro: "/ro/ghiduri/consum-frigider-compresor-autorulota/" }),
+  system: Object.freeze({ pt: "/pt/guias/sistema-eletrico-completo-autocaravana/", si: "/si/vodici/elektricni-sistem-avtodom/", ro: "/ro/ghiduri/sistem-electric-complet-autorulota/" }),
+  voltage: Object.freeze({ pt: "/pt/guias/sistema-12v-ou-24v-autocaravana/", si: "/si/vodici/12v-ali-24v-sistem-avtodom/", ro: "/ro/ghiduri/sistem-12v-sau-24v-autorulota/" }),
+  powerStation: Object.freeze({ pt: "/pt/guias/power-station-ou-instalacao-fixa-autocaravana/", si: "/si/vodici/prenosna-elektrarna-ali-fiksna-instalacija-avtodom/", ro: "/ro/ghiduri/statie-portabila-sau-instalatie-fixa-autorulota/" }),
+});
+
+const MATURE_HREFLANG_GROUPS = Object.freeze({
   home: Object.freeze({ cs: "/", sk: "/sk/", pl: "/pl/", hu: "/hu/" }),
   guides: Object.freeze({ cs: "/pruvodce/", sk: "/sk/sprievodca/", pl: "/pl/poradnik/", hu: "/hu/utmutatok/" }),
   battery: Object.freeze({ cs: "/pruvodce/kapacita-baterie-do-karavanu/", sk: "/sk/sprievodca/kapacita-baterie-do-karavanu/", pl: "/pl/poradnik/pojemnosc-akumulatora-do-kampera/", hu: "/hu/utmutatok/lakoauto-akkumulator-kapacitas/" }),
@@ -26,6 +46,10 @@ export const PUBLIC_HREFLANG_GROUPS = Object.freeze({
   privacy: Object.freeze({ cs: "/soukromi/", sk: "/sk/sukromie/", pl: "/pl/prywatnosc/", hu: "/hu/adatvedelem/" }),
 });
 
+export const PUBLIC_HREFLANG_GROUPS = Object.freeze(Object.fromEntries(
+  Object.entries(MATURE_HREFLANG_GROUPS).map(([topic, routes]) => [topic, Object.freeze({ ...routes, ...(EXPANSION_HREFLANG_ROUTES[topic] || {}) })]),
+));
+
 export function routeToPublicFile(route) {
   if (route === "/") return "index.html";
   if (!/^\/[a-z0-9/-]+\/$/.test(route)) throw new Error(`PUBLIC_ROUTE_INVALID:${route}`);
@@ -33,8 +57,8 @@ export function routeToPublicFile(route) {
 }
 
 export function buildHreflangTags(group) {
-  if (!group || Object.keys(PUBLIC_LOCALES).some((market) => !group[market])) throw new Error("PUBLIC_HREFLANG_GROUP_INVALID");
-  const tags = Object.entries(PUBLIC_LOCALES).map(([market, locale]) => `<link rel="alternate" hreflang="${locale}" href="https://mypowersetup.com${group[market]}">`);
+  if (!group || !group.cs) throw new Error("PUBLIC_HREFLANG_GROUP_INVALID");
+  const tags = Object.entries(PUBLIC_LOCALES).filter(([market]) => group[market]).map(([market, locale]) => `<link rel="alternate" hreflang="${locale}" href="https://mypowersetup.com${group[market]}">`);
   tags.push(`<link rel="alternate" hreflang="x-default" href="https://mypowersetup.com${group.cs}">`);
   return tags;
 }

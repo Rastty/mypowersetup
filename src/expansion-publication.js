@@ -8,6 +8,7 @@ import { enhanceSloveniaSearchContent } from "./expansion-search-content-si.js";
 import { enhanceExpansionPowerStationContent, EXPANSION_POWER_STATION_ROUTES } from "./expansion-power-station-content.js";
 import { addContextualGrowthLinks } from "./contextual-growth-links.js";
 import { addExpansionVoltageGuideDiscovery, expansionVoltageGuide, expansionVoltageGuideManifest } from "./expansion-voltage-guides.js";
+import { PUBLIC_HREFLANG_GROUPS, buildHreflangTags } from "./public-hreflang-map.js";
 
 const CONFIG = Object.freeze({
   pt: Object.freeze({ locale: "pt-PT", prefix: "/pt/", content: PT_PRIVATE_CONTENT, homeAlternates: ["pt-PT"] }),
@@ -97,6 +98,18 @@ function hasHeadAlternate(html, language) {
     || new RegExp(`<link\\s+[^>]*hreflang=["']${language}["'][^>]*rel=["']alternate["']`, "i").test(head);
 }
 
+function synchronizePublicHreflang(html, route) {
+  const group = Object.values(PUBLIC_HREFLANG_GROUPS).find((routes) => Object.values(routes).includes(route));
+  if (!group) return html;
+  const canonical = `https://mypowersetup.com${route}`;
+  const tags = buildHreflangTags(group).join("\n");
+  const withCanonical = /rel="canonical"/.test(html) ? html : html.replace("</head>", `  <link rel="canonical" href="${canonical}"></head>`);
+  const output = withCanonical.replace(/\s*<link rel="alternate" hreflang="(?:cs-CZ|sk-SK|pl-PL|hu-HU|pt-PT|sl-SI|ro-RO|x-default)" href="[^"]+"\s*\/?>/g, "");
+  const canonicalAtHeadEnd = new RegExp(`(<link rel="canonical" href="${escapeRegExp(canonical)}"\\s*\\/?>)\\s*</head>`);
+  if (canonicalAtHeadEnd.test(output)) return output.replace(canonicalAtHeadEnd, `$1\n${tags}\n</head>`);
+  return output.replace(new RegExp(`(<link rel="canonical" href="${escapeRegExp(canonical)}"\\s*\\/?>)`), `$1\n${tags}`);
+}
+
 function ensureExpansionArticleSchema(html, market, route) {
   if (/"@type"\s*:\s*"Article"/.test(html)) return html;
   const config = CONFIG[market];
@@ -128,6 +141,7 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
   output = addContextualGrowthLinks(output, market, route);
   output = addExpansionVoltageGuideDiscovery(output, market, route);
   output = ensureExpansionArticleSchema(output, market, route);
+  output = synchronizePublicHreflang(output, route);
   const canonical = `https://mypowersetup.com${route}`;
   const additions = [];
   if (!/rel="canonical"/.test(output)) additions.push(`<link rel="canonical" href="${canonical}">`);
@@ -205,4 +219,8 @@ export function requireExpansionNativeApproval(market, evidence) {
 
 function guideBase(market) {
   return market === "pt" ? "guias" : market === "si" ? "vodici" : "ghiduri";
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }

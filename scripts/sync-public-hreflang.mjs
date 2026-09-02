@@ -34,7 +34,7 @@ export function synchronizeHreflang(html, route, tags) {
   if (!html.includes(`rel="canonical" href="${canonical}"`) && !html.includes(`rel="canonical" href="${canonical}" />`)) {
     throw new Error(`PUBLIC_HREFLANG_CANONICAL_MISMATCH:${route}`);
   }
-  let output = html.replace(/\s*<link rel="alternate" hreflang="(?:cs-CZ|sk-SK|pl-PL|hu-HU|x-default)" href="[^"]+"\s*\/?>/g, "");
+  let output = html.replace(/\s*<link rel="alternate" hreflang="(?:cs-CZ|sk-SK|pl-PL|hu-HU|pt-PT|sl-SI|ro-RO|x-default)" href="[^"]+"\s*\/?>/g, "");
   const canonicalPattern = new RegExp(`(<link rel="canonical" href="${escapeRegExp(canonical)}"\\s*\\/?>)`);
   if (!canonicalPattern.test(output)) throw new Error(`PUBLIC_HREFLANG_CANONICAL_NOT_FOUND:${route}`);
   output = output.replace(canonicalPattern, `$1${tags.map((tag) => `\n${tag}`).join("")}`);

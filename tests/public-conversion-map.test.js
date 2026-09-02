@@ -4,17 +4,15 @@ import { PUBLIC_CONVERSION_ROUTES, conversionRouteCount, conversionRouteFor } fr
 import { COMMERCIAL_GUIDE_TOPICS, classifyPublicGuideRoute } from "../src/public-conversion-funnel.js";
 import { classifyGuideInternalLink } from "../src/analytics-links.js";
 
-test("conversion map covers 78 commercial guide routes without inventing expansion-only missing topics", () => {
+test("conversion map covers all seven markets for every commercial guide topic", () => {
   const commercialCount = COMMERCIAL_GUIDE_TOPICS.reduce((sum, topic) => sum + Object.keys(PUBLIC_CONVERSION_ROUTES[topic] || {}).length, 0);
-  assert.equal(commercialCount, 78);
-  assert.equal(conversionRouteCount(), 85);
-  for (const topic of ["battery", "chemistry", "solar", "mppt", "dcDc", "shore", "inverter", "wiring", "fridge", "system"]) {
+  assert.equal(commercialCount, 84);
+  assert.equal(conversionRouteCount(), 91);
+  for (const topic of COMMERCIAL_GUIDE_TOPICS) {
     assert.equal(Object.keys(PUBLIC_CONVERSION_ROUTES[topic]).length, 7, `${topic} should cover all seven markets`);
   }
-  assert.equal(Object.keys(PUBLIC_CONVERSION_ROUTES.voltage).length, 4);
-  assert.equal(Object.keys(PUBLIC_CONVERSION_ROUTES.powerStation).length, 4);
-  assert.equal(conversionRouteFor("voltage", "pt"), null);
-  assert.equal(conversionRouteFor("powerStation", "si"), null);
+  assert.equal(conversionRouteFor("voltage", "pt"), "/pt/guias/sistema-12v-ou-24v-autocaravana/");
+  assert.equal(conversionRouteFor("powerStation", "si"), "/si/vodici/prenosna-elektrarna-ali-fiksna-instalacija-avtodom/");
 });
 
 test("expansion guide routes classify by local market and commercial topic", () => {
