@@ -447,7 +447,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20260902-product-roles1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20260902-merchant-cta1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260828-ampul1"'));
@@ -544,7 +544,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260902-product-roles1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20260902-merchant-cta1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency = "EUR"'));
@@ -580,7 +580,7 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
   assert.ok(html.includes('"@id": "https://mypowersetup.com/pl/o-projekcie/#petr-galik"'));
   assert.ok(html.includes('"url": "https://mypowersetup.com/pl/o-projekcie/"'));
   assert.doesNotMatch(html, /placeholder="napr\./);
-  assert.ok(html.includes('src="/src/app-pl.js?v=20260902-product-roles1"'));
+  assert.ok(html.includes('src="/src/app-pl.js?v=20260902-merchant-cta1"'));
   assert.ok(app.includes('products.js?v=20260901-padabo2'));
   assert.match(html, /Jakiego akumulatora i paneli naprawdę potrzebujesz/);
   assert.match(html, /Zanim zaczniesz kupować/);
@@ -805,8 +805,8 @@ test("both calculators explain product packages without weakening technical requ
     assert.ok(source.includes("trackAffiliateClick(link"));
   }
   assert.ok(affiliateAnalytics.includes("packageId: link?.dataset?.packageId"));
-  assert.match(app, /Zobrazit přesný produkt/);
-  assert.match(appSk, /Zobraziť presný produkt/);
+  assert.match(app, /merchantPurchaseCta\("cs", merchantLabel\(product\.merchant\)\)/);
+  assert.match(appSk, /merchantPurchaseCta\("sk", merchantLabel\(product\.merchant\)\)/);
 });
 
 test("both calculators render a localized bounded system diagram", async () => {
