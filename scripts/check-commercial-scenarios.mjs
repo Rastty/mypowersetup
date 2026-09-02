@@ -6,6 +6,9 @@ const CONFIG = [
   { market: "sk-SK", locale: "sk", files: ["data/products-sk.json"] },
   { market: "pl-PL", locale: "pl", files: ["data/products-pl.json"] },
   { market: "hu-HU", locale: "hu", files: ["data/products-hu.json"] },
+  { market: "pt-PT", locale: "pt", files: ["data/products-pt.json"] },
+  { market: "ro-RO", locale: "ro", files: ["data/products-ro.json"] },
+  { market: "sl-SI", locale: "sl", files: ["data/products-si.json"] },
 ];
 
 async function readCatalog(config) {
