@@ -34,10 +34,13 @@ function compactOpportunity(item) {
     priority: item.priority,
     score: item.score,
     maxPurchaseReadyGain: item.maxPurchaseReadyGain,
+    standalonePurchaseReadyGain: item.standalonePurchaseReadyGain,
     affectedWeight: item.affectedWeight,
     unlockWeight: item.unlockWeight,
+    standaloneUnlockWeight: item.standaloneUnlockWeight,
     primaryScenarioIds: item.primaryScenarioIds,
     unlockScenarioIds: item.unlockScenarioIds,
+    standaloneUnlockScenarioIds: item.standaloneUnlockScenarioIds,
     secondaryScenarioIds: item.secondaryScenarioIds,
     primaryRequirements: item.primaryRequirements.map(compactRequirement),
     secondaryRequirements: item.secondaryRequirements.map(compactRequirement),
@@ -61,7 +64,7 @@ const generatedAt = latestTimestamp(catalogs.map((catalog) => catalog.generatedA
 const allMarkets = COMMERCIAL_MARKET_CONFIG.map(({ market }) => market);
 
 const report = {
-  schemaVersion: 3,
+  schemaVersion: 4,
   generatedAt,
   focusMarkets: allMarkets,
   focusPortfolio: aggregateCommercialOpportunityBacklogs(backlogs),
