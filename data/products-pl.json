@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-01T20:37:40.085Z",
+  "generatedAt": "2026-09-02T05:13:44.720Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16595,
+      "parsedProducts": 16588,
       "relevantProducts": 209
     },
     "powerqueen_eu": {
@@ -8325,7 +8325,7 @@
       "brand": "ALLPOWERS",
       "priceCzk": 419,
       "priceCurrency": "PLN",
-      "available": true,
+      "available": false,
       "productUrl": "https://allpowers.com.pl/products/allpowers-sp026-60w-foldable-solar-panelpolysilicon-cells",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=121776&awinaffid=3044971&ued=https%3A%2F%2Fallpowers.com.pl%2Fproducts%2Fallpowers-sp026-60w-foldable-solar-panelpolysilicon-cells",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0687/7875/4203/files/33_1800x1800_2fb6acda-5b92-4c52-be54-abda2518ff0f.jpg?v=1755834260",
