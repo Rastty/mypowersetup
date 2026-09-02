@@ -7,9 +7,9 @@ export function renderHungarianSystemGuide() {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <title>Lakóautó elektromos rendszer kapcsolási rajza: napelem, alternátor és 230 V</title>
-  <meta name="description" content="A lakóautó teljes elektromos rendszerének logikus felépítése: napelem és MPPT, DC–DC töltés alternátorról, 230 V-os töltő, lakótéri akkumulátor, 12 V-os elosztás és inverter.">
-  <meta property="og:title" content="Lakóautó elektromos rendszer kapcsolási rajza: napelem, alternátor és 230 V">
+  <title>Lakóautó kapcsolási rajz: napelem, alternátor, 230 V</title>
+  <meta name="description" content="Lakóautó kapcsolási rajz: akkumulátor, napelem és MPPT, DC–DC töltés alternátorról, 230 V-os töltő, inverter, elosztás és védelem.">
+  <meta property="og:title" content="Lakóautó kapcsolási rajz: napelem, alternátor, 230 V">
   <meta property="og:description" content="Hogyan áll össze egy rendszerbe a napelem, az alternátor, a 230 V-os töltés, a lakótéri akkumulátor és az inverter.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://mypowersetup.com${HU_SYSTEM_GUIDE_ROUTE}">
@@ -21,7 +21,7 @@ export function renderHungarianSystemGuide() {
   <script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Lakóautó elektromos rendszer kapcsolási rajza: napelem, alternátor és 230 V",
+    headline: "Lakóautó kapcsolási rajz: napelem, alternátor, 230 V",
     datePublished: "2026-08-29",
     dateModified: "2026-08-29",
     author: {

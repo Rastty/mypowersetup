@@ -8,7 +8,7 @@ export function renderHungarianPowerStationGuide() {
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>Power station vagy beépített rendszer a lakóautóban?</title>
-  <meta name="description" content="Power station vagy beépített lakóautó-rendszer: mikor jobb a hordozható megoldás, mikor a LiFePO4 akkumulátor MPPT-vel, DC–DC töltéssel és inverterrel, és mikor érdemes hibrid rendszert választani.">
+  <meta name="description" content="Power station vagy beépített rendszer lakóautóba? Hasonlítsd össze a hordozhatóságot, a LiFePO₄-rendszert, a töltést, a bővíthetőséget és a hibrid megoldást.">
   <meta property="og:title" content="Power station vagy beépített rendszer a lakóautóban?">
   <meta property="og:description" content="Mobilitás, fedélzeti 12 V, menet közbeni töltés, szervizelhetőség, bővíthetőség és teljes rendszerköltség egy döntési keretben.">
   <meta property="og:type" content="article">
