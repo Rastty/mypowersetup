@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-02T13:35:54.680Z",
+  "generatedAt": "2026-09-02T14:29:24.406Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16597,
-      "relevantProducts": 209
+      "parsedProducts": 16588,
+      "relevantProducts": 208
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -5340,42 +5340,6 @@
         "capacityWh": null,
         "powerW": 750,
         "currentA": 60,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:107308",
-      "merchant": "padabo_pl",
-      "name": "Ładowarka Renogy DC-DC 12 V/40 A",
-      "description": "Inteligentna, wytrzymała i kompaktowa ładowarka Ładowarka akumulatorów Renogy DC-DC 12V/40A umożliwia wydajne ładowanie akumulatorów podczas pracy silnika. Ładowarka DC-DC jest kompatybilna z wieloma typami alternatorów i umożliwia prawidłowe ładowanie akumulatorów AGM, trakcyjnych, żelowych, a nawet litowych o głębokim cyklu. Dzięki 3-stopniowej ładowarce akumulatorów i wielu elektronicznym zabezpieczeniom będziesz mieć pewność, że Twoje akumulatory są ładowane optymalnie i automatycznie. Dla d",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Ładowarki i boostery | Ładowarki",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 829.86,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/ladowarka-renogy-dc-dc-12-v-40-a_z107308/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fladowarka-renogy-dc-dc-12-v-40-a_z107308%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/3/190963_102.jpg?1772370977_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 500,
-        "currentA": 40,
         "chargingVoltagesV": [
           12
         ],
