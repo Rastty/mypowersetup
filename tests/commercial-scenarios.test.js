@@ -133,6 +133,9 @@ test("current public catalogs meet their commercial scenario no-regression floor
     { market: "sk-SK", locale: "sk", files: ["products-sk.json"] },
     { market: "pl-PL", locale: "pl", files: ["products-pl.json"] },
     { market: "hu-HU", locale: "hu", files: ["products-hu.json"] },
+    { market: "pt-PT", locale: "pt", files: ["products-pt.json"] },
+    { market: "ro-RO", locale: "ro", files: ["products-ro.json"] },
+    { market: "sl-SI", locale: "sl", files: ["products-si.json"] },
   ];
   for (const config of configs) {
     const payloads = await Promise.all(config.files.map(async (file) => JSON.parse(await readFile(new URL(`../data/${file}`, import.meta.url), "utf8"))));
