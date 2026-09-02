@@ -40,6 +40,7 @@ jobs:
       - run: node --check scripts/check-public-conversion.mjs
       - run: node --check scripts/check-conversion-analytics.mjs
       - run: node --check scripts/check-postlaunch-public.mjs
+      - run: node --check scripts/check-production-live.mjs
       - run: node --check scripts/check-commercial-coverage.mjs
       - run: node --check scripts/check-commercial-scenarios.mjs
       - run: node --check scripts/check-commercial-opportunities.mjs
