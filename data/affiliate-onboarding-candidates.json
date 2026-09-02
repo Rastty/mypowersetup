@@ -123,6 +123,41 @@
         "maxPvVocV": 250
       },
       "targetScenarioIds": ["light-weekend", "family-touring", "remote-work", "coffee-offgrid", "winter-basic", "high-power-tools"]
+    },
+    {
+      "id": "xdatou-datouboss-2000w-24v",
+      "merchant": "xdatou",
+      "network": "goaffpro",
+      "programId": null,
+      "applicationUrl": "https://eu.xdatou.com/pages/affiliate-program",
+      "commissionPercent": null,
+      "status": "blocked_affiliate_verification",
+      "category": "inverter",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "retailEvidenceUrl": "https://eu.xdatou.com/collections/xdatou-portable-inverter/products/datouboss-2000w-pure-sine-wave-inverter-24v-car-truck",
+      "retailEvidenceVerifiedAt": "2026-09-02",
+      "stockEvidenceVerifiedAt": "2026-09-02",
+      "stockStatus": "in_stock",
+      "shippingEvidenceUrl": "https://eu.xdatou.com/pages/shipping-policy",
+      "shippingEvidenceVerifiedAt": "2026-09-02",
+      "exactRetailPath": "/collections/xdatou-portable-inverter/products/datouboss-2000w-pure-sine-wave-inverter-24v-car-truck",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "shippingEligibleMarkets": ["pt-PT", "ro-RO", "sl-SI"],
+      "specs": {
+        "systemVoltage": 24,
+        "continuousPowerW": 2000,
+        "peakPowerW": 4000,
+        "waveform": "pure_sine",
+        "outputVoltageV": 230,
+        "thdPercentMax": 3,
+        "efficiencyPercent": 95
+      },
+      "targetScenarioIds": ["coffee-offgrid", "high-power-tools"]
     }
   ]
 }
