@@ -567,6 +567,7 @@ function productCard(product, reason, checks, verify, recommendationRole) {
     <article class="product-card">
       ${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : ""}
       <div class="product-card-copy">
+        <span class="product-recommendation-role is-${escapeHtml(recommendationRole)}">${recommendationRole === "recommended" ? "Najlepšia zhoda" : "Kompatibilná alternatíva"}</span>
         <span>${escapeHtml(product.brand || merchantLabel(product.merchant))} · ${escapeHtml(merchantLabel(product.merchant))}</span>
         <h6>${escapeHtml(product.name)}</h6>
         <p class="product-reason"><strong>Prečo vyhovuje:</strong> ${escapeHtml(reason)}</p>
