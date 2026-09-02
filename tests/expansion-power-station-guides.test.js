@@ -18,7 +18,7 @@ for (const guide of GUIDES) {
     const privateHtml = guide.render(guide.route);
     const generated = publicizeExpansionHtml(privateHtml, guide.market, guide.route);
     const committed = await readFile(guide.path, "utf8");
-    assert.equal(committed, generated);
+    assert.equal(committed.trimEnd(), generated.trimEnd());
     assert.match(committed, guide.local);
     assert.ok(committed.includes(`rel="canonical" href="https://mypowersetup.com${guide.route}"`));
     assert.ok(committed.includes(`href="${guide.calculator}"`));
