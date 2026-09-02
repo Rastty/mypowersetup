@@ -13,6 +13,14 @@ test("PT, RO and SI recommendation gaps are explicit instead of silently empty",
   assert.match(source, /Noben preverjen izdelek/);
 });
 
+test("PT, RO and SI show an accessible loading state while recommendation modules load", () => {
+  assert.match(source, /data-product-recommendations aria-live="polite"/);
+  assert.match(source, /data-recommendation-loading/);
+  assert.match(source, /Estamos a verificar produtos compatíveis/);
+  assert.match(source, /Verificăm produsele compatibile/);
+  assert.match(source, /Preverjamo združljive izdelke/);
+});
+
 test("Portugal distinguishes component matches from a missing full portable-system match", () => {
   assert.match(source, /noPortableFit/);
   assert.match(source, /coverage\.powerStation \? ""/);

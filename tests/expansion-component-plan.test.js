@@ -57,7 +57,7 @@ test("calculator renders the shopping plan before affiliate products and tracks 
     readFile(new URL("../src/expansion-calculator-browser.js", import.meta.url), "utf8"),
     readFile(new URL("../src/analytics.js", import.meta.url), "utf8"),
   ]);
-  assert.ok(source.indexOf("renderComponentPlan(value)") < source.indexOf("<div data-product-recommendations>"));
+  assert.ok(source.indexOf("renderComponentPlan(value)") < source.indexOf("<div data-product-recommendations"));
   assert.match(source, /data-component-plan/);
   assert.match(source, /data-component-item/);
   assert.match(analytics, /calculator_to_guide_click/);
