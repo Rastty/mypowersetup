@@ -5,7 +5,7 @@ import { readFile } from "node:fs/promises";
 const report = JSON.parse(await readFile(new URL("../data/commercial-opportunity-report.json", import.meta.url), "utf8"));
 
 test("commercial opportunity artifact distinguishes component and portable purchase routes", () => {
-  assert.equal(report.schemaVersion, 3);
+  assert.equal(report.schemaVersion, 4);
   assert.equal(report.markets.length, 7);
   for (const market of report.markets) {
     assert.ok(Number.isFinite(market.purchaseReadyRatio));
