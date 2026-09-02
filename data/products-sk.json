@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-02T16:13:24.550Z",
+  "generatedAt": "2026-09-02T16:41:36.951Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16581,
-      "relevantProducts": 250
+      "parsedProducts": 16577,
+      "relevantProducts": 249
     },
     "allpowers_eu": {
       "status": "ok",
@@ -6457,41 +6457,6 @@
         "capacityWh": null,
         "powerW": 750,
         "currentA": 60,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:107308",
-      "merchant": "padabo_sk",
-      "name": "Nabíjačka Renogy DC-DC 12V/40 A",
-      "description": "Smart, robustná a kompaktná nabíjačka Pomocou nabíjačky Renogy DC-DC 12V/40A môžete efektívne nabíjať akumulátory počas chodu motora. Nabíjačka batérií DC-DC je kompatibilná s mnohými typmi alternátorov a umožňuje správne nabíjať batérie AGM, trakčné, gélové a dokonca aj lítiové batérie s hlbokým cyklom. Vďaka 3-stupňovej nabíjačke akumulátorov a viacerým elektronickým ochranám budete mať istotu, že sa vaše akumulátory nabíjajú optimálne a automaticky. Pre zvýšenie bezpečnosti izoluje vstup od v",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Nabíjačky a boostery | Nabíjačky",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 161.77,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/nabijacka-renogy-dc-dc-12v-40-a_z107308/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-renogy-dc-dc-12v-40-a_z107308%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/190963_102.jpg?1772370977_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 500,
-        "currentA": 40,
         "chargingVoltagesV": [
           12
         ],
