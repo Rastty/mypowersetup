@@ -42,5 +42,28 @@ export function buildAffiliateImpressionParameters(links) {
 
 export function trackAffiliateImpressions(links, tracker) {
   if (typeof tracker !== "function") return false;
-  return tracker("product_choices_rendered", buildAffiliateImpressionParameters(links));
+  const candidates = [...(links || [])].filter((link) => link?.dataset?.affiliateImpressionTracked !== "true");
+  if ((links?.length || 0) > 0 && candidates.length === 0) return true;
+  const tracked = tracker("product_choices_rendered", buildAffiliateImpressionParameters(candidates));
+  if (tracked) {
+    for (const link of candidates) link.dataset.affiliateImpressionTracked = "true";
+  }
+  return tracked;
+}
+
+export function trackVisibleAffiliateImpressions(root, tracker) {
+  const links = [...(root?.querySelectorAll?.("[data-affiliate-click], [data-affiliate-product]") || [])]
+    .filter((link) => !link.closest?.("[hidden], details:not([open])"));
+  if (!links.length) return false;
+  return trackAffiliateImpressions(links, tracker);
+}
+
+export function bindAffiliateImpressionTracking(root, tracker) {
+  const documentRoot = root?.ownerDocument || root;
+  const scan = () => trackVisibleAffiliateImpressions(root, tracker);
+  root?.addEventListener?.("toggle", (event) => {
+    if (event.target?.open) trackVisibleAffiliateImpressions(event.target, tracker);
+  }, true);
+  documentRoot?.addEventListener?.("mypowersetup:analytics-granted", scan);
+  return scan;
 }

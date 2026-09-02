@@ -48,7 +48,14 @@ function track(event, parameters = {}) {
   return true;
 }
 function removeDialog() { document.querySelector("[data-analytics-consent]")?.remove(); }
-function setConsent(value) { saveChoice(value); removeDialog(); if (value === "granted") loadGoogleTag(); }
+function setConsent(value) {
+  saveChoice(value);
+  removeDialog();
+  if (value === "granted") {
+    loadGoogleTag();
+    document.dispatchEvent(new CustomEvent("mypowersetup:analytics-granted"));
+  }
+}
 function renderDialog() {
   removeDialog();
   const locale = Object.hasOwn(COPY, document.documentElement.lang) ? document.documentElement.lang : "cs";
