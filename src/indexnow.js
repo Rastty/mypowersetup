@@ -6,6 +6,7 @@ export const INDEXNOW_KEY_FILE = "f89b37b1edc8eb20d1ef7029ac1fd280.txt";
 // Keeping expansion routes here is therefore safe while they remain private, and
 // automatically gives them parity once publication adds them to sitemap.xml.
 const PUBLIC_HOME_ROUTES = Object.freeze(["/", "/sk/", "/pl/", "/hu/", "/pt/", "/si/", "/ro/"]);
+const EXPANSION_HOME_ROUTES = Object.freeze(["/pt/", "/si/", "/ro/"]);
 const SHARED_CALCULATOR_FILES = new Set([
   "styles.css",
   "src/charging.js",
@@ -23,6 +24,14 @@ const SHARED_CALCULATOR_FILES = new Set([
   "src/usage-profiles.js",
   "src/verdict.js",
   "src/wiring.js",
+]);
+const EXPANSION_CALCULATOR_FILES = new Set([
+  "src/expansion-calculator-browser.js",
+  "src/expansion-component-plan.js",
+  "src/expansion-component-recommendations.js",
+  "src/expansion-result-guides.js",
+  "src/expansion-recommendation-roles.js",
+  "src/expansion-setup-url.js",
 ]);
 
 const MARKET_HOME_FILES = Object.freeze({
@@ -70,6 +79,10 @@ export function changedFilesToIndexNowUrls(changedFiles, sitemapUrls, { forceAll
 
     if (SHARED_CALCULATOR_FILES.has(file)) {
       for (const route of PUBLIC_HOME_ROUTES) includeRoute(route);
+    }
+
+    if (EXPANSION_CALCULATOR_FILES.has(file)) {
+      for (const route of EXPANSION_HOME_ROUTES) includeRoute(route);
     }
 
     for (const [route, marketFiles] of Object.entries(MARKET_HOME_FILES)) {

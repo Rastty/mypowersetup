@@ -52,6 +52,14 @@ test("shared calculator changes include expansion homes only when those homes ar
   assert.ok(!selectedWithoutExpansion.includes(`${origin}/ro/`));
 });
 
+test("expansion calculator changes notify exactly the three expansion homes", async () => {
+  const urls = extractSitemapUrls(await readFile("sitemap.xml", "utf8"));
+  assert.deepEqual(
+    changedFilesToIndexNowUrls(["src/expansion-calculator-browser.js"], urls),
+    [`${origin}/pt/`, `${origin}/ro/`, `${origin}/si/`]
+  );
+});
+
 test("market catalog changes notify only their public market", async () => {
   const urls = extractSitemapUrls(await readFile("sitemap.xml", "utf8"));
   assert.deepEqual(changedFilesToIndexNowUrls(["data/products-sk.json"], urls), [`${origin}/sk/`]);
