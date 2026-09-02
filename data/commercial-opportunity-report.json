@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-02T14:40:04.069Z",
+  "generatedAt": "2026-09-02T15:06:17.995Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -14,8 +14,44 @@
     {
       "category": "inverter",
       "label": "inverter",
-      "score": 39,
+      "score": 47,
       "markets": [
+        {
+          "market": "sk-SK",
+          "priority": "P0",
+          "score": 8,
+          "maxPurchaseReadyGain": 0.2631578947368421,
+          "standalonePurchaseReadyGain": 0,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 12,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 24,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 3,
+              "scenarioIds": [
+                "remote-work"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        },
         {
           "market": "pt-PT",
           "priority": "P0",
@@ -203,14 +239,52 @@
           "secondaryRequirements": []
         }
       ],
-      "maxPurchaseReadyGain": 0.7894736842105263,
+      "maxPurchaseReadyGain": 1.0526315789473684,
       "standalonePurchaseReadyGain": 0
     },
     {
       "category": "controller",
       "label": "MPPT controller",
-      "score": 21,
+      "score": 28,
       "markets": [
+        {
+          "market": "sk-SK",
+          "priority": "P1",
+          "score": 7,
+          "maxPurchaseReadyGain": 0.2631578947368421,
+          "standalonePurchaseReadyGain": 0,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 40,
+                "maxCurrentA": 120,
+                "systemVoltage": 12,
+                "minArrayWatts": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 60,
+                "maxCurrentA": 180,
+                "systemVoltage": 12,
+                "minArrayWatts": 550
+              },
+              "weight": 2,
+              "scenarioIds": [
+                "winter-basic"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        },
         {
           "market": "pt-PT",
           "priority": "P1",
@@ -326,14 +400,40 @@
           "secondaryRequirements": []
         }
       ],
-      "maxPurchaseReadyGain": 0.7894736842105263,
+      "maxPurchaseReadyGain": 1.0526315789473684,
       "standalonePurchaseReadyGain": 0
     },
     {
       "category": "shore_charger",
       "label": "230 V shore charger",
-      "score": 16.5,
+      "score": 22,
       "markets": [
+        {
+          "market": "sk-SK",
+          "priority": "P1",
+          "score": 5.5,
+          "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
+          "primaryRequirements": [],
+          "secondaryRequirements": [
+            {
+              "requirement": {
+                "category": "shore_charger",
+                "input": "230V_AC",
+                "outputVoltage": 12,
+                "batteryType": "lifepo4",
+                "minCurrentA": 10,
+                "maxCurrentA": 30
+              },
+              "weight": 11,
+              "scenarioIds": [
+                "light-weekend",
+                "family-touring",
+                "winter-basic"
+              ]
+            }
+          ]
+        },
         {
           "market": "pt-PT",
           "priority": "P1",
@@ -547,8 +647,44 @@
     {
       "category": "inverter",
       "label": "inverter",
-      "score": 39,
+      "score": 47,
       "markets": [
+        {
+          "market": "sk-SK",
+          "priority": "P0",
+          "score": 8,
+          "maxPurchaseReadyGain": 0.2631578947368421,
+          "standalonePurchaseReadyGain": 0,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 12,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 24,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              },
+              "weight": 3,
+              "scenarioIds": [
+                "remote-work"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        },
         {
           "market": "pt-PT",
           "priority": "P0",
@@ -736,14 +872,52 @@
           "secondaryRequirements": []
         }
       ],
-      "maxPurchaseReadyGain": 0.7894736842105263,
+      "maxPurchaseReadyGain": 1.0526315789473684,
       "standalonePurchaseReadyGain": 0
     },
     {
       "category": "controller",
       "label": "MPPT controller",
-      "score": 21,
+      "score": 28,
       "markets": [
+        {
+          "market": "sk-SK",
+          "priority": "P1",
+          "score": 7,
+          "maxPurchaseReadyGain": 0.2631578947368421,
+          "standalonePurchaseReadyGain": 0,
+          "primaryRequirements": [
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 40,
+                "maxCurrentA": 120,
+                "systemVoltage": 12,
+                "minArrayWatts": 300
+              },
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ]
+            },
+            {
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 60,
+                "maxCurrentA": 180,
+                "systemVoltage": 12,
+                "minArrayWatts": 550
+              },
+              "weight": 2,
+              "scenarioIds": [
+                "winter-basic"
+              ]
+            }
+          ],
+          "secondaryRequirements": []
+        },
         {
           "market": "pt-PT",
           "priority": "P1",
@@ -859,14 +1033,40 @@
           "secondaryRequirements": []
         }
       ],
-      "maxPurchaseReadyGain": 0.7894736842105263,
+      "maxPurchaseReadyGain": 1.0526315789473684,
       "standalonePurchaseReadyGain": 0
     },
     {
       "category": "shore_charger",
       "label": "230 V shore charger",
-      "score": 16.5,
+      "score": 22,
       "markets": [
+        {
+          "market": "sk-SK",
+          "priority": "P1",
+          "score": 5.5,
+          "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
+          "primaryRequirements": [],
+          "secondaryRequirements": [
+            {
+              "requirement": {
+                "category": "shore_charger",
+                "input": "230V_AC",
+                "outputVoltage": 12,
+                "batteryType": "lifepo4",
+                "minCurrentA": 10,
+                "maxCurrentA": 30
+              },
+              "weight": 11,
+              "scenarioIds": [
+                "light-weekend",
+                "family-touring",
+                "winter-basic"
+              ]
+            }
+          ]
+        },
         {
           "market": "pt-PT",
           "priority": "P1",
@@ -1079,7 +1279,7 @@
   "markets": [
     {
       "market": "cs-CZ",
-      "generatedAt": "2026-09-02T14:39:32.209Z",
+      "generatedAt": "2026-09-02T15:05:37.237Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
@@ -1089,17 +1289,204 @@
     },
     {
       "market": "sk-SK",
-      "generatedAt": "2026-09-02T14:39:42.489Z",
-      "purchaseReadyRatio": 1,
-      "componentReadyRatio": 1,
+      "generatedAt": "2026-09-02T15:05:43.276Z",
+      "purchaseReadyRatio": 0.7368421052631579,
+      "componentReadyRatio": 0.47368421052631576,
       "portableFitRatio": 0.7368421052631579,
-      "weightedCoverage": 1,
-      "topOpportunity": null,
-      "opportunities": []
+      "weightedCoverage": 0.793859649122807,
+      "topOpportunity": {
+        "category": "inverter",
+        "label": "inverter",
+        "priority": "P0",
+        "score": 8,
+        "maxPurchaseReadyGain": 0.2631578947368421,
+        "standalonePurchaseReadyGain": 0,
+        "affectedWeight": 8,
+        "unlockWeight": 5,
+        "standaloneUnlockWeight": 0,
+        "primaryScenarioIds": [
+          "family-touring",
+          "remote-work"
+        ],
+        "unlockScenarioIds": [
+          "family-touring"
+        ],
+        "standaloneUnlockScenarioIds": [],
+        "secondaryScenarioIds": [],
+        "primaryRequirements": [
+          {
+            "weight": 5,
+            "scenarioIds": [
+              "family-touring"
+            ],
+            "requirement": {
+              "category": "inverter",
+              "systemVoltage": 12,
+              "waveform": "pure_sine",
+              "minContinuousPowerW": 100,
+              "maxContinuousPowerW": 300
+            }
+          },
+          {
+            "weight": 3,
+            "scenarioIds": [
+              "remote-work"
+            ],
+            "requirement": {
+              "category": "inverter",
+              "systemVoltage": 24,
+              "waveform": "pure_sine",
+              "minContinuousPowerW": 100,
+              "maxContinuousPowerW": 300
+            }
+          }
+        ],
+        "secondaryRequirements": []
+      },
+      "opportunities": [
+        {
+          "category": "inverter",
+          "label": "inverter",
+          "priority": "P0",
+          "score": 8,
+          "maxPurchaseReadyGain": 0.2631578947368421,
+          "standalonePurchaseReadyGain": 0,
+          "affectedWeight": 8,
+          "unlockWeight": 5,
+          "standaloneUnlockWeight": 0,
+          "primaryScenarioIds": [
+            "family-touring",
+            "remote-work"
+          ],
+          "unlockScenarioIds": [
+            "family-touring"
+          ],
+          "standaloneUnlockScenarioIds": [],
+          "secondaryScenarioIds": [],
+          "primaryRequirements": [
+            {
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ],
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 12,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              }
+            },
+            {
+              "weight": 3,
+              "scenarioIds": [
+                "remote-work"
+              ],
+              "requirement": {
+                "category": "inverter",
+                "systemVoltage": 24,
+                "waveform": "pure_sine",
+                "minContinuousPowerW": 100,
+                "maxContinuousPowerW": 300
+              }
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "category": "controller",
+          "label": "MPPT controller",
+          "priority": "P1",
+          "score": 7,
+          "maxPurchaseReadyGain": 0.2631578947368421,
+          "standalonePurchaseReadyGain": 0,
+          "affectedWeight": 7,
+          "unlockWeight": 5,
+          "standaloneUnlockWeight": 0,
+          "primaryScenarioIds": [
+            "family-touring",
+            "winter-basic"
+          ],
+          "unlockScenarioIds": [
+            "family-touring"
+          ],
+          "standaloneUnlockScenarioIds": [],
+          "secondaryScenarioIds": [],
+          "primaryRequirements": [
+            {
+              "weight": 5,
+              "scenarioIds": [
+                "family-touring"
+              ],
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 40,
+                "maxCurrentA": 120,
+                "systemVoltage": 12,
+                "minArrayWatts": 300
+              }
+            },
+            {
+              "weight": 2,
+              "scenarioIds": [
+                "winter-basic"
+              ],
+              "requirement": {
+                "category": "controller",
+                "technology": "mppt",
+                "minCurrentA": 60,
+                "maxCurrentA": 180,
+                "systemVoltage": 12,
+                "minArrayWatts": 550
+              }
+            }
+          ],
+          "secondaryRequirements": []
+        },
+        {
+          "category": "shore_charger",
+          "label": "230 V shore charger",
+          "priority": "P1",
+          "score": 5.5,
+          "maxPurchaseReadyGain": 0,
+          "standalonePurchaseReadyGain": 0,
+          "affectedWeight": 0,
+          "unlockWeight": 0,
+          "standaloneUnlockWeight": 0,
+          "primaryScenarioIds": [],
+          "unlockScenarioIds": [],
+          "standaloneUnlockScenarioIds": [],
+          "secondaryScenarioIds": [
+            "light-weekend",
+            "family-touring",
+            "winter-basic"
+          ],
+          "primaryRequirements": [],
+          "secondaryRequirements": [
+            {
+              "weight": 11,
+              "scenarioIds": [
+                "light-weekend",
+                "family-touring",
+                "winter-basic"
+              ],
+              "requirement": {
+                "category": "shore_charger",
+                "input": "230V_AC",
+                "outputVoltage": 12,
+                "batteryType": "lifepo4",
+                "minCurrentA": 10,
+                "maxCurrentA": 30
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "market": "pl-PL",
-      "generatedAt": "2026-09-02T14:39:51.695Z",
+      "generatedAt": "2026-09-02T15:06:05.191Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.21052631578947367,
@@ -1109,7 +1496,7 @@
     },
     {
       "market": "hu-HU",
-      "generatedAt": "2026-09-02T14:40:02.416Z",
+      "generatedAt": "2026-09-02T15:06:16.511Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -1119,7 +1506,7 @@
     },
     {
       "market": "pt-PT",
-      "generatedAt": "2026-09-02T14:40:04.069Z",
+      "generatedAt": "2026-09-02T15:06:17.995Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1423,7 +1810,7 @@
     },
     {
       "market": "ro-RO",
-      "generatedAt": "2026-09-02T14:35:20.549Z",
+      "generatedAt": "2026-09-02T14:40:25.483Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1727,7 +2114,7 @@
     },
     {
       "market": "sl-SI",
-      "generatedAt": "2026-09-02T14:35:32.536Z",
+      "generatedAt": "2026-09-02T14:40:27.313Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,

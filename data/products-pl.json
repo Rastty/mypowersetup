@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T14:39:51.695Z",
+  "generatedAt": "2026-09-02T15:06:05.191Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
@@ -18,11 +18,16 @@
       "shoreChargers": 2
     },
     "oxe_pl": {
-      "status": "stale",
+      "status": "ok",
       "feedUrl": "https://www.oxepower.pl/export/google-dognet-pl.xml",
       "merchant": "oxe_pl",
-      "error": "fetch failed",
-      "preservedProducts": 12
+      "dognetChannel": "2mRVFbhJ",
+      "parsedProducts": 168,
+      "relevantProducts": 17,
+      "liveSupplements": 0,
+      "powerStations": 11,
+      "technicallyVerifiedPowerStations": 6,
+      "solarPanels": 6
     },
     "allpowers_pl": {
       "status": "ok",
@@ -7338,7 +7343,7 @@
       "brand": "OXE",
       "priceCzk": 1409.96,
       "priceCurrency": "PLN",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.oxepower.pl/oxe-sp100w-panel-sloneczny-do-elektrowni/",
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-sp100w-panel-sloneczny-do-elektrowni%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/25/oxe-sp100w-solarni-panel-k-elektrocentrale-oxe-powerstation-s200-s400-p600-s1000-8020-1643135739.jpg",
@@ -7350,8 +7355,79 @@
         "solarInputW": null,
         "dcOutputA": null,
         "pureSine": null
-      },
-      "staleSource": true
+      }
+    },
+    {
+      "id": "oxe_pl:OXE8021",
+      "merchant": "oxe_pl",
+      "name": "OXE Powerstation S1000 - wielofunkcyjna ładowalna elektrownia + torba na kabel GRATIS!",
+      "description": "OXE POWERSTATION S1000 &ndash; WIELOFUNKCYJNA ŁADOWALNA ELEKTROWNIA S1000 to wielofunkcyjna przenośna mobilna elektrownia zewnętrzna. Elektrownia jest lekka, co ułatwia przenoszenie, posiada wysokowydajny akumulator i wiele innych funkcji. OXE Powerstation oferuje praktyczne rozwiązanie w wielu sytuacjach. Może służyć do ładowania urządzeń mobilnych, jako zapasowe źródło zasilania w biurach na wypadek awarii zasilania, wypoczynku na łonie natury, ratownictwa medycznego i wielu innych sytuacjach.",
+      "categoryPath": "",
+      "category": "power_station",
+      "brand": "OXE",
+      "priceCzk": 7527.96,
+      "priceCurrency": "PLN",
+      "available": false,
+      "productUrl": "https://www.oxepower.pl/oxe-powerstation-s1000-wielofunkcyjna-ladowalna-elektrownia/",
+      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-powerstation-s1000-wielofunkcyjna-ladowalna-elektrownia%2F",
+      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2021/08/26/oxe-powerstation-8021-1629972466.jpg",
+      "verifiedAt": "2026-08-31",
+      "specEvidenceUrl": "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
+      "specs": {
+        "capacityWh": 1028,
+        "powerW": 1000,
+        "solarInputW": null,
+        "dcOutputA": 10,
+        "pureSine": null
+      }
+    },
+    {
+      "id": "oxe_pl:OXE8039",
+      "merchant": "oxe_pl",
+      "name": "OXE Powerstation S1000 i Panel słoneczny - wielofunkcyjna ładowalna elektrownia",
+      "description": "Ekonomiczny pakiet sk ł ada si ę z przeno ś nej elektrowni OXE Powerstation S1000 oraz modu ł u s ł onecznego OXE SP100W, który zamienia elektrowni ę w przeno ś n ą elektrowni ę s ł oneczn ą . Za pomoc ą panelu s ł onecznego mo ż esz ł atwo na ł adowa ć elektrowni ę podczas swoich wypraw lub w ogrodzie. Jednocze ś nie zaoszcz ę dzisz wi ę cej kupuj ą c ten niedrogi zestaw ni ż kupuj ą c osobno elektrowni i panelu s ł onecznego. I to si ę op ł aca! OXE POWERSTATION S1000 &ndash; WIELOFUNKCYJNA ŁA",
+      "categoryPath": "",
+      "category": "power_station",
+      "brand": "OXE",
+      "priceCzk": 9410.41,
+      "priceCurrency": "PLN",
+      "available": false,
+      "productUrl": "https://www.oxepower.pl/oxe-powerstation-s1000-i-panel-sloneczny-wielofunkcyjna-ladowalna-elektrownia/",
+      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-powerstation-s1000-i-panel-sloneczny-wielofunkcyjna-ladowalna-elektrownia%2F",
+      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2021/09/16/oxe-powerstation-s1000-a-solarni-panel-multifunkcni-dobijeci-elektrocentrala-8039-1631785290.jpg",
+      "verifiedAt": "2026-08-31",
+      "specEvidenceUrl": "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
+      "specs": {
+        "capacityWh": 1028,
+        "powerW": 1000,
+        "solarInputW": null,
+        "dcOutputA": 10,
+        "pureSine": null
+      }
+    },
+    {
+      "id": "oxe_pl:OXE8815",
+      "merchant": "oxe_pl",
+      "name": "OXE Powerstation S1000 i panel słoneczny SP200W",
+      "description": "Ekonomiczny pakiet składa się z przenośnego generatora OXE Powerstation S1000 oraz panelu słonecznego OXE SP200W, dzięki czemu Powerstation jest przenośnym generatorem słonecznym. Za pomocą panelu słonecznego możesz łatwo naładować elektrownię podczas podróży w poszukiwaniu przygód lub nawet po prostu w ogrodzie. Jednocześnie kupując ten niedrogi zestaw zaoszczędzisz więcej, niż kupując osobno elektrownię i panel słoneczny. I to się opłaca! OXE POWERSTATION S1000 - PRZENOŚNA ELEKTROWNIA S1000 to",
+      "categoryPath": "",
+      "category": "power_station",
+      "brand": "OXE",
+      "priceCzk": 9410.41,
+      "priceCurrency": "PLN",
+      "available": false,
+      "productUrl": "https://www.oxepower.pl/oxe-powerstation-s1000-i-panel-sloneczny-sp200w/",
+      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-powerstation-s1000-i-panel-sloneczny-sp200w%2F",
+      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/21/oxe-powerstation-s1000-a-solarni-panel-sp200w-8815-1642758199.jpg",
+      "verifiedAt": "2026-08-31",
+      "specEvidenceUrl": "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
+      "specs": {
+        "capacityWh": 1028,
+        "powerW": 1000,
+        "solarInputW": null,
+        "dcOutputA": 10,
+        "pureSine": null
+      }
     },
     {
       "id": "oxe_pl:OXE8816",
@@ -7375,8 +7451,7 @@
         "solarInputW": 50,
         "dcOutputA": 8,
         "pureSine": true
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "oxe_pl:OXE8817",
@@ -7388,7 +7463,7 @@
       "brand": "OXE",
       "priceCzk": 2428.38,
       "priceCurrency": "PLN",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.oxepower.pl/oxe-powerstation-s400-wielofunkcyjny-generator-ladujacy-400w386wh-torba/",
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-powerstation-s400-wielofunkcyjny-generator-ladujacy-400w386wh-torba%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/02/09/oxe-powerstation-s400-multifunkcni-dobijeci-elektrocentrala-400w386wh-8817-1644418349.jpg",
@@ -7400,8 +7475,7 @@
         "solarInputW": 90,
         "dcOutputA": 8,
         "pureSine": true
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "oxe_pl:OXE8818",
@@ -7413,7 +7487,7 @@
       "brand": "OXE",
       "priceCzk": 3010.06,
       "priceCurrency": "PLN",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.oxepower.pl/oxe-powerstation-p600-wielofunkcyjny-generator-ladowalny-600w578wh-torba/",
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-powerstation-p600-wielofunkcyjny-generator-ladowalny-600w578wh-torba%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/21/oxe-powerstation-p600-multifunkcni-dobijeci-elektrocentrala-600w578wh-8818-1642751587.jpg",
@@ -7425,8 +7499,7 @@
         "solarInputW": 100,
         "dcOutputA": 10,
         "pureSine": true
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "oxe_pl:OXE8819",
@@ -7450,8 +7523,7 @@
         "solarInputW": null,
         "dcOutputA": null,
         "pureSine": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "oxe_pl:OXE8820",
@@ -7463,7 +7535,7 @@
       "brand": "OXE",
       "priceCzk": 4421.9,
       "priceCurrency": "PLN",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.oxepower.pl/oxe-powerstation-p600-i-panel-sloneczny-sp100w-torba/",
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-powerstation-p600-i-panel-sloneczny-sp100w-torba%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/21/oxe-powerstation-p600-a-solarni-panel-sp100w-8820-1642757562.jpg",
@@ -7475,8 +7547,7 @@
         "solarInputW": 100,
         "dcOutputA": 10,
         "pureSine": true
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "oxe_pl:OXE8821",
@@ -7488,7 +7559,7 @@
       "brand": "OXE",
       "priceCzk": 4045.41,
       "priceCurrency": "PLN",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.oxepower.pl/oxe-powerstation-s400-i-panel-sloneczny-sp100w-torba/",
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-powerstation-s400-i-panel-sloneczny-sp100w-torba%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/26/oxe-powerstation-s400-a-solarni-panel-sp100w-8821-1643193819.jpg",
@@ -7500,8 +7571,7 @@
         "solarInputW": 90,
         "dcOutputA": 8,
         "pureSine": true
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "oxe_pl:OXE8822",
@@ -7525,8 +7595,7 @@
         "solarInputW": 50,
         "dcOutputA": 8,
         "pureSine": true
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "oxe_pl:OXE9304",
@@ -7538,7 +7607,7 @@
       "brand": "OXE",
       "priceCzk": 2068.82,
       "priceCurrency": "PLN",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.oxepower.pl/oxe-sp200w-ii-panel-sloneczny-do-elektrowni-oxe-powerstation-s1000/",
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-sp200w-ii-panel-sloneczny-do-elektrowni-oxe-powerstation-s1000%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/08/25/oxe-sp200w-ii-solarni-panel-k-elektrocentrale-oxe-powerstation-s1000-9304-1661408185.jpg",
@@ -7550,8 +7619,55 @@
         "solarInputW": null,
         "dcOutputA": null,
         "pureSine": null
-      },
-      "staleSource": true
+      }
+    },
+    {
+      "id": "oxe_pl:OXE9305",
+      "merchant": "oxe_pl",
+      "name": "OXE Powerstation S1000 i panel słoneczny SP200W II + torba na kabel GRATIS!",
+      "description": "Ekonomiczny pakiet składa się z przenośnego generatora OXE Powerstation S1000 oraz panelu słonecznego OXE SP200W, dzięki czemu Powerstation jest przenośnym generatorem słonecznym. Za pomocą panelu słonecznego możesz łatwo naładować elektrownię podczas podróży w poszukiwaniu przygód lub nawet po prostu w ogrodzie. Jednocześnie kupując ten niedrogi zestaw zaoszczędzisz więcej, niż kupując osobno elektrownię i panel słoneczny. I to się opłaca! OXE POWERSTATION S1000 - PRZENOŚNA ELEKTROWNIA S1000 to",
+      "categoryPath": "",
+      "category": "power_station",
+      "brand": "OXE",
+      "priceCzk": 9222.17,
+      "priceCurrency": "PLN",
+      "available": false,
+      "productUrl": "https://www.oxepower.pl/oxe-powerstation-s1000-i-panel-sloneczny-sp200w-ii/",
+      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-powerstation-s1000-i-panel-sloneczny-sp200w-ii%2F",
+      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/08/26/oxe-powerstation-s1000-i-solaren-panel-sp200w-chanta-za-kabel-9305-1661510034.jpg",
+      "verifiedAt": "2026-08-31",
+      "specEvidenceUrl": "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
+      "specs": {
+        "capacityWh": 1028,
+        "powerW": 1000,
+        "solarInputW": null,
+        "dcOutputA": 10,
+        "pureSine": null
+      }
+    },
+    {
+      "id": "oxe_pl:OXE9426",
+      "merchant": "oxe_pl",
+      "name": "OXE Powerstation MP500S - wielofunkcyjna stacja ładowalna 500W/519Wh",
+      "description": "OXE Powerstation MP500S - wielofunkcyjna stacja ładowalna 500W/519Wh OXE Powerstation MP500S to zewnętrzna, przenośna, wielofunkcyjna, akumulatorowa elektrownia 500W/519Wh. Wewnątrz elektrowni znajduje się akumulator litowo-jonowy o dużej pojemności i dużej wydajności do długotrwałej pracy. Niewielka waga (6,8 kg) predysponuje generator do użytku w podróży, na kempingu, w ogrodzie i wszędzie tam, gdzie nie ma zasięgu sieci elektrycznej. Dzięki różnym typom wyjść możliwe jest ładowanie większości",
+      "categoryPath": "",
+      "category": "power_station",
+      "brand": "OXE",
+      "priceCzk": 3763.04,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.oxepower.pl/oxe-powerstation-mp500s-wielofunkcyjna-stacja-ladowalna-500w519wh/",
+      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-powerstation-mp500s-wielofunkcyjna-stacja-ladowalna-500w519wh%2F",
+      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/12/09/oxe-powerstation-mp500s-multifunkcni-dobijeci-elektrocentrala-500w519wh-9426-1670588691.jpg",
+      "verifiedAt": "2026-08-31",
+      "specEvidenceUrl": "https://www.oxepower.pl/oxe-powerstation-mp500s-wielofunkcyjna-stacja-ladowalna-500w519wh/",
+      "specs": {
+        "capacityWh": 519,
+        "powerW": 500,
+        "solarInputW": null,
+        "dcOutputA": 8,
+        "pureSine": true
+      }
     },
     {
       "id": "oxe_pl:OXE9653",
@@ -7563,7 +7679,7 @@
       "brand": "OXE",
       "priceCzk": 2445.31,
       "priceCurrency": "PLN",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.oxepower.pl/oxe-sp210w-panel-sloneczny-do-elektrowni-oxe-newsmy-n1292-1200w9216wh/",
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-sp210w-panel-sloneczny-do-elektrowni-oxe-newsmy-n1292-1200w9216wh%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2023/01/05/oxe-sp210w-solarni-panel-k-elektrocentrale-oxe-oxe-newsmy-n1292-9653-1672928175.jpg",
@@ -7575,8 +7691,7 @@
         "solarInputW": null,
         "dcOutputA": null,
         "pureSine": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "oxe_pl:OXE9654",
@@ -7588,7 +7703,7 @@
       "brand": "OXE",
       "priceCzk": 4516.02,
       "priceCurrency": "PLN",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.oxepower.pl/oxe-powerstation-newsmy-n7576-i-panel-sloneczny-sp100w/",
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-powerstation-newsmy-n7576-i-panel-sloneczny-sp100w%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2023/01/06/oxe-powerstation-newsmy-n7576-a-solarni-panel-sp100w-9654-1673013222.jpg",
@@ -7600,8 +7715,7 @@
         "solarInputW": null,
         "dcOutputA": null,
         "pureSine": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "oxe_pl:OXE9655",
@@ -7613,7 +7727,7 @@
       "brand": "OXE",
       "priceCzk": 7996.69,
       "priceCurrency": "PLN",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.oxepower.pl/oxe-powerstation-newsmy-n1292-i-panel-sloneczny-sp210w/",
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.pl%2Foxe-powerstation-newsmy-n1292-i-panel-sloneczny-sp210w%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2023/01/06/oxe-powerstation-newsmy-n1292-a-solarni-panel-sp210w-9655-1673012529.jpg",
@@ -7625,8 +7739,7 @@
         "solarInputW": null,
         "dcOutputA": null,
         "pureSine": null
-      },
-      "staleSource": true
+      }
     },
     {
       "id": "allpowers_pl:9242496041115",
