@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T14:29:13.298Z",
+  "generatedAt": "2026-09-02T14:39:42.489Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
@@ -11,8 +11,8 @@
     "allpowers_eu": {
       "status": "ok",
       "parsedProducts": 57,
-      "relevantProducts": 26,
-      "technicallyVerifiedPowerStations": 4
+      "relevantProducts": 28,
+      "technicallyVerifiedPowerStations": 6
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -24,16 +24,11 @@
       "shoreChargers": 2
     },
     "oxe_sk": {
-      "status": "ok",
+      "status": "stale",
       "feedUrl": "https://www.oxepower.sk/export/google-dognet-sk.xml",
       "merchant": "oxe_sk",
-      "dognetChannel": "2mRVFbhJ",
-      "parsedProducts": 157,
-      "relevantProducts": 15,
-      "liveSupplements": 0,
-      "powerStations": 12,
-      "technicallyVerifiedPowerStations": 6,
-      "solarPanels": 3
+      "error": "fetch failed",
+      "preservedProducts": 9
     },
     "ampul_sk": {
       "status": "ok",
@@ -8497,6 +8492,38 @@
       }
     },
     {
+      "id": "allpowers_eu:8336481124659",
+      "merchant": "allpowers_eu",
+      "name": "ALLPOWERS R3500 V2 Home Backup Power Station 3500W 2880Wh",
+      "description": "Capacity 2880 Wh. Continuous AC output 3500 W with pure sine wave. Solar input up to 1300 W. Regulated 12 V DC output up to 10 A. LiFePO4 battery.",
+      "categoryPath": "Portable Power Station",
+      "category": "power_station",
+      "brand": "ALLPOWERS",
+      "priceCzk": 2299,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://iallpowers.eu/products/allpowers-r3500-home-backup-power-station-3500w-3168wh",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r3500-home-backup-power-station-3500w-3168wh",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R3500-V2-Home-Backup-Power-Station-3500W-2880Wh-ALLPOWERS-30183866.jpg?v=1775664354",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": 2880,
+        "powerW": 3500,
+        "currentA": 10,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": true,
+        "solarInputW": 1300,
+        "dcOutputA": 10
+      },
+      "verifiedAt": "2026-09-02"
+    },
+    {
       "id": "allpowers_eu:8205920469299",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS SP029 Portable Solar Panel 140W",
@@ -8669,6 +8696,38 @@
         "solarInputW": null,
         "dcOutputA": null
       }
+    },
+    {
+      "id": "allpowers_eu:8205880623411",
+      "merchant": "allpowers_eu",
+      "name": "ALLPOWERS R4000 Portable Power Station 4000W 3456Wh",
+      "description": "Capacity 3456 Wh. Continuous AC output 4000 W with pure sine wave. Solar input up to 2000 W. Regulated 12 V DC output up to 10 A. LiFePO4 battery.",
+      "categoryPath": "Portable Power Station",
+      "category": "power_station",
+      "brand": "ALLPOWERS",
+      "priceCzk": 1899,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://iallpowers.eu/products/allpowers-r4000-portable-power-station-4000w-3600wh",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r4000-portable-power-station-4000w-3600wh",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R4000-V2-Portable-Power-Station-4000W-2880Wh-ALLPOWERS-122569930.jpg?v=1778232545",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": 3456,
+        "powerW": 4000,
+        "currentA": 10,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": true,
+        "solarInputW": 2000,
+        "dcOutputA": 10
+      },
+      "verifiedAt": "2026-09-02"
     },
     {
       "id": "allpowers_eu:8205013549363",
@@ -9416,7 +9475,7 @@
       "brand": "OXE",
       "priceCzk": 412.81,
       "priceCurrency": "EUR",
-      "available": true,
+      "available": false,
       "productUrl": "https://www.oxepower.sk/oxe-sp100w-solarny-panel-k-elektrocentrale/",
       "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.sk%2Foxe-sp100w-solarny-panel-k-elektrocentrale%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/25/oxe-sp100w-solarni-panel-k-elektrocentrale-oxe-powerstation-s200-s400-p600-s1000-8020-1643135739.jpg",
@@ -9428,79 +9487,8 @@
         "solarInputW": null,
         "dcOutputA": null,
         "pureSine": null
-      }
-    },
-    {
-      "id": "oxe_sk:OXE8021",
-      "merchant": "oxe_sk",
-      "name": "OXE Powerstation S1000 - Multifunkčná dobíjacia elektrocentrála + taška na káble!",
-      "description": "OXE POWERSTATION S1000 - PRENOSNÁ ELEKTROCENTRÁLA S1000 je multifunkčná&nbsp;prenosná vonkajšia&nbsp;mobilná&nbsp;elektráreň. Powerstation má&nbsp;nízku hmotnosť&nbsp;pre&nbsp;ľahké&nbsp;premiestnenie, vysokú&nbsp;kapacitu batérie s&nbsp;vysokým výkonom a ďalšími funkciami. OXE Powerstation vám môže poskytnúť&nbsp;praktické riešenie&nbsp;v mnohých&nbsp;situáciách. Môže vám poslúžiť&nbsp;pre&nbsp;nabíjanie&nbsp;mobilných zariadení, ako záložný&nbsp;zdroj v kanceláriách&nbsp;pri výpadku elektriny,",
-      "categoryPath": "",
-      "category": "power_station",
-      "brand": "OXE",
-      "priceCzk": 1652.48,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://www.oxepower.sk/oxe-powerstation-s1000-multifunkcna-dobijacia-elektrocentrala/",
-      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.sk%2Foxe-powerstation-s1000-multifunkcna-dobijacia-elektrocentrala%2F",
-      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2021/08/26/oxe-powerstation-8021-1629972466.jpg",
-      "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
-      "specs": {
-        "capacityWh": 1028,
-        "powerW": 1000,
-        "solarInputW": null,
-        "dcOutputA": 10,
-        "pureSine": null
-      }
-    },
-    {
-      "id": "oxe_sk:OXE8039",
-      "merchant": "oxe_sk",
-      "name": "OXE Powerstation S1000 a 2x solárny panel SP100W + taška na káble!",
-      "description": "Cenovo&nbsp;výhodný balíček je tvorený&nbsp;prenosnou elektrocentrálou OXE Powerstation S1000 a 2x solárnym panelom OXE SP100W, ktorý robí&nbsp;z Powerstation solárnu&nbsp;prenosnú&nbsp;elektrocentrálu. Pomocou&nbsp;solárneho panela&nbsp;môžete elektrocentrálu jednoducho&nbsp;dobiť&nbsp;na vašich cestách za dobrodružstvom alebo možno len&nbsp;na záhrade.&nbsp;Zároveň nákupom tejto&nbsp;cenovo výhodnej sady&nbsp;ušetríte, než keby ste elektrocentrálu a solárny&nbsp;panel kupovali samostatne. A to",
-      "categoryPath": "",
-      "category": "power_station",
-      "brand": "OXE",
-      "priceCzk": 2065.7,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://www.oxepower.sk/oxe-powerstation-s1000-a-2x-solarny-panel-sp100w/",
-      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.sk%2Foxe-powerstation-s1000-a-2x-solarny-panel-sp100w%2F",
-      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2021/09/16/oxe-powerstation-s1000-a-solarni-panel-multifunkcni-dobijeci-elektrocentrala-8039-1631785290.jpg",
-      "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
-      "specs": {
-        "capacityWh": 1028,
-        "powerW": 1000,
-        "solarInputW": null,
-        "dcOutputA": 10,
-        "pureSine": null
-      }
-    },
-    {
-      "id": "oxe_sk:OXE8815",
-      "merchant": "oxe_sk",
-      "name": "OXE Powerstation S1000 a solárny panel SP200W + taška na káble!",
-      "description": "Cenovo&nbsp;výhodný balíček je tvorený&nbsp;prenosnou elektrocentrálou OXE Powerstation S1000 a solárnym panelom OXE SP200W, ktorý robí z Powerstation solárnu&nbsp;prenosnú&nbsp;elektrocentrálu. Pomocou&nbsp;solárneho panelu môžete elektrocentrálu jednoducho&nbsp;dobiť&nbsp;na vašich cestách za dobrodružstvom alebo možno len na záhrade.&nbsp;Zároveň nákupom tejto&nbsp;cenovo&nbsp;výhodnej sady&nbsp;ušetríte, než keby ste&nbsp;elektrocentrálu a solárny panel kupovali samostatne. A to sa oplatí! O",
-      "categoryPath": "",
-      "category": "power_station",
-      "brand": "OXE",
-      "priceCzk": 2065.7,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://www.oxepower.sk/oxe-powerstation-s1000-a-solarny-panel-sp200w/",
-      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.sk%2Foxe-powerstation-s1000-a-solarny-panel-sp200w%2F",
-      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/21/oxe-powerstation-s1000-a-solarni-panel-sp200w-8815-1642758199.jpg",
-      "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
-      "specs": {
-        "capacityWh": 1028,
-        "powerW": 1000,
-        "solarInputW": null,
-        "dcOutputA": 10,
-        "pureSine": null
-      }
+      },
+      "staleSource": true
     },
     {
       "id": "oxe_sk:OXE8816",
@@ -9524,7 +9512,8 @@
         "solarInputW": 50,
         "dcOutputA": 8,
         "pureSine": true
-      }
+      },
+      "staleSource": true
     },
     {
       "id": "oxe_sk:OXE8817",
@@ -9548,7 +9537,8 @@
         "solarInputW": 90,
         "dcOutputA": 8,
         "pureSine": true
-      }
+      },
+      "staleSource": true
     },
     {
       "id": "oxe_sk:OXE8818",
@@ -9572,7 +9562,8 @@
         "solarInputW": 100,
         "dcOutputA": 10,
         "pureSine": true
-      }
+      },
+      "staleSource": true
     },
     {
       "id": "oxe_sk:OXE8819",
@@ -9596,7 +9587,8 @@
         "solarInputW": null,
         "dcOutputA": null,
         "pureSine": null
-      }
+      },
+      "staleSource": true
     },
     {
       "id": "oxe_sk:OXE8820",
@@ -9620,7 +9612,8 @@
         "solarInputW": 100,
         "dcOutputA": 10,
         "pureSine": true
-      }
+      },
+      "staleSource": true
     },
     {
       "id": "oxe_sk:OXE8821",
@@ -9644,7 +9637,8 @@
         "solarInputW": 90,
         "dcOutputA": 8,
         "pureSine": true
-      }
+      },
+      "staleSource": true
     },
     {
       "id": "oxe_sk:OXE8822",
@@ -9668,7 +9662,8 @@
         "solarInputW": 50,
         "dcOutputA": 8,
         "pureSine": true
-      }
+      },
+      "staleSource": true
     },
     {
       "id": "oxe_sk:OXE9304",
@@ -9692,79 +9687,8 @@
         "solarInputW": null,
         "dcOutputA": null,
         "pureSine": null
-      }
-    },
-    {
-      "id": "oxe_sk:OXE9305",
-      "merchant": "oxe_sk",
-      "name": "OXE Powerstation S1000 a solárny panel SP200W II + taška na káble!",
-      "description": "Cenovo&nbsp;výhodný balíček je tvorený&nbsp;prenosnou elektrocentrálou OXE Powerstation S1000 a solárnym panelom OXE SP200W, ktorý robí z Powerstation solárnu&nbsp;prenosnú&nbsp;elektrocentrálu. Pomocou&nbsp;solárneho panelu môžete elektrocentrálu jednoducho&nbsp;dobiť&nbsp;na vašich cestách za dobrodružstvom alebo možno len na záhrade.&nbsp;Zároveň nákupom tejto&nbsp;cenovo&nbsp;výhodnej sady&nbsp;ušetríte, než keby ste&nbsp;elektrocentrálu a solárny panel kupovali samostatne. A to sa oplatí! O",
-      "categoryPath": "",
-      "category": "power_station",
-      "brand": "OXE",
-      "priceCzk": 2024.38,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://www.oxepower.sk/oxe-powerstation-s1000-a-solarny-panel-sp200w-ii/",
-      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.sk%2Foxe-powerstation-s1000-a-solarny-panel-sp200w-ii%2F",
-      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/08/26/oxe-powerstation-s1000-i-solaren-panel-sp200w-chanta-za-kabel-9305-1661510034.jpg",
-      "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxe.ro/oxe-powerstation-s1000-generator-de-incarcare-multifunctional/",
-      "specs": {
-        "capacityWh": 1028,
-        "powerW": 1000,
-        "solarInputW": null,
-        "dcOutputA": 10,
-        "pureSine": null
-      }
-    },
-    {
-      "id": "oxe_sk:OXE9426",
-      "merchant": "oxe_sk",
-      "name": "OXE Powerstation MP500S - multifunkčná dobíjacia elektrocentrála 500W/519Wh",
-      "description": "OXE Powerstation MP500S - multifunkčná dobíjacia elektrocentrála 500W/519Wh OXE Powerstation MP500S je vonkajšia, prenosná, multifunkčná, dobíjacia elektrocentrála 500W/519Wh. Vnútri powerstation sa nachádza vysokokapacitná Lítium-ión batéria s vysokým výkonom pre dlhodobú prevádzku. Nízka hmotnosť (6,8 kg) predurčuje batériový generátor pre použitie na cestách, pri campingu, na záhrade a kdekoľvek inde, kde nie ste v dosahu elektrickej siete. Vďaka rôznym typom výstupov je možné elektrocentrálo",
-      "categoryPath": "",
-      "category": "power_station",
-      "brand": "OXE",
-      "priceCzk": 908.68,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.oxepower.sk/oxe-powerstation-mp500s-multifunkcna-dobijacia-elektrocentrala-500w519wh/",
-      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.sk%2Foxe-powerstation-mp500s-multifunkcna-dobijacia-elektrocentrala-500w519wh%2F",
-      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/12/09/oxe-powerstation-mp500s-multifunkcni-dobijeci-elektrocentrala-500w519wh-9426-1670588691.jpg",
-      "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxepower.pl/oxe-powerstation-mp500s-wielofunkcyjna-stacja-ladowalna-500w519wh/",
-      "specs": {
-        "capacityWh": 519,
-        "powerW": 500,
-        "solarInputW": null,
-        "dcOutputA": 8,
-        "pureSine": true
-      }
-    },
-    {
-      "id": "oxe_sk:OXE9427",
-      "merchant": "oxe_sk",
-      "name": "OXE Powerstation MP500S a solárny panel SP100W",
-      "description": "Cenovo výhodný balíček je tvorený prenosnou elektrocentrálou OXE Powerstation MP500S a solárnym panelom OXE SP100W, ktorý robí z Powerstation solárnu prenosnú elektrocentrálu. Pomocou solárneho panelu môžete elektrocentrálu jednoducho dobiť na vašich cestách za dobrodružstvom alebo napríklad aj iba na záhrade. Zároveň nákupom tohto cenovo výhodného setu ušetríte, než keby ste elektrocentrálu a solárny panel kupovali samostatne. A to sa oplatí! OXE Powerstation MP500S - multifunkčná dobíjacia ele",
-      "categoryPath": "",
-      "category": "power_station",
-      "brand": "OXE",
-      "priceCzk": 1156.61,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.oxepower.sk/oxe-powerstation-mp500s-a-solarny-panel-sp100w/",
-      "affiliateUrl": "https://go.dognet.com/?chid=2mRVFbhJ&url=https%3A%2F%2Fwww.oxepower.sk%2Foxe-powerstation-mp500s-a-solarny-panel-sp100w%2F",
-      "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/12/09/oxe-powerstation-mp500s-a-solarni-panel-sp100w-9427-1670589129.jpg",
-      "verifiedAt": "2026-08-31",
-      "specEvidenceUrl": "https://www.oxepower.pl/oxe-powerstation-mp500s-wielofunkcyjna-stacja-ladowalna-500w519wh/",
-      "specs": {
-        "capacityWh": 519,
-        "powerW": 500,
-        "solarInputW": null,
-        "dcOutputA": 8,
-        "pureSine": true
-      }
+      },
+      "staleSource": true
     },
     {
       "id": "ampul_sk:5479",
