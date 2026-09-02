@@ -4,7 +4,7 @@ import { HU_UI_COPY } from "./ui-copy-hu.js";
 import { copyText } from "./share.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { mountExistingSetupCheck } from "./existing-setup.js";
-import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20260902-visible-impressions1";
+import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20260902-product-impressions1";
 
 const form = document.querySelector("#setup-form");
 const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector("#product-recommendations"), track);

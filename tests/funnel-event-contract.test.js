@@ -27,7 +27,7 @@ test("all calculators expose the same visible product-choice impression denomina
   for (const file of [...matureBrowserFiles, expansionBrowserFile]) {
     const source = await readFile(file, "utf8");
     assert.match(source, /bindAffiliateImpressionTracking\(/);
-    assert.match(source, /affiliate-analytics\.js\?v=20260902-visible-impressions1/);
+    assert.match(source, /affiliate-analytics\.js\?v=20260902-product-impressions1/);
   }
 });
 

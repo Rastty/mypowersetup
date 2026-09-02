@@ -6,7 +6,7 @@ import { expansionResultGuides } from "./expansion-result-guides.js";
 import { expansionComponentPlan } from "./expansion-component-plan.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js";
-import { bindAffiliateImpressionTracking, trackAffiliateClick, trackVisibleAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-visible-impressions1";
+import { bindAffiliateImpressionTracking, trackAffiliateClick, trackVisibleAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-product-impressions1";
 import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js";
 
 const root = document.querySelector("[data-expansion-calculator]");

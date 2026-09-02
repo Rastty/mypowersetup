@@ -14,7 +14,7 @@ import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
 import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
-import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-visible-impressions1";
+import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-product-impressions1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
