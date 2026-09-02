@@ -48,6 +48,9 @@ export const PUBLIC_SCENARIO_BASELINES = Object.freeze({
   "sk-SK": Object.freeze({ minPurchaseReadyRatio: 0.47, minWeightedCoverage: 0.79 }),
   "pl-PL": Object.freeze({ minPurchaseReadyRatio: 0.47, minWeightedCoverage: 0.79 }),
   "hu-HU": Object.freeze({ minPurchaseReadyRatio: 0.47, minWeightedCoverage: 0.79 }),
+  "pt-PT": Object.freeze({ minPurchaseReadyRatio: 4 / 19, minWeightedCoverage: 0.72 }),
+  "ro-RO": Object.freeze({ minPurchaseReadyRatio: 4 / 19, minWeightedCoverage: 0.72 }),
+  "sl-SI": Object.freeze({ minPurchaseReadyRatio: 6 / 19, minWeightedCoverage: 0.72 }),
 });
 
 function commercialJourneyCategories(setup) {
