@@ -41,19 +41,25 @@ test("small pure-sine inverter sourcing remains fail-closed until affiliate veri
   }
 });
 
-test("owner-skipped Offgridtec candidates never surface as PT, RO or SI actions", () => {
+test("PT, RO and SI inverter sourcing exposes only the stock-blocked Butler exact fit", () => {
   for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
     const candidates = listCommercialSourcingCandidates({ market, category: "inverter" });
-    assert.deepEqual(candidates, []);
-    assert.equal(bestCommercialSourcingCandidate({ market, category: "inverter" }), null);
+    assert.deepEqual(candidates.map(({ id }) => id), ["butler-victron-pmp242305010"]);
+    const best = bestCommercialSourcingCandidate({ market, category: "inverter" });
+    assert.equal(best.status, "blocked_stock");
+    assert.equal(best.blocker, "exact_product_out_of_stock");
+    assert.equal(best.secondaryBlocker, "awin_program_approval");
+    assert.equal(best.specs.powerW, 2400);
+    assert.equal(best.specs.pureSine, true);
 
     const skipped = listCommercialSourcingCandidates({ market, category: "inverter", includeSkipped: true });
     assert.deepEqual(skipped.map(({ id }) => id), [
       "offgridtec-victron-phoenix-12-250",
       "offgridtec-victron-phoenix-24-250",
+      "butler-victron-pmp242305010",
     ]);
-    assert.ok(skipped.every((candidate) => candidate.status === "skipped_by_owner"));
-    assert.ok(skipped.every((candidate) => candidate.blocker === "owner_declined_application"));
+    assert.ok(skipped.slice(0, 2).every((candidate) => candidate.status === "skipped_by_owner"));
+    assert.ok(skipped.slice(0, 2).every((candidate) => candidate.blocker === "owner_declined_application"));
   }
 });
 

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-09-01",
+  "updatedAt": "2026-09-02",
   "policy": "Pending candidates are planning evidence only. They must not enter public catalogs, recommendation coverage, product cards or affiliate tracking until the relevant merchant programme is approved, an exact retail destination and deeplink are verified, and shipping eligibility is confirmed for each market.",
   "candidates": [
     {
@@ -54,6 +54,41 @@
         "waveform": "pure_sine"
       },
       "targetScenarioIds": ["remote-work"]
+    },
+    {
+      "id": "butler-victron-multiplus-ii-24-3000-70-32",
+      "merchant": "butler_technik",
+      "network": "awin",
+      "programId": 31291,
+      "status": "blocked_stock",
+      "secondaryBlocker": "approval_pending",
+      "category": "inverter",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "technicalEvidenceUrl": "https://www.victronenergy.com/upload/documents/Datasheet-MultiPlus-II-inverter-charger-EN-.pdf",
+      "retailEvidenceUrl": "https://www.butlertechnik.com/item/Victron/Energy-MultiPlus-II-24v-3000Va-70-32-230V-Inverter-Charger-PMP242305010/6KJ",
+      "retailEvidenceVerifiedAt": "2026-09-02",
+      "stockEvidenceVerifiedAt": "2026-09-02",
+      "stockStatus": "out_of_stock",
+      "shippingEvidenceUrl": "https://www.butlertechnik.com/helpdesk",
+      "shippingEvidenceVerifiedAt": "2026-09-01",
+      "exactRetailPath": "/item/Victron/Energy-MultiPlus-II-24v-3000Va-70-32-230V-Inverter-Charger-PMP242305010/6KJ",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "shippingEligibleMarkets": ["pt-PT", "ro-RO", "sl-SI"],
+      "specs": {
+        "systemVoltage": 24,
+        "ratedPowerVA": 3000,
+        "continuousPowerW": 2400,
+        "continuousPowerW40C": 2200,
+        "peakPowerW": 5500,
+        "waveform": "pure_sine",
+        "chargerCurrentA": 70
+      },
+      "targetScenarioIds": ["coffee-offgrid", "high-power-tools"]
     },
     {
       "id": "butler-victron-smartsolar-250-60-mc4",
