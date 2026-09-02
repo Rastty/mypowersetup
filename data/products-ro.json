@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T08:00:24.682Z",
+  "generatedAt": "2026-09-02T14:35:20.549Z",
   "market": "ro-RO",
   "currency": "EUR",
   "private": false,
@@ -22,7 +22,7 @@
       "status": "ok",
       "awinMerchantId": 38934,
       "affiliateId": 3044971,
-      "exactProducts": 26
+      "exactProducts": 28
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -650,6 +650,39 @@
       "verifiedAt": "2026-09-02"
     },
     {
+      "id": "allpowers_eu:8336481124659",
+      "merchant": "allpowers_eu",
+      "name": "ALLPOWERS R3500 V2 Home Backup Power Station 3500W 2880Wh",
+      "description": "Capacity 2880 Wh. Continuous AC output 3500 W with pure sine wave. Solar input up to 1300 W. Regulated 12 V DC output up to 10 A. LiFePO4 battery.",
+      "categoryPath": "Portable Power Station",
+      "category": "power_station",
+      "brand": "ALLPOWERS",
+      "priceCzk": 2299,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://iallpowers.eu/products/allpowers-r3500-home-backup-power-station-3500w-3168wh",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r3500-home-backup-power-station-3500w-3168wh",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R3500-V2-Home-Backup-Power-Station-3500W-2880Wh-ALLPOWERS-30183866.jpg?v=1775664354",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": 2880,
+        "powerW": 3500,
+        "currentA": 10,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": true,
+        "solarInputW": 1300,
+        "dcOutputA": 10
+      },
+      "verifiedAt": "2026-09-02",
+      "marketEligible": true
+    },
+    {
       "id": "allpowers_eu:8205920469299",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS SP029 Portable Solar Panel 140W",
@@ -834,6 +867,39 @@
       },
       "marketEligible": true,
       "verifiedAt": "2026-09-02"
+    },
+    {
+      "id": "allpowers_eu:8205880623411",
+      "merchant": "allpowers_eu",
+      "name": "ALLPOWERS R4000 Portable Power Station 4000W 3456Wh",
+      "description": "Capacity 3456 Wh. Continuous AC output 4000 W with pure sine wave. Solar input up to 2000 W. Regulated 12 V DC output up to 10 A. LiFePO4 battery.",
+      "categoryPath": "Portable Power Station",
+      "category": "power_station",
+      "brand": "ALLPOWERS",
+      "priceCzk": 1899,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://iallpowers.eu/products/allpowers-r4000-portable-power-station-4000w-3600wh",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r4000-portable-power-station-4000w-3600wh",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R4000-V2-Portable-Power-Station-4000W-2880Wh-ALLPOWERS-122569930.jpg?v=1778232545",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": 3456,
+        "powerW": 4000,
+        "currentA": 10,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": true,
+        "solarInputW": 2000,
+        "dcOutputA": 10
+      },
+      "verifiedAt": "2026-09-02",
+      "marketEligible": true
     },
     {
       "id": "allpowers_eu:8205013549363",
