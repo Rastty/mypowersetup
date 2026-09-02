@@ -23,6 +23,18 @@
       "verifiedAt": "2026-08-30",
       "description": "Capacity 2016 Wh. Continuous AC output 2500 W with pure sine wave. Solar input up to 1000 W. Regulated 12 V DC output up to 10 A. LiFePO4 battery.",
       "specs": { "capacityWh": 2016, "powerW": 2500, "pureSine": true, "solarInputW": 1000, "dcOutputA": 10, "batteryType": "lifepo4" }
+    },
+    {
+      "productUrl": "https://iallpowers.eu/products/allpowers-r3500-home-backup-power-station-3500w-3168wh",
+      "verifiedAt": "2026-09-02",
+      "description": "Capacity 2880 Wh. Continuous AC output 3500 W with pure sine wave. Solar input up to 1300 W. Regulated 12 V DC output up to 10 A. LiFePO4 battery.",
+      "specs": { "capacityWh": 2880, "powerW": 3500, "pureSine": true, "solarInputW": 1300, "dcOutputA": 10, "batteryType": "lifepo4" }
+    },
+    {
+      "productUrl": "https://iallpowers.eu/products/allpowers-r4000-portable-power-station-4000w-3600wh",
+      "verifiedAt": "2026-09-02",
+      "description": "Capacity 3456 Wh. Continuous AC output 4000 W with pure sine wave. Solar input up to 2000 W. Regulated 12 V DC output up to 10 A. LiFePO4 battery.",
+      "specs": { "capacityWh": 3456, "powerW": 4000, "pureSine": true, "solarInputW": 2000, "dcOutputA": 10, "batteryType": "lifepo4" }
     }
   ]
 }
