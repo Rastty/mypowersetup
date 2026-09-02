@@ -488,7 +488,12 @@ function scoreProduct(product, setup) {
     fit = Math.max(...ratios);
   }
 
-  if (!fit || fit > 3) return null;
+  // For components, a >3x fit is intentionally filtered as impractical
+  // oversizing. A power station's output and input ratings are capability
+  // ceilings, however: extra AC or PV headroom does not make an otherwise
+  // compatible unit unsafe. Keep the headroom in its ranking penalty, but do
+  // not turn it into a false incompatibility.
+  if (!fit || (product.category !== "power_station" && fit > 3)) return null;
   const completeness = relevantSpecValues(product).filter((value) => value !== null).length;
   const fitScore = Math.max(0, 70 - Math.abs(1 - fit) * 35);
   const availabilityScore = product.available === true ? 15 : 5;

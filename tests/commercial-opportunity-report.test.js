@@ -14,8 +14,12 @@ test("commercial opportunity artifact distinguishes component and portable purch
     assert.ok(market.purchaseReadyRatio >= market.componentReadyRatio);
   }
 
+  for (const marketCode of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const market = report.markets.find((entry) => entry.market === marketCode);
+    assert.ok(market.portableFitRatio > 0, `${marketCode} should recognize a verified portable fit`);
+  }
+
   const slovenia = report.markets.find((market) => market.market === "sl-SI");
-  assert.ok(slovenia.portableFitRatio > 0);
   assert.ok(slovenia.purchaseReadyRatio > slovenia.componentReadyRatio);
 });
 

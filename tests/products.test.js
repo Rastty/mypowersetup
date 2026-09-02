@@ -165,6 +165,11 @@ test("ALLPOWERS power station is recommended only when every verified limit fits
     recommendProducts([product], setup).power_station.map(({ product: match }) => match.id),
     ["allpowers_pl:r1500-lite"]
   );
+  assert.deepEqual(
+    recommendProducts([product], { ...setup, solarWatts: 200 }).power_station.map(({ product: match }) => match.id),
+    ["allpowers_pl:r1500-lite"],
+    "extra verified solar-input headroom must not become a false incompatibility"
+  );
 
   assert.equal(
     recommendProducts([product], { ...setup, solarWatts: 700 }).power_station.length,
