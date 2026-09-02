@@ -127,6 +127,13 @@ test("baseline assessment fails closed on missing baseline and measurable regres
   assert.deepEqual(regression.blockers.map((item) => item.split(":")[0]), ["PURCHASE_READY_REGRESSION", "WEIGHTED_COVERAGE_REGRESSION"]);
 });
 
+test("expansion baselines preserve the newly verified portable purchase coverage", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    assert.equal(PUBLIC_SCENARIO_BASELINES[market].minPurchaseReadyRatio, 0.73);
+    assert.equal(PUBLIC_SCENARIO_BASELINES[market].minWeightedCoverage, 0.72);
+  }
+});
+
 test("current public catalogs meet their commercial scenario no-regression floors", async () => {
   const configs = [
     { market: "cs-CZ", locale: "cs", files: ["products.json", "products-ampul-cz.json"] },
