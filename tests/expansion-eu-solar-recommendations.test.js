@@ -54,13 +54,17 @@ const setup = Object.freeze({
 });
 
 for (const fixture of fixtures) {
-  test(`${fixture.market.toUpperCase()} recommends exact verified EU solar panels even when no portable station fits`, async () => {
+  test(`${fixture.market.toUpperCase()} recommends exact verified EU solar panels alongside a verified large portable station`, async () => {
     const committed = JSON.parse(await readFile(fixture.path, "utf8"));
     const catalog = { ...committed, products: [...committed.products.filter((product) => product.category !== "solar_panel"), solarPanel()] };
     assert.equal(fixture.validate(catalog), catalog);
 
     const recommendations = fixture.build(catalog, setup, 3);
-    assert.equal(recommendations.power_station.length, 0);
+    assert.ok(recommendations.power_station.length >= 1);
+    assert.ok(recommendations.power_station.some(({ productUrl }) =>
+      productUrl === "https://iallpowers.eu/products/allpowers-r3500-home-backup-power-station-3500w-3168wh"
+      || productUrl === "https://iallpowers.eu/products/allpowers-r4000-portable-power-station-4000w-3600wh"
+    ));
     assert.ok(recommendations.solar_panel.length >= 1);
     const panel = recommendations.solar_panel.find((item) => item.id === "allpowers_eu:solar-sp035");
     assert.ok(panel, "synthetic exact-fit panel should remain in the top recommendations");
