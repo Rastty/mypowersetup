@@ -10,7 +10,7 @@ export function renderHungarianPrivatePage() {
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="description" content="${copy.meta.description}">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
   <title>${copy.meta.title}</title>
 </head>
 <body>
@@ -119,7 +119,7 @@ export function renderHungarianPrivatePage() {
     <section class="safety-note"><strong>${copy.safety.title}</strong><p>${copy.safety.text}</p></section>
   </main>
   <footer><a class="brand brand-footer" href="#top">ϟ MyPowerSetup</a><nav class="footer-links"><a href="/hu/utmutatok/">${copy.navigation.guides}</a><a href="/hu/a-projektrol/">${copy.footer.about}</a><a href="/hu/modszertan/">${copy.footer.methodology}</a><a href="/hu/partnerkapcsolatok/">${copy.footer.affiliate}</a><a href="/hu/adatvedelem/">${copy.footer.privacy}</a></nav><small>© <span id="year"></span> MyPowerSetup</small></footer>
-  <script type="module" src="/src/app-hu-browser.js?v=20260902-product-impressions1"></script>
+  <script type="module" src="/src/app-hu-browser.js?v=20260902-product-roles1"></script>
   <script type="module" src="/src/analytics.js"></script>
 </body>
 </html>`;
