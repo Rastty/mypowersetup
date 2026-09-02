@@ -14,7 +14,7 @@ import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
 import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
-import { trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20260901-impressions1";
+import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-visible-impressions1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -29,6 +29,7 @@ let productCatalog = [];
 let productCatalogUpdatedAt = null;
 let productCatalogSources = {};
 let calculatorStarted = false;
+const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector("#product-recommendations"), trackEvent);
 
 renderAppliances();
 mountUsageProfiles({
@@ -525,7 +526,7 @@ function renderProductRecommendations(result) {
       </section>
     `).join("");
   groups.innerHTML = `${coverageNotice}<details class="product-comparison-details"><summary><span>Porównaj pojedyncze produkty</span><small>${total} zweryfikowanych dopasowań w ${categoryCount} kategoriach</small></summary><div class="product-comparison-groups">${productGroups}</div></details>`;
-  trackAffiliateImpressions(document.querySelectorAll("#package-variants [data-affiliate-click], #recommendation-groups [data-affiliate-click]"), trackEvent);
+  trackVisibleProductChoices();
 }
 
 function renderProductPackages(variants) {

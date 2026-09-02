@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildAffiliateClickParameters, buildAffiliateImpressionParameters, trackAffiliateClick, trackAffiliateImpressions } from "../src/affiliate-analytics.js";
+import { buildAffiliateClickParameters, buildAffiliateImpressionParameters, trackAffiliateClick, trackAffiliateImpressions, trackVisibleAffiliateImpressions } from "../src/affiliate-analytics.js";
 
 test("affiliate clicks are sent exactly once with stable product dimensions", () => {
   const calls = [];
@@ -72,4 +72,40 @@ test("choice impressions provide exclusive CTR denominators by role and purchase
   const calls = [];
   assert.equal(trackAffiliateImpressions(links, (...args) => { calls.push(args); return true; }), true);
   assert.deepEqual(calls, [["product_choices_rendered", buildAffiliateImpressionParameters(links)]]);
+});
+
+test("choice impressions count each rendered link once", () => {
+  const link = { dataset: { category: "battery", recommendationRole: "recommended" } };
+  const calls = [];
+  const tracker = (...args) => { calls.push(args); return true; };
+
+  assert.equal(trackAffiliateImpressions([link], tracker), true);
+  assert.equal(trackAffiliateImpressions([link], tracker), true);
+  assert.equal(calls.length, 1);
+  assert.equal(link.dataset.affiliateImpressionTracked, "true");
+});
+
+test("choice impressions exclude links hidden in closed comparisons", () => {
+  const visible = { dataset: { category: "battery", recommendationRole: "recommended" }, closest: () => null };
+  const hidden = { dataset: { category: "battery", recommendationRole: "alternative" }, closest: () => ({ open: false }) };
+  const root = { querySelectorAll: () => [visible, hidden] };
+  const calls = [];
+
+  assert.equal(trackVisibleAffiliateImpressions(root, (...args) => { calls.push(args); return true; }), true);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0][1].productCount, 1);
+  assert.equal(calls[0][1].recommendedCount, 1);
+  assert.equal(calls[0][1].alternativeCount, 0);
+  assert.equal(hidden.dataset.affiliateImpressionTracked, undefined);
+});
+
+test("failed consent-gated tracking remains eligible after consent", () => {
+  const link = { dataset: { category: "power_station", recommendationRole: "recommended" } };
+  assert.equal(trackAffiliateImpressions([link], () => false), false);
+  assert.equal(link.dataset.affiliateImpressionTracked, undefined);
+
+  const calls = [];
+  assert.equal(trackAffiliateImpressions([link], (...args) => { calls.push(args); return true; }), true);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0][1].portableCount, 1);
 });

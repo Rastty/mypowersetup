@@ -6,7 +6,7 @@ import { expansionResultGuides } from "./expansion-result-guides.js";
 import { expansionComponentPlan } from "./expansion-component-plan.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js";
-import { trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20260901-impressions1";
+import { bindAffiliateImpressionTracking, trackAffiliateClick, trackVisibleAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-visible-impressions1";
 import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js";
 
 const root = document.querySelector("[data-expansion-calculator]");
@@ -18,6 +18,7 @@ const steps = [...root.querySelectorAll("[data-form-step]")];
 const stepButtons = [...root.querySelectorAll("[data-step-target]")];
 const error = root.querySelector("[data-calculator-error]");
 const result = root.querySelector("[data-result]");
+bindAffiliateImpressionTracking(root, track);
 
 const labels = {
   ro: {
@@ -376,7 +377,7 @@ function trackProductCoverage(recommendations, calculation) {
 }
 
 function renderNoVerifiedProducts() { return `<p class="result-products-empty" data-recommendation-empty>${escapeHtml(labels.noProducts)}</p>`; }
-function trackRenderedProductChoices(target) { return trackAffiliateImpressions(target?.querySelectorAll("[data-affiliate-product]") || [], track); }
+function trackRenderedProductChoices(target) { return trackVisibleAffiliateImpressions(target, track); }
 function renderResultGuides() { const config = expansionResultGuides(locale); return `<aside class="related result-guides" data-result-guides><h4>${escapeHtml(config.title)}</h4><p>${escapeHtml(config.intro)}</p><ul>${config.links.map((item) => `<li><a data-result-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`).join("")}</ul></aside>`; }
 function renderComponentPlan(value) { const plan = expansionComponentPlan(locale, value); return `<section class="result-products component-plan" data-component-plan><h4>${escapeHtml(plan.title)}</h4><p>${escapeHtml(plan.intro)}</p><div class="result-grid">${plan.items.map((item) => `<article class="result-card" data-component-item="${escapeHtml(item.topic)}" data-required="${item.required}"><span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.spec)}</strong><a data-component-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.guideLabel)}</a></article>`).join("")}</div><p><small>${escapeHtml(plan.notice)}</small></p></section>`; }
 function renderProductSection(id, products, gap = "") { return `<section class="result-products" aria-labelledby="${id}"><h4 id="${id}">${labels.products}</h4><p>${labels.productsIntro}</p>${gap}<div class="result-grid">${products.map(renderExpansionProduct).join("")}</div><p><small>${labels.affiliate}</small></p></section>`; }
