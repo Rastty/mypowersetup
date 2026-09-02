@@ -158,6 +158,42 @@
         "efficiencyPercent": 95
       },
       "targetScenarioIds": ["coffee-offgrid", "high-power-tools"]
+    },
+    {
+      "id": "bluetti-eu-ac240-b210",
+      "merchant": "bluetti_eu",
+      "network": null,
+      "programId": null,
+      "applicationUrl": "https://www.bluettipower.eu/pages/affiliate-program",
+      "commissionPercent": 10,
+      "status": "blocked_stock",
+      "secondaryBlocker": "affiliate_deeplink_unverified",
+      "category": "power_station",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "technicalEvidenceUrl": "https://www.bluettipower.eu/pages/ac240",
+      "retailEvidenceUrl": "https://www.bluettipower.eu/products/ac240-power-station",
+      "retailEvidenceVerifiedAt": "2026-09-02",
+      "stockEvidenceVerifiedAt": "2026-09-02",
+      "stockStatus": "out_of_stock",
+      "shippingEvidenceUrl": "https://www.bluettipower.eu/pages/shipping-policy",
+      "shippingEvidenceVerifiedAt": "2026-09-02",
+      "exactRetailPath": "/products/ac240-power-station",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "specs": {
+        "capacityWh": 3686,
+        "continuousPowerW": 2400,
+        "waveform": "pure_sine",
+        "solarInputW": 1200,
+        "dcOutputVoltageV": 12,
+        "dcOutputA": 30,
+        "batteryType": "lifepo4"
+      },
+      "targetScenarioIds": ["family-touring"]
     }
   ]
 }

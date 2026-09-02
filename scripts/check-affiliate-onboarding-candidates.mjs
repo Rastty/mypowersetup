@@ -24,6 +24,7 @@ const merchantPolicies = new Map([
   ["butler_technik", new Set(["approval_pending", "blocked_stock"])],
   ["offgridtec", new Set(["skipped_by_owner"])],
   ["xdatou", new Set(["blocked_affiliate_verification"])],
+  ["bluetti_eu", new Set(["blocked_stock"])],
 ]);
 
 const ids = new Set();
@@ -50,6 +51,7 @@ const phoenix24 = required("offgridtec-victron-phoenix-24-250");
 const multiPlus = required("butler-victron-multiplus-ii-24-3000-70-32");
 const smartSolar = required("butler-victron-smartsolar-250-60-mc4");
 const xdatouInverter = required("xdatou-datouboss-2000w-24v");
+const bluettiFamilyStation = required("bluetti-eu-ac240-b210");
 
 for (const [candidate, voltage] of [[phoenix12, 12], [phoenix24, 24]]) {
   assert(candidate.merchant === "offgridtec", `${candidate.id}: wrong merchant for current Phoenix evidence`);
@@ -107,6 +109,18 @@ const sourcingXdatou = listCommercialSourcingCandidates({ category: "inverter" }
 assert(sourcingXdatou?.status === xdatouInverter.status, "Xdatou onboarding and sourcing statuses diverge");
 assert(sourcingXdatou?.blocker === "goaffpro_terms_and_account_approval_not_verified", "Xdatou affiliate blocker missing from sourcing queue");
 assert(sameValues(sourcingXdatou?.markets || [], Object.keys(xdatouInverter.marketEligibility)), "Xdatou onboarding and sourcing target markets diverge");
+
+assert(bluettiFamilyStation.category === "power_station", "BLUETTI AC240+B210 category invalid");
+assert(bluettiFamilyStation.stockStatus === "out_of_stock", "BLUETTI AC240+B210 must remain blocked while its EU bundle is unavailable");
+assert(bluettiFamilyStation.secondaryBlocker === "affiliate_deeplink_unverified", "BLUETTI EU affiliate blocker missing");
+assert(bluettiFamilyStation.specs?.capacityWh >= 2200, "BLUETTI AC240+B210 capacity does not fit family touring");
+assert(bluettiFamilyStation.specs?.continuousPowerW >= 100, "BLUETTI AC240+B210 AC output does not fit family touring");
+assert(bluettiFamilyStation.specs?.solarInputW >= 300, "BLUETTI AC240+B210 solar input does not fit family touring");
+assert(bluettiFamilyStation.specs?.dcOutputVoltageV === 12 && bluettiFamilyStation.specs?.dcOutputA >= 14, "BLUETTI AC240+B210 RV output does not fit family touring");
+assert(sameValues(Object.keys(bluettiFamilyStation.marketEligibility || {}), ["pt-PT", "ro-RO", "sl-SI"]), "BLUETTI AC240+B210 target markets invalid");
+const sourcingBluetti = listCommercialSourcingCandidates({ category: "power_station" }).find(({ id }) => id === bluettiFamilyStation.id);
+assert(sourcingBluetti?.blocker === "exact_eu_bundle_out_of_stock", "BLUETTI AC240+B210 stock blocker missing from sourcing queue");
+assert(sourcingBluetti?.secondaryBlocker === "eu_affiliate_deeplink_not_verified", "BLUETTI AC240+B210 affiliate blocker missing from sourcing queue");
 
 assert(smartSolar.merchant === "butler_technik", "SmartSolar merchant invalid");
 assert(smartSolar.network === "awin" && smartSolar.programId === BUTLER_TECHNIK_AWIN.merchantId, "SmartSolar affiliate programme metadata invalid");
