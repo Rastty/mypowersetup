@@ -17,6 +17,18 @@
       "verifiedAt": "2026-08-30",
       "description": "Capacidade 1152 Wh. Saída AC contínua de 1800 W com onda sinusoidal pura. Entrada solar até 650 W. Saída DC regulada de 12 V até 10 A. Bateria LiFePO4.",
       "specs": { "capacityWh": 1152, "powerW": 1800, "pureSine": true, "solarInputW": 650, "dcOutputA": 10, "batteryType": "lifepo4" }
+    },
+    {
+      "productUrl": "https://allpowers-pt.com/products/allpowers-r3500-v2-estacao-de-energia-de-reserva-domestica-3500w-2880wh",
+      "verifiedAt": "2026-09-02",
+      "description": "Capacidade 2880 Wh. Saída AC contínua de 3500 W com onda sinusoidal pura. Entrada solar até 1300 W. Saída DC regulada de 12 V até 10 A. Bateria LiFePO4.",
+      "specs": { "capacityWh": 2880, "powerW": 3500, "pureSine": true, "solarInputW": 1300, "dcOutputA": 10, "batteryType": "lifepo4" }
+    },
+    {
+      "productUrl": "https://allpowers-pt.com/products/allpowers-r4000-estacao-de-energia-portatil-4000w-3456wh",
+      "verifiedAt": "2026-09-02",
+      "description": "Capacidade 3456 Wh. Saída AC contínua de 4000 W com onda sinusoidal pura. Entrada solar até 2000 W. Saída DC regulada de 12 V até 10 A. Bateria LiFePO4.",
+      "specs": { "capacityWh": 3456, "powerW": 4000, "pureSine": true, "solarInputW": 2000, "dcOutputA": 10, "batteryType": "lifepo4" }
     }
   ]
 }
