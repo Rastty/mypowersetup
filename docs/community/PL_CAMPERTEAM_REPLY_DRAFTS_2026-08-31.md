@@ -1,10 +1,12 @@
 # CamperTeam — answer-first reply drafts (2026-08-31)
 
-These are manual reply drafts, not published posts. Before posting, open the source thread and confirm that the latest question, component list and dates still match this brief. Remove the optional link if it does not materially help the current discussion.
+These are answer-first reply drafts. Before posting, open the source thread and confirm that the latest question, component list and dates still match this brief. Remove the optional link if it does not materially help the current discussion.
 
 ## 280 Ah LiFePO₄ + 910 Wp solar, all-season camper
 
 Source: https://camperteam.pl/forum/viewtopic.php?p=975382
+
+Status: published on 2026-09-03 as [Petr_G's reply](https://www.camperteam.pl/forum/viewtopic.php?p=975480#975480), without the optional link.
 
 Known scenario: 280 Ah LiFePO₄, 910 Wp PV, camper used throughout the year.
 

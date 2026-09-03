@@ -13,11 +13,11 @@ test("future activity cannot be scored as fresh", () => {
   assert.throws(() => ageInDays("2026-08-31", "2026-08-30"), /TRAFFIC_DISTRIBUTION_ACTIVITY_IN_FUTURE/);
 });
 
-test("live registry has actionable current opportunities and stale research is not top ranked", () => {
+test("live registry cleanly reports when no reply is currently warranted", () => {
   const ranked = rankTrafficOpportunities(registry.opportunities, { asOf: registry.updatedAt });
-  assert.ok(ranked.some((item) => item.actionable));
+  assert.ok(!ranked.some((item) => item.actionable));
   assert.notEqual(ranked[0].status, "research_only");
-  assert.ok(ranked[0].ageDays <= 90);
+  assert.equal(ranked.some((item) => item.status === "replied"), false);
 });
 
 test("Ford Transit DC-DC thread waits for the author's promised follow-up", () => {
@@ -26,5 +26,5 @@ test("Ford Transit DC-DC thread waits for the author's promised follow-up", () =
   assert.ok(ford);
   assert.equal(ford.status, "monitor");
   assert.equal(ford.actionable, false);
-  assert.equal(ford.ageDays, 21);
+  assert.equal(ford.ageDays, 23);
 });

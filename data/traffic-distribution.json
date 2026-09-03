@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-01",
+  "updatedAt": "2026-09-03",
   "policy": {
     "defaultPostingRule": "answer_first_no_link_drop",
     "allowedStatuses": ["ready_for_manual_reply", "monitor", "research_only", "replied", "closed"],
@@ -204,7 +204,7 @@
       "id": "pl-camperteam-lifepo4-use-202606",
       "market": "pl",
       "community": "CamperTeam",
-      "sourceUrl": "https://www.camperteam.pl/forum/viewtopic.php?start=2355&t=34002",
+      "sourceUrl": "https://www.camperteam.pl/forum/viewtopic.php?p=975480#975480",
       "sourceTitle": "Zastosowanie LiFePO4 w zabudowie.",
       "problemIntent": ["lifepo4_migration", "battery_sizing", "seasonal_consumption", "solar_sizing"],
       "targetRoute": "/pl/poradnik/pojemnosc-akumulatora-do-kampera/",
@@ -212,12 +212,14 @@
         "/pl/poradnik/agm-czy-lifepo4/",
         "/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/"
       ],
-      "lastKnownActivity": "2026-08-27",
+      "lastKnownActivity": "2026-09-03",
       "priority": "high",
       "fit": "direct_camper_technical_current",
-      "status": "ready_for_manual_reply",
+      "status": "replied",
       "postingRule": "answer_first_no_link_drop",
-      "notes": "Active again on 2026-08-27. The current all-season camper discussion is sizing a 280Ah LiFePO4 bank with 910Wp solar and explicitly contrasts summer with spring/autumn autonomy. Strong answer-first fit for Wh/day-based battery sizing and seasonal solar assumptions before discussing brands or products."
+      "repliedAt": "2026-09-03",
+      "publishedPostUrl": "https://www.camperteam.pl/forum/viewtopic.php?p=975480#975480",
+      "notes": "Answered on 2026-09-03 by Petr_G with an answer-first Polish sizing response. The post explains the conservative 80% usable capacity assumption for 280Ah LiFePO4, seasonal 910Wp uncertainty and the key MPPT, BMS and cold-charging checks. It deliberately contains no affiliate or MyPowerSetup link. Monitor only for a substantive follow-up from the original author."
     }
   ]
 }
