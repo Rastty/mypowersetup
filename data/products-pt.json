@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T08:09:39.869Z",
+  "generatedAt": "2026-09-04T08:03:04.714Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": false,
@@ -580,7 +580,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 458.99,
+      "priceCzk": 385.71,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-280ah-low-temperature-lifepo4-solar-battery",

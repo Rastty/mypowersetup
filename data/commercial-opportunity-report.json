@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-03T08:09:39.869Z",
+  "generatedAt": "2026-09-04T08:03:04.714Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -1079,7 +1079,7 @@
   "markets": [
     {
       "market": "cs-CZ",
-      "generatedAt": "2026-09-03T08:07:00.715Z",
+      "generatedAt": "2026-09-04T08:02:28.881Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
@@ -1089,7 +1089,7 @@
     },
     {
       "market": "sk-SK",
-      "generatedAt": "2026-09-03T08:07:10.847Z",
+      "generatedAt": "2026-09-04T08:02:40.540Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -1099,7 +1099,7 @@
     },
     {
       "market": "pl-PL",
-      "generatedAt": "2026-09-03T08:09:29.752Z",
+      "generatedAt": "2026-09-04T08:02:52.294Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.21052631578947367,
@@ -1109,7 +1109,7 @@
     },
     {
       "market": "hu-HU",
-      "generatedAt": "2026-09-03T08:09:38.658Z",
+      "generatedAt": "2026-09-04T08:03:03.104Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -1119,7 +1119,7 @@
     },
     {
       "market": "pt-PT",
-      "generatedAt": "2026-09-03T08:09:39.869Z",
+      "generatedAt": "2026-09-04T08:03:04.714Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1423,7 +1423,7 @@
     },
     {
       "market": "ro-RO",
-      "generatedAt": "2026-09-02T14:40:25.483Z",
+      "generatedAt": "2026-09-03T08:10:02.261Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1727,7 +1727,7 @@
     },
     {
       "market": "sl-SI",
-      "generatedAt": "2026-09-02T14:40:27.313Z",
+      "generatedAt": "2026-09-03T08:10:04.478Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,

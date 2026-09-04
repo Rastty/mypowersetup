@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-03T08:07:10.847Z",
+  "generatedAt": "2026-09-04T08:02:40.540Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16557,
-      "relevantProducts": 249
+      "parsedProducts": 16554,
+      "relevantProducts": 248
     },
     "allpowers_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7666,
+      "parsedProducts": 7677,
       "relevantProducts": 15
     }
   },
@@ -555,7 +555,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
+      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -1843,37 +1843,6 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 95,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:25064_26765",
-      "merchant": "padabo_sk",
-      "name": "Hlboká batéria AGM PowerBoozt kapacita 110 Ah",
-      "description": "Bezúdržbový výkon pre vaše dobrodružstváHlbokotlaková batéria AGM PowerBoozt je úplne bezúdržbová, určená pre obytné vozidlá, karavany, elektrické motorové člny a jachty. Batéria typu AGM obsahuje absorpčné sklenené rúno, vďaka ktorému je odolná voči úniku elektrolytu a práca na naklonenej batérii nie je problém. Kľúčové vlastnosti batérie PowerBoozt AGM Deep Cycle: Vďaka nízkej miere samovybíjania je batéria vhodná na sezónne používanie. Je bezúdržbová, čo znamená, že počas prevádzky nevyžaduje",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
-      "category": "battery",
-      "brand": "PowerBoozt",
-      "priceCzk": 440.6,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/hlboka-bateria-agm-powerboozt_z25064/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlboka-bateria-agm-powerboozt_z25064%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/158827_102.jpg?1704380237_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 110,
         "capacityWh": null,
         "powerW": null,
         "currentA": null,
@@ -6438,41 +6407,6 @@
       }
     },
     {
-      "id": "padabo_sk:106299",
-      "merchant": "padabo_sk",
-      "name": "Nabíjačka batérií Renogy DC-DC, 12V/60A",
-      "description": "Trojstupňová nabíjačka pre všetky typy akumulátorov Nabíjačka batérií Renogy DC-DC patrí medzi najúčinnejšie spôsoby nabíjania nadstavbových batérií pri spustenom motore. Nabíjačka je kompatibilná s mnohými typmi alternátorov a ponúka správne nabíjanie pre nabíjanie AGM, trakčné, gélové aj lítiové batérie s hlbokým cyklom. Trojstupňová nabíjačka s viacnásobnou elektronickou ochranou je maximálne spoľahlivá a prispieva k istote, že sa vaša batéria nabije optimálne a automaticky. Ako dodatok izolu",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Nabíjačky a boostery | Nabíjačky",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 216.12,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/nabijacka-baterii-renogy-dc-dc-12v-60a_z106299/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-renogy-dc-dc-12v-60a_z106299%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/187901_102.jpg?1759387751_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 750,
-        "currentA": 60,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:107312_33733",
       "merchant": "padabo_sk",
       "name": "Solárny panel Renogy ShadowFlux nominálny výkon (wp) 120",
@@ -7672,6 +7606,35 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 500,
+        "currentA": 0.6,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:108740_33863",
+      "merchant": "padabo_sk",
+      "name": "Sinusový menič napätia Carbest PowerWave, 12/230 V výkon 3000 W",
+      "description": "Menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie Carbest PowerWave je menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie. Integrovaný prepínač priority sieťového napájania 230 V preruší prevádzku hneď, ako je obytný automobil alebo karavan pripojený k napájaniu 230 V (napríklad v kempingu). Prevádzka meniča sa obnoví po odpojení od externého napájania. Prevodník tak mení napätie 12 V na 230 V s čistou sínusovou vlnou. ",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
+      "category": "inverter",
+      "brand": "Carbest",
+      "priceCzk": 765.88,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/195963_102.jpg?1783252526_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 3000,
         "currentA": 0.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
@@ -8950,7 +8913,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 458.99,
+      "priceCzk": 385.71,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-280ah-low-temperature-lifepo4-solar-battery",

@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-03T08:09:38.658Z",
+  "generatedAt": "2026-09-04T08:03:03.104Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12572,
-      "relevantProducts": 156
+      "parsedProducts": 12568,
+      "relevantProducts": 155
     },
     "ampul_hu": {
       "status": "ok",
-      "parsedProducts": 7666,
+      "parsedProducts": 7677,
       "relevantProducts": 13
     },
     "allpowers_eu": {
@@ -627,37 +627,6 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 95,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:25064_26765",
-      "merchant": "padabo_hu",
-      "name": "PowerBoozt AGM mélyciklusú akkumulátor kapacitás 110 Ah",
-      "description": "Karbantartásmentes energia a kalandokhozA PowerBoozt AGM Deep Cycle akkumulátor teljesen karbantartásmentes, lakóautókhoz, lakókocsikhoz, elektromos motorcsónakokhoz és jachtokhoz tervezték. Az AGM akkumulátor nedvszívó üveggyapotot tartalmaz, amely ellenállóvá teszi az elektrolit szivárgásával szemben, és nem okoz gondot a billenésben való munkavégzés. A PowerBoozt AGM Deep Cycle akkumulátor legfontosabb jellemzői: Az alacsony önkisülési arány miatt az akkumulátor alkalmas szezonális használatr",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "PowerBoozt",
-      "priceCzk": 185765,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/powerboozt-agm-melyciklusu-akkumulator_z25064/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fpowerboozt-agm-melyciklusu-akkumulator_z25064%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/158827_102.jpg?1704380237_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 110,
         "capacityWh": null,
         "powerW": null,
         "currentA": null,
@@ -2902,42 +2871,6 @@
       }
     },
     {
-      "id": "padabo_hu:106299",
-      "merchant": "padabo_hu",
-      "name": "Renogy DC-DC akkumulátortöltő, 12V/60A",
-      "description": "Háromfokozatú töltő minden akkumulátortípushoz A Renogy DC-DC akkumulátortöltő az egyik leghatékonyabb módja annak, hogy a kompresszor akkumulátorokat a motor működése közben töltse. A töltő számos generátortípussal kompatibilis, és megfelelő töltést biztosít AGM, vontatási, zselés és mélyciklusú lítium akkumulátorok számára. A többszörös elektronikus védelemmel ellátott háromfokozatú töltő rendkívül megbízható, és segít biztosítani, hogy az akkumulátor optimálisan és automatikusan töltődjön. To",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Töltők és boosterek | Akkumulátor töltők",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 91125,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/renogy-dc-dc-akkumulatortolto-12v-60a_z106299/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-dc-dc-akkumulatortolto-12v-60a_z106299%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/187901_102.jpg?1759387751_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 750,
-        "currentA": 60,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_hu:104293_30476",
       "merchant": "padabo_hu",
       "name": "Dometic SinePower DPSI-TS 12 V vagy 24 V-os feszültségátalakító állandó/csúcsteljesítmény 600 / 1200 W feszültség 12 V",
@@ -3263,7 +3196,7 @@
     {
       "id": "padabo_hu:19287_21292",
       "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
       "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
       "category": "inverter",
@@ -4706,6 +4639,35 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 500,
+        "currentA": 0.6,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:108740_33863",
+      "merchant": "padabo_hu",
+      "name": "Carbest PowerWave szinuszos feszültségátalakító, 12/230 V teljesítmény 3000 W",
+      "description": "A legújabb generációs szinuszos kimenetű átalakító hálózati tápellátás-prioritás kapcsolóval A Carbest PowerWave egy szinuszos kimenettel rendelkező, legújabb generációs hálózati tápellátás-prioritáskapcsolóval ellátott áramátalakító. A beépített 230 V-os hálózati tápellátás-prioritás kapcsoló leállítja a működését, amint a lakóautót vagy lakókocsit 230 V-os hálózati tápellátáshoz csatlakoztatják (például egy kempingben). Az inverter működése a külső tápellátásról való leválasztás után újraindul",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Carbest",
+      "priceCzk": 322915,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/195963_102.jpg?1783252526_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 3000,
         "currentA": 0.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
@@ -6429,7 +6391,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 458.99,
+      "priceCzk": 385.71,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-280ah-low-temperature-lifepo4-solar-battery",

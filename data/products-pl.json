@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-03T08:09:29.752Z",
+  "generatedAt": "2026-09-04T08:02:52.294Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16568,
-      "relevantProducts": 208
+      "parsedProducts": 16565,
+      "relevantProducts": 206
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_pl": {
       "status": "ok",
-      "parsedProducts": 7666,
+      "parsedProducts": 7677,
       "relevantProducts": 15
     }
   },
@@ -1717,37 +1717,6 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 95,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:25064_26765",
-      "merchant": "padabo_pl",
-      "name": "Akumulator PowerBoozt AGM Deep Cycle Battery pojemność 110 Ah",
-      "description": "Bezobsługowe zasilanie podczas przygódAkumulator PowerBoozt AGM Deep Cycle jest całkowicie bezobsługowy i przeznaczony do kamperów, przyczep kempingowych, elektrycznych łodzi motorowych i jachtów. Akumulator AGM zawiera chłonną włókninę szklaną, która czyni go odpornym na wycieki elektrolitu i sprawia, że praca w przechyle nie stanowi problemu. Najważniejsze cechy akumulatora PowerBoozt AGM Deep Cycle: Niski współczynnik samorozładowania sprawia, że akumulator nadaje się do użytku sezonowego. Je",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory AGM",
-      "category": "battery",
-      "brand": "PowerBoozt",
-      "priceCzk": 1886.82,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/akumulator-powerboozt-agm-deep-cycle-battery_z25064/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-powerboozt-agm-deep-cycle-battery_z25064%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/7/158827_102.jpg?1704380237_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 110,
         "capacityWh": null,
         "powerW": null,
         "currentA": null,
@@ -5321,42 +5290,6 @@
       }
     },
     {
-      "id": "padabo_pl:106299",
-      "merchant": "padabo_pl",
-      "name": "Ładowarka akumulatorów DC-DC Renogy, 12V/60A",
-      "description": "Trzystopniowa ładowarka dla wszystkich typów akumulatorów Ładowarka akumulatorów DC-DC Renogy jest jednym z najbardziej wydajnych sposobów ładowania akumulatorów doładowujących podczas pracy silnika. Ładowarka jest kompatybilna z wieloma typami alternatorów i zapewnia prawidłowe ładowanie akumulatorów AGM, trakcyjnych, żelowych i litowych o głębokim cyklu. Trzystopniowa ładowarka z wieloma elektronicznymi zabezpieczeniami jest niezwykle niezawodna i pomaga zapewnić optymalne i automatyczne ładow",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Ładowarki i boostery | Ładowarki",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 1433.31,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/ladowarka-akumulatorow-dc-dc-renogy-12v-60a_z106299/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fladowarka-akumulatorow-dc-dc-renogy-12v-60a_z106299%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/1/187901_102.jpg?1759387751_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 750,
-        "currentA": 60,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_pl:107312_33733",
       "merchant": "padabo_pl",
       "name": "Panel słoneczny Renogy ShadowFlux moc nominalna (wp) 120",
@@ -6848,7 +6781,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 458.99,
+      "priceCzk": 385.71,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-280ah-low-temperature-lifepo4-solar-battery",
