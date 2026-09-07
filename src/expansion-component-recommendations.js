@@ -16,7 +16,7 @@ export function buildExpansionComponentRecommendations(products, setup, limitPer
 
   return Object.freeze(Object.fromEntries(EXPANSION_COMPONENT_CATEGORIES.map((category) => [
     category,
-    Object.freeze((recommendations[category] || []).map(({ product, reason, verify }) => Object.freeze({
+    Object.freeze((recommendations[category] || []).map(({ product, reason, checks, verify }) => Object.freeze({
       id: product.id,
       merchant: product.merchant,
       category: product.category,
@@ -28,6 +28,7 @@ export function buildExpansionComponentRecommendations(products, setup, limitPer
       imageUrl: product.imageUrl || null,
       specs: Object.freeze({ ...(product.specs || {}) }),
       reason,
+      checks: Object.freeze([...(checks || [])]),
       verify,
       verifiedAt: product.verifiedAt || null,
     }))),
