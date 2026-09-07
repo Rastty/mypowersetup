@@ -59,10 +59,11 @@ export function isAmpulExpansionProduct(product) {
 
 export function validateAmpulExpansionProduct(product, {
   market,
-  verifiedMarkets = [],
+  verifiedProductMarkets = {},
 } = {}) {
   if (!isAmpulExpansionProduct(product)) throw new Error("AMPUL_EXPANSION_MERCHANT_INVALID");
-  if (!AMPUL_EXPANSION_MARKETS.includes(market) || !verifiedMarkets.includes(market)) throw new Error("AMPUL_EXPANSION_MARKET_UNVERIFIED");
+  const productMarkets = verifiedProductMarkets?.[product?.id] || [];
+  if (!AMPUL_EXPANSION_MARKETS.includes(market) || !productMarkets.includes(market)) throw new Error("AMPUL_EXPANSION_PRODUCT_MARKET_UNVERIFIED");
   if (product.marketEligible !== true || product.available !== true || !product.verifiedAt) throw new Error("AMPUL_EXPANSION_EVIDENCE_INVALID");
 
   const exact = exactDestination(product.productUrl);
