@@ -13,9 +13,11 @@ const EXPECTED = Object.freeze([
   "/pt/guias/carregador-dc-dc-autocaravana/",
   "/pt/guias/carregador-230v-bateria-autocaravana/",
   "/pt/guias/cabos-fusiveis-12v-autocaravana/",
+  "/pt/guias/consumo-frigorifico-compressor-autocaravana/",
+  "/pt/guias/sistema-eletrico-completo-autocaravana/",
 ]);
 
-test("Portugal growth layer targets the eight highest-intent guide routes", () => {
+test("Portugal growth layer targets the ten highest-intent guide routes", () => {
   assert.deepEqual([...PT_SEARCH_GROWTH_ROUTES].sort(), [...EXPECTED].sort());
 });
 
@@ -60,7 +62,7 @@ test("MPPT guide keeps voltage/current distinctions explicit", () => {
 });
 
 test("non-target Portugal content is unchanged by the growth layer", () => {
-  const route = "/pt/guias/consumo-frigorifico-compressor-autocaravana/";
+  const route = "/pt/guias/sistema-12v-ou-24v-autocaravana/";
   const html = renderPortugalPrivateContentPage(route);
   assert.equal(enhanceExpansionSearchContent(html, "pt", route), html);
 });

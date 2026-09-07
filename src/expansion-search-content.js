@@ -339,6 +339,103 @@ const PT_GROWTH_CONTENT = Object.freeze({
   }),
 
 
+  "/pt/guias/consumo-frigorifico-compressor-autocaravana/": Object.freeze({
+    title: "Quanto consome um frigorífico de compressor na autocaravana?",
+    description: "Consumo de frigorífico de compressor em Wh/dia: potência, ciclo de trabalho, temperatura, ventilação, medição e impacto na bateria e no solar.",
+    body: `
+<section data-search-growth-content="consumo-frigorifico-compressor-autocaravana">
+  <h2>Resposta curta: os watts da etiqueta não são o consumo de 24 horas</h2>
+  <p>Um frigorífico de compressor marcado com 45 W não consome automaticamente 45 × 24 = 1 080 Wh por dia. O compressor liga e desliga. Para dimensionar a instalação interessa a <strong>energia diária em Wh</strong>, que depende da potência enquanto o compressor trabalha e do tempo acumulado de funcionamento.</p>
+  <p>Como primeira aproximação usa <strong>Wh/dia ≈ potência do compressor × horas efetivas de funcionamento por dia</strong>. Se um frigorífico de 45 W trabalhar oito horas acumuladas, são cerca de 360 Wh/dia; dez horas dão 450 Wh/dia; doze horas, 540 Wh/dia. Estes exemplos mostram a sensibilidade do resultado, não valores garantidos para um modelo concreto.</p>
+
+  <h2>Porque o ciclo de trabalho muda tanto</h2>
+  <p>A temperatura exterior, a ventilação do condensador, a temperatura escolhida no termóstato, a frequência de abertura da porta e a quantidade de alimentos quentes alteram o tempo durante o qual o compressor precisa de funcionar. Um frigorífico que consome pouco numa noite fresca pode trabalhar muito mais durante uma tarde quente dentro de uma autocaravana fechada.</p>
+  <p>Também importa a instalação. Se o ar quente não consegue sair da zona do condensador, o sistema rejeita calor com mais dificuldade e tende a trabalhar durante mais tempo. Antes de aumentar a bateria, confirma se o frigorífico tem a ventilação exigida pelo fabricante e se as grelhas não estão bloqueadas.</p>
+
+  <h2>Exemplo de impacto no dimensionamento</h2>
+  <p>Imagina que o frigorífico representa 450 Wh/dia e os restantes consumos somam 350 Wh/dia. O sistema passa a precisar de cerca de <strong>800 Wh por dia</strong>. Nesse cenário, o frigorífico sozinho é mais de metade do orçamento energético diário.</p>
+  <p>Por isso vale a pena medir ou estimar bem esta carga antes de escolher a <a href="/pt/guias/capacidade-bateria-autocaravana/">capacidade da bateria</a> e os <a href="/pt/guias/quantos-watts-paineis-solares-autocaravana/">painéis solares</a>. Um erro de 200 Wh/dia repetido por vários dias pode alterar significativamente a autonomia e a potência solar necessária.</p>
+
+  <h2>Como obter um número melhor do que uma estimativa</h2>
+  <p>Se já tens o frigorífico, mede o consumo durante pelo menos um ciclo de utilização representativo com monitor de bateria ou medidor DC adequado. Idealmente inclui um período quente, utilização normal da porta e a mesma regulação de temperatura que pretendes usar em viagem. Divide a energia acumulada pelo número de dias para obter Wh/dia.</p>
+  <p>Se ainda não tens o equipamento, procura no manual ou na ficha técnica um valor de consumo energético quando o fabricante o publica. Caso exista apenas potência instantânea, usa um cenário conservador de horas de funcionamento e revê o cálculo depois das primeiras viagens.</p>
+
+  <h2>Baixa tensão e cablagem também podem causar problemas</h2>
+  <p>O arranque do compressor pode exigir mais corrente do que o funcionamento estabilizado. Queda de tensão excessiva em cabos longos ou finos pode provocar desligamentos mesmo quando a bateria ainda tem energia. Dimensiona o circuito pelo consumo e pelo percurso real e consulta o guia de <a href="/pt/guias/cabos-fusiveis-12v-autocaravana/">cabos e proteção 12/24 V</a>.</p>
+
+  <h2>Checklist para colocar o frigorífico no cálculo</h2>
+  <ul>
+    <li>potência nominal e tensão do frigorífico;</li>
+    <li>Wh/dia medidos ou horas realistas de compressor ligado;</li>
+    <li>temperatura exterior mais exigente em que pretendes viajar;</li>
+    <li>ventilação e espaço de instalação conforme o manual;</li>
+    <li>queda de tensão e capacidade do circuito DC;</li>
+    <li>margem para dias quentes e utilização diferente do ensaio.</li>
+  </ul>
+  <p>Depois introduz o cenário na <a href="/pt/#calculator-preview">calculadora MyPowerSetup</a> e dimensiona bateria, solar e carregamento a partir do consumo total, não apenas do frigorífico.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Um frigorífico de 45 W consome 1 080 Wh por dia?", "Não necessariamente. Esse valor só ocorreria se consumisse 45 W continuamente durante 24 horas. Um compressor normalmente liga e desliga; o dado útil é o tempo acumulado de funcionamento ou o consumo medido em Wh/dia."],
+      ["Quanto aumenta o consumo no calor?", "Não existe uma percentagem universal. Temperatura ambiente, ventilação, regulação, abertura da porta e modelo alteram o ciclo de trabalho. Mede o teu equipamento ou usa um cenário conservador para a época mais quente."],
+      ["É melhor medir o frigorífico antes de comprar a bateria?", "Sim, quando possível. Alguns dias de medição real dão uma base muito melhor para bateria e solar do que usar apenas a potência indicada na etiqueta."],
+    ]),
+  }),
+
+  "/pt/guias/sistema-eletrico-completo-autocaravana/": Object.freeze({
+    title: "Sistema elétrico completo da autocaravana: como dimensionar",
+    description: "Dimensiona bateria, solar, MPPT, DC-DC, carregador 230 V, inversor, cabos e proteções como um único sistema elétrico de autocaravana.",
+    body: `
+<section data-search-growth-content="sistema-eletrico-completo-autocaravana">
+  <h2>Começa por uma única pergunta: quanta energia usas por dia?</h2>
+  <p>Um sistema coerente não nasce de uma lista de produtos. Começa no consumo diário em Wh, nos dias de autonomia, na maior carga AC e no padrão de viagem. Estes dados alimentam todas as decisões seguintes: bateria, solar, MPPT, DC-DC, carregador de 230 V, inversor e cablagem.</p>
+  <p>Se cada componente for escolhido isoladamente, é fácil criar um gargalo: muita potência solar com MPPT pequeno, inversor grande com BMS insuficiente ou carregadores cuja corrente combinada ultrapassa o limite da bateria.</p>
+
+  <h2>Arquitetura de alto nível</h2>
+  <p>Num sistema típico, as fontes de carga convergem na bateria de serviço: <strong>painéis → MPPT → bateria</strong>, <strong>alternador/bateria de arranque → DC-DC → bateria</strong> e <strong>230 V → carregador → bateria</strong>. Da bateria saem os circuitos DC e, quando necessário, uma ligação dedicada ao inversor para cargas AC.</p>
+  <p>Cada ramo precisa de cabos, proteção e seccionamento adequados. Esta arquitetura explica o fluxo de energia; não é um esquema de instalação universal.</p>
+
+  <h2>Exemplo: 800 Wh por dia e dois dias de autonomia</h2>
+  <p>Supondo 800 Wh/dia, dois dias de autonomia e LiFePO₄, o modelo MyPowerSetup dimensiona a bateria com margem e fração utilizável. Depois calcula a potência solar segundo a época escolhida. Se conduzes regularmente, parte da energia pode ser recuperada por DC-DC; num parque de campismo, o carregador de 230 V assume outra parte.</p>
+  <p>O ponto importante é que estas fontes <strong>não apagam o consumo</strong>: dizem apenas como e quando repões energia. Uma bateria maior oferece reserva; solar, alternador e rede definem a velocidade e frequência com que essa reserva é recuperada.</p>
+
+  <h2>Escolhe 12 V ou 24 V antes de fechar os componentes</h2>
+  <p>A tensão do banco influencia corrente, inversor, MPPT, carregadores e consumidores DC. Para potências elevadas, 24 V reduz aproximadamente para metade a corrente em relação a 12 V para a mesma potência. Isso pode facilitar cablagem, mas pode exigir conversores para equipamentos que só aceitam 12 V.</p>
+  <p>Usa o guia <a href="/pt/guias/sistema-12v-ou-24v-autocaravana/">12 V ou 24 V</a> antes de comprar componentes importantes. Mudar a tensão depois pode obrigar a substituir várias peças.</p>
+
+  <h2>Verifica os quatro gargalos mais comuns</h2>
+  <ul>
+    <li><strong>Bateria/BMS:</strong> tem de suportar a corrente contínua e de pico do inversor e a corrente total de carga.</li>
+    <li><strong>MPPT:</strong> precisa de suportar potência, Voc, Isc e a tensão do banco.</li>
+    <li><strong>Alternador/DC-DC:</strong> o carregamento durante a condução deve respeitar alternador, bateria e cablagem dos dois lados.</li>
+    <li><strong>Cabos e proteção:</strong> cada circuito é dimensionado pela corrente e percurso reais, não apenas pelos Ah da bateria.</li>
+  </ul>
+
+  <h2>O inversor é apenas uma parte do sistema</h2>
+  <p>Se não precisas de 230 V fora do parque, podes reduzir ou até eliminar o inversor. Se precisas de cargas AC potentes, verifica simultaneamente <a href="/pt/guias/inversor-autocaravana-potencia/">potência contínua e pico do inversor</a>, corrente permitida pelo BMS e cablagem DC. Um inversor de 2 kW não transforma uma bateria pequena num sistema de 2 kW.</p>
+
+  <h2>Ordem de dimensionamento que evita compras duplicadas</h2>
+  <ol>
+    <li>lista os consumos e calcula Wh/dia;</li>
+    <li>define autonomia e química da bateria;</li>
+    <li>escolhe 12 V ou 24 V;</li>
+    <li>dimensiona solar e MPPT;</li>
+    <li>dimensiona DC-DC segundo horas de condução;</li>
+    <li>dimensiona carregador 230 V segundo tempo de ligação;</li>
+    <li>define inversor pelas cargas AC;</li>
+    <li>fecha cabos, fusíveis, seccionamento, barramentos e montagem.</li>
+  </ol>
+
+  <h2>Onde termina a calculadora</h2>
+  <p>O MyPowerSetup fornece requisitos e uma arquitetura coerente, não um projeto executivo. A instalação de 230 V, ligação à terra, proteção diferencial, escolha final de fusíveis, encaminhamento de cabos e montagem devem seguir documentação dos equipamentos e regras aplicáveis. Quando não tens experiência adequada, a verificação por profissional qualificado é parte do projeto.</p>
+  <p>Começa pela <a href="/pt/#calculator-preview">calculadora do sistema</a> e usa os guias específicos para validar cada componente antes da compra.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Solar, DC-DC e carregador 230 V podem carregar a mesma bateria?", "Podem fazer parte do mesmo sistema se todos forem compatíveis com a química e tensão da bateria e se a corrente total de carga respeitar os limites da bateria/BMS e a documentação dos equipamentos."],
+      ["Preciso de inversor numa autocaravana?", "Só se tiveres cargas que necessitam de 230 V fora de uma ligação à rede. Muitos consumidores podem funcionar diretamente em DC, evitando perdas e complexidade do inversor."],
+      ["Que componente devo escolher primeiro?", "Começa pelo consumo diário e autonomia. A partir daí define bateria e tensão do sistema; só depois fecha solar, carregadores, inversor, cabos e proteções."],
+    ]),
+  }),
+
 });
 
 function faqHtml(items) {

@@ -27,10 +27,23 @@ class CdpClient {
     });
   }
 
-  send(method, params = {}) {
+  send(method, params = {}, timeoutMs = 10_000) {
     const id = this.nextId++;
     return new Promise((resolve, reject) => {
-      this.pending.set(id, { resolve, reject });
+      const timer = setTimeout(() => {
+        this.pending.delete(id);
+        reject(new Error(`HU_MOBILE_SMOKE_CDP_TIMEOUT:${method}`));
+      }, timeoutMs);
+      this.pending.set(id, {
+        resolve: (value) => {
+          clearTimeout(timer);
+          resolve(value);
+        },
+        reject: (error) => {
+          clearTimeout(timer);
+          reject(error);
+        },
+      });
       this.socket.send(JSON.stringify({ id, method, params }));
     });
   }
@@ -170,9 +183,7 @@ try {
 } finally {
   if (cdp) await cdp.send("Browser.close").catch(() => {});
   await cdp?.close().catch(() => {});
-  preview.kill("SIGTERM");
-  if (chrome.exitCode === null && chrome.signalCode === null) chrome.kill("SIGTERM");
-  await Promise.allSettled([waitForExit(preview), waitForExit(chrome)]);
+  await Promise.allSettled([terminateChild(preview), terminateChild(chrome)]);
   await cleanupProfile(profileDir);
 }
 
@@ -262,6 +273,15 @@ async function evaluate(cdp, expression) {
 
 function assert(condition, message) {
   if (!condition) throw new Error(`HU_MOBILE_SMOKE_ASSERTION:${message}`);
+}
+
+async function terminateChild(child) {
+  if (child.exitCode !== null || child.signalCode !== null) return;
+  child.kill("SIGTERM");
+  await Promise.race([waitForExit(child), delay(1_500)]);
+  if (child.exitCode !== null || child.signalCode !== null) return;
+  child.kill("SIGKILL");
+  await Promise.race([waitForExit(child), delay(1_000)]);
 }
 
 function waitForExit(child) {

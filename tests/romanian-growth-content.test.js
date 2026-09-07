@@ -58,7 +58,7 @@ test("Romania search content injection is idempotent", () => {
 test("Romania growth layer leaves Portugal and untargeted Romania routes unchanged", () => {
   const html = '<html><head></head><body><aside class="cta"></aside></body></html>';
   assert.equal(enhanceRomaniaSearchContent(html, "pt", "/pt/guias/capacidade-bateria-autocaravana/"), html);
-  assert.equal(enhanceRomaniaSearchContent(html, "ro", "/ro/ghiduri/consum-frigider-compresor-autorulota/"), html);
+  assert.equal(enhanceRomaniaSearchContent(html, "ro", "/ro/ghiduri/sistem-12v-sau-24v-autorulota/"), html);
 });
 
 
