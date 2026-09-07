@@ -51,7 +51,7 @@ function breadcrumbNodeIsValid(node, market, route) {
 }
 
 function visibleBreadcrumbIsValid(html, market) {
-  const nav = html.match(/<nav\b[^>]*data-expansion-breadcrumbs[^>]*>[\s\S]*?<\/nav>/i)?.[0] || "";
+  const nav = html.match(/<nav\b[^>]*data-(?:expansion|mature)-breadcrumbs[^>]*>[\s\S]*?<\/nav>/i)?.[0] || "";
   if (!nav) return false;
   return nav.includes(`href="${market.home}"`)
     && nav.includes(`href="${market.guideHub}"`)
@@ -132,35 +132,32 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
       articlePages += 1;
       const nodes = schemaNodes(schemas);
       const articles = nodes.filter((schema) => schema?.["@type"] === "Article");
-      const requiresExpansionBreadcrumb = ["pt", "ro", "si"].includes(market.key);
-      if (requiresExpansionBreadcrumb) breadcrumbPages += 1;
+      breadcrumbPages += 1;
 
       if (!articles.length) failures.push(`${route}:ARTICLE_SCHEMA_MISSING`);
       else {
         const declaredLanguages = articles.map(({ inLanguage }) => inLanguage).filter(Boolean);
         const acceptedLanguages = new Set([market.locale, market.locale.split("-")[0]]);
-        if (declaredLanguages.length && !declaredLanguages.some((language) => acceptedLanguages.has(language))) failures.push(`${route}:ARTICLE_LANGUAGE_INVALID`);
-        if (requiresExpansionBreadcrumb) {
-          const authoritative = articles.some((article) => {
-            const author = article.author;
-            const publisher = article.publisher;
-            return Boolean(
-              author && typeof author === "object" && author.name === "Petr Gálík" && typeof author.url === "string"
-              && publisher && typeof publisher === "object" && publisher.name === "MyPowerSetup"
-              && /^\d{4}-\d{2}-\d{2}$/.test(article.datePublished || "")
-              && /^\d{4}-\d{2}-\d{2}$/.test(article.dateModified || "")
-            );
-          });
-          if (!authoritative) failures.push(`${route}:ARTICLE_AUTHORITY_METADATA_MISSING`);
-        }
+        if (!declaredLanguages.length) failures.push(`${route}:ARTICLE_LANGUAGE_MISSING`);
+        else if (!declaredLanguages.some((language) => acceptedLanguages.has(language))) failures.push(`${route}:ARTICLE_LANGUAGE_INVALID`);
+
+        const authoritative = articles.some((article) => {
+          const author = article.author;
+          const publisher = article.publisher;
+          return Boolean(
+            author && typeof author === "object" && author.name === "Petr Gálík" && typeof author.url === "string"
+            && publisher && typeof publisher === "object" && publisher.name === "MyPowerSetup"
+            && /^\d{4}-\d{2}-\d{2}$/.test(article.datePublished || "")
+            && /^\d{4}-\d{2}-\d{2}$/.test(article.dateModified || "")
+          );
+        });
+        if (!authoritative) failures.push(`${route}:ARTICLE_AUTHORITY_METADATA_MISSING`);
       }
 
-      if (requiresExpansionBreadcrumb) {
-        const breadcrumbs = nodes.filter((node) => node?.["@type"] === "BreadcrumbList");
-        if (breadcrumbs.length !== 1) failures.push(`${route}:BREADCRUMB_SCHEMA_MISSING`);
-        else if (!breadcrumbNodeIsValid(breadcrumbs[0], market, route)) failures.push(`${route}:BREADCRUMB_SCHEMA_INVALID`);
-        if (!visibleBreadcrumbIsValid(html, market)) failures.push(`${route}:BREADCRUMB_VISIBLE_MISSING`);
-      }
+      const breadcrumbs = nodes.filter((node) => node?.["@type"] === "BreadcrumbList");
+      if (breadcrumbs.length !== 1) failures.push(`${route}:BREADCRUMB_SCHEMA_MISSING`);
+      else if (!breadcrumbNodeIsValid(breadcrumbs[0], market, route)) failures.push(`${route}:BREADCRUMB_SCHEMA_INVALID`);
+      if (!visibleBreadcrumbIsValid(html, market)) failures.push(`${route}:BREADCRUMB_VISIBLE_MISSING`);
     }
   }
 
