@@ -137,3 +137,55 @@ test("10A Power Queen shore charger covers a 12V LiFePO4 shore-charging recommen
   });
   assert.equal(tooSmall.shore_charger.length, 0);
 });
+
+
+test("Power Queen MPPT respects evidenced 12V/24V PV limits", () => {
+  const controllerUrl = "https://www.ipowerqueen.de/en/products/power-queen-12-24v-30amp-mppt-solar-charge-controller-and-bluetooth-adapter";
+  const tracked = new URL("https://www.awin1.com/cread.php");
+  tracked.searchParams.set("awinmid", "97025");
+  tracked.searchParams.set("awinaffid", "3044971");
+  tracked.searchParams.set("ued", controllerUrl);
+
+  const controller = {
+    id: "powerqueen_eu:mppt30",
+    merchant: "powerqueen_eu",
+    name: "Power Queen MPPT 12/24V 30A solar charge controller with Bluetooth module",
+    description: "30 A MPPT; max PV 450 W at 12 V and 900 W at 24 V.",
+    categoryPath: "Battery Charge Controllers",
+    category: "controller",
+    brand: "Power Queen",
+    priceCzk: 129.99,
+    priceCurrency: "EUR",
+    available: true,
+    marketEligible: true,
+    productUrl: controllerUrl,
+    affiliateUrl: tracked.toString(),
+    verifiedAt: "2026-09-07",
+    specs: {
+      currentA: 30,
+      systemVoltagesV: [12, 24],
+      maxPvWattsBySystemVoltage: { 12: 450, 24: 900 },
+      mppt: true,
+    },
+  };
+
+  const setup = (systemVoltage, solarWatts, controllerAmps = 25) => ({
+    locale: "pt",
+    systemVoltage,
+    inverterWatts: 0,
+    solarWatts,
+    controllerAmps,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    charging: {
+      starterVoltage: 12,
+      dcDc: { suggestedCurrentAmps: null },
+      shore: { suggestedCurrentAmps: null },
+    },
+  });
+
+  assert.equal(buildExpansionComponentRecommendations([controller], setup(12, 400)).controller.length, 1);
+  assert.equal(buildExpansionComponentRecommendations([controller], setup(12, 500)).controller.length, 0);
+  assert.equal(buildExpansionComponentRecommendations([controller], setup(24, 800)).controller.length, 1);
+  assert.equal(buildExpansionComponentRecommendations([controller], setup(48, 400)).controller.length, 0);
+});
