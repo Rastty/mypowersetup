@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-09-07T18:25:14.488Z",
+  "generatedAt": "2026-09-07T18:33:06.092Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -821,7 +821,7 @@
   "markets": [
     {
       "market": "cs-CZ",
-      "generatedAt": "2026-09-07T18:24:43.672Z",
+      "generatedAt": "2026-09-07T18:32:30.217Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
@@ -833,7 +833,7 @@
     },
     {
       "market": "sk-SK",
-      "generatedAt": "2026-09-07T18:24:53.317Z",
+      "generatedAt": "2026-09-07T18:32:41.687Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -845,7 +845,7 @@
     },
     {
       "market": "pl-PL",
-      "generatedAt": "2026-09-07T18:25:03.123Z",
+      "generatedAt": "2026-09-07T18:32:54.208Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.21052631578947367,
@@ -857,7 +857,7 @@
     },
     {
       "market": "hu-HU",
-      "generatedAt": "2026-09-07T18:25:13.230Z",
+      "generatedAt": "2026-09-07T18:33:04.156Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -869,7 +869,7 @@
     },
     {
       "market": "pt-PT",
-      "generatedAt": "2026-09-07T18:25:14.488Z",
+      "generatedAt": "2026-09-07T18:33:06.092Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1125,14 +1125,14 @@
         "merchant": "bluetti_eu",
         "productName": "BLUETTI Elite 300",
         "status": "blocked_affiliate_verification",
-        "blocker": "eu_affiliate_deeplink_unverified",
+        "blocker": "exact_cj_eu_deeplink_unverified",
         "secondaryBlocker": null,
         "standaloneUnlockWeight": 5,
         "affectedWeight": 5,
         "shippingVerified": true,
         "stockStatus": "in_stock",
         "nextActionOwner": "user",
-        "nextAction": "provide_exact_eu_affiliate_deeplink"
+        "nextAction": "provide_exact_cj_elite300_deeplink"
       },
       "sourcingRoutes": [
         {
@@ -1141,14 +1141,14 @@
           "merchant": "bluetti_eu",
           "productName": "BLUETTI Elite 300",
           "status": "blocked_affiliate_verification",
-          "blocker": "eu_affiliate_deeplink_unverified",
+          "blocker": "exact_cj_eu_deeplink_unverified",
           "secondaryBlocker": null,
           "standaloneUnlockWeight": 5,
           "affectedWeight": 5,
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "provide_exact_eu_affiliate_deeplink"
+          "nextAction": "provide_exact_cj_elite300_deeplink"
         },
         {
           "id": "solaris-victron-phoenix-12-250",
@@ -1470,14 +1470,14 @@
         "merchant": "bluetti_eu",
         "productName": "BLUETTI Elite 300",
         "status": "blocked_affiliate_verification",
-        "blocker": "eu_affiliate_deeplink_unverified",
+        "blocker": "exact_cj_eu_deeplink_unverified",
         "secondaryBlocker": null,
         "standaloneUnlockWeight": 5,
         "affectedWeight": 5,
         "shippingVerified": true,
         "stockStatus": "in_stock",
         "nextActionOwner": "user",
-        "nextAction": "provide_exact_eu_affiliate_deeplink"
+        "nextAction": "provide_exact_cj_elite300_deeplink"
       },
       "sourcingRoutes": [
         {
@@ -1486,14 +1486,14 @@
           "merchant": "bluetti_eu",
           "productName": "BLUETTI Elite 300",
           "status": "blocked_affiliate_verification",
-          "blocker": "eu_affiliate_deeplink_unverified",
+          "blocker": "exact_cj_eu_deeplink_unverified",
           "secondaryBlocker": null,
           "standaloneUnlockWeight": 5,
           "affectedWeight": 5,
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "provide_exact_eu_affiliate_deeplink"
+          "nextAction": "provide_exact_cj_elite300_deeplink"
         },
         {
           "id": "solaris-victron-phoenix-12-250",
