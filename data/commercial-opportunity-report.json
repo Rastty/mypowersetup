@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-09-07T18:19:28.076Z",
+  "generatedAt": "2026-09-07T18:25:14.488Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -821,7 +821,7 @@
   "markets": [
     {
       "market": "cs-CZ",
-      "generatedAt": "2026-09-07T18:18:57.104Z",
+      "generatedAt": "2026-09-07T18:24:43.672Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
@@ -833,7 +833,7 @@
     },
     {
       "market": "sk-SK",
-      "generatedAt": "2026-09-07T18:19:07.260Z",
+      "generatedAt": "2026-09-07T18:24:53.317Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -845,7 +845,7 @@
     },
     {
       "market": "pl-PL",
-      "generatedAt": "2026-09-07T18:19:17.664Z",
+      "generatedAt": "2026-09-07T18:25:03.123Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.21052631578947367,
@@ -857,7 +857,7 @@
     },
     {
       "market": "hu-HU",
-      "generatedAt": "2026-09-07T18:19:26.551Z",
+      "generatedAt": "2026-09-07T18:25:13.230Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -869,7 +869,7 @@
     },
     {
       "market": "pt-PT",
-      "generatedAt": "2026-09-07T18:19:28.076Z",
+      "generatedAt": "2026-09-07T18:25:14.488Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1132,7 +1132,7 @@
         "shippingVerified": true,
         "stockStatus": "in_stock",
         "nextActionOwner": "user",
-        "nextAction": "verify_eu_affiliate_deeplink"
+        "nextAction": "provide_exact_eu_affiliate_deeplink"
       },
       "sourcingRoutes": [
         {
@@ -1148,7 +1148,7 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "verify_eu_affiliate_deeplink"
+          "nextAction": "provide_exact_eu_affiliate_deeplink"
         },
         {
           "id": "solaris-victron-phoenix-12-250",
@@ -1477,7 +1477,7 @@
         "shippingVerified": true,
         "stockStatus": "in_stock",
         "nextActionOwner": "user",
-        "nextAction": "verify_eu_affiliate_deeplink"
+        "nextAction": "provide_exact_eu_affiliate_deeplink"
       },
       "sourcingRoutes": [
         {
@@ -1493,7 +1493,7 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "verify_eu_affiliate_deeplink"
+          "nextAction": "provide_exact_eu_affiliate_deeplink"
         },
         {
           "id": "solaris-victron-phoenix-12-250",
