@@ -178,3 +178,54 @@ test("missing appliance error follows the requested locale", () => {
   assert.throws(() => calculateSetup({ locale: "pt", appliances: [] }), /Seleciona pelo menos um equipamento/);
   assert.throws(() => calculateSetup({ locale: "si", appliances: [] }), /Izberi vsaj en porabnik/);
 });
+
+
+test("MPPT sizing uses battery charge voltage instead of nominal system voltage", () => {
+  const family = calculateSetup({
+    appliances: [
+      { selected: true, id: "fridge", watts: 45, hours: 8, quantity: 1, ac: false, surge: 2.5 },
+      { selected: true, id: "lights", watts: 20, hours: 5, quantity: 1, ac: false, surge: 1 },
+      { selected: true, id: "phones", watts: 20, hours: 3, quantity: 2, ac: false, surge: 1 },
+      { selected: true, id: "pump", watts: 60, hours: 0.5, quantity: 1, ac: false, surge: 2 },
+      { selected: true, id: "laptop", watts: 65, hours: 2, quantity: 1, ac: true, surge: 1 },
+    ],
+    autonomyDays: 2,
+    season: "summer",
+    batteryType: "lifepo4",
+    systemVoltage: "auto",
+  });
+
+  assert.equal(family.systemVoltage, 12);
+  assert.equal(family.solarWatts, 300);
+  assert.equal(family.calculation.controllerSizingVoltage, 14.6);
+  assert.equal(family.assumptions.controllerMarginPercent, 25);
+  assert.equal(family.controllerAmps, 30);
+
+  const winter = calculateSetup({
+    appliances: [
+      { selected: true, id: "fridge", watts: 45, hours: 6, quantity: 1, ac: false, surge: 2.5 },
+      { selected: true, id: "lights", watts: 20, hours: 6, quantity: 1, ac: false, surge: 1 },
+      { selected: true, id: "phones", watts: 20, hours: 3, quantity: 2, ac: false, surge: 1 },
+    ],
+    autonomyDays: 2,
+    season: "winter",
+    batteryType: "lifepo4",
+    systemVoltage: "auto",
+  });
+
+  assert.equal(winter.systemVoltage, 12);
+  assert.equal(winter.solarWatts, 550);
+  assert.equal(winter.controllerAmps, 50);
+});
+
+test("lead-acid MPPT sizing uses a 14.4V-equivalent charging voltage", () => {
+  const result = calculateSetup({
+    appliances: [{ selected: true, name: "Load", watts: 300, hours: 1, quantity: 1, ac: false }],
+    autonomyDays: 1,
+    season: "summer",
+    batteryType: "lead",
+    systemVoltage: "12",
+  });
+
+  assert.equal(result.calculation.controllerSizingVoltage, 14.4);
+});
