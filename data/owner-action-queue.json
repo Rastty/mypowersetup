@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-07T19:06:04.363Z",
+  "actionCount": 4,
+  "topAction": {
+    "actionKey": "bluetti_eu:provide_exact_cj_elite300_deeplink",
+    "merchant": "bluetti_eu",
+    "nextAction": "provide_exact_cj_elite300_deeplink",
+    "applicationUrl": null,
+    "applicationPacketPath": "docs/affiliate/bluetti-elite300-eu-activation.md",
+    "candidateIds": [
+      "bluetti-eu-elite-300"
+    ],
+    "categories": [
+      "power_station"
+    ],
+    "markets": [
+      "pt-PT",
+      "ro-RO"
+    ],
+    "shippingVerifiedMarkets": [
+      "pt-PT",
+      "ro-RO"
+    ],
+    "blockers": [
+      "exact_cj_eu_deeplink_unverified"
+    ],
+    "secondaryBlockers": [],
+    "statuses": [
+      "blocked_affiliate_verification"
+    ],
+    "activationFieldsNeeded": [
+      "affiliateUrl",
+      "finalLandingUrl",
+      "verifiedAt"
+    ],
+    "maxStandaloneUnlockWeight": 5,
+    "maxAffectedWeight": 5,
+    "candidateCount": 1,
+    "categoryCount": 1,
+    "inStockCandidates": 1
+  },
+  "actions": [
+    {
+      "actionKey": "bluetti_eu:provide_exact_cj_elite300_deeplink",
+      "merchant": "bluetti_eu",
+      "nextAction": "provide_exact_cj_elite300_deeplink",
+      "applicationUrl": null,
+      "applicationPacketPath": "docs/affiliate/bluetti-elite300-eu-activation.md",
+      "candidateIds": [
+        "bluetti-eu-elite-300"
+      ],
+      "categories": [
+        "power_station"
+      ],
+      "markets": [
+        "pt-PT",
+        "ro-RO"
+      ],
+      "shippingVerifiedMarkets": [
+        "pt-PT",
+        "ro-RO"
+      ],
+      "blockers": [
+        "exact_cj_eu_deeplink_unverified"
+      ],
+      "secondaryBlockers": [],
+      "statuses": [
+        "blocked_affiliate_verification"
+      ],
+      "activationFieldsNeeded": [
+        "affiliateUrl",
+        "finalLandingUrl",
+        "verifiedAt"
+      ],
+      "maxStandaloneUnlockWeight": 5,
+      "maxAffectedWeight": 5,
+      "candidateCount": 1,
+      "categoryCount": 1,
+      "inStockCandidates": 1
+    },
+    {
+      "actionKey": "solaris_store:submit_ambassador_application",
+      "merchant": "solaris_store",
+      "nextAction": "submit_ambassador_application",
+      "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+      "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+      "candidateIds": [
+        "solaris-victron-phoenix-12-250",
+        "solaris-victron-phoenix-24-250",
+        "solaris-victron-smartsolar-150-60-tr"
+      ],
+      "categories": [
+        "controller",
+        "inverter"
+      ],
+      "markets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "shippingVerifiedMarkets": [],
+      "blockers": [
+        "affiliate_tracking_not_verified"
+      ],
+      "secondaryBlockers": [
+        "market_shipping_checkout_unverified"
+      ],
+      "statuses": [
+        "blocked_affiliate_verification"
+      ],
+      "activationFieldsNeeded": [],
+      "maxStandaloneUnlockWeight": 5,
+      "maxAffectedWeight": 5,
+      "candidateCount": 3,
+      "categoryCount": 2,
+      "inStockCandidates": 3
+    },
+    {
+      "actionKey": "butler_technik:join_awin_program_31291",
+      "merchant": "butler_technik",
+      "nextAction": "join_awin_program_31291",
+      "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+      "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+      "candidateIds": [
+        "butler-victron-orion-xs-12-12-50",
+        "butler-victron-scc125060321"
+      ],
+      "categories": [
+        "controller",
+        "dc_charger"
+      ],
+      "markets": [
+        "hu-HU",
+        "pl-PL",
+        "pt-PT",
+        "ro-RO",
+        "sk-SK",
+        "sl-SI"
+      ],
+      "shippingVerifiedMarkets": [
+        "hu-HU",
+        "pl-PL",
+        "pt-PT",
+        "ro-RO",
+        "sk-SK",
+        "sl-SI"
+      ],
+      "blockers": [
+        "awin_program_approval"
+      ],
+      "secondaryBlockers": [],
+      "statuses": [
+        "pending_affiliate_approval"
+      ],
+      "activationFieldsNeeded": [],
+      "maxStandaloneUnlockWeight": 0,
+      "maxAffectedWeight": 5,
+      "candidateCount": 2,
+      "categoryCount": 2,
+      "inStockCandidates": 2
+    },
+    {
+      "actionKey": "xdatou:submit_goaffpro_application",
+      "merchant": "xdatou",
+      "nextAction": "submit_goaffpro_application",
+      "applicationUrl": "https://eu.xdatou.com/pages/affiliate-program",
+      "applicationPacketPath": "docs/affiliate/xdatou-goaffpro-application.md",
+      "candidateIds": [
+        "xdatou-datouboss-2000w-24v"
+      ],
+      "categories": [
+        "inverter"
+      ],
+      "markets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "shippingVerifiedMarkets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "blockers": [
+        "goaffpro_account_approval_not_verified"
+      ],
+      "secondaryBlockers": [],
+      "statuses": [
+        "blocked_affiliate_verification"
+      ],
+      "activationFieldsNeeded": [
+        "approvalConfirmed",
+        "referralCode",
+        "referralIdentifier"
+      ],
+      "maxStandaloneUnlockWeight": 0,
+      "maxAffectedWeight": 5,
+      "candidateCount": 1,
+      "categoryCount": 1,
+      "inStockCandidates": 1
+    }
+  ]
+}

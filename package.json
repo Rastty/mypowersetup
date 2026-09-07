@@ -51,6 +51,8 @@
     "publish:hu": "node scripts/publish-hu.mjs",
     "publish:expansion:check": "node scripts/publish-expansion.mjs --check",
     "publish:expansion": "node scripts/publish-expansion.mjs",
-    "check:public:links": "node scripts/check-public-internal-links.mjs --require-safe"
+    "check:public:links": "node scripts/check-public-internal-links.mjs --require-safe",
+    "report:owner:actions": "node scripts/write-owner-action-queue.mjs",
+    "check:owner:actions": "node scripts/write-owner-action-queue.mjs --check"
   }
 }
