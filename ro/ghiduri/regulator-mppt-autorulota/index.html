@@ -27,4 +27,25 @@
 
   <h2>MPPT-ul trebuie să fie compatibil și cu bateria</h2>
   <p>Confirmă că regulatorul are un profil potrivit chimiei bateriei și că tensiunile de absorbție/menținere sunt conforme cu instrucțiunile bateriei. Pentru LiFePO₄, verifică și modul în care sistemul gestionează temperaturile joase și semnalele BMS dacă sunt disponibile.</p>
+
+  <h2>Puterea PV admisă depinde și de tensiunea bateriei</h2>
+  <p>Același model de regulator poate avea o putere fotovoltaică nominală diferită la 12 V și la 24 V, deoarece limita de curent de încărcare rămâne aceeași. De aceea nu este suficient să spui „am un MPPT de 30 A” fără să precizezi tensiunea bateriei și puterea panourilor.</p>
+  <p>După ce calculatorul estimează curentul necesar, verifică în fișa modelului concret puterea PV permisă, tensiunea maximă Voc și curentul maxim Isc. Toate aceste limite trebuie respectate simultan.</p>
+
+  <h2>Isc și protecția nu se verifică din puterea în Wp</h2>
+  <p>Două configurații cu aceeași putere totală pot avea curenți de scurtcircuit foarte diferiți. În paralel, Isc-urile șirurilor se adună. Verifică limita de intrare a regulatorului și cerințele de protecție ale producătorului; nu deduce siguranțele doar din puterea nominală a panourilor.</p>
+  <p>La cablurile dintre panouri și MPPT contează curentul, lungimea, temperatura și căderea de tensiune. Pe partea bateriei, dimensionează cablul pentru curentul maxim de încărcare al regulatorului.</p>
+
+  <h2>Checklist înainte de cumpărarea MPPT-ului</h2>
+  <ul>
+    <li>tensiunea nominală a bateriei: 12 V sau 24 V;</li>
+    <li>puterea totală Wp a configurației finale;</li>
+    <li>Voc maxim al șirului inclusiv la temperatură scăzută;</li>
+    <li>Isc maxim al configurației serie/paralel;</li>
+    <li>curentul de încărcare cerut pe partea bateriei;</li>
+    <li>puterea PV admisă la tensiunea bateriei alese;</li>
+    <li>profil de încărcare compatibil cu bateria și BMS-ul;</li>
+    <li>cabluri, siguranțe și montaj conform manualului.</li>
+  </ul>
+  <p>Leagă alegerea de ghidul pentru <a href="/ro/ghiduri/cate-panouri-solare-autorulota/">dimensionarea panourilor solare</a> și de <a href="/ro/#calculator-preview">calculatorul sistemului</a>, nu de o singură cifră de pe eticheta regulatorului.</p>
 </section><aside class="related" data-contextual-growth-links><h2>Continuă dimensionarea sistemului</h2><ul><li><a href="/ro/ghiduri/cate-panouri-solare-autorulota/">Calculează puterea panourilor solare</a></li><li><a href="/ro/ghiduri/capacitate-baterie-autorulota/">Calculează capacitatea bateriei</a></li><li><a href="/ro/ghiduri/cabluri-sigurante-12v-autorulota/">Vezi cabluri și siguranțe 12/24 V</a></li></ul></aside><aside class="cta"><h2 data-guide-conversion-cta>Calculează și vezi produse compatibile</h2><p>Rezultatul este gratuit și fără înregistrare. La final afișăm doar produse ale căror limite tehnice și destinație exactă le-am verificat.</p><a class="button button-primary" href="/ro/#calculator-preview">Deschide calculatorul și vezi produsele</a></aside><aside class="related"><h2>Alte ghiduri</h2><ul><li><a href="/ro/ghiduri/capacitate-baterie-autorulota/">Ce capacitate trebuie să aibă bateria autorulotei?</a></li><li><a href="/ro/ghiduri/lifepo4-sau-agm-autorulota/">LiFePO4 sau AGM în autorulotă: ce alegi?</a></li><li><a href="/ro/ghiduri/cate-panouri-solare-autorulota/">Câte panouri solare sunt necesare pentru autorulotă?</a></li><li><a href="/ro/ghiduri/regulator-mppt-autorulota/">Cum alegi regulatorul MPPT pentru autorulotă</a></li><li><a href="/ro/ghiduri/invertor-autorulota-putere/">Ce putere trebuie să aibă invertorul unei autorulote?</a></li><li><a href="/ro/ghiduri/incarcator-dc-dc-autorulota/">Cum alegi încărcătorul DC-DC pentru autorulotă</a></li><li><a href="/ro/ghiduri/incarcator-230v-baterie-autorulota/">Încărcător 230 V pentru bateria autorulotei</a></li><li><a href="/ro/ghiduri/cabluri-sigurante-12v-autorulota/">Cabluri și siguranțe 12 V în autorulotă</a></li><li><a href="/ro/ghiduri/consum-frigider-compresor-autorulota/">Cât consumă un frigider cu compresor în autorulotă?</a></li><li><a href="/ro/ghiduri/sistem-electric-complet-autorulota/">Sistem electric complet pentru autorulotă</a></li><li><a href="/ro/ghiduri/statie-portabila-sau-instalatie-fixa-autorulota/">Stație portabilă sau instalație fixă în autorulotă?</a></li></ul></aside></main><footer class="expansion-footer"><nav><a href="/ro/ghiduri/">Ghiduri</a><a href="/ro/metodologie/">Metodologie</a><a href="/ro/despre-proiect/">Despre proiect</a><a href="/ro/afiliere/">Afiliere</a><a href="/ro/confidentialitate/">Confidențialitate</a></nav></footer><script type="module" src="/src/analytics.js"></script></body></html>

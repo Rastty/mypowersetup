@@ -20,4 +20,34 @@
   <p>V seriji se seštevajo napetosti, pri vzporedni vezavi pa tokovi. Izbira je odvisna od panelov, kablov, senčenja in vhodnih omejitev regulatorja.</p>
   <h2>Preveri tudi profil baterije</h2>
   <p>Regulator mora omogočiti polnilni profil, ki ustreza AGM ali LiFePO₄ bateriji. Ne predpostavljaj, da je nastavitev za eno kemijo primerna tudi za drugo.</p>
+
+  <h2>Dovoljena PV moč je povezana tudi z napetostjo baterije</h2>
+  <p>Isti model MPPT lahko pri 12 V in 24 V podpira različno nazivno moč panelov, ker je največji polnilni tok regulatorja omejen. Zato oznaka »30 A« brez napetosti baterije in konfiguracije panelov ne pove dovolj za varno izbiro.</p>
+  <p>Ko kalkulator oceni potreben tok, v podatkovnem listu konkretnega regulatorja preveri dovoljeno PV moč, največji Voc in največji Isc. Vse omejitve morajo biti izpolnjene hkrati.</p>
+
+  <h2>Isc in zaščite ne izhajajo samo iz Wp</h2>
+  <p>Dve solarni konfiguraciji z enako skupno močjo imata lahko zelo različne tokove kratkega stika. Pri vzporedni vezavi se Isc vej sešteva. Preveri vhodne omejitve MPPT-ja ter zahteve proizvajalca za zaščito in odklop.</p>
+  <p>Na PV strani dimenzioniraj kabel po toku, dolžini, temperaturi in dovoljenem padcu napetosti. Na strani baterije mora kabel varno prenašati največji polnilni tok regulatorja. Če se sistemska napetost spremeni, preveri oba dela ponovno.</p>
+
+  <h2>Kontrolni seznam pred nakupom MPPT-ja</h2>
+  <ul>
+    <li>napetost baterije 12 V ali 24 V;</li>
+    <li>skupna moč panelov v Wp;</li>
+    <li>največji Voc celotnega niza pri nizki temperaturi;</li>
+    <li>največji Isc serijske/vzporedne konfiguracije;</li>
+    <li>potreben polnilni tok proti bateriji;</li>
+    <li>dovoljena PV moč pri izbrani napetosti baterije;</li>
+    <li>polnilni profil, združljiv z baterijo in BMS-om;</li>
+    <li>kabli, varovalke, odklop in montaža po navodilih.</li>
+  </ul>
+  <p>Izbiro vedno poveži z vodnikom za <a href="/si/vodici/koliko-soncnih-panelov-avtodom/">potrebno solarno moč</a> in z <a href="/si/#calculator-preview">izračunom celotnega sistema</a>; ne izbiraj regulatorja samo po eni številki v imenu modela.</p>
+
+  <h2>Primer 400 W: ista solarna moč, drugačen tok pri 12 V in 24 V</h2>
+  <p>Pri 400 W panelov je osnovni tok na 12 V približno 33 A pred rezervo, pri 24 V pa približno 17 A. To ne pomeni, da lahko regulator izbereš samo iz te delitve, pokaže pa, zakaj je napetost baterije bistvena. MyPowerSetup za načrtovalni tok uporablja dodatno rezervo, nato pa mora konkretni regulator še vedno prestati preverjanje Voc, Isc in dovoljene PV moči.</p>
+  <p>Če razmišljaš o prehodu iz 12 V na 24 V, ne preveri samo MPPT-ja. Baterija, DC-DC, inverter in DC porabniki morajo biti združljivi z novo napetostjo. Vodnik <a href="/si/vodici/12v-ali-24v-sistem-avtodom/">12 V ali 24 V</a> pomaga preveriti posledice za celoten sistem.</p>
+
+  <h2>Montaža, temperatura in povezave vplivajo na dejansko zmogljivost</h2>
+  <p>Regulator namesti skladno z zahtevami proizvajalca glede prezračevanja, orientacije in odmikov. Visoka temperatura lahko omeji zmogljivost elektronike, slabi priključki pa povečajo padec napetosti in segrevanje. Po montaži preveri navor priključkov in kablov ne napeljuj tako, da mehansko obremenjujejo sponke.</p>
+  <p>Pri končni kontroli primerjaj podatke na zaslonu ali v aplikaciji regulatorja z napetostjo baterije in pričakovano solarno močjo. Če so razlike velike, najprej preveri ožičenje, konfiguracijo panelov in nastavitve baterije, preden sklepaš, da potrebuješ večji MPPT.</p>
+
 </section><aside class="related" data-contextual-growth-links><h2>Nadaljuj z dimenzioniranjem sistema</h2><ul><li><a href="/si/vodici/koliko-soncnih-panelov-avtodom/">Izračunaj potrebno solarno moč</a></li><li><a href="/si/vodici/kapaciteta-baterije-avtodom/">Izračunaj kapaciteto baterije</a></li><li><a href="/si/vodici/kabli-varovalke-12v-avtodom/">Preveri kable in varovalke</a></li></ul></aside><aside class="cta"><h2 data-guide-conversion-cta>Izračunaj in preveri združljive izdelke</h2><p>Rezultat je brezplačen in brez registracije. Na koncu prikažemo samo izdelke s preverjenimi tehničnimi omejitvami in točno ciljno povezavo.</p><a class="button button-primary" href="/si/#calculator-preview">Odpri kalkulator in preveri izdelke</a></aside><aside class="related"><h2>Drugi vodniki</h2><ul><li><a href="/si/vodici/kapaciteta-baterije-avtodom/">Kakšno baterijo potrebuje tvoj avtodom?</a></li><li><a href="/si/vodici/lifepo4-ali-agm-avtodom/">LiFePO₄ ali AGM: kaj je bolj smiselno?</a></li><li><a href="/si/vodici/koliko-soncnih-panelov-avtodom/">Koliko Wp solarja potrebuješ?</a></li></ul></aside></main><footer><a href="/si/o-projektu/">O projektu</a> · <a href="/si/metodologija/">Metodologija</a> · <a href="/si/affiliate/">Affiliate</a> · <a href="/si/zasebnost/">Zasebnost</a> · <a href="/si/vodici/">Vodniki</a></footer><script type="module" src="/src/analytics.js"></script></body></html>

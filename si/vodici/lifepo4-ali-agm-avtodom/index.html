@@ -19,4 +19,47 @@
   <p>Preveri alternator oziroma DC-DC, solarni regulator, 230 V polnilnik, največji polnilni tok in BMS. Posebej preveri polnjenje pri nizkih temperaturah; nekatere LiFePO₄ baterije potrebujejo blokado polnjenja pod določeno temperaturo.</p>
   <h2>Kdaj je AGM še smiselna izbira</h2>
   <p>AGM je lahko smiselna pri majhnem, občasno uporabljenem in že združljivem sistemu, kjer sta nižja začetna cena in preprostost pomembnejši od mase ter večje uporabne energije.</p>
+
+  <h2>Primerjaj celoten strošek sistema, ne samo cene baterije</h2>
+  <p>Pri prehodu na LiFePO₄ upoštevaj morebitno zamenjavo DC-DC polnilnika, nastavitev ali zamenjavo 230 V polnilnika, profil MPPT regulatorja, kable in zaščite. AGM z večjo nazivno kapaciteto je lahko cenejša na začetku, vendar za enako načrtovano uporabno energijo pogosto zahteva več prostora in mase.</p>
+  <p>Primerjaj dve popolni konfiguraciji, ki zagotavljata isto avtonomijo. Tako vidiš razliko v masi, uporabni energiji, hitrosti polnjenja, potrebnih spremembah ter dejanski ceni celotne nadgradnje.</p>
+
+  <h2>Nizke temperature vplivajo na polnjenje in praznjenje različno</h2>
+  <p>Ne sklepaj, da je baterijo mogoče polniti pri isti temperaturi, pri kateri jo je še mogoče prazniti. Omejitve so odvisne od konkretnega modela in BMS-a. Če avtodom uporabljaš pozimi, preveri minimalno temperaturo polnjenja ter ali BMS polnjenje sam blokira oziroma ali baterija uporablja ogrevanje.</p>
+  <p>Tudi pri AGM preveri priporočene polnilne napetosti in morebitno temperaturno kompenzacijo. Nastavitev druge baterije ni zanesljiva samo zato, ker imata obe nazivno napetost 12 V.</p>
+
+  <h2>Kontrolni seznam pred zamenjavo AGM z LiFePO4</h2>
+  <ul>
+    <li>izračunaj dejanske Wh/dan in zahtevano avtonomijo;</li>
+    <li>potrdi sistemsko napetost 12 V ali 24 V;</li>
+    <li>preveri stalni in konični tok BMS-a glede na inverter;</li>
+    <li>preveri največji dovoljeni polnilni tok baterije;</li>
+    <li>preveri alternator in <a href="/si/vodici/dc-dc-polnilnik-avtodom/">DC-DC polnilnik</a>;</li>
+    <li>preveri profil <a href="/si/vodici/mppt-regulator-avtodom/">MPPT regulatorja</a> in 230 V polnilnika;</li>
+    <li>preveri delovanje pri nizkih temperaturah;</li>
+    <li>primerjaj maso, mere, priključke, pritrditev in kable.</li>
+  </ul>
+  <p>Najprej uporabi <a href="/si/#calculator-preview">MyPowerSetup kalkulator</a> za zahtevano energijo, nato izberi kemijo baterije, ki ta scenarij podpira brez nepotrebnih sprememb ali skritih omejitev.</p>
+
+
+  <h2>Dovoljena PV moč je povezana tudi z napetostjo baterije</h2>
+  <p>Isti model MPPT lahko pri 12 V in 24 V podpira različno nazivno moč panelov, ker je največji polnilni tok regulatorja omejen. Zato oznaka »30 A« brez napetosti baterije in konfiguracije panelov ne pove dovolj za varno izbiro.</p>
+  <p>Ko kalkulator oceni potreben tok, v podatkovnem listu konkretnega regulatorja preveri dovoljeno PV moč, največji Voc in največji Isc. Vse omejitve morajo biti izpolnjene hkrati.</p>
+
+  <h2>Isc in zaščite ne izhajajo samo iz Wp</h2>
+  <p>Dve solarni konfiguraciji z enako skupno močjo imata lahko zelo različne tokove kratkega stika. Pri vzporedni vezavi se Isc vej sešteva. Preveri vhodne omejitve MPPT-ja ter zahteve proizvajalca za zaščito in odklop.</p>
+  <p>Na PV strani dimenzioniraj kabel po toku, dolžini, temperaturi in dovoljenem padcu napetosti. Na strani baterije mora kabel varno prenašati največji polnilni tok regulatorja. Če se sistemska napetost spremeni, preveri oba dela ponovno.</p>
+
+  <h2>Kontrolni seznam pred nakupom MPPT-ja</h2>
+  <ul>
+    <li>napetost baterije 12 V ali 24 V;</li>
+    <li>skupna moč panelov v Wp;</li>
+    <li>največji Voc celotnega niza pri nizki temperaturi;</li>
+    <li>največji Isc serijske/vzporedne konfiguracije;</li>
+    <li>potreben polnilni tok proti bateriji;</li>
+    <li>dovoljena PV moč pri izbrani napetosti baterije;</li>
+    <li>polnilni profil, združljiv z baterijo in BMS-om;</li>
+    <li>kabli, varovalke, odklop in montaža po navodilih.</li>
+  </ul>
+  <p>Izbiro vedno poveži z vodnikom za <a href="/si/vodici/koliko-soncnih-panelov-avtodom/">potrebno solarno moč</a> in z <a href="/si/#calculator-preview">izračunom celotnega sistema</a>; ne izbiraj regulatorja samo po eni številki v imenu modela.</p>
 </section><aside class="related" data-contextual-growth-links><h2>Nadaljuj z dimenzioniranjem sistema</h2><ul><li><a href="/si/vodici/kapaciteta-baterije-avtodom/">Izračunaj kapaciteto baterije</a></li><li><a href="/si/vodici/dc-dc-polnilnik-avtodom/">Izberi DC-DC polnilnik</a></li><li><a href="/si/vodici/elektricni-sistem-avtodom/">Poglej celoten električni sistem</a></li></ul></aside><aside class="cta"><h2 data-guide-conversion-cta>Izračunaj in preveri združljive izdelke</h2><p>Rezultat je brezplačen in brez registracije. Na koncu prikažemo samo izdelke s preverjenimi tehničnimi omejitvami in točno ciljno povezavo.</p><a class="button button-primary" href="/si/#calculator-preview">Odpri kalkulator in preveri izdelke</a></aside><aside class="related"><h2>Drugi vodniki</h2><ul><li><a href="/si/vodici/kapaciteta-baterije-avtodom/">Kakšno baterijo potrebuje tvoj avtodom?</a></li><li><a href="/si/vodici/koliko-soncnih-panelov-avtodom/">Koliko Wp solarja potrebuješ?</a></li><li><a href="/si/vodici/mppt-regulator-avtodom/">Kako izbrati pravi MPPT regulator</a></li></ul></aside></main><footer><a href="/si/o-projektu/">O projektu</a> · <a href="/si/metodologija/">Metodologija</a> · <a href="/si/affiliate/">Affiliate</a> · <a href="/si/zasebnost/">Zasebnost</a> · <a href="/si/vodici/">Vodniki</a></footer><script type="module" src="/src/analytics.js"></script></body></html>

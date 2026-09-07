@@ -20,4 +20,34 @@
   <p>Za konservativno priporočilo MyPowerSetup daje prednost inverterjem s čistim sinusom, kadar je to jasno potrjeno v specifikacijah. Občutljiva elektronika, motorji in nekateri polnilniki lahko z modificiranim sinusom delujejo slabše ali sploh ne.</p>
   <h2>Pogoste napake</h2>
   <ul><li>zamenjava oglaševane kratkotrajne moči za stalno moč;</li><li>ignoriranje največjega toka BMS;</li><li>predolgi ali pretanki 12 V kabli;</li><li>namestitev inverterja predaleč od baterije;</li><li>seštevanje naprav, ki v resnici nikoli ne delujejo hkrati.</li></ul>
-</section><aside class="related" data-contextual-growth-links><h2>Nadaljuj z dimenzioniranjem sistema</h2><ul><li><a href="/si/vodici/kapaciteta-baterije-avtodom/">Izračunaj kapaciteto baterije</a></li><li><a href="/si/vodici/kabli-varovalke-12v-avtodom/">Preveri kable in varovalke</a></li><li><a href="/si/vodici/elektricni-sistem-avtodom/">Poglej celoten električni sistem</a></li></ul></aside><aside class="related" data-voltage-guide-discovery><h2>Še izbiraš med 12 V in 24 V?</h2><p>Pred dokončno zasnovo primerjaj tok, kable, inverter in združljivost vseh naprav.</p><p><a href="/si/vodici/12v-ali-24v-sistem-avtodom/">12 V ali 24 V: izbira napetosti sistema</a></p></aside><aside class="cta"><h2 data-guide-conversion-cta>Izračunaj in preveri združljive izdelke</h2><p>Rezultat je brezplačen in brez registracije. Na koncu prikažemo samo izdelke s preverjenimi tehničnimi omejitvami in točno ciljno povezavo.</p><a class="button button-primary" href="/si/#calculator-preview">Odpri kalkulator in preveri izdelke</a></aside><aside class="related"><h2>Drugi vodniki</h2><ul><li><a href="/si/vodici/kapaciteta-baterije-avtodom/">Kakšno baterijo potrebuje tvoj avtodom?</a></li><li><a href="/si/vodici/lifepo4-ali-agm-avtodom/">LiFePO₄ ali AGM: kaj je bolj smiselno?</a></li><li><a href="/si/vodici/koliko-soncnih-panelov-avtodom/">Koliko Wp solarja potrebuješ?</a></li></ul></aside></main><footer><a href="/si/o-projektu/">O projektu</a> · <a href="/si/metodologija/">Metodologija</a> · <a href="/si/affiliate/">Affiliate</a> · <a href="/si/zasebnost/">Zasebnost</a> · <a href="/si/vodici/">Vodniki</a></footer><script type="module" src="/src/analytics.js"></script></body></html>
+
+  <h2>Preveri, ali mora inverter sploh delovati ves čas</h2>
+  <p>Inverter porablja energijo tudi pri majhni obremenitvi, nekateri modeli pa imajo opazno porabo tudi brez priključenega porabnika. Če lahko večino naprav napajaš neposredno z 12/24 V ali USB-C, krajši čas delovanja inverterja zmanjša izgube in obremenitev baterije.</p>
+  <p>Pri napravi, ki jo uporabljaš le občasno, primerjaj tudi druge možnosti: priklop na 230 V v kampu, namensko DC napajanje ali manj zmogljiv porabnik. Največji inverter ni vedno najbolj praktična rešitev.</p>
+
+  <h2>BMS, kabli in zaščita morajo prenesti dejanski tok</h2>
+  <p>Pri 2.000 W in 12 V so tokovi iz baterije zelo visoki, zagonski sunek pa je lahko še večji. Preveri stalni in konični tok BMS-a, dolžino kablov, zmogljivost priključkov, glavno varovalko in odklop. Vodnik za <a href="/si/vodici/kabli-varovalke-12v-avtodom/">kable in varovalke</a> pojasnjuje, zakaj se preseka ne izbira samo po nazivni moči inverterja.</p>
+  <p>Če zaradi zahtevane moči tokovi pri 12 V postanejo nepraktični, preveri tudi vodnik <a href="/si/vodici/12v-ali-24v-sistem-avtodom/">12 V ali 24 V</a>. Višja sistemska napetost lahko pri isti moči približno prepolovi tok, vendar zahteva združljive komponente.</p>
+
+  <h2>Kontrolni seznam pred izbiro inverterja</h2>
+  <ul>
+    <li>vsi AC porabniki in kombinacije, ki lahko delujejo hkrati;</li>
+    <li>stalna moč in zagonski sunek pomembnih naprav;</li>
+    <li>napetost baterije ter izračunani DC tok;</li>
+    <li>stalne in konične omejitve BMS-a;</li>
+    <li>čisti sinus, kadar ga zahteva porabnik ali specifikacija;</li>
+    <li>poraba v praznem teku in varčni/standby način;</li>
+    <li>dolžina in presek kablov ter zaščita tokokroga;</li>
+    <li>prezračevanje, temperatura in montažni pogoji proizvajalca.</li>
+  </ul>
+  <p>Najprej izračunaj scenarij v <a href="/si/#calculator-preview">MyPowerSetup</a>, nato izberi inverter, ki ga baterija, BMS in ožičenje lahko dejansko podprejo.</p>
+
+  <h2>Stalna moč in zagonski sunek sta dve ločeni zahtevi</h2>
+  <p>Naprava z nazivno močjo 800 W lahko pri zagonu za kratek čas zahteva bistveno več. Zato preveri oba podatka: stalna moč inverterja mora pokriti hkratno delovanje, njegova kratkotrajna zmogljivost pa zagon najzahtevnejšega porabnika. Če proizvajalec naprave ali inverterja zagonskega podatka ne objavi, načrtuj konservativno in ne predpostavljaj, da bo oglaševana »peak« številka vedno uporabna.</p>
+  <p>Pri motorjih, kompresorjih in napravah z napajalniki preveri tudi izkušnje ali dokumentacijo konkretnega proizvajalca. Dve napravi z enako nazivno močjo nimata nujno enakega zagonskega obnašanja.</p>
+
+  <h2>Inverter postavi blizu baterije, AC del pa obravnavaj ločeno</h2>
+  <p>Na DC strani so pri večjih močeh tokovi zelo visoki, zato je praviloma smiselna kratka in pravilno dimenzionirana povezava med baterijo in inverterjem. Daljša napeljava poveča padec napetosti in zahteva večji presek. Hkrati mora biti inverter nameščen tako, da ima zahtevano hlajenje in ni izpostavljen vlagi ali mehanskim poškodbam.</p>
+  <p>230 V izhod, ozemljitev, zaščitni vodnik in RCD niso podaljšek 12 V pravil. Če inverter napaja fiksno AC napeljavo avtodoma, mora biti ta del zasnovan in preverjen po navodilih opreme in veljavnih pravilih; pri negotovosti naj ga preveri usposobljena oseba.</p>
+
+</section><aside class="related" data-contextual-growth-links><h2>Nadaljuj z dimenzioniranjem sistema</h2><ul><li><a href="/si/vodici/kapaciteta-baterije-avtodom/">Izračunaj kapaciteto baterije</a></li><li><a href="/si/vodici/kabli-varovalke-12v-avtodom/">Preveri kable in varovalke</a></li><li><a href="/si/vodici/elektricni-sistem-avtodom/">Poglej celoten električni sistem</a></li></ul></aside><aside class="cta"><h2 data-guide-conversion-cta>Izračunaj in preveri združljive izdelke</h2><p>Rezultat je brezplačen in brez registracije. Na koncu prikažemo samo izdelke s preverjenimi tehničnimi omejitvami in točno ciljno povezavo.</p><a class="button button-primary" href="/si/#calculator-preview">Odpri kalkulator in preveri izdelke</a></aside><aside class="related"><h2>Drugi vodniki</h2><ul><li><a href="/si/vodici/kapaciteta-baterije-avtodom/">Kakšno baterijo potrebuje tvoj avtodom?</a></li><li><a href="/si/vodici/lifepo4-ali-agm-avtodom/">LiFePO₄ ali AGM: kaj je bolj smiselno?</a></li><li><a href="/si/vodici/koliko-soncnih-panelov-avtodom/">Koliko Wp solarja potrebuješ?</a></li></ul></aside></main><footer><a href="/si/o-projektu/">O projektu</a> · <a href="/si/metodologija/">Metodologija</a> · <a href="/si/affiliate/">Affiliate</a> · <a href="/si/zasebnost/">Zasebnost</a> · <a href="/si/vodici/">Vodniki</a></footer><script type="module" src="/src/analytics.js"></script></body></html>
