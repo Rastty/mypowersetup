@@ -23,6 +23,9 @@ export const AMPUL_12V_30A_DCDC = Object.freeze({
   category: "dc_charger",
   name: "AMPUL DC/DC LiFePO4 charger 14.6V 30A 400W IP68",
   exactPath: "/cs/nabijecky/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
+  marketPaths: Object.freeze({
+    ro: "/ro/incarcatoare/6195-incarcator-de-baterii-lifepo4-dc-dc-146v-30a-400w-ip68",
+  }),
   inputVoltagesV: Object.freeze([12, 24]),
   outputVoltageV: 14.6,
   currentA: 30,
@@ -46,11 +49,15 @@ function exactDestination(destination) {
     return null;
   }
   if (url.protocol !== "https:" || url.hostname !== AMPUL_EHUB.merchantHostname) return null;
-  const product = PRODUCTS.find((item) => item.exactPath === url.pathname);
+  const product = PRODUCTS.find((item) =>
+    item.exactPath === url.pathname
+    || Object.values(item.marketPaths || {}).includes(url.pathname)
+  );
   if (!product) return null;
+  const market = Object.entries(product.marketPaths || {}).find(([, path]) => path === url.pathname)?.[0] || null;
   url.search = "";
   url.hash = "";
-  return { product, destination: url.toString() };
+  return { product, market, destination: url.toString() };
 }
 
 export function validateAmpulEhubUrl(affiliateUrl, expectedDestination) {
@@ -83,6 +90,37 @@ export function buildAmpulEhubUrl(destination) {
   click.searchParams.set("a_bid", AMPUL_EHUB.campaignId);
   click.searchParams.set("desturl", exact.destination);
   return click.toString();
+}
+
+export function isAmpulExpansionProduct(product) {
+  return product?.merchant === "ampul_eu";
+}
+
+export function validateAmpulExpansionProduct(product, {
+  market,
+  source,
+} = {}) {
+  if (!isAmpulExpansionProduct(product)) throw new Error("AMPUL_MERCHANT_INVALID");
+  if (!AMPUL_EXPANSION_MARKETS.includes(market)) throw new Error("AMPUL_MARKET_INVALID");
+  if (source?.status !== "ok" || !source?.verifiedMarkets?.includes(market)) throw new Error("AMPUL_MARKET_EVIDENCE_INVALID");
+  if (product.marketEligible !== true || product.available !== true) throw new Error("AMPUL_PRODUCT_EVIDENCE_INVALID");
+  if (!product.verifiedAt) throw new Error("AMPUL_VERIFICATION_MISSING");
+
+  const exact = exactDestination(product.productUrl);
+  if (!exact || exact.market !== market) throw new Error("AMPUL_PRODUCT_URL_INVALID");
+  if (!validateAmpulEhubUrl(product.affiliateUrl, exact.destination)) throw new Error("AMPUL_AFFILIATE_INVALID");
+
+  if (exact.product === AMPUL_12V_30A_DCDC) {
+    const specs = product.specs || {};
+    if (product.category !== "dc_charger"
+      || specs.currentA !== 30
+      || !specs.chargingVoltagesV?.includes(12)
+      || !specs.chargingInputVoltagesV?.includes(12)
+      || !specs.chargingBatteryTypes?.includes("lifepo4")) {
+      throw new Error("AMPUL_DCDC_SPECS_INVALID");
+    }
+  }
+  return product;
 }
 
 export function createAmpulExpansionCandidate(product, {
