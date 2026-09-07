@@ -126,7 +126,7 @@ function enhanceExpansionArticleAuthority(html, market, route) {
   let foundArticle = false;
   const author = { "@type": "Person", name: "Petr Gálík", url: `https://mypowersetup.com${copy.about}` };
   const publisher = { "@type": "Organization", name: "MyPowerSetup", url: "https://mypowersetup.com/" };
-  let output = html.replace(/(<script\\b[^>]*type=["']application\\/ld\\+json["'][^>]*>)([\\s\\S]*?)(<\\/script>)/gi, (full, open, body, close) => {
+  let output = html.replace(/(<script\b[^>]*type=["\']application\/ld\+json["\'][^>]*>)([\s\S]*?)(<\/script>)/gi, (full, open, body, close) => {
     let json;
     try {
       json = JSON.parse(body);
@@ -143,12 +143,12 @@ function enhanceExpansionArticleAuthority(html, market, route) {
       article.author = { ...author, ...(article.author || {}) };
       article.publisher = { ...publisher, ...(article.publisher || {}) };
     }
-    return `${open}${JSON.stringify(json).replace(/</g, "\\\\u003c")}${close}`;
+    return `${open}${JSON.stringify(json).replace(/</g, "\\u003c")}${close}`;
   });
 
   if (!foundArticle || output.includes("data-expansion-article-authority")) return output;
   const byline = `<p class="article-meta" data-expansion-article-authority>${copy.byline} <a rel="author" href="${copy.about}">Petr Gálík</a></p>`;
-  const headerPattern = /(<main class="article"><header class="article-header">[\\s\\S]*?)(<\\/header>)/;
+  const headerPattern = /(<main class="article"><header class="article-header">[\s\S]*?)(<\/header>)/;
   if (headerPattern.test(output)) return output.replace(headerPattern, `$1${byline}$2`);
   return output.replace('<main class="article">', `<main class="article">${byline}`);
 }
