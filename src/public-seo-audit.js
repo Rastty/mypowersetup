@@ -58,6 +58,46 @@ function visibleBreadcrumbIsValid(html, market) {
     && /aria-current=["']page["']/i.test(nav);
 }
 
+function guideHubLinks(html, market) {
+  const routes = [];
+  for (const match of html.matchAll(/href=["']([^"']+)["']/gi)) {
+    let href = match[1].split("#")[0].split("?")[0];
+    if (href.startsWith(SITE_URL)) href = href.slice(SITE_URL.length);
+    if (!href.startsWith(market.guideHub) || href === market.guideHub || !href.endsWith("/")) continue;
+    if (!routes.includes(href)) routes.push(href);
+  }
+  return routes;
+}
+
+function guideHubSchemaIsValid(nodes, html, market, route) {
+  const collectionPages = nodes.filter((node) => node?.["@type"] === "CollectionPage");
+  const itemLists = nodes.filter((node) => node?.["@type"] === "ItemList");
+  const breadcrumbs = nodes.filter((node) => node?.["@type"] === "BreadcrumbList");
+  if (collectionPages.length !== 1 || itemLists.length !== 1 || breadcrumbs.length !== 1) return false;
+
+  const page = collectionPages[0];
+  const acceptedLanguages = new Set([market.locale, market.locale.split("-")[0]]);
+  if (page.url !== `${SITE_URL}${route}`
+    || typeof page.name !== "string" || !page.name.trim()
+    || !acceptedLanguages.has(page.inLanguage)
+    || !/^\d{4}-\d{2}-\d{2}$/.test(page.dateModified || "")) return false;
+
+  const links = guideHubLinks(html, market);
+  if (links.length !== 12) return false;
+  const items = Array.isArray(itemLists[0].itemListElement) ? itemLists[0].itemListElement : [];
+  if (itemLists[0].numberOfItems !== links.length || items.length !== links.length) return false;
+  if (!items.every((item, index) =>
+    item?.["@type"] === "ListItem"
+    && item.position === index + 1
+    && item.item === `${SITE_URL}${links[index]}`
+  )) return false;
+
+  const crumbs = Array.isArray(breadcrumbs[0].itemListElement) ? breadcrumbs[0].itemListElement : [];
+  return crumbs.length === 2
+    && crumbs[0]?.["@type"] === "ListItem" && crumbs[0].position === 1 && crumbs[0].item === `${SITE_URL}${market.home}`
+    && crumbs[1]?.["@type"] === "ListItem" && crumbs[1].position === 2 && crumbs[1].item === `${SITE_URL}${route}`;
+}
+
 function canonicalHrefs(html) {
   return [...html.matchAll(/<link\b[^>]*>/gi)]
     .map(([tag]) => ({
@@ -86,6 +126,7 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
   let jsonLdScripts = 0;
   let articlePages = 0;
   let breadcrumbPages = 0;
+  let guideHubPages = 0;
 
   for (const route of routes) {
     const market = marketForRoute(route);
@@ -127,6 +168,12 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
       if (!types.includes("WebApplication")) failures.push(`${route}:WEBAPPLICATION_SCHEMA_MISSING`);
     }
 
+    if (route === market.guideHub) {
+      guideHubPages += 1;
+      const hubNodes = schemaNodes(schemas);
+      if (!guideHubSchemaIsValid(hubNodes, html, market, route)) failures.push(`${route}:GUIDE_HUB_SCHEMA_INVALID`);
+    }
+
     const isArticle = route.startsWith(market.guideHub) && route !== market.guideHub;
     if (isArticle) {
       articlePages += 1;
@@ -166,6 +213,7 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
     routeCount: routes.length,
     articlePages,
     breadcrumbPages,
+    guideHubPages,
     jsonLdScripts,
     marketCounts: Object.freeze(marketCounts),
     failures: Object.freeze([...new Set(failures)]),

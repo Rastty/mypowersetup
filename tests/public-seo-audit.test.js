@@ -81,6 +81,38 @@ test("public SEO audit fails closed on canonical, robots, JSON-LD and article la
   }
 });
 
+test("public SEO audit requires guide hub CollectionPage and ItemList to match the visible guide links", async () => {
+  const route = "/pl/poradnik/";
+  const guideRoutes = Array.from({ length: 12 }, (_, index) => `${route}guide-${index + 1}/`);
+  const pageUrl = `https://mypowersetup.com${route}`;
+  const schemas = [{
+    "@type": "CollectionPage", url: pageUrl, name: "Poradnik energii", inLanguage: "pl-PL", dateModified: "2026-09-07",
+  }, {
+    "@type": "ItemList", numberOfItems: 12,
+    itemListElement: guideRoutes.map((guide, index) => ({ "@type": "ListItem", position: index + 1, item: `https://mypowersetup.com${guide}` })),
+  }, {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Start", item: "https://mypowersetup.com/pl/" },
+      { "@type": "ListItem", position: 2, name: "Poradnik", item: pageUrl },
+    ],
+  }];
+  const html = page({ route, schemas, body: guideRoutes.map((guide) => `<a href="${guide}">Guide</a>`).join("") });
+  const report = await auditPublicSeo({
+    sitemapXml: `<urlset><url><loc>${pageUrl}</loc></url></urlset>`,
+    readPage: async () => html,
+  });
+  assert.equal(report.ready, true, report.failures.join("\n"));
+  assert.equal(report.guideHubPages, 1);
+
+  const drifted = html.replace("https://mypowersetup.com/pl/poradnik/guide-12/", "https://mypowersetup.com/pl/poradnik/wrong/");
+  const broken = await auditPublicSeo({
+    sitemapXml: `<urlset><url><loc>${pageUrl}</loc></url></urlset>`,
+    readPage: async () => drifted,
+  });
+  assert.ok(broken.failures.some((failure) => failure.endsWith("GUIDE_HUB_SCHEMA_INVALID")));
+});
+
 test("sitemap route and file mapping remain deterministic", () => {
   assert.deepEqual(sitemapRoutes('<loc>https://mypowersetup.com/</loc><loc>https://mypowersetup.com/si/vodici/</loc>'), ["/", "/si/vodici/"]);
   assert.equal(publicRoutePath("/"), "index.html");
@@ -97,4 +129,5 @@ test("committed sitemap passes the seven-market public SEO audit", async () => {
   assert.ok(Object.values(report.marketCounts).every((count) => count > 0));
   assert.equal(report.articlePages, 84);
   assert.equal(report.breadcrumbPages, 84);
+  assert.equal(report.guideHubPages, 7);
 });
