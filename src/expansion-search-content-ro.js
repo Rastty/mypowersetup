@@ -30,6 +30,16 @@ const RO_GROWTH_CONTENT = Object.freeze({
     <li>compatibilitatea cu MPPT, DC-DC și încărcătorul de 230 V;</li>
     <li>dimensiunile, masa, bornele și spațiul disponibil.</li>
   </ul>
+
+  <h2>Nu presupune că solarul va fi disponibil în fiecare zi</h2>
+  <p>Autonomia bateriei trebuie să acopere scenariul pentru care chiar vrei independență. Dacă alegi două zile de autonomie, nu presupune că în fiecare dintre ele panourile vor produce suficient sau că vei conduce destul pentru DC-DC. Vremea, umbrirea, staționarea și traseul pot reduce încărcarea.</p>
+  <p>O abordare robustă este să dimensionezi bateria pentru perioada fără sursă sigură de încărcare, apoi să tratezi solarul, alternatorul și 230 V ca modalități de refacere a energiei. Astfel nu dublezi artificial beneficiul aceleiași energii în calcul.</p>
+
+  <h2>Verifică bateria împreună cu invertorul și sursele de încărcare</h2>
+  <p>Capacitatea în Wh spune câtă energie este stocată, dar nu spune cât curent poate livra bateria. Un invertor puternic poate cere un curent continuu sau de vârf pe care BMS-ul unei baterii mari, dar cu limită mică de curent, nu îl permite. Verifică împreună energia, curentul de descărcare și <a href="/ro/ghiduri/invertor-autorulota-putere/">cerința invertorului</a>.</p>
+  <p>Pe partea de încărcare, adună curenții posibili de la <a href="/ro/ghiduri/regulator-mppt-autorulota/">MPPT</a>, <a href="/ro/ghiduri/incarcator-dc-dc-autorulota/">DC-DC</a> și încărcătorul de 230 V. Dacă pot funcționa simultan, bateria și BMS-ul trebuie să accepte curentul total sau sistemul trebuie configurat astfel încât să îl limiteze.</p>
+  <p>După alegerea scenariului, introdu consumul în <a href="/ro/#calculator-preview">calculatorul MyPowerSetup</a> și tratează rezultatul ca cerință de sistem, nu ca recomandare de cumpărare bazată doar pe Ah.</p>
+
 </section>`,
     faq: Object.freeze([
       ["De câți Ah am nevoie în autorulotă?", "Nu există un număr universal. Calculează mai întâi consumul în Wh/zi, autonomia, chimia bateriei și tensiunea sistemului, apoi convertește energia nominală necesară în Ah."],
@@ -294,6 +304,16 @@ const RO_GROWTH_CONTENT = Object.freeze({
     <li>ventilație, temperatură și protecția locului de montaj.</li>
   </ul>
   <p>Nu copia secțiunea cablului sau valoarea siguranței din altă autorulotă. Respectă manualul produsului și verifică instalația reală.</p>
+
+  <h2>Temperatura și locul de montaj pot reduce curentul real</h2>
+  <p>Curentul nominal al unui DC-DC este valabil numai în condițiile specificate de producător. Într-un spațiu slab ventilat, lângă alte surse de căldură sau la temperatură ambientală ridicată, unele modele își reduc puterea. De aceea nu dimensiona sistemul presupunând că încărcătorul va livra permanent valoarea maximă de pe etichetă.</p>
+  <p>Lasă spațiul de ventilație cerut în manual, nu acoperi radiatorul și verifică temperatura cablurilor și conexiunilor după primele perioade de încărcare la curent mare.</p>
+
+  <h2>DC-DC trebuie legat de bilanțul zilnic de energie</h2>
+  <p>Dacă autorulota consumă 900 Wh/zi și conduci două ore, întreabă cât din această energie vrei să recuperezi în mers. Apoi compară cerută putere medie cu ceea ce pot sigur furniza alternatorul, DC-DC și bateria. Un încărcător mai mare nu ajută dacă gaura reală este prea scurt timpul de condus sau alternatorul nu are rezervă.</p>
+  <p>Combină acest calcul cu <a href="/ro/ghiduri/capacitate-baterie-autorulota/">capacitatea bateriei</a> și <a href="/ro/ghiduri/cate-panouri-solare-autorulota/">solar</a>. Scopul este ca bateria să acopere perioadele fără încărcare, iar sursele disponibile să poată energia realist refăcută în stilul tău de călătorie.</p>
+  <p>Folosește <a href="/ro/#calculator-preview">MyPowerSetup</a> pentru scenariul complet și verifică manualul modelului concret înainte de alegerea curentului final.</p>
+
 </section>`,
     faq: Object.freeze([
       ["Ce curent DC-DC este potrivit pentru o baterie LiFePO4 de 100 Ah?", "Depinde de limita bateriei și BMS-ului, alternator, timpul de condus, temperatură și cabluri. Capacitatea de 100 Ah singură nu stabilește curentul corect."],
