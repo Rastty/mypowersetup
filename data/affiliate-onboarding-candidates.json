@@ -251,7 +251,12 @@
         "referralIdentifier": null,
         "referralCode": null
       },
-      "activationInstructions": "After Xdatou/GoAffPro approval, copy the exact referral identifier and referral code from the approved account. Do not infer or invent them."
+      "activationInstructions": "After Xdatou/GoAffPro approval, copy the exact referral identifier and referral code from the approved account. Do not infer or invent them.",
+      "goAffProEndpoint": "https://xdatou.goaffpro.com/",
+      "applicationReady": true,
+      "nextActionOwner": "user",
+      "nextAction": "submit_goaffpro_application",
+      "applicationPacketPath": "docs/affiliate/xdatou-goaffpro-application.md"
     },
     {
       "id": "bluetti-eu-ac240-b210",
