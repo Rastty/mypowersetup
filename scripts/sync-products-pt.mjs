@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { syncAllpowersPt } from "./lib/sync-allpowers-pt.mjs";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
+import { syncXdatouEu } from "./lib/sync-xdatou-eu.mjs";
 
 const outputPath = "data/products-pt.json";
 const verifiedPath = "data/products-pt-verified.json";
@@ -37,11 +38,16 @@ try {
   powerQueen = { products: [], source: { status: "error", error: error.message } };
 }
 
+const xdatou = await syncXdatouEu(previousCatalog);
+
 // Expansion markets intentionally fail closed on stale component feeds. The
 // merchant is retried on the next sync rather than carrying old availability
 // into a purchase-ready calculator result.
 const powerQueenProducts = powerQueen.source.status === "ok"
   ? powerQueen.products.map((product) => ({ ...product, marketEligible: true }))
+  : [];
+const xdatouProducts = xdatou.source.status === "ok"
+  ? xdatou.products.map((product) => ({ ...product, marketEligible: true }))
   : [];
 
 const nextCatalog = {
@@ -59,10 +65,15 @@ const nextCatalog = {
       shippingEvidenceUrl: "https://www.ipowerqueen.de/en/pages/shipping-policy",
       shippingVerifiedAt: "2026-09-01",
     },
+    xdatou: {
+      ...xdatou.source,
+      shippingEvidenceUrl: "https://eu.xdatou.com/pages/shipping-policy",
+      shippingVerifiedAt: "2026-09-07",
+    },
   },
-  products: [...allpowers.products, ...powerQueenProducts],
+  products: [...allpowers.products, ...powerQueenProducts, ...xdatouProducts],
 };
 
 await mkdir("data", { recursive: true });
 await writeFile(outputPath, `${JSON.stringify(nextCatalog, null, 2)}\n`);
-console.log(`PT: ${allpowers.products.length} ALLPOWERS + ${powerQueenProducts.length} Power Queen produtos seguros guardados.`);
+console.log(`PT: ${allpowers.products.length} ALLPOWERS + ${powerQueenProducts.length} Power Queen + ${xdatouProducts.length} Xdatou produtos seguros guardados.`);

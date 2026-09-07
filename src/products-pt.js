@@ -1,5 +1,6 @@
 import { buildAllpowersPtDeeplink, parseAllpowersPtDeeplink } from "./affiliate-allpowers-pt.js";
 import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js";
+import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affiliate-xdatou.js";
 
 const PT_ORIGIN = "https://allpowers-pt.com";
 const PRODUCT_PATH_PREFIX = "/products/";
@@ -102,10 +103,16 @@ export function validatePtCatalog(payload) {
   }
   const powerQueenProducts = payload.products.filter(isPowerQueenExpansionProduct);
   if (powerQueenProducts.length && payload.sources?.powerqueen_eu?.status !== "ok") throw new Error("PT_POWERQUEEN_SOURCE_INVALID");
+  const xdatouProducts = payload.products.filter(isXdatouExpansionProduct);
+  if (xdatouProducts.length && payload.sources?.xdatou?.status !== "ok") throw new Error("PT_XDATOU_SOURCE_INVALID");
 
   for (const product of payload.products) {
     if (isPowerQueenExpansionProduct(product)) {
       validatePowerQueenExpansionProduct(product);
+      continue;
+    }
+    if (isXdatouExpansionProduct(product)) {
+      validateXdatouExpansionProduct(product, payload.sources?.xdatou);
       continue;
     }
     if (product?.merchant !== "allpowers_pt") throw new Error("PT_CATALOG_FOREIGN_MERCHANT");

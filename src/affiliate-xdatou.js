@@ -21,6 +21,38 @@ export const XDATOU_DATOUBOSS_2000W_24V = Object.freeze({
 
 export const XDATOU_SUPPORTED_MARKETS = Object.freeze(["pt", "ro", "si"]);
 
+
+export function isXdatouExpansionProduct(product) {
+  return product?.merchant === "xdatou";
+}
+
+export function validateXdatouExpansionProduct(product, {
+  approvalConfirmed = XDATOU_GOAFFPRO.approvalConfirmed,
+  referralIdentifier = XDATOU_GOAFFPRO.referralIdentifier,
+  referralCode = XDATOU_GOAFFPRO.referralCode,
+} = {}) {
+  if (!isXdatouExpansionProduct(product)) throw new Error("XDATOU_MERCHANT_INVALID");
+  if (!approvalConfirmed) throw new Error("XDATOU_AFFILIATE_NOT_APPROVED");
+  if (product.marketEligible !== true || product.available === false) throw new Error("XDATOU_MARKET_EVIDENCE_INVALID");
+  if (product.category !== "inverter") throw new Error("XDATOU_CATEGORY_INVALID");
+  if (product.priceCurrency !== "EUR" || !(Number(product.priceCzk) > 0)) throw new Error("XDATOU_PRICE_INVALID");
+  if (!product.verifiedAt) throw new Error("XDATOU_VERIFICATION_MISSING");
+
+  const destination = exactProductDestination(product.productUrl);
+  if (!destination) throw new Error("XDATOU_PRODUCT_URL_INVALID");
+  if (!validateXdatouAffiliateUrl(product.affiliateUrl, { referralIdentifier, referralCode })) {
+    throw new Error("XDATOU_AFFILIATE_INVALID");
+  }
+
+  const specs = product.specs || {};
+  if (specs.voltageV !== XDATOU_DATOUBOSS_2000W_24V.systemVoltageV
+    || specs.powerW !== XDATOU_DATOUBOSS_2000W_24V.continuousPowerW
+    || specs.pureSine !== true) {
+    throw new Error("XDATOU_INVERTER_SPECS_INVALID");
+  }
+  return product;
+}
+
 function exactProductDestination(destination) {
   let url;
   try {

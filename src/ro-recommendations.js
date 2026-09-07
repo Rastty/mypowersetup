@@ -1,6 +1,7 @@
 import { calculatePowerStationProfile } from "./power-station.js";
 import { validateOxeDognetDeeplink, validateOxeProductUrl } from "./oxe-affiliate.js";
 import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js";
+import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affiliate-xdatou.js";
 import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
 
 export const RO_CATALOG_URL = "/data/products-ro.json";
@@ -25,7 +26,9 @@ export function validateRomaniaCatalog(catalog) {
   if (!Array.isArray(catalog.products) || !catalog.products.length) throw new Error("RO_CATALOG_EMPTY");
   const powerQueenProducts = catalog.products.filter(isPowerQueenExpansionProduct);
   if (powerQueenProducts.length && catalog.sources?.powerqueen_eu?.status !== "ok") throw new Error("RO_POWERQUEEN_SOURCE_INVALID");
-  for (const product of catalog.products) validateRomaniaProduct(product);
+  const xdatouProducts = catalog.products.filter(isXdatouExpansionProduct);
+  if (xdatouProducts.length && catalog.sources?.xdatou?.status !== "ok") throw new Error("RO_XDATOU_SOURCE_INVALID");
+  for (const product of catalog.products) validateRomaniaProduct(product, catalog.sources);
   return catalog;
 }
 
@@ -68,10 +71,14 @@ export function buildRomaniaRecommendations(catalog, setup, limit = 3) {
   });
 }
 
-function validateRomaniaProduct(product) {
+function validateRomaniaProduct(product, sources = {}) {
   if (product?.marketEligible !== true) throw new Error("RO_PRODUCT_EVIDENCE_INVALID");
   if (isPowerQueenExpansionProduct(product)) {
     validatePowerQueenExpansionProduct(product);
+    return;
+  }
+  if (isXdatouExpansionProduct(product)) {
+    validateXdatouExpansionProduct(product, sources?.xdatou);
     return;
   }
   if (!product?.verifiedAt) throw new Error("RO_PRODUCT_EVIDENCE_INVALID");
