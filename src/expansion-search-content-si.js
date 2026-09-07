@@ -259,6 +259,103 @@ const SI_GROWTH_CONTENT = Object.freeze({
   }),
 
 
+  "/si/vodici/poraba-kompresorski-hladilnik-avtodom/": Object.freeze({
+    title: "Koliko porabi kompresorski hladilnik v avtodomu?",
+    description: "Poraba kompresorskega hladilnika v Wh/dan: moč, delovni cikel, temperatura, prezračevanje, meritve ter vpliv na baterijo in solar.",
+    body: `
+<section data-si-search-growth="poraba-kompresorski-hladilnik-avtodom">
+  <h2>Kratek odgovor: nazivna moč ni 24-urna poraba</h2>
+  <p>Kompresorski hladilnik z oznako 45 W ne porabi samodejno 45 × 24 = 1.080 Wh na dan. Kompresor se vklaplja in izklaplja. Za dimenzioniranje je pomembna <strong>dnevna energija v Wh</strong>, torej moč med delovanjem pomnožena s skupnim časom delovanja kompresorja.</p>
+  <p>Za prvi približek uporabi <strong>Wh/dan ≈ moč kompresorja × dejanske ure delovanja</strong>. Pri 45 W pomeni osem ur približno 360 Wh/dan, deset ur 450 Wh/dan, dvanajst ur pa 540 Wh/dan. To so računski primeri, ne zagotovljene vrednosti za vsak hladilnik.</p>
+
+  <h2>Zakaj se delovni cikel spreminja</h2>
+  <p>Zunanja temperatura, prezračevanje kondenzatorja, nastavitev termostata, odpiranje vrat in vstavljanje toplih živil vplivajo na čas delovanja. Isti hladilnik lahko v vročem avtodomu čez dan deluje bistveno dlje kot ponoči pri nižji temperaturi.</p>
+  <p>Pomembna je tudi vgradnja. Če topel zrak okoli kondenzatorja ne more odtekati, hladilnik težje oddaja toploto in kompresor deluje dlje. Preden povečaš baterijo, preveri zahteve proizvajalca glede prezračevanja in prostega prostora.</p>
+
+  <h2>Primer vpliva na energijski proračun</h2>
+  <p>Če hladilnik porabi 450 Wh/dan, drugi porabniki pa skupaj 350 Wh/dan, dnevna poraba doseže <strong>800 Wh</strong>. V tem primeru hladilnik predstavlja več kot polovico porabljene energije.</p>
+  <p>Zato je smiselno njegovo porabo dobro oceniti pred izbiro <a href="/si/vodici/kapaciteta-baterije-avtodom/">kapacitete baterije</a> in <a href="/si/vodici/koliko-soncnih-panelov-avtodom/">sončnih panelov</a>. Napaka nekaj sto Wh vsak dan lahko občutno spremeni avtonomijo in potrebno moč polnjenja.</p>
+
+  <h2>Kako do boljšega podatka kot z ugibanjem</h2>
+  <p>Če hladilnik že uporabljaš, izmeri energijo v več reprezentativnih dneh z monitorjem baterije ali primernim DC merilnikom. Vključi vroč dan, normalno odpiranje vrat in običajno nastavitev temperature. Skupno porabljeno energijo deli s številom dni in dobiš Wh/dan.</p>
+  <p>Če hladilnika še nimaš, v dokumentaciji poišči podatek o dnevni porabi, kadar ga proizvajalec objavi. Če je navedena samo trenutna moč, uporabi konservativen scenarij ur delovanja in izračun popravi po prvih potovanjih.</p>
+
+  <h2>Padec napetosti lahko povzroči izklop</h2>
+  <p>Kompresor lahko ob zagonu zahteva več toka kot med stabilnim delovanjem. Predolg ali pretanek kabel lahko povzroči padec napetosti in izklop, čeprav baterija še ni prazna. Preveri pot kabla in zaščito v vodniku za <a href="/si/vodici/kabli-varovalke-12v-avtodom/">kable in varovalke 12/24 V</a>.</p>
+
+  <h2>Kontrolni seznam za izračun</h2>
+  <ul>
+    <li>nazivna moč in napetost hladilnika;</li>
+    <li>izmerjeni Wh/dan ali realne ure delovanja;</li>
+    <li>najvišja pričakovana temperatura okolice;</li>
+    <li>prezračevanje skladno z navodili;</li>
+    <li>dolžina kabla in dovoljen padec napetosti;</li>
+    <li>rezerva za vroče dni in drugačen način uporabe.</li>
+  </ul>
+  <p>Nato vnesi scenarij v <a href="/si/#calculator-preview">MyPowerSetup kalkulator</a> in dimenzioniraj baterijo, solar ter polnjenje na podlagi celotne dnevne porabe.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Ali 45 W hladilnik porabi 1.080 Wh na dan?", "Ne nujno. To bi veljalo samo pri neprekinjeni porabi 45 W vseh 24 ur. Kompresor se običajno vklaplja in izklaplja, zato je pomemben skupni čas delovanja ali izmerjena energija v Wh/dan."],
+      ["Koliko se poraba poveča v vročini?", "Ni univerzalnega odstotka. Temperatura, prezračevanje, nastavitev, odpiranje vrat in konkreten model vplivajo na delovni cikel."],
+      ["Je smiselno hladilnik izmeriti pred nakupom baterije?", "Da. Večdnevna realna meritev je za dimenzioniranje baterije in solarja precej boljša osnova kot samo nazivna moč."],
+    ]),
+  }),
+
+  "/si/vodici/elektricni-sistem-avtodom/": Object.freeze({
+    title: "Celoten električni sistem avtodoma: kako ga dimenzionirati",
+    description: "Dimenzioniraj baterijo, solar, MPPT, DC-DC, 230 V polnilnik, inverter, kable in zaščite kot enoten električni sistem avtodoma.",
+    body: `
+<section data-si-search-growth="elektricni-sistem-avtodom">
+  <h2>Dober sistem se začne pri dnevni porabi, ne pri izdelkih</h2>
+  <p>Pred izbiro baterije ali panelov določi porabo v Wh/dan, želeno avtonomijo, največjo sočasno AC obremenitev ter način potovanja. Iz istih podatkov morajo izhajati baterija, solar, MPPT, DC-DC, 230 V polnilnik in inverter.</p>
+  <p>Če komponente izbiraš ločeno, hitro nastanejo ozka grla: veliko panelov s premajhnim MPPT, močan inverter s prešibkim BMS ali več polnilnikov, katerih skupni tok preseže dovoljeni polnilni tok baterije.</p>
+
+  <h2>Osnovna arhitektura sistema</h2>
+  <p>V tipični zasnovi baterijo bivalnega dela polnijo ločene veje: <strong>paneli → MPPT → baterija</strong>, <strong>alternator/zagonska baterija → DC-DC → baterija</strong> in <strong>230 V → polnilnik → baterija</strong>. Iz baterije nato napajaš DC razdelitev in po potrebi ločeno vejo za inverter.</p>
+  <p>Vsaka veja potrebuje ustrezne kable, zaščito in možnost odklopa. To je funkcionalna arhitektura, ne univerzalna montažna shema.</p>
+
+  <h2>Primer: 800 Wh na dan in dva dni avtonomije</h2>
+  <p>Pri porabi 800 Wh/dan, dveh dneh avtonomije in LiFePO₄ bateriji MyPowerSetup najprej oceni potrebno nazivno energijo z rezervo in uporabnim deležem. Nato iz sezone izračuna solarno moč. Če se vsak dan voziš, lahko DC-DC povrne del energije; na kampu lahko večino polnjenja prevzame 230 V polnilnik.</p>
+  <p>Viri polnjenja porabe ne zmanjšajo. Določajo, <strong>kako hitro energijo povrneš</strong>. Baterija zagotavlja rezervo, solar, alternator in omrežje pa določajo, kako pogosto jo lahko dopolniš.</p>
+
+  <h2>12 V ali 24 V izberi pred velikimi komponentami</h2>
+  <p>Sistemska napetost vpliva na tok, inverter, MPPT, polnilnike in DC porabnike. Pri isti moči 24 V pomeni približno polovico toka v primerjavi z 12 V. To lahko poenostavi močnejše sisteme, vendar lahko za obstoječe 12 V naprave potrebuješ pretvornike.</p>
+  <p>Pred nakupom večjih komponent preveri vodnik <a href="/si/vodici/12v-ali-24v-sistem-avtodom/">12 V ali 24 V</a>. Poznejša sprememba napetosti lahko zahteva menjavo več naprav.</p>
+
+  <h2>Štiri ozka grla, ki jih preveri skupaj</h2>
+  <ul>
+    <li><strong>Baterija in BMS:</strong> dovoljeni tok praznjenja mora pokriti inverter, dovoljeni polnilni tok pa kombinacijo virov.</li>
+    <li><strong>MPPT:</strong> preveri moč, Voc, Isc in napetost baterije.</li>
+    <li><strong>Alternator in DC-DC:</strong> tok mora biti sprejemljiv za alternator, baterijo ter vhodno in izhodno ožičenje.</li>
+    <li><strong>Kabli in zaščita:</strong> vsak tokokrog dimenzioniraj po dejanskem toku in dolžini, ne po Ah baterije.</li>
+  </ul>
+
+  <h2>Inverter je samo en del sistema</h2>
+  <p>Če zunaj kampa ne potrebuješ 230 V, je lahko inverter majhen ali nepotreben. Pri večjih AC porabnikih preveri hkrati <a href="/si/vodici/inverter-avtodom-moc/">moč inverterja</a>, dovoljeni tok BMS-a in DC kable. Inverter z nazivno močjo 2 kW ne naredi majhne baterije samodejno sposobne oddajati 2 kW.</p>
+
+  <h2>Vrstni red dimenzioniranja</h2>
+  <ol>
+    <li>izračunaj Wh/dan;</li>
+    <li>določi avtonomijo in kemijo baterije;</li>
+    <li>izberi 12 V ali 24 V;</li>
+    <li>dimenzioniraj solar in MPPT;</li>
+    <li>dimenzioniraj DC-DC po dejanskem času vožnje;</li>
+    <li>dimenzioniraj 230 V polnilnik po času priklopa;</li>
+    <li>izberi inverter glede na AC porabnike;</li>
+    <li>zaključi z ožičenjem, varovalkami, zbiralkami, stikali in vgradnjo.</li>
+  </ol>
+
+  <h2>Meja kalkulatorja</h2>
+  <p>MyPowerSetup daje zahteve in povezano arhitekturo, ne izvedbenega elektroprojekta. 230 V napeljava, ozemljitev, RCD, končne varovalke, poti kablov in montaža morajo upoštevati dejansko opremo in veljavna pravila. Dela, ki jih ne znaš varno preveriti, naj pregleda usposobljena oseba.</p>
+  <p>Začni z <a href="/si/#calculator-preview">izračunom sistema</a> in nato pred nakupom preveri posamezne vodnike za vsako komponento.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Lahko isto baterijo polnijo solar, DC-DC in 230 V polnilnik?", "Da, če so vsi viri združljivi z napetostjo in kemijo baterije ter skupni polnilni tok ostane znotraj omejitev baterije/BMS-a in opreme."],
+      ["Ali vsak avtodom potrebuje inverter?", "Ne. Inverter potrebuješ le za 230 V porabnike, ko nisi priključen na omrežje. DC porabniki lahko delujejo brez njega."],
+      ["Katero komponento izberem najprej?", "Začni z dnevno porabo in avtonomijo. Nato določi baterijo in sistemsko napetost, šele potem pa solar, polnilnike, inverter, kable in zaščite."],
+    ]),
+  }),
+
 });
 
 function schemaFor(route, item) {
