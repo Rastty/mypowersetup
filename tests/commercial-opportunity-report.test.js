@@ -5,7 +5,7 @@ import { readFile } from "node:fs/promises";
 const report = JSON.parse(await readFile(new URL("../data/commercial-opportunity-report.json", import.meta.url), "utf8"));
 
 test("commercial opportunity artifact distinguishes component and portable purchase routes", () => {
-  assert.equal(report.schemaVersion, 4);
+  assert.ok([4, 5].includes(report.schemaVersion), `unexpected transition schema ${report.schemaVersion}`);
   assert.equal(report.markets.length, 7);
   for (const market of report.markets) {
     assert.ok(Number.isFinite(market.purchaseReadyRatio));
@@ -35,4 +35,21 @@ test("component sourcing gain excludes scenarios already covered by a portable r
     .find((market) => market.market === "sl-SI")
     .opportunities.find((opportunity) => opportunity.category === "controller");
   assert.ok(sloveniaController.unlockWeight < sloveniaController.affectedWeight);
+});
+
+
+test("schema v5 surfaces actionable sourcing routes once the report is regenerated", () => {
+  if (report.schemaVersion < 5) return;
+
+  for (const marketCode of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const market = report.markets.find((entry) => entry.market === marketCode);
+    assert.ok(Array.isArray(market.sourcingRoutes) && market.sourcingRoutes.length > 0, `${marketCode}: sourcing routes missing`);
+    assert.ok(market.topSourcingRoute, `${marketCode}: top sourcing route missing`);
+    assert.equal(market.topSourcingRoute.id, market.sourcingRoutes[0].id);
+    assert.ok(market.topSourcingRoute.standaloneUnlockWeight > 0 || market.topSourcingRoute.affectedWeight > 0);
+  }
+
+  assert.equal(report.markets.find(({ market }) => market === "pt-PT").topSourcingRoute.id, "bluetti-eu-elite-300");
+  assert.equal(report.markets.find(({ market }) => market === "ro-RO").topSourcingRoute.id, "bluetti-eu-elite-300");
+  assert.equal(report.markets.find(({ market }) => market === "sl-SI").topSourcingRoute.id, "solaris-victron-phoenix-12-250");
 });
