@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { BUTLER_TECHNIK_AWIN, BUTLER_VICTRON_MPPT_250_60_MC4, BUTLER_VICTRON_ORION_XS_12_12_50 } from "../src/affiliate-butler.js";
+import { XDATOU_DATOUBOSS_2000W_24V, XDATOU_GOAFFPRO } from "../src/affiliate-xdatou.js";
 import { listCommercialSourcingCandidates } from "../src/commercial-sourcing-candidates.js";
 
 const candidateFile = new URL("../data/affiliate-onboarding-candidates.json", import.meta.url);
@@ -16,6 +17,8 @@ const onboarding = JSON.parse(await readFile(candidateFile, "utf8"));
 assert(onboarding.schemaVersion === 2, "schemaVersion must be 2");
 assert(Array.isArray(onboarding.candidates) && onboarding.candidates.length > 0, "candidate list is empty");
 assert(BUTLER_TECHNIK_AWIN.approvalConfirmed === false, "Butler source must remain fail-closed until explicit approval activation");
+assert(XDATOU_GOAFFPRO.approvalConfirmed === false, "Xdatou source must remain fail-closed until explicit GoAffPro approval activation");
+assert(XDATOU_GOAFFPRO.referralIdentifier === null && XDATOU_GOAFFPRO.referralCode === null, "Xdatou referral credentials must not be guessed before approval");
 
 const catalogs = new Map();
 for (const [market, url] of publicCatalogFiles) catalogs.set(market, JSON.parse(await readFile(url, "utf8")));
@@ -95,6 +98,10 @@ assert(sourcingMultiPlus?.secondaryBlocker === "awin_program_approval", "MultiPl
 assert(xdatouInverter.merchant === "xdatou", "Xdatou inverter merchant invalid");
 assert(xdatouInverter.network === "goaffpro" && xdatouInverter.programId === null, "Xdatou affiliate metadata must remain unapproved");
 assert(xdatouInverter.status === "blocked_affiliate_verification", "Xdatou inverter must remain blocked until account approval and trackable deeplink are verified");
+assert(xdatouInverter.activation?.approvalConfirmed === false, "Xdatou activation must remain false before explicit approval");
+assert(xdatouInverter.activation?.referralIdentifier === null, "Xdatou referral identifier must remain unset before approval");
+assert(xdatouInverter.activation?.referralCode === null, "Xdatou referral code must remain unset before approval");
+assert(typeof xdatouInverter.activationInstructions === "string" && /Do not infer or invent/i.test(xdatouInverter.activationInstructions), "Xdatou activation instructions must forbid guessed tracking credentials");
 assert(xdatouInverter.category === "inverter", "Xdatou inverter category invalid");
 assert(new URL(xdatouInverter.applicationUrl).hostname === "eu.xdatou.com", "Xdatou application evidence must be first-party");
 assert(new URL(xdatouInverter.affiliateNetworkEvidenceUrl).hostname === "eu.xdatou.com", "Xdatou affiliate-network evidence must be first-party");
@@ -102,8 +109,9 @@ assert(/^\d{4}-\d{2}-\d{2}$/.test(xdatouInverter.affiliateNetworkVerifiedAt || "
 assert(new URL(xdatouInverter.retailEvidenceUrl).hostname === "eu.xdatou.com", "Xdatou retail evidence must be first-party");
 assert(new URL(xdatouInverter.shippingEvidenceUrl).hostname === "eu.xdatou.com", "Xdatou shipping evidence must be first-party");
 assert(xdatouInverter.stockStatus === "in_stock" && /^\d{4}-\d{2}-\d{2}$/.test(xdatouInverter.stockEvidenceVerifiedAt || ""), "Xdatou stock evidence invalid");
-assert(xdatouInverter.exactRetailPath === "/collections/xdatou-portable-inverter/products/datouboss-2000w-pure-sine-wave-inverter-24v-car-truck", "Xdatou exact retail path invalid");
-assert(xdatouInverter.specs?.systemVoltage === 24, "Xdatou inverter must fit the 24 V gap");
+assert(xdatouInverter.exactRetailPath === XDATOU_DATOUBOSS_2000W_24V.exactPath, "Xdatou exact retail path invalid");
+assert(xdatouInverter.specs?.systemVoltage === XDATOU_DATOUBOSS_2000W_24V.systemVoltageV, "Xdatou inverter must fit the 24 V gap");
+assert(xdatouInverter.specs?.continuousPowerW === XDATOU_DATOUBOSS_2000W_24V.continuousPowerW, "Xdatou inverter continuous-power evidence diverges from activation adapter");
 assert(xdatouInverter.specs?.continuousPowerW >= 1300 && xdatouInverter.specs?.continuousPowerW <= 3900, "Xdatou inverter does not fit the 1300-3900 W gap");
 assert(xdatouInverter.specs?.waveform === "pure_sine", "Xdatou pure-sine evidence missing");
 assert(sameValues(Object.keys(xdatouInverter.marketEligibility || {}), ["pt-PT", "ro-RO", "sl-SI"]), "Xdatou targets must match the PT/RO/SI inverter gap");

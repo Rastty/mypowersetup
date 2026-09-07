@@ -84,6 +84,7 @@ const CANDIDATES = Object.freeze([
     specs: Object.freeze({ systemVoltagesV: Object.freeze([24]), powerW: 2000, pureSine: true }),
     status: "blocked_affiliate_verification",
     blocker: "goaffpro_account_approval_not_verified",
+    activationFieldsNeeded: Object.freeze(["approvalConfirmed", "referralIdentifier", "referralCode"]),
     affiliateNetworkVerifiedAt: "2026-09-07",
   }),
   Object.freeze({

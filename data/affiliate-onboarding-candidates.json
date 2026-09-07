@@ -245,7 +245,13 @@
         "high-power-tools"
       ],
       "affiliateNetworkEvidenceUrl": "https://eu.xdatou.com/pages/affiliate-program",
-      "affiliateNetworkVerifiedAt": "2026-09-07"
+      "affiliateNetworkVerifiedAt": "2026-09-07",
+      "activation": {
+        "approvalConfirmed": false,
+        "referralIdentifier": null,
+        "referralCode": null
+      },
+      "activationInstructions": "After Xdatou/GoAffPro approval, copy the exact referral identifier and referral code from the approved account. Do not infer or invent them."
     },
     {
       "id": "bluetti-eu-ac240-b210",
