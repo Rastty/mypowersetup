@@ -58,7 +58,7 @@ test("Slovenia search content injection is idempotent", () => {
 test("Slovenia growth layer leaves other markets and untargeted routes unchanged", () => {
   const html = '<html><head></head><body><aside class="cta"></aside></body></html>';
   assert.equal(enhanceSloveniaSearchContent(html, "pt", "/pt/guias/capacidade-bateria-autocaravana/"), html);
-  assert.equal(enhanceSloveniaSearchContent(html, "si", "/si/vodici/poraba-kompresorski-hladilnik-avtodom/"), html);
+  assert.equal(enhanceSloveniaSearchContent(html, "si", "/si/vodici/12v-ali-24v-sistem-avtodom/"), html);
 });
 
 
