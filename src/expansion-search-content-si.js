@@ -57,7 +57,6 @@ const SI_GROWTH_CONTENT = Object.freeze({
     <li>ignoriranje DC-DC in 230 V polnjenja v celotnem energijskem proračunu.</li>
   </ul>
   <p>Začni z <a href="/si/#calculator-preview">MyPowerSetup kalkulatorjem</a>, nato končno konfiguracijo panelov preveri skupaj z vodnikom za <a href="/si/vodici/mppt-regulator-avtodom/">MPPT regulator</a>.</p>
-
 </section>`,
     faq: Object.freeze([
       ["Je 200 W solarja dovolj za avtodom?", "Lahko je dovolj pri majhni porabi in dobrih poletnih pogojih, vendar je pravilen odgovor odvisen od Wh/dan, sezone, lokacije in senčenja."],
@@ -122,7 +121,6 @@ const SI_GROWTH_CONTENT = Object.freeze({
     <li>kabli, varovalke, odklop in montaža po navodilih.</li>
   </ul>
   <p>Izbiro vedno poveži z vodnikom za <a href="/si/vodici/koliko-soncnih-panelov-avtodom/">potrebno solarno moč</a> in z <a href="/si/#calculator-preview">izračunom celotnega sistema</a>; ne izbiraj regulatorja samo po eni številki v imenu modela.</p>
-
 </section>`,
     faq: Object.freeze([
       ["Ali LiFePO4 pri enakih Ah zagotovi več uporabne energije kot AGM?", "Običajno da, vendar je dejanski uporabni delež odvisen od konkretne baterije in omejitev BMS."],
@@ -145,6 +143,27 @@ const SI_GROWTH_CONTENT = Object.freeze({
   <p>V seriji se seštevajo napetosti, pri vzporedni vezavi pa tokovi. Izbira je odvisna od panelov, kablov, senčenja in vhodnih omejitev regulatorja.</p>
   <h2>Preveri tudi profil baterije</h2>
   <p>Regulator mora omogočiti polnilni profil, ki ustreza AGM ali LiFePO₄ bateriji. Ne predpostavljaj, da je nastavitev za eno kemijo primerna tudi za drugo.</p>
+
+  <h2>Dovoljena PV moč je povezana tudi z napetostjo baterije</h2>
+  <p>Isti model MPPT lahko pri 12 V in 24 V podpira različno nazivno moč panelov, ker je največji polnilni tok regulatorja omejen. Zato oznaka »30 A« brez napetosti baterije in konfiguracije panelov ne pove dovolj za varno izbiro.</p>
+  <p>Ko kalkulator oceni potreben tok, v podatkovnem listu konkretnega regulatorja preveri dovoljeno PV moč, največji Voc in največji Isc. Vse omejitve morajo biti izpolnjene hkrati.</p>
+
+  <h2>Isc in zaščite ne izhajajo samo iz Wp</h2>
+  <p>Dve solarni konfiguraciji z enako skupno močjo imata lahko zelo različne tokove kratkega stika. Pri vzporedni vezavi se Isc vej sešteva. Preveri vhodne omejitve MPPT-ja ter zahteve proizvajalca za zaščito in odklop.</p>
+  <p>Na PV strani dimenzioniraj kabel po toku, dolžini, temperaturi in dovoljenem padcu napetosti. Na strani baterije mora kabel varno prenašati največji polnilni tok regulatorja. Če se sistemska napetost spremeni, preveri oba dela ponovno.</p>
+
+  <h2>Kontrolni seznam pred nakupom MPPT-ja</h2>
+  <ul>
+    <li>napetost baterije 12 V ali 24 V;</li>
+    <li>skupna moč panelov v Wp;</li>
+    <li>največji Voc celotnega niza pri nizki temperaturi;</li>
+    <li>največji Isc serijske/vzporedne konfiguracije;</li>
+    <li>potreben polnilni tok proti bateriji;</li>
+    <li>dovoljena PV moč pri izbrani napetosti baterije;</li>
+    <li>polnilni profil, združljiv z baterijo in BMS-om;</li>
+    <li>kabli, varovalke, odklop in montaža po navodilih.</li>
+  </ul>
+  <p>Izbiro vedno poveži z vodnikom za <a href="/si/vodici/koliko-soncnih-panelov-avtodom/">potrebno solarno moč</a> in z <a href="/si/#calculator-preview">izračunom celotnega sistema</a>; ne izbiraj regulatorja samo po eni številki v imenu modela.</p>
 </section>`,
     faq: Object.freeze([
       ["Kakšen MPPT potrebujem za 400 W panelov pri 12 V?", "Kot groba ocena toka 400 W ÷ 12 V × 1,25 pomeni približno 42 A. Končna izbira mora preveriti tudi Voc, Isc in omejitve proizvajalca."],
@@ -188,7 +207,6 @@ const SI_GROWTH_CONTENT = Object.freeze({
     <li>prezračevanje, temperatura in montažni pogoji proizvajalca.</li>
   </ul>
   <p>Najprej izračunaj scenarij v <a href="/si/#calculator-preview">MyPowerSetup</a>, nato izberi inverter, ki ga baterija, BMS in ožičenje lahko dejansko podprejo.</p>
-
 </section>`,
     faq: Object.freeze([
       ["Kakšen inverter potrebujem za napravo z močjo 1.000 W?", "Preveri tudi druge naprave, ki lahko delujejo hkrati, zagonski sunek in dodaj smiselno rezervo. Sama nazivna moč naprave ni dovolj."],
