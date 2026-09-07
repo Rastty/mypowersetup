@@ -85,7 +85,7 @@ function validateSloveniaProduct(product, sources = {}) {
     return;
   }
   if (isAmpulExpansionProduct(product)) {
-    validateAmpulExpansionProduct(product, { market: "si", verifiedMarkets: sources?.ampul_eu?.verifiedMarkets || [] });
+    validateAmpulExpansionProduct(product, { market: "si", verifiedProductMarkets: sources?.ampul_eu?.verifiedProductMarkets || {} });
     return;
   }
   if (!product?.verifiedAt) throw new Error("SI_PRODUCT_EVIDENCE_INVALID");

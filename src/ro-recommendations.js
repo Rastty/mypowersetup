@@ -85,7 +85,7 @@ function validateRomaniaProduct(product, sources = {}) {
     return;
   }
   if (isAmpulExpansionProduct(product)) {
-    validateAmpulExpansionProduct(product, { market: "ro", verifiedMarkets: sources?.ampul_eu?.verifiedMarkets || [] });
+    validateAmpulExpansionProduct(product, { market: "ro", verifiedProductMarkets: sources?.ampul_eu?.verifiedProductMarkets || {} });
     return;
   }
   if (!product?.verifiedAt) throw new Error("RO_PRODUCT_EVIDENCE_INVALID");

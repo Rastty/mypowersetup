@@ -119,7 +119,7 @@ export function validatePtCatalog(payload) {
       continue;
     }
     if (isAmpulExpansionProduct(product)) {
-      validateAmpulExpansionProduct(product, { market: "pt", verifiedMarkets: payload.sources?.ampul_eu?.verifiedMarkets || [] });
+      validateAmpulExpansionProduct(product, { market: "pt", verifiedProductMarkets: payload.sources?.ampul_eu?.verifiedProductMarkets || {} });
       continue;
     }
     if (product?.merchant !== "allpowers_pt") throw new Error("PT_CATALOG_FOREIGN_MERCHANT");

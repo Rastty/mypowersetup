@@ -10,11 +10,25 @@ const SOURCE_MERCHANT = "ampul_cz";
 const TARGET_MERCHANT = "ampul_eu";
 const MAX_SOURCE_AGE_MS = 48 * 60 * 60 * 1000;
 
-export function verifiedAmpulMarkets(verification) {
-  return Object.freeze(Object.entries(verification?.markets || {})
+export function verifiedAmpulProductMarkets(verification, productId) {
+  return Object.freeze(Object.entries(verification?.products?.[productId]?.markets || {})
     .filter(([, value]) => value?.verified === true && value?.evidenceUrl && /^\d{4}-\d{2}-\d{2}$/.test(value?.verifiedAt || ""))
     .map(([market]) => market)
     .filter((market) => ["pt", "ro", "si"].includes(market)));
+}
+
+export function verifiedAmpulMarkets(verification) {
+  return Object.freeze([...new Set([
+    ...verifiedAmpulProductMarkets(verification, AMPUL_12V_30A_DCDC.id),
+    ...verifiedAmpulProductMarkets(verification, AMPUL_24V_2000W_INVERTER.id),
+  ])].sort());
+}
+
+export function verifiedAmpulProductMarketsMap(verification) {
+  return Object.freeze({
+    [AMPUL_12V_30A_DCDC.id]: verifiedAmpulProductMarkets(verification, AMPUL_12V_30A_DCDC.id),
+    [AMPUL_24V_2000W_INVERTER.id]: verifiedAmpulProductMarkets(verification, AMPUL_24V_2000W_INVERTER.id),
+  });
 }
 
 export function syncAmpulExpansion(sourceCatalog, targetMarket, verification, {
@@ -23,14 +37,17 @@ export function syncAmpulExpansion(sourceCatalog, targetMarket, verification, {
   const market = MARKET_CODES[targetMarket];
   if (!market) throw new Error("AMPUL_EXPANSION_TARGET_MARKET_INVALID");
 
+  const verifiedProductMarkets = verifiedAmpulProductMarketsMap(verification);
   const markets = verifiedAmpulMarkets(verification);
-  if (!markets.includes(market)) {
+  const marketHasAnyVerifiedProduct = Object.values(verifiedProductMarkets).some((productMarkets) => productMarkets.includes(market));
+  if (!marketHasAnyVerifiedProduct) {
     return {
       products: [],
       source: {
         status: "blocked",
-        blocker: "market_shipping_checkout_unverified",
+        blocker: "product_market_shipping_checkout_unverified",
         verifiedMarkets: markets,
+        verifiedProductMarkets,
         exactProducts: 0,
       },
     };
@@ -45,6 +62,7 @@ export function syncAmpulExpansion(sourceCatalog, targetMarket, verification, {
         status: "blocked",
         blocker: "ampul_source_catalog_not_fresh",
         verifiedMarkets: markets,
+        verifiedProductMarkets,
         exactProducts: 0,
       },
     };
@@ -58,14 +76,18 @@ export function syncAmpulExpansion(sourceCatalog, targetMarket, verification, {
     && String(product.id || "").endsWith(":6195")
     && product.productUrl?.endsWith(AMPUL_12V_30A_DCDC.exactPath)
   );
-  if (dcDc?.available === true) normalized.push(normalizeDcDc(dcDc, market, markets));
+  if (dcDc?.available === true && verifiedProductMarkets[AMPUL_12V_30A_DCDC.id].includes(market)) {
+    normalized.push(normalizeDcDc(dcDc, market, verifiedProductMarkets));
+  }
 
   const inverter = sourceProducts.find((product) =>
     product?.merchant === SOURCE_MERCHANT
     && String(product.id || "").endsWith(":5577-7392")
     && product.productUrl?.endsWith(AMPUL_24V_2000W_INVERTER.exactPath)
   );
-  if (inverter?.available === true) normalized.push(normalizeInverter(inverter, market, markets));
+  if (inverter?.available === true && verifiedProductMarkets[AMPUL_24V_2000W_INVERTER.id].includes(market)) {
+    normalized.push(normalizeInverter(inverter, market, verifiedProductMarkets));
+  }
 
   return {
     products: normalized,
@@ -74,6 +96,7 @@ export function syncAmpulExpansion(sourceCatalog, targetMarket, verification, {
       network: "ehub",
       campaignId: "ddb5edae",
       verifiedMarkets: markets,
+      verifiedProductMarkets,
       exactProducts: normalized.length,
       sourceGeneratedAt: sourceCatalog.generatedAt,
     },
@@ -105,7 +128,7 @@ function baseProduct(source, product, market) {
   };
 }
 
-function normalizeDcDc(source, market, markets) {
+function normalizeDcDc(source, market, verifiedProductMarkets) {
   const normalized = {
     ...baseProduct(source, AMPUL_12V_30A_DCDC, market),
     specs: {
@@ -118,10 +141,10 @@ function normalizeDcDc(source, market, markets) {
       batteryType: "lifepo4",
     },
   };
-  return validateAmpulExpansionProduct(normalized, { market, verifiedMarkets: markets });
+  return validateAmpulExpansionProduct(normalized, { market, verifiedProductMarkets });
 }
 
-function normalizeInverter(source, market, markets) {
+function normalizeInverter(source, market, verifiedProductMarkets) {
   const normalized = {
     ...baseProduct(source, AMPUL_24V_2000W_INVERTER, market),
     specs: {
@@ -130,5 +153,5 @@ function normalizeInverter(source, market, markets) {
       pureSine: true,
     },
   };
-  return validateAmpulExpansionProduct(normalized, { market, verifiedMarkets: markets });
+  return validateAmpulExpansionProduct(normalized, { market, verifiedProductMarkets });
 }
