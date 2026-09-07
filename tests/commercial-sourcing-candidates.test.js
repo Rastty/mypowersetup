@@ -193,3 +193,44 @@ test("same-status sourcing tie-break favors standalone unlock before total affec
     assert.equal(bestCommercialSourcingCandidate({ market, category: "inverter" }).id, solaris12.id);
   }
 });
+
+
+test("Ampul approved fallback stays behind market verification and never outranks the immediate Solaris unlock", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const inverterCandidates = listCommercialSourcingCandidates({ market, category: "inverter" });
+    const ampul = inverterCandidates.find(({ id }) => id === "ampul-eu-inverter-24v-2000w");
+    assert.ok(ampul, `${market}: Ampul inverter candidate missing`);
+    assert.equal(ampul.status, "blocked_market_stock_verification");
+    assert.equal(ampul.blocker, "market_shipping_checkout_unverified");
+    assert.equal(ampul.secondaryBlocker, "variant_stock_unverified");
+    assert.equal(ampul.affiliateApprovalConfirmed, true);
+    assert.equal(ampul.nextActionOwner, "system");
+    assert.equal(ampul.specs.systemVoltagesV[0], 24);
+    assert.equal(ampul.specs.powerW, 2000);
+    assert.equal(ampul.specs.pureSine, true);
+    assert.equal(ampul.affectedWeight, 5);
+    assert.equal(ampul.standaloneUnlockWeight, 0);
+
+    const best = bestCommercialSourcingCandidate({ market, category: "inverter" });
+    assert.equal(best.id, "solaris-victron-phoenix-12-250");
+    assert.equal(best.standaloneUnlockWeight, 5);
+  }
+});
+
+test("Ampul 30A DC-DC is approved/tracked but remains market-gated", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const candidate = listCommercialSourcingCandidates({ market, category: "dc_charger" })
+      .find(({ id }) => id === "ampul-eu-dcdc-12v-30a");
+    assert.ok(candidate, `${market}: Ampul DC-DC candidate missing`);
+    assert.equal(candidate.status, "blocked_market_verification");
+    assert.equal(candidate.blocker, "market_shipping_checkout_unverified");
+    assert.equal(candidate.affiliateApprovalConfirmed, true);
+    assert.equal(candidate.stockStatus, "in_stock");
+    assert.equal(candidate.stockVerifiedAt, "2026-09-07");
+    assert.equal(candidate.nextActionOwner, "system");
+    assert.deepEqual(candidate.specs.inputVoltagesV, [12, 24]);
+    assert.equal(candidate.specs.outputVoltageV, 14.6);
+    assert.equal(candidate.specs.currentA, 30);
+    assert.ok(candidate.specs.batteryTypes.includes("lifepo4"));
+  }
+});
