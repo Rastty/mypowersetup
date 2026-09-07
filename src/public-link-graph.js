@@ -28,6 +28,7 @@ export async function auditPublicInternalLinks({ routes, readPage }) {
 
   const publicRoutes = new Set(routes.map(normalizeRoute));
   const inbound = new Map([...publicRoutes].map((route) => [route, new Set()]));
+  const outbound = new Map([...publicRoutes].map((route) => [route, new Set()]));
   const unreadable = [];
 
   for (const source of publicRoutes) {
@@ -41,6 +42,7 @@ export async function auditPublicInternalLinks({ routes, readPage }) {
     for (const target of extractInternalAnchorRoutes(html, source)) {
       if (!publicRoutes.has(target) || target === source) continue;
       inbound.get(target).add(source);
+      outbound.get(source).add(target);
     }
   }
 
@@ -53,13 +55,45 @@ export async function auditPublicInternalLinks({ routes, readPage }) {
     [...inbound.entries()].map(([route, sources]) => [route, sources.size])
   );
 
+  const crawlDepths = shortestCrawlDepths(outbound, "/");
+  const unreachableRoutes = [...publicRoutes]
+    .filter((route) => route !== "/" && !crawlDepths.has(route))
+    .sort();
+  const deepRoutes = [...crawlDepths.entries()]
+    .filter(([route, depth]) => route !== "/" && depth > 3)
+    .map(([route, depth]) => Object.freeze({ route, depth }))
+    .sort((a, b) => b.depth - a.depth || a.route.localeCompare(b.route));
+  const maxCrawlDepth = Math.max(0, ...crawlDepths.values());
+
   return Object.freeze({
-    safe: orphanRoutes.length === 0 && unreadable.length === 0,
+    safe: orphanRoutes.length === 0 && unreadable.length === 0 && unreachableRoutes.length === 0 && deepRoutes.length === 0,
     routeCount: publicRoutes.size,
     orphanRoutes: Object.freeze(orphanRoutes),
+    unreachableRoutes: Object.freeze(unreachableRoutes),
+    deepRoutes: Object.freeze(deepRoutes),
+    maxCrawlDepth,
+    crawlDepths: Object.freeze(Object.fromEntries([...crawlDepths.entries()].sort(([a], [b]) => a.localeCompare(b)))),
     unreadable: Object.freeze(unreadable.sort()),
     inboundCounts: Object.freeze(inboundCounts),
   });
+}
+
+function shortestCrawlDepths(outbound, startRoute) {
+  const depths = new Map();
+  if (!outbound.has(startRoute)) return depths;
+
+  depths.set(startRoute, 0);
+  const queue = [startRoute];
+  for (let index = 0; index < queue.length; index += 1) {
+    const source = queue[index];
+    const nextDepth = depths.get(source) + 1;
+    for (const target of outbound.get(source) || []) {
+      if (depths.has(target)) continue;
+      depths.set(target, nextDepth);
+      queue.push(target);
+    }
+  }
+  return depths;
 }
 
 function normalizeRoute(pathname) {
