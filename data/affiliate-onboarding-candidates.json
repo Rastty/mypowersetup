@@ -296,7 +296,7 @@
       "merchant": "solaris_store",
       "network": null,
       "programId": null,
-      "applicationUrl": "https://www.solaris-store.com/content/95-partenariat",
+      "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
       "commissionPercent": null,
       "status": "blocked_affiliate_verification",
       "secondaryBlocker": "market_shipping_checkout_unverified",
@@ -327,14 +327,19 @@
       },
       "targetScenarioIds": [
         "family-touring"
-      ]
+      ],
+      "applicationEvidenceUrl": "https://www.solaris-store.com/content/95-partenariat",
+      "applicationReady": true,
+      "checkoutStatus": "maintenance_blocked",
+      "checkoutStatusVerifiedAt": "2026-09-07",
+      "checkoutBlockerEvidenceUrl": "https://www.solaris-store.com/content/95-partenariat"
     },
     {
       "id": "solaris-victron-phoenix-24-250",
       "merchant": "solaris_store",
       "network": null,
       "programId": null,
-      "applicationUrl": "https://www.solaris-store.com/content/95-partenariat",
+      "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
       "commissionPercent": null,
       "status": "blocked_affiliate_verification",
       "secondaryBlocker": "market_shipping_checkout_unverified",
@@ -365,7 +370,12 @@
       },
       "targetScenarioIds": [
         "remote-work"
-      ]
+      ],
+      "applicationEvidenceUrl": "https://www.solaris-store.com/content/95-partenariat",
+      "applicationReady": true,
+      "checkoutStatus": "maintenance_blocked",
+      "checkoutStatusVerifiedAt": "2026-09-07",
+      "checkoutBlockerEvidenceUrl": "https://www.solaris-store.com/content/95-partenariat"
     }
   ]
 }
