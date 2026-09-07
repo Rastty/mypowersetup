@@ -294,7 +294,10 @@ assert(sourcingBluetti?.blocker === "exact_eu_bundle_out_of_stock", "BLUETTI AC2
 assert(sourcingBluetti?.secondaryBlocker === "eu_affiliate_deeplink_not_verified", "BLUETTI AC240+B210 affiliate blocker missing from sourcing queue");
 
 assert(bluettiElite300.category === "power_station", "BLUETTI Elite 300 category invalid");
-assert(bluettiElite300.status === "blocked_affiliate_verification", "BLUETTI Elite 300 must remain blocked until an exact EU affiliate deeplink is verified");
+assert(bluettiElite300.network === "cj" && bluettiElite300.programId === null, "BLUETTI Elite 300 must record CJ without inventing an advertiser ID");
+assert(bluettiElite300.affiliateApprovalConfirmed === true && bluettiElite300.affiliateApprovalSource === "owner_confirmed", "BLUETTI Elite 300 CJ approval evidence missing");
+assert(bluettiElite300.status === "blocked_affiliate_verification", "BLUETTI Elite 300 must remain blocked until an exact CJ EU deeplink is verified");
+assert(bluettiElite300.primaryBlocker === "exact_cj_eu_deeplink_unverified", "BLUETTI Elite 300 exact CJ blocker missing");
 assert(bluettiElite300.stockStatus === "in_stock" && bluettiElite300.stockEvidenceVerifiedAt === "2026-09-07", "BLUETTI Elite 300 live stock evidence missing");
 assert(bluettiElite300.exactRetailPath === "/products/elite-300-portable-power-station", "BLUETTI Elite 300 exact retail path invalid");
 assert(new URL(bluettiElite300.retailEvidenceUrl).hostname === "www.bluettipower.eu", "BLUETTI Elite 300 retail evidence must be first-party");
@@ -309,14 +312,15 @@ assert(sameValues(Object.keys(bluettiElite300.marketEligibility || {}), ["pt-PT"
 assert(sameValues(bluettiElite300.shippingEligibleMarkets || [], ["pt-PT", "ro-RO"]), "BLUETTI Elite 300 verified shipping markets invalid");
 assert(sameValues(bluettiElite300.unsupportedMarkets || [], ["sl-SI"]), "BLUETTI Elite 300 must record Slovenia as unsupported");
 assert(bluettiElite300.standaloneUnlockWeight === 5 && bluettiElite300.affectedWeight === 5, "BLUETTI Elite 300 family unlock weight invalid");
-assert(bluettiElite300.nextActionOwner === "user" && bluettiElite300.nextAction === "provide_exact_eu_affiliate_deeplink", "BLUETTI Elite 300 next action must be exact");
+assert(bluettiElite300.nextActionOwner === "user" && bluettiElite300.nextAction === "provide_exact_cj_elite300_deeplink", "BLUETTI Elite 300 next action must request the exact CJ product deeplink");
 assert(bluettiElite300.applicationReady === true, "BLUETTI Elite 300 activation handoff must be ready");
 assert(bluettiElite300.applicationPacketPath === "docs/affiliate/bluetti-elite300-eu-activation.md", "BLUETTI Elite 300 activation packet path missing");
-assert(sameValues(bluettiElite300.activationFieldsNeeded || [], ["affiliateNetwork", "programId", "affiliateUrl", "finalLandingUrl", "verifiedAt"]), "BLUETTI Elite 300 activation fields invalid");
+assert(sameValues(bluettiElite300.activationFieldsNeeded || [], ["affiliateUrl", "finalLandingUrl", "verifiedAt"]), "BLUETTI Elite 300 activation fields must contain only the remaining CJ handoff evidence");
 assert(typeof bluettiElite300.activationInstructions === "string" && /Do not reuse BLUETTI US tracking/i.test(bluettiElite300.activationInstructions), "BLUETTI Elite 300 activation instructions must reject unverified US tracking");
 const sourcingElite300 = listCommercialSourcingCandidates({ category: "power_station" }).find(({ id }) => id === bluettiElite300.id);
 assert(sourcingElite300?.status === "blocked_affiliate_verification", "BLUETTI Elite 300 sourcing status diverges");
-assert(sourcingElite300?.blocker === "eu_affiliate_deeplink_unverified", "BLUETTI Elite 300 affiliate blocker missing from sourcing queue");
+assert(sourcingElite300?.blocker === "exact_cj_eu_deeplink_unverified", "BLUETTI Elite 300 CJ deeplink blocker missing from sourcing queue");
+assert(sourcingElite300?.affiliateNetwork === "cj" && sourcingElite300?.affiliateApprovalConfirmed === true, "BLUETTI Elite 300 sourcing must retain confirmed CJ approval");
 assert(sourcingElite300?.standaloneUnlockWeight === 5, "BLUETTI Elite 300 sourcing unlock weight missing");
 assert(sourcingElite300?.stockStatus === "in_stock", "BLUETTI Elite 300 sourcing stock evidence missing");
 assert(sameValues(sourcingElite300?.markets || [], ["pt-PT", "ro-RO"]), "BLUETTI Elite 300 sourcing markets invalid");
