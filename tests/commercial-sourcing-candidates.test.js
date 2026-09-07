@@ -138,3 +138,33 @@ test("Solaris exact Phoenix candidates cover both 12V and 24V P0 small-inverter 
     }
   }
 });
+
+
+test("Renogy EU 40A fallbacks stay behind Butler while exact products are backordered", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const controllerCandidates = listCommercialSourcingCandidates({ market, category: "controller" });
+    const rover = controllerCandidates.find((candidate) => candidate.id === "renogy-eu-rover-40a-mppt");
+    assert.ok(rover);
+    assert.equal(rover.status, "blocked_stock");
+    assert.equal(rover.blocker, "exact_product_backordered");
+    assert.equal(rover.secondaryBlocker, "impact_program_approval_unverified");
+    assert.equal(rover.stockStatus, "backorder");
+    assert.equal(rover.specs.currentA, 40);
+    assert.equal(rover.specs.maxPvWattsAt12V, 520);
+    assert.equal(bestCommercialSourcingCandidate({ market, category: "controller" }).id, "butler-victron-scc125060321");
+
+    const dcCandidates = listCommercialSourcingCandidates({ market, category: "dc_charger" });
+    const dc = dcCandidates.find((candidate) => candidate.id === "renogy-eu-dcdc-12-12-40a");
+    assert.ok(dc);
+    assert.equal(dc.status, "blocked_stock");
+    assert.equal(dc.blocker, "exact_product_backordered");
+    assert.equal(dc.secondaryBlocker, "impact_program_approval_unverified");
+    assert.equal(dc.stockStatus, "backorder");
+    assert.equal(dc.specs.inputVoltageV, 12);
+    assert.equal(dc.specs.outputVoltageV, 12);
+    assert.equal(dc.specs.currentA, 40);
+    assert.ok(dc.specs.batteryTypes.includes("lifepo4"));
+    assert.equal(dc.specs.smartAlternatorCompatible, true);
+    assert.equal(bestCommercialSourcingCandidate({ market, category: "dc_charger" }).id, "butler-victron-orion-xs-12-12-50");
+  }
+});
