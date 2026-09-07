@@ -8,6 +8,7 @@ import {
   buildXdatouAffiliateUrl,
   createXdatouInverterCandidate,
   validateXdatouAffiliateUrl,
+  validateXdatouExpansionProduct,
 } from "../src/affiliate-xdatou.js";
 
 const destination = "https://eu.xdatou.com/collections/xdatou-portable-inverter/products/datouboss-2000w-pure-sine-wave-inverter-24v-car-truck";
@@ -120,4 +121,45 @@ test("24V 2000W candidate becomes recommendation-eligible only with stock, marke
     referralCode: "MPS_1234",
   });
   assert.equal(noShipping.recommendationEligible, false);
+});
+
+
+test("activated catalog validator accepts only the exact staged inverter evidence", () => {
+  const affiliateUrl = buildXdatouAffiliateUrl(destination, {
+    approvalConfirmed: true,
+    referralIdentifier: "ref",
+    referralCode: "MPS_1234",
+  });
+  const product = {
+    id: "xdatou:987654321",
+    merchant: "xdatou",
+    name: XDATOU_DATOUBOSS_2000W_24V.name,
+    category: "inverter",
+    priceCzk: 139,
+    priceCurrency: "EUR",
+    available: true,
+    marketEligible: true,
+    productUrl: destination,
+    affiliateUrl,
+    verifiedAt: "2026-09-07",
+    specs: { voltageV: 24, powerW: 2000, pureSine: true },
+  };
+
+  assert.equal(validateXdatouExpansionProduct(product, {
+    approvalConfirmed: true,
+    referralIdentifier: "ref",
+    referralCode: "MPS_1234",
+  }), product);
+
+  assert.throws(() => validateXdatouExpansionProduct(product), /NOT_APPROVED/);
+  assert.throws(() => validateXdatouExpansionProduct({ ...product, productUrl: "https://eu.xdatou.com/" }, {
+    approvalConfirmed: true,
+    referralIdentifier: "ref",
+    referralCode: "MPS_1234",
+  }), /PRODUCT_URL/);
+  assert.throws(() => validateXdatouExpansionProduct({ ...product, specs: { ...product.specs, voltageV: 12 } }, {
+    approvalConfirmed: true,
+    referralIdentifier: "ref",
+    referralCode: "MPS_1234",
+  }), /SPECS/);
 });
