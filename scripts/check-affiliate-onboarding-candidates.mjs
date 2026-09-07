@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { BUTLER_TECHNIK_AWIN, BUTLER_VICTRON_MPPT_250_60_MC4 } from "../src/affiliate-butler.js";
+import { BUTLER_TECHNIK_AWIN, BUTLER_VICTRON_MPPT_250_60_MC4, BUTLER_VICTRON_ORION_XS_12_12_50 } from "../src/affiliate-butler.js";
 import { listCommercialSourcingCandidates } from "../src/commercial-sourcing-candidates.js";
 
 const candidateFile = new URL("../data/affiliate-onboarding-candidates.json", import.meta.url);
@@ -50,6 +50,7 @@ const phoenix12 = required("offgridtec-victron-phoenix-12-250");
 const phoenix24 = required("offgridtec-victron-phoenix-24-250");
 const multiPlus = required("butler-victron-multiplus-ii-24-3000-70-32");
 const smartSolar = required("butler-victron-smartsolar-250-60-mc4");
+const orionXs = required("butler-victron-orion-xs-12-12-50");
 const xdatouInverter = required("xdatou-datouboss-2000w-24v");
 const bluettiFamilyStation = required("bluetti-eu-ac240-b210");
 
@@ -143,6 +144,26 @@ assert(["sk-SK", "pl-PL", "hu-HU", "pt-PT", "ro-RO", "sl-SI"].every((market) => 
 const sourcingSmartSolar = listCommercialSourcingCandidates({ category: "controller" }).find(({ id }) => id === "butler-victron-scc125060321");
 assert(sourcingSmartSolar?.stockStatus === "in_stock" && sourcingSmartSolar?.stockVerifiedAt === smartSolar.stockEvidenceVerifiedAt, "SmartSolar sourcing stock evidence diverges");
 
+assert(orionXs.merchant === "butler_technik", "Orion XS merchant invalid");
+assert(orionXs.network === "awin" && orionXs.programId === BUTLER_TECHNIK_AWIN.merchantId, "Orion XS affiliate programme metadata invalid");
+assert(orionXs.status === "approval_pending", "Orion XS must remain approval_pending until explicit Butler activation");
+assert(orionXs.stockStatus === "in_stock" && orionXs.stockEvidenceVerifiedAt === "2026-09-07", "Orion XS current stock evidence missing");
+assert(orionXs.category === BUTLER_VICTRON_ORION_XS_12_12_50.category, "Orion XS category diverges from Butler source");
+assert(orionXs.exactRetailPath === BUTLER_VICTRON_ORION_XS_12_12_50.exactPath, "Orion XS retail path diverges from Butler source");
+assert(new URL(orionXs.retailEvidenceUrl).hostname === BUTLER_TECHNIK_AWIN.hostname, "Orion XS retail evidence must be Butler Technik");
+assert(new URL(orionXs.shippingEvidenceUrl).hostname === BUTLER_TECHNIK_AWIN.hostname, "Orion XS shipping evidence must be Butler Technik");
+assert(orionXs.specs?.systemVoltage === 12 && BUTLER_VICTRON_ORION_XS_12_12_50.inputVoltagesV.includes(12), "Orion XS 12 V input evidence missing");
+assert(orionXs.specs?.currentA === BUTLER_VICTRON_ORION_XS_12_12_50.currentA && orionXs.specs.currentA === 50, "Orion XS 50 A evidence missing");
+assert(orionXs.specs?.powerW === BUTLER_VICTRON_ORION_XS_12_12_50.powerW && orionXs.specs.powerW === 700, "Orion XS 700 W evidence missing");
+assert(orionXs.specs?.smartAlternatorCompatible === true && BUTLER_VICTRON_ORION_XS_12_12_50.smartAlternatorCompatible === true, "Orion XS smart-alternator evidence missing");
+assert(orionXs.specs?.batteryTypes?.includes("lifepo4") && orionXs.specs?.batteryTypes?.includes("lead_acid"), "Orion XS battery chemistry evidence missing");
+assert(["sk-SK", "pl-PL", "hu-HU", "pt-PT", "ro-RO", "sl-SI"].every((market) => orionXs.shippingEligibleMarkets.includes(market)), "Orion XS shipping evidence does not cover all target markets");
+const sourcingOrionXs = listCommercialSourcingCandidates({ category: "dc_charger" }).find(({ id }) => id === orionXs.id);
+assert(sourcingOrionXs?.status === "pending_affiliate_approval", "Orion XS sourcing status diverges");
+assert(sourcingOrionXs?.blocker === "awin_program_approval", "Orion XS approval blocker missing from sourcing queue");
+assert(sourcingOrionXs?.stockStatus === "in_stock" && sourcingOrionXs?.stockVerifiedAt === orionXs.stockEvidenceVerifiedAt, "Orion XS sourcing stock evidence diverges");
+assert(sameValues(sourcingOrionXs?.markets || [], Object.keys(orionXs.marketEligibility)), "Orion XS onboarding and sourcing target markets diverge");
+
 const statusCounts = onboarding.candidates.reduce((counts, candidate) => {
   counts[candidate.status] = (counts[candidate.status] || 0) + 1;
   return counts;
@@ -156,7 +177,8 @@ console.log(JSON.stringify({
   commercialCoverageImpact: 0,
   blockers: {
     inverter: "Xdatou exact 24 V / 2000 W SKU is in stock and ships to PT/RO/SI; GoAffPro is verified, but account approval and a trackable deeplink are still missing; Butler inverter remains out of stock and Offgridtec stays skipped by owner",
-    controller: "Butler SmartSolar 60 A is in stock and ships to SK/PL/HU/PT/RO/SI; Awin programme approval is the remaining activation blocker"
+    controller: "Butler SmartSolar 60 A is in stock and ships to SK/PL/HU/PT/RO/SI; Awin programme approval is the remaining activation blocker",
+    dcCharger: "Butler Orion XS 12/12 50 A is in stock and staged for SK/PL/HU/PT/RO/SI; the same Butler Awin approval is the remaining activation blocker"
   }
 }, null, 2));
 
