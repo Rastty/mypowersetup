@@ -1,37 +1,41 @@
-# Padabo SK expansion shipping verification
+# Padabo expansion shipping closeout
 
-Status: **affiliate approved / exact product in stock / PT-RO-SI cross-border shipping unverified**
+Status: **affiliate approved / exact product and tracking verified / PT-RO-SI cross-border route closed**
 
 ## Candidate
 
-- Source product ID: `24820_26587`
-- Product: Victron Energy Phoenix VE.Direct 12/250
-- Retail page: https://www.padabo.sk/victron-energy-phoenix-ve-priamy-menic-napatia_z24820/
-- System voltage: 12 V
-- Continuous power: 200 W
-- Waveform: pure sine
-- Current SK feed evidence: in stock
-- Existing eHub campaign: `7aed5c13`
+Victron Energy Phoenix VE.Direct 12/250 sold by Padabo.sk.
 
-This product is an exact fit for the PT/RO/SI `family-touring` P0 small-inverter requirement (12 V, 100-300 W, pure sine).
+- technically fits the 12 V / 100–300 W pure-sine family-touring gap,
+- current product stock and eHub tracking were verified,
+- Padabo.sk remains useful for the Slovak market.
 
-## Why it is not public yet
+## Shipping conclusion — 7 September 2026
 
-Padabo's public shipping page currently provides local delivery methods/prices but does not give sufficient evidence that this SK storefront ships the exact product to Portugal, Romania or Slovenia.
+Padabo.sk's public shipping page is Slovakia-specific:
 
-A localized or existing Padabo group storefront in other Central European countries is not evidence for PT/RO/SI delivery.
+- Packeta pickup coverage is described as more than 2,600 delivery points **in Slovakia**,
+- balíkovo coverage is described as more than 1,600 delivery points **in Slovakia**,
+- listed courier prices and free-shipping thresholds are presented for the Slovak store,
+- the public shipping page provides no concrete delivery evidence for Portugal, Romania or Slovenia.
 
-## System-owned verification steps
+This does not prove that Padabo could never arrange an international shipment manually. It does mean that MyPowerSetup does **not** have sufficient retail evidence to recommend Padabo to PT/RO/SI users.
 
-For each market independently:
+## Decision
 
-1. Confirm that the SK storefront accepts the destination country at checkout, or obtain equivalent first-party shipping evidence.
-2. Confirm the exact Phoenix 12/250 variant remains available.
-3. Preserve the existing eHub deeplink and campaign ID; do not replace it with an untracked link.
-4. Mark only the verified country as market-eligible.
-5. Run recommendation and commercial-coverage tests.
-6. Do not activate another country by inference.
+Do not keep re-checking Padabo as an actionable PT/RO/SI sourcing candidate.
 
-## Priority
+Repository status:
+- `blocked_crossborder_not_supported`
+- blocker: `shipping_policy_domestic_sk_only`
+- no next action
 
-Solaris Phoenix 12/250 remains the preferred sourcing route because its Europe/export evidence is stronger. Padabo is the approved/tracked system-owned fallback if cross-border shipping can be proven.
+The candidate stays in the full sourcing inventory for audit/history and may be reconsidered only if Padabo publishes explicit cross-border delivery support for one of the target markets.
+
+## Preferred routes instead
+
+For the same 12 V small-inverter gap, prioritize:
+1. Solaris Phoenix 12/250 after affiliate tracking + country checkout verification.
+2. Other merchants with explicit PT/RO/SI delivery and verified affiliate tracking.
+
+Padabo remains valid for SK and should not be removed from Slovak-market monetization.
