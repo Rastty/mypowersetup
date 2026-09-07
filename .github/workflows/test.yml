@@ -27,6 +27,7 @@ jobs:
       - run: node --check src/commercial-coverage.js
       - run: node --check src/market-health.js
       - run: node --check src/traffic-distribution.js
+      - run: node --check src/public-link-graph.js
       - run: node --check src/community-attribution.js
       - run: node --check scripts/sync-products.mjs
       - run: node --check scripts/sync-products-pt.mjs
@@ -46,6 +47,7 @@ jobs:
       - run: node --check scripts/check-commercial-opportunities.mjs
       - run: node --check scripts/check-affiliate-onboarding-candidates.mjs
       - run: node --check scripts/check-traffic-distribution.mjs
+      - run: node --check scripts/check-public-internal-links.mjs
       - run: node --check scripts/report-traffic-distribution.mjs
       - run: node --check scripts/report-community-links.mjs
       - run: node --check scripts/smoke-public-mobile.mjs
@@ -58,6 +60,7 @@ jobs:
       - run: npm run check:expansion:release
       - run: npm run check:public:hreflang
       - run: npm run check:public:conversion
+      - run: npm run check:public:links
       - run: npm run check:conversion:analytics
       - run: node scripts/check-postlaunch-public.mjs
       - run: npm run check:commercial:coverage:safe
