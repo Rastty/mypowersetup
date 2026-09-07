@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-09-07T18:33:06.092Z",
+  "generatedAt": "2026-09-07T19:06:04.363Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -821,7 +821,7 @@
   "markets": [
     {
       "market": "cs-CZ",
-      "generatedAt": "2026-09-07T18:32:30.217Z",
+      "generatedAt": "2026-09-07T19:05:34.321Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
@@ -833,7 +833,7 @@
     },
     {
       "market": "sk-SK",
-      "generatedAt": "2026-09-07T18:32:41.687Z",
+      "generatedAt": "2026-09-07T19:05:44.517Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -845,7 +845,7 @@
     },
     {
       "market": "pl-PL",
-      "generatedAt": "2026-09-07T18:32:54.208Z",
+      "generatedAt": "2026-09-07T19:05:54.446Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.21052631578947367,
@@ -857,7 +857,7 @@
     },
     {
       "market": "hu-HU",
-      "generatedAt": "2026-09-07T18:33:04.156Z",
+      "generatedAt": "2026-09-07T19:06:03.247Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -869,7 +869,7 @@
     },
     {
       "market": "pt-PT",
-      "generatedAt": "2026-09-07T18:33:06.092Z",
+      "generatedAt": "2026-09-07T19:06:04.363Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1177,6 +1177,21 @@
           "affectedWeight": 3,
           "shippingVerified": false,
           "stockStatus": "in_stock",
+          "nextActionOwner": null,
+          "nextAction": null
+        },
+        {
+          "id": "solaris-victron-smartsolar-150-60-tr",
+          "category": "controller",
+          "merchant": "solaris_store",
+          "productName": "Victron SmartSolar MPPT 150/60-Tr",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": "dispatch_5_7_days",
           "nextActionOwner": null,
           "nextAction": null
         },
@@ -1526,6 +1541,21 @@
           "nextAction": null
         },
         {
+          "id": "solaris-victron-smartsolar-150-60-tr",
+          "category": "controller",
+          "merchant": "solaris_store",
+          "productName": "Victron SmartSolar MPPT 150/60-Tr",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": "dispatch_5_7_days",
+          "nextActionOwner": null,
+          "nextAction": null
+        },
+        {
           "id": "xdatou-datouboss-2000w-24v",
           "category": "inverter",
           "merchant": "xdatou",
@@ -1852,6 +1882,21 @@
           "affectedWeight": 3,
           "shippingVerified": false,
           "stockStatus": "in_stock",
+          "nextActionOwner": null,
+          "nextAction": null
+        },
+        {
+          "id": "solaris-victron-smartsolar-150-60-tr",
+          "category": "controller",
+          "merchant": "solaris_store",
+          "productName": "Victron SmartSolar MPPT 150/60-Tr",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": "dispatch_5_7_days",
           "nextActionOwner": null,
           "nextAction": null
         },
