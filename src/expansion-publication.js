@@ -16,6 +16,13 @@ const CONFIG = Object.freeze({
   ro: Object.freeze({ locale: "ro-RO", prefix: "/ro/", content: RO_PRIVATE_CONTENT, homeAlternates: ["ro-RO"] }),
 });
 
+const EXPANSION_ARTICLE_DATES = Object.freeze({ datePublished: "2026-08-30", dateModified: "2026-08-30" });
+const EXPANSION_ARTICLE_COPY = Object.freeze({
+  pt: Object.freeze({ about: "/pt/sobre-o-projeto/", byline: "Publicado em 30 de agosto de 2026 · Autor:" }),
+  ro: Object.freeze({ about: "/ro/despre-proiect/", byline: "Publicat la 30 august 2026 · Autor:" }),
+  si: Object.freeze({ about: "/si/o-projektu/", byline: "Objavljeno 30. avgusta 2026 · Avtor:" }),
+});
+
 const PUBLIC_HOME_MARKETS = Object.freeze([
   Object.freeze({ market: "cz", locale: "cs-CZ", lang: "cs", href: "/", label: "CZ" }),
   Object.freeze({ market: "sk", locale: "sk-SK", lang: "sk", href: "/sk/", label: "SK" }),
@@ -110,6 +117,42 @@ function synchronizePublicHreflang(html, route) {
   return output.replace(new RegExp(`(<link rel="canonical" href="${escapeRegExp(canonical)}"\\s*\\/?>)`), `$1\n${tags}`);
 }
 
+function enhanceExpansionArticleAuthority(html, market, route) {
+  const config = CONFIG[market];
+  const copy = EXPANSION_ARTICLE_COPY[market];
+  const hubRoute = config ? `${config.prefix}${guideBase(market)}/` : null;
+  if (!config || !copy || route === hubRoute || !route?.startsWith(hubRoute)) return html;
+
+  let foundArticle = false;
+  const author = { "@type": "Person", name: "Petr Gálík", url: `https://mypowersetup.com${copy.about}` };
+  const publisher = { "@type": "Organization", name: "MyPowerSetup", url: "https://mypowersetup.com/" };
+  let output = html.replace(/(<script\\b[^>]*type=["']application\\/ld\\+json["'][^>]*>)([\\s\\S]*?)(<\\/script>)/gi, (full, open, body, close) => {
+    let json;
+    try {
+      json = JSON.parse(body);
+    } catch {
+      return full;
+    }
+    const nodes = Array.isArray(json?.["@graph"]) ? json["@graph"] : [json];
+    const articles = nodes.filter((node) => node?.["@type"] === "Article");
+    if (!articles.length) return full;
+    foundArticle = true;
+    for (const article of articles) {
+      article.datePublished ||= EXPANSION_ARTICLE_DATES.datePublished;
+      article.dateModified ||= EXPANSION_ARTICLE_DATES.dateModified;
+      article.author = { ...author, ...(article.author || {}) };
+      article.publisher = { ...publisher, ...(article.publisher || {}) };
+    }
+    return `${open}${JSON.stringify(json).replace(/</g, "\\\\u003c")}${close}`;
+  });
+
+  if (!foundArticle || output.includes("data-expansion-article-authority")) return output;
+  const byline = `<p class="article-meta" data-expansion-article-authority>${copy.byline} <a rel="author" href="${copy.about}">Petr Gálík</a></p>`;
+  const headerPattern = /(<main class="article"><header class="article-header">[\\s\\S]*?)(<\\/header>)/;
+  if (headerPattern.test(output)) return output.replace(headerPattern, `$1${byline}$2`);
+  return output.replace('<main class="article">', `<main class="article">${byline}`);
+}
+
 function ensureExpansionArticleSchema(html, market, route) {
   if (/"@type"\s*:\s*"Article"/.test(html)) return html;
   const config = CONFIG[market];
@@ -141,6 +184,7 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
   output = addContextualGrowthLinks(output, market, route);
   output = addExpansionVoltageGuideDiscovery(output, market, route);
   output = ensureExpansionArticleSchema(output, market, route);
+  output = enhanceExpansionArticleAuthority(output, market, route);
   output = synchronizePublicHreflang(output, route);
   const canonical = `https://mypowersetup.com${route}`;
   const additions = [];
