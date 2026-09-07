@@ -132,3 +132,27 @@ test("product-choice impressions share the exact click dimensions", () => {
   trackAffiliateImpressions([link], (...args) => { calls.push(args); return true; });
   assert.deepEqual(calls[0], ["product_choice_impression", buildAffiliateClickParameters(link)]);
 });
+
+
+test("primary portable product choices expose route priority on impressions and clicks", () => {
+  const link = {
+    dataset: {
+      productId: "ps-complete",
+      merchant: "allpowers_pt",
+      category: "power_station",
+      source: "product-card",
+      recommendationRole: "recommended",
+      routePriority: "primary",
+    },
+  };
+  assert.deepEqual(buildAffiliateClickParameters(link), {
+    productId: "ps-complete",
+    merchant: "allpowers_pt",
+    category: "power_station",
+    purchaseRoute: "portable",
+    source: "product-card",
+    packageId: undefined,
+    recommendationRole: "recommended",
+    routePriority: "primary",
+  });
+});

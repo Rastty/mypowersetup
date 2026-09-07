@@ -1,7 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 
 import { expansionPurchaseRoutePriority } from "../src/expansion-purchase-route-priority.js";
+import { COMMERCIAL_SCENARIOS, buildScenarioSetup } from "../src/commercial-scenarios.js";
+import { buildPortugalRecommendations } from "../src/pt-recommendations.js";
+import { buildRomaniaRecommendations } from "../src/ro-recommendations.js";
+import { buildSloveniaRecommendations } from "../src/si-recommendations.js";
 
 const setup = Object.freeze({
   locale: "pt",
@@ -54,4 +59,27 @@ test("missing component coverage never promotes an unavailable portable product"
   assert.equal(result.portableReady, false);
   assert.equal(result.preferPortable, false);
   assert.deepEqual(result.order, ["components", "portable"]);
+});
+
+
+test("current PT RO SI remote-work journey promotes a verified complete portable fallback", async () => {
+  const scenario = COMMERCIAL_SCENARIOS.find((item) => item.id === "remote-work");
+  const fixtures = [
+    ["products-pt.json", "pt", buildPortugalRecommendations],
+    ["products-ro.json", "ro", buildRomaniaRecommendations],
+    ["products-si.json", "sl", buildSloveniaRecommendations],
+  ];
+
+  for (const [file, locale, build] of fixtures) {
+    const catalog = JSON.parse(await readFile(new URL(`../data/${file}`, import.meta.url), "utf8"));
+    const setup = buildScenarioSetup(scenario, locale);
+    const recommendations = build(catalog, setup, 3);
+    const priority = expansionPurchaseRoutePriority(recommendations, setup, locale);
+
+    assert.equal(priority.portableReady, true, `${catalog.market}: verified portable fallback missing`);
+    assert.equal(priority.preferPortable, true, `${catalog.market}: incomplete remote-work components should promote portable route`);
+    assert.equal(priority.order[0], "portable");
+    assert.ok(priority.coverage.missing.includes("inverter"), `${catalog.market}: current P0 inverter gap should still be explicit`);
+    assert.ok(priority.componentProductCount > 0, `${catalog.market}: partial component route should remain useful`);
+  }
 });
