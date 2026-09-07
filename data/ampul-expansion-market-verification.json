@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-07",
+  "policy": "A market may be true only after concrete country-specific checkout or delivery evidence confirms AMPUL can ship the exact product to that market. General EU shipping claims or a localized storefront are insufficient.",
+  "markets": {
+    "pt": {
+      "verified": false,
+      "evidenceUrl": null,
+      "verifiedAt": null
+    },
+    "ro": {
+      "verified": false,
+      "evidenceUrl": null,
+      "verifiedAt": null
+    },
+    "si": {
+      "verified": false,
+      "evidenceUrl": null,
+      "verifiedAt": null
+    }
+  }
+}
