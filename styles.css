@@ -254,6 +254,9 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .expansion-purchase-route h5 { margin: 0 0 5px; font-size: 17px; }
 .expansion-purchase-route > p { max-width: 760px; margin: 0 0 14px; color: var(--muted); font-size: 13px; }
 .expansion-purchase-route.is-portable { padding: 18px; border: 1px solid #c8d9d0; border-radius: var(--radius-md); background: #f4f8f5; }
+.expansion-purchase-route.is-portable.is-priority { border-width: 2px; border-color: #91ad49; background: #f7fbdc; }
+.expansion-purchase-route.is-secondary { opacity: .94; }
+.purchase-route-priority-note { max-width: 820px; margin: 16px 0 4px; padding: 13px 15px; border-left: 4px solid #91ad49; border-radius: 0 9px 9px 0; color: var(--forest-deep); background: #f6fadf; font-size: 13px; line-height: 1.5; }
 .recommendation-roles { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
 .result-card .recommendation-role { display: inline-flex; width: fit-content; padding: 5px 8px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; color: white; background: rgba(255,255,255,.1); font-size: 10px; font-weight: 900; letter-spacing: .02em; text-transform: uppercase; }
 .result-card .recommendation-role-recommended { border-color: var(--lime); color: var(--forest-deep); background: var(--lime); }
