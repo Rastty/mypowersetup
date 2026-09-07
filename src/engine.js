@@ -4,6 +4,11 @@ const BATTERY_MARGIN = 1.15;
 const SOLAR_SYSTEM_EFFICIENCY = 0.75;
 const SOLAR_MARGIN = 1.15;
 const INVERTER_MARGIN = 1.25;
+const CONTROLLER_MARGIN = 1.25;
+const CHARGE_VOLTAGE_PER_NOMINAL_VOLT = Object.freeze({
+  lifepo4: 14.6 / 12,
+  lead: 14.4 / 12,
+});
 
 const ENGINE_TEXT = {
   cs: {
@@ -126,7 +131,8 @@ export function calculateSetup(input) {
   const batteryAh = roundUp(requiredBatteryWh / systemVoltage, 10);
   const solarWattsRaw = (dailyWhRaw * SOLAR_MARGIN) / (season.peakSunHours * SOLAR_SYSTEM_EFFICIENCY);
   const solarWatts = roundUp(solarWattsRaw, 50);
-  const controllerAmps = roundUp((solarWatts / systemVoltage) * 1.25, 10);
+  const controllerSizingVoltage = systemVoltage * (CHARGE_VOLTAGE_PER_NOMINAL_VOLT[input.batteryType] || CHARGE_VOLTAGE_PER_NOMINAL_VOLT.lifepo4);
+  const controllerAmps = roundUp((solarWatts / controllerSizingVoltage) * CONTROLLER_MARGIN, 10);
 
   const warnings = [];
   if (input.season === "winter") {
@@ -159,6 +165,7 @@ export function calculateSetup(input) {
       requiredBatteryWhRaw,
       peakSunHours: season.peakSunHours,
       solarWattsRaw,
+      controllerSizingVoltage,
       estimatedConcurrentWatts,
       largestStartWatts,
       automaticVoltage
@@ -167,7 +174,8 @@ export function calculateSetup(input) {
       batteryMarginPercent: Math.round((BATTERY_MARGIN - 1) * 100),
       usableDepthPercent: Math.round(battery.usableDepth * 100),
       solarEfficiencyPercent: Math.round(SOLAR_SYSTEM_EFFICIENCY * 100),
-      solarMarginPercent: Math.round((SOLAR_MARGIN - 1) * 100)
+      solarMarginPercent: Math.round((SOLAR_MARGIN - 1) * 100),
+      controllerMarginPercent: Math.round((CONTROLLER_MARGIN - 1) * 100)
     }
   };
 }
