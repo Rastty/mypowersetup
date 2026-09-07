@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T17:42:36.470Z",
+  "generatedAt": "2026-09-07T20:10:01.131Z",
   "market": "ro-RO",
   "currency": "EUR",
   "private": false,
@@ -44,6 +44,14 @@
       "blocker": "goaffpro_activation_pending",
       "exactProducts": 0,
       "shippingEvidenceUrl": "https://eu.xdatou.com/pages/shipping-policy",
+      "shippingVerifiedAt": "2026-09-07"
+    },
+    "bluetti_eu": {
+      "status": "blocked",
+      "blocker": "exact_cj_eu_deeplink_unverified",
+      "exactProducts": 0,
+      "approvalConfirmed": true,
+      "shippingEvidenceUrl": "https://www.bluettipower.eu/pages/shipping-country",
       "shippingVerifiedAt": "2026-09-07"
     },
     "ampul_eu": {
