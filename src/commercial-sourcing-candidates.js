@@ -154,16 +154,16 @@ const CANDIDATES = Object.freeze([
     productName: "Victron Energy Phoenix VE.Direct 12/250",
     markets: Object.freeze(["pt-PT", "ro-RO", "sl-SI"]),
     specs: Object.freeze({ systemVoltagesV: Object.freeze([12]), powerW: 200, pureSine: true }),
-    status: "blocked_crossborder_shipping",
-    blocker: "crossborder_shipping_unverified",
+    status: "blocked_crossborder_not_supported",
+    blocker: "shipping_policy_domestic_sk_only",
     standaloneUnlockWeight: 5,
     affectedWeight: 5,
     affiliateApprovalConfirmed: true,
     trackingVerifiedAt: "2026-09-07",
     stockStatus: "in_stock",
     stockVerifiedAt: "2026-09-07",
-    nextActionOwner: "system",
-    nextAction: "verify_padabo_crossborder_shipping_pt_ro_si",
+    nextActionOwner: null,
+    nextAction: "none",
   }),
   Object.freeze({
     id: "ampul-eu-inverter-24v-2000w",
@@ -319,7 +319,7 @@ const CANDIDATES = Object.freeze([
 
 export function listCommercialSourcingCandidates({ market, category, includeSkipped = false } = {}) {
   return Object.freeze(CANDIDATES.filter((candidate) => {
-    if (!includeSkipped && candidate.status === "skipped_by_owner") return false;
+    if (!includeSkipped && ["skipped_by_owner", "blocked_crossborder_not_supported"].includes(candidate.status)) return false;
     if (market && !candidate.markets.includes(market)) return false;
     if (category && candidate.category !== category) return false;
     return true;
@@ -334,6 +334,7 @@ export function bestCommercialSourcingCandidate({ market, category } = {}) {
     blocked_market_verification: 2,
     blocked_market_stock_verification: 2,
     blocked_crossborder_shipping: 3,
+    blocked_crossborder_not_supported: 98,
     blocked_stock: 4,
     blocked_market_stock: 4,
   };
