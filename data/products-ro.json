@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T11:25:13.373Z",
+  "generatedAt": "2026-09-07T14:41:24.577Z",
   "market": "ro-RO",
   "currency": "EUR",
   "private": false,
@@ -38,6 +38,13 @@
       "shippingEvidenceUrl": "https://www.ipowerqueen.de/en/pages/shipping-policy",
       "shippingVerifiedAt": "2026-09-01",
       "exactProducts": 19
+    },
+    "xdatou": {
+      "status": "blocked",
+      "blocker": "goaffpro_activation_pending",
+      "exactProducts": 0,
+      "shippingEvidenceUrl": "https://eu.xdatou.com/pages/shipping-policy",
+      "shippingVerifiedAt": "2026-09-07"
     },
     "oxe_ro": {
       "status": "ok",
