@@ -27,6 +27,8 @@ on:
       - "src/shopify.js"
       - "src/affiliate-allpowers-pt.js"
       - "src/commercial-opportunity-backlog.js"
+      - "src/commercial-sourcing-candidates.js"
+      - "src/commercial-sourcing-priorities.js"
       - "src/commercial-scenarios.js"
       - "src/engine.js"
       - "src/acquisition-requirements.js"

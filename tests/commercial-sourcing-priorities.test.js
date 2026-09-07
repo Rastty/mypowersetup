@@ -17,7 +17,7 @@ test("PT and RO sourcing prioritizes live shipping-verified Elite 300 family rou
     assert.equal(best.affectedWeight, 5);
     assert.equal(best.shippingVerified, true);
     assert.equal(best.stockStatus, "in_stock");
-    assert.equal(best.nextAction, "verify_eu_affiliate_deeplink");
+    assert.equal(best.nextAction, "provide_exact_eu_affiliate_deeplink");
     assert.equal(bestCommercialSourcingRoute(market).id, best.id);
 
     const solaris = routes.find(({ id }) => id === "solaris-victron-phoenix-12-250");

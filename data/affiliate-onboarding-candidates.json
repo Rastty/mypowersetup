@@ -356,7 +356,17 @@
       "affiliateEvidenceUrl": "https://www.bluettipower.eu/pages/affiliate-program",
       "affiliateEvidenceVerifiedAt": "2026-09-07",
       "nextActionOwner": "user",
-      "nextAction": "verify_eu_affiliate_deeplink"
+      "nextAction": "provide_exact_eu_affiliate_deeplink",
+      "applicationReady": true,
+      "applicationPacketPath": "docs/affiliate/bluetti-elite300-eu-activation.md",
+      "activationFieldsNeeded": [
+        "affiliateNetwork",
+        "programId",
+        "affiliateUrl",
+        "finalLandingUrl",
+        "verifiedAt"
+      ],
+      "activationInstructions": "Use only a verified affiliate deep link whose final landing host is www.bluettipower.eu and exact path is /products/elite-300-portable-power-station. Do not reuse BLUETTI US tracking unless the approved programme explicitly proves EU storefront attribution."
     },
     {
       "id": "solaris-victron-phoenix-12-250",

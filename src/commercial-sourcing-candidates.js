@@ -158,7 +158,9 @@ const CANDIDATES = Object.freeze([
     shippingEligibleMarkets: Object.freeze(["pt-PT", "ro-RO"]),
     unsupportedMarkets: Object.freeze(["sl-SI"]),
     nextActionOwner: "user",
-    nextAction: "verify_eu_affiliate_deeplink",
+    nextAction: "provide_exact_eu_affiliate_deeplink",
+    activationFieldsNeeded: Object.freeze(["affiliateNetwork", "programId", "affiliateUrl", "finalLandingUrl", "verifiedAt"]),
+    applicationPacketPath: "docs/affiliate/bluetti-elite300-eu-activation.md",
   }),
   Object.freeze({
     id: "bluetti-eu-ac240-b210",
