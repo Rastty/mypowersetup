@@ -51,7 +51,6 @@ test("PT, RO and SI inverter sourcing prefers the candidate with the largest sta
       "xdatou-datouboss-2000w-24v",
       "solaris-victron-phoenix-12-250",
       "solaris-victron-phoenix-24-250",
-      "padabo-sk-victron-phoenix-12-250",
       "ampul-eu-inverter-24v-2000w",
     ]);
     const best = bestCommercialSourcingCandidate({ market, category: "inverter" });
@@ -77,7 +76,6 @@ test("PT, RO and SI inverter sourcing prefers the candidate with the largest sta
       "xdatou-datouboss-2000w-24v",
       "solaris-victron-phoenix-12-250",
       "solaris-victron-phoenix-24-250",
-      "padabo-sk-victron-phoenix-12-250",
       "ampul-eu-inverter-24v-2000w",
     ]);
     assert.ok(skipped.slice(0, 2).every((candidate) => candidate.status === "skipped_by_owner"));
@@ -258,5 +256,21 @@ test("Padabo small inverter remains a system-owned cross-border fallback below S
 
     const best = bestCommercialSourcingCandidate({ market, category: "inverter" });
     assert.equal(best.id, "solaris-victron-phoenix-12-250");
+  }
+});
+
+
+test("Padabo closed cross-border route stays visible only in full sourcing inventory", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const actionable = listCommercialSourcingCandidates({ market, category: "inverter" });
+    assert.equal(actionable.some(({ id }) => id === "padabo-sk-victron-phoenix-12-250"), false);
+
+    const full = listCommercialSourcingCandidates({ market, category: "inverter", includeSkipped: true });
+    const padabo = full.find(({ id }) => id === "padabo-sk-victron-phoenix-12-250");
+    assert.ok(padabo);
+    assert.equal(padabo.status, "blocked_crossborder_not_supported");
+    assert.equal(padabo.blocker, "shipping_policy_domestic_sk_only");
+    assert.equal(padabo.nextActionOwner, null);
+    assert.equal(padabo.nextAction, "none");
   }
 });
