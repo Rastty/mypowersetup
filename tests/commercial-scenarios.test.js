@@ -58,6 +58,12 @@ test("acquisition requirements mirror the real recommender fit window", () => {
   assert.deepEqual(acquisitionRequirement("battery", winter), {
     category: "battery", systemVoltage: 12, batteryType: "lifepo4", minCapacityAh: 130, maxCapacityAh: 390,
   });
+  assert.deepEqual(acquisitionRequirement("controller", family), {
+    category: "controller", technology: "mppt", minCurrentA: 30, maxCurrentA: 90, systemVoltage: 12, minArrayWatts: 300,
+  });
+  assert.deepEqual(acquisitionRequirement("controller", winter), {
+    category: "controller", technology: "mppt", minCurrentA: 50, maxCurrentA: 150, systemVoltage: 12, minArrayWatts: 550,
+  });
 });
 
 test("missing exact-fit categories include machine-readable acquisition specs", () => {
