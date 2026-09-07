@@ -49,6 +49,8 @@ const CANDIDATES = Object.freeze([
     specs: Object.freeze({ mppt: true, systemVoltagesV: Object.freeze([12, 24, 48]), currentA: 60, maxPvWattsAt12V: 860 }),
     status: "pending_affiliate_approval",
     blocker: "awin_program_approval",
+    stockStatus: "in_stock",
+    stockVerifiedAt: "2026-09-07",
   }),
   Object.freeze({
     id: "xdatou-datouboss-2000w-24v",
@@ -61,7 +63,8 @@ const CANDIDATES = Object.freeze([
     markets: Object.freeze(["pt-PT", "ro-RO", "sl-SI"]),
     specs: Object.freeze({ systemVoltagesV: Object.freeze([24]), powerW: 2000, pureSine: true }),
     status: "blocked_affiliate_verification",
-    blocker: "goaffpro_terms_and_account_approval_not_verified",
+    blocker: "goaffpro_account_approval_not_verified",
+    affiliateNetworkVerifiedAt: "2026-09-07",
   }),
   Object.freeze({
     id: "bluetti-eu-ac240-b210",
