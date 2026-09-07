@@ -156,6 +156,54 @@
       "stockStatus": "in_stock"
     },
     {
+      "id": "butler-victron-orion-xs-12-12-50",
+      "merchant": "butler_technik",
+      "network": "awin",
+      "programId": 31291,
+      "status": "approval_pending",
+      "category": "dc_charger",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "retailEvidenceUrl": "https://www.butlertechnik.com/item/Victron/Smart-Buckboost-50A-700W-non-iso-DC-DC-charger/BPV",
+      "retailEvidenceVerifiedAt": "2026-09-07",
+      "shippingEvidenceUrl": "https://www.butlertechnik.com/",
+      "shippingEvidenceVerifiedAt": "2026-09-07",
+      "exactRetailPath": "/item/Victron/Smart-Buckboost-50A-700W-non-iso-DC-DC-charger/BPV",
+      "marketEligibility": {
+        "sk-SK": "unverified",
+        "pl-PL": "unverified",
+        "hu-HU": "unverified",
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "shippingEligibleMarkets": [
+        "sk-SK",
+        "pl-PL",
+        "hu-HU",
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "specs": {
+        "systemVoltage": 12,
+        "currentA": 50,
+        "powerW": 700,
+        "efficiencyPercent": 98.5,
+        "batteryTypes": [
+          "lifepo4",
+          "lead_acid"
+        ],
+        "smartAlternatorCompatible": true
+      },
+      "targetScenarioIds": [
+        "family-touring",
+        "remote-work"
+      ],
+      "stockEvidenceVerifiedAt": "2026-09-07",
+      "stockStatus": "in_stock"
+    },
+    {
       "id": "xdatou-datouboss-2000w-24v",
       "merchant": "xdatou",
       "network": "goaffpro",

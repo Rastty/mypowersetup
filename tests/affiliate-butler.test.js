@@ -5,11 +5,14 @@ import {
   BUTLER_SUPPORTED_MARKETS,
   BUTLER_TECHNIK_AWIN,
   BUTLER_VICTRON_MPPT_250_60_MC4,
+  BUTLER_VICTRON_ORION_XS_12_12_50,
   buildButlerAffiliateUrl,
-  createButlerVictronCandidate
+  createButlerVictronCandidate,
+  createButlerOrionXsCandidate
 } from "../src/affiliate-butler.js";
 
 const exactDestination = "https://www.butlertechnik.com/item/Victron/SmartSolar-MPPT-250-60-MC4/BT2";
+const orionDestination = "https://www.butlertechnik.com/item/Victron/Smart-Buckboost-50A-700W-non-iso-DC-DC-charger/BPV";
 
 test("Butler Technik candidate stays fail-closed before Awin approval", () => {
   assert.equal(BUTLER_TECHNIK_AWIN.merchantId, 31291);
@@ -26,14 +29,16 @@ test("Butler Technik candidate stays fail-closed before Awin approval", () => {
   assert.equal(candidate.recommendationEligible, false);
 });
 
-test("approved adapter preserves only the exact Butler product destination", () => {
-  const affiliateUrl = buildButlerAffiliateUrl(exactDestination, { approvalConfirmed: true });
-  const url = new URL(affiliateUrl);
+test("approved adapter preserves only staged exact Butler product destinations", () => {
+  for (const destination of [exactDestination, orionDestination]) {
+    const affiliateUrl = buildButlerAffiliateUrl(destination, { approvalConfirmed: true });
+    const url = new URL(affiliateUrl);
 
-  assert.equal(url.hostname, "www.awin1.com");
-  assert.equal(url.searchParams.get("awinmid"), "31291");
-  assert.equal(url.searchParams.get("awinaffid"), "3044971");
-  assert.equal(url.searchParams.get("ued"), exactDestination);
+    assert.equal(url.hostname, "www.awin1.com");
+    assert.equal(url.searchParams.get("awinmid"), "31291");
+    assert.equal(url.searchParams.get("awinaffid"), "3044971");
+    assert.equal(url.searchParams.get("ued"), destination);
+  }
 
   assert.equal(buildButlerAffiliateUrl("https://www.butlertechnik.com/victron-energy", { approvalConfirmed: true }), null);
   assert.equal(buildButlerAffiliateUrl("https://example.com/item/Victron/SmartSolar-MPPT-250-60-MC4/BT2", { approvalConfirmed: true }), null);
@@ -84,4 +89,42 @@ test("candidate becomes eligible only for explicitly verified supported shipping
     approvalConfirmed: true
   });
   assert.equal(outOfStock.recommendationEligible, false);
+});
+
+
+test("Orion XS activation pack stays fail-closed and preserves 12V 50A evidence", () => {
+  assert.equal(BUTLER_VICTRON_ORION_XS_12_12_50.category, "dc_charger");
+  assert.equal(BUTLER_VICTRON_ORION_XS_12_12_50.currentA, 50);
+  assert.equal(BUTLER_VICTRON_ORION_XS_12_12_50.powerW, 700);
+  assert.deepEqual(BUTLER_VICTRON_ORION_XS_12_12_50.inputVoltagesV, [12]);
+  assert.deepEqual(BUTLER_VICTRON_ORION_XS_12_12_50.chargingVoltagesV, [12]);
+  assert.ok(BUTLER_VICTRON_ORION_XS_12_12_50.batteryTypes.includes("lifepo4"));
+  assert.equal(BUTLER_VICTRON_ORION_XS_12_12_50.smartAlternatorCompatible, true);
+
+  const pending = createButlerOrionXsCandidate({
+    destination: orionDestination,
+    inStock: true,
+    shippableMarkets: ["sk", "pl", "hu", "pt", "ro", "si"]
+  });
+  assert.equal(pending.affiliateUrl, null);
+  assert.equal(pending.recommendationEligible, false);
+
+  const approved = createButlerOrionXsCandidate({
+    destination: orionDestination,
+    inStock: true,
+    shippableMarkets: ["pt", "ro", "si"],
+    approvalConfirmed: true
+  });
+  assert.deepEqual(approved.verifiedMarkets, ["pt", "ro", "si"]);
+  assert.equal(approved.recommendationEligible, true);
+  assert.equal(new URL(approved.affiliateUrl).searchParams.get("ued"), orionDestination);
+
+  const wrongDestination = createButlerOrionXsCandidate({
+    destination: exactDestination,
+    inStock: true,
+    shippableMarkets: ["pt"],
+    approvalConfirmed: true
+  });
+  assert.equal(wrongDestination.destination, null);
+  assert.equal(wrongDestination.recommendationEligible, false);
 });
