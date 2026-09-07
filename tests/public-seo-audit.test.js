@@ -9,7 +9,7 @@ const page = ({ route, schemas = [], robots = "" }) => `<html><head>${robots}<li
 test("public SEO audit accepts calculator and localized article schema", async () => {
   const pages = new Map([
     ["index.html", page({ route: "/", schemas: [{ "@type": "WebSite" }, { "@type": "WebApplication" }] })],
-    ["pt/guias/bateria/index.html", page({ route: "/pt/guias/bateria/", schemas: [{ "@type": "Article", inLanguage: "pt-PT" }] })],
+    ["pt/guias/bateria/index.html", page({ route: "/pt/guias/bateria/", schemas: [{ "@type": "Article", inLanguage: "pt-PT", datePublished: "2026-08-30", dateModified: "2026-08-30", author: { "@type": "Person", name: "Petr Gálík", url: "https://mypowersetup.com/pt/sobre-o-projeto/" }, publisher: { "@type": "Organization", name: "MyPowerSetup" } }] })],
   ]);
   const report = await auditPublicSeo({
     sitemapXml: '<urlset><url><loc>https://mypowersetup.com/</loc></url><url><loc>https://mypowersetup.com/pt/guias/bateria/</loc></url></urlset>',
