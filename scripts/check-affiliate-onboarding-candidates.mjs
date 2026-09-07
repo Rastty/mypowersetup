@@ -29,6 +29,7 @@ const merchantPolicies = new Map([
   ["xdatou", new Set(["blocked_affiliate_verification"])],
   ["solaris_store", new Set(["blocked_affiliate_verification"])],
   ["ampul_eu", new Set(["blocked_market_verification", "blocked_market_stock_verification"])],
+  ["padabo_sk", new Set(["blocked_crossborder_shipping"])],
   ["renogy_eu", new Set(["blocked_stock"])],
   ["bluetti_eu", new Set(["blocked_stock"])],
 ]);
@@ -60,6 +61,7 @@ const orionXs = required("butler-victron-orion-xs-12-12-50");
 const xdatouInverter = required("xdatou-datouboss-2000w-24v");
 const solarisPhoenix12 = required("solaris-victron-phoenix-12-250");
 const solarisPhoenix24 = required("solaris-victron-phoenix-24-250");
+const padaboPhoenix12 = required("padabo-sk-victron-phoenix-12-250");
 const ampulInverter24 = required("ampul-eu-inverter-24v-2000w");
 const ampulDcDc30 = required("ampul-eu-dcdc-12v-30a");
 const renogyRover40 = required("renogy-eu-rover-40a-mppt");
@@ -177,6 +179,28 @@ for (const [candidate, voltage, peakPowerW, exactPath] of [
   assert(sourcing?.specs?.systemVoltagesV?.includes(voltage), `${candidate.id}: Solaris sourcing voltage diverges`);
   assert(sourcing?.specs?.powerW === 200 && sourcing?.specs?.pureSine === true, `${candidate.id}: Solaris sourcing specs diverge`);
 }
+
+assert(padaboPhoenix12.merchant === "padabo_sk", "Padabo expansion merchant invalid");
+assert(padaboPhoenix12.network === "ehub" && padaboPhoenix12.campaignId === "7aed5c13", "Padabo eHub campaign metadata invalid");
+assert(padaboPhoenix12.affiliateApprovalConfirmed === true, "Padabo approved tracking evidence missing");
+assert(padaboPhoenix12.status === "blocked_crossborder_shipping", "Padabo expansion status invalid");
+assert(padaboPhoenix12.category === "inverter", "Padabo expansion category invalid");
+assert(padaboPhoenix12.productUrl === null && padaboPhoenix12.affiliateUrl === null, "Padabo inactive expansion candidate leaked public URLs");
+assert(padaboPhoenix12.sourceProductId === "24820_26587", "Padabo exact source variant missing");
+const padaboTracked = new URL(padaboPhoenix12.trackingEvidenceUrl);
+assert(padaboTracked.hostname === "ehub.cz" && padaboTracked.searchParams.get("a_aid") === "f34c86c8" && padaboTracked.searchParams.get("a_bid") === "7aed5c13", "Padabo eHub tracking evidence invalid");
+assert(new URL(padaboTracked.searchParams.get("desturl")).hostname === "www.padabo.sk", "Padabo tracked destination invalid");
+assert(padaboPhoenix12.stockStatus === "in_stock" && padaboPhoenix12.stockEvidenceVerifiedAt === "2026-09-07", "Padabo current stock evidence missing");
+assert(padaboPhoenix12.specs?.systemVoltage === 12 && padaboPhoenix12.specs?.continuousPowerW === 200 && padaboPhoenix12.specs?.waveform === "pure_sine", "Padabo Phoenix technical evidence invalid");
+assert(padaboPhoenix12.shippingEvidenceScope === "local_shipping_only_crossborder_unverified", "Padabo cross-border shipping must remain unverified");
+assert(sameValues(Object.keys(padaboPhoenix12.marketEligibility || {}), ["pt-PT", "ro-RO", "sl-SI"]), "Padabo expansion target markets invalid");
+assert(Object.values(padaboPhoenix12.marketEligibility).every((value) => value === "unverified"), "Padabo expansion eligibility must remain fail-closed");
+assert(padaboPhoenix12.nextActionOwner === "system" && padaboPhoenix12.nextAction === "verify_padabo_crossborder_shipping_pt_ro_si", "Padabo next action must remain system-owned");
+const sourcingPadabo = listCommercialSourcingCandidates({ category: "inverter" }).find(({ id }) => id === padaboPhoenix12.id);
+assert(sourcingPadabo?.status === "blocked_crossborder_shipping", "Padabo sourcing status diverges");
+assert(sourcingPadabo?.blocker === "crossborder_shipping_unverified", "Padabo cross-border blocker missing");
+assert(sourcingPadabo?.standaloneUnlockWeight === 5 && sourcingPadabo?.affectedWeight === 5, "Padabo immediate-unlock impact missing");
+assert(sourcingPadabo?.nextActionOwner === "system", "Padabo sourcing ownership invalid");
 
 for (const [candidate, expectedStatus, expectedCategory] of [
   [ampulInverter24, "blocked_market_stock_verification", "inverter"],
