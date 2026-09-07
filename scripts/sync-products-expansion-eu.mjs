@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { syncAllpowersEu } from "./lib/sync-allpowers-eu.mjs";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 import { syncXdatouEu } from "./lib/sync-xdatou-eu.mjs";
+import { syncAmpulRomaniaDcdc } from "./lib/sync-ampul-expansion.mjs";
 import { syncOxeMarket } from "./lib/sync-oxe.mjs";
 import { isOxeTechnicallyCompletePowerStation } from "../src/oxe-feed.js";
 
@@ -19,6 +20,8 @@ async function readCatalog(path, market) {
 }
 
 const previousCatalogs = await Promise.all(targets.map((target) => readCatalog(target.path, target.market)));
+const ampulSourceCatalog = await readCatalog("data/products-ampul-cz.json", "cs-CZ");
+const syncedAmpulRomania = syncAmpulRomaniaDcdc(ampulSourceCatalog);
 const preservedAllpowers = [...new Map(
   previousCatalogs
     .flatMap((catalog) => catalog.products || [])
@@ -75,7 +78,10 @@ for (let index = 0; index < targets.length; index += 1) {
   const oxePowerStations = syncedOxe.products
     .filter(isOxeTechnicallyCompletePowerStation)
     .map((product) => ({ ...product, marketEligible: true }));
-  const products = [...allpowersProducts, ...powerQueenProducts, ...xdatouProducts, ...oxePowerStations];
+  const ampulProducts = target.market === "ro-RO" && syncedAmpulRomania.source.status === "ok"
+    ? syncedAmpulRomania.products
+    : [];
+  const products = [...allpowersProducts, ...powerQueenProducts, ...xdatouProducts, ...ampulProducts, ...oxePowerStations];
 
   const catalog = {
     generatedAt: new Date().toISOString(),
@@ -85,12 +91,17 @@ for (let index = 0; index < targets.length; index += 1) {
     shippingEligibility: {
       country: target.country,
       merchant: "allpowers_eu",
-      merchants: ["allpowers_eu", "powerqueen_eu", ...(xdatouProducts.length ? ["xdatou"] : []), target.oxeMerchant],
+      merchants: ["allpowers_eu", "powerqueen_eu", ...(xdatouProducts.length ? ["xdatou"] : []), ...(ampulProducts.length ? ["ampul_eu"] : []), target.oxeMerchant],
       eligible: true,
       verifiedAt: "2026-09-01",
       evidenceUrl: "https://iallpowers.eu/",
       powerQueenEvidenceUrl: "https://www.ipowerqueen.de/en/pages/shipping-policy",
       ...(xdatouProducts.length ? { xdatouEvidenceUrl: "https://eu.xdatou.com/pages/shipping-policy" } : {}),
+      ...(ampulProducts.length ? {
+        ampulEvidenceUrl: syncedAmpulRomania.source.productUrl,
+        ampulTermsEvidenceUrl: syncedAmpulRomania.source.termsUrl,
+        ampulShippingEvidenceUrl: syncedAmpulRomania.source.shippingEvidenceUrl,
+      } : {}),
       localMerchantEvidence: syncedOxe.source.feedUrl,
     },
     sources: {
@@ -115,6 +126,12 @@ for (let index = 0; index < targets.length; index += 1) {
         shippingVerifiedAt: "2026-09-07",
         exactProducts: xdatouProducts.length,
       },
+      ...(target.market === "ro-RO" ? {
+        ampul_eu: {
+          ...syncedAmpulRomania.source,
+          exactProducts: ampulProducts.length,
+        },
+      } : {}),
       [target.oxeMerchant]: {
         ...syncedOxe.source,
         exactProducts: oxePowerStations.length,
@@ -123,5 +140,5 @@ for (let index = 0; index < targets.length; index += 1) {
     products,
   };
   await writeFile(target.path, `${JSON.stringify(catalog, null, 2)}\n`);
-  console.log(`${target.market}: ${allpowersPowerStations.length} ALLPOWERS power stations + ${allpowersSolarPanels.length} solar panels + ${powerQueenProducts.length} Power Queen components + ${xdatouProducts.length} Xdatou inverters + ${oxePowerStations.length} verified OXE power stations.`);
+  console.log(`${target.market}: ${allpowersPowerStations.length} ALLPOWERS power stations + ${allpowersSolarPanels.length} solar panels + ${powerQueenProducts.length} Power Queen components + ${xdatouProducts.length} Xdatou inverters + ${ampulProducts.length} Ampul DC-DC chargers + ${oxePowerStations.length} verified OXE power stations.`);
 }
