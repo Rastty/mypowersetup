@@ -1,6 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { buildCommercialOpportunityBacklog, aggregateCommercialOpportunityBacklogs } from "../src/commercial-opportunity-backlog.js";
 import { COMMERCIAL_MARKET_CONFIG } from "../src/commercial-market-config.js";
+import { rankCommercialSourcingRoutes } from "../src/commercial-sourcing-priorities.js";
 
 const OUTPUT = new URL("../data/commercial-opportunity-report.json", import.meta.url);
 
@@ -59,12 +60,14 @@ const markets = backlogs.map((backlog, index) => ({
   weightedCoverage: backlog.weightedCoverage,
   topOpportunity: backlog.opportunities[0] ? compactOpportunity(backlog.opportunities[0]) : null,
   opportunities: backlog.opportunities.map(compactOpportunity),
+  topSourcingRoute: rankCommercialSourcingRoutes(backlog.market)[0] || null,
+  sourcingRoutes: rankCommercialSourcingRoutes(backlog.market),
 }));
 const generatedAt = latestTimestamp(catalogs.map((catalog) => catalog.generatedAt).filter(Boolean));
 const allMarkets = COMMERCIAL_MARKET_CONFIG.map(({ market }) => market);
 
 const report = {
-  schemaVersion: 4,
+  schemaVersion: 5,
   generatedAt,
   focusMarkets: allMarkets,
   focusPortfolio: aggregateCommercialOpportunityBacklogs(backlogs),
