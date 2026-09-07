@@ -43,7 +43,7 @@ test("small pure-sine inverter sourcing remains fail-closed until affiliate veri
   }
 });
 
-test("PT, RO and SI inverter sourcing prefers the in-stock Xdatou exact fit behind its affiliate gate", () => {
+test("PT, RO and SI inverter sourcing prefers the candidate with the largest standalone purchase-ready unlock", () => {
   for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
     const candidates = listCommercialSourcingCandidates({ market, category: "inverter" });
     assert.deepEqual(candidates.map(({ id }) => id), [
@@ -53,13 +53,19 @@ test("PT, RO and SI inverter sourcing prefers the in-stock Xdatou exact fit behi
       "solaris-victron-phoenix-24-250",
     ]);
     const best = bestCommercialSourcingCandidate({ market, category: "inverter" });
-    assert.equal(best.id, "xdatou-datouboss-2000w-24v");
+    assert.equal(best.id, "solaris-victron-phoenix-12-250");
     assert.equal(best.status, "blocked_affiliate_verification");
-    assert.equal(best.blocker, "goaffpro_account_approval_not_verified");
-    assert.deepEqual(best.activationFieldsNeeded, ["approvalConfirmed", "referralIdentifier", "referralCode"]);
-    assert.equal(best.affiliateNetworkVerifiedAt, "2026-09-07");
-    assert.equal(best.specs.powerW, 2000);
+    assert.equal(best.blocker, "affiliate_tracking_not_verified");
+    assert.equal(best.standaloneUnlockWeight, 5);
+    assert.equal(best.affectedWeight, 5);
+    assert.equal(best.specs.systemVoltagesV[0], 12);
+    assert.equal(best.specs.powerW, 200);
     assert.equal(best.specs.pureSine, true);
+
+    const xdatou = candidates.find((candidate) => candidate.id === "xdatou-datouboss-2000w-24v");
+    assert.equal(xdatou.standaloneUnlockWeight, 0);
+    assert.equal(xdatou.affectedWeight, 5);
+    assert.deepEqual(xdatou.activationFieldsNeeded, ["approvalConfirmed", "referralIdentifier", "referralCode"]);
 
     const skipped = listCommercialSourcingCandidates({ market, category: "inverter", includeSkipped: true });
     assert.deepEqual(skipped.map(({ id }) => id), [
@@ -166,5 +172,24 @@ test("Renogy EU 40A fallbacks stay behind Butler while exact products are backor
     assert.ok(dc.specs.batteryTypes.includes("lifepo4"));
     assert.equal(dc.specs.smartAlternatorCompatible, true);
     assert.equal(bestCommercialSourcingCandidate({ market, category: "dc_charger" }).id, "butler-victron-orion-xs-12-12-50");
+  }
+});
+
+
+test("same-status sourcing tie-break favors standalone unlock before total affected weight", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const candidates = listCommercialSourcingCandidates({ market, category: "inverter" });
+    const solaris12 = candidates.find((candidate) => candidate.id === "solaris-victron-phoenix-12-250");
+    const solaris24 = candidates.find((candidate) => candidate.id === "solaris-victron-phoenix-24-250");
+    const xdatou = candidates.find((candidate) => candidate.id === "xdatou-datouboss-2000w-24v");
+
+    assert.equal(solaris12.status, xdatou.status);
+    assert.equal(solaris12.status, solaris24.status);
+    assert.equal(solaris12.standaloneUnlockWeight, 5);
+    assert.equal(xdatou.standaloneUnlockWeight, 0);
+    assert.equal(solaris24.standaloneUnlockWeight, 0);
+    assert.equal(xdatou.affectedWeight, 5);
+    assert.equal(solaris24.affectedWeight, 3);
+    assert.equal(bestCommercialSourcingCandidate({ market, category: "inverter" }).id, solaris12.id);
   }
 });
