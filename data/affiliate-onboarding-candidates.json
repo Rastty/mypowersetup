@@ -493,6 +493,96 @@
         "family-touring",
         "winter-basic"
       ]
+    },
+    {
+      "id": "ampul-eu-inverter-24v-2000w",
+      "merchant": "ampul_eu",
+      "network": "ehub",
+      "programId": null,
+      "campaignId": "ddb5edae",
+      "status": "blocked_market_stock_verification",
+      "category": "inverter",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "retailEvidenceUrl": "https://ampul.eu/cs/menice-napeti/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "retailEvidenceVerifiedAt": "2026-09-07",
+      "trackingEvidenceUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fmenice-napeti%2F5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+      "trackingVerifiedAt": "2026-09-07",
+      "affiliateApprovalConfirmed": true,
+      "shippingEvidenceUrl": "https://ampul.eu/en/",
+      "shippingEvidenceVerifiedAt": "2026-09-07",
+      "shippingEvidenceScope": "32_european_countries_general",
+      "storefrontEvidence": {
+        "ro-RO": "https://ampul.eu/ro/",
+        "sl-SI": "https://ampul.eu/sl/"
+      },
+      "stockStatus": "variant_unverified",
+      "stockEvidenceVerifiedAt": "2026-09-07",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "specs": {
+        "systemVoltage": 24,
+        "continuousPowerW": 2000,
+        "waveform": "pure_sine",
+        "outputVoltageV": 230
+      },
+      "targetScenarioIds": [
+        "coffee-offgrid",
+        "high-power-tools"
+      ],
+      "nextActionOwner": "system",
+      "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock"
+    },
+    {
+      "id": "ampul-eu-dcdc-12v-30a",
+      "merchant": "ampul_eu",
+      "network": "ehub",
+      "programId": null,
+      "campaignId": "ddb5edae",
+      "status": "blocked_market_verification",
+      "category": "dc_charger",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "retailEvidenceUrl": "https://ampul.eu/cs/nabijecky/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
+      "retailEvidenceVerifiedAt": "2026-09-07",
+      "trackingEvidenceUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fnabijecky%2F6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
+      "trackingVerifiedAt": "2026-09-07",
+      "affiliateApprovalConfirmed": true,
+      "shippingEvidenceUrl": "https://ampul.eu/en/",
+      "shippingEvidenceVerifiedAt": "2026-09-07",
+      "shippingEvidenceScope": "32_european_countries_general",
+      "storefrontEvidence": {
+        "ro-RO": "https://ampul.eu/ro/",
+        "sl-SI": "https://ampul.eu/sl/"
+      },
+      "stockStatus": "in_stock",
+      "stockEvidenceVerifiedAt": "2026-09-07",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "specs": {
+        "inputVoltages": [
+          12,
+          24
+        ],
+        "outputVoltage": 14.6,
+        "currentA": 30,
+        "powerW": 400,
+        "batteryTypes": [
+          "lifepo4"
+        ]
+      },
+      "targetScenarioIds": [
+        "family-touring",
+        "winter-basic"
+      ],
+      "nextActionOwner": "system",
+      "nextAction": "verify_pt_ro_si_checkout"
     }
   ]
 }

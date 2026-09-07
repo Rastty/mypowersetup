@@ -28,6 +28,7 @@ const merchantPolicies = new Map([
   ["offgridtec", new Set(["skipped_by_owner"])],
   ["xdatou", new Set(["blocked_affiliate_verification"])],
   ["solaris_store", new Set(["blocked_affiliate_verification"])],
+  ["ampul_eu", new Set(["blocked_market_verification", "blocked_market_stock_verification"])],
   ["renogy_eu", new Set(["blocked_stock"])],
   ["bluetti_eu", new Set(["blocked_stock"])],
 ]);
@@ -59,6 +60,8 @@ const orionXs = required("butler-victron-orion-xs-12-12-50");
 const xdatouInverter = required("xdatou-datouboss-2000w-24v");
 const solarisPhoenix12 = required("solaris-victron-phoenix-12-250");
 const solarisPhoenix24 = required("solaris-victron-phoenix-24-250");
+const ampulInverter24 = required("ampul-eu-inverter-24v-2000w");
+const ampulDcDc30 = required("ampul-eu-dcdc-12v-30a");
 const renogyRover40 = required("renogy-eu-rover-40a-mppt");
 const renogyDcDc40 = required("renogy-eu-dcdc-12-12-40a");
 const bluettiFamilyStation = required("bluetti-eu-ac240-b210");
@@ -174,6 +177,44 @@ for (const [candidate, voltage, peakPowerW, exactPath] of [
   assert(sourcing?.specs?.systemVoltagesV?.includes(voltage), `${candidate.id}: Solaris sourcing voltage diverges`);
   assert(sourcing?.specs?.powerW === 200 && sourcing?.specs?.pureSine === true, `${candidate.id}: Solaris sourcing specs diverge`);
 }
+
+for (const [candidate, expectedStatus, expectedCategory] of [
+  [ampulInverter24, "blocked_market_stock_verification", "inverter"],
+  [ampulDcDc30, "blocked_market_verification", "dc_charger"],
+]) {
+  assert(candidate.merchant === "ampul_eu", `${candidate.id}: Ampul merchant invalid`);
+  assert(candidate.network === "ehub" && candidate.campaignId === "ddb5edae", `${candidate.id}: Ampul eHub campaign metadata invalid`);
+  assert(candidate.affiliateApprovalConfirmed === true, `${candidate.id}: Ampul approved tracking evidence missing`);
+  assert(candidate.status === expectedStatus, `${candidate.id}: Ampul onboarding status invalid`);
+  assert(candidate.category === expectedCategory, `${candidate.id}: Ampul category invalid`);
+  assert(candidate.productUrl === null && candidate.affiliateUrl === null, `${candidate.id}: Ampul inactive candidate leaked public URLs`);
+  const tracked = new URL(candidate.trackingEvidenceUrl);
+  assert(tracked.hostname === "ehub.cz" && tracked.pathname === "/system/scripts/click.php", `${candidate.id}: Ampul eHub tracking evidence invalid`);
+  assert(tracked.searchParams.get("a_aid") === "f34c86c8" && tracked.searchParams.get("a_bid") === "ddb5edae", `${candidate.id}: Ampul tracking IDs invalid`);
+  const trackedDestination = new URL(tracked.searchParams.get("desturl"));
+  assert(trackedDestination.hostname === "ampul.eu", `${candidate.id}: Ampul tracked destination invalid`);
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(candidate.trackingVerifiedAt || ""), `${candidate.id}: Ampul tracking verification date missing`);
+  assert(new URL(candidate.retailEvidenceUrl).hostname === "ampul.eu", `${candidate.id}: Ampul retail evidence invalid`);
+  assert(new URL(candidate.shippingEvidenceUrl).hostname === "ampul.eu", `${candidate.id}: Ampul shipping evidence invalid`);
+  assert(candidate.shippingEvidenceScope === "32_european_countries_general", `${candidate.id}: Ampul general shipping scope must stay explicit`);
+  assert(candidate.storefrontEvidence?.["ro-RO"] === "https://ampul.eu/ro/", `${candidate.id}: Ampul Romanian storefront evidence missing`);
+  assert(candidate.storefrontEvidence?.["sl-SI"] === "https://ampul.eu/sl/", `${candidate.id}: Ampul Slovenian storefront evidence missing`);
+  assert(sameValues(Object.keys(candidate.marketEligibility || {}), ["pt-PT", "ro-RO", "sl-SI"]), `${candidate.id}: Ampul target markets invalid`);
+  assert(Object.values(candidate.marketEligibility).every((value) => value === "unverified"), `${candidate.id}: Ampul market eligibility must stay fail-closed`);
+  assert(candidate.nextActionOwner === "system", `${candidate.id}: Ampul checkout verification should remain system-owned`);
+
+  const sourcing = listCommercialSourcingCandidates({ category: expectedCategory }).find(({ id }) => id === candidate.id);
+  assert(sourcing?.status === candidate.status, `${candidate.id}: Ampul onboarding and sourcing statuses diverge`);
+  assert(sourcing?.blocker === "market_shipping_checkout_unverified", `${candidate.id}: Ampul market blocker missing`);
+  assert(sourcing?.affiliateApprovalConfirmed === true, `${candidate.id}: Ampul approved state missing from sourcing queue`);
+  assert(sourcing?.nextActionOwner === "system", `${candidate.id}: Ampul sourcing action owner invalid`);
+}
+
+assert(ampulInverter24.stockStatus === "variant_unverified", "Ampul 24V inverter variant stock must remain unverified");
+assert(ampulInverter24.specs?.systemVoltage === 24 && ampulInverter24.specs?.continuousPowerW === 2000 && ampulInverter24.specs?.waveform === "pure_sine", "Ampul 24V inverter evidence invalid");
+assert(ampulInverter24.targetScenarioIds?.includes("coffee-offgrid"), "Ampul inverter target scenario missing");
+assert(ampulDcDc30.stockStatus === "in_stock" && ampulDcDc30.stockEvidenceVerifiedAt === "2026-09-07", "Ampul DC-DC current stock evidence missing");
+assert(ampulDcDc30.specs?.currentA === 30 && ampulDcDc30.specs?.outputVoltage === 14.6 && ampulDcDc30.specs?.batteryTypes?.includes("lifepo4"), "Ampul DC-DC technical evidence invalid");
 
 for (const [candidate, category, exactPath] of [
   [renogyRover40, "controller", "/products/rover-li-40-amp-mppt-solar-charge-controller"],
