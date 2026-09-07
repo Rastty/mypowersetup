@@ -48,6 +48,25 @@ test("all 84 guide sitemap lastmod values match Article.dateModified", async () 
   }
 });
 
+test("guide hub sitemap lastmod matches CollectionPage.dateModified", async () => {
+  const entries = sitemapEntries(await readFile("sitemap.xml", "utf8"));
+  const hubs = ["/pruvodce/", "/sk/sprievodca/", "/pl/poradnik/", "/hu/utmutatok/", "/pt/guias/", "/ro/ghiduri/", "/si/vodici/"];
+  for (const route of hubs) {
+    const html = await readFile(publicRoutePath(route), "utf8");
+    let modified = null;
+    for (const match of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+      try {
+        const json = JSON.parse(match[1]);
+        const nodes = Array.isArray(json?.["@graph"]) ? json["@graph"] : [json];
+        const page = nodes.find((node) => node?.["@type"] === "CollectionPage");
+        if (page) modified = page.dateModified || null;
+      } catch {}
+    }
+    assert.match(modified || "", /^\d{4}-\d{2}-\d{2}$/, `${route}: CollectionPage.dateModified missing`);
+    assert.equal(entries.get(route), modified, `${route}: guide hub lastmod drift`);
+  }
+});
+
 test("recently changed CZ and SK homes expose truthful lastmod", async () => {
   const entries = sitemapEntries(await readFile("sitemap.xml", "utf8"));
   assert.equal(entries.get("/"), "2026-09-07");
