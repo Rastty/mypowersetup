@@ -364,7 +364,7 @@
         "finalLandingUrl",
         "verifiedAt"
       ],
-      "activationInstructions": "Use the exact CJ deep link generated for BLUETTI Elite 300. The click must resolve to https://www.bluettipower.eu/products/elite-300-portable-power-station. Do not infer a CJ advertiser ID or reuse US/storefront-mismatched tracking.",
+      "activationInstructions": "Use the exact CJ deep link generated for BLUETTI Elite 300. The click must resolve to https://www.bluettipower.eu/products/elite-300-portable-power-station. Do not reuse BLUETTI US tracking. Do not infer a CJ advertiser ID or reuse storefront-mismatched tracking.",
       "affiliateApprovalConfirmed": true,
       "affiliateApprovalSource": "owner_confirmed",
       "primaryBlocker": "exact_cj_eu_deeplink_unverified"
