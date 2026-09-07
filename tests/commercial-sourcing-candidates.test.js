@@ -51,6 +51,7 @@ test("PT, RO and SI inverter sourcing prefers the candidate with the largest sta
       "xdatou-datouboss-2000w-24v",
       "solaris-victron-phoenix-12-250",
       "solaris-victron-phoenix-24-250",
+      "padabo-sk-victron-phoenix-12-250",
       "ampul-eu-inverter-24v-2000w",
     ]);
     const best = bestCommercialSourcingCandidate({ market, category: "inverter" });
@@ -234,5 +235,27 @@ test("Ampul 30A DC-DC is approved/tracked but remains market-gated", () => {
     assert.equal(candidate.specs.outputVoltageV, 14.6);
     assert.equal(candidate.specs.currentA, 30);
     assert.ok(candidate.specs.batteryTypes.includes("lifepo4"));
+  }
+});
+
+
+test("Padabo small inverter remains a system-owned cross-border fallback below Solaris", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const candidates = listCommercialSourcingCandidates({ market, category: "inverter" });
+    const padabo = candidates.find(({ id }) => id === "padabo-sk-victron-phoenix-12-250");
+    assert.ok(padabo, `${market}: Padabo expansion candidate missing`);
+    assert.equal(padabo.status, "blocked_crossborder_shipping");
+    assert.equal(padabo.blocker, "crossborder_shipping_unverified");
+    assert.equal(padabo.affiliateApprovalConfirmed, true);
+    assert.equal(padabo.stockStatus, "in_stock");
+    assert.equal(padabo.nextActionOwner, "system");
+    assert.equal(padabo.standaloneUnlockWeight, 5);
+    assert.equal(padabo.affectedWeight, 5);
+    assert.deepEqual(padabo.specs.systemVoltagesV, [12]);
+    assert.equal(padabo.specs.powerW, 200);
+    assert.equal(padabo.specs.pureSine, true);
+
+    const best = bestCommercialSourcingCandidate({ market, category: "inverter" });
+    assert.equal(best.id, "solaris-victron-phoenix-12-250");
   }
 });
