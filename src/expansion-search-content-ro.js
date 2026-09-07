@@ -81,7 +81,6 @@ const RO_GROWTH_CONTENT = Object.freeze({
     <li>ignorarea DC-DC-ului și a încărcării de la 230 V în bilanțul complet.</li>
   </ul>
   <p>Pornește cu <a href="/ro/#calculator-preview">calculatorul MyPowerSetup</a>, apoi verifică configurația finală împreună cu ghidul pentru <a href="/ro/ghiduri/regulator-mppt-autorulota/">regulatorul MPPT</a>.</p>
-
 </section>`,
     faq: Object.freeze([
       ["Sunt suficienți 200 W de panouri pentru autorulotă?", "Pot fi suficienți pentru un consum redus și condiții bune de vară, dar dimensionarea corectă pornește de la Wh/zi și sezon."],
@@ -152,7 +151,6 @@ const RO_GROWTH_CONTENT = Object.freeze({
     <li>cabluri, siguranțe și montaj conform manualului.</li>
   </ul>
   <p>Leagă alegerea de ghidul pentru <a href="/ro/ghiduri/cate-panouri-solare-autorulota/">dimensionarea panourilor solare</a> și de <a href="/ro/#calculator-preview">calculatorul sistemului</a>, nu de o singură cifră de pe eticheta regulatorului.</p>
-
 </section>`,
     faq: Object.freeze([
       ["LiFePO4 oferă mai multă autonomie decât AGM la aceiași Ah?", "De regulă poate oferi mai multă energie planificată ca utilizabilă, dar valoarea exactă depinde de bateria reală și de limitele BMS-ului."],
@@ -183,6 +181,27 @@ const RO_GROWTH_CONTENT = Object.freeze({
 
   <h2>MPPT-ul trebuie să fie compatibil și cu bateria</h2>
   <p>Confirmă că regulatorul are un profil potrivit chimiei bateriei și că tensiunile de absorbție/menținere sunt conforme cu instrucțiunile bateriei. Pentru LiFePO₄, verifică și modul în care sistemul gestionează temperaturile joase și semnalele BMS dacă sunt disponibile.</p>
+
+  <h2>Puterea PV admisă depinde și de tensiunea bateriei</h2>
+  <p>Același model de regulator poate avea o putere fotovoltaică nominală diferită la 12 V și la 24 V, deoarece limita de curent de încărcare rămâne aceeași. De aceea nu este suficient să spui „am un MPPT de 30 A” fără să precizezi tensiunea bateriei și puterea panourilor.</p>
+  <p>După ce calculatorul estimează curentul necesar, verifică în fișa modelului concret puterea PV permisă, tensiunea maximă Voc și curentul maxim Isc. Toate aceste limite trebuie respectate simultan.</p>
+
+  <h2>Isc și protecția nu se verifică din puterea în Wp</h2>
+  <p>Două configurații cu aceeași putere totală pot avea curenți de scurtcircuit foarte diferiți. În paralel, Isc-urile șirurilor se adună. Verifică limita de intrare a regulatorului și cerințele de protecție ale producătorului; nu deduce siguranțele doar din puterea nominală a panourilor.</p>
+  <p>La cablurile dintre panouri și MPPT contează curentul, lungimea, temperatura și căderea de tensiune. Pe partea bateriei, dimensionează cablul pentru curentul maxim de încărcare al regulatorului.</p>
+
+  <h2>Checklist înainte de cumpărarea MPPT-ului</h2>
+  <ul>
+    <li>tensiunea nominală a bateriei: 12 V sau 24 V;</li>
+    <li>puterea totală Wp a configurației finale;</li>
+    <li>Voc maxim al șirului inclusiv la temperatură scăzută;</li>
+    <li>Isc maxim al configurației serie/paralel;</li>
+    <li>curentul de încărcare cerut pe partea bateriei;</li>
+    <li>puterea PV admisă la tensiunea bateriei alese;</li>
+    <li>profil de încărcare compatibil cu bateria și BMS-ul;</li>
+    <li>cabluri, siguranțe și montaj conform manualului.</li>
+  </ul>
+  <p>Leagă alegerea de ghidul pentru <a href="/ro/ghiduri/cate-panouri-solare-autorulota/">dimensionarea panourilor solare</a> și de <a href="/ro/#calculator-preview">calculatorul sistemului</a>, nu de o singură cifră de pe eticheta regulatorului.</p>
 </section>`,
     faq: Object.freeze([
       ["Ce MPPT îmi trebuie pentru 400 W de panouri la 12 V?", "Ca estimare de curent, 400 W ÷ 12 V × 1,25 înseamnă aproximativ 42 A. Alegerea finală trebuie să verifice și Voc, Isc și limitele exacte ale producătorului."],
@@ -235,7 +254,6 @@ const RO_GROWTH_CONTENT = Object.freeze({
     <li>ventilația și condițiile de montaj cerute de producător.</li>
   </ul>
   <p>Calculează întâi scenariul în <a href="/ro/#calculator-preview">MyPowerSetup</a> și verifică dacă alegerea între <a href="/ro/ghiduri/sistem-12v-sau-24v-autorulota/">12 V și 24 V</a> reduce curentul la puterile de care ai nevoie.</p>
-
 </section>`,
     faq: Object.freeze([
       ["Ce invertor îmi trebuie pentru un aparat de 1 000 W?", "Nu te uita doar la cei 1 000 W. Verifică sarcinile care funcționează simultan, vârful de pornire și adaugă o marjă rezonabilă."],
