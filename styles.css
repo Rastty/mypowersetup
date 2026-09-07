@@ -584,3 +584,16 @@ footer small { font-size: 12px; }
     padding-inline: 14px;
   }
 }
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 18px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.breadcrumbs a { font-weight: 700; text-underline-offset: 3px; }
+.breadcrumbs [aria-current="page"] { color: var(--ink); font-weight: 700; }
