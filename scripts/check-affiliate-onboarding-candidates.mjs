@@ -46,9 +46,12 @@ for (const candidate of onboarding.candidates) {
   assert(typeof candidate.retailEvidenceUrl === "string" && candidate.retailEvidenceUrl.startsWith("https://"), `${candidate.id}: current retail evidence missing`);
   assert(/^\d{4}-\d{2}-\d{2}$/.test(candidate.retailEvidenceVerifiedAt || ""), `${candidate.id}: retail evidence date missing`);
   for (const market of Object.keys(candidate.marketEligibility || {})) {
-    assert(candidate.marketEligibility?.[market] === "unverified", `${candidate.id}: ${market} must remain unverified before activation`);
+    const eligibility = candidate.marketEligibility?.[market];
+    assert(["unverified", "verified"].includes(eligibility), `${candidate.id}: ${market} eligibility invalid`);
     const publicProducts = catalogs.get(market)?.products || [];
-    assert(!publicProducts.some((product) => product.merchant === candidate.merchant), `${candidate.id}: inactive merchant leaked into ${market} public catalog`);
+    if (eligibility === "unverified") {
+      assert(!publicProducts.some((product) => product.merchant === candidate.merchant), `${candidate.id}: inactive merchant leaked into ${market} public catalog`);
+    }
   }
 }
 
@@ -226,14 +229,30 @@ for (const [candidate, expectedStatus, expectedCategory] of [
   assert(candidate.storefrontEvidence?.["ro-RO"] === "https://ampul.eu/ro/", `${candidate.id}: Ampul Romanian storefront evidence missing`);
   assert(candidate.storefrontEvidence?.["sl-SI"] === "https://ampul.eu/sl/", `${candidate.id}: Ampul Slovenian storefront evidence missing`);
   assert(sameValues(Object.keys(candidate.marketEligibility || {}), ["pt-PT", "ro-RO", "sl-SI"]), `${candidate.id}: Ampul target markets invalid`);
-  assert(Object.values(candidate.marketEligibility).every((value) => value === "unverified"), `${candidate.id}: Ampul market eligibility must stay fail-closed`);
+  if (candidate.id === "ampul-eu-dcdc-12v-30a") {
+    assert(candidate.marketEligibility["ro-RO"] === "verified", "Ampul DC-DC Romania eligibility must be verified");
+    assert(candidate.marketEligibility["pt-PT"] === "unverified" && candidate.marketEligibility["sl-SI"] === "unverified", "Ampul DC-DC PT/SI must remain fail-closed");
+    assert(sameValues(candidate.activatedMarkets || [], ["ro-RO"]), "Ampul DC-DC activated markets invalid");
+    assert(candidate.activationVerifiedAt === "2026-09-07", "Ampul DC-DC activation date missing");
+    assert(new URL(candidate.activationEvidence?.productUrl || "").pathname.startsWith("/ro/incarcatoare/6195-"), "Ampul DC-DC Romanian product evidence missing");
+    assert(new URL(candidate.activationEvidence?.termsUrl || "").pathname === "/ro/content/3-termeni-i-condiii", "Ampul DC-DC Romanian terms evidence missing");
+    assert(candidate.nextAction === "verify_pt_si_checkout", "Ampul DC-DC remaining market action invalid");
+  } else {
+    assert(Object.values(candidate.marketEligibility).every((value) => value === "unverified"), `${candidate.id}: Ampul inverter market eligibility must stay fail-closed`);
+  }
   assert(candidate.nextActionOwner === "system", `${candidate.id}: Ampul checkout verification should remain system-owned`);
 
-  const sourcing = listCommercialSourcingCandidates({ category: expectedCategory }).find(({ id }) => id === candidate.id);
+  const sourcing = listCommercialSourcingCandidates({ category: expectedCategory, includeActivated: true }).find(({ id }) => id === candidate.id);
   assert(sourcing?.status === candidate.status, `${candidate.id}: Ampul onboarding and sourcing statuses diverge`);
   assert(sourcing?.blocker === "market_shipping_checkout_unverified", `${candidate.id}: Ampul market blocker missing`);
   assert(sourcing?.affiliateApprovalConfirmed === true, `${candidate.id}: Ampul approved state missing from sourcing queue`);
   assert(sourcing?.nextActionOwner === "system", `${candidate.id}: Ampul sourcing action owner invalid`);
+  if (candidate.id === "ampul-eu-dcdc-12v-30a") {
+    assert(sameValues(sourcing.activatedMarkets || [], ["ro-RO"]), "Ampul DC-DC sourcing activation state diverges");
+    assert(!listCommercialSourcingCandidates({ market: "ro-RO", category: "dc_charger" }).some(({ id }) => id === candidate.id), "Activated Ampul DC-DC leaked into Romania action queue");
+    assert(listCommercialSourcingCandidates({ market: "pt-PT", category: "dc_charger" }).some(({ id }) => id === candidate.id), "Ampul DC-DC must remain actionable for PT");
+    assert(listCommercialSourcingCandidates({ market: "sl-SI", category: "dc_charger" }).some(({ id }) => id === candidate.id), "Ampul DC-DC must remain actionable for SI");
+  }
 }
 
 assert(ampulInverter24.stockStatus === "variant_unverified", "Ampul 24V inverter variant stock must remain unverified");
