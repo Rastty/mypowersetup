@@ -600,3 +600,11 @@ footer small { font-size: 12px; }
 }
 .breadcrumbs a { font-weight: 700; text-underline-offset: 3px; }
 .breadcrumbs [aria-current="page"] { color: var(--ink); font-weight: 700; }
+
+.expansion-product-reason { margin: 12px 0 8px; color: #f2f8f4; font-size: 12px; line-height: 1.45; }
+.expansion-product-reason strong,
+.expansion-product-verify strong { color: white; }
+.expansion-fit-checks { display: grid; gap: 4px; margin: 6px 0 10px; padding: 0; list-style: none; }
+.expansion-fit-checks li { color: #d9e7df; font-size: 11px; line-height: 1.35; }
+.expansion-fit-checks li::before { content: "✓"; margin-right: 6px; color: var(--lime); font-weight: 900; }
+.expansion-product-verify { margin: 0 0 14px; color: #cbdad2; font-size: 11px; line-height: 1.45; }
