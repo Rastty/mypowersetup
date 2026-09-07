@@ -23,6 +23,12 @@ const EXPANSION_ARTICLE_COPY = Object.freeze({
   si: Object.freeze({ about: "/si/o-projektu/", byline: "Objavljeno 30. avgusta 2026 · Avtor:" }),
 });
 
+const EXPANSION_BREADCRUMB_COPY = Object.freeze({
+  pt: Object.freeze({ home: "Início", hub: "Guias", aria: "Navegação estrutural" }),
+  ro: Object.freeze({ home: "Acasă", hub: "Ghiduri", aria: "Navigare ierarhică" }),
+  si: Object.freeze({ home: "Domov", hub: "Vodniki", aria: "Pot strani" }),
+});
+
 const PUBLIC_HOME_MARKETS = Object.freeze([
   Object.freeze({ market: "cz", locale: "cs-CZ", lang: "cs", href: "/", label: "CZ" }),
   Object.freeze({ market: "sk", locale: "sk-SK", lang: "sk", href: "/sk/", label: "SK" }),
@@ -153,6 +159,42 @@ function enhanceExpansionArticleAuthority(html, market, route) {
   return output.replace('<main class="article">', `<main class="article">${byline}`);
 }
 
+function addExpansionGuideBreadcrumbs(html, market, route) {
+  const config = CONFIG[market];
+  const copy = EXPANSION_BREADCRUMB_COPY[market];
+  const hubRoute = config ? `${config.prefix}${guideBase(market)}/` : null;
+  if (!config || !copy || !hubRoute || route === hubRoute || !route?.startsWith(hubRoute)) return html;
+  if (html.includes("data-expansion-breadcrumbs") || html.includes("data-expansion-breadcrumb-schema")) return html;
+
+  const headingHtml = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.trim();
+  if (!headingHtml) return html;
+  const currentName = decodeHtmlText(headingHtml.replace(/<[^>]+>/g, "").trim());
+  if (!currentName) return html;
+
+  const items = [
+    { position: 1, name: copy.home, item: `https://mypowersetup.com${config.prefix}` },
+    { position: 2, name: copy.hub, item: `https://mypowersetup.com${hubRoute}` },
+    { position: 3, name: currentName, item: `https://mypowersetup.com${route}` },
+  ];
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map(({ position, name, item }) => ({
+      "@type": "ListItem",
+      position,
+      name,
+      item,
+    })),
+  };
+  const visible = `<nav class="breadcrumbs" data-expansion-breadcrumbs aria-label="${escapeHtmlAttribute(copy.aria)}"><a href="${config.prefix}">${escapeHtmlAttribute(copy.home)}</a><span aria-hidden="true">›</span><a href="${hubRoute}">${escapeHtmlAttribute(copy.hub)}</a><span aria-hidden="true">›</span><span aria-current="page">${escapeHtmlAttribute(currentName)}</span></nav>`;
+  const schemaTag = `<script type="application/ld+json" data-expansion-breadcrumb-schema>${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>`;
+
+  let output = html.replace("</head>", `${schemaTag}</head>`);
+  const mainPattern = /(<main\b[^>]*>)/i;
+  if (!mainPattern.test(output)) return output;
+  return output.replace(mainPattern, `$1${visible}`);
+}
+
 function ensureExpansionArticleSchema(html, market, route) {
   if (/"@type"\s*:\s*"Article"/.test(html)) return html;
   const config = CONFIG[market];
@@ -185,6 +227,7 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
   output = addExpansionVoltageGuideDiscovery(output, market, route);
   output = ensureExpansionArticleSchema(output, market, route);
   output = enhanceExpansionArticleAuthority(output, market, route);
+  output = addExpansionGuideBreadcrumbs(output, market, route);
   output = synchronizePublicHreflang(output, route);
   const canonical = `https://mypowersetup.com${route}`;
   const additions = [];
@@ -265,6 +308,21 @@ function guideBase(market) {
   return market === "pt" ? "guias" : market === "si" ? "vodici" : "ghiduri";
 }
 
+function decodeHtmlText(value) {
+  return String(value)
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
+function escapeHtmlAttribute(value) {
+  return String(value).replace(/[&<>"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]);
+}
+
 function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}");
 }
