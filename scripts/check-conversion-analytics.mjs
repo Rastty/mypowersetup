@@ -18,6 +18,7 @@ const affiliateAnalytics = read("src/affiliate-analytics.js");
 
 requireMatch(analytics, /choice === "granted" \? resolveCommunityAttribution/, "community_persistence_requires_consent");
 requireMatch(analytics, /carryCommunityAttributionToUrl\(/, "community_attribution_carried_to_calculator");
+requireMatch(analytics, /source_position:\s*guideCalculatorClickPosition\(link\)/, "guide_calculator_click_distinguishes_early_late_position");
 requireMatch(analytics, /window\.gtag\("event", event/, "events_use_shared_analytics_context");
 requireMatch(analytics, /mypowersetup:analytics-granted/, "consent_grant_retries_visible_product_impressions");
 requireMatch(analytics, /track\("calculator_to_guide_click"/, "calculator_to_guide_click_shared_across_markets");
