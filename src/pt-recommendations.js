@@ -1,4 +1,5 @@
 import { parseAllpowersPtDeeplink } from "./affiliate-allpowers-pt.js";
+import { isBluettiElite300Product, validateBluettiElite300CjUrl } from "./affiliate-bluetti-eu.js";
 import { calculatePowerStationProfile } from "./power-station.js";
 import { validatePtCatalog } from "./products-pt.js";
 import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
@@ -28,14 +29,14 @@ export function buildPortugalRecommendations(catalog, setup, limitPerCategory = 
       const fit = (product.specs.powerW * quantity) / setup.solarWatts;
       return { product, quantity, fit };
     })
-    .filter(({ product, quantity, fit }) => quantity <= 4 && fit > 0 && fit <= 3 && hasExactAffiliateDestination(product))
+    .filter(({ product, quantity, fit }) => quantity <= 4 && fit > 0 && fit <= 3 && hasExactAffiliateDestination(product, safeCatalog.sources))
     .sort((a, b) => Math.abs(1 - a.fit) - Math.abs(1 - b.fit) || Number(a.product.priceCzk ?? Infinity) - Number(b.product.priceCzk ?? Infinity))
     .slice(0, limitPerCategory)
     .map(({ product, quantity }) => recommendationView(product, { quantity }));
 
   const profile = calculatePowerStationProfile(setup);
   const powerStations = profile.profile === "individual" ? [] : safeCatalog.products
-    .filter((product) => product.category === "power_station" && product.available !== false && hasExactAffiliateDestination(product))
+    .filter((product) => product.category === "power_station" && product.available !== false && hasExactAffiliateDestination(product, safeCatalog.sources))
     .filter((product) => {
       const specs = product.specs || {};
       if (!(specs.capacityWh >= profile.capacityWh)) return false;
@@ -66,15 +67,25 @@ export function portugalRecommendationCoverage(recommendations) {
   });
 }
 
-function hasExactAffiliateDestination(product) {
+function hasExactAffiliateDestination(product, sources = {}) {
   try {
-    const parsed = parseAllpowersPtDeeplink(product?.affiliateUrl || "");
-    return Boolean(parsed && parsed.destinationUrl === new URL(product.productUrl).toString());
+    if (product?.merchant === "allpowers_pt") {
+      const parsed = parseAllpowersPtDeeplink(product?.affiliateUrl || "");
+      return Boolean(parsed && parsed.destinationUrl === new URL(product.productUrl).toString());
+    }
+    if (isBluettiElite300Product(product)) {
+      const source = sources?.bluetti_eu || {};
+      return product.productUrl === source.finalLandingUrl
+        && validateBluettiElite300CjUrl(product.affiliateUrl, {
+          finalLandingUrl: source.finalLandingUrl,
+          verifiedAt: source.trackingVerifiedAt,
+        });
+    }
+    return false;
   } catch {
     return false;
   }
 }
-
 function recommendationView(product, { quantity = 1 } = {}) {
   return Object.freeze({
     id: product.id,
