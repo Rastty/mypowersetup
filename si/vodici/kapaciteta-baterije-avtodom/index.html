@@ -21,4 +21,26 @@
   <p>Pri isti moči 24 V približno prepolovi tok glede na 12 V. To je uporabno pri večjih baterijah in močnejših inverterjih, ker zmanjša zahteve glede toka in izgub. Samodejni način MyPowerSetup preklopi na 24 V pri izračunani bateriji nad 2.400 Wh ali inverterju nad 1.200 W.</p>
   <h2>Pred nakupom preveri</h2>
   <ul><li>dejansko porabo v Wh/dan;</li><li>največji neprekinjeni tok BMS;</li><li>dovoljeni polnilni tok in temperaturne omejitve;</li><li>združljivost z MPPT, DC-DC in 230 V polnilnikom;</li><li>mere, maso, priključke in prostor za vgradnjo.</li></ul>
+
+  <h2>Ne računaj, da bo solar na voljo vsak dan</h2>
+  <p>Avtonomijo baterije izberi za obdobje, ko nimaš zanesljivega polnjenja. Če želiš dva dni neodvisnosti, ne predpostavljaj, da bosta oba dneva sončna ali da boš dovolj dolgo vozil za DC-DC polnjenje. Senca, vreme, lokacija in način potovanja lahko močno zmanjšajo energijo, ki jo povrneš.</p>
+  <p>Robustna logika je: baterija pokrije izbrano obdobje brez zagotovljenega vira, solar, alternator in 230 V pa nato določajo, kako hitro energijo povrneš. Tako istega prihodnjega polnjenja ne šteješ dvakrat.</p>
+
+  <h2>Kapaciteta in največji tok sta ločeni zahtevi</h2>
+  <p>Baterija z dovolj Wh lahko še vedno ne podpira močnega inverterja, če BMS omejuje stalni ali konični tok. Preveri <a href="/si/vodici/inverter-avtodom-moc/">zahtevo inverterja</a>, največji tok BMS-a, kable in zaščite kot en sistem.</p>
+  <p>Na polnilni strani se lahko istočasno seštejejo tokovi iz <a href="/si/vodici/mppt-regulator-avtodom/">MPPT-ja</a>, <a href="/si/vodici/dc-dc-polnilnik-avtodom/">DC-DC-ja</a> in 230 V polnilnika. Baterija mora skupni tok dovoljevati ali pa mora krmiljenje sistema preprečiti prekoračitev.</p>
+
+  <h2>Kontrolni seznam za končno izbiro baterije</h2>
+  <ul>
+    <li>dnevna poraba v Wh in dnevi avtonomije;</li>
+    <li>uporabni delež glede na kemijo in navodila proizvajalca;</li>
+    <li>sistemska napetost 12 V ali 24 V;</li>
+    <li>stalni in konični tok BMS-a;</li>
+    <li>največji polnilni tok vseh virov skupaj;</li>
+    <li>temperaturne omejitve polnjenja in praznjenja;</li>
+    <li>mere, masa, priključki in varen način pritrditve;</li>
+    <li>združljivost z obstoječimi polnilniki in DC porabniki.</li>
+  </ul>
+  <p>Scenarij najprej preveri v <a href="/si/#calculator-preview">MyPowerSetup kalkulatorju</a>, nato pa podatke konkretne baterije primerjaj z izračunano energijo in tokovi.</p>
+
 </section><aside class="related" data-contextual-growth-links><h2>Nadaljuj z dimenzioniranjem sistema</h2><ul><li><a href="/si/vodici/lifepo4-ali-agm-avtodom/">LiFePO₄ ali AGM za avtodom?</a></li><li><a href="/si/vodici/koliko-soncnih-panelov-avtodom/">Izračunaj potrebno solarno moč</a></li><li><a href="/si/vodici/elektricni-sistem-avtodom/">Poglej celoten električni sistem</a></li></ul></aside><aside class="related" data-voltage-guide-discovery><h2>Še izbiraš med 12 V in 24 V?</h2><p>Pred dokončno zasnovo primerjaj tok, kable, inverter in združljivost vseh naprav.</p><p><a href="/si/vodici/12v-ali-24v-sistem-avtodom/">12 V ali 24 V: izbira napetosti sistema</a></p></aside><aside class="cta"><h2 data-guide-conversion-cta>Izračunaj in preveri združljive izdelke</h2><p>Rezultat je brezplačen in brez registracije. Na koncu prikažemo samo izdelke s preverjenimi tehničnimi omejitvami in točno ciljno povezavo.</p><a class="button button-primary" href="/si/#calculator-preview">Odpri kalkulator in preveri izdelke</a></aside><aside class="related"><h2>Drugi vodniki</h2><ul><li><a href="/si/vodici/lifepo4-ali-agm-avtodom/">LiFePO₄ ali AGM: kaj je bolj smiselno?</a></li><li><a href="/si/vodici/koliko-soncnih-panelov-avtodom/">Koliko Wp solarja potrebuješ?</a></li><li><a href="/si/vodici/mppt-regulator-avtodom/">Kako izbrati pravi MPPT regulator</a></li></ul></aside></main><footer><a href="/si/o-projektu/">O projektu</a> · <a href="/si/metodologija/">Metodologija</a> · <a href="/si/affiliate/">Affiliate</a> · <a href="/si/zasebnost/">Zasebnost</a> · <a href="/si/vodici/">Vodniki</a></footer><script type="module" src="/src/analytics.js"></script></body></html>
