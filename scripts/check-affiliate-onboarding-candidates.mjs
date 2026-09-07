@@ -28,6 +28,7 @@ const merchantPolicies = new Map([
   ["offgridtec", new Set(["skipped_by_owner"])],
   ["xdatou", new Set(["blocked_affiliate_verification"])],
   ["solaris_store", new Set(["blocked_affiliate_verification"])],
+  ["renogy_eu", new Set(["blocked_stock"])],
   ["bluetti_eu", new Set(["blocked_stock"])],
 ]);
 
@@ -58,6 +59,8 @@ const orionXs = required("butler-victron-orion-xs-12-12-50");
 const xdatouInverter = required("xdatou-datouboss-2000w-24v");
 const solarisPhoenix12 = required("solaris-victron-phoenix-12-250");
 const solarisPhoenix24 = required("solaris-victron-phoenix-24-250");
+const renogyRover40 = required("renogy-eu-rover-40a-mppt");
+const renogyDcDc40 = required("renogy-eu-dcdc-12-12-40a");
 const bluettiFamilyStation = required("bluetti-eu-ac240-b210");
 
 for (const [candidate, voltage] of [[phoenix12, 12], [phoenix24, 24]]) {
@@ -164,6 +167,44 @@ for (const [candidate, voltage, peakPowerW, exactPath] of [
   assert(sourcing?.specs?.powerW === 200 && sourcing?.specs?.pureSine === true, `${candidate.id}: Solaris sourcing specs diverge`);
 }
 
+for (const [candidate, category, exactPath] of [
+  [renogyRover40, "controller", "/products/rover-li-40-amp-mppt-solar-charge-controller"],
+  [renogyDcDc40, "dc_charger", "/products/12v-40a-dc-to-dc-battery-charger"],
+]) {
+  assert(candidate.merchant === "renogy_eu", `${candidate.id}: Renogy EU merchant invalid`);
+  assert(candidate.network === "impact" && candidate.programId === null, `${candidate.id}: Renogy Impact programme must remain unapproved`);
+  assert(candidate.status === "blocked_stock", `${candidate.id}: Renogy EU exact candidate must remain backordered`);
+  assert(candidate.secondaryBlocker === "impact_program_approval_unverified", `${candidate.id}: Renogy affiliate blocker missing`);
+  assert(candidate.category === category, `${candidate.id}: Renogy category invalid`);
+  assert(candidate.productUrl === null && candidate.affiliateUrl === null, `${candidate.id}: inactive Renogy candidate leaked a public URL`);
+  const application = new URL(candidate.applicationUrl);
+  assert(application.hostname === "www.renogy.com" && application.pathname === "/pages/affiliate-program", `${candidate.id}: Renogy affiliate evidence missing`);
+  assert(candidate.commissionPercent === 6 && candidate.commissionEvidence === "average", `${candidate.id}: Renogy average commission evidence invalid`);
+  const retail = new URL(candidate.retailEvidenceUrl);
+  assert(retail.hostname === "eu.renogy.com" && retail.pathname === exactPath, `${candidate.id}: Renogy exact retail evidence invalid`);
+  const shipping = new URL(candidate.shippingEvidenceUrl);
+  assert(shipping.hostname === "eu.renogy.com" && shipping.pathname === "/pages/shipping-policy", `${candidate.id}: Renogy EU shipping evidence invalid`);
+  assert(candidate.stockStatus === "backorder" && candidate.stockEvidenceVerifiedAt === "2026-09-07", `${candidate.id}: Renogy backorder evidence invalid`);
+  assert(["pt-PT", "ro-RO", "sl-SI"].every((market) => candidate.shippingEligibleMarkets.includes(market)), `${candidate.id}: Renogy shipping evidence must cover PT/RO/SI`);
+  assert(Object.values(candidate.marketEligibility).every((value) => value === "unverified"), `${candidate.id}: Renogy market eligibility must remain fail-closed`);
+
+  const sourcing = listCommercialSourcingCandidates({ category }).find(({ id }) => id === candidate.id);
+  assert(sourcing?.status === candidate.status, `${candidate.id}: Renogy onboarding and sourcing statuses diverge`);
+  assert(sourcing?.blocker === "exact_product_backordered", `${candidate.id}: Renogy stock blocker missing from sourcing queue`);
+  assert(sourcing?.secondaryBlocker === candidate.secondaryBlocker, `${candidate.id}: Renogy affiliate blocker diverges`);
+  assert(sourcing?.stockStatus === "backorder" && sourcing?.stockVerifiedAt === candidate.stockEvidenceVerifiedAt, `${candidate.id}: Renogy stock evidence diverges`);
+}
+
+assert(renogyRover40.specs?.technology === "mppt", "Renogy Rover 40A must be MPPT");
+assert(renogyRover40.specs?.currentA === 40, "Renogy Rover current evidence invalid");
+assert(renogyRover40.specs?.systemVoltages?.includes(12) && renogyRover40.specs?.systemVoltages?.includes(24), "Renogy Rover 12/24 V support missing");
+assert(renogyRover40.specs?.nominalPvPowerW12V === 520 && renogyRover40.specs?.nominalPvPowerW24V === 1040, "Renogy Rover PV limits invalid");
+
+assert(renogyDcDc40.specs?.inputVoltage === 12 && renogyDcDc40.specs?.outputVoltage === 12, "Renogy DC-DC voltage evidence invalid");
+assert(renogyDcDc40.specs?.currentA === 40 && renogyDcDc40.specs?.powerW === 584, "Renogy DC-DC current/power evidence invalid");
+assert(renogyDcDc40.specs?.batteryTypes?.includes("lifepo4"), "Renogy DC-DC LiFePO4 compatibility missing");
+assert(renogyDcDc40.specs?.smartAlternatorCompatible === true, "Renogy DC-DC smart-alternator evidence missing");
+
 assert(bluettiFamilyStation.category === "power_station", "BLUETTI AC240+B210 category invalid");
 assert(bluettiFamilyStation.stockStatus === "out_of_stock", "BLUETTI AC240+B210 must remain blocked while its EU bundle is unavailable");
 assert(bluettiFamilyStation.secondaryBlocker === "affiliate_deeplink_unverified", "BLUETTI EU affiliate blocker missing");
@@ -227,8 +268,8 @@ console.log(JSON.stringify({
   commercialCoverageImpact: 0,
   blockers: {
     inverter: "Xdatou exact 24 V / 2000 W remains behind GoAffPro activation; Solaris has exact in-stock 12 V and 24 V Phoenix 200 W candidates for the P0 small-inverter band, but affiliate tracking and per-market checkout eligibility are still unverified; Offgridtec stays skipped by owner",
-    controller: "Butler SmartSolar 60 A is in stock and ships to SK/PL/HU/PT/RO/SI; Awin programme approval is the remaining activation blocker",
-    dcCharger: "Butler Orion XS 12/12 50 A is in stock and staged for SK/PL/HU/PT/RO/SI; the same Butler Awin approval is the remaining activation blocker"
+    controller: "Butler SmartSolar 60 A remains the in-stock preferred route; Renogy Rover 40 A is a confirmed PT/RO/SI Impact fallback but is currently backordered",
+    dcCharger: "Butler Orion XS 12/12 50 A remains the in-stock preferred route; Renogy EU 12/12 40 A is a confirmed PT/RO/SI Impact fallback but is currently backordered"
   }
 }, null, 2));
 

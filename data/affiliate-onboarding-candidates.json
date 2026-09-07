@@ -376,6 +376,102 @@
       "checkoutStatus": "maintenance_blocked",
       "checkoutStatusVerifiedAt": "2026-09-07",
       "checkoutBlockerEvidenceUrl": "https://www.solaris-store.com/content/95-partenariat"
+    },
+    {
+      "id": "renogy-eu-rover-40a-mppt",
+      "merchant": "renogy_eu",
+      "network": "impact",
+      "programId": null,
+      "applicationUrl": "https://www.renogy.com/pages/affiliate-program",
+      "commissionPercent": 6,
+      "commissionEvidence": "average",
+      "status": "blocked_stock",
+      "secondaryBlocker": "impact_program_approval_unverified",
+      "category": "controller",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "retailEvidenceUrl": "https://eu.renogy.com/products/rover-li-40-amp-mppt-solar-charge-controller",
+      "retailEvidenceVerifiedAt": "2026-09-07",
+      "stockEvidenceVerifiedAt": "2026-09-07",
+      "stockStatus": "backorder",
+      "shippingEvidenceUrl": "https://eu.renogy.com/pages/shipping-policy",
+      "shippingEvidenceVerifiedAt": "2026-09-07",
+      "exactRetailPath": "/products/rover-li-40-amp-mppt-solar-charge-controller",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "shippingEligibleMarkets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "specs": {
+        "technology": "mppt",
+        "systemVoltages": [
+          12,
+          24
+        ],
+        "currentA": 40,
+        "nominalPvPowerW12V": 520,
+        "nominalPvPowerW24V": 1040,
+        "maxPvVocV": 100
+      },
+      "targetScenarioIds": [
+        "family-touring",
+        "remote-work",
+        "winter-basic"
+      ]
+    },
+    {
+      "id": "renogy-eu-dcdc-12-12-40a",
+      "merchant": "renogy_eu",
+      "network": "impact",
+      "programId": null,
+      "applicationUrl": "https://www.renogy.com/pages/affiliate-program",
+      "commissionPercent": 6,
+      "commissionEvidence": "average",
+      "status": "blocked_stock",
+      "secondaryBlocker": "impact_program_approval_unverified",
+      "category": "dc_charger",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "retailEvidenceUrl": "https://eu.renogy.com/products/12v-40a-dc-to-dc-battery-charger",
+      "retailEvidenceVerifiedAt": "2026-09-07",
+      "stockEvidenceVerifiedAt": "2026-09-07",
+      "stockStatus": "backorder",
+      "shippingEvidenceUrl": "https://eu.renogy.com/pages/shipping-policy",
+      "shippingEvidenceVerifiedAt": "2026-09-07",
+      "exactRetailPath": "/products/12v-40a-dc-to-dc-battery-charger",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "shippingEligibleMarkets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "specs": {
+        "inputVoltage": 12,
+        "outputVoltage": 12,
+        "currentA": 40,
+        "powerW": 584,
+        "batteryTypes": [
+          "lifepo4",
+          "agm",
+          "gel",
+          "flooded"
+        ],
+        "smartAlternatorCompatible": true,
+        "efficiencyPercent": 94
+      },
+      "targetScenarioIds": [
+        "family-touring",
+        "winter-basic"
+      ]
     }
   ]
 }
