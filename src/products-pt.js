@@ -2,6 +2,7 @@ import { buildAllpowersPtDeeplink, parseAllpowersPtDeeplink } from "./affiliate-
 import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js";
 import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affiliate-xdatou.js";
 import { isAmpulExpansionProduct, validateAmpulExpansionProduct } from "./affiliate-ampul-expansion.js";
+import { isBluettiElite300Product, validateBluettiElite300Product } from "./affiliate-bluetti-eu.js";
 
 const PT_ORIGIN = "https://allpowers-pt.com";
 const PRODUCT_PATH_PREFIX = "/products/";
@@ -108,6 +109,8 @@ export function validatePtCatalog(payload) {
   if (xdatouProducts.length && payload.sources?.xdatou?.status !== "ok") throw new Error("PT_XDATOU_SOURCE_INVALID");
   const ampulProducts = payload.products.filter(isAmpulExpansionProduct);
   if (ampulProducts.length && payload.sources?.ampul_eu?.status !== "ok") throw new Error("PT_AMPUL_SOURCE_INVALID");
+  const bluettiProducts = payload.products.filter(isBluettiElite300Product);
+  if (bluettiProducts.length && payload.sources?.bluetti_eu?.status !== "ok") throw new Error("PT_BLUETTI_SOURCE_INVALID");
 
   for (const product of payload.products) {
     if (isPowerQueenExpansionProduct(product)) {
@@ -120,6 +123,10 @@ export function validatePtCatalog(payload) {
     }
     if (isAmpulExpansionProduct(product)) {
       validateAmpulExpansionProduct(product, { market: "pt", verifiedProductMarkets: payload.sources?.ampul_eu?.verifiedProductMarkets || {} });
+      continue;
+    }
+    if (isBluettiElite300Product(product)) {
+      validateBluettiElite300Product(product, payload.sources?.bluetti_eu);
       continue;
     }
     if (product?.merchant !== "allpowers_pt") throw new Error("PT_CATALOG_FOREIGN_MERCHANT");
