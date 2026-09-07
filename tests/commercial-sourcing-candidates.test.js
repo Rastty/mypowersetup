@@ -51,6 +51,7 @@ test("PT, RO and SI inverter sourcing prefers the candidate with the largest sta
       "xdatou-datouboss-2000w-24v",
       "solaris-victron-phoenix-12-250",
       "solaris-victron-phoenix-24-250",
+      "ampul-eu-inverter-24v-2000w",
     ]);
     const best = bestCommercialSourcingCandidate({ market, category: "inverter" });
     assert.equal(best.id, "solaris-victron-phoenix-12-250");
@@ -75,6 +76,7 @@ test("PT, RO and SI inverter sourcing prefers the candidate with the largest sta
       "xdatou-datouboss-2000w-24v",
       "solaris-victron-phoenix-12-250",
       "solaris-victron-phoenix-24-250",
+      "ampul-eu-inverter-24v-2000w",
     ]);
     assert.ok(skipped.slice(0, 2).every((candidate) => candidate.status === "skipped_by_owner"));
     assert.ok(skipped.slice(0, 2).every((candidate) => candidate.blocker === "owner_declined_application"));
