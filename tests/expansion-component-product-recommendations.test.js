@@ -69,3 +69,71 @@ test("current PT, RO and SI catalogs expose verified batteries and MPPT products
     assert.ok(recommendations.controller.length > 0, `${catalog.market} must expose an MPPT controller`);
   }
 });
+
+
+test("10A Power Queen shore charger covers a 12V LiFePO4 shore-charging recommendation", () => {
+  const chargerUrl = "https://www.ipowerqueen.de/en/products/power-queen-14-6v-10a-lifepo4-battery-charger";
+  const tracked = new URL("https://www.awin1.com/cread.php");
+  tracked.searchParams.set("awinmid", "97025");
+  tracked.searchParams.set("awinaffid", "3044971");
+  tracked.searchParams.set("ued", chargerUrl);
+
+  const charger = {
+    id: "powerqueen_eu:10a-charger",
+    merchant: "powerqueen_eu",
+    name: "Power Queen 14.6V 10A LiFePO4 charger for 12V LiFePO4 battery",
+    description: "100-240 V AC input; 14.6 V / 10 A output for 12.8 V LiFePO4 batteries.",
+    categoryPath: "Nabíječky",
+    category: "shore_charger",
+    brand: "Power Queen",
+    priceCzk: 71.99,
+    priceCurrency: "EUR",
+    available: true,
+    marketEligible: true,
+    productUrl: chargerUrl,
+    affiliateUrl: tracked.toString(),
+    specs: {
+      voltageV: 12,
+      currentA: 10,
+      chargingVoltagesV: [12],
+      chargingBatteryTypes: ["lifepo4"],
+      batteryType: "lifepo4",
+    },
+    verifiedAt: "2026-09-07",
+  };
+
+  const recommendations = buildExpansionComponentRecommendations([charger], {
+    locale: "pt",
+    systemVoltage: 12,
+    inverterWatts: 0,
+    solarWatts: 200,
+    controllerAmps: 20,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    charging: {
+      starterVoltage: 12,
+      dcDc: { suggestedCurrentAmps: null },
+      shore: { suggestedCurrentAmps: 10 },
+    },
+  });
+
+  assert.equal(recommendations.shore_charger.length, 1);
+  assert.equal(recommendations.shore_charger[0].id, "powerqueen_eu:10a-charger");
+  assert.equal(recommendations.shore_charger[0].specs.currentA, 10);
+
+  const tooSmall = buildExpansionComponentRecommendations([charger], {
+    locale: "pt",
+    systemVoltage: 12,
+    inverterWatts: 0,
+    solarWatts: 200,
+    controllerAmps: 20,
+    batteryAh: 100,
+    batteryType: "lifepo4",
+    charging: {
+      starterVoltage: 12,
+      dcDc: { suggestedCurrentAmps: null },
+      shore: { suggestedCurrentAmps: 15 },
+    },
+  });
+  assert.equal(tooSmall.shore_charger.length, 0);
+});
