@@ -36,11 +36,12 @@ const components = [
   pq(),
   pq({
     id: "powerqueen_eu:mppt",
-    name: "Power Queen 60A MPPT Solar Charge Controller",
-    description: "MPPT solar charge controller for off-grid battery systems.",
+    name: "Power Queen MPPT 12/24V 30A solar charge controller with Bluetooth module",
+    description: "30 A MPPT; max PV 450 W at 12 V and 900 W at 24 V.",
     category: "controller",
-    productUrl: "https://www.ipowerqueen.de/en/products/60a-mppt-solar-charge-controller",
-    specs: { currentA: 60 },
+    productUrl: "https://www.ipowerqueen.de/en/products/power-queen-12-24v-30amp-mppt-solar-charge-controller-and-bluetooth-adapter",
+    verifiedAt: "2026-09-07",
+    specs: { currentA: 30, systemVoltagesV: [12, 24], maxPvWattsBySystemVoltage: { 12: 450, 24: 900 }, mppt: true },
   }),
   pq({
     id: "powerqueen_eu:inverter",
@@ -81,6 +82,15 @@ test("strict Power Queen gate accepts only purchase-ready component evidence", (
   assert.throws(() => validatePowerQueenExpansionProduct(pq({ affiliateUrl: "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fexample.com%2Fbad" })), /DESTINATION|PRODUCT_URL/);
   assert.throws(() => validatePowerQueenExpansionProduct(pq({ category: "solar_panel", specs: { powerW: 100 } })), /CATEGORY_INVALID/);
   assert.throws(() => validatePowerQueenExpansionProduct(pq({ name: "Power Queen battery", description: "LiFePO4", specs: { voltageV: 12, capacityAh: 100, batteryType: "lifepo4" } })), /BMS_EVIDENCE/);
+  const mppt = components.find((product) => product.category === "controller");
+  assert.throws(() => validatePowerQueenExpansionProduct({
+    ...mppt,
+    specs: { ...mppt.specs, systemVoltagesV: [24] },
+  }), /CONTROLLER_VOLTAGE_EVIDENCE_INVALID/);
+  assert.throws(() => validatePowerQueenExpansionProduct({
+    ...mppt,
+    specs: { ...mppt.specs, maxPvWattsBySystemVoltage: { 12: 500, 24: 900 } },
+  }), /CONTROLLER_PV_LIMIT_EVIDENCE_INVALID/);
 });
 
 test("Portugal accepts live Power Queen components but rejects a stale source", () => {

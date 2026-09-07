@@ -397,21 +397,29 @@ export function recommendProducts(products, setup, limitPerCategory = 3) {
 export function refreshCatalogProduct(product) {
   const fallbackText = [product.categoryPath, product.description].filter(Boolean).join(" ");
   const extractedSpecs = extractSpecs(product.name, fallbackText);
-  const specs = Object.fromEntries(
-    Object.entries(extractedSpecs).map(([key, value]) => {
-      const stored = product.specs?.[key];
-      const verifiedStoredValue = product.verifiedAt && (
-        (Array.isArray(stored) && stored.length > 0)
-        || stored === true
-        || typeof stored === "number" && Number.isFinite(stored)
-        || typeof stored === "string" && stored.length > 0
-      );
-      const extractedValue = Array.isArray(value) && value.length === 0 && Array.isArray(stored) && stored.length > 0
-        ? stored
-        : value;
-      return [key, verifiedStoredValue ? stored : extractedValue ?? stored ?? null];
-    })
-  );
+  const verifiedEvidenceExtras = product.verifiedAt
+    ? Object.fromEntries(
+      Object.entries(product.specs || {}).filter(([key]) => !(key in extractedSpecs))
+    )
+    : {};
+  const specs = {
+    ...verifiedEvidenceExtras,
+    ...Object.fromEntries(
+      Object.entries(extractedSpecs).map(([key, value]) => {
+        const stored = product.specs?.[key];
+        const verifiedStoredValue = product.verifiedAt && (
+          (Array.isArray(stored) && stored.length > 0)
+          || stored === true
+          || typeof stored === "number" && Number.isFinite(stored)
+          || typeof stored === "string" && stored.length > 0
+        );
+        const extractedValue = Array.isArray(value) && value.length === 0 && Array.isArray(stored) && stored.length > 0
+          ? stored
+          : value;
+        return [key, verifiedStoredValue ? stored : extractedValue ?? stored ?? null];
+      })
+    ),
+  };
   const ampulVariantId = String(product.id || "").split(":").at(-1);
   const ampulVariantVoltage = product.merchant?.startsWith("ampul_")
     ? AMPUL_VERIFIED_INVERTER_VARIANTS[ampulVariantId]
@@ -461,6 +469,11 @@ function scoreProduct(product, setup) {
   if (product.category === "controller") {
     if (!/\bmppt\b/i.test(product.name)) return null;
     if (!specs.currentA || specs.currentA < setup.controllerAmps) return null;
+    if (Array.isArray(specs.systemVoltagesV)
+      && specs.systemVoltagesV.length > 0
+      && !specs.systemVoltagesV.includes(setup.systemVoltage)) return null;
+    const pvLimit = specs.maxPvWattsBySystemVoltage?.[setup.systemVoltage];
+    if (Number.isFinite(pvLimit) && setup.solarWatts > pvLimit) return null;
     fit = specs.currentA / setup.controllerAmps;
   }
   if (product.category === "dc_charger" || product.category === "shore_charger") {
@@ -525,6 +538,9 @@ function relevantSpecValues(product) {
   }
   if (product.category === "power_station") {
     return [product.specs.capacityWh, product.specs.powerW, product.specs.solarInputW, product.specs.dcOutputA];
+  }
+  if (product.category === "controller") {
+    return [product.specs.currentA, product.specs.systemVoltagesV, product.specs.maxPvWattsBySystemVoltage];
   }
   return [product.specs.currentA];
 }

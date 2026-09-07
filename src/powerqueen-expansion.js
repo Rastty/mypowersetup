@@ -47,6 +47,15 @@ function validateSpecs(product) {
   }
   if (product.category === "controller") {
     if (!/\bmppt\b/i.test(product.name || "") || !(specs.currentA >= 20)) throw new Error("POWERQUEEN_CONTROLLER_SPECS_INVALID");
+    if (Array.isArray(specs.systemVoltagesV)) {
+      const voltages = [...new Set(specs.systemVoltagesV)].sort((a, b) => a - b);
+      if (voltages.length !== 2 || voltages[0] !== 12 || voltages[1] !== 24) throw new Error("POWERQUEEN_CONTROLLER_VOLTAGE_EVIDENCE_INVALID");
+    }
+    if (specs.maxPvWattsBySystemVoltage) {
+      if (specs.maxPvWattsBySystemVoltage[12] !== 450 || specs.maxPvWattsBySystemVoltage[24] !== 900) {
+        throw new Error("POWERQUEEN_CONTROLLER_PV_LIMIT_EVIDENCE_INVALID");
+      }
+    }
     return;
   }
   if (product.category === "inverter") {

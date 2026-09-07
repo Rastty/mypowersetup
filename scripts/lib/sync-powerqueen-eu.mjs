@@ -8,6 +8,19 @@ const RETRYABLE_STATUSES = new Set([408, 425, 429, 500, 502, 503, 504]);
 
 const VERIFIED_EXACT_PRODUCTS = Object.freeze([
   Object.freeze({
+    productUrl: "https://www.ipowerqueen.de/en/products/power-queen-12-24v-30amp-mppt-solar-charge-controller-and-bluetooth-adapter",
+    name: "Power Queen MPPT 12/24V 30A solar charge controller with Bluetooth module",
+    categoryPath: "Battery Charge Controllers",
+    verifiedAt: "2026-09-07",
+    description: "Power Queen MPPT controller for 12 V and 24 V battery systems; 30 A rated charge current, max PV power 450 W at 12 V and 900 W at 24 V.",
+    specs: Object.freeze({
+      currentA: 30,
+      systemVoltagesV: [12, 24],
+      maxPvWattsBySystemVoltage: Object.freeze({ 12: 450, 24: 900 }),
+      mppt: true,
+    }),
+  }),
+  Object.freeze({
     productUrl: "https://www.ipowerqueen.de/en/products/power-queen-2000w-inverter-12v-dc-to-230v-ac-converter",
     categoryPath: "Měniče napětí",
     verifiedAt,
