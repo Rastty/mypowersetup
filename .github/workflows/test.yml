@@ -46,6 +46,7 @@ jobs:
       - run: node --check scripts/check-commercial-scenarios.mjs
       - run: node --check scripts/check-commercial-opportunities.mjs
       - run: node --check scripts/check-affiliate-onboarding-candidates.mjs
+      - run: node --check scripts/write-owner-action-queue.mjs
       - run: node --check scripts/check-traffic-distribution.mjs
       - run: node --check scripts/check-public-internal-links.mjs
       - run: node --check scripts/report-traffic-distribution.mjs
@@ -74,6 +75,7 @@ jobs:
           path: commercial-opportunities.json
           retention-days: 14
       - run: node scripts/check-affiliate-onboarding-candidates.mjs
+      - run: npm run check:owner:actions
       - run: npm run check:traffic:distribution
       - run: npm run report:community:links -- --market pl
       - run: npm run indexnow:check
