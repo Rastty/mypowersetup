@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { classifyGuideCalculatorLink, classifyGuideClickZone } from "../src/analytics-links.js";
+import { classifyGuideCalculatorLink, classifyGuideCalculatorPosition, classifyGuideClickZone } from "../src/analytics-links.js";
 
 test("guide calculator classifier accepts exact calculator anchors for all published markets", () => {
   assert.deepEqual(classifyGuideCalculatorLink("/#kalkulator"), { destination_path: "/" });
@@ -27,4 +27,11 @@ test("guide click zones preserve the strongest CTA context", () => {
   assert.equal(classifyGuideClickZone({ inRelated: true, inHeader: true }), "related");
   assert.equal(classifyGuideClickZone({ inHeader: true }), "header");
   assert.equal(classifyGuideClickZone({}), "inline");
+});
+
+
+test("guide calculator position distinguishes early and late conversion CTAs", () => {
+  assert.equal(classifyGuideCalculatorPosition({ inTopCta: true, inBottomCta: true }), "early");
+  assert.equal(classifyGuideCalculatorPosition({ inBottomCta: true }), "late");
+  assert.equal(classifyGuideCalculatorPosition({}), "inline");
 });
