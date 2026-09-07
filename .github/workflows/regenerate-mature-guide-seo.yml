@@ -1,0 +1,51 @@
+name: Regenerate mature guide SEO
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "pruvodce/**"
+      - "sk/sprievodca/**"
+      - "pl/poradnik/**"
+      - "hu/utmutatok/**"
+      - "src/mature-guide-seo.js"
+      - "scripts/sync-mature-guide-seo.mjs"
+      - ".github/workflows/regenerate-mature-guide-seo.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mature-guide-seo-publication
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - name: Regenerate mature guide authority, breadcrumbs and sitemap lastmod
+        run: node scripts/sync-mature-guide-seo.mjs
+      - name: Verify SEO transform
+        run: node --test tests/mature-guide-seo.test.js
+      - name: Commit generated mature-guide SEO drift
+        shell: bash
+        run: |
+          git add pruvodce sk/sprievodca pl/poradnik hu/utmutatok sitemap.xml
+          if git diff --cached --quiet; then
+            echo "Mature guide SEO already matches its source."
+            exit 0
+          fi
+          git config user.name "mypowersetup-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "seo: regenerate mature guide authority metadata"
+          git reset --hard HEAD
+          git pull --rebase origin main
+          git push origin HEAD:main
