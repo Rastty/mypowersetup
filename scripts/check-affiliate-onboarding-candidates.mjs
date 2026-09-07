@@ -27,6 +27,7 @@ const merchantPolicies = new Map([
   ["butler_technik", new Set(["approval_pending", "blocked_stock"])],
   ["offgridtec", new Set(["skipped_by_owner"])],
   ["xdatou", new Set(["blocked_affiliate_verification"])],
+  ["solaris_store", new Set(["blocked_affiliate_verification"])],
   ["bluetti_eu", new Set(["blocked_stock"])],
 ]);
 
@@ -55,6 +56,8 @@ const multiPlus = required("butler-victron-multiplus-ii-24-3000-70-32");
 const smartSolar = required("butler-victron-smartsolar-250-60-mc4");
 const orionXs = required("butler-victron-orion-xs-12-12-50");
 const xdatouInverter = required("xdatou-datouboss-2000w-24v");
+const solarisPhoenix12 = required("solaris-victron-phoenix-12-250");
+const solarisPhoenix24 = required("solaris-victron-phoenix-24-250");
 const bluettiFamilyStation = required("bluetti-eu-ac240-b210");
 
 for (const [candidate, voltage] of [[phoenix12, 12], [phoenix24, 24]]) {
@@ -122,6 +125,40 @@ assert(sourcingXdatou?.blocker === "goaffpro_account_approval_not_verified", "Xd
 assert(sourcingXdatou?.affiliateNetworkVerifiedAt === xdatouInverter.affiliateNetworkVerifiedAt, "Xdatou network verification date diverges");
 assert(sameValues(sourcingXdatou?.markets || [], Object.keys(xdatouInverter.marketEligibility)), "Xdatou onboarding and sourcing target markets diverge");
 
+for (const [candidate, voltage, peakPowerW, exactPath] of [
+  [solarisPhoenix12, 12, 400, "/2333-phoenix-inverter-12-250-230v-vedirect-iec-victron-pin121251100.html"],
+  [solarisPhoenix24, 24, 350, "/8005-onduleur-victron-phoenix-24-250va-vedirect-schucko.html"],
+]) {
+  assert(candidate.merchant === "solaris_store", `${candidate.id}: Solaris merchant invalid`);
+  assert(candidate.network === null && candidate.programId === null, `${candidate.id}: Solaris affiliate tracking must remain unverified`);
+  assert(candidate.status === "blocked_affiliate_verification", `${candidate.id}: Solaris Phoenix affiliate status invalid`);
+  assert(candidate.secondaryBlocker === "market_shipping_checkout_unverified", `${candidate.id}: Solaris market-checkout blocker missing`);
+  assert(candidate.category === "inverter", `${candidate.id}: Solaris category invalid`);
+  assert(candidate.productUrl === null && candidate.affiliateUrl === null, `${candidate.id}: Solaris inactive candidate leaked a public/tracked URL`);
+  const application = new URL(candidate.applicationUrl);
+  assert(application.hostname === "www.solaris-store.com" && application.pathname === "/content/95-partenariat", `${candidate.id}: Solaris first-party affiliate application missing`);
+  const retail = new URL(candidate.retailEvidenceUrl);
+  assert(retail.hostname === "www.solaris-store.com" && retail.pathname === exactPath, `${candidate.id}: Solaris exact retail evidence invalid`);
+  const shipping = new URL(candidate.shippingEvidenceUrl);
+  assert(shipping.hostname === "www.solaris-store.com" && shipping.pathname === "/content/132-europe", `${candidate.id}: Solaris Europe shipping evidence invalid`);
+  assert(candidate.shippingEvidenceScope === "all_europe_general", `${candidate.id}: generic Europe shipping scope must remain explicit`);
+  assert(candidate.stockStatus === "in_stock" && candidate.stockEvidenceVerifiedAt === "2026-09-07", `${candidate.id}: Solaris stock evidence invalid`);
+  assert(candidate.specs?.systemVoltage === voltage, `${candidate.id}: Solaris voltage evidence invalid`);
+  assert(candidate.specs?.continuousPowerW === 200, `${candidate.id}: Solaris continuous power must fit the 100-300 W gap`);
+  assert(candidate.specs?.peakPowerW === peakPowerW, `${candidate.id}: Solaris peak-power evidence invalid`);
+  assert(candidate.specs?.waveform === "pure_sine", `${candidate.id}: Solaris pure-sine evidence missing`);
+  assert(candidate.specs?.continuousPowerW >= 100 && candidate.specs?.continuousPowerW <= 300, `${candidate.id}: Solaris candidate does not fit the P0 small-inverter band`);
+  assert(sameValues(Object.keys(candidate.marketEligibility || {}), ["pt-PT", "ro-RO", "sl-SI"]), `${candidate.id}: Solaris target markets invalid`);
+  assert(Object.values(candidate.marketEligibility).every((value) => value === "unverified"), `${candidate.id}: Solaris market eligibility must remain fail-closed`);
+
+  const sourcing = listCommercialSourcingCandidates({ category: "inverter" }).find(({ id }) => id === candidate.id);
+  assert(sourcing?.status === candidate.status, `${candidate.id}: Solaris onboarding and sourcing statuses diverge`);
+  assert(sourcing?.blocker === "affiliate_tracking_not_verified", `${candidate.id}: Solaris tracking blocker missing from sourcing queue`);
+  assert(sourcing?.secondaryBlocker === candidate.secondaryBlocker, `${candidate.id}: Solaris market blocker diverges`);
+  assert(sourcing?.specs?.systemVoltagesV?.includes(voltage), `${candidate.id}: Solaris sourcing voltage diverges`);
+  assert(sourcing?.specs?.powerW === 200 && sourcing?.specs?.pureSine === true, `${candidate.id}: Solaris sourcing specs diverge`);
+}
+
 assert(bluettiFamilyStation.category === "power_station", "BLUETTI AC240+B210 category invalid");
 assert(bluettiFamilyStation.stockStatus === "out_of_stock", "BLUETTI AC240+B210 must remain blocked while its EU bundle is unavailable");
 assert(bluettiFamilyStation.secondaryBlocker === "affiliate_deeplink_unverified", "BLUETTI EU affiliate blocker missing");
@@ -184,7 +221,7 @@ console.log(JSON.stringify({
   publicLeakage: false,
   commercialCoverageImpact: 0,
   blockers: {
-    inverter: "Xdatou exact 24 V / 2000 W SKU is in stock and ships to PT/RO/SI; GoAffPro is verified, but account approval and a trackable deeplink are still missing; Butler inverter remains out of stock and Offgridtec stays skipped by owner",
+    inverter: "Xdatou exact 24 V / 2000 W remains behind GoAffPro activation; Solaris has exact in-stock 12 V and 24 V Phoenix 200 W candidates for the P0 small-inverter band, but affiliate tracking and per-market checkout eligibility are still unverified; Offgridtec stays skipped by owner",
     controller: "Butler SmartSolar 60 A is in stock and ships to SK/PL/HU/PT/RO/SI; Awin programme approval is the remaining activation blocker",
     dcCharger: "Butler Orion XS 12/12 50 A is in stock and staged for SK/PL/HU/PT/RO/SI; the same Butler Awin approval is the remaining activation blocker"
   }

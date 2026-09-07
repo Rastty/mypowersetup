@@ -49,6 +49,8 @@ test("PT, RO and SI inverter sourcing prefers the in-stock Xdatou exact fit behi
     assert.deepEqual(candidates.map(({ id }) => id), [
       "butler-victron-pmp242305010",
       "xdatou-datouboss-2000w-24v",
+      "solaris-victron-phoenix-12-250",
+      "solaris-victron-phoenix-24-250",
     ]);
     const best = bestCommercialSourcingCandidate({ market, category: "inverter" });
     assert.equal(best.id, "xdatou-datouboss-2000w-24v");
@@ -65,6 +67,8 @@ test("PT, RO and SI inverter sourcing prefers the in-stock Xdatou exact fit behi
       "offgridtec-victron-phoenix-24-250",
       "butler-victron-pmp242305010",
       "xdatou-datouboss-2000w-24v",
+      "solaris-victron-phoenix-12-250",
+      "solaris-victron-phoenix-24-250",
     ]);
     assert.ok(skipped.slice(0, 2).every((candidate) => candidate.status === "skipped_by_owner"));
     assert.ok(skipped.slice(0, 2).every((candidate) => candidate.blocker === "owner_declined_application"));
@@ -105,5 +109,29 @@ test("Butler Orion XS is staged as the preferred DC-DC candidate across all supp
     assert.equal(candidate.specs.powerW, 700);
     assert.equal(candidate.specs.smartAlternatorCompatible, true);
     assert.ok(candidate.specs.batteryTypes.includes("lifepo4"));
+  }
+});
+
+
+test("Solaris exact Phoenix candidates cover both 12V and 24V P0 small-inverter bands while staying blocked", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const candidates = listCommercialSourcingCandidates({ market, category: "inverter" })
+      .filter((candidate) => candidate.merchant === "solaris_store");
+
+    assert.equal(candidates.length, 2);
+    const byVoltage = new Map(candidates.map((candidate) => [candidate.specs.systemVoltagesV[0], candidate]));
+    assert.deepEqual([...byVoltage.keys()].sort((a, b) => a - b), [12, 24]);
+
+    for (const [voltage, candidate] of byVoltage) {
+      assert.equal(candidate.status, "blocked_affiliate_verification");
+      assert.equal(candidate.blocker, "affiliate_tracking_not_verified");
+      assert.equal(candidate.secondaryBlocker, "market_shipping_checkout_unverified");
+      assert.equal(candidate.stockStatus, "in_stock");
+      assert.equal(candidate.stockVerifiedAt, "2026-09-07");
+      assert.equal(candidate.specs.powerW, 200);
+      assert.ok(candidate.specs.powerW >= 100 && candidate.specs.powerW <= 300);
+      assert.equal(candidate.specs.pureSine, true);
+      assert.ok([12, 24].includes(voltage));
+    }
   }
 });
