@@ -53,6 +53,46 @@ function exactDestination(destination) {
   return { product, destination: url.toString() };
 }
 
+export function isAmpulExpansionProduct(product) {
+  return product?.merchant === "ampul_eu";
+}
+
+export function validateAmpulExpansionProduct(product, {
+  market,
+  verifiedMarkets = [],
+} = {}) {
+  if (!isAmpulExpansionProduct(product)) throw new Error("AMPUL_EXPANSION_MERCHANT_INVALID");
+  if (!AMPUL_EXPANSION_MARKETS.includes(market) || !verifiedMarkets.includes(market)) throw new Error("AMPUL_EXPANSION_MARKET_UNVERIFIED");
+  if (product.marketEligible !== true || product.available !== true || !product.verifiedAt) throw new Error("AMPUL_EXPANSION_EVIDENCE_INVALID");
+
+  const exact = exactDestination(product.productUrl);
+  if (!exact) throw new Error("AMPUL_EXPANSION_PRODUCT_URL_INVALID");
+  if (!validateAmpulEhubUrl(product.affiliateUrl, product.productUrl)) throw new Error("AMPUL_EXPANSION_AFFILIATE_INVALID");
+
+  if (product.category === "dc_charger") {
+    if (exact.product !== AMPUL_12V_30A_DCDC) throw new Error("AMPUL_EXPANSION_DCDC_SKU_INVALID");
+    const specs = product.specs || {};
+    if (specs.currentA !== 30
+      || !Array.isArray(specs.chargingVoltagesV) || !specs.chargingVoltagesV.includes(12)
+      || !Array.isArray(specs.chargingInputVoltagesV) || !specs.chargingInputVoltagesV.includes(12)
+      || !Array.isArray(specs.chargingBatteryTypes) || !specs.chargingBatteryTypes.includes("lifepo4")) {
+      throw new Error("AMPUL_EXPANSION_DCDC_SPECS_INVALID");
+    }
+    return product;
+  }
+
+  if (product.category === "inverter") {
+    if (exact.product !== AMPUL_24V_2000W_INVERTER) throw new Error("AMPUL_EXPANSION_INVERTER_SKU_INVALID");
+    const specs = product.specs || {};
+    if (specs.voltageV !== 24 || specs.powerW !== 2000 || specs.pureSine !== true) {
+      throw new Error("AMPUL_EXPANSION_INVERTER_SPECS_INVALID");
+    }
+    return product;
+  }
+
+  throw new Error("AMPUL_EXPANSION_CATEGORY_INVALID");
+}
+
 export function validateAmpulEhubUrl(affiliateUrl, expectedDestination) {
   let click;
   try {
