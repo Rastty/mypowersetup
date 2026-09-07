@@ -153,7 +153,12 @@
         "high-power-tools"
       ],
       "stockEvidenceVerifiedAt": "2026-09-07",
-      "stockStatus": "in_stock"
+      "stockStatus": "in_stock",
+      "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+      "applicationReady": true,
+      "nextActionOwner": "user",
+      "nextAction": "join_awin_program_31291",
+      "applicationPacketPath": "docs/affiliate/butler-awin-application.md"
     },
     {
       "id": "butler-victron-orion-xs-12-12-50",
@@ -201,7 +206,12 @@
         "remote-work"
       ],
       "stockEvidenceVerifiedAt": "2026-09-07",
-      "stockStatus": "in_stock"
+      "stockStatus": "in_stock",
+      "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+      "applicationReady": true,
+      "nextActionOwner": "user",
+      "nextAction": "join_awin_program_31291",
+      "applicationPacketPath": "docs/affiliate/butler-awin-application.md"
     },
     {
       "id": "xdatou-datouboss-2000w-24v",
