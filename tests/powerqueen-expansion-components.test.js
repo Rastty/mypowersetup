@@ -52,6 +52,15 @@ const components = [
     specs: { voltageV: 12, powerW: 2000, pureSine: true },
   }),
   pq({
+    id: "powerqueen_eu:charger10",
+    name: "Power Queen 14.6V 10A LiFePO4 battery charger",
+    description: "100-240 V AC input; 14.6 V / 10 A charger for 12 V LiFePO4 batteries.",
+    category: "shore_charger",
+    productUrl: "https://www.ipowerqueen.de/en/products/power-queen-14-6v-10a-lifepo4-battery-charger",
+    verifiedAt: "2026-09-07",
+    specs: { voltageV: 12, currentA: 10, chargingVoltagesV: [12], chargingBatteryTypes: ["lifepo4"], batteryType: "lifepo4" },
+  }),
+  pq({
     id: "powerqueen_eu:charger",
     name: "Power Queen 14.6V 20A LiFePO4 battery charger",
     description: "AC charger for 12 V LiFePO4 batteries.",

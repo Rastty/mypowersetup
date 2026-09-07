@@ -15,6 +15,14 @@ const VERIFIED_EXACT_PRODUCTS = Object.freeze([
     specs: Object.freeze({ voltageV: 12, powerW: 2000, pureSine: true }),
   }),
   Object.freeze({
+    productUrl: "https://www.ipowerqueen.de/en/products/power-queen-14-6v-10a-lifepo4-battery-charger",
+    name: "Power Queen 14.6V 10A LiFePO4 charger for 12V LiFePO4 battery",
+    categoryPath: "Nabíječky",
+    verifiedAt: "2026-09-07",
+    description: "Power Queen AC to DC charger for 12.8 V LiFePO4 batteries; 14.6 V charging output at 10 A and 100-240 V AC input.",
+    specs: Object.freeze({ voltageV: 12, currentA: 10, chargingVoltagesV: [12], chargingBatteryTypes: ["lifepo4"], batteryType: "lifepo4" }),
+  }),
+  Object.freeze({
     productUrl: "https://www.ipowerqueen.de/en/products/power-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
     name: "Power Queen 14.6V 20A LiFePO4 battery charger for 12V LiFePO4 battery",
     categoryPath: "Nabíječky",

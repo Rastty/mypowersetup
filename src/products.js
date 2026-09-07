@@ -327,7 +327,7 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
   const chargerPath = /nabíječky|nabíjačky|ładowarki|töltők/i.test(categoryPath);
   const chargerAccessory = /\b(usb|startér|štartér|powerbank|čidlo|snímač|ovládání|ovládanie|kabel|kábel|zástrčka|pohotovostní|indító|érzékelő|vezérlő|csatlakozó)\b/i.test(name);
   const explicitDcCharger = /\bdc\s*[-–]?\s*dc\b|posilovač nabíjení|posilňovač nabíjania|charge booster|nabíjecí booster|nabíjací booster|f\.?\s*alternátor|\b(?:z|zo|od)\s*(?:12|24|36|48)\s*v(?:\s*\/\s*(?:12|24|36|48)\s*v?)?\s*(?:na|do)\s*\d+(?:[.,]\d+)?\s*v\b|\b(?:12|24|36|48)\s*v(?:\s*\/\s*(?:12|24|36|48)\s*v?)?\s*[-–]?(?:ról|ről|tól|től)\s*\d+(?:[.,]\d+)?\s*v(?:\s*[-–]?(?:ra|re|ig))?/i.test(name);
-  const explicitBatteryCharger = /nabíječ(?:ka|ky)|nabíjač(?:ka|ky)|ładowark\w*|battery charger|akkumulátor\s*töltő|akkumulátortöltő|\btöltő\b/i.test(name);
+  const explicitBatteryCharger = /nabíječ(?:ka|ky)|nabíjač(?:ka|ky)|ładowark\w*|battery charger|\bcharger\b|akkumulátor\s*töltő|akkumulátortöltő|\btöltő\b/i.test(name);
 
   if (/(?:stacja zasilania|power station)/i.test(`${name} ${categoryPath}`) && specs.capacityWh > 0 && specs.powerW > 0) {
     return "power_station";
