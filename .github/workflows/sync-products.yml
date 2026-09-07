@@ -27,6 +27,8 @@ on:
       - "src/affiliate-allpowers-pt.js"
       - "src/commercial-opportunity-backlog.js"
       - "src/commercial-scenarios.js"
+      - "src/engine.js"
+      - "src/acquisition-requirements.js"
       - "data/products-pl-verified.json"
       - "data/products-pt-verified.json"
       - "tests/hu-foundation.test.js"
