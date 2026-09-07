@@ -92,16 +92,31 @@ test("pending Butler controller is also tracked for the expansion markets", () =
   }
 });
 
-test("BLUETTI AC240+B210 is tracked as the exact family portable route without leaking before activation", () => {
-  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+test("live BLUETTI Elite 300 supersedes retired AC240 family route in PT and RO", () => {
+  for (const market of ["pt-PT", "ro-RO"]) {
+    const candidates = listCommercialSourcingCandidates({ market, category: "power_station" });
+    assert.deepEqual(candidates.map(({ id }) => id), ["bluetti-eu-elite-300", "bluetti-eu-ac240-b210"]);
+
     const candidate = bestCommercialSourcingCandidate({ market, category: "power_station" });
-    assert.equal(candidate.id, "bluetti-eu-ac240-b210");
-    assert.equal(candidate.status, "blocked_stock");
-    assert.equal(candidate.blocker, "exact_eu_bundle_out_of_stock");
-    assert.equal(candidate.secondaryBlocker, "eu_affiliate_deeplink_not_verified");
-    assert.equal(candidate.specs.capacityWh, 3686);
+    assert.equal(candidate.id, "bluetti-eu-elite-300");
+    assert.equal(candidate.status, "blocked_affiliate_verification");
+    assert.equal(candidate.blocker, "eu_affiliate_deeplink_unverified");
+    assert.equal(candidate.stockStatus, "in_stock");
+    assert.equal(candidate.stockVerifiedAt, "2026-09-07");
+    assert.equal(candidate.standaloneUnlockWeight, 5);
+    assert.equal(candidate.affectedWeight, 5);
+    assert.equal(candidate.specs.capacityWh, 3014.4);
+    assert.equal(candidate.specs.powerW, 2400);
+    assert.equal(candidate.specs.solarInputW, 1200);
     assert.equal(candidate.specs.dcOutputA, 30);
+    assert.deepEqual(candidate.shippingEligibleMarkets, ["pt-PT", "ro-RO"]);
+    assert.deepEqual(candidate.unsupportedMarkets, ["sl-SI"]);
   }
+
+  const si = bestCommercialSourcingCandidate({ market: "sl-SI", category: "power_station" });
+  assert.equal(si.id, "bluetti-eu-ac240-b210");
+  assert.equal(si.status, "blocked_stock");
+  assert.equal(si.blocker, "exact_eu_bundle_out_of_stock");
 });
 
 

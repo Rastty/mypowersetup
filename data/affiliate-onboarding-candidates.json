@@ -307,6 +307,58 @@
       ]
     },
     {
+      "id": "bluetti-eu-elite-300",
+      "merchant": "bluetti_eu",
+      "network": null,
+      "programId": null,
+      "applicationUrl": "https://www.bluettipower.eu/pages/affiliate-program",
+      "commissionPercent": 10,
+      "status": "blocked_affiliate_verification",
+      "category": "power_station",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "technicalEvidenceUrl": "https://www.bluettipower.eu/products/elite-300-portable-power-station",
+      "retailEvidenceUrl": "https://www.bluettipower.eu/products/elite-300-portable-power-station",
+      "retailEvidenceVerifiedAt": "2026-09-07",
+      "stockEvidenceVerifiedAt": "2026-09-07",
+      "stockStatus": "in_stock",
+      "shippingEvidenceUrl": "https://www.bluettipower.eu/pages/shipping-country",
+      "shippingEvidenceVerifiedAt": "2026-09-07",
+      "exactRetailPath": "/products/elite-300-portable-power-station",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified"
+      },
+      "shippingEligibleMarkets": [
+        "pt-PT",
+        "ro-RO"
+      ],
+      "unsupportedMarkets": [
+        "sl-SI"
+      ],
+      "specs": {
+        "capacityWh": 3014.4,
+        "continuousPowerW": 2400,
+        "peakPowerW": 4800,
+        "waveform": "pure_sine",
+        "solarInputW": 1200,
+        "dcOutputVoltageV": 12,
+        "dcOutputA": 30,
+        "batteryType": "lifepo4",
+        "cycleLife80Percent": 6000
+      },
+      "targetScenarioIds": [
+        "family-touring"
+      ],
+      "standaloneUnlockWeight": 5,
+      "affectedWeight": 5,
+      "currentPriceEur": 1499,
+      "affiliateEvidenceUrl": "https://www.bluettipower.eu/pages/affiliate-program",
+      "affiliateEvidenceVerifiedAt": "2026-09-07",
+      "nextActionOwner": "user",
+      "nextAction": "verify_eu_affiliate_deeplink"
+    },
+    {
       "id": "solaris-victron-phoenix-12-250",
       "merchant": "solaris_store",
       "network": null,
