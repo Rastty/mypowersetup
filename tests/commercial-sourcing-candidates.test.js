@@ -83,16 +83,27 @@ test("pending Butler controller is also tracked for the expansion markets", () =
   }
 });
 
-test("BLUETTI AC240+B210 is tracked as the exact family portable route without leaking before activation", () => {
+test("BLUETTI Elite 300 is the preferred family portable sourcing candidate", () => {
   for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
     const candidate = bestCommercialSourcingCandidate({ market, category: "power_station" });
-    assert.equal(candidate.id, "bluetti-eu-ac240-b210");
-    assert.equal(candidate.status, "blocked_stock");
-    assert.equal(candidate.blocker, "exact_eu_bundle_out_of_stock");
-    assert.equal(candidate.secondaryBlocker, "eu_affiliate_deeplink_not_verified");
-    assert.equal(candidate.specs.capacityWh, 3686);
+    assert.equal(candidate.id, "bluetti-eu-elite-300");
+    assert.equal(candidate.status, "blocked_affiliate_verification");
+    assert.equal(candidate.blocker, "awin_program_approval_not_verified");
+    assert.equal(candidate.stockStatus, "in_stock");
+    assert.equal(candidate.stockVerifiedAt, "2026-09-07");
+    assert.equal(candidate.specs.capacityWh, 3014.4);
+    assert.equal(candidate.specs.powerW, 2400);
+    assert.equal(candidate.specs.solarInputW, 1200);
     assert.equal(candidate.specs.dcOutputA, 30);
   }
+});
+
+test("legacy BLUETTI AC240+B210 remains tracked but lower-priority while out of stock", () => {
+  const candidates = listCommercialSourcingCandidates({ market: "pt-PT", category: "power_station" });
+  const legacy = candidates.find(({ id }) => id === "bluetti-eu-ac240-b210");
+  assert.equal(legacy.status, "blocked_stock");
+  assert.equal(legacy.blocker, "exact_eu_bundle_out_of_stock");
+  assert.equal(legacy.secondaryBlocker, "eu_affiliate_deeplink_not_verified");
 });
 
 
