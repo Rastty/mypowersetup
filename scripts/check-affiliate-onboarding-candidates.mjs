@@ -228,6 +228,11 @@ assert(sourcingBluetti?.secondaryBlocker === "eu_affiliate_deeplink_not_verified
 assert(smartSolar.merchant === "butler_technik", "SmartSolar merchant invalid");
 assert(smartSolar.network === "awin" && smartSolar.programId === BUTLER_TECHNIK_AWIN.merchantId, "SmartSolar affiliate programme metadata invalid");
 assert(smartSolar.status === "approval_pending", "SmartSolar must remain approval_pending until explicit Butler activation");
+assert(smartSolar.applicationReady === true, "SmartSolar Butler application must be ready");
+assert(smartSolar.nextActionOwner === "user" && smartSolar.nextAction === "join_awin_program_31291", "SmartSolar Butler next action must be explicit");
+assert(smartSolar.applicationPacketPath === "docs/affiliate/butler-awin-application.md", "SmartSolar Butler application packet path missing");
+const smartSolarApplication = new URL(smartSolar.applicationUrl);
+assert(smartSolarApplication.hostname === "ui.awin.com" && smartSolarApplication.pathname === "/merchant-profile/31291", "SmartSolar Awin application route invalid");
 assert(smartSolar.stockStatus === "in_stock" && smartSolar.stockEvidenceVerifiedAt === "2026-09-07", "SmartSolar current stock evidence missing");
 assert(smartSolar.category === BUTLER_VICTRON_MPPT_250_60_MC4.category, "SmartSolar category diverges from Butler source");
 assert(smartSolar.exactRetailPath === BUTLER_VICTRON_MPPT_250_60_MC4.exactPath, "SmartSolar retail path diverges from Butler source");
@@ -246,6 +251,11 @@ assert(sourcingSmartSolar?.stockStatus === "in_stock" && sourcingSmartSolar?.sto
 assert(orionXs.merchant === "butler_technik", "Orion XS merchant invalid");
 assert(orionXs.network === "awin" && orionXs.programId === BUTLER_TECHNIK_AWIN.merchantId, "Orion XS affiliate programme metadata invalid");
 assert(orionXs.status === "approval_pending", "Orion XS must remain approval_pending until explicit Butler activation");
+assert(orionXs.applicationReady === true, "Orion XS Butler application must be ready");
+assert(orionXs.nextActionOwner === "user" && orionXs.nextAction === "join_awin_program_31291", "Orion XS Butler next action must be explicit");
+assert(orionXs.applicationPacketPath === "docs/affiliate/butler-awin-application.md", "Orion XS Butler application packet path missing");
+const orionApplication = new URL(orionXs.applicationUrl);
+assert(orionApplication.hostname === "ui.awin.com" && orionApplication.pathname === "/merchant-profile/31291", "Orion XS Awin application route invalid");
 assert(orionXs.stockStatus === "in_stock" && orionXs.stockEvidenceVerifiedAt === "2026-09-07", "Orion XS current stock evidence missing");
 assert(orionXs.category === BUTLER_VICTRON_ORION_XS_12_12_50.category, "Orion XS category diverges from Butler source");
 assert(orionXs.exactRetailPath === BUTLER_VICTRON_ORION_XS_12_12_50.exactPath, "Orion XS retail path diverges from Butler source");
