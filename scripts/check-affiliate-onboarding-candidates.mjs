@@ -93,9 +93,11 @@ assert(sourcingMultiPlus?.secondaryBlocker === "awin_program_approval", "MultiPl
 
 assert(xdatouInverter.merchant === "xdatou", "Xdatou inverter merchant invalid");
 assert(xdatouInverter.network === "goaffpro" && xdatouInverter.programId === null, "Xdatou affiliate metadata must remain unapproved");
-assert(xdatouInverter.status === "blocked_affiliate_verification", "Xdatou inverter must remain blocked until affiliate terms and account approval are verified");
+assert(xdatouInverter.status === "blocked_affiliate_verification", "Xdatou inverter must remain blocked until account approval and trackable deeplink are verified");
 assert(xdatouInverter.category === "inverter", "Xdatou inverter category invalid");
 assert(new URL(xdatouInverter.applicationUrl).hostname === "eu.xdatou.com", "Xdatou application evidence must be first-party");
+assert(new URL(xdatouInverter.affiliateNetworkEvidenceUrl).hostname === "eu.xdatou.com", "Xdatou affiliate-network evidence must be first-party");
+assert(/^\d{4}-\d{2}-\d{2}$/.test(xdatouInverter.affiliateNetworkVerifiedAt || ""), "Xdatou affiliate-network verification date missing");
 assert(new URL(xdatouInverter.retailEvidenceUrl).hostname === "eu.xdatou.com", "Xdatou retail evidence must be first-party");
 assert(new URL(xdatouInverter.shippingEvidenceUrl).hostname === "eu.xdatou.com", "Xdatou shipping evidence must be first-party");
 assert(xdatouInverter.stockStatus === "in_stock" && /^\d{4}-\d{2}-\d{2}$/.test(xdatouInverter.stockEvidenceVerifiedAt || ""), "Xdatou stock evidence invalid");
@@ -107,7 +109,8 @@ assert(sameValues(Object.keys(xdatouInverter.marketEligibility || {}), ["pt-PT",
 assert(["pt-PT", "ro-RO", "sl-SI"].every((market) => xdatouInverter.shippingEligibleMarkets.includes(market)), "Xdatou shipping evidence does not cover PT/RO/SI");
 const sourcingXdatou = listCommercialSourcingCandidates({ category: "inverter" }).find(({ id }) => id === xdatouInverter.id);
 assert(sourcingXdatou?.status === xdatouInverter.status, "Xdatou onboarding and sourcing statuses diverge");
-assert(sourcingXdatou?.blocker === "goaffpro_terms_and_account_approval_not_verified", "Xdatou affiliate blocker missing from sourcing queue");
+assert(sourcingXdatou?.blocker === "goaffpro_account_approval_not_verified", "Xdatou affiliate-account blocker missing from sourcing queue");
+assert(sourcingXdatou?.affiliateNetworkVerifiedAt === xdatouInverter.affiliateNetworkVerifiedAt, "Xdatou network verification date diverges");
 assert(sameValues(sourcingXdatou?.markets || [], Object.keys(xdatouInverter.marketEligibility)), "Xdatou onboarding and sourcing target markets diverge");
 
 assert(bluettiFamilyStation.category === "power_station", "BLUETTI AC240+B210 category invalid");
@@ -125,6 +128,7 @@ assert(sourcingBluetti?.secondaryBlocker === "eu_affiliate_deeplink_not_verified
 assert(smartSolar.merchant === "butler_technik", "SmartSolar merchant invalid");
 assert(smartSolar.network === "awin" && smartSolar.programId === BUTLER_TECHNIK_AWIN.merchantId, "SmartSolar affiliate programme metadata invalid");
 assert(smartSolar.status === "approval_pending", "SmartSolar must remain approval_pending until explicit Butler activation");
+assert(smartSolar.stockStatus === "in_stock" && smartSolar.stockEvidenceVerifiedAt === "2026-09-07", "SmartSolar current stock evidence missing");
 assert(smartSolar.category === BUTLER_VICTRON_MPPT_250_60_MC4.category, "SmartSolar category diverges from Butler source");
 assert(smartSolar.exactRetailPath === BUTLER_VICTRON_MPPT_250_60_MC4.exactPath, "SmartSolar retail path diverges from Butler source");
 assert(new URL(smartSolar.retailEvidenceUrl).hostname === BUTLER_TECHNIK_AWIN.hostname, "SmartSolar retail evidence must be Butler Technik");
@@ -136,6 +140,8 @@ assert(smartSolar.specs?.systemVoltages?.includes(24) && BUTLER_VICTRON_MPPT_250
 assert(smartSolar.specs?.nominalPvPowerW12V === BUTLER_VICTRON_MPPT_250_60_MC4.pvWattsBySystemVoltage[12] && smartSolar.specs.nominalPvPowerW12V >= 550, "SmartSolar 12 V PV capability does not cover 550 W scenario");
 assert(smartSolar.specs?.nominalPvPowerW24V === BUTLER_VICTRON_MPPT_250_60_MC4.pvWattsBySystemVoltage[24] && smartSolar.specs.nominalPvPowerW24V >= 500, "SmartSolar 24 V PV capability does not cover 500 W scenario");
 assert(["sk-SK", "pl-PL", "hu-HU", "pt-PT", "ro-RO", "sl-SI"].every((market) => smartSolar.shippingEligibleMarkets.includes(market)), "SmartSolar shipping evidence does not cover all target markets");
+const sourcingSmartSolar = listCommercialSourcingCandidates({ category: "controller" }).find(({ id }) => id === "butler-victron-scc125060321");
+assert(sourcingSmartSolar?.stockStatus === "in_stock" && sourcingSmartSolar?.stockVerifiedAt === smartSolar.stockEvidenceVerifiedAt, "SmartSolar sourcing stock evidence diverges");
 
 const statusCounts = onboarding.candidates.reduce((counts, candidate) => {
   counts[candidate.status] = (counts[candidate.status] || 0) + 1;
@@ -149,8 +155,8 @@ console.log(JSON.stringify({
   publicLeakage: false,
   commercialCoverageImpact: 0,
   blockers: {
-    inverter: "Xdatou exact 24 V / 2000 W SKU is in stock and ships to PT/RO/SI, but GoAffPro terms and account approval are not verified; Butler remains out of stock and Offgridtec stays skipped by owner",
-    controller: "Wait for Butler Technik Awin approval; shipping and exact product evidence now cover SK/PL/HU/PT/RO/SI"
+    inverter: "Xdatou exact 24 V / 2000 W SKU is in stock and ships to PT/RO/SI; GoAffPro is verified, but account approval and a trackable deeplink are still missing; Butler inverter remains out of stock and Offgridtec stays skipped by owner",
+    controller: "Butler SmartSolar 60 A is in stock and ships to SK/PL/HU/PT/RO/SI; Awin programme approval is the remaining activation blocker"
   }
 }, null, 2));
 
