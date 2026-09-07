@@ -283,6 +283,10 @@ const SI_GROWTH_CONTENT = Object.freeze({
   <h2>Padec napetosti lahko povzroči izklop</h2>
   <p>Kompresor lahko ob zagonu zahteva več toka kot med stabilnim delovanjem. Predolg ali pretanek kabel lahko povzroči padec napetosti in izklop, čeprav baterija še ni prazna. Preveri pot kabla in zaščito v vodniku za <a href="/si/vodici/kabli-varovalke-12v-avtodom/">kable in varovalke 12/24 V</a>.</p>
 
+  <h2>Porabo primerjaj z načinom polnjenja</h2>
+  <p>Hladilnik je posebna obremenitev, ker deluje tudi takrat, ko drugih naprav ne uporabljaš. Če porabi približno 450 Wh/dan, mora sistem to energijo vsak dan nekje povrniti ali jo več dni črpati iz baterijske rezerve. Na sončen poletni dan lahko pomemben del pokrije solar, med vožnjo DC-DC, na kampu pa 230 V polnilnik.</p>
+  <p>Pri načrtovanju zato ne preverjaj samo, ali baterija zdrži eno noč. Primerjaj dnevno porabo hladilnika z realno energijo, ki jo lahko povrneš med svojim načinom potovanja. Če več dni stojiš v senci, velik solar na strehi ne zagotavlja enakega rezultata kot na odprtem soncu. Če vsak dan voziš več ur, lahko postane pomembnejši pravilno dimenzioniran <a href="/si/vodici/dc-dc-polnilnik-avtodom/">DC-DC polnilnik</a>.</p>
+
   <h2>Kontrolni seznam za izračun</h2>
   <ul>
     <li>nazivna moč in napetost hladilnika;</li>
