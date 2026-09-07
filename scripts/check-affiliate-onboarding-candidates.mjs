@@ -61,6 +61,7 @@ const orionXs = required("butler-victron-orion-xs-12-12-50");
 const xdatouInverter = required("xdatou-datouboss-2000w-24v");
 const solarisPhoenix12 = required("solaris-victron-phoenix-12-250");
 const solarisPhoenix24 = required("solaris-victron-phoenix-24-250");
+const solarisSmartSolar60 = required("solaris-victron-smartsolar-150-60-tr");
 const padaboPhoenix12 = required("padabo-sk-victron-phoenix-12-250");
 const ampulInverter24 = required("ampul-eu-inverter-24v-2000w");
 const ampulDcDc30 = required("ampul-eu-dcdc-12v-30a");
@@ -180,6 +181,33 @@ for (const [candidate, voltage, peakPowerW, exactPath] of [
   assert(sourcing?.specs?.systemVoltagesV?.includes(voltage), `${candidate.id}: Solaris sourcing voltage diverges`);
   assert(sourcing?.specs?.powerW === 200 && sourcing?.specs?.pureSine === true, `${candidate.id}: Solaris sourcing specs diverge`);
 }
+
+assert(solarisSmartSolar60.merchant === "solaris_store", "Solaris SmartSolar merchant invalid");
+assert(solarisSmartSolar60.network === null && solarisSmartSolar60.programId === null, "Solaris SmartSolar tracking must remain unverified");
+assert(solarisSmartSolar60.status === "blocked_affiliate_verification", "Solaris SmartSolar affiliate status invalid");
+assert(solarisSmartSolar60.secondaryBlocker === "market_shipping_checkout_unverified", "Solaris SmartSolar market-checkout blocker missing");
+assert(solarisSmartSolar60.category === "controller", "Solaris SmartSolar category invalid");
+assert(solarisSmartSolar60.productUrl === null && solarisSmartSolar60.affiliateUrl === null, "Solaris SmartSolar inactive candidate leaked public/tracked URL");
+const solarisSmartApplication = new URL(solarisSmartSolar60.applicationUrl);
+assert(solarisSmartApplication.hostname === "www.solaris-store.com" && solarisSmartApplication.pathname === "/contact" && solarisSmartApplication.searchParams.get("id") === "partenariat-ambassadeur", "Solaris SmartSolar exact ambassador application route missing");
+assert(solarisSmartSolar60.applicationReady === true, "Solaris SmartSolar application handoff must be ready");
+assert(solarisSmartSolar60.nextActionOwner === "user" && solarisSmartSolar60.nextAction === "submit_ambassador_application", "Solaris SmartSolar next action must reuse Solaris ambassador application");
+assert(solarisSmartSolar60.applicationPacketPath === "docs/affiliate/solaris-ambassador-application.md", "Solaris SmartSolar application packet path missing");
+assert(solarisSmartSolar60.checkoutStatus === "site_operational_country_checkout_unverified" && solarisSmartSolar60.checkoutStatusVerifiedAt === "2026-09-07", "Solaris SmartSolar checkout state invalid");
+const solarisSmartRetail = new URL(solarisSmartSolar60.retailEvidenceUrl);
+assert(solarisSmartRetail.hostname === "www.solaris-store.com" && solarisSmartRetail.pathname === "/2169-regulateur-victron-smartsolar-mppt-150-60-tr-150v-60a-.html", "Solaris SmartSolar exact retail evidence invalid");
+assert(solarisSmartSolar60.stockStatus === "dispatch_5_7_days" && solarisSmartSolar60.stockEvidenceVerifiedAt === "2026-09-07", "Solaris SmartSolar availability evidence invalid");
+assert(solarisSmartSolar60.specs?.technology === "mppt" && solarisSmartSolar60.specs?.currentA === 60, "Solaris SmartSolar MPPT current evidence invalid");
+assert(sameValues(solarisSmartSolar60.specs?.systemVoltages || [], [12, 24, 36, 48]), "Solaris SmartSolar system-voltage evidence invalid");
+assert(solarisSmartSolar60.specs?.nominalPvPowerW12V === 860 && solarisSmartSolar60.specs?.nominalPvPowerW24V === 1720, "Solaris SmartSolar PV power evidence invalid");
+assert(solarisSmartSolar60.specs?.maxPvVocV === 150, "Solaris SmartSolar max PV Voc evidence invalid");
+assert(sameValues(Object.keys(solarisSmartSolar60.marketEligibility || {}), ["pt-PT", "ro-RO", "sl-SI"]), "Solaris SmartSolar target markets invalid");
+assert(Object.values(solarisSmartSolar60.marketEligibility).every((value) => value === "unverified"), "Solaris SmartSolar market eligibility must remain fail-closed");
+const sourcingSolarisSmart = listCommercialSourcingCandidates({ category: "controller" }).find(({ id }) => id === solarisSmartSolar60.id);
+assert(sourcingSolarisSmart?.status === solarisSmartSolar60.status, "Solaris SmartSolar onboarding and sourcing statuses diverge");
+assert(sourcingSolarisSmart?.blocker === "affiliate_tracking_not_verified", "Solaris SmartSolar tracking blocker missing from sourcing queue");
+assert(sourcingSolarisSmart?.secondaryBlocker === solarisSmartSolar60.secondaryBlocker, "Solaris SmartSolar market blocker diverges");
+assert(sourcingSolarisSmart?.specs?.currentA === 60 && sourcingSolarisSmart?.specs?.maxPvWattsAt12V === 860, "Solaris SmartSolar sourcing specs diverge");
 
 assert(padaboPhoenix12.merchant === "padabo_sk", "Padabo expansion merchant invalid");
 assert(padaboPhoenix12.network === "ehub" && padaboPhoenix12.campaignId === "7aed5c13", "Padabo eHub campaign metadata invalid");
