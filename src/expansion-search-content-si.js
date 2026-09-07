@@ -15,6 +15,28 @@ const SI_GROWTH_CONTENT = Object.freeze({
   <p>Pri isti moči 24 V približno prepolovi tok glede na 12 V. To je uporabno pri večjih baterijah in močnejših inverterjih, ker zmanjša zahteve glede toka in izgub. Samodejni način MyPowerSetup preklopi na 24 V pri izračunani bateriji nad 2.400 Wh ali inverterju nad 1.200 W.</p>
   <h2>Pred nakupom preveri</h2>
   <ul><li>dejansko porabo v Wh/dan;</li><li>največji neprekinjeni tok BMS;</li><li>dovoljeni polnilni tok in temperaturne omejitve;</li><li>združljivost z MPPT, DC-DC in 230 V polnilnikom;</li><li>mere, maso, priključke in prostor za vgradnjo.</li></ul>
+
+  <h2>Ne računaj, da bo solar na voljo vsak dan</h2>
+  <p>Avtonomijo baterije izberi za obdobje, ko nimaš zanesljivega polnjenja. Če želiš dva dni neodvisnosti, ne predpostavljaj, da bosta oba dneva sončna ali da boš dovolj dolgo vozil za DC-DC polnjenje. Senca, vreme, lokacija in način potovanja lahko močno zmanjšajo energijo, ki jo povrneš.</p>
+  <p>Robustna logika je: baterija pokrije izbrano obdobje brez zagotovljenega vira, solar, alternator in 230 V pa nato določajo, kako hitro energijo povrneš. Tako istega prihodnjega polnjenja ne šteješ dvakrat.</p>
+
+  <h2>Kapaciteta in največji tok sta ločeni zahtevi</h2>
+  <p>Baterija z dovolj Wh lahko še vedno ne podpira močnega inverterja, če BMS omejuje stalni ali konični tok. Preveri <a href="/si/vodici/inverter-avtodom-moc/">zahtevo inverterja</a>, največji tok BMS-a, kable in zaščite kot en sistem.</p>
+  <p>Na polnilni strani se lahko istočasno seštejejo tokovi iz <a href="/si/vodici/mppt-regulator-avtodom/">MPPT-ja</a>, <a href="/si/vodici/dc-dc-polnilnik-avtodom/">DC-DC-ja</a> in 230 V polnilnika. Baterija mora skupni tok dovoljevati ali pa mora krmiljenje sistema preprečiti prekoračitev.</p>
+
+  <h2>Kontrolni seznam za končno izbiro baterije</h2>
+  <ul>
+    <li>dnevna poraba v Wh in dnevi avtonomije;</li>
+    <li>uporabni delež glede na kemijo in navodila proizvajalca;</li>
+    <li>sistemska napetost 12 V ali 24 V;</li>
+    <li>stalni in konični tok BMS-a;</li>
+    <li>največji polnilni tok vseh virov skupaj;</li>
+    <li>temperaturne omejitve polnjenja in praznjenja;</li>
+    <li>mere, masa, priključki in varen način pritrditve;</li>
+    <li>združljivost z obstoječimi polnilniki in DC porabniki.</li>
+  </ul>
+  <p>Scenarij najprej preveri v <a href="/si/#calculator-preview">MyPowerSetup kalkulatorju</a>, nato pa podatke konkretne baterije primerjaj z izračunano energijo in tokovi.</p>
+
 </section>`,
     faq: Object.freeze([
       ["Koliko Ah baterije potrebujem v avtodomu?", "Ni univerzalnega števila. Najprej izračunaj Wh na dan, avtonomijo, kemijo baterije in napetost sistema, šele nato pretvori rezultat v Ah."],
@@ -274,6 +296,19 @@ const SI_GROWTH_CONTENT = Object.freeze({
     <li>prezračevanje, temperaturno zmanjšanje moči in zaščita mesta namestitve.</li>
   </ul>
   <p>Ne prepisuj preseka kabla ali varovalke iz drugega avtodoma. Upoštevaj priročnik naprave in preveri dejansko traso.</p>
+
+  <h2>Temperatura in mesto vgradnje vplivata na dejanski tok</h2>
+  <p>Nazivni tok polnilnika ne pomeni, da bo naprava v vseh pogojih trajno oddajala enako moč. V vročem, zaprtem prostoru ali poleg drugih virov toplote lahko elektronika zmanjša izhod. Upoštevaj zahtevane odmike, prezračevanje in temperaturno zmanjšanje moči iz priročnika konkretnega modela.</p>
+  <p>Po prvi daljši vožnji pri večjem polnilnem toku preveri temperaturo kablov, priključkov in ohišja. Slab stik ali neustrezen presek lahko povzroči dodatno segrevanje in padec napetosti.</p>
+
+  <h2>Tok izberi iz energijskega cilja in realnega časa vožnje</h2>
+  <p>Če porabiš 900 Wh na dan in običajno voziš dve uri, najprej oceni, koliko energije mora DC-DC v teh dveh urah povrniti. Nato preveri, ali alternator to moč lahko varno zagotavlja in ali jo baterija lahko sprejme. Če voziš le kratek čas, večji polnilnik ni avtomatično rešitev.</p>
+  <p>DC-DC je del celotnega bilansa skupaj s <a href="/si/vodici/kapaciteta-baterije-avtodom/">kapaciteto baterije</a> in <a href="/si/vodici/koliko-soncnih-panelov-avtodom/">solarjem</a>. Baterija pokriva čas brez polnjenja, viri pa morajo energijo povrniti v realnem potovalnem ritmu.</p>
+
+  <h2>Preveri obe strani pretvornika</h2>
+  <p>Pri 12→24 V ali drugih pretvorbah vhodni in izhodni tok nista enaka. Ločeno preveri varovalko, presek in padec napetosti na strani alternatorja ter na strani bivalne baterije. Uporabi <a href="/si/vodici/kabli-varovalke-12v-avtodom/">vodnik za kable in varovalke</a> in vedno upoštevaj priročnik konkretnega DC-DC-ja.</p>
+  <p>Celoten scenarij lahko preveriš v <a href="/si/#calculator-preview">MyPowerSetup</a>; končni tok pa mora ostati znotraj omejitev alternatorja, baterije, BMS-a in samega polnilnika.</p>
+
 </section>`,
     faq: Object.freeze([
       ["Kakšen DC-DC tok je primeren za 100 Ah LiFePO4 baterijo?", "Odvisen je od omejitve baterije in BMS, alternatorja, časa vožnje, temperature in kablov. Sama kapaciteta 100 Ah ni dovolj za izbiro."],
@@ -323,6 +358,19 @@ const SI_GROWTH_CONTENT = Object.freeze({
 
   <h2>Poveži polnilnik s celotnim sistemom</h2>
   <p>Uporabi <a href="/si/#calculator-preview">kalkulator za avtodom</a> za oceno baterije in dnevne porabe, nato preveri <a href="/si/vodici/kabli-varovalke-12v-avtodom/">vodnik za kable in varovalke</a>. Skupni tok omrežja, sonca in alternatorja ne sme preseči omejitve baterije.</p>
+
+  <h2>Sočasna poraba lahko močno podaljša čas polnjenja</h2>
+  <p>Če 20 A polnilnik med priklopom hkrati napaja hladilnik, luči in elektroniko, celih 20 A ne teče v baterijo. Del toka sproti porabijo naprave. Zato čas polnjenja ocenjuj iz neto toka, ki po sočasni porabi dejansko ostane za baterijo.</p>
+  <p>To je posebej pomembno pri kratkem postanku na omrežju. Če imaš na voljo le nekaj ur, preveri, ali izbrani polnilnik v tem času res dopolni energijo, ki jo potrebuješ za naslednji del poti.</p>
+
+  <h2>Skupni polnilni tok lahko prihaja iz več virov hkrati</h2>
+  <p>V določenih konfiguracijah lahko istočasno delujejo 230 V polnilnik, MPPT in drugi viri. Seštej možne tokove in primerjaj rezultat z največjim polnilnim tokom baterije in BMS-a. Če je vsota previsoka, sistem potrebuje omejitev ali usklajeno konfiguracijo.</p>
+  <p>Ne obravnavaj omrežnega polnilnika kot samostojne naprave. Poveži ga z <a href="/si/vodici/kapaciteta-baterije-avtodom/">baterijo</a>, <a href="/si/vodici/mppt-regulator-avtodom/">MPPT-jem</a> in <a href="/si/vodici/dc-dc-polnilnik-avtodom/">DC-DC polnilnikom</a>, da noben del sistema ne preseže dovoljenih tokov.</p>
+
+  <h2>Pred nakupom preveri tudi praktično uporabo v kampu</h2>
+  <p>Razmisli, kako pogosto si priključen na 230 V in koliko časa običajno ostaneš na mestu. Za občasno noč na priklopu je lahko pomembnejši dovolj velik polnilni tok; pri večdnevnem bivanju je lahko manjši polnilnik povsem zadosten. Večji tok ni sam po sebi boljši, če ga baterija ne potrebuje ali ga priklop in hlajenje ne podpirata.</p>
+  <p>Za energijski cilj uporabi <a href="/si/#calculator-preview">MyPowerSetup kalkulator</a>, nato pa izberi polnilnik po času priklopa, omejitvah baterije in celotnem sistemu.</p>
+
 </section>`,
     faq: Object.freeze([
       ["Kakšen 230 V polnilnik potrebujem za 200 Ah LiFePO4?", "Odvisno od omejitve baterije in BMS ter časa priklopa. Za 120 Ah dopolnitve pomeni 20 A najmanj 6 idealnih ur, 30 A pa najmanj 4 ure, še pred izgubami in porabo."],
