@@ -562,7 +562,7 @@
       "stockEvidenceVerifiedAt": "2026-09-07",
       "marketEligibility": {
         "pt-PT": "unverified",
-        "ro-RO": "unverified",
+        "ro-RO": "verified",
         "sl-SI": "unverified"
       },
       "specs": {
@@ -582,7 +582,17 @@
         "winter-basic"
       ],
       "nextActionOwner": "system",
-      "nextAction": "verify_pt_ro_si_checkout"
+      "nextAction": "verify_pt_si_checkout",
+      "activatedMarkets": [
+        "ro-RO"
+      ],
+      "activationVerifiedAt": "2026-09-07",
+      "activationEvidence": {
+        "productUrl": "https://ampul.eu/ro/incarcatoare/6195-incarcator-de-baterii-lifepo4-dc-dc-146v-30a-400w-ip68",
+        "termsUrl": "https://ampul.eu/ro/content/3-termeni-i-condiii",
+        "storefrontUrl": "https://ampul.eu/ro/",
+        "sourceCatalog": "data/products-ampul-cz.json"
+      }
     },
     {
       "id": "padabo-sk-victron-phoenix-12-250",
