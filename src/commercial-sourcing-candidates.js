@@ -84,6 +84,8 @@ const CANDIDATES = Object.freeze([
     specs: Object.freeze({ systemVoltagesV: Object.freeze([24]), powerW: 2000, pureSine: true }),
     status: "blocked_affiliate_verification",
     blocker: "goaffpro_account_approval_not_verified",
+    standaloneUnlockWeight: 0,
+    affectedWeight: 5,
     activationFieldsNeeded: Object.freeze(["approvalConfirmed", "referralIdentifier", "referralCode"]),
     affiliateNetworkVerifiedAt: "2026-09-07",
   }),
@@ -100,6 +102,8 @@ const CANDIDATES = Object.freeze([
     status: "blocked_affiliate_verification",
     blocker: "affiliate_tracking_not_verified",
     secondaryBlocker: "market_shipping_checkout_unverified",
+    standaloneUnlockWeight: 5,
+    affectedWeight: 5,
     applicationReady: true,
     applicationUrl: "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
     checkoutStatus: "maintenance_blocked",
@@ -119,6 +123,8 @@ const CANDIDATES = Object.freeze([
     status: "blocked_affiliate_verification",
     blocker: "affiliate_tracking_not_verified",
     secondaryBlocker: "market_shipping_checkout_unverified",
+    standaloneUnlockWeight: 0,
+    affectedWeight: 3,
     applicationReady: true,
     applicationUrl: "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
     checkoutStatus: "maintenance_blocked",
@@ -264,5 +270,13 @@ export function bestCommercialSourcingCandidate({ market, category } = {}) {
   };
   return listCommercialSourcingCandidates({ market, category })
     .slice()
-    .sort((a, b) => (rank[a.status] ?? 99) - (rank[b.status] ?? 99))[0] || null;
+    .sort((a, b) => {
+      const statusDelta = (rank[a.status] ?? 99) - (rank[b.status] ?? 99);
+      if (statusDelta) return statusDelta;
+      const unlockDelta = (b.standaloneUnlockWeight || 0) - (a.standaloneUnlockWeight || 0);
+      if (unlockDelta) return unlockDelta;
+      const affectedDelta = (b.affectedWeight || 0) - (a.affectedWeight || 0);
+      if (affectedDelta) return affectedDelta;
+      return a.id.localeCompare(b.id);
+    })[0] || null;
 }
