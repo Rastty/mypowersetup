@@ -18,7 +18,6 @@ export function buildCommercialOwnerActionQueue() {
     const standaloneUnlockWeight = candidate.standaloneUnlockWeight || 0;
     const affectedWeight = candidate.affectedWeight || 0;
     if (candidate.nextActionOwner !== "user" || !candidate.nextAction) continue;
-    if (standaloneUnlockWeight <= 0 && affectedWeight <= 0) continue;
 
     const actionKey = `${candidate.merchant}:${candidate.nextAction}`;
     const group = groups.get(actionKey) || {
@@ -67,7 +66,9 @@ export function buildCommercialOwnerActionQueue() {
     groups.set(actionKey, group);
   }
 
-  const actions = [...groups.values()].map((group) => Object.freeze({
+  const actions = [...groups.values()]
+    .filter((group) => group.maxStandaloneUnlockWeight > 0 || group.maxAffectedWeight > 0)
+    .map((group) => Object.freeze({
     actionKey: group.actionKey,
     merchant: group.merchant,
     nextAction: group.nextAction,
