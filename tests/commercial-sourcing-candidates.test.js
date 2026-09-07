@@ -54,6 +54,7 @@ test("PT, RO and SI inverter sourcing prefers the in-stock Xdatou exact fit behi
     assert.equal(best.id, "xdatou-datouboss-2000w-24v");
     assert.equal(best.status, "blocked_affiliate_verification");
     assert.equal(best.blocker, "goaffpro_account_approval_not_verified");
+    assert.deepEqual(best.activationFieldsNeeded, ["approvalConfirmed", "referralIdentifier", "referralCode"]);
     assert.equal(best.affiliateNetworkVerifiedAt, "2026-09-07");
     assert.equal(best.specs.powerW, 2000);
     assert.equal(best.specs.pureSine, true);
