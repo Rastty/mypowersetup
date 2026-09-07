@@ -273,3 +273,36 @@ test("Padabo closed cross-border route stays visible only in full sourcing inven
     assert.equal(padabo.nextAction, "none");
   }
 });
+
+
+test("Solaris SmartSolar 60A shares the same ambassador unlock as the P0 Phoenix inverters", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const controller = listCommercialSourcingCandidates({ market, category: "controller" })
+      .find((candidate) => candidate.id === "solaris-victron-smartsolar-150-60-tr");
+    assert.ok(controller, `${market}: Solaris SmartSolar candidate missing`);
+    assert.equal(controller.merchant, "solaris_store");
+    assert.equal(controller.status, "blocked_affiliate_verification");
+    assert.equal(controller.blocker, "affiliate_tracking_not_verified");
+    assert.equal(controller.secondaryBlocker, "market_shipping_checkout_unverified");
+    assert.equal(controller.applicationReady, true);
+    assert.equal(controller.applicationUrl, "https://www.solaris-store.com/contact?id=partenariat-ambassadeur");
+    assert.equal(controller.checkoutStatus, "site_operational_country_checkout_unverified");
+    assert.equal(controller.stockStatus, "dispatch_5_7_days");
+    assert.equal(controller.stockVerifiedAt, "2026-09-07");
+    assert.equal(controller.specs.currentA, 60);
+    assert.ok(controller.specs.systemVoltagesV.includes(12));
+    assert.equal(controller.specs.maxPvWattsAt12V, 860);
+    assert.equal(controller.specs.maxPvWattsAt24V, 1720);
+    assert.equal(controller.specs.maxPvVocV, 150);
+
+    // Butler remains the shorter single-product controller activation today,
+    // but Solaris can unlock both inverter and controller gaps through one merchant relationship.
+    assert.equal(bestCommercialSourcingCandidate({ market, category: "controller" }).id, "butler-victron-scc125060321");
+    const solarisCategories = new Set(
+      listCommercialSourcingCandidates({ market })
+        .filter((candidate) => candidate.merchant === "solaris_store")
+        .map((candidate) => candidate.category)
+    );
+    assert.deepEqual([...solarisCategories].sort(), ["controller", "inverter"]);
+  }
+});
