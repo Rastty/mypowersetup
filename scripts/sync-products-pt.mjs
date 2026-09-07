@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { syncAllpowersPt } from "./lib/sync-allpowers-pt.mjs";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 import { syncXdatouEu } from "./lib/sync-xdatou-eu.mjs";
+import { syncAmpulExpansion } from "./lib/sync-ampul-expansion.mjs";
 
 const outputPath = "data/products-pt.json";
 const verifiedPath = "data/products-pt-verified.json";
@@ -39,6 +40,9 @@ try {
 }
 
 const xdatou = await syncXdatouEu(previousCatalog);
+const ampulSource = JSON.parse(await readFile("data/products-ampul-cz.json", "utf8"));
+const ampulVerification = JSON.parse(await readFile("data/ampul-expansion-market-verification.json", "utf8"));
+const ampul = syncAmpulExpansion(ampulSource, "pt-PT", ampulVerification);
 
 // Expansion markets intentionally fail closed on stale component feeds. The
 // merchant is retried on the next sync rather than carrying old availability
@@ -49,6 +53,7 @@ const powerQueenProducts = powerQueen.source.status === "ok"
 const xdatouProducts = xdatou.source.status === "ok"
   ? xdatou.products.map((product) => ({ ...product, marketEligible: true }))
   : [];
+const ampulProducts = ampul.source.status === "ok" ? ampul.products : [];
 
 const nextCatalog = {
   generatedAt: new Date().toISOString(),
@@ -70,10 +75,14 @@ const nextCatalog = {
       shippingEvidenceUrl: "https://eu.xdatou.com/pages/shipping-policy",
       shippingVerifiedAt: "2026-09-07",
     },
+    ampul_eu: {
+      ...ampul.source,
+      affiliateApprovalConfirmed: true,
+    },
   },
-  products: [...allpowers.products, ...powerQueenProducts, ...xdatouProducts],
+  products: [...allpowers.products, ...powerQueenProducts, ...xdatouProducts, ...ampulProducts],
 };
 
 await mkdir("data", { recursive: true });
 await writeFile(outputPath, `${JSON.stringify(nextCatalog, null, 2)}\n`);
-console.log(`PT: ${allpowers.products.length} ALLPOWERS + ${powerQueenProducts.length} Power Queen + ${xdatouProducts.length} Xdatou produtos seguros guardados.`);
+console.log(`PT: ${allpowers.products.length} ALLPOWERS + ${powerQueenProducts.length} Power Queen + ${xdatouProducts.length} Xdatou + ${ampulProducts.length} AMPUL produtos seguros guardados.`);
