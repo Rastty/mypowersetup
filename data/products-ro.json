@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T16:18:42.826Z",
+  "generatedAt": "2026-09-07T17:28:21.144Z",
   "market": "ro-RO",
   "currency": "EUR",
   "private": false,
@@ -45,6 +45,13 @@
       "exactProducts": 0,
       "shippingEvidenceUrl": "https://eu.xdatou.com/pages/shipping-policy",
       "shippingVerifiedAt": "2026-09-07"
+    },
+    "ampul_eu": {
+      "status": "blocked",
+      "blocker": "market_shipping_checkout_unverified",
+      "verifiedMarkets": [],
+      "exactProducts": 0,
+      "affiliateApprovalConfirmed": true
     },
     "oxe_ro": {
       "status": "ok",
