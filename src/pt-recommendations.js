@@ -11,14 +11,14 @@ export async function loadPortugalProductCatalog(fetchImpl = globalThis.fetch) {
   return validatePtCatalog(await response.json());
 }
 
-export function buildPortugalRecommendations(catalog, setup, limitPerCategory = 3) {
+export function buildPortugalRecommendations(catalog, setup, limitPerCategory = 3, { bluettiActivation } = {}) {
   const safeCatalog = validatePtCatalog({
     market: "pt-PT",
     currency: "EUR",
     generatedAt: catalog?.generatedAt || null,
     sources: catalog?.sources || {},
     products: catalog?.products || [],
-  });
+  }, { bluettiActivation });
 
   const solar = safeCatalog.products
     .filter((product) => product.category === "solar_panel" && product.available !== false && product.specs?.powerW > 0)
