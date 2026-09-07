@@ -2,6 +2,7 @@ import { calculatePowerStationProfile } from "./power-station.js";
 import { validateOxeDognetDeeplink, validateOxeProductUrl } from "./oxe-affiliate.js";
 import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js";
 import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affiliate-xdatou.js";
+import { isAmpulExpansionProduct, validateAmpulExpansionProduct } from "./affiliate-ampul-expansion.js";
 import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
 
 export const SI_CATALOG_URL = "/data/products-si.json";
@@ -28,6 +29,8 @@ export function validateSloveniaCatalog(catalog) {
   if (powerQueenProducts.length && catalog.sources?.powerqueen_eu?.status !== "ok") throw new Error("SI_POWERQUEEN_SOURCE_INVALID");
   const xdatouProducts = catalog.products.filter(isXdatouExpansionProduct);
   if (xdatouProducts.length && catalog.sources?.xdatou?.status !== "ok") throw new Error("SI_XDATOU_SOURCE_INVALID");
+  const ampulProducts = catalog.products.filter(isAmpulExpansionProduct);
+  if (ampulProducts.length && catalog.sources?.ampul_eu?.status !== "ok") throw new Error("SI_AMPUL_SOURCE_INVALID");
   for (const product of catalog.products) validateSloveniaProduct(product, catalog.sources);
   return catalog;
 }
@@ -79,6 +82,10 @@ function validateSloveniaProduct(product, sources = {}) {
   }
   if (isXdatouExpansionProduct(product)) {
     validateXdatouExpansionProduct(product, sources?.xdatou);
+    return;
+  }
+  if (isAmpulExpansionProduct(product)) {
+    validateAmpulExpansionProduct(product, { market: "si", verifiedMarkets: sources?.ampul_eu?.verifiedMarkets || [] });
     return;
   }
   if (!product?.verifiedAt) throw new Error("SI_PRODUCT_EVIDENCE_INVALID");
