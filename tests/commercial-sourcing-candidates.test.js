@@ -89,3 +89,20 @@ test("BLUETTI AC240+B210 is tracked as the exact family portable route without l
     assert.equal(candidate.specs.dcOutputA, 30);
   }
 });
+
+
+test("Butler Orion XS is staged as the preferred DC-DC candidate across all supported markets", () => {
+  for (const market of ["sk-SK", "pl-PL", "hu-HU", "pt-PT", "ro-RO", "sl-SI"]) {
+    const candidate = bestCommercialSourcingCandidate({ market, category: "dc_charger" });
+    assert.equal(candidate.id, "butler-victron-orion-xs-12-12-50");
+    assert.equal(candidate.merchant, "butler_technik");
+    assert.equal(candidate.status, "pending_affiliate_approval");
+    assert.equal(candidate.blocker, "awin_program_approval");
+    assert.equal(candidate.stockStatus, "in_stock");
+    assert.equal(candidate.stockVerifiedAt, "2026-09-07");
+    assert.equal(candidate.specs.currentA, 50);
+    assert.equal(candidate.specs.powerW, 700);
+    assert.equal(candidate.specs.smartAlternatorCompatible, true);
+    assert.ok(candidate.specs.batteryTypes.includes("lifepo4"));
+  }
+});
