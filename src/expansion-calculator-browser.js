@@ -101,6 +101,15 @@ root.addEventListener("click", async (event) => {
   }
 });
 
+root.addEventListener("toggle", (event) => {
+  const details = event.target?.closest?.("[data-product-alternatives]");
+  if (!details?.open) return;
+  track("product_alternatives_opened", {
+    market: locale,
+    category: details.dataset.category || "unknown",
+  });
+}, true);
+
 form.addEventListener("change", updateApplianceUi);
 form.addEventListener("input", () => {
   track("calculator_started", { source: "form_input" });
