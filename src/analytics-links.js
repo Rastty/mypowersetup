@@ -39,6 +39,12 @@ export function classifyGuideClickZone({ inPrimaryCta = false, inRelated = false
   return "inline";
 }
 
+export function classifyGuideCalculatorPosition({ inTopCta = false, inBottomCta = false } = {}) {
+  if (inTopCta) return "early";
+  if (inBottomCta) return "late";
+  return "inline";
+}
+
 function normalizePath(pathname) {
   try { return new URL(pathname, "https://mypowersetup.com").pathname; } catch { return String(pathname || ""); }
 }

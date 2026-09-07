@@ -1,5 +1,5 @@
 import { buildAnalyticsContext } from "./analytics-context.js";
-import { classifyGuideCalculatorLink, classifyGuideClickZone, classifyGuideInternalLink } from "./analytics-links.js";
+import { classifyGuideCalculatorLink, classifyGuideCalculatorPosition, classifyGuideClickZone, classifyGuideInternalLink } from "./analytics-links.js";
 import { resolveCommunityAttribution } from "./community-attribution.js";
 import { carryCommunityAttributionToUrl } from "./community-navigation.js";
 import { enhanceHomepageLanguageSwitch } from "./language-switch.js";
@@ -71,6 +71,13 @@ function openSettings() { renderDialog(); document.querySelector("[data-analytic
 function guideClickZone(link) {
   return classifyGuideClickZone({ inPrimaryCta: Boolean(link.closest(".cta")), inRelated: Boolean(link.closest(".related")), inHeader: Boolean(link.closest(".article-header")) });
 }
+function guideCalculatorClickPosition(link) {
+  const cta = link.closest(".cta");
+  return classifyGuideCalculatorPosition({
+    inTopCta: Boolean(link.closest("[data-guide-top-cta]")),
+    inBottomCta: Boolean(cta?.querySelector("[data-guide-conversion-cta]")),
+  });
+}
 function trackJourneyClick(event) {
   const link = event.target.closest?.("a[href]"); if (!link) return;
   const context = currentContext();
@@ -80,7 +87,7 @@ function trackJourneyClick(event) {
     if (calculatorDestination) {
       const carriedHref = carryCommunityAttributionToUrl(href, { search: window.location.search, pageUrl: window.location.href });
       if (carriedHref && carriedHref !== href) link.setAttribute("href", carriedHref);
-      track("guide_to_calculator_click", { ...calculatorDestination, source_zone: guideClickZone(link) });
+      track("guide_to_calculator_click", { ...calculatorDestination, source_zone: guideClickZone(link), source_position: guideCalculatorClickPosition(link) });
       return;
     }
     const internalDestination = classifyGuideInternalLink(href, { origin: window.location.origin, sourcePath: window.location.pathname });
