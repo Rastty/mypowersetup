@@ -8,13 +8,15 @@ import {
   buildAmpulEhubUrl,
   createAmpulExpansionCandidate,
   validateAmpulEhubUrl,
+  validateAmpulExpansionProduct,
 } from "../src/affiliate-ampul-expansion.js";
 
 const inverterDestination = "https://ampul.eu/cs/menice-napeti/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w";
 const dcdcDestination = "https://ampul.eu/cs/nabijecky/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68";
+const roDcdcDestination = "https://ampul.eu/ro/incarcatoare/6195-incarcator-de-baterii-lifepo4-dc-dc-146v-30a-400w-ip68";
 
 test("Ampul eHub deeplink builder preserves exact verified destinations", () => {
-  for (const destination of [inverterDestination, dcdcDestination]) {
+  for (const destination of [inverterDestination, dcdcDestination, roDcdcDestination]) {
     const url = buildAmpulEhubUrl(destination);
     assert.ok(url);
     assert.equal(validateAmpulEhubUrl(url, destination), true);
@@ -91,4 +93,49 @@ test("Ampul validator rejects modified eHub tracking and cross-product destinati
   assert.equal(validateAmpulEhubUrl(extra.toString(), inverterDestination), false);
 
   assert.equal(validateAmpulEhubUrl(good, dcdcDestination), false);
+});
+
+
+test("Romanian localized exact destination is accepted only with Romania market evidence", () => {
+  const ready = createAmpulExpansionCandidate(AMPUL_12V_30A_DCDC, {
+    destination: roDcdcDestination,
+    available: true,
+    verifiedMarkets: ["ro"],
+  });
+  assert.equal(ready.recommendationEligible, true);
+  assert.deepEqual(ready.verifiedMarkets, ["ro"]);
+  assert.equal(new URL(ready.affiliateUrl).searchParams.get("desturl"), roDcdcDestination);
+
+  const product = {
+    id: "ampul_eu:6195:ro",
+    merchant: "ampul_eu",
+    category: "dc_charger",
+    priceCzk: null,
+    priceCurrency: "EUR",
+    available: true,
+    marketEligible: true,
+    productUrl: roDcdcDestination,
+    affiliateUrl: ready.affiliateUrl,
+    verifiedAt: "2026-09-07",
+    specs: {
+      currentA: 30,
+      chargingVoltagesV: [12],
+      chargingInputVoltagesV: [12, 24],
+      chargingBatteryTypes: ["lifepo4"],
+    },
+  };
+
+  assert.equal(validateAmpulExpansionProduct(product, {
+    market: "ro",
+    source: { status: "ok", verifiedMarkets: ["ro"] },
+  }), product);
+
+  assert.throws(() => validateAmpulExpansionProduct(product, {
+    market: "si",
+    source: { status: "ok", verifiedMarkets: ["si"] },
+  }), /PRODUCT_URL_INVALID/);
+  assert.throws(() => validateAmpulExpansionProduct(product, {
+    market: "ro",
+    source: { status: "blocked", verifiedMarkets: ["ro"] },
+  }), /MARKET_EVIDENCE_INVALID/);
 });
