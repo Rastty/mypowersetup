@@ -37,6 +37,27 @@ const SI_GROWTH_CONTENT = Object.freeze({
   <p>Izmeri uporabno površino med strešnimi okni, klimo, antenami in nosilci. Delna senca lahko močno zmanjša proizvodnjo. Če izračunana moč ne gre na streho, je bolj smiselno zmanjšati porabo ali kombinirati solar z DC-DC polnjenjem in 230 V kot pa predpostaviti, da bo manjši panel proizvedel enako energijo.</p>
   <h2>Panele in MPPT preveri skupaj</h2>
   <p>Vezava v serijo zvišuje napetost, vzporedna vezava pa tok. Pred nakupom preveri Voc, Isc, temperaturni vpliv in največjo dovoljeno PV napetost regulatorja.</p>
+
+  <h2>Solar primerjaj z baterijo in drugimi viri polnjenja</h2>
+  <p>Wp sami po sebi ne povedo, ali bo sistem energijsko uravnotežen. Primerjaj dnevno porabo z energijo, ki jo lahko realno povrneš. Če več dni stojiš, solar postane glavni vir. Če vsak dan voziš, lahko pravilno dimenzioniran <a href="/si/vodici/dc-dc-polnilnik-avtodom/">DC-DC polnilnik</a> povrne pomemben del dnevne porabe.</p>
+  <p>Velika baterija lahko za nekaj dni skrije premalo solarja, ne reši pa dolgoročnega primanjkljaja. Prav tako velik solarni niz ne pomaga, če baterija ali MPPT ne moreta sprejeti razpoložljivega toka.</p>
+
+  <h2>Senca in položaj avtodoma sta del realnega rezultata</h2>
+  <p>Strešno okno, klima, antena ali nosilec lahko del dneva senčijo panel. Učinek je odvisen od notranje zgradbe panela in vezave. Pri postavitvi pusti prostor za prezračevanje, servis in pot kablov ter se izogni predvidljivim sencam.</p>
+  <p>Avtodom je parkiran v različnih smereh, zato paneli pogosto niso optimalno usmerjeni. PVGIS pomaga oceniti lokalni solarni vir, vendar ne pozna sence na tvoji strehi, naklona vozila ali dejanske parkirne navade. Rezultat uporabljaj kot preverjanje scenarija, ne kot zagotovilo proizvodnje.</p>
+
+  <h2>Pogoste napake pri dimenzioniranju solarja</h2>
+  <ul>
+    <li>izbira Wp pred izračunom Wh/dan;</li>
+    <li>uporaba istega pričakovanja za poletje in zimo;</li>
+    <li>ignoriranje sence, strešne površine in prostora za servis;</li>
+    <li>preverjanje Wp brez Voc in Isc;</li>
+    <li>izbira MPPT-ja brez napetosti baterije;</li>
+    <li>predpostavka, da paneli ves čas dajejo nazivno moč;</li>
+    <li>ignoriranje DC-DC in 230 V polnjenja v celotnem energijskem proračunu.</li>
+  </ul>
+  <p>Začni z <a href="/si/#calculator-preview">MyPowerSetup kalkulatorjem</a>, nato končno konfiguracijo panelov preveri skupaj z vodnikom za <a href="/si/vodici/mppt-regulator-avtodom/">MPPT regulator</a>.</p>
+
 </section>`,
     faq: Object.freeze([
       ["Je 200 W solarja dovolj za avtodom?", "Lahko je dovolj pri majhni porabi in dobrih poletnih pogojih, vendar je pravilen odgovor odvisen od Wh/dan, sezone, lokacije in senčenja."],
@@ -58,6 +79,50 @@ const SI_GROWTH_CONTENT = Object.freeze({
   <p>Preveri alternator oziroma DC-DC, solarni regulator, 230 V polnilnik, največji polnilni tok in BMS. Posebej preveri polnjenje pri nizkih temperaturah; nekatere LiFePO₄ baterije potrebujejo blokado polnjenja pod določeno temperaturo.</p>
   <h2>Kdaj je AGM še smiselna izbira</h2>
   <p>AGM je lahko smiselna pri majhnem, občasno uporabljenem in že združljivem sistemu, kjer sta nižja začetna cena in preprostost pomembnejši od mase ter večje uporabne energije.</p>
+
+  <h2>Primerjaj celoten strošek sistema, ne samo cene baterije</h2>
+  <p>Pri prehodu na LiFePO₄ upoštevaj morebitno zamenjavo DC-DC polnilnika, nastavitev ali zamenjavo 230 V polnilnika, profil MPPT regulatorja, kable in zaščite. AGM z večjo nazivno kapaciteto je lahko cenejša na začetku, vendar za enako načrtovano uporabno energijo pogosto zahteva več prostora in mase.</p>
+  <p>Primerjaj dve popolni konfiguraciji, ki zagotavljata isto avtonomijo. Tako vidiš razliko v masi, uporabni energiji, hitrosti polnjenja, potrebnih spremembah ter dejanski ceni celotne nadgradnje.</p>
+
+  <h2>Nizke temperature vplivajo na polnjenje in praznjenje različno</h2>
+  <p>Ne sklepaj, da je baterijo mogoče polniti pri isti temperaturi, pri kateri jo je še mogoče prazniti. Omejitve so odvisne od konkretnega modela in BMS-a. Če avtodom uporabljaš pozimi, preveri minimalno temperaturo polnjenja ter ali BMS polnjenje sam blokira oziroma ali baterija uporablja ogrevanje.</p>
+  <p>Tudi pri AGM preveri priporočene polnilne napetosti in morebitno temperaturno kompenzacijo. Nastavitev druge baterije ni zanesljiva samo zato, ker imata obe nazivno napetost 12 V.</p>
+
+  <h2>Kontrolni seznam pred zamenjavo AGM z LiFePO4</h2>
+  <ul>
+    <li>izračunaj dejanske Wh/dan in zahtevano avtonomijo;</li>
+    <li>potrdi sistemsko napetost 12 V ali 24 V;</li>
+    <li>preveri stalni in konični tok BMS-a glede na inverter;</li>
+    <li>preveri največji dovoljeni polnilni tok baterije;</li>
+    <li>preveri alternator in <a href="/si/vodici/dc-dc-polnilnik-avtodom/">DC-DC polnilnik</a>;</li>
+    <li>preveri profil <a href="/si/vodici/mppt-regulator-avtodom/">MPPT regulatorja</a> in 230 V polnilnika;</li>
+    <li>preveri delovanje pri nizkih temperaturah;</li>
+    <li>primerjaj maso, mere, priključke, pritrditev in kable.</li>
+  </ul>
+  <p>Najprej uporabi <a href="/si/#calculator-preview">MyPowerSetup kalkulator</a> za zahtevano energijo, nato izberi kemijo baterije, ki ta scenarij podpira brez nepotrebnih sprememb ali skritih omejitev.</p>
+
+
+  <h2>Dovoljena PV moč je povezana tudi z napetostjo baterije</h2>
+  <p>Isti model MPPT lahko pri 12 V in 24 V podpira različno nazivno moč panelov, ker je največji polnilni tok regulatorja omejen. Zato oznaka »30 A« brez napetosti baterije in konfiguracije panelov ne pove dovolj za varno izbiro.</p>
+  <p>Ko kalkulator oceni potreben tok, v podatkovnem listu konkretnega regulatorja preveri dovoljeno PV moč, največji Voc in največji Isc. Vse omejitve morajo biti izpolnjene hkrati.</p>
+
+  <h2>Isc in zaščite ne izhajajo samo iz Wp</h2>
+  <p>Dve solarni konfiguraciji z enako skupno močjo imata lahko zelo različne tokove kratkega stika. Pri vzporedni vezavi se Isc vej sešteva. Preveri vhodne omejitve MPPT-ja ter zahteve proizvajalca za zaščito in odklop.</p>
+  <p>Na PV strani dimenzioniraj kabel po toku, dolžini, temperaturi in dovoljenem padcu napetosti. Na strani baterije mora kabel varno prenašati največji polnilni tok regulatorja. Če se sistemska napetost spremeni, preveri oba dela ponovno.</p>
+
+  <h2>Kontrolni seznam pred nakupom MPPT-ja</h2>
+  <ul>
+    <li>napetost baterije 12 V ali 24 V;</li>
+    <li>skupna moč panelov v Wp;</li>
+    <li>največji Voc celotnega niza pri nizki temperaturi;</li>
+    <li>največji Isc serijske/vzporedne konfiguracije;</li>
+    <li>potreben polnilni tok proti bateriji;</li>
+    <li>dovoljena PV moč pri izbrani napetosti baterije;</li>
+    <li>polnilni profil, združljiv z baterijo in BMS-om;</li>
+    <li>kabli, varovalke, odklop in montaža po navodilih.</li>
+  </ul>
+  <p>Izbiro vedno poveži z vodnikom za <a href="/si/vodici/koliko-soncnih-panelov-avtodom/">potrebno solarno moč</a> in z <a href="/si/#calculator-preview">izračunom celotnega sistema</a>; ne izbiraj regulatorja samo po eni številki v imenu modela.</p>
+
 </section>`,
     faq: Object.freeze([
       ["Ali LiFePO4 pri enakih Ah zagotovi več uporabne energije kot AGM?", "Običajno da, vendar je dejanski uporabni delež odvisen od konkretne baterije in omejitev BMS."],
@@ -102,6 +167,28 @@ const SI_GROWTH_CONTENT = Object.freeze({
   <p>Za konservativno priporočilo MyPowerSetup daje prednost inverterjem s čistim sinusom, kadar je to jasno potrjeno v specifikacijah. Občutljiva elektronika, motorji in nekateri polnilniki lahko z modificiranim sinusom delujejo slabše ali sploh ne.</p>
   <h2>Pogoste napake</h2>
   <ul><li>zamenjava oglaševane kratkotrajne moči za stalno moč;</li><li>ignoriranje največjega toka BMS;</li><li>predolgi ali pretanki 12 V kabli;</li><li>namestitev inverterja predaleč od baterije;</li><li>seštevanje naprav, ki v resnici nikoli ne delujejo hkrati.</li></ul>
+
+  <h2>Preveri, ali mora inverter sploh delovati ves čas</h2>
+  <p>Inverter porablja energijo tudi pri majhni obremenitvi, nekateri modeli pa imajo opazno porabo tudi brez priključenega porabnika. Če lahko večino naprav napajaš neposredno z 12/24 V ali USB-C, krajši čas delovanja inverterja zmanjša izgube in obremenitev baterije.</p>
+  <p>Pri napravi, ki jo uporabljaš le občasno, primerjaj tudi druge možnosti: priklop na 230 V v kampu, namensko DC napajanje ali manj zmogljiv porabnik. Največji inverter ni vedno najbolj praktična rešitev.</p>
+
+  <h2>BMS, kabli in zaščita morajo prenesti dejanski tok</h2>
+  <p>Pri 2.000 W in 12 V so tokovi iz baterije zelo visoki, zagonski sunek pa je lahko še večji. Preveri stalni in konični tok BMS-a, dolžino kablov, zmogljivost priključkov, glavno varovalko in odklop. Vodnik za <a href="/si/vodici/kabli-varovalke-12v-avtodom/">kable in varovalke</a> pojasnjuje, zakaj se preseka ne izbira samo po nazivni moči inverterja.</p>
+  <p>Če zaradi zahtevane moči tokovi pri 12 V postanejo nepraktični, preveri tudi vodnik <a href="/si/vodici/12v-ali-24v-sistem-avtodom/">12 V ali 24 V</a>. Višja sistemska napetost lahko pri isti moči približno prepolovi tok, vendar zahteva združljive komponente.</p>
+
+  <h2>Kontrolni seznam pred izbiro inverterja</h2>
+  <ul>
+    <li>vsi AC porabniki in kombinacije, ki lahko delujejo hkrati;</li>
+    <li>stalna moč in zagonski sunek pomembnih naprav;</li>
+    <li>napetost baterije ter izračunani DC tok;</li>
+    <li>stalne in konične omejitve BMS-a;</li>
+    <li>čisti sinus, kadar ga zahteva porabnik ali specifikacija;</li>
+    <li>poraba v praznem teku in varčni/standby način;</li>
+    <li>dolžina in presek kablov ter zaščita tokokroga;</li>
+    <li>prezračevanje, temperatura in montažni pogoji proizvajalca.</li>
+  </ul>
+  <p>Najprej izračunaj scenarij v <a href="/si/#calculator-preview">MyPowerSetup</a>, nato izberi inverter, ki ga baterija, BMS in ožičenje lahko dejansko podprejo.</p>
+
 </section>`,
     faq: Object.freeze([
       ["Kakšen inverter potrebujem za napravo z močjo 1.000 W?", "Preveri tudi druge naprave, ki lahko delujejo hkrati, zagonski sunek in dodaj smiselno rezervo. Sama nazivna moč naprave ni dovolj."],
