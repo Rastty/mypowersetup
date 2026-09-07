@@ -143,6 +143,8 @@ for (const [candidate, voltage, peakPowerW, exactPath] of [
   const applicationEvidence = new URL(candidate.applicationEvidenceUrl);
   assert(applicationEvidence.hostname === "www.solaris-store.com" && applicationEvidence.pathname === "/content/95-partenariat", `${candidate.id}: Solaris affiliate programme evidence missing`);
   assert(candidate.applicationReady === true, `${candidate.id}: Solaris application handoff must be ready`);
+  assert(candidate.nextActionOwner === "user" && candidate.nextAction === "submit_ambassador_application", `${candidate.id}: Solaris next action must be explicit`);
+  assert(candidate.applicationPacketPath === "docs/affiliate/solaris-ambassador-application.md", `${candidate.id}: Solaris application packet path missing`);
   assert(candidate.checkoutStatus === "site_operational_country_checkout_unverified" && candidate.checkoutStatusVerifiedAt === "2026-09-07", `${candidate.id}: Solaris current checkout state invalid`);
   const checkoutEvidence = new URL(candidate.checkoutOperationalEvidenceUrl);
   assert(checkoutEvidence.hostname === "www.solaris-store.com" && checkoutEvidence.pathname === exactPath, `${candidate.id}: Solaris operational product evidence missing`);
