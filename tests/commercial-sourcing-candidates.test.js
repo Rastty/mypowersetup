@@ -220,8 +220,20 @@ test("Ampul approved fallback stays behind market verification and never outrank
   }
 });
 
-test("Ampul 30A DC-DC is approved/tracked but remains market-gated", () => {
-  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+test("Ampul 30A DC-DC is activated for Romania while PT and SI remain market-gated", () => {
+  assert.equal(
+    listCommercialSourcingCandidates({ market: "ro-RO", category: "dc_charger" })
+      .some(({ id }) => id === "ampul-eu-dcdc-12v-30a"),
+    false
+  );
+
+  const activated = listCommercialSourcingCandidates({ market: "ro-RO", category: "dc_charger", includeActivated: true })
+    .find(({ id }) => id === "ampul-eu-dcdc-12v-30a");
+  assert.ok(activated);
+  assert.deepEqual(activated.activatedMarkets, ["ro-RO"]);
+  assert.equal(activated.activationVerifiedAt, "2026-09-07");
+
+  for (const market of ["pt-PT", "sl-SI"]) {
     const candidate = listCommercialSourcingCandidates({ market, category: "dc_charger" })
       .find(({ id }) => id === "ampul-eu-dcdc-12v-30a");
     assert.ok(candidate, `${market}: Ampul DC-DC candidate missing`);
@@ -231,6 +243,7 @@ test("Ampul 30A DC-DC is approved/tracked but remains market-gated", () => {
     assert.equal(candidate.stockStatus, "in_stock");
     assert.equal(candidate.stockVerifiedAt, "2026-09-07");
     assert.equal(candidate.nextActionOwner, "system");
+    assert.equal(candidate.nextAction, "verify_pt_si_checkout");
     assert.deepEqual(candidate.specs.inputVoltagesV, [12, 24]);
     assert.equal(candidate.specs.outputVoltageV, 14.6);
     assert.equal(candidate.specs.currentA, 30);
