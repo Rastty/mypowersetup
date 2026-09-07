@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-07T15:01:48.444Z",
+  "generatedAt": "2026-09-07T15:02:13.614Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -454,67 +454,6 @@
       ],
       "maxPurchaseReadyGain": 0,
       "standalonePurchaseReadyGain": 0
-    },
-    {
-      "category": "shore_charger",
-      "label": "230 V shore charger",
-      "score": 11,
-      "markets": [
-        {
-          "market": "ro-RO",
-          "priority": "P1",
-          "score": 5.5,
-          "maxPurchaseReadyGain": 0,
-          "standalonePurchaseReadyGain": 0,
-          "primaryRequirements": [],
-          "secondaryRequirements": [
-            {
-              "requirement": {
-                "category": "shore_charger",
-                "input": "230V_AC",
-                "outputVoltage": 12,
-                "batteryType": "lifepo4",
-                "minCurrentA": 10,
-                "maxCurrentA": 30
-              },
-              "weight": 11,
-              "scenarioIds": [
-                "light-weekend",
-                "family-touring",
-                "winter-basic"
-              ]
-            }
-          ]
-        },
-        {
-          "market": "sl-SI",
-          "priority": "P1",
-          "score": 5.5,
-          "maxPurchaseReadyGain": 0,
-          "standalonePurchaseReadyGain": 0,
-          "primaryRequirements": [],
-          "secondaryRequirements": [
-            {
-              "requirement": {
-                "category": "shore_charger",
-                "input": "230V_AC",
-                "outputVoltage": 12,
-                "batteryType": "lifepo4",
-                "minCurrentA": 10,
-                "maxCurrentA": 30
-              },
-              "weight": 11,
-              "scenarioIds": [
-                "light-weekend",
-                "family-touring",
-                "winter-basic"
-              ]
-            }
-          ]
-        }
-      ],
-      "maxPurchaseReadyGain": 0,
-      "standalonePurchaseReadyGain": 0
     }
   ],
   "portfolio": [
@@ -961,67 +900,6 @@
       ],
       "maxPurchaseReadyGain": 0,
       "standalonePurchaseReadyGain": 0
-    },
-    {
-      "category": "shore_charger",
-      "label": "230 V shore charger",
-      "score": 11,
-      "markets": [
-        {
-          "market": "ro-RO",
-          "priority": "P1",
-          "score": 5.5,
-          "maxPurchaseReadyGain": 0,
-          "standalonePurchaseReadyGain": 0,
-          "primaryRequirements": [],
-          "secondaryRequirements": [
-            {
-              "requirement": {
-                "category": "shore_charger",
-                "input": "230V_AC",
-                "outputVoltage": 12,
-                "batteryType": "lifepo4",
-                "minCurrentA": 10,
-                "maxCurrentA": 30
-              },
-              "weight": 11,
-              "scenarioIds": [
-                "light-weekend",
-                "family-touring",
-                "winter-basic"
-              ]
-            }
-          ]
-        },
-        {
-          "market": "sl-SI",
-          "priority": "P1",
-          "score": 5.5,
-          "maxPurchaseReadyGain": 0,
-          "standalonePurchaseReadyGain": 0,
-          "primaryRequirements": [],
-          "secondaryRequirements": [
-            {
-              "requirement": {
-                "category": "shore_charger",
-                "input": "230V_AC",
-                "outputVoltage": 12,
-                "batteryType": "lifepo4",
-                "minCurrentA": 10,
-                "maxCurrentA": 30
-              },
-              "weight": 11,
-              "scenarioIds": [
-                "light-weekend",
-                "family-touring",
-                "winter-basic"
-              ]
-            }
-          ]
-        }
-      ],
-      "maxPurchaseReadyGain": 0,
-      "standalonePurchaseReadyGain": 0
     }
   ],
   "markets": [
@@ -1333,7 +1211,7 @@
     },
     {
       "market": "ro-RO",
-      "generatedAt": "2026-09-07T14:41:24.577Z",
+      "generatedAt": "2026-09-07T15:02:11.851Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1543,44 +1421,6 @@
             }
           ],
           "secondaryRequirements": []
-        },
-        {
-          "category": "shore_charger",
-          "label": "230 V shore charger",
-          "priority": "P1",
-          "score": 5.5,
-          "maxPurchaseReadyGain": 0,
-          "standalonePurchaseReadyGain": 0,
-          "affectedWeight": 0,
-          "unlockWeight": 0,
-          "standaloneUnlockWeight": 0,
-          "primaryScenarioIds": [],
-          "unlockScenarioIds": [],
-          "standaloneUnlockScenarioIds": [],
-          "secondaryScenarioIds": [
-            "light-weekend",
-            "family-touring",
-            "winter-basic"
-          ],
-          "primaryRequirements": [],
-          "secondaryRequirements": [
-            {
-              "weight": 11,
-              "scenarioIds": [
-                "light-weekend",
-                "family-touring",
-                "winter-basic"
-              ],
-              "requirement": {
-                "category": "shore_charger",
-                "input": "230V_AC",
-                "outputVoltage": 12,
-                "batteryType": "lifepo4",
-                "minCurrentA": 10,
-                "maxCurrentA": 30
-              }
-            }
-          ]
         },
         {
           "category": "dc_charger",
@@ -1637,7 +1477,7 @@
     },
     {
       "market": "sl-SI",
-      "generatedAt": "2026-09-07T14:41:26.689Z",
+      "generatedAt": "2026-09-07T15:02:13.614Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1847,44 +1687,6 @@
             }
           ],
           "secondaryRequirements": []
-        },
-        {
-          "category": "shore_charger",
-          "label": "230 V shore charger",
-          "priority": "P1",
-          "score": 5.5,
-          "maxPurchaseReadyGain": 0,
-          "standalonePurchaseReadyGain": 0,
-          "affectedWeight": 0,
-          "unlockWeight": 0,
-          "standaloneUnlockWeight": 0,
-          "primaryScenarioIds": [],
-          "unlockScenarioIds": [],
-          "standaloneUnlockScenarioIds": [],
-          "secondaryScenarioIds": [
-            "light-weekend",
-            "family-touring",
-            "winter-basic"
-          ],
-          "primaryRequirements": [],
-          "secondaryRequirements": [
-            {
-              "weight": 11,
-              "scenarioIds": [
-                "light-weekend",
-                "family-touring",
-                "winter-basic"
-              ],
-              "requirement": {
-                "category": "shore_charger",
-                "input": "230V_AC",
-                "outputVoltage": 12,
-                "batteryType": "lifepo4",
-                "minCurrentA": 10,
-                "maxCurrentA": 30
-              }
-            }
-          ]
         },
         {
           "category": "dc_charger",

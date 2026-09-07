@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T14:41:26.689Z",
+  "generatedAt": "2026-09-07T15:02:13.614Z",
   "market": "sl-SI",
   "currency": "EUR",
   "private": false,
@@ -27,17 +27,17 @@
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 58,
-      "relevantProducts": 19,
+      "relevantProducts": 20,
       "batteries": 15,
       "controllers": 1,
       "inverters": 1,
-      "shoreChargers": 2,
+      "shoreChargers": 3,
       "awinMerchantId": 97025,
       "affiliateId": 3044971,
       "shippingEligible": true,
       "shippingEvidenceUrl": "https://www.ipowerqueen.de/en/pages/shipping-policy",
       "shippingVerifiedAt": "2026-09-01",
-      "exactProducts": 19
+      "exactProducts": 20
     },
     "xdatou": {
       "status": "blocked",
@@ -1627,6 +1627,43 @@
         "dcOutputA": null
       },
       "verifiedAt": "2026-08-29",
+      "marketEligible": true
+    },
+    {
+      "id": "powerqueen_eu:7752841953500",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen 14.6V 10A LiFePO4 charger for 12V LiFePO4 battery",
+      "description": "Power Queen AC to DC charger for 12.8 V LiFePO4 batteries; 14.6 V charging output at 10 A and 100-240 V AC input.",
+      "categoryPath": "Nabíječky",
+      "category": "shore_charger",
+      "brand": "PQ-DE",
+      "priceCzk": 71.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-10a-lifepo4-battery-charger",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-14-6v-10a-lifepo4-battery-charger",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/Power_Queen_14_6V_10A_LiFePO4_Ladegerat.jpg?v=1785909478",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 10,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
+      "verifiedAt": "2026-09-07",
       "marketEligible": true
     },
     {
