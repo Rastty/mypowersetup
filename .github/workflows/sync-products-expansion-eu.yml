@@ -51,6 +51,7 @@ jobs:
       - run: node --check src/ro-recommendations.js
       - run: node --check src/si-recommendations.js
       - run: node scripts/sync-products-expansion-eu.mjs
+      - run: node scripts/write-commercial-opportunity-report.mjs
       - name: Test expansion catalogs and recommendation safety
         run: >-
           node --test
@@ -58,15 +59,17 @@ jobs:
           tests/powerqueen-expansion-components.test.js
           tests/expansion-component-product-recommendations.test.js
           tests/powerqueen-fetch-resilience.test.js
+          tests/commercial-opportunity-backlog.test.js
+          tests/commercial-scenarios.test.js
           tests/oxe-expansion-recommendations.test.js
           tests/oxe-feed.test.js
           tests/oxe-affiliate.test.js
           tests/si-recommendations.test.js
-      - name: Commit refreshed RO and SI catalogs
+      - name: Commit refreshed RO, SI and opportunity data
         run: |
-          if git diff --quiet -- data/products-ro.json data/products-si.json; then exit 0; fi
+          if git diff --quiet -- data/products-ro.json data/products-si.json data/commercial-opportunity-report.json; then exit 0; fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -- data/products-ro.json data/products-si.json
-          git commit -m "data: refresh RO and SI affiliate catalogs"
+          git add -- data/products-ro.json data/products-si.json data/commercial-opportunity-report.json
+          git commit -m "data: refresh RO, SI and commercial opportunity data"
           git push
