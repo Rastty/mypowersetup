@@ -5,7 +5,7 @@ import { readFile } from "node:fs/promises";
 const report = JSON.parse(await readFile(new URL("../data/commercial-opportunity-report.json", import.meta.url), "utf8"));
 
 test("commercial opportunity artifact distinguishes component and portable purchase routes", () => {
-  assert.ok([4, 5].includes(report.schemaVersion), `unexpected transition schema ${report.schemaVersion}`);
+  assert.equal(report.schemaVersion, 5);
   assert.equal(report.markets.length, 7);
   for (const market of report.markets) {
     assert.ok(Number.isFinite(market.purchaseReadyRatio));
@@ -38,8 +38,7 @@ test("component sourcing gain excludes scenarios already covered by a portable r
 });
 
 
-test("schema v5 surfaces actionable sourcing routes once the report is regenerated", () => {
-  if (report.schemaVersion < 5) return;
+test("schema v5 surfaces actionable sourcing routes", () => {
 
   for (const marketCode of ["pt-PT", "ro-RO", "sl-SI"]) {
     const market = report.markets.find((entry) => entry.market === marketCode);
