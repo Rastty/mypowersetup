@@ -136,7 +136,12 @@ for (const [candidate, voltage, peakPowerW, exactPath] of [
   assert(candidate.category === "inverter", `${candidate.id}: Solaris category invalid`);
   assert(candidate.productUrl === null && candidate.affiliateUrl === null, `${candidate.id}: Solaris inactive candidate leaked a public/tracked URL`);
   const application = new URL(candidate.applicationUrl);
-  assert(application.hostname === "www.solaris-store.com" && application.pathname === "/content/95-partenariat", `${candidate.id}: Solaris first-party affiliate application missing`);
+  assert(application.hostname === "www.solaris-store.com" && application.pathname === "/contact" && application.searchParams.get("id") === "partenariat-ambassadeur", `${candidate.id}: Solaris exact ambassador application route missing`);
+  const applicationEvidence = new URL(candidate.applicationEvidenceUrl);
+  assert(applicationEvidence.hostname === "www.solaris-store.com" && applicationEvidence.pathname === "/content/95-partenariat", `${candidate.id}: Solaris affiliate programme evidence missing`);
+  assert(candidate.applicationReady === true, `${candidate.id}: Solaris application handoff must be ready`);
+  assert(candidate.checkoutStatus === "maintenance_blocked" && candidate.checkoutStatusVerifiedAt === "2026-09-07", `${candidate.id}: Solaris current checkout blocker missing`);
+  assert(new URL(candidate.checkoutBlockerEvidenceUrl).hostname === "www.solaris-store.com", `${candidate.id}: Solaris checkout blocker evidence missing`);
   const retail = new URL(candidate.retailEvidenceUrl);
   assert(retail.hostname === "www.solaris-store.com" && retail.pathname === exactPath, `${candidate.id}: Solaris exact retail evidence invalid`);
   const shipping = new URL(candidate.shippingEvidenceUrl);
