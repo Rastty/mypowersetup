@@ -26,6 +26,7 @@ test("expansion markets keep one primary product per category and disclose alter
   assert.match(source, /class="result-grid expansion-primary-products" data-primary-product-grid/);
   assert.match(source, /<details class="expansion-product-alternatives" data-product-alternatives/);
   assert.match(source, /group\.alternatives\.map\(\(item\) => renderExpansionProduct/);
+  assert.match(source, /product_alternatives_opened/);
 
   for (const label of [
     "Comparar alternativas",
