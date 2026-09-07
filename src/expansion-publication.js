@@ -16,7 +16,7 @@ const CONFIG = Object.freeze({
   ro: Object.freeze({ locale: "ro-RO", prefix: "/ro/", content: RO_PRIVATE_CONTENT, homeAlternates: ["ro-RO"] }),
 });
 
-const EXPANSION_ARTICLE_DATES = Object.freeze({ datePublished: "2026-08-30", dateModified: "2026-08-30" });
+const EXPANSION_ARTICLE_DATES = Object.freeze({ datePublished: "2026-08-30", dateModified: "2026-09-07" });
 const EXPANSION_ARTICLE_COPY = Object.freeze({
   pt: Object.freeze({ about: "/pt/sobre-o-projeto/", byline: "Publicado em 30 de agosto de 2026 · Autor:" }),
   ro: Object.freeze({ about: "/ro/despre-proiect/", byline: "Publicat la 30 august 2026 · Autor:" }),
