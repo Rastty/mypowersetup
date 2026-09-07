@@ -1,6 +1,7 @@
 import { calculatePowerStationProfile } from "./power-station.js";
 import { validateOxeDognetDeeplink, validateOxeProductUrl } from "./oxe-affiliate.js";
 import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js";
+import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affiliate-xdatou.js";
 import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
 
 export const SI_CATALOG_URL = "/data/products-si.json";
@@ -25,7 +26,9 @@ export function validateSloveniaCatalog(catalog) {
   if (!Array.isArray(catalog.products) || !catalog.products.length) throw new Error("SI_CATALOG_EMPTY");
   const powerQueenProducts = catalog.products.filter(isPowerQueenExpansionProduct);
   if (powerQueenProducts.length && catalog.sources?.powerqueen_eu?.status !== "ok") throw new Error("SI_POWERQUEEN_SOURCE_INVALID");
-  for (const product of catalog.products) validateSloveniaProduct(product);
+  const xdatouProducts = catalog.products.filter(isXdatouExpansionProduct);
+  if (xdatouProducts.length && catalog.sources?.xdatou?.status !== "ok") throw new Error("SI_XDATOU_SOURCE_INVALID");
+  for (const product of catalog.products) validateSloveniaProduct(product, catalog.sources);
   return catalog;
 }
 
@@ -68,10 +71,14 @@ export function buildSloveniaRecommendations(catalog, setup, limit = 3) {
   });
 }
 
-function validateSloveniaProduct(product) {
+function validateSloveniaProduct(product, sources = {}) {
   if (product?.marketEligible !== true) throw new Error("SI_PRODUCT_EVIDENCE_INVALID");
   if (isPowerQueenExpansionProduct(product)) {
     validatePowerQueenExpansionProduct(product);
+    return;
+  }
+  if (isXdatouExpansionProduct(product)) {
+    validateXdatouExpansionProduct(product, sources?.xdatou);
     return;
   }
   if (!product?.verifiedAt) throw new Error("SI_PRODUCT_EVIDENCE_INVALID");
