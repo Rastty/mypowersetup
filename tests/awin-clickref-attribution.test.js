@@ -64,3 +64,26 @@ test("expansion product renderer decorates the outbound href while preserving an
   assert.match(source, /data-category=/);
   assert.match(source, /data-merchant=/);
 });
+
+
+test("mature-market source attribution uses clickref3 when route priority is absent", () => {
+  const packageUrl = new URL(decorateAwinAffiliateUrl(awin, {
+    market: "cz",
+    category: "battery",
+    recommendationRole: "budget",
+    source: "package",
+  }));
+  assert.equal(packageUrl.searchParams.get("clickref"), "mps_cz_battery");
+  assert.equal(packageUrl.searchParams.get("clickref2"), "role_budget");
+  assert.equal(packageUrl.searchParams.get("clickref3"), "source_package");
+
+  const cardUrl = new URL(decorateAwinAffiliateUrl(awin, {
+    market: "hu",
+    category: "inverter",
+    recommendationRole: "recommended",
+    source: "product-card",
+  }));
+  assert.equal(cardUrl.searchParams.get("clickref"), "mps_hu_inverter");
+  assert.equal(cardUrl.searchParams.get("clickref2"), "role_recommended");
+  assert.equal(cardUrl.searchParams.get("clickref3"), "source_product-card");
+});
