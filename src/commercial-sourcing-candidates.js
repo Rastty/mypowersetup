@@ -317,10 +317,11 @@ const CANDIDATES = Object.freeze([
   }),
 ]);
 
-export function listCommercialSourcingCandidates({ market, category, includeSkipped = false } = {}) {
+export function listCommercialSourcingCandidates({ market, category, includeSkipped = false, includeActivated = false } = {}) {
   return Object.freeze(CANDIDATES.filter((candidate) => {
     if (!includeSkipped && ["skipped_by_owner", "blocked_crossborder_not_supported"].includes(candidate.status)) return false;
     if (market && !candidate.markets.includes(market)) return false;
+    if (market && !includeActivated && candidate.activatedMarkets?.includes(market)) return false;
     if (category && candidate.category !== category) return false;
     return true;
   }));
