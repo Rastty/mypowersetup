@@ -309,7 +309,7 @@
     {
       "id": "bluetti-eu-elite-300",
       "merchant": "bluetti_eu",
-      "network": null,
+      "network": "cj",
       "programId": null,
       "applicationUrl": "https://www.bluettipower.eu/pages/affiliate-program",
       "commissionPercent": 10,
@@ -356,17 +356,18 @@
       "affiliateEvidenceUrl": "https://www.bluettipower.eu/pages/affiliate-program",
       "affiliateEvidenceVerifiedAt": "2026-09-07",
       "nextActionOwner": "user",
-      "nextAction": "provide_exact_eu_affiliate_deeplink",
+      "nextAction": "provide_exact_cj_elite300_deeplink",
       "applicationReady": true,
       "applicationPacketPath": "docs/affiliate/bluetti-elite300-eu-activation.md",
       "activationFieldsNeeded": [
-        "affiliateNetwork",
-        "programId",
         "affiliateUrl",
         "finalLandingUrl",
         "verifiedAt"
       ],
-      "activationInstructions": "Use only a verified affiliate deep link whose final landing host is www.bluettipower.eu and exact path is /products/elite-300-portable-power-station. Do not reuse BLUETTI US tracking unless the approved programme explicitly proves EU storefront attribution."
+      "activationInstructions": "Use the exact CJ deep link generated for BLUETTI Elite 300. The click must resolve to https://www.bluettipower.eu/products/elite-300-portable-power-station. Do not reuse BLUETTI US tracking. Do not infer a CJ advertiser ID or reuse storefront-mismatched tracking.",
+      "affiliateApprovalConfirmed": true,
+      "affiliateApprovalSource": "owner_confirmed",
+      "primaryBlocker": "exact_cj_eu_deeplink_unverified"
     },
     {
       "id": "solaris-victron-phoenix-12-250",

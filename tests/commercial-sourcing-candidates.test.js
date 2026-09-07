@@ -100,7 +100,12 @@ test("live BLUETTI Elite 300 supersedes retired AC240 family route in PT and RO"
     const candidate = bestCommercialSourcingCandidate({ market, category: "power_station" });
     assert.equal(candidate.id, "bluetti-eu-elite-300");
     assert.equal(candidate.status, "blocked_affiliate_verification");
-    assert.equal(candidate.blocker, "eu_affiliate_deeplink_unverified");
+    assert.equal(candidate.blocker, "exact_cj_eu_deeplink_unverified");
+    assert.equal(candidate.affiliateNetwork, "cj");
+    assert.equal(candidate.affiliateApprovalConfirmed, true);
+    assert.equal(candidate.affiliateApprovalSource, "owner_confirmed");
+    assert.deepEqual(candidate.activationFieldsNeeded, ["affiliateUrl", "finalLandingUrl", "verifiedAt"]);
+    assert.equal(candidate.nextAction, "provide_exact_cj_elite300_deeplink");
     assert.equal(candidate.stockStatus, "in_stock");
     assert.equal(candidate.stockVerifiedAt, "2026-09-07");
     assert.equal(candidate.standaloneUnlockWeight, 5);

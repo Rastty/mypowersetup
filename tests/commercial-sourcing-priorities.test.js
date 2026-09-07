@@ -12,12 +12,12 @@ test("PT and RO sourcing prioritizes live shipping-verified Elite 300 family rou
     assert.equal(best.id, "bluetti-eu-elite-300");
     assert.equal(best.category, "power_station");
     assert.equal(best.status, "blocked_affiliate_verification");
-    assert.equal(best.blocker, "eu_affiliate_deeplink_unverified");
+    assert.equal(best.blocker, "exact_cj_eu_deeplink_unverified");
     assert.equal(best.standaloneUnlockWeight, 5);
     assert.equal(best.affectedWeight, 5);
     assert.equal(best.shippingVerified, true);
     assert.equal(best.stockStatus, "in_stock");
-    assert.equal(best.nextAction, "provide_exact_eu_affiliate_deeplink");
+    assert.equal(best.nextAction, "provide_exact_cj_elite300_deeplink");
     assert.equal(bestCommercialSourcingRoute(market).id, best.id);
 
     const solaris = routes.find(({ id }) => id === "solaris-victron-phoenix-12-250");
