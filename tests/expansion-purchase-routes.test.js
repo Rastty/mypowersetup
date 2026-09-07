@@ -14,6 +14,7 @@ test("expansion recommendations separate component and portable purchase routes"
   assert.match(source, /data-purchase-route="portable"/);
   assert.match(source, /expansionPurchaseRoutePriority/);
   assert.match(source, /data-purchase-route-priority=/);
+  assert.match(source, /data-route-priority=/);
   assert.match(source, /data-purchase-route-priority-note/);
   assert.match(source, /purchase_route_prioritized/);
   assert.match(source, /Instalação por componentes/);
