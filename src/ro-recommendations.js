@@ -3,6 +3,7 @@ import { validateOxeDognetDeeplink, validateOxeProductUrl } from "./oxe-affiliat
 import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js";
 import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affiliate-xdatou.js";
 import { isAmpulExpansionProduct, validateAmpulExpansionProduct } from "./affiliate-ampul-expansion.js";
+import { isBluettiElite300Product, validateBluettiElite300Product } from "./affiliate-bluetti-eu.js";
 import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
 
 export const RO_CATALOG_URL = "/data/products-ro.json";
@@ -31,6 +32,8 @@ export function validateRomaniaCatalog(catalog) {
   if (xdatouProducts.length && catalog.sources?.xdatou?.status !== "ok") throw new Error("RO_XDATOU_SOURCE_INVALID");
   const ampulProducts = catalog.products.filter(isAmpulExpansionProduct);
   if (ampulProducts.length && catalog.sources?.ampul_eu?.status !== "ok") throw new Error("RO_AMPUL_SOURCE_INVALID");
+  const bluettiProducts = catalog.products.filter(isBluettiElite300Product);
+  if (bluettiProducts.length && catalog.sources?.bluetti_eu?.status !== "ok") throw new Error("RO_BLUETTI_SOURCE_INVALID");
   for (const product of catalog.products) validateRomaniaProduct(product, catalog.sources);
   return catalog;
 }
@@ -86,6 +89,10 @@ function validateRomaniaProduct(product, sources = {}) {
   }
   if (isAmpulExpansionProduct(product)) {
     validateAmpulExpansionProduct(product, { market: "ro", verifiedProductMarkets: sources?.ampul_eu?.verifiedProductMarkets || {} });
+    return;
+  }
+  if (isBluettiElite300Product(product)) {
+    validateBluettiElite300Product(product);
     return;
   }
   if (!product?.verifiedAt) throw new Error("RO_PRODUCT_EVIDENCE_INVALID");
