@@ -462,6 +462,65 @@
       "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md"
     },
     {
+      "id": "solaris-victron-smartsolar-150-60-tr",
+      "merchant": "solaris_store",
+      "network": null,
+      "programId": null,
+      "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+      "commissionPercent": null,
+      "status": "blocked_affiliate_verification",
+      "secondaryBlocker": "market_shipping_checkout_unverified",
+      "category": "controller",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "technicalEvidenceUrl": "https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-60_up_to_250-70/en/technical-specifications.html",
+      "retailEvidenceUrl": "https://www.solaris-store.com/2169-regulateur-victron-smartsolar-mppt-150-60-tr-150v-60a-.html",
+      "retailEvidenceVerifiedAt": "2026-09-07",
+      "stockEvidenceVerifiedAt": "2026-09-07",
+      "stockStatus": "dispatch_5_7_days",
+      "shippingEvidenceUrl": "https://www.solaris-store.com/content/132-europe",
+      "shippingEvidenceVerifiedAt": "2026-09-07",
+      "shippingEvidenceScope": "all_europe_general",
+      "exactRetailPath": "/2169-regulateur-victron-smartsolar-mppt-150-60-tr-150v-60a-.html",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "specs": {
+        "technology": "mppt",
+        "currentA": 60,
+        "systemVoltages": [
+          12,
+          24,
+          36,
+          48
+        ],
+        "nominalPvPowerW12V": 860,
+        "nominalPvPowerW24V": 1720,
+        "nominalPvPowerW36V": 2580,
+        "nominalPvPowerW48V": 3440,
+        "maxPvVocV": 150,
+        "peakEfficiencyPercent": 98
+      },
+      "targetScenarioIds": [
+        "light-weekend",
+        "family-touring",
+        "remote-work",
+        "coffee-offgrid",
+        "winter-basic",
+        "high-power-tools"
+      ],
+      "applicationEvidenceUrl": "https://www.solaris-store.com/content/95-partenariat",
+      "applicationReady": true,
+      "checkoutStatus": "site_operational_country_checkout_unverified",
+      "checkoutStatusVerifiedAt": "2026-09-07",
+      "checkoutOperationalEvidenceUrl": "https://www.solaris-store.com/2169-regulateur-victron-smartsolar-mppt-150-60-tr-150v-60a-.html",
+      "nextActionOwner": "user",
+      "nextAction": "submit_ambassador_application",
+      "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md"
+    },
+    {
       "id": "renogy-eu-rover-40a-mppt",
       "merchant": "renogy_eu",
       "network": "impact",
