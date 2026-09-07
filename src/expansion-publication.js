@@ -123,6 +123,66 @@ function synchronizePublicHreflang(html, route) {
   return output.replace(new RegExp(`(<link rel="canonical" href="${escapeRegExp(canonical)}"\\s*\\/?>)`), `$1\n${tags}`);
 }
 
+function addExpansionGuideHubSchema(html, market, route) {
+  const config = CONFIG[market];
+  const copy = EXPANSION_BREADCRUMB_COPY[market];
+  const hubRoute = config ? `${config.prefix}${guideBase(market)}/` : null;
+  if (!config || !copy || route !== hubRoute) return html;
+
+  const headingHtml = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || "";
+  const name = decodeHtmlText(headingHtml.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
+  if (!name) throw new Error(`EXPANSION_GUIDE_HUB_H1_MISSING:${route}`);
+
+  const links = [];
+  for (const match of html.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>/gi)) {
+    let href = match[1].split("#")[0].split("?")[0];
+    if (href.startsWith("https://mypowersetup.com")) href = href.slice("https://mypowersetup.com".length);
+    if (!href.startsWith(hubRoute) || href === hubRoute || !href.endsWith("/")) continue;
+    if (!links.includes(href)) links.push(href);
+  }
+  if (links.length !== 12) throw new Error(`EXPANSION_GUIDE_HUB_LINK_COUNT_INVALID:${market}:${links.length}`);
+
+  const canonical = `https://mypowersetup.com${route}`;
+  const graph = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${canonical}#collection`,
+        url: canonical,
+        name,
+        inLanguage: config.locale,
+        dateModified: EXPANSION_ARTICLE_DATES.dateModified,
+        isPartOf: { "@type": "WebSite", "@id": "https://mypowersetup.com/#website", url: "https://mypowersetup.com/", name: "MyPowerSetup" },
+        mainEntity: { "@id": `${canonical}#guides` },
+        breadcrumb: { "@id": `${canonical}#breadcrumb` },
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${canonical}#guides`,
+        numberOfItems: links.length,
+        itemListElement: links.map((href, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: `https://mypowersetup.com${href}`,
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${canonical}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: copy.home, item: `https://mypowersetup.com${config.prefix}` },
+          { "@type": "ListItem", position: 2, name: copy.hub, item: canonical },
+        ],
+      },
+    ],
+  };
+
+  const tag = `<script type="application/ld+json" data-guide-hub-schema>${JSON.stringify(graph).replace(/</g, "\\u003c")}</script>`;
+  const cleaned = html.replace(/\s*<script\b[^>]*data-guide-hub-schema[^>]*>[\s\S]*?<\/script>\s*/gi, "");
+  return cleaned.replace("</head>", `${tag}</head>`);
+}
+
 function enhanceExpansionArticleAuthority(html, market, route) {
   const config = CONFIG[market];
   const copy = EXPANSION_ARTICLE_COPY[market];
@@ -225,6 +285,7 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
   output = enhanceExpansionPowerStationContent(output, market, route);
   output = addContextualGrowthLinks(output, market, route);
   output = addExpansionVoltageGuideDiscovery(output, market, route);
+  output = addExpansionGuideHubSchema(output, market, route);
   output = ensureExpansionArticleSchema(output, market, route);
   output = enhanceExpansionArticleAuthority(output, market, route);
   output = addExpansionGuideBreadcrumbs(output, market, route);
