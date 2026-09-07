@@ -58,6 +58,12 @@ test("acquisition requirements mirror the real recommender fit window", () => {
   assert.deepEqual(acquisitionRequirement("battery", winter), {
     category: "battery", systemVoltage: 12, batteryType: "lifepo4", minCapacityAh: 130, maxCapacityAh: 390,
   });
+  assert.deepEqual(acquisitionRequirement("controller", family), {
+    category: "controller", technology: "mppt", minCurrentA: 30, maxCurrentA: 90, systemVoltage: 12, minArrayWatts: 300,
+  });
+  assert.deepEqual(acquisitionRequirement("controller", winter), {
+    category: "controller", technology: "mppt", minCurrentA: 50, maxCurrentA: 150, systemVoltage: 12, minArrayWatts: 550,
+  });
 });
 
 test("missing exact-fit categories include machine-readable acquisition specs", () => {
@@ -172,4 +178,26 @@ test("current Slovenia audit recognizes the verified portable winter route", asy
   assert.equal(winter.portableReady, true);
   assert.equal(winter.purchaseRoute, "portable");
   assert.ok(report.purchaseReadyRatio > report.componentReadyRatio);
+});
+
+
+test("30A Power Queen MPPT clears family but not winter controller demand in expansion markets", async () => {
+  for (const [file, locale] of [
+    ["products-pt.json", "pt"],
+    ["products-ro.json", "ro"],
+    ["products-si.json", "sl"],
+  ]) {
+    const catalog = JSON.parse(await readFile(new URL(`../data/${file}`, import.meta.url), "utf8"));
+    const report = assessMarketScenarioCoverage(catalog, locale);
+    const family = report.scenarios.find((scenario) => scenario.id === "family-touring");
+    const winter = report.scenarios.find((scenario) => scenario.id === "winter-basic");
+
+    assert.equal(family.setup.solarWatts, 300);
+    assert.equal(family.setup.controllerAmps, 30);
+    assert.equal(family.missing.includes("controller"), false, `${catalog.market}: 30A MPPT should cover 300Wp family sizing`);
+
+    assert.equal(winter.setup.solarWatts, 550);
+    assert.equal(winter.setup.controllerAmps, 50);
+    assert.equal(winter.missing.includes("controller"), true, `${catalog.market}: 30A MPPT must not cover 550Wp winter sizing`);
+  }
 });
