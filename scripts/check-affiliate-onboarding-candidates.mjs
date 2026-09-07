@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { BUTLER_TECHNIK_AWIN, BUTLER_VICTRON_MPPT_250_60_MC4, BUTLER_VICTRON_ORION_XS_12_12_50 } from "../src/affiliate-butler.js";
 import { XDATOU_DATOUBOSS_2000W_24V, XDATOU_GOAFFPRO } from "../src/affiliate-xdatou.js";
+import { BLUETTI_EU_AWIN, BLUETTI_ELITE_300 } from "../src/affiliate-bluetti-eu.js";
 import { listCommercialSourcingCandidates } from "../src/commercial-sourcing-candidates.js";
 
 const candidateFile = new URL("../data/affiliate-onboarding-candidates.json", import.meta.url);
@@ -19,6 +20,7 @@ assert(Array.isArray(onboarding.candidates) && onboarding.candidates.length > 0,
 assert(BUTLER_TECHNIK_AWIN.approvalConfirmed === false, "Butler source must remain fail-closed until explicit approval activation");
 assert(XDATOU_GOAFFPRO.approvalConfirmed === false, "Xdatou source must remain fail-closed until explicit GoAffPro approval activation");
 assert(XDATOU_GOAFFPRO.referralIdentifier === null && XDATOU_GOAFFPRO.referralCode === null, "Xdatou referral credentials must not be guessed before approval");
+assert(BLUETTI_EU_AWIN.approvalConfirmed === false, "BLUETTI EU must remain fail-closed until Awin 95479 approval is explicitly confirmed");
 
 const catalogs = new Map();
 for (const [market, url] of publicCatalogFiles) catalogs.set(market, JSON.parse(await readFile(url, "utf8")));
@@ -28,7 +30,7 @@ const merchantPolicies = new Map([
   ["offgridtec", new Set(["skipped_by_owner"])],
   ["xdatou", new Set(["blocked_affiliate_verification"])],
   ["solaris_store", new Set(["blocked_affiliate_verification"])],
-  ["bluetti_eu", new Set(["blocked_stock"])],
+  ["bluetti_eu", new Set(["blocked_stock", "blocked_affiliate_verification"])],
 ]);
 
 const ids = new Set();
@@ -58,6 +60,7 @@ const orionXs = required("butler-victron-orion-xs-12-12-50");
 const xdatouInverter = required("xdatou-datouboss-2000w-24v");
 const solarisPhoenix12 = required("solaris-victron-phoenix-12-250");
 const solarisPhoenix24 = required("solaris-victron-phoenix-24-250");
+const bluettiElite300 = required("bluetti-eu-elite-300");
 const bluettiFamilyStation = required("bluetti-eu-ac240-b210");
 
 for (const [candidate, voltage] of [[phoenix12, 12], [phoenix24, 24]]) {
@@ -164,6 +167,27 @@ for (const [candidate, voltage, peakPowerW, exactPath] of [
   assert(sourcing?.specs?.powerW === 200 && sourcing?.specs?.pureSine === true, `${candidate.id}: Solaris sourcing specs diverge`);
 }
 
+assert(bluettiElite300.category === "power_station", "BLUETTI Elite 300 category invalid");
+assert(bluettiElite300.merchant === "bluetti_eu", "BLUETTI Elite 300 merchant invalid");
+assert(bluettiElite300.network === "awin" && bluettiElite300.programId === BLUETTI_EU_AWIN.merchantId, "BLUETTI Elite 300 Awin programme metadata invalid");
+assert(bluettiElite300.status === "blocked_affiliate_verification", "BLUETTI Elite 300 must remain blocked until account-specific Awin approval is verified");
+assert(bluettiElite300.secondaryBlocker === "awin_program_approval_not_verified", "BLUETTI Elite 300 approval blocker missing");
+assert(bluettiElite300.stockStatus === "in_stock" && bluettiElite300.stockEvidenceVerifiedAt === "2026-09-07", "BLUETTI Elite 300 current stock evidence invalid");
+assert(new URL(bluettiElite300.retailEvidenceUrl).hostname === BLUETTI_EU_AWIN.hostname, "BLUETTI Elite 300 retail evidence must be BLUETTI EU");
+assert(bluettiElite300.exactRetailPath === BLUETTI_ELITE_300.exactPath, "BLUETTI Elite 300 exact retail path diverges from adapter");
+assert(new URL(bluettiElite300.shippingEvidenceUrl).hostname === BLUETTI_EU_AWIN.hostname, "BLUETTI Elite 300 shipping evidence must be BLUETTI EU");
+assert(bluettiElite300.specs?.capacityWh === BLUETTI_ELITE_300.capacityWh && bluettiElite300.specs.capacityWh >= 2200, "BLUETTI Elite 300 capacity does not cover family touring");
+assert(bluettiElite300.specs?.continuousPowerW === BLUETTI_ELITE_300.powerW && bluettiElite300.specs.continuousPowerW >= 100, "BLUETTI Elite 300 AC output does not cover family touring");
+assert(bluettiElite300.specs?.solarInputW === BLUETTI_ELITE_300.solarInputW && bluettiElite300.specs.solarInputW >= 300, "BLUETTI Elite 300 solar input does not cover family touring");
+assert(bluettiElite300.specs?.dcOutputVoltageV === 12 && bluettiElite300.specs?.dcOutputA === BLUETTI_ELITE_300.dcOutputA && bluettiElite300.specs.dcOutputA >= 14, "BLUETTI Elite 300 12V RV output does not cover family touring");
+assert(bluettiElite300.specs?.waveform === "pure_sine" && BLUETTI_ELITE_300.pureSine === true, "BLUETTI Elite 300 pure-sine evidence missing");
+assert(["pt-PT", "ro-RO", "sl-SI"].every((market) => bluettiElite300.shippingEligibleMarkets.includes(market)), "BLUETTI Elite 300 shipping does not cover PT/RO/SI");
+assert(Object.values(bluettiElite300.marketEligibility).every((value) => value === "unverified"), "BLUETTI Elite 300 must remain market-ineligible until affiliate activation");
+const sourcingBluettiElite = listCommercialSourcingCandidates({ category: "power_station" }).find(({ id }) => id === bluettiElite300.id);
+assert(sourcingBluettiElite?.status === bluettiElite300.status, "BLUETTI Elite 300 onboarding and sourcing statuses diverge");
+assert(sourcingBluettiElite?.blocker === "awin_program_approval_not_verified", "BLUETTI Elite 300 sourcing approval blocker missing");
+assert(sourcingBluettiElite?.stockStatus === "in_stock", "BLUETTI Elite 300 sourcing stock evidence missing");
+
 assert(bluettiFamilyStation.category === "power_station", "BLUETTI AC240+B210 category invalid");
 assert(bluettiFamilyStation.stockStatus === "out_of_stock", "BLUETTI AC240+B210 must remain blocked while its EU bundle is unavailable");
 assert(bluettiFamilyStation.secondaryBlocker === "affiliate_deeplink_unverified", "BLUETTI EU affiliate blocker missing");
@@ -228,7 +252,8 @@ console.log(JSON.stringify({
   blockers: {
     inverter: "Xdatou exact 24 V / 2000 W remains behind GoAffPro activation; Solaris has exact in-stock 12 V and 24 V Phoenix 200 W candidates for the P0 small-inverter band, but affiliate tracking and per-market checkout eligibility are still unverified; Offgridtec stays skipped by owner",
     controller: "Butler SmartSolar 60 A is in stock and ships to SK/PL/HU/PT/RO/SI; Awin programme approval is the remaining activation blocker",
-    dcCharger: "Butler Orion XS 12/12 50 A is in stock and staged for SK/PL/HU/PT/RO/SI; the same Butler Awin approval is the remaining activation blocker"
+    dcCharger: "Butler Orion XS 12/12 50 A is in stock and staged for SK/PL/HU/PT/RO/SI; the same Butler Awin approval is the remaining activation blocker",
+    powerStation: "BLUETTI Elite 300 is in stock, ships to PT/RO/SI and fits family-touring; account-specific Awin 95479 approval is the remaining activation blocker"
   }
 }, null, 2));
 
