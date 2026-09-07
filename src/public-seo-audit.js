@@ -28,6 +28,36 @@ function schemaTypes(node) {
   return types;
 }
 
+function schemaNodes(schemas) {
+  return schemas.flatMap((schema) => Array.isArray(schema?.["@graph"]) ? schema["@graph"] : [schema]);
+}
+
+function breadcrumbNodeIsValid(node, market, route) {
+  const items = Array.isArray(node?.itemListElement) ? node.itemListElement : [];
+  const expected = [
+    { position: 1, item: `${SITE_URL}${market.home}` },
+    { position: 2, item: `${SITE_URL}${market.guideHub}` },
+    { position: 3, item: `${SITE_URL}${route}` },
+  ];
+  if (items.length !== expected.length) return false;
+  return expected.every((entry, index) => {
+    const item = items[index];
+    return item?.["@type"] === "ListItem"
+      && item.position === entry.position
+      && typeof item.name === "string"
+      && item.name.trim().length > 0
+      && item.item === entry.item;
+  });
+}
+
+function visibleBreadcrumbIsValid(html, market) {
+  const nav = html.match(/<nav\b[^>]*data-expansion-breadcrumbs[^>]*>[\s\S]*?<\/nav>/i)?.[0] || "";
+  if (!nav) return false;
+  return nav.includes(`href="${market.home}"`)
+    && nav.includes(`href="${market.guideHub}"`)
+    && /aria-current=["']page["']/i.test(nav);
+}
+
 function canonicalHrefs(html) {
   return [...html.matchAll(/<link\b[^>]*>/gi)]
     .map(([tag]) => ({
@@ -55,6 +85,7 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
   const marketCounts = Object.fromEntries(MARKETS.map(({ key }) => [key, 0]));
   let jsonLdScripts = 0;
   let articlePages = 0;
+  let breadcrumbPages = 0;
 
   for (const route of routes) {
     const market = marketForRoute(route);
@@ -99,13 +130,17 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
     const isArticle = route.startsWith(market.guideHub) && route !== market.guideHub;
     if (isArticle) {
       articlePages += 1;
-      const articles = schemas.flatMap((schema) => Array.isArray(schema?.["@graph"]) ? schema["@graph"] : [schema]).filter((schema) => schema?.["@type"] === "Article");
+      const nodes = schemaNodes(schemas);
+      const articles = nodes.filter((schema) => schema?.["@type"] === "Article");
+      const requiresExpansionBreadcrumb = ["pt", "ro", "si"].includes(market.key);
+      if (requiresExpansionBreadcrumb) breadcrumbPages += 1;
+
       if (!articles.length) failures.push(`${route}:ARTICLE_SCHEMA_MISSING`);
       else {
         const declaredLanguages = articles.map(({ inLanguage }) => inLanguage).filter(Boolean);
         const acceptedLanguages = new Set([market.locale, market.locale.split("-")[0]]);
         if (declaredLanguages.length && !declaredLanguages.some((language) => acceptedLanguages.has(language))) failures.push(`${route}:ARTICLE_LANGUAGE_INVALID`);
-        if (["pt", "ro", "si"].includes(market.key)) {
+        if (requiresExpansionBreadcrumb) {
           const authoritative = articles.some((article) => {
             const author = article.author;
             const publisher = article.publisher;
@@ -119,6 +154,13 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
           if (!authoritative) failures.push(`${route}:ARTICLE_AUTHORITY_METADATA_MISSING`);
         }
       }
+
+      if (requiresExpansionBreadcrumb) {
+        const breadcrumbs = nodes.filter((node) => node?.["@type"] === "BreadcrumbList");
+        if (breadcrumbs.length !== 1) failures.push(`${route}:BREADCRUMB_SCHEMA_MISSING`);
+        else if (!breadcrumbNodeIsValid(breadcrumbs[0], market, route)) failures.push(`${route}:BREADCRUMB_SCHEMA_INVALID`);
+        if (!visibleBreadcrumbIsValid(html, market)) failures.push(`${route}:BREADCRUMB_VISIBLE_MISSING`);
+      }
     }
   }
 
@@ -126,6 +168,7 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
     ready: failures.length === 0,
     routeCount: routes.length,
     articlePages,
+    breadcrumbPages,
     jsonLdScripts,
     marketCounts: Object.freeze(marketCounts),
     failures: Object.freeze([...new Set(failures)]),
