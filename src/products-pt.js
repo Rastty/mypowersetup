@@ -98,7 +98,7 @@ export function parseAllpowersPtProducts(payload, { verifiedProducts = [] } = {}
   });
 }
 
-export function validatePtCatalog(payload) {
+export function validatePtCatalog(payload, { bluettiActivation } = {}) {
   if (payload?.market !== "pt-PT" || payload?.currency !== "EUR") throw new Error("PT_CATALOG_MARKET_INVALID");
   if (!Array.isArray(payload?.products) || !payload?.sources || typeof payload.sources !== "object") {
     throw new Error("PT_CATALOG_SHAPE_INVALID");
@@ -126,7 +126,7 @@ export function validatePtCatalog(payload) {
       continue;
     }
     if (isBluettiElite300Product(product)) {
-      validateBluettiElite300Product(product);
+      validateBluettiElite300Product(product, bluettiActivation);
       continue;
     }
     if (product?.merchant !== "allpowers_pt") throw new Error("PT_CATALOG_FOREIGN_MERCHANT");

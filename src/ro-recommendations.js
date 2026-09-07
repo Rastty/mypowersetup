@@ -22,7 +22,7 @@ export function parseRomaniaAffiliateUrl(value) {
   return Object.freeze({ affiliateUrl: url.toString(), destination: destination.toString() });
 }
 
-export function validateRomaniaCatalog(catalog) {
+export function validateRomaniaCatalog(catalog, { bluettiActivation } = {}) {
   if (catalog?.market !== "ro-RO" || catalog?.currency !== "EUR" || catalog?.private !== false) throw new Error("RO_CATALOG_SHAPE_INVALID");
   if (catalog?.shippingEligibility?.country !== "Romania" || catalog?.shippingEligibility?.eligible !== true) throw new Error("RO_SHIPPING_ELIGIBILITY_MISSING");
   if (!Array.isArray(catalog.products) || !catalog.products.length) throw new Error("RO_CATALOG_EMPTY");
@@ -34,7 +34,7 @@ export function validateRomaniaCatalog(catalog) {
   if (ampulProducts.length && catalog.sources?.ampul_eu?.status !== "ok") throw new Error("RO_AMPUL_SOURCE_INVALID");
   const bluettiProducts = catalog.products.filter(isBluettiElite300Product);
   if (bluettiProducts.length && catalog.sources?.bluetti_eu?.status !== "ok") throw new Error("RO_BLUETTI_SOURCE_INVALID");
-  for (const product of catalog.products) validateRomaniaProduct(product, catalog.sources);
+  for (const product of catalog.products) validateRomaniaProduct(product, catalog.sources, { bluettiActivation });
   return catalog;
 }
 
@@ -44,8 +44,8 @@ export async function loadRomaniaProductCatalog(fetchImpl = globalThis.fetch) {
   return validateRomaniaCatalog(await response.json());
 }
 
-export function buildRomaniaRecommendations(catalog, setup, limit = 3) {
-  validateRomaniaCatalog(catalog);
+export function buildRomaniaRecommendations(catalog, setup, limit = 3, { bluettiActivation } = {}) {
+  validateRomaniaCatalog(catalog, { bluettiActivation });
   const solarTargetWatts = Number(setup.solarWatts) || 0;
   const solarPanels = solarTargetWatts > 0 ? catalog.products
     .filter((product) => product.category === "solar_panel" && product.available !== false)
@@ -77,7 +77,7 @@ export function buildRomaniaRecommendations(catalog, setup, limit = 3) {
   });
 }
 
-function validateRomaniaProduct(product, sources = {}) {
+function validateRomaniaProduct(product, sources = {}, { bluettiActivation } = {}) {
   if (product?.marketEligible !== true) throw new Error("RO_PRODUCT_EVIDENCE_INVALID");
   if (isPowerQueenExpansionProduct(product)) {
     validatePowerQueenExpansionProduct(product);
@@ -92,7 +92,7 @@ function validateRomaniaProduct(product, sources = {}) {
     return;
   }
   if (isBluettiElite300Product(product)) {
-    validateBluettiElite300Product(product);
+    validateBluettiElite300Product(product, bluettiActivation);
     return;
   }
   if (!product?.verifiedAt) throw new Error("RO_PRODUCT_EVIDENCE_INVALID");
