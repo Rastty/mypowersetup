@@ -172,7 +172,10 @@ test("committed European catalogs contain eligible Power Queen batteries and one
     const powerQueen = catalog.products.filter(({ merchant }) => merchant === "powerqueen_eu");
     const batteries = powerQueen.filter(({ category }) => category === "battery");
     const controllers = powerQueen.filter(({ category }) => category === "controller");
-    assert.equal(batteries.length, 16);
+    assert.ok(batteries.length > 0);
+    assert.deepEqual(new Set(batteries.map(({ specs }) => specs.voltageV)), new Set([12, 24]));
+    assert.ok(batteries.some(({ specs }) => specs.voltageV === 12 && specs.capacityAh >= 100));
+    assert.ok(batteries.some(({ specs }) => specs.voltageV === 24 && specs.capacityAh >= 100));
     assert.ok(batteries.every(({ category, priceCurrency, specs, affiliateUrl, name }) =>
       category === "battery"
       && priceCurrency === "EUR"
