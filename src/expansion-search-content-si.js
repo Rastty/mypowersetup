@@ -57,6 +57,15 @@ const SI_GROWTH_CONTENT = Object.freeze({
     <li>ignoriranje DC-DC in 230 V polnjenja v celotnem energijskem proračunu.</li>
   </ul>
   <p>Začni z <a href="/si/#calculator-preview">MyPowerSetup kalkulatorjem</a>, nato končno konfiguracijo panelov preveri skupaj z vodnikom za <a href="/si/vodici/mppt-regulator-avtodom/">MPPT regulator</a>.</p>
+
+  <h2>Baterija določa, koliko časa lahko premostiš slab solarni dan</h2>
+  <p>Solar in baterija opravljata različni nalogi. Paneli energijo proizvajajo, baterija pa jo časovno premika med proizvodnjo in porabo. Če imaš dovolj veliko baterijsko rezervo za dva dni, lahko premostiš oblačen dan, vendar moraš energijo pozneje še vedno povrniti. Zato večja baterija ni nadomestilo za trajno premajhen vir polnjenja.</p>
+  <p>Pri načrtovanju preveri dva scenarija: običajen dan, ko solar pokrije večino porabe, in slabši dan, ko pomaga baterija, DC-DC ali 230 V. Tako vidiš, ali sistem deluje tudi zunaj idealnih pogojev.</p>
+
+  <h2>Serijska in vzporedna vezava imata različne posledice</h2>
+  <p>Serijska vezava zviša napetost niza in lahko zmanjša tok po daljšem PV kablu, vendar mora skupni Voc ostati pod mejo MPPT-ja tudi pri mrazu. Vzporedna vezava ohrani nižjo napetost in poveča tok, kar vpliva na kabel, konektorje in zaščito. Pri delni senci se lahko konfiguraciji obnašata različno.</p>
+  <p>Končne vezave ne izbiraj samo po številu panelov. Uporabi Voc, Isc, temperaturne koeficiente, dolžino kabla in vhodne omejitve konkretnega <a href="/si/vodici/mppt-regulator-avtodom/">MPPT regulatorja</a>.</p>
+
 </section>`,
     faq: Object.freeze([
       ["Je 200 W solarja dovolj za avtodom?", "Lahko je dovolj pri majhni porabi in dobrih poletnih pogojih, vendar je pravilen odgovor odvisen od Wh/dan, sezone, lokacije in senčenja."],
@@ -164,6 +173,15 @@ const SI_GROWTH_CONTENT = Object.freeze({
     <li>kabli, varovalke, odklop in montaža po navodilih.</li>
   </ul>
   <p>Izbiro vedno poveži z vodnikom za <a href="/si/vodici/koliko-soncnih-panelov-avtodom/">potrebno solarno moč</a> in z <a href="/si/#calculator-preview">izračunom celotnega sistema</a>; ne izbiraj regulatorja samo po eni številki v imenu modela.</p>
+
+  <h2>Primer 400 W: ista solarna moč, drugačen tok pri 12 V in 24 V</h2>
+  <p>Pri 400 W panelov je osnovni tok na 12 V približno 33 A pred rezervo, pri 24 V pa približno 17 A. To ne pomeni, da lahko regulator izbereš samo iz te delitve, pokaže pa, zakaj je napetost baterije bistvena. MyPowerSetup za načrtovalni tok uporablja dodatno rezervo, nato pa mora konkretni regulator še vedno prestati preverjanje Voc, Isc in dovoljene PV moči.</p>
+  <p>Če razmišljaš o prehodu iz 12 V na 24 V, ne preveri samo MPPT-ja. Baterija, DC-DC, inverter in DC porabniki morajo biti združljivi z novo napetostjo. Vodnik <a href="/si/vodici/12v-ali-24v-sistem-avtodom/">12 V ali 24 V</a> pomaga preveriti posledice za celoten sistem.</p>
+
+  <h2>Montaža, temperatura in povezave vplivajo na dejansko zmogljivost</h2>
+  <p>Regulator namesti skladno z zahtevami proizvajalca glede prezračevanja, orientacije in odmikov. Visoka temperatura lahko omeji zmogljivost elektronike, slabi priključki pa povečajo padec napetosti in segrevanje. Po montaži preveri navor priključkov in kablov ne napeljuj tako, da mehansko obremenjujejo sponke.</p>
+  <p>Pri končni kontroli primerjaj podatke na zaslonu ali v aplikaciji regulatorja z napetostjo baterije in pričakovano solarno močjo. Če so razlike velike, najprej preveri ožičenje, konfiguracijo panelov in nastavitve baterije, preden sklepaš, da potrebuješ večji MPPT.</p>
+
 </section>`,
     faq: Object.freeze([
       ["Kakšen MPPT potrebujem za 400 W panelov pri 12 V?", "Kot groba ocena toka 400 W ÷ 12 V × 1,25 pomeni približno 42 A. Končna izbira mora preveriti tudi Voc, Isc in omejitve proizvajalca."],
@@ -207,6 +225,15 @@ const SI_GROWTH_CONTENT = Object.freeze({
     <li>prezračevanje, temperatura in montažni pogoji proizvajalca.</li>
   </ul>
   <p>Najprej izračunaj scenarij v <a href="/si/#calculator-preview">MyPowerSetup</a>, nato izberi inverter, ki ga baterija, BMS in ožičenje lahko dejansko podprejo.</p>
+
+  <h2>Stalna moč in zagonski sunek sta dve ločeni zahtevi</h2>
+  <p>Naprava z nazivno močjo 800 W lahko pri zagonu za kratek čas zahteva bistveno več. Zato preveri oba podatka: stalna moč inverterja mora pokriti hkratno delovanje, njegova kratkotrajna zmogljivost pa zagon najzahtevnejšega porabnika. Če proizvajalec naprave ali inverterja zagonskega podatka ne objavi, načrtuj konservativno in ne predpostavljaj, da bo oglaševana »peak« številka vedno uporabna.</p>
+  <p>Pri motorjih, kompresorjih in napravah z napajalniki preveri tudi izkušnje ali dokumentacijo konkretnega proizvajalca. Dve napravi z enako nazivno močjo nimata nujno enakega zagonskega obnašanja.</p>
+
+  <h2>Inverter postavi blizu baterije, AC del pa obravnavaj ločeno</h2>
+  <p>Na DC strani so pri večjih močeh tokovi zelo visoki, zato je praviloma smiselna kratka in pravilno dimenzionirana povezava med baterijo in inverterjem. Daljša napeljava poveča padec napetosti in zahteva večji presek. Hkrati mora biti inverter nameščen tako, da ima zahtevano hlajenje in ni izpostavljen vlagi ali mehanskim poškodbam.</p>
+  <p>230 V izhod, ozemljitev, zaščitni vodnik in RCD niso podaljšek 12 V pravil. Če inverter napaja fiksno AC napeljavo avtodoma, mora biti ta del zasnovan in preverjen po navodilih opreme in veljavnih pravilih; pri negotovosti naj ga preveri usposobljena oseba.</p>
+
 </section>`,
     faq: Object.freeze([
       ["Kakšen inverter potrebujem za napravo z močjo 1.000 W?", "Preveri tudi druge naprave, ki lahko delujejo hkrati, zagonski sunek in dodaj smiselno rezervo. Sama nazivna moč naprave ni dovolj."],
