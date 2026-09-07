@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 4,
-  "generatedAt": "2026-09-07T17:42:38.295Z",
+  "schemaVersion": 5,
+  "generatedAt": "2026-09-07T18:19:28.076Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -821,47 +821,55 @@
   "markets": [
     {
       "market": "cs-CZ",
-      "generatedAt": "2026-09-07T17:40:58.049Z",
+      "generatedAt": "2026-09-07T18:18:57.104Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
       "weightedCoverage": 1,
       "topOpportunity": null,
-      "opportunities": []
+      "opportunities": [],
+      "topSourcingRoute": null,
+      "sourcingRoutes": []
     },
     {
       "market": "sk-SK",
-      "generatedAt": "2026-09-07T17:41:10.555Z",
+      "generatedAt": "2026-09-07T18:19:07.260Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
       "weightedCoverage": 1,
       "topOpportunity": null,
-      "opportunities": []
+      "opportunities": [],
+      "topSourcingRoute": null,
+      "sourcingRoutes": []
     },
     {
       "market": "pl-PL",
-      "generatedAt": "2026-09-07T17:41:22.900Z",
+      "generatedAt": "2026-09-07T18:19:17.664Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.21052631578947367,
       "weightedCoverage": 1,
       "topOpportunity": null,
-      "opportunities": []
+      "opportunities": [],
+      "topSourcingRoute": null,
+      "sourcingRoutes": []
     },
     {
       "market": "hu-HU",
-      "generatedAt": "2026-09-07T17:41:33.816Z",
+      "generatedAt": "2026-09-07T18:19:26.551Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
       "weightedCoverage": 1,
       "topOpportunity": null,
-      "opportunities": []
+      "opportunities": [],
+      "topSourcingRoute": null,
+      "sourcingRoutes": []
     },
     {
       "market": "pt-PT",
-      "generatedAt": "2026-09-07T17:41:34.704Z",
+      "generatedAt": "2026-09-07T18:19:28.076Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1109,6 +1117,98 @@
             }
           ],
           "secondaryRequirements": []
+        }
+      ],
+      "topSourcingRoute": {
+        "id": "bluetti-eu-elite-300",
+        "category": "power_station",
+        "merchant": "bluetti_eu",
+        "productName": "BLUETTI Elite 300",
+        "status": "blocked_affiliate_verification",
+        "blocker": "eu_affiliate_deeplink_unverified",
+        "secondaryBlocker": null,
+        "standaloneUnlockWeight": 5,
+        "affectedWeight": 5,
+        "shippingVerified": true,
+        "stockStatus": "in_stock",
+        "nextActionOwner": "user",
+        "nextAction": "verify_eu_affiliate_deeplink"
+      },
+      "sourcingRoutes": [
+        {
+          "id": "bluetti-eu-elite-300",
+          "category": "power_station",
+          "merchant": "bluetti_eu",
+          "productName": "BLUETTI Elite 300",
+          "status": "blocked_affiliate_verification",
+          "blocker": "eu_affiliate_deeplink_unverified",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 5,
+          "affectedWeight": 5,
+          "shippingVerified": true,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "verify_eu_affiliate_deeplink"
+        },
+        {
+          "id": "solaris-victron-phoenix-12-250",
+          "category": "inverter",
+          "merchant": "solaris_store",
+          "productName": "Victron Phoenix 12/250 VE.Direct IEC",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 5,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": "in_stock",
+          "nextActionOwner": null,
+          "nextAction": null
+        },
+        {
+          "id": "solaris-victron-phoenix-24-250",
+          "category": "inverter",
+          "merchant": "solaris_store",
+          "productName": "Victron Phoenix 24/250 VE.Direct Schuko",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 3,
+          "shippingVerified": false,
+          "stockStatus": "in_stock",
+          "nextActionOwner": null,
+          "nextAction": null
+        },
+        {
+          "id": "xdatou-datouboss-2000w-24v",
+          "category": "inverter",
+          "merchant": "xdatou",
+          "productName": "DATOUBOSS 2000W Pure Sine Wave Inverter 24V to 230V",
+          "status": "blocked_affiliate_verification",
+          "blocker": "goaffpro_account_approval_not_verified",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": null,
+          "nextActionOwner": null,
+          "nextAction": null
+        },
+        {
+          "id": "ampul-eu-inverter-24v-2000w",
+          "category": "inverter",
+          "merchant": "ampul_eu",
+          "productName": "AMPUL 24V DC to 230V AC 2000W pure-sine inverter",
+          "status": "blocked_market_stock_verification",
+          "blocker": "market_shipping_checkout_unverified",
+          "secondaryBlocker": "variant_stock_unverified",
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": null,
+          "nextActionOwner": "system",
+          "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock"
         }
       ]
     },
@@ -1363,6 +1463,98 @@
           ],
           "secondaryRequirements": []
         }
+      ],
+      "topSourcingRoute": {
+        "id": "bluetti-eu-elite-300",
+        "category": "power_station",
+        "merchant": "bluetti_eu",
+        "productName": "BLUETTI Elite 300",
+        "status": "blocked_affiliate_verification",
+        "blocker": "eu_affiliate_deeplink_unverified",
+        "secondaryBlocker": null,
+        "standaloneUnlockWeight": 5,
+        "affectedWeight": 5,
+        "shippingVerified": true,
+        "stockStatus": "in_stock",
+        "nextActionOwner": "user",
+        "nextAction": "verify_eu_affiliate_deeplink"
+      },
+      "sourcingRoutes": [
+        {
+          "id": "bluetti-eu-elite-300",
+          "category": "power_station",
+          "merchant": "bluetti_eu",
+          "productName": "BLUETTI Elite 300",
+          "status": "blocked_affiliate_verification",
+          "blocker": "eu_affiliate_deeplink_unverified",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 5,
+          "affectedWeight": 5,
+          "shippingVerified": true,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "verify_eu_affiliate_deeplink"
+        },
+        {
+          "id": "solaris-victron-phoenix-12-250",
+          "category": "inverter",
+          "merchant": "solaris_store",
+          "productName": "Victron Phoenix 12/250 VE.Direct IEC",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 5,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": "in_stock",
+          "nextActionOwner": null,
+          "nextAction": null
+        },
+        {
+          "id": "solaris-victron-phoenix-24-250",
+          "category": "inverter",
+          "merchant": "solaris_store",
+          "productName": "Victron Phoenix 24/250 VE.Direct Schuko",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 3,
+          "shippingVerified": false,
+          "stockStatus": "in_stock",
+          "nextActionOwner": null,
+          "nextAction": null
+        },
+        {
+          "id": "xdatou-datouboss-2000w-24v",
+          "category": "inverter",
+          "merchant": "xdatou",
+          "productName": "DATOUBOSS 2000W Pure Sine Wave Inverter 24V to 230V",
+          "status": "blocked_affiliate_verification",
+          "blocker": "goaffpro_account_approval_not_verified",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": null,
+          "nextActionOwner": null,
+          "nextAction": null
+        },
+        {
+          "id": "ampul-eu-inverter-24v-2000w",
+          "category": "inverter",
+          "merchant": "ampul_eu",
+          "productName": "AMPUL 24V DC to 230V AC 2000W pure-sine inverter",
+          "status": "blocked_market_stock_verification",
+          "blocker": "market_shipping_checkout_unverified",
+          "secondaryBlocker": "variant_stock_unverified",
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": null,
+          "nextActionOwner": "system",
+          "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock"
+        }
       ]
     },
     {
@@ -1615,6 +1807,83 @@
             }
           ],
           "secondaryRequirements": []
+        }
+      ],
+      "topSourcingRoute": {
+        "id": "solaris-victron-phoenix-12-250",
+        "category": "inverter",
+        "merchant": "solaris_store",
+        "productName": "Victron Phoenix 12/250 VE.Direct IEC",
+        "status": "blocked_affiliate_verification",
+        "blocker": "affiliate_tracking_not_verified",
+        "secondaryBlocker": "market_shipping_checkout_unverified",
+        "standaloneUnlockWeight": 5,
+        "affectedWeight": 5,
+        "shippingVerified": false,
+        "stockStatus": "in_stock",
+        "nextActionOwner": null,
+        "nextAction": null
+      },
+      "sourcingRoutes": [
+        {
+          "id": "solaris-victron-phoenix-12-250",
+          "category": "inverter",
+          "merchant": "solaris_store",
+          "productName": "Victron Phoenix 12/250 VE.Direct IEC",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 5,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": "in_stock",
+          "nextActionOwner": null,
+          "nextAction": null
+        },
+        {
+          "id": "solaris-victron-phoenix-24-250",
+          "category": "inverter",
+          "merchant": "solaris_store",
+          "productName": "Victron Phoenix 24/250 VE.Direct Schuko",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 3,
+          "shippingVerified": false,
+          "stockStatus": "in_stock",
+          "nextActionOwner": null,
+          "nextAction": null
+        },
+        {
+          "id": "xdatou-datouboss-2000w-24v",
+          "category": "inverter",
+          "merchant": "xdatou",
+          "productName": "DATOUBOSS 2000W Pure Sine Wave Inverter 24V to 230V",
+          "status": "blocked_affiliate_verification",
+          "blocker": "goaffpro_account_approval_not_verified",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": null,
+          "nextActionOwner": null,
+          "nextAction": null
+        },
+        {
+          "id": "ampul-eu-inverter-24v-2000w",
+          "category": "inverter",
+          "merchant": "ampul_eu",
+          "productName": "AMPUL 24V DC to 230V AC 2000W pure-sine inverter",
+          "status": "blocked_market_stock_verification",
+          "blocker": "market_shipping_checkout_unverified",
+          "secondaryBlocker": "variant_stock_unverified",
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": null,
+          "nextActionOwner": "system",
+          "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock"
         }
       ]
     }
