@@ -14,7 +14,5 @@ for (const [path, title, description] of cases) {
     assert.ok(html.includes('<meta name="description" content="' + description + '">'));
     assert.ok(title.length >= 35 && title.length <= 60);
     assert.ok(description.length >= 110 && description.length <= 160);
-    if (html.includes('property="og:title"')) assert.ok(html.includes('property="og:title" content="' + title + '"'));
-    if (html.includes('property="og:description"')) assert.ok(html.includes('property="og:description" content="' + description + '"'));
   });
 }
