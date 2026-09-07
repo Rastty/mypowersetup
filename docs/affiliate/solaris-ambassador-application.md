@@ -21,10 +21,10 @@ MyPowerSetup propose des calculateurs et des guides techniques pour aider les ut
 
 Le site est déjà localisé pour plusieurs marchés européens, notamment le Portugal, la Roumanie et la Slovénie. Nous souhaitons recommander des produits Solaris uniquement lorsqu'ils correspondent précisément aux besoins calculés de l'utilisateur.
 
-Nous sommes particulièrement intéressés par les convertisseurs Victron Phoenix 12/250 et 24/250, qui correspondent très bien à certains scénarios camping-car de faible puissance.
+Nous sommes particulièrement intéressés par les convertisseurs Victron Phoenix 12/250 et 24/250 ainsi que par le régulateur Victron SmartSolar MPPT 150/60-Tr. Ces références correspondent directement à nos scénarios de faible puissance et de dimensionnement solaire pour camping-cars.
 
 Pouvez-vous nous confirmer :
-1. le fonctionnement du suivi d'affiliation et la possibilité de créer des liens profonds vers une fiche produit précise ;
+1. le fonctionnement du suivi d'affiliation et la possibilité de créer des liens profonds vers les fiches produits Phoenix et SmartSolar précises ;
 2. les conditions / taux de commission du programme Ambassadeur ;
 3. la possibilité d'expédier ces produits au Portugal, en Roumanie et en Slovénie, ainsi que les éventuelles conditions particulières pour ces destinations ?
 
@@ -55,6 +55,17 @@ https://mypowersetup.com/
 - Waveform: pure sine
 - Commercial impact: affected weight **3**
 
+### Solar controller — same application, second major gap
+- Candidate: `solaris-victron-smartsolar-150-60-tr`
+- Product: Victron SmartSolar MPPT 150/60-Tr
+- Exact retail page: https://www.solaris-store.com/2169-regulateur-victron-smartsolar-mppt-150-60-tr-150v-60a-.html
+- System voltage: 12 / 24 / 36 / 48 V
+- Charge current: 60 A
+- Nominal PV power: 860 W @ 12 V / 1720 W @ 24 V
+- Maximum PV open-circuit voltage: 150 V
+- Current store state: dispatch in 5–7 days
+- Commercial role: closes the current 40–120 A expansion-market MPPT gap after tracking + country checkout verification
+
 ## Evidence already verified
 
 - Solaris runs a first-party Ambassador programme aimed at bloggers, vanlife/camping-car and travel creators.
@@ -73,6 +84,7 @@ Do **not** publish a Solaris product until all applicable items below are verifi
 - [ ] exact affiliate tracking mechanism recorded
 - [ ] exact-product deep link for Phoenix 12/250 verified
 - [ ] exact-product deep link for Phoenix 24/250 verified
+- [ ] exact-product deep link for SmartSolar MPPT 150/60-Tr verified
 - [ ] Portugal shipping/checkout verified
 - [ ] Romania shipping/checkout verified
 - [ ] Slovenia shipping/checkout verified
@@ -81,3 +93,4 @@ Do **not** publish a Solaris product until all applicable items below are verifi
 - [ ] PT/RO/SI catalog sync and runtime validation added
 - [ ] full CI green
 - [ ] commercial opportunity report confirms inverter unlock
+- [ ] commercial opportunity report confirms controller unlock
