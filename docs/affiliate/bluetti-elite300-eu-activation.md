@@ -23,7 +23,7 @@ This profile passes the current MyPowerSetup `family-touring` portable-power req
 
 Do not reuse the historical BLUETTI US tracking link for this product.
 
-The public BLUETTI EU affiliate page supports affiliate links but does not expose enough information to prove which exact network/tracking template applies to the user's approved account for `bluettipower.eu`.
+The owner's BLUETTI affiliate relationship is confirmed through CJ. The repository intentionally does not invent the CJ advertiser/program ID or tracking template because no exact Elite 300 EU deeplink has been captured yet.
 
 Until the exact EU deeplink is verified:
 
@@ -32,9 +32,9 @@ Until the exact EU deeplink is verified:
 - BLUETTI Elite 300 does not enter PT/RO public catalogs
 - no purchase-ready coverage is claimed from this candidate
 
-## One required external action
+## One remaining external action
 
-In the approved BLUETTI affiliate dashboard, generate a deep link whose landing destination is exactly:
+In the approved BLUETTI CJ dashboard, generate a deep link whose landing destination is exactly:
 
 `https://www.bluettipower.eu/products/elite-300-portable-power-station`
 
@@ -42,14 +42,14 @@ If the current BLUETTI programme only allows `bluettipower.com` or another regio
 
 ## Evidence to capture
 
-Record:
+CJ is already recorded as the approved network. Capture only the remaining activation evidence:
 
-1. affiliate network/platform name
-2. advertiser/merchant/program ID when visible
-3. exact generated tracking URL
-4. final landing URL after the tracking click
-5. confirmation that the landing host is `www.bluettipower.eu`
-6. date verified
+1. exact generated CJ tracking URL
+2. final landing URL after the tracking click
+3. confirmation that the landing host is `www.bluettipower.eu`
+4. date verified
+
+Record the CJ advertiser/program ID only if it is explicitly visible in the approved dashboard or tracking URL; do not infer it.
 
 The final landing path must remain:
 
@@ -59,7 +59,7 @@ The final landing path must remain:
 
 Once the exact EU tracking URL is available:
 
-1. add a strict BLUETTI EU affiliate adapter for the verified network format
+1. add a strict BLUETTI EU CJ adapter for the exact verified deeplink format
 2. validate exact Elite 300 destination only
 3. add the current live SKU to PT and RO catalog sync
 4. require `marketEligible: true`, stock evidence and exact tracking at runtime
@@ -73,5 +73,7 @@ Once the exact EU tracking URL is available:
 - retail/specs: https://www.bluettipower.eu/products/elite-300-portable-power-station
 - shipping countries: https://www.bluettipower.eu/pages/shipping-country
 - affiliate programme: https://www.bluettipower.eu/pages/affiliate-program
+
+Current affiliate state: CJ approval owner-confirmed; exact Elite 300 EU deeplink pending.
 
 Last verified: 2026-09-07.
