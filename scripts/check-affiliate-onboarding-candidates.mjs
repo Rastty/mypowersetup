@@ -31,7 +31,7 @@ const merchantPolicies = new Map([
   ["ampul_eu", new Set(["blocked_market_verification", "blocked_market_stock_verification"])],
   ["padabo_sk", new Set(["blocked_crossborder_not_supported"])],
   ["renogy_eu", new Set(["blocked_stock"])],
-  ["bluetti_eu", new Set(["blocked_stock"])],
+  ["bluetti_eu", new Set(["blocked_stock", "blocked_affiliate_verification"])],
 ]);
 
 const ids = new Set();
@@ -67,6 +67,7 @@ const ampulDcDc30 = required("ampul-eu-dcdc-12v-30a");
 const renogyRover40 = required("renogy-eu-rover-40a-mppt");
 const renogyDcDc40 = required("renogy-eu-dcdc-12-12-40a");
 const bluettiFamilyStation = required("bluetti-eu-ac240-b210");
+const bluettiElite300 = required("bluetti-eu-elite-300");
 
 for (const [candidate, voltage] of [[phoenix12, 12], [phoenix24, 24]]) {
   assert(candidate.merchant === "offgridtec", `${candidate.id}: wrong merchant for current Phoenix evidence`);
@@ -291,6 +292,32 @@ assert(sameValues(Object.keys(bluettiFamilyStation.marketEligibility || {}), ["p
 const sourcingBluetti = listCommercialSourcingCandidates({ category: "power_station" }).find(({ id }) => id === bluettiFamilyStation.id);
 assert(sourcingBluetti?.blocker === "exact_eu_bundle_out_of_stock", "BLUETTI AC240+B210 stock blocker missing from sourcing queue");
 assert(sourcingBluetti?.secondaryBlocker === "eu_affiliate_deeplink_not_verified", "BLUETTI AC240+B210 affiliate blocker missing from sourcing queue");
+
+assert(bluettiElite300.category === "power_station", "BLUETTI Elite 300 category invalid");
+assert(bluettiElite300.status === "blocked_affiliate_verification", "BLUETTI Elite 300 must remain blocked until an exact EU affiliate deeplink is verified");
+assert(bluettiElite300.stockStatus === "in_stock" && bluettiElite300.stockEvidenceVerifiedAt === "2026-09-07", "BLUETTI Elite 300 live stock evidence missing");
+assert(bluettiElite300.exactRetailPath === "/products/elite-300-portable-power-station", "BLUETTI Elite 300 exact retail path invalid");
+assert(new URL(bluettiElite300.retailEvidenceUrl).hostname === "www.bluettipower.eu", "BLUETTI Elite 300 retail evidence must be first-party");
+assert(new URL(bluettiElite300.shippingEvidenceUrl).pathname === "/pages/shipping-country", "BLUETTI Elite 300 shipping-country evidence missing");
+assert(new URL(bluettiElite300.affiliateEvidenceUrl).pathname === "/pages/affiliate-program", "BLUETTI Elite 300 affiliate evidence missing");
+assert(bluettiElite300.specs?.capacityWh === 3014.4, "BLUETTI Elite 300 capacity evidence invalid");
+assert(bluettiElite300.specs?.continuousPowerW === 2400 && bluettiElite300.specs?.peakPowerW === 4800, "BLUETTI Elite 300 AC power evidence invalid");
+assert(bluettiElite300.specs?.solarInputW === 1200, "BLUETTI Elite 300 solar input evidence invalid");
+assert(bluettiElite300.specs?.dcOutputVoltageV === 12 && bluettiElite300.specs?.dcOutputA === 30, "BLUETTI Elite 300 12V/30A RV output evidence invalid");
+assert(bluettiElite300.specs?.batteryType === "lifepo4", "BLUETTI Elite 300 battery chemistry evidence invalid");
+assert(sameValues(Object.keys(bluettiElite300.marketEligibility || {}), ["pt-PT", "ro-RO"]), "BLUETTI Elite 300 target markets must be PT and RO only");
+assert(sameValues(bluettiElite300.shippingEligibleMarkets || [], ["pt-PT", "ro-RO"]), "BLUETTI Elite 300 verified shipping markets invalid");
+assert(sameValues(bluettiElite300.unsupportedMarkets || [], ["sl-SI"]), "BLUETTI Elite 300 must record Slovenia as unsupported");
+assert(bluettiElite300.standaloneUnlockWeight === 5 && bluettiElite300.affectedWeight === 5, "BLUETTI Elite 300 family unlock weight invalid");
+assert(bluettiElite300.nextActionOwner === "user" && bluettiElite300.nextAction === "verify_eu_affiliate_deeplink", "BLUETTI Elite 300 next action must be exact");
+const sourcingElite300 = listCommercialSourcingCandidates({ category: "power_station" }).find(({ id }) => id === bluettiElite300.id);
+assert(sourcingElite300?.status === "blocked_affiliate_verification", "BLUETTI Elite 300 sourcing status diverges");
+assert(sourcingElite300?.blocker === "eu_affiliate_deeplink_unverified", "BLUETTI Elite 300 affiliate blocker missing from sourcing queue");
+assert(sourcingElite300?.standaloneUnlockWeight === 5, "BLUETTI Elite 300 sourcing unlock weight missing");
+assert(sourcingElite300?.stockStatus === "in_stock", "BLUETTI Elite 300 sourcing stock evidence missing");
+assert(sameValues(sourcingElite300?.markets || [], ["pt-PT", "ro-RO"]), "BLUETTI Elite 300 sourcing markets invalid");
+assert(!listCommercialSourcingCandidates({ market: "sl-SI", category: "power_station" }).some(({ id }) => id === bluettiElite300.id), "BLUETTI Elite 300 must not leak into SI sourcing");
+
 
 assert(smartSolar.merchant === "butler_technik", "SmartSolar merchant invalid");
 assert(smartSolar.network === "awin" && smartSolar.programId === BUTLER_TECHNIK_AWIN.merchantId, "SmartSolar affiliate programme metadata invalid");
