@@ -107,6 +107,11 @@ assert(xdatouInverter.status === "blocked_affiliate_verification", "Xdatou inver
 assert(xdatouInverter.activation?.approvalConfirmed === false, "Xdatou activation must remain false before explicit approval");
 assert(xdatouInverter.activation?.referralIdentifier === null, "Xdatou referral identifier must remain unset before approval");
 assert(xdatouInverter.activation?.referralCode === null, "Xdatou referral code must remain unset before approval");
+assert(xdatouInverter.applicationReady === true, "Xdatou GoAffPro application must be ready");
+assert(xdatouInverter.nextActionOwner === "user" && xdatouInverter.nextAction === "submit_goaffpro_application", "Xdatou next action must be explicit");
+assert(xdatouInverter.applicationPacketPath === "docs/affiliate/xdatou-goaffpro-application.md", "Xdatou application packet path missing");
+const goAffProEndpoint = new URL(xdatouInverter.goAffProEndpoint);
+assert(goAffProEndpoint.hostname === "xdatou.goaffpro.com", "Xdatou exact GoAffPro programme endpoint missing");
 assert(typeof xdatouInverter.activationInstructions === "string" && /Do not infer or invent/i.test(xdatouInverter.activationInstructions), "Xdatou activation instructions must forbid guessed tracking credentials");
 assert(xdatouInverter.category === "inverter", "Xdatou inverter category invalid");
 assert(new URL(xdatouInverter.applicationUrl).hostname === "eu.xdatou.com", "Xdatou application evidence must be first-party");
