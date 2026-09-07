@@ -61,6 +61,26 @@ const RO_GROWTH_CONTENT = Object.freeze({
 
   <h2>Serie, paralel și limitele MPPT</h2>
   <p>Panourile legate în serie adună tensiunile, iar cele legate în paralel adună curenții. De aceea puterea totală în Wp nu este suficientă pentru alegerea regulatorului. Trebuie verificate Voc și Isc pentru configurația reală și limita de tensiune a MPPT-ului inclusiv la temperaturi scăzute.</p>
+
+  <h2>Producția trebuie comparată cu bateria și celelalte surse</h2>
+  <p>Un sistem solar nu trebuie judecat doar după Wp. Întreabă câtă energie trebuie refăcută zilnic și câtă rezervă are bateria. Dacă stai mai multe zile pe loc, solarul devine sursa principală de refacere. Dacă conduci zilnic, un <a href="/ro/ghiduri/incarcator-dc-dc-autorulota/">DC-DC dimensionat corect</a> poate acoperi o parte importantă din consum.</p>
+  <p>O baterie mare poate masca temporar un solar insuficient, dar nu rezolvă bilanțul energetic pe termen lung. Invers, un câmp solar mare nu ajută mult dacă bateria sau MPPT-ul nu pot accepta curentul disponibil.</p>
+
+  <h2>Umbra și orientarea schimbă rezultatul real</h2>
+  <p>Un panou umbrit de trapă, antenă sau aer condiționat poate limita producția unei părți mai mari din ansamblu, în funcție de construcția panoului și de legarea șirurilor. Lasă distanță față de obiectele care creează umbră și gândește traseul cablurilor înainte de fixarea panourilor.</p>
+  <p>Pentru că autorulota nu stă mereu orientată optim, calculul trebuie privit ca o țintă de proiectare. Verificarea în PVGIS ajută cu resursa solară locală, dar nu poate cunoaște umbra reală de pe plafonul tău.</p>
+
+  <h2>Greșeli frecvente la dimensionarea solarului</h2>
+  <ul>
+    <li>alegerea panourilor înainte de calcularea consumului în Wh/zi;</li>
+    <li>folosirea aceleiași producții estimate pentru vară și iarnă;</li>
+    <li>ignorarea suprafeței, umbrelor și spațiului pentru service;</li>
+    <li>verificarea Wp fără Voc și Isc;</li>
+    <li>dimensionarea MPPT-ului fără tensiunea bateriei;</li>
+    <li>presupunerea că panourile vor produce permanent puterea nominală;</li>
+    <li>ignorarea DC-DC-ului și a încărcării de la 230 V în bilanțul complet.</li>
+  </ul>
+  <p>Pornește cu <a href="/ro/#calculator-preview">calculatorul MyPowerSetup</a>, apoi verifică configurația finală împreună cu ghidul pentru <a href="/ro/ghiduri/regulator-mppt-autorulota/">regulatorul MPPT</a>.</p>
 </section>`,
     faq: Object.freeze([
       ["Sunt suficienți 200 W de panouri pentru autorulotă?", "Pot fi suficienți pentru un consum redus și condiții bune de vară, dar dimensionarea corectă pornește de la Wh/zi și sezon."],
@@ -88,6 +108,49 @@ const RO_GROWTH_CONTENT = Object.freeze({
 
   <h2>Când AGM poate rămâne o alegere rezonabilă</h2>
   <p>AGM poate avea sens într-o instalație mică, folosită rar, deja compatibilă și unde costul inițial este mai important decât masa sau energia utilizabilă. Alegerea corectă nu este o tehnologie „câștigătoare”, ci soluția care acoperă consumul și încărcarea reală fără compromisuri inutile.</p>
+
+  <h2>Costul real nu este doar prețul bateriei</h2>
+  <p>Compară costul întregii conversii. O baterie LiFePO₄ poate cere un DC-DC nou, alt profil de încărcare la 230 V, modificări ale regulatorului solar sau cabluri și protecții diferite. Invers, o baterie AGM cu capacitate nominală mai mare poate ocupa mai mult spațiu și poate adăuga masă pentru aceeași energie planificată ca utilizabilă.</p>
+  <p>Înainte de cumpărare, compară două configurații complete care oferă aceeași autonomie. Abia atunci vezi dacă diferența de preț inițial compensează masa, capacitatea utilizabilă, viteza de încărcare și modificările necesare instalației.</p>
+
+  <h2>Temperatura și încărcarea trebuie tratate separat</h2>
+  <p>Nu confunda posibilitatea de descărcare la rece cu posibilitatea de încărcare la rece. Limitele diferă de la un model la altul, iar unele baterii LiFePO₄ folosesc BMS-ul pentru a bloca încărcarea în condiții nepotrivite. Dacă autorulota este folosită iarna, verifică explicit limitele din fișa tehnică și locul fizic al bateriei.</p>
+  <p>Pentru AGM, verifică de asemenea tensiunile și compensarea de temperatură cerute de producător. Nu copia setările unei alte baterii doar pentru că are aceeași tensiune nominală.</p>
+
+  <h2>Checklist înainte de conversia AGM → LiFePO4</h2>
+  <ul>
+    <li>calculează necesarul real în Wh, nu cumpăra după Ah existenți;</li>
+    <li>confirmă tensiunea sistemului și curentul continuu/pic cerut de invertor;</li>
+    <li>verifică limita de descărcare și de încărcare a BMS-ului;</li>
+    <li>verifică alternatorul și <a href="/ro/ghiduri/incarcator-dc-dc-autorulota/">încărcătorul DC-DC</a>;</li>
+    <li>verifică profilul <a href="/ro/ghiduri/regulator-mppt-autorulota/">MPPT-ului</a> și al încărcătorului de 230 V;</li>
+    <li>verifică funcționarea la temperaturi joase;</li>
+    <li>compară masa, dimensiunile, bornele și fixarea;</li>
+    <li>confirmă cablurile și siguranțele pentru curenții reali.</li>
+  </ul>
+  <p>Folosește <a href="/ro/#calculator-preview">calculatorul MyPowerSetup</a> pentru a compara energia necesară înainte să alegi chimia bateriei.</p>
+
+
+  <h2>Puterea PV admisă depinde și de tensiunea bateriei</h2>
+  <p>Același model de regulator poate avea o putere fotovoltaică nominală diferită la 12 V și la 24 V, deoarece limita de curent de încărcare rămâne aceeași. De aceea nu este suficient să spui „am un MPPT de 30 A” fără să precizezi tensiunea bateriei și puterea panourilor.</p>
+  <p>După ce calculatorul estimează curentul necesar, verifică în fișa modelului concret puterea PV permisă, tensiunea maximă Voc și curentul maxim Isc. Toate aceste limite trebuie respectate simultan.</p>
+
+  <h2>Isc și protecția nu se verifică din puterea în Wp</h2>
+  <p>Două configurații cu aceeași putere totală pot avea curenți de scurtcircuit foarte diferiți. În paralel, Isc-urile șirurilor se adună. Verifică limita de intrare a regulatorului și cerințele de protecție ale producătorului; nu deduce siguranțele doar din puterea nominală a panourilor.</p>
+  <p>La cablurile dintre panouri și MPPT contează curentul, lungimea, temperatura și căderea de tensiune. Pe partea bateriei, dimensionează cablul pentru curentul maxim de încărcare al regulatorului.</p>
+
+  <h2>Checklist înainte de cumpărarea MPPT-ului</h2>
+  <ul>
+    <li>tensiunea nominală a bateriei: 12 V sau 24 V;</li>
+    <li>puterea totală Wp a configurației finale;</li>
+    <li>Voc maxim al șirului inclusiv la temperatură scăzută;</li>
+    <li>Isc maxim al configurației serie/paralel;</li>
+    <li>curentul de încărcare cerut pe partea bateriei;</li>
+    <li>puterea PV admisă la tensiunea bateriei alese;</li>
+    <li>profil de încărcare compatibil cu bateria și BMS-ul;</li>
+    <li>cabluri, siguranțe și montaj conform manualului.</li>
+  </ul>
+  <p>Leagă alegerea de ghidul pentru <a href="/ro/ghiduri/cate-panouri-solare-autorulota/">dimensionarea panourilor solare</a> și de <a href="/ro/#calculator-preview">calculatorul sistemului</a>, nu de o singură cifră de pe eticheta regulatorului.</p>
 </section>`,
     faq: Object.freeze([
       ["LiFePO4 oferă mai multă autonomie decât AGM la aceiași Ah?", "De regulă poate oferi mai multă energie planificată ca utilizabilă, dar valoarea exactă depinde de bateria reală și de limitele BMS-ului."],
@@ -118,6 +181,27 @@ const RO_GROWTH_CONTENT = Object.freeze({
 
   <h2>MPPT-ul trebuie să fie compatibil și cu bateria</h2>
   <p>Confirmă că regulatorul are un profil potrivit chimiei bateriei și că tensiunile de absorbție/menținere sunt conforme cu instrucțiunile bateriei. Pentru LiFePO₄, verifică și modul în care sistemul gestionează temperaturile joase și semnalele BMS dacă sunt disponibile.</p>
+
+  <h2>Puterea PV admisă depinde și de tensiunea bateriei</h2>
+  <p>Același model de regulator poate avea o putere fotovoltaică nominală diferită la 12 V și la 24 V, deoarece limita de curent de încărcare rămâne aceeași. De aceea nu este suficient să spui „am un MPPT de 30 A” fără să precizezi tensiunea bateriei și puterea panourilor.</p>
+  <p>După ce calculatorul estimează curentul necesar, verifică în fișa modelului concret puterea PV permisă, tensiunea maximă Voc și curentul maxim Isc. Toate aceste limite trebuie respectate simultan.</p>
+
+  <h2>Isc și protecția nu se verifică din puterea în Wp</h2>
+  <p>Două configurații cu aceeași putere totală pot avea curenți de scurtcircuit foarte diferiți. În paralel, Isc-urile șirurilor se adună. Verifică limita de intrare a regulatorului și cerințele de protecție ale producătorului; nu deduce siguranțele doar din puterea nominală a panourilor.</p>
+  <p>La cablurile dintre panouri și MPPT contează curentul, lungimea, temperatura și căderea de tensiune. Pe partea bateriei, dimensionează cablul pentru curentul maxim de încărcare al regulatorului.</p>
+
+  <h2>Checklist înainte de cumpărarea MPPT-ului</h2>
+  <ul>
+    <li>tensiunea nominală a bateriei: 12 V sau 24 V;</li>
+    <li>puterea totală Wp a configurației finale;</li>
+    <li>Voc maxim al șirului inclusiv la temperatură scăzută;</li>
+    <li>Isc maxim al configurației serie/paralel;</li>
+    <li>curentul de încărcare cerut pe partea bateriei;</li>
+    <li>puterea PV admisă la tensiunea bateriei alese;</li>
+    <li>profil de încărcare compatibil cu bateria și BMS-ul;</li>
+    <li>cabluri, siguranțe și montaj conform manualului.</li>
+  </ul>
+  <p>Leagă alegerea de ghidul pentru <a href="/ro/ghiduri/cate-panouri-solare-autorulota/">dimensionarea panourilor solare</a> și de <a href="/ro/#calculator-preview">calculatorul sistemului</a>, nu de o singură cifră de pe eticheta regulatorului.</p>
 </section>`,
     faq: Object.freeze([
       ["Ce MPPT îmi trebuie pentru 400 W de panouri la 12 V?", "Ca estimare de curent, 400 W ÷ 12 V × 1,25 înseamnă aproximativ 42 A. Alegerea finală trebuie să verifice și Voc, Isc și limitele exacte ale producătorului."],
@@ -150,6 +234,26 @@ const RO_GROWTH_CONTENT = Object.freeze({
     <li>montarea invertorului departe de baterie fără recalcularea căderii de tensiune;</li>
     <li>dimensionarea invertorului fără a verifica ce consumatori chiar funcționează simultan.</li>
   </ul>
+
+  <h2>Verifică dacă ai nevoie de invertor permanent pornit</h2>
+  <p>Invertorul consumă energie și atunci când sarcina este mică sau, la unele modele, chiar în gol. Dacă majoritatea consumatorilor pot funcționa direct la 12/24 V sau prin USB-C, reducerea timpului în care invertorul este pornit poate economisi energie și simplifica instalația.</p>
+  <p>Nu dimensiona invertorul după un aparat pe care îl folosești rar fără să verifici alternativa: conectare la 230 V în camping, alimentare DC dedicată sau un aparat cu putere mai mică.</p>
+
+  <h2>BMS-ul și cablurile trebuie să susțină vârful real</h2>
+  <p>Un invertor de 2.000 W la 12 V poate cere curenți foarte mari din baterie, iar vârful de pornire poate ridica solicitarea și mai mult. Verifică limita continuă și de vârf a BMS-ului, lungimea cablurilor, capacitatea bornelor, siguranța și întrerupătorul principal. Ghidul de <a href="/ro/ghiduri/cabluri-sigurante-12v-autorulota/">cabluri și siguranțe</a> explică de ce secțiunea nu se alege doar după puterea invertorului.</p>
+
+  <h2>Checklist înainte să alegi invertorul</h2>
+  <ul>
+    <li>lista aparatelor AC și combinațiile care pot funcționa simultan;</li>
+    <li>puterea continuă și vârful de pornire al fiecărui aparat relevant;</li>
+    <li>tensiunea bateriei și curentul DC rezultat;</li>
+    <li>limitele continue și de vârf ale BMS-ului;</li>
+    <li>sinus pur dacă aparatele îl cer sau specificațiile nu permit altceva;</li>
+    <li>consumul în gol și modul de economisire/standby;</li>
+    <li>lungimea și secțiunea cablurilor plus protecția circuitului;</li>
+    <li>ventilația și condițiile de montaj cerute de producător.</li>
+  </ul>
+  <p>Calculează întâi scenariul în <a href="/ro/#calculator-preview">MyPowerSetup</a> și verifică dacă alegerea între <a href="/ro/ghiduri/sistem-12v-sau-24v-autorulota/">12 V și 24 V</a> reduce curentul la puterile de care ai nevoie.</p>
 </section>`,
     faq: Object.freeze([
       ["Ce invertor îmi trebuie pentru un aparat de 1 000 W?", "Nu te uita doar la cei 1 000 W. Verifică sarcinile care funcționează simultan, vârful de pornire și adaugă o marjă rezonabilă."],
