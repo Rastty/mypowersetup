@@ -132,13 +132,15 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
       articlePages += 1;
       const nodes = schemaNodes(schemas);
       const articles = nodes.filter((schema) => schema?.["@type"] === "Article");
+      const requiresExpansionBreadcrumb = ["pt", "ro", "si"].includes(market.key);
+      if (requiresExpansionBreadcrumb) breadcrumbPages += 1;
+
       if (!articles.length) failures.push(`${route}:ARTICLE_SCHEMA_MISSING`);
       else {
         const declaredLanguages = articles.map(({ inLanguage }) => inLanguage).filter(Boolean);
         const acceptedLanguages = new Set([market.locale, market.locale.split("-")[0]]);
         if (declaredLanguages.length && !declaredLanguages.some((language) => acceptedLanguages.has(language))) failures.push(`${route}:ARTICLE_LANGUAGE_INVALID`);
-        if (["pt", "ro", "si"].includes(market.key)) {
-          breadcrumbPages += 1;
+        if (requiresExpansionBreadcrumb) {
           const authoritative = articles.some((article) => {
             const author = article.author;
             const publisher = article.publisher;
@@ -150,12 +152,14 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
             );
           });
           if (!authoritative) failures.push(`${route}:ARTICLE_AUTHORITY_METADATA_MISSING`);
-
-          const breadcrumbs = nodes.filter((node) => node?.["@type"] === "BreadcrumbList");
-          if (breadcrumbs.length !== 1) failures.push(`${route}:BREADCRUMB_SCHEMA_MISSING`);
-          else if (!breadcrumbNodeIsValid(breadcrumbs[0], market, route)) failures.push(`${route}:BREADCRUMB_SCHEMA_INVALID`);
-          if (!visibleBreadcrumbIsValid(html, market)) failures.push(`${route}:BREADCRUMB_VISIBLE_MISSING`);
         }
+      }
+
+      if (requiresExpansionBreadcrumb) {
+        const breadcrumbs = nodes.filter((node) => node?.["@type"] === "BreadcrumbList");
+        if (breadcrumbs.length !== 1) failures.push(`${route}:BREADCRUMB_SCHEMA_MISSING`);
+        else if (!breadcrumbNodeIsValid(breadcrumbs[0], market, route)) failures.push(`${route}:BREADCRUMB_SCHEMA_INVALID`);
+        if (!visibleBreadcrumbIsValid(html, market)) failures.push(`${route}:BREADCRUMB_VISIBLE_MISSING`);
       }
     }
   }
