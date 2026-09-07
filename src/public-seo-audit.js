@@ -112,8 +112,8 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
             return Boolean(
               author && typeof author === "object" && author.name === "Petr Gálík" && typeof author.url === "string"
               && publisher && typeof publisher === "object" && publisher.name === "MyPowerSetup"
-              && /^\\d{4}-\\d{2}-\\d{2}$/.test(article.datePublished || "")
-              && /^\\d{4}-\\d{2}-\\d{2}$/.test(article.dateModified || "")
+              && /^\d{4}-\d{2}-\d{2}$/.test(article.datePublished || "")
+              && /^\d{4}-\d{2}-\d{2}$/.test(article.dateModified || "")
             );
           });
           if (!authoritative) failures.push(`${route}:ARTICLE_AUTHORITY_METADATA_MISSING`);
