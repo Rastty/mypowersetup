@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-04T08:02:40.540Z",
+  "generatedAt": "2026-09-07T11:24:25.514Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16554,
+      "parsedProducts": 16494,
       "relevantProducts": 248
     },
     "allpowers_eu": {
@@ -17,8 +17,8 @@
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 58,
-      "relevantProducts": 20,
-      "batteries": 16,
+      "relevantProducts": 19,
+      "batteries": 15,
       "controllers": 1,
       "inverters": 1,
       "shoreChargers": 2
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7677,
+      "parsedProducts": 7678,
       "relevantProducts": 15
     }
   },
@@ -555,7 +555,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
+      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -8906,41 +8906,6 @@
       }
     },
     {
-      "id": "powerqueen_eu:8327712243932",
-      "merchant": "powerqueen_eu",
-      "name": "Power Queen LiFePO4 12V 280Ah low temperature battery",
-      "description": "(Single 280Ah better: replaces 3 x 100Ah LiFePO4) 27% less space required, no cable clutter. Consistent voltage - long service life. (200A high-performance BMS, 2.56 kW continuous load) Designed with high-quality EV cells for a stable maximum output of 2.56 kW for multiple devices. The robust 200A BMS prevents voltage drops, is shock-resistant, and has a high cycle life. The surge current of 1000A@1s versProvides high-performance devices in the shortest possible time. (Auto-reset safety, all-wea",
-      "categoryPath": "Batteries",
-      "category": "battery",
-      "brand": "PQ-DE",
-      "priceCzk": 385.71,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-280ah-low-temperature-lifepo4-solar-battery",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-12v-280ah-low-temperature-lifepo4-solar-battery",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PQ-12.8V280Ah-TM-A200.webp?v=1773826378",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 280,
-        "capacityWh": 3584,
-        "powerW": null,
-        "currentA": 200,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "powerqueen_eu:7912987918556",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 12V 300Ah LiFePO4 battery, integrated 200A BMS",
@@ -9191,7 +9156,7 @@
       "id": "powerqueen_eu:7752832352476",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 12V 200Ah LiFePO4 battery, built-in 100A BMS",
-      "description": "Replaces lead-acid dual batteries, 65% lighter and 57% more compact: A 12V 200Ah LiFePO4 battery (2560Wh) replaces two 12V 200Ah lead-acid batteries (2400Wh, 1C). It delivers 160Wh more energy, 8x longer lifespan, 65% less weight and 57% less space – maximizing energy density and lifespan. Better than dual 12V 100Ah LiFePO4: simpler, more efficient: It outperforms two 12V 100Ah LiFePO4 batteries connected in parallel at the same energy output. Fewer connections reduce wiring complexity, lower in",
+      "description": "Replaces lead-acid dual battery, 65% lighter and 57% more compact: A 12V 200Ah LiFePO4 battery (2560Wh) replaces two 12V 200Ah lead-acid batteries (2400Wh, 1C). It delivers 160Wh more energy, 8x longer lifespan, 65% less weight and 57% less space – maximizing energy density and lifespan. Better than dual 12V 100Ah LiFePO4: simpler, more efficient: It outperforms two 12V 100Ah LiFePO4 batteries connected in parallel at the same energy output. Fewer connections reduce wiring complexity, lower inte",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
