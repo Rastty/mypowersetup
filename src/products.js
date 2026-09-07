@@ -461,6 +461,11 @@ function scoreProduct(product, setup) {
   if (product.category === "controller") {
     if (!/\bmppt\b/i.test(product.name)) return null;
     if (!specs.currentA || specs.currentA < setup.controllerAmps) return null;
+    if (Array.isArray(specs.systemVoltagesV)
+      && specs.systemVoltagesV.length > 0
+      && !specs.systemVoltagesV.includes(setup.systemVoltage)) return null;
+    const pvLimit = specs.maxPvWattsBySystemVoltage?.[setup.systemVoltage];
+    if (Number.isFinite(pvLimit) && setup.solarWatts > pvLimit) return null;
     fit = specs.currentA / setup.controllerAmps;
   }
   if (product.category === "dc_charger" || product.category === "shore_charger") {
@@ -525,6 +530,9 @@ function relevantSpecValues(product) {
   }
   if (product.category === "power_station") {
     return [product.specs.capacityWh, product.specs.powerW, product.specs.solarInputW, product.specs.dcOutputA];
+  }
+  if (product.category === "controller") {
+    return [product.specs.currentA, product.specs.systemVoltagesV, product.specs.maxPvWattsBySystemVoltage];
   }
   return [product.specs.currentA];
 }
