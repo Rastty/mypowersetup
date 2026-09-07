@@ -134,7 +134,7 @@ test("Solaris exact Phoenix candidates cover both 12V and 24V P0 small-inverter 
       assert.equal(candidate.secondaryBlocker, "market_shipping_checkout_unverified");
       assert.equal(candidate.applicationReady, true);
       assert.equal(candidate.applicationUrl, "https://www.solaris-store.com/contact?id=partenariat-ambassadeur");
-      assert.equal(candidate.checkoutStatus, "maintenance_blocked");
+      assert.equal(candidate.checkoutStatus, "site_operational_country_checkout_unverified");
       assert.equal(candidate.stockStatus, "in_stock");
       assert.equal(candidate.stockVerifiedAt, "2026-09-07");
       assert.equal(candidate.specs.powerW, 200);

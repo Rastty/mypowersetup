@@ -143,8 +143,9 @@ for (const [candidate, voltage, peakPowerW, exactPath] of [
   const applicationEvidence = new URL(candidate.applicationEvidenceUrl);
   assert(applicationEvidence.hostname === "www.solaris-store.com" && applicationEvidence.pathname === "/content/95-partenariat", `${candidate.id}: Solaris affiliate programme evidence missing`);
   assert(candidate.applicationReady === true, `${candidate.id}: Solaris application handoff must be ready`);
-  assert(candidate.checkoutStatus === "maintenance_blocked" && candidate.checkoutStatusVerifiedAt === "2026-09-07", `${candidate.id}: Solaris current checkout blocker missing`);
-  assert(new URL(candidate.checkoutBlockerEvidenceUrl).hostname === "www.solaris-store.com", `${candidate.id}: Solaris checkout blocker evidence missing`);
+  assert(candidate.checkoutStatus === "site_operational_country_checkout_unverified" && candidate.checkoutStatusVerifiedAt === "2026-09-07", `${candidate.id}: Solaris current checkout state invalid`);
+  const checkoutEvidence = new URL(candidate.checkoutOperationalEvidenceUrl);
+  assert(checkoutEvidence.hostname === "www.solaris-store.com" && checkoutEvidence.pathname === exactPath, `${candidate.id}: Solaris operational product evidence missing`);
   const retail = new URL(candidate.retailEvidenceUrl);
   assert(retail.hostname === "www.solaris-store.com" && retail.pathname === exactPath, `${candidate.id}: Solaris exact retail evidence invalid`);
   const shipping = new URL(candidate.shippingEvidenceUrl);

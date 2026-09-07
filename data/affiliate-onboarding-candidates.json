@@ -330,9 +330,9 @@
       ],
       "applicationEvidenceUrl": "https://www.solaris-store.com/content/95-partenariat",
       "applicationReady": true,
-      "checkoutStatus": "maintenance_blocked",
+      "checkoutStatus": "site_operational_country_checkout_unverified",
       "checkoutStatusVerifiedAt": "2026-09-07",
-      "checkoutBlockerEvidenceUrl": "https://www.solaris-store.com/content/95-partenariat"
+      "checkoutOperationalEvidenceUrl": "https://www.solaris-store.com/2333-phoenix-inverter-12-250-230v-vedirect-iec-victron-pin121251100.html"
     },
     {
       "id": "solaris-victron-phoenix-24-250",
@@ -373,9 +373,9 @@
       ],
       "applicationEvidenceUrl": "https://www.solaris-store.com/content/95-partenariat",
       "applicationReady": true,
-      "checkoutStatus": "maintenance_blocked",
+      "checkoutStatus": "site_operational_country_checkout_unverified",
       "checkoutStatusVerifiedAt": "2026-09-07",
-      "checkoutBlockerEvidenceUrl": "https://www.solaris-store.com/content/95-partenariat"
+      "checkoutOperationalEvidenceUrl": "https://www.solaris-store.com/8005-onduleur-victron-phoenix-24-250va-vedirect-schucko.html"
     },
     {
       "id": "renogy-eu-rover-40a-mppt",
