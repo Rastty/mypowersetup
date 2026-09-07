@@ -254,6 +254,50 @@
       "activationInstructions": "After Xdatou/GoAffPro approval, copy the exact referral identifier and referral code from the approved account. Do not infer or invent them."
     },
     {
+      "id": "bluetti-eu-elite-300",
+      "merchant": "bluetti_eu",
+      "network": "awin",
+      "programId": 95479,
+      "applicationUrl": "https://ui.awin.com/merchant-profile/95479",
+      "commissionPercent": 5,
+      "status": "blocked_affiliate_verification",
+      "secondaryBlocker": "awin_program_approval_not_verified",
+      "category": "power_station",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "technicalEvidenceUrl": "https://s4.bluettipower.com/bluetti_lgf/support/2026/03/c75fd42c-c6d1-4f8d-ac60-cabb578210d4.pdf",
+      "retailEvidenceUrl": "https://www.bluettipower.eu/products/elite-300-portable-power-station",
+      "retailEvidenceVerifiedAt": "2026-09-07",
+      "stockEvidenceVerifiedAt": "2026-09-07",
+      "stockStatus": "in_stock",
+      "shippingEvidenceUrl": "https://www.bluettipower.eu/pages/terms-of-service",
+      "shippingEvidenceVerifiedAt": "2026-09-07",
+      "exactRetailPath": "/products/elite-300-portable-power-station",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "shippingEligibleMarkets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "specs": {
+        "capacityWh": 3014.4,
+        "continuousPowerW": 2400,
+        "peakPowerW": 4800,
+        "waveform": "pure_sine",
+        "solarInputW": 1200,
+        "dcOutputVoltageV": 12,
+        "dcOutputA": 30,
+        "batteryType": "lifepo4"
+      },
+      "targetScenarioIds": [
+        "family-touring"
+      ]
+    },
+    {
       "id": "bluetti-eu-ac240-b210",
       "merchant": "bluetti_eu",
       "network": null,
