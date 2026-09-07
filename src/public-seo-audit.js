@@ -105,6 +105,19 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
         const declaredLanguages = articles.map(({ inLanguage }) => inLanguage).filter(Boolean);
         const acceptedLanguages = new Set([market.locale, market.locale.split("-")[0]]);
         if (declaredLanguages.length && !declaredLanguages.some((language) => acceptedLanguages.has(language))) failures.push(`${route}:ARTICLE_LANGUAGE_INVALID`);
+        if (["pt", "ro", "si"].includes(market.key)) {
+          const authoritative = articles.some((article) => {
+            const author = article.author;
+            const publisher = article.publisher;
+            return Boolean(
+              author && typeof author === "object" && author.name === "Petr Gálík" && typeof author.url === "string"
+              && publisher && typeof publisher === "object" && publisher.name === "MyPowerSetup"
+              && /^\\d{4}-\\d{2}-\\d{2}$/.test(article.datePublished || "")
+              && /^\\d{4}-\\d{2}-\\d{2}$/.test(article.dateModified || "")
+            );
+          });
+          if (!authoritative) failures.push(`${route}:ARTICLE_AUTHORITY_METADATA_MISSING`);
+        }
       }
     }
   }
