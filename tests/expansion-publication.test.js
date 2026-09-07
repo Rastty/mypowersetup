@@ -36,11 +36,25 @@ test("publicizer supplies one localized Article schema only when an expansion gu
     const twice = publicizeExpansionHtml(once, market, route);
     assert.equal((once.match(/data-expansion-article-fallback/g) || []).length, 1, route);
     assert.match(once, new RegExp(`"inLanguage":"${locale}"`));
+    assert.match(once, /"datePublished":"2026-08-30"/);
+    assert.match(once, /"dateModified":"2026-08-30"/);
+    assert.match(once, /"name":"Petr Gálík"/);
     assert.equal(twice, once, route);
   }
 
   const existingArticle = '<html><head><script type="application/ld+json">{"@type":"Article","inLanguage":"pt-PT"}</script></head><body></body></html>';
   assert.doesNotMatch(publicizeExpansionHtml(existingArticle, "pt", "/pt/guias/capacidade-bateria-autocaravana/"), /data-expansion-article-fallback/);
+});
+
+test("publicizer adds a visible localized author byline to real guide markup", () => {
+  const html = '<html><head><script type="application/ld+json">{"@type":"Article","inLanguage":"pt-PT"}</script></head><body><main class="article"><header class="article-header"><h1>Guia</h1></header></main></body></html>';
+  const route = "/pt/guias/capacidade-bateria-autocaravana/";
+  const once = publicizeExpansionHtml(html, "pt", route);
+  const twice = publicizeExpansionHtml(once, "pt", route);
+  assert.match(once, /data-expansion-article-authority/);
+  assert.match(once, /rel="author" href="\/pt\/sobre-o-projeto\/"/);
+  assert.match(once, /Petr Gálík/);
+  assert.equal(twice, once);
 });
 
 test("home publication adds all public hreflangs, static language links and release marker idempotently", () => {
