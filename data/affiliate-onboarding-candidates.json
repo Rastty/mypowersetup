@@ -290,6 +290,82 @@
       "targetScenarioIds": [
         "family-touring"
       ]
+    },
+    {
+      "id": "solaris-victron-phoenix-12-250",
+      "merchant": "solaris_store",
+      "network": null,
+      "programId": null,
+      "applicationUrl": "https://www.solaris-store.com/content/95-partenariat",
+      "commissionPercent": null,
+      "status": "blocked_affiliate_verification",
+      "secondaryBlocker": "market_shipping_checkout_unverified",
+      "category": "inverter",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "retailEvidenceUrl": "https://www.solaris-store.com/2333-phoenix-inverter-12-250-230v-vedirect-iec-victron-pin121251100.html",
+      "retailEvidenceVerifiedAt": "2026-09-07",
+      "stockEvidenceVerifiedAt": "2026-09-07",
+      "stockStatus": "in_stock",
+      "shippingEvidenceUrl": "https://www.solaris-store.com/content/132-europe",
+      "shippingEvidenceVerifiedAt": "2026-09-07",
+      "shippingEvidenceScope": "all_europe_general",
+      "exactRetailPath": "/2333-phoenix-inverter-12-250-230v-vedirect-iec-victron-pin121251100.html",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "specs": {
+        "systemVoltage": 12,
+        "ratedPowerVA": 250,
+        "continuousPowerW": 200,
+        "continuousPowerW40C": 175,
+        "peakPowerW": 400,
+        "waveform": "pure_sine",
+        "outputVoltageV": 230
+      },
+      "targetScenarioIds": [
+        "family-touring"
+      ]
+    },
+    {
+      "id": "solaris-victron-phoenix-24-250",
+      "merchant": "solaris_store",
+      "network": null,
+      "programId": null,
+      "applicationUrl": "https://www.solaris-store.com/content/95-partenariat",
+      "commissionPercent": null,
+      "status": "blocked_affiliate_verification",
+      "secondaryBlocker": "market_shipping_checkout_unverified",
+      "category": "inverter",
+      "productUrl": null,
+      "affiliateUrl": null,
+      "retailEvidenceUrl": "https://www.solaris-store.com/8005-onduleur-victron-phoenix-24-250va-vedirect-schucko.html",
+      "retailEvidenceVerifiedAt": "2026-09-07",
+      "stockEvidenceVerifiedAt": "2026-09-07",
+      "stockStatus": "in_stock",
+      "shippingEvidenceUrl": "https://www.solaris-store.com/content/132-europe",
+      "shippingEvidenceVerifiedAt": "2026-09-07",
+      "shippingEvidenceScope": "all_europe_general",
+      "exactRetailPath": "/8005-onduleur-victron-phoenix-24-250va-vedirect-schucko.html",
+      "marketEligibility": {
+        "pt-PT": "unverified",
+        "ro-RO": "unverified",
+        "sl-SI": "unverified"
+      },
+      "specs": {
+        "systemVoltage": 24,
+        "ratedPowerVA": 250,
+        "continuousPowerW": 200,
+        "continuousPowerW40C": 150,
+        "peakPowerW": 350,
+        "waveform": "pure_sine",
+        "outputVoltageV": 230
+      },
+      "targetScenarioIds": [
+        "remote-work"
+      ]
     }
   ]
 }
