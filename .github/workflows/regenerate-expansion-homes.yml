@@ -1,4 +1,4 @@
-name: Regenerate expansion homes
+name: Regenerate expansion public pages
 
 on:
   push:
@@ -10,6 +10,17 @@ on:
       - "src/market-seed-pt.js"
       - "src/market-seed-ro.js"
       - "src/market-seed-si.js"
+      - "src/private-content-pt.js"
+      - "src/private-content-ro.js"
+      - "src/private-content-si.js"
+      - "src/expansion-search-content.js"
+      - "src/expansion-search-content-ro.js"
+      - "src/expansion-search-content-si.js"
+      - "src/expansion-result-guides.js"
+      - "src/expansion-power-station-content.js"
+      - "src/contextual-growth-links.js"
+      - "src/expansion-voltage-guides.js"
+      - "src/public-hreflang-map.js"
       - "scripts/publish-expansion.mjs"
       - ".github/workflows/regenerate-expansion-homes.yml"
 
@@ -36,17 +47,17 @@ jobs:
           node scripts/publish-expansion.mjs --market pt
           node scripts/publish-expansion.mjs --market ro
           node scripts/publish-expansion.mjs --market si
-      - name: Commit homepage drift only
+      - name: Commit generated public-page drift
         shell: bash
         run: |
-          git add pt/index.html ro/index.html si/index.html
+          git add index.html sk/index.html pl/index.html hu/index.html pt ro si sitemap.xml
           if git diff --cached --quiet; then
-            echo "Expansion homes already match their source."
+            echo "Expansion public pages already match their source."
             exit 0
           fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"
-          git commit -m "chore: regenerate expansion homes"
+          git commit -m "chore: regenerate expansion public pages"
           git reset --hard HEAD
           git pull --rebase origin main
           git push origin HEAD:main
