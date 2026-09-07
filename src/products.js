@@ -226,8 +226,72 @@ const PRODUCT_TEXT = {
       shore_charger: "Ellenőrizd a feszültséget, az akkumulátor kémiáját, a töltési profilt, a BMS-t, a kábelezést és a védelmet.",
       power_station: "Ellenőrizd a fogyasztók indítási teljesítményét, a napelemek Voc tartományát, a csatlakozókat, a kimenetek egyidejű használatát és az aktuális elérhetőséget."
     }
+  },
+  pt: {
+    batteryReason: (setup) => `A capacidade cobre os ${setup.batteryAh} Ah calculados`,
+    panelReason: (product, setup) => `${product.recommendedQuantity} unid. cobrem os ${setup.solarWatts} Wp calculados`,
+    inverterReason: (setup) => `A potência contínua cobre os ${setup.inverterWatts} W calculados`,
+    controllerReason: (setup) => `A corrente cobre os ${setup.controllerAmps} A calculados`,
+    dcChargerReason: (setup) => `A saída cobre os ${setup.charging.dcDc.suggestedCurrentAmps} A recomendados durante a condução`,
+    shoreChargerReason: (setup) => `A saída cobre os ${setup.charging.shore.suggestedCurrentAmps} A recomendados a partir de 230 V`,
+    powerStationReason: () => "Capacidade, saída AC, entrada PV e saída de 12 V cobrem o perfil calculado",
+    powerStationAt12V: "a 12 V", systemVoltage: "tensão do sistema", requirement: "Requisito do sistema",
+    batteryLead: "Tecnologia de chumbo", controllerFor: "Para o conjunto solar", chargerInput: "Entrada", lifepo4Profile: "Perfil LiFePO₄",
+    verify: {
+      battery: "Confirma dimensões, BMS, corrente de carga e terminais.",
+      solar_panel: "Confirma dimensões, Voc, Isc e ligação dos painéis.",
+      inverter: "Confirma potência de pico, onda sinusoidal pura, cablagem e consumo em vazio.",
+      controller: "Confirma Voc e Isc máximos, potência PV e perfil da bateria na ficha técnica.",
+      dc_charger: "Confirma tensões de entrada/saída, alternador inteligente, BMS, cablagem, proteção e arrefecimento.",
+      shore_charger: "Confirma tensão, química da bateria, perfil de carga, BMS, cablagem e proteção.",
+      power_station: "Confirma pico de arranque, intervalo Voc solar, conectores, saídas simultâneas e disponibilidade atual."
+    }
+  },
+  ro: {
+    batteryReason: (setup) => `Capacitatea acoperă cei ${setup.batteryAh} Ah calculați`,
+    panelReason: (product, setup) => `${product.recommendedQuantity} buc. acoperă cei ${setup.solarWatts} Wp calculați`,
+    inverterReason: (setup) => `Puterea continuă acoperă cei ${setup.inverterWatts} W calculați`,
+    controllerReason: (setup) => `Curentul acoperă cei ${setup.controllerAmps} A calculați`,
+    dcChargerReason: (setup) => `Ieșirea acoperă cei ${setup.charging.dcDc.suggestedCurrentAmps} A recomandați în mers`,
+    shoreChargerReason: (setup) => `Ieșirea acoperă cei ${setup.charging.shore.suggestedCurrentAmps} A recomandați de la 230 V`,
+    powerStationReason: () => "Capacitatea, ieșirea AC, intrarea PV și ieșirea de 12 V acoperă profilul calculat",
+    powerStationAt12V: "la 12 V", systemVoltage: "tensiunea sistemului", requirement: "Cerința sistemului",
+    batteryLead: "Tehnologie cu plumb", controllerFor: "Pentru configurația solară", chargerInput: "Intrare", lifepo4Profile: "Profil LiFePO₄",
+    verify: {
+      battery: "Verifică dimensiunile, BMS-ul, curentul de încărcare și bornele.",
+      solar_panel: "Verifică dimensiunile, Voc, Isc și modul de conectare al panourilor.",
+      inverter: "Verifică puterea de vârf, sinusul pur, cablurile și consumul în gol.",
+      controller: "Verifică Voc și Isc maxime, puterea PV și profilul bateriei din fișa tehnică.",
+      dc_charger: "Verifică tensiunile de intrare/ieșire, alternatorul inteligent, BMS-ul, cablurile, protecția și răcirea.",
+      shore_charger: "Verifică tensiunea, chimia bateriei, profilul de încărcare, BMS-ul, cablurile și protecția.",
+      power_station: "Verifică vârful de pornire, intervalul Voc solar, conectorii, ieșirile simultane și disponibilitatea actuală."
+    }
+  },
+  si: {
+    batteryReason: (setup) => `Kapaciteta pokrije izračunanih ${setup.batteryAh} Ah`,
+    panelReason: (product, setup) => `${product.recommendedQuantity} kos. pokrije izračunanih ${setup.solarWatts} Wp`,
+    inverterReason: (setup) => `Stalna moč pokrije izračunanih ${setup.inverterWatts} W`,
+    controllerReason: (setup) => `Tok pokrije izračunanih ${setup.controllerAmps} A`,
+    dcChargerReason: (setup) => `Izhod pokrije priporočenih ${setup.charging.dcDc.suggestedCurrentAmps} A med vožnjo`,
+    shoreChargerReason: (setup) => `Izhod pokrije priporočenih ${setup.charging.shore.suggestedCurrentAmps} A iz 230 V`,
+    powerStationReason: () => "Kapaciteta, AC izhod, PV vhod in 12 V izhod pokrijejo izračunani profil",
+    powerStationAt12V: "pri 12 V", systemVoltage: "sistemska napetost", requirement: "Zahteva sistema",
+    batteryLead: "Svinčena tehnologija", controllerFor: "Za solarno zasnovo", chargerInput: "Vhod", lifepo4Profile: "Profil LiFePO₄",
+    verify: {
+      battery: "Preveri mere, BMS, polnilni tok in priključke.",
+      solar_panel: "Preveri mere, Voc, Isc in način vezave panelov.",
+      inverter: "Preveri konično moč, čisti sinus, kable in porabo v prostem teku.",
+      controller: "Preveri največji Voc in Isc, PV moč ter profil baterije v podatkovnem listu.",
+      dc_charger: "Preveri vhodno/izhodno napetost, pametni alternator, BMS, kable, zaščito in hlajenje.",
+      shore_charger: "Preveri napetost, kemijo baterije, polnilni profil, BMS, kable in zaščito.",
+      power_station: "Preveri zagonsko konico, solarni Voc razpon, priključke, hkratne izhode in trenutno dobavljivost."
+    }
   }
 };
+
+function productText(locale) {
+  return PRODUCT_TEXT[locale === "sl" ? "si" : locale] || PRODUCT_TEXT.cs;
+}
 
 export function configureMerchantAffiliate(merchantKey, affiliateBaseUrl) {
   const merchant = MERCHANTS[merchantKey];
@@ -565,7 +629,7 @@ function uniqueProductPages(candidates) {
 }
 
 function recommendationReason(product, setup) {
-  const text = PRODUCT_TEXT[setup.locale] || PRODUCT_TEXT.cs;
+  const text = productText(setup.locale);
   if (product.category === "battery") return text.batteryReason(setup);
   if (product.category === "solar_panel") return text.panelReason(product, setup);
   if (product.category === "inverter") return text.inverterReason(setup);
@@ -576,7 +640,7 @@ function recommendationReason(product, setup) {
 }
 
 function recommendationChecks(product, setup) {
-  const text = PRODUCT_TEXT[setup.locale] || PRODUCT_TEXT.cs;
+  const text = productText(setup.locale);
   if (product.category === "battery") return [
     `${product.specs.capacityAh} Ah ≥ ${setup.batteryAh} Ah`,
     `${product.specs.voltageV} V = ${text.systemVoltage}`,
@@ -617,7 +681,7 @@ function recommendationChecks(product, setup) {
 }
 
 function verificationNote(category, locale) {
-  const verify = (PRODUCT_TEXT[locale] || PRODUCT_TEXT.cs).verify;
+  const verify = productText(locale).verify;
   return verify[category] || verify.controller;
 }
 
