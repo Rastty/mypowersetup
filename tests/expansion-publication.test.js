@@ -36,6 +36,11 @@ test("publicizer supplies one localized Article schema only when an expansion gu
     const twice = publicizeExpansionHtml(once, market, route);
     assert.equal((once.match(/data-expansion-article-fallback/g) || []).length, 1, route);
     assert.match(once, new RegExp(`"inLanguage":"${locale}"`));
+    assert.match(once, /"datePublished":"2026-08-30"/);
+    assert.match(once, /"dateModified":"2026-08-30"/);
+    assert.match(once, /"name":"Petr Gálík"/);
+    assert.match(once, /data-expansion-article-authority/);
+    assert.match(once, /rel="author"/);
     assert.equal(twice, once, route);
   }
 
