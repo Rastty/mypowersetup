@@ -29,7 +29,7 @@ const merchantPolicies = new Map([
   ["xdatou", new Set(["blocked_affiliate_verification"])],
   ["solaris_store", new Set(["blocked_affiliate_verification"])],
   ["ampul_eu", new Set(["blocked_market_verification", "blocked_market_stock_verification"])],
-  ["padabo_sk", new Set(["blocked_crossborder_shipping"])],
+  ["padabo_sk", new Set(["blocked_crossborder_not_supported"])],
   ["renogy_eu", new Set(["blocked_stock"])],
   ["bluetti_eu", new Set(["blocked_stock"])],
 ]);
@@ -183,7 +183,7 @@ for (const [candidate, voltage, peakPowerW, exactPath] of [
 assert(padaboPhoenix12.merchant === "padabo_sk", "Padabo expansion merchant invalid");
 assert(padaboPhoenix12.network === "ehub" && padaboPhoenix12.campaignId === "7aed5c13", "Padabo eHub campaign metadata invalid");
 assert(padaboPhoenix12.affiliateApprovalConfirmed === true, "Padabo approved tracking evidence missing");
-assert(padaboPhoenix12.status === "blocked_crossborder_shipping", "Padabo expansion status invalid");
+assert(padaboPhoenix12.status === "blocked_crossborder_not_supported", "Padabo expansion closeout status invalid");
 assert(padaboPhoenix12.category === "inverter", "Padabo expansion category invalid");
 assert(padaboPhoenix12.productUrl === null && padaboPhoenix12.affiliateUrl === null, "Padabo inactive expansion candidate leaked public URLs");
 assert(padaboPhoenix12.sourceProductId === "24820_26587", "Padabo exact source variant missing");
@@ -192,15 +192,17 @@ assert(padaboTracked.hostname === "ehub.cz" && padaboTracked.searchParams.get("a
 assert(new URL(padaboTracked.searchParams.get("desturl")).hostname === "www.padabo.sk", "Padabo tracked destination invalid");
 assert(padaboPhoenix12.stockStatus === "in_stock" && padaboPhoenix12.stockEvidenceVerifiedAt === "2026-09-07", "Padabo current stock evidence missing");
 assert(padaboPhoenix12.specs?.systemVoltage === 12 && padaboPhoenix12.specs?.continuousPowerW === 200 && padaboPhoenix12.specs?.waveform === "pure_sine", "Padabo Phoenix technical evidence invalid");
-assert(padaboPhoenix12.shippingEvidenceScope === "local_shipping_only_crossborder_unverified", "Padabo cross-border shipping must remain unverified");
+assert(padaboPhoenix12.shippingEvidenceScope === "domestic_sk_only", "Padabo domestic-only shipping conclusion missing");
 assert(sameValues(Object.keys(padaboPhoenix12.marketEligibility || {}), ["pt-PT", "ro-RO", "sl-SI"]), "Padabo expansion target markets invalid");
 assert(Object.values(padaboPhoenix12.marketEligibility).every((value) => value === "unverified"), "Padabo expansion eligibility must remain fail-closed");
-assert(padaboPhoenix12.nextActionOwner === "system" && padaboPhoenix12.nextAction === "verify_padabo_crossborder_shipping_pt_ro_si", "Padabo next action must remain system-owned");
-const sourcingPadabo = listCommercialSourcingCandidates({ category: "inverter" }).find(({ id }) => id === padaboPhoenix12.id);
-assert(sourcingPadabo?.status === "blocked_crossborder_shipping", "Padabo sourcing status diverges");
-assert(sourcingPadabo?.blocker === "crossborder_shipping_unverified", "Padabo cross-border blocker missing");
-assert(sourcingPadabo?.standaloneUnlockWeight === 5 && sourcingPadabo?.affectedWeight === 5, "Padabo immediate-unlock impact missing");
-assert(sourcingPadabo?.nextActionOwner === "system", "Padabo sourcing ownership invalid");
+assert(padaboPhoenix12.nextActionOwner === null && padaboPhoenix12.nextAction === "none", "Padabo closed fallback must not keep a fake next action");
+const actionablePadabo = listCommercialSourcingCandidates({ category: "inverter" }).find(({ id }) => id === padaboPhoenix12.id);
+assert(!actionablePadabo, "Padabo closed fallback leaked into actionable sourcing");
+const sourcingPadabo = listCommercialSourcingCandidates({ category: "inverter", includeSkipped: true }).find(({ id }) => id === padaboPhoenix12.id);
+assert(sourcingPadabo?.status === "blocked_crossborder_not_supported", "Padabo sourcing closeout status diverges");
+assert(sourcingPadabo?.blocker === "shipping_policy_domestic_sk_only", "Padabo domestic shipping blocker missing");
+assert(sourcingPadabo?.standaloneUnlockWeight === 5 && sourcingPadabo?.affectedWeight === 5, "Padabo historical impact evidence missing");
+assert(sourcingPadabo?.nextActionOwner === null && sourcingPadabo?.nextAction === "none", "Padabo closed sourcing route kept a next action");
 
 for (const [candidate, expectedStatus, expectedCategory] of [
   [ampulInverter24, "blocked_market_stock_verification", "inverter"],

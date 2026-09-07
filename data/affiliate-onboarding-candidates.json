@@ -590,7 +590,7 @@
       "network": "ehub",
       "programId": null,
       "campaignId": "7aed5c13",
-      "status": "blocked_crossborder_shipping",
+      "status": "blocked_crossborder_not_supported",
       "category": "inverter",
       "productUrl": null,
       "affiliateUrl": null,
@@ -604,7 +604,7 @@
       "stockEvidenceVerifiedAt": "2026-09-07",
       "shippingEvidenceUrl": "https://www.padabo.sk/doprava-a-platba/",
       "shippingEvidenceVerifiedAt": "2026-09-07",
-      "shippingEvidenceScope": "local_shipping_only_crossborder_unverified",
+      "shippingEvidenceScope": "domestic_sk_only",
       "marketEligibility": {
         "pt-PT": "unverified",
         "ro-RO": "unverified",
@@ -619,8 +619,9 @@
       "targetScenarioIds": [
         "family-touring"
       ],
-      "nextActionOwner": "system",
-      "nextAction": "verify_padabo_crossborder_shipping_pt_ro_si"
+      "nextActionOwner": null,
+      "nextAction": "none",
+      "shippingConclusion": "Padabo.sk public shipping methods and pickup-point coverage are explicitly Slovakia-focused; no PT/RO/SI delivery evidence was found."
     }
   ]
 }
