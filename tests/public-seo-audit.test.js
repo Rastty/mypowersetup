@@ -6,7 +6,7 @@ import { auditPublicSeo, publicRoutePath, sitemapRoutes } from "../src/public-se
 const schema = (items) => `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": items })}</script>`;
 const page = ({ route, schemas = [], robots = "", body = "" }) => `<html><head>${robots}<link href="https://mypowersetup.com${route}" rel="canonical">${schema(schemas)}</head><body>${body}</body></html>`;
 
-const breadcrumb = ({ home, hub, route, homeLabel, hubLabel, currentLabel }) => ({
+const breadcrumb = ({ home, hub, route, homeLabel, hubLabel, currentLabel, mature = false }) => ({
   schema: {
     "@type": "BreadcrumbList",
     itemListElement: [
@@ -15,7 +15,7 @@ const breadcrumb = ({ home, hub, route, homeLabel, hubLabel, currentLabel }) => 
       { "@type": "ListItem", position: 3, name: currentLabel, item: `https://mypowersetup.com${route}` },
     ],
   },
-  body: `<nav class="breadcrumbs" data-expansion-breadcrumbs><a href="${home}">${homeLabel}</a><a href="${hub}">${hubLabel}</a><span aria-current="page">${currentLabel}</span></nav>`,
+  body: `<nav class="breadcrumbs" data-${mature ? "mature" : "expansion"}-breadcrumbs><a href="${home}">${homeLabel}</a><a href="${hub}">${hubLabel}</a><span aria-current="page">${currentLabel}</span></nav>`,
 });
 
 test("public SEO audit accepts calculator and localized article schema", async () => {
@@ -49,6 +49,26 @@ test("public SEO audit accepts calculator and localized article schema", async (
   assert.deepEqual(report.failures, []);
 });
 
+test("public SEO audit applies the same authority and breadcrumb contract to a mature Czech guide", async () => {
+  const route = "/pruvodce/mppt/";
+  const crumbs = breadcrumb({ home: "/", hub: "/pruvodce/", route, homeLabel: "Domů", hubLabel: "Průvodce", currentLabel: "MPPT", mature: true });
+  const html = page({
+    route,
+    schemas: [
+      { "@type": "Article", inLanguage: "cs-CZ", datePublished: "2026-08-21", dateModified: "2026-09-02", author: { "@type": "Person", name: "Petr Gálík", url: "https://mypowersetup.com/o-projektu/" }, publisher: { "@type": "Organization", name: "MyPowerSetup" } },
+      crumbs.schema,
+    ],
+    body: crumbs.body,
+  });
+  const report = await auditPublicSeo({
+    sitemapXml: `<urlset><url><loc>https://mypowersetup.com${route}</loc></url></urlset>`,
+    readPage: async () => html,
+  });
+  assert.equal(report.ready, true, report.failures.join("\n"));
+  assert.equal(report.articlePages, 1);
+  assert.equal(report.breadcrumbPages, 1);
+});
+
 test("public SEO audit fails closed on canonical, robots, JSON-LD and article language defects", async () => {
   const broken = '<html><head><meta name="robots" content="noindex"><link rel="canonical" href="https://mypowersetup.com/wrong"><script type="application/ld+json">{broken</script></head></html>';
   const report = await auditPublicSeo({
@@ -75,6 +95,6 @@ test("committed sitemap passes the seven-market public SEO audit", async () => {
   assert.equal(report.ready, true, report.failures.join("\n"));
   assert.equal(Object.keys(report.marketCounts).length, 7);
   assert.ok(Object.values(report.marketCounts).every((count) => count > 0));
-  assert.ok(report.articlePages >= 80);
-  assert.equal(report.breadcrumbPages, 36);
+  assert.equal(report.articlePages, 84);
+  assert.equal(report.breadcrumbPages, 84);
 });
