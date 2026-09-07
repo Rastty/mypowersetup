@@ -21,7 +21,7 @@ function payload({ inverterAvailable = true, charger10Available = true, charger2
     products: [
       shopifyProduct(1, "12v-100ah-lifepo4-battery-built-in-bms", "Power Queen 12V 100Ah LiFePO4 Battery Built-in BMS", "Batteries"),
       shopifyProduct(2, "24v-100ah-lifepo4-battery-built-in-bms", "Power Queen 24V 100Ah LiFePO4 Battery Built-in BMS", "Batteries"),
-      shopifyProduct(3, "mppt-12-24v-30a-solar-charge-controller", "Power Queen MPPT 12/24V 30A Solar Charge Controller", "Battery Charge Controllers"),
+      shopifyProduct(3, "power-queen-12-24v-30amp-mppt-solar-charge-controller-and-bluetooth-adapter", "Power Queen MPPT 12/24V 30A solar charge controller with Bluetooth module", "Battery Charge Controllers"),
       shopifyProduct(4, "power-queen-2000w-inverter-12v-dc-to-230v-ac-converter", "Power Queen 2000W inverter 12V to 230V pure sine wave", "Accessories", undefined, { price: "219.99", available: inverterAvailable }),
       shopifyProduct(5, "power-queen-14-6v-10a-lifepo4-battery-charger", "Power Queen 14.6V 10A LiFePO4 charger for 12V LiFePO4 battery", "Accessories", undefined, { price: "71.99", available: charger10Available }),
       shopifyProduct(6, "power-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery", "Power Queen 14.6V 20A LiFePO4 charger for 12V LiFePO4 battery", "Accessories", undefined, { price: "85.99", available: charger20Available }),
@@ -48,6 +48,13 @@ test("Power Queen sync admits only live exact verified inverter and shore charge
   assert.equal(result.source.controllers, 1);
   assert.equal(result.source.inverters, 1);
   assert.equal(result.source.shoreChargers, 4);
+
+  const controller = result.products.find((product) => product.category === "controller");
+  assert.ok(controller);
+  assert.equal(controller.specs.currentA, 30);
+  assert.deepEqual(controller.specs.systemVoltagesV, [12, 24]);
+  assert.deepEqual(controller.specs.maxPvWattsBySystemVoltage, { 12: 450, 24: 900 });
+  assert.equal(controller.verifiedAt, "2026-09-07");
 
   const inverter = result.products.find((product) => product.category === "inverter");
   assert.ok(inverter);
