@@ -26,13 +26,18 @@ test("BLUETTI Elite 300 technically closes the family-touring portable route for
   assert.deepEqual(elite.unsupportedMarkets, ["sl-SI"]);
   assert.equal(elite.stockStatus, "in_stock");
   assert.equal(elite.status, "blocked_affiliate_verification");
+  assert.equal(elite.network, "cj");
+  assert.equal(elite.affiliateApprovalConfirmed, true);
+  assert.equal(elite.affiliateApprovalSource, "owner_confirmed");
+  assert.equal(elite.primaryBlocker, "exact_cj_eu_deeplink_unverified");
   assert.equal(elite.productUrl, null);
   assert.equal(elite.affiliateUrl, null);
 });
 
 test("Elite 300 remains planning evidence only until an exact EU affiliate deeplink is verified", () => {
   assert.equal(elite.nextActionOwner, "user");
-  assert.equal(elite.nextAction, "provide_exact_eu_affiliate_deeplink");
+  assert.equal(elite.nextAction, "provide_exact_cj_elite300_deeplink");
+  assert.deepEqual(elite.activationFieldsNeeded, ["affiliateUrl", "finalLandingUrl", "verifiedAt"]);
   assert.match(elite.applicationUrl, /bluettipower\.eu\/pages\/affiliate-program/);
   assert.match(elite.retailEvidenceUrl, /bluettipower\.eu\/products\/elite-300-portable-power-station/);
   assert.match(elite.shippingEvidenceUrl, /bluettipower\.eu\/pages\/shipping-country/);
