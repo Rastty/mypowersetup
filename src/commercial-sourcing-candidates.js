@@ -101,6 +101,8 @@ const CANDIDATES = Object.freeze([
     affectedWeight: 5,
     activationFieldsNeeded: Object.freeze(["approvalConfirmed", "referralIdentifier", "referralCode"]),
     affiliateNetworkVerifiedAt: "2026-09-07",
+    stockStatus: "in_stock",
+    stockVerifiedAt: "2026-09-07",
     shippingEligibleMarkets: Object.freeze(["pt-PT", "ro-RO", "sl-SI"]),
     nextActionOwner: "user",
     nextAction: "submit_goaffpro_application",
