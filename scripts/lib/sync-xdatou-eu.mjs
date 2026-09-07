@@ -93,6 +93,9 @@ export async function syncXdatouEu(previousCatalog = { products: [] }, {
       source: {
         status: "ok",
         network: "goaffpro",
+        approvalConfirmed: true,
+        referralIdentifier,
+        referralCode,
         exactProducts: 1,
         shippingEligibleMarkets: ["pt-PT", "ro-RO", "sl-SI"],
         verifiedAt: XDATOU_DATOUBOSS_2000W_24V.verifiedAt,
