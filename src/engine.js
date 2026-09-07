@@ -5,9 +5,9 @@ const SOLAR_SYSTEM_EFFICIENCY = 0.75;
 const SOLAR_MARGIN = 1.15;
 const INVERTER_MARGIN = 1.25;
 const CONTROLLER_MARGIN = 1.25;
-const CHARGE_VOLTAGE_PER_NOMINAL_VOLT = Object.freeze({
-  lifepo4: 14.6 / 12,
-  lead: 14.4 / 12,
+const CHARGE_VOLTAGE_12V = Object.freeze({
+  lifepo4: 14.6,
+  lead: 14.4,
 });
 
 const ENGINE_TEXT = {
@@ -131,7 +131,7 @@ export function calculateSetup(input) {
   const batteryAh = roundUp(requiredBatteryWh / systemVoltage, 10);
   const solarWattsRaw = (dailyWhRaw * SOLAR_MARGIN) / (season.peakSunHours * SOLAR_SYSTEM_EFFICIENCY);
   const solarWatts = roundUp(solarWattsRaw, 50);
-  const controllerSizingVoltage = systemVoltage * (CHARGE_VOLTAGE_PER_NOMINAL_VOLT[input.batteryType] || CHARGE_VOLTAGE_PER_NOMINAL_VOLT.lifepo4);
+  const controllerSizingVoltage = (CHARGE_VOLTAGE_12V[input.batteryType] || CHARGE_VOLTAGE_12V.lifepo4) * (systemVoltage / 12);
   const controllerAmps = roundUp((solarWatts / controllerSizingVoltage) * CONTROLLER_MARGIN, 10);
 
   const warnings = [];
