@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T15:53:55.113Z",
+  "generatedAt": "2026-09-07T16:19:20.583Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
@@ -9226,7 +9226,7 @@
       "id": "powerqueen_eu:7926322168028",
       "merchant": "powerqueen_eu",
       "name": "Power Queen MPPT 12/24V 30A solar charge controller with Bluetooth module",
-      "description": "Maximize your solar energy harvest: The tracking efficiency of 99% utilizes maximum sunlight and tracks the array's point of maximum power output. This achieves 20 to 25% higher power output than PWM controllers. The peak conversion efficiency of 98% maximizes the conversion of solar energy into electricity, allowing you to capture the most energy and charge the battery faster. Intelligent remote control via Bluetooth: Monitor PV input, battery bank, DC load data, and controller anomalies in rea",
+      "description": "Power Queen MPPT controller for 12 V and 24 V battery systems; 30 A rated charge current, max PV power 450 W at 12 V and 900 W at 24 V.",
       "categoryPath": "Battery Charge Controllers",
       "category": "controller",
       "brand": "PQ-DE",
@@ -9240,7 +9240,7 @@
         "voltageV": 24,
         "capacityAh": null,
         "capacityWh": null,
-        "powerW": null,
+        "powerW": 450,
         "currentA": 30,
         "chargingVoltagesV": [
           24
@@ -9248,14 +9248,22 @@
         "chargingInputVoltagesV": [
           12
         ],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
+        "chargingBatteryTypes": [],
+        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
-        "dcOutputA": null
-      }
+        "dcOutputA": null,
+        "systemVoltagesV": [
+          12,
+          24
+        ],
+        "maxPvWattsBySystemVoltage": {
+          "12": 450,
+          "24": 900
+        },
+        "mppt": true
+      },
+      "verifiedAt": "2026-09-07"
     },
     {
       "id": "powerqueen_eu:8690424676572",
