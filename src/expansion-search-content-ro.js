@@ -307,6 +307,103 @@ const RO_GROWTH_CONTENT = Object.freeze({
   }),
 
 
+  "/ro/ghiduri/consum-frigider-compresor-autorulota/": Object.freeze({
+    title: "Cât consumă un frigider cu compresor în autorulotă?",
+    description: "Consum frigider cu compresor în Wh/zi: putere, ciclu de funcționare, temperatură, ventilație, măsurare și impact asupra bateriei și panourilor solare.",
+    body: `
+<section data-ro-search-growth="consum-frigider-compresor-autorulota">
+  <h2>Răspuns scurt: puterea de pe etichetă nu este consumul pentru 24 de ore</h2>
+  <p>Un frigider cu compresor marcat cu 45 W nu consumă automat 45 × 24 = 1.080 Wh pe zi. Compresorul pornește și se oprește. Pentru dimensionarea sistemului contează <strong>energia zilnică în Wh</strong>, adică puterea în timpul funcționării înmulțită cu timpul total în care compresorul a mers.</p>
+  <p>Ca estimare inițială folosește <strong>Wh/zi ≈ puterea compresorului × orele efective de funcționare</strong>. La 45 W, opt ore cumulate înseamnă circa 360 Wh/zi, zece ore circa 450 Wh/zi, iar douăsprezece ore circa 540 Wh/zi. Sunt exemple de calcul, nu valori garantate pentru orice frigider.</p>
+
+  <h2>De ce ciclul de funcționare se schimbă</h2>
+  <p>Temperatura ambientală, ventilația condensatorului, setarea termostatului, deschiderea ușii și introducerea alimentelor calde pot crește timpul de funcționare. Într-o autorulotă încinsă la soare, același frigider poate lucra mult mai mult decât într-o noapte răcoroasă.</p>
+  <p>Montajul contează și el. Dacă aerul cald din jurul condensatorului nu poate fi evacuat, frigiderul elimină căldura mai greu și compresorul tinde să funcționeze mai mult. Verifică cerințele de ventilație din manual înainte să compensezi o instalare slabă cu o baterie mai mare.</p>
+
+  <h2>Exemplu de impact asupra întregului sistem</h2>
+  <p>Dacă frigiderul consumă 450 Wh/zi și restul consumatorilor însumează 350 Wh/zi, bugetul zilnic ajunge la <strong>800 Wh</strong>. În acest exemplu frigiderul reprezintă mai mult de jumătate din energia zilnică.</p>
+  <p>De aceea merită să îi estimezi corect consumul înainte de a alege <a href="/ro/ghiduri/capacitate-baterie-autorulota/">capacitatea bateriei</a> și <a href="/ro/ghiduri/cate-panouri-solare-autorulota/">puterea panourilor solare</a>. O eroare de câteva sute de Wh repetată în fiecare zi schimbă autonomia și energia care trebuie recuperată.</p>
+
+  <h2>Cum obții un număr mai bun decât o presupunere</h2>
+  <p>Dacă ai deja frigiderul, măsoară energia pe parcursul mai multor zile reprezentative cu un monitor de baterie sau un contor DC adecvat. Include, dacă poți, o zi caldă, utilizarea normală a ușii și aceeași temperatură interioară pe care o vei folosi în călătorie. Împarte energia totală la numărul de zile pentru a obține Wh/zi.</p>
+  <p>Dacă frigiderul nu este încă instalat, caută în fișa tehnică un consum energetic declarat. Dacă producătorul oferă doar puterea instantanee, folosește un scenariu conservator de ore de funcționare și actualizează calculul după primele călătorii.</p>
+
+  <h2>Cablurile și căderea de tensiune pot provoca opriri</h2>
+  <p>Compresorul poate cere un curent mai mare la pornire. Un cablu prea lung sau prea subțire poate produce cădere de tensiune și oprirea frigiderului chiar dacă bateria mai are energie. Verifică traseul și protecția circuitului în ghidul pentru <a href="/ro/ghiduri/cabluri-sigurante-12v-autorulota/">cabluri și siguranțe 12/24 V</a>.</p>
+
+  <h2>Checklist pentru calcul</h2>
+  <ul>
+    <li>puterea și tensiunea nominală ale frigiderului;</li>
+    <li>Wh/zi măsurați sau ore realiste de funcționare;</li>
+    <li>temperatura ambientală cea mai solicitantă;</li>
+    <li>ventilația cerută de producător;</li>
+    <li>lungimea cablului și căderea de tensiune;</li>
+    <li>o rezervă pentru zile mai calde și utilizare diferită de test.</li>
+  </ul>
+  <p>Introdu apoi scenariul în <a href="/ro/#calculator-preview">calculatorul MyPowerSetup</a> și dimensionează bateria, solarul și încărcarea din consumul total al autorulotei.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Un frigider de 45 W consumă 1.080 Wh pe zi?", "Nu neapărat. Acest consum ar rezulta doar dacă ar folosi 45 W continuu timp de 24 de ore. Compresorul pornește și se oprește, de aceea contează timpul cumulat sau măsurarea în Wh/zi."],
+      ["Cât crește consumul vara?", "Nu există un procent universal. Temperatura, ventilația, setarea termostatului, deschiderea ușii și modelul frigiderului schimbă ciclul de funcționare."],
+      ["Merită să măsor frigiderul înainte de a cumpăra bateria?", "Da. Câteva zile de măsurare reală oferă o bază mult mai bună pentru dimensionarea bateriei și panourilor decât puterea de pe etichetă."],
+    ]),
+  }),
+
+  "/ro/ghiduri/sistem-electric-complet-autorulota/": Object.freeze({
+    title: "Sistem electric complet pentru autorulotă: cum îl dimensionezi",
+    description: "Dimensionează bateria, solarul, MPPT-ul, DC-DC-ul, încărcătorul 230 V, invertorul, cablurile și protecțiile ca un singur sistem al autorulotei.",
+    body: `
+<section data-ro-search-growth="sistem-electric-complet-autorulota">
+  <h2>Un sistem bun începe cu consumul zilnic, nu cu lista de produse</h2>
+  <p>Înainte de baterie sau panouri trebuie să știi consumul în Wh/zi, autonomia dorită, cea mai mare sarcină AC și cât timp conduci sau stai conectat la 230 V. Din aceleași date trebuie să rezulte bateria, solarul, MPPT-ul, încărcătorul DC-DC, încărcătorul de rețea și invertorul.</p>
+  <p>Dacă alegi fiecare componentă separat, apar ușor incompatibilități: panouri multe cu MPPT prea mic, invertor puternic cu BMS insuficient sau mai multe surse de încărcare care depășesc împreună curentul admis de baterie.</p>
+
+  <h2>Arhitectura de bază</h2>
+  <p>Într-un sistem tipic, sursele încarcă bateria de serviciu prin ramuri separate: <strong>panouri → MPPT → baterie</strong>, <strong>alternator/baterie de pornire → DC-DC → baterie</strong> și <strong>230 V → încărcător → baterie</strong>. Din bateria de serviciu pleacă distribuția DC și, dacă este necesar, o ramură dedicată pentru invertor.</p>
+  <p>Fiecare ramură are propriile cabluri, protecții și mijloace de deconectare. Este o arhitectură funcțională, nu o schemă universală de montaj.</p>
+
+  <h2>Exemplu: 800 Wh/zi și două zile de autonomie</h2>
+  <p>La un consum de 800 Wh/zi, două zile de autonomie și o baterie LiFePO₄, calculatorul dimensionează mai întâi energia nominală cu rezervă și fracție utilizabilă. Apoi estimează puterea solară după sezon. Dacă vehiculul circulă zilnic, DC-DC-ul poate recupera o parte din consum; la camping, încărcătorul de 230 V poate prelua o parte mai mare.</p>
+  <p>Sursele de încărcare nu reduc consumul, ci determină <strong>cât de repede refaci energia consumată</strong>. Bateria oferă rezervă, iar solarul, alternatorul și rețeaua determină cât de des acea rezervă este completată.</p>
+
+  <h2>Alege 12 V sau 24 V înainte de componentele mari</h2>
+  <p>Tensiunea sistemului influențează curentul, invertorul, MPPT-ul, încărcătoarele și consumatorii DC. La aceeași putere, 24 V înseamnă aproximativ jumătate din curentul unui sistem de 12 V. Avantajul poate fi important la puteri mari, dar consumatorii de 12 V pot necesita convertoare.</p>
+  <p>Verifică ghidul <a href="/ro/ghiduri/sistem-12v-sau-24v-autorulota/">12 V sau 24 V</a> înainte de cumpărarea componentelor majore. Schimbarea tensiunii ulterior poate obliga la înlocuirea mai multor echipamente.</p>
+
+  <h2>Patru blocaje care trebuie verificate împreună</h2>
+  <ul>
+    <li><strong>Baterie și BMS:</strong> curentul de descărcare trebuie să acopere invertorul, iar curentul de încărcare trebuie să accepte sursele combinate.</li>
+    <li><strong>MPPT:</strong> verifică puterea, Voc, Isc și tensiunea bateriei.</li>
+    <li><strong>Alternator și DC-DC:</strong> curentul trebuie să fie sigur pentru alternator, baterie și cablurile de intrare și ieșire.</li>
+    <li><strong>Cabluri și protecții:</strong> fiecare circuit se dimensionează după curent și traseu, nu după capacitatea bateriei în Ah.</li>
+  </ul>
+
+  <h2>Invertorul nu definește singur sistemul</h2>
+  <p>Dacă nu ai nevoie de 230 V în afara campingului, invertorul poate fi mic sau chiar inutil. Pentru sarcini AC mari verifică simultan <a href="/ro/ghiduri/invertor-autorulota-putere/">puterea invertorului</a>, curentul de descărcare al BMS-ului și cablurile DC. Un invertor de 2 kW nu face automat capabilă de 2 kW o baterie cu BMS mic.</p>
+
+  <h2>Ordinea de dimensionare</h2>
+  <ol>
+    <li>calculează consumul în Wh/zi;</li>
+    <li>alege autonomia și chimia bateriei;</li>
+    <li>stabilește 12 V sau 24 V;</li>
+    <li>dimensionează solarul și MPPT-ul;</li>
+    <li>dimensionează DC-DC-ul după timpul real de condus;</li>
+    <li>dimensionează încărcătorul 230 V după timpul de conectare;</li>
+    <li>alege invertorul după sarcinile AC;</li>
+    <li>închide proiectul cu cabluri, siguranțe, bare, întrerupătoare și montaj.</li>
+  </ol>
+
+  <h2>Limitele calculatorului</h2>
+  <p>MyPowerSetup oferă cerințe și o arhitectură coerentă, nu un proiect de execuție. Instalația de 230 V, împământarea, protecția diferențială, valorile finale ale siguranțelor și traseele trebuie verificate după echipamentul real și regulile aplicabile. Pentru lucrări pe care nu le poți valida în siguranță, folosește un specialist calificat.</p>
+  <p>Pornește de la <a href="/ro/#calculator-preview">calculatorul sistemului</a> și folosește ghidurile dedicate pentru fiecare componentă înainte de cumpărare.</p>
+</section>`,
+    faq: Object.freeze([
+      ["Pot încărca aceeași baterie din solar, DC-DC și 230 V?", "Da, dacă toate sursele sunt compatibile cu tensiunea și chimia bateriei, iar curentul total de încărcare rămâne în limitele bateriei/BMS-ului și ale echipamentelor."],
+      ["Am nevoie obligatoriu de invertor?", "Nu. Invertorul este necesar doar pentru consumatori care au nevoie de 230 V atunci când nu ești conectat la rețea. Consumatorii DC pot funcționa fără el."],
+      ["Ce componentă aleg prima?", "Începe cu consumul zilnic și autonomia. Apoi stabilește bateria și tensiunea sistemului, după care dimensionezi sursele de încărcare, invertorul, cablurile și protecțiile."],
+    ]),
+  }),
+
 });
 
 function schemaFor(route, item) {
