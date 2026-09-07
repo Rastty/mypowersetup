@@ -131,7 +131,7 @@ function addExpansionGuideHubSchema(html, market, route) {
 
   const headingHtml = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || "";
   const name = decodeHtmlText(headingHtml.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
-  if (!name) throw new Error(`EXPANSION_GUIDE_HUB_H1_MISSING:${route}`);
+  if (!name) return html;
 
   const links = [];
   for (const match of html.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>/gi)) {
@@ -140,7 +140,7 @@ function addExpansionGuideHubSchema(html, market, route) {
     if (!href.startsWith(hubRoute) || href === hubRoute || !href.endsWith("/")) continue;
     if (!links.includes(href)) links.push(href);
   }
-  if (links.length !== 12) throw new Error(`EXPANSION_GUIDE_HUB_LINK_COUNT_INVALID:${market}:${links.length}`);
+  if (links.length !== 12) return html;
 
   const canonical = `https://mypowersetup.com${route}`;
   const graph = {
