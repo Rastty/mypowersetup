@@ -7,6 +7,8 @@ test("Butler Victron 60A is the preferred SK controller candidate while approval
   assert.equal(candidate.id, "butler-victron-scc125060321");
   assert.equal(candidate.status, "pending_affiliate_approval");
   assert.equal(candidate.blocker, "awin_program_approval");
+  assert.equal(candidate.stockStatus, "in_stock");
+  assert.equal(candidate.stockVerifiedAt, "2026-09-07");
   assert.equal(candidate.specs.currentA, 60);
   assert.equal(candidate.specs.maxPvWattsAt12V, 860);
 });
@@ -51,7 +53,8 @@ test("PT, RO and SI inverter sourcing prefers the in-stock Xdatou exact fit behi
     const best = bestCommercialSourcingCandidate({ market, category: "inverter" });
     assert.equal(best.id, "xdatou-datouboss-2000w-24v");
     assert.equal(best.status, "blocked_affiliate_verification");
-    assert.equal(best.blocker, "goaffpro_terms_and_account_approval_not_verified");
+    assert.equal(best.blocker, "goaffpro_account_approval_not_verified");
+    assert.equal(best.affiliateNetworkVerifiedAt, "2026-09-07");
     assert.equal(best.specs.powerW, 2000);
     assert.equal(best.specs.pureSine, true);
 
