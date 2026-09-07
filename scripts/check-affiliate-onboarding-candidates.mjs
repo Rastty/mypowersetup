@@ -29,7 +29,7 @@ const merchantPolicies = new Map([
   ["xdatou", new Set(["blocked_affiliate_verification"])],
   ["solaris_store", new Set(["blocked_affiliate_verification"])],
   ["ampul_eu", new Set(["blocked_market_verification", "blocked_market_stock_verification"])],
-  ["padabo_sk", new Set(["blocked_crossborder_shipping"])],
+  ["padabo_sk", new Set(["blocked_crossborder_not_supported"])],
   ["renogy_eu", new Set(["blocked_stock"])],
   ["bluetti_eu", new Set(["blocked_stock"])],
 ]);
@@ -195,7 +195,7 @@ assert(padaboPhoenix12.specs?.systemVoltage === 12 && padaboPhoenix12.specs?.con
 assert(padaboPhoenix12.shippingEvidenceScope === "local_shipping_only_crossborder_unverified", "Padabo cross-border shipping must remain unverified");
 assert(sameValues(Object.keys(padaboPhoenix12.marketEligibility || {}), ["pt-PT", "ro-RO", "sl-SI"]), "Padabo expansion target markets invalid");
 assert(Object.values(padaboPhoenix12.marketEligibility).every((value) => value === "unverified"), "Padabo expansion eligibility must remain fail-closed");
-assert(padaboPhoenix12.nextActionOwner === "system" && padaboPhoenix12.nextAction === "verify_padabo_crossborder_shipping_pt_ro_si", "Padabo next action must remain system-owned");
+assert(padaboPhoenix12.nextActionOwner === null && padaboPhoenix12.nextAction === "none", "Padabo closed fallback must not keep a fake next action");
 const sourcingPadabo = listCommercialSourcingCandidates({ category: "inverter" }).find(({ id }) => id === padaboPhoenix12.id);
 assert(sourcingPadabo?.status === "blocked_crossborder_shipping", "Padabo sourcing status diverges");
 assert(sourcingPadabo?.blocker === "crossborder_shipping_unverified", "Padabo cross-border blocker missing");
