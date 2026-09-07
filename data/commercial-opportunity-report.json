@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-09-07T19:06:04.363Z",
+  "generatedAt": "2026-09-07T19:18:06.564Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -821,7 +821,7 @@
   "markets": [
     {
       "market": "cs-CZ",
-      "generatedAt": "2026-09-07T19:05:34.321Z",
+      "generatedAt": "2026-09-07T19:16:14.214Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
@@ -833,43 +833,133 @@
     },
     {
       "market": "sk-SK",
-      "generatedAt": "2026-09-07T19:05:44.517Z",
+      "generatedAt": "2026-09-07T19:16:24.622Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
       "weightedCoverage": 1,
       "topOpportunity": null,
       "opportunities": [],
-      "topSourcingRoute": null,
-      "sourcingRoutes": []
+      "topSourcingRoute": {
+        "id": "butler-victron-scc125060321",
+        "category": "controller",
+        "merchant": "butler_technik",
+        "productName": "Victron SmartSolar MPPT 250/60-MC4",
+        "status": "pending_affiliate_approval",
+        "blocker": "awin_program_approval",
+        "secondaryBlocker": null,
+        "standaloneUnlockWeight": 0,
+        "affectedWeight": 5,
+        "shippingVerified": true,
+        "stockStatus": "in_stock",
+        "nextActionOwner": "user",
+        "nextAction": "join_awin_program_31291"
+      },
+      "sourcingRoutes": [
+        {
+          "id": "butler-victron-scc125060321",
+          "category": "controller",
+          "merchant": "butler_technik",
+          "productName": "Victron SmartSolar MPPT 250/60-MC4",
+          "status": "pending_affiliate_approval",
+          "blocker": "awin_program_approval",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": true,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "join_awin_program_31291"
+        }
+      ]
     },
     {
       "market": "pl-PL",
-      "generatedAt": "2026-09-07T19:05:54.446Z",
+      "generatedAt": "2026-09-07T19:17:57.245Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.21052631578947367,
       "weightedCoverage": 1,
       "topOpportunity": null,
       "opportunities": [],
-      "topSourcingRoute": null,
-      "sourcingRoutes": []
+      "topSourcingRoute": {
+        "id": "butler-victron-scc125060321",
+        "category": "controller",
+        "merchant": "butler_technik",
+        "productName": "Victron SmartSolar MPPT 250/60-MC4",
+        "status": "pending_affiliate_approval",
+        "blocker": "awin_program_approval",
+        "secondaryBlocker": null,
+        "standaloneUnlockWeight": 0,
+        "affectedWeight": 5,
+        "shippingVerified": true,
+        "stockStatus": "in_stock",
+        "nextActionOwner": "user",
+        "nextAction": "join_awin_program_31291"
+      },
+      "sourcingRoutes": [
+        {
+          "id": "butler-victron-scc125060321",
+          "category": "controller",
+          "merchant": "butler_technik",
+          "productName": "Victron SmartSolar MPPT 250/60-MC4",
+          "status": "pending_affiliate_approval",
+          "blocker": "awin_program_approval",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": true,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "join_awin_program_31291"
+        }
+      ]
     },
     {
       "market": "hu-HU",
-      "generatedAt": "2026-09-07T19:06:03.247Z",
+      "generatedAt": "2026-09-07T19:18:05.805Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
       "weightedCoverage": 1,
       "topOpportunity": null,
       "opportunities": [],
-      "topSourcingRoute": null,
-      "sourcingRoutes": []
+      "topSourcingRoute": {
+        "id": "butler-victron-scc125060321",
+        "category": "controller",
+        "merchant": "butler_technik",
+        "productName": "Victron SmartSolar MPPT 250/60-MC4",
+        "status": "pending_affiliate_approval",
+        "blocker": "awin_program_approval",
+        "secondaryBlocker": null,
+        "standaloneUnlockWeight": 0,
+        "affectedWeight": 5,
+        "shippingVerified": true,
+        "stockStatus": "in_stock",
+        "nextActionOwner": "user",
+        "nextAction": "join_awin_program_31291"
+      },
+      "sourcingRoutes": [
+        {
+          "id": "butler-victron-scc125060321",
+          "category": "controller",
+          "merchant": "butler_technik",
+          "productName": "Victron SmartSolar MPPT 250/60-MC4",
+          "status": "pending_affiliate_approval",
+          "blocker": "awin_program_approval",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": true,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "join_awin_program_31291"
+        }
+      ]
     },
     {
       "market": "pt-PT",
-      "generatedAt": "2026-09-07T19:06:04.363Z",
+      "generatedAt": "2026-09-07T19:18:06.564Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1162,8 +1252,38 @@
           "affectedWeight": 5,
           "shippingVerified": false,
           "stockStatus": "in_stock",
-          "nextActionOwner": null,
-          "nextAction": null
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application"
+        },
+        {
+          "id": "butler-victron-scc125060321",
+          "category": "controller",
+          "merchant": "butler_technik",
+          "productName": "Victron SmartSolar MPPT 250/60-MC4",
+          "status": "pending_affiliate_approval",
+          "blocker": "awin_program_approval",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": true,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "join_awin_program_31291"
+        },
+        {
+          "id": "xdatou-datouboss-2000w-24v",
+          "category": "inverter",
+          "merchant": "xdatou",
+          "productName": "DATOUBOSS 2000W Pure Sine Wave Inverter 24V to 230V",
+          "status": "blocked_affiliate_verification",
+          "blocker": "goaffpro_account_approval_not_verified",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": true,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "submit_goaffpro_application"
         },
         {
           "id": "solaris-victron-phoenix-24-250",
@@ -1177,8 +1297,8 @@
           "affectedWeight": 3,
           "shippingVerified": false,
           "stockStatus": "in_stock",
-          "nextActionOwner": null,
-          "nextAction": null
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application"
         },
         {
           "id": "solaris-victron-smartsolar-150-60-tr",
@@ -1192,23 +1312,8 @@
           "affectedWeight": 5,
           "shippingVerified": false,
           "stockStatus": "dispatch_5_7_days",
-          "nextActionOwner": null,
-          "nextAction": null
-        },
-        {
-          "id": "xdatou-datouboss-2000w-24v",
-          "category": "inverter",
-          "merchant": "xdatou",
-          "productName": "DATOUBOSS 2000W Pure Sine Wave Inverter 24V to 230V",
-          "status": "blocked_affiliate_verification",
-          "blocker": "goaffpro_account_approval_not_verified",
-          "secondaryBlocker": null,
-          "standaloneUnlockWeight": 0,
-          "affectedWeight": 5,
-          "shippingVerified": false,
-          "stockStatus": null,
-          "nextActionOwner": null,
-          "nextAction": null
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application"
         },
         {
           "id": "ampul-eu-inverter-24v-2000w",
@@ -1522,8 +1627,38 @@
           "affectedWeight": 5,
           "shippingVerified": false,
           "stockStatus": "in_stock",
-          "nextActionOwner": null,
-          "nextAction": null
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application"
+        },
+        {
+          "id": "butler-victron-scc125060321",
+          "category": "controller",
+          "merchant": "butler_technik",
+          "productName": "Victron SmartSolar MPPT 250/60-MC4",
+          "status": "pending_affiliate_approval",
+          "blocker": "awin_program_approval",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": true,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "join_awin_program_31291"
+        },
+        {
+          "id": "xdatou-datouboss-2000w-24v",
+          "category": "inverter",
+          "merchant": "xdatou",
+          "productName": "DATOUBOSS 2000W Pure Sine Wave Inverter 24V to 230V",
+          "status": "blocked_affiliate_verification",
+          "blocker": "goaffpro_account_approval_not_verified",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": true,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "submit_goaffpro_application"
         },
         {
           "id": "solaris-victron-phoenix-24-250",
@@ -1537,8 +1672,8 @@
           "affectedWeight": 3,
           "shippingVerified": false,
           "stockStatus": "in_stock",
-          "nextActionOwner": null,
-          "nextAction": null
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application"
         },
         {
           "id": "solaris-victron-smartsolar-150-60-tr",
@@ -1552,23 +1687,8 @@
           "affectedWeight": 5,
           "shippingVerified": false,
           "stockStatus": "dispatch_5_7_days",
-          "nextActionOwner": null,
-          "nextAction": null
-        },
-        {
-          "id": "xdatou-datouboss-2000w-24v",
-          "category": "inverter",
-          "merchant": "xdatou",
-          "productName": "DATOUBOSS 2000W Pure Sine Wave Inverter 24V to 230V",
-          "status": "blocked_affiliate_verification",
-          "blocker": "goaffpro_account_approval_not_verified",
-          "secondaryBlocker": null,
-          "standaloneUnlockWeight": 0,
-          "affectedWeight": 5,
-          "shippingVerified": false,
-          "stockStatus": null,
-          "nextActionOwner": null,
-          "nextAction": null
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application"
         },
         {
           "id": "ampul-eu-inverter-24v-2000w",
@@ -1851,8 +1971,8 @@
         "affectedWeight": 5,
         "shippingVerified": false,
         "stockStatus": "in_stock",
-        "nextActionOwner": null,
-        "nextAction": null
+        "nextActionOwner": "user",
+        "nextAction": "submit_ambassador_application"
       },
       "sourcingRoutes": [
         {
@@ -1867,8 +1987,38 @@
           "affectedWeight": 5,
           "shippingVerified": false,
           "stockStatus": "in_stock",
-          "nextActionOwner": null,
-          "nextAction": null
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application"
+        },
+        {
+          "id": "butler-victron-scc125060321",
+          "category": "controller",
+          "merchant": "butler_technik",
+          "productName": "Victron SmartSolar MPPT 250/60-MC4",
+          "status": "pending_affiliate_approval",
+          "blocker": "awin_program_approval",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": true,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "join_awin_program_31291"
+        },
+        {
+          "id": "xdatou-datouboss-2000w-24v",
+          "category": "inverter",
+          "merchant": "xdatou",
+          "productName": "DATOUBOSS 2000W Pure Sine Wave Inverter 24V to 230V",
+          "status": "blocked_affiliate_verification",
+          "blocker": "goaffpro_account_approval_not_verified",
+          "secondaryBlocker": null,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5,
+          "shippingVerified": true,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "submit_goaffpro_application"
         },
         {
           "id": "solaris-victron-phoenix-24-250",
@@ -1882,8 +2032,8 @@
           "affectedWeight": 3,
           "shippingVerified": false,
           "stockStatus": "in_stock",
-          "nextActionOwner": null,
-          "nextAction": null
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application"
         },
         {
           "id": "solaris-victron-smartsolar-150-60-tr",
@@ -1897,23 +2047,8 @@
           "affectedWeight": 5,
           "shippingVerified": false,
           "stockStatus": "dispatch_5_7_days",
-          "nextActionOwner": null,
-          "nextAction": null
-        },
-        {
-          "id": "xdatou-datouboss-2000w-24v",
-          "category": "inverter",
-          "merchant": "xdatou",
-          "productName": "DATOUBOSS 2000W Pure Sine Wave Inverter 24V to 230V",
-          "status": "blocked_affiliate_verification",
-          "blocker": "goaffpro_account_approval_not_verified",
-          "secondaryBlocker": null,
-          "standaloneUnlockWeight": 0,
-          "affectedWeight": 5,
-          "shippingVerified": false,
-          "stockStatus": null,
-          "nextActionOwner": null,
-          "nextAction": null
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application"
         },
         {
           "id": "ampul-eu-inverter-24v-2000w",
