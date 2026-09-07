@@ -56,7 +56,7 @@ const GUIDE_PAGES = Object.freeze([
   {
     slug: "capacidade-bateria-autocaravana",
     title: "Que capacidade de bateria preciso na autocaravana?",
-    description: "Método prático para calcular Ah e Wh de bateria numa autocaravana, com diferenças entre LiFePO4 e AGM.",
+    description: "Calcula a capacidade da bateria da autocaravana em Wh e Ah a partir do consumo diário, autonomia, tensão e química LiFePO4 ou AGM.",
     heading: "Que capacidade de bateria precisa a tua autocaravana?",
     intro: "A resposta começa em Wh por dia, não em Ah. Só depois de saber a energia diária e a tensão do sistema faz sentido converter para capacidade nominal da bateria.",
     sections: [
@@ -68,8 +68,8 @@ const GUIDE_PAGES = Object.freeze([
   },
   {
     slug: "lifepo4-vs-agm-autocaravana",
-    title: "LiFePO4 ou AGM na autocaravana?",
-    description: "Comparação prática entre LiFePO4 e AGM para autonomia, peso, profundidade de descarga e dimensionamento.",
+    title: "LiFePO4 ou AGM na autocaravana: qual escolher?",
+    description: "Compara LiFePO4 e AGM na autocaravana por energia útil, peso, autonomia, carregamento, BMS e compatibilidade antes de trocar a bateria.",
     heading: "LiFePO₄ ou AGM: qual faz mais sentido?",
     intro: "A escolha não deve ser feita apenas pelo preço de compra. A diferença principal para o dimensionamento está na energia realmente utilizável e no perfil de carregamento.",
     sections: [
@@ -94,7 +94,7 @@ const GUIDE_PAGES = Object.freeze([
   {
     slug: "como-escolher-controlador-mppt",
     title: "Como escolher um controlador MPPT para autocaravana",
-    description: "Dimensionamento do MPPT por corrente, potência solar, Voc, Isc e tensão da bateria.",
+    description: "Escolhe o controlador MPPT da autocaravana pela potência solar, corrente de carga, Voc, Isc, tensão da bateria e ligação série ou paralelo.",
     heading: "Como dimensionar o controlador MPPT",
     intro: "A corrente nominal do controlador é apenas uma das verificações. O conjunto de painéis também tem de respeitar os limites de tensão e corrente da entrada fotovoltaica.",
     sections: [
@@ -131,7 +131,7 @@ const GUIDE_PAGES = Object.freeze([
   {
     slug: "carregador-230v-bateria-autocaravana",
     title: "Como escolher carregador 230 V para bateria de autocaravana",
-    description: "Como dimensionar corrente de carregamento em parque de campismo e verificar química, BMS e tempo disponível.",
+    description: "Dimensiona a corrente do carregador 230 V da autocaravana e verifica química, BMS, capacidade da bateria e tempo disponível no parque de campismo.",
     heading: "Carregador de bateria a 230 V",
     intro: "Quando tens ligação à rede, o carregador deve conseguir recuperar a energia usada dentro do tempo disponível sem ultrapassar os limites recomendados para a bateria.",
     sections: [
@@ -143,7 +143,7 @@ const GUIDE_PAGES = Object.freeze([
   {
     slug: "cabos-fusiveis-12v-autocaravana",
     title: "Cabos e fusíveis 12 V na autocaravana",
-    description: "Como pensar em queda de tensão, corrente, comprimento de cabo e proteção sem inventar um fusível universal.",
+    description: "Dimensiona cabos e fusíveis 12/24 V da autocaravana por corrente, comprimento, queda de tensão, capacidade do cabo e proteção de cada circuito.",
     heading: "Cabos e proteção em sistemas 12/24 V",
     intro: "A secção do cabo depende da corrente e do percurso, não apenas da potência do aparelho. A proteção depende também do cabo, fabricante e capacidade de interrupção.",
     sections: [
@@ -155,7 +155,7 @@ const GUIDE_PAGES = Object.freeze([
   {
     slug: "consumo-frigorifico-compressor-autocaravana",
     title: "Quanto consome um frigorífico de compressor na autocaravana?",
-    description: "Como transformar watts do compressor em Wh por dia usando ciclo de trabalho, temperatura e ventilação.",
+    description: "Estima o consumo diário do frigorífico de compressor da autocaravana em Wh a partir da potência, ciclo de trabalho, temperatura e ventilação.",
     heading: "Consumo diário do frigorífico de compressor",
     intro: "Um frigorífico marcado como 45 W não consome necessariamente 45 W durante 24 horas. O compressor liga e desliga, por isso o dado mais útil é Wh por dia.",
     sections: [
@@ -166,7 +166,7 @@ const GUIDE_PAGES = Object.freeze([
   },
   {
     slug: "sistema-eletrico-completo-autocaravana",
-    title: "Sistema elétrico completo de uma autocaravana: bateria, solar e carregamento",
+    title: "Sistema elétrico da autocaravana: bateria, solar e carga",
     description: "Arquitetura de alto nível para ligar consumo, bateria, solar, alternador, 230 V, inversor e proteções num único dimensionamento.",
     heading: "Como pensar no sistema elétrico como um conjunto",
     intro: "Dimensionar cada componente isoladamente cria incompatibilidades. A bateria, solar, MPPT, inversor e carregadores devem partir do mesmo cenário de consumo e da mesma tensão de sistema.",
