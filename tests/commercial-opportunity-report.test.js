@@ -82,3 +82,20 @@ test("opportunity-specific sourcing route matches the missing category and expos
   assert.equal(inverter.bestSourcingRoute.category, "inverter");
   assert.ok(inverter.bestSourcingRoute.applicationPacketPath || inverter.bestSourcingRoute.nextActionOwner === "system");
 });
+
+
+test("secondary-only DC-DC opportunity routes to system-owned AMPUL verification", () => {
+  for (const marketCode of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const market = report.markets.find((entry) => entry.market === marketCode);
+    const dc = market.opportunities.find((item) => item.category === "dc_charger");
+    assert.ok(dc, `${marketCode}: DC-DC opportunity missing`);
+    assert.equal(dc.affectedWeight, 0);
+    assert.ok(dc.secondaryScenarioIds.length > 0);
+    assert.ok(dc.bestSourcingRoute, `${marketCode}: secondary DC-DC sourcing route missing`);
+    assert.equal(dc.bestSourcingRoute.id, "ampul-eu-dcdc-12v-30a");
+    assert.equal(dc.bestSourcingRoute.category, "dc_charger");
+    assert.equal(dc.bestSourcingRoute.nextActionOwner, "system");
+    assert.equal(dc.bestSourcingRoute.nextAction, "verify_pt_ro_si_checkout");
+    assert.equal(dc.bestSourcingRoute.blocker, "market_shipping_checkout_unverified");
+  }
+});
