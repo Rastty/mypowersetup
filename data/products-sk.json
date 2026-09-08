@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-08T06:45:13.501Z",
+  "generatedAt": "2026-09-08T08:09:38.670Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
@@ -8345,7 +8345,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 284,
+      "priceCzk": 249,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sf200-flexible-solar-panel-200w",
@@ -8464,7 +8464,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 179,
+      "priceCzk": 164,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sp029-portable-solar-panel-140w-polycrystalline-cells",

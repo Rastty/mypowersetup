@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-08T06:45:35.243Z",
+  "generatedAt": "2026-09-08T08:11:56.097Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12558,
-      "relevantProducts": 155
+      "parsedProducts": 12559,
+      "relevantProducts": 156
     },
     "ampul_hu": {
       "status": "ok",
@@ -3606,6 +3606,37 @@
       }
     },
     {
+      "id": "padabo_hu:26961_28354",
+      "merchant": "padabo_hu",
+      "name": "Victron Energy AGM szuperciklusú napelemes akkumulátor kapacitás 60 Ah",
+      "description": "AGM akkumulátorok Victron Energy Super CycleA Victron Energy AGM Super Cycle napelemes akkumulátor kisebb akkumulátorrendszerekhez alkalmas. Kezeli a gyakoribb mélykisüléseket. Az elektrolitban lévő új adalékanyagok csökkentik az akkumulátor szulfátosodását. A pozitív lemezpaszta kevésbé hajlamos a lágyulásra. Az akkumulátor legalább 300 ciklust bír ki 100%-os kisütés mellett. Az új akkumulátorkémia kisebb méretet és kisebb súlyt kínál, mint a hagyományos AGM akkumulátorok. Az akkumulátorok soro",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Victron Energy",
+      "priceCzk": 76080,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/victron-energy-agm-szuperciklusu-napelemes-akkumulator_z26961/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-szuperciklusu-napelemes-akkumulator_z26961%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/160241_102.jpg?1704380285_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 60,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_hu:26961_28355",
       "merchant": "padabo_hu",
       "name": "Victron Energy AGM szuperciklusú napelemes akkumulátor kapacitás 100 Ah",
@@ -5823,7 +5854,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 284,
+      "priceCzk": 249,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sf200-flexible-solar-panel-200w",
@@ -5942,7 +5973,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 179,
+      "priceCzk": 164,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sp029-portable-solar-panel-140w-polycrystalline-cells",
