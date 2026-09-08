@@ -1,7 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { bestCommercialOwnerAction, buildCommercialOwnerActionQueue } from "../src/commercial-owner-actions.js";
+import { readFile } from "node:fs/promises";
+import {
+  bestCommercialOwnerAction,
+  bestCurrentCommercialOwnerAction,
+  buildCommercialOwnerActionQueue,
+  buildCurrentCommercialOwnerActionQueue,
+} from "../src/commercial-owner-actions.js";
 
 test("owner action queue deduplicates shared merchant actions and ranks the most actionable unlock first", () => {
   const actions = buildCommercialOwnerActionQueue();
@@ -79,4 +85,45 @@ test("system-owned and zero-impact work never appears in the owner queue", () =>
   assert.equal(actions.some(({ candidateIds }) => candidateIds.includes("butler-victron-orion-xs-12-12-50") && candidateIds.length === 1), false);
   assert.ok(actions.every((action) => action.maxStandaloneUnlockWeight > 0 || action.maxAffectedWeight > 0));
   assert.equal(new Set(actions.map(({ actionKey }) => actionKey)).size, actions.length);
+});
+
+
+test("current owner queue follows live commercial gaps instead of stale candidate weights", async () => {
+  const report = JSON.parse(await readFile(new URL("../data/commercial-opportunity-report.json", import.meta.url), "utf8"));
+  const actions = buildCurrentCommercialOwnerActionQueue(report.markets);
+
+  assert.deepEqual(actions.map(({ merchant }) => merchant), [
+    "solaris_store",
+    "xdatou",
+    "butler_technik",
+  ]);
+  assert.equal(actions.some(({ merchant }) => merchant === "bluetti_eu"), false);
+
+  const best = bestCurrentCommercialOwnerAction(report.markets);
+  assert.equal(best.merchant, "solaris_store");
+  assert.equal(best.nextAction, "submit_ambassador_application");
+  assert.equal(best.currentStandaloneUnlockWeight, 15);
+  assert.equal(best.currentAffectedWeight, 21);
+  assert.equal(best.currentOpportunityScore, 45);
+  assert.deepEqual(best.activeMarkets, ["pt-PT", "ro-RO", "sl-SI"]);
+  assert.deepEqual(best.activeCategories, ["controller", "inverter"]);
+
+  const xdatou = actions.find(({ merchant }) => merchant === "xdatou");
+  assert.equal(xdatou.currentStandaloneUnlockWeight, 0);
+  assert.equal(xdatou.currentAffectedWeight, 15);
+  assert.equal(xdatou.currentOpportunityScore, 39);
+
+  const butler = actions.find(({ merchant }) => merchant === "butler_technik");
+  assert.equal(butler.currentStandaloneUnlockWeight, 0);
+  assert.equal(butler.currentAffectedWeight, 6);
+  assert.equal(butler.currentOpportunityScore, 18);
+});
+
+test("committed owner-action artifact is dynamic schema v2 and points at the current top action", async () => {
+  const payload = JSON.parse(await readFile(new URL("../data/owner-action-queue.json", import.meta.url), "utf8"));
+  assert.equal(payload.schemaVersion, 2);
+  assert.equal(payload.actionCount, 3);
+  assert.equal(payload.topAction.merchant, "solaris_store");
+  assert.deepEqual(payload.actions.map(({ merchant }) => merchant), ["solaris_store", "xdatou", "butler_technik"]);
+  assert.ok(payload.actions.every((action) => action.currentOpportunityScore > 0));
 });
