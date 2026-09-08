@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "generatedAt": "2026-09-07T20:16:27.437Z",
   "focusMarkets": [
     "cs-CZ",
@@ -853,7 +853,11 @@
         "shippingVerified": true,
         "stockStatus": "in_stock",
         "nextActionOwner": "user",
-        "nextAction": "join_awin_program_31291"
+        "nextAction": "join_awin_program_31291",
+        "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+        "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+        "activationFieldsNeeded": null,
+        "checkoutStatus": null
       },
       "sourcingRoutes": [
         {
@@ -869,7 +873,11 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "join_awin_program_31291"
+          "nextAction": "join_awin_program_31291",
+          "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+          "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": null
         }
       ]
     },
@@ -895,7 +903,11 @@
         "shippingVerified": true,
         "stockStatus": "in_stock",
         "nextActionOwner": "user",
-        "nextAction": "join_awin_program_31291"
+        "nextAction": "join_awin_program_31291",
+        "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+        "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+        "activationFieldsNeeded": null,
+        "checkoutStatus": null
       },
       "sourcingRoutes": [
         {
@@ -911,7 +923,11 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "join_awin_program_31291"
+          "nextAction": "join_awin_program_31291",
+          "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+          "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": null
         }
       ]
     },
@@ -937,7 +953,11 @@
         "shippingVerified": true,
         "stockStatus": "in_stock",
         "nextActionOwner": "user",
-        "nextAction": "join_awin_program_31291"
+        "nextAction": "join_awin_program_31291",
+        "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+        "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+        "activationFieldsNeeded": null,
+        "checkoutStatus": null
       },
       "sourcingRoutes": [
         {
@@ -953,7 +973,11 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "join_awin_program_31291"
+          "nextAction": "join_awin_program_31291",
+          "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+          "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": null
         }
       ]
     },
@@ -1041,7 +1065,26 @@
             }
           }
         ],
-        "secondaryRequirements": []
+        "secondaryRequirements": [],
+        "bestSourcingRoute": {
+          "id": "solaris-victron-phoenix-12-250",
+          "category": "inverter",
+          "merchant": "solaris_store",
+          "productName": "Victron Phoenix 12/250 VE.Direct IEC",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 5,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
+        }
       },
       "opportunities": [
         {
@@ -1121,7 +1164,26 @@
               }
             }
           ],
-          "secondaryRequirements": []
+          "secondaryRequirements": [],
+          "bestSourcingRoute": {
+            "id": "solaris-victron-phoenix-12-250",
+            "category": "inverter",
+            "merchant": "solaris_store",
+            "productName": "Victron Phoenix 12/250 VE.Direct IEC",
+            "status": "blocked_affiliate_verification",
+            "blocker": "affiliate_tracking_not_verified",
+            "secondaryBlocker": "market_shipping_checkout_unverified",
+            "standaloneUnlockWeight": 5,
+            "affectedWeight": 5,
+            "shippingVerified": false,
+            "stockStatus": "in_stock",
+            "nextActionOwner": "user",
+            "nextAction": "submit_ambassador_application",
+            "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+            "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+            "activationFieldsNeeded": null,
+            "checkoutStatus": "site_operational_country_checkout_unverified"
+          }
         },
         {
           "category": "dc_charger",
@@ -1172,7 +1234,8 @@
                 "maxCurrentA": 45
               }
             }
-          ]
+          ],
+          "bestSourcingRoute": null
         },
         {
           "category": "controller",
@@ -1206,7 +1269,26 @@
               }
             }
           ],
-          "secondaryRequirements": []
+          "secondaryRequirements": [],
+          "bestSourcingRoute": {
+            "id": "butler-victron-scc125060321",
+            "category": "controller",
+            "merchant": "butler_technik",
+            "productName": "Victron SmartSolar MPPT 250/60-MC4",
+            "status": "pending_affiliate_approval",
+            "blocker": "awin_program_approval",
+            "secondaryBlocker": null,
+            "standaloneUnlockWeight": 0,
+            "affectedWeight": 5,
+            "shippingVerified": true,
+            "stockStatus": "in_stock",
+            "nextActionOwner": "user",
+            "nextAction": "join_awin_program_31291",
+            "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+            "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+            "activationFieldsNeeded": null,
+            "checkoutStatus": null
+          }
         }
       ],
       "topSourcingRoute": {
@@ -1222,7 +1304,15 @@
         "shippingVerified": true,
         "stockStatus": "in_stock",
         "nextActionOwner": "user",
-        "nextAction": "provide_exact_cj_elite300_deeplink"
+        "nextAction": "provide_exact_cj_elite300_deeplink",
+        "applicationUrl": null,
+        "applicationPacketPath": "docs/affiliate/bluetti-elite300-eu-activation.md",
+        "activationFieldsNeeded": [
+          "affiliateUrl",
+          "finalLandingUrl",
+          "verifiedAt"
+        ],
+        "checkoutStatus": null
       },
       "sourcingRoutes": [
         {
@@ -1238,7 +1328,15 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "provide_exact_cj_elite300_deeplink"
+          "nextAction": "provide_exact_cj_elite300_deeplink",
+          "applicationUrl": null,
+          "applicationPacketPath": "docs/affiliate/bluetti-elite300-eu-activation.md",
+          "activationFieldsNeeded": [
+            "affiliateUrl",
+            "finalLandingUrl",
+            "verifiedAt"
+          ],
+          "checkoutStatus": null
         },
         {
           "id": "solaris-victron-phoenix-12-250",
@@ -1253,7 +1351,11 @@
           "shippingVerified": false,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "submit_ambassador_application"
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
         },
         {
           "id": "butler-victron-scc125060321",
@@ -1268,7 +1370,11 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "join_awin_program_31291"
+          "nextAction": "join_awin_program_31291",
+          "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+          "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": null
         },
         {
           "id": "xdatou-datouboss-2000w-24v",
@@ -1283,7 +1389,15 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "submit_goaffpro_application"
+          "nextAction": "submit_goaffpro_application",
+          "applicationUrl": "https://eu.xdatou.com/pages/affiliate-program",
+          "applicationPacketPath": "docs/affiliate/xdatou-goaffpro-application.md",
+          "activationFieldsNeeded": [
+            "approvalConfirmed",
+            "referralIdentifier",
+            "referralCode"
+          ],
+          "checkoutStatus": null
         },
         {
           "id": "solaris-victron-phoenix-24-250",
@@ -1298,7 +1412,11 @@
           "shippingVerified": false,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "submit_ambassador_application"
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
         },
         {
           "id": "solaris-victron-smartsolar-150-60-tr",
@@ -1313,7 +1431,11 @@
           "shippingVerified": false,
           "stockStatus": "dispatch_5_7_days",
           "nextActionOwner": "user",
-          "nextAction": "submit_ambassador_application"
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
         },
         {
           "id": "ampul-eu-inverter-24v-2000w",
@@ -1328,7 +1450,11 @@
           "shippingVerified": false,
           "stockStatus": null,
           "nextActionOwner": "system",
-          "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock"
+          "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock",
+          "applicationUrl": null,
+          "applicationPacketPath": null,
+          "activationFieldsNeeded": null,
+          "checkoutStatus": null
         }
       ]
     },
@@ -1416,7 +1542,26 @@
             }
           }
         ],
-        "secondaryRequirements": []
+        "secondaryRequirements": [],
+        "bestSourcingRoute": {
+          "id": "solaris-victron-phoenix-12-250",
+          "category": "inverter",
+          "merchant": "solaris_store",
+          "productName": "Victron Phoenix 12/250 VE.Direct IEC",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 5,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
+        }
       },
       "opportunities": [
         {
@@ -1496,7 +1641,26 @@
               }
             }
           ],
-          "secondaryRequirements": []
+          "secondaryRequirements": [],
+          "bestSourcingRoute": {
+            "id": "solaris-victron-phoenix-12-250",
+            "category": "inverter",
+            "merchant": "solaris_store",
+            "productName": "Victron Phoenix 12/250 VE.Direct IEC",
+            "status": "blocked_affiliate_verification",
+            "blocker": "affiliate_tracking_not_verified",
+            "secondaryBlocker": "market_shipping_checkout_unverified",
+            "standaloneUnlockWeight": 5,
+            "affectedWeight": 5,
+            "shippingVerified": false,
+            "stockStatus": "in_stock",
+            "nextActionOwner": "user",
+            "nextAction": "submit_ambassador_application",
+            "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+            "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+            "activationFieldsNeeded": null,
+            "checkoutStatus": "site_operational_country_checkout_unverified"
+          }
         },
         {
           "category": "dc_charger",
@@ -1547,7 +1711,8 @@
                 "maxCurrentA": 45
               }
             }
-          ]
+          ],
+          "bestSourcingRoute": null
         },
         {
           "category": "controller",
@@ -1581,7 +1746,26 @@
               }
             }
           ],
-          "secondaryRequirements": []
+          "secondaryRequirements": [],
+          "bestSourcingRoute": {
+            "id": "butler-victron-scc125060321",
+            "category": "controller",
+            "merchant": "butler_technik",
+            "productName": "Victron SmartSolar MPPT 250/60-MC4",
+            "status": "pending_affiliate_approval",
+            "blocker": "awin_program_approval",
+            "secondaryBlocker": null,
+            "standaloneUnlockWeight": 0,
+            "affectedWeight": 5,
+            "shippingVerified": true,
+            "stockStatus": "in_stock",
+            "nextActionOwner": "user",
+            "nextAction": "join_awin_program_31291",
+            "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+            "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+            "activationFieldsNeeded": null,
+            "checkoutStatus": null
+          }
         }
       ],
       "topSourcingRoute": {
@@ -1597,7 +1781,15 @@
         "shippingVerified": true,
         "stockStatus": "in_stock",
         "nextActionOwner": "user",
-        "nextAction": "provide_exact_cj_elite300_deeplink"
+        "nextAction": "provide_exact_cj_elite300_deeplink",
+        "applicationUrl": null,
+        "applicationPacketPath": "docs/affiliate/bluetti-elite300-eu-activation.md",
+        "activationFieldsNeeded": [
+          "affiliateUrl",
+          "finalLandingUrl",
+          "verifiedAt"
+        ],
+        "checkoutStatus": null
       },
       "sourcingRoutes": [
         {
@@ -1613,7 +1805,15 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "provide_exact_cj_elite300_deeplink"
+          "nextAction": "provide_exact_cj_elite300_deeplink",
+          "applicationUrl": null,
+          "applicationPacketPath": "docs/affiliate/bluetti-elite300-eu-activation.md",
+          "activationFieldsNeeded": [
+            "affiliateUrl",
+            "finalLandingUrl",
+            "verifiedAt"
+          ],
+          "checkoutStatus": null
         },
         {
           "id": "solaris-victron-phoenix-12-250",
@@ -1628,7 +1828,11 @@
           "shippingVerified": false,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "submit_ambassador_application"
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
         },
         {
           "id": "butler-victron-scc125060321",
@@ -1643,7 +1847,11 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "join_awin_program_31291"
+          "nextAction": "join_awin_program_31291",
+          "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+          "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": null
         },
         {
           "id": "xdatou-datouboss-2000w-24v",
@@ -1658,7 +1866,15 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "submit_goaffpro_application"
+          "nextAction": "submit_goaffpro_application",
+          "applicationUrl": "https://eu.xdatou.com/pages/affiliate-program",
+          "applicationPacketPath": "docs/affiliate/xdatou-goaffpro-application.md",
+          "activationFieldsNeeded": [
+            "approvalConfirmed",
+            "referralIdentifier",
+            "referralCode"
+          ],
+          "checkoutStatus": null
         },
         {
           "id": "solaris-victron-phoenix-24-250",
@@ -1673,7 +1889,11 @@
           "shippingVerified": false,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "submit_ambassador_application"
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
         },
         {
           "id": "solaris-victron-smartsolar-150-60-tr",
@@ -1688,7 +1908,11 @@
           "shippingVerified": false,
           "stockStatus": "dispatch_5_7_days",
           "nextActionOwner": "user",
-          "nextAction": "submit_ambassador_application"
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
         },
         {
           "id": "ampul-eu-inverter-24v-2000w",
@@ -1703,7 +1927,11 @@
           "shippingVerified": false,
           "stockStatus": null,
           "nextActionOwner": "system",
-          "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock"
+          "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock",
+          "applicationUrl": null,
+          "applicationPacketPath": null,
+          "activationFieldsNeeded": null,
+          "checkoutStatus": null
         }
       ]
     },
@@ -1791,7 +2019,26 @@
             }
           }
         ],
-        "secondaryRequirements": []
+        "secondaryRequirements": [],
+        "bestSourcingRoute": {
+          "id": "solaris-victron-phoenix-12-250",
+          "category": "inverter",
+          "merchant": "solaris_store",
+          "productName": "Victron Phoenix 12/250 VE.Direct IEC",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 5,
+          "affectedWeight": 5,
+          "shippingVerified": false,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
+        }
       },
       "opportunities": [
         {
@@ -1871,7 +2118,26 @@
               }
             }
           ],
-          "secondaryRequirements": []
+          "secondaryRequirements": [],
+          "bestSourcingRoute": {
+            "id": "solaris-victron-phoenix-12-250",
+            "category": "inverter",
+            "merchant": "solaris_store",
+            "productName": "Victron Phoenix 12/250 VE.Direct IEC",
+            "status": "blocked_affiliate_verification",
+            "blocker": "affiliate_tracking_not_verified",
+            "secondaryBlocker": "market_shipping_checkout_unverified",
+            "standaloneUnlockWeight": 5,
+            "affectedWeight": 5,
+            "shippingVerified": false,
+            "stockStatus": "in_stock",
+            "nextActionOwner": "user",
+            "nextAction": "submit_ambassador_application",
+            "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+            "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+            "activationFieldsNeeded": null,
+            "checkoutStatus": "site_operational_country_checkout_unverified"
+          }
         },
         {
           "category": "dc_charger",
@@ -1922,7 +2188,8 @@
                 "maxCurrentA": 45
               }
             }
-          ]
+          ],
+          "bestSourcingRoute": null
         },
         {
           "category": "controller",
@@ -1956,7 +2223,26 @@
               }
             }
           ],
-          "secondaryRequirements": []
+          "secondaryRequirements": [],
+          "bestSourcingRoute": {
+            "id": "butler-victron-scc125060321",
+            "category": "controller",
+            "merchant": "butler_technik",
+            "productName": "Victron SmartSolar MPPT 250/60-MC4",
+            "status": "pending_affiliate_approval",
+            "blocker": "awin_program_approval",
+            "secondaryBlocker": null,
+            "standaloneUnlockWeight": 0,
+            "affectedWeight": 5,
+            "shippingVerified": true,
+            "stockStatus": "in_stock",
+            "nextActionOwner": "user",
+            "nextAction": "join_awin_program_31291",
+            "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+            "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+            "activationFieldsNeeded": null,
+            "checkoutStatus": null
+          }
         }
       ],
       "topSourcingRoute": {
@@ -1972,7 +2258,11 @@
         "shippingVerified": false,
         "stockStatus": "in_stock",
         "nextActionOwner": "user",
-        "nextAction": "submit_ambassador_application"
+        "nextAction": "submit_ambassador_application",
+        "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+        "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+        "activationFieldsNeeded": null,
+        "checkoutStatus": "site_operational_country_checkout_unverified"
       },
       "sourcingRoutes": [
         {
@@ -1988,7 +2278,11 @@
           "shippingVerified": false,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "submit_ambassador_application"
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
         },
         {
           "id": "butler-victron-scc125060321",
@@ -2003,7 +2297,11 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "join_awin_program_31291"
+          "nextAction": "join_awin_program_31291",
+          "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
+          "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": null
         },
         {
           "id": "xdatou-datouboss-2000w-24v",
@@ -2018,7 +2316,15 @@
           "shippingVerified": true,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "submit_goaffpro_application"
+          "nextAction": "submit_goaffpro_application",
+          "applicationUrl": "https://eu.xdatou.com/pages/affiliate-program",
+          "applicationPacketPath": "docs/affiliate/xdatou-goaffpro-application.md",
+          "activationFieldsNeeded": [
+            "approvalConfirmed",
+            "referralIdentifier",
+            "referralCode"
+          ],
+          "checkoutStatus": null
         },
         {
           "id": "solaris-victron-phoenix-24-250",
@@ -2033,7 +2339,11 @@
           "shippingVerified": false,
           "stockStatus": "in_stock",
           "nextActionOwner": "user",
-          "nextAction": "submit_ambassador_application"
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
         },
         {
           "id": "solaris-victron-smartsolar-150-60-tr",
@@ -2048,7 +2358,11 @@
           "shippingVerified": false,
           "stockStatus": "dispatch_5_7_days",
           "nextActionOwner": "user",
-          "nextAction": "submit_ambassador_application"
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
         },
         {
           "id": "ampul-eu-inverter-24v-2000w",
@@ -2063,7 +2377,11 @@
           "shippingVerified": false,
           "stockStatus": null,
           "nextActionOwner": "system",
-          "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock"
+          "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock",
+          "applicationUrl": null,
+          "applicationPacketPath": null,
+          "activationFieldsNeeded": null,
+          "checkoutStatus": null
         }
       ]
     }
