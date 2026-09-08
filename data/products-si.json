@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T20:15:23.341Z",
+  "generatedAt": "2026-09-08T08:12:24.277Z",
   "market": "sl-SI",
   "currency": "EUR",
   "private": false,
@@ -27,8 +27,8 @@
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 58,
-      "relevantProducts": 20,
-      "batteries": 15,
+      "relevantProducts": 21,
+      "batteries": 16,
       "controllers": 1,
       "inverters": 1,
       "shoreChargers": 3,
@@ -37,7 +37,7 @@
       "shippingEligible": true,
       "shippingEvidenceUrl": "https://www.ipowerqueen.de/en/pages/shipping-policy",
       "shippingVerifiedAt": "2026-09-01",
-      "exactProducts": 20
+      "exactProducts": 21
     },
     "xdatou": {
       "status": "blocked",
@@ -101,7 +101,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:10257573445939",
@@ -165,7 +165,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:8205919715635",
@@ -196,7 +196,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:10143263129907",
@@ -227,7 +227,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:10143246418227",
@@ -258,7 +258,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:9948837937459",
@@ -289,7 +289,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:9875554074931",
@@ -320,7 +320,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:9855868961075",
@@ -351,7 +351,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:9802731815219",
@@ -382,7 +382,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:9801383051571",
@@ -413,7 +413,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:9763001073971",
@@ -477,7 +477,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:9598354719027",
@@ -508,7 +508,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:9598338564403",
@@ -539,7 +539,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:8630287532339",
@@ -582,7 +582,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 284,
+      "priceCzk": 249,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sf200-flexible-solar-panel-200w",
@@ -603,7 +603,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:8431037645107",
@@ -634,7 +634,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:8300246663475",
@@ -644,7 +644,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 699,
+      "priceCzk": 654,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sp039-600w-monocrystalline-portable-solar-panel",
@@ -665,7 +665,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:8336481124659",
@@ -708,7 +708,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 179,
+      "priceCzk": 164,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sp029-portable-solar-panel-140w-polycrystalline-cells",
@@ -729,7 +729,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:8205916733747",
@@ -760,7 +760,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:8205905887539",
@@ -791,7 +791,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:8205901234483",
@@ -822,7 +822,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:8205897105715",
@@ -853,7 +853,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:8205889012019",
@@ -884,7 +884,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-08"
     },
     {
       "id": "allpowers_eu:8205880623411",
@@ -927,7 +927,7 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 269,
+      "priceCzk": 236,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r600-portable-power-station-600w-299wh-with-lifep04-battery-1",
@@ -1158,6 +1158,42 @@
         ],
         "chargingInputVoltagesV": [
           24
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
+      "marketEligible": true
+    },
+    {
+      "id": "powerqueen_eu:8327712243932",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen LiFePO4 12V 280Ah low temperature battery",
+      "description": "(Single 280Ah better: replaces 3 x 100Ah LiFePO4) 27% less space required, no cable clutter. Consistent voltage - long service life. (200A high-performance BMS, 2.56 kW continuous load) Designed with high-quality EV cells for a stable maximum output of 2.56 kW for multiple devices. The robust 200A BMS prevents voltage drops, is shock-resistant, and has a high cycle life. The surge current of 1000A@1s versProvides high-performance devices in the shortest possible time. (Auto-reset safety, all-weather protection) Integrated cold protection prevents damage during charging/discharging under extreme conditions. A multi-layered BMS protects against current spikes, short circuits, overheating, etc., for maximum robustness. Intelligent overload reset within 30 seconds guarantees uninterrupted operation of high-performance devices – even under full load. (3584Wh of massive energy for versatile scenarios) Designed for high performance requirements – easily combined with solar panels and inverters of all brands. Delivers 3584 Wh for RVs, marine systems, and off-grid homes. In fully electric 12-volt truck APU systems, it enables standby cooling/power supply, reduces engine runtime, and lowers energy consumption and emissions. (Durability comparable to shipbuilding, extremely long lifespan) Seawater-resistant IP65 design for reliable performance under extreme conditions. Stable power supply for 12V trolling motors and onboard electronics. High capacity enables uninterrupted operation of leisure appliances such as refrigerators/air conditioners on multi-day trips.",
+      "categoryPath": "Batteries",
+      "category": "battery",
+      "brand": "PQ-DE",
+      "priceCzk": 458.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-280ah-low-temperature-lifepo4-solar-battery",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-12v-280ah-low-temperature-lifepo4-solar-battery",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PQ-12.8V280Ah-TM-A200.webp?v=1773826378",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 280,
+        "capacityWh": 3584,
+        "powerW": null,
+        "currentA": 200,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
         ],
         "chargingBatteryTypes": [
           "lifepo4"
