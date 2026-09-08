@@ -1,84 +1,106 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-09-08T08:11:57.096Z",
-  "actionCount": 4,
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-08T08:12:24.277Z",
+  "actionCount": 3,
   "topAction": {
-    "actionKey": "bluetti_eu:provide_exact_cj_elite300_deeplink",
-    "merchant": "bluetti_eu",
-    "nextAction": "provide_exact_cj_elite300_deeplink",
-    "applicationUrl": null,
-    "applicationPacketPath": "docs/affiliate/bluetti-elite300-eu-activation.md",
+    "actionKey": "solaris_store:submit_ambassador_application",
+    "merchant": "solaris_store",
+    "nextAction": "submit_ambassador_application",
+    "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+    "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
     "candidateIds": [
-      "bluetti-eu-elite-300"
+      "solaris-victron-phoenix-12-250",
+      "solaris-victron-phoenix-24-250",
+      "solaris-victron-smartsolar-150-60-tr"
     ],
     "categories": [
-      "power_station"
+      "controller",
+      "inverter"
     ],
     "markets": [
       "pt-PT",
-      "ro-RO"
+      "ro-RO",
+      "sl-SI"
     ],
-    "shippingVerifiedMarkets": [
-      "pt-PT",
-      "ro-RO"
-    ],
+    "shippingVerifiedMarkets": [],
     "blockers": [
-      "exact_cj_eu_deeplink_unverified"
+      "affiliate_tracking_not_verified"
     ],
-    "secondaryBlockers": [],
+    "secondaryBlockers": [
+      "market_shipping_checkout_unverified"
+    ],
     "statuses": [
       "blocked_affiliate_verification"
     ],
-    "activationFieldsNeeded": [
-      "affiliateUrl",
-      "finalLandingUrl",
-      "verifiedAt"
-    ],
+    "activationFieldsNeeded": [],
     "maxStandaloneUnlockWeight": 5,
     "maxAffectedWeight": 5,
-    "candidateCount": 1,
-    "categoryCount": 1,
-    "inStockCandidates": 1
+    "candidateCount": 3,
+    "categoryCount": 2,
+    "inStockCandidates": 3,
+    "activeCandidateIds": [
+      "solaris-victron-phoenix-12-250",
+      "solaris-victron-phoenix-24-250",
+      "solaris-victron-smartsolar-150-60-tr"
+    ],
+    "activeCategories": [
+      "controller",
+      "inverter"
+    ],
+    "activeMarkets": [
+      "pt-PT",
+      "ro-RO",
+      "sl-SI"
+    ],
+    "currentOpportunityScore": 45,
+    "currentStandaloneUnlockWeight": 15,
+    "currentAffectedWeight": 21,
+    "currentImpacts": [
+      {
+        "market": "pt-PT",
+        "category": "controller",
+        "score": 2,
+        "standaloneUnlockWeight": 0,
+        "affectedWeight": 2
+      },
+      {
+        "market": "pt-PT",
+        "category": "inverter",
+        "score": 13,
+        "standaloneUnlockWeight": 5,
+        "affectedWeight": 5
+      },
+      {
+        "market": "ro-RO",
+        "category": "controller",
+        "score": 2,
+        "standaloneUnlockWeight": 0,
+        "affectedWeight": 2
+      },
+      {
+        "market": "ro-RO",
+        "category": "inverter",
+        "score": 13,
+        "standaloneUnlockWeight": 5,
+        "affectedWeight": 5
+      },
+      {
+        "market": "sl-SI",
+        "category": "controller",
+        "score": 2,
+        "standaloneUnlockWeight": 0,
+        "affectedWeight": 2
+      },
+      {
+        "market": "sl-SI",
+        "category": "inverter",
+        "score": 13,
+        "standaloneUnlockWeight": 5,
+        "affectedWeight": 5
+      }
+    ]
   },
   "actions": [
-    {
-      "actionKey": "bluetti_eu:provide_exact_cj_elite300_deeplink",
-      "merchant": "bluetti_eu",
-      "nextAction": "provide_exact_cj_elite300_deeplink",
-      "applicationUrl": null,
-      "applicationPacketPath": "docs/affiliate/bluetti-elite300-eu-activation.md",
-      "candidateIds": [
-        "bluetti-eu-elite-300"
-      ],
-      "categories": [
-        "power_station"
-      ],
-      "markets": [
-        "pt-PT",
-        "ro-RO"
-      ],
-      "shippingVerifiedMarkets": [
-        "pt-PT",
-        "ro-RO"
-      ],
-      "blockers": [
-        "exact_cj_eu_deeplink_unverified"
-      ],
-      "secondaryBlockers": [],
-      "statuses": [
-        "blocked_affiliate_verification"
-      ],
-      "activationFieldsNeeded": [
-        "affiliateUrl",
-        "finalLandingUrl",
-        "verifiedAt"
-      ],
-      "maxStandaloneUnlockWeight": 5,
-      "maxAffectedWeight": 5,
-      "candidateCount": 1,
-      "categoryCount": 1,
-      "inStockCandidates": 1
-    },
     {
       "actionKey": "solaris_store:submit_ambassador_application",
       "merchant": "solaris_store",
@@ -114,7 +136,145 @@
       "maxAffectedWeight": 5,
       "candidateCount": 3,
       "categoryCount": 2,
-      "inStockCandidates": 3
+      "inStockCandidates": 3,
+      "activeCandidateIds": [
+        "solaris-victron-phoenix-12-250",
+        "solaris-victron-phoenix-24-250",
+        "solaris-victron-smartsolar-150-60-tr"
+      ],
+      "activeCategories": [
+        "controller",
+        "inverter"
+      ],
+      "activeMarkets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "currentOpportunityScore": 45,
+      "currentStandaloneUnlockWeight": 15,
+      "currentAffectedWeight": 21,
+      "currentImpacts": [
+        {
+          "market": "pt-PT",
+          "category": "controller",
+          "score": 2,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 2
+        },
+        {
+          "market": "pt-PT",
+          "category": "inverter",
+          "score": 13,
+          "standaloneUnlockWeight": 5,
+          "affectedWeight": 5
+        },
+        {
+          "market": "ro-RO",
+          "category": "controller",
+          "score": 2,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 2
+        },
+        {
+          "market": "ro-RO",
+          "category": "inverter",
+          "score": 13,
+          "standaloneUnlockWeight": 5,
+          "affectedWeight": 5
+        },
+        {
+          "market": "sl-SI",
+          "category": "controller",
+          "score": 2,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 2
+        },
+        {
+          "market": "sl-SI",
+          "category": "inverter",
+          "score": 13,
+          "standaloneUnlockWeight": 5,
+          "affectedWeight": 5
+        }
+      ]
+    },
+    {
+      "actionKey": "xdatou:submit_goaffpro_application",
+      "merchant": "xdatou",
+      "nextAction": "submit_goaffpro_application",
+      "applicationUrl": "https://eu.xdatou.com/pages/affiliate-program",
+      "applicationPacketPath": "docs/affiliate/xdatou-goaffpro-application.md",
+      "candidateIds": [
+        "xdatou-datouboss-2000w-24v"
+      ],
+      "categories": [
+        "inverter"
+      ],
+      "markets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "shippingVerifiedMarkets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "blockers": [
+        "goaffpro_account_approval_not_verified"
+      ],
+      "secondaryBlockers": [],
+      "statuses": [
+        "blocked_affiliate_verification"
+      ],
+      "activationFieldsNeeded": [
+        "approvalConfirmed",
+        "referralCode",
+        "referralIdentifier"
+      ],
+      "maxStandaloneUnlockWeight": 0,
+      "maxAffectedWeight": 5,
+      "candidateCount": 1,
+      "categoryCount": 1,
+      "inStockCandidates": 1,
+      "activeCandidateIds": [
+        "xdatou-datouboss-2000w-24v"
+      ],
+      "activeCategories": [
+        "inverter"
+      ],
+      "activeMarkets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "currentOpportunityScore": 39,
+      "currentStandaloneUnlockWeight": 0,
+      "currentAffectedWeight": 15,
+      "currentImpacts": [
+        {
+          "market": "pt-PT",
+          "category": "inverter",
+          "score": 13,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5
+        },
+        {
+          "market": "ro-RO",
+          "category": "inverter",
+          "score": 13,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5
+        },
+        {
+          "market": "sl-SI",
+          "category": "inverter",
+          "score": 13,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5
+        }
+      ]
     },
     {
       "actionKey": "butler_technik:join_awin_program_31291",
@@ -158,47 +318,67 @@
       "maxAffectedWeight": 5,
       "candidateCount": 2,
       "categoryCount": 2,
-      "inStockCandidates": 2
-    },
-    {
-      "actionKey": "xdatou:submit_goaffpro_application",
-      "merchant": "xdatou",
-      "nextAction": "submit_goaffpro_application",
-      "applicationUrl": "https://eu.xdatou.com/pages/affiliate-program",
-      "applicationPacketPath": "docs/affiliate/xdatou-goaffpro-application.md",
-      "candidateIds": [
-        "xdatou-datouboss-2000w-24v"
+      "inStockCandidates": 2,
+      "activeCandidateIds": [
+        "butler-victron-orion-xs-12-12-50",
+        "butler-victron-scc125060321"
       ],
-      "categories": [
-        "inverter"
+      "activeCategories": [
+        "controller",
+        "dc_charger"
       ],
-      "markets": [
+      "activeMarkets": [
         "pt-PT",
         "ro-RO",
         "sl-SI"
       ],
-      "shippingVerifiedMarkets": [
-        "pt-PT",
-        "ro-RO",
-        "sl-SI"
-      ],
-      "blockers": [
-        "goaffpro_account_approval_not_verified"
-      ],
-      "secondaryBlockers": [],
-      "statuses": [
-        "blocked_affiliate_verification"
-      ],
-      "activationFieldsNeeded": [
-        "approvalConfirmed",
-        "referralCode",
-        "referralIdentifier"
-      ],
-      "maxStandaloneUnlockWeight": 0,
-      "maxAffectedWeight": 5,
-      "candidateCount": 1,
-      "categoryCount": 1,
-      "inStockCandidates": 1
+      "currentOpportunityScore": 18,
+      "currentStandaloneUnlockWeight": 0,
+      "currentAffectedWeight": 6,
+      "currentImpacts": [
+        {
+          "market": "pt-PT",
+          "category": "controller",
+          "score": 2,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 2
+        },
+        {
+          "market": "pt-PT",
+          "category": "dc_charger",
+          "score": 4,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 0
+        },
+        {
+          "market": "ro-RO",
+          "category": "controller",
+          "score": 2,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 2
+        },
+        {
+          "market": "ro-RO",
+          "category": "dc_charger",
+          "score": 4,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 0
+        },
+        {
+          "market": "sl-SI",
+          "category": "controller",
+          "score": 2,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 2
+        },
+        {
+          "market": "sl-SI",
+          "category": "dc_charger",
+          "score": 4,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 0
+        }
+      ]
     }
   ]
 }

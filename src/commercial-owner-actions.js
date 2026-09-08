@@ -100,6 +100,92 @@ export function buildCommercialOwnerActionQueue() {
   return Object.freeze(actions);
 }
 
+
+export function buildCurrentCommercialOwnerActionQueue(backlogs = []) {
+  const backlogByMarket = new Map((backlogs || []).map((backlog) => [backlog.market, backlog]));
+  const baseActions = new Map(buildCommercialOwnerActionQueue().map((action) => [action.actionKey, action]));
+  const groups = new Map();
+
+  for (const candidate of listCommercialSourcingCandidates()) {
+    if (candidate.nextActionOwner !== "user" || !candidate.nextAction) continue;
+    const actionKey = `${candidate.merchant}:${candidate.nextAction}`;
+    const base = baseActions.get(actionKey);
+    if (!base) continue;
+
+    for (const market of candidate.markets || []) {
+      const backlog = backlogByMarket.get(market);
+      const opportunity = backlog?.opportunities?.find((item) => item.category === candidate.category);
+      if (!opportunity) continue;
+
+      const impactKey = `${market}:${candidate.category}`;
+      const group = groups.get(actionKey) || {
+        base,
+        impacts: new Map(),
+        activeCandidateIds: new Set(),
+        activeCategories: new Set(),
+        activeMarkets: new Set(),
+      };
+      const impact = group.impacts.get(impactKey) || {
+        market,
+        category: candidate.category,
+        score: 0,
+        standaloneUnlockWeight: 0,
+        affectedWeight: 0,
+      };
+
+      impact.score = Math.max(impact.score, Number(opportunity.score) || 0);
+      impact.standaloneUnlockWeight = Math.max(
+        impact.standaloneUnlockWeight,
+        Math.min(Number(candidate.standaloneUnlockWeight) || 0, Number(opportunity.standaloneUnlockWeight) || 0),
+      );
+      impact.affectedWeight = Math.max(
+        impact.affectedWeight,
+        Math.min(Number(candidate.affectedWeight) || 0, Number(opportunity.affectedWeight) || 0),
+      );
+
+      group.impacts.set(impactKey, impact);
+      group.activeCandidateIds.add(candidate.id);
+      group.activeCategories.add(candidate.category);
+      group.activeMarkets.add(market);
+      groups.set(actionKey, group);
+    }
+  }
+
+  const actions = [...groups.values()].map((group) => {
+    const impacts = [...group.impacts.values()];
+    return Object.freeze({
+      ...group.base,
+      activeCandidateIds: Object.freeze([...group.activeCandidateIds].sort()),
+      activeCategories: Object.freeze([...group.activeCategories].sort()),
+      activeMarkets: Object.freeze([...group.activeMarkets].sort()),
+      currentOpportunityScore: impacts.reduce((sum, item) => sum + item.score, 0),
+      currentStandaloneUnlockWeight: impacts.reduce((sum, item) => sum + item.standaloneUnlockWeight, 0),
+      currentAffectedWeight: impacts.reduce((sum, item) => sum + item.affectedWeight, 0),
+      currentImpacts: Object.freeze(impacts
+        .map((item) => Object.freeze({ ...item }))
+        .sort((a, b) => a.market.localeCompare(b.market) || a.category.localeCompare(b.category))),
+    });
+  }).filter((action) =>
+    action.currentOpportunityScore > 0
+    || action.currentStandaloneUnlockWeight > 0
+    || action.currentAffectedWeight > 0
+  );
+
+  actions.sort((a, b) =>
+    b.currentStandaloneUnlockWeight - a.currentStandaloneUnlockWeight
+    || b.currentAffectedWeight - a.currentAffectedWeight
+    || b.currentOpportunityScore - a.currentOpportunityScore
+    || b.shippingVerifiedMarkets.length - a.shippingVerifiedMarkets.length
+    || bestRank(a.statuses) - bestRank(b.statuses)
+    || a.actionKey.localeCompare(b.actionKey));
+
+  return Object.freeze(actions);
+}
+
+export function bestCurrentCommercialOwnerAction(backlogs = []) {
+  return buildCurrentCommercialOwnerActionQueue(backlogs)[0] || null;
+}
+
 export function bestCommercialOwnerAction() {
   return buildCommercialOwnerActionQueue()[0] || null;
 }

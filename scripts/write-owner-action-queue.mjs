@@ -1,14 +1,14 @@
 import { readFile, writeFile } from "node:fs/promises";
-import { buildCommercialOwnerActionQueue } from "../src/commercial-owner-actions.js";
+import { buildCurrentCommercialOwnerActionQueue } from "../src/commercial-owner-actions.js";
 
 const COMMERCIAL_REPORT = new URL("../data/commercial-opportunity-report.json", import.meta.url);
 const OUTPUT = new URL("../data/owner-action-queue.json", import.meta.url);
 const checkOnly = process.argv.includes("--check");
 
 const commercialReport = JSON.parse(await readFile(COMMERCIAL_REPORT, "utf8"));
-const actions = buildCommercialOwnerActionQueue();
+const actions = buildCurrentCommercialOwnerActionQueue(commercialReport.markets || []);
 const payload = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   generatedAt: commercialReport.generatedAt || null,
   actionCount: actions.length,
   topAction: actions[0] || null,
