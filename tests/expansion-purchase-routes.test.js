@@ -32,3 +32,15 @@ test("localized copy explains why portable route moves first", async () => {
   assert.match(source, /Stația portabilă de mai jos acoperă profilul complet verificat și este afișată prima/);
   assert.match(source, /Spodnja prenosna elektrarna pokriva celoten preverjeni profil, zato je prikazana prva/);
 });
+
+
+test("primary portable CTA is localized, explicit and analytics-addressable", async () => {
+  const source = await readFile("src/expansion-calculator-browser.js", "utf8");
+  assert.match(source, /Ver solução completa na/);
+  assert.match(source, /Vezi soluția completă la/);
+  assert.match(source, /Poglej celovito rešitev pri/);
+  assert.match(source, /primaryPortable = portable && routePriority === "primary"/);
+  assert.match(source, /data-cta-variant=/);
+  assert.match(source, /portable-primary/);
+  assert.match(source, /ctaLabel = primaryPortable \? labels\.portableViewAt\(merchant\) : labels\.viewAt\(merchant\)/);
+});
