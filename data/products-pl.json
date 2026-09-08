@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-08T08:11:45.259Z",
+  "generatedAt": "2026-09-08T19:24:59.814Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16557,
-      "relevantProducts": 207
+      "parsedProducts": 16555,
+      "relevantProducts": 209
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -5284,6 +5284,64 @@
           "lifepo4"
         ],
         "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:105883_32168",
+      "merchant": "padabo_pl",
+      "name": "Panel słoneczny z trackerem Hepa Solar Sunseeker moc nominalna (wp) 135",
+      "description": "Panel słoneczny z automatycznym prowadzeniem Hepa Solar Sunseeker to innowacyjny panel słoneczny, który zapewnia maksymalną wydajność energetyczną w podróży. Zintegrowany tracker automatycznie kieruje się w stronę słońca i jest do 250% bardziej wydajny w porównaniu do konwencjonalnych płaskich paneli. Panel został specjalnie zaprojektowany i opatentowany dla kamperów i przyczep kempingowych. Dzięki najnowocześniejszemu czujnikowi jasności i czterem precyzyjnym siłownikom panel optymalnie dostoso",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
+      "category": "solar_panel",
+      "brand": "Frankana Freiko",
+      "priceCzk": 7444.5,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/panel-sloneczny-z-trackerem-hepa-solar-sunseeker_z105883/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fpanel-sloneczny-z-trackerem-hepa-solar-sunseeker_z105883%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/5/177905_102.jpg?1738408500_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": 2,
+        "powerW": 135,
+        "currentA": 6.5,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:105883_32169",
+      "merchant": "padabo_pl",
+      "name": "Panel słoneczny z trackerem Hepa Solar Sunseeker moc nominalna (wp) 200",
+      "description": "Panel słoneczny z automatycznym prowadzeniem Hepa Solar Sunseeker to innowacyjny panel słoneczny, który zapewnia maksymalną wydajność energetyczną w podróży. Zintegrowany tracker automatycznie kieruje się w stronę słońca i jest do 250% bardziej wydajny w porównaniu do konwencjonalnych płaskich paneli. Panel został specjalnie zaprojektowany i opatentowany dla kamperów i przyczep kempingowych. Dzięki najnowocześniejszemu czujnikowi jasności i czterem precyzyjnym siłownikom panel optymalnie dostoso",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
+      "category": "solar_panel",
+      "brand": "Frankana Freiko",
+      "priceCzk": 8011.91,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/panel-sloneczny-z-trackerem-hepa-solar-sunseeker_z105883/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fpanel-sloneczny-z-trackerem-hepa-solar-sunseeker_z105883%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/5/177905_102.jpg?1738408500_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": 2,
+        "powerW": 200,
+        "currentA": 6.5,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null

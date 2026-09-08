@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-08T08:11:56.097Z",
+  "generatedAt": "2026-09-08T19:25:09.631Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12559,
-      "relevantProducts": 156
+      "parsedProducts": 12566,
+      "relevantProducts": 159
     },
     "ampul_hu": {
       "status": "ok",
@@ -2939,6 +2939,64 @@
       }
     },
     {
+      "id": "padabo_hu:105883_32168",
+      "merchant": "padabo_hu",
+      "name": "Hepa Solar Sunseeker napelem nyomkövetővel névleges teljesítmény (wp) 135",
+      "description": "Napelem automatikus útválasztással A legkorszerűbb fényerő-érzékelőnek és négy precíziós működtetőnek köszönhetően a panel mind a dőlésszöget (0-45°), mind a forgást (akár 300°) optimálisan a nap állásához igazítja. A biztonságról egy szélérzékelő gondoskodik, amely 60-70 km/h-s szélsebességnél aktiválja a rendszert, és automatikusan megdől. A Hepa Solar Sunseeker 135 Wp napelemes panel és nyomkövető legfontosabb jellemzői: A Hepa Solar Sunseeker egy innovatív napelem, amely maximális energiahat",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
+      "category": "solar_panel",
+      "brand": "Frankana Freiko",
+      "priceCzk": 704610,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/hepa-solar-sunseeker-napelem-nyomkovetovel_z105883/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fhepa-solar-sunseeker-napelem-nyomkovetovel_z105883%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/5/177905_102.jpg?1738408500_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": 2,
+        "powerW": 135,
+        "currentA": 6.5,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:105883_32169",
+      "merchant": "padabo_hu",
+      "name": "Hepa Solar Sunseeker napelem nyomkövetővel névleges teljesítmény (wp) 200",
+      "description": "Napelem automatikus útválasztással A legkorszerűbb fényerő-érzékelőnek és négy precíziós működtetőnek köszönhetően a panel mind a dőlésszöget (0-45°), mind a forgást (akár 300°) optimálisan a nap állásához igazítja. A biztonságról egy szélérzékelő gondoskodik, amely 60-70 km/h-s szélsebességnél aktiválja a rendszert, és automatikusan megdől. A Hepa Solar Sunseeker 135 Wp napelemes panel és nyomkövető legfontosabb jellemzői: A Hepa Solar Sunseeker egy innovatív napelem, amely maximális energiahat",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
+      "category": "solar_panel",
+      "brand": "Frankana Freiko",
+      "priceCzk": 758315,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/hepa-solar-sunseeker-napelem-nyomkovetovel_z105883/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fhepa-solar-sunseeker-napelem-nyomkovetovel_z105883%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/5/177905_102.jpg?1738408500_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": 2,
+        "powerW": 200,
+        "currentA": 6.5,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_hu:106258",
       "merchant": "padabo_hu",
       "name": "MPPT Carbest napelemes töltésvezérlő, 12/24 V",
@@ -3196,7 +3254,7 @@
     {
       "id": "padabo_hu:19287_21292",
       "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
       "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
       "category": "inverter",
@@ -4515,6 +4573,39 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 1000,
+        "currentA": 1,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:106296_33732",
+      "merchant": "padabo_hu",
+      "name": "Renogy 12 V-os feszültségátalakító teljesítmény 3000 W",
+      "description": "Nagy teljesítményű feszültségegyenirányító a készülékek széles skálájához A Renogy feszültségátalakító fejlett tiszta szinuszhullámú technológiával rendelkezik, hogy maximalizálja a rendszer hatékonyságát. Az inverter beállítása olyan egyszerű, hogy még egy teljes analfabéta is meg tudja csinálni. A tiszta szinuszos kimenet folyamatos és stabil áramellátást biztosít, amely helyettesíti a közüzemi áramellátást. Az inverter sokoldalú és kompatibilis az elektromos készülékek széles skálájával, bele",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Renogy",
+      "priceCzk": 153505,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/renogy-12-v-os-feszultsegatalakito_z106296/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-12-v-os-feszultsegatalakito_z106296%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 3000,
         "currentA": 1,
         "chargingVoltagesV": [
           12

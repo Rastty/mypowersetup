@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-08T08:09:38.670Z",
+  "generatedAt": "2026-09-08T19:24:47.438Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16545,
-      "relevantProducts": 248
+      "parsedProducts": 16544,
+      "relevantProducts": 253
     },
     "allpowers_eu": {
       "status": "ok",
@@ -555,7 +555,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
+      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -1349,6 +1349,39 @@
       "productUrl": "https://www.padabo.sk/victron-energy-phoenix-ve-priamy-menic-napatia_z24820/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-phoenix-ve-priamy-menic-napatia_z24820%2F",
       "imageUrl": "https://www.padabo.sk/data/tmp/102/4/158724_102.jpg?1704380233_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 200,
+        "currentA": 40,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:24820_26589",
+      "merchant": "padabo_sk",
+      "name": "Victron Energy Phoenix VE.Priamy menič napätia variant 1 200 VA napätie 12 V",
+      "description": "Victron Energy sínusový menič napätiaVictron Energy Phoenix VE.Direct je plne konfigurovateľný sínusový menič vhodný na inštaláciu do obytných automobilov, karavanov a lodí. Vyznačuje sa mnohými funkciami opísanými nižšie, jednoduchým používaním a prijateľnou cenou. Obsahuje účinný robustný toroidný transformátor. Inštalácia meniča je teraz jednoduchšia ako kedykoľvek predtým - svorky sú prístupnejšie. Vďaka portu VE.Direct možno menič pripojiť k počítaču (potrebný kábel - príslušenstvo) alebo k",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
+      "category": "inverter",
+      "brand": "Victron Energy",
+      "priceCzk": 304.92,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/victron-energy-phoenix-ve-priamy-menic-napatia_z24820/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-phoenix-ve-priamy-menic-napatia_z24820%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/158725_102.jpg?1704380233_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3071,6 +3104,37 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 38,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:26961_28354",
+      "merchant": "padabo_sk",
+      "name": "Solárna batéria Victron Energy AGM Super Cycle kapacita 60 Ah",
+      "description": "Solárna batéria AGM Victron Energy Super CycleSolárna batéria AGM Super Cycle od spoločnosti Victron Energy je vhodná pre menšie batériové systémy. Zvládne častejšie hlboké vybíjanie. Nové prísady v elektrolyte znižujú sulfatáciu batérie. Pasta na kladné dosky je menej náchylná na zmäknutie. Batéria vydrží minimálne 300 cyklov pri 100 % vybití. Nový chemický zloženie batérie ponúka menšie rozmery a nižšiu hmotnosť ako bežné batérie AGM. Pri sériovom zapojení batérií je potrebné použiť vyvažovač ",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
+      "category": "battery",
+      "brand": "Victron Energy",
+      "priceCzk": 180.44,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z26961/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z26961%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/160241_102.jpg?1704380285_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 60,
         "capacityWh": null,
         "powerW": null,
         "currentA": null,
@@ -6307,6 +6371,64 @@
       }
     },
     {
+      "id": "padabo_sk:105883_32168",
+      "merchant": "padabo_sk",
+      "name": "Solárny panel s trackerom Hepa Solar Sunseeker nominálny výkon (wp) 135",
+      "description": "Solárny panel s automatickým smerovaním Hepa Solar Sunseeker je inovatívny solárny panel, ktorý vám na cestách poskytne maximálnu energetickú účinnosť. Integrovaný tracker sa automaticky nasmeruje na slnko a je až o 250 % účinnejší v porovnaní s bežnými plochými panelmi. Panel bol špeciálne navrhnutý a patentovaný pre obytné vozidlá a karavany. Vďaka najmodernejšiemu snímaču jasu a štyrom presným aktuátorom panel optimálne prispôsobuje polohe slnka, ako sklon panelu (0-45°), tak natočenie (až 30",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Solárne panely a príslušenstvo | Fotovoltaické panely",
+      "category": "solar_panel",
+      "brand": "Frankana Freiko",
+      "priceCzk": 1671.21,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/solarny-panel-s-trackerom-hepa-solar-sunseeker_z105883/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-s-trackerom-hepa-solar-sunseeker_z105883%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/177905_102.jpg?1738408500_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": 2,
+        "powerW": 135,
+        "currentA": 6.5,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:105883_32169",
+      "merchant": "padabo_sk",
+      "name": "Solárny panel s trackerom Hepa Solar Sunseeker nominálny výkon (wp) 200",
+      "description": "Solárny panel s automatickým smerovaním Hepa Solar Sunseeker je inovatívny solárny panel, ktorý vám na cestách poskytne maximálnu energetickú účinnosť. Integrovaný tracker sa automaticky nasmeruje na slnko a je až o 250 % účinnejší v porovnaní s bežnými plochými panelmi. Panel bol špeciálne navrhnutý a patentovaný pre obytné vozidlá a karavany. Vďaka najmodernejšiemu snímaču jasu a štyrom presným aktuátorom panel optimálne prispôsobuje polohe slnka, ako sklon panelu (0-45°), tak natočenie (až 30",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Solárne panely a príslušenstvo | Fotovoltaické panely",
+      "category": "solar_panel",
+      "brand": "Frankana Freiko",
+      "priceCzk": 1798.59,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/solarny-panel-s-trackerom-hepa-solar-sunseeker_z105883/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-s-trackerom-hepa-solar-sunseeker_z105883%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/177905_102.jpg?1738408500_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": 2,
+        "powerW": 200,
+        "currentA": 6.5,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_sk:106253",
       "merchant": "padabo_sk",
       "name": "Skladací solárny panel Büttner Dometic MT SM 120 TL",
@@ -6392,6 +6514,39 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 1000,
+        "currentA": 1,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:106296_33732",
+      "merchant": "padabo_sk",
+      "name": "Menič napätia Renogy 12 V výkon 3000 W",
+      "description": "Výkonný usmerňovač napätia pre širokú škálu spotrebičov Menič napätia Renogy využíva pokročilú technológiu čistej sínusoidy na dosiahnutie maximálnej účinnosti vášho systému. Nastavenie meniča je také jednoduché, že ho zvládne aj úplný laik. Výstup s čistou sínusoidou zabezpečuje plynulé a stabilné napájanie, ktoré plnohodnotne nahrádza napájanie z verejnej siete. Menič je univerzálny a kompatibilný so širokou škálou elektrických spotrebičov, vrátane tých citlivejších, bez akýchkoľvek problémov ",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
+      "category": "inverter",
+      "brand": "Renogy",
+      "priceCzk": 364.08,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-renogy-12-v_z106296%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 3000,
         "currentA": 1,
         "chargingVoltagesV": [
           12
