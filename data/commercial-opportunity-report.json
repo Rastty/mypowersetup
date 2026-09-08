@@ -1,6 +1,6 @@
 {
   "schemaVersion": 6,
-  "generatedAt": "2026-09-08T06:42:09.521Z",
+  "generatedAt": "2026-09-08T06:45:36.656Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -821,7 +821,7 @@
   "markets": [
     {
       "market": "cs-CZ",
-      "generatedAt": "2026-09-08T06:41:30.690Z",
+      "generatedAt": "2026-09-08T06:45:02.434Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
@@ -833,7 +833,7 @@
     },
     {
       "market": "sk-SK",
-      "generatedAt": "2026-09-08T06:41:44.642Z",
+      "generatedAt": "2026-09-08T06:45:13.501Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -883,7 +883,7 @@
     },
     {
       "market": "pl-PL",
-      "generatedAt": "2026-09-08T06:41:57.596Z",
+      "generatedAt": "2026-09-08T06:45:25.347Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.21052631578947367,
@@ -933,7 +933,7 @@
     },
     {
       "market": "hu-HU",
-      "generatedAt": "2026-09-08T06:42:08.251Z",
+      "generatedAt": "2026-09-08T06:45:35.243Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -983,7 +983,7 @@
     },
     {
       "market": "pt-PT",
-      "generatedAt": "2026-09-08T06:42:09.521Z",
+      "generatedAt": "2026-09-08T06:45:36.656Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1418,25 +1418,6 @@
           "checkoutStatus": null
         },
         {
-          "id": "solaris-victron-phoenix-24-250",
-          "category": "inverter",
-          "merchant": "solaris_store",
-          "productName": "Victron Phoenix 24/250 VE.Direct Schuko",
-          "status": "blocked_affiliate_verification",
-          "blocker": "affiliate_tracking_not_verified",
-          "secondaryBlocker": "market_shipping_checkout_unverified",
-          "standaloneUnlockWeight": 0,
-          "affectedWeight": 3,
-          "shippingVerified": false,
-          "stockStatus": "in_stock",
-          "nextActionOwner": "user",
-          "nextAction": "submit_ambassador_application",
-          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
-          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
-          "activationFieldsNeeded": null,
-          "checkoutStatus": "site_operational_country_checkout_unverified"
-        },
-        {
           "id": "solaris-victron-smartsolar-150-60-tr",
           "category": "controller",
           "merchant": "solaris_store",
@@ -1473,6 +1454,25 @@
           "applicationPacketPath": null,
           "activationFieldsNeeded": null,
           "checkoutStatus": null
+        },
+        {
+          "id": "solaris-victron-phoenix-24-250",
+          "category": "inverter",
+          "merchant": "solaris_store",
+          "productName": "Victron Phoenix 24/250 VE.Direct Schuko",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 3,
+          "shippingVerified": false,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
         }
       ]
     },
@@ -1913,25 +1913,6 @@
           "checkoutStatus": null
         },
         {
-          "id": "solaris-victron-phoenix-24-250",
-          "category": "inverter",
-          "merchant": "solaris_store",
-          "productName": "Victron Phoenix 24/250 VE.Direct Schuko",
-          "status": "blocked_affiliate_verification",
-          "blocker": "affiliate_tracking_not_verified",
-          "secondaryBlocker": "market_shipping_checkout_unverified",
-          "standaloneUnlockWeight": 0,
-          "affectedWeight": 3,
-          "shippingVerified": false,
-          "stockStatus": "in_stock",
-          "nextActionOwner": "user",
-          "nextAction": "submit_ambassador_application",
-          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
-          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
-          "activationFieldsNeeded": null,
-          "checkoutStatus": "site_operational_country_checkout_unverified"
-        },
-        {
           "id": "solaris-victron-smartsolar-150-60-tr",
           "category": "controller",
           "merchant": "solaris_store",
@@ -1968,6 +1949,25 @@
           "applicationPacketPath": null,
           "activationFieldsNeeded": null,
           "checkoutStatus": null
+        },
+        {
+          "id": "solaris-victron-phoenix-24-250",
+          "category": "inverter",
+          "merchant": "solaris_store",
+          "productName": "Victron Phoenix 24/250 VE.Direct Schuko",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 3,
+          "shippingVerified": false,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
         }
       ]
     },
@@ -2381,25 +2381,6 @@
           "checkoutStatus": null
         },
         {
-          "id": "solaris-victron-phoenix-24-250",
-          "category": "inverter",
-          "merchant": "solaris_store",
-          "productName": "Victron Phoenix 24/250 VE.Direct Schuko",
-          "status": "blocked_affiliate_verification",
-          "blocker": "affiliate_tracking_not_verified",
-          "secondaryBlocker": "market_shipping_checkout_unverified",
-          "standaloneUnlockWeight": 0,
-          "affectedWeight": 3,
-          "shippingVerified": false,
-          "stockStatus": "in_stock",
-          "nextActionOwner": "user",
-          "nextAction": "submit_ambassador_application",
-          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
-          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
-          "activationFieldsNeeded": null,
-          "checkoutStatus": "site_operational_country_checkout_unverified"
-        },
-        {
           "id": "solaris-victron-smartsolar-150-60-tr",
           "category": "controller",
           "merchant": "solaris_store",
@@ -2436,6 +2417,25 @@
           "applicationPacketPath": null,
           "activationFieldsNeeded": null,
           "checkoutStatus": null
+        },
+        {
+          "id": "solaris-victron-phoenix-24-250",
+          "category": "inverter",
+          "merchant": "solaris_store",
+          "productName": "Victron Phoenix 24/250 VE.Direct Schuko",
+          "status": "blocked_affiliate_verification",
+          "blocker": "affiliate_tracking_not_verified",
+          "secondaryBlocker": "market_shipping_checkout_unverified",
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 3,
+          "shippingVerified": false,
+          "stockStatus": "in_stock",
+          "nextActionOwner": "user",
+          "nextAction": "submit_ambassador_application",
+          "applicationUrl": "https://www.solaris-store.com/contact?id=partenariat-ambassadeur",
+          "applicationPacketPath": "docs/affiliate/solaris-ambassador-application.md",
+          "activationFieldsNeeded": null,
+          "checkoutStatus": "site_operational_country_checkout_unverified"
         }
       ]
     }
