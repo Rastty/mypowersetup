@@ -2,6 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { buildCommercialOpportunityBacklog, aggregateCommercialOpportunityBacklogs } from "../src/commercial-opportunity-backlog.js";
 import { COMMERCIAL_MARKET_CONFIG } from "../src/commercial-market-config.js";
 import { rankCommercialSourcingRoutes } from "../src/commercial-sourcing-priorities.js";
+import { buildCurrentCommercialOwnerActionQueue } from "../src/commercial-owner-actions.js";
 
 const OUTPUT = new URL("../data/commercial-opportunity-report.json", import.meta.url);
 
@@ -89,12 +90,16 @@ const markets = backlogs.map((backlog, index) => ({
 const generatedAt = latestTimestamp(catalogs.map((catalog) => catalog.generatedAt).filter(Boolean));
 const allMarkets = COMMERCIAL_MARKET_CONFIG.map(({ market }) => market);
 
+const currentOwnerActions = buildCurrentCommercialOwnerActionQueue(backlogs);
+
 const report = {
-  schemaVersion: 6,
+  schemaVersion: 7,
   generatedAt,
   focusMarkets: allMarkets,
   focusPortfolio: aggregateCommercialOpportunityBacklogs(backlogs),
   portfolio: aggregateCommercialOpportunityBacklogs(backlogs),
+  topCurrentOwnerAction: currentOwnerActions[0] || null,
+  currentOwnerActions,
   markets,
 };
 
