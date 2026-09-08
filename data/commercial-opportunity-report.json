@@ -1235,7 +1235,25 @@
               }
             }
           ],
-          "bestSourcingRoute": null
+          "bestSourcingRoute": {
+            "id": "ampul-eu-dcdc-12v-30a",
+            "category": "dc_charger",
+            "merchant": "ampul_eu",
+            "productName": "AMPUL DC/DC LiFePO4 charger 14.6V 30A 400W IP68",
+            "status": "blocked_market_verification",
+            "blocker": "market_shipping_checkout_unverified",
+            "secondaryBlocker": null,
+            "standaloneUnlockWeight": 0,
+            "affectedWeight": 0,
+            "shippingVerified": false,
+            "stockStatus": "in_stock",
+            "nextActionOwner": "system",
+            "nextAction": "verify_pt_ro_si_checkout",
+            "applicationUrl": null,
+            "applicationPacketPath": null,
+            "activationFieldsNeeded": null,
+            "checkoutStatus": null
+          }
         },
         {
           "category": "controller",
@@ -1712,7 +1730,25 @@
               }
             }
           ],
-          "bestSourcingRoute": null
+          "bestSourcingRoute": {
+            "id": "ampul-eu-dcdc-12v-30a",
+            "category": "dc_charger",
+            "merchant": "ampul_eu",
+            "productName": "AMPUL DC/DC LiFePO4 charger 14.6V 30A 400W IP68",
+            "status": "blocked_market_verification",
+            "blocker": "market_shipping_checkout_unverified",
+            "secondaryBlocker": null,
+            "standaloneUnlockWeight": 0,
+            "affectedWeight": 0,
+            "shippingVerified": false,
+            "stockStatus": "in_stock",
+            "nextActionOwner": "system",
+            "nextAction": "verify_pt_ro_si_checkout",
+            "applicationUrl": null,
+            "applicationPacketPath": null,
+            "activationFieldsNeeded": null,
+            "checkoutStatus": null
+          }
         },
         {
           "category": "controller",
@@ -2189,7 +2225,25 @@
               }
             }
           ],
-          "bestSourcingRoute": null
+          "bestSourcingRoute": {
+            "id": "ampul-eu-dcdc-12v-30a",
+            "category": "dc_charger",
+            "merchant": "ampul_eu",
+            "productName": "AMPUL DC/DC LiFePO4 charger 14.6V 30A 400W IP68",
+            "status": "blocked_market_verification",
+            "blocker": "market_shipping_checkout_unverified",
+            "secondaryBlocker": null,
+            "standaloneUnlockWeight": 0,
+            "affectedWeight": 0,
+            "shippingVerified": false,
+            "stockStatus": "in_stock",
+            "nextActionOwner": "system",
+            "nextAction": "verify_pt_ro_si_checkout",
+            "applicationUrl": null,
+            "applicationPacketPath": null,
+            "activationFieldsNeeded": null,
+            "checkoutStatus": null
+          }
         },
         {
           "category": "controller",

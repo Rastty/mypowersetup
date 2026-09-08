@@ -46,3 +46,27 @@ test("ranked sourcing routes omit zero-impact planning candidates", () => {
     assert.ok(routes.every((route) => route.standaloneUnlockWeight > 0 || route.affectedWeight > 0));
   }
 });
+
+
+test("category-specific routing includes secondary-only candidates without polluting the portfolio ranking", () => {
+  for (const market of ["pt-PT", "ro-RO", "sl-SI"]) {
+    const portfolioRoutes = rankCommercialSourcingRoutes(market);
+    assert.equal(portfolioRoutes.some(({ id }) => id === "ampul-eu-dcdc-12v-30a"), false);
+    assert.ok(portfolioRoutes.every((route) => route.standaloneUnlockWeight > 0 || route.affectedWeight > 0));
+
+    const dcRoutes = rankCommercialSourcingRoutes(market, { category: "dc_charger" });
+    assert.ok(dcRoutes.length >= 2, `${market}: expected secondary DC-DC sourcing routes`);
+    assert.equal(dcRoutes[0].id, "ampul-eu-dcdc-12v-30a");
+    assert.equal(dcRoutes[0].nextActionOwner, "system");
+    assert.equal(dcRoutes[0].nextAction, "verify_pt_ro_si_checkout");
+    assert.equal(dcRoutes[0].blocker, "market_shipping_checkout_unverified");
+    assert.equal(dcRoutes[0].stockStatus, "in_stock");
+
+    const butler = dcRoutes.find(({ id }) => id === "butler-victron-orion-xs-12-12-50");
+    assert.ok(butler);
+    assert.equal(butler.nextActionOwner, "user");
+    assert.equal(butler.blocker, "awin_program_approval");
+
+    assert.equal(bestCommercialSourcingRoute(market, { category: "dc_charger" }).id, "ampul-eu-dcdc-12v-30a");
+  }
+});
