@@ -11,8 +11,8 @@ const STATUS_RANK = Object.freeze({
   blocked_market_stock: 7,
 });
 
-export function rankCommercialSourcingRoutes(market) {
-  const candidates = listCommercialSourcingCandidates({ market })
+export function rankCommercialSourcingRoutes(market, { category } = {}) {
+  const candidates = listCommercialSourcingCandidates({ market, category })
     .filter((candidate) => (candidate.standaloneUnlockWeight || 0) > 0 || (candidate.affectedWeight || 0) > 0)
     .map((candidate) => Object.freeze({
       id: candidate.id,
@@ -29,6 +29,10 @@ export function rankCommercialSourcingRoutes(market) {
       stockStatus: candidate.stockStatus || null,
       nextActionOwner: candidate.nextActionOwner || null,
       nextAction: candidate.nextAction || null,
+      applicationUrl: candidate.applicationUrl || null,
+      applicationPacketPath: candidate.applicationPacketPath || null,
+      activationFieldsNeeded: candidate.activationFieldsNeeded || null,
+      checkoutStatus: candidate.checkoutStatus || null,
     }))
     .sort((a, b) =>
       b.standaloneUnlockWeight - a.standaloneUnlockWeight
@@ -41,6 +45,6 @@ export function rankCommercialSourcingRoutes(market) {
   return Object.freeze(candidates);
 }
 
-export function bestCommercialSourcingRoute(market) {
-  return rankCommercialSourcingRoutes(market)[0] || null;
+export function bestCommercialSourcingRoute(market, options = {}) {
+  return rankCommercialSourcingRoutes(market, options)[0] || null;
 }

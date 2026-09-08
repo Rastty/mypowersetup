@@ -28,7 +28,29 @@ function compactRequirement(profile) {
   };
 }
 
-function compactOpportunity(item) {
+function compactSourcingRoute(route) {
+  return route ? {
+    id: route.id,
+    category: route.category,
+    merchant: route.merchant,
+    productName: route.productName,
+    status: route.status,
+    blocker: route.blocker,
+    secondaryBlocker: route.secondaryBlocker,
+    standaloneUnlockWeight: route.standaloneUnlockWeight,
+    affectedWeight: route.affectedWeight,
+    shippingVerified: route.shippingVerified,
+    stockStatus: route.stockStatus,
+    nextActionOwner: route.nextActionOwner,
+    nextAction: route.nextAction,
+    applicationUrl: route.applicationUrl,
+    applicationPacketPath: route.applicationPacketPath,
+    activationFieldsNeeded: route.activationFieldsNeeded,
+    checkoutStatus: route.checkoutStatus,
+  } : null;
+}
+
+function compactOpportunity(item, market) {
   return {
     category: item.category,
     label: item.label,
@@ -45,6 +67,7 @@ function compactOpportunity(item) {
     secondaryScenarioIds: item.secondaryScenarioIds,
     primaryRequirements: item.primaryRequirements.map(compactRequirement),
     secondaryRequirements: item.secondaryRequirements.map(compactRequirement),
+    bestSourcingRoute: compactSourcingRoute(rankCommercialSourcingRoutes(market, { category: item.category })[0] || null),
   };
 }
 
@@ -58,16 +81,16 @@ const markets = backlogs.map((backlog, index) => ({
   componentReadyRatio: backlog.componentReadyRatio,
   portableFitRatio: backlog.portableFitRatio,
   weightedCoverage: backlog.weightedCoverage,
-  topOpportunity: backlog.opportunities[0] ? compactOpportunity(backlog.opportunities[0]) : null,
-  opportunities: backlog.opportunities.map(compactOpportunity),
-  topSourcingRoute: rankCommercialSourcingRoutes(backlog.market)[0] || null,
-  sourcingRoutes: rankCommercialSourcingRoutes(backlog.market),
+  topOpportunity: backlog.opportunities[0] ? compactOpportunity(backlog.opportunities[0], backlog.market) : null,
+  opportunities: backlog.opportunities.map((item) => compactOpportunity(item, backlog.market)),
+  topSourcingRoute: compactSourcingRoute(rankCommercialSourcingRoutes(backlog.market)[0] || null),
+  sourcingRoutes: rankCommercialSourcingRoutes(backlog.market).map(compactSourcingRoute),
 }));
 const generatedAt = latestTimestamp(catalogs.map((catalog) => catalog.generatedAt).filter(Boolean));
 const allMarkets = COMMERCIAL_MARKET_CONFIG.map(({ market }) => market);
 
 const report = {
-  schemaVersion: 5,
+  schemaVersion: 6,
   generatedAt,
   focusMarkets: allMarkets,
   focusPortfolio: aggregateCommercialOpportunityBacklogs(backlogs),
