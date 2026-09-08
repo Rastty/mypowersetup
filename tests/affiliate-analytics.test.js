@@ -143,6 +143,7 @@ test("primary portable product choices expose route priority on impressions and 
       source: "product-card",
       recommendationRole: "recommended",
       routePriority: "primary",
+      ctaVariant: "portable-primary",
     },
   };
   assert.deepEqual(buildAffiliateClickParameters(link), {
@@ -154,5 +155,6 @@ test("primary portable product choices expose route priority on impressions and 
     packageId: undefined,
     recommendationRole: "recommended",
     routePriority: "primary",
+    ctaVariant: "portable-primary",
   });
 });

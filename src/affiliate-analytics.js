@@ -9,6 +9,7 @@ export function buildAffiliateClickParameters(link) {
     packageId: link?.dataset?.packageId || undefined,
     recommendationRole: link?.dataset?.recommendationRole || undefined,
     ...(link?.dataset?.routePriority ? { routePriority: link.dataset.routePriority } : {}),
+    ...(link?.dataset?.ctaVariant ? { ctaVariant: link.dataset.ctaVariant } : {}),
   };
 }
 
