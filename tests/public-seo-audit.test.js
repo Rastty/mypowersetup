@@ -81,7 +81,7 @@ test("public SEO audit fails closed on canonical, robots, JSON-LD and article la
   }
 });
 
-test("public SEO audit requires guide hub CollectionPage and ItemList to match the visible guide links", async () => {
+test("public SEO audit requires guide hub CollectionPage and ItemList to match the visible core guide links", async () => {
   const route = "/pl/poradnik/";
   const guideRoutes = Array.from({ length: 12 }, (_, index) => `${route}guide-${index + 1}/`);
   const pageUrl = `https://mypowersetup.com${route}`;
@@ -97,7 +97,8 @@ test("public SEO audit requires guide hub CollectionPage and ItemList to match t
       { "@type": "ListItem", position: 2, name: "Poradnik", item: pageUrl },
     ],
   }];
-  const html = page({ route, schemas, body: guideRoutes.map((guide) => `<a href="${guide}">Guide</a>`).join("") });
+  const relatedCollection = `<a data-guide-hub-related href="${route}modelowe-zestawy/">Modelowe zestawy</a>`;
+  const html = page({ route, schemas, body: `${guideRoutes.map((guide) => `<a href="${guide}">Guide</a>`).join("")}${relatedCollection}` });
   const report = await auditPublicSeo({
     sitemapXml: `<urlset><url><loc>${pageUrl}</loc></url></urlset>`,
     readPage: async () => html,
