@@ -54,11 +54,13 @@ test("CZ scenario pages are canonical, indexable and carry valid calculator pres
   }
 });
 
-test("scenario hub, sitemap and robots expose all landing pages", () => {
+test("scenario funnel is discoverable from the main guide hub and declared sitemap", () => {
+  const mainGuideHub = readFileSync("pruvodce/index.html", "utf8");
   const hub = readFileSync("pruvodce/modelove-sestavy/index.html", "utf8");
   const sitemap = readFileSync("sitemap-scenarios.xml", "utf8");
   const robots = readFileSync("robots.txt", "utf8");
 
+  assert.ok(mainGuideHub.includes('href="modelove-sestavy/"'), "main CZ guide hub must link to the scenario funnel");
   assert.match(robots, /Sitemap: https:\/\/mypowersetup\.com\/sitemap-scenarios\.xml/);
   for (const scenario of SCENARIOS) {
     const path = new URL(scenario.canonical).pathname;
