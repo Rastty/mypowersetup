@@ -1,6 +1,6 @@
 {
   "schemaVersion": 6,
-  "generatedAt": "2026-09-10T08:13:00.366Z",
+  "generatedAt": "2026-09-10T08:15:02.805Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -1478,7 +1478,7 @@
     },
     {
       "market": "ro-RO",
-      "generatedAt": "2026-09-09T08:15:31.107Z",
+      "generatedAt": "2026-09-10T08:15:00.342Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
@@ -1973,7 +1973,7 @@
     },
     {
       "market": "sl-SI",
-      "generatedAt": "2026-09-09T08:15:32.629Z",
+      "generatedAt": "2026-09-10T08:15:02.805Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
