@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://mypowersetup.com/sitemap.xml
+Sitemap: https://mypowersetup.com/sitemap-scenarios.xml
 
 # Doplňkový strojově čitelný rozcestník obsahu
 # https://mypowersetup.com/llms.txt

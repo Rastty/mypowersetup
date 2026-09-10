@@ -60,7 +60,8 @@ function visibleBreadcrumbIsValid(html, market) {
 
 function guideHubLinks(html, market) {
   const routes = [];
-  for (const match of html.matchAll(/href=["']([^"']+)["']/gi)) {
+  for (const match of html.matchAll(/<a\b[^>]*\bhref=["']([^"']+)["'][^>]*>/gi)) {
+    if (/\bdata-guide-hub-related\b/i.test(match[0])) continue;
     let href = match[1].split("#")[0].split("?")[0];
     if (href.startsWith(SITE_URL)) href = href.slice(SITE_URL.length);
     if (!href.startsWith(market.guideHub) || href === market.guideHub || !href.endsWith("/")) continue;

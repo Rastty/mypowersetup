@@ -32,6 +32,28 @@ async function localTarget(sourceFile, rawUrl) {
   return { target, hash: decodeURIComponent(url.hash.slice(1)) };
 }
 
+async function declaredSitemapFiles() {
+  const robots = await readFile("robots.txt", "utf8");
+  const files = [];
+  for (const match of robots.matchAll(/^Sitemap:\s*(\S+)\s*$/gim)) {
+    const url = new URL(match[1]);
+    if (url.origin !== SITE_ORIGIN) continue;
+    const file = decodeURIComponent(url.pathname).replace(/^\//, "");
+    if (file && !files.includes(file)) files.push(file);
+  }
+  assert.ok(files.length > 0, "robots.txt must declare at least one same-origin sitemap");
+  return files;
+}
+
+async function declaredSitemapUrls() {
+  const urls = new Set();
+  for (const file of await declaredSitemapFiles()) {
+    const xml = await readFile(file, "utf8");
+    for (const match of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) urls.add(match[1]);
+  }
+  return urls;
+}
+
 test("all internal HTML links, assets and anchors resolve", async () => {
   const htmlFiles = await collectHtmlFiles();
   const cache = new Map();
@@ -65,12 +87,11 @@ test("all internal HTML links, assets and anchors resolve", async () => {
   }
 });
 
-test("sitemap URLs resolve and every canonical HTML page is listed", async () => {
-  const [sitemap, htmlFiles] = await Promise.all([
-    readFile("sitemap.xml", "utf8"),
+test("declared sitemap URLs resolve and every canonical HTML page is listed", async () => {
+  const [sitemapUrls, htmlFiles] = await Promise.all([
+    declaredSitemapUrls(),
     collectHtmlFiles(),
   ]);
-  const sitemapUrls = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]));
 
   for (const url of sitemapUrls) {
     const resolved = await localTarget("index.html", url);
@@ -82,6 +103,6 @@ test("sitemap URLs resolve and every canonical HTML page is listed", async () =>
     const html = await readFile(file, "utf8");
     const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
     assert.ok(canonical, `${file} has no canonical URL`);
-    assert.ok(sitemapUrls.has(canonical), `${file}: canonical ${canonical} is missing from sitemap.xml`);
+    assert.ok(sitemapUrls.has(canonical), `${file}: canonical ${canonical} is missing from declared sitemaps`);
   }
 });
