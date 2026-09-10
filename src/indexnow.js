@@ -4,7 +4,7 @@ export const INDEXNOW_KEY_FILE = "f89b37b1edc8eb20d1ef7029ac1fd280.txt";
 
 // Candidate home routes are filtered against the live sitemap before submission.
 // Keeping expansion routes here is therefore safe while they remain private, and
-// automatically gives them parity once publication adds them to sitemap.xml.
+// automatically gives them parity once publication adds them to a declared sitemap.
 const PUBLIC_HOME_ROUTES = Object.freeze(["/", "/sk/", "/pl/", "/hu/", "/pt/", "/si/", "/ro/"]);
 const EXPANSION_HOME_ROUTES = Object.freeze(["/pt/", "/si/", "/ro/"]);
 const SHARED_CALCULATOR_FILES = new Set([
@@ -48,6 +48,21 @@ const MARKET_HOME_FILES = Object.freeze({
     "data/products-hu.json",
   ]),
 });
+
+export function extractDeclaredSitemapFiles(robots) {
+  if (typeof robots !== "string") throw new TypeError("INDEXNOW_ROBOTS_REQUIRED");
+  const files = [];
+  for (const match of robots.matchAll(/^Sitemap:\s*(\S+)\s*$/gim)) {
+    try {
+      const url = new URL(match[1]);
+      if (url.origin !== INDEXNOW_ORIGIN || url.search || url.hash) continue;
+      const pathname = decodeURIComponent(url.pathname);
+      if (!/^\/[A-Za-z0-9._/-]+\.xml$/.test(pathname) || pathname.includes("..")) continue;
+      files.push(pathname.slice(1));
+    } catch {}
+  }
+  return [...new Set(files)];
+}
 
 export function extractSitemapUrls(xml) {
   if (typeof xml !== "string") throw new TypeError("INDEXNOW_SITEMAP_REQUIRED");
