@@ -5,6 +5,7 @@ import {
   INDEXNOW_ORIGIN,
   buildIndexNowPayload,
   changedFilesToIndexNowUrls,
+  extractDeclaredSitemapFiles,
   extractSitemapUrls,
   isIndexNowSuccess,
 } from "../src/indexnow.js";
@@ -14,11 +15,14 @@ const dryRun = args.has("--dry-run") || process.env.INDEXNOW_DRY_RUN === "1";
 const forceAll = args.has("--all") || process.env.INDEXNOW_SUBMIT_ALL === "1";
 const changedFilesPath = argumentValue("--changed-files");
 
-const [sitemapXml, key] = await Promise.all([
-  readFile("sitemap.xml", "utf8"),
+const [robots, key] = await Promise.all([
+  readFile("robots.txt", "utf8"),
   readFile(INDEXNOW_KEY_FILE, "utf8").then((value) => value.trim()),
 ]);
-const sitemapUrls = extractSitemapUrls(sitemapXml);
+const sitemapFiles = extractDeclaredSitemapFiles(robots);
+if (!sitemapFiles.length) throw new Error("INDEXNOW_SITEMAPS_UNDECLARED");
+const sitemapXmls = await Promise.all(sitemapFiles.map((file) => readFile(file, "utf8")));
+const sitemapUrls = [...new Set(sitemapXmls.flatMap(extractSitemapUrls))];
 const changedFiles = changedFilesPath
   ? (await readFile(changedFilesPath, "utf8")).split(/\r?\n/).filter(Boolean)
   : [];
@@ -31,7 +35,7 @@ if (!selectedUrls.length) {
 
 const payload = buildIndexNowPayload(selectedUrls, key);
 if (dryRun) {
-  console.log(JSON.stringify({ ok: true, dryRun: true, urlCount: payload.urlList.length, urlList: payload.urlList }, null, 2));
+  console.log(JSON.stringify({ ok: true, dryRun: true, sitemapFiles, urlCount: payload.urlList.length, urlList: payload.urlList }, null, 2));
   process.exit(0);
 }
 
@@ -55,7 +59,7 @@ try {
     process.exit(0);
   }
 
-  console.log(JSON.stringify({ ok: true, submitted: true, status: response.status, urlCount: payload.urlList.length, urlList: payload.urlList }, null, 2));
+  console.log(JSON.stringify({ ok: true, submitted: true, status: response.status, sitemapFiles, urlCount: payload.urlList.length, urlList: payload.urlList }, null, 2));
 } catch (error) {
   // Discovery notification must never block site publication or product refresh.
   console.warn(`INDEXNOW_WARNING:network:${error?.message || error}`);
