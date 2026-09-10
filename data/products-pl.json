@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-09T08:13:38.275Z",
+  "generatedAt": "2026-09-10T08:12:48.030Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16553,
-      "relevantProducts": 209
+      "parsedProducts": 16546,
+      "relevantProducts": 207
     },
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 58,
-      "relevantProducts": 21,
-      "batteries": 16,
+      "relevantProducts": 20,
+      "batteries": 15,
       "controllers": 1,
       "inverters": 1,
       "shoreChargers": 3
@@ -37,7 +37,7 @@
     },
     "ampul_pl": {
       "status": "ok",
-      "parsedProducts": 7678,
+      "parsedProducts": 7688,
       "relevantProducts": 15
     }
   },
@@ -683,37 +683,6 @@
       "specs": {
         "voltageV": null,
         "capacityAh": 140,
-        "capacityWh": 2400,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:22317_22230",
-      "merchant": "padabo_pl",
-      "name": "Akumulator żelowy EXIDE Equipment ES pojemność 210 Ah wersja ES 2400",
-      "description": "Bezobsługowy akumulator trakcyjny o wysokiej żywotnościAkumulator żelowy EXIDE Equipment Gel ES jest odpowiedni do kamperów i przyczep kempingowych. Jego konstrukcja zapewnia wyjątkową elastyczność w zakresie instalacji. Zintegrowana technologia żelowa ze stopem wapnia i odpowietrzaniem sterowanym zaworem obejmuje zakres mocy od 650 do 2400 Wh, a tym samym oferuje szeroki zakres zastosowań w najnowszych i najbardziej wymagających kamperach. Akumulator żelowy EXIDE zapewnia najwyższą możliwą stab",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory żelowe",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 2676.06,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/akumulator-zelowy-exide-equipment-es_z22317/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-zelowy-exide-equipment-es_z22317%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/7/156017_102.jpg?1704380137_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 210,
         "capacityWh": 2400,
         "powerW": null,
         "currentA": null,
@@ -5910,38 +5879,6 @@
       }
     },
     {
-      "id": "padabo_pl:107518",
-      "merchant": "padabo_pl",
-      "name": "Bateria litowa Büttner Dometic Tempra TLB100SF L3, 100 Ah",
-      "description": "Kompaktowa bateria litowa ze zoptymalizowanym zarządzaniem baterią Büttner Dometic Tempra TLB100SF L3 to akumulator litowy o pojemności 100 Ah. Dzięki zaawansowanym ogniwom HDP (High Density Power) oferuje wysoką gęstość energii w kompaktowej konstrukcji. Inteligentny system zarządzania akumulatorem zapewnia optymalne ładowanie i umożliwia podłączenie akumulatora do dowolnej ładowarki - w tym kwasowo-ołowiowej. Kompaktowy akumulator mieści się pod siedzeniem Fiata Ducato. Zoptymalizowany system ",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
-      "category": "battery",
-      "brand": "Büttner Elektronik",
-      "priceCzk": 4339.46,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/bateria-litowa-buttner-dometic-tempra-tlb100sf-l3-100-ah_z107518/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fbateria-litowa-buttner-dometic-tempra-tlb100sf-l3-100-ah_z107518%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/9/191709_102.jpg?1774290779_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 100,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 100,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_pl:107522_32861",
       "merchant": "padabo_pl",
       "name": "Litowy akumulator rozruchowy BullTron pojemność 55 Ah",
@@ -6440,7 +6377,7 @@
       "categoryPath": "Chłodzenie i ogrzewanie | Lodówki turystyczne i torby termiczne | Akcesoria do lodówek samochodowych",
       "category": "battery",
       "brand": "Mestic",
-      "priceCzk": 959.49,
+      "priceCzk": 961.03,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/dodatkowy-akumulator-do-lodowek-kompresorowych-mestic-mccm-mcc_z108321/",
@@ -6562,7 +6499,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Przetwornice napięcia",
       "category": "inverter",
       "brand": "Victron",
-      "priceCzk": 1446.57,
+      "priceCzk": 1448.89,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/przetwornica-sinusoidalna-victron-energy-12-v-1600-va-ve-direct_z109017/",
@@ -6595,7 +6532,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
       "category": "solar_panel",
       "brand": "Victron",
-      "priceCzk": 477.84,
+      "priceCzk": 478.61,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/panel-sloneczny-victron-energy-bluesolar-190-wp-mono-12-v_z109069/",
@@ -6628,7 +6565,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
       "category": "battery",
       "brand": "Renogy",
-      "priceCzk": 4057.61,
+      "priceCzk": 4064.12,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/akumulator-z-ogrzewaniem-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090/",
@@ -6852,41 +6789,6 @@
         ],
         "chargingInputVoltagesV": [
           24
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "powerqueen_eu:8327712243932",
-      "merchant": "powerqueen_eu",
-      "name": "Power Queen LiFePO4 12V 280Ah low temperature battery",
-      "description": "(Single 280Ah better: replaces 3 x 100Ah LiFePO4) 27% less space required, no cable clutter. Consistent voltage - long service life. (200A high-performance BMS, 2.56 kW continuous load) Designed with high-quality EV cells for a stable maximum output of 2.56 kW for multiple devices. The robust 200A BMS prevents voltage drops, is shock-resistant, and has a high cycle life. The surge current of 1000A@1s versProvides high-performance devices in the shortest possible time. (Auto-reset safety, all-wea",
-      "categoryPath": "Batteries",
-      "category": "battery",
-      "brand": "PQ-DE",
-      "priceCzk": 458.99,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-280ah-low-temperature-lifepo4-solar-battery",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-12v-280ah-low-temperature-lifepo4-solar-battery",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PQ-12.8V280Ah-TM-A200.webp?v=1773826378",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 280,
-        "capacityWh": 3584,
-        "powerW": null,
-        "currentA": 200,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
         ],
         "chargingBatteryTypes": [
           "lifepo4"

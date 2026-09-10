@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-09T08:13:26.329Z",
+  "generatedAt": "2026-09-10T08:12:35.266Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16542,
-      "relevantProducts": 253
+      "parsedProducts": 16538,
+      "relevantProducts": 251
     },
     "allpowers_eu": {
       "status": "ok",
@@ -17,8 +17,8 @@
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 58,
-      "relevantProducts": 21,
-      "batteries": 16,
+      "relevantProducts": 20,
+      "batteries": 15,
       "controllers": 1,
       "inverters": 1,
       "shoreChargers": 3
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7678,
+      "parsedProducts": 7688,
       "relevantProducts": 15
     }
   },
@@ -815,37 +815,6 @@
       "specs": {
         "voltageV": null,
         "capacityAh": 140,
-        "capacityWh": 2400,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:22317_22230",
-      "merchant": "padabo_sk",
-      "name": "Zariadenia EXIDE Gélová batéria ES kapacita 210 Ah variant ES 2400",
-      "description": "Bezúdržbová trakčná batéria s vysokou životnosťouGélovábatéria EXIDE Equipment Gel ES je vhodná pre obytné vozidlá a karavany. Jej konštrukcia poskytuje mimoriadnu flexibilitu z hľadiska inštalácie. Integrovaná gélová technológia so zliatinou vápnika a ventilom riadeným odvzdušňovaním pokrýva rozsah výkonu od 650 do 2400 Wh, a tak ponúka široké možnosti použitia v najnovších a najnáročnejších obytných vozidlách. Gélová batéria EXIDE poskytuje najvyššiu možnú stabilitu cyklov: pri hĺbke vybitia 5",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Gélové batérie",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 600.74,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/156017_102.jpg?1704380137_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 210,
         "capacityWh": 2400,
         "powerW": null,
         "currentA": null,
@@ -7193,38 +7162,6 @@
       }
     },
     {
-      "id": "padabo_sk:107518",
-      "merchant": "padabo_sk",
-      "name": "Lítiová batéria Büttner Dometic Tempra TLB100SF L3, 100 Ah",
-      "description": "Kompaktná lítiová batéria s optimalizovaným riadením Büttner Dometic Tempra TLB100SF L3 je lítiová batéria s kapacitou 100 Ah. Vďaka pokročilým článkom HDP (High Density Power) ponúka vysokú hustotu energie v kompaktnom prevedení. Inteligentný systém riadenia batérie zabezpečuje optimálne nabíjanie a umožňuje pripojenie batérie k akejkoľvek nabíjačke - vrátane olovenej. Kompaktná batéria sa zmestí pod sedadlo Fiatu Ducato. Optimalizovaný systém riadenia batérie zabezpečuje maximálnu účinnosť a p",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
-      "category": "battery",
-      "brand": "Büttner Elektronik",
-      "priceCzk": 974.17,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/litiova-bateria-buttner-dometic-tempra-tlb100sf-l3-100-ah_z107518/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-buttner-dometic-tempra-tlb100sf-l3-100-ah_z107518%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/191709_102.jpg?1774290779_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 100,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 100,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:107522_32861",
       "merchant": "padabo_sk",
       "name": "Štartovacia lítiová batéria BullTron kapacita 55 Ah",
@@ -8029,7 +7966,7 @@
       "brand": "ALLPOWERS",
       "priceCzk": 139,
       "priceCurrency": "EUR",
-      "available": true,
+      "available": false,
       "productUrl": "https://iallpowers.eu/products/allpowers-sp034-portable-solar-panel-120w",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-sp034-portable-solar-panel-120w",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/products/ALLPOWERS-SP034-Portable-Solar-Panel-120W-ALLPOWERS-30163570.jpg?v=1755061816",
@@ -9050,41 +8987,6 @@
         ],
         "chargingInputVoltagesV": [
           24
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "powerqueen_eu:8327712243932",
-      "merchant": "powerqueen_eu",
-      "name": "Power Queen LiFePO4 12V 280Ah low temperature battery",
-      "description": "(Single 280Ah better: replaces 3 x 100Ah LiFePO4) 27% less space required, no cable clutter. Consistent voltage - long service life. (200A high-performance BMS, 2.56 kW continuous load) Designed with high-quality EV cells for a stable maximum output of 2.56 kW for multiple devices. The robust 200A BMS prevents voltage drops, is shock-resistant, and has a high cycle life. The surge current of 1000A@1s versProvides high-performance devices in the shortest possible time. (Auto-reset safety, all-wea",
-      "categoryPath": "Batteries",
-      "category": "battery",
-      "brand": "PQ-DE",
-      "priceCzk": 458.99,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-280ah-low-temperature-lifepo4-solar-battery",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-12v-280ah-low-temperature-lifepo4-solar-battery",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PQ-12.8V280Ah-TM-A200.webp?v=1773826378",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 280,
-        "capacityWh": 3584,
-        "powerW": null,
-        "currentA": 200,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
         ],
         "chargingBatteryTypes": [
           "lifepo4"
