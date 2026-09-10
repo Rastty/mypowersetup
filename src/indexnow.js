@@ -2,11 +2,16 @@ export const INDEXNOW_HOST = "mypowersetup.com";
 export const INDEXNOW_ORIGIN = `https://${INDEXNOW_HOST}`;
 export const INDEXNOW_KEY_FILE = "f89b37b1edc8eb20d1ef7029ac1fd280.txt";
 
-// Candidate home routes are filtered against the live sitemap before submission.
+// Candidate home routes are filtered against the declared public sitemaps before submission.
 // Keeping expansion routes here is therefore safe while they remain private, and
 // automatically gives them parity once publication adds them to a declared sitemap.
 const PUBLIC_HOME_ROUTES = Object.freeze(["/", "/sk/", "/pl/", "/hu/", "/pt/", "/si/", "/ro/"]);
 const EXPANSION_HOME_ROUTES = Object.freeze(["/pt/", "/si/", "/ro/"]);
+const INDEXNOW_INFRASTRUCTURE_FILES = new Set([
+  "robots.txt",
+  "src/indexnow.js",
+  "scripts/submit-indexnow.mjs",
+]);
 const SHARED_CALCULATOR_FILES = new Set([
   "styles.css",
   "src/charging.js",
@@ -80,7 +85,8 @@ export function extractSitemapUrls(xml) {
 export function changedFilesToIndexNowUrls(changedFiles, sitemapUrls, { forceAll = false } = {}) {
   const allowed = new Set((sitemapUrls || []).filter(isOwnedPublicUrl));
   const files = [...new Set((changedFiles || []).map(normalizeRepoPath).filter(Boolean))];
-  if (forceAll || files.includes(INDEXNOW_KEY_FILE)) return [...allowed].sort();
+  const discoverySurfaceChanged = files.some((file) => INDEXNOW_INFRASTRUCTURE_FILES.has(file) || /^sitemap(?:-[A-Za-z0-9._-]+)?\.xml$/.test(file));
+  if (forceAll || files.includes(INDEXNOW_KEY_FILE) || discoverySurfaceChanged) return [...allowed].sort();
 
   const selected = new Set();
   const includeRoute = (route) => {
