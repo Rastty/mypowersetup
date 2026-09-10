@@ -1,21 +1,34 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { readFile, readdir } from "node:fs/promises";
-import { join } from "node:path";
+import { readFile } from "node:fs/promises";
 
-const guideRoots = ["pruvodce", "sk/sprievodca", "pl/poradnik", "hu/utmutatok"];
+const guideRoots = ["/pruvodce/", "/sk/sprievodca/", "/pl/poradnik/", "/hu/utmutatok/"];
+
+function directGuideRoutes(sitemap, prefix) {
+  const routes = [...sitemap.matchAll(/<loc>https:\/\/mypowersetup\.com([^<]*)<\/loc>/g)]
+    .map((match) => match[1] || "/")
+    .filter((route) => route.startsWith(prefix) && route !== prefix);
+  return routes.filter((route) => {
+    const remainder = route.slice(prefix.length);
+    return remainder.endsWith("/") && !remainder.slice(0, -1).includes("/");
+  });
+}
+
+function routeFile(route) {
+  return `${route.slice(1)}index.html`;
+}
 
 test("mature-market guide titles and descriptions fit useful search-snippet bounds", async () => {
+  const sitemap = await readFile("sitemap.xml", "utf8");
   const titles = new Set();
   const descriptions = new Set();
 
   for (const root of guideRoots) {
-    const entries = await readdir(root, { withFileTypes: true });
-    const guideDirectories = entries.filter((entry) => entry.isDirectory());
-    assert.equal(guideDirectories.length, 12, `${root} guide coverage changed`);
+    const guideRoutes = directGuideRoutes(sitemap, root);
+    assert.equal(guideRoutes.length, 12, `${root} core guide coverage changed`);
 
-    for (const entry of guideDirectories) {
-      const file = join(root, entry.name, "index.html");
+    for (const route of guideRoutes) {
+      const file = routeFile(route);
       const html = await readFile(file, "utf8");
       const title = html.match(/<title>([^<]+)<\/title>/)?.[1] ?? "";
       const description = html.match(/<meta name="description" content="([^"]+)">/)?.[1] ?? "";
