@@ -2,12 +2,14 @@ import { buildAnalyticsContext } from "./analytics-context.js";
 import { classifyGuideCalculatorLink, classifyGuideCalculatorPosition, classifyGuideClickZone, classifyGuideInternalLink } from "./analytics-links.js";
 import { resolveCommunityAttribution } from "./community-attribution.js";
 import { carryCommunityAttributionToUrl } from "./community-navigation.js";
+import { resolveScenarioAttribution } from "./scenario-attribution.js";
 import { enhanceHomepageLanguageSwitch } from "./language-switch.js";
 
 const MEASUREMENT_ID = "G-TDNRBM2V2J";
 const CONSENT_KEY = "mypowersetup_analytics_consent";
 const VALID_CHOICES = new Set(["granted", "denied"]);
 const ONCE_PER_PAGE_EVENTS = new Set(["calculator_started"]);
+const INITIAL_SEARCH = window.location.search;
 const trackedOnce = new Set();
 
 const COPY = {
@@ -38,7 +40,8 @@ function loadGoogleTag() {
 function currentContext() {
   const page = buildAnalyticsContext({ lang: document.documentElement.lang, pathname: window.location.pathname, hasCalculator: Boolean(document.querySelector("#setup-form")) });
   const community = choice === "granted" ? resolveCommunityAttribution({ search: window.location.search, storage: window.sessionStorage }) : null;
-  return Object.freeze({ ...page, ...(community || {}) });
+  const scenario = choice === "granted" ? resolveScenarioAttribution({ search: window.location.search, initialSearch: INITIAL_SEARCH, storage: window.sessionStorage }) : null;
+  return Object.freeze({ ...page, ...(community || {}), ...(scenario || {}) });
 }
 function track(event, parameters = {}) {
   if (choice !== "granted" || typeof window.gtag !== "function") return false;
