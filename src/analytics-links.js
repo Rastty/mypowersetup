@@ -1,4 +1,5 @@
 import { classifyPublicGuideLink } from "./public-conversion-funnel.js";
+import { readScenarioAttribution } from "./scenario-attribution.js";
 
 const CALCULATOR_HASH_BY_PATH = Object.freeze({
   "/": "#kalkulator",
@@ -23,7 +24,8 @@ export function classifyGuideCalculatorLink(href, { origin = "https://mypowerset
   const expectedHash = CALCULATOR_HASH_BY_PATH[url.pathname];
   if (!expectedHash || url.hash !== expectedHash) return null;
 
-  return Object.freeze({ destination_path: url.pathname });
+  const scenario = readScenarioAttribution(url.search);
+  return Object.freeze({ destination_path: url.pathname, ...(scenario || {}) });
 }
 
 export function classifyGuideInternalLink(href, { origin = "https://mypowersetup.com", sourcePath = "/" } = {}) {

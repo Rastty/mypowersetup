@@ -12,6 +12,17 @@ test("guide calculator classifier accepts exact calculator anchors for all publi
   assert.deepEqual(classifyGuideCalculatorLink("/ro/#calculator-preview"), { destination_path: "/ro/" });
 });
 
+test("scenario calculator links expose the campaign on the guide click event", () => {
+  assert.deepEqual(
+    classifyGuideCalculatorLink("/?loads=fridge:8:1&utm_source=scenario_page&utm_medium=internal&utm_campaign=family#kalkulator"),
+    { destination_path: "/", scenario_source: "scenario_page", scenario_campaign: "family" },
+  );
+  assert.deepEqual(
+    classifyGuideCalculatorLink("/?utm_source=scenario_page&utm_medium=community&utm_campaign=family#kalkulator"),
+    { destination_path: "/" },
+  );
+});
+
 test("guide calculator classifier rejects stale anchors, external, malformed and non-calculator links", () => {
   assert.equal(classifyGuideCalculatorLink("https://evil.example/#kalkulator"), null);
   assert.equal(classifyGuideCalculatorLink("/pruvodce/#kalkulator"), null);
