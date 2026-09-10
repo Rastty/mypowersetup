@@ -32,6 +32,14 @@ test("PL weekend scenario is canonical, indexable and carries a valid calculator
   assert.equal(config.systemVoltage, "auto");
 });
 
+test("PL weekend scenario answers 100 Ah intent and states the cold-charge boundary", () => {
+  const html = readFileSync(PAGE, "utf8");
+  assert.match(html, /czy 100 Ah wystarczy/i);
+  assert.match(html, /132 Ah LiFePO₄/);
+  assert.match(html, /poniżej 0 °C/);
+  assert.match(html, /victronenergy\.com/);
+});
+
 test("PL weekend scenario is linked from the Polish guide hub and scenario sitemap", () => {
   const guideHub = readFileSync("pl/poradnik/index.html", "utf8");
   const sitemap = readFileSync("sitemap-scenarios.xml", "utf8");
