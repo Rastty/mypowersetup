@@ -59,7 +59,11 @@ export function extractDeclaredSitemapFiles(robots) {
   const files = [];
   for (const match of robots.matchAll(/^Sitemap:\s*(\S+)\s*$/gim)) {
     try {
-      const url = new URL(match[1]);
+      const rawUrl = match[1];
+      // URL normalizes encoded dot segments (for example /%2e%2e/private.xml)
+      // before pathname inspection, so reject encoded dots before parsing.
+      if (/%2e/i.test(rawUrl)) continue;
+      const url = new URL(rawUrl);
       if (url.origin !== INDEXNOW_ORIGIN || url.search || url.hash) continue;
       const pathname = decodeURIComponent(url.pathname);
       if (!/^\/[A-Za-z0-9._/-]+\.xml$/.test(pathname) || pathname.includes("..")) continue;
