@@ -39,3 +39,14 @@ test("PL weekend scenario is linked from the Polish guide hub and scenario sitem
   assert.ok(guideHub.includes(`href="${path}"`), "Polish guide hub must link to the weekend scenario");
   assert.ok(sitemap.includes(`<loc>${CANONICAL}</loc>`), "PL weekend scenario must be in the declared scenario sitemap");
 });
+
+test("PL battery and solar intent pages route readers into the weekend scenario", () => {
+  const path = new URL(CANONICAL).pathname;
+  for (const guide of [
+    "pl/poradnik/pojemnosc-akumulatora-do-kampera/index.html",
+    "pl/poradnik/ile-wat-paneli-solarnych-do-kampera/index.html",
+  ]) {
+    const html = readFileSync(guide, "utf8");
+    assert.ok(html.includes(`href="${path}"`), `${guide} must link to the PL weekend scenario`);
+  }
+});
