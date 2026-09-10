@@ -2,12 +2,14 @@ const AWIN_HOSTS = new Set(["www.awin1.com", "awin1.com"]);
 const SAFE_VALUE = /^[a-z0-9_-]{1,64}$/;
 const ROLE_VALUES = new Set(["recommended", "budget", "reserve", "alternative"]);
 const PRIORITY_VALUES = new Set(["primary", "secondary"]);
+const SOURCE_VALUES = new Set(["package", "product-card"]);
 
 export function decorateAwinAffiliateUrl(input, {
   market,
   category,
   recommendationRole,
   routePriority,
+  source,
 } = {}) {
   let url;
   try {
@@ -28,8 +30,9 @@ export function decorateAwinAffiliateUrl(input, {
     url.searchParams.set("clickref2", `role_${recommendationRole}`);
   }
 
-  if (PRIORITY_VALUES.has(routePriority) && !url.searchParams.has("clickref3")) {
-    url.searchParams.set("clickref3", `priority_${routePriority}`);
+  if (!url.searchParams.has("clickref3")) {
+    if (PRIORITY_VALUES.has(routePriority)) url.searchParams.set("clickref3", `priority_${routePriority}`);
+    else if (SOURCE_VALUES.has(source)) url.searchParams.set("clickref3", `source_${source}`);
   }
 
   return url.toString();

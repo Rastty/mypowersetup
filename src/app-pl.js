@@ -15,6 +15,7 @@ import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
 import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
+import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-product-impressions1";
 
 const form = document.querySelector("#setup-form");
@@ -553,7 +554,11 @@ function renderProductPackages(variants) {
 function packageProductLink(category, product, packageId) {
   const quantity = product.recommendedQuantity || 1;
   const quantityLabel = quantity > 1 ? `${quantity} szt. · ` : "";
-  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(merchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("pl", merchantLabel(product.merchant)))}</a></li>`;
+  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(merchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(attributedAwinUrl(product, category, packageId === "economy" ? "budget" : packageId, "package"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("pl", merchantLabel(product.merchant)))}</a></li>`;
+}
+
+function attributedAwinUrl(product, category, recommendationRole, source) {
+  return decorateAwinAffiliateUrl(product?.affiliateUrl, { market: "pl", category, recommendationRole, source });
 }
 
 function packageCategoryLabel(category) {
@@ -578,7 +583,7 @@ function productCard(product, reason, checks, verify, recommendationRole) {
         ${sourceNote}
         <div class="product-card-action">
           <span class="product-price"><strong>${formatPrice(product.priceCzk, product.priceCurrency)}</strong><small>${sourceIsStale ? "Cena z ostatniego poprawnego importu" : "Cena z katalogu produktowego"}</small></span>
-          <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-recommendation-role="${escapeHtml(recommendationRole)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("pl", merchantLabel(product.merchant)))}</a>
+          <a href="${escapeHtml(attributedAwinUrl(product, product.category, recommendationRole, "product-card"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-recommendation-role="${escapeHtml(recommendationRole)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("pl", merchantLabel(product.merchant)))}</a>
         </div>
       </div>
     </article>
