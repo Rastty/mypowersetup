@@ -42,6 +42,17 @@ test("all markets use one shared calculator-to-guide event", async () => {
   assert.doesNotMatch(expansion, /calculator_(?:result|component)_guide_click/);
 });
 
+test("scenario attribution is merged into the shared tracker used by affiliate clicks", async () => {
+  const analytics = await readFile(new URL("../src/analytics.js", import.meta.url), "utf8");
+  const app = await readFile(new URL("../src/app.js", import.meta.url), "utf8");
+  assert.match(analytics, /resolveScenarioAttribution\(/);
+  assert.match(analytics, /initialSearch:\s*INITIAL_SEARCH/);
+  assert.match(analytics, /\.\.\.\(scenario \|\| \{\}\)/);
+  assert.match(analytics, /window\.gtag\("event", event, \{ \.\.\.parameters, \.\.\.currentContext\(\) \}\)/);
+  assert.match(app, /trackAffiliateClick\(link, trackEvent\)/);
+  assert.match(app, /MyPowerSetupAnalytics\?\.track\(event, parameters\)/);
+});
+
 test("expansion calculation_completed uses mature-market parameter names", async () => {
   const expansion = await readFile(expansionBrowserFile, "utf8");
   for (const parameter of ["dailyWh", "batteryAh", "solarWatts", "systemVoltage", "applianceCount", "batteryType", "season"]) {
