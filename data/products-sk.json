@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-10T08:12:35.266Z",
+  "generatedAt": "2026-09-11T08:07:45.402Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16538,
-      "relevantProducts": 251
+      "parsedProducts": 16554,
+      "relevantProducts": 252
     },
     "allpowers_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7688,
+      "parsedProducts": 7689,
       "relevantProducts": 15
     }
   },
@@ -555,7 +555,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
+      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -2646,6 +2646,41 @@
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:25942_27403",
+      "merchant": "padabo_sk",
+      "name": "Lítiové batérie Super B Nomia 12 V kapacita 210 Ah",
+      "description": "Lítiová batéria s integrovaným systémom riadenia batérieBatérie Super B LiFePO4 od spoločnosti Nomia boli vyvinuté ako náhrada za kyselinové batérie a vo všetkých ohľadoch spĺňajú vysoké nároky kladené na najmodernejšie batérie na súčasnom trhu. Tento typ batérií využíva cyklicky odolné a bezpečné články LiFePO4. Vďaka nim sú batérie LiFePO4 zároveň jednými z najodolnejších lítium-iónových batérií na trhu. Batéria Super B Nomia má tiež integrovaný systém riadenia batérie(BMS), ktorý ju chráni pr",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
+      "category": "battery",
+      "brand": "Super B",
+      "priceCzk": 4121.26,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/litiove-baterie-super-b-nomia-12-v_z25942/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiove-baterie-super-b-nomia-12-v_z25942%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/159753_102.jpg?1704380267_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 210,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
       }
