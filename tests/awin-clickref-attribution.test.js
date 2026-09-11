@@ -49,10 +49,12 @@ test("unsafe attribution values are never written to the affiliate URL", () => {
     category: "battery space",
     recommendationRole: "unknown",
     routePriority: "other",
+    scenarioCampaign: "pl weekend<script>",
   }));
   assert.equal(url.searchParams.has("clickref"), false);
   assert.equal(url.searchParams.has("clickref2"), false);
   assert.equal(url.searchParams.has("clickref3"), false);
+  assert.equal(url.searchParams.has("clickref4"), false);
 });
 
 test("expansion product renderer decorates the outbound href while preserving analytics dimensions", async () => {
@@ -64,7 +66,6 @@ test("expansion product renderer decorates the outbound href while preserving an
   assert.match(source, /data-category=/);
   assert.match(source, /data-merchant=/);
 });
-
 
 test("mature-market source attribution uses clickref3 when route priority is absent", () => {
   const packageUrl = new URL(decorateAwinAffiliateUrl(awin, {
@@ -86,4 +87,55 @@ test("mature-market source attribution uses clickref3 when route priority is abs
   assert.equal(cardUrl.searchParams.get("clickref"), "mps_hu_inverter");
   assert.equal(cardUrl.searchParams.get("clickref2"), "role_recommended");
   assert.equal(cardUrl.searchParams.get("clickref3"), "source_product-card");
+});
+
+test("scenario campaign is written to clickref4 without disturbing existing dimensions", () => {
+  const url = new URL(decorateAwinAffiliateUrl(awin, {
+    market: "pl",
+    category: "battery",
+    recommendationRole: "recommended",
+    source: "product-card",
+    scenarioCampaign: "pl_weekend",
+  }));
+  assert.equal(url.searchParams.get("clickref"), "mps_pl_battery");
+  assert.equal(url.searchParams.get("clickref2"), "role_recommended");
+  assert.equal(url.searchParams.get("clickref3"), "source_product-card");
+  assert.equal(url.searchParams.get("clickref4"), "scenario_pl_weekend");
+});
+
+test("scenario clickref4 is inferred from the consented browser analytics context", () => {
+  const previousWindow = globalThis.window;
+  globalThis.window = {
+    MyPowerSetupAnalytics: {
+      context: () => ({ scenario_source: "scenario_page", scenario_campaign: "pl_weekend" }),
+    },
+  };
+  try {
+    const url = new URL(decorateAwinAffiliateUrl(awin, {
+      market: "pl",
+      category: "battery",
+      recommendationRole: "recommended",
+      source: "product-card",
+    }));
+    assert.equal(url.searchParams.get("clickref4"), "scenario_pl_weekend");
+  } finally {
+    if (previousWindow === undefined) delete globalThis.window;
+    else globalThis.window = previousWindow;
+  }
+});
+
+test("pre-existing clickref4 is preserved and overlong scenario references are rejected", () => {
+  const existing = new URL(decorateAwinAffiliateUrl(`${awin}&clickref4=existing_scenario`, {
+    market: "pl",
+    category: "battery",
+    scenarioCampaign: "pl_weekend",
+  }));
+  assert.equal(existing.searchParams.get("clickref4"), "existing_scenario");
+
+  const tooLong = new URL(decorateAwinAffiliateUrl(awin, {
+    market: "pl",
+    category: "battery",
+    scenarioCampaign: "a".repeat(64),
+  }));
+  assert.equal(tooLong.searchParams.has("clickref4"), false);
 });

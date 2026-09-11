@@ -10,6 +10,7 @@ export function decorateAwinAffiliateUrl(input, {
   recommendationRole,
   routePriority,
   source,
+  scenarioCampaign,
 } = {}) {
   let url;
   try {
@@ -35,7 +36,27 @@ export function decorateAwinAffiliateUrl(input, {
     else if (SOURCE_VALUES.has(source)) url.searchParams.set("clickref3", `source_${source}`);
   }
 
+  const scenarioRef = buildScenarioClickRef(scenarioCampaign ?? activeScenarioCampaign());
+  if (scenarioRef && !url.searchParams.has("clickref4")) {
+    url.searchParams.set("clickref4", scenarioRef);
+  }
+
   return url.toString();
+}
+
+function buildScenarioClickRef(value) {
+  const normalized = safeToken(value);
+  if (!normalized) return null;
+  const clickRef = `scenario_${normalized}`;
+  return clickRef.length <= 50 ? clickRef : null;
+}
+
+function activeScenarioCampaign() {
+  try {
+    return globalThis.window?.MyPowerSetupAnalytics?.context?.()?.scenario_campaign || null;
+  } catch {
+    return null;
+  }
 }
 
 function safeToken(value) {
