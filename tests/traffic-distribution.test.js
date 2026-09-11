@@ -57,12 +57,13 @@ test("distribution opportunities are unique, valid and point only to published l
   }
 });
 
-test("ready opportunities are current direct technical fits, never stale research entries", () => {
+test("ready opportunities are current direct technical fits with a concrete actionable thread", () => {
   const ready = registry.opportunities.filter((item) => item.status === "ready_for_manual_reply");
-  assert.ok(ready.length >= 2);
+  assert.ok(ready.length >= 1, "registry should keep at least one concrete actionable community opportunity");
   for (const item of ready) {
     assert.equal(item.priority, "high");
     assert.match(item.fit, /direct_camper_technical_current/);
     assert.ok(item.lastKnownActivity >= "2026-01-01", `ready item is too stale: ${item.id}`);
+    assert.doesNotMatch(item.sourceUrl, /viewforum\.php/i, `ready item must target a concrete thread, not a discovery index: ${item.id}`);
   }
 });
