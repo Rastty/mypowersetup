@@ -19,9 +19,9 @@ const COPY = {
     controllerNeed: ({ controllerAmps, systemVoltage }) => `Výstup MPPT musí pokrýt alespoň ${controllerAmps} A do ${systemVoltage}V baterie.`,
     batteryNeed: ({ batteryAh, systemVoltage, batteryLabel }) => `Nástavbová baterie: alespoň ${batteryAh} Ah při ${systemVoltage} V${batteryLabel ? ` · ${batteryLabel}` : ""}.`,
     inverterNeed: ({ inverterWatts, wiring }) => `Měnič ${inverterWatts} W: ${wiringSummary(wiring, "cs")}`,
-    dcDcInputNeed: ({ charging }) => `DC–DC ${charging.dcDc.suggestedCurrentAmps || charging.dcDc.requiredCurrentAmps} A: odhad vstupního proudu ${charging.dcDc.estimatedInputCurrentAmps || "?"} A; ${wiringSummary(charging.dcDc.inputWiring, "cs")}`,
-    dcDcOutputNeed: ({ charging, systemVoltage }) => `Výstup DC–DC alespoň ${charging.dcDc.suggestedCurrentAmps || charging.dcDc.requiredCurrentAmps} A do ${systemVoltage}V baterie.`,
-    shoreNeed: ({ charging, systemVoltage }) => `Síťová nabíječka: alespoň ${charging.shore.suggestedCurrentAmps || charging.shore.requiredCurrentAmps} A pro ${systemVoltage}V baterii.`,
+    dcDcInputNeed: ({ charging }) => `DC–DC ${chargingCurrent(charging.dcDc)} A: odhad vstupního proudu ${charging.dcDc.estimatedInputCurrentAmps || "?"} A; ${wiringSummary(charging.dcDc.inputWiring, "cs")}`,
+    dcDcOutputNeed: ({ charging, systemVoltage }) => `Výstup DC–DC alespoň ${chargingCurrent(charging.dcDc)} A do ${systemVoltage}V baterie.`,
+    shoreNeed: ({ charging, systemVoltage }) => `Síťová nabíječka: alespoň ${chargingCurrent(charging.shore)} A pro ${systemVoltage}V baterii.`,
   },
   sk: {
     solarToController: "Solárne panely → MPPT regulátor",
@@ -43,9 +43,9 @@ const COPY = {
     controllerNeed: ({ controllerAmps, systemVoltage }) => `Výstup MPPT musí pokryť aspoň ${controllerAmps} A do ${systemVoltage}V batérie.`,
     batteryNeed: ({ batteryAh, systemVoltage, batteryLabel }) => `Nadstavbová batéria: aspoň ${batteryAh} Ah pri ${systemVoltage} V${batteryLabel ? ` · ${batteryLabel}` : ""}.`,
     inverterNeed: ({ inverterWatts, wiring }) => `Menič ${inverterWatts} W: ${wiringSummary(wiring, "sk")}`,
-    dcDcInputNeed: ({ charging }) => `DC–DC ${charging.dcDc.suggestedCurrentAmps || charging.dcDc.requiredCurrentAmps} A: odhad vstupného prúdu ${charging.dcDc.estimatedInputCurrentAmps || "?"} A; ${wiringSummary(charging.dcDc.inputWiring, "sk")}`,
-    dcDcOutputNeed: ({ charging, systemVoltage }) => `Výstup DC–DC aspoň ${charging.dcDc.suggestedCurrentAmps || charging.dcDc.requiredCurrentAmps} A do ${systemVoltage}V batérie.`,
-    shoreNeed: ({ charging, systemVoltage }) => `Sieťová nabíjačka: aspoň ${charging.shore.suggestedCurrentAmps || charging.shore.requiredCurrentAmps} A pre ${systemVoltage}V batériu.`,
+    dcDcInputNeed: ({ charging }) => `DC–DC ${chargingCurrent(charging.dcDc)} A: odhad vstupného prúdu ${charging.dcDc.estimatedInputCurrentAmps || "?"} A; ${wiringSummary(charging.dcDc.inputWiring, "sk")}`,
+    dcDcOutputNeed: ({ charging, systemVoltage }) => `Výstup DC–DC aspoň ${chargingCurrent(charging.dcDc)} A do ${systemVoltage}V batérie.`,
+    shoreNeed: ({ charging, systemVoltage }) => `Sieťová nabíjačka: aspoň ${chargingCurrent(charging.shore)} A pre ${systemVoltage}V batériu.`,
   },
   pl: {
     solarToController: "Panele fotowoltaiczne → regulator MPPT",
@@ -67,9 +67,9 @@ const COPY = {
     controllerNeed: ({ controllerAmps, systemVoltage }) => `Wyjście MPPT musi zapewnić co najmniej ${controllerAmps} A do akumulatora ${systemVoltage} V.`,
     batteryNeed: ({ batteryAh, systemVoltage, batteryLabel }) => `Akumulator pokładowy: co najmniej ${batteryAh} Ah przy ${systemVoltage} V${batteryLabel ? ` · ${batteryLabel}` : ""}.`,
     inverterNeed: ({ inverterWatts, wiring }) => `Przetwornica ${inverterWatts} W: ${wiringSummary(wiring, "pl")}`,
-    dcDcInputNeed: ({ charging }) => `DC–DC ${charging.dcDc.suggestedCurrentAmps || charging.dcDc.requiredCurrentAmps} A: szacowany prąd wejściowy ${charging.dcDc.estimatedInputCurrentAmps || "?"} A; ${wiringSummary(charging.dcDc.inputWiring, "pl")}`,
-    dcDcOutputNeed: ({ charging, systemVoltage }) => `Wyjście DC–DC co najmniej ${charging.dcDc.suggestedCurrentAmps || charging.dcDc.requiredCurrentAmps} A do akumulatora ${systemVoltage} V.`,
-    shoreNeed: ({ charging, systemVoltage }) => `Ładowarka sieciowa: co najmniej ${charging.shore.suggestedCurrentAmps || charging.shore.requiredCurrentAmps} A dla akumulatora ${systemVoltage} V.`,
+    dcDcInputNeed: ({ charging }) => `DC–DC ${chargingCurrent(charging.dcDc)} A: szacowany prąd wejściowy ${charging.dcDc.estimatedInputCurrentAmps || "?"} A; ${wiringSummary(charging.dcDc.inputWiring, "pl")}`,
+    dcDcOutputNeed: ({ charging, systemVoltage }) => `Wyjście DC–DC co najmniej ${chargingCurrent(charging.dcDc)} A do akumulatora ${systemVoltage} V.`,
+    shoreNeed: ({ charging, systemVoltage }) => `Ładowarka sieciowa: co najmniej ${chargingCurrent(charging.shore)} A dla akumulatora ${systemVoltage} V.`,
   },
   hu: {
     solarToController: "Napelemek → MPPT töltésszabályozó",
@@ -91,9 +91,9 @@ const COPY = {
     controllerNeed: ({ controllerAmps, systemVoltage }) => `Az MPPT kimenete legalább ${controllerAmps} A legyen a ${systemVoltage} V-os akkumulátorhoz.`,
     batteryNeed: ({ batteryAh, systemVoltage, batteryLabel }) => `Lakótéri akkumulátor: legalább ${batteryAh} Ah, ${systemVoltage} V${batteryLabel ? ` · ${batteryLabel}` : ""}.`,
     inverterNeed: ({ inverterWatts, wiring }) => `${inverterWatts} W-os inverter: ${wiringSummary(wiring, "hu")}`,
-    dcDcInputNeed: ({ charging }) => `${charging.dcDc.suggestedCurrentAmps || charging.dcDc.requiredCurrentAmps} A-es DC–DC: becsült bemeneti áram ${charging.dcDc.estimatedInputCurrentAmps || "?"} A; ${wiringSummary(charging.dcDc.inputWiring, "hu")}`,
-    dcDcOutputNeed: ({ charging, systemVoltage }) => `A DC–DC kimenete legalább ${charging.dcDc.suggestedCurrentAmps || charging.dcDc.requiredCurrentAmps} A legyen a ${systemVoltage} V-os akkumulátorhoz.`,
-    shoreNeed: ({ charging, systemVoltage }) => `Hálózati töltő: legalább ${charging.shore.suggestedCurrentAmps || charging.shore.requiredCurrentAmps} A a ${systemVoltage} V-os akkumulátorhoz.`,
+    dcDcInputNeed: ({ charging }) => `${chargingCurrent(charging.dcDc)} A-es DC–DC: becsült bemeneti áram ${charging.dcDc.estimatedInputCurrentAmps || "?"} A; ${wiringSummary(charging.dcDc.inputWiring, "hu")}`,
+    dcDcOutputNeed: ({ charging, systemVoltage }) => `A DC–DC kimenete legalább ${chargingCurrent(charging.dcDc)} A legyen a ${systemVoltage} V-os akkumulátorhoz.`,
+    shoreNeed: ({ charging, systemVoltage }) => `Hálózati töltő: legalább ${chargingCurrent(charging.shore)} A a ${systemVoltage} V-os akkumulátorhoz.`,
   },
 };
 
@@ -103,6 +103,17 @@ function formatNumber(value, locale) {
   const number = Number(value);
   if (!Number.isFinite(number)) return "?";
   return new Intl.NumberFormat(LOCALE_TAG[locale] || LOCALE_TAG.cs, { maximumFractionDigits: 1 }).format(number);
+}
+
+function isPositiveNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0;
+}
+
+function chargingCurrent(option) {
+  if (isPositiveNumber(option?.suggestedCurrentAmps)) return Number(option.suggestedCurrentAmps);
+  if (isPositiveNumber(option?.requiredCurrentAmps)) return Number(option.requiredCurrentAmps);
+  return null;
 }
 
 function wiringSummary(wiring, locale) {
@@ -137,10 +148,16 @@ function withNeed(need, detail) {
 export function buildInstallationPlan(result, locale = "cs") {
   if (!result || !Number.isFinite(Number(result.systemVoltage))) return [];
   const copy = COPY[locale] || COPY.cs;
+  const solarNeed = isPositiveNumber(result.solarWatts) && isPositiveNumber(result.controllerAmps)
+    ? copy.solarNeed(result) : "";
+  const controllerNeed = isPositiveNumber(result.controllerAmps) ? copy.controllerNeed(result) : "";
+  const batteryNeed = isPositiveNumber(result.batteryAh) ? copy.batteryNeed(result) : "";
+  const dcDcCurrent = chargingCurrent(result.charging?.dcDc);
+  const shoreCurrent = chargingCurrent(result.charging?.shore);
   const circuits = [
-    { id: "solar-controller", label: copy.solarToController, detail: withNeed(copy.solarNeed(result), copy.solarDetail) },
-    { id: "controller-battery", label: copy.controllerToBattery, detail: withNeed(copy.controllerNeed(result), copy.dcDetail) },
-    { id: "battery-distribution", label: copy.batteryToDistribution, detail: withNeed(copy.batteryNeed(result), copy.dcDetail) },
+    { id: "solar-controller", label: copy.solarToController, detail: withNeed(solarNeed, copy.solarDetail) },
+    { id: "controller-battery", label: copy.controllerToBattery, detail: withNeed(controllerNeed, copy.dcDetail) },
+    { id: "battery-distribution", label: copy.batteryToDistribution, detail: withNeed(batteryNeed, copy.dcDetail) },
   ];
 
   if (Number(result.inverterWatts) > 0) {
@@ -148,14 +165,14 @@ export function buildInstallationPlan(result, locale = "cs") {
   }
   if (result.charging?.dcDc?.enabled) {
     circuits.push(
-      { id: "starter-dcdc", label: copy.starterToDcDc, detail: withNeed(copy.dcDcInputNeed(result), copy.dcDcInputDetail) },
-      { id: "dcdc-battery", label: copy.dcDcToBattery, detail: withNeed(copy.dcDcOutputNeed(result), copy.dcDcOutputDetail) },
+      { id: "starter-dcdc", label: copy.starterToDcDc, detail: withNeed(dcDcCurrent ? copy.dcDcInputNeed(result) : "", copy.dcDcInputDetail) },
+      { id: "dcdc-battery", label: copy.dcDcToBattery, detail: withNeed(dcDcCurrent ? copy.dcDcOutputNeed(result) : "", copy.dcDcOutputDetail) },
     );
   }
   if (result.charging?.shore?.enabled) {
     circuits.push(
       { id: "shore-charger", label: copy.shoreToCharger, detail: copy.acDetail },
-      { id: "charger-battery", label: copy.chargerToBattery, detail: withNeed(copy.shoreNeed(result), copy.shoreDcDetail) },
+      { id: "charger-battery", label: copy.chargerToBattery, detail: withNeed(shoreCurrent ? copy.shoreNeed(result) : "", copy.shoreDcDetail) },
     );
   }
   return circuits;
