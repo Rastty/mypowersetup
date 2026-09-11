@@ -12,6 +12,35 @@ const result = {
   controllerAmps: 50,
 };
 
+const resultWithInstallation = {
+  ...result,
+  wiring: {
+    designCurrentAmps: 112,
+    oneWayLengthMeters: 1.5,
+    recommendedCrossSectionMm2: 25,
+    maxVoltageDropPercent: 2.5,
+  },
+  charging: {
+    dcDc: {
+      enabled: true,
+      suggestedCurrentAmps: 30,
+      requiredCurrentAmps: 28,
+      estimatedInputCurrentAmps: 35,
+      inputWiring: {
+        designCurrentAmps: 35,
+        oneWayLengthMeters: 4,
+        recommendedCrossSectionMm2: 16,
+        maxVoltageDropPercent: 3,
+      },
+    },
+    shore: {
+      enabled: true,
+      suggestedCurrentAmps: 20,
+      requiredCurrentAmps: 18,
+    },
+  },
+};
+
 test("Czech share summary contains useful design values and canonical URL", () => {
   const text = buildResultShareText(result, "cs");
   assert.match(text, /MyPowerSetup — orientační návrh/);
@@ -20,6 +49,22 @@ test("Czech share summary contains useful design values and canonical URL", () =
   assert.match(text, /Solární panely: 480 Wp/);
   assert.match(text, /Měnič: 1200 W/);
   assert.match(text, /https:\/\/mypowersetup\.com\//);
+});
+
+test("core-market shared results include the concrete installation checklist", () => {
+  const expectations = {
+    cs: [/Nákupní a instalační checklist/, /480 Wp.*50 A/, /1200 W.*112 A.*25 mm²/, /30 A.*35 A.*16 mm²/, /Síťová nabíječka: alespoň 20 A/],
+    sk: [/Nákupný a inštalačný checklist/, /480 Wp.*50 A/, /1200 W.*112 A.*25 mm²/, /30 A.*35 A.*16 mm²/, /Sieťová nabíjačka: aspoň 20 A/],
+    pl: [/Lista zakupowa i montażowa/, /480 Wp.*50 A/, /1200 W.*112 A.*25 mm²/, /30 A.*35 A.*16 mm²/, /Ładowarka sieciowa: co najmniej 20 A/],
+    hu: [/Beszerzési és telepítési ellenőrzőlista/, /480 Wp.*50 A/, /1200 W.*112 A.*25 mm²/, /30 A.*35 A.*16 mm²/, /Hálózati töltő: legalább 20 A/],
+  };
+
+  for (const [language, patterns] of Object.entries(expectations)) {
+    const text = buildResultShareText(resultWithInstallation, language);
+    for (const pattern of patterns) assert.match(text, pattern, language);
+    assert.match(text, /□ /, language);
+    assert.ok(!text.includes("undefined"), language);
+  }
 });
 
 test("Slovak share summary is localized and handles a DC-only setup", () => {
@@ -58,6 +103,7 @@ for (const [language, title, route] of [
     assert.ok(text.includes(resultUrl));
     assert.match(text, /220 Ah/);
     assert.match(text, /480 Wp/);
+    assert.ok(!text.includes("□ "));
   });
 }
 

@@ -1,3 +1,5 @@
+import { buildInstallationPlan } from "./installation.js";
+
 const COPY = {
   cs: {
     title: "MyPowerSetup — orientační návrh",
@@ -7,6 +9,7 @@ const COPY = {
     inverter: "Měnič",
     noInverter: "není nutný",
     controller: "MPPT regulátor",
+    installationChecklist: "Nákupní a instalační checklist",
     warning: "Orientační výsledek — před realizací ověřte parametry, jištění a kabeláž.",
     locale: "cs-CZ",
     url: "https://mypowersetup.com/",
@@ -19,6 +22,7 @@ const COPY = {
     inverter: "Menič",
     noInverter: "nie je potrebný",
     controller: "MPPT regulátor",
+    installationChecklist: "Nákupný a inštalačný checklist",
     warning: "Orientačný výsledok — pred realizáciou overte parametre, istenie a kabeláž.",
     locale: "sk-SK",
     url: "https://mypowersetup.com/sk/",
@@ -31,6 +35,7 @@ const COPY = {
     inverter: "Przetwornica",
     noInverter: "nie jest potrzebna",
     controller: "Regulator MPPT",
+    installationChecklist: "Lista zakupowa i montażowa",
     warning: "Wynik orientacyjny — przed montażem sprawdź parametry, zabezpieczenia i przewody.",
     locale: "pl-PL",
     url: "https://mypowersetup.com/pl/",
@@ -43,6 +48,7 @@ const COPY = {
     inverter: "Inverter",
     noInverter: "nem szükséges",
     controller: "MPPT szabályozó",
+    installationChecklist: "Beszerzési és telepítési ellenőrzőlista",
     warning: "Tájékoztató eredmény — kivitelezés előtt ellenőrizd a paramétereket, a biztosítékokat és a kábelezést.",
     locale: "hu-HU",
     url: "https://mypowersetup.com/hu/",
@@ -85,12 +91,20 @@ const COPY = {
   },
 };
 
+const INSTALLATION_CHECKLIST_LANGUAGES = new Set(["cs", "sk", "pl", "hu"]);
+
 export function buildResultShareText(result, language = "cs", resultUrl) {
   const copy = COPY[language] || COPY.cs;
   const daily = result.dailyWh >= 1000
     ? `${(result.dailyWh / 1000).toLocaleString(copy.locale, { maximumFractionDigits: 2 })} kWh`
     : `${Math.round(result.dailyWh).toLocaleString(copy.locale)} Wh`;
   const inverter = result.inverterWatts ? `${result.inverterWatts} W` : copy.noInverter;
+  const installationPlan = INSTALLATION_CHECKLIST_LANGUAGES.has(language)
+    ? buildInstallationPlan(result, language)
+    : [];
+  const installationLines = installationPlan.length
+    ? ["", copy.installationChecklist, ...installationPlan.map(({ label, detail }) => `□ ${label}: ${detail}`)]
+    : [];
 
   return [
     copy.title,
@@ -99,6 +113,7 @@ export function buildResultShareText(result, language = "cs", resultUrl) {
     `${copy.solar}: ${result.solarWatts} Wp`,
     `${copy.inverter}: ${inverter}`,
     `${copy.controller}: ${result.controllerAmps} A`,
+    ...installationLines,
     "",
     copy.warning,
     resultUrl || copy.url,
