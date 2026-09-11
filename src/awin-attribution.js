@@ -1,4 +1,6 @@
 const AWIN_HOSTS = new Set(["www.awin1.com", "awin1.com"]);
+const EHUB_HOSTS = new Set(["ehub.cz", "www.ehub.cz", "ehub.sk", "www.ehub.sk"]);
+const EHUB_PATH = "/system/scripts/click.php";
 const SAFE_VALUE = /^[a-z0-9_-]{1,64}$/;
 const ROLE_VALUES = new Set(["recommended", "budget", "reserve", "alternative"]);
 const PRIORITY_VALUES = new Set(["primary", "secondary"]);
@@ -19,8 +21,29 @@ export function decorateAwinAffiliateUrl(input, {
     return input;
   }
 
-  if (url.protocol !== "https:" || !AWIN_HOSTS.has(url.hostname)) return input;
+  if (url.protocol !== "https:") return input;
 
+  if (AWIN_HOSTS.has(url.hostname)) {
+    decorateAwinUrl(url, { market, category, recommendationRole, routePriority, source, scenarioCampaign });
+    return url.toString();
+  }
+
+  if (EHUB_HOSTS.has(url.hostname) && url.pathname === EHUB_PATH) {
+    decorateEhubUrl(url, { market, category, scenarioCampaign });
+    return url.toString();
+  }
+
+  return input;
+}
+
+function decorateAwinUrl(url, {
+  market,
+  category,
+  recommendationRole,
+  routePriority,
+  source,
+  scenarioCampaign,
+}) {
   const normalizedMarket = safeToken(market);
   const normalizedCategory = safeToken(category);
   if (normalizedMarket && normalizedCategory && !url.searchParams.has("clickref")) {
@@ -36,19 +59,33 @@ export function decorateAwinAffiliateUrl(input, {
     else if (SOURCE_VALUES.has(source)) url.searchParams.set("clickref3", `source_${source}`);
   }
 
-  const scenarioRef = buildScenarioClickRef(scenarioCampaign ?? activeScenarioCampaign());
+  const scenarioRef = buildScenarioRef(scenarioCampaign ?? activeScenarioCampaign(), 50);
   if (scenarioRef && !url.searchParams.has("clickref4")) {
     url.searchParams.set("clickref4", scenarioRef);
   }
-
-  return url.toString();
 }
 
-function buildScenarioClickRef(value) {
+function decorateEhubUrl(url, { market, category, scenarioCampaign }) {
+  if (!url.searchParams.get("a_aid") || !url.searchParams.get("a_bid")) return;
+
+  const normalizedMarket = safeToken(market);
+  const normalizedCategory = safeToken(category);
+  if (normalizedMarket && normalizedCategory && !url.searchParams.has("data1")) {
+    const data1 = `mps_${normalizedMarket}_${normalizedCategory}`;
+    if (data1.length <= 64) url.searchParams.set("data1", data1);
+  }
+
+  const scenarioRef = buildScenarioRef(scenarioCampaign ?? activeScenarioCampaign(), 64);
+  if (scenarioRef && !url.searchParams.has("data2")) {
+    url.searchParams.set("data2", scenarioRef);
+  }
+}
+
+function buildScenarioRef(value, maxLength) {
   const normalized = safeToken(value);
   if (!normalized) return null;
-  const clickRef = `scenario_${normalized}`;
-  return clickRef.length <= 50 ? clickRef : null;
+  const ref = `scenario_${normalized}`;
+  return ref.length <= maxLength ? ref : null;
 }
 
 function activeScenarioCampaign() {
