@@ -5,6 +5,12 @@ import { ageInDays, rankTrafficOpportunities } from "../src/traffic-distribution
 
 const registry = JSON.parse(readFileSync(new URL("../data/traffic-distribution.json", import.meta.url), "utf8"));
 
+function daysBetween(from, to) {
+  const start = Date.parse(`${from}T00:00:00Z`);
+  const end = Date.parse(`${to}T00:00:00Z`);
+  return Math.floor((end - start) / 86_400_000);
+}
+
 test("invalid calendar dates are rejected instead of normalized", () => {
   assert.throws(() => ageInDays("2026-02-31", "2026-08-30"), /TRAFFIC_DISTRIBUTION_DATE_INVALID:activity/);
 });
@@ -26,5 +32,5 @@ test("Ford Transit DC-DC thread waits for the author's promised follow-up", () =
   assert.ok(ford);
   assert.equal(ford.status, "monitor");
   assert.equal(ford.actionable, false);
-  assert.equal(ford.ageDays, 23);
+  assert.equal(ford.ageDays, daysBetween("2026-08-11", registry.updatedAt));
 });

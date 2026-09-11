@@ -5,6 +5,12 @@ import { rankTrafficOpportunities, scoreTrafficOpportunity } from "../src/traffi
 
 const registry = JSON.parse(readFileSync(new URL("../data/traffic-distribution.json", import.meta.url), "utf8"));
 
+function daysBetween(from, to) {
+  const start = Date.parse(`${from}T00:00:00Z`);
+  const end = Date.parse(`${to}T00:00:00Z`);
+  return Math.floor((end - start) / 86_400_000);
+}
+
 test("the published CamperTeam LiFePO4 reply is retained for attribution but excluded from the action queue", () => {
   const item = registry.opportunities.find((entry) => entry.id === "pl-camperteam-lifepo4-use-202606");
   assert.ok(item);
@@ -13,7 +19,7 @@ test("the published CamperTeam LiFePO4 reply is retained for attribution but exc
   assert.equal(item.repliedAt, "2026-09-03");
   assert.equal(item.publishedPostUrl, item.sourceUrl);
   const scored = scoreTrafficOpportunity(item, { asOf: registry.updatedAt });
-  assert.equal(scored.ageDays, 0);
+  assert.equal(scored.ageDays, daysBetween(item.lastKnownActivity, registry.updatedAt));
   assert.equal(scored.actionable, false);
   assert.equal(
     rankTrafficOpportunities(registry.opportunities, { asOf: registry.updatedAt }).some((entry) => entry.id === item.id),

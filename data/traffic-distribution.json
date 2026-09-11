@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-03",
+  "updatedAt": "2026-09-11",
   "policy": {
     "defaultPostingRule": "answer_first_no_link_drop",
     "allowedStatuses": ["ready_for_manual_reply", "monitor", "research_only", "replied", "closed"],
@@ -129,16 +129,17 @@
       "supportingRoutes": [
         "/pl/poradnik/agm-czy-lifepo4/",
         "/pl/poradnik/pojemnosc-akumulatora-do-kampera/",
+        "/pl/poradnik/zasilanie-kampera-na-weekend/",
         "/pl/poradnik/jak-dobrac-ladowarke-dc-dc/",
         "/pl/poradnik/jak-dobrac-regulator-mppt/",
         "/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/"
       ],
-      "lastKnownActivity": "2026-04-17",
+      "lastKnownActivity": "2026-08-11",
       "priority": "high",
       "fit": "direct_camper_technical_current",
-      "status": "ready_for_manual_reply",
+      "status": "monitor",
       "postingRule": "answer_first_no_link_drop",
-      "notes": "Active technical subforum with 2026 LiFePO4, solar, regulator and AGM-to-LiFePO4 discussions. Search new unresolved threads inside this forum before each reply rather than posting into the reference index page."
+      "notes": "Checked the current forum index on 2026-09-11. The newest relevant visible thread remains Ford Transit + DC/DC with last activity on 2026-08-11; no newer unresolved sizing thread is visible on the first page. Keep monitoring and move back to ready_for_manual_reply only when a fresh unresolved question appears."
     },
     {
       "id": "pl-camperteam-liitokala-2025",
