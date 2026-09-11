@@ -75,11 +75,13 @@ test("PL weekend scenario is linked from the Polish guide hub and scenario sitem
   assert.match(sitemap, /<loc>https:\/\/mypowersetup\.com\/pl\/poradnik\/zasilanie-kampera-na-weekend\/<\/loc>\s*<lastmod>2026-09-11<\/lastmod>/);
 });
 
-test("PL battery and solar intent pages route readers into the weekend scenario", () => {
+test("PL high-intent guides route readers into the weekend scenario", () => {
   const path = new URL(CANONICAL).pathname;
   for (const guide of [
     "pl/poradnik/pojemnosc-akumulatora-do-kampera/index.html",
     "pl/poradnik/ile-wat-paneli-solarnych-do-kampera/index.html",
+    "pl/poradnik/agm-czy-lifepo4/index.html",
+    "pl/poradnik/zuzycie-lodowki-kompresorowej/index.html",
   ]) {
     const html = readFileSync(guide, "utf8");
     assert.ok(html.includes(`href="${path}"`), `${guide} must link to the PL weekend scenario`);
