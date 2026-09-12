@@ -1,4 +1,4 @@
-import { requiredRecommendationCategories } from "./recommendation-coverage.js";
+import { isRecommendationEligible, requiredRecommendationCategories } from "./recommendation-coverage.js";
 
 const PACKAGE_CATEGORIES = ["battery", "solar_panel", "inverter", "controller", "dc_charger", "shore_charger"];
 
@@ -22,9 +22,13 @@ function withReserve(candidates) {
   return preferred[0] || candidates[0];
 }
 
+function eligibleCandidates(recommendations, category) {
+  return (recommendations[category] || []).filter(isRecommendationEligible);
+}
+
 function buildVariant(id, categories, recommendations, selector) {
   const items = categories.flatMap((category) => {
-    const candidates = recommendations[category] || [];
+    const candidates = eligibleCandidates(recommendations, category);
     const selected = candidates.length ? selector(candidates) : null;
     return selected ? [{ category, ...selected }] : [];
   });
@@ -48,7 +52,7 @@ export function buildProductPackages(recommendations, setup) {
   if (!recommendations || !setup) return [];
   const required = new Set(requiredRecommendationCategories(setup));
   const categories = PACKAGE_CATEGORIES.filter((category) => required.has(category));
-  if (categories.length < 2 || categories.some((category) => !(recommendations[category] || []).length)) return [];
+  if (categories.length < 2 || categories.some((category) => eligibleCandidates(recommendations, category).length === 0)) return [];
 
   const candidates = [
     buildVariant("economy", categories, recommendations, cheapest),
