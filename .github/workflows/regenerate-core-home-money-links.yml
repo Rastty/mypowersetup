@@ -1,0 +1,52 @@
+name: Regenerate core homepage money links
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "sk/index.html"
+      - "pl/index.html"
+      - "hu/index.html"
+      - "src/homepage-money-routing.js"
+      - "src/homepage-money-html.js"
+      - "scripts/sync-homepage-money-links.mjs"
+      - ".github/workflows/regenerate-core-home-money-links.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: core-home-money-links-publication
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - name: Regenerate crawlable core homepage money links
+        run: node scripts/sync-homepage-money-links.mjs
+      - name: Verify homepage money-link transform
+        run: node --test tests/homepage-money-html.test.js tests/homepage-money-routing.test.js
+      - name: Commit generated homepage link drift
+        shell: bash
+        run: |
+          git add index.html sk/index.html pl/index.html hu/index.html
+          if git diff --cached --quiet; then
+            echo "Core homepage money links already match their source."
+            exit 0
+          fi
+          git config user.name "mypowersetup-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "seo: regenerate crawlable homepage money links"
+          git reset --hard HEAD
+          git pull --rebase origin main
+          git push origin HEAD:main
