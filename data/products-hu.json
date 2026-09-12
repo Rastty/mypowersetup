@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-11T08:08:06.530Z",
+  "generatedAt": "2026-09-12T07:58:45.798Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12570,
-      "relevantProducts": 159
+      "parsedProducts": 12586,
+      "relevantProducts": 160
     },
     "ampul_hu": {
       "status": "ok",
@@ -2865,6 +2865,42 @@
           "lead"
         ],
         "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:106299",
+      "merchant": "padabo_hu",
+      "name": "Renogy DC-DC akkumulátortöltő, 12V/60A",
+      "description": "Háromfokozatú töltő minden akkumulátortípushoz A Renogy DC-DC akkumulátortöltő az egyik leghatékonyabb módja annak, hogy a kompresszor akkumulátorokat a motor működése közben töltse. A töltő számos generátortípussal kompatibilis, és megfelelő töltést biztosít AGM, vontatási, zselés és mélyciklusú lítium akkumulátorok számára. A többszörös elektronikus védelemmel ellátott háromfokozatú töltő rendkívül megbízható, és segít biztosítani, hogy az akkumulátor optimálisan és automatikusan töltődjön. To",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Töltők és boosterek | Akkumulátor töltők",
+      "category": "dc_charger",
+      "brand": "Renogy",
+      "priceCzk": 91125,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/renogy-dc-dc-akkumulatortolto-12v-60a_z106299/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-dc-dc-akkumulatortolto-12v-60a_z106299%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/187901_102.jpg?1759387751_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 750,
+        "currentA": 60,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
