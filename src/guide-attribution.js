@@ -2,11 +2,17 @@ import { classifyPublicGuideRoute } from "./public-conversion-funnel.js";
 
 const STORAGE_KEY = "mypowersetup_guide_attribution";
 const MAX_AGE_MS = 30 * 60 * 1000;
+const VALID_POSITIONS = new Set(["early", "late", "inline"]);
 
 function normalizeMarket(market) {
   const value = String(market || "").toLowerCase();
   if (value === "cz") return "cs";
   return value;
+}
+
+function normalizePosition(position) {
+  const value = String(position || "").toLowerCase();
+  return VALID_POSITIONS.has(value) ? value : null;
 }
 
 function normalizeStoredAttribution(value, now = Date.now()) {
@@ -15,23 +21,27 @@ function normalizeStoredAttribution(value, now = Date.now()) {
   if (!Number.isFinite(recordedAt) || recordedAt > now || now - recordedAt > MAX_AGE_MS) return null;
   const hit = classifyPublicGuideRoute(value.sourcePath);
   if (!hit) return null;
+  const position = normalizePosition(value.sourcePosition);
   return Object.freeze({
     guide_source_path: hit.route,
     guide_source_topic: hit.topic,
     guide_source_market: hit.market,
+    ...(position ? { guide_source_position: position } : {}),
   });
 }
 
-export function rememberGuideAttribution({ sourcePath, storage = null, now = Date.now() } = {}) {
+export function rememberGuideAttribution({ sourcePath, sourcePosition, storage = null, now = Date.now() } = {}) {
   const hit = classifyPublicGuideRoute(sourcePath);
   if (!hit) return null;
+  const position = normalizePosition(sourcePosition);
   const attribution = Object.freeze({
     guide_source_path: hit.route,
     guide_source_topic: hit.topic,
     guide_source_market: hit.market,
+    ...(position ? { guide_source_position: position } : {}),
   });
   try {
-    storage?.setItem?.(STORAGE_KEY, JSON.stringify({ sourcePath: hit.route, recordedAt: now }));
+    storage?.setItem?.(STORAGE_KEY, JSON.stringify({ sourcePath: hit.route, ...(position ? { sourcePosition: position } : {}), recordedAt: now }));
   } catch {}
   return attribution;
 }
