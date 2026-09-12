@@ -3,6 +3,7 @@ import { classifyGuideCalculatorLink, classifyGuideCalculatorPosition, classifyG
 import { resolveCommunityAttribution } from "./community-attribution.js";
 import { carryCommunityAttributionToUrl } from "./community-navigation.js";
 import { resolveScenarioAttribution } from "./scenario-attribution.js";
+import { rememberGuideAttribution, resolveGuideAttribution } from "./guide-attribution.js";
 import { enhanceHomepageLanguageSwitch } from "./language-switch.js";
 import { enhanceGuideConversion } from "./guide-conversion.js";
 import { enhanceHomepageMoneyRouting } from "./homepage-money-routing.js";
@@ -44,7 +45,8 @@ function currentContext() {
   const page = buildAnalyticsContext({ lang: document.documentElement.lang, pathname: window.location.pathname, hasCalculator: Boolean(document.querySelector("#setup-form")) });
   const community = choice === "granted" ? resolveCommunityAttribution({ search: window.location.search, storage: window.sessionStorage }) : null;
   const scenario = choice === "granted" ? resolveScenarioAttribution({ search: window.location.search, initialSearch: INITIAL_SEARCH, storage: window.sessionStorage }) : null;
-  return Object.freeze({ ...page, ...(community || {}), ...(scenario || {}) });
+  const guide = choice === "granted" && page.page_type === "calculator" ? resolveGuideAttribution({ storage: window.sessionStorage, market: page.market }) : null;
+  return Object.freeze({ ...page, ...(community || {}), ...(scenario || {}), ...(guide || {}) });
 }
 function track(event, parameters = {}) {
   if (choice !== "granted" || typeof window.gtag !== "function") return false;
@@ -94,6 +96,7 @@ function trackJourneyClick(event) {
       const carriedHref = carryCommunityAttributionToUrl(href, { search: window.location.search, pageUrl: window.location.href });
       if (carriedHref && carriedHref !== href) link.setAttribute("href", carriedHref);
       track("guide_to_calculator_click", { ...calculatorDestination, source_zone: guideClickZone(link), source_position: guideCalculatorClickPosition(link) });
+      if (choice === "granted") rememberGuideAttribution({ sourcePath: window.location.pathname, storage: window.sessionStorage });
       return;
     }
     const internalDestination = classifyGuideInternalLink(href, { origin: window.location.origin, sourcePath: window.location.pathname });
