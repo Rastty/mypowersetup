@@ -40,6 +40,37 @@ test("does not present a partial catalogue as a complete package", () => {
   assert.deepEqual(buildProductPackages(recommendations, setup), []);
 });
 
+test("does not count stale or unavailable candidates as package coverage", () => {
+  const staleController = item("stale-controller", 2500, 99, 1.05);
+  staleController.product.staleSource = true;
+  const unavailableController = item("unavailable-controller", 2400, 98, 1.04);
+  unavailableController.product.available = false;
+  const base = {
+    battery: [item("battery", 10000, 95, 1.05)],
+    solar_panel: [item("panel", 3000, 94, 1.04)],
+  };
+
+  assert.deepEqual(buildProductPackages({ ...base, controller: [staleController] }, { inverterWatts: 0 }), []);
+  assert.deepEqual(buildProductPackages({ ...base, controller: [unavailableController] }, { inverterWatts: 0 }), []);
+});
+
+test("never selects a stale candidate when an eligible alternative exists", () => {
+  const staleCheapBattery = item("stale-cheap-battery", 1000, 99, 1.1);
+  staleCheapBattery.product.staleSource = true;
+  const freshBattery = item("fresh-battery", 10000, 90, 1.1);
+
+  const packages = buildProductPackages({
+    battery: [staleCheapBattery, freshBattery],
+    solar_panel: [item("panel", 3000, 94, 1.04)],
+    controller: [item("mppt", 2500, 93, 1.08)],
+  }, { inverterWatts: 0 });
+
+  assert.ok(packages.length > 0);
+  for (const variant of packages) {
+    assert.equal(variant.items.find(({ category }) => category === "battery")?.product.id, "fresh-battery");
+  }
+});
+
 test("adds compatible DC-DC and shore chargers when charging is enabled", () => {
   const packages = buildProductPackages({
     battery: [item("battery", 10000, 95, 1.05)],

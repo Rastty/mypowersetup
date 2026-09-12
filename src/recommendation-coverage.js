@@ -32,7 +32,12 @@ export function requiredRecommendationCategories(setup) {
 }
 
 export function isRecommendationEligible(recommendation) {
-  return Boolean(recommendation) && recommendation.available !== false && recommendation.staleSource !== true;
+  if (!recommendation) return false;
+  const product = recommendation.product || recommendation;
+  return recommendation.available !== false
+    && recommendation.staleSource !== true
+    && product.available !== false
+    && product.staleSource !== true;
 }
 
 export function assessRecommendationCoverage(recommendations, setup, locale = setup?.locale) {
