@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 
-import { enhanceGuideConversion, isCoreMoneyGuide } from "../src/guide-conversion.js";
+import { coreMoneyGuideRoutes, enhanceGuideConversion, isCoreMoneyGuide } from "../src/guide-conversion.js";
 
 function attrNode(initial = []) {
   const attributes = new Set(initial);
@@ -14,6 +15,9 @@ function attrNode(initial = []) {
 }
 
 test("the mature core money guides receive the early CTA experiment", () => {
+  const routes = coreMoneyGuideRoutes();
+  assert.equal(routes.length, 24);
+
   for (const route of [
     "/pruvodce/kapacita-baterie-do-karavanu/",
     "/pruvodce/kolik-w-solarnich-panelu/",
@@ -28,6 +32,15 @@ test("the mature core money guides receive the early CTA experiment", () => {
 
   assert.equal(isCoreMoneyGuide("/pruvodce/kabely-a-pojistky-12-v/"), false);
   assert.equal(isCoreMoneyGuide("/pt/guias/capacidade-bateria-autocaravana/"), false);
+});
+
+test("every early-CTA money route has an answer block and local calculator CTA", async () => {
+  for (const route of coreMoneyGuideRoutes()) {
+    const html = await readFile(`${route.slice(1)}index.html`, "utf8");
+    assert.match(html, /class="answer"/, `${route} is missing the answer-first block`);
+    assert.match(html, /<section class="cta">/, `${route} is missing the conversion CTA`);
+    assert.match(html, /href="[^\"]*#kalkulator"/, `${route} is missing the local calculator link`);
+  }
 });
 
 test("enhancer inserts one early CTA and marks the existing CTA as late", () => {
