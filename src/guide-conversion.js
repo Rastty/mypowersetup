@@ -33,6 +33,10 @@ function normalizePath(pathname) {
   }
 }
 
+export function coreMoneyGuideRoutes() {
+  return [...CORE_MONEY_GUIDES];
+}
+
 export function isCoreMoneyGuide(pathname) {
   return CORE_MONEY_GUIDES.has(normalizePath(pathname));
 }
