@@ -43,6 +43,11 @@ test("stale or unavailable rows cannot make result coverage look complete", () =
   assert.equal(isRecommendationEligible({}), true);
   assert.equal(isRecommendationEligible({ staleSource: true }), false);
   assert.equal(isRecommendationEligible({ available: false }), false);
+  assert.equal(isRecommendationEligible({ product: {} }), true);
+  assert.equal(isRecommendationEligible({ product: { staleSource: true } }), false);
+  assert.equal(isRecommendationEligible({ product: { available: false } }), false);
+  assert.equal(isRecommendationEligible({ staleSource: true, product: {} }), false);
+
   const compact = {
     ...setup,
     locale: "cs",
@@ -50,9 +55,9 @@ test("stale or unavailable rows cannot make result coverage look complete", () =
     charging: { dcDc: { enabled: false }, shore: { enabled: false } },
   };
   const report = assessRecommendationCoverage({
-    battery: [{ staleSource: true }],
-    solar_panel: [{}],
-    controller: [{ available: false }],
+    battery: [{ product: { staleSource: true } }],
+    solar_panel: [{ product: {} }],
+    controller: [{ product: { available: false } }],
   }, compact);
   assert.equal(report.complete, false);
   assert.deepEqual(report.missing, ["battery", "controller"]);
