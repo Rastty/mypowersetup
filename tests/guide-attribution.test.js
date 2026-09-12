@@ -62,7 +62,7 @@ test("guide attribution rejects unsupported and corrupted values", () => {
 
 test("analytics only stores guide attribution behind granted consent and resolves it on calculator context", async () => {
   const analytics = await readFile(new URL("../src/analytics.js", import.meta.url), "utf8");
+  assert.match(analytics, /rememberGuideAttribution, resolveGuideAttribution/);
   assert.match(analytics, /choice === "granted" && page\.page_type === "calculator" \? resolveGuideAttribution/);
   assert.match(analytics, /if \(choice === "granted"\) rememberGuideAttribution\(\{ sourcePath: window\.location\.pathname, storage: window\.sessionStorage \}\)/);
-  assert.match(analytics, /guide_source_topic/);
 });
