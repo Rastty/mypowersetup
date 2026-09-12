@@ -6,6 +6,7 @@ import { resolveScenarioAttribution } from "./scenario-attribution.js";
 import { enhanceHomepageLanguageSwitch } from "./language-switch.js";
 import { enhanceGuideConversion } from "./guide-conversion.js";
 import { enhanceHomepageMoneyRouting } from "./homepage-money-routing.js";
+import { enhanceCoreResultGuides } from "./core-result-guides.js";
 
 const MEASUREMENT_ID = "G-TDNRBM2V2J";
 const CONSENT_KEY = "mypowersetup_analytics_consent";
@@ -128,6 +129,7 @@ function init() {
   enhanceHomepageLanguageSwitch();
   enhanceGuideConversion();
   enhanceHomepageMoneyRouting();
+  enhanceCoreResultGuides();
   document.addEventListener("click", (event) => { const trigger = event.target.closest?.("[data-analytics-settings]"); if (trigger) { event.preventDefault(); openSettings(); return; } trackJourneyClick(event); trackSharedCalculatorClick(event); });
   document.addEventListener("input", trackHungarianCalculatorInput);
   if (choice === "granted") loadGoogleTag(); else if (choice === null) renderDialog();
