@@ -34,6 +34,7 @@ const HOME_MONEY_LINKS = Object.freeze({
 });
 
 const HOME_PATH_BY_LANG = Object.freeze({ cs: "/", sk: "/sk/", pl: "/pl/", hu: "/hu/" });
+const EMPTY_LINKS = Object.freeze([]);
 
 function card(href, label, title, description) {
   return Object.freeze({ href, label, title, description });
@@ -51,10 +52,15 @@ function normalizePath(pathname) {
   }
 }
 
+export function coreMoneyLinks(lang) {
+  return HOME_MONEY_LINKS[normalizeLang(lang)] || EMPTY_LINKS;
+}
+
 export function homepageMoneyLinks({ lang, pathname } = {}) {
   const locale = normalizeLang(lang);
-  if (!HOME_MONEY_LINKS[locale] || normalizePath(pathname) !== HOME_PATH_BY_LANG[locale]) return Object.freeze([]);
-  return HOME_MONEY_LINKS[locale];
+  const links = coreMoneyLinks(locale);
+  if (!links.length || normalizePath(pathname) !== HOME_PATH_BY_LANG[locale]) return EMPTY_LINKS;
+  return links;
 }
 
 export function enhanceHomepageMoneyRouting({
