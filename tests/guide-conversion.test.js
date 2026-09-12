@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 
-import { enhanceGuideConversion, isCoreBatteryGuide } from "../src/guide-conversion.js";
+import { coreMoneyGuideRoutes, enhanceGuideConversion, isCoreMoneyGuide } from "../src/guide-conversion.js";
 
 function attrNode(initial = []) {
   const attributes = new Set(initial);
@@ -13,16 +14,33 @@ function attrNode(initial = []) {
   };
 }
 
-test("only the four mature battery money guides receive the early CTA experiment", () => {
+test("the mature core money guides receive the early CTA experiment", () => {
+  const routes = coreMoneyGuideRoutes();
+  assert.equal(routes.length, 24);
+
   for (const route of [
     "/pruvodce/kapacita-baterie-do-karavanu/",
-    "/sk/sprievodca/kapacita-baterie-do-karavanu/",
-    "/pl/poradnik/pojemnosc-akumulatora-do-kampera/",
-    "/hu/utmutatok/lakoauto-akkumulator-kapacitas/",
-  ]) assert.equal(isCoreBatteryGuide(route), true, route);
+    "/pruvodce/kolik-w-solarnich-panelu/",
+    "/pruvodce/jak-vybrat-mppt-regulator/",
+    "/pruvodce/jak-vybrat-dc-dc-nabijecku/",
+    "/pruvodce/jak-vybrat-nabijecku-230-v/",
+    "/pruvodce/jak-velky-menic-do-karavanu/",
+    "/sk/sprievodca/aky-velky-menic-do-karavanu/",
+    "/pl/poradnik/jak-dobrac-przetwornice-do-kampera/",
+    "/hu/utmutatok/230-v-os-tolto-kivalasztasa/",
+  ]) assert.equal(isCoreMoneyGuide(route), true, route);
 
-  assert.equal(isCoreBatteryGuide("/pruvodce/kolik-w-solarnich-panelu/"), false);
-  assert.equal(isCoreBatteryGuide("/pt/guias/capacidade-bateria-autocaravana/"), false);
+  assert.equal(isCoreMoneyGuide("/pruvodce/kabely-a-pojistky-12-v/"), false);
+  assert.equal(isCoreMoneyGuide("/pt/guias/capacidade-bateria-autocaravana/"), false);
+});
+
+test("every early-CTA money route has an answer block and local calculator CTA", async () => {
+  for (const route of coreMoneyGuideRoutes()) {
+    const html = await readFile(`${route.slice(1)}index.html`, "utf8");
+    assert.match(html, /class="answer"/, `${route} is missing the answer-first block`);
+    assert.match(html, /<section class="cta">/, `${route} is missing the conversion CTA`);
+    assert.match(html, /href="[^\"]*#kalkulator"/, `${route} is missing the local calculator link`);
+  }
 });
 
 test("enhancer inserts one early CTA and marks the existing CTA as late", () => {
@@ -50,12 +68,12 @@ test("enhancer inserts one early CTA and marks the existing CTA as late", () => 
   };
   const root = { querySelector(selector) { return selector === "main article.article" ? article : null; } };
 
-  assert.equal(enhanceGuideConversion({ root, pathname: "/pruvodce/kapacita-baterie-do-karavanu/" }), true);
+  assert.equal(enhanceGuideConversion({ root, pathname: "/pruvodce/jak-vybrat-mppt-regulator/" }), true);
   assert.equal(lateLink.hasAttribute("data-guide-conversion-cta"), true);
   assert.equal(earlyCta.attributes.has("data-guide-top-cta"), true);
   assert.equal(earlyLink.hasAttribute("data-guide-conversion-cta"), false);
   assert.deepEqual(inserted, { position: "afterend", node: earlyCta });
 
   alreadyEnhanced = true;
-  assert.equal(enhanceGuideConversion({ root, pathname: "/pruvodce/kapacita-baterie-do-karavanu/" }), false);
+  assert.equal(enhanceGuideConversion({ root, pathname: "/pruvodce/jak-vybrat-mppt-regulator/" }), false);
 });
