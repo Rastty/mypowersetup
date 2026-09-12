@@ -1,36 +1,52 @@
 # MyPowerSetup — produktová vize a směr
 
-Aktualizováno: 28. srpna 2026
+Aktualizováno: 12. září 2026
 
 ## Vize
 
-MyPowerSetup má být nejlepší a nejoblíbenější český a následně slovenský nástroj pro návrh elektrické sestavy karavanu. Z několika srozumitelných vstupů převede skutečnou spotřebu na transparentní návrh baterie, solárních panelů, měniče, MPPT regulátoru a navazujících bezpečnostních prvků. Uživatel musí rozumět tomu, proč výsledek vznikl, co ještě ověřit a které konkrétní kompatibilní komponenty dávají smysl.
+MyPowerSetup má být nejlepší praktický decision engine pro návrh elektrické sestavy karavanu: z několika srozumitelných vstupů převede skutečnou spotřebu na transparentní návrh baterie, soláru, měniče, MPPT regulátoru, DC–DC a 230V nabíjení a navazujících bezpečnostních prvků. Uživatel musí rozumět tomu, proč výsledek vznikl, co ještě ověřit a které konkrétní kompatibilní komponenty dávají smysl.
 
 Nejde jen o kalkulačku ani o katalog produktů. Cílem je propojit cestu:
 
-**konkrétní problém → výpočet → vysvětlení → bezpečný návrh → schéma → kompatibilní nákupní seznam**
+**konkrétní problém → výpočet → vysvětlení → bezpečný návrh → kompatibilní nákupní seznam → měřitelný affiliate click**
 
-## Hlavní trhy
+Dlouhodobě chceme, aby uživatel našel MyPowerSetup přes konkrétní problém nebo nákupní dotaz, během jedné minuty pochopil potřebné parametry a bez slepého doporučování přešel ke kompatibilním produktům.
 
-1. Česká republika je primární trh a místo, kde má vzniknout nejlepší úplná verze produktu.
-2. Slovensko je plnohodnotná lokalizace se samostatným katalogem; jeho produktové pokrytí se rozšiřuje bez snižování technických nároků.
-3. Polsko je veřejný plnohodnotný trh se samostatnými daty Ampul a ALLPOWERS.
-4. Maďarsko používá stejné výpočetní jádro, ale zůstane neveřejné do splnění produktové, jazykové a mobilní brány.
-5. Další lokalizace přijdou až po prokázání použitelnosti, návštěvnosti a monetizace jádra.
+## Aktuální tržní režim
 
-## Kandidáti po CZ / SK / PL / HU
+### Core trhy — CZ / SK / PL / HU
 
-Toto pořadí je výzkumná fronta, ne závazek spustit více nehotových trhů současně:
+Česká republika, Slovensko, Polsko a Maďarsko jsou veřejné core trhy. Sdílejí stejné výpočetní jádro, ale mají lokální jazyk, měnu, právní/affiliate texty, produktová data, hreflang a testované nákupní cesty.
 
-1. **Švédsko** — první kandidát díky poměru poptávky, konkurence a kupní síly; základ monetizace ALLPOWERS INTERNATIONAL a po samostatném schválení Amazon.se.
-2. **Španělsko** — velký camper trh a fragmentovaná konkurence; ALLPOWERS INTERNATIONAL, následně ověřit Amazon.es a specializovaný lokální katalog.
-3. **Itálie** — velký potenciál, ale silnější produktová konkurence; ALLPOWERS INTERNATIONAL, následně ověřit Amazon.it a lokální camping program.
-4. **Nizozemsko** — mimořádně silný caravan trh, ale vyspělá konkurence; prověřit zejména Obelink/TradeTracker a Amazon.nl vedle ALLPOWERS.
-5. **Německo** — největší potenciál i nejtěžší SEO; před spuštěním požadovat jasné odlišení a prověřit Fritz Berger Awin vedle ALLPOWERS a Amazon.de.
-6. **Portugalsko** — levnější lokalizační experiment až po ES; vedle ALLPOWERS prověřit Worten PT Awin a reálnou dostupnost vhodných produktů.
-7. **Rumunsko** — kandidát na malý řízený experiment s ALLPOWERS INTERNATIONAL. Lokální poptávka a odborné komunity existují, ale od roku 2026 je dostupný i rumunský kalkulátor pro energii v rulote/camperu; před spuštěním proto musí být jasným odlišením kontrola existující sestavy, určení bottlenecku a kompatibilní lokální produkty, ne pouhý překlad.
+- **CZ — golden master:** nejširší produktová a obsahová vrstva; referenční verze pro nové funkce.
+- **SK — mature core:** plnohodnotná lokalizace se samostatným EUR katalogem a stejnými technickými guardrails jako CZ.
+- **PL — mature growth market:** veřejná lokalizace s vlastním katalogem a měřitelnými scénáři; využívá mimo jiné eHUB/Ampul a další schválené affiliate cesty.
+- **HU — mature core:** veřejná lokalizace se samostatným katalogem a dokončenými mobilními/technickými kontrolami. Nevracet ji zpět do režimu „před zveřejněním“ bez konkrétní regresní chyby.
 
-Společným základem dalších evropských trhů může být program **ALLPOWERS INTERNATIONAL (Awin 38934)**, ale každá lokalizace musí mít přesné cílové URL, lokální cenu, dostupnost a podmínky doručení. Samotná existence globálního programu nestačí k publikaci trhu.
+U core trhů už není výchozím cílem „přidat další produkty“. Další produkt se přidává pouze tehdy, když odemyká reálnou technickou nebo komerční mezeru, zlepšuje nezávislost na jednom obchodě nebo přináší významně lepší fit.
+
+### Controlled expansion — PT / RO / SI
+
+Portugalsko, Rumunsko a Slovinsko jsou veřejné řízené expanzní trhy. Mají lokalizované kalkulátory, průvodce, sitemap/hreflang a produktové katalogy, ale nejsou považované za stejně široce monetizované jako core trhy.
+
+Pro PT/RO/SI platí:
+
+- doporučení musí zůstat **fail-closed** — neověřený produkt nebo neověřená checkout/affiliate cesta se nesmí tvářit jako nákupně připravená,
+- portable fallback může být primární nákupní cesta pouze tehdy, když je technicky vhodný a ověřený,
+- komponentové mezery řešíme podle skutečného dopadu na purchase-ready scénáře, ne podle počtu položek v katalogu,
+- obsahová expanze zůstává úzká a high-intent, dokud data neprokážou důvod ji rozšířit.
+
+Aktuální owner-action queue pro PT/RO/SI řadí nejvýše affiliate aktivaci Solaris, následně Xdatou a Butler Technik. Tyto externí kroky se řeší podle aktuálního commercial-opportunity reportu; jejich pořadí se nesmí ručně hardcodovat do vývoje, protože se může změnit s katalogy a ověřením checkoutu.
+
+## Další trhy — research only
+
+Novou lokalizaci teď nespouštíme jen proto, že je technicky levná. Výzkumná fronta může zahrnovat zejména Švédsko, Španělsko, Itálii, Nizozemsko a Německo, ale nový trh má smysl otevřít až tehdy, když:
+
+- současné core/expansion trhy mají stabilní veřejný funnel,
+- existuje jasný lokální search intent a odlišení,
+- máme minimálně jednu přesnou a ověřenou nákupní/affiliate cestu,
+- produktová a jazyková lokalizace není pouhý překlad,
+- očekávaný přínos je vyšší než další zlepšení trafficu a konverze na existujících trzích.
 
 ### Brána pro otevření dalšího trhu
 
@@ -40,95 +56,116 @@ Nový trh se zveřejní pouze tehdy, když současně splní:
 - samostatný produktový katalog s lokální měnou, dostupností a bezpečným párováním,
 - alespoň jednu ověřenou affiliate cestu s přesným deeplinkem; ideálně druhý nezávislý obchod,
 - lokální právní, soukromí a affiliate texty, hreflang, sitemap a měření,
-- ověřený mobilní průchod od vstupu přes výsledek až ke konkrétnímu produktu.
-
-## Pořadí lokalizací
-
-1. **CZ — golden master:** dokončit technickou, nákupní, bezpečnostní, mobilní a SEO cestu.
-2. **SK — první ověření přenositelnosti:** držet funkčně shodný kalkulátor, samostatný EUR katalog a rozšířit pokrytí baterií, panelů a MPPT.
-3. **PL — veřejný růstový trh:** rozvíjet samostatný katalog Ampul + ALLPOWERS a doplnit baterie a MPPT bez obecného nebo neověřeného doporučování.
-4. **HU — připravený následný trh:** dokončit produktové pokrytí, přirozenou jazykovou revizi a mobilní průchod před zveřejněním.
-
-Polsko ani Maďarsko se nesmí zveřejnit jen jako strojově přeložená kopie. Každá země potřebuje ověřenou terminologii, lokální měnu, právní a affiliate texty, vlastní produktový feed, správné hreflang a testované výpočty. Příprava společné konfigurace může začít dříve, ale nesmí odsunout otevřené P0–P2 úkoly české verze.
+- ověřený mobilní průchod od vstupu přes výsledek až ke konkrétnímu produktu,
+- jasnou odpověď na otázku „proč tento trh teď?“ podloženou traffic/SEO/monetizační příležitostí.
 
 ## Produktové principy
 
 - Výpočet a technická kompatibilita mají vždy přednost před provizí.
 - Affiliate odměna nesmí změnit pořadí ani vhodnost produktu.
-- Žádný obchod nesmí být jediným bodem závislosti.
+- Žádný obchod nesmí být jediným bodem závislosti, pokud existuje realistická alternativa.
 - Každý výsledek musí ukázat předpoklady, rezervy, omezení a důvod doporučení.
 - Orientační návrh se nesmí vydávat za elektroprojekt, revizi nebo potvrzení bezpečnosti montáže.
 - Neznámý technický parametr znamená omezení doporučení, ne domyšlenou hodnotu.
+- Stale nebo unavailable produkt se nesmí započítat do kompletní nákupní sestavy.
+- Neúplný katalog se nesmí prezentovat jako kompletní balíček; výsledek musí pojmenovat chybějící kategorie a ponechat přesné technické minimum pro jejich výběr.
 - Unikátní užitečný nástroj a jeho výstupy mají přednost před množstvím obecných článků.
 - Obsah a komunitní distribuce musí být autentické, užitečné a bez spamu.
 - Web musí být rychlý, přístupný, dobře ovladatelný na mobilu a srozumitelný začátečníkovi.
 - Běžný uživatel musí během jedné minuty pochopit, co potřebuje, proč to potřebuje a které konkrétní produkty odpovídají výsledku.
-- Rychlé profily smějí pouze transparentně předvyplnit společný kalkulátor; nesmějí skrývat spotřebu ani nahrazovat upravitelné vstupy.
-- Budoucí kontrola existující sestavy má nejdříve určit hlavní omezení a nejmenší smysluplný upgrade, ne automaticky doporučit kompletní výměnu.
-- Neúplný katalog se nesmí prezentovat jako kompletní nákupní balíček; výsledek musí pojmenovat chybějící kategorie a ponechat uživateli přesné technické minimum pro jejich výběr.
+- Rychlé profily a scenario pages smějí pouze transparentně předvyplnit společný kalkulátor; nesmějí skrývat spotřebu ani nahrazovat upravitelné vstupy.
+- Kontrola existující sestavy má nejdříve určit hlavní omezení a nejmenší smysluplný upgrade, ne automaticky doporučit kompletní výměnu.
+- Přesné ekonomické výsledky se nesmí tvrdit bez skutečných dat.
 
-## Prioritní produktová cesta
+## Produktová cesta
 
 ### P0 — spolehlivý veřejný základ
+
+Trvale udržovat:
 
 - bezchybný HTTPS, CSS a JavaScript,
 - fungující výpočet na běžných mobilních i desktopových prohlížečích,
 - automatické testy výpočtu, odkazů, dat, lokalizací a nasazení,
-- transparentní metodika, autorství, soukromí a affiliate disclosure.
+- transparentní metodiku, autorství, soukromí a affiliate disclosure,
+- fail-closed produktové a affiliate guardrails.
 
-### P1 — nejlepší český kalkulátor
+P0 není jednorázově „hotovo“; je to regresní brána pro každou změnu.
 
-- uložitelná a sdílitelná konfigurace přes URL,
-- srozumitelné porovnání levné, doporučené a komfortní varianty,
-- DC–DC nabíjení z alternátoru a nabíjení z 230 V,
-- výpočet kabelů, pojistek a základního jištění,
-- kontrola rozměrů střechy a realistického počtu panelů,
-- dynamické schéma zapojení podle výsledku,
-- tisknutelný nebo PDF souhrn sestavy.
+### P1 — nejlepší kalkulátor a výstup
 
-### P2 — nejlepší rozhodovací a nákupní vrstva
+Rozvíjet pouze tam, kde zvyšuje užitečnost výsledku:
 
-- automaticky aktualizovaný katalog produktů,
+- uložitelná a sdílitelná konfigurace,
+- srozumitelné varianty nákupního řešení pouze při úplném pokrytí potřebných kategorií,
+- DC–DC a 230V nabíjení,
+- výpočet kabelů a bezpečnostních parametrů bez vymýšlení konkrétního jištění mimo dostupná data,
+- result-aware instalační checklist a sdílený výstup,
+- dynamické schéma a další výstupy tam, kde mají jasnou uživatelskou hodnotu.
+
+### P2 — rozhodovací a nákupní vrstva
+
+- automaticky aktualizované katalogy,
 - tvrdé kontroly napětí, kapacity, výkonu, proudu a dalších kompatibilit,
 - deduplikace variant a odmítnutí produktů s nedoloženými klíčovými parametry,
 - vysvětlení, proč produkt vyhovuje a co má uživatel před nákupem ověřit,
 - více obchodů a alternativ bez obchodního zkreslení,
-- měření odchozích kliknutí po zapnutí schválené analytiky.
+- měření product impression → affiliate click → později potvrzená transakce,
+- při každé změně chránit invariant: neúplné nebo stale doporučení nesmí vytvořit falešně kompletní balíček.
 
-### P3 — návštěvnost a autorita
+### P3 — návštěvnost, konverze a autorita
 
-- SEO landing pages řešící konkrétní výpočty a vedoucí do přednastaveného kalkulátoru,
-- tematické clustery: spotřeba, baterie, solár, měnič, MPPT, kabely, jištění a nabíjení,
-- strukturovaná data, interní odkazy, hreflang, sitemap, llms.txt a citovatelné odpovědi,
-- případové sestavy místo generických článků,
-- užitečné odpovědi ve fórech a komunitách pouze tam, kde přímo řeší otázku,
-- možnost vložitelného mini-kalkulátoru pro blogy, servisy a půjčovny.
+Toto je aktuální hlavní growth lane pro core trhy:
+
+- využít existující buyer-intent money pages místo nekontrolované tvorby dalších URL,
+- posílat návštěvníka co nejrychleji z odpovědi do kalkulátoru a kompatibilních produktů,
+- měřit `guide_to_calculator_click` včetně `source_position=early|late`,
+- držet tematické clustery kolem baterie, soláru, MPPT, DC–DC, měniče a 230V nabíjení,
+- používat případové/scenario stránky jen tehdy, když řeší konkrétní intent a vedou do měřitelného předvyplněného kalkulátoru,
+- využívat interní odkazy k distribuci existujícího trafficu do money funnelu,
+- komunitní distribuci dělat jen jako odpověď na skutečný problém; nevyrábět odkazy nebo odpovědi bez relevantní otázky.
+
+## Aktuální stav growth vrstvy
+
+- Core buyer-intent vrstva pokrývá v CZ/SK/PL/HU baterii, solár, MPPT, DC–DC, měnič a 230V nabíječku.
+- 24 hlavních money pages v CZ/SK/PL/HU mají měřitelný early/late vstup do lokálního kalkulátoru.
+- CZ má měřitelné scenario landing pages; PL má řízený weekend scenario pilot a interní traffic routing.
+- Scenario attribution se přenáší přes kalkulaci, product impression a affiliate click; u podporovaných affiliate sítí i do transaction reference.
+- IndexNow pracuje se všemi sitemapami deklarovanými v robots.txt, takže scenario stránky nejsou mimo discovery flow.
+
+Nové content nebo scenario URL se mají přidávat až tehdy, když mají lepší očekávaný dopad než zlepšení CTR, interní distribuce nebo konverze na současném inventáři.
 
 ## Co znamená úspěch
 
 Po zapnutí měření sledujeme zejména:
 
-- podíl návštěvníků, kteří zahájí a dokončí výpočet,
+- organická zobrazení, kliknutí a query/page růst,
+- podíl návštěvníků guide/scenario pages, kteří vstoupí do kalkulátoru,
+- poměr early vs. late CTA vstupů na money pages,
+- zahájení a dokončení výpočtu,
+- product choice impressions a affiliate clicks,
+- podíl výsledků s úplným purchase-ready pokrytím a důvody neúplnosti,
+- potvrzené affiliate transakce tam, kde je síť poskytuje,
 - opakované použití a sdílení konfigurací,
-- přechod ze SEO stránky do kalkulátoru,
-- počet výsledků bez vhodného produktu nebo s neúplnými daty,
-- prokliky na kompatibilní produkty a později potvrzené konverze,
-- organické dotazy a stránky získávající zobrazení a kliknutí,
 - technické chyby a čas potřebný k dokončení výpočtu.
+
+Neoptimalizujeme na počet článků, produktů nebo PR. Optimalizujeme na **užitečný traffic → dokončený výpočet → kompatibilní produkt → měřitelný obchodní výsledek**.
 
 ## Pracovní pravidla
 
 - GitHub a tento dokument jsou zdrojem pravdy pro směr produktu.
+- Živé generované reporty mají přednost před ručně zapsaným pořadím jednotlivých merchantů nebo produktových mezer.
 - Vývoj pokračuje samostatně v malých, testovaných a veřejně ověřitelných krocích.
 - Hotové kvalitní změny se mohou sloučit bez jednotlivého schvalování Petra Gálíka.
-- Petr dostane okamžitou zprávu pouze při významném omezení vyžadujícím jeho zásah, například změně DNS, přístupu, schválení programu nebo rozhodnutí s podstatným obchodním dopadem.
-- Google Search Console a analytika nejsou blokátorem vývoje; doplní se, až bude Petr u počítače.
-- Přesné ekonomické výsledky se nesmí tvrdit bez skutečných dat.
+- Petr dostane okamžitou zprávu pouze při významném omezení vyžadujícím jeho zásah, například DNS, přístupu, schválení programu nebo rozhodnutí s podstatným obchodním dopadem.
+- Search Console a analytická data slouží k prioritizaci, ale jejich dočasná nedostupnost nemá zastavit technické a obsahové kroky s jasným přínosem.
+- Nevracet se k již dokončeným market gates nebo coverage úkolům bez konkrétní regrese v testu/reportu.
 
 ## Nejbližší pořadí práce
 
-1. Měřit a transparentně zobrazovat produktové pokrytí každé vypočtené sestavy; balíčky zobrazovat jen tehdy, když obsahují všechny potřebné kategorie.
-2. Doplnit ověřené baterie, panely a MPPT pro SK, baterie a MPPT pro PL a baterie, panely a MPPT pro HU; přesné lokální deeplinky a dostupnost mají přednost před počtem produktů.
-3. Dokončit přirozenou technickou jazykovou kontrolu neveřejné maďarské vrstvy a ověřit celý mobilní průchod před jejím zveřejněním.
-4. Využít účty MyPower.cz, Caravan24.cz a CamperTeam.pl nejprve pro autentické užitečné odpovědi bez odkazů a následně měřit skutečný přínos komunitní distribuce.
-5. Rumunsko ověřit jako pozdější experiment proti existující lokální konkurenci; další trhy zůstávají výzkumnou frontou, dokud CZ/SK/PL/HU nesplní vlastní brány.
+1. **Traffic → calculator → product conversion:** měřit a zlepšovat využití existujících core money pages; první aktivní experiment je early vs. late CTA na 24 CZ/SK/PL/HU stránkách.
+2. **Product integrity:** průběžně hlídat coverage, stale/unavailable produkty a úplnost balíčků. Přidávat produkt pouze podle reálné mezery, ne pro vyšší počet položek.
+3. **PT/RO/SI commercial gaps:** řešit komponentové mezery podle aktuálního `data/commercial-opportunity-report.json` a owner kroky podle `data/owner-action-queue.json`. Aktuálně jsou user-owned externí bottlenecky hlavně affiliate aktivace Solaris, Xdatou a Butler; systémové checkout/feed ověření řešit samostatně bez čekání na Petra.
+4. **SEO exploitation:** posilovat interní traffic routing, snippet/intent fit a existující scenario/money pages dříve než přidávat další generický obsah.
+5. **Measured expansion only:** nový trh nebo větší novou content family otevřít až po prokázaném signálu z trafficu, engagementu nebo monetizace současných trhů.
+
+Pokud se živý report dostane do rozporu s tímto seznamem, rozhoduje report a tento dokument se má v nejbližším bezpečném PR aktualizovat.
