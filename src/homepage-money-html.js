@@ -2,7 +2,8 @@ import { coreMoneyLinks } from "./homepage-money-routing.js";
 
 const GENERATED_START = "<!-- mps:home-money-links:start -->";
 const GENERATED_END = "<!-- mps:home-money-links:end -->";
-const GENERATED_BLOCK = new RegExp(`\\s*${escapeRegExp(GENERATED_START)}[\\s\\S]*?${escapeRegExp(GENERATED_END)}\\s*`, "g");
+const GENERATED_BLOCK = new RegExp(`${escapeRegExp(GENERATED_START)}[\\s\\S]*?${escapeRegExp(GENERATED_END)}`, "g");
+const GRID_PATTERN = /(<div\s+class=(?:"guide-preview-grid"|'guide-preview-grid')[^>]*>)([\s\S]*?)(<\/div>)/i;
 
 function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -30,17 +31,17 @@ export function syncHomepageMoneyLinksHtml(html, { lang } = {}) {
   const links = coreMoneyLinks(lang);
   if (!source || !links.length) return source;
 
-  const withoutGenerated = source.replace(GENERATED_BLOCK, "\n");
-  const gridMatch = withoutGenerated.match(/<div\s+class=(?:"guide-preview-grid"|'guide-preview-grid')[^>]*>([\s\S]*?)<\/div>/i);
+  const gridMatch = source.match(GRID_PATTERN);
   if (!gridMatch) return source;
 
-  const existing = extractHrefs(gridMatch[1]);
+  const editorialInner = gridMatch[2].replace(GENERATED_BLOCK, "").trimEnd();
+  const existing = extractHrefs(editorialInner);
   const missing = links.filter((item) => !existing.has(item.href));
-  if (!missing.length) return withoutGenerated;
-
-  const block = `\n          ${GENERATED_START}\n          ${missing.map(renderHomepageMoneyCard).join("\n          ")}\n          ${GENERATED_END}\n        `;
-  const updatedGrid = gridMatch[0].replace(/<\/div>\s*$/i, `${block}</div>`);
-  return withoutGenerated.replace(gridMatch[0], updatedGrid);
+  const generated = missing.length
+    ? `\n          ${GENERATED_START}\n          ${missing.map(renderHomepageMoneyCard).join("\n          ")}\n          ${GENERATED_END}`
+    : "";
+  const updatedGrid = `${gridMatch[1]}${editorialInner}${generated}\n        ${gridMatch[3]}`;
+  return source.replace(gridMatch[0], updatedGrid);
 }
 
 export const HOMEPAGE_MONEY_GENERATED_START = GENERATED_START;
