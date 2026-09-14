@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { calculateLanding, getCalculatorIntent } from "../src/calculator-landing.js";
-import { calculateSetup } from "../src/engine.js";
+import { calculateControllerSizing, calculateSetup } from "../src/engine.js";
 import { calculateDcCable } from "../src/dc-cable.js";
 
 test("battery-capacity landing reuses the canonical engine without formula drift", () => {
@@ -58,6 +58,20 @@ test("solar-sizing landing delegates solar and controller sizing to the canonica
   assert.equal(calculation.result.calculation.peakSunHours, 4.5);
 });
 
+test("mppt-sizing landing reuses canonical controller sizing without formula drift", () => {
+  const calculation = calculateLanding("mppt-sizing", {
+    panelWatts: 400,
+    systemVoltage: 12,
+    batteryType: "lifepo4",
+  }, "cs");
+  const direct = calculateControllerSizing({ solarWatts: 400, systemVoltage: 12, batteryType: "lifepo4" });
+  assert.equal(calculation.result.controllerAmps, direct.controllerAmps);
+  assert.equal(calculation.result.controllerSizingVoltage, direct.controllerSizingVoltage);
+  assert.equal(calculation.result.controllerMarginPercent, direct.controllerMarginPercent);
+  assert.equal(calculation.result.controllerAmps, 40);
+  assert.equal(calculation.result.controllerSizingVoltage, 14.6);
+});
+
 test("inverter-sizing landing delegates concurrency and surge sizing to the canonical engine", () => {
   const calculation = calculateLanding("inverter-sizing", {
     largestLoadWatts: 1200,
@@ -107,6 +121,7 @@ test("CZ calculator cluster remains crawlable, unique and commercially connected
   const pages = [
     ["kapacita-baterie", "battery-capacity", "/pruvodce/kapacita-baterie-do-karavanu/"],
     ["solarni-panely", "solar-sizing", "/pruvodce/kolik-w-solarnich-panelu/"],
+    ["mppt-regulator", "mppt-sizing", "/pruvodce/jak-vybrat-mppt-regulator/"],
     ["vykon-menice", "inverter-sizing", "/pruvodce/jak-velky-menic-do-karavanu/"],
     ["prurez-kabelu-12v", "cable-voltage-drop", "/pruvodce/kabely-a-pojistky-12-v/"],
     ["12v-nebo-24v", "voltage-system", "/pruvodce/12-v-nebo-24-v-karavan/"],
@@ -134,11 +149,11 @@ test("CZ calculator cluster remains crawlable, unique and commercially connected
 
 test("calculator sitemap exposes the complete live calculator cluster", async () => {
   const xml = await readFile("sitemap-calculators.xml", "utf8");
-  for (const slug of ["", "kapacita-baterie/", "solarni-panely/", "vykon-menice/", "prurez-kabelu-12v/", "12v-nebo-24v/"]) {
+  for (const slug of ["", "kapacita-baterie/", "solarni-panely/", "mppt-regulator/", "vykon-menice/", "prurez-kabelu-12v/", "12v-nebo-24v/"]) {
     assert.ok(xml.includes(`<loc>https://mypowersetup.com/kalkulacky/${slug}</loc>`));
   }
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(urls.length, 15, "calculator sitemap should contain 6 CZ URLs plus 9 proven localized URLs");
+  assert.equal(urls.length, 16, "calculator sitemap should contain 7 CZ URLs plus 9 proven localized URLs");
   assert.equal(new Set(urls).size, urls.length, "calculator sitemap must not contain duplicate URLs");
 });
 
