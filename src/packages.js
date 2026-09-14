@@ -1,6 +1,10 @@
 import { isRecommendationEligible, requiredRecommendationCategories } from "./recommendation-coverage.js";
 
-const PACKAGE_CATEGORIES = ["battery", "solar_panel", "inverter", "controller", "dc_charger", "shore_charger"];
+// Keep the shopping list in a practical build/order sequence: storage and generation
+// first, then regulation/conversion, then optional charging sources.
+const PACKAGE_CATEGORIES = ["battery", "solar_panel", "controller", "inverter", "dc_charger", "shore_charger"];
+const VALUE_SCORE_GAP = 15;
+const MIN_VALUE_SCORE = 70;
 
 function effectivePrice(candidate) {
   const price = Number(candidate?.product?.priceCzk);
@@ -15,6 +19,22 @@ function cheapest(candidates) {
     || candidates[0];
 }
 
+// "Economy" should mean best-value compatible choice, not simply the absolute
+// cheapest feed row. Keep it within a conservative score band of the strongest
+// match so a large price saving cannot silently trade away too much fit/data quality.
+function bestValue(candidates) {
+  const priced = candidates.filter((candidate) => effectivePrice(candidate) !== null);
+  if (!priced.length) return candidates[0];
+
+  const finiteScores = priced.map(({ score }) => Number(score)).filter(Number.isFinite);
+  if (!finiteScores.length) return cheapest(priced);
+
+  const topScore = Math.max(...finiteScores);
+  const scoreFloor = Math.max(topScore - VALUE_SCORE_GAP, Math.min(MIN_VALUE_SCORE, topScore));
+  const safeBand = priced.filter(({ score }) => Number.isFinite(Number(score)) && Number(score) >= scoreFloor);
+  return cheapest(safeBand.length ? safeBand : priced);
+}
+
 function withReserve(candidates) {
   const preferred = candidates
     .filter((candidate) => Number.isFinite(candidate.fit) && candidate.fit >= 1.08 && candidate.fit <= 1.6)
@@ -24,6 +44,15 @@ function withReserve(candidates) {
 
 function eligibleCandidates(recommendations, category) {
   return (recommendations[category] || []).filter(isRecommendationEligible);
+}
+
+function packageQuality(items) {
+  const scores = items.map(({ score }) => Number(score)).filter(Number.isFinite);
+  if (!scores.length) return { matchScore: null, minimumItemScore: null };
+  return {
+    matchScore: Math.round(scores.reduce((sum, score) => sum + score, 0) / scores.length),
+    minimumItemScore: Math.round(Math.min(...scores)),
+  };
 }
 
 function buildVariant(id, categories, recommendations, selector) {
@@ -37,6 +66,8 @@ function buildVariant(id, categories, recommendations, selector) {
   return {
     id,
     items,
+    ...packageQuality(items),
+    purchaseSequence: items.map(({ category }) => category),
     totalPriceCzk: priced.every((price) => price !== null) && currencies.size <= 1
       ? priced.reduce((total, price) => total + price, 0)
       : null,
@@ -55,7 +86,7 @@ export function buildProductPackages(recommendations, setup) {
   if (categories.length < 2 || categories.some((category) => eligibleCandidates(recommendations, category).length === 0)) return [];
 
   const candidates = [
-    buildVariant("economy", categories, recommendations, cheapest),
+    buildVariant("economy", categories, recommendations, bestValue),
     buildVariant("recommended", categories, recommendations, (items) => items[0]),
     buildVariant("reserve", categories, recommendations, withReserve),
   ];
