@@ -7,6 +7,7 @@ const CLUSTER = Object.freeze([
   Object.freeze({ slug: "", guide: null }),
   Object.freeze({ slug: "kapacita-baterie", guide: "pruvodce/kapacita-baterie-do-karavanu/index.html" }),
   Object.freeze({ slug: "solarni-panely", guide: "pruvodce/kolik-w-solarnich-panelu/index.html" }),
+  Object.freeze({ slug: "mppt-regulator", guide: "pruvodce/jak-vybrat-mppt-regulator/index.html" }),
   Object.freeze({ slug: "vykon-menice", guide: "pruvodce/jak-velky-menic-do-karavanu/index.html" }),
   Object.freeze({ slug: "prurez-kabelu-12v", guide: "pruvodce/kabely-a-pojistky-12-v/index.html" }),
   Object.freeze({ slug: "12v-nebo-24v", guide: "pruvodce/12-v-nebo-24-v-karavan/index.html" }),
@@ -83,7 +84,7 @@ test("calculator cluster has unique search intent metadata and indexable self ca
     assert.doesNotMatch(html, /<meta[^>]+name="robots"[^>]+noindex/i, `${route} must be indexable`);
     assert.match(html, /<meta name="viewport" content="width=device-width, initial-scale=1">/, `${route} needs mobile viewport`);
     assert.ok(!titles.has(title), `${route} duplicates title ${title}`);
-    assert.ok(!descriptions.has(description), `${route} duplicates meta description`);
+    assert.ok(!descriptions.has(description), `${route} duplicates meta description ${description}`);
     assert.ok(!h1s.has(h1), `${route} duplicates H1 ${h1}`);
     titles.add(title);
     descriptions.add(description);

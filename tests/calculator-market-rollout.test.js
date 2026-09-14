@@ -95,7 +95,7 @@ test("calculator sitemap publishes the complete CZ plus SK PL HU calculator surf
   for (const route of localized) {
     assert.equal(urls.filter((url) => url === `${ORIGIN}${route}`).length, 1, `${route} must appear once in calculator sitemap`);
   }
-  assert.equal(urls.length, 15, "calculator sitemap should contain 6 CZ URLs plus 9 localized URLs");
+  assert.equal(urls.length, 16, "calculator sitemap should contain 7 CZ URLs plus 9 localized URLs");
   assert.ok(!urls.some((url) => /\/(?:pt|ro|si)\/.*(?:kalk|calc)/i.test(url)), "PT/RO/SI calculator rollout must stay blocked");
 });
 
