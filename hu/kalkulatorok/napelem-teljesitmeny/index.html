@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lakóautó napelem kalkulátor: hány Wp kell? | MyPowerSetup</title>
+<meta name="description" content="Számolja ki a lakóautó szükséges napelem-teljesítményét a napi fogyasztás és az évszak alapján, tartalékkal és az MPPT szabályozó becsült méretével.">
+<link rel="canonical" href="https://mypowersetup.com/hu/kalkulatorok/napelem-teljesitmeny/">
+<link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/solarni-panely/">
+<link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/solarne-panely/">
+<link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/panele-solarne/">
+<link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/napelem-teljesitmeny/">
+<link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/solarni-panely/">
+<link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+<link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Lakóautó napelem-teljesítmény kalkulátor","url":"https://mypowersetup.com/hu/kalkulatorok/napelem-teljesitmeny/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true,"inLanguage":"hu-HU"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/hu/"},{"@type":"ListItem","position":2,"name":"Kalkulátorok","item":"https://mypowersetup.com/hu/kalkulatorok/"},{"@type":"ListItem","position":3,"name":"Napelem-teljesítmény","item":"https://mypowersetup.com/hu/kalkulatorok/napelem-teljesitmeny/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Hány Wp napelem kell egy lakóautóra?","acceptedAnswer":{"@type":"Answer","text":"A szükséges teljesítményt a napi energiafogyasztás, az évszak, a napsütési feltételek és a rendszer veszteségei együtt határozzák meg."}},{"@type":"Question","name":"Miért kell több napelem tavasszal vagy télen?","acceptedAnswer":{"@type":"Answer","text":"Nyáron kívül kevesebb az egyenértékű teljes napsütéses óra, ezért ugyanahhoz a napi fogyasztáshoz nagyobb beépített teljesítmény vagy kiegészítő töltési forrás szükséges."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/hu/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/hu/kalkulatorok/">Kalkulátorok</a><a class="header-link" href="/hu/utmutatok/">Útmutatók</a></nav></header>
+<main class="calculator-page">
+<nav class="calculator-breadcrumbs"><a href="/hu/">Kezdőlap</a> / <a href="/hu/kalkulatorok/">Kalkulátorok</a> / Napelem-teljesítmény</nav>
+<section class="calculator-hero"><p><strong>Napelem a fogyasztás és az évszak alapján</strong></p><h1>Hány Wp napelemre van szüksége a lakóautóban?</h1><p>Adja meg a napi fogyasztást és azt az évszakot, amikor leggyakrabban utazik. A számítás figyelembe veszi a szezonális napsütési órákat, a rendszer veszteségeit és a tartalékot, majd megmutatja az MPPT szabályozó becsült minimális áramát is.</p></section>
+<section class="calculator-grid" data-calculator-landing data-calculator-intent="solar-sizing" data-calculator-locale="hu">
+<div class="calculator-card"><h2>Adja meg a fogyasztást és az évszakot</h2><form class="calculator-form" data-calculator-form>
+<div class="calculator-field"><label for="dailyWh">Napi fogyasztás (Wh/nap)</label><input id="dailyWh" name="dailyWh" type="number" inputmode="decimal" min="50" max="20000" step="10" value="1200" required></div>
+<div class="calculator-field"><label for="season">Mikor utazik leggyakrabban?</label><select id="season" name="season"><option value="summer">Nyár</option><option value="shoulder">Tavasz / ősz</option><option value="winter">Tél</option></select></div>
+<div class="calculator-field"><label for="systemVoltage">Rendszerfeszültség</label><select id="systemVoltage" name="systemVoltage"><option value="auto">Automatikus 12/24 V választás</option><option value="12">12 V</option><option value="24">24 V</option></select></div>
+<input type="hidden" name="batteryType" value="lifepo4"><button class="calculator-button" type="submit">Napelem méretezése</button>
+</form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+<div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Eredmény</strong></p><h2>Javasolt minimum</h2><div class="calculator-metrics"><div class="calculator-metric"><span>Panelek</span><strong data-result-solar-watts>—</strong></div><div class="calculator-metric"><span>MPPT szabályozó</span><strong data-result-controller-amps>—</strong></div><div class="calculator-metric"><span>Rendszer</span><strong data-result-voltage>—</strong></div><div class="calculator-metric"><span>Évszak</span><strong data-result-season>—</strong></div></div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/hu/#kalkulator">Teljes rendszer tervezése</a><a class="calculator-cta calculator-cta-secondary" href="/hu/utmutatok/hany-watt-napelem-lakoautohoz/">Napelemes rendszer útmutató</a></div></div>
+</section>
+<section class="calculator-section calculator-content-card"><h2>A Wp nem napi Wh</h2><p>A panelek névleges teljesítménye laboratóriumi érték. A valós napi termelést az évszak, az árnyékolás, a panel dőlése, a hőmérséklet, valamint a szabályozó és a kábelezés veszteségei befolyásolják.</p></section>
+<section class="calculator-section"><h2>Gyakori kérdések</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Elég 200 Wp?</h3><p>Csak akkor, ha a valós napi termelés fedezi a fogyasztást és a veszteségeket. Nyáron elég lehet, tavasszal, ősszel vagy árnyékban azonban gyorsan elfogyhat a tartalék.</p></article><article class="calculator-content-card"><h3>Miért mutatjuk az MPPT értéket is?</h3><p>A szabályozónak kezelnie kell a panelek teljesítményét az akkumulátorrendszer feszültségén, ezért a Wp mellett a becsült minimális szabályozóáramot is megadjuk.</p></article></div></section>
+</main>
+<script type="module" src="/src/calculator-landing-browser.js?v=20260914-3"></script>
+</body>
+</html>
