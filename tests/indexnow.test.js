@@ -27,6 +27,7 @@ const calculatorUrls = [
   `${origin}/kalkulacky/`,
   `${origin}/kalkulacky/12v-nebo-24v/`,
   `${origin}/kalkulacky/kapacita-baterie/`,
+  `${origin}/kalkulacky/mppt-regulator/`,
   `${origin}/kalkulacky/prurez-kabelu-12v/`,
   `${origin}/kalkulacky/solarni-panely/`,
   `${origin}/kalkulacky/vykon-menice/`,
