@@ -15,6 +15,9 @@ function forbidMatch(source, pattern, label) {
 const analytics = read("src/analytics.js");
 const navigation = read("src/community-navigation.js");
 const affiliateAnalytics = read("src/affiliate-analytics.js");
+const calculatorLanding = read("src/calculator-landing-browser.js");
+const calculatorAttribution = read("src/calculator-attribution.js");
+const guideConversion = read("src/guide-conversion.js");
 
 requireMatch(analytics, /choice === "granted" \? resolveCommunityAttribution/, "community_persistence_requires_consent");
 requireMatch(analytics, /carryCommunityAttributionToUrl\(/, "community_attribution_carried_to_calculator");
@@ -26,10 +29,22 @@ forbidMatch(analytics, /calculator_(?:result|component)_guide_click/, "calculato
 requireMatch(navigation, /destination\.origin !== page\.origin/, "community_carry_is_same_origin_only");
 requireMatch(navigation, /searchParams\.set\("utm_medium", "community"\)/, "community_carry_keeps_medium");
 forbidMatch(navigation, /sessionStorage|localStorage|gtag\(|fetch\(/, "community_navigation_must_not_persist_track_or_send");
-requireMatch(affiliateAnalytics, /tracker\("affiliate_click",/, "affiliate_click_has_one_shared_tracker");
-requireMatch(affiliateAnalytics, /tracker\("product_choice_impression", buildAffiliateClickParameters\(link\)\)/, "product_impressions_share_click_dimensions");
+requireMatch(affiliateAnalytics, /tracker\("affiliate_click",\s*\{/, "affiliate_click_has_one_shared_tracker");
+requireMatch(affiliateAnalytics, /tracker\("product_choice_impression",\s*\{/, "product_impressions_share_click_dimensions");
+requireMatch(affiliateAnalytics, /resolveCalculatorAttribution/, "affiliate_events_receive_calculator_landing_attribution");
 requireMatch(affiliateAnalytics, /details:not\(\[open\]\)/, "closed_product_comparisons_are_not_impressions");
 requireMatch(affiliateAnalytics, /affiliateImpressionTracked/, "product_impressions_are_deduplicated");
+
+requireMatch(calculatorLanding, /import "\.\/analytics\.js"/, "calculator_landings_load_consent_analytics");
+for (const event of ["calculator_landing_view", "calculator_started", "calculation_completed", "calculator_landing_continue"]) {
+  requireMatch(calculatorLanding, new RegExp(event), `calculator_landing_${event}_tracked`);
+}
+requireMatch(calculatorLanding, /rememberCalculatorAttribution/, "calculator_landing_context_persisted");
+requireMatch(calculatorLanding, /mypowersetup:analytics-granted/, "calculator_landing_persistence_requires_consent");
+requireMatch(calculatorAttribution, /30 \* 60 \* 1000/, "calculator_landing_attribution_expires");
+requireMatch(calculatorAttribution, /LANDINGS/, "calculator_landing_attribution_validates_route_intent");
+requireMatch(guideConversion, /mypowersetup_analytics_consent/, "guide_position_persistence_requires_consent");
+requireMatch(guideConversion, /sourcePosition: guidePosition\(link\)/, "guide_position_persisted_for_downstream_funnel");
 
 for (const [market, path] of [
   ["cz", "src/app.js"],
@@ -79,4 +94,4 @@ for (const [market, path, appPattern] of [
   requireMatch(html, /id="setup-form"/, `${market}_calculator_form_present`);
 }
 
-console.log("Conversion analytics guard passed: 7/7 markets track calculator start, calculation completion, product coverage, visible product-choice impressions, calculator-to-guide journeys and affiliate clicks; community attribution remains consent-gated and survives guide-to-calculator navigation without storage.");
+console.log("Conversion analytics guard passed: seven market builders plus the CZ SEO calculator cluster track start, completion, continuation, visible product impressions and affiliate clicks with consent-safe downstream attribution.");
