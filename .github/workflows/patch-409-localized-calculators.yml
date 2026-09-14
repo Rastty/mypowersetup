@@ -21,7 +21,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add kalkulacky/kapacita-baterie/index.html kalkulacky/solarni-panely/index.html sk/sprievodca/kapacita-baterie-do-karavanu/index.html sk/sprievodca/kolko-w-solarnich-panelov/index.html pl/poradnik/pojemnosc-akumulatora-do-kampera/index.html pl/poradnik/ile-wat-paneli-solarnych-do-kampera/index.html hu/utmutatok/lakoauto-akkumulator-kapacitas/index.html hu/utmutatok/hany-watt-napelem-lakoautohoz/index.html sitemap-calculators.xml src/indexnow.js tests/indexnow.test.js
+          git add -A
           git diff --cached --quiet && exit 1
           git commit -m "feat: integrate localized calculator discovery"
           git push origin HEAD:feat/409-core-market-calculators
