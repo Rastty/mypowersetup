@@ -24,6 +24,18 @@ const families = Object.freeze({
   }),
 });
 
+const czPublishedRoutes = Object.freeze([
+  families.hub.cs,
+  families.battery.cs,
+  families.solar.cs,
+  "/kalkulacky/mppt-regulator/",
+  "/kalkulacky/dc-dc-nabijecka/",
+  "/kalkulacky/vykon-menice/",
+  "/kalkulacky/prurez-kabelu-12v/",
+  "/kalkulacky/jisteni-12v/",
+  "/kalkulacky/12v-nebo-24v/",
+]);
+
 const localeMeta = Object.freeze({
   sk: Object.freeze({ builder: "/sk/#kalkulator", guidePrefix: "/sk/sprievodca/" }),
   pl: Object.freeze({ builder: "/pl/#kalkulator", guidePrefix: "/pl/poradnik/" }),
@@ -92,10 +104,14 @@ test("calculator sitemap publishes the complete CZ plus SK PL HU calculator surf
   const xml = await readFile("sitemap-calculators.xml", "utf8");
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
   const localized = Object.values(families).flatMap((family) => [family.sk, family.pl, family.hu]);
-  for (const route of localized) {
+  for (const route of [...czPublishedRoutes, ...localized]) {
     assert.equal(urls.filter((url) => url === `${ORIGIN}${route}`).length, 1, `${route} must appear once in calculator sitemap`);
   }
-  assert.equal(urls.length, 16, "calculator sitemap should contain 7 CZ URLs plus 9 localized URLs");
+  assert.equal(
+    urls.length,
+    czPublishedRoutes.length + localized.length,
+    "calculator sitemap should contain 9 CZ URLs plus 9 localized URLs",
+  );
   assert.ok(!urls.some((url) => /\/(?:pt|ro|si)\/.*(?:kalk|calc)/i.test(url)), "PT/RO/SI calculator rollout must stay blocked");
 });
 
