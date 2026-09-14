@@ -9,6 +9,31 @@ permissions:
   contents: read
 
 jobs:
+  diagnostic:
+    name: diagnostic ${{ matrix.label }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: A-C
+            pattern: 'tests/[a-c]*.test.js'
+          - label: D-H
+            pattern: 'tests/[d-h]*.test.js'
+          - label: I-M
+            pattern: 'tests/[i-m]*.test.js'
+          - label: N-R
+            pattern: 'tests/[n-r]*.test.js'
+          - label: S-Z
+            pattern: 'tests/[s-z]*.test.js'
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - run: node --test --test-concurrency=1 ${{ matrix.pattern }}
+
   calculator:
     runs-on: ubuntu-latest
     steps:
