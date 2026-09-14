@@ -1,3 +1,11 @@
+import { resolveCalculatorAttribution } from "./calculator-attribution.js";
+
+function currentCalculatorAttribution() {
+  if (typeof window === "undefined" || typeof document === "undefined") return null;
+  const market = document.documentElement?.lang || null;
+  return resolveCalculatorAttribution({ storage: window.sessionStorage, market });
+}
+
 export function buildAffiliateClickParameters(link) {
   const category = link?.dataset?.category || "unknown";
   return {
@@ -15,7 +23,10 @@ export function buildAffiliateClickParameters(link) {
 
 export function trackAffiliateClick(link, tracker) {
   if (typeof tracker !== "function") return false;
-  return tracker("affiliate_click", buildAffiliateClickParameters(link));
+  return tracker("affiliate_click", {
+    ...buildAffiliateClickParameters(link),
+    ...(currentCalculatorAttribution() || {}),
+  });
 }
 
 export function buildAffiliateImpressionParameters(links) {
@@ -46,8 +57,15 @@ export function trackAffiliateImpressions(links, tracker) {
   if (typeof tracker !== "function") return false;
   const candidates = [...(links || [])].filter((link) => link?.dataset?.affiliateImpressionTracked !== "true");
   if ((links?.length || 0) > 0 && candidates.length === 0) return true;
-  const choiceResults = candidates.map((link) => tracker("product_choice_impression", buildAffiliateClickParameters(link)));
-  const summaryTracked = tracker("product_choices_rendered", buildAffiliateImpressionParameters(candidates));
+  const attribution = currentCalculatorAttribution() || {};
+  const choiceResults = candidates.map((link) => tracker("product_choice_impression", {
+    ...buildAffiliateClickParameters(link),
+    ...attribution,
+  }));
+  const summaryTracked = tracker("product_choices_rendered", {
+    ...buildAffiliateImpressionParameters(candidates),
+    ...attribution,
+  });
   const tracked = summaryTracked && choiceResults.every(Boolean);
   if (tracked) {
     for (const link of candidates) link.dataset.affiliateImpressionTracked = "true";
