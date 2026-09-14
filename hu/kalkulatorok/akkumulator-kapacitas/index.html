@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lakóautó akkumulátor kalkulátor: hány Ah kell? | MyPowerSetup</title>
+<meta name="description" content="Számolja ki a lakóautó szükséges akkumulátorkapacitását Wh és Ah értékben a napi fogyasztás, autonómia, akkumulátortípus és 12/24 V rendszer alapján.">
+<link rel="canonical" href="https://mypowersetup.com/hu/kalkulatorok/akkumulator-kapacitas/">
+<link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/kapacita-baterie/">
+<link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/kapacita-baterie/">
+<link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/pojemnosc-akumulatora/">
+<link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/akkumulator-kapacitas/">
+<link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/kapacita-baterie/">
+<link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+<link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Lakóautó akkumulátorkapacitás-kalkulátor","url":"https://mypowersetup.com/hu/kalkulatorok/akkumulator-kapacitas/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true,"inLanguage":"hu-HU"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/hu/"},{"@type":"ListItem","position":2,"name":"Kalkulátorok","item":"https://mypowersetup.com/hu/kalkulatorok/"},{"@type":"ListItem","position":3,"name":"Akkumulátorkapacitás","item":"https://mypowersetup.com/hu/kalkulatorok/akkumulator-kapacitas/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Hány Ah akkumulátor kell egy lakóautóba?","acceptedAnswer":{"@type":"Answer","text":"A napi energiaigény, a töltés nélküli napok száma, az akkumulátor típusa és a rendszerfeszültség együtt határozza meg a szükséges kapacitást."}},{"@type":"Question","name":"Miért nagyobb az AGM igénye, mint a LiFePO4-é?","acceptedAnswer":{"@type":"Answer","text":"AGM esetén kisebb hasznos kisütési mélységgel számolunk, ezért ugyanahhoz a felhasználható energiához nagyobb névleges kapacitás kell."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/hu/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/hu/kalkulatorok/">Kalkulátorok</a><a class="header-link" href="/hu/utmutatok/">Útmutatók</a></nav></header>
+<main class="calculator-page">
+<nav class="calculator-breadcrumbs"><a href="/hu/">Kezdőlap</a> / <a href="/hu/kalkulatorok/">Kalkulátorok</a> / Akkumulátorkapacitás</nav>
+<section class="calculator-hero"><p><strong>Akkumulátor a valós fogyasztás alapján</strong></p><h1>Hány Ah akkumulátorra van szüksége a lakóautóban?</h1><p>Adja meg az átlagos napi fogyasztást és azt, hány napot szeretne töltés nélkül áthidalni. A számítás ugyanazt a motort használja, mint a teljes Builder, és figyelembe veszi a tartalékot, valamint a LiFePO₄ és AGM közötti különbséget.</p></section>
+<section class="calculator-grid" data-calculator-landing data-calculator-intent="battery-capacity" data-calculator-locale="hu">
+<div class="calculator-card"><h2>Adja meg a használati profilt</h2><form class="calculator-form" data-calculator-form>
+<div class="calculator-field"><label for="dailyWh">Napi fogyasztás (Wh/nap)</label><input id="dailyWh" name="dailyWh" type="number" inputmode="decimal" min="50" max="20000" step="10" value="900" required></div>
+<div class="calculator-field"><label for="autonomyDays">Hány nap töltés nélkül?</label><input id="autonomyDays" name="autonomyDays" type="number" inputmode="numeric" min="1" max="7" step="1" value="2" required></div>
+<div class="calculator-field"><label for="batteryType">Akkumulátor típusa</label><select id="batteryType" name="batteryType"><option value="lifepo4" selected>LiFePO₄</option><option value="lead">AGM / ólom-savas</option></select></div>
+<div class="calculator-field"><label for="systemVoltage">Rendszerfeszültség</label><select id="systemVoltage" name="systemVoltage"><option value="auto" selected>Automatikus 12/24 V választás</option><option value="12">12 V</option><option value="24">24 V</option></select></div>
+<input type="hidden" name="season" value="summer"><button class="calculator-button" type="submit">Akkumulátor méretezése</button>
+</form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+<div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Eredmény</strong></p><h2>Javasolt minimum</h2><div class="calculator-metrics"><div class="calculator-metric"><span>Kapacitás</span><strong data-result-battery-wh>—</strong></div><div class="calculator-metric"><span>Körülbelül</span><strong data-result-battery-ah>—</strong></div><div class="calculator-metric"><span>Rendszer</span><strong data-result-voltage>—</strong></div><div class="calculator-metric"><span>Akkumulátor</span><strong data-result-battery-type>—</strong></div></div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/hu/#kalkulator">Teljes rendszer tervezése</a><a class="calculator-cta calculator-cta-secondary" href="/hu/utmutatok/lakoauto-akkumulator-kapacitas/">Akkumulátor-választási útmutató</a></div></div>
+</section>
+<section class="calculator-section calculator-content-card"><h2>Miért nem elég önmagában a 100 Ah?</h2><p>Az Ah érték csak a feszültséggel együtt mondja meg, mennyi energia áll rendelkezésre. Ugyanilyen fontos a hasznos kisütési mélység és az, hogyan tölti vissza az energiát. Ezért a számítás először Wh-ban dolgozik, majd a rendszerfeszültségnél vált Ah-ra.</p></section>
+<section class="calculator-section"><h2>Gyakori kérdések</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Elég 100 Ah egy hétvégére?</h3><p>Csak akkor, ha a napi fogyasztás és a ténylegesen felhasználható energia belefér. Hűtő, elektronika és két nap töltés nélkül már nagyobb kapacitást igényelhet.</p></article><article class="calculator-content-card"><h3>12 V vagy 24 V?</h3><p>Kisebb rendszernél a 12 V egyszerűbb lehet, nagyobb akkumulátornál vagy erősebb inverternél a 24 V csökkentheti az áramot és a kábelezési igényt.</p></article></div></section>
+</main>
+<script type="module" src="/src/calculator-landing-browser.js?v=20260914-3"></script>
+</body>
+</html>

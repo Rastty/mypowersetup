@@ -2,6 +2,17 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
 
+const CONTENT_REFRESH_BASELINE = Date.parse("2026-09-11T00:00:00Z");
+
+function assertFreshDateModified(html) {
+  const modified = html.match(/"dateModified":"(\d{4}-\d{2}-\d{2})"/)?.[1];
+  assert.ok(modified, "Article dateModified must exist");
+  const timestamp = Date.parse(`${modified}T00:00:00Z`);
+  assert.ok(Number.isFinite(timestamp), "Article dateModified must be a valid ISO date");
+  assert.ok(timestamp >= CONTENT_REFRESH_BASELINE, "Article dateModified must not regress before the content refresh baseline");
+  assert.ok(timestamp <= Date.now() + 86_400_000, "Article dateModified must not be in the future");
+}
+
 const cases = [
   {
     market: "CZ",
@@ -47,7 +58,7 @@ for (const item of cases) {
     assert.match(h1, item.h1);
     assert.match(html, item.section);
     assert.match(html, item.choice);
-    assert.match(html, /"dateModified":"2026-09-11"/);
+    assertFreshDateModified(html);
     assert.match(html, /#kalkulator/);
   });
 }

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulator pojemności akumulatora do kampera: ile Ah? | MyPowerSetup</title>
+  <meta name="description" content="Oblicz potrzebną pojemność akumulatora do kampera w Wh i Ah na podstawie dziennego zużycia, autonomii, rodzaju akumulatora i napięcia 12/24 V.">
+  <link rel="canonical" href="https://mypowersetup.com/pl/kalkulatory/pojemnosc-akumulatora/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/kapacita-baterie/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/kapacita-baterie/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/pojemnosc-akumulatora/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/akkumulator-kapacitas/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/kapacita-baterie/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Kalkulator pojemności akumulatora do kampera","url":"https://mypowersetup.com/pl/kalkulatory/pojemnosc-akumulatora/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true,"inLanguage":"pl-PL"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/pl/"},{"@type":"ListItem","position":2,"name":"Kalkulatory","item":"https://mypowersetup.com/pl/kalkulatory/"},{"@type":"ListItem","position":3,"name":"Pojemność akumulatora","item":"https://mypowersetup.com/pl/kalkulatory/pojemnosc-akumulatora/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ile Ah akumulatora potrzebuję do kampera?","acceptedAnswer":{"@type":"Answer","text":"Zależy to od dziennego zużycia energii w Wh, liczby dni bez ładowania, rodzaju akumulatora i napięcia systemu. Kalkulator przelicza te dane na zalecaną minimalną pojemność w Wh i Ah."}},{"@type":"Question","name":"Dlaczego AGM wychodzi większy niż LiFePO4?","acceptedAnswer":{"@type":"Answer","text":"Dla AGM przyjmujemy mniejszą użyteczną głębokość rozładowania, dlatego przy tej samej dostępnej energii potrzebna jest większa pojemność znamionowa."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/pl/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/pl/kalkulatory/">Kalkulatory</a><a class="header-link" href="/pl/poradnik/">Poradniki</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/pl/">Start</a> / <a href="/pl/kalkulatory/">Kalkulatory</a> / Pojemność akumulatora</nav>
+  <section class="calculator-hero"><p><strong>Akumulator dobrany do realnego zużycia</strong></p><h1>Ile Ah akumulatora naprawdę potrzebujesz w kamperze?</h1><p>Podaj średnie dzienne zużycie i liczbę dni, które chcesz przejechać lub spędzić na postoju bez ładowania. Obliczenie korzysta z tego samego silnika co główny Builder i uwzględnia zapas oraz różnicę między LiFePO₄ i AGM.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="battery-capacity" data-calculator-locale="pl">
+    <div class="calculator-card"><h2>Podaj sposób użytkowania</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="dailyWh">Dzienne zużycie (Wh/dzień)</label><input id="dailyWh" name="dailyWh" type="number" inputmode="decimal" min="50" max="20000" step="10" value="900" required></div>
+      <div class="calculator-field"><label for="autonomyDays">Ile dni bez ładowania?</label><input id="autonomyDays" name="autonomyDays" type="number" inputmode="numeric" min="1" max="7" step="1" value="2" required></div>
+      <div class="calculator-field"><label for="batteryType">Rodzaj akumulatora</label><select id="batteryType" name="batteryType"><option value="lifepo4" selected>LiFePO₄</option><option value="lead">AGM / kwasowo-ołowiowy</option></select></div>
+      <div class="calculator-field"><label for="systemVoltage">Napięcie systemu</label><select id="systemVoltage" name="systemVoltage"><option value="auto" selected>Auto – dobierz 12/24 V</option><option value="12">12 V</option><option value="24">24 V</option></select></div>
+      <input type="hidden" name="season" value="summer"><button class="calculator-button" type="submit">Oblicz potrzebny akumulator</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Wynik</strong></p><h2>Zalecane minimum</h2><div class="calculator-metrics"><div class="calculator-metric"><span>Pojemność</span><strong data-result-battery-wh>—</strong></div><div class="calculator-metric"><span>Około</span><strong data-result-battery-ah>—</strong></div><div class="calculator-metric"><span>System</span><strong data-result-voltage>—</strong></div><div class="calculator-metric"><span>Akumulator</span><strong data-result-battery-type>—</strong></div></div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/pl/#kalkulator">Dobierz cały zestaw</a><a class="calculator-cta calculator-cta-secondary" href="/pl/poradnik/pojemnosc-akumulatora-do-kampera/">Jak dobrać konkretny akumulator</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Dlaczego zaczynamy od Wh</h2><p>Same Ah nie opisują ilości energii bez znajomości napięcia. Liczy się również użyteczna głębokość rozładowania i sposób ładowania. Dlatego najpierw obliczamy zapotrzebowanie w Wh, a dopiero potem przeliczamy wynik na Ah dla dobranego napięcia.</p></section>
+  <section class="calculator-section"><h2>Najczęstsze pytania</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Czy 100 Ah wystarczy na weekend?</h3><p>Może wystarczyć przy niskim zużyciu i regularnym ładowaniu, ale nie jest to uniwersalna wartość. Lodówka, elektronika i dwa dni bez ładowania mogą wymagać większej pojemności.</p></article><article class="calculator-content-card"><h3>12 V czy 24 V?</h3><p>Dla mniejszego systemu 12 V bywa prostsze. Przy większym akumulatorze lub mocnej przetwornicy 24 V może ograniczyć prądy i wymagania dotyczące okablowania.</p></article></div></section>
+</main>
+<script type="module" src="/src/calculator-landing-browser.js?v=20260914-3"></script>
+</body>
+</html>

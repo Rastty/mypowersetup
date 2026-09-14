@@ -12,6 +12,24 @@ const CLUSTER = Object.freeze([
   Object.freeze({ slug: "12v-nebo-24v", guide: "pruvodce/12-v-nebo-24-v-karavan/index.html" }),
 ]);
 
+const LOCALIZED_EQUIVALENTS = Object.freeze({
+  "": Object.freeze({
+    sk: "/sk/kalkulacky/",
+    pl: "/pl/kalkulatory/",
+    hu: "/hu/kalkulatorok/",
+  }),
+  "kapacita-baterie": Object.freeze({
+    sk: "/sk/kalkulacky/kapacita-baterie/",
+    pl: "/pl/kalkulatory/pojemnosc-akumulatora/",
+    hu: "/hu/kalkulatorok/akkumulator-kapacitas/",
+  }),
+  "solarni-panely": Object.freeze({
+    sk: "/sk/kalkulacky/solarne-panely/",
+    pl: "/pl/kalkulatory/panele-solarne/",
+    hu: "/hu/kalkulatorok/napelem-teljesitmeny/",
+  }),
+});
+
 function routeFor(slug) {
   return slug ? `/kalkulacky/${slug}/` : "/kalkulacky/";
 }
@@ -28,6 +46,24 @@ function matchOne(html, expression, label) {
 
 function escapeRegex(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function expectedAlternates(slug) {
+  const route = routeFor(slug);
+  const localized = LOCALIZED_EQUIVALENTS[slug];
+  if (!localized) {
+    return [
+      ["cs-CZ", `${ORIGIN}${route}`],
+      ["x-default", `${ORIGIN}${route}`],
+    ];
+  }
+  return [
+    ["cs-CZ", `${ORIGIN}${route}`],
+    ["sk-SK", `${ORIGIN}${localized.sk}`],
+    ["pl-PL", `${ORIGIN}${localized.pl}`],
+    ["hu-HU", `${ORIGIN}${localized.hu}`],
+    ["x-default", `${ORIGIN}${route}`],
+  ];
 }
 
 test("calculator cluster has unique search intent metadata and indexable self canonicals", async () => {
@@ -55,16 +91,14 @@ test("calculator cluster has unique search intent metadata and indexable self ca
   }
 });
 
-test("calculator hreflang is self-consistent until localized equivalents are published", async () => {
+test("calculator hreflang advertises only published equivalents", async () => {
   for (const entry of CLUSTER) {
     const route = routeFor(entry.slug);
     const html = await readFile(fileFor(entry.slug), "utf8");
     const alternates = [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">/g)]
       .map(([, lang, href]) => [lang, href]);
-    assert.deepEqual(alternates, [
-      ["cs-CZ", `${ORIGIN}${route}`],
-      ["x-default", `${ORIGIN}${route}`],
-    ], `${route} must not advertise nonexistent localized calculator equivalents`);
+    assert.deepEqual(alternates, expectedAlternates(entry.slug), `${route} hreflang must match published calculator equivalents`);
+    assert.doesNotMatch(html, /hreflang="(?:pt-PT|ro-RO|sl-SI)"/, `${route} must not advertise blocked expansion markets`);
   }
 });
 
@@ -85,11 +119,13 @@ test("calculator structured data stays defensible and breadcrumbs match each can
   }
 });
 
-test("calculator sitemap contains only the complete production cluster exactly once", async () => {
+test("calculator sitemap contains every CZ production calculator exactly once without duplicates", async () => {
   const xml = await readFile("sitemap-calculators.xml", "utf8");
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
   const expected = CLUSTER.map((entry) => `${ORIGIN}${routeFor(entry.slug)}`);
-  assert.deepEqual(urls, expected);
+  for (const url of expected) {
+    assert.equal(urls.filter((candidate) => candidate === url).length, 1, `${url} must appear exactly once`);
+  }
   assert.equal(new Set(urls).size, urls.length, "calculator sitemap must not contain duplicates");
   for (const entry of CLUSTER) await readFile(fileFor(entry.slug), "utf8");
 });

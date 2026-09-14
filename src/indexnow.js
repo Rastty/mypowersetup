@@ -14,6 +14,15 @@ const CALCULATOR_LANDING_ROUTES = Object.freeze([
   "/kalkulacky/vykon-menice/",
   "/kalkulacky/prurez-kabelu-12v/",
   "/kalkulacky/12v-nebo-24v/",
+  "/sk/kalkulacky/",
+  "/sk/kalkulacky/kapacita-baterie/",
+  "/sk/kalkulacky/solarne-panely/",
+  "/pl/kalkulatory/",
+  "/pl/kalkulatory/pojemnosc-akumulatora/",
+  "/pl/kalkulatory/panele-solarne/",
+  "/hu/kalkulatorok/",
+  "/hu/kalkulatorok/akkumulator-kapacitas/",
+  "/hu/kalkulatorok/napelem-teljesitmeny/",
 ]);
 const INDEXNOW_INFRASTRUCTURE_FILES = new Set([
   "robots.txt",
@@ -42,6 +51,7 @@ const CALCULATOR_LANDING_FILES = new Set([
   "kalkulacky/calculator.css",
   "src/calculator-landing.js",
   "src/calculator-landing-browser.js",
+  "src/calculator-copy.js",
   "src/dc-cable.js",
 ]);
 const EXPANSION_CALCULATOR_FILES = new Set([
