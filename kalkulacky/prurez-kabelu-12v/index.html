@@ -15,8 +15,8 @@
 <section class="calculator-hero"><p><strong>12/24V kabel bez zbytečného úbytku</strong></p><h1>Jaký průřez kabelu potřebujete?</h1><p>Zadejte výkon spotřebiče, jednosměrnou délku kabelu, napětí a povolený úbytek. Kalkulačka spočítá proud, potřebný průřez a zaokrouhlí ho nahoru na běžně dostupný měděný kabel.</p></section>
 <section class="calculator-grid" data-calculator-landing data-calculator-intent="cable-voltage-drop" data-calculator-locale="cs">
 <div class="calculator-card"><h2>Zadejte trasu a výkon</h2><form class="calculator-form" data-calculator-form>
-<div class="calculator-field"><label for="loadWatts">Výkon spotřebiče (W)</label><input id="loadWatts" name="loadWatts" type="number" min="10" max="10000" step="10" value="500" required></div>
-<div class="calculator-field"><label for="oneWayLengthM">Jednosměrná délka kabelu (m)</label><input id="oneWayLengthM" name="oneWayLengthM" type="number" min="0.5" max="30" step="0.5" value="5" required></div>
+<div class="calculator-field"><label for="loadWatts">Výkon spotřebiče (W)</label><input id="loadWatts" name="loadWatts" type="number" inputmode="decimal" min="10" max="10000" step="10" value="500" required></div>
+<div class="calculator-field"><label for="oneWayLengthM">Jednosměrná délka kabelu (m)</label><input id="oneWayLengthM" name="oneWayLengthM" type="number" inputmode="decimal" min="0.5" max="30" step="0.5" value="5" required></div>
 <div class="calculator-field"><label for="systemVoltage">Napětí</label><select id="systemVoltage" name="systemVoltage"><option value="12" selected>12 V</option><option value="24">24 V</option></select></div>
 <div class="calculator-field"><label for="maxDropPercent">Maximální úbytek</label><select id="maxDropPercent" name="maxDropPercent"><option value="2">2 % – citlivé spotřebiče</option><option value="3" selected>3 % – běžné doporučení</option><option value="5">5 % – méně citlivý okruh</option></select></div>
 <button class="calculator-button" type="submit">Spočítat průřez kabelu</button></form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
