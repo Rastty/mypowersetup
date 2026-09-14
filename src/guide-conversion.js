@@ -1,3 +1,5 @@
+import { rememberGuideAttribution } from "./guide-attribution.js";
+
 const CORE_MONEY_GUIDES = new Set([
   "/pruvodce/kapacita-baterie-do-karavanu/",
   "/pruvodce/kolik-w-solarnich-panelu/",
@@ -25,12 +27,42 @@ const CORE_MONEY_GUIDES = new Set([
   "/hu/utmutatok/lakoauto-inverter-kivalasztasa/",
 ]);
 
+const CONSENT_KEY = "mypowersetup_analytics_consent";
+
 function normalizePath(pathname) {
   try {
     return new URL(pathname, "https://mypowersetup.com").pathname;
   } catch {
     return String(pathname || "");
   }
+}
+
+function guidePosition(link) {
+  if (link.closest?.("[data-guide-top-cta]")) return "early";
+  const cta = link.closest?.(".cta");
+  if (cta?.querySelector?.("[data-guide-conversion-cta]")) return "late";
+  return "inline";
+}
+
+function hasAnalyticsConsent(storage) {
+  try { return storage?.getItem?.(CONSENT_KEY) === "granted"; } catch { return false; }
+}
+
+function bindGuideAttribution(article, pathname, root) {
+  if (article.dataset?.guideAttributionBound === "true") return;
+  if (article.dataset) article.dataset.guideAttributionBound = "true";
+  article.addEventListener?.("click", (event) => {
+    const link = event.target?.closest?.('a[href*="#kalkulator"]');
+    if (!link || !article.contains?.(link)) return;
+    const localStorage = root?.defaultView?.localStorage || globalThis.localStorage;
+    const sessionStorage = root?.defaultView?.sessionStorage || globalThis.sessionStorage;
+    if (!hasAnalyticsConsent(localStorage)) return;
+    rememberGuideAttribution({
+      sourcePath: pathname,
+      sourcePosition: guidePosition(link),
+      storage: sessionStorage,
+    });
+  });
 }
 
 export function coreMoneyGuideRoutes() {
@@ -56,6 +88,7 @@ export function enhanceGuideConversion({
   if (!answer || !lateCta || !lateLink || typeof lateCta.cloneNode !== "function") return false;
 
   lateLink.setAttribute?.("data-guide-conversion-cta", "");
+  bindGuideAttribution(article, pathname, root);
   if (article.querySelector?.("[data-guide-top-cta]")) return false;
 
   const earlyCta = lateCta.cloneNode(true);

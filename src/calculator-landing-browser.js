@@ -1,3 +1,5 @@
+import "./analytics.js";
+import { rememberCalculatorAttribution } from "./calculator-attribution.js";
 import { calculateLanding } from "./calculator-landing.js";
 
 const root = document.querySelector("[data-calculator-landing]");
@@ -8,10 +10,50 @@ if (root) {
   const errorPanel = root.querySelector("[data-calculator-error]");
   const intent = root.dataset.calculatorIntent || "battery-capacity";
   const locale = root.dataset.calculatorLocale || "cs";
+  const landingPath = window.location.pathname;
+  const landingParameters = Object.freeze({
+    landing_path: landingPath,
+    landing_intent: intent,
+    landing_locale: locale,
+    source_context: "seo_landing",
+  });
 
   const formatNumber = new Intl.NumberFormat(locale === "cs" ? "cs-CZ" : locale, {
     maximumFractionDigits: 1,
   });
+
+  function track(event, parameters = {}) {
+    return Boolean(window.MyPowerSetupAnalytics?.track(event, { ...landingParameters, ...parameters }));
+  }
+
+  function trackLandingView() {
+    if (!track("calculator_landing_view")) return false;
+    rememberCalculatorAttribution({
+      sourcePath: landingPath,
+      intent,
+      locale,
+      storage: window.sessionStorage,
+    });
+    return true;
+  }
+
+  function trackContinuation(event) {
+    const link = event.target.closest?.("a[href]");
+    if (!link || !root.contains(link)) return;
+    let url;
+    try { url = new URL(link.href, window.location.origin); } catch { return; }
+    if (url.origin !== window.location.origin) return;
+    const destinationType = url.pathname === "/" && url.hash === "#kalkulator"
+      ? "builder"
+      : url.pathname.startsWith("/pruvodce/")
+        ? "guide"
+        : null;
+    if (!destinationType) return;
+    track("calculator_landing_continue", {
+      destination_type: destinationType,
+      destination_path: `${url.pathname}${url.hash || ""}`,
+    });
+  }
 
   function setText(selector, value) {
     const element = root.querySelector(selector);
@@ -108,7 +150,7 @@ if (root) {
     "cable-voltage-drop": renderCable,
   };
 
-  function render() {
+  function render({ userInitiated = false } = {}) {
     errorPanel.hidden = true;
 
     try {
@@ -122,21 +164,29 @@ if (root) {
       renderWarnings(result.warnings);
       resultPanel.hidden = false;
       resultPanel.focus({ preventScroll: true });
-      root.dispatchEvent(new CustomEvent("mypowersetup:calculator-result", {
-        bubbles: true,
-        detail: { intent, locale },
-      }));
+      if (userInitiated) {
+        track("calculation_completed", { source: "seo_landing" });
+        root.dispatchEvent(new CustomEvent("mypowersetup:calculator-result", {
+          bubbles: true,
+          detail: { intent, locale, userInitiated: true },
+        }));
+      }
     } catch (error) {
       resultPanel.hidden = true;
       errorPanel.textContent = error instanceof Error ? error.message : "Výpočet se nepodařilo dokončit.";
       errorPanel.hidden = false;
+      if (userInitiated) track("calculation_failed", { source: "seo_landing" });
     }
   }
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    render();
+    track("calculator_started", { source: "seo_landing_submit" });
+    render({ userInitiated: true });
   });
+  root.addEventListener("click", trackContinuation);
+  document.addEventListener("mypowersetup:analytics-granted", trackLandingView);
 
+  trackLandingView();
   render();
 }

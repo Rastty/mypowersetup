@@ -8,6 +8,14 @@ test("calculator events get explicit market and calculator context", () => {
   }
 });
 
+test("crawlable calculator landings are classified as calculator traffic without the full builder form", () => {
+  assert.deepEqual(
+    buildAnalyticsContext({ lang: "cs", pathname: "/kalkulacky/solarni-panely/", hasCalculator: false }),
+    { market: "cz", page_path: "/kalkulacky/solarni-panely/", page_type: "calculator" }
+  );
+  assert.equal(classifyAnalyticsPage("/kalkulacky/kapacita-baterie/"), "calculator");
+});
+
 test("guide and trust pages are separated from calculator traffic", () => {
   assert.equal(classifyAnalyticsPage("/pruvodce/kapacita-baterie-do-karavanu/"), "guide");
   assert.equal(classifyAnalyticsPage("/sk/sprievodca/agm-vs-lifepo4/"), "guide");

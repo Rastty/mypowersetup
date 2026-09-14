@@ -143,5 +143,5 @@ test("calculator sitemap exposes the complete live calculator cluster", async ()
 test("calculator browser exposes a stable route-level analytics hook", async () => {
   const browser = await readFile("src/calculator-landing-browser.js", "utf8");
   assert.match(browser, /mypowersetup:calculator-result/);
-  assert.match(browser, /detail: \{ intent, locale \}/);
+  assert.match(browser, /detail: \{ intent, locale, userInitiated: true \}/);
 });
