@@ -1,4 +1,4 @@
-import { calculateSetup } from "./engine.js";
+import { calculateControllerSizing, calculateSetup } from "./engine.js";
 import { calculateDcCable } from "./dc-cable.js";
 
 const INTENTS = Object.freeze({
@@ -66,6 +66,28 @@ const INTENTS = Object.freeze({
           peakSunHours: result.calculation.peakSunHours,
           solarWattsRaw: result.calculation.solarWattsRaw,
         },
+      };
+    },
+  }),
+  "mppt-sizing": Object.freeze({
+    defaultInput: Object.freeze({
+      panelWatts: 400,
+      systemVoltage: 12,
+      batteryType: "lifepo4",
+    }),
+    calculate(input) {
+      const panelWatts = clampNumber(input.panelWatts, 50, 5000, 400);
+      const systemVoltage = Number(input.systemVoltage) === 24 ? 24 : 12;
+      const batteryType = normalizeBatteryType(input.batteryType);
+      const result = calculateControllerSizing({ solarWatts: panelWatts, systemVoltage, batteryType });
+      return {
+        panelWatts: result.solarWatts,
+        systemVoltage: result.systemVoltage,
+        batteryType: result.batteryType,
+        controllerAmps: result.controllerAmps,
+        controllerSizingVoltage: result.controllerSizingVoltage,
+        controllerMarginPercent: result.controllerMarginPercent,
+        warnings: [],
       };
     },
   }),
