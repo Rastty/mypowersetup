@@ -41,9 +41,24 @@ jobs:
       - name: Diagnose tests 246-280
         continue-on-error: true
         run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '246,280p' | xargs -r node --test
+      - name: Diagnose tests 281-315
+        continue-on-error: true
+        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '281,315p' | xargs -r node --test
+      - name: Diagnose tests 316-350
+        continue-on-error: true
+        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '316,350p' | xargs -r node --test
+      - name: Diagnose all direct tests together
+        continue-on-error: true
+        run: find tests -maxdepth 1 -name '*.test.js' | sort | xargs -r node --test
+      - name: Diagnose test files outside tests root
+        continue-on-error: true
+        run: find . -path './node_modules' -prune -o -type f -name '*.test.js' ! -path './tests/*.test.js' -print | sort | xargs -r node --test
       - name: Diagnose other Node default tests
         continue-on-error: true
         run: find . -path './node_modules' -prune -o -type f \( -name '*.test.mjs' -o -name '*.test.cjs' -o -name '*-test.js' -o -name '*-test.mjs' -o -name '*-test.cjs' -o -name 'test.js' -o -name 'test.mjs' -o -name 'test.cjs' \) -print | sort | xargs -r node --test
+      - name: Diagnose serial Node discovery
+        continue-on-error: true
+        run: node --test --test-concurrency=1
       - run: npm test
       - run: node --check src/app.js
       - run: node --check src/app-hu.js
