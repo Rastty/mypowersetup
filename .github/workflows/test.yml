@@ -17,6 +17,18 @@ jobs:
         with:
           node-version: 22
           package-manager-cache: false
+      - name: Diagnose calculator attribution tests
+        continue-on-error: true
+        run: node --test tests/calculator-attribution.test.js
+      - name: Diagnose funnel report tests
+        continue-on-error: true
+        run: node --test tests/calculator-funnel-report.test.js
+      - name: Diagnose guide attribution tests
+        continue-on-error: true
+        run: node --test tests/guide-attribution.test.js tests/guide-conversion.test.js
+      - name: Diagnose analytics context tests
+        continue-on-error: true
+        run: node --test tests/analytics-context.test.js tests/affiliate-analytics.test.js
       - run: npm test
       - run: node --check src/app.js
       - run: node --check src/app-hu.js
