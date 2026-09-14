@@ -11,6 +11,7 @@ const CALCULATOR_LANDING_ROUTES = Object.freeze([
   "/kalkulacky/",
   "/kalkulacky/kapacita-baterie/",
   "/kalkulacky/solarni-panely/",
+  "/kalkulacky/mppt-regulator/",
   "/kalkulacky/vykon-menice/",
   "/kalkulacky/prurez-kabelu-12v/",
   "/kalkulacky/12v-nebo-24v/",
