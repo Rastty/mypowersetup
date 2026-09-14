@@ -137,7 +137,9 @@ test("calculator sitemap exposes the complete live calculator cluster", async ()
   for (const slug of ["", "kapacita-baterie/", "solarni-panely/", "vykon-menice/", "prurez-kabelu-12v/", "12v-nebo-24v/"]) {
     assert.ok(xml.includes(`<loc>https://mypowersetup.com/kalkulacky/${slug}</loc>`));
   }
-  assert.equal([...xml.matchAll(/<url>/g)].length, 6);
+  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  assert.equal(urls.length, 15, "calculator sitemap should contain 6 CZ URLs plus 9 proven localized URLs");
+  assert.equal(new Set(urls).size, urls.length, "calculator sitemap must not contain duplicate URLs");
 });
 
 test("calculator browser exposes a stable route-level analytics hook", async () => {
