@@ -149,11 +149,21 @@ test("CZ calculator cluster remains crawlable, unique and commercially connected
 
 test("calculator sitemap exposes the complete live calculator cluster", async () => {
   const xml = await readFile("sitemap-calculators.xml", "utf8");
-  for (const slug of ["", "kapacita-baterie/", "solarni-panely/", "mppt-regulator/", "vykon-menice/", "prurez-kabelu-12v/", "12v-nebo-24v/"]) {
+  for (const slug of [
+    "",
+    "kapacita-baterie/",
+    "solarni-panely/",
+    "mppt-regulator/",
+    "dc-dc-nabijecka/",
+    "vykon-menice/",
+    "prurez-kabelu-12v/",
+    "jisteni-12v/",
+    "12v-nebo-24v/",
+  ]) {
     assert.ok(xml.includes(`<loc>https://mypowersetup.com/kalkulacky/${slug}</loc>`));
   }
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(urls.length, 16, "calculator sitemap should contain 7 CZ URLs plus 9 proven localized URLs");
+  assert.equal(urls.length, 18, "calculator sitemap should contain 9 CZ URLs plus 9 proven localized URLs");
   assert.equal(new Set(urls).size, urls.length, "calculator sitemap must not contain duplicate URLs");
 });
 
