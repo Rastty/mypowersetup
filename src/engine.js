@@ -74,6 +74,23 @@ export function roundUp(value, step) {
   return Math.ceil(value / step) * step;
 }
 
+export function calculateControllerSizing({ solarWatts, systemVoltage, batteryType = "lifepo4" } = {}) {
+  const normalizedSolarWatts = clampNumber(solarWatts, 1, 10000, 400);
+  const normalizedVoltage = Number(systemVoltage) === 24 ? 24 : 12;
+  const normalizedBatteryType = batteryType === "lead" ? "lead" : "lifepo4";
+  const controllerSizingVoltage = CHARGE_VOLTAGE_12V[normalizedBatteryType] * (normalizedVoltage / 12);
+  const controllerAmpsRaw = (normalizedSolarWatts / controllerSizingVoltage) * CONTROLLER_MARGIN;
+  return Object.freeze({
+    solarWatts: normalizedSolarWatts,
+    systemVoltage: normalizedVoltage,
+    batteryType: normalizedBatteryType,
+    controllerSizingVoltage,
+    controllerAmpsRaw,
+    controllerAmps: roundUp(controllerAmpsRaw, 10),
+    controllerMarginPercent: Math.round((CONTROLLER_MARGIN - 1) * 100),
+  });
+}
+
 export function calculateSetup(input) {
   const locale = Object.hasOwn(ENGINE_TEXT, input.locale) ? input.locale : "cs";
   const text = ENGINE_TEXT[locale];
@@ -131,8 +148,8 @@ export function calculateSetup(input) {
   const batteryAh = roundUp(requiredBatteryWh / systemVoltage, 10);
   const solarWattsRaw = (dailyWhRaw * SOLAR_MARGIN) / (season.peakSunHours * SOLAR_SYSTEM_EFFICIENCY);
   const solarWatts = roundUp(solarWattsRaw, 50);
-  const controllerSizingVoltage = (CHARGE_VOLTAGE_12V[input.batteryType] || CHARGE_VOLTAGE_12V.lifepo4) * (systemVoltage / 12);
-  const controllerAmps = roundUp((solarWatts / controllerSizingVoltage) * CONTROLLER_MARGIN, 10);
+  const controller = calculateControllerSizing({ solarWatts, systemVoltage, batteryType: input.batteryType });
+  const controllerAmps = controller.controllerAmps;
 
   const warnings = [];
   if (input.season === "winter") {
@@ -165,7 +182,7 @@ export function calculateSetup(input) {
       requiredBatteryWhRaw,
       peakSunHours: season.peakSunHours,
       solarWattsRaw,
-      controllerSizingVoltage,
+      controllerSizingVoltage: controller.controllerSizingVoltage,
       estimatedConcurrentWatts,
       largestStartWatts,
       automaticVoltage
@@ -175,7 +192,7 @@ export function calculateSetup(input) {
       usableDepthPercent: Math.round(battery.usableDepth * 100),
       solarEfficiencyPercent: Math.round(SOLAR_SYSTEM_EFFICIENCY * 100),
       solarMarginPercent: Math.round((SOLAR_MARGIN - 1) * 100),
-      controllerMarginPercent: Math.round((CONTROLLER_MARGIN - 1) * 100)
+      controllerMarginPercent: controller.controllerMarginPercent
     }
   };
 }
