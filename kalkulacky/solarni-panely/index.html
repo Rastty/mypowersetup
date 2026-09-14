@@ -19,7 +19,7 @@
     <section class="calculator-hero"><p><strong>Solár pro karavan podle skutečné spotřeby</strong></p><h1>Kolik Wp solárních panelů potřebujete?</h1><p>Zadejte denní spotřebu a období, kdy chcete jezdit. Výpočet používá stejnou solární logiku jako hlavní MyPowerSetup Builder: sluneční hodiny podle sezóny, systémovou účinnost i bezpečnostní rezervu.</p></section>
     <section class="calculator-grid" data-calculator-landing data-calculator-intent="solar-sizing" data-calculator-locale="cs">
       <div class="calculator-card"><h2>Zadejte spotřebu a sezónu</h2><form class="calculator-form" data-calculator-form>
-        <div class="calculator-field"><label for="dailyWh">Denní spotřeba (Wh/den)</label><input id="dailyWh" name="dailyWh" type="number" min="50" max="20000" step="10" value="1200" required></div>
+        <div class="calculator-field"><label for="dailyWh">Denní spotřeba (Wh/den)</label><input id="dailyWh" name="dailyWh" type="number" inputmode="decimal" min="50" max="20000" step="10" value="1200" required></div>
         <div class="calculator-field"><label for="season">Kdy nejčastěji jezdíte?</label><select id="season" name="season"><option value="summer">Léto</option><option value="shoulder">Jaro / podzim</option><option value="winter">Zima</option></select></div>
         <div class="calculator-field"><label for="systemVoltage">Napětí systému</label><select id="systemVoltage" name="systemVoltage"><option value="auto">Auto – doporučit 12/24 V</option><option value="12">12 V</option><option value="24">24 V</option></select></div>
         <input type="hidden" name="batteryType" value="lifepo4"><button class="calculator-button" type="submit">Spočítat potřebný solár</button>
