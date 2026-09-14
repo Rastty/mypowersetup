@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulačka MPPT regulátoru: kolik A pro 12/24 V? | MyPowerSetup</title>
+  <meta name="description" content="Spočítejte minimální proud MPPT regulátoru podle výkonu panelů, 12/24V baterie a typu baterie. Výsledek zahrnuje rezervu a připomíná kontrolu Voc, Isc a FV limitu.">
+  <link rel="canonical" href="https://mypowersetup.com/kalkulacky/mppt-regulator/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/mppt-regulator/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/mppt-regulator/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Kalkulačka MPPT regulátoru pro karavan","url":"https://mypowersetup.com/kalkulacky/mppt-regulator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/"},{"@type":"ListItem","position":2,"name":"Kalkulačky","item":"https://mypowersetup.com/kalkulacky/"},{"@type":"ListItem","position":3,"name":"MPPT regulátor","item":"https://mypowersetup.com/kalkulacky/mppt-regulator/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Jak silný MPPT regulátor potřebuji?","acceptedAnswer":{"@type":"Answer","text":"Základní proudová třída závisí na výkonu panelů, napětí bateriového systému a nabíjecím napětí baterie. Kalkulačka přidává 25% proudovou rezervu a zaokrouhlí výsledek nahoru na praktickou 10A třídu."}},{"@type":"Question","name":"Stačí zkontrolovat jen proud MPPT?","acceptedAnswer":{"@type":"Answer","text":"Ne. Kromě nabíjecího proudu musíte ověřit maximální Voc při nejnižší teplotě, součet Isc, povolený FV výkon a správný nabíjecí profil baterie."}},{"@type":"Question","name":"Proč vychází u 24 V menší proud než u 12 V?","acceptedAnswer":{"@type":"Answer","text":"Při stejném výkonu panelů vede vyšší bateriové napětí k přibližně polovičnímu nabíjecímu proudu. Konkrétní regulátor ale stále musí splnit své napěťové a výkonové limity."}}]}]}</script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/kalkulacky/">Kalkulačky</a><a class="header-link" href="/pruvodce/">Průvodce</a></nav></header>
+  <main class="calculator-page">
+    <nav class="calculator-breadcrumbs"><a href="/">Domů</a> / <a href="/kalkulacky/">Kalkulačky</a> / MPPT regulátor</nav>
+    <section class="calculator-hero"><p><strong>MPPT podle panelů a baterie</strong></p><h1>Kolik A musí mít MPPT regulátor?</h1><p>Zadejte celkový výkon solárních panelů, napětí bateriového systému a typ baterie. Výpočet používá stejnou canonical logiku pro regulátor jako hlavní MyPowerSetup Builder a přidává 25% proudovou rezervu.</p></section>
+    <section class="calculator-grid" data-calculator-landing data-calculator-intent="mppt-sizing" data-calculator-locale="cs">
+      <div class="calculator-card"><h2>Zadejte parametry soláru</h2><form class="calculator-form" data-calculator-form>
+        <div class="calculator-field"><label for="panelWatts">Celkový výkon panelů (Wp)</label><input id="panelWatts" name="panelWatts" type="number" inputmode="decimal" min="50" max="5000" step="10" value="400" required></div>
+        <div class="calculator-field"><label for="systemVoltage">Napětí bateriového systému</label><select id="systemVoltage" name="systemVoltage"><option value="12">12 V</option><option value="24">24 V</option></select></div>
+        <div class="calculator-field"><label for="batteryType">Typ baterie</label><select id="batteryType" name="batteryType"><option value="lifepo4">LiFePO₄</option><option value="lead">AGM / olovo</option></select></div>
+        <button class="calculator-button" type="submit">Spočítat MPPT regulátor</button>
+      </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+      <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Výsledek</strong></p><h2>Doporučená minimální třída</h2><div class="calculator-metrics">
+        <div class="calculator-metric"><span>MPPT regulátor</span><strong data-result-controller-amps>—</strong></div><div class="calculator-metric"><span>Panely</span><strong data-result-panel-watts>—</strong></div><div class="calculator-metric"><span>Systém</span><strong data-result-voltage>—</strong></div><div class="calculator-metric"><span>Výpočtové nabíjecí napětí</span><strong data-result-charge-voltage>—</strong></div>
+      </div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/#kalkulator">Navrhnout celou sestavu</a><a class="calculator-cta calculator-cta-secondary" href="/pruvodce/jak-vybrat-mppt-regulator/">Jak vybrat MPPT</a><a class="calculator-cta calculator-cta-secondary" href="/kalkulacky/solarni-panely/">Spočítat potřebné Wp panelů</a></div></div>
+    </section>
+    <section class="calculator-section calculator-content-card"><h2>Co výsledek znamená</h2><p>Doporučená hodnota v ampérech je první filtr pro nabíjecí proud regulátoru. Nestačí ale sama o sobě: před nákupem ověřte v datasheetu konkrétního MPPT také maximální napětí FV vstupu <strong>Voc</strong> při nejnižší očekávané teplotě, povolený <strong>Isc</strong>, maximální FV výkon pro 12/24 V a nabíjecí profil vaší baterie.</p></section>
+    <section class="calculator-section"><h2>Časté otázky</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Je 40 A dost pro 400 Wp na 12 V?</h3><p>Pro 400 Wp a LiFePO₄ vychází s použitou rezervou proudová třída 40 A. Konkrétní model však musí zároveň povolit daný FV výkon, Voc a Isc.</p></article><article class="calculator-content-card"><h3>Co se změní při 24 V?</h3><p>Při stejném výkonu panelů je nabíjecí proud přibližně poloviční. Vyšší systémové napětí ale nemění povinnost zkontrolovat vstupní limity regulátoru.</p></article></div></section>
+  </main><script type="module" src="/src/calculator-landing-browser.js?v=20260914-3"></script>
+</body></html>
