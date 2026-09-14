@@ -10,6 +10,10 @@ const EXPANSION_HOME_ROUTES = Object.freeze(["/pt/", "/si/", "/ro/"]);
 const CALCULATOR_LANDING_ROUTES = Object.freeze([
   "/kalkulacky/",
   "/kalkulacky/kapacita-baterie/",
+  "/kalkulacky/solarni-panely/",
+  "/kalkulacky/vykon-menice/",
+  "/kalkulacky/prurez-kabelu-12v/",
+  "/kalkulacky/12v-nebo-24v/",
 ]);
 const INDEXNOW_INFRASTRUCTURE_FILES = new Set([
   "robots.txt",
@@ -38,6 +42,7 @@ const CALCULATOR_LANDING_FILES = new Set([
   "kalkulacky/calculator.css",
   "src/calculator-landing.js",
   "src/calculator-landing-browser.js",
+  "src/dc-cable.js",
 ]);
 const EXPANSION_CALCULATOR_FILES = new Set([
   "src/expansion-calculator-browser.js",
