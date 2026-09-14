@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulator paneli solarnych do kampera: ile Wp? | MyPowerSetup</title>
+  <meta name="description" content="Oblicz potrzebną moc paneli solarnych do kampera na podstawie dziennego zużycia i pory roku, z zapasem oraz orientacyjnym doborem regulatora MPPT.">
+  <link rel="canonical" href="https://mypowersetup.com/pl/kalkulatory/panele-solarne/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/solarni-panely/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/solarne-panely/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/panele-solarne/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/napelem-teljesitmeny/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/solarni-panely/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Kalkulator paneli solarnych do kampera","url":"https://mypowersetup.com/pl/kalkulatory/panele-solarne/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true,"inLanguage":"pl-PL"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/pl/"},{"@type":"ListItem","position":2,"name":"Kalkulatory","item":"https://mypowersetup.com/pl/kalkulatory/"},{"@type":"ListItem","position":3,"name":"Panele solarne","item":"https://mypowersetup.com/pl/kalkulatory/panele-solarne/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ile Wp paneli solarnych potrzebuję do kampera?","acceptedAnswer":{"@type":"Answer","text":"Wymagana moc zależy od dziennego zużycia energii, pory roku, warunków słonecznych i strat systemu. Kalkulator przelicza Wh/dzień na zalecaną minimalną moc paneli z zapasem."}},{"@type":"Question","name":"Dlaczego poza latem potrzeba więcej paneli?","acceptedAnswer":{"@type":"Answer","text":"Wiosną, jesienią i zimą jest mniej równoważnych godzin pełnego słońca, dlatego to samo zużycie wymaga większej mocy zainstalowanej albo dodatkowego źródła ładowania."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/pl/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/pl/kalkulatory/">Kalkulatory</a><a class="header-link" href="/pl/poradnik/">Poradniki</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/pl/">Start</a> / <a href="/pl/kalkulatory/">Kalkulatory</a> / Panele solarne</nav>
+  <section class="calculator-hero"><p><strong>Solary dobrane do zużycia i pory roku</strong></p><h1>Ile Wp paneli solarnych potrzebujesz w kamperze?</h1><p>Podaj dzienne zużycie i porę roku, w której najczęściej podróżujesz. Obliczenie uwzględnia równoważne godziny pełnego słońca, straty systemu i zapas, a następnie podaje również orientacyjny minimalny prąd regulatora MPPT.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="solar-sizing" data-calculator-locale="pl">
+    <div class="calculator-card"><h2>Podaj zużycie i porę roku</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="dailyWh">Dzienne zużycie (Wh/dzień)</label><input id="dailyWh" name="dailyWh" type="number" inputmode="decimal" min="50" max="20000" step="10" value="1200" required></div>
+      <div class="calculator-field"><label for="season">Kiedy najczęściej podróżujesz?</label><select id="season" name="season"><option value="summer">Lato</option><option value="shoulder">Wiosna / jesień</option><option value="winter">Zima</option></select></div>
+      <div class="calculator-field"><label for="systemVoltage">Napięcie systemu</label><select id="systemVoltage" name="systemVoltage"><option value="auto">Auto – dobierz 12/24 V</option><option value="12">12 V</option><option value="24">24 V</option></select></div>
+      <input type="hidden" name="batteryType" value="lifepo4"><button class="calculator-button" type="submit">Oblicz potrzebne solary</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Wynik</strong></p><h2>Zalecane minimum</h2><div class="calculator-metrics"><div class="calculator-metric"><span>Panele</span><strong data-result-solar-watts>—</strong></div><div class="calculator-metric"><span>Regulator MPPT</span><strong data-result-controller-amps>—</strong></div><div class="calculator-metric"><span>System</span><strong data-result-voltage>—</strong></div><div class="calculator-metric"><span>Pora roku</span><strong data-result-season>—</strong></div></div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/pl/#kalkulator">Dobierz cały zestaw</a><a class="calculator-cta calculator-cta-secondary" href="/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/">Jak dobrać instalację solarną</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Wp to nie Wh na dobę</h2><p>Moc znamionowa paneli opisuje warunki testowe, a nie energię, którą codziennie dostaniesz do akumulatora. W praktyce liczą się pora roku, zacienienie, ułożenie paneli, temperatura oraz straty regulatora i przewodów.</p></section>
+  <section class="calculator-section"><h2>Najczęstsze pytania</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Czy 200 Wp wystarczy?</h3><p>Tylko wtedy, gdy realna produkcja pokryje Twoje zużycie i straty. Latem może wystarczyć, ale wiosną, jesienią lub w cieniu zapas szybko znika.</p></article><article class="calculator-content-card"><h3>Po co kalkulator pokazuje MPPT?</h3><p>Regulator musi obsłużyć moc paneli przy napięciu systemu akumulatorowego. Dlatego wraz z Wp podajemy orientacyjny minimalny prąd regulatora.</p></article></div></section>
+</main>
+<script type="module" src="/src/calculator-landing-browser.js?v=20260914-3"></script>
+</body>
+</html>
