@@ -17,19 +17,23 @@ jobs:
         with:
           node-version: 22
           package-manager-cache: false
-      - name: Diagnose direct Node discovery
-        continue-on-error: true
-        run: node --test
-      - name: Diagnose npm serial discovery
-        continue-on-error: true
-        run: npm test -- --test-concurrency=1
-      - name: Diagnose npm explicit test files
-        continue-on-error: true
-        run: npm test -- $(find tests -maxdepth 1 -name '*.test.js' | sort)
-      - name: Diagnose npm environment
-        continue-on-error: true
-        run: node -e "console.log({node:process.version,npm_lifecycle_event:process.env.npm_lifecycle_event,npm_config_user_agent:process.env.npm_config_user_agent,NODE_OPTIONS:process.env.NODE_OPTIONS,CI:process.env.CI})"
-      - run: npm test
+      - name: Capture npm test output
+        run: |
+          set +e
+          npm test > npm-test.log 2>&1
+          status=$?
+          echo "$status" > npm-test-exit.txt
+          exit 0
+      - name: Upload npm test diagnostic
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-test-diagnostic
+          path: |
+            npm-test.log
+            npm-test-exit.txt
+          retention-days: 2
+      - name: Enforce npm test result
+        run: test "$(cat npm-test-exit.txt)" -eq 0
       - run: node --check src/app.js
       - run: node --check src/app-hu.js
       - run: node --check src/analytics-context.js
