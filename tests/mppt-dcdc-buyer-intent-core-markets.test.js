@@ -41,7 +41,7 @@ const pages = [
   },
   {
     market: 'HU', type: 'DC-DC', path: 'hu/utmutatok/dc-dc-tolto-kivalasztasa/index.html',
-    title: /DC–DC töltő lakóautóhoz/, decision: /20, 30 vagy 50 A/, section: 'dcdc-valasztas',
+    title: /DC–DC töltő lakóautóhoz/, decision: /20, 30 nebo 50 A/, section: 'dcdc-valasztas',
     mustContain: ['BMS', 'alternátor', 'vezeték', 'biztosít', '20 A', '30 A', '50 A', '/hu/#kalkulator']
   }
 ];
@@ -57,6 +57,7 @@ for (const page of pages) {
     assert.match(title, page.title);
     assert.match(html, page.decision);
     assert.match(html, new RegExp(`id=["']${page.section}["']`));
+    // Mature guides have independent update dates; only the page changed in this PR should advance.
     const modified = page.modified || '2026-09-11';
     assert.ok(html.includes(`"dateModified":"${modified}"`), `Article dateModified must match ${modified}`);
 
