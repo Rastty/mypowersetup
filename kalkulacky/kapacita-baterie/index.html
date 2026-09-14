@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulačka kapacity baterie do karavanu: kolik Ah? | MyPowerSetup</title>
+  <meta name="description" content="Spočítejte potřebnou kapacitu baterie do karavanu ve Wh a Ah podle denní spotřeby, autonomie, typu baterie a napětí 12/24 V.">
+  <link rel="canonical" href="https://mypowersetup.com/kalkulacky/kapacita-baterie/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/kapacita-baterie/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/kapacita-baterie/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Kalkulačka kapacity baterie do karavanu",
+        "url": "https://mypowersetup.com/kalkulacky/kapacita-baterie/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web",
+        "isAccessibleForFree": true,
+        "description": "Výpočet doporučené kapacity baterie ve Wh a Ah podle denní spotřeby, autonomie, typu baterie a systémového napětí."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/"},
+          {"@type":"ListItem","position":2,"name":"Kalkulačky","item":"https://mypowersetup.com/kalkulacky/"},
+          {"@type":"ListItem","position":3,"name":"Kapacita baterie","item":"https://mypowersetup.com/kalkulacky/kapacita-baterie/"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Kolik Ah baterie potřebuji do karavanu?",
+            "acceptedAnswer": {"@type":"Answer","text":"Záleží na denní spotřebě ve Wh, požadované autonomii, typu baterie a napětí systému. Kalkulačka tyto vstupy převádí na doporučenou minimální kapacitu ve Wh a Ah a přidává bezpečnostní rezervu."}
+          },
+          {
+            "@type": "Question",
+            "name": "Proč vychází AGM baterie větší než LiFePO4?",
+            "acceptedAnswer": {"@type":"Answer","text":"Protože u AGM nebo olověné baterie počítáme s menší využitelnou hloubkou vybití. Pro stejnou využitelnou energii proto potřebujete vyšší jmenovitou kapacitu."}
+          },
+          {
+            "@type": "Question",
+            "name": "Mám zvolit 12 V nebo 24 V?",
+            "acceptedAnswer": {"@type":"Answer","text":"U menších sestav je běžných 12 V. U energeticky náročnější sestavy může 24 V snížit proudy a usnadnit dimenzování. Režim Auto používá stejné pravidlo jako hlavní MyPowerSetup Builder."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="MyPowerSetup – domů">MyPowerSetup</a>
+    <nav class="header-nav" aria-label="Hlavní navigace">
+      <a class="header-link" href="/kalkulacky/">Kalkulačky</a>
+      <a class="header-link" href="/pruvodce/">Průvodce</a>
+    </nav>
+  </header>
+
+  <main class="calculator-page">
+    <nav class="calculator-breadcrumbs" aria-label="Drobečková navigace"><a href="/">Domů</a> / <a href="/kalkulacky/">Kalkulačky</a> / Kapacita baterie</nav>
+
+    <section class="calculator-hero">
+      <p><strong>Kalkulačka baterie pro karavan a obytnou dodávku</strong></p>
+      <h1>Kolik Ah baterie do karavanu opravdu potřebujete?</h1>
+      <p>Zadejte svou průměrnou denní spotřebu a počet dnů, které chcete vydržet bez dobíjení. Výsledek používá stejný výpočetní engine jako kompletní MyPowerSetup Builder a zahrnuje rezervu i rozdíl mezi LiFePO₄ a AGM.</p>
+    </section>
+
+    <section class="calculator-grid" data-calculator-landing data-calculator-intent="battery-capacity" data-calculator-locale="cs" aria-label="Kalkulačka kapacity baterie">
+      <div class="calculator-card">
+        <h2>Zadejte svůj provoz</h2>
+        <form class="calculator-form" data-calculator-form>
+          <div class="calculator-field">
+            <label for="dailyWh">Denní spotřeba (Wh/den)</label>
+            <input id="dailyWh" name="dailyWh" type="number" inputmode="decimal" min="50" max="20000" step="10" value="900" required aria-describedby="dailyWhHelp">
+            <span class="calculator-help" id="dailyWhHelp">Např. 900 Wh/den odpovídá menšímu až střednímu provozu s lednicí, světly a nabíjením elektroniky. Pokud spotřebu neznáte, použijte kompletní Builder.</span>
+          </div>
+
+          <div class="calculator-field">
+            <label for="autonomyDays">Kolik dnů bez dobíjení?</label>
+            <input id="autonomyDays" name="autonomyDays" type="number" inputmode="numeric" min="1" max="7" step="1" value="2" required>
+          </div>
+
+          <div class="calculator-field">
+            <label for="batteryType">Typ baterie</label>
+            <select id="batteryType" name="batteryType">
+              <option value="lifepo4" selected>LiFePO₄</option>
+              <option value="lead">AGM / olovo</option>
+            </select>
+          </div>
+
+          <div class="calculator-field">
+            <label for="systemVoltage">Napětí systému</label>
+            <select id="systemVoltage" name="systemVoltage">
+              <option value="auto" selected>Auto – doporučit 12/24 V</option>
+              <option value="12">12 V</option>
+              <option value="24">24 V</option>
+            </select>
+          </div>
+
+          <input type="hidden" name="season" value="summer">
+          <button class="calculator-button" type="submit">Spočítat potřebnou baterii</button>
+        </form>
+        <p class="calculator-error" data-calculator-error role="alert" hidden></p>
+      </div>
+
+      <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite">
+        <p><strong>Výsledek</strong></p>
+        <h2>Doporučené minimum baterie</h2>
+        <div class="calculator-metrics">
+          <div class="calculator-metric"><span>Kapacita</span><strong data-result-battery-wh>—</strong></div>
+          <div class="calculator-metric"><span>Přibližně</span><strong data-result-battery-ah>—</strong></div>
+          <div class="calculator-metric"><span>Systém</span><strong data-result-voltage>—</strong></div>
+          <div class="calculator-metric"><span>Baterie</span><strong data-result-battery-type>—</strong></div>
+        </div>
+        <p data-result-summary>Vyplňte hodnoty a spusťte výpočet.</p>
+        <p class="calculator-help" data-result-reserve></p>
+        <ul data-result-warnings hidden></ul>
+        <div class="calculator-actions">
+          <a class="calculator-cta" href="/#kalkulator">Navrhnout celou sestavu</a>
+          <a class="calculator-cta calculator-cta-secondary" href="/pruvodce/kapacita-baterie-do-karavanu/">Jak vybrat konkrétní baterii</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="calculator-section calculator-content-card" aria-labelledby="method">
+      <h2 id="method">Co přesně kalkulačka počítá</h2>
+      <p>Nejdřív vezme skutečnou denní potřebu energie ve Wh a vynásobí ji požadovaným počtem dnů autonomie. Potom započítá bezpečnostní rezervu a využitelnou hloubku vybití zvoleného typu baterie. Výsledkem je jmenovitá kapacita, kterou by sestava měla mít, nikoli jen energie, kterou plánujete odebrat.</p>
+      <p>LiFePO₄ lze běžně využívat hlouběji než AGM, proto při stejné spotřebě vychází menší jmenovitá kapacita. Hodnota Ah vždy závisí také na napětí: stejných 2 400 Wh znamená přibližně 200 Ah při 12 V, ale 100 Ah při 24 V.</p>
+      <div class="calculator-actions">
+        <a class="calculator-cta calculator-cta-secondary" href="/metodika/">Podrobná metodika MyPowerSetup</a>
+      </div>
+    </section>
+
+    <section class="calculator-section" aria-labelledby="faq">
+      <h2 id="faq">Časté otázky</h2>
+      <div class="calculator-card-grid">
+        <article class="calculator-content-card">
+          <h3>Kolik Ah baterie potřebuji do karavanu?</h3>
+          <p>Záleží na denní spotřebě ve Wh, požadované autonomii, typu baterie a napětí systému. Proto samotná univerzální hodnota typu „100 Ah stačí“ často nefunguje.</p>
+        </article>
+        <article class="calculator-content-card">
+          <h3>Proč vychází AGM větší než LiFePO₄?</h3>
+          <p>AGM má menší prakticky využitelnou hloubku vybití. Pro stejnou využitelnou energii proto potřebuje vyšší jmenovitou kapacitu.</p>
+        </article>
+        <article class="calculator-content-card">
+          <h3>Mám zvolit 12 V nebo 24 V?</h3>
+          <p>U menších sestav je běžných 12 V. S rostoucím výkonem může 24 V snížit proudy. Režim Auto používá stejné rozhodovací pravidlo jako plný Builder.</p>
+        </article>
+        <article class="calculator-content-card">
+          <h3>Co když neznám spotřebu ve Wh?</h3>
+          <p>Nehádejte ji. V plném Builderu vyberte konkrétní spotřebiče a jejich provozní dobu; MyPowerSetup denní spotřebu spočítá a naváže na ni baterii, solár i měnič.</p>
+          <a href="/#kalkulator">Otevřít kompletní Builder →</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/calculator-landing-browser.js?v=20260914-1"></script>
+</body>
+</html>
