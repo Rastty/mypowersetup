@@ -7,6 +7,10 @@ export const INDEXNOW_KEY_FILE = "f89b37b1edc8eb20d1ef7029ac1fd280.txt";
 // automatically gives them parity once publication adds them to a declared sitemap.
 const PUBLIC_HOME_ROUTES = Object.freeze(["/", "/sk/", "/pl/", "/hu/", "/pt/", "/si/", "/ro/"]);
 const EXPANSION_HOME_ROUTES = Object.freeze(["/pt/", "/si/", "/ro/"]);
+const CALCULATOR_LANDING_ROUTES = Object.freeze([
+  "/kalkulacky/",
+  "/kalkulacky/kapacita-baterie/",
+]);
 const INDEXNOW_INFRASTRUCTURE_FILES = new Set([
   "robots.txt",
   "src/indexnow.js",
@@ -29,6 +33,11 @@ const SHARED_CALCULATOR_FILES = new Set([
   "src/usage-profiles.js",
   "src/verdict.js",
   "src/wiring.js",
+]);
+const CALCULATOR_LANDING_FILES = new Set([
+  "kalkulacky/calculator.css",
+  "src/calculator-landing.js",
+  "src/calculator-landing-browser.js",
 ]);
 const EXPANSION_CALCULATOR_FILES = new Set([
   "src/expansion-calculator-browser.js",
@@ -104,6 +113,10 @@ export function changedFilesToIndexNowUrls(changedFiles, sitemapUrls, { forceAll
 
     if (SHARED_CALCULATOR_FILES.has(file)) {
       for (const route of PUBLIC_HOME_ROUTES) includeRoute(route);
+    }
+
+    if (CALCULATOR_LANDING_FILES.has(file)) {
+      for (const route of CALCULATOR_LANDING_ROUTES) includeRoute(route);
     }
 
     if (EXPANSION_CALCULATOR_FILES.has(file)) {

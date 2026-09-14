@@ -20,6 +20,10 @@ const publicHomes = [
   `${origin}/si/`,
   `${origin}/sk/`,
 ];
+const calculatorUrls = [
+  `${origin}/kalkulacky/`,
+  `${origin}/kalkulacky/kapacita-baterie/`,
+];
 const scenarioUrls = [
   `${origin}/pruvodce/modelove-sestavy/`,
   `${origin}/pruvodce/modelove-sestavy/prace-z-karavanu/`,
@@ -36,7 +40,7 @@ async function currentSitemapUrls() {
 
 test("robots declares every sitemap used by IndexNow", async () => {
   const robots = await readFile("robots.txt", "utf8");
-  assert.deepEqual(extractDeclaredSitemapFiles(robots), ["sitemap.xml", "sitemap-scenarios.xml"]);
+  assert.deepEqual(extractDeclaredSitemapFiles(robots), ["sitemap.xml", "sitemap-scenarios.xml", "sitemap-calculators.xml"]);
 });
 
 test("declared sitemap discovery rejects foreign and unsafe sitemap locations", () => {
@@ -50,22 +54,22 @@ test("declared sitemap discovery rejects foreign and unsafe sitemap locations", 
   assert.deepEqual(extractDeclaredSitemapFiles(robots), ["sitemap.xml"]);
 });
 
-test("declared sitemaps expose every published market and CZ scenario page to IndexNow", async () => {
+test("declared sitemaps expose every published market, calculator and CZ scenario page to IndexNow", async () => {
   const urls = await currentSitemapUrls();
-  for (const url of [...publicHomes, ...scenarioUrls]) assert.ok(urls.includes(url), `missing public URL: ${url}`);
+  for (const url of [...publicHomes, ...calculatorUrls, ...scenarioUrls]) assert.ok(urls.includes(url), `missing public URL: ${url}`);
 });
 
 test("first key deployment submits every currently public declared-sitemap URL", async () => {
   const urls = await currentSitemapUrls();
   const selected = changedFilesToIndexNowUrls([INDEXNOW_KEY_FILE], urls);
   assert.deepEqual(selected, [...urls].sort());
-  for (const url of [...publicHomes, ...scenarioUrls]) assert.ok(selected.includes(url));
+  for (const url of [...publicHomes, ...calculatorUrls, ...scenarioUrls]) assert.ok(selected.includes(url));
 });
 
 test("IndexNow discovery surface changes submit every currently public URL", async () => {
   const urls = await currentSitemapUrls();
   const expected = [...urls].sort();
-  for (const file of ["robots.txt", "sitemap.xml", "sitemap-scenarios.xml", "src/indexnow.js", "scripts/submit-indexnow.mjs"]) {
+  for (const file of ["robots.txt", "sitemap.xml", "sitemap-scenarios.xml", "sitemap-calculators.xml", "src/indexnow.js", "scripts/submit-indexnow.mjs"]) {
     assert.deepEqual(changedFilesToIndexNowUrls([file], urls), expected, `${file} should refresh the full discovery surface`);
   }
 });
@@ -76,6 +80,13 @@ test("shared calculator changes notify every public market homepage", async () =
     changedFilesToIndexNowUrls(["src/products.js", "src/usage-profiles.js"], urls),
     publicHomes
   );
+});
+
+test("calculator landing shared files notify the calculator landing routes", async () => {
+  const urls = await currentSitemapUrls();
+  for (const file of ["kalkulacky/calculator.css", "src/calculator-landing.js", "src/calculator-landing-browser.js"]) {
+    assert.deepEqual(changedFilesToIndexNowUrls([file], urls), calculatorUrls, `${file} should refresh calculator landings`);
+  }
 });
 
 test("shared calculator changes include expansion homes only when those homes are in the sitemap", async () => {
