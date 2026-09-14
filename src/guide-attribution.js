@@ -30,10 +30,22 @@ function normalizeStoredAttribution(value, now = Date.now()) {
   });
 }
 
+function existingPosition(storage, sourcePath, now) {
+  try {
+    const raw = storage?.getItem?.(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (parsed?.sourcePath !== sourcePath) return null;
+    return normalizeStoredAttribution(parsed, now)?.guide_source_position || null;
+  } catch {
+    return null;
+  }
+}
+
 export function rememberGuideAttribution({ sourcePath, sourcePosition, storage = null, now = Date.now() } = {}) {
   const hit = classifyPublicGuideRoute(sourcePath);
   if (!hit) return null;
-  const position = normalizePosition(sourcePosition);
+  const position = normalizePosition(sourcePosition) || existingPosition(storage, hit.route, now);
   const attribution = Object.freeze({
     guide_source_path: hit.route,
     guide_source_topic: hit.topic,
