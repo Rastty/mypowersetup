@@ -22,11 +22,11 @@ const publicHomes = [
 ];
 const calculatorUrls = [
   `${origin}/kalkulacky/`,
+  `${origin}/kalkulacky/12v-nebo-24v/`,
   `${origin}/kalkulacky/kapacita-baterie/`,
+  `${origin}/kalkulacky/prurez-kabelu-12v/`,
   `${origin}/kalkulacky/solarni-panely/`,
   `${origin}/kalkulacky/vykon-menice/`,
-  `${origin}/kalkulacky/prurez-kabelu-12v/`,
-  `${origin}/kalkulacky/12v-nebo-24v/`,
 ];
 const scenarioUrls = [
   `${origin}/pruvodce/modelove-sestavy/`,
