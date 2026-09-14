@@ -49,8 +49,8 @@ function expectedAlternates(family) {
   ];
 }
 
-test("published battery and solar calculator equivalents have reciprocal core-market hreflang", async () => {
-  for (const key of ["battery", "solar"]) {
+test("published calculator families have reciprocal core-market hreflang", async () => {
+  for (const key of ["hub", "battery", "solar"]) {
     const family = families[key];
     const expected = expectedAlternates(family);
     for (const route of Object.values(family)) {
