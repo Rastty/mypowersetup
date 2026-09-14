@@ -26,6 +26,10 @@ function matchOne(html, expression, label) {
   return matches[0][1];
 }
 
+function escapeRegex(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 test("calculator cluster has unique search intent metadata and indexable self canonicals", async () => {
   const titles = new Set();
   const descriptions = new Set();
@@ -69,7 +73,8 @@ test("calculator structured data stays defensible and breadcrumbs match each can
     const route = routeFor(entry.slug);
     const html = await readFile(fileFor(entry.slug), "utf8");
     assert.match(html, /"@type"\s*:\s*"BreadcrumbList"/, `${route} missing BreadcrumbList`);
-    assert.ok(html.includes(`"item":"${ORIGIN}${route}"`) || html.includes(`"url":"${ORIGIN}${route}"`), `${route} schema must reference its canonical`);
+    const canonicalReference = new RegExp(`"(?:item|url)"\\s*:\\s*"${escapeRegex(`${ORIGIN}${route}`)}"`);
+    assert.match(html, canonicalReference, `${route} schema must reference its canonical`);
     if (entry.slug) {
       assert.match(html, /"@type"\s*:\s*"WebApplication"/, `${route} missing WebApplication`);
       assert.match(html, /"@type"\s*:\s*"FAQPage"/, `${route} missing FAQPage`);
