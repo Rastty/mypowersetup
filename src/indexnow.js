@@ -12,8 +12,10 @@ const CALCULATOR_LANDING_ROUTES = Object.freeze([
   "/kalkulacky/kapacita-baterie/",
   "/kalkulacky/solarni-panely/",
   "/kalkulacky/mppt-regulator/",
+  "/kalkulacky/dc-dc-nabijecka/",
   "/kalkulacky/vykon-menice/",
   "/kalkulacky/prurez-kabelu-12v/",
+  "/kalkulacky/jisteni-12v/",
   "/kalkulacky/12v-nebo-24v/",
   "/sk/kalkulacky/",
   "/sk/kalkulacky/kapacita-baterie/",
@@ -50,10 +52,14 @@ const SHARED_CALCULATOR_FILES = new Set([
 ]);
 const CALCULATOR_LANDING_FILES = new Set([
   "kalkulacky/calculator.css",
+  "src/calculator-attribution.js",
   "src/calculator-landing.js",
   "src/calculator-landing-browser.js",
   "src/calculator-copy.js",
   "src/dc-cable.js",
+  "src/dc-dc-charger.js",
+  "src/dc-protection-planner.js",
+  "src/phase2-calculator-browser.js",
 ]);
 const EXPANSION_CALCULATOR_FILES = new Set([
   "src/expansion-calculator-browser.js",
