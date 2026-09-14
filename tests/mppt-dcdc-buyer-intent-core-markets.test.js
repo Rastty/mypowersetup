@@ -6,6 +6,7 @@ const pages = [
   {
     market: 'CZ', type: 'MPPT', path: 'pruvodce/jak-vybrat-mppt-regulator/index.html',
     title: /MPPT regulátor pro karavan/, decision: /20, 30 nebo 40 A/, section: 'vyber-mppt',
+    modified: '2026-09-14',
     mustContain: ['Voc', 'Isc', '20 A', '30 A', '40 A', '/#kalkulator']
   },
   {
@@ -56,7 +57,8 @@ for (const page of pages) {
     assert.match(title, page.title);
     assert.match(html, page.decision);
     assert.match(html, new RegExp(`id=["']${page.section}["']`));
-    assert.ok(html.includes('"dateModified":"2026-09-11"'), 'Article dateModified must be current');
+    const modified = page.modified || '2026-09-11';
+    assert.ok(html.includes(`"dateModified":"${modified}"`), `Article dateModified must match ${modified}`);
 
     for (const token of page.mustContain) {
       assert.ok(html.toLocaleLowerCase().includes(token.toLocaleLowerCase()), `missing required token: ${token}`);
