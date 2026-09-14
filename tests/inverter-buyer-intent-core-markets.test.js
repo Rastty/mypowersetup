@@ -2,6 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
+const CONTENT_REFRESH_BASELINE = Date.parse('2026-09-11T00:00:00Z');
+
+function assertFreshDateModified(html) {
+  const modified = html.match(/"dateModified":"(\d{4}-\d{2}-\d{2})"/)?.[1];
+  assert.ok(modified, 'Article dateModified must exist');
+  const timestamp = Date.parse(`${modified}T00:00:00Z`);
+  assert.ok(Number.isFinite(timestamp), 'Article dateModified must be a valid ISO date');
+  assert.ok(timestamp >= CONTENT_REFRESH_BASELINE, 'Article dateModified must not regress before the content refresh baseline');
+  assert.ok(timestamp <= Date.now() + 86_400_000, 'Article dateModified must not be in the future');
+}
+
 const pages = [
   {
     market: 'CZ', path: 'pruvodce/jak-velky-menic-do-karavanu/index.html',
@@ -36,7 +47,7 @@ for (const page of pages) {
     assert.match(title, page.title);
     assert.match(html, page.decision);
     assert.match(html, new RegExp(`id=["']${page.section}["']`));
-    assert.ok(html.includes('"dateModified":"2026-09-11"'), 'Article dateModified must be current');
+    assertFreshDateModified(html);
 
     for (const token of page.mustContain) {
       assert.ok(html.toLocaleLowerCase().includes(token.toLocaleLowerCase()), `missing required token: ${token}`);
