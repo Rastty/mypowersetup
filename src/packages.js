@@ -49,9 +49,11 @@ function eligibleCandidates(recommendations, category) {
 function packageQuality(items) {
   const scores = items.map(({ score }) => Number(score)).filter(Number.isFinite);
   if (!scores.length) return { matchScore: null, minimumItemScore: null };
+  const clampScore = (score) => Math.max(0, Math.min(100, score));
+  const normalized = scores.map(clampScore);
   return {
-    matchScore: Math.round(scores.reduce((sum, score) => sum + score, 0) / scores.length),
-    minimumItemScore: Math.round(Math.min(...scores)),
+    matchScore: Math.round(normalized.reduce((sum, score) => sum + score, 0) / normalized.length),
+    minimumItemScore: Math.round(Math.min(...normalized)),
   };
 }
 
@@ -90,10 +92,15 @@ export function buildProductPackages(recommendations, setup) {
     buildVariant("recommended", categories, recommendations, (items) => items[0]),
     buildVariant("reserve", categories, recommendations, withReserve),
   ];
+  const recommendedSignature = signature(candidates.find(({ id }) => id === "recommended"));
   const seen = new Set();
   return candidates.filter((variant) => {
     const key = signature(variant);
-    if (!key || seen.has(key)) return false;
+    if (!key) return false;
+    // If an alternative collapses to the same products as the recommended route,
+    // keep the recommended label instead of presenting the same basket as "budget".
+    if (variant.id !== "recommended" && key === recommendedSignature) return false;
+    if (seen.has(key)) return false;
     seen.add(key);
     return true;
   });
