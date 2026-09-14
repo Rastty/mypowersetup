@@ -8,6 +8,7 @@ import {
   rememberCalculatorAttribution,
   resolveCalculatorAttribution,
 } from "../src/calculator-attribution.js";
+import { trackAffiliateClick, trackAffiliateImpressions } from "../src/affiliate-analytics.js";
 
 function memoryStorage() {
   const values = new Map();
@@ -77,10 +78,38 @@ test("landing browser loads consent analytics and exposes the required funnel ev
   assert.match(browser, /rememberCalculatorAttribution/);
 });
 
-test("affiliate events append calculator landing attribution before sending", async () => {
-  const affiliateAnalytics = await readFile(new URL("../src/affiliate-analytics.js", import.meta.url), "utf8");
-  assert.match(affiliateAnalytics, /resolveCalculatorAttribution/);
-  assert.match(affiliateAnalytics, /affiliate_click/);
-  assert.match(affiliateAnalytics, /product_choice_impression/);
-  assert.match(affiliateAnalytics, /product_choices_rendered/);
+test("affiliate clicks and impressions receive the stored calculator landing context", () => {
+  const storage = memoryStorage();
+  rememberCalculatorAttribution({
+    sourcePath: "/kalkulacky/kapacita-baterie/",
+    intent: "battery-capacity",
+    locale: "cs",
+    storage,
+  });
+
+  const originalWindow = globalThis.window;
+  const originalDocument = globalThis.document;
+  globalThis.window = { sessionStorage: storage };
+  globalThis.document = { documentElement: { lang: "cs" } };
+
+  try {
+    const link = { dataset: { productId: "battery-100", merchant: "example", category: "battery", source: "recommendation" } };
+    const events = [];
+    const tracker = (name, parameters) => { events.push({ name, parameters }); return true; };
+
+    assert.equal(trackAffiliateClick(link, tracker), true);
+    assert.equal(trackAffiliateImpressions([link], tracker), true);
+
+    const affiliate = events.find((event) => event.name === "affiliate_click");
+    const impression = events.find((event) => event.name === "product_choice_impression");
+    for (const event of [affiliate, impression]) {
+      assert.equal(event.parameters.calculator_landing_path, "/kalkulacky/kapacita-baterie/");
+      assert.equal(event.parameters.calculator_landing_intent, "battery-capacity");
+      assert.equal(event.parameters.calculator_landing_locale, "cs");
+      assert.equal(event.parameters.calculator_source_context, "seo_landing");
+    }
+  } finally {
+    if (originalWindow === undefined) delete globalThis.window; else globalThis.window = originalWindow;
+    if (originalDocument === undefined) delete globalThis.document; else globalThis.document = originalDocument;
+  }
 });
