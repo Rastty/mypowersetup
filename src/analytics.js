@@ -22,7 +22,7 @@ const COPY = {
   pl: { label: "Wybór analityki", title: "Pomożesz nam ulepszać kalkulator?", text: "Za Twoją zgodą użyjemy Google Analytics do anonimowego pomiaru odwiedzin i użycia funkcji. Bez zgody analityka nie zostanie załadowana.", accept: "Zezwól na analitykę", reject: "Odrzuć", details: "Więcej o prywatności", detailsUrl: "/pl/prywatnosc/" },
   hu: { label: "Analitikai beállítás", title: "Segítesz fejleszteni a kalkulátort?", text: "Hozzájárulásod után a Google Analytics segítségével névtelenül mérjük a látogatásokat és a funkciók használatát. Hozzájárulás nélkül az analitika nem töltődik be.", accept: "Analitika engedélyezése", reject: "Elutasítás", details: "További információ az adatvédelemről", detailsUrl: "/hu/adatvedelem/" },
   ro: { label: "Opțiuni de analiză", title: "Ne ajuți să îmbunătățim calculatorul?", text: "Cu acordul tău folosim Google Analytics pentru măsurarea anonimă a vizitelor și utilizării funcțiilor. Fără acord, analiza nu se încarcă.", accept: "Permite analiza", reject: "Refuză", details: "Mai multe despre confidențialitate", detailsUrl: "/ro/confidentialitate/" },
-  pt: { label: "Opções de análise", title: "Ajuda-nos a melhorar a calculadora?", text: "Com o teu consentimento usamos Google Analytics para medir anonimamente as visitas e a utilização das funcionalidades. Sem consentimento, a análise não é carregada.", accept: "Permitir análise", reject: "Recusar", details: "Mais sobre privacidade", detailsUrl: "/pt/privacidade/" },
+  pt: { label: "Opções de análise", title: "Ajuda-nos a melhorar o calculador?", text: "Com o teu consentimento usamos Google Analytics para medir anonimamente as visitas e a utilização das funcionalidades. Sem consentimento, a análise não é carregada.", accept: "Permitir análise", reject: "Recusar", details: "Mais sobre privacidade", detailsUrl: "/pt/privacidade/" },
   sl: { label: "Nastavitve analitike", title: "Nam pomagaš izboljšati kalkulator?", text: "Z dovoljenjem uporabljamo Google Analytics za anonimno merjenje obiskov in uporabe funkcij. Brez dovoljenja se analitika ne naloži.", accept: "Dovoli analitiko", reject: "Zavrni", details: "Več o zasebnosti", detailsUrl: "/si/zasebnost/" },
 };
 
@@ -95,8 +95,9 @@ function trackJourneyClick(event) {
     if (calculatorDestination) {
       const carriedHref = carryCommunityAttributionToUrl(href, { search: window.location.search, pageUrl: window.location.href });
       if (carriedHref && carriedHref !== href) link.setAttribute("href", carriedHref);
-      track("guide_to_calculator_click", { ...calculatorDestination, source_zone: guideClickZone(link), source_position: guideCalculatorClickPosition(link) });
-      if (choice === "granted") rememberGuideAttribution({ sourcePath: window.location.pathname, storage: window.sessionStorage });
+      const sourcePosition = guideCalculatorClickPosition(link);
+      track("guide_to_calculator_click", { ...calculatorDestination, source_zone: guideClickZone(link), source_position: sourcePosition });
+      if (choice === "granted") rememberGuideAttribution({ sourcePath: window.location.pathname, sourcePosition, storage: window.sessionStorage });
       return;
     }
     const internalDestination = classifyGuideInternalLink(href, { origin: window.location.origin, sourcePath: window.location.pathname });
