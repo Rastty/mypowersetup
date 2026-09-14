@@ -44,6 +44,9 @@ jobs:
       - name: Diagnose tests S-Z
         continue-on-error: true
         run: node --test tests/[s-z]*.test.js
+      - name: Diagnose full suite sequentially
+        continue-on-error: true
+        run: node --test --test-concurrency=1
       - run: npm test
       - run: node --check src/app.js
       - run: node --check src/app-hu.js
