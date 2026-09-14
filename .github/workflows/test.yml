@@ -17,6 +17,18 @@ jobs:
         with:
           node-version: 22
           package-manager-cache: false
+      - name: Diagnose tests 1-35
+        continue-on-error: true
+        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '1,35p' | xargs -r node --test
+      - name: Diagnose tests 36-70
+        continue-on-error: true
+        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '36,70p' | xargs -r node --test
+      - name: Diagnose tests 71-105
+        continue-on-error: true
+        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '71,105p' | xargs -r node --test
+      - name: Diagnose tests 106-140
+        continue-on-error: true
+        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '106,140p' | xargs -r node --test
       - run: npm test
       - run: node --check src/app.js
       - run: node --check src/app-hu.js
