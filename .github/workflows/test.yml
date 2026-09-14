@@ -17,48 +17,18 @@ jobs:
         with:
           node-version: 22
           package-manager-cache: false
-      - name: Diagnose tests 1-35
+      - name: Diagnose direct Node discovery
         continue-on-error: true
-        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '1,35p' | xargs -r node --test
-      - name: Diagnose tests 36-70
+        run: node --test
+      - name: Diagnose npm serial discovery
         continue-on-error: true
-        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '36,70p' | xargs -r node --test
-      - name: Diagnose tests 71-105
+        run: npm test -- --test-concurrency=1
+      - name: Diagnose npm explicit test files
         continue-on-error: true
-        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '71,105p' | xargs -r node --test
-      - name: Diagnose tests 106-140
+        run: npm test -- $(find tests -maxdepth 1 -name '*.test.js' | sort)
+      - name: Diagnose npm environment
         continue-on-error: true
-        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '106,140p' | xargs -r node --test
-      - name: Diagnose tests 141-175
-        continue-on-error: true
-        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '141,175p' | xargs -r node --test
-      - name: Diagnose tests 176-210
-        continue-on-error: true
-        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '176,210p' | xargs -r node --test
-      - name: Diagnose tests 211-245
-        continue-on-error: true
-        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '211,245p' | xargs -r node --test
-      - name: Diagnose tests 246-280
-        continue-on-error: true
-        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '246,280p' | xargs -r node --test
-      - name: Diagnose tests 281-315
-        continue-on-error: true
-        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '281,315p' | xargs -r node --test
-      - name: Diagnose tests 316-350
-        continue-on-error: true
-        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '316,350p' | xargs -r node --test
-      - name: Diagnose all direct tests together
-        continue-on-error: true
-        run: find tests -maxdepth 1 -name '*.test.js' | sort | xargs -r node --test
-      - name: Diagnose test files outside tests root
-        continue-on-error: true
-        run: find . -path './node_modules' -prune -o -type f -name '*.test.js' ! -path './tests/*.test.js' -print | sort | xargs -r node --test
-      - name: Diagnose other Node default tests
-        continue-on-error: true
-        run: find . -path './node_modules' -prune -o -type f \( -name '*.test.mjs' -o -name '*.test.cjs' -o -name '*-test.js' -o -name '*-test.mjs' -o -name '*-test.cjs' -o -name 'test.js' -o -name 'test.mjs' -o -name 'test.cjs' \) -print | sort | xargs -r node --test
-      - name: Diagnose serial Node discovery
-        continue-on-error: true
-        run: node --test --test-concurrency=1
+        run: node -e "console.log({node:process.version,npm_lifecycle_event:process.env.npm_lifecycle_event,npm_config_user_agent:process.env.npm_config_user_agent,NODE_OPTIONS:process.env.NODE_OPTIONS,CI:process.env.CI})"
       - run: npm test
       - run: node --check src/app.js
       - run: node --check src/app-hu.js
