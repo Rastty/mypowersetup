@@ -59,7 +59,7 @@ test("guide attribution remains backwards compatible and ignores invalid CTA pos
     rememberGuideAttribution({ sourcePath: "/pl/poradnik/jak-dobrac-ladowarke-dc-dc/", sourcePosition: "hero", storage, now }),
     {
       guide_source_path: "/pl/poradnik/jak-dobrac-ladowarke-dc-dc/",
-      guide_source_topic: "dc_charger",
+      guide_source_topic: "dcDc",
       guide_source_market: "pl",
     }
   );
