@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulačka solárních panelů pro karavan: kolik Wp? | MyPowerSetup</title>
+  <meta name="description" content="Spočítejte potřebný výkon solárních panelů pro karavan podle denní spotřeby a sezóny. Výsledek zahrnuje ztráty, rezervu i orientační velikost MPPT regulátoru.">
+  <link rel="canonical" href="https://mypowersetup.com/kalkulacky/solarni-panely/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/solarni-panely/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/solarni-panely/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Kalkulačka solárních panelů pro karavan","url":"https://mypowersetup.com/kalkulacky/solarni-panely/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/"},{"@type":"ListItem","position":2,"name":"Kalkulačky","item":"https://mypowersetup.com/kalkulacky/"},{"@type":"ListItem","position":3,"name":"Solární panely","item":"https://mypowersetup.com/kalkulacky/solarni-panely/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Kolik W solárních panelů potřebuji na karavan?","acceptedAnswer":{"@type":"Answer","text":"Záleží na denní spotřebě, sezóně, slunečních podmínkách a ztrátách systému. Kalkulačka převádí denní Wh na doporučený minimální výkon panelů Wp s rezervou."}},{"@type":"Question","name":"Proč potřebuji v zimě více panelů?","acceptedAnswer":{"@type":"Answer","text":"V zimě je výrazně méně ekvivalentních hodin slunce a výroba více kolísá, proto stejná denní spotřeba vyžaduje větší instalovaný výkon nebo záložní dobíjení."}}]}]}</script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/kalkulacky/">Kalkulačky</a><a class="header-link" href="/pruvodce/">Průvodce</a></nav></header>
+  <main class="calculator-page">
+    <nav class="calculator-breadcrumbs"><a href="/">Domů</a> / <a href="/kalkulacky/">Kalkulačky</a> / Solární panely</nav>
+    <section class="calculator-hero"><p><strong>Solár pro karavan podle skutečné spotřeby</strong></p><h1>Kolik Wp solárních panelů potřebujete?</h1><p>Zadejte denní spotřebu a období, kdy chcete jezdit. Výpočet používá stejnou solární logiku jako hlavní MyPowerSetup Builder: sluneční hodiny podle sezóny, systémovou účinnost i bezpečnostní rezervu.</p></section>
+    <section class="calculator-grid" data-calculator-landing data-calculator-intent="solar-sizing" data-calculator-locale="cs">
+      <div class="calculator-card"><h2>Zadejte spotřebu a sezónu</h2><form class="calculator-form" data-calculator-form>
+        <div class="calculator-field"><label for="dailyWh">Denní spotřeba (Wh/den)</label><input id="dailyWh" name="dailyWh" type="number" min="50" max="20000" step="10" value="1200" required></div>
+        <div class="calculator-field"><label for="season">Kdy nejčastěji jezdíte?</label><select id="season" name="season"><option value="summer">Léto</option><option value="shoulder">Jaro / podzim</option><option value="winter">Zima</option></select></div>
+        <div class="calculator-field"><label for="systemVoltage">Napětí systému</label><select id="systemVoltage" name="systemVoltage"><option value="auto">Auto – doporučit 12/24 V</option><option value="12">12 V</option><option value="24">24 V</option></select></div>
+        <input type="hidden" name="batteryType" value="lifepo4"><button class="calculator-button" type="submit">Spočítat potřebný solár</button>
+      </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+      <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Výsledek</strong></p><h2>Doporučené minimum</h2><div class="calculator-metrics">
+        <div class="calculator-metric"><span>Panely</span><strong data-result-solar-watts>—</strong></div><div class="calculator-metric"><span>MPPT regulátor</span><strong data-result-controller-amps>—</strong></div><div class="calculator-metric"><span>Systém</span><strong data-result-voltage>—</strong></div><div class="calculator-metric"><span>Sezóna</span><strong data-result-season>—</strong></div>
+      </div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/#kalkulator">Navrhnout celou sestavu</a><a class="calculator-cta calculator-cta-secondary" href="/pruvodce/kolik-w-solarnich-panelu/">Jak vybrat panely</a><a class="calculator-cta calculator-cta-secondary" href="/pruvodce/jak-vybrat-mppt-regulator/">Jak vybrat MPPT</a></div></div>
+    </section>
+    <section class="calculator-section calculator-content-card"><h2>Co výsledek znamená</h2><p>Wp je jmenovitý výkon panelů za ideálních podmínek, nikoli energie, kterou každý den skutečně dostanete do baterie. Proto do návrhu vstupuje sezóna, účinnost regulace a kabeláže i rezerva. V zimě počítejte také s alternativním dobíjením z alternátoru nebo 230 V.</p></section>
+    <section class="calculator-section"><h2>Časté otázky</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Stačí 200 W panelů?</h3><p>Jen pokud jejich reálná denní výroba pokryje vaši spotřebu. Porovnávejte Wh/den, ne pouze počet panelů.</p></article><article class="calculator-content-card"><h3>Musím řešit i regulátor?</h3><p>Ano. Proud MPPT regulátoru musí odpovídat výkonu panelů a napětí bateriového systému; kalkulačka proto ukazuje i orientační minimální proud.</p></article></div></section>
+  </main><script type="module" src="/src/calculator-landing-browser.js?v=20260914-2"></script>
+</body></html>
