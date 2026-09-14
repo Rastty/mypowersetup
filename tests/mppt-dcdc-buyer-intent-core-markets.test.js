@@ -41,7 +41,7 @@ const pages = [
   },
   {
     market: 'HU', type: 'DC-DC', path: 'hu/utmutatok/dc-dc-tolto-kivalasztasa/index.html',
-    title: /DC–DC töltő lakóautóhoz/, decision: /20, 30 nebo 50 A/, section: 'dcdc-valasztas',
+    title: /DC–DC töltő lakóautóhoz/, decision: /20, 30 vagy 50 A/, section: 'dcdc-valasztas',
     mustContain: ['BMS', 'alternátor', 'vezeték', 'biztosít', '20 A', '30 A', '50 A', '/hu/#kalkulator']
   }
 ];
