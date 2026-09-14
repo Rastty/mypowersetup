@@ -17,36 +17,6 @@ jobs:
         with:
           node-version: 22
           package-manager-cache: false
-      - name: Diagnose calculator attribution tests
-        continue-on-error: true
-        run: node --test tests/calculator-attribution.test.js
-      - name: Diagnose funnel report tests
-        continue-on-error: true
-        run: node --test tests/calculator-funnel-report.test.js
-      - name: Diagnose guide attribution tests
-        continue-on-error: true
-        run: node --test tests/guide-attribution.test.js tests/guide-conversion.test.js
-      - name: Diagnose analytics context tests
-        continue-on-error: true
-        run: node --test tests/analytics-context.test.js tests/affiliate-analytics.test.js
-      - name: Diagnose tests A-C
-        continue-on-error: true
-        run: node --test tests/[a-c]*.test.js
-      - name: Diagnose tests D-H
-        continue-on-error: true
-        run: node --test tests/[d-h]*.test.js
-      - name: Diagnose tests I-M
-        continue-on-error: true
-        run: node --test tests/[i-m]*.test.js
-      - name: Diagnose tests N-R
-        continue-on-error: true
-        run: node --test tests/[n-r]*.test.js
-      - name: Diagnose tests S-Z
-        continue-on-error: true
-        run: node --test tests/[s-z]*.test.js
-      - name: Diagnose full suite sequentially
-        continue-on-error: true
-        run: node --test --test-concurrency=1
       - run: npm test
       - run: node --check src/app.js
       - run: node --check src/app-hu.js
