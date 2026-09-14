@@ -29,6 +29,21 @@ jobs:
       - name: Diagnose tests 106-140
         continue-on-error: true
         run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '106,140p' | xargs -r node --test
+      - name: Diagnose tests 141-175
+        continue-on-error: true
+        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '141,175p' | xargs -r node --test
+      - name: Diagnose tests 176-210
+        continue-on-error: true
+        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '176,210p' | xargs -r node --test
+      - name: Diagnose tests 211-245
+        continue-on-error: true
+        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '211,245p' | xargs -r node --test
+      - name: Diagnose tests 246-280
+        continue-on-error: true
+        run: find tests -maxdepth 1 -name '*.test.js' | sort | sed -n '246,280p' | xargs -r node --test
+      - name: Diagnose other Node default tests
+        continue-on-error: true
+        run: find . -path './node_modules' -prune -o -type f \( -name '*.test.mjs' -o -name '*.test.cjs' -o -name '*-test.js' -o -name '*-test.mjs' -o -name '*-test.cjs' -o -name 'test.js' -o -name 'test.mjs' -o -name 'test.cjs' \) -print | sort | xargs -r node --test
       - run: npm test
       - run: node --check src/app.js
       - run: node --check src/app-hu.js
