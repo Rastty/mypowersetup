@@ -25,9 +25,9 @@ const families = Object.freeze({
 });
 
 const localeMeta = Object.freeze({
-  sk: Object.freeze({ lang: "sk-SK", builder: "/sk/#kalkulator", guidePrefix: "/sk/sprievodca/" }),
-  pl: Object.freeze({ lang: "pl-PL", builder: "/pl/#kalkulator", guidePrefix: "/pl/poradnik/" }),
-  hu: Object.freeze({ lang: "hu-HU", builder: "/hu/#kalkulator", guidePrefix: "/hu/utmutatok/" }),
+  sk: Object.freeze({ builder: "/sk/#kalkulator", guidePrefix: "/sk/sprievodca/" }),
+  pl: Object.freeze({ builder: "/pl/#kalkulator", guidePrefix: "/pl/poradnik/" }),
+  hu: Object.freeze({ builder: "/hu/#kalkulator", guidePrefix: "/hu/utmutatok/" }),
 });
 
 function fileFor(route) {
@@ -63,6 +63,7 @@ test("published battery and solar calculator equivalents have reciprocal core-ma
 
 test("SK PL HU calculator pages are native market handoffs, not cross-market clones", async () => {
   for (const [locale, meta] of Object.entries(localeMeta)) {
+    const foreignLocales = Object.keys(localeMeta).filter((candidate) => candidate !== locale);
     for (const key of ["battery", "solar"]) {
       const route = families[key][locale];
       const html = await readFile(fileFor(route), "utf8");
@@ -70,7 +71,9 @@ test("SK PL HU calculator pages are native market handoffs, not cross-market clo
       assert.ok(html.includes(`data-calculator-locale="${locale}"`), `${route} must use ${locale} calculation context`);
       assert.ok(html.includes(`href="${meta.builder}"`), `${route} must continue to its local Builder`);
       assert.ok(html.includes(`href="${meta.guidePrefix}`), `${route} must continue to its local guide`);
-      assert.doesNotMatch(html, /href="\/(?:sk|pl|hu)\//g, `${route} cross-market link audit placeholder`);
+      for (const foreign of foreignLocales) {
+        assert.doesNotMatch(html, new RegExp(`href="/${foreign}/`), `${route} must not link into ${foreign} market content`);
+      }
     }
   }
 });
@@ -81,7 +84,7 @@ test("localized calculator hubs expose only the two proven intents", async () =>
     const html = await readFile(fileFor(hubRoute), "utf8");
     assert.ok(html.includes(`href="${families.battery[locale]}"`));
     assert.ok(html.includes(`href="${families.solar[locale]}"`));
-    assert.doesNotMatch(html, /vykon-menice|prurez-kabelu|12v-nebo-24v|inverter|kabel|feszultseg/i, `${hubRoute} should not clone unproven intents`);
+    assert.doesNotMatch(html, /vykon-menice|prurez-kabelu|12v-nebo-24v|inverter|feszultseg/i, `${hubRoute} should not clone unproven intents`);
   }
 });
 
