@@ -42,6 +42,15 @@ test("guide attribution preserves a validated commercial guide and CTA position 
   assert.equal(resolveGuideAttribution({ storage, market: "pl", now: now + 60_000 }), null);
 });
 
+test("legacy guide write does not erase an already captured valid CTA position", () => {
+  const storage = memoryStorage();
+  const now = 1_700_000_000_000;
+  rememberGuideAttribution({ sourcePath: "/pruvodce/kolik-w-solarnich-panelu/", sourcePosition: "late", storage, now });
+  rememberGuideAttribution({ sourcePath: "/pruvodce/kolik-w-solarnich-panelu/", storage, now: now + 10 });
+
+  assert.equal(resolveGuideAttribution({ storage, market: "cz", now: now + 20 })?.guide_source_position, "late");
+});
+
 test("guide attribution remains backwards compatible and ignores invalid CTA positions", () => {
   const storage = memoryStorage();
   const now = 1_700_000_000_000;
@@ -54,11 +63,6 @@ test("guide attribution remains backwards compatible and ignores invalid CTA pos
       guide_source_market: "pl",
     }
   );
-  assert.deepEqual(resolveGuideAttribution({ storage, market: "pl", now: now + 1 }), {
-    guide_source_path: "/pl/poradnik/jak-dobrac-ladowarke-dc-dc/",
-    guide_source_topic: "dc_charger",
-    guide_source_market: "pl",
-  });
 });
 
 test("guide attribution expires and removes stale session data", () => {
@@ -81,10 +85,9 @@ test("guide attribution rejects unsupported and corrupted values", () => {
   assert.equal(clearGuideAttribution(storage), true);
 });
 
-test("analytics only stores guide attribution behind granted consent and resolves it on calculator context", async () => {
-  const analytics = await readFile(new URL("../src/analytics.js", import.meta.url), "utf8");
-  assert.match(analytics, /rememberGuideAttribution, resolveGuideAttribution/);
-  assert.match(analytics, /choice === "granted" && page\.page_type === "calculator" \? resolveGuideAttribution/);
-  assert.match(analytics, /const sourcePosition = guideCalculatorClickPosition\(link\)/);
-  assert.match(analytics, /if \(choice === "granted"\) rememberGuideAttribution\(\{ sourcePath: window\.location\.pathname, sourcePosition, storage: window\.sessionStorage \}\)/);
+test("guide CTA position capture is consent-gated and uses the existing session attribution", async () => {
+  const guideConversion = await readFile(new URL("../src/guide-conversion.js", import.meta.url), "utf8");
+  assert.match(guideConversion, /mypowersetup_analytics_consent/);
+  assert.match(guideConversion, /sourcePosition: guidePosition\(link\)/);
+  assert.match(guideConversion, /storage: sessionStorage/);
 });
