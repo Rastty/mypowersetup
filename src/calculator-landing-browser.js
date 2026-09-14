@@ -89,6 +89,15 @@ if (root) {
     setText("[data-result-reserve]", copy.solarReserve({ n, result }));
   }
 
+  function renderMppt(result) {
+    setText("[data-result-panel-watts]", `${n(result.panelWatts)} Wp`);
+    setText("[data-result-controller-amps]", `${n(result.controllerAmps)} A`);
+    setText("[data-result-voltage]", `${result.systemVoltage} V`);
+    setText("[data-result-charge-voltage]", `${n(result.controllerSizingVoltage)} V`);
+    setText("[data-result-summary]", copy.mpptSummary({ n, result }));
+    setText("[data-result-reserve]", copy.mpptReserve({ n, result }));
+  }
+
   function renderInverter(result) {
     setText("[data-result-inverter-watts]", `${n(result.inverterWatts)} W`);
     setText("[data-result-surge-watts]", `${n(result.largestStartWatts)} W`);
@@ -118,6 +127,7 @@ if (root) {
   const renderers = {
     "battery-capacity": renderBattery,
     "solar-sizing": renderSolar,
+    "mppt-sizing": renderMppt,
     "inverter-sizing": renderInverter,
     "voltage-system": renderVoltageSystem,
     "cable-voltage-drop": renderCable,
