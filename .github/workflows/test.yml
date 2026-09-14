@@ -2,46 +2,86 @@ name: Test
 
 on:
   pull_request:
+  push:
+    branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  repair-mppt-contracts:
+  calculator:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          ref: ${{ github.head_ref }}
-      - name: Repair MPPT content contracts and restore workflow
-        shell: bash
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          guide = Path('pruvodce/jak-vybrat-mppt-regulator/index.html')
-          text = guide.read_text()
-          promise = 'Dopočítejte si přesnou velikost a rovnou zkontrolujte kompatibilní produkty.'
-          marker = '<section class="cta"><h2>Spočítejte výkon panelů i vhodnou třídu MPPT</h2>'
-          if promise not in text:
-              if marker not in text:
-                  raise SystemExit('MPPT CTA marker missing')
-              text = text.replace(marker, marker + f'<p>{promise}</p>', 1)
-              guide.write_text(text)
-
-          sitemap = Path('sitemap.xml')
-          xml = sitemap.read_text()
-          old = '<url><loc>https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/</loc><lastmod>2026-09-11</lastmod>'
-          new = '<url><loc>https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/</loc><lastmod>2026-09-14</lastmod>'
-          if old not in xml and new not in xml:
-              raise SystemExit('MPPT sitemap entry missing')
-          sitemap.write_text(xml.replace(old, new, 1))
-          PY
-          git fetch origin main --depth=1
-          git show FETCH_HEAD:.github/workflows/test.yml > .github/workflows/test.yml
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add pruvodce/jak-vybrat-mppt-regulator/index.html sitemap.xml .github/workflows/test.yml
-          git diff --cached --check
-          git commit -m "fix: satisfy MPPT SEO and conversion contracts"
-          git push origin HEAD:${{ github.head_ref }}
+          node-version: 22
+          package-manager-cache: false
+      - run: npm test
+      - run: node --check src/app.js
+      - run: node --check src/app-hu.js
+      - run: node --check src/analytics-context.js
+      - run: node --check src/analytics.js
+      - run: node --check src/community-navigation.js
+      - run: node --check src/public-conversion-funnel.js
+      - run: node --check src/commercial-coverage.js
+      - run: node --check src/market-health.js
+      - run: node --check src/traffic-distribution.js
+      - run: node --check src/public-link-graph.js
+      - run: node --check src/community-attribution.js
+      - run: node --check scripts/sync-products.mjs
+      - run: node --check scripts/sync-products-pt.mjs
+      - run: node --check scripts/sync-products-expansion-eu.mjs
+      - run: node --check scripts/check-market-health.mjs
+      - run: node --check scripts/preaudit.mjs
+      - run: node --check scripts/publish-hu.mjs
+      - run: node --check scripts/submit-indexnow.mjs
+      - run: node --check scripts/check-expansion-release.mjs
+      - run: node --check scripts/sync-public-hreflang.mjs
+      - run: node --check scripts/check-public-conversion.mjs
+      - run: node --check scripts/check-conversion-analytics.mjs
+      - run: node --check scripts/check-postlaunch-public.mjs
+      - run: node --check scripts/check-production-live.mjs
+      - run: node --check scripts/check-commercial-coverage.mjs
+      - run: node --check scripts/check-commercial-scenarios.mjs
+      - run: node --check scripts/check-commercial-opportunities.mjs
+      - run: node --check scripts/check-affiliate-onboarding-candidates.mjs
+      - run: node --check scripts/write-owner-action-queue.mjs
+      - run: node --check scripts/check-traffic-distribution.mjs
+      - run: node --check scripts/check-public-internal-links.mjs
+      - run: node --check scripts/report-traffic-distribution.mjs
+      - run: node --check scripts/report-community-links.mjs
+      - run: node --check scripts/smoke-public-mobile.mjs
+      - run: node --check scripts/smoke-hu-mobile.mjs
+      - run: node --check scripts/smoke-pt-mobile.mjs
+      - run: node --check scripts/smoke-si-mobile.mjs
+      - run: node --check scripts/smoke-ro-mobile.mjs
+      - run: npm run health:markets:safe
+      - run: npm run preaudit:ready
+      - run: npm run check:expansion:release
+      - run: npm run check:public:hreflang
+      - run: npm run check:public:conversion
+      - run: npm run check:public:links
+      - run: npm run check:conversion:analytics
+      - run: node scripts/check-postlaunch-public.mjs
+      - run: npm run check:commercial:coverage:safe
+      - run: npm run check:commercial:scenarios:safe
+      - name: Build commercial opportunity report
+        run: npm run check:commercial:opportunities > commercial-opportunities.json
+      - name: Upload commercial opportunity report
+        uses: actions/upload-artifact@v4
+        with:
+          name: commercial-opportunities
+          path: commercial-opportunities.json
+          retention-days: 14
+      - run: node scripts/check-affiliate-onboarding-candidates.mjs
+      - run: npm run check:owner:actions
+      - run: npm run check:traffic:distribution
+      - run: npm run report:community:links -- --market pl
+      - run: npm run indexnow:check
+      - run: google-chrome --version
+      - run: npm run smoke:public:mobile
+      - run: npm run smoke:hu:mobile
+      - run: npm run smoke:pt:mobile
+      - run: npm run smoke:si:mobile
+      - run: npm run smoke:ro:mobile
