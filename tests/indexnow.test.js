@@ -21,12 +21,21 @@ const publicHomes = [
   `${origin}/sk/`,
 ];
 const calculatorUrls = [
+  `${origin}/hu/kalkulatorok/`,
+  `${origin}/hu/kalkulatorok/akkumulator-kapacitas/`,
+  `${origin}/hu/kalkulatorok/napelem-teljesitmeny/`,
   `${origin}/kalkulacky/`,
   `${origin}/kalkulacky/12v-nebo-24v/`,
   `${origin}/kalkulacky/kapacita-baterie/`,
   `${origin}/kalkulacky/prurez-kabelu-12v/`,
   `${origin}/kalkulacky/solarni-panely/`,
   `${origin}/kalkulacky/vykon-menice/`,
+  `${origin}/pl/kalkulatory/`,
+  `${origin}/pl/kalkulatory/panele-solarne/`,
+  `${origin}/pl/kalkulatory/pojemnosc-akumulatora/`,
+  `${origin}/sk/kalkulacky/`,
+  `${origin}/sk/kalkulacky/kapacita-baterie/`,
+  `${origin}/sk/kalkulacky/solarne-panely/`,
 ];
 const scenarioUrls = [
   `${origin}/pruvodce/modelove-sestavy/`,
@@ -88,7 +97,7 @@ test("shared calculator changes notify every public market homepage", async () =
 
 test("calculator landing shared files notify the complete calculator cluster", async () => {
   const urls = await currentSitemapUrls();
-  for (const file of ["kalkulacky/calculator.css", "src/calculator-landing.js", "src/calculator-landing-browser.js", "src/dc-cable.js"]) {
+  for (const file of ["kalkulacky/calculator.css", "src/calculator-landing.js", "src/calculator-landing-browser.js", "src/calculator-copy.js", "src/dc-cable.js"]) {
     assert.deepEqual(changedFilesToIndexNowUrls([file], urls), calculatorUrls, `${file} should refresh calculator landings`);
   }
 });
