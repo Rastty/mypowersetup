@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-13T08:23:22.309Z",
+  "generatedAt": "2026-09-14T09:01:39.967Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16558,
-      "relevantProducts": 210
+      "parsedProducts": 16531,
+      "relevantProducts": 209
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -5375,42 +5375,6 @@
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:106299",
-      "merchant": "padabo_pl",
-      "name": "Ładowarka akumulatorów DC-DC Renogy, 12V/60A",
-      "description": "Trzystopniowa ładowarka dla wszystkich typów akumulatorów Ładowarka akumulatorów DC-DC Renogy jest jednym z najbardziej wydajnych sposobów ładowania akumulatorów doładowujących podczas pracy silnika. Ładowarka jest kompatybilna z wieloma typami alternatorów i zapewnia prawidłowe ładowanie akumulatorów AGM, trakcyjnych, żelowych i litowych o głębokim cyklu. Trzystopniowa ładowarka z wieloma elektronicznymi zabezpieczeniami jest niezwykle niezawodna i pomaga zapewnić optymalne i automatyczne ładow",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Ładowarki i boostery | Ładowarki",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 1433.31,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/ladowarka-akumulatorow-dc-dc-renogy-12v-60a_z106299/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fladowarka-akumulatorow-dc-dc-renogy-12v-60a_z106299%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/1/187901_102.jpg?1759387751_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 750,
-        "currentA": 60,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4",
           "lead"
         ],
         "batteryType": "lead",
