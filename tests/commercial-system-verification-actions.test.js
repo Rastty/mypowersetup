@@ -8,11 +8,12 @@ import {
 } from "../src/commercial-system-verification-actions.js";
 
 async function liveInputs() {
-  const [report, ampulMarketVerification] = await Promise.all([
+  const [report, ampulMarketVerification, ampulSourceCatalog] = await Promise.all([
     readFile(new URL("../data/commercial-opportunity-report.json", import.meta.url), "utf8").then(JSON.parse),
     readFile(new URL("../data/ampul-expansion-market-verification.json", import.meta.url), "utf8").then(JSON.parse),
+    readFile(new URL("../data/products-ampul-cz.json", import.meta.url), "utf8").then(JSON.parse),
   ]);
-  return { report, ampulMarketVerification };
+  return { report, ampulMarketVerification, ampulSourceCatalog };
 }
 
 function verifiedRecord(suffix) {
@@ -24,8 +25,8 @@ function verifiedRecord(suffix) {
 }
 
 test("system verification queue surfaces AMPUL P0 inverter verification ahead of secondary DC-DC work", async () => {
-  const { report, ampulMarketVerification } = await liveInputs();
-  const options = { ampulMarketVerification };
+  const { report, ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
+  const options = { ampulMarketVerification, ampulSourceCatalog };
   const actions = buildCurrentCommercialSystemVerificationQueue(report.markets, options);
 
   assert.deepEqual(actions.map(({ nextAction }) => nextAction), [
@@ -47,9 +48,98 @@ test("system verification queue surfaces AMPUL P0 inverter verification ahead of
   assert.equal(best.currentAffectedWeight, 15);
 });
 
+test("exact AMPUL feed stock distinguishes unknown inverter stock from available DC-DC stock", async () => {
+  const { report, ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
+  const actions = buildCurrentCommercialSystemVerificationQueue(report.markets, {
+    ampulMarketVerification,
+    ampulSourceCatalog,
+  });
+
+  const inverter = actions.find(({ candidateIds }) => candidateIds.includes("ampul-eu-inverter-24v-2000w"));
+  assert.equal(inverter.sourceStock.length, 1);
+  assert.deepEqual(inverter.sourceStock[0], {
+    candidateId: "ampul-eu-inverter-24v-2000w",
+    sourceProductId: "ampul_cz:5577-7392",
+    generatedAt: ampulSourceCatalog.generatedAt,
+    sourceHealthy: true,
+    found: true,
+    available: null,
+    state: "unknown",
+    stockVerified: false,
+    productUrl: "https://ampul.eu/cs/menice-napeti/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+    priceCzk: 8398,
+    priceCurrency: "CZK",
+  });
+  assert.equal(inverter.publishEligible, false);
+  assert.deepEqual(inverter.secondaryBlockers, ["variant_stock_unverified"]);
+
+  const dcdc = actions.find(({ candidateIds }) => candidateIds.includes("ampul-eu-dcdc-12v-30a"));
+  assert.equal(dcdc.sourceStock.length, 1);
+  assert.equal(dcdc.sourceStock[0].sourceProductId, "ampul_cz:6195");
+  assert.equal(dcdc.sourceStock[0].available, true);
+  assert.equal(dcdc.sourceStock[0].state, "available");
+  assert.equal(dcdc.sourceStock[0].stockVerified, true);
+  assert.equal(dcdc.publishEligible, false);
+});
+
+test("stock states are fail-closed for false, null, missing and unhealthy source data", async () => {
+  const { report, ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
+  const cases = [
+    [false, "unavailable"],
+    [null, "unknown"],
+  ];
+
+  for (const [available, expectedState] of cases) {
+    const catalog = structuredClone(ampulSourceCatalog);
+    catalog.products.find(({ id }) => id === "ampul_cz:5577-7392").available = available;
+    const best = bestCurrentCommercialSystemVerification(report.markets, {
+      ampulMarketVerification,
+      ampulSourceCatalog: catalog,
+    });
+    assert.equal(best.sourceStock[0].state, expectedState);
+    assert.equal(best.sourceStock[0].stockVerified, false);
+    assert.equal(best.publishEligible, false);
+  }
+
+  const missing = structuredClone(ampulSourceCatalog);
+  missing.products = missing.products.filter(({ id }) => id !== "ampul_cz:5577-7392");
+  let best = bestCurrentCommercialSystemVerification(report.markets, {
+    ampulMarketVerification,
+    ampulSourceCatalog: missing,
+  });
+  assert.equal(best.sourceStock[0].state, "missing");
+  assert.equal(best.sourceStock[0].stockVerified, false);
+
+  const unhealthy = structuredClone(ampulSourceCatalog);
+  unhealthy.sources.ampul_cz.status = "stale";
+  best = bestCurrentCommercialSystemVerification(report.markets, {
+    ampulMarketVerification,
+    ampulSourceCatalog: unhealthy,
+  });
+  assert.equal(best.sourceStock[0].state, "source_unhealthy");
+  assert.equal(best.sourceStock[0].stockVerified, false);
+});
+
+test("available exact stock does not bypass unresolved PT RO SI checkout", async () => {
+  const { report, ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
+  const catalog = structuredClone(ampulSourceCatalog);
+  catalog.products.find(({ id }) => id === "ampul_cz:5577-7392").available = true;
+
+  const best = bestCurrentCommercialSystemVerification(report.markets, {
+    ampulMarketVerification,
+    ampulSourceCatalog: catalog,
+  });
+  assert.equal(best.sourceStock[0].state, "available");
+  assert.equal(best.sourceStock[0].stockVerified, true);
+  assert.deepEqual(best.marketVerification[0].verifiedMarkets, []);
+  assert.deepEqual(best.marketVerification[0].unverifiedMarkets, ["pt-PT", "ro-RO", "sl-SI"]);
+  assert.equal(best.publishEligible, false);
+  assert.deepEqual(best.blockers, ["market_shipping_checkout_unverified"]);
+});
+
 test("authoritative AMPUL market state exposes all current PT RO SI checkouts as unresolved", async () => {
-  const { report, ampulMarketVerification } = await liveInputs();
-  const best = bestCurrentCommercialSystemVerification(report.markets, { ampulMarketVerification });
+  const { report, ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
+  const best = bestCurrentCommercialSystemVerification(report.markets, { ampulMarketVerification, ampulSourceCatalog });
 
   assert.equal(best.marketVerification.length, 1);
   const marketState = best.marketVerification[0];
@@ -65,11 +155,14 @@ test("authoritative AMPUL market state exposes all current PT RO SI checkouts as
 });
 
 test("one country can become verified without authorizing the whole AMPUL action", async () => {
-  const { report, ampulMarketVerification } = await liveInputs();
+  const { report, ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
   const synthetic = structuredClone(ampulMarketVerification);
   synthetic.products["ampul-eu-inverter-24v-2000w"].markets.pt = verifiedRecord("inverter-pt");
 
-  const best = bestCurrentCommercialSystemVerification(report.markets, { ampulMarketVerification: synthetic });
+  const best = bestCurrentCommercialSystemVerification(report.markets, {
+    ampulMarketVerification: synthetic,
+    ampulSourceCatalog,
+  });
   const marketState = best.marketVerification[0];
   assert.deepEqual(marketState.verifiedMarkets, ["pt-PT"]);
   assert.deepEqual(marketState.unverifiedMarkets, ["ro-RO", "sl-SI"]);
@@ -80,7 +173,7 @@ test("one country can become verified without authorizing the whole AMPUL action
 });
 
 test("verified=true without complete evidence remains fail-closed", async () => {
-  const { report, ampulMarketVerification } = await liveInputs();
+  const { report, ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
   const synthetic = structuredClone(ampulMarketVerification);
   synthetic.products["ampul-eu-inverter-24v-2000w"].markets.ro = {
     verified: true,
@@ -88,7 +181,10 @@ test("verified=true without complete evidence remains fail-closed", async () => 
     verifiedAt: "2026-09-16",
   };
 
-  const best = bestCurrentCommercialSystemVerification(report.markets, { ampulMarketVerification: synthetic });
+  const best = bestCurrentCommercialSystemVerification(report.markets, {
+    ampulMarketVerification: synthetic,
+    ampulSourceCatalog,
+  });
   const ro = best.marketVerification[0].markets.find(({ market }) => market === "ro-RO");
   assert.equal(ro.verified, false);
   assert.equal(ro.state, "invalid_evidence");
@@ -97,8 +193,8 @@ test("verified=true without complete evidence remains fail-closed", async () => 
 });
 
 test("partial public evidence reduces ambiguity without clearing market or exact-variant blockers", async () => {
-  const { report, ampulMarketVerification } = await liveInputs();
-  const best = bestCurrentCommercialSystemVerification(report.markets, { ampulMarketVerification });
+  const { report, ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
+  const best = bestCurrentCommercialSystemVerification(report.markets, { ampulMarketVerification, ampulSourceCatalog });
 
   assert.equal(best.verificationEvidence.length, 1);
   const evidence = best.verificationEvidence[0];
@@ -122,8 +218,8 @@ test("partial public evidence reduces ambiguity without clearing market or exact
 });
 
 test("system verification work is fail-closed and never mixes user-owned approval tasks into the queue", async () => {
-  const { report, ampulMarketVerification } = await liveInputs();
-  const actions = buildCurrentCommercialSystemVerificationQueue(report.markets, { ampulMarketVerification });
+  const { report, ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
+  const actions = buildCurrentCommercialSystemVerificationQueue(report.markets, { ampulMarketVerification, ampulSourceCatalog });
 
   assert.ok(actions.length > 0);
   assert.ok(actions.every((action) => action.owner === "system"));
@@ -135,12 +231,12 @@ test("system verification work is fail-closed and never mixes user-owned approva
 });
 
 test("system queue follows current opportunities and drops resolved categories", async () => {
-  const { ampulMarketVerification } = await liveInputs();
+  const { ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
   const actions = buildCurrentCommercialSystemVerificationQueue([
     { market: "pt-PT", opportunities: [{ category: "dc_charger", priority: "P1", score: 4, affectedWeight: 0, standaloneUnlockWeight: 0 }] },
     { market: "ro-RO", opportunities: [] },
     { market: "sl-SI", opportunities: [] },
-  ], { ampulMarketVerification });
+  ], { ampulMarketVerification, ampulSourceCatalog });
 
   assert.equal(actions.length, 1);
   assert.equal(actions[0].nextAction, "verify_pt_ro_si_checkout");
@@ -149,4 +245,5 @@ test("system queue follows current opportunities and drops resolved categories",
   assert.equal(actions[0].currentOpportunityScore, 4);
   assert.deepEqual(actions[0].verificationEvidence, []);
   assert.deepEqual(actions[0].marketVerification[0].unverifiedMarkets, ["pt-PT", "ro-RO", "sl-SI"]);
+  assert.equal(actions[0].sourceStock[0].state, "available");
 });
