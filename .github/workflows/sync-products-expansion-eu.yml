@@ -16,6 +16,7 @@ on:
       - "src/commercial-sourcing-candidates.js"
       - "src/commercial-verification-evidence.js"
       - "src/ampul-market-verification.js"
+      - "src/ampul-source-stock.js"
       - "src/commercial-system-verification-actions.js"
       - "src/shopify.js"
       - "src/oxe-affiliate.js"
@@ -68,6 +69,7 @@ jobs:
       - run: node --check src/si-recommendations.js
       - run: node --check src/commercial-verification-evidence.js
       - run: node --check src/ampul-market-verification.js
+      - run: node --check src/ampul-source-stock.js
       - run: node --check src/commercial-system-verification-actions.js
       - run: node --check scripts/write-system-verification-queue.mjs
       - run: node scripts/sync-products-expansion-eu.mjs
