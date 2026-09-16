@@ -27,7 +27,14 @@ function language(value) {
 }
 
 function eventWeight(event, params) {
-  const value = event?.event_count ?? event?.count ?? params?.event_count ?? params?.count;
+  const value = event?.funnel_count
+    ?? event?.total_users
+    ?? event?.event_count
+    ?? event?.count
+    ?? params?.funnel_count
+    ?? params?.total_users
+    ?? params?.event_count
+    ?? params?.count;
   if (value === undefined || value === null || value === "") return 1;
   const number = Number(value);
   return Number.isFinite(number) && number >= 0 ? number : 1;
