@@ -29,6 +29,7 @@ jobs:
       - run: node --check src/calculator-growth-input.js
       - run: node --check src/commercial-coverage.js
       - run: node --check src/commercial-verification-evidence.js
+      - run: node --check src/ampul-market-verification.js
       - run: node --check src/commercial-system-verification-actions.js
       - run: node --check src/market-health.js
       - run: node --check src/traffic-distribution.js
