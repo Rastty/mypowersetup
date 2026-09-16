@@ -1,3 +1,5 @@
+import { calculatorLocaleForPath } from "./calculator-funnel-report.js";
+
 function clean(value) {
   return String(value ?? "").trim();
 }
@@ -22,9 +24,14 @@ function pagePath(value) {
   }
 }
 
+function calculatorPath(value) {
+  const path = pagePath(value);
+  return calculatorLocaleForPath(path) ? path : "";
+}
+
 function gscPage(row) {
-  if (row?.page || row?.url || row?.landingPage) return pagePath(row.page || row.url || row.landingPage);
-  if (Array.isArray(row?.keys) && row.keys[0]) return pagePath(row.keys[0]);
+  if (row?.page || row?.url || row?.landingPage) return calculatorPath(row.page || row.url || row.landingPage);
+  if (Array.isArray(row?.keys) && row.keys[0]) return calculatorPath(row.keys[0]);
   return "";
 }
 
@@ -98,10 +105,14 @@ export function aggregateGscCalculatorRows(rows = []) {
 
 export function buildCalculatorGrowthPriorities({ gscRows = [], funnelRows = [], indexingRows = [] } = {}) {
   const gsc = new Map(aggregateGscCalculatorRows(gscRows).map((row) => [row.path, row]));
-  const funnel = new Map((Array.isArray(funnelRows) ? funnelRows : []).map((row) => [pagePath(row?.path), row]));
+  const funnel = new Map();
+  for (const row of Array.isArray(funnelRows) ? funnelRows : []) {
+    const path = calculatorPath(row?.path);
+    if (path) funnel.set(path, row);
+  }
   const indexing = new Map();
   for (const row of Array.isArray(indexingRows) ? indexingRows : []) {
-    const path = pagePath(row?.page || row?.url || row?.path);
+    const path = calculatorPath(row?.page || row?.url || row?.path);
     const indexed = normalizeIndexed(row?.indexed ?? row?.coverageState ?? row?.verdict ?? row?.status);
     if (path && indexed !== null) indexing.set(path, indexed);
   }
@@ -118,7 +129,7 @@ export function buildCalculatorGrowthPriorities({ gscRows = [], funnelRows = [],
     const affiliateClicks = finite(flow.clicks);
     const evidence = {
       path,
-      locale: clean(flow.locale).toLowerCase(),
+      locale: clean(flow.locale).toLowerCase() || calculatorLocaleForPath(path),
       intent: clean(flow.intent),
       indexed: indexing.has(path) ? indexing.get(path) : null,
       searchClicks: search.clicks,
