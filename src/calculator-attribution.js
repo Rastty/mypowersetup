@@ -51,18 +51,41 @@ function safeNumber(value, min, max) {
 function sanitizeResultContext(intent, context) {
   if (!context || typeof context !== "object" || intent !== "dcdc-sizing") return {};
   const result = {};
-  const recommendedCurrentA = safeNumber(context.recommendedChargerCurrentA, 1, 400);
-  const requiredCurrentA = safeNumber(context.requiredOutputCurrentA, 0.1, 400);
-  const feasibleCurrentA = safeNumber(context.feasibleOutputCurrentA, 0.1, 400);
-  const batteryVoltage = safeNumber(context.batteryVoltage, 12, 24);
-  const sourceVoltage = safeNumber(context.sourceVoltage, 10, 30);
+  const recommendedCurrentA = safeNumber(
+    context.recommendedChargerCurrentA ?? context.calculator_recommended_current_a,
+    1,
+    400,
+  );
+  const requiredCurrentA = safeNumber(
+    context.requiredOutputCurrentA ?? context.calculator_required_current_a,
+    0.1,
+    400,
+  );
+  const feasibleCurrentA = safeNumber(
+    context.feasibleOutputCurrentA ?? context.calculator_feasible_current_a,
+    0.1,
+    400,
+  );
+  const batteryVoltage = safeNumber(
+    context.batteryVoltage ?? context.calculator_system_voltage,
+    12,
+    24,
+  );
+  const sourceVoltage = safeNumber(
+    context.sourceVoltage ?? context.calculator_source_voltage,
+    10,
+    30,
+  );
+  const targetMet = typeof context.targetMet === "boolean"
+    ? context.targetMet
+    : context.calculator_target_met;
 
   if (recommendedCurrentA !== null) result.calculator_recommended_current_a = recommendedCurrentA;
   if (requiredCurrentA !== null) result.calculator_required_current_a = requiredCurrentA;
   if (feasibleCurrentA !== null) result.calculator_feasible_current_a = feasibleCurrentA;
   if ([12, 24].includes(batteryVoltage)) result.calculator_system_voltage = batteryVoltage;
   if (sourceVoltage !== null) result.calculator_source_voltage = sourceVoltage;
-  if (typeof context.targetMet === "boolean") result.calculator_target_met = context.targetMet;
+  if (typeof targetMet === "boolean") result.calculator_target_met = targetMet;
   return result;
 }
 
