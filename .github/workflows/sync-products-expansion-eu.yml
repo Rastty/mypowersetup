@@ -15,6 +15,7 @@ on:
       - "src/commercial-scenarios.js"
       - "src/commercial-sourcing-candidates.js"
       - "src/commercial-verification-evidence.js"
+      - "src/ampul-market-verification.js"
       - "src/commercial-system-verification-actions.js"
       - "src/shopify.js"
       - "src/oxe-affiliate.js"
@@ -33,6 +34,7 @@ on:
       - "tests/expansion-component-product-recommendations.test.js"
       - "tests/ampul-expansion-sync.test.js"
       - "tests/ampul-expansion-market-integration.test.js"
+      - "tests/ampul-inverter-stock-safety.test.js"
       - "tests/commercial-system-verification-actions.test.js"
       - "tests/powerqueen-fetch-resilience.test.js"
       - "tests/oxe-expansion-recommendations.test.js"
@@ -65,6 +67,7 @@ jobs:
       - run: node --check src/ro-recommendations.js
       - run: node --check src/si-recommendations.js
       - run: node --check src/commercial-verification-evidence.js
+      - run: node --check src/ampul-market-verification.js
       - run: node --check src/commercial-system-verification-actions.js
       - run: node --check scripts/write-system-verification-queue.mjs
       - run: node scripts/sync-products-expansion-eu.mjs
@@ -80,6 +83,7 @@ jobs:
           tests/powerqueen-fetch-resilience.test.js
           tests/commercial-opportunity-backlog.test.js
           tests/commercial-system-verification-actions.test.js
+          tests/ampul-inverter-stock-safety.test.js
           tests/commercial-scenarios.test.js
           tests/oxe-expansion-recommendations.test.js
           tests/oxe-feed.test.js
