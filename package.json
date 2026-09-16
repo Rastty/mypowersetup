@@ -25,6 +25,7 @@
     "report:traffic:distribution": "node scripts/report-traffic-distribution.mjs",
     "report:community:links": "node scripts/report-community-links.mjs",
     "report:calculator:funnel": "node scripts/report-calculator-funnel.mjs",
+    "report:calculator:growth": "node scripts/report-calculator-growth.mjs",
     "check:hu": "node scripts/check-hu-readiness.mjs",
     "health:markets": "node scripts/check-market-health.mjs",
     "health:markets:safe": "node scripts/check-market-health.mjs --require-safe",

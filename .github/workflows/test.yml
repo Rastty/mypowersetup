@@ -24,6 +24,8 @@ jobs:
       - run: node --check src/analytics.js
       - run: node --check src/community-navigation.js
       - run: node --check src/public-conversion-funnel.js
+      - run: node --check src/calculator-funnel-report.js
+      - run: node --check src/calculator-growth-priority.js
       - run: node --check src/commercial-coverage.js
       - run: node --check src/market-health.js
       - run: node --check src/traffic-distribution.js
@@ -51,6 +53,8 @@ jobs:
       - run: node --check scripts/check-public-internal-links.mjs
       - run: node --check scripts/report-traffic-distribution.mjs
       - run: node --check scripts/report-community-links.mjs
+      - run: node --check scripts/report-calculator-funnel.mjs
+      - run: node --check scripts/report-calculator-growth.mjs
       - run: node --check scripts/smoke-public-mobile.mjs
       - run: node --check scripts/smoke-hu-mobile.mjs
       - run: node --check scripts/smoke-pt-mobile.mjs

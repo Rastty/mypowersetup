@@ -30,6 +30,7 @@ test("calculator funnel groups events by locale, intent and landing path", () =>
     startRate: 1,
     completionRate: 1,
     continuationRate: 1,
+    productClickRate: 1,
     clickThroughRate: 1,
   }]);
 });
