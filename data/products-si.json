@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T19:28:17.754Z",
+  "generatedAt": "2026-09-16T19:39:12.122Z",
   "market": "sl-SI",
   "currency": "EUR",
   "private": false,
@@ -83,6 +83,39 @@
           "stockStatus": "dispatch_1_2_days",
           "stockVerifiedAt": "2026-09-16",
           "marketVerifiedAt": null
+        }
+      ]
+    },
+    "butler_technik": {
+      "status": "blocked",
+      "blocker": "awin_program_approval_pending",
+      "network": "awin",
+      "merchantId": 31291,
+      "affiliateId": 3044971,
+      "approvalConfirmed": false,
+      "approvalSource": null,
+      "trackingVerifiedAt": null,
+      "targetMarket": "sl-SI",
+      "marketCode": "si",
+      "exactProducts": 0,
+      "verifiedProductMarkets": {
+        "butler-victron-scc125060321": [],
+        "butler-victron-orion-xs-12-12-50": []
+      },
+      "productStates": [
+        {
+          "candidateId": "butler-victron-scc125060321",
+          "stockVerified": true,
+          "ready": false,
+          "blocker": "awin_program_approval_pending",
+          "stockVerifiedAt": "2026-09-16"
+        },
+        {
+          "candidateId": "butler-victron-orion-xs-12-12-50",
+          "stockVerified": true,
+          "ready": false,
+          "blocker": "awin_program_approval_pending",
+          "stockVerifiedAt": "2026-09-16"
         }
       ]
     },
