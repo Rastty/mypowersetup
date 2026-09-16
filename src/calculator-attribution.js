@@ -42,13 +42,74 @@ function validateLanding({ sourcePath, intent, locale }) {
   });
 }
 
+function safeNumber(value, min, max) {
+  if (value === null || value === undefined || value === "") return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed >= min && parsed <= max ? parsed : null;
+}
+
+function sanitizeResultContext(intent, context) {
+  if (!context || typeof context !== "object" || intent !== "dcdc-sizing") return {};
+  const result = {};
+  const recommendedCurrentA = safeNumber(context.recommendedChargerCurrentA, 1, 400);
+  const requiredCurrentA = safeNumber(context.requiredOutputCurrentA, 0.1, 400);
+  const feasibleCurrentA = safeNumber(context.feasibleOutputCurrentA, 0.1, 400);
+  const batteryVoltage = safeNumber(context.batteryVoltage, 12, 24);
+  const sourceVoltage = safeNumber(context.sourceVoltage, 10, 30);
+
+  if (recommendedCurrentA !== null) result.calculator_recommended_current_a = recommendedCurrentA;
+  if (requiredCurrentA !== null) result.calculator_required_current_a = requiredCurrentA;
+  if (feasibleCurrentA !== null) result.calculator_feasible_current_a = feasibleCurrentA;
+  if ([12, 24].includes(batteryVoltage)) result.calculator_system_voltage = batteryVoltage;
+  if (sourceVoltage !== null) result.calculator_source_voltage = sourceVoltage;
+  if (typeof context.targetMet === "boolean") result.calculator_target_met = context.targetMet;
+  return result;
+}
+
+function parseStored(storage) {
+  let raw;
+  try { raw = storage?.getItem?.(STORAGE_KEY); } catch { return null; }
+  if (!raw) return null;
+  try { return JSON.parse(raw); } catch { return null; }
+}
+
 export function rememberCalculatorAttribution({ sourcePath, intent, locale, storage = null, now = Date.now() } = {}) {
   const attribution = validateLanding({ sourcePath, intent, locale });
   if (!attribution) return null;
+  const existing = parseStored(storage);
+  const existingContext = existing
+    && existing.sourcePath === attribution.calculator_landing_path
+    && existing.intent === intent
+    && normalizeLocale(existing.locale) === attribution.calculator_landing_locale
+    ? sanitizeResultContext(intent, existing.resultContext)
+    : {};
   try {
-    storage?.setItem?.(STORAGE_KEY, JSON.stringify({ sourcePath: attribution.calculator_landing_path, intent, locale: attribution.calculator_landing_locale, recordedAt: now }));
+    storage?.setItem?.(STORAGE_KEY, JSON.stringify({
+      sourcePath: attribution.calculator_landing_path,
+      intent,
+      locale: attribution.calculator_landing_locale,
+      recordedAt: now,
+      ...(Object.keys(existingContext).length ? { resultContext: existingContext } : {}),
+    }));
   } catch {}
-  return attribution;
+  return Object.freeze({ ...attribution, ...existingContext });
+}
+
+export function rememberCalculatorResultContext({ sourcePath, intent, locale, result, storage = null, now = Date.now() } = {}) {
+  const attribution = validateLanding({ sourcePath, intent, locale });
+  if (!attribution) return null;
+  const resultContext = sanitizeResultContext(intent, result);
+  if (!Object.keys(resultContext).length) return attribution;
+  try {
+    storage?.setItem?.(STORAGE_KEY, JSON.stringify({
+      sourcePath: attribution.calculator_landing_path,
+      intent,
+      locale: attribution.calculator_landing_locale,
+      recordedAt: now,
+      resultContext,
+    }));
+  } catch {}
+  return Object.freeze({ ...attribution, ...resultContext });
 }
 
 export function resolveCalculatorAttribution({ storage = null, market, now = Date.now() } = {}) {
@@ -71,7 +132,7 @@ export function resolveCalculatorAttribution({ storage = null, market, now = Dat
 
   const normalizedMarket = normalizeLocale(market);
   if (normalizedMarket && normalizedMarket !== attribution.calculator_landing_locale) return null;
-  return attribution;
+  return Object.freeze({ ...attribution, ...sanitizeResultContext(parsed.intent, parsed.resultContext) });
 }
 
 export function clearCalculatorAttribution(storage = null) {
