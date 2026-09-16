@@ -166,7 +166,7 @@ test("validated DC-DC result context reaches product impressions and affiliate c
     intent: "dcdc-sizing",
     locale: "cs",
     storage,
-    now: now + 1_000,
+    now,
     result: {
       recommendedChargerCurrentA: 30,
       requiredOutputCurrentA: 34.6,
@@ -181,7 +181,7 @@ test("validated DC-DC result context reaches product impressions and affiliate c
   assert.equal(stored.calculator_system_voltage, 12);
   assert.equal(stored.calculator_target_met, false);
   assert.equal("ignoredFreeText" in stored, false);
-  assert.equal(resolveCalculatorAttribution({ storage, market: "sk", now: now + 2_000 }), null);
+  assert.equal(resolveCalculatorAttribution({ storage, market: "sk", now }), null);
 
   const originalWindow = globalThis.window;
   const originalDocument = globalThis.document;
