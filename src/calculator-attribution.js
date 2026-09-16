@@ -99,14 +99,13 @@ export function rememberCalculatorResultContext({ sourcePath, intent, locale, re
   const attribution = validateLanding({ sourcePath, intent, locale });
   if (!attribution) return null;
   const resultContext = sanitizeResultContext(intent, result);
-  if (!Object.keys(resultContext).length) return attribution;
   try {
     storage?.setItem?.(STORAGE_KEY, JSON.stringify({
       sourcePath: attribution.calculator_landing_path,
       intent,
       locale: attribution.calculator_landing_locale,
       recordedAt: now,
-      resultContext,
+      ...(Object.keys(resultContext).length ? { resultContext } : {}),
     }));
   } catch {}
   return Object.freeze({ ...attribution, ...resultContext });
