@@ -217,6 +217,30 @@ test("partial public evidence reduces ambiguity without clearing market or exact
   assert.deepEqual(best.secondaryBlockers, ["variant_stock_unverified"]);
 });
 
+test("exact AMPUL DC-DC public stock evidence does not clear destination checkout blockers", async () => {
+  const { report, ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
+  const actions = buildCurrentCommercialSystemVerificationQueue(report.markets, { ampulMarketVerification, ampulSourceCatalog });
+  const dcdc = actions.find(({ candidateIds }) => candidateIds.includes("ampul-eu-dcdc-12v-30a"));
+
+  assert.ok(dcdc);
+  assert.equal(dcdc.verificationEvidence.length, 1);
+  const evidence = dcdc.verificationEvidence[0];
+  assert.equal(evidence.candidateId, "ampul-eu-dcdc-12v-30a");
+  assert.equal(evidence.checkedAt, "2026-09-16");
+  assert.equal(evidence.evidenceType, "public_catalog_partial");
+  assert.equal(evidence.publicStockScope, "exact_product");
+  assert.equal(evidence.publicStockStatus, "in_stock_at_supplier");
+  assert.equal(evidence.catalogSpecs.chargingCurrentA, 30);
+  assert.equal(evidence.catalogSpecs.powerW, 400);
+  assert.equal(evidence.catalogSpecs.ipRating, "IP68");
+  assert.ok(evidence.verifiedChecks.includes("exact_product_stock_at_supplier"));
+  assert.deepEqual(evidence.genericShippingEvidence.targetMarketsVerified, []);
+  assert.deepEqual(evidence.unresolvedChecks, ["pt-PT_checkout", "ro-RO_checkout", "sl-SI_checkout"]);
+  assert.deepEqual(dcdc.marketVerification[0].verifiedMarkets, []);
+  assert.deepEqual(dcdc.marketVerification[0].unverifiedMarkets, ["pt-PT", "ro-RO", "sl-SI"]);
+  assert.equal(dcdc.publishEligible, false);
+});
+
 test("system verification work is fail-closed and never mixes user-owned approval tasks into the queue", async () => {
   const { report, ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
   const actions = buildCurrentCommercialSystemVerificationQueue(report.markets, { ampulMarketVerification, ampulSourceCatalog });
@@ -243,7 +267,10 @@ test("system queue follows current opportunities and drops resolved categories",
   assert.deepEqual(actions[0].activeMarkets, ["pt-PT"]);
   assert.equal(actions[0].bestPriority, "P1");
   assert.equal(actions[0].currentOpportunityScore, 4);
-  assert.deepEqual(actions[0].verificationEvidence, []);
+  assert.equal(actions[0].verificationEvidence.length, 1);
+  assert.equal(actions[0].verificationEvidence[0].candidateId, "ampul-eu-dcdc-12v-30a");
+  assert.deepEqual(actions[0].verificationEvidence[0].unresolvedChecks, ["pt-PT_checkout", "ro-RO_checkout", "sl-SI_checkout"]);
   assert.deepEqual(actions[0].marketVerification[0].unverifiedMarkets, ["pt-PT", "ro-RO", "sl-SI"]);
   assert.equal(actions[0].sourceStock[0].state, "available");
+  assert.equal(actions[0].publishEligible, false);
 });
