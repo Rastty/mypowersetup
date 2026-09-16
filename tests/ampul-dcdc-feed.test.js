@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { recommendProducts, refreshCatalogProduct } from "../src/products.js";
 
@@ -13,6 +14,11 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
   <g:availability>in_stock</g:availability>
   <g:product_type>Nabíjačky</g:product_type>
 </item></channel></rss>`;
+
+const czXml = xml
+  .replace("https://ampul.eu/sk/nabijacky/", "https://ampul.eu/cs/nabijecky/")
+  .replace("129 EUR", "3290 CZK")
+  .replace("<g:product_type>Nabíjačky</g:product_type>", "<g:product_type>Nabíječky</g:product_type>");
 
 test("verified Ampul 6195 is ingested as a 12 V LiFePO4 DC-DC charger without changing its exact destination", () => {
   const [product] = parseProductFeed(xml, "ampul_sk");
@@ -77,4 +83,46 @@ test("verified metadata remains fail-closed for incompatible 24 V house batterie
     }
   };
   assert.equal(recommendProducts([product], setup).dc_charger.length, 0);
+});
+
+test("the same verified product activates for CZ only when the CZ feed supplies a CZ destination", () => {
+  const [product] = parseProductFeed(czXml, "ampul_cz");
+  assert.ok(product);
+  assert.equal(product.id, "ampul_cz:6195");
+  assert.equal(product.category, "dc_charger");
+  assert.equal(product.available, true);
+  assert.match(product.productUrl, /^https:\/\/ampul\.eu\/cs\/nabijecky\//);
+  assert.equal(new URL(product.affiliateUrl).searchParams.get("desturl"), product.productUrl);
+  assert.equal(product.specs.currentA, 30);
+  assert.deepEqual(product.specs.chargingVoltagesV, [12]);
+  assert.deepEqual(product.specs.chargingInputVoltagesV, [12, 24]);
+  assert.deepEqual(product.specs.chargingBatteryTypes, ["lifepo4"]);
+
+  const setup = {
+    locale: "cs",
+    batteryType: "lifepo4",
+    systemVoltage: 12,
+    batteryAh: 180,
+    solarWatts: 200,
+    controllerAmps: 20,
+    inverterWatts: 100,
+    charging: {
+      starterVoltage: 12,
+      dcDc: { suggestedCurrentAmps: 30 },
+      shore: { suggestedCurrentAmps: 20 }
+    }
+  };
+  const recommendations = recommendProducts([product], setup);
+  assert.equal(recommendations.dc_charger.length, 1);
+  assert.equal(recommendations.dc_charger[0].product.id, "ampul_cz:6195");
+  assert.match(recommendations.dc_charger[0].product.productUrl, /\/cs\//);
+});
+
+test("CZ storefront never loads SK, PL or HU product catalogs as a fallback", async () => {
+  const app = await readFile(new URL("../src/app.js", import.meta.url), "utf8");
+  assert.match(app, /fetch\("\/data\/products\.json"/);
+  assert.match(app, /fetch\("\/data\/products-ampul-cz\.json"/);
+  assert.doesNotMatch(app, /products-sk\.json/);
+  assert.doesNotMatch(app, /products-pl\.json/);
+  assert.doesNotMatch(app, /products-hu\.json/);
 });
