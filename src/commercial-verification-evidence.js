@@ -1,3 +1,9 @@
+const GENERIC_AMPUL_SHIPPING_EVIDENCE = Object.freeze({
+  sourceUrl: "https://ampul.eu/en/",
+  scope: "32_european_countries",
+  targetMarketsVerified: Object.freeze([]),
+});
+
 const EVIDENCE_BY_CANDIDATE = Object.freeze({
   "ampul-eu-inverter-24v-2000w": Object.freeze({
     checkedAt: "2026-09-16",
@@ -11,11 +17,7 @@ const EVIDENCE_BY_CANDIDATE = Object.freeze({
     }),
     publicStockScope: "product_family",
     publicStockStatus: "in_stock_at_supplier",
-    genericShippingEvidence: Object.freeze({
-      sourceUrl: "https://ampul.eu/en/",
-      scope: "32_european_countries",
-      targetMarketsVerified: Object.freeze([]),
-    }),
+    genericShippingEvidence: GENERIC_AMPUL_SHIPPING_EVIDENCE,
     verifiedChecks: Object.freeze([
       "product_family_2000w_pure_sine",
       "24v_variant_listed",
@@ -24,6 +26,36 @@ const EVIDENCE_BY_CANDIDATE = Object.freeze({
     ]),
     unresolvedChecks: Object.freeze([
       "exact_24v_variant_stock",
+      "pt-PT_checkout",
+      "ro-RO_checkout",
+      "sl-SI_checkout",
+    ]),
+  }),
+  "ampul-eu-dcdc-12v-30a": Object.freeze({
+    checkedAt: "2026-09-16",
+    evidenceType: "public_catalog_partial",
+    productUrl: "https://ampul.eu/en/chargers/6195-battery-charger-dc-dc-with-lifepo4-146v-30a-400w-ip68",
+    localizedProductEvidence: Object.freeze({
+      ro: "https://ampul.eu/ro/incarcatoare/6195-incarcator-baterie-dc-dc-lifepo4-146v-30a-400w-ip68",
+    }),
+    catalogSpecs: Object.freeze({
+      batteryVoltageV: 12,
+      outputVoltageV: 14.6,
+      chargingCurrentA: 30,
+      powerW: 400,
+      ipRating: "IP68",
+    }),
+    publicStockScope: "exact_product",
+    publicStockStatus: "in_stock_at_supplier",
+    genericShippingEvidence: GENERIC_AMPUL_SHIPPING_EVIDENCE,
+    verifiedChecks: Object.freeze([
+      "exact_product_listed",
+      "exact_product_specs_match",
+      "exact_product_stock_at_supplier",
+      "romanian_localized_product_page_live",
+      "generic_eu_shipping_claim",
+    ]),
+    unresolvedChecks: Object.freeze([
       "pt-PT_checkout",
       "ro-RO_checkout",
       "sl-SI_checkout",
