@@ -40,6 +40,15 @@ Only known calculator roots are accepted: CZ `/kalkulacky/`, SK `/sk/kalkulacky/
 
 JSON, CSV or TSV are accepted. For compact GA4 exports, one row may represent many events through `Event count`; the report uses that count as the funnel weight rather than incorrectly treating the row as one event.
 
+All calculator funnel events now use one canonical event-parameter contract end to end, including product impressions and affiliate clicks:
+
+- `calculator_landing_path`
+- `calculator_landing_locale`
+- `calculator_landing_intent`
+- `calculator_source_context`
+
+Register/export those same dimensions in GA4. Historical raw events using the former `landing_path`, `landing_locale` and `landing_intent` keys remain readable by the repo report for backward compatibility, but new production events must use the canonical `calculator_*` names.
+
 The preferred flat export contains these columns:
 
 ```csv
