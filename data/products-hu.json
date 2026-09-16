@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-16T08:43:37.555Z",
+  "generatedAt": "2026-09-16T18:43:07.802Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12549,
-      "relevantProducts": 158
+      "parsedProducts": 12544,
+      "relevantProducts": 157
     },
     "ampul_hu": {
       "status": "ok",
@@ -4856,37 +4856,6 @@
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:49",
-      "merchant": "padabo_hu",
-      "name": "AGM akkumulátor Exide Dual 50 Ah",
-      "description": "Vontatási akkumulátor minden típusú szabadidőjárműhözAz Exide Dual 50 Ah AGM akkumulátor kialakításával nagy telepítési rugalmasságot kínál. Kettős, alkalmas indításra és hosszabb távú kisütésre egyaránt. Az AGM technológiának, a VRLA légtelenítésnek és a 450 és 2100 Wh közötti teljesítménytartományának köszönhetően minden típusú szabadidőjárműhöz alkalmas. Az Exide Dual 50 Ah AGM akkumulátor egy olyan mélyciklusú akkumulátor típus, amely AGM (Absorbent Glass Mat) technológiát használ. Ennél az ",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 150775,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/agm-akkumulator-exide-dual-50-ah_z49/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-exide-dual-50-ah_z49%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/127636_102.jpg?1704378225_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 50,
-        "capacityWh": 2100,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
       }
