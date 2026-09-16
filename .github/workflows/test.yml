@@ -26,6 +26,7 @@ jobs:
       - run: node --check src/public-conversion-funnel.js
       - run: node --check src/calculator-funnel-report.js
       - run: node --check src/calculator-growth-priority.js
+      - run: node --check src/calculator-growth-input.js
       - run: node --check src/commercial-coverage.js
       - run: node --check src/market-health.js
       - run: node --check src/traffic-distribution.js
