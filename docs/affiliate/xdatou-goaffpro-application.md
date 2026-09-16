@@ -2,7 +2,7 @@
 
 Status: **READY_TO_SUBMIT**
 Priority: **P0 — large 24 V inverter route for PT/RO/SI**
-Verified: 2026-09-07
+Verified: 2026-09-16
 
 ## Application
 
@@ -40,28 +40,44 @@ Website: https://mypowersetup.com/
 
 Do **not** guess these values. Copy them from the approved GoAffPro account / generated referral link:
 
-1. referral query-parameter name / identifier
+1. approval evidence / source note
+   - enough to identify where the approval was confirmed; do not store secrets
+2. referral query-parameter name / identifier
    - example shape only: `ref`, `aff`, etc.
    - the actual value must come from the account
-2. referral code / affiliate code
+3. referral code / affiliate code
    - actual assigned code only
+4. tracking verification date
+   - date when the generated exact-product referral link was tested successfully
 
-The repository already contains a fail-closed adapter that accepts these values dynamically. It does not hardcode or infer them.
+## Zero-code activation path
+
+Production sync now reads `data/xdatou-affiliate-activation.json`. After approval, update only that file:
+
+- `approvalConfirmed: true`
+- `approvalSource`: a non-secret note identifying the approval evidence
+- `referralIdentifier`: the real GoAffPro query parameter
+- `referralCode`: the real assigned code
+- `trackingVerifiedAt`: `YYYY-MM-DD` after the exact-product referral link is tested
+
+The adapter remains fail-closed. A bare approval boolean is insufficient: missing approval evidence, referral credentials or dated tracking verification keeps Xdatou blocked and network-silent.
 
 ## Activation checklist after approval
 
 - [ ] GoAffPro/Xdatou affiliate account approved
+- [ ] approval evidence recorded without secrets
 - [ ] actual referral identifier recorded
 - [ ] actual referral code recorded
 - [ ] exact product deeplink generated and tested
+- [ ] `trackingVerifiedAt` recorded
 - [ ] PT store region / shipping still valid
 - [ ] RO store region / shipping still valid
 - [ ] SI store region / shipping still valid
-- [ ] `XDATOU_GOAFFPRO.approvalConfirmed` activated with real credentials
-- [ ] PT and expansion-EU sync run
-- [ ] Xdatou exact product appears only in PT/RO/SI catalogs
-- [ ] runtime exact-product/tracking validation passes
-- [ ] full CI green
+- [x] data-only activation surface prepared
+- [x] PT and expansion-EU sync read the activation file
+- [x] exact-product/tracking validation prepared
+- [ ] activation data updated with real approval/tracking evidence
+- [ ] post-activation CI green
 - [ ] commercial opportunity report confirms the intended inverter coverage change
 
 ## Existing technical readiness
@@ -71,9 +87,10 @@ Already implemented in the repository:
 - fail-closed GoAffPro adapter
 - exact Xdatou product allowlist
 - exact-product affiliate URL validation
+- data-only post-approval activation
 - PT/RO/SI catalog sync wiring
 - PT/RO/SI runtime catalog validation
 - stock and market gating
 - integration tests proving no product leaks before approval
 
-After approval, no new catalog plumbing should be required.
+After approval, no new catalog plumbing or source-code edit should be required.

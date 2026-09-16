@@ -3,6 +3,7 @@ import {
   XDATOU_GOAFFPRO,
   buildXdatouAffiliateUrl,
   validateXdatouExpansionProduct,
+  xdatouActivationState,
 } from "../../src/affiliate-xdatou.js";
 
 const endpoint = "https://eu.xdatou.com/products.json?limit=250";
@@ -12,6 +13,7 @@ const RETRYABLE_STATUSES = new Set([408, 425, 429, 500, 502, 503, 504]);
 
 export async function syncXdatouEu(previousCatalog = { products: [] }, {
   fetchImpl = globalThis.fetch,
+  activation = null,
   approvalConfirmed = XDATOU_GOAFFPRO.approvalConfirmed,
   referralIdentifier = XDATOU_GOAFFPRO.referralIdentifier,
   referralCode = XDATOU_GOAFFPRO.referralCode,
@@ -19,7 +21,31 @@ export async function syncXdatouEu(previousCatalog = { products: [] }, {
   timeoutMs = 12_000,
   sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
 } = {}) {
-  if (!approvalConfirmed || !referralIdentifier || !referralCode) {
+  const activationState = activation == null ? null : xdatouActivationState(activation);
+  const affiliateConfig = activationState
+    ? {
+        approvalConfirmed: activationState.approvalConfirmed,
+        referralIdentifier: activationState.referralIdentifier,
+        referralCode: activationState.referralCode,
+      }
+    : { approvalConfirmed, referralIdentifier, referralCode };
+
+  if (activationState && !activationState.ready) {
+    return {
+      products: [],
+      source: {
+        status: "blocked",
+        blocker: activationState.blocker,
+        network: "goaffpro",
+        approvalConfirmed: false,
+        approvalSource: activationState.approvalSource,
+        trackingVerifiedAt: activationState.trackingVerifiedAt,
+        exactProducts: 0,
+      },
+    };
+  }
+
+  if (!affiliateConfig.approvalConfirmed || !affiliateConfig.referralIdentifier || !affiliateConfig.referralCode) {
     return {
       products: [],
       source: {
@@ -52,11 +78,7 @@ export async function syncXdatouEu(previousCatalog = { products: [] }, {
     const price = Number(String(variant.price ?? "").replace(",", "."));
     if (!(price > 0)) throw new Error("XDATOU_PRICE_INVALID");
 
-    const affiliateUrl = buildXdatouAffiliateUrl(exactDestination, {
-      approvalConfirmed,
-      referralIdentifier,
-      referralCode,
-    });
+    const affiliateUrl = buildXdatouAffiliateUrl(exactDestination, affiliateConfig);
     if (!affiliateUrl) throw new Error("XDATOU_AFFILIATE_BUILD_FAILED");
 
     const normalized = {
@@ -82,11 +104,7 @@ export async function syncXdatouEu(previousCatalog = { products: [] }, {
       marketEligible: true,
     };
 
-    validateXdatouExpansionProduct(normalized, {
-      approvalConfirmed,
-      referralIdentifier,
-      referralCode,
-    });
+    validateXdatouExpansionProduct(normalized, affiliateConfig);
 
     return {
       products: [normalized],
@@ -94,8 +112,10 @@ export async function syncXdatouEu(previousCatalog = { products: [] }, {
         status: "ok",
         network: "goaffpro",
         approvalConfirmed: true,
-        referralIdentifier,
-        referralCode,
+        approvalSource: activationState?.approvalSource || null,
+        referralIdentifier: affiliateConfig.referralIdentifier,
+        referralCode: affiliateConfig.referralCode,
+        trackingVerifiedAt: activationState?.trackingVerifiedAt || null,
         exactProducts: 1,
         shippingEligibleMarkets: ["pt-PT", "ro-RO", "sl-SI"],
         verifiedAt: XDATOU_DATOUBOSS_2000W_24V.verifiedAt,
