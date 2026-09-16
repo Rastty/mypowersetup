@@ -43,6 +43,12 @@ test("one Solaris ambassador action aggregates three exact products across inver
   assert.deepEqual(action.categories, ["controller", "inverter"]);
   assert.deepEqual(action.markets, ["pt-PT", "ro-RO", "sl-SI"]);
   assert.deepEqual(action.shippingVerifiedMarkets, []);
+  assert.deepEqual(action.activationFieldsNeeded, [
+    "approvalConfirmed",
+    "approvalSource",
+    "products.*.exactAffiliateUrl",
+    "products.*.trackingVerifiedAt",
+  ]);
   assert.equal(action.maxStandaloneUnlockWeight, 5);
   assert.equal(action.maxAffectedWeight, 5);
   assert.equal(action.candidateCount, 3);
@@ -62,6 +68,7 @@ test("Butler Awin action groups controller and DC-DC under one programme join", 
   ]);
   assert.deepEqual(action.categories, ["controller", "dc_charger"]);
   assert.deepEqual(action.shippingVerifiedMarkets, ["hu-HU", "pl-PL", "pt-PT", "ro-RO", "sk-SK", "sl-SI"]);
+  assert.deepEqual(action.activationFieldsNeeded, ["approvalConfirmed", "approvalSource", "trackingVerifiedAt"]);
   assert.equal(action.maxStandaloneUnlockWeight, 0);
   assert.equal(action.maxAffectedWeight, 5);
   assert.equal(action.inStockCandidates, 2);
@@ -73,7 +80,13 @@ test("Xdatou stays a separate approval action with explicit activation fields", 
   assert.equal(action.nextAction, "submit_goaffpro_application");
   assert.equal(action.applicationUrl, "https://eu.xdatou.com/pages/affiliate-program");
   assert.equal(action.applicationPacketPath, "docs/affiliate/xdatou-goaffpro-application.md");
-  assert.deepEqual(action.activationFieldsNeeded, ["approvalConfirmed", "referralCode", "referralIdentifier"]);
+  assert.deepEqual(action.activationFieldsNeeded, [
+    "approvalConfirmed",
+    "approvalSource",
+    "referralCode",
+    "referralIdentifier",
+    "trackingVerifiedAt",
+  ]);
   assert.deepEqual(action.shippingVerifiedMarkets, ["pt-PT", "ro-RO", "sl-SI"]);
   assert.equal(action.maxStandaloneUnlockWeight, 0);
   assert.equal(action.maxAffectedWeight, 5);
@@ -86,7 +99,6 @@ test("system-owned and zero-impact work never appears in the owner queue", () =>
   assert.ok(actions.every((action) => action.maxStandaloneUnlockWeight > 0 || action.maxAffectedWeight > 0));
   assert.equal(new Set(actions.map(({ actionKey }) => actionKey)).size, actions.length);
 });
-
 
 test("current owner queue follows live commercial gaps instead of stale candidate weights", async () => {
   const report = JSON.parse(await readFile(new URL("../data/commercial-opportunity-report.json", import.meta.url), "utf8"));
@@ -112,11 +124,19 @@ test("current owner queue follows live commercial gaps instead of stale candidat
   assert.equal(xdatou.currentStandaloneUnlockWeight, 0);
   assert.equal(xdatou.currentAffectedWeight, 15);
   assert.equal(xdatou.currentOpportunityScore, 39);
+  assert.deepEqual(xdatou.activationFieldsNeeded, [
+    "approvalConfirmed",
+    "approvalSource",
+    "referralCode",
+    "referralIdentifier",
+    "trackingVerifiedAt",
+  ]);
 
   const butler = actions.find(({ merchant }) => merchant === "butler_technik");
   assert.equal(butler.currentStandaloneUnlockWeight, 0);
   assert.equal(butler.currentAffectedWeight, 6);
   assert.equal(butler.currentOpportunityScore, 18);
+  assert.deepEqual(butler.activationFieldsNeeded, ["approvalConfirmed", "approvalSource", "trackingVerifiedAt"]);
 });
 
 test("committed owner-action artifact is dynamic schema v2 and points at the current top action", async () => {

@@ -32,7 +32,12 @@
     "statuses": [
       "blocked_affiliate_verification"
     ],
-    "activationFieldsNeeded": [],
+    "activationFieldsNeeded": [
+      "approvalConfirmed",
+      "approvalSource",
+      "products.*.exactAffiliateUrl",
+      "products.*.trackingVerifiedAt"
+    ],
     "maxStandaloneUnlockWeight": 5,
     "maxAffectedWeight": 5,
     "candidateCount": 3,
@@ -131,7 +136,12 @@
       "statuses": [
         "blocked_affiliate_verification"
       ],
-      "activationFieldsNeeded": [],
+      "activationFieldsNeeded": [
+        "approvalConfirmed",
+        "approvalSource",
+        "products.*.exactAffiliateUrl",
+        "products.*.trackingVerifiedAt"
+      ],
       "maxStandaloneUnlockWeight": 5,
       "maxAffectedWeight": 5,
       "candidateCount": 3,
@@ -230,8 +240,10 @@
       ],
       "activationFieldsNeeded": [
         "approvalConfirmed",
+        "approvalSource",
         "referralCode",
-        "referralIdentifier"
+        "referralIdentifier",
+        "trackingVerifiedAt"
       ],
       "maxStandaloneUnlockWeight": 0,
       "maxAffectedWeight": 5,
@@ -313,7 +325,11 @@
       "statuses": [
         "pending_affiliate_approval"
       ],
-      "activationFieldsNeeded": [],
+      "activationFieldsNeeded": [
+        "approvalConfirmed",
+        "approvalSource",
+        "trackingVerifiedAt"
+      ],
       "maxStandaloneUnlockWeight": 0,
       "maxAffectedWeight": 5,
       "candidateCount": 2,
