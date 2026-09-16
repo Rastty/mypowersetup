@@ -1,5 +1,5 @@
 import "./analytics.js";
-import { rememberCalculatorAttribution } from "./calculator-attribution.js";
+import { rememberCalculatorAttribution, rememberCalculatorResultContext } from "./calculator-attribution.js";
 import { classifyCalculatorContinuation } from "./calculator-copy.js";
 import { calculateDcDcCharger } from "./dc-dc-charger.js";
 import { calculateDcProtectionPlan } from "./dc-protection-planner.js";
@@ -122,7 +122,16 @@ if (root) {
       resultPanel.hidden = false;
       resultPanel.focus({ preventScroll: true });
       if (userInitiated) {
-        track("calculation_completed", { source: "seo_landing" });
+        const completionTracked = track("calculation_completed", { source: "seo_landing" });
+        if (completionTracked && intent === "dcdc-sizing") {
+          rememberCalculatorResultContext({
+            sourcePath: landingPath,
+            intent,
+            locale,
+            result,
+            storage: window.sessionStorage,
+          });
+        }
         root.dispatchEvent(new CustomEvent("mypowersetup:calculator-result", {
           bubbles: true,
           detail: { intent, locale, userInitiated: true },
