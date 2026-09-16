@@ -11,6 +11,7 @@ on:
       - "src/affiliate-ampul-expansion.js"
       - "src/affiliate-solaris.js"
       - "src/affiliate-xdatou.js"
+      - "src/affiliate-butler.js"
       - "src/expansion-component-recommendations.js"
       - "src/engine.js"
       - "src/acquisition-requirements.js"
@@ -30,12 +31,14 @@ on:
       - "scripts/lib/sync-xdatou-eu.mjs"
       - "scripts/lib/sync-ampul-expansion.mjs"
       - "scripts/lib/sync-solaris-eu.mjs"
+      - "scripts/lib/sync-butler-eu.mjs"
       - "scripts/lib/sync-oxe.mjs"
       - "data/products-eu-verified.json"
       - "data/products-ampul-cz.json"
       - "data/ampul-expansion-market-verification.json"
       - "data/solaris-affiliate-activation.json"
       - "data/xdatou-affiliate-activation.json"
+      - "data/butler-affiliate-activation.json"
       - "tests/expansion-eu-solar-recommendations.test.js"
       - "tests/powerqueen-expansion-components.test.js"
       - "tests/expansion-component-product-recommendations.test.js"
@@ -47,6 +50,8 @@ on:
       - "tests/xdatou-activation-data.test.js"
       - "tests/xdatou-sync.test.js"
       - "tests/xdatou-market-integration.test.js"
+      - "tests/butler-activation-data.test.js"
+      - "tests/butler-catalog-integration.test.js"
       - "tests/commercial-system-verification-actions.test.js"
       - "tests/powerqueen-fetch-resilience.test.js"
       - "tests/oxe-expansion-recommendations.test.js"
@@ -83,8 +88,10 @@ jobs:
       - run: node --check src/ampul-source-stock.js
       - run: node --check src/affiliate-solaris.js
       - run: node --check src/affiliate-xdatou.js
+      - run: node --check src/affiliate-butler.js
       - run: node --check scripts/lib/sync-solaris-eu.mjs
       - run: node --check scripts/lib/sync-xdatou-eu.mjs
+      - run: node --check scripts/lib/sync-butler-eu.mjs
       - run: node --check src/commercial-system-verification-actions.js
       - run: node --check scripts/write-system-verification-queue.mjs
       - run: node scripts/sync-products-expansion-eu.mjs
@@ -106,6 +113,8 @@ jobs:
           tests/xdatou-activation-data.test.js
           tests/xdatou-sync.test.js
           tests/xdatou-market-integration.test.js
+          tests/butler-activation-data.test.js
+          tests/butler-catalog-integration.test.js
           tests/commercial-scenarios.test.js
           tests/oxe-expansion-recommendations.test.js
           tests/oxe-feed.test.js
