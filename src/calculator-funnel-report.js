@@ -7,12 +7,28 @@ const STEP_BY_EVENT = Object.freeze({
   affiliate_click: "clicks",
 });
 
+const CALCULATOR_ROOT_BY_LOCALE = Object.freeze({
+  cs: "/kalkulacky/",
+  sk: "/sk/kalkulacky/",
+  pl: "/pl/kalkulatory/",
+  hu: "/hu/kalkulatorok/",
+});
+
 function eventParameters(event) {
   return event?.parameters && typeof event.parameters === "object" ? event.parameters : event || {};
 }
 
 function clean(value) {
   return String(value || "").trim();
+}
+
+function language(value) {
+  return clean(value).toLowerCase().split("-")[0];
+}
+
+export function isCalculatorLandingPath(path, locale) {
+  const root = CALCULATOR_ROOT_BY_LOCALE[language(locale)];
+  return Boolean(root && clean(path).startsWith(root));
 }
 
 export function buildCalculatorFunnelSummary(events = []) {
@@ -24,9 +40,9 @@ export function buildCalculatorFunnelSummary(events = []) {
     if (!step) continue;
     const params = eventParameters(event);
     const path = clean(params.calculator_landing_path || params.landing_path);
-    const locale = clean(params.calculator_landing_locale || params.landing_locale).toLowerCase();
+    const locale = language(params.calculator_landing_locale || params.landing_locale);
     const intent = clean(params.calculator_landing_intent || params.landing_intent);
-    if (!path.startsWith("/kalkulacky/") || !locale || !intent) continue;
+    if (!isCalculatorLandingPath(path, locale) || !intent) continue;
 
     const key = `${locale}\t${intent}\t${path}`;
     if (!groups.has(key)) {
@@ -41,6 +57,7 @@ export function buildCalculatorFunnelSummary(events = []) {
       startRate: rate(row.starts, row.views),
       completionRate: rate(row.completes, row.starts),
       continuationRate: rate(row.continues, row.completes),
+      productClickRate: rate(row.clicks, row.impressions),
       clickThroughRate: rate(row.clicks, row.views),
     }))
     .sort((a, b) => b.clicks - a.clicks || b.views - a.views || a.path.localeCompare(b.path));
