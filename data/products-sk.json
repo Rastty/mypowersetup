@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-16T08:39:52.985Z",
+  "generatedAt": "2026-09-16T08:43:12.736Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16506,
-      "relevantProducts": 251
+      "parsedProducts": 16498,
+      "relevantProducts": 250
     },
     "allpowers_eu": {
       "status": "ok",
@@ -42,37 +42,6 @@
     }
   },
   "products": [
-    {
-      "id": "padabo_sk:49",
-      "merchant": "padabo_sk",
-      "name": "AGM batéria Exide Dual 50 Ah",
-      "description": "Trakčná batéria pre všetky typy rekreačných vozidielBatéria Exide Dual 50 Ah AGM ponúka vďaka svojej konštrukcii vysokú flexibilitu pri inštalácii. Je duálna, vhodná na štartovanie, ako aj na dlhodobejšie vybíjanie. Vďaka technológii AGM, odvetrávaniu VRLA a rozsahu výkonu od 450 do 2100 Wh je vhodná pre všetky typy rekreačných vozidiel. Batéria Exide Dual 50 Ah AGM je typ batérie s hlbokým cyklom, ktorá využíva technológiu AGM (Absorbent Glass Mat). Tento typ batérie má elektrolyt absorbovaný v",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 357.61,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/agm-bateria-exide-dual-50-ah_z49/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-exide-dual-50-ah_z49%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/127636_102.jpg?1704378225_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 50,
-        "capacityWh": 2100,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
     {
       "id": "padabo_sk:50_80",
       "merchant": "padabo_sk",
@@ -555,7 +524,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
+      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",

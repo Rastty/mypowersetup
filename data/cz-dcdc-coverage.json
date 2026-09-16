@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-16T08:43:01.065Z",
+  "market": "cs-CZ",
+  "status": "ready",
+  "requirement": {
+    "category": "dc_charger",
+    "houseVoltageV": 12,
+    "starterVoltageV": 12,
+    "batteryType": "lifepo4",
+    "minimumCurrentA": 30
+  },
+  "matchCount": 3,
+  "matches": [
+    {
+      "id": "svetkaravanu:107331",
+      "merchant": "svetkaravanu",
+      "name": "Nabíječka baterií Renogy 12V/30A DC-DC MPPT",
+      "currentA": 30,
+      "priceCzk": 5990,
+      "priceCurrency": "CZK",
+      "productUrl": "https://www.svetkaravanu.cz/nabijecka-baterii-renogy-12v-30a-dc-dc-mppt_z107331/",
+      "verifiedAt": null,
+      "score": 97
+    },
+    {
+      "id": "ampul_cz:6195",
+      "merchant": "ampul_cz",
+      "name": "DC/DC nabíječka LiFePO4 baterií 14.6V, 30A, 400W, IP68",
+      "currentA": 30,
+      "priceCzk": 6800,
+      "priceCurrency": "CZK",
+      "productUrl": "https://ampul.eu/cs/nabijecky/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
+      "verifiedAt": "2026-08-30",
+      "score": 97
+    },
+    {
+      "id": "solarimport:E8945",
+      "merchant": "solarimport",
+      "name": "Victron Energy XS 70 DC-DC nabíječka Orion XS 12/12-70A",
+      "currentA": 70,
+      "priceCzk": 10285,
+      "priceCurrency": "CZK",
+      "productUrl": "https://www.solar-import.cz/nabijecky-baterii/victron-energy-nabijecka-dc-dc-orion-xs-12-12-70a--1000w-neizolovana/",
+      "verifiedAt": null,
+      "score": 50
+    }
+  ],
+  "blocker": null
+}
