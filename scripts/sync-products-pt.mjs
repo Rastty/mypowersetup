@@ -41,7 +41,8 @@ try {
   powerQueen = { products: [], source: { status: "error", error: error.message } };
 }
 
-const xdatou = await syncXdatouEu(previousCatalog);
+const xdatouActivation = JSON.parse(await readFile("data/xdatou-affiliate-activation.json", "utf8"));
+const xdatou = await syncXdatouEu(previousCatalog, { activation: xdatouActivation });
 const bluettiElite300 = await syncBluettiElite300Eu(previousCatalog);
 const solarisActivation = JSON.parse(await readFile("data/solaris-affiliate-activation.json", "utf8"));
 const solaris = syncSolarisEu("pt-PT", solarisActivation);
