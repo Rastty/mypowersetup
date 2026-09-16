@@ -1,4 +1,5 @@
 import { listCommercialSourcingCandidates } from "./commercial-sourcing-candidates.js";
+import { getCommercialVerificationEvidence } from "./commercial-verification-evidence.js";
 
 const PRIORITY_RANK = Object.freeze({ P0: 0, P1: 1, P2: 2, P3: 3 });
 
@@ -25,6 +26,7 @@ export function buildCurrentCommercialSystemVerificationQueue(backlogs = []) {
       affiliateNetworks: new Set(),
       affiliateApprovalConfirmed: true,
       trackingVerified: true,
+      verificationEvidence: new Map(),
       impacts: new Map(),
       activeCandidateIds: new Set(),
       activeCategories: new Set(),
@@ -41,6 +43,9 @@ export function buildCurrentCommercialSystemVerificationQueue(backlogs = []) {
     if (candidate.affiliateNetwork) group.affiliateNetworks.add(candidate.affiliateNetwork);
     group.affiliateApprovalConfirmed &&= candidate.affiliateApprovalConfirmed === true;
     group.trackingVerified &&= Boolean(candidate.trackingVerifiedAt);
+
+    const evidence = getCommercialVerificationEvidence(candidate.id);
+    if (evidence) group.verificationEvidence.set(candidate.id, evidence);
 
     for (const market of candidate.markets || []) {
       const backlog = backlogByMarket.get(market);
@@ -84,6 +89,9 @@ export function buildCurrentCommercialSystemVerificationQueue(backlogs = []) {
         .sort((a, b) => a.market.localeCompare(b.market) || a.category.localeCompare(b.category));
       const priorities = impacts.map(({ priority }) => priority).filter(Boolean);
       const bestPriority = priorities.sort((a, b) => priorityRank(a) - priorityRank(b))[0] || null;
+      const verificationEvidence = [...group.verificationEvidence.entries()]
+        .map(([candidateId, evidence]) => Object.freeze({ candidateId, ...evidence }))
+        .sort((a, b) => a.candidateId.localeCompare(b.candidateId));
 
       return Object.freeze({
         actionKey: group.actionKey,
@@ -100,6 +108,7 @@ export function buildCurrentCommercialSystemVerificationQueue(backlogs = []) {
         affiliateNetworks: Object.freeze([...group.affiliateNetworks].sort()),
         affiliateApprovalConfirmed: group.affiliateApprovalConfirmed,
         trackingVerified: group.trackingVerified,
+        verificationEvidence: Object.freeze(verificationEvidence),
         publishEligible: false,
         verificationPolicy: "fail_closed_until_market_and_stock_evidence",
         bestPriority,
