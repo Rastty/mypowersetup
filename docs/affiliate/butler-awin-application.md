@@ -2,7 +2,7 @@
 
 Status: **READY_TO_SUBMIT**
 Priority: **high — one approval unlocks controller + DC-DC sourcing**
-Verified: 2026-09-07
+Verified: 2026-09-16
 
 ## Programme
 
@@ -47,39 +47,60 @@ MyPowerSetup team
 ## Exact products staged for activation
 
 ### Controller
-- Candidate: `butler-victron-smartsolar-250-60-mc4`
+- Candidate: `butler-victron-scc125060321`
 - Product: Victron SmartSolar MPPT 250/60-MC4
+- Part number: `SCC125060321`
 - Exact retail page: https://www.butlertechnik.com/item/Victron/SmartSolar-MPPT-250-60-MC4/BT2
 - Current: 60 A
 - System voltages: 12 / 24 / 48 V
 - Verified PV capability: 860 W @ 12 V / 1720 W @ 24 V
-- Current stock evidence: in stock
+- Public stock evidence refreshed 2026-09-16: in stock, £275.00 ex VAT
 
 ### DC-DC charger
 - Candidate: `butler-victron-orion-xs-12-12-50`
 - Product: Victron Orion XS 12/12 50A
+- Part number: `ORI121217040`
 - Exact retail page: https://www.butlertechnik.com/item/Victron/Smart-Buckboost-50A-700W-non-iso-DC-DC-charger/BPV
 - Input/output system: 12 V → 12 V
 - Current: 50 A
 - Power: 700 W
 - LiFePO4 compatible
 - Smart-alternator compatible
-- Current stock evidence: in stock
+- Public stock evidence refreshed 2026-09-16: in stock, £232.46 ex VAT
 
-## What to capture after approval
+## Zero-code activation path
+
+Production sync reads `data/butler-affiliate-activation.json`. No Butler product is published while the committed default is unapproved.
+
+After Awin merchant 31291 is approved:
+
+1. set `approvalConfirmed: true`;
+2. set `approvalSource` to a non-secret note identifying where the approval was confirmed;
+3. generate and test at least one exact Butler product deeplink using Awin merchant 31291 / affiliate 3044971;
+4. set `trackingVerifiedAt` to the verification date (`YYYY-MM-DD`);
+5. refresh exact-product stock/price evidence in the same data file if it is older than 14 days;
+6. commit the data-only change.
+
+The production adapter builds exact Awin deeplinks only for the two staged Butler URLs. Stock evidence expires fail-closed after 14 days. A product with stale stock, wrong destination, wrong merchant/affiliate ID, mutated electrical specs or an unverified market cannot enter PT/RO/SI catalogs.
+
+## Activation checklist after approval
 
 - [ ] Awin merchant 31291 status is joined/approved
+- [ ] non-secret approval evidence recorded
 - [ ] actual programme commission group recorded
 - [ ] SmartSolar exact deeplink generated and verified
 - [ ] Orion XS exact deeplink generated and verified
+- [ ] `trackingVerifiedAt` recorded
 - [ ] daily product-feed access confirmed
-- [ ] PT shipping eligibility confirmed
-- [ ] RO shipping eligibility confirmed
-- [ ] SI shipping eligibility confirmed
-- [ ] existing fail-closed Butler adapter activated
-- [ ] exact products synced into target catalogs
-- [ ] full CI green
-- [ ] commercial report re-generated
+- [x] PT/RO/SI shipping evidence preserved
+- [x] data-only activation surface prepared
+- [x] exact product stock evidence refreshed 2026-09-16
+- [x] PT/RO/SI catalog sync prepared
+- [x] PT/RO/SI runtime validation prepared
+- [x] market isolation and stale-stock guardrails prepared
+- [ ] activation data updated with real approval/tracking evidence
+- [ ] post-activation CI green
+- [ ] commercial report confirms the intended controller / DC-DC coverage change
 
 ## Existing technical readiness
 
@@ -87,12 +108,14 @@ Already implemented in the repository:
 
 - Butler Awin adapter with merchant ID 31291 / affiliate ID 3044971
 - exact-product-only allowlist
-- fail-closed approval flag
+- deterministic exact Awin deeplink construction
+- data-only post-approval activation
+- fail-closed approval / tracking / stock evidence gates
 - SmartSolar 60A candidate validation
 - Orion XS 50A candidate validation
+- PT/RO/SI catalog sync wiring
+- PT/RO/SI runtime catalog validation
 - shipping-market evidence
-- onboarding guards
-- sourcing ranking
-- exact deeplink construction after approval
+- onboarding guards and sourcing ranking
 
-No new affiliate plumbing should be required after programme approval.
+After approval, no new affiliate plumbing or source-code edit should be required.
