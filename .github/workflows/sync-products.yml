@@ -15,6 +15,7 @@ on:
       - "src/powerqueen-expansion.js"
       - "src/affiliate-ampul-expansion.js"
       - "src/commercial-market-config.js"
+      - "src/cz-dcdc-coverage.js"
       - "scripts/sync-products.mjs"
       - "scripts/sync-products-ampul-cz.mjs"
       - "scripts/sync-products-pl.mjs"
@@ -24,6 +25,7 @@ on:
       - "scripts/sync-products-expansion-eu.mjs"
       - "scripts/write-commercial-opportunity-report.mjs"
       - "scripts/write-owner-action-queue.mjs"
+      - "scripts/write-cz-dcdc-coverage.mjs"
       - "scripts/lib/*.mjs"
       - "src/shopify.js"
       - "src/affiliate-allpowers-pt.js"
@@ -48,6 +50,7 @@ on:
       - "tests/commercial-coverage.test.js"
       - "tests/commercial-scenarios.test.js"
       - "tests/current-catalog-safety.test.js"
+      - "tests/cz-dcdc-coverage.test.js"
       - ".github/workflows/sync-products.yml"
   schedule:
     - cron: "17 3 * * *"
@@ -93,6 +96,7 @@ jobs:
           PADABO_HU_FEED_URL: ${{ secrets.PADABO_HU_FEED_URL }}
           AMPUL_HU_FEED_URL: ${{ secrets.AMPUL_HU_FEED_URL }}
       - run: node scripts/sync-products-pt.mjs
+      - run: node scripts/write-cz-dcdc-coverage.mjs
       - run: node scripts/write-commercial-opportunity-report.mjs
       - run: node scripts/write-owner-action-queue.mjs
       - run: node --test
@@ -101,9 +105,10 @@ jobs:
       - run: npm run check:commercial:opportunities
       - name: Commit refreshed catalog
         run: |
-          if git diff --quiet -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json data/commercial-opportunity-report.json data/owner-action-queue.json; then exit 0; fi
+          FILES="data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json data/cz-dcdc-coverage.json data/commercial-opportunity-report.json data/owner-action-queue.json"
+          if [[ -z "$(git status --porcelain -- $FILES)" ]]; then exit 0; fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -- data/products.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json data/commercial-opportunity-report.json data/owner-action-queue.json
+          git add -- $FILES
           git commit -m "data: refresh affiliate product catalog"
           git push
