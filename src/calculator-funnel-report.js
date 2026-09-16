@@ -26,6 +26,13 @@ function language(value) {
   return clean(value).toLowerCase().split("-")[0];
 }
 
+function eventWeight(event, params) {
+  const value = event?.event_count ?? event?.count ?? params?.event_count ?? params?.count;
+  if (value === undefined || value === null || value === "") return 1;
+  const number = Number(value);
+  return Number.isFinite(number) && number >= 0 ? number : 1;
+}
+
 export function calculatorLocaleForPath(path) {
   const value = clean(path);
   for (const [locale, root] of Object.entries(CALCULATOR_ROOT_BY_LOCALE)) {
@@ -55,7 +62,7 @@ export function buildCalculatorFunnelSummary(events = []) {
     if (!groups.has(key)) {
       groups.set(key, { locale, intent, path, views: 0, starts: 0, completes: 0, continues: 0, impressions: 0, clicks: 0 });
     }
-    groups.get(key)[step] += 1;
+    groups.get(key)[step] += eventWeight(event, params);
   }
 
   return [...groups.values()]

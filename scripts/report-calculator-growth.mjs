@@ -2,18 +2,16 @@
 import { readFile } from "node:fs/promises";
 import { buildCalculatorFunnelSummary } from "../src/calculator-funnel-report.js";
 import { buildCalculatorGrowthPriorities, renderCalculatorGrowthMarkdown } from "../src/calculator-growth-priority.js";
+import { normalizeGa4CalculatorEventRows, normalizeGscExportRows, normalizeIndexingExportRows, parseDelimitedText } from "../src/calculator-growth-input.js";
 
 const [gscPath, eventsPath, indexingPath] = process.argv.slice(2);
 if (!gscPath || !eventsPath) {
-  console.error("Usage: node scripts/report-calculator-growth.mjs <gsc.json> <events.json> [indexing.json]");
+  console.error("Usage: node scripts/report-calculator-growth.mjs <gsc.(json|csv|tsv)> <events.(json|csv|tsv)> [indexing.(json|csv|tsv)]");
   process.exitCode = 1;
 } else {
-  const gscPayload = JSON.parse(await readFile(gscPath, "utf8"));
-  const eventsPayload = JSON.parse(await readFile(eventsPath, "utf8"));
-  const indexingPayload = indexingPath ? JSON.parse(await readFile(indexingPath, "utf8")) : [];
-  const gscRows = rowsFrom(gscPayload, ["rows", "data"]);
-  const events = rowsFrom(eventsPayload, ["events", "rows", "data"]);
-  const indexingRows = rowsFrom(indexingPayload, ["rows", "data"]);
+  const gscRows = normalizeGscExportRows(await loadRows(gscPath, ["rows", "data"]));
+  const events = normalizeGa4CalculatorEventRows(await loadRows(eventsPath, ["events", "rows", "data"]));
+  const indexingRows = indexingPath ? normalizeIndexingExportRows(await loadRows(indexingPath, ["rows", "data"])) : [];
   const funnelRows = buildCalculatorFunnelSummary(events);
   const priorities = buildCalculatorGrowthPriorities({ gscRows, funnelRows, indexingRows });
 
@@ -28,6 +26,15 @@ if (!gscPath || !eventsPath) {
       console.log(`   ${row.action}`);
     });
   }
+}
+
+async function loadRows(filePath, keys) {
+  const text = await readFile(filePath, "utf8");
+  const trimmed = text.replace(/^\uFEFF/, "").trimStart();
+  if (trimmed.startsWith("[") || trimmed.startsWith("{")) {
+    return rowsFrom(JSON.parse(trimmed), keys);
+  }
+  return parseDelimitedText(text);
 }
 
 function rowsFrom(payload, keys) {
