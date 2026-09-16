@@ -30,6 +30,7 @@ jobs:
       - run: node --check src/commercial-coverage.js
       - run: node --check src/commercial-verification-evidence.js
       - run: node --check src/ampul-market-verification.js
+      - run: node --check src/ampul-source-stock.js
       - run: node --check src/commercial-system-verification-actions.js
       - run: node --check src/market-health.js
       - run: node --check src/traffic-distribution.js
@@ -85,6 +86,8 @@ jobs:
           retention-days: 14
       - run: node scripts/check-affiliate-onboarding-candidates.mjs
       - run: npm run check:owner:actions
+      - name: Generate current system verification queue
+        run: npm run report:system:verification
       - run: npm run check:system:verification
       - run: npm run check:traffic:distribution
       - run: npm run report:community:links -- --market pl
