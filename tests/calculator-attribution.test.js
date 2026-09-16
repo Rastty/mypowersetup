@@ -6,6 +6,7 @@ import {
   CALCULATOR_ATTRIBUTION_MAX_AGE_MS,
   clearCalculatorAttribution,
   rememberCalculatorAttribution,
+  rememberCalculatorResultContext,
   resolveCalculatorAttribution,
 } from "../src/calculator-attribution.js";
 import { trackAffiliateClick, trackAffiliateImpressions } from "../src/affiliate-analytics.js";
@@ -111,6 +112,7 @@ test("phase-2 landing browser uses the same consent analytics and attribution co
   assert.match(browser, /calculator_landing_continue/);
   assert.match(browser, /mypowersetup:analytics-granted/);
   assert.match(browser, /rememberCalculatorAttribution/);
+  assert.match(browser, /rememberCalculatorResultContext/);
 });
 
 test("affiliate clicks and impressions receive the stored calculator landing context", () => {
@@ -147,4 +149,88 @@ test("affiliate clicks and impressions receive the stored calculator landing con
     if (originalWindow === undefined) delete globalThis.window; else globalThis.window = originalWindow;
     if (originalDocument === undefined) delete globalThis.document; else globalThis.document = originalDocument;
   }
+});
+
+test("validated DC-DC result context reaches product impressions and affiliate clicks", () => {
+  const storage = memoryStorage();
+  const now = Date.now();
+  rememberCalculatorAttribution({
+    sourcePath: "/kalkulacky/dc-dc-nabijecka/",
+    intent: "dcdc-sizing",
+    locale: "cs",
+    storage,
+    now,
+  });
+  const stored = rememberCalculatorResultContext({
+    sourcePath: "/kalkulacky/dc-dc-nabijecka/",
+    intent: "dcdc-sizing",
+    locale: "cs",
+    storage,
+    now,
+    result: {
+      recommendedChargerCurrentA: 30,
+      requiredOutputCurrentA: 34.6,
+      feasibleOutputCurrentA: 30,
+      batteryVoltage: 12,
+      sourceVoltage: 14.4,
+      targetMet: false,
+      ignoredFreeText: "must not escape",
+    },
+  });
+  assert.equal(stored.calculator_recommended_current_a, 30);
+  assert.equal(stored.calculator_system_voltage, 12);
+  assert.equal(stored.calculator_target_met, false);
+  assert.equal("ignoredFreeText" in stored, false);
+  assert.equal(resolveCalculatorAttribution({ storage, market: "sk", now }), null);
+
+  const originalWindow = globalThis.window;
+  const originalDocument = globalThis.document;
+  globalThis.window = { sessionStorage: storage };
+  globalThis.document = { documentElement: { lang: "cs" } };
+  try {
+    const link = { dataset: { productId: "ampul_cz:6195", merchant: "ampul_cz", category: "dc_charger", source: "recommendation" } };
+    const events = [];
+    const tracker = (name, parameters) => { events.push({ name, parameters }); return true; };
+    assert.equal(trackAffiliateClick(link, tracker), true);
+    assert.equal(trackAffiliateImpressions([link], tracker), true);
+    for (const event of events.filter((item) => ["affiliate_click", "product_choice_impression"].includes(item.name))) {
+      assert.equal(event.parameters.calculator_landing_intent, "dcdc-sizing");
+      assert.equal(event.parameters.calculator_recommended_current_a, 30);
+      assert.equal(event.parameters.calculator_required_current_a, 34.6);
+      assert.equal(event.parameters.calculator_feasible_current_a, 30);
+      assert.equal(event.parameters.calculator_system_voltage, 12);
+      assert.equal(event.parameters.calculator_source_voltage, 14.4);
+      assert.equal(event.parameters.calculator_target_met, false);
+      assert.equal("ignoredFreeText" in event.parameters, false);
+    }
+  } finally {
+    if (originalWindow === undefined) delete globalThis.window; else globalThis.window = originalWindow;
+    if (originalDocument === undefined) delete globalThis.document; else globalThis.document = originalDocument;
+  }
+});
+
+test("invalid DC-DC result values are dropped rather than persisted", () => {
+  const storage = memoryStorage();
+  rememberCalculatorResultContext({
+    sourcePath: "/kalkulacky/dc-dc-nabijecka/",
+    intent: "dcdc-sizing",
+    locale: "cs",
+    storage,
+    result: {
+      recommendedChargerCurrentA: 9999,
+      requiredOutputCurrentA: "not-a-number",
+      feasibleOutputCurrentA: -10,
+      batteryVoltage: 48,
+      sourceVoltage: 100,
+      targetMet: "yes",
+    },
+  });
+  const resolved = resolveCalculatorAttribution({ storage, market: "cs" });
+  assert.equal(resolved.calculator_landing_intent, "dcdc-sizing");
+  assert.equal("calculator_recommended_current_a" in resolved, false);
+  assert.equal("calculator_required_current_a" in resolved, false);
+  assert.equal("calculator_feasible_current_a" in resolved, false);
+  assert.equal("calculator_system_voltage" in resolved, false);
+  assert.equal("calculator_source_voltage" in resolved, false);
+  assert.equal("calculator_target_met" in resolved, false);
 });
