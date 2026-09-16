@@ -3,18 +3,21 @@ import { buildCurrentCommercialSystemVerificationQueue } from "../src/commercial
 
 const COMMERCIAL_REPORT = new URL("../data/commercial-opportunity-report.json", import.meta.url);
 const AMPUL_MARKET_VERIFICATION = new URL("../data/ampul-expansion-market-verification.json", import.meta.url);
+const AMPUL_SOURCE_CATALOG = new URL("../data/products-ampul-cz.json", import.meta.url);
 const OUTPUT = new URL("../data/system-verification-queue.json", import.meta.url);
 const checkOnly = process.argv.includes("--check");
 
-const [commercialReport, ampulMarketVerification] = await Promise.all([
+const [commercialReport, ampulMarketVerification, ampulSourceCatalog] = await Promise.all([
   readFile(COMMERCIAL_REPORT, "utf8").then(JSON.parse),
   readFile(AMPUL_MARKET_VERIFICATION, "utf8").then(JSON.parse),
+  readFile(AMPUL_SOURCE_CATALOG, "utf8").then(JSON.parse),
 ]);
 const actions = buildCurrentCommercialSystemVerificationQueue(commercialReport.markets || [], {
   ampulMarketVerification,
+  ampulSourceCatalog,
 });
 const payload = {
-  schemaVersion: 2,
+  schemaVersion: 3,
   generatedAt: commercialReport.generatedAt || null,
   policy: "verification_only_fail_closed_no_publication",
   actionCount: actions.length,
