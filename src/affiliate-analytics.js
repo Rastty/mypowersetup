@@ -1,3 +1,4 @@
+import "./calculator-builder-context.js";
 import { resolveCalculatorAttribution } from "./calculator-attribution.js";
 
 function currentCalculatorAttribution() {
