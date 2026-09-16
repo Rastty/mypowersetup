@@ -1,5 +1,5 @@
 import "./analytics.js";
-import { rememberCalculatorAttribution, rememberCalculatorResultContext } from "./calculator-attribution.js";
+import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution, rememberCalculatorResultContext } from "./calculator-attribution.js";
 import { classifyCalculatorContinuation } from "./calculator-copy.js";
 import { calculateDcDcCharger } from "./dc-dc-charger.js";
 import { calculateDcProtectionPlan } from "./dc-protection-planner.js";
@@ -15,12 +15,8 @@ if (root) {
   const landingPath = window.location.pathname;
   const formatNumber = new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 1 });
   const n = (value) => formatNumber.format(value);
-  const landingParameters = Object.freeze({
-    landing_path: landingPath,
-    landing_intent: intent,
-    landing_locale: locale,
-    source_context: "seo_landing",
-  });
+  const landingParameters = buildCalculatorLandingAnalyticsParameters({ sourcePath: landingPath, intent, locale });
+  if (!landingParameters) throw new Error(`CALCULATOR_LANDING_ATTRIBUTION_MISMATCH:${landingPath}:${intent}:${locale}`);
 
   function track(event, parameters = {}) {
     return Boolean(window.MyPowerSetupAnalytics?.track(event, { ...landingParameters, ...parameters }));

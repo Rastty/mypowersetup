@@ -1,5 +1,5 @@
 import "./analytics.js";
-import { rememberCalculatorAttribution } from "./calculator-attribution.js";
+import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution } from "./calculator-attribution.js";
 import { calculateLanding } from "./calculator-landing.js";
 import { classifyCalculatorContinuation, getCalculatorCopy } from "./calculator-copy.js";
 
@@ -13,12 +13,8 @@ if (root) {
   const locale = root.dataset.calculatorLocale || "cs";
   const copy = getCalculatorCopy(locale);
   const landingPath = window.location.pathname;
-  const landingParameters = Object.freeze({
-    landing_path: landingPath,
-    landing_intent: intent,
-    landing_locale: locale,
-    source_context: "seo_landing",
-  });
+  const landingParameters = buildCalculatorLandingAnalyticsParameters({ sourcePath: landingPath, intent, locale });
+  if (!landingParameters) throw new Error(`CALCULATOR_LANDING_ATTRIBUTION_MISMATCH:${landingPath}:${intent}:${locale}`);
 
   const formatNumber = new Intl.NumberFormat(copy.numberLocale, {
     maximumFractionDigits: 1,
