@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { buildCalculatorFunnelSummary } from "../src/calculator-funnel-report.js";
-import { detectDelimiter, normalizeGa4CalculatorEventRows, normalizeGscExportRows, parseDelimitedText, parseLocalizedNumber } from "../src/calculator-growth-input.js";
+import { detectDelimiter, normalizeGa4CalculatorEventRows, normalizeGscExportRows, normalizeIndexingExportRows, parseDelimitedText, parseLocalizedNumber } from "../src/calculator-growth-input.js";
 
 test("normalizes Czech Search Console page export without manual cleanup", () => {
   const csv = [
@@ -84,4 +84,16 @@ test("preserves explicit zero GA4 counts", () => {
     "Calculator landing intent": "battery-capacity",
   }]);
   assert.equal(event.event_count, 0);
+});
+
+test("normalizes Czech URL inspection status", () => {
+  const csv = [
+    "URL,Stav",
+    "https://mypowersetup.com/kalkulacky/solarni-panely/,URL není na Googlu",
+    "https://mypowersetup.com/kalkulacky/kapacita-baterie/,URL je na Googlu",
+  ].join("\n");
+  const rows = normalizeIndexingExportRows(parseDelimitedText(csv));
+
+  assert.equal(rows[0].indexed, false);
+  assert.equal(rows[1].indexed, true);
 });
