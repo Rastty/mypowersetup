@@ -5,6 +5,7 @@ import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affi
 import { isAmpulExpansionProduct, validateAmpulExpansionProduct } from "./affiliate-ampul-expansion.js";
 import { isBluettiElite300Product, validateBluettiElite300Product } from "./affiliate-bluetti-eu.js";
 import { isSolarisExpansionProduct, validateSolarisExpansionProduct } from "./affiliate-solaris.js";
+import { isButlerExpansionProduct, validateButlerExpansionProduct } from "./affiliate-butler.js";
 import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
 
 export const RO_CATALOG_URL = "/data/products-ro.json";
@@ -37,6 +38,8 @@ export function validateRomaniaCatalog(catalog, { bluettiActivation } = {}) {
   if (bluettiProducts.length && catalog.sources?.bluetti_eu?.status !== "ok") throw new Error("RO_BLUETTI_SOURCE_INVALID");
   const solarisProducts = catalog.products.filter(isSolarisExpansionProduct);
   if (solarisProducts.length && catalog.sources?.solaris_store?.status !== "ok") throw new Error("RO_SOLARIS_SOURCE_INVALID");
+  const butlerProducts = catalog.products.filter(isButlerExpansionProduct);
+  if (butlerProducts.length && catalog.sources?.butler_technik?.status !== "ok") throw new Error("RO_BUTLER_SOURCE_INVALID");
   for (const product of catalog.products) validateRomaniaProduct(product, catalog.sources, { bluettiActivation });
   return catalog;
 }
@@ -100,6 +103,10 @@ function validateRomaniaProduct(product, sources = {}, { bluettiActivation } = {
   }
   if (isSolarisExpansionProduct(product)) {
     validateSolarisExpansionProduct(product, { market: "ro-RO", source: sources?.solaris_store });
+    return;
+  }
+  if (isButlerExpansionProduct(product)) {
+    validateButlerExpansionProduct(product, { market: "ro-RO", source: sources?.butler_technik });
     return;
   }
   if (!product?.verifiedAt) throw new Error("RO_PRODUCT_EVIDENCE_INVALID");

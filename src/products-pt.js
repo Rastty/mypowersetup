@@ -4,6 +4,7 @@ import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affi
 import { isAmpulExpansionProduct, validateAmpulExpansionProduct } from "./affiliate-ampul-expansion.js";
 import { isBluettiElite300Product, validateBluettiElite300Product } from "./affiliate-bluetti-eu.js";
 import { isSolarisExpansionProduct, validateSolarisExpansionProduct } from "./affiliate-solaris.js";
+import { isButlerExpansionProduct, validateButlerExpansionProduct } from "./affiliate-butler.js";
 
 const PT_ORIGIN = "https://allpowers-pt.com";
 const PRODUCT_PATH_PREFIX = "/products/";
@@ -114,6 +115,8 @@ export function validatePtCatalog(payload, { bluettiActivation } = {}) {
   if (bluettiProducts.length && payload.sources?.bluetti_eu?.status !== "ok") throw new Error("PT_BLUETTI_SOURCE_INVALID");
   const solarisProducts = payload.products.filter(isSolarisExpansionProduct);
   if (solarisProducts.length && payload.sources?.solaris_store?.status !== "ok") throw new Error("PT_SOLARIS_SOURCE_INVALID");
+  const butlerProducts = payload.products.filter(isButlerExpansionProduct);
+  if (butlerProducts.length && payload.sources?.butler_technik?.status !== "ok") throw new Error("PT_BUTLER_SOURCE_INVALID");
 
   for (const product of payload.products) {
     if (isPowerQueenExpansionProduct(product)) {
@@ -134,6 +137,10 @@ export function validatePtCatalog(payload, { bluettiActivation } = {}) {
     }
     if (isSolarisExpansionProduct(product)) {
       validateSolarisExpansionProduct(product, { market: "pt-PT", source: payload.sources?.solaris_store });
+      continue;
+    }
+    if (isButlerExpansionProduct(product)) {
+      validateButlerExpansionProduct(product, { market: "pt-PT", source: payload.sources?.butler_technik });
       continue;
     }
     if (product?.merchant !== "allpowers_pt") throw new Error("PT_CATALOG_FOREIGN_MERCHANT");
