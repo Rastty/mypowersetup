@@ -130,12 +130,13 @@ export function normalizeGscExportRows(rows = []) {
     if (Array.isArray(row?.keys)) return row;
     const page = aliasLookup(row, GSC_ALIASES.page);
     const query = aliasLookup(row, GSC_ALIASES.query);
+    const ctr = aliasLookup(row, GSC_ALIASES.ctr);
     return {
       ...(page ? { page: clean(page) } : {}),
       ...(query ? { query: clean(query) } : {}),
       clicks: parseLocalizedNumber(aliasLookup(row, GSC_ALIASES.clicks)),
       impressions: parseLocalizedNumber(aliasLookup(row, GSC_ALIASES.impressions)),
-      ctr: parseLocalizedNumber(aliasLookup(row, GSC_ALIASES.ctr), { percent: clean(aliasLookup(row, GSC_ALIASES.ctr)).includes("%") }),
+      ctr: parseLocalizedNumber(ctr, { percent: clean(ctr).includes("%") }),
       position: parseLocalizedNumber(aliasLookup(row, GSC_ALIASES.position)),
     };
   }).filter((row) => row.page || row.query || row.keys);
@@ -151,7 +152,7 @@ export function normalizeGa4CalculatorEventRows(rows = []) {
     const intent = aliasLookup(row, GA_ALIASES.calculator_landing_intent);
     return {
       event_name: clean(eventName),
-      event_count: Math.max(0, parseLocalizedNumber(eventCount) || 1),
+      event_count: eventCount === undefined ? 1 : Math.max(0, parseLocalizedNumber(eventCount)),
       calculator_landing_path: clean(path),
       calculator_landing_locale: clean(locale),
       calculator_landing_intent: clean(intent),
