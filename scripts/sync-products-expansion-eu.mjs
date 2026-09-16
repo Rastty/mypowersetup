@@ -6,6 +6,7 @@ import { syncAmpulExpansion } from "./lib/sync-ampul-expansion.mjs";
 import { syncOxeMarket } from "./lib/sync-oxe.mjs";
 import { syncBluettiElite300Eu } from "./lib/sync-bluetti-elite300-eu.mjs";
 import { syncSolarisEu } from "./lib/sync-solaris-eu.mjs";
+import { syncButlerEu } from "./lib/sync-butler-eu.mjs";
 import { isOxeTechnicallyCompletePowerStation } from "../src/oxe-feed.js";
 
 const targets = Object.freeze([
@@ -51,6 +52,7 @@ const syncedBluettiElite300 = await syncBluettiElite300Eu({
   products: previousCatalogs.flatMap((catalog) => catalog.products || []),
 });
 const solarisActivation = JSON.parse(await readFile("data/solaris-affiliate-activation.json", "utf8"));
+const butlerActivation = JSON.parse(await readFile("data/butler-affiliate-activation.json", "utf8"));
 const ampulSource = JSON.parse(await readFile("data/products-ampul-cz.json", "utf8"));
 const ampulVerification = JSON.parse(await readFile("data/ampul-expansion-market-verification.json", "utf8"));
 
@@ -87,13 +89,15 @@ for (let index = 0; index < targets.length; index += 1) {
   const syncedOxe = await syncOxeMarket(target.oxeMarket, previousCatalog);
   const syncedAmpul = syncAmpulExpansion(ampulSource, target.market, ampulVerification);
   const syncedSolaris = syncSolarisEu(target.market, solarisActivation);
+  const syncedButler = syncButlerEu(target.market, butlerActivation);
   const oxePowerStations = syncedOxe.products
     .filter(isOxeTechnicallyCompletePowerStation)
     .map((product) => ({ ...product, marketEligible: true }));
   const ampulProducts = syncedAmpul.source.status === "ok" ? syncedAmpul.products : [];
   const solarisProducts = syncedSolaris.source.status === "ok" ? syncedSolaris.products : [];
+  const butlerProducts = syncedButler.source.status === "ok" ? syncedButler.products : [];
   const bluettiProducts = target.market === "ro-RO" ? bluettiElite300Products : [];
-  const products = [...allpowersProducts, ...powerQueenProducts, ...xdatouProducts, ...bluettiProducts, ...solarisProducts, ...ampulProducts, ...oxePowerStations];
+  const products = [...allpowersProducts, ...powerQueenProducts, ...xdatouProducts, ...bluettiProducts, ...solarisProducts, ...butlerProducts, ...ampulProducts, ...oxePowerStations];
 
   const catalog = {
     generatedAt: new Date().toISOString(),
@@ -103,12 +107,13 @@ for (let index = 0; index < targets.length; index += 1) {
     shippingEligibility: {
       country: target.country,
       merchant: "allpowers_eu",
-      merchants: ["allpowers_eu", "powerqueen_eu", ...(xdatouProducts.length ? ["xdatou"] : []), ...(bluettiProducts.length ? ["bluetti_eu"] : []), ...(solarisProducts.length ? ["solaris_store"] : []), ...(ampulProducts.length ? ["ampul_eu"] : []), target.oxeMerchant],
+      merchants: ["allpowers_eu", "powerqueen_eu", ...(xdatouProducts.length ? ["xdatou"] : []), ...(bluettiProducts.length ? ["bluetti_eu"] : []), ...(solarisProducts.length ? ["solaris_store"] : []), ...(butlerProducts.length ? ["butler_technik"] : []), ...(ampulProducts.length ? ["ampul_eu"] : []), target.oxeMerchant],
       eligible: true,
       verifiedAt: "2026-09-01",
       evidenceUrl: "https://iallpowers.eu/",
       powerQueenEvidenceUrl: "https://www.ipowerqueen.de/en/pages/shipping-policy",
       ...(xdatouProducts.length ? { xdatouEvidenceUrl: "https://eu.xdatou.com/pages/shipping-policy" } : {}),
+      ...(butlerProducts.length ? { butlerEvidenceUrl: "https://www.butlertechnik.com/affiliate-program" } : {}),
       localMerchantEvidence: syncedOxe.source.feedUrl,
     },
     sources: {
@@ -142,6 +147,7 @@ for (let index = 0; index < targets.length; index += 1) {
         },
       } : {}),
       solaris_store: syncedSolaris.source,
+      butler_technik: syncedButler.source,
       ampul_eu: {
         ...syncedAmpul.source,
         affiliateApprovalConfirmed: true,
@@ -155,5 +161,5 @@ for (let index = 0; index < targets.length; index += 1) {
     products,
   };
   await writeFile(target.path, `${JSON.stringify(catalog, null, 2)}\n`);
-  console.log(`${target.market}: ${allpowersPowerStations.length} ALLPOWERS power stations + ${allpowersSolarPanels.length} solar panels + ${powerQueenProducts.length} Power Queen components + ${xdatouProducts.length} Xdatou + ${bluettiProducts.length} BLUETTI Elite 300 + ${solarisProducts.length} Solaris + ${ampulProducts.length} AMPUL + ${oxePowerStations.length} verified OXE power stations.`);
+  console.log(`${target.market}: ${allpowersPowerStations.length} ALLPOWERS power stations + ${allpowersSolarPanels.length} solar panels + ${powerQueenProducts.length} Power Queen components + ${xdatouProducts.length} Xdatou + ${bluettiProducts.length} BLUETTI Elite 300 + ${solarisProducts.length} Solaris + ${butlerProducts.length} Butler + ${ampulProducts.length} AMPUL + ${oxePowerStations.length} verified OXE power stations.`);
 }
