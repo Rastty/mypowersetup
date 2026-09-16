@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 2,
-  "generatedAt": "2026-09-16T14:48:07.331Z",
+  "schemaVersion": 3,
+  "generatedAt": "2026-09-16T18:29:03.770Z",
   "policy": "verification_only_fail_closed_no_publication",
   "actionCount": 2,
   "topAction": {
@@ -110,6 +110,21 @@
           "ro-RO",
           "sl-SI"
         ]
+      }
+    ],
+    "sourceStock": [
+      {
+        "candidateId": "ampul-eu-inverter-24v-2000w",
+        "sourceProductId": "ampul_cz:5577-7392",
+        "generatedAt": "2026-09-16T08:43:01.065Z",
+        "sourceHealthy": true,
+        "found": true,
+        "available": null,
+        "state": "unknown",
+        "stockVerified": false,
+        "productUrl": "https://ampul.eu/cs/menice-napeti/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+        "priceCzk": 8398,
+        "priceCurrency": "CZK"
       }
     ],
     "publishEligible": false,
@@ -266,6 +281,21 @@
           ]
         }
       ],
+      "sourceStock": [
+        {
+          "candidateId": "ampul-eu-inverter-24v-2000w",
+          "sourceProductId": "ampul_cz:5577-7392",
+          "generatedAt": "2026-09-16T08:43:01.065Z",
+          "sourceHealthy": true,
+          "found": true,
+          "available": null,
+          "state": "unknown",
+          "stockVerified": false,
+          "productUrl": "https://ampul.eu/cs/menice-napeti/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+          "priceCzk": 8398,
+          "priceCurrency": "CZK"
+        }
+      ],
       "publishEligible": false,
       "verificationPolicy": "fail_closed_until_market_and_stock_evidence",
       "bestPriority": "P0",
@@ -377,6 +407,21 @@
             "ro-RO",
             "sl-SI"
           ]
+        }
+      ],
+      "sourceStock": [
+        {
+          "candidateId": "ampul-eu-dcdc-12v-30a",
+          "sourceProductId": "ampul_cz:6195",
+          "generatedAt": "2026-09-16T08:43:01.065Z",
+          "sourceHealthy": true,
+          "found": true,
+          "available": true,
+          "state": "available",
+          "stockVerified": true,
+          "productUrl": "https://ampul.eu/cs/nabijecky/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
+          "priceCzk": 6800,
+          "priceCurrency": "CZK"
         }
       ],
       "publishEligible": false,
