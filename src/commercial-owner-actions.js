@@ -11,6 +11,30 @@ const STATUS_RANK = Object.freeze({
   blocked_market_stock: 7,
 });
 
+// These are the account-derived values the owner must capture after programme
+// approval. Public stock / shipping evidence stays in the system verification
+// lane and is intentionally not mixed into this user-owned handoff.
+const OWNER_ACTIVATION_FIELDS = Object.freeze({
+  solaris_store: Object.freeze([
+    "approvalConfirmed",
+    "approvalSource",
+    "products.*.exactAffiliateUrl",
+    "products.*.trackingVerifiedAt",
+  ]),
+  xdatou: Object.freeze([
+    "approvalConfirmed",
+    "approvalSource",
+    "referralCode",
+    "referralIdentifier",
+    "trackingVerifiedAt",
+  ]),
+  butler_technik: Object.freeze([
+    "approvalConfirmed",
+    "approvalSource",
+    "trackingVerifiedAt",
+  ]),
+});
+
 export function buildCommercialOwnerActionQueue() {
   const groups = new Map();
 
@@ -59,6 +83,7 @@ export function buildCommercialOwnerActionQueue() {
     if (candidate.secondaryBlocker) group.secondaryBlockers.add(candidate.secondaryBlocker);
     group.statuses.add(candidate.status);
     (candidate.activationFieldsNeeded || []).forEach((field) => group.activationFieldsNeeded.add(field));
+    (OWNER_ACTIVATION_FIELDS[candidate.merchant] || []).forEach((field) => group.activationFieldsNeeded.add(field));
     group.maxStandaloneUnlockWeight = Math.max(group.maxStandaloneUnlockWeight, standaloneUnlockWeight);
     group.maxAffectedWeight = Math.max(group.maxAffectedWeight, affectedWeight);
     group.bestStatusRank = Math.min(group.bestStatusRank, STATUS_RANK[candidate.status] ?? 99);
@@ -102,7 +127,7 @@ export function buildCommercialOwnerActionQueue() {
 
 
 export function buildCurrentCommercialOwnerActionQueue(backlogs = []) {
-  const backlogByMarket = new Map((backlogs || []).map((backlog) => [backlog.market, backlog]));
+  const backlogByMarket = new Map((backlog => [backlog.market, backlog]));
   const baseActions = new Map(buildCommercialOwnerActionQueue().map((action) => [action.actionKey, action]));
   const groups = new Map();
 
