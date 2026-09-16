@@ -38,9 +38,9 @@ Only known calculator roots are accepted: CZ `/kalkulacky/`, SK `/sk/kalkulacky/
 
 ### 2. GA4/event export
 
-JSON, CSV or TSV are accepted. For compact GA4 exports, one row may represent many events through `Event count`; the report uses that count as the funnel weight rather than incorrectly treating the row as one event.
+JSON, CSV or TSV are accepted. For conversion rates, export `Total users` together with `Event count` whenever possible. A person can recalculate more than once, so raw event counts can overstate later funnel steps. The report therefore uses `Total users` as the funnel weight when present and falls back to `Event count` when it is not available.
 
-All calculator funnel events now use one canonical event-parameter contract end to end, including product impressions and affiliate clicks:
+All calculator funnel events use one canonical event-parameter contract end to end, including product impressions and affiliate clicks:
 
 - `calculator_landing_path`
 - `calculator_landing_locale`
@@ -52,12 +52,15 @@ Register/export those same dimensions in GA4. Historical raw events using the fo
 The preferred flat export contains these columns:
 
 ```csv
-Event name,Event count,Calculator landing path,Calculator landing locale,Calculator landing intent
-calculator_landing_view,40,/kalkulacky/kapacita-baterie/,cs,battery-capacity
-calculator_started,25,/kalkulacky/kapacita-baterie/,cs,battery-capacity
+Event name,Event count,Total users,Calculator landing path,Calculator landing locale,Calculator landing intent
+calculator_landing_view,50,40,/kalkulacky/kapacita-baterie/,cs,battery-capacity
+calculator_started,25,25,/kalkulacky/kapacita-baterie/,cs,battery-capacity
+calculation_completed,40,20,/kalkulacky/kapacita-baterie/,cs,battery-capacity
 ```
 
-English and Czech aliases such as `Event name` / `Název události` and `Event count` / `Počet událostí` are recognized. Existing raw JSON event rows with `parameters` remain supported.
+The example deliberately shows why user counts matter: 40 completion events came from 20 users, so the funnel should use 20 completions rather than treating repeated recalculations as 40 separate people.
+
+English and Czech aliases such as `Event name` / `Název události`, `Event count` / `Počet událostí`, and `Total users` / `Celkový počet uživatelů` are recognized. Camel-case keys such as `eventCount`, `totalUsers` and `calculatorLandingPath` are normalized too. Existing raw JSON event rows with `parameters` remain supported.
 
 Measured chain:
 
