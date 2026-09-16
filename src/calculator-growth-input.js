@@ -160,12 +160,24 @@ export function normalizeGa4CalculatorEventRows(rows = []) {
   }).filter((row) => clean(row?.event_name || row?.name));
 }
 
+function normalizeIndexingStatus(value) {
+  if (typeof value === "boolean") return value;
+  const text = canonicalHeader(value);
+  if (!text) return null;
+  if (text === "true" || text === "yes" || text === "indexed" || text === "indexovano" || text.includes("url is on google") || text.includes("url je na googlu") || text.includes("submitted and indexed")) return true;
+  if (text === "false" || text === "no" || text === "not indexed" || text === "neindexovano" || text.includes("url is not on google") || text.includes("url neni na googlu") || text.includes("not on google") || text.includes("vylouceno") || text.includes("excluded")) return false;
+  return null;
+}
+
 export function normalizeIndexingExportRows(rows = []) {
   return (Array.isArray(rows) ? rows : []).map((row) => {
-    if (row?.url || row?.page || row?.path) return row;
+    const url = aliasLookup(row, INDEXING_ALIASES.url) ?? row?.url ?? row?.page ?? row?.path;
+    const rawStatus = row?.indexed ?? row?.coverageState ?? row?.verdict ?? row?.status ?? aliasLookup(row, INDEXING_ALIASES.indexed);
+    const indexed = normalizeIndexingStatus(rawStatus);
     return {
-      url: clean(aliasLookup(row, INDEXING_ALIASES.url)),
-      indexed: clean(aliasLookup(row, INDEXING_ALIASES.indexed)),
+      ...row,
+      url: clean(url),
+      ...(indexed === null ? { status: clean(rawStatus) } : { indexed }),
     };
   }).filter((row) => clean(row?.url || row?.page || row?.path));
 }
