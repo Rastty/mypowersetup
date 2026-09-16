@@ -2,11 +2,20 @@ const STORAGE_KEY = "mypowersetup_calculator_attribution";
 const MAX_AGE_MS = 30 * 60 * 1000;
 
 const LANDINGS = Object.freeze({
-  "/kalkulacky/kapacita-baterie/": "battery-capacity",
-  "/kalkulacky/solarni-panely/": "solar-sizing",
-  "/kalkulacky/vykon-menice/": "inverter-sizing",
-  "/kalkulacky/prurez-kabelu-12v/": "cable-voltage-drop",
-  "/kalkulacky/12v-nebo-24v/": "voltage-system",
+  "/kalkulacky/kapacita-baterie/": Object.freeze({ intent: "battery-capacity", locale: "cs" }),
+  "/kalkulacky/solarni-panely/": Object.freeze({ intent: "solar-sizing", locale: "cs" }),
+  "/kalkulacky/mppt-regulator/": Object.freeze({ intent: "mppt-sizing", locale: "cs" }),
+  "/kalkulacky/dc-dc-nabijecka/": Object.freeze({ intent: "dcdc-sizing", locale: "cs" }),
+  "/kalkulacky/vykon-menice/": Object.freeze({ intent: "inverter-sizing", locale: "cs" }),
+  "/kalkulacky/prurez-kabelu-12v/": Object.freeze({ intent: "cable-voltage-drop", locale: "cs" }),
+  "/kalkulacky/jisteni-12v/": Object.freeze({ intent: "dc-protection", locale: "cs" }),
+  "/kalkulacky/12v-nebo-24v/": Object.freeze({ intent: "voltage-system", locale: "cs" }),
+  "/sk/kalkulacky/kapacita-baterie/": Object.freeze({ intent: "battery-capacity", locale: "sk" }),
+  "/sk/kalkulacky/solarne-panely/": Object.freeze({ intent: "solar-sizing", locale: "sk" }),
+  "/pl/kalkulatory/pojemnosc-akumulatora/": Object.freeze({ intent: "battery-capacity", locale: "pl" }),
+  "/pl/kalkulatory/panele-solarne/": Object.freeze({ intent: "solar-sizing", locale: "pl" }),
+  "/hu/kalkulatorok/akkumulator-kapacitas/": Object.freeze({ intent: "battery-capacity", locale: "hu" }),
+  "/hu/kalkulatorok/napelem-teljesitmeny/": Object.freeze({ intent: "solar-sizing", locale: "hu" }),
 });
 
 function normalizeLocale(locale) {
@@ -23,8 +32,8 @@ function normalizePath(pathname) {
 function validateLanding({ sourcePath, intent, locale }) {
   const path = normalizePath(sourcePath);
   const normalizedLocale = normalizeLocale(locale);
-  if (!path || LANDINGS[path] !== intent) return null;
-  if (normalizedLocale !== "cs") return null;
+  const landing = path ? LANDINGS[path] : null;
+  if (!landing || landing.intent !== intent || landing.locale !== normalizedLocale) return null;
   return Object.freeze({
     calculator_landing_path: path,
     calculator_landing_intent: intent,

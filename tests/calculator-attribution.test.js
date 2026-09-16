@@ -46,10 +46,34 @@ test("calculator landing attribution survives the same-origin journey", () => {
   });
 });
 
+test("all currently published calculator landing families can persist attribution", () => {
+  const cases = [
+    ["/kalkulacky/mppt-regulator/", "mppt-sizing", "cs"],
+    ["/kalkulacky/dc-dc-nabijecka/", "dcdc-sizing", "cs"],
+    ["/kalkulacky/jisteni-12v/", "dc-protection", "cs"],
+    ["/sk/kalkulacky/kapacita-baterie/", "battery-capacity", "sk"],
+    ["/sk/kalkulacky/solarne-panely/", "solar-sizing", "sk"],
+    ["/pl/kalkulatory/pojemnosc-akumulatora/", "battery-capacity", "pl"],
+    ["/pl/kalkulatory/panele-solarne/", "solar-sizing", "pl"],
+    ["/hu/kalkulatorok/akkumulator-kapacitas/", "battery-capacity", "hu"],
+    ["/hu/kalkulatorok/napelem-teljesitmeny/", "solar-sizing", "hu"],
+  ];
+
+  for (const [sourcePath, intent, locale] of cases) {
+    const storage = memoryStorage();
+    const attribution = rememberCalculatorAttribution({ sourcePath, intent, locale, storage, now: 1_700_000_000_000 });
+    assert.equal(attribution?.calculator_landing_path, sourcePath);
+    assert.equal(attribution?.calculator_landing_intent, intent);
+    assert.equal(attribution?.calculator_landing_locale, locale);
+    assert.equal(resolveCalculatorAttribution({ storage, market: locale, now: 1_700_000_001_000 })?.calculator_landing_path, sourcePath);
+  }
+});
+
 test("calculator attribution rejects mismatched route, intent and locale", () => {
   const storage = memoryStorage();
   assert.equal(rememberCalculatorAttribution({ sourcePath: "/kalkulacky/solarni-panely/", intent: "battery-capacity", locale: "cs", storage }), null);
   assert.equal(rememberCalculatorAttribution({ sourcePath: "/kalkulacky/solarni-panely/", intent: "solar-sizing", locale: "pl", storage }), null);
+  assert.equal(rememberCalculatorAttribution({ sourcePath: "/pl/kalkulatory/panele-solarne/", intent: "solar-sizing", locale: "cs", storage }), null);
   assert.equal(storage.values.size, 0);
 });
 
@@ -69,6 +93,17 @@ test("calculator attribution expires, clears corrupt values and does not cross m
 
 test("landing browser loads consent analytics and exposes the required funnel events", async () => {
   const browser = await readFile(new URL("../src/calculator-landing-browser.js", import.meta.url), "utf8");
+  assert.match(browser, /import "\.\/analytics\.js"/);
+  assert.match(browser, /calculator_landing_view/);
+  assert.match(browser, /calculator_started/);
+  assert.match(browser, /calculation_completed/);
+  assert.match(browser, /calculator_landing_continue/);
+  assert.match(browser, /mypowersetup:analytics-granted/);
+  assert.match(browser, /rememberCalculatorAttribution/);
+});
+
+test("phase-2 landing browser uses the same consent analytics and attribution contract", async () => {
+  const browser = await readFile(new URL("../src/phase2-calculator-browser.js", import.meta.url), "utf8");
   assert.match(browser, /import "\.\/analytics\.js"/);
   assert.match(browser, /calculator_landing_view/);
   assert.match(browser, /calculator_started/);
