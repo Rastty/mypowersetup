@@ -20,7 +20,11 @@ if (json) {
 
 console.log(`Traffic distribution as of ${summary.asOf} | market=${summary.market} | candidates=${summary.total} | actionable=${summary.actionable}`);
 for (const [index, item] of summary.top.entries()) {
-  const action = item.actionable ? "REPLY" : item.status.toUpperCase();
+  const action = item.actionable
+    ? "REPLY"
+    : item.status === "ready_for_manual_reply"
+      ? "RECHECK"
+      : item.status.toUpperCase();
   console.log(`${index + 1}. ${item.market.toUpperCase()} ${item.score} ${action} | ${item.community} | ${item.sourceTitle}`);
   console.log(`   ${item.targetRoute} | age=${item.ageDays}d | ${item.sourceUrl}`);
 }

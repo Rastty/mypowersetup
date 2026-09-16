@@ -1,4 +1,5 @@
 const DAY_MS = 24 * 60 * 60 * 1000;
+export const MAX_ACTIONABLE_AGE_DAYS = 30;
 
 const PRIORITY_SCORE = Object.freeze({ high: 25, medium: 12, low: 4 });
 const STATUS_SCORE = Object.freeze({
@@ -55,7 +56,9 @@ export function scoreTrafficOpportunity(item, { asOf }) {
   const exactRoute = /\/$/.test(item.targetRoute || "") && !/^\/(?:[a-z]{2}\/)?$/.test(item.targetRoute || "") ? 4 : 0;
   const sourceSpecificity = /viewtopic\.php|comments\//.test(item.sourceUrl || "") ? 3 : 0;
   const score = priority + status + fit + freshness + intentDepth + exactRoute + sourceSpecificity;
-  const actionable = item.status === "ready_for_manual_reply" && fit >= 25 && ageDays <= 90;
+  const actionable = item.status === "ready_for_manual_reply"
+    && fit >= 25
+    && ageDays <= MAX_ACTIONABLE_AGE_DAYS;
   return Object.freeze({ ...item, ageDays, score, actionable });
 }
 
