@@ -30,6 +30,31 @@ test("system verification queue surfaces AMPUL P0 inverter verification ahead of
   assert.equal(best.currentAffectedWeight, 15);
 });
 
+test("partial public evidence reduces ambiguity without clearing market or exact-variant blockers", async () => {
+  const report = JSON.parse(await readFile(new URL("../data/commercial-opportunity-report.json", import.meta.url), "utf8"));
+  const best = bestCurrentCommercialSystemVerification(report.markets);
+
+  assert.equal(best.verificationEvidence.length, 1);
+  const evidence = best.verificationEvidence[0];
+  assert.equal(evidence.candidateId, "ampul-eu-inverter-24v-2000w");
+  assert.equal(evidence.checkedAt, "2026-09-16");
+  assert.equal(evidence.evidenceType, "public_catalog_partial");
+  assert.equal(evidence.catalogSpecs.powerW, 2000);
+  assert.equal(evidence.catalogSpecs.pureSine, true);
+  assert.ok(evidence.catalogSpecs.listedInputVoltagesV.includes(24));
+  assert.equal(evidence.publicStockScope, "product_family");
+  assert.equal(evidence.publicStockStatus, "in_stock_at_supplier");
+  assert.deepEqual(evidence.genericShippingEvidence.targetMarketsVerified, []);
+  assert.ok(evidence.verifiedChecks.includes("24v_variant_listed"));
+  assert.ok(evidence.unresolvedChecks.includes("exact_24v_variant_stock"));
+  assert.ok(evidence.unresolvedChecks.includes("pt-PT_checkout"));
+  assert.ok(evidence.unresolvedChecks.includes("ro-RO_checkout"));
+  assert.ok(evidence.unresolvedChecks.includes("sl-SI_checkout"));
+  assert.equal(best.publishEligible, false);
+  assert.deepEqual(best.blockers, ["market_shipping_checkout_unverified"]);
+  assert.deepEqual(best.secondaryBlockers, ["variant_stock_unverified"]);
+});
+
 test("system verification work is fail-closed and never mixes user-owned approval tasks into the queue", async () => {
   const report = JSON.parse(await readFile(new URL("../data/commercial-opportunity-report.json", import.meta.url), "utf8"));
   const actions = buildCurrentCommercialSystemVerificationQueue(report.markets);
@@ -55,4 +80,5 @@ test("system queue follows current opportunities and drops resolved categories",
   assert.deepEqual(actions[0].activeMarkets, ["pt-PT"]);
   assert.equal(actions[0].bestPriority, "P1");
   assert.equal(actions[0].currentOpportunityScore, 4);
+  assert.deepEqual(actions[0].verificationEvidence, []);
 });
