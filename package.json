@@ -55,6 +55,8 @@
     "publish:expansion": "node scripts/publish-expansion.mjs",
     "check:public:links": "node scripts/check-public-internal-links.mjs --require-safe",
     "report:owner:actions": "node scripts/write-owner-action-queue.mjs",
-    "check:owner:actions": "node scripts/write-owner-action-queue.mjs --check"
+    "check:owner:actions": "node scripts/write-owner-action-queue.mjs --check",
+    "report:system:verification": "node scripts/write-system-verification-queue.mjs",
+    "check:system:verification": "node scripts/write-system-verification-queue.mjs --check"
   }
 }
