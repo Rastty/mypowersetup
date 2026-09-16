@@ -34,6 +34,7 @@ on:
       - "tests/expansion-component-product-recommendations.test.js"
       - "tests/ampul-expansion-sync.test.js"
       - "tests/ampul-expansion-market-integration.test.js"
+      - "tests/ampul-inverter-stock-safety.test.js"
       - "tests/commercial-system-verification-actions.test.js"
       - "tests/powerqueen-fetch-resilience.test.js"
       - "tests/oxe-expansion-recommendations.test.js"
@@ -82,6 +83,7 @@ jobs:
           tests/powerqueen-fetch-resilience.test.js
           tests/commercial-opportunity-backlog.test.js
           tests/commercial-system-verification-actions.test.js
+          tests/ampul-inverter-stock-safety.test.js
           tests/commercial-scenarios.test.js
           tests/oxe-expansion-recommendations.test.js
           tests/oxe-feed.test.js
