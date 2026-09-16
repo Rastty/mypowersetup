@@ -153,7 +153,7 @@ test("affiliate clicks and impressions receive the stored calculator landing con
 
 test("validated DC-DC result context reaches product impressions and affiliate clicks", () => {
   const storage = memoryStorage();
-  const now = 1_700_000_000_000;
+  const now = Date.now();
   rememberCalculatorAttribution({
     sourcePath: "/kalkulacky/dc-dc-nabijecka/",
     intent: "dcdc-sizing",
