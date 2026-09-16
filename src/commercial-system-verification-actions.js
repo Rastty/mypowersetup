@@ -1,11 +1,13 @@
 import { listCommercialSourcingCandidates } from "./commercial-sourcing-candidates.js";
 import { getCommercialVerificationEvidence } from "./commercial-verification-evidence.js";
 import { normalizeAmpulMarketVerification } from "./ampul-market-verification.js";
+import { resolveAmpulSourceStock } from "./ampul-source-stock.js";
 
 const PRIORITY_RANK = Object.freeze({ P0: 0, P1: 1, P2: 2, P3: 3 });
 
 export function buildCurrentCommercialSystemVerificationQueue(backlogs = [], {
   ampulMarketVerification = null,
+  ampulSourceCatalog = null,
 } = {}) {
   const backlogByMarket = new Map((backlogs || []).map((backlog) => [backlog.market, backlog]));
   const groups = new Map();
@@ -31,6 +33,7 @@ export function buildCurrentCommercialSystemVerificationQueue(backlogs = [], {
       trackingVerified: true,
       verificationEvidence: new Map(),
       marketVerification: new Map(),
+      sourceStock: new Map(),
       impacts: new Map(),
       activeCandidateIds: new Set(),
       activeCategories: new Set(),
@@ -51,11 +54,16 @@ export function buildCurrentCommercialSystemVerificationQueue(backlogs = [], {
     const evidence = getCommercialVerificationEvidence(candidate.id);
     if (evidence) group.verificationEvidence.set(candidate.id, evidence);
 
-    if (candidate.merchant === "ampul_eu" && ampulMarketVerification) {
-      group.marketVerification.set(
-        candidate.id,
-        normalizeAmpulMarketVerification(ampulMarketVerification, candidate.id, candidate.markets || []),
-      );
+    if (candidate.merchant === "ampul_eu") {
+      if (ampulMarketVerification) {
+        group.marketVerification.set(
+          candidate.id,
+          normalizeAmpulMarketVerification(ampulMarketVerification, candidate.id, candidate.markets || []),
+        );
+      }
+      if (ampulSourceCatalog) {
+        group.sourceStock.set(candidate.id, resolveAmpulSourceStock(ampulSourceCatalog, candidate.id));
+      }
     }
 
     for (const market of candidate.markets || []) {
@@ -111,6 +119,9 @@ export function buildCurrentCommercialSystemVerificationQueue(backlogs = [], {
           unverifiedMarkets: Object.freeze(markets.filter(({ verified }) => !verified).map(({ market }) => market)),
         }))
         .sort((a, b) => a.candidateId.localeCompare(b.candidateId));
+      const sourceStock = [...group.sourceStock.values()]
+        .map((stock) => Object.freeze({ ...stock }))
+        .sort((a, b) => a.candidateId.localeCompare(b.candidateId));
 
       return Object.freeze({
         actionKey: group.actionKey,
@@ -129,6 +140,7 @@ export function buildCurrentCommercialSystemVerificationQueue(backlogs = [], {
         trackingVerified: group.trackingVerified,
         verificationEvidence: Object.freeze(verificationEvidence),
         marketVerification: Object.freeze(marketVerification),
+        sourceStock: Object.freeze(sourceStock),
         publishEligible: false,
         verificationPolicy: "fail_closed_until_market_and_stock_evidence",
         bestPriority,
