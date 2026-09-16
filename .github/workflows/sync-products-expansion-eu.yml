@@ -14,6 +14,7 @@ on:
       - "src/acquisition-requirements.js"
       - "src/commercial-scenarios.js"
       - "src/commercial-sourcing-candidates.js"
+      - "src/commercial-verification-evidence.js"
       - "src/commercial-system-verification-actions.js"
       - "src/shopify.js"
       - "src/oxe-affiliate.js"
@@ -63,6 +64,7 @@ jobs:
       - run: node --check scripts/sync-products-expansion-eu.mjs
       - run: node --check src/ro-recommendations.js
       - run: node --check src/si-recommendations.js
+      - run: node --check src/commercial-verification-evidence.js
       - run: node --check src/commercial-system-verification-actions.js
       - run: node --check scripts/write-system-verification-queue.mjs
       - run: node scripts/sync-products-expansion-eu.mjs
