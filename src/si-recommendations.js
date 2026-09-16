@@ -4,6 +4,7 @@ import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from
 import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affiliate-xdatou.js";
 import { isAmpulExpansionProduct, validateAmpulExpansionProduct } from "./affiliate-ampul-expansion.js";
 import { isSolarisExpansionProduct, validateSolarisExpansionProduct } from "./affiliate-solaris.js";
+import { isButlerExpansionProduct, validateButlerExpansionProduct } from "./affiliate-butler.js";
 import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
 
 export const SI_CATALOG_URL = "/data/products-si.json";
@@ -34,6 +35,8 @@ export function validateSloveniaCatalog(catalog) {
   if (ampulProducts.length && catalog.sources?.ampul_eu?.status !== "ok") throw new Error("SI_AMPUL_SOURCE_INVALID");
   const solarisProducts = catalog.products.filter(isSolarisExpansionProduct);
   if (solarisProducts.length && catalog.sources?.solaris_store?.status !== "ok") throw new Error("SI_SOLARIS_SOURCE_INVALID");
+  const butlerProducts = catalog.products.filter(isButlerExpansionProduct);
+  if (butlerProducts.length && catalog.sources?.butler_technik?.status !== "ok") throw new Error("SI_BUTLER_SOURCE_INVALID");
   for (const product of catalog.products) validateSloveniaProduct(product, catalog.sources);
   return catalog;
 }
@@ -93,6 +96,10 @@ function validateSloveniaProduct(product, sources = {}) {
   }
   if (isSolarisExpansionProduct(product)) {
     validateSolarisExpansionProduct(product, { market: "sl-SI", source: sources?.solaris_store });
+    return;
+  }
+  if (isButlerExpansionProduct(product)) {
+    validateButlerExpansionProduct(product, { market: "sl-SI", source: sources?.butler_technik });
     return;
   }
   if (!product?.verifiedAt) throw new Error("SI_PRODUCT_EVIDENCE_INVALID");
