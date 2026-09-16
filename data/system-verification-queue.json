@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "generatedAt": "2026-09-16T14:36:15.315Z",
   "policy": "verification_only_fail_closed_no_publication",
   "actionCount": 2,
@@ -72,6 +72,43 @@
           "pt-PT_checkout",
           "ro-RO_checkout",
           "sl-SI_checkout"
+        ]
+      }
+    ],
+    "marketVerification": [
+      {
+        "candidateId": "ampul-eu-inverter-24v-2000w",
+        "markets": [
+          {
+            "market": "pt-PT",
+            "marketCode": "pt",
+            "verified": false,
+            "evidenceUrl": null,
+            "verifiedAt": null,
+            "state": "unverified"
+          },
+          {
+            "market": "ro-RO",
+            "marketCode": "ro",
+            "verified": false,
+            "evidenceUrl": null,
+            "verifiedAt": null,
+            "state": "unverified"
+          },
+          {
+            "market": "sl-SI",
+            "marketCode": "si",
+            "verified": false,
+            "evidenceUrl": null,
+            "verifiedAt": null,
+            "state": "unverified"
+          }
+        ],
+        "verifiedMarkets": [],
+        "unverifiedMarkets": [
+          "pt-PT",
+          "ro-RO",
+          "sl-SI"
         ]
       }
     ],
@@ -192,6 +229,43 @@
           ]
         }
       ],
+      "marketVerification": [
+        {
+          "candidateId": "ampul-eu-inverter-24v-2000w",
+          "markets": [
+            {
+              "market": "pt-PT",
+              "marketCode": "pt",
+              "verified": false,
+              "evidenceUrl": null,
+              "verifiedAt": null,
+              "state": "unverified"
+            },
+            {
+              "market": "ro-RO",
+              "marketCode": "ro",
+              "verified": false,
+              "evidenceUrl": null,
+              "verifiedAt": null,
+              "state": "unverified"
+            },
+            {
+              "market": "sl-SI",
+              "marketCode": "si",
+              "verified": false,
+              "evidenceUrl": null,
+              "verifiedAt": null,
+              "state": "unverified"
+            }
+          ],
+          "verifiedMarkets": [],
+          "unverifiedMarkets": [
+            "pt-PT",
+            "ro-RO",
+            "sl-SI"
+          ]
+        }
+      ],
       "publishEligible": false,
       "verificationPolicy": "fail_closed_until_market_and_stock_evidence",
       "bestPriority": "P0",
@@ -268,6 +342,43 @@
       "affiliateApprovalConfirmed": true,
       "trackingVerified": true,
       "verificationEvidence": [],
+      "marketVerification": [
+        {
+          "candidateId": "ampul-eu-dcdc-12v-30a",
+          "markets": [
+            {
+              "market": "pt-PT",
+              "marketCode": "pt",
+              "verified": false,
+              "evidenceUrl": null,
+              "verifiedAt": null,
+              "state": "unverified"
+            },
+            {
+              "market": "ro-RO",
+              "marketCode": "ro",
+              "verified": false,
+              "evidenceUrl": null,
+              "verifiedAt": null,
+              "state": "unverified"
+            },
+            {
+              "market": "sl-SI",
+              "marketCode": "si",
+              "verified": false,
+              "evidenceUrl": null,
+              "verifiedAt": null,
+              "state": "unverified"
+            }
+          ],
+          "verifiedMarkets": [],
+          "unverifiedMarkets": [
+            "pt-PT",
+            "ro-RO",
+            "sl-SI"
+          ]
+        }
+      ],
       "publishEligible": false,
       "verificationPolicy": "fail_closed_until_market_and_stock_evidence",
       "bestPriority": "P1",
