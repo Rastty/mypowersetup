@@ -43,9 +43,10 @@ try {
   syncedPowerQueen = { products: [], source: { status: "error", error: error.message } };
 }
 
+const xdatouActivation = JSON.parse(await readFile("data/xdatou-affiliate-activation.json", "utf8"));
 const syncedXdatou = await syncXdatouEu({
   products: previousCatalogs.flatMap((catalog) => catalog.products || []),
-});
+}, { activation: xdatouActivation });
 const syncedBluettiElite300 = await syncBluettiElite300Eu({
   products: previousCatalogs.flatMap((catalog) => catalog.products || []),
 });
