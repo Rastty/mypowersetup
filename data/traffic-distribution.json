@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-11",
+  "updatedAt": "2026-09-16",
   "policy": {
     "defaultPostingRule": "answer_first_no_link_drop",
     "allowedStatuses": ["ready_for_manual_reply", "monitor", "research_only", "replied", "closed"],
@@ -33,7 +33,7 @@
       "fit": "direct_camper_technical",
       "status": "monitor",
       "postingRule": "answer_first_no_link_drop",
-      "notes": "Excellent intent match but not currently fresh enough to revive purely for a link. Re-check if the thread becomes active or use its questions to find newer related discussions."
+      "notes": "Re-checked the current CampingCar Portugal technical forum on 2026-09-16. This remains an excellent intent match but is not fresh enough to revive purely for a link; no newer unresolved sizing discussion surfaced in the current forum index."
     },
     {
       "id": "pt-ccp-electrical-help-2025",
@@ -53,7 +53,7 @@
       "fit": "direct_camper_technical",
       "status": "monitor",
       "postingRule": "answer_first_no_link_drop",
-      "notes": "Large technical thread with strong relevance. Prefer responding only to a new question rather than posting into an old discussion."
+      "notes": "Re-checked on 2026-09-16. Strong technical relevance, but the current forum index still shows no fresh unresolved follow-up here; respond only if a new question appears."
     },
     {
       "id": "ro-clubrv-adria-442-2026",
@@ -71,12 +71,12 @@
         "/ro/ghiduri/invertor-autorulota-putere/",
         "/ro/ghiduri/sistem-electric-complet-autorulota/"
       ],
-      "lastKnownActivity": "2026-05-01",
+      "lastKnownActivity": "2026-08-23",
       "priority": "high",
-      "fit": "direct_camper_technical_current",
-      "status": "ready_for_manual_reply",
+      "fit": "direct_camper_technical_recent",
+      "status": "monitor",
       "postingRule": "answer_first_no_link_drop",
-      "notes": "Current build log discusses 3x 12V 310Ah LiFePO4, separate MPPT, 1800W pure-sine inverter and PV installation. Best current RO community opportunity; a useful reply should focus on system-level checks rather than criticizing product choices."
+      "notes": "Re-checked the full thread on 2026-09-16. The earlier electrical build phase is highly relevant, but later posts moved into travel, ownership and storage updates; the latest visible post is 2026-08-23 and contains no unresolved electrical question. Do not post now. Move back to ready only if the author opens a fresh sizing or system-design question."
     },
     {
       "id": "si-elektronik-dcdc-solar-avtodom",
@@ -139,7 +139,7 @@
       "fit": "direct_camper_technical_current",
       "status": "monitor",
       "postingRule": "answer_first_no_link_drop",
-      "notes": "Checked the current forum index on 2026-09-11. The newest relevant visible thread remains Ford Transit + DC/DC with last activity on 2026-08-11; no newer unresolved sizing thread is visible on the first page. Keep monitoring and move back to ready_for_manual_reply only when a fresh unresolved question appears."
+      "notes": "Checked CamperTeam again on 2026-09-16. The current site has fresh activity, but the visible same-day solar thread is explicitly about a house rather than a camper. The newest directly relevant unresolved camper-electrical candidate still does not beat the closed/monitor Ford Transit + DC/DC and LiFePO4 threads, so keep monitoring rather than forcing a reply."
     },
     {
       "id": "pl-camperteam-liitokala-2025",
