@@ -125,9 +125,8 @@ export function buildCommercialOwnerActionQueue() {
   return Object.freeze(actions);
 }
 
-
 export function buildCurrentCommercialOwnerActionQueue(backlogs = []) {
-  const backlogByMarket = new Map((backlog => [backlog.market, backlog]));
+  const backlogByMarket = new Map((backlogs || []).map((backlog) => [backlog.market, backlog]));
   const baseActions = new Map(buildCommercialOwnerActionQueue().map((action) => [action.actionKey, action]));
   const groups = new Map();
 
