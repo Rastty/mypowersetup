@@ -21,9 +21,45 @@ export const XDATOU_DATOUBOSS_2000W_24V = Object.freeze({
 
 export const XDATOU_SUPPORTED_MARKETS = Object.freeze(["pt", "ro", "si"]);
 
-
 export function isXdatouExpansionProduct(product) {
   return product?.merchant === "xdatou";
+}
+
+function validDate(value) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(value || "") && Number.isFinite(Date.parse(`${value}T00:00:00Z`));
+}
+
+function validApprovalSource(value) {
+  return typeof value === "string" && value.trim().length >= 3 && value.trim().length <= 512;
+}
+
+export function xdatouActivationState(activation = {}) {
+  const approvalRequested = activation?.approvalConfirmed === true;
+  const approvalEvidenceVerified = validApprovalSource(activation?.approvalSource);
+  const referralCredentialsVerified = validReferralIdentifier(activation?.referralIdentifier)
+    && validReferralCode(activation?.referralCode);
+  const trackingVerified = validDate(activation?.trackingVerifiedAt);
+  const ready = approvalRequested
+    && approvalEvidenceVerified
+    && referralCredentialsVerified
+    && trackingVerified;
+
+  let blocker = null;
+  if (!approvalRequested) blocker = "goaffpro_approval_pending";
+  else if (!approvalEvidenceVerified) blocker = "goaffpro_approval_evidence_missing";
+  else if (!referralCredentialsVerified) blocker = "goaffpro_referral_credentials_pending";
+  else if (!trackingVerified) blocker = "goaffpro_tracking_verification_pending";
+
+  return Object.freeze({
+    ready,
+    blocker,
+    approvalRequested,
+    approvalConfirmed: ready,
+    approvalSource: approvalEvidenceVerified ? activation.approvalSource.trim() : null,
+    referralIdentifier: validReferralIdentifier(activation?.referralIdentifier) ? activation.referralIdentifier : null,
+    referralCode: validReferralCode(activation?.referralCode) ? activation.referralCode : null,
+    trackingVerifiedAt: trackingVerified ? activation.trackingVerifiedAt : null,
+  });
 }
 
 export function validateXdatouExpansionProduct(product, {
