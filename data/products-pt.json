@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T18:43:09.085Z",
+  "generatedAt": "2026-09-16T19:29:33.745Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": false,
@@ -26,7 +26,11 @@
     },
     "xdatou": {
       "status": "blocked",
-      "blocker": "goaffpro_activation_pending",
+      "blocker": "goaffpro_approval_pending",
+      "network": "goaffpro",
+      "approvalConfirmed": false,
+      "approvalSource": null,
+      "trackingVerifiedAt": null,
       "exactProducts": 0,
       "shippingEvidenceUrl": "https://eu.xdatou.com/pages/shipping-policy",
       "shippingVerifiedAt": "2026-09-07"
