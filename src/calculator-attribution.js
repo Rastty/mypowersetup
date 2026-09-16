@@ -42,6 +42,10 @@ function validateLanding({ sourcePath, intent, locale }) {
   });
 }
 
+export function buildCalculatorLandingAnalyticsParameters({ sourcePath, intent, locale } = {}) {
+  return validateLanding({ sourcePath, intent, locale });
+}
+
 function safeNumber(value, min, max) {
   if (value === null || value === undefined || value === "") return null;
   const parsed = Number(value);
