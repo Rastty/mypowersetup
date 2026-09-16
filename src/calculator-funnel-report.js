@@ -26,9 +26,16 @@ function language(value) {
   return clean(value).toLowerCase().split("-")[0];
 }
 
+export function calculatorLocaleForPath(path) {
+  const value = clean(path);
+  for (const [locale, root] of Object.entries(CALCULATOR_ROOT_BY_LOCALE)) {
+    if (value.startsWith(root)) return locale;
+  }
+  return "";
+}
+
 export function isCalculatorLandingPath(path, locale) {
-  const root = CALCULATOR_ROOT_BY_LOCALE[language(locale)];
-  return Boolean(root && clean(path).startsWith(root));
+  return Boolean(language(locale) && calculatorLocaleForPath(path) === language(locale));
 }
 
 export function buildCalculatorFunnelSummary(events = []) {
