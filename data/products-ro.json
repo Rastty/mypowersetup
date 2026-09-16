@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T18:29:01.606Z",
+  "generatedAt": "2026-09-16T18:43:33.915Z",
   "market": "ro-RO",
   "currency": "EUR",
   "private": false,
@@ -53,6 +53,42 @@
       "approvalConfirmed": true,
       "shippingEvidenceUrl": "https://www.bluettipower.eu/pages/shipping-country",
       "shippingVerifiedAt": "2026-09-07"
+    },
+    "solaris_store": {
+      "status": "blocked",
+      "blocker": "ambassador_approval_pending",
+      "network": "ambassador",
+      "approvalConfirmed": false,
+      "approvalSource": null,
+      "targetMarket": "ro-RO",
+      "marketCode": "ro",
+      "exactProducts": 0,
+      "verifiedProductMarkets": {
+        "solaris-victron-phoenix-12-250": [],
+        "solaris-victron-phoenix-24-250": []
+      },
+      "productStates": [
+        {
+          "candidateId": "solaris-victron-phoenix-12-250",
+          "trackingVerified": false,
+          "stockVerified": true,
+          "marketVerified": false,
+          "ready": false,
+          "stockStatus": "dispatch_5_7_days",
+          "stockVerifiedAt": "2026-09-16",
+          "marketVerifiedAt": null
+        },
+        {
+          "candidateId": "solaris-victron-phoenix-24-250",
+          "trackingVerified": false,
+          "stockVerified": true,
+          "marketVerified": false,
+          "ready": false,
+          "stockStatus": "dispatch_1_2_days",
+          "stockVerifiedAt": "2026-09-16",
+          "marketVerifiedAt": null
+        }
+      ]
     },
     "ampul_eu": {
       "status": "blocked",
