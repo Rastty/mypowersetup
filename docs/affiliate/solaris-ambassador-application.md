@@ -2,7 +2,7 @@
 
 Status: **READY_TO_SUBMIT**
 Priority: **P0 — highest standalone purchase-ready unlock for PT/RO/SI**
-Verified: 2026-09-07
+Verified: 2026-09-16
 
 ## Application
 
@@ -43,6 +43,7 @@ https://mypowersetup.com/
 - Continuous power: 200 W
 - Peak power: 400 W
 - Waveform: pure sine
+- Public evidence refreshed 2026-09-16: EUR 94.87, dispatch stated as 5–7 days
 - Commercial impact: standalone unlock weight **5**
 
 ### Remote work — second priority
@@ -53,9 +54,10 @@ https://mypowersetup.com/
 - Continuous power: 200 W
 - Peak power: 350 W
 - Waveform: pure sine
+- Public evidence refreshed 2026-09-16: EUR 105.05, dispatch stated as 1–2 days
 - Commercial impact: affected weight **3**
 
-### Solar controller — same application, second major gap
+### Solar controller — same application, later activation lane
 - Candidate: `solaris-victron-smartsolar-150-60-tr`
 - Product: Victron SmartSolar MPPT 150/60-Tr
 - Exact retail page: https://www.solaris-store.com/2169-regulateur-victron-smartsolar-mppt-150-60-tr-150v-60a-.html
@@ -63,34 +65,47 @@ https://mypowersetup.com/
 - Charge current: 60 A
 - Nominal PV power: 860 W @ 12 V / 1720 W @ 24 V
 - Maximum PV open-circuit voltage: 150 V
-- Current store state: dispatch in 5–7 days
-- Commercial role: closes the current 40–120 A expansion-market MPPT gap after tracking + country checkout verification
+- Commercial role: closes the 40–120 A expansion-market MPPT gap after tracking + country checkout verification
 
 ## Evidence already verified
 
 - Solaris runs a first-party Ambassador programme aimed at bloggers, vanlife/camping-car and travel creators.
-- The store is operational again and current product/category pages expose ordering controls and shipping lead times.
+- The store is operational and the two exact Phoenix product pages expose current price and dispatch lead time.
 - Solaris states it distributes/exports throughout Europe.
-- Portugal and Romania are explicitly named among European export zones on Solaris distributor pages.
-- Country-specific online checkout for PT/RO/SI is still intentionally treated as unverified.
-- Affiliate tracking/deeplink format is still intentionally treated as unverified.
+- Country-specific checkout for each exact product in PT/RO/SI is still intentionally treated as unverified.
+- Affiliate tracking/deeplink format is still intentionally treated as unverified until Solaris supplies it and a redirect/deeplink is checked.
+
+## Zero-code activation path now prepared
+
+The P0 Phoenix inverter runtime is already implemented. After Solaris approval, activation is data-only through `data/solaris-affiliate-activation.json`; no new product integration code should be required.
+
+For each exact Phoenix product, record:
+
+1. `approvalConfirmed: true` and `approvalSource` at the file root.
+2. The exact verified tracking URL in `exactAffiliateUrl`.
+3. The exact canonical product page in `finalLandingUrl` (already seeded).
+4. `trackingVerifiedAt` after confirming the affiliate URL reaches the exact product.
+5. Fresh price/stock evidence (`priceEur`, `stockStatus`, `stockVerifiedAt`, `stockEvidenceUrl`). Stock evidence expires fail-closed after 14 days.
+6. Only the PT/RO/SI market records whose country-specific checkout/delivery has been verified: `verified: true`, HTTPS `evidenceUrl`, and `verifiedAt`.
+
+The sync then admits only the exact product-market pairs with all three gates green: **tracking + fresh stock + country checkout**. A verified Portugal pair cannot authorize Romania or Slovenia, and a plain untracked Solaris product URL cannot pass as an affiliate URL.
 
 ## Activation checklist after Solaris replies
-
-Do **not** publish a Solaris product until all applicable items below are verified:
 
 - [ ] Ambassador application approved
 - [ ] commission / commercial terms recorded
 - [ ] exact affiliate tracking mechanism recorded
-- [ ] exact-product deep link for Phoenix 12/250 verified
-- [ ] exact-product deep link for Phoenix 24/250 verified
-- [ ] exact-product deep link for SmartSolar MPPT 150/60-Tr verified
-- [ ] Portugal shipping/checkout verified
-- [ ] Romania shipping/checkout verified
-- [ ] Slovenia shipping/checkout verified
-- [ ] candidate onboarding statuses updated
-- [ ] fail-closed Solaris affiliate adapter added
-- [ ] PT/RO/SI catalog sync and runtime validation added
-- [ ] full CI green
+- [ ] exact-product affiliate URL for Phoenix 12/250 verified
+- [ ] exact-product affiliate URL for Phoenix 24/250 verified
+- [ ] Portugal exact-product shipping/checkout verified where applicable
+- [ ] Romania exact-product shipping/checkout verified where applicable
+- [ ] Slovenia exact-product shipping/checkout verified where applicable
+- [x] fail-closed Solaris Phoenix affiliate adapter prepared
+- [x] PT/RO/SI catalog sync prepared
+- [x] PT/RO/SI runtime validation prepared
+- [x] product-market isolation and stale-stock regressions prepared
+- [ ] activation data updated with the real approval/tracking/checkout evidence
+- [ ] post-activation CI green
 - [ ] commercial opportunity report confirms inverter unlock
-- [ ] commercial opportunity report confirms controller unlock
+
+SmartSolar activation remains a separate P2 follow-up after the P0 inverter path is live; the same ambassador application can cover it.
