@@ -2,6 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
+import {
+  MAX_ACTIONABLE_AGE_DAYS,
+  ageInDays,
+  scoreTrafficOpportunity,
+} from "../src/traffic-distribution.js";
 
 const registry = JSON.parse(readFileSync(new URL("../data/traffic-distribution.json", import.meta.url), "utf8"));
 const MARKET_PREFIX = Object.freeze({
@@ -59,11 +64,32 @@ test("distribution opportunities are unique, valid and point only to published l
 
 test("ready opportunities are current direct technical fits with a concrete actionable thread", () => {
   const ready = registry.opportunities.filter((item) => item.status === "ready_for_manual_reply");
-  assert.ok(ready.length >= 1, "registry should keep at least one concrete actionable community opportunity");
   for (const item of ready) {
     assert.equal(item.priority, "high");
     assert.match(item.fit, /direct_camper_technical_current/);
-    assert.ok(item.lastKnownActivity >= "2026-01-01", `ready item is too stale: ${item.id}`);
+    assert.ok(
+      ageInDays(item.lastKnownActivity, registry.updatedAt) <= MAX_ACTIONABLE_AGE_DAYS,
+      `ready item is older than ${MAX_ACTIONABLE_AGE_DAYS} days: ${item.id}`,
+    );
     assert.doesNotMatch(item.sourceUrl, /viewforum\.php/i, `ready item must target a concrete thread, not a discovery index: ${item.id}`);
+    assert.equal(scoreTrafficOpportunity(item, { asOf: registry.updatedAt }).actionable, true);
   }
+});
+
+test("ready status alone cannot keep an old community thread actionable", () => {
+  const staleReady = {
+    id: "stale-ready",
+    market: "pl",
+    priority: "high",
+    fit: "direct_camper_technical_current",
+    status: "ready_for_manual_reply",
+    lastKnownActivity: "2026-08-01",
+    problemIntent: ["battery_sizing"],
+    targetRoute: "/pl/",
+    sourceUrl: "https://example.com/viewtopic.php?t=1",
+  };
+
+  const result = scoreTrafficOpportunity(staleReady, { asOf: "2026-09-16" });
+  assert.equal(result.ageDays, 46);
+  assert.equal(result.actionable, false);
 });
