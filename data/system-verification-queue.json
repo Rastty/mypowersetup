@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-16T14:13:56.425Z",
+  "policy": "verification_only_fail_closed_no_publication",
+  "actionCount": 2,
+  "topAction": {
+    "actionKey": "ampul_eu:verify_pt_ro_si_checkout_and_24v_variant_stock",
+    "owner": "system",
+    "merchant": "ampul_eu",
+    "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock",
+    "candidateIds": [
+      "ampul-eu-inverter-24v-2000w"
+    ],
+    "productNames": [
+      "AMPUL 24V DC to 230V AC 2000W pure-sine inverter"
+    ],
+    "categories": [
+      "inverter"
+    ],
+    "markets": [
+      "pt-PT",
+      "ro-RO",
+      "sl-SI"
+    ],
+    "blockers": [
+      "market_shipping_checkout_unverified"
+    ],
+    "secondaryBlockers": [
+      "variant_stock_unverified"
+    ],
+    "statuses": [
+      "blocked_market_stock_verification"
+    ],
+    "affiliateNetworks": [
+      "ehub"
+    ],
+    "affiliateApprovalConfirmed": true,
+    "trackingVerified": true,
+    "publishEligible": false,
+    "verificationPolicy": "fail_closed_until_market_and_stock_evidence",
+    "bestPriority": "P0",
+    "activeCandidateIds": [
+      "ampul-eu-inverter-24v-2000w"
+    ],
+    "activeCategories": [
+      "inverter"
+    ],
+    "activeMarkets": [
+      "pt-PT",
+      "ro-RO",
+      "sl-SI"
+    ],
+    "currentOpportunityScore": 39,
+    "currentStandaloneUnlockWeight": 0,
+    "currentAffectedWeight": 15,
+    "currentImpacts": [
+      {
+        "market": "pt-PT",
+        "category": "inverter",
+        "priority": "P0",
+        "score": 13,
+        "standaloneUnlockWeight": 0,
+        "affectedWeight": 5
+      },
+      {
+        "market": "ro-RO",
+        "category": "inverter",
+        "priority": "P0",
+        "score": 13,
+        "standaloneUnlockWeight": 0,
+        "affectedWeight": 5
+      },
+      {
+        "market": "sl-SI",
+        "category": "inverter",
+        "priority": "P0",
+        "score": 13,
+        "standaloneUnlockWeight": 0,
+        "affectedWeight": 5
+      }
+    ]
+  },
+  "actions": [
+    {
+      "actionKey": "ampul_eu:verify_pt_ro_si_checkout_and_24v_variant_stock",
+      "owner": "system",
+      "merchant": "ampul_eu",
+      "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock",
+      "candidateIds": [
+        "ampul-eu-inverter-24v-2000w"
+      ],
+      "productNames": [
+        "AMPUL 24V DC to 230V AC 2000W pure-sine inverter"
+      ],
+      "categories": [
+        "inverter"
+      ],
+      "markets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "blockers": [
+        "market_shipping_checkout_unverified"
+      ],
+      "secondaryBlockers": [
+        "variant_stock_unverified"
+      ],
+      "statuses": [
+        "blocked_market_stock_verification"
+      ],
+      "affiliateNetworks": [
+        "ehub"
+      ],
+      "affiliateApprovalConfirmed": true,
+      "trackingVerified": true,
+      "publishEligible": false,
+      "verificationPolicy": "fail_closed_until_market_and_stock_evidence",
+      "bestPriority": "P0",
+      "activeCandidateIds": [
+        "ampul-eu-inverter-24v-2000w"
+      ],
+      "activeCategories": [
+        "inverter"
+      ],
+      "activeMarkets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "currentOpportunityScore": 39,
+      "currentStandaloneUnlockWeight": 0,
+      "currentAffectedWeight": 15,
+      "currentImpacts": [
+        {
+          "market": "pt-PT",
+          "category": "inverter",
+          "priority": "P0",
+          "score": 13,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5
+        },
+        {
+          "market": "ro-RO",
+          "category": "inverter",
+          "priority": "P0",
+          "score": 13,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5
+        },
+        {
+          "market": "sl-SI",
+          "category": "inverter",
+          "priority": "P0",
+          "score": 13,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 5
+        }
+      ]
+    },
+    {
+      "actionKey": "ampul_eu:verify_pt_ro_si_checkout",
+      "owner": "system",
+      "merchant": "ampul_eu",
+      "nextAction": "verify_pt_ro_si_checkout",
+      "candidateIds": [
+        "ampul-eu-dcdc-12v-30a"
+      ],
+      "productNames": [
+        "AMPUL DC/DC LiFePO4 charger 14.6V 30A 400W IP68"
+      ],
+      "categories": [
+        "dc_charger"
+      ],
+      "markets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "blockers": [
+        "market_shipping_checkout_unverified"
+      ],
+      "secondaryBlockers": [],
+      "statuses": [
+        "blocked_market_verification"
+      ],
+      "affiliateNetworks": [
+        "ehub"
+      ],
+      "affiliateApprovalConfirmed": true,
+      "trackingVerified": true,
+      "publishEligible": false,
+      "verificationPolicy": "fail_closed_until_market_and_stock_evidence",
+      "bestPriority": "P1",
+      "activeCandidateIds": [
+        "ampul-eu-dcdc-12v-30a"
+      ],
+      "activeCategories": [
+        "dc_charger"
+      ],
+      "activeMarkets": [
+        "pt-PT",
+        "ro-RO",
+        "sl-SI"
+      ],
+      "currentOpportunityScore": 12,
+      "currentStandaloneUnlockWeight": 0,
+      "currentAffectedWeight": 0,
+      "currentImpacts": [
+        {
+          "market": "pt-PT",
+          "category": "dc_charger",
+          "priority": "P1",
+          "score": 4,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 0
+        },
+        {
+          "market": "ro-RO",
+          "category": "dc_charger",
+          "priority": "P1",
+          "score": 4,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 0
+        },
+        {
+          "market": "sl-SI",
+          "category": "dc_charger",
+          "priority": "P1",
+          "score": 4,
+          "standaloneUnlockWeight": 0,
+          "affectedWeight": 0
+        }
+      ]
+    }
+  ]
+}
