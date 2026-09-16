@@ -13,10 +13,13 @@ on:
       - "src/engine.js"
       - "src/acquisition-requirements.js"
       - "src/commercial-scenarios.js"
+      - "src/commercial-sourcing-candidates.js"
+      - "src/commercial-system-verification-actions.js"
       - "src/shopify.js"
       - "src/oxe-affiliate.js"
       - "src/oxe-feed.js"
       - "scripts/sync-products-expansion-eu.mjs"
+      - "scripts/write-system-verification-queue.mjs"
       - "scripts/lib/sync-allpowers-eu.mjs"
       - "scripts/lib/sync-powerqueen-eu.mjs"
       - "scripts/lib/sync-ampul-expansion.mjs"
@@ -29,6 +32,7 @@ on:
       - "tests/expansion-component-product-recommendations.test.js"
       - "tests/ampul-expansion-sync.test.js"
       - "tests/ampul-expansion-market-integration.test.js"
+      - "tests/commercial-system-verification-actions.test.js"
       - "tests/powerqueen-fetch-resilience.test.js"
       - "tests/oxe-expansion-recommendations.test.js"
       - "tests/oxe-feed.test.js"
@@ -59,9 +63,12 @@ jobs:
       - run: node --check scripts/sync-products-expansion-eu.mjs
       - run: node --check src/ro-recommendations.js
       - run: node --check src/si-recommendations.js
+      - run: node --check src/commercial-system-verification-actions.js
+      - run: node --check scripts/write-system-verification-queue.mjs
       - run: node scripts/sync-products-expansion-eu.mjs
       - run: node scripts/write-commercial-opportunity-report.mjs
       - run: node scripts/write-owner-action-queue.mjs
+      - run: node scripts/write-system-verification-queue.mjs
       - name: Test expansion catalogs and recommendation safety
         run: >-
           node --test
@@ -70,16 +77,17 @@ jobs:
           tests/expansion-component-product-recommendations.test.js
           tests/powerqueen-fetch-resilience.test.js
           tests/commercial-opportunity-backlog.test.js
+          tests/commercial-system-verification-actions.test.js
           tests/commercial-scenarios.test.js
           tests/oxe-expansion-recommendations.test.js
           tests/oxe-feed.test.js
           tests/oxe-affiliate.test.js
           tests/si-recommendations.test.js
-      - name: Commit refreshed RO, SI, opportunity and owner-action data
+      - name: Commit refreshed RO, SI, opportunity and action data
         run: |
-          if git diff --quiet -- data/products-ro.json data/products-si.json data/commercial-opportunity-report.json data/owner-action-queue.json; then exit 0; fi
+          if git diff --quiet -- data/products-ro.json data/products-si.json data/commercial-opportunity-report.json data/owner-action-queue.json data/system-verification-queue.json; then exit 0; fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -- data/products-ro.json data/products-si.json data/commercial-opportunity-report.json data/owner-action-queue.json
-          git commit -m "data: refresh RO, SI and commercial opportunity data"
+          git add -- data/products-ro.json data/products-si.json data/commercial-opportunity-report.json data/owner-action-queue.json data/system-verification-queue.json
+          git commit -m "data: refresh RO, SI and commercial action data"
           git push
