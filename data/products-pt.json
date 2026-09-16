@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T19:29:33.745Z",
+  "generatedAt": "2026-09-16T19:38:46.078Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": false,
@@ -78,6 +78,41 @@
           "marketVerifiedAt": null
         }
       ]
+    },
+    "butler_technik": {
+      "status": "blocked",
+      "blocker": "awin_program_approval_pending",
+      "network": "awin",
+      "merchantId": 31291,
+      "affiliateId": 3044971,
+      "approvalConfirmed": false,
+      "approvalSource": null,
+      "trackingVerifiedAt": null,
+      "targetMarket": "pt-PT",
+      "marketCode": "pt",
+      "exactProducts": 0,
+      "verifiedProductMarkets": {
+        "butler-victron-scc125060321": [],
+        "butler-victron-orion-xs-12-12-50": []
+      },
+      "productStates": [
+        {
+          "candidateId": "butler-victron-scc125060321",
+          "stockVerified": true,
+          "ready": false,
+          "blocker": "awin_program_approval_pending",
+          "stockVerifiedAt": "2026-09-16"
+        },
+        {
+          "candidateId": "butler-victron-orion-xs-12-12-50",
+          "stockVerified": true,
+          "ready": false,
+          "blocker": "awin_program_approval_pending",
+          "stockVerifiedAt": "2026-09-16"
+        }
+      ],
+      "shippingEvidenceUrl": "https://www.butlertechnik.com/affiliate-program",
+      "shippingVerifiedAt": "2026-09-16"
     },
     "ampul_eu": {
       "status": "blocked",
