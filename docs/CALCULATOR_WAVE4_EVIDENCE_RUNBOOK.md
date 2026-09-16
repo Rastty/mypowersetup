@@ -4,15 +4,31 @@ Wave 4 optimizes existing calculator routes from observed search and funnel evid
 
 ## Inputs
 
+The report accepts JSON, CSV or TSV. UTF-8 BOM, quoted delimiters, Czech/English export headers, decimal comma and percent values are normalized automatically. There is no need to hand-convert a normal export into the internal JSON shape.
+
 ### 1. GSC page/query export
 
-JSON array, or an object with `rows` / `data`. Supported row shapes:
+Direct Search Console CSV/TSV exports are supported. Common English and Czech headers are recognized, including:
+
+- `Top pages` / `Page` / `Nejvýznamnější stránky`
+- `Top queries` / `Query` / `Dotazy`
+- `Clicks` / `Prokliky`
+- `Impressions` / `Zobrazení`
+- `CTR`
+- `Position` / `Pozice`
+
+Example direct CSV:
+
+```csv
+Nejvýznamnější stránky,Prokliky,Zobrazení,CTR,Pozice
+https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/,3,120,2.5%,7.2
+```
+
+JSON arrays, objects with `rows` / `data`, and native Search Console API rows are still accepted:
 
 ```json
 {"page":"https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/","query":"dc dc nabijecka karavan","clicks":3,"impressions":120,"position":7.2}
 ```
-
-or native Search Console-style keys:
 
 ```json
 {"keys":["https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/","dc dc nabijecka karavan"],"clicks":3,"impressions":120,"ctr":0.025,"position":7.2}
@@ -20,9 +36,19 @@ or native Search Console-style keys:
 
 Only known calculator roots are accepted: CZ `/kalkulacky/`, SK `/sk/kalkulacky/`, PL `/pl/kalkulatory/`, HU `/hu/kalkulatorok/`.
 
-### 2. GA/event export
+### 2. GA4/event export
 
-JSON array, or an object with `events` / `rows` / `data`. Events use the existing calculator attribution parameters and are summarized through the canonical `buildCalculatorFunnelSummary` logic.
+JSON, CSV or TSV are accepted. For compact GA4 exports, one row may represent many events through `Event count`; the report uses that count as the funnel weight rather than incorrectly treating the row as one event.
+
+The preferred flat export contains these columns:
+
+```csv
+Event name,Event count,Calculator landing path,Calculator landing locale,Calculator landing intent
+calculator_landing_view,40,/kalkulacky/kapacita-baterie/,cs,battery-capacity
+calculator_started,25,/kalkulacky/kapacita-baterie/,cs,battery-capacity
+```
+
+English and Czech aliases such as `Event name` / `Název události` and `Event count` / `Počet událostí` are recognized. Existing raw JSON event rows with `parameters` remain supported.
 
 Measured chain:
 
@@ -30,15 +56,23 @@ Measured chain:
 
 ### 3. Optional URL inspection/indexing export
 
-JSON array, or an object with `rows` / `data`. Minimal shape:
+JSON, CSV or TSV are accepted. Minimal JSON shape:
 
 ```json
 {"url":"https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/","indexed":true}
 ```
 
-`coverageState`, `verdict` or `status` are also accepted for common inspection exports.
+`coverageState`, `verdict`, `status` / `stav` are also accepted for common inspection exports.
 
 ## Run
+
+No-cleanup CSV example:
+
+```bash
+npm run report:calculator:growth -- gsc-pages.csv ga4-calculator-events.csv indexing.csv
+```
+
+JSON remains valid:
 
 ```bash
 npm run report:calculator:growth -- gsc.json events.json indexing.json
