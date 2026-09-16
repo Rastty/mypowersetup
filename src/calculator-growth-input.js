@@ -4,6 +4,7 @@ function clean(value) {
 
 function canonicalHeader(value) {
   return clean(value)
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
@@ -24,6 +25,7 @@ const GSC_ALIASES = Object.freeze({
 const GA_ALIASES = Object.freeze({
   event_name: ["event name", "event", "name", "nazev udalosti", "udalost"],
   event_count: ["event count", "count", "events", "pocet udalosti", "pocet udalosti celkem"],
+  total_users: ["total users", "users", "active users", "celkovy pocet uzivatelu", "uzivatele", "aktivni uzivatele"],
   calculator_landing_path: ["calculator landing path", "landing path", "page path", "path", "cesta vstupni stranky", "cesta stranky"],
   calculator_landing_locale: ["calculator landing locale", "landing locale", "locale", "language", "jazyk", "lokalita kalkulacky"],
   calculator_landing_intent: ["calculator landing intent", "landing intent", "intent", "zamer", "zamer kalkulacky"],
@@ -147,12 +149,17 @@ export function normalizeGa4CalculatorEventRows(rows = []) {
     if (row?.parameters && typeof row.parameters === "object") return row;
     const eventName = aliasLookup(row, GA_ALIASES.event_name);
     const eventCount = aliasLookup(row, GA_ALIASES.event_count);
+    const totalUsers = aliasLookup(row, GA_ALIASES.total_users);
     const path = aliasLookup(row, GA_ALIASES.calculator_landing_path);
     const locale = aliasLookup(row, GA_ALIASES.calculator_landing_locale);
     const intent = aliasLookup(row, GA_ALIASES.calculator_landing_intent);
+    const normalizedEventCount = eventCount === undefined ? 1 : Math.max(0, parseLocalizedNumber(eventCount));
+    const normalizedTotalUsers = totalUsers === undefined ? null : Math.max(0, parseLocalizedNumber(totalUsers));
     return {
       event_name: clean(eventName),
-      event_count: eventCount === undefined ? 1 : Math.max(0, parseLocalizedNumber(eventCount)),
+      event_count: normalizedEventCount,
+      ...(normalizedTotalUsers === null ? {} : { total_users: normalizedTotalUsers }),
+      funnel_count: normalizedTotalUsers ?? normalizedEventCount,
       calculator_landing_path: clean(path),
       calculator_landing_locale: clean(locale),
       calculator_landing_intent: clean(intent),
