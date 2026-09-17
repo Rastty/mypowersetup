@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-16T19:42:50.442Z",
+  "generatedAt": "2026-09-17T08:43:56.371Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12544,
+      "parsedProducts": 12539,
       "relevantProducts": 157
     },
     "ampul_hu": {
       "status": "ok",
-      "parsedProducts": 7689,
+      "parsedProducts": 7714,
       "relevantProducts": 13
     },
     "allpowers_eu": {
@@ -3254,7 +3254,7 @@
     {
       "id": "padabo_hu:19287_21292",
       "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
       "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
       "category": "inverter",
@@ -6274,7 +6274,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 629.99,
+      "priceCzk": 584.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-125ah-smart-lifepo4-bootsbatterie-mit-selbstheizung",
@@ -6309,7 +6309,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 372.99,
+      "priceCzk": 399.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-140ah-190h-smart-wohnmobil-lithium-batterie-mit-bluetooth",
@@ -6414,7 +6414,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 489.99,
+      "priceCzk": 513.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-smart-solar-battery-with-bluetooth",
@@ -6626,7 +6626,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 449.99,
+      "priceCzk": 484.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-deep-cycle-solar-battery",

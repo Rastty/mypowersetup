@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-16T19:42:27.778Z",
+  "generatedAt": "2026-09-17T08:43:33.521Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16497,
+      "parsedProducts": 16498,
       "relevantProducts": 250
     },
     "allpowers_eu": {
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7689,
+      "parsedProducts": 7714,
       "relevantProducts": 15
     }
   },
@@ -8801,7 +8801,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 629.99,
+      "priceCzk": 584.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-125ah-smart-lifepo4-bootsbatterie-mit-selbstheizung",
@@ -8836,7 +8836,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 372.99,
+      "priceCzk": 399.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-140ah-190h-smart-wohnmobil-lithium-batterie-mit-bluetooth",
@@ -8941,7 +8941,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 489.99,
+      "priceCzk": 513.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-smart-solar-battery-with-bluetooth",
@@ -9153,7 +9153,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 449.99,
+      "priceCzk": 484.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-deep-cycle-solar-battery",
