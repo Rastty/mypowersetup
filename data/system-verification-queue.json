@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-09-16T19:39:12.122Z",
+  "generatedAt": "2026-09-17T06:59:58.115Z",
   "policy": "verification_only_fail_closed_no_publication",
   "actionCount": 2,
   "topAction": {
@@ -116,7 +116,7 @@
       {
         "candidateId": "ampul-eu-inverter-24v-2000w",
         "sourceProductId": "ampul_cz:5577-7392",
-        "generatedAt": "2026-09-16T19:38:14.143Z",
+        "generatedAt": "2026-09-16T19:42:16.807Z",
         "sourceHealthy": true,
         "found": true,
         "available": null,
@@ -285,7 +285,7 @@
         {
           "candidateId": "ampul-eu-inverter-24v-2000w",
           "sourceProductId": "ampul_cz:5577-7392",
-          "generatedAt": "2026-09-16T19:38:14.143Z",
+          "generatedAt": "2026-09-16T19:42:16.807Z",
           "sourceHealthy": true,
           "found": true,
           "available": null,
@@ -371,7 +371,43 @@
       ],
       "affiliateApprovalConfirmed": true,
       "trackingVerified": true,
-      "verificationEvidence": [],
+      "verificationEvidence": [
+        {
+          "candidateId": "ampul-eu-dcdc-12v-30a",
+          "checkedAt": "2026-09-16",
+          "evidenceType": "public_catalog_partial",
+          "productUrl": "https://ampul.eu/en/chargers/6195-battery-charger-dc-dc-with-lifepo4-146v-30a-400w-ip68",
+          "localizedProductEvidence": {
+            "ro": "https://ampul.eu/ro/incarcatoare/6195-incarcator-baterie-dc-dc-lifepo4-146v-30a-400w-ip68"
+          },
+          "catalogSpecs": {
+            "batteryVoltageV": 12,
+            "outputVoltageV": 14.6,
+            "chargingCurrentA": 30,
+            "powerW": 400,
+            "ipRating": "IP68"
+          },
+          "publicStockScope": "exact_product",
+          "publicStockStatus": "in_stock_at_supplier",
+          "genericShippingEvidence": {
+            "sourceUrl": "https://ampul.eu/en/",
+            "scope": "32_european_countries",
+            "targetMarketsVerified": []
+          },
+          "verifiedChecks": [
+            "exact_product_listed",
+            "exact_product_specs_match",
+            "exact_product_stock_at_supplier",
+            "romanian_localized_product_page_live",
+            "generic_eu_shipping_claim"
+          ],
+          "unresolvedChecks": [
+            "pt-PT_checkout",
+            "ro-RO_checkout",
+            "sl-SI_checkout"
+          ]
+        }
+      ],
       "marketVerification": [
         {
           "candidateId": "ampul-eu-dcdc-12v-30a",
@@ -413,7 +449,7 @@
         {
           "candidateId": "ampul-eu-dcdc-12v-30a",
           "sourceProductId": "ampul_cz:6195",
-          "generatedAt": "2026-09-16T19:38:14.143Z",
+          "generatedAt": "2026-09-16T19:42:16.807Z",
           "sourceHealthy": true,
           "found": true,
           "available": true,
