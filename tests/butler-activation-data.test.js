@@ -8,7 +8,7 @@ import {
 } from "../src/affiliate-butler.js";
 import { syncButlerEu } from "../scripts/lib/sync-butler-eu.mjs";
 
-const NOW = Date.parse("2026-09-16T20:00:00.000Z");
+const NOW = Date.parse("2026-09-18T20:00:00.000Z");
 const CONTROLLER = "butler-victron-scc125060321";
 const DCDC = "butler-victron-orion-xs-12-12-50";
 
