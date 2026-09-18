@@ -5,7 +5,7 @@ import { readFile } from "node:fs/promises";
 import { syncSolarisEu } from "../scripts/lib/sync-solaris-eu.mjs";
 import { validateSolarisExpansionProduct } from "../src/affiliate-solaris.js";
 
-const NOW = Date.parse("2026-09-16T20:00:00.000Z");
+const NOW = Date.parse("2026-09-18T20:00:00.000Z");
 const ID_12 = "solaris-victron-phoenix-12-250";
 const ID_24 = "solaris-victron-phoenix-24-250";
 

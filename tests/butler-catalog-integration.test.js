@@ -7,7 +7,7 @@ import { validatePtCatalog } from "../src/products-pt.js";
 import { validateRomaniaCatalog } from "../src/ro-recommendations.js";
 import { validateSloveniaCatalog } from "../src/si-recommendations.js";
 
-const NOW = Date.parse("2026-09-16T20:00:00.000Z");
+const NOW = Date.parse("2026-09-18T20:00:00.000Z");
 
 async function approvedActivation() {
   const activation = JSON.parse(await readFile(new URL("../data/butler-affiliate-activation.json", import.meta.url), "utf8"));
