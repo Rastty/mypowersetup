@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T08:43:22.616Z",
+  "generatedAt": "2026-09-18T08:23:22.832Z",
   "market": "cs-CZ",
   "status": "ready",
   "requirement": {
@@ -10,7 +10,7 @@
     "batteryType": "lifepo4",
     "minimumCurrentA": 30
   },
-  "matchCount": 3,
+  "matchCount": 4,
   "matches": [
     {
       "id": "svetkaravanu:107331",
@@ -33,6 +33,17 @@
       "productUrl": "https://ampul.eu/cs/nabijecky/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
       "verifiedAt": "2026-08-30",
       "score": 97
+    },
+    {
+      "id": "svetkaravanu:106299",
+      "merchant": "svetkaravanu",
+      "name": "Nabíječka baterií Renogy DC-DC, 12V/60A",
+      "currentA": 60,
+      "priceCzk": 5209,
+      "priceCurrency": "CZK",
+      "productUrl": "https://www.svetkaravanu.cz/nabijecka-baterii-renogy-dc-dc-12v-60a_z106299/",
+      "verifiedAt": null,
+      "score": 62
     },
     {
       "id": "solarimport:E8945",
