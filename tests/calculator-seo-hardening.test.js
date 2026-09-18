@@ -31,6 +31,14 @@ const LOCALIZED_EQUIVALENTS = Object.freeze({
   }),
 });
 
+
+const TOP_LEVEL_DISCOVERY = Object.freeze([
+  Object.freeze({ home: "index.html", guideHub: "pruvodce/index.html", calculatorHub: "/kalkulacky/" }),
+  Object.freeze({ home: "sk/index.html", guideHub: "sk/sprievodca/index.html", calculatorHub: "/sk/kalkulacky/" }),
+  Object.freeze({ home: "pl/index.html", guideHub: "pl/poradnik/index.html", calculatorHub: "/pl/kalkulatory/" }),
+  Object.freeze({ home: "hu/index.html", guideHub: "hu/utmutatok/index.html", calculatorHub: "/hu/kalkulatorok/" }),
+]);
+
 function routeFor(slug) {
   return slug ? `/kalkulacky/${slug}/` : "/kalkulacky/";
 }
@@ -140,6 +148,18 @@ test("calculator hub and matching money guides create reciprocal internal discov
     assert.ok(page.includes('href="/kalkulacky/"'), `${route} must link back to calculator hub`);
     const guide = await readFile(entry.guide, "utf8");
     assert.ok(guide.includes(`href="${route}"`), `${entry.guide} must link the matching calculator ${route}`);
+  }
+});
+
+
+test("calculator hubs have high-level discovery links from home and guide hubs", async () => {
+  for (const entry of TOP_LEVEL_DISCOVERY) {
+    const [home, guideHub] = await Promise.all([
+      readFile(entry.home, "utf8"),
+      readFile(entry.guideHub, "utf8"),
+    ]);
+    assert.ok(home.includes(`href="${entry.calculatorHub}"`), `${entry.home} must link ${entry.calculatorHub}`);
+    assert.ok(guideHub.includes(`href="${entry.calculatorHub}"`), `${entry.guideHub} must link ${entry.calculatorHub}`);
   }
 });
 
