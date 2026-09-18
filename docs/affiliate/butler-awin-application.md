@@ -2,7 +2,7 @@
 
 Status: **READY_TO_SUBMIT**
 Priority: **high — one approval unlocks controller + DC-DC sourcing**
-Verified: 2026-09-16
+Verified: 2026-09-18
 
 ## Programme
 
@@ -13,7 +13,7 @@ Verified: 2026-09-16
 
 Current public programme evidence:
 - 30-day attribution cookie
-- base commission from 2%, with higher rates/bonuses possible
+- current public programme states 2% to 5% commission, with higher-performance bonuses possible
 - daily product data feed
 - bespoke creatives and product deeplinks
 - Victron Energy included explicitly
@@ -54,7 +54,7 @@ MyPowerSetup team
 - Current: 60 A
 - System voltages: 12 / 24 / 48 V
 - Verified PV capability: 860 W @ 12 V / 1720 W @ 24 V
-- Public stock evidence refreshed 2026-09-16: in stock, £275.00 ex VAT
+- Public stock evidence refreshed 2026-09-18: in stock, £275.00 ex VAT
 
 ### DC-DC charger
 - Candidate: `butler-victron-orion-xs-12-12-50`
@@ -66,7 +66,7 @@ MyPowerSetup team
 - Power: 700 W
 - LiFePO4 compatible
 - Smart-alternator compatible
-- Public stock evidence refreshed 2026-09-16: in stock, £232.46 ex VAT
+- Public stock evidence refreshed 2026-09-18: in stock, £232.46 ex VAT
 
 ## Zero-code activation path
 
@@ -94,7 +94,7 @@ The production adapter builds exact Awin deeplinks only for the two staged Butle
 - [ ] daily product-feed access confirmed
 - [x] PT/RO/SI shipping evidence preserved
 - [x] data-only activation surface prepared
-- [x] exact product stock evidence refreshed 2026-09-16
+- [x] exact product stock evidence refreshed 2026-09-18
 - [x] PT/RO/SI catalog sync prepared
 - [x] PT/RO/SI runtime validation prepared
 - [x] market isolation and stale-stock guardrails prepared
