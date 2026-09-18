@@ -114,6 +114,17 @@ test("public SEO audit requires guide hub CollectionPage and ItemList to match t
   assert.ok(broken.failures.some((failure) => failure.endsWith("GUIDE_HUB_SCHEMA_INVALID")));
 });
 
+test("public SEO audit recognizes the Czech calculator namespace", async () => {
+  const route = "/kalkulacky/kapacita-baterie/";
+  const html = page({ route, schemas: [{ "@type": "WebPage" }] });
+  const report = await auditPublicSeo({
+    sitemapXml: `<urlset><url><loc>https://mypowersetup.com${route}</loc></url></urlset>`,
+    readPage: async () => html,
+  });
+  assert.equal(report.ready, true, report.failures.join("\n"));
+  assert.equal(report.marketCounts.cs, 1);
+});
+
 test("sitemap route and file mapping remain deterministic", () => {
   assert.deepEqual(sitemapRoutes('<loc>https://mypowersetup.com/</loc><loc>https://mypowersetup.com/si/vodici/</loc>'), ["/", "/si/vodici/"]);
   assert.equal(publicRoutePath("/"), "index.html");

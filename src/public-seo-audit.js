@@ -11,7 +11,7 @@ const MARKETS = Object.freeze([
 ]);
 
 function marketForRoute(route) {
-  if (route === "/" || route.startsWith("/pruvodce/") || ["/o-projektu/", "/metodika/", "/affiliate/", "/soukromi/"].includes(route)) return MARKETS[0];
+  if (route === "/" || route.startsWith("/pruvodce/") || route.startsWith("/kalkulacky/") || ["/o-projektu/", "/metodika/", "/affiliate/", "/soukromi/"].includes(route)) return MARKETS[0];
   return MARKETS.slice(1).find(({ prefix }) => route.startsWith(prefix)) || null;
 }
 

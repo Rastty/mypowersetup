@@ -59,6 +59,12 @@ test("robots declares every sitemap used by IndexNow", async () => {
   assert.deepEqual(extractDeclaredSitemapFiles(robots), ["sitemap.xml", "sitemap-scenarios.xml", "sitemap-calculators.xml"]);
 });
 
+test("primary sitemap mirrors the complete calculator cluster for Google discovery", async () => {
+  const xml = await readFile("sitemap.xml", "utf8");
+  const urls = extractSitemapUrls(xml);
+  for (const url of calculatorUrls) assert.ok(urls.includes(url), `primary sitemap missing calculator URL: ${url}`);
+});
+
 test("declared sitemap discovery rejects foreign and unsafe sitemap locations", () => {
   const robots = [
     "Sitemap: https://mypowersetup.com/sitemap.xml",
