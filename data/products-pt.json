@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T08:24:00.644Z",
+  "generatedAt": "2026-09-19T08:07:47.747Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": false,
@@ -13,11 +13,11 @@
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 58,
-      "relevantProducts": 20,
+      "relevantProducts": 21,
       "batteries": 15,
       "controllers": 1,
       "inverters": 1,
-      "shoreChargers": 3,
+      "shoreChargers": 4,
       "awinMerchantId": 97025,
       "affiliateId": 3044971,
       "shippingEligible": true,
@@ -1140,6 +1140,43 @@
         ],
         "chargingInputVoltagesV": [
           24
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
+      "verifiedAt": "2026-08-29",
+      "marketEligible": true
+    },
+    {
+      "id": "powerqueen_eu:7752846115036",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen 14.6V 20A LiFePO4 battery charger for 12V LiFePO4 battery",
+      "description": "Power Queen AC to DC charger for 12.8 V LiFePO4 batteries; 14.6 V charging output at 20 A and 100-240 V AC input.",
+      "categoryPath": "Nabíječky",
+      "category": "shore_charger",
+      "brand": "PQ-DE",
+      "priceCzk": 85.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PowerQueen14_6V20ALiFePO4Ladegeratfur12VLiFePO4-Batterie.webp?v=1785835445",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 20,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
         ],
         "chargingBatteryTypes": [
           "lifepo4"
