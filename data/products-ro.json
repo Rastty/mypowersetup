@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T08:24:50.243Z",
+  "generatedAt": "2026-09-19T08:09:44.976Z",
   "market": "ro-RO",
   "currency": "EUR",
   "private": false,
@@ -27,17 +27,17 @@
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 58,
-      "relevantProducts": 20,
+      "relevantProducts": 21,
       "batteries": 15,
       "controllers": 1,
       "inverters": 1,
-      "shoreChargers": 3,
+      "shoreChargers": 4,
       "awinMerchantId": 97025,
       "affiliateId": 3044971,
       "shippingEligible": true,
       "shippingEvidenceUrl": "https://www.ipowerqueen.de/en/pages/shipping-policy",
       "shippingVerifiedAt": "2026-09-01",
-      "exactProducts": 20
+      "exactProducts": 21
     },
     "xdatou": {
       "status": "blocked",
@@ -182,7 +182,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:10257573445939",
@@ -246,7 +246,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:8205919715635",
@@ -277,7 +277,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:10143263129907",
@@ -308,7 +308,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:10143246418227",
@@ -339,7 +339,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:9948837937459",
@@ -370,7 +370,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:9875554074931",
@@ -401,7 +401,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:9855868961075",
@@ -432,7 +432,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:9802731815219",
@@ -463,7 +463,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:9801383051571",
@@ -494,7 +494,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:9763001073971",
@@ -558,7 +558,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:9598354719027",
@@ -589,7 +589,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:9598338564403",
@@ -620,7 +620,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:8630287532339",
@@ -684,7 +684,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:8431037645107",
@@ -715,7 +715,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:8300246663475",
@@ -746,7 +746,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:8336481124659",
@@ -810,7 +810,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:8205916733747",
@@ -841,7 +841,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:8205905887539",
@@ -872,7 +872,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:8205901234483",
@@ -903,7 +903,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:8205897105715",
@@ -934,7 +934,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:8205889012019",
@@ -965,7 +965,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-18"
+      "verifiedAt": "2026-09-19"
     },
     {
       "id": "allpowers_eu:8205880623411",
@@ -1717,6 +1717,43 @@
         ],
         "chargingInputVoltagesV": [
           24
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
+      "verifiedAt": "2026-08-29",
+      "marketEligible": true
+    },
+    {
+      "id": "powerqueen_eu:7752846115036",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen 14.6V 20A LiFePO4 battery charger for 12V LiFePO4 battery",
+      "description": "Power Queen AC to DC charger for 12.8 V LiFePO4 batteries; 14.6 V charging output at 20 A and 100-240 V AC input.",
+      "categoryPath": "Nabíječky",
+      "category": "shore_charger",
+      "brand": "PQ-DE",
+      "priceCzk": 85.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PowerQueen14_6V20ALiFePO4Ladegeratfur12VLiFePO4-Batterie.webp?v=1785835445",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 20,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
         ],
         "chargingBatteryTypes": [
           "lifepo4"
