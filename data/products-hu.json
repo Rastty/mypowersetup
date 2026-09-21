@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-20T08:41:40.031Z",
+  "generatedAt": "2026-09-21T09:03:09.320Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12526,
+      "parsedProducts": 12489,
       "relevantProducts": 157
     },
     "ampul_hu": {
@@ -3290,7 +3290,7 @@
     {
       "id": "padabo_hu:19287_21292",
       "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
       "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
       "category": "inverter",
@@ -5238,7 +5238,7 @@
       "brand": "",
       "priceCzk": 365.37,
       "priceCurrency": "EUR",
-      "available": true,
+      "available": null,
       "productUrl": "https://ampul.eu/hu/feszultseg-atalakitok/5577-7396-feszultseg-atalakito-dc-rol-230v-ac-ra-50hz-2000w",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fhu%2Ffeszultseg-atalakitok%2F5577-7396-feszultseg-atalakito-dc-rol-230v-ac-ra-50hz-2000w",
       "imageUrl": "https://ampul.eu/22150-large_default/feszultseg-atalakito-dc-rol-230v-ac-ra-50hz-2000w.jpg",
@@ -6341,7 +6341,7 @@
     {
       "id": "powerqueen_eu:8666373619932",
       "merchant": "powerqueen_eu",
-      "name": "Power Queen 12V 100Ah Group 24 Smart LiFePO4 Battery with Bluetooth",
+      "name": "Power Queen 12V 100Ah Group 24 Smart LiFePO4 battery with Bluetooth",
       "description": "7 cm less length, 0.4 cm less width, 0.6 cm less height, 1.3 kg lighter, 15.6 Wh/Kg higher energy density (compared to a 12V 100Ah LiFePO4 battery). BCI group size 24, perfect replacement for lead-acid batteries, portable and efficient, ideal for caravans, motorhomes and small boats. Bluetooth 5.0 FCC/CE-RED certified, EMC and RF tested, stable connection without interference, real-time monitoring of battery data via the Power Queen app. Four high-quality Class A battery cells with a 5-year warranty. 4,000–15,000 cycles for a lifespan of 10 years. Supports up to 4P4S configurations, max. 20480Wh energy expansion. BMS multi-protection for safe operation. Automatic shutdown at low temperatures for safe charging and discharging.",
       "categoryPath": "Batteries",
       "category": "battery",

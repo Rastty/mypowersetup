@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-20T08:41:31.413Z",
+  "generatedAt": "2026-09-21T09:03:00.480Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16519,
+      "parsedProducts": 16469,
       "relevantProducts": 207
     },
     "powerqueen_eu": {
@@ -6699,7 +6699,7 @@
     {
       "id": "powerqueen_eu:8666373619932",
       "merchant": "powerqueen_eu",
-      "name": "Power Queen 12V 100Ah Group 24 Smart LiFePO4 Battery with Bluetooth",
+      "name": "Power Queen 12V 100Ah Group 24 Smart LiFePO4 battery with Bluetooth",
       "description": "7 cm less length, 0.4 cm less width, 0.6 cm less height, 1.3 kg lighter, 15.6 Wh/Kg higher energy density (compared to a 12V 100Ah LiFePO4 battery). BCI group size 24, perfect replacement for lead-acid batteries, portable and efficient, ideal for caravans, motorhomes and small boats. Bluetooth 5.0 FCC/CE-RED certified, EMC and RF tested, stable connection without interference, real-time monitoring of battery data via the Power Queen app. Four high-quality Class A battery cells with a 5-year warr",
       "categoryPath": "Batteries",
       "category": "battery",
@@ -8859,7 +8859,7 @@
       "brand": "",
       "priceCzk": 1531.26,
       "priceCurrency": "PLN",
-      "available": true,
+      "available": null,
       "productUrl": "https://ampul.eu/pl/przeksztaltniki-napiecia/5577-7396-przetwornica-napiecia-z-dc-na-230v-ac-50hz-2000w",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fpl%2Fprzeksztaltniki-napiecia%2F5577-7396-przetwornica-napiecia-z-dc-na-230v-ac-50hz-2000w",
       "imageUrl": "https://ampul.eu/22150-large_default/przetwornica-napiecia-z-dc-na-230v-ac-50hz-2000w.jpg",

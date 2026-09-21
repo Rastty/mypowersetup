@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T08:39:47.214Z",
+  "generatedAt": "2026-09-21T09:02:40.885Z",
   "market": "cs-CZ",
   "currency": "CZK",
   "sources": {
@@ -291,7 +291,7 @@
       "brand": "",
       "priceCzk": 8398,
       "priceCurrency": "CZK",
-      "available": true,
+      "available": null,
       "productUrl": "https://ampul.eu/cs/menice-napeti/5577-7396-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fmenice-napeti%2F5577-7396-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
       "imageUrl": "https://ampul.eu/22150-large_default/menic-napeti-z-dc-na-230v-ac-50hz-2000w.jpg",
