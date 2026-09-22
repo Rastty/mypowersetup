@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T09:03:10.593Z",
+  "generatedAt": "2026-09-22T07:26:25.391Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": false,
@@ -64,7 +64,7 @@
           "marketVerified": false,
           "ready": false,
           "stockStatus": "dispatch_5_7_days",
-          "stockVerifiedAt": "2026-09-16",
+          "stockVerifiedAt": "2026-09-22",
           "marketVerifiedAt": null
         },
         {
@@ -74,7 +74,7 @@
           "marketVerified": false,
           "ready": false,
           "stockStatus": "dispatch_1_2_days",
-          "stockVerifiedAt": "2026-09-16",
+          "stockVerifiedAt": "2026-09-22",
           "marketVerifiedAt": null
         }
       ]
@@ -101,14 +101,14 @@
           "stockVerified": true,
           "ready": false,
           "blocker": "awin_program_approval_pending",
-          "stockVerifiedAt": "2026-09-16"
+          "stockVerifiedAt": "2026-09-22"
         },
         {
           "candidateId": "butler-victron-orion-xs-12-12-50",
           "stockVerified": true,
           "ready": false,
           "blocker": "awin_program_approval_pending",
-          "stockVerifiedAt": "2026-09-16"
+          "stockVerifiedAt": "2026-09-22"
         }
       ],
       "shippingEvidenceUrl": "https://www.butlertechnik.com/affiliate-program",

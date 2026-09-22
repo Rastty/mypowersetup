@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-21T09:03:09.320Z",
+  "generatedAt": "2026-09-22T07:26:24.537Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12489,
-      "relevantProducts": 157
+      "parsedProducts": 12483,
+      "relevantProducts": 159
     },
     "ampul_hu": {
       "status": "ok",
@@ -15,7 +15,7 @@
     },
     "allpowers_eu": {
       "status": "ok",
-      "parsedProducts": 57,
+      "parsedProducts": 58,
       "relevantProducts": 28,
       "technicallyVerifiedPowerStations": 6
     },
@@ -4770,6 +4770,35 @@
       }
     },
     {
+      "id": "padabo_hu:108740_33864",
+      "merchant": "padabo_hu",
+      "name": "Carbest PowerWave szinuszos feszültségátalakító, 12/230 V teljesítmény 2000 W",
+      "description": "A legújabb generációs szinuszos kimenetű átalakító hálózati tápellátás-prioritás kapcsolóval A Carbest PowerWave egy szinuszos kimenettel rendelkező, legújabb generációs hálózati tápellátás-prioritáskapcsolóval ellátott áramátalakító. A beépített 230 V-os hálózati tápellátás-prioritás kapcsoló leállítja a működését, amint a lakóautót vagy lakókocsit 230 V-os hálózati tápellátáshoz csatlakoztatják (például egy kempingben). Az inverter működése a külső tápellátásról való leválasztás után újraindul",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Carbest",
+      "priceCzk": 262035,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/195961_102.jpg?1783252443_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": 0.6,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_hu:108740_33865",
       "merchant": "padabo_hu",
       "name": "Carbest PowerWave szinuszos feszültségátalakító, 12/230 V teljesítmény 1000 W",
@@ -4858,6 +4887,37 @@
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:49",
+      "merchant": "padabo_hu",
+      "name": "AGM akkumulátor Exide Dual 50 Ah",
+      "description": "Vontatási akkumulátor minden típusú szabadidőjárműhözAz Exide Dual 50 Ah AGM akkumulátor kialakításával nagy telepítési rugalmasságot kínál. Kettős, alkalmas indításra és hosszabb távú kisütésre egyaránt. Az AGM technológiának, a VRLA légtelenítésnek és a 450 és 2100 Wh közötti teljesítménytartományának köszönhetően minden típusú szabadidőjárműhöz alkalmas. Az Exide Dual 50 Ah AGM akkumulátor egy olyan mélyciklusú akkumulátor típus, amely AGM (Absorbent Glass Mat) technológiát használ. Ennél az ",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 150775,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/agm-akkumulator-exide-dual-50-ah_z49/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-exide-dual-50-ah_z49%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/127636_102.jpg?1704378225_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 50,
+        "capacityWh": 2100,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
       }
@@ -5851,7 +5911,7 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 569,
+      "priceCzk": 549,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r1500-portable-home-backup-power-station-1800w-1152wh-lifep04-battery",

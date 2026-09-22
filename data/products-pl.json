@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-21T09:03:00.480Z",
+  "generatedAt": "2026-09-22T07:26:13.189Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16469,
-      "relevantProducts": 207
+      "parsedProducts": 16464,
+      "relevantProducts": 208
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -42,6 +42,37 @@
     }
   },
   "products": [
+    {
+      "id": "padabo_pl:49",
+      "merchant": "padabo_pl",
+      "name": "Akumulator AGM Exide Dual 50 Ah",
+      "description": "Akumulator trakcyjny do wszystkich typów pojazdów rekreacyjnychAkumulator Exide Dual 50 Ah AGM oferuje wysoką elastyczność instalacji dzięki swojej konstrukcji. Jest podwójny, nadaje się zarówno do rozruchu, jak i do długotrwałego rozładowania. Dzięki technologii AGM, wentylacji VRLA i zakresowi mocy od 450 do 2100 Wh nadaje się do wszystkich typów pojazdów rekreacyjnych. Akumulator Exide Dual 50 Ah AGM to typ akumulatora o głębokim cyklu pracy, który wykorzystuje technologię AGM (Absorbent Glas",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory AGM",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 1593,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/akumulator-agm-exide-dual-50-ah_z49/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-agm-exide-dual-50-ah_z49%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/6/127636_102.jpg?1704378225_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 50,
+        "capacityWh": 2100,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
     {
       "id": "padabo_pl:50_80",
       "merchant": "padabo_pl",
