@@ -59,7 +59,7 @@ export function enhanceExpansionMoneyGuideSeo(html, route) {
   const faq = extractFaq(html);
   if (!faq.length) throw new Error(`EXPANSION_MONEY_GUIDE_FAQ_SCHEMA_MISSING:${route}`);
 
-  let output = html.replace(SOCIAL_BLOCK, "\n").replace(GENERATED_FAQ, "\n");
+  let output = html.replace(SOCIAL_BLOCK, "").replace(GENERATED_FAQ, "");
   output = addSocialMetadata(output, { title, description, canonical, ogLocale: config.ogLocale });
 
   const visibleText = bodyText(output);
