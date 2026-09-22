@@ -58,6 +58,8 @@
     "check:owner:actions": "node scripts/write-owner-action-queue.mjs --check",
     "report:system:verification": "node scripts/write-system-verification-queue.mjs",
     "check:system:verification": "node scripts/write-system-verification-queue.mjs --check",
-    "report:calculator:ga4:live": "node scripts/report-ga4-calculator-live.mjs"
+    "report:calculator:ga4:live": "node scripts/report-ga4-calculator-live.mjs",
+    "sync:expansion:money-seo": "node scripts/sync-expansion-money-guide-seo.mjs",
+    "check:expansion:money-seo": "node scripts/sync-expansion-money-guide-seo.mjs --check"
   }
 }
