@@ -30,7 +30,7 @@ const CONFIG = Object.freeze({
 });
 
 const ROUTE_SET = new Set(ROUTES);
-const SOCIAL_BLOCK = new RegExp(`\\s*${escapeRegExp(SOCIAL_START)}[\\s\\S]*?${escapeRegExp(SOCIAL_END)}\\s*`, "g");
+const SOCIAL_BLOCK = new RegExp(`${escapeRegExp(SOCIAL_START)}[\\s\\S]*?${escapeRegExp(SOCIAL_END)}\\n?`, "g");
 const GENERATED_FAQ = /\s*<section\b[^>]*data-guide-faq[^>]*>[\s\S]*?<\/section>\s*/gi;
 
 export function expansionMoneyGuideRoutes() {
