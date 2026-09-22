@@ -28,6 +28,7 @@ jobs:
       - run: node --check src/calculator-growth-priority.js
       - run: node --check src/calculator-growth-input.js
       - run: node --check src/ga4-live-baseline.js
+      - run: node --check src/expansion-money-guide-seo.js
       - run: node --check src/commercial-coverage.js
       - run: node --check src/commercial-verification-evidence.js
       - run: node --check src/ampul-market-verification.js
@@ -65,6 +66,7 @@ jobs:
       - run: node --check scripts/report-calculator-funnel.mjs
       - run: node --check scripts/report-calculator-growth.mjs
       - run: node --check scripts/report-ga4-calculator-live.mjs
+      - run: node --check scripts/sync-expansion-money-guide-seo.mjs
       - run: node --check scripts/smoke-public-mobile.mjs
       - run: node --check scripts/smoke-hu-mobile.mjs
       - run: node --check scripts/smoke-pt-mobile.mjs
@@ -75,6 +77,7 @@ jobs:
       - run: npm run check:expansion:release
       - run: npm run check:public:hreflang
       - run: npm run check:public:conversion
+      - run: npm run check:expansion:money-seo
       - run: npm run check:public:links
       - run: npm run check:conversion:analytics
       - run: node scripts/check-postlaunch-public.mjs
