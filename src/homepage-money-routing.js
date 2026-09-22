@@ -31,9 +31,33 @@ const HOME_MONEY_LINKS = Object.freeze({
     card("/hu/utmutatok/230-v-os-tolto-kivalasztasa/", "230 V", "Mekkora 230 V-os töltő kell?", "Töltőáram, akkumulátorprofil és valós töltési idő."),
     card("/hu/utmutatok/lakoauto-inverter-kivalasztasa/", "Inverter", "Mekkora inverter kell?", "Folyamatos teljesítmény, indítási csúcs és akkumulátoráram."),
   ]),
+  pt: Object.freeze([
+    card("/pt/guias/capacidade-bateria-autocaravana/", "Bateria", "De quantos Ah de bateria precisas?", "Capacidade pela utilização diária, autonomia e tipo de bateria."),
+    card("/pt/guias/quantos-watts-paineis-solares-autocaravana/", "Solar", "Quantos watts de painéis solares precisas?", "Potência solar pela utilização, estação do ano e margem de segurança."),
+    card("/pt/guias/como-escolher-controlador-mppt/", "MPPT", "Como escolher o controlador MPPT?", "Corrente, tensão dos painéis e compatibilidade com a bateria."),
+    card("/pt/guias/carregador-dc-dc-autocaravana/", "DC–DC", "Como escolher um carregador DC–DC?", "Carga em andamento conforme alternador, bateria e cablagem."),
+    card("/pt/guias/carregador-230v-bateria-autocaravana/", "230 V", "Como escolher o carregador de 230 V?", "Corrente de carga, perfil da bateria e tempo real de carregamento."),
+    card("/pt/guias/inversor-autocaravana-potencia/", "Inversor", "Que potência de inversor precisas?", "Potência contínua, pico de arranque e corrente retirada da bateria."),
+  ]),
+  ro: Object.freeze([
+    card("/ro/ghiduri/capacitate-baterie-autorulota/", "Baterie", "De câți Ah de baterie ai nevoie?", "Capacitatea în funcție de consum, autonomie și tipul bateriei."),
+    card("/ro/ghiduri/cate-panouri-solare-autorulota/", "Solar", "De câți wați de panouri solare ai nevoie?", "Puterea solară în funcție de consum, sezon și rezerva necesară."),
+    card("/ro/ghiduri/regulator-mppt-autorulota/", "MPPT", "Cum alegi regulatorul MPPT?", "Curentul, tensiunea panourilor și compatibilitatea cu bateria."),
+    card("/ro/ghiduri/incarcator-dc-dc-autorulota/", "DC–DC", "Cum alegi încărcătorul DC–DC?", "Încărcarea în mers în funcție de alternator, baterie și cablaj."),
+    card("/ro/ghiduri/incarcator-230v-baterie-autorulota/", "230 V", "Cum alegi încărcătorul de 230 V?", "Curentul de încărcare, profilul bateriei și timpul real de încărcare."),
+    card("/ro/ghiduri/invertor-autorulota-putere/", "Invertor", "Ce putere trebuie să aibă invertorul?", "Puterea continuă, vârful de pornire și curentul tras din baterie."),
+  ]),
+  sl: Object.freeze([
+    card("/si/vodici/kapaciteta-baterije-avtodom/", "Baterija", "Koliko Ah baterije potrebuješ?", "Kapaciteta glede na porabo, avtonomijo in vrsto baterije."),
+    card("/si/vodici/koliko-soncnih-panelov-avtodom/", "Sončna energija", "Koliko vatov sončnih panelov potrebuješ?", "Moč panelov glede na porabo, letni čas in varnostno rezervo."),
+    card("/si/vodici/mppt-regulator-avtodom/", "MPPT", "Kako izbrati MPPT regulator?", "Tok, napetost panelov in združljivost z baterijo."),
+    card("/si/vodici/dc-dc-polnilnik-avtodom/", "DC–DC", "Kako izbrati DC–DC polnilnik?", "Polnjenje med vožnjo glede na alternator, baterijo in kable."),
+    card("/si/vodici/230v-polnilnik-baterije-avtodom/", "230 V", "Kako izbrati 230 V polnilnik?", "Polnilni tok, profil baterije in dejanski čas polnjenja."),
+    card("/si/vodici/inverter-avtodom-moc/", "Inverter", "Kakšno moč inverterja potrebuješ?", "Trajna moč, zagonska konica in tok, ki ga zahteva baterija."),
+  ]),
 });
 
-const HOME_PATH_BY_LANG = Object.freeze({ cs: "/", sk: "/sk/", pl: "/pl/", hu: "/hu/" });
+const HOME_PATH_BY_LANG = Object.freeze({ cs: "/", sk: "/sk/", pl: "/pl/", hu: "/hu/", pt: "/pt/", ro: "/ro/", sl: "/si/" });
 const EMPTY_LINKS = Object.freeze([]);
 
 function card(href, label, title, description) {
