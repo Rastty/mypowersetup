@@ -2,14 +2,14 @@
 
 Status: **READY_TO_SUBMIT**
 Priority: **P0 — large 24 V inverter route for PT/RO/SI**
-Verified: 2026-09-18
+Verified: 2026-09-22
 
 ## Application
 
 First-party affiliate page:
 - https://eu.xdatou.com/pages/affiliate-program
 
-Embedded GoAffPro programme endpoint re-verified on the live first-party affiliate page (2026-09-18):
+Embedded GoAffPro programme endpoint re-verified on the live first-party affiliate page (2026-09-22):
 - https://xdatou.goaffpro.com/
 
 ### Suggested English profile / application text
@@ -34,7 +34,7 @@ Website: https://mypowersetup.com/
 - Peak power: 4000 W
 - Waveform: pure sine
 - Commercial fit: coffee-offgrid + high-power-tools scenarios
-- Current public-store regions re-verified 2026-09-18: Portugal, Romania and Slovenia are explicitly selectable
+- Current public-store regions re-verified 2026-09-22: Portugal, Romania and Slovenia are explicitly selectable
 
 ## What to capture after approval
 
