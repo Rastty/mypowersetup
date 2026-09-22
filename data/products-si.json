@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T09:07:34.054Z",
+  "generatedAt": "2026-09-22T07:25:12.866Z",
   "market": "sl-SI",
   "currency": "EUR",
   "private": false,
@@ -71,7 +71,7 @@
           "marketVerified": false,
           "ready": false,
           "stockStatus": "dispatch_5_7_days",
-          "stockVerifiedAt": "2026-09-16",
+          "stockVerifiedAt": "2026-09-22",
           "marketVerifiedAt": null
         },
         {
@@ -81,7 +81,7 @@
           "marketVerified": false,
           "ready": false,
           "stockStatus": "dispatch_1_2_days",
-          "stockVerifiedAt": "2026-09-16",
+          "stockVerifiedAt": "2026-09-22",
           "marketVerifiedAt": null
         }
       ]
@@ -108,14 +108,14 @@
           "stockVerified": true,
           "ready": false,
           "blocker": "awin_program_approval_pending",
-          "stockVerifiedAt": "2026-09-16"
+          "stockVerifiedAt": "2026-09-22"
         },
         {
           "candidateId": "butler-victron-orion-xs-12-12-50",
           "stockVerified": true,
           "ready": false,
           "blocker": "awin_program_approval_pending",
-          "stockVerifiedAt": "2026-09-16"
+          "stockVerifiedAt": "2026-09-22"
         }
       ]
     },
@@ -174,7 +174,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:10257573445939",
@@ -238,7 +238,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:8205919715635",
@@ -269,7 +269,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:10143263129907",
@@ -300,7 +300,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:10143246418227",
@@ -331,7 +331,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:9948837937459",
@@ -362,7 +362,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:9875554074931",
@@ -393,7 +393,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:9855868961075",
@@ -424,7 +424,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:9802731815219",
@@ -455,7 +455,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:9801383051571",
@@ -486,7 +486,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:9763001073971",
@@ -550,7 +550,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:9598354719027",
@@ -581,7 +581,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:9598338564403",
@@ -612,7 +612,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:8630287532339",
@@ -676,7 +676,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:8431037645107",
@@ -707,7 +707,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:8300246663475",
@@ -738,7 +738,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:8336481124659",
@@ -802,7 +802,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:8205916733747",
@@ -833,7 +833,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:8205905887539",
@@ -864,7 +864,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:8205901234483",
@@ -895,7 +895,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:8205897105715",
@@ -926,7 +926,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:8205889012019",
@@ -957,7 +957,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-21"
+      "verifiedAt": "2026-09-22"
     },
     {
       "id": "allpowers_eu:8205880623411",
