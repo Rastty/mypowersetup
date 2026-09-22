@@ -14,13 +14,16 @@ const TARGETS = [
   ["sk", "sk/index.html"],
   ["pl", "pl/index.html"],
   ["hu", "hu/index.html"],
+  ["pt", "pt/index.html"],
+  ["ro", "ro/index.html"],
+  ["sl", "si/index.html"],
 ];
 
 function occurrences(haystack, needle) {
   return String(haystack).split(needle).length - 1;
 }
 
-test("static transform makes all six core money guides crawlable from each homepage", async () => {
+test("static transform makes all six money guides crawlable from each public homepage", async () => {
   for (const [lang, path] of TARGETS) {
     const source = await readFile(new URL(`../${path}`, import.meta.url), "utf8");
     const transformed = syncHomepageMoneyLinksHtml(source, { lang });
@@ -44,5 +47,5 @@ test("static transform preserves editorial guide cards and fails closed without 
 
   const noGrid = "<main><h1>Other page</h1></main>";
   assert.equal(syncHomepageMoneyLinksHtml(noGrid, { lang: "cs" }), noGrid);
-  assert.equal(syncHomepageMoneyLinksHtml(html, { lang: "pt" }), html);
+  assert.equal(syncHomepageMoneyLinksHtml(html, { lang: "fr" }), html);
 });

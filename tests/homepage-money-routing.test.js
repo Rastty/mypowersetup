@@ -3,29 +3,33 @@ import assert from "node:assert/strict";
 
 import { enhanceHomepageMoneyRouting, homepageMoneyLinks } from "../src/homepage-money-routing.js";
 
-const CORE_HOMES = [
-  ["cs", "/"],
-  ["sk", "/sk/"],
-  ["pl", "/pl/"],
-  ["hu", "/hu/"],
+const PUBLIC_HOMES = [
+  ["cs", "/", "/pruvodce/"],
+  ["sk", "/sk/", "/sk/sprievodca/"],
+  ["pl", "/pl/", "/pl/poradnik/"],
+  ["hu", "/hu/", "/hu/utmutatok/"],
+  ["pt", "/pt/", "/pt/guias/"],
+  ["ro", "/ro/", "/ro/ghiduri/"],
+  ["sl", "/si/", "/si/vodici/"],
 ];
 
-test("each core homepage exposes six unique money-guide destinations", () => {
-  for (const [lang, pathname] of CORE_HOMES) {
+test("each public homepage exposes six unique high-intent money-guide destinations", () => {
+  for (const [lang, pathname, routePrefix] of PUBLIC_HOMES) {
     const links = homepageMoneyLinks({ lang, pathname });
     assert.equal(links.length, 6, `${lang} money-guide count`);
     assert.equal(new Set(links.map((item) => item.href)).size, 6, `${lang} unique routes`);
     for (const item of links) {
-      assert.match(item.href, pathname === "/" ? /^\/pruvodce\// : new RegExp(`^${pathname.replace(/\/$/, "")}\/(?:sprievodca|poradnik|utmutatok)\/`));
+      assert.ok(item.href.startsWith(routePrefix), `${lang} route stays in market`);
       assert.ok(item.title.length > 8);
       assert.ok(item.description.length > 20);
     }
   }
 
   assert.deepEqual(homepageMoneyLinks({ lang: "cs", pathname: "/pruvodce/" }), []);
-  assert.deepEqual(homepageMoneyLinks({ lang: "pt", pathname: "/pt/" }), []);
-  assert.deepEqual(homepageMoneyLinks({ lang: "ro", pathname: "/ro/" }), []);
-  assert.deepEqual(homepageMoneyLinks({ lang: "sl", pathname: "/si/" }), []);
+  assert.deepEqual(homepageMoneyLinks({ lang: "pt", pathname: "/pt/guias/" }), []);
+  assert.deepEqual(homepageMoneyLinks({ lang: "ro", pathname: "/ro/ghiduri/" }), []);
+  assert.deepEqual(homepageMoneyLinks({ lang: "sl", pathname: "/si/vodici/" }), []);
+  assert.deepEqual(homepageMoneyLinks({ lang: "fr", pathname: "/fr/" }), []);
 });
 
 test("enhancer appends only missing money guides and is idempotent", () => {

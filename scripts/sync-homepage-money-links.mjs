@@ -6,6 +6,9 @@ const TARGETS = Object.freeze([
   { lang: "sk", path: "sk/index.html" },
   { lang: "pl", path: "pl/index.html" },
   { lang: "hu", path: "hu/index.html" },
+  { lang: "pt", path: "pt/index.html" },
+  { lang: "ro", path: "ro/index.html" },
+  { lang: "sl", path: "si/index.html" },
 ]);
 
 const checkOnly = process.argv.includes("--check");

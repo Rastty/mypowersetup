@@ -1,4 +1,4 @@
-name: Regenerate core homepage money links
+name: Regenerate seven-market homepage money links
 
 on:
   workflow_dispatch:
@@ -9,6 +9,9 @@ on:
       - "sk/index.html"
       - "pl/index.html"
       - "hu/index.html"
+      - "pt/index.html"
+      - "ro/index.html"
+      - "si/index.html"
       - "src/homepage-money-routing.js"
       - "src/homepage-money-html.js"
       - "scripts/sync-homepage-money-links.mjs"
@@ -18,7 +21,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: core-home-money-links-publication
+  group: seven-market-home-money-links-publication
   cancel-in-progress: false
 
 jobs:
@@ -32,16 +35,16 @@ jobs:
         with:
           node-version: 22
           package-manager-cache: false
-      - name: Regenerate crawlable core homepage money links
+      - name: Regenerate crawlable seven-market homepage money links
         run: node scripts/sync-homepage-money-links.mjs
       - name: Verify homepage money-link transform
         run: node --test tests/homepage-money-html.test.js tests/homepage-money-routing.test.js
       - name: Commit generated homepage link drift
         shell: bash
         run: |
-          git add index.html sk/index.html pl/index.html hu/index.html
+          git add index.html sk/index.html pl/index.html hu/index.html pt/index.html ro/index.html si/index.html
           if git diff --cached --quiet; then
-            echo "Core homepage money links already match their source."
+            echo "Seven-market homepage money links already match their source."
             exit 0
           fi
           git config user.name "mypowersetup-bot"
