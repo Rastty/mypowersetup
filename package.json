@@ -57,6 +57,7 @@
     "report:owner:actions": "node scripts/write-owner-action-queue.mjs",
     "check:owner:actions": "node scripts/write-owner-action-queue.mjs --check",
     "report:system:verification": "node scripts/write-system-verification-queue.mjs",
-    "check:system:verification": "node scripts/write-system-verification-queue.mjs --check"
+    "check:system:verification": "node scripts/write-system-verification-queue.mjs --check",
+    "report:calculator:ga4:live": "node scripts/report-ga4-calculator-live.mjs"
   }
 }
