@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-18",
+  "updatedAt": "2026-09-22",
   "approvalConfirmed": false,
   "approvalSource": null,
   "policy": "Exact affiliate tracking, fresh exact-product stock evidence and country-specific checkout evidence are required for each product-market pair before publication.",
@@ -11,7 +11,7 @@
       "trackingVerifiedAt": null,
       "priceEur": 94.87,
       "stockStatus": "dispatch_5_7_days",
-      "stockVerifiedAt": "2026-09-18",
+      "stockVerifiedAt": "2026-09-22",
       "stockEvidenceUrl": "https://www.solaris-store.com/2333-phoenix-inverter-12-250-230v-vedirect-iec-victron-pin121251100.html",
       "markets": {
         "pt": { "verified": false, "evidenceUrl": null, "verifiedAt": null },
@@ -25,7 +25,7 @@
       "trackingVerifiedAt": null,
       "priceEur": 105.05,
       "stockStatus": "dispatch_1_2_days",
-      "stockVerifiedAt": "2026-09-18",
+      "stockVerifiedAt": "2026-09-22",
       "stockEvidenceUrl": "https://www.solaris-store.com/8005-onduleur-victron-phoenix-24-250va-vedirect-schucko.html",
       "markets": {
         "pt": { "verified": false, "evidenceUrl": null, "verifiedAt": null },
