@@ -47,3 +47,12 @@ Prioritize work in this order:
 - Source affiliate merchants against the exact P0/P1 electrical requirement shapes from the report.
 - Keep PT/RO/SI content expansion focused on high-intent queries rather than broad informational volume.
 - Review Search Console query/impression data as soon as sufficient data exists and move content effort toward pages with demonstrated impressions.
+
+## 2026-09-22 seven-market homepage journey update
+
+All seven public market homepages now expose crawlable high-intent guide routes for battery, solar, MPPT, DC-DC, 230 V charging and inverter decisions. PT/RO/SI keep their localized editorial chemistry cards alongside the generated commercial routes.
+
+Consent-safe analytics records `homepage_to_guide_click` for clicks from each homepage guide preview. The event carries the destination path/topic/market plus `source_zone=money_guide|editorial_guide`. Cross-market guide destinations fail closed and are not recorded as a valid homepage journey.
+
+This closes the measurement gap between homepage acquisition and the existing guide → calculator → recommendation → affiliate funnel without changing any merchant eligibility rule.
+
