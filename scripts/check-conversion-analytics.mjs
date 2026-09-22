@@ -24,6 +24,9 @@ requireMatch(analytics, /carryCommunityAttributionToUrl\(/, "community_attributi
 requireMatch(analytics, /source_position:\s*guideCalculatorClickPosition\(link\)/, "guide_calculator_click_distinguishes_early_late_position");
 requireMatch(analytics, /window\.gtag\("event", event/, "events_use_shared_analytics_context");
 requireMatch(analytics, /mypowersetup:analytics-granted/, "consent_grant_retries_visible_product_impressions");
+requireMatch(analytics, /track\("homepage_to_guide_click"/, "homepage_to_guide_click_shared_across_markets");
+requireMatch(analytics, /source_zone:\s*homepageGuideClickZone\(link\)/, "homepage_guide_click_distinguishes_money_and_editorial_cards");
+requireMatch(analytics, /destination_market !== conversionMarket\(context\.market\)/, "homepage_and_guide_clicks_stay_in_market");
 requireMatch(analytics, /track\("calculator_to_guide_click"/, "calculator_to_guide_click_shared_across_markets");
 forbidMatch(analytics, /calculator_(?:result|component)_guide_click/, "calculator_to_guide_click_has_one_event_name");
 requireMatch(navigation, /destination\.origin !== page\.origin/, "community_carry_is_same_origin_only");
@@ -94,4 +97,4 @@ for (const [market, path, appPattern] of [
   requireMatch(html, /id="setup-form"/, `${market}_calculator_form_present`);
 }
 
-console.log("Conversion analytics guard passed: seven market builders plus the CZ SEO calculator cluster track start, completion, continuation, visible product impressions and affiliate clicks with consent-safe downstream attribution.");
+console.log("Conversion analytics guard passed: seven-market homepage → guide journeys plus builders and the CZ SEO calculator cluster track consent-safe progression through visible product impressions and affiliate clicks.");

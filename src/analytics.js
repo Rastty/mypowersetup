@@ -15,6 +15,7 @@ const VALID_CHOICES = new Set(["granted", "denied"]);
 const ONCE_PER_PAGE_EVENTS = new Set(["calculator_started"]);
 const INITIAL_SEARCH = window.location.search;
 const trackedOnce = new Set();
+const HOME_PATH_BY_MARKET = Object.freeze({ cz: "/", sk: "/sk/", pl: "/pl/", hu: "/hu/", pt: "/pt/", ro: "/ro/", si: "/si/" });
 
 const COPY = {
   cs: { label: "Volba analytiky", title: "Pomůžete nám zlepšovat kalkulátor?", text: "Po vašem souhlasu použijeme Google Analytics k anonymnímu měření návštěvnosti a používání funkcí. Bez souhlasu se analytika nenačte.", accept: "Povolit analytiku", reject: "Odmítnout", details: "Více o soukromí", detailsUrl: "/soukromi/" },
@@ -90,6 +91,12 @@ function trackJourneyClick(event) {
   const link = event.target.closest?.("a[href]"); if (!link) return;
   const context = currentContext();
   const href = link.getAttribute("href");
+  if (HOME_PATH_BY_MARKET[context.market] === context.page_path && link.closest(".guide-preview-grid")) {
+    const homepageDestination = classifyGuideInternalLink(href, { origin: window.location.origin, sourcePath: context.page_path });
+    if (!homepageDestination || homepageDestination.destination_market !== conversionMarket(context.market)) return;
+    track("homepage_to_guide_click", { ...homepageDestination, source_zone: homepageGuideClickZone(link) });
+    return;
+  }
   if (context.page_type === "guide") {
     const calculatorDestination = classifyGuideCalculatorLink(href, { origin: window.location.origin });
     if (calculatorDestination) {
@@ -100,14 +107,20 @@ function trackJourneyClick(event) {
       return;
     }
     const internalDestination = classifyGuideInternalLink(href, { origin: window.location.origin, sourcePath: window.location.pathname });
-    if (!internalDestination || internalDestination.destination_market !== context.market.replace("cz", "cs")) return;
+    if (!internalDestination || internalDestination.destination_market !== conversionMarket(context.market)) return;
     track("guide_internal_link_click", { ...internalDestination, source_zone: guideClickZone(link) });
     return;
   }
   if (context.page_type !== "calculator") return;
   const internalDestination = classifyGuideInternalLink(href, { origin: window.location.origin, sourcePath: window.location.pathname });
-  if (!internalDestination || internalDestination.destination_market !== context.market.replace("cz", "cs")) return;
+  if (!internalDestination || internalDestination.destination_market !== conversionMarket(context.market)) return;
   track("calculator_to_guide_click", { ...internalDestination, source_zone: calculatorGuideClickZone(link) });
+}
+function homepageGuideClickZone(link) {
+  return link.hasAttribute("data-money-guide") ? "money_guide" : "editorial_guide";
+}
+function conversionMarket(market) {
+  return market === "cz" ? "cs" : market;
 }
 function calculatorGuideClickZone(link) {
   if (link.hasAttribute("data-component-guide")) return "result_component";

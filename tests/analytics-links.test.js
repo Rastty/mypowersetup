@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { classifyGuideCalculatorLink, classifyGuideCalculatorPosition, classifyGuideClickZone } from "../src/analytics-links.js";
+import { classifyGuideCalculatorLink, classifyGuideCalculatorPosition, classifyGuideClickZone, classifyGuideInternalLink } from "../src/analytics-links.js";
 
 test("guide calculator classifier accepts exact calculator anchors for all published markets", () => {
   assert.deepEqual(classifyGuideCalculatorLink("/#kalkulator"), { destination_path: "/" });
@@ -45,4 +45,20 @@ test("guide calculator position distinguishes early and late conversion CTAs", (
   assert.equal(classifyGuideCalculatorPosition({ inTopCta: true, inBottomCta: true }), "early");
   assert.equal(classifyGuideCalculatorPosition({ inBottomCta: true }), "late");
   assert.equal(classifyGuideCalculatorPosition({}), "inline");
+});
+
+
+test("homepage guide destinations classify consistently for expansion markets", () => {
+  assert.deepEqual(
+    classifyGuideInternalLink("/pt/guias/capacidade-bateria-autocaravana/", { sourcePath: "/pt/" }),
+    { destination_path: "/pt/guias/capacidade-bateria-autocaravana/", destination_topic: "battery", destination_market: "pt" },
+  );
+  assert.deepEqual(
+    classifyGuideInternalLink("/ro/ghiduri/regulator-mppt-autorulota/", { sourcePath: "/ro/" }),
+    { destination_path: "/ro/ghiduri/regulator-mppt-autorulota/", destination_topic: "mppt", destination_market: "ro" },
+  );
+  assert.deepEqual(
+    classifyGuideInternalLink("/si/vodici/dc-dc-polnilnik-avtodom/", { sourcePath: "/si/" }),
+    { destination_path: "/si/vodici/dc-dc-polnilnik-avtodom/", destination_topic: "dcDc", destination_market: "si" },
+  );
 });
