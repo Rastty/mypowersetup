@@ -2,7 +2,7 @@
 
 Status: **READY_TO_SUBMIT**
 Priority: **P0 — highest standalone purchase-ready unlock for PT/RO/SI**
-Verified: 2026-09-16
+Verified: 2026-09-22
 
 ## Application
 
@@ -43,7 +43,7 @@ https://mypowersetup.com/
 - Continuous power: 200 W
 - Peak power: 400 W
 - Waveform: pure sine
-- Public evidence refreshed 2026-09-16: EUR 94.87, dispatch stated as 5–7 days
+- Public evidence refreshed 2026-09-22: EUR 94.87, dispatch stated as 5–7 days
 - Commercial impact: standalone unlock weight **5**
 
 ### Remote work — second priority
@@ -54,7 +54,7 @@ https://mypowersetup.com/
 - Continuous power: 200 W
 - Peak power: 350 W
 - Waveform: pure sine
-- Public evidence refreshed 2026-09-16: EUR 105.05, dispatch stated as 1–2 days
+- Public evidence refreshed 2026-09-22: EUR 105.05, dispatch stated as 1–2 days
 - Commercial impact: affected weight **3**
 
 ### Solar controller — same application, later activation lane

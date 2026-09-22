@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-16",
+  "updatedAt": "2026-09-22",
   "approvalConfirmed": false,
   "approvalSource": null,
   "trackingVerifiedAt": null,
@@ -11,7 +11,7 @@
       "priceGbp": 275,
       "priceBasis": "ex_vat",
       "stockStatus": "in_stock",
-      "stockVerifiedAt": "2026-09-16",
+      "stockVerifiedAt": "2026-09-22",
       "stockEvidenceUrl": "https://www.butlertechnik.com/item/Victron/SmartSolar-MPPT-250-60-MC4/BT2"
     },
     "butler-victron-orion-xs-12-12-50": {
@@ -19,7 +19,7 @@
       "priceGbp": 232.46,
       "priceBasis": "ex_vat",
       "stockStatus": "in_stock",
-      "stockVerifiedAt": "2026-09-16",
+      "stockVerifiedAt": "2026-09-22",
       "stockEvidenceUrl": "https://www.butlertechnik.com/item/Victron/Smart-Buckboost-50A-700W-non-iso-DC-DC-charger/BPV"
     }
   }
