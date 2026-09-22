@@ -7,7 +7,7 @@ import { validatePtCatalog } from "../src/products-pt.js";
 import { validateRomaniaCatalog } from "../src/ro-recommendations.js";
 import { validateSloveniaCatalog } from "../src/si-recommendations.js";
 
-const NOW = Date.parse("2026-09-18T20:00:00.000Z");
+const NOW = Date.parse("2026-09-22T20:00:00.000Z");
 const PRODUCT_IDS = [
   "solaris-victron-phoenix-12-250",
   "solaris-victron-phoenix-24-250",
