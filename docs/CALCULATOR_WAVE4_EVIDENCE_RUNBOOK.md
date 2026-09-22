@@ -110,3 +110,47 @@ Technical eligibility, local merchant rules and no-cross-market product guardrai
 ## Measurement window
 
 Record the source date range with every exported evidence file. After an optimization, keep the same route and event definitions and compare a sufficiently similar post-change window before deciding whether to keep or revert the change.
+
+## Live GA4 read without guessing a property ID
+
+Use the live adapter when a Google OAuth refresh token with `analytics.readonly` is available:
+
+```bash
+npm run report:calculator:ga4:live -- \
+  /path/to/gsc-oauth-client.json \
+  /path/to/google-readonly-token.json \
+  ga4-calculator-live.json
+```
+
+Optional date overrides:
+
+```bash
+GA4_START_DATE=2026-09-18 GA4_END_DATE=2026-09-21 \
+npm run report:calculator:ga4:live -- client.json token.json ga4-calculator-live.json
+```
+
+Safety rules are deliberate:
+
+- the script enumerates accessible GA4 properties and web streams instead of accepting a guessed property ID;
+- it selects only a web stream whose `defaultUri` hostname is exactly `mypowersetup.com` or `www.mypowersetup.com`;
+- zero exact matches or multiple exact matches fail closed;
+- unrelated legacy streams such as other domains are never used as fallback;
+- the script discovers the measurement ID but does **not** modify `src/analytics.js` or any production tag;
+- credentials and access tokens are never written to the output file.
+
+Before asking GA4 for route-level funnel data, the adapter checks Data API metadata for the registered event-scoped dimensions:
+
+- `customEvent:calculator_landing_path`
+- `customEvent:calculator_landing_locale`
+- `customEvent:calculator_landing_intent`
+
+If any are missing, the script still writes a hostname/event summary for diagnostics, marks the evidence file `route_dimensions_missing`, and exits non-zero. Do not replace missing route dimensions with guessed funnel data.
+
+When the dimensions are present, the output object contains an `events` array in the same flat shape already accepted by `report:calculator:growth`. That file can therefore be used directly as the GA input:
+
+```bash
+npm run report:calculator:growth -- gsc.json ga4-calculator-live.json indexing.json
+```
+
+The GA4 live adapter is read-only. It never creates custom dimensions, changes a property, changes consent behavior, or switches the production measurement ID.
+
