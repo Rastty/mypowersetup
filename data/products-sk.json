@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-22T08:39:21.972Z",
+  "generatedAt": "2026-09-23T08:39:41.976Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16450,
-      "relevantProducts": 252
+      "parsedProducts": 16466,
+      "relevantProducts": 254
     },
     "allpowers_eu": {
       "status": "ok",
@@ -16,9 +16,9 @@
     },
     "powerqueen_eu": {
       "status": "ok",
-      "parsedProducts": 58,
-      "relevantProducts": 21,
-      "batteries": 15,
+      "parsedProducts": 60,
+      "relevantProducts": 23,
+      "batteries": 17,
       "controllers": 1,
       "inverters": 1,
       "shoreChargers": 4
@@ -555,7 +555,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
+      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -6462,6 +6462,39 @@
       }
     },
     {
+      "id": "padabo_sk:106296_33729",
+      "merchant": "padabo_sk",
+      "name": "Menič napätia Renogy 12 V výkon 1000 W",
+      "description": "Výkonný usmerňovač napätia pre širokú škálu spotrebičov Menič napätia Renogy využíva pokročilú technológiu čistej sínusoidy na dosiahnutie maximálnej účinnosti vášho systému. Nastavenie meniča je také jednoduché, že ho zvládne aj úplný laik. Výstup s čistou sínusoidou zabezpečuje plynulé a stabilné napájanie, ktoré plnohodnotne nahrádza napájanie z verejnej siete. Menič je univerzálny a kompatibilný so širokou škálou elektrických spotrebičov, vrátane tých citlivejších, bez akýchkoľvek problémov ",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
+      "category": "inverter",
+      "brand": "Renogy",
+      "priceCzk": 192.89,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-renogy-12-v_z106296%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 1000,
+        "currentA": 1,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_sk:106296_33732",
       "merchant": "padabo_sk",
       "name": "Menič napätia Renogy 12 V výkon 3000 W",
@@ -6514,6 +6547,41 @@
         "capacityWh": null,
         "powerW": 750,
         "currentA": 60,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:107308",
+      "merchant": "padabo_sk",
+      "name": "Nabíjačka Renogy DC-DC 12V/40 A",
+      "description": "Smart, robustná a kompaktná nabíjačka Pomocou nabíjačky Renogy DC-DC 12V/40A môžete efektívne nabíjať akumulátory počas chodu motora. Nabíjačka batérií DC-DC je kompatibilná s mnohými typmi alternátorov a umožňuje správne nabíjať batérie AGM, trakčné, gélové a dokonca aj lítiové batérie s hlbokým cyklom. Vďaka 3-stupňovej nabíjačke akumulátorov a viacerým elektronickým ochranám budete mať istotu, že sa vaše akumulátory nabíjajú optimálne a automaticky. Pre zvýšenie bezpečnosti izoluje vstup od v",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Nabíjačky a boostery | Nabíjačky",
+      "category": "dc_charger",
+      "brand": "Renogy",
+      "priceCzk": 161.77,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/nabijacka-renogy-dc-dc-12v-40-a_z107308/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-renogy-dc-dc-12v-40-a_z107308%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/190963_102.jpg?1772370977_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 500,
+        "currentA": 40,
         "chargingVoltagesV": [
           12
         ],
@@ -8813,6 +8881,76 @@
         "dcOutputA": 10
       },
       "verifiedAt": "2026-08-28"
+    },
+    {
+      "id": "powerqueen_eu:9633915175132",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen 12V 125Ah Group 27 Smart LiFePO4 Versorgungsbatterie",
+      "description": "Die smarte Group 27 LiFePO4 Versorgungsbatterie für Angelboot, Campervan &amp; Off-Grid Group 27 LiFePO4 Batterie für 30–70 lbs Trolling-Motoren &amp; Bootsangler (Seewasserfest &amp; IP65): Perfekt abgestimmt auf die Group 27 Norm: Mit den Maßen 308 x 170 x 211 mm und nur 11,68 kg lässt sich diese 12V LiFePO4 Batterie mühelos tragen und passt exakt in gängige Boots-Batterieboxen (z. B. Minn Kota). Sie bietet die ideale Stromversorgung für Trolling-Motoren von 30 bis 70 lbs . Das IP65-wassergesc",
+      "categoryPath": "Batteries",
+      "category": "battery",
+      "brand": "PQ-DE",
+      "priceCzk": 339.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/Power_Queen_12V_125Ah_Group_27_Smart_LiFePO4_Versorgungsbatterie.webp?v=1789973708",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 125,
+        "capacityWh": null,
+        "powerW": 35,
+        "currentA": 100,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "powerqueen_eu:10313906946268",
+      "merchant": "powerqueen_eu",
+      "name": "(0% MwSt.) Power Queen 12V 125Ah Group 27 Smart LiFePO4 Batterie mit Bluetooth",
+      "description": "Die smarte 12V 125Ah LiFePO4 Solar-Batterie (0% MwSt. für PV-Anlagen) – Perfekt für Wohnmobil, Angelboot &amp; Off-Grid Group 27 LiFePO4 Batterie für PV-Anlagen, Angelboote &amp; Trolling-Motoren (IP65): Perfekt abgestimmt auf die Group 27 Norm: Mit den Maßen 308 x 170 x 211 mm und nur 11,68 kg passt diese 12V LiFePO4 Batterie exakt in gängige Boots-Batterieboxen (z. B. Minn Kota) oder kompakte Solarschränke. Als steuerfreier PV-Speicher (§12 Abs. 3 UStG) oder Stromquelle für Trolling-Motoren vo",
+      "categoryPath": "Batteries",
+      "category": "battery",
+      "brand": "PQ-DE-Tax Free",
+      "priceCzk": 285.71,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/0-mwst-power-queen-12v-125ah-group-27-smart-lifepo4-batterie-mit-bluetooth",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2F0-mwst-power-queen-12v-125ah-group-27-smart-lifepo4-batterie-mit-bluetooth",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/Power_Queen_12V_125Ah_Group_27_Smart_LiFePO4_Versorgungsbatterie.webp?v=1789973708",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 125,
+        "capacityWh": null,
+        "powerW": 35,
+        "currentA": 100,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
     },
     {
       "id": "powerqueen_eu:9382555746524",
