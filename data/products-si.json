@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T08:40:17.432Z",
+  "generatedAt": "2026-09-23T08:42:16.176Z",
   "market": "sl-SI",
   "currency": "EUR",
   "private": false,
@@ -26,9 +26,9 @@
     },
     "powerqueen_eu": {
       "status": "ok",
-      "parsedProducts": 58,
-      "relevantProducts": 21,
-      "batteries": 15,
+      "parsedProducts": 60,
+      "relevantProducts": 23,
+      "batteries": 17,
       "controllers": 1,
       "inverters": 1,
       "shoreChargers": 4,
@@ -37,7 +37,7 @@
       "shippingEligible": true,
       "shippingEvidenceUrl": "https://www.ipowerqueen.de/en/pages/shipping-policy",
       "shippingVerifiedAt": "2026-09-01",
-      "exactProducts": 21
+      "exactProducts": 23
     },
     "xdatou": {
       "status": "blocked",
@@ -174,7 +174,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:10257573445939",
@@ -238,7 +238,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:8205919715635",
@@ -269,7 +269,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:10143263129907",
@@ -300,7 +300,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:10143246418227",
@@ -331,7 +331,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:9948837937459",
@@ -362,7 +362,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:9875554074931",
@@ -393,7 +393,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:9855868961075",
@@ -424,7 +424,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:9802731815219",
@@ -455,7 +455,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:9801383051571",
@@ -486,7 +486,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:9763001073971",
@@ -550,7 +550,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:9598354719027",
@@ -581,7 +581,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:9598338564403",
@@ -612,7 +612,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:8630287532339",
@@ -676,7 +676,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:8431037645107",
@@ -707,7 +707,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:8300246663475",
@@ -738,7 +738,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:8336481124659",
@@ -802,7 +802,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:8205916733747",
@@ -833,7 +833,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:8205905887539",
@@ -864,7 +864,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:8205901234483",
@@ -895,7 +895,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:8205897105715",
@@ -926,7 +926,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:8205889012019",
@@ -957,7 +957,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-22"
+      "verifiedAt": "2026-09-23"
     },
     {
       "id": "allpowers_eu:8205880623411",
@@ -1023,6 +1023,78 @@
         "dcOutputA": 10
       },
       "verifiedAt": "2026-08-28",
+      "marketEligible": true
+    },
+    {
+      "id": "powerqueen_eu:9633915175132",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen 12V 125Ah Group 27 Smart LiFePO4 Versorgungsbatterie",
+      "description": "Die smarte Group 27 LiFePO4 Versorgungsbatterie für Angelboot, Campervan &amp; Off-Grid Group 27 LiFePO4 Batterie für 30–70 lbs Trolling-Motoren &amp; Bootsangler (Seewasserfest &amp; IP65): Perfekt abgestimmt auf die Group 27 Norm: Mit den Maßen 308 x 170 x 211 mm und nur 11,68 kg lässt sich diese 12V LiFePO4 Batterie mühelos tragen und passt exakt in gängige Boots-Batterieboxen (z. B. Minn Kota). Sie bietet die ideale Stromversorgung für Trolling-Motoren von 30 bis 70 lbs . Das IP65-wassergeschützte und salzwasserkorrosionsbeständige Gehäuse schützt die Elektronik zuverlässig vor Spritzwasser auf dem Angelboot. 12V 125Ah Versorgungsbatterie: Genug Power für einen ganzen Tag auf dem Wasser: Spürbar mehr Reichweite: Diese Versorgungsbatterie bietet auf kompakter Group 27-Grundfläche satte 125Ah (1.600Wh) . Betreiben Sie z. B. einen 55 lbs Trolling-Motor über 2,5 Stunden bei Vollgas oder eine 12V 35W Kompressor-Kühlbox für bis zu 40–45 Stunden durchgehend, ohne nachzuladen. Platzsparender liegender Einbau unter dem Beifahrersitz (Campervan): Smarte Lösung für Campervans: Neben der aufrechten Montage unterstützt dieser Akku auch den flachen, liegenden Einbau auf der Seite. Dadurch reduziert sich die effektive Einbauhöhe von 211 mm auf extrem kompakte 170 mm – damit passt die Batterie problemlos unter die niedrige Sitzkonsole von Fiat Ducato, Citroën Jumper oder Ford Transit. Integriertes 100A BMS: 1.280W Direct-DC Power &amp; sichere 1.000W über Wechselrichter: Maximale Sicherheit für Ihre Geräte: Das leistungsstarke 100A BMS liefert bis zu 1.280W reine Gleichstrom-Leistung (DC) für direkte 12V-Verbraucher. Bei Nutzung eines Wechselrichters betreiben Sie 230V-Haushaltsgeräte bis 1.000 Watt Dauerleistung (z. B. Reise-Wasserkocher, Reiskocher oder Werkzeuge) absolut stabil und ohne das Risiko einer BMS-Abschaltung. Automatischer 0°C Kälteschutz: Zuverlässiges Überwintern &amp; Ganzjahreseinsatz: Smarte Lösung für die kalte Jahreszeit: Die integrierte Low-Temperature Cut-Off Funktion ( Tieftemperaturschutz ) stoppt den Ladevorgang automatisch bei Temperaturen unter 0°C . So bleiben die hochwertigen Lithium-Zellen beim Frühjahrs-Angeln auf dem kalten See oder beim Wintercamping im Campervan perfekt vor dauerhaften Frostschäden geschützt. Smart Bluetooth 5.0: App-Steuerung ohne teuren Zusatz-Monitor: Volle Kontrolle per Smartphone: Dank Bluetooth 5.0 sehen Sie Restkapazität und genaue Restlaufzeit direkt in der App – sparen Sie sich den Kauf eines teuren Batterie-Monitors (Shunt). Mit dem integrierten Entladungsschalter schalten Sie die Batterie bei Nichtgebrauch einfach aus der Ferne ab.",
+      "categoryPath": "Batteries",
+      "category": "battery",
+      "brand": "PQ-DE",
+      "priceCzk": 339.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/Power_Queen_12V_125Ah_Group_27_Smart_LiFePO4_Versorgungsbatterie.webp?v=1789973708",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 125,
+        "capacityWh": null,
+        "powerW": 35,
+        "currentA": 100,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
+      "marketEligible": true
+    },
+    {
+      "id": "powerqueen_eu:10313906946268",
+      "merchant": "powerqueen_eu",
+      "name": "(0% MwSt.) Power Queen 12V 125Ah Group 27 Smart LiFePO4 Batterie mit Bluetooth",
+      "description": "Die smarte 12V 125Ah LiFePO4 Solar-Batterie (0% MwSt. für PV-Anlagen) – Perfekt für Wohnmobil, Angelboot &amp; Off-Grid Group 27 LiFePO4 Batterie für PV-Anlagen, Angelboote &amp; Trolling-Motoren (IP65): Perfekt abgestimmt auf die Group 27 Norm: Mit den Maßen 308 x 170 x 211 mm und nur 11,68 kg passt diese 12V LiFePO4 Batterie exakt in gängige Boots-Batterieboxen (z. B. Minn Kota) oder kompakte Solarschränke. Als steuerfreier PV-Speicher (§12 Abs. 3 UStG) oder Stromquelle für Trolling-Motoren von 30 bis 70 lbs schützt das IP65-wassergeschützte und salzwasserfeste Gehäuse die Elektronik zuverlässig vor Spritzwasser und Feuchtigkeit. 12V 125Ah Versorgungsbatterie (1.600Wh): Ausreichend Solar-Speicher für Inselanlagen &amp; Bootsausflüge: Spürbar mehr Reichweite und Autarkie: Diese kompakte Group 27 Batterie liefert satte 125Ah (1.600Wh) nutzbare Kapazität. Ideal als Pufferspeicher für Balkonkraftwerke und Solaranlagen oder für unterwegs: Betreiben Sie z. B. einen 55 lbs Trolling-Motor über 2,5 Stunden bei Vollgas oder eine 12V 35W Kompressor-Kühlbox für bis zu 40–45 Stunden durchgehend. Platzsparender liegender Einbau unter dem Beifahrersitz (Campervan &amp; Off-Grid): Smarte Lösung für Campervans und PV-Installationen: Neben der klassischen aufrechten Montage unterstützt dieser Akku auch den flachen, liegenden Einbau auf der Seite. Dadurch reduziert sich die effektive Einbauhöhe von 211 mm auf extrem kompakte 170 mm – damit passt die Batterie mühelos unter die niedrige Sitzkonsole von Fiat Ducato, Citroën Jumper oder Ford Transit. Integriertes 100A BMS: 1.280W Direct-DC Power &amp; sichere 1.000W über Wechselrichter: Maximale Sicherheit für Ihre Solaranlage und Endgeräte: Das leistungsstarke 100A BMS liefert bis zu 1.280W reine Gleichstrom-Leistung (DC) für direkte 12V-Verbraucher. Bei Nutzung eines 230V-Wechselrichters betreiben Sie Haushaltsgeräte bis 1.000 Watt Dauerleistung (z. B. Kaffeemaschine, Reise-Wasserkocher oder Werkzeuge) absolut stabil und ohne Risiko einer BMS-Sicherheitsabschaltung. Automatischer 0°C Kälteschutz: Zuverlässiger Ganzjahreseinsatz &amp; Schutz im Winter: Smarte Sicherheit für Solarspeicher und Winter-Camping: Die integrierte Low-Temperature Cut-Off Funktion ( Tieftemperaturschutz ) stoppt den Ladevorgang automatisch bei Temperaturen unter 0°C . So bleiben die hochwertigen LiFePO4-Zellen beim Laden über Solarmodule im Winter oder beim Frühjahrs-Angeln auf dem kalten See dauerhaft vor Frostschäden geschützt. Smart Bluetooth 5.0: App-Überwachung für PV-Anlage &amp; Wohnmobil ohne teuren Monitor: Volle Kontrolle per Smartphone: Dank Bluetooth 5.0 sehen Sie Ladezustand (SoC), Spannung und Restlaufzeit Ihrer Solar-Batterie direkt in der App – sparen Sie sich den Kauf eines teuren Batterie-Monitors (Shunt). Mit dem integrierten Entladungsschalter schalten Sie die Batterie bei Nichtgebrauch oder nach der Saison einfach aus der Ferne ab.",
+      "categoryPath": "Batteries",
+      "category": "battery",
+      "brand": "PQ-DE-Tax Free",
+      "priceCzk": 285.71,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/0-mwst-power-queen-12v-125ah-group-27-smart-lifepo4-batterie-mit-bluetooth",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2F0-mwst-power-queen-12v-125ah-group-27-smart-lifepo4-batterie-mit-bluetooth",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/Power_Queen_12V_125Ah_Group_27_Smart_LiFePO4_Versorgungsbatterie.webp?v=1789973708",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 125,
+        "capacityWh": null,
+        "powerW": 35,
+        "currentA": 100,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
       "marketEligible": true
     },
     {
