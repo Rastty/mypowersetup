@@ -91,6 +91,42 @@ export function calculateControllerSizing({ solarWatts, systemVoltage, batteryTy
   });
 }
 
+export function calculateBatteryAutonomy({
+  batteryCapacityAh = 100,
+  systemVoltage = 12,
+  batteryType = "lifepo4",
+  dailyWh = 600,
+  locale = "cs",
+} = {}) {
+  const normalizedAh = clampNumber(batteryCapacityAh, 10, 2000, 100);
+  const normalizedVoltage = Number(systemVoltage) === 24 ? 24 : 12;
+  const normalizedBatteryType = batteryType === "lead" ? "lead" : "lifepo4";
+  const normalizedDailyWh = clampNumber(dailyWh, 50, 20000, 600);
+  const battery = BATTERIES[normalizedBatteryType] || BATTERIES.lifepo4;
+  const text = ENGINE_TEXT[locale] || ENGINE_TEXT.cs;
+
+  const nominalWh = normalizedAh * normalizedVoltage;
+  const usableWh = nominalWh * battery.usableDepth;
+  const planningWh = usableWh / BATTERY_MARGIN;
+  const autonomyDaysRaw = planningWh / normalizedDailyWh;
+
+  return Object.freeze({
+    batteryCapacityAh: normalizedAh,
+    systemVoltage: normalizedVoltage,
+    batteryType: normalizedBatteryType,
+    batteryLabel: text.batteries[normalizedBatteryType],
+    dailyWh: normalizedDailyWh,
+    nominalWh: Math.round(nominalWh),
+    usableWh: Math.round(usableWh),
+    planningWh: Math.round(planningWh),
+    autonomyDaysRaw,
+    autonomyDays: Math.round(autonomyDaysRaw * 10) / 10,
+    autonomyHours: Math.round(autonomyDaysRaw * 24),
+    batteryMarginPercent: Math.round((BATTERY_MARGIN - 1) * 100),
+    usableDepthPercent: Math.round(battery.usableDepth * 100),
+  });
+}
+
 export function calculateSetup(input) {
   const locale = Object.hasOwn(ENGINE_TEXT, input.locale) ? input.locale : "cs";
   const text = ENGINE_TEXT[locale];
