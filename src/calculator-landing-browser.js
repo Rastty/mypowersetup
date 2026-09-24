@@ -76,6 +76,15 @@ if (root) {
     setText("[data-result-reserve]", copy.batteryReserve({ n, result }));
   }
 
+  function renderBatteryAutonomy(result) {
+    setText("[data-result-autonomy-days]", `${n(result.autonomyDays)} dne`);
+    setText("[data-result-autonomy-hours]", `${n(result.autonomyHours)} h`);
+    setText("[data-result-usable-wh]", `${n(result.usableWh)} Wh`);
+    setText("[data-result-planning-wh]", `${n(result.planningWh)} Wh`);
+    setText("[data-result-summary]", copy.autonomySummary({ n, result }));
+    setText("[data-result-reserve]", copy.autonomyReserve({ n, result }));
+  }
+
   function renderSolar(result) {
     setText("[data-result-solar-watts]", `${n(result.solarWatts)} Wp`);
     setText("[data-result-controller-amps]", `${n(result.controllerAmps)} A`);
@@ -122,6 +131,7 @@ if (root) {
 
   const renderers = {
     "battery-capacity": renderBattery,
+    "battery-autonomy": renderBatteryAutonomy,
     "solar-sizing": renderSolar,
     "mppt-sizing": renderMppt,
     "inverter-sizing": renderInverter,
