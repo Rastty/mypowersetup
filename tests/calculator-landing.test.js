@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { calculateLanding, getCalculatorIntent } from "../src/calculator-landing.js";
-import { calculateControllerSizing, calculateSetup } from "../src/engine.js";
+import { calculateBatteryAutonomy, calculateControllerSizing, calculateSetup } from "../src/engine.js";
 import { calculateDcCable } from "../src/dc-cable.js";
 
 test("battery-capacity landing reuses the canonical engine without formula drift", () => {
@@ -47,6 +47,39 @@ test("battery-capacity landing applies battery chemistry through the canonical c
   assert.equal(calculation.result.systemVoltage, 24);
   assert.equal(calculation.result.batteryAh, 180);
   assert.equal(calculation.result.assumptions.usableDepthPercent, 50);
+});
+
+test("battery-autonomy landing is the canonical inverse battery planning calculation", () => {
+  const calculation = calculateLanding("battery-autonomy", {
+    batteryCapacityAh: 100,
+    systemVoltage: 12,
+    batteryType: "lifepo4",
+    dailyWh: 600,
+  }, "cs");
+  const direct = calculateBatteryAutonomy({
+    batteryCapacityAh: 100,
+    systemVoltage: 12,
+    batteryType: "lifepo4",
+    dailyWh: 600,
+    locale: "cs",
+  });
+
+  assert.deepEqual(calculation.result, direct);
+  assert.equal(calculation.result.nominalWh, 1200);
+  assert.equal(calculation.result.usableWh, 960);
+  assert.equal(calculation.result.planningWh, 835);
+  assert.equal(calculation.result.autonomyDays, 1.4);
+  assert.equal(calculation.result.autonomyHours, 33);
+  assert.equal(calculation.result.usableDepthPercent, 80);
+  assert.equal(calculation.result.batteryMarginPercent, 15);
+});
+
+test("battery-autonomy preserves the same chemistry assumptions as battery sizing", () => {
+  const lifepo4 = calculateLanding("battery-autonomy", { batteryCapacityAh: 100, systemVoltage: 12, batteryType: "lifepo4", dailyWh: 600 }, "cs").result;
+  const lead = calculateLanding("battery-autonomy", { batteryCapacityAh: 100, systemVoltage: 12, batteryType: "lead", dailyWh: 600 }, "cs").result;
+  assert.equal(lifepo4.usableDepthPercent, 80);
+  assert.equal(lead.usableDepthPercent, 50);
+  assert.ok(lifepo4.autonomyDaysRaw > lead.autonomyDaysRaw);
 });
 
 test("solar-sizing landing delegates solar and controller sizing to the canonical engine", () => {
@@ -120,6 +153,7 @@ test("CZ calculator cluster remains crawlable, unique and commercially connected
   const hub = await readFile("kalkulacky/index.html", "utf8");
   const pages = [
     ["kapacita-baterie", "battery-capacity", "/pruvodce/kapacita-baterie-do-karavanu/"],
+    ["vydrz-baterie", "battery-autonomy", "/pruvodce/kapacita-baterie-do-karavanu/"],
     ["solarni-panely", "solar-sizing", "/pruvodce/kolik-w-solarnich-panelu/"],
     ["mppt-regulator", "mppt-sizing", "/pruvodce/jak-vybrat-mppt-regulator/"],
     ["vykon-menice", "inverter-sizing", "/pruvodce/jak-velky-menic-do-karavanu/"],
@@ -152,6 +186,7 @@ test("calculator sitemap exposes the complete live calculator cluster", async ()
   for (const slug of [
     "",
     "kapacita-baterie/",
+    "vydrz-baterie/",
     "solarni-panely/",
     "mppt-regulator/",
     "dc-dc-nabijecka/",
@@ -163,7 +198,7 @@ test("calculator sitemap exposes the complete live calculator cluster", async ()
     assert.ok(xml.includes(`<loc>https://mypowersetup.com/kalkulacky/${slug}</loc>`));
   }
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(urls.length, 18, "calculator sitemap should contain 9 CZ URLs plus 9 proven localized URLs");
+  assert.equal(urls.length, 19, "calculator sitemap should contain 10 CZ URLs plus 9 proven localized URLs");
   assert.equal(new Set(urls).size, urls.length, "calculator sitemap must not contain duplicate URLs");
 });
 
