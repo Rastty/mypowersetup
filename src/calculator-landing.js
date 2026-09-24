@@ -1,4 +1,4 @@
-import { calculateControllerSizing, calculateSetup } from "./engine.js";
+import { calculateBatteryAutonomy, calculateControllerSizing, calculateSetup } from "./engine.js";
 import { calculateDcCable } from "./dc-cable.js";
 
 const INTENTS = Object.freeze({
@@ -33,6 +33,23 @@ const INTENTS = Object.freeze({
         warnings: result.warnings,
         assumptions: result.assumptions,
       };
+    },
+  }),
+  "battery-autonomy": Object.freeze({
+    defaultInput: Object.freeze({
+      batteryCapacityAh: 100,
+      systemVoltage: 12,
+      batteryType: "lifepo4",
+      dailyWh: 600,
+    }),
+    calculate(input, locale) {
+      return calculateBatteryAutonomy({
+        batteryCapacityAh: clampNumber(input.batteryCapacityAh, 10, 2000, 100),
+        systemVoltage: Number(input.systemVoltage) === 24 ? 24 : 12,
+        batteryType: normalizeBatteryType(input.batteryType),
+        dailyWh: clampNumber(input.dailyWh, 50, 20000, 600),
+        locale,
+      });
     },
   }),
   "solar-sizing": Object.freeze({
