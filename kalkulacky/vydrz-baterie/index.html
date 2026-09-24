@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jak dlouho vydrží baterie v karavanu? Kalkulačka hodin a dnů | MyPowerSetup</title>
+  <meta name="description" content="Spočítejte, jak dlouho vydrží 100, 150 nebo 200Ah baterie v karavanu podle napětí, denní spotřeby a typu LiFePO4 nebo AGM.">
+  <link rel="canonical" href="https://mypowersetup.com/kalkulacky/vydrz-baterie/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/vydrz-baterie/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/vydrz-baterie/">
+  <meta property="og:title" content="Jak dlouho vydrží baterie v karavanu?">
+  <meta property="og:description" content="Zadejte Ah, 12/24 V, spotřebu a typ baterie. Kalkulačka ukáže konzervativní výdrž v hodinách a dnech bez dobíjení.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mypowersetup.com/kalkulacky/vydrz-baterie/">
+  <meta property="og:site_name" content="MyPowerSetup">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:image" content="https://mypowersetup.com/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MyPowerSetup — kalkulačka výdrže baterie v karavanu">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jak dlouho vydrží baterie v karavanu?">
+  <meta name="twitter:description" content="Konzervativní výdrž 12/24V LiFePO4 nebo AGM baterie podle skutečné denní spotřeby.">
+  <meta name="twitter:image" content="https://mypowersetup.com/social-card.png">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebApplication",
+        "name":"Kalkulačka výdrže baterie v karavanu",
+        "url":"https://mypowersetup.com/kalkulacky/vydrz-baterie/",
+        "applicationCategory":"UtilitiesApplication",
+        "operatingSystem":"Web",
+        "isAccessibleForFree":true,
+        "description":"Konzervativní výpočet výdrže baterie v hodinách a dnech podle kapacity Ah, napětí, chemie a denní spotřeby."
+      },
+      {
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/"},
+          {"@type":"ListItem","position":2,"name":"Kalkulačky","item":"https://mypowersetup.com/kalkulacky/"},
+          {"@type":"ListItem","position":3,"name":"Výdrž baterie","item":"https://mypowersetup.com/kalkulacky/vydrz-baterie/"}
+        ]
+      },
+      {
+        "@type":"FAQPage",
+        "mainEntity":[
+          {
+            "@type":"Question",
+            "name":"Jak dlouho vydrží 100Ah LiFePO4 baterie?",
+            "acceptedAnswer":{"@type":"Answer","text":"Záleží na napětí a denní spotřebě. Při 12 V má 100Ah baterie 1 200 Wh jmenovité energie. MyPowerSetup zohlední využitelnou hloubku vybití LiFePO4 a stejnou návrhovou rezervu jako hlavní Builder."}
+          },
+          {
+            "@type":"Question",
+            "name":"Proč kalkulačka nepočítá se 100 % kapacity baterie?",
+            "acceptedAnswer":{"@type":"Answer","text":"Jmenovitá kapacita není totéž co konzervativně plánovatelná energie. Výpočet zohledňuje využitelnou hloubku vybití konkrétní chemie a 15% návrhovou rezervu."}
+          },
+          {
+            "@type":"Question",
+            "name":"Vydrží stejných 100 Ah déle při 24 V než při 12 V?",
+            "acceptedAnswer":{"@type":"Answer","text":"Ano, pokud skutečně porovnáváte 100Ah baterii při 24 V se 100Ah baterií při 12 V. Jmenovitá energie ve Wh je při 24 V dvojnásobná. Proto Ah vždy porovnávejte společně s napětím."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="MyPowerSetup – domů">MyPowerSetup</a>
+    <nav class="header-nav" aria-label="Hlavní navigace">
+      <a class="header-link" href="/kalkulacky/">Kalkulačky</a>
+      <a class="header-link" href="/pruvodce/">Průvodce</a>
+    </nav>
+  </header>
+
+  <main class="calculator-page">
+    <nav class="calculator-breadcrumbs" aria-label="Drobečková navigace"><a href="/">Domů</a> / <a href="/kalkulacky/">Kalkulačky</a> / Výdrž baterie</nav>
+
+    <section class="calculator-hero">
+      <p><strong>Kalkulačka výdrže baterie bez dobíjení</strong></p>
+      <h1>Jak dlouho vydrží baterie v karavanu?</h1>
+      <p>Máte už baterii a chcete vědět, kolik hodin nebo dnů zvládne vaši spotřebu? Zadejte její kapacitu, napětí, chemii a skutečnou denní spotřebu. Výpočet používá přesně opačnou stranu stejného battery-sizing modelu jako hlavní MyPowerSetup Builder.</p>
+    </section>
+
+    <section class="calculator-grid" data-calculator-landing data-calculator-intent="battery-autonomy" data-calculator-locale="cs" aria-label="Kalkulačka výdrže baterie">
+      <div class="calculator-card">
+        <h2>Zadejte baterii a spotřebu</h2>
+        <form class="calculator-form" data-calculator-form>
+          <div class="calculator-field">
+            <label for="batteryCapacityAh">Kapacita baterie (Ah)</label>
+            <input id="batteryCapacityAh" name="batteryCapacityAh" type="number" inputmode="decimal" min="10" max="2000" step="10" value="100" required aria-describedby="batteryCapacityHelp">
+            <span class="calculator-help" id="batteryCapacityHelp">Použijte jmenovitou kapacitu baterie, například 100, 150 nebo 200 Ah.</span>
+          </div>
+
+          <div class="calculator-field">
+            <label for="systemVoltage">Napětí baterie / systému</label>
+            <select id="systemVoltage" name="systemVoltage">
+              <option value="12" selected>12 V</option>
+              <option value="24">24 V</option>
+            </select>
+          </div>
+
+          <div class="calculator-field">
+            <label for="batteryType">Typ baterie</label>
+            <select id="batteryType" name="batteryType">
+              <option value="lifepo4" selected>LiFePO₄</option>
+              <option value="lead">AGM / olovo</option>
+            </select>
+          </div>
+
+          <div class="calculator-field">
+            <label for="dailyWh">Denní spotřeba (Wh/den)</label>
+            <input id="dailyWh" name="dailyWh" type="number" inputmode="decimal" min="50" max="20000" step="10" value="600" required aria-describedby="dailyWhHelp">
+            <span class="calculator-help" id="dailyWhHelp">Pokud spotřebu neznáte, otevřete plný Builder a vyberte konkrétní spotřebiče.</span>
+          </div>
+
+          <button class="calculator-button" type="submit">Spočítat výdrž baterie</button>
+        </form>
+        <p class="calculator-error" data-calculator-error role="alert" hidden></p>
+      </div>
+
+      <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite">
+        <p><strong>Výsledek</strong></p>
+        <h2>Konzervativní výdrž bez dobíjení</h2>
+        <div class="calculator-metrics">
+          <div class="calculator-metric"><span>Výdrž</span><strong data-result-autonomy-days>—</strong></div>
+          <div class="calculator-metric"><span>Přibližně</span><strong data-result-autonomy-hours>—</strong></div>
+          <div class="calculator-metric"><span>Využitelná energie</span><strong data-result-usable-wh>—</strong></div>
+          <div class="calculator-metric"><span>Pro plánování</span><strong data-result-planning-wh>—</strong></div>
+        </div>
+        <p data-result-summary>Vyplňte hodnoty a spusťte výpočet.</p>
+        <p class="calculator-help" data-result-reserve></p>
+        <ul data-result-warnings hidden></ul>
+        <div class="calculator-actions">
+          <a class="calculator-cta" href="/#kalkulator">Spočítat celou sestavu</a>
+          <a class="calculator-cta calculator-cta-secondary" href="/pruvodce/kapacita-baterie-do-karavanu/">Jak správně dimenzovat baterii</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="calculator-section calculator-content-card" aria-labelledby="method">
+      <h2 id="method">Jak se výdrž počítá</h2>
+      <p>Nejprve převedeme Ah na jmenovitou energii ve Wh: <strong>Ah × V</strong>. Potom zohledníme využitelnou hloubku vybití — v konzervativním modelu MyPowerSetup 80 % pro LiFePO₄ a 50 % pro AGM/olovo. Nakonec použijeme stejnou 15% návrhovou rezervu jako při výpočtu potřebné velikosti baterie.</p>
+      <p><strong>Výdrž ve dnech = Ah × V × využitelný podíl ÷ 1,15 ÷ denní spotřeba Wh.</strong> Jde tedy o matematicky inverzní výpočet ke kalkulačce potřebné kapacity, ne o samostatnou druhou metodiku.</p>
+      <div class="calculator-actions">
+        <a class="calculator-cta calculator-cta-secondary" href="/kalkulacky/kapacita-baterie/">Nevím kapacitu — spočítat potřebné Ah</a>
+        <a class="calculator-cta calculator-cta-secondary" href="/metodika/">Podrobná metodika</a>
+      </div>
+    </section>
+
+    <section class="calculator-section calculator-content-card" aria-labelledby="example">
+      <h2 id="example">Příklad: 100 Ah LiFePO₄, 12 V, spotřeba 600 Wh/den</h2>
+      <p>100 Ah × 12 V = 1 200 Wh jmenovité energie. Při 80% využitelné hloubce vybití je to 960 Wh. Po zachování stejné 15% návrhové rezervy zbývá pro konzervativní plánování přibližně 835 Wh. Při spotřebě 600 Wh/den je to asi <strong>1,4 dne</strong> neboli zhruba <strong>33 hodin</strong>.</p>
+      <p>Skutečná výdrž se může lišit podle teploty, stáří baterie, vlastního odběru měniče, účinnosti spotřebičů a reálného profilu zatížení. Kalkulačka proto není měřením zbývajícího času baterie ani náhradou údajů BMS.</p>
+    </section>
+
+    <section class="calculator-section" aria-labelledby="faq">
+      <h2 id="faq">Časté otázky</h2>
+      <div class="calculator-card-grid">
+        <article class="calculator-content-card">
+          <h3>Jak dlouho vydrží 100Ah LiFePO₄ baterie?</h3>
+          <p>Záleží hlavně na napětí a spotřebě. Při 12 V má 100Ah baterie 1 200 Wh jmenovité energie. Pro realistické plánování ale nepoužíváme celou jmenovitou kapacitu.</p>
+        </article>
+        <article class="calculator-content-card">
+          <h3>Proč kalkulačka nepočítá se 100 % baterie?</h3>
+          <p>Protože jmenovitá kapacita není totéž co bezpečně plánovatelná energie. Chemie baterie má jinou využitelnou hloubku vybití a návrh potřebuje rezervu.</p>
+        </article>
+        <article class="calculator-content-card">
+          <h3>Vydrží 100 Ah při 24 V déle než 100 Ah při 12 V?</h3>
+          <p>Ano. 100 Ah při 24 V představuje přibližně 2 400 Wh, zatímco 100 Ah při 12 V přibližně 1 200 Wh. Ah proto bez napětí není úplný údaj o energii.</p>
+        </article>
+        <article class="calculator-content-card">
+          <h3>Co když neznám denní spotřebu?</h3>
+          <p>Nehádejte ji. V kompletním Builderu vyberte lednici, světla, notebook, čerpadlo a další spotřebiče; denní Wh spočítáme z jejich reálného používání.</p>
+          <a href="/#kalkulator">Spočítat spotřebu v Builderu →</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/calculator-landing-browser.js?v=20260924-autonomy1"></script>
+</body>
+</html>

@@ -6,6 +6,7 @@ const ORIGIN = "https://mypowersetup.com";
 const CLUSTER = Object.freeze([
   Object.freeze({ slug: "", guide: null }),
   Object.freeze({ slug: "kapacita-baterie", guide: "pruvodce/kapacita-baterie-do-karavanu/index.html" }),
+  Object.freeze({ slug: "vydrz-baterie", guide: "pruvodce/kapacita-baterie-do-karavanu/index.html" }),
   Object.freeze({ slug: "solarni-panely", guide: "pruvodce/kolik-w-solarnich-panelu/index.html" }),
   Object.freeze({ slug: "mppt-regulator", guide: "pruvodce/jak-vybrat-mppt-regulator/index.html" }),
   Object.freeze({ slug: "vykon-menice", guide: "pruvodce/jak-velky-menic-do-karavanu/index.html" }),

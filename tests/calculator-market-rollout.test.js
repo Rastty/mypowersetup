@@ -27,6 +27,7 @@ const families = Object.freeze({
 const czPublishedRoutes = Object.freeze([
   families.hub.cs,
   families.battery.cs,
+  "/kalkulacky/vydrz-baterie/",
   families.solar.cs,
   "/kalkulacky/mppt-regulator/",
   "/kalkulacky/dc-dc-nabijecka/",
@@ -110,7 +111,7 @@ test("calculator sitemap publishes the complete CZ plus SK PL HU calculator surf
   assert.equal(
     urls.length,
     czPublishedRoutes.length + localized.length,
-    "calculator sitemap should contain 9 CZ URLs plus 9 localized URLs",
+    "calculator sitemap should contain 10 CZ URLs plus 9 localized URLs",
   );
   assert.ok(!urls.some((url) => /\/(?:pt|ro|si)\/.*(?:kalk|calc)/i.test(url)), "PT/RO/SI calculator rollout must stay blocked");
 });
