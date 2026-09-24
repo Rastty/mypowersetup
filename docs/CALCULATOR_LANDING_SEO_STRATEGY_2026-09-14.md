@@ -119,7 +119,26 @@ The SEO landing is only the acquisition layer. MyPowerSetup should outperform ge
 
 Ship the calculator hub plus the first five highest-value pages: battery, solar, inverter, cable size and battery autonomy. Connect them to existing guides and the full builder. Verify indexability, mobile UX and event tracking.
 
-### Phase 2 — complete CZ cluster
+### Execution status — 24 September 2026
+
+The CZ cluster now publishes ten crawlable URLs including the hub. The Phase 1 battery-autonomy intent is live at `/kalkulacky/vydrz-baterie/` and uses the canonical battery assumptions in reverse rather than a separate formula.
+
+Current CZ calculator intents:
+
+- battery capacity,
+- battery autonomy / runtime,
+- solar sizing,
+- inverter sizing,
+- MPPT sizing,
+- DC–DC charger sizing,
+- 12/24 V cable sizing,
+- fuse / DC protection planning,
+- 12 V vs 24 V decision,
+- calculator hub / full-builder handoff.
+
+Battery autonomy is deliberately CZ-only until Search Console evidence justifies localization. SK/PL/HU must not receive a cloned route solely for parity.
+
+## Phase 2 — complete CZ cluster
 
 Add MPPT, DC–DC, protection planning and 12V vs 24V. Improve snippets/titles/FAQ based on Search Console query data rather than guesses.
 
