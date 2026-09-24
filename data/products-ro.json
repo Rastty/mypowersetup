@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T08:35:20.629Z",
+  "generatedAt": "2026-09-24T17:35:14.433Z",
   "market": "ro-RO",
   "currency": "EUR",
   "private": false,
@@ -975,7 +975,7 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 1899,
+      "priceCzk": 1799,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r4000-portable-power-station-4000w-3600wh",
