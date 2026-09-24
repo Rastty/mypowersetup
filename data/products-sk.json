@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-23T08:39:41.976Z",
+  "generatedAt": "2026-09-24T08:32:18.421Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16466,
-      "relevantProducts": 254
+      "parsedProducts": 16477,
+      "relevantProducts": 252
     },
     "allpowers_eu": {
       "status": "ok",
@@ -6627,41 +6627,6 @@
       }
     },
     {
-      "id": "padabo_sk:107331",
-      "merchant": "padabo_sk",
-      "name": "Nabíjačka batérií Renogy 12V/30A DC-DC MPPT",
-      "description": "Interiérová nabíjačka s regulátorom MPPT Nabíjačka batérie Renogy 12V/30A DC-DC s regulátorom MPPT môže ako zdroj energie používať pripojené solárne panely alebo alternátor pripojený k štartovacej batérii. Pomocou modulu Bluetooth BT-2 a aplikácie Renogy DC Home môžete komunikovať, monitorovať a nastavovať nabíjanie. Nabíjačka je vybavená zabudovaným systémom sledovania maximálneho výkonového bodu (MPPT) na maximalizáciu solárneho výkonu. 3-fázové nabíjanie (Bulk, Boost a Float) zabezpečuje pres",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Nabíjačky a boostery | Nabíjačky",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 248.53,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/nabijacka-baterii-renogy-12v-30a-dc-dc-mppt_z107331/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-renogy-12v-30a-dc-dc-mppt_z107331%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/191035_102.jpg?1772530391_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 400,
-        "currentA": 30,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:107353",
       "merchant": "padabo_sk",
       "name": "Batéria Victron Energy LiFePO4 12,8V/300Ah NG",
@@ -7371,37 +7336,6 @@
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:107543_32887",
-      "merchant": "padabo_sk",
-      "name": "Lítiová batéria pod sedadlo BullTron Polar kapacita 350 Ah",
-      "description": "Kompaktná lítiová batéria s integrovaným inteligentným systémom správy batérie BullTron Polar je kompaktná lithiová batéria umiestnená pod sedadlom vo vozidle Fiat Ducato. Jej hlavnou prednosťou je vysoký výkon, dlhá životnosť a moderné technológie. Integrovaný inteligentný systém správy batérie s aktívnym 5A balancerom zaisťuje maximálnu účinnosť a bezpečnosť. Všetky parametre je možné sledovať prostredníctvom smartfónu a Bluetooth 4.0 . Lítiová batéria značky BullTron ponúka zvislú či vodorovn",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
-      "category": "battery",
-      "brand": "BullTron",
-      "priceCzk": 2903.5,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/litiova-bateria-pod-sedadlo-bulltron-polar_z107543/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-pod-sedadlo-bulltron-polar_z107543%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/191721_102.jpg?1774298722_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 350,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 5,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-23T08:39:30.205Z",
+  "generatedAt": "2026-09-24T08:32:06.709Z",
   "market": "cs-CZ",
   "status": "ready",
   "requirement": {
@@ -10,19 +10,8 @@
     "batteryType": "lifepo4",
     "minimumCurrentA": 30
   },
-  "matchCount": 5,
+  "matchCount": 4,
   "matches": [
-    {
-      "id": "svetkaravanu:107331",
-      "merchant": "svetkaravanu",
-      "name": "Nabíječka baterií Renogy 12V/30A DC-DC MPPT",
-      "currentA": 30,
-      "priceCzk": 5990,
-      "priceCurrency": "CZK",
-      "productUrl": "https://www.svetkaravanu.cz/nabijecka-baterii-renogy-12v-30a-dc-dc-mppt_z107331/",
-      "verifiedAt": null,
-      "score": 97
-    },
     {
       "id": "ampul_cz:6195",
       "merchant": "ampul_cz",

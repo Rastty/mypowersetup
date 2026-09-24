@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-23T08:40:05.218Z",
+  "generatedAt": "2026-09-24T08:32:41.743Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12508,
-      "relevantProducts": 160
+      "parsedProducts": 12515,
+      "relevantProducts": 159
     },
     "ampul_hu": {
       "status": "ok",
@@ -4484,42 +4484,6 @@
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:107331",
-      "merchant": "padabo_hu",
-      "name": "Renogy 12V/30A DC-DC MPPT akkumulátortöltő",
-      "description": "Belső töltő MPPT vezérlővel A Renogy 12V/30A DC-DC DC-DC akkumulátortöltő MPPT vezérlővel képes csatlakoztatott napelemeket vagy egy indítóakkumulátorhoz csatlakoztatott generátort használni áramforrásként. A Bluetooth BT-2 modul és a Renogy DC Home alkalmazás segítségével kommunikálhat, felügyelheti és beállíthatja a töltést. A töltő beépített MPPT ( Maximum Power Point Tracking ) vezérlővel rendelkezik a napenergia maximalizálása érdekében. A 3 fázisú töltés (Bulk, Boost és Float) biztosítja, ",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Töltők és boosterek | Akkumulátor töltők",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 104790,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/renogy-12v-30a-dc-dc-mppt-akkumulatortolto_z107331/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-12v-30a-dc-dc-mppt-akkumulatortolto_z107331%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/5/191035_102.jpg?1772530391_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 400,
-        "currentA": 30,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
