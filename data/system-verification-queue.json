@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-09-23T08:42:16.176Z",
+  "generatedAt": "2026-09-24T08:35:22.482Z",
   "policy": "verification_only_fail_closed_no_publication",
   "actionCount": 2,
   "topAction": {
@@ -116,7 +116,7 @@
       {
         "candidateId": "ampul-eu-inverter-24v-2000w",
         "sourceProductId": "ampul_cz:5577-7392",
-        "generatedAt": "2026-09-23T08:39:30.205Z",
+        "generatedAt": "2026-09-24T08:32:06.709Z",
         "sourceHealthy": true,
         "found": true,
         "available": null,
@@ -285,7 +285,7 @@
         {
           "candidateId": "ampul-eu-inverter-24v-2000w",
           "sourceProductId": "ampul_cz:5577-7392",
-          "generatedAt": "2026-09-23T08:39:30.205Z",
+          "generatedAt": "2026-09-24T08:32:06.709Z",
           "sourceHealthy": true,
           "found": true,
           "available": null,
@@ -449,7 +449,7 @@
         {
           "candidateId": "ampul-eu-dcdc-12v-30a",
           "sourceProductId": "ampul_cz:6195",
-          "generatedAt": "2026-09-23T08:39:30.205Z",
+          "generatedAt": "2026-09-24T08:32:06.709Z",
           "sourceHealthy": true,
           "found": true,
           "available": true,
