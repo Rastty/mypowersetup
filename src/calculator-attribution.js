@@ -3,6 +3,7 @@ const MAX_AGE_MS = 30 * 60 * 1000;
 
 const LANDINGS = Object.freeze({
   "/kalkulacky/kapacita-baterie/": Object.freeze({ intent: "battery-capacity", locale: "cs" }),
+  "/kalkulacky/vydrz-baterie/": Object.freeze({ intent: "battery-autonomy", locale: "cs" }),
   "/kalkulacky/solarni-panely/": Object.freeze({ intent: "solar-sizing", locale: "cs" }),
   "/kalkulacky/mppt-regulator/": Object.freeze({ intent: "mppt-sizing", locale: "cs" }),
   "/kalkulacky/dc-dc-nabijecka/": Object.freeze({ intent: "dcdc-sizing", locale: "cs" }),
