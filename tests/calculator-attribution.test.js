@@ -49,6 +49,7 @@ test("calculator landing attribution survives the same-origin journey", () => {
 
 test("all currently published calculator landing families can persist attribution", () => {
   const cases = [
+    ["/kalkulacky/vydrz-baterie/", "battery-autonomy", "cs"],
     ["/kalkulacky/mppt-regulator/", "mppt-sizing", "cs"],
     ["/kalkulacky/dc-dc-nabijecka/", "dcdc-sizing", "cs"],
     ["/kalkulacky/jisteni-12v/", "dc-protection", "cs"],
