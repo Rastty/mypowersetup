@@ -5,6 +5,7 @@ import { buildCalculatorLandingAnalyticsParameters } from "../src/calculator-att
 
 const LANDINGS = [
   ["/kalkulacky/kapacita-baterie/", "battery-capacity", "cs", "calculator-landing-browser.js"],
+  ["/kalkulacky/vydrz-baterie/", "battery-autonomy", "cs", "calculator-landing-browser.js"],
   ["/kalkulacky/solarni-panely/", "solar-sizing", "cs", "calculator-landing-browser.js"],
   ["/kalkulacky/mppt-regulator/", "mppt-sizing", "cs", "calculator-landing-browser.js"],
   ["/kalkulacky/dc-dc-nabijecka/", "dcdc-sizing", "cs", "phase2-calculator-browser.js"],
