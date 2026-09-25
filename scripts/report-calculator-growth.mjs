@@ -9,9 +9,9 @@ if (!gscPath || !eventsPath) {
   console.error("Usage: node scripts/report-calculator-growth.mjs <gsc.(json|csv|tsv)> <events.(json|csv|tsv)> [indexing.(json|csv|tsv)]");
   process.exitCode = 1;
 } else {
-  const gscRows = normalizeGscExportRows(await loadRows(gscPath, ["rows", "data"]));
+  const gscRows = normalizeGscExportRows(await loadRows(gscPath, ["searchAnalytics", "rows", "data"]));
   const events = normalizeGa4CalculatorEventRows(await loadRows(eventsPath, ["events", "rows", "data"]));
-  const indexingRows = indexingPath ? normalizeIndexingExportRows(await loadRows(indexingPath, ["rows", "data"])) : [];
+  const indexingRows = indexingPath ? normalizeIndexingExportRows(await loadRows(indexingPath, ["indexing", "rows", "data"])) : [];
   const funnelRows = buildCalculatorFunnelSummary(events);
   const priorities = buildCalculatorGrowthPriorities({ gscRows, funnelRows, indexingRows });
 
