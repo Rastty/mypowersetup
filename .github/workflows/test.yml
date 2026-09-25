@@ -27,7 +27,8 @@ jobs:
       - run: node --check src/calculator-funnel-report.js
       - run: node --check src/calculator-growth-priority.js
       - run: node --check src/calculator-growth-input.js
-      - run: node --check src/ga4-live-baseline.js\n      - run: node --check src/gsc-live-baseline.js
+      - run: node --check src/ga4-live-baseline.js
+      - run: node --check src/gsc-live-baseline.js
       - run: node --check src/expansion-money-guide-seo.js
       - run: node --check src/commercial-coverage.js
       - run: node --check src/commercial-verification-evidence.js
@@ -65,7 +66,8 @@ jobs:
       - run: node --check scripts/report-community-links.mjs
       - run: node --check scripts/report-calculator-funnel.mjs
       - run: node --check scripts/report-calculator-growth.mjs
-      - run: node --check scripts/report-ga4-calculator-live.mjs\n      - run: node --check scripts/report-gsc-calculator-live.mjs
+      - run: node --check scripts/report-ga4-calculator-live.mjs
+      - run: node --check scripts/report-gsc-calculator-live.mjs
       - run: node --check scripts/sync-expansion-money-guide-seo.mjs
       - run: node --check scripts/smoke-public-mobile.mjs
       - run: node --check scripts/smoke-hu-mobile.mjs
