@@ -111,6 +111,46 @@ Technical eligibility, local merchant rules and no-cross-market product guardrai
 
 Record the source date range with every exported evidence file. After an optimization, keep the same route and event definitions and compare a sufficiently similar post-change window before deciding whether to keep or revert the change.
 
+## Live GSC read without manual exports
+
+Use the live adapter when a Google OAuth refresh token with `webmasters.readonly` is available:
+
+```bash
+npm run report:calculator:gsc:live -- \
+  /path/to/gsc-oauth-client.json \
+  /path/to/gsc-readonly-token.json \
+  gsc-calculator-live.json
+```
+
+By default the adapter uses a 28-day Search Analytics window ending three days before the run date, avoiding the freshest incomplete Search Console days. Override the window when a fixed before/after comparison is needed:
+
+```bash
+GSC_START_DATE=2026-08-26 GSC_END_DATE=2026-09-22 \
+npm run report:calculator:gsc:live -- client.json token.json gsc-calculator-live.json
+```
+
+The route inventory is read from `sitemap-calculators.xml`, so newly published calculator URLs are included automatically instead of maintaining a second hard-coded URL list.
+
+Safety and evidence rules:
+
+- the adapter enumerates Search Console properties and accepts only the exact domain property `sc-domain:mypowersetup.com`;
+- unrelated URL-prefix or legacy-domain properties are never used as fallback;
+- every calculator URL is queried independently, preserving page → query evidence even on a larger site;
+- every current calculator URL also receives a read-only URL Inspection request;
+- credentials and access tokens are never written to the evidence file;
+- the adapter performs no sitemap submission, indexing request, content mutation or Search Console write.
+
+The output contains both `searchAnalytics` and `indexing`. The same snapshot can therefore be passed as both the GSC and indexing inputs to the growth report:
+
+```bash
+npm run report:calculator:growth -- \
+  gsc-calculator-live.json \
+  ga4-calculator-live.json \
+  gsc-calculator-live.json
+```
+
+This closes the manual-export gap for the Search Console half of Wave 4. GA4 remains a separate read-only source because it requires an OAuth refresh token that actually carries `analytics.readonly`.
+
 ## Live GA4 read without guessing a property ID
 
 Use the live adapter when a Google OAuth refresh token with `analytics.readonly` is available:
