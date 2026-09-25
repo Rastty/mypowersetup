@@ -50,7 +50,34 @@ function normalizeIndexed(value) {
   return null;
 }
 
-export function aggregateGscCalculatorRows(rows = []) {
+function aggregateGscPageMetricRows(rows = []) {
+  const pages = new Map();
+  for (const row of Array.isArray(rows) ? rows : []) {
+    const path = gscPage(row);
+    if (!path) continue;
+    const clicks = finite(row?.clicks);
+    const impressions = finite(row?.impressions);
+    const position = finite(row?.position, 0);
+    const current = pages.get(path) || { path, clicks: 0, impressions: 0, weightedPosition: 0, positionWeight: 0 };
+    current.clicks += clicks;
+    current.impressions += impressions;
+    if (position > 0) {
+      const weight = impressions || 1;
+      current.weightedPosition += position * weight;
+      current.positionWeight += weight;
+    }
+    pages.set(path, current);
+  }
+  return new Map([...pages.entries()].map(([path, page]) => [path, {
+    path,
+    clicks: page.clicks,
+    impressions: page.impressions,
+    ctr: ratio(page.clicks, page.impressions),
+    position: page.positionWeight ? page.weightedPosition / page.positionWeight : 0,
+  }]));
+}
+
+export function aggregateGscCalculatorRows(rows = [], pageTotals = []) {
   const pages = new Map();
   for (const row of rows) {
     const path = gscPage(row);
@@ -81,7 +108,12 @@ export function aggregateGscCalculatorRows(rows = []) {
     }
   }
 
-  return [...pages.values()].map((page) => {
+  const authoritativeTotals = aggregateGscPageMetricRows(pageTotals);
+  const allPaths = new Set([...pages.keys(), ...authoritativeTotals.keys()]);
+
+  return [...allPaths].map((path) => {
+    const page = pages.get(path) || { path, clicks: 0, impressions: 0, weightedPosition: 0, positionWeight: 0, queries: new Map() };
+    const total = authoritativeTotals.get(path) || null;
     const queries = [...page.queries.values()]
       .map((query) => ({
         query: query.query,
@@ -91,20 +123,24 @@ export function aggregateGscCalculatorRows(rows = []) {
         position: query.positionWeight ? query.weightedPosition / query.positionWeight : 0,
       }))
       .sort((a, b) => b.impressions - a.impressions || b.clicks - a.clicks || a.query.localeCompare(b.query));
+    const clicks = total ? total.clicks : page.clicks;
+    const impressions = total ? total.impressions : page.impressions;
+    const position = total ? total.position : (page.positionWeight ? page.weightedPosition / page.positionWeight : 0);
     return Object.freeze({
       path: page.path,
-      clicks: page.clicks,
-      impressions: page.impressions,
-      ctr: ratio(page.clicks, page.impressions),
-      position: page.positionWeight ? page.weightedPosition / page.positionWeight : 0,
+      clicks,
+      impressions,
+      ctr: ratio(clicks, impressions),
+      position,
+      metricsSource: total ? "page_totals" : "query_rows",
       topQuery: queries[0] || null,
       queries,
     });
   }).sort((a, b) => b.impressions - a.impressions || a.path.localeCompare(b.path));
 }
 
-export function buildCalculatorGrowthPriorities({ gscRows = [], funnelRows = [], indexingRows = [] } = {}) {
-  const gsc = new Map(aggregateGscCalculatorRows(gscRows).map((row) => [row.path, row]));
+export function buildCalculatorGrowthPriorities({ gscRows = [], gscPageTotals = [], funnelRows = [], indexingRows = [] } = {}) {
+  const gsc = new Map(aggregateGscCalculatorRows(gscRows, gscPageTotals).map((row) => [row.path, row]));
   const funnel = new Map();
   for (const row of Array.isArray(funnelRows) ? funnelRows : []) {
     const path = calculatorPath(row?.path);
@@ -137,6 +173,7 @@ export function buildCalculatorGrowthPriorities({ gscRows = [], funnelRows = [],
       searchCtr: search.ctr,
       averagePosition: search.position,
       topQuery: search.topQuery,
+      searchMetricsSource: search.metricsSource || "none",
       views,
       starts,
       completes,
