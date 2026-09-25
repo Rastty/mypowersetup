@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-24T17:34:03.115Z",
+  "generatedAt": "2026-09-25T08:53:53.742Z",
   "market": "cs-CZ",
   "currency": "CZK",
   "sources": {
     "ampul_cz": {
       "status": "ok",
-      "parsedProducts": 7714,
+      "parsedProducts": 7715,
       "relevantProducts": 15
     }
   },

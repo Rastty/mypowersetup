@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-24T17:34:13.612Z",
+  "generatedAt": "2026-09-25T08:54:05.556Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16484,
+      "parsedProducts": 16489,
       "relevantProducts": 252
     },
     "allpowers_eu": {
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7714,
+      "parsedProducts": 7715,
       "relevantProducts": 15
     }
   },
@@ -555,7 +555,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
+      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -4900,6 +4900,40 @@
       }
     },
     {
+      "id": "padabo_sk:104293_30481",
+      "merchant": "padabo_sk",
+      "name": "Dometic SinePower DPSI-TS 12 V alebo 24 V menič napätia stály / špičkový výkon 3000 / 6000 W napätie 12 V",
+      "description": "Sinusový menič pre citlivé zariadeniaMenič napätia Dometic SinePower DPSI-TS poskytuje špičkový výkon pre mobilné napájanie a stanovuje štandard v oblasti mobilného napájania. Je navrhnutý na konverziu 12 alebo 24 V napájania z batérie na striedavý prúd 230 V/50 Hz a zabezpečuje spoľahlivú prevádzku elektrických zariadení s výkonom do 3000 W - s napájaním priamo z batérie vozidla. Či už ide o kempovanie alebo mobilné pracoviská - so sériou meničov so sínusovým priebehom DPSI-TS zostanete nezávis",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
+      "category": "inverter",
+      "brand": "Dometic",
+      "priceCzk": 1572.05,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 6000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12,
+          24
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_sk:104293_30482",
       "merchant": "padabo_sk",
       "name": "Dometic SinePower DPSI-TS 12 V alebo 24 V menič napätia stály / špičkový výkon 3000 / 6000 W napätie 24 V",
@@ -7436,38 +7470,6 @@
       }
     },
     {
-      "id": "padabo_sk:107546_32890",
-      "merchant": "padabo_sk",
-      "name": "Lítiová batéria Caratec CEB kapacita 180 Ah",
-      "description": "Najnovšia generácia mobilných batérií Lítiová batéria Caratec CEB patrí k najnovšej generácii mobilných batérií. Batéria má integrovaný systém riadenia batérie (BMS), aplikáciu Bluetooth a automatické vyhrievanie článkov, čo zaručuje maximálny výkon, vysokú bezpečnosť a úplnú kontrolu. Batéria je vhodná pre obytné vozidlá a karavany. V porovnaní s bežnými batériami AGM poskytuje Caratec CEB až štyrikrát väčšiu kapacitu pri nižšej hmotnosti. Bluetooth poskytuje monitorovanie a zabudovaný systém s",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
-      "category": "battery",
-      "brand": "Caratec",
-      "priceCzk": 1202.36,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/litiova-bateria-caratec-ceb_z107546/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-caratec-ceb_z107546%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/191854_102.jpg?1774474742_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 180,
-        "capacityWh": 1344,
-        "powerW": null,
-        "currentA": 300,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:107546_32891",
       "merchant": "padabo_sk",
       "name": "Lítiová batéria Caratec CEB kapacita 150 Ah",
@@ -7893,7 +7895,7 @@
       "id": "padabo_sk:109017",
       "merchant": "padabo_sk",
       "name": "Sínusový menič Victron Energy 12 V/1600 VA VE.Direct",
-      "description": "Čisto sínusový menič 12 V s rozhraním VE.Direct Sínusový menič Victron Energy premieňa jednosmerné napätie 12 V na stabilné striedavé napätie 230 V. Trvalý výkon 1600 VA / 1300 W, robustný toroidný transformátor a rozhranie VE.Direct ho predurčujú na napájanie spotrebičov aj priebežné sledovanie a konfiguráciu prevádzky. Kľúčové vlastnosti meniča Victron Energy Čistý sínusový priebeh umožňuje napájať aj citlivejšie elektrické zariadenia.Rozhranie VE.Direct podporuje sledovanie a konfiguráciu pom",
+      "description": "Čisto sínusový menič 12 V s rozhraním VE.Direct Sínusový menič Victron Energy mení jednosmerné napätie 12 V na stabilné striedavé napätie 230 V. Trvalý výkon 1600 VA / 1300 W, robustný toroidný transformátor a rozhranie VE.Direct ho predurčujú na napájanie spotrebičov, ako aj na priebežné sledovanie a konfiguráciu prevádzky. Kľúčové vlastnosti meniča Victron Energy Čistý sínusový priebeh umožňuje napájať aj citlivejšie elektrické zariadenia. Rozhranie VE.Direct podporuje sledovanie a konfiguráci",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
       "brand": "Victron Energy",
