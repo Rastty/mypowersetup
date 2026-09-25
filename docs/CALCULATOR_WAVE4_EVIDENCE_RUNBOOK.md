@@ -140,6 +140,8 @@ Safety and evidence rules:
 - credentials and access tokens are never written to the evidence file;
 - the adapter performs no sitemap submission, indexing request, content mutation or Search Console write.
 
+The output contains `pageTotals`, `searchAnalytics` and `indexing`. `pageTotals` is the authoritative source for clicks, impressions, CTR and average position by landing page. `searchAnalytics` contains only query rows Google is willing to expose and must be treated as intent evidence, not as a complete traffic total; Search Console privacy can suppress query rows.
+
 The output contains both `searchAnalytics` and `indexing`. The same snapshot can therefore be passed as both the GSC and indexing inputs to the growth report:
 
 ```bash

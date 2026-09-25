@@ -9,11 +9,15 @@ if (!gscPath || !eventsPath) {
   console.error("Usage: node scripts/report-calculator-growth.mjs <gsc.(json|csv|tsv)> <events.(json|csv|tsv)> [indexing.(json|csv|tsv)]");
   process.exitCode = 1;
 } else {
-  const gscRows = normalizeGscExportRows(await loadRows(gscPath, ["searchAnalytics", "rows", "data"]));
-  const events = normalizeGa4CalculatorEventRows(await loadRows(eventsPath, ["events", "rows", "data"]));
-  const indexingRows = indexingPath ? normalizeIndexingExportRows(await loadRows(indexingPath, ["indexing", "rows", "data"])) : [];
+  const gscInput = await loadInput(gscPath);
+  const eventsInput = await loadInput(eventsPath);
+  const indexingInput = indexingPath ? await loadInput(indexingPath) : [];
+  const gscRows = normalizeGscExportRows(rowsFrom(gscInput, ["searchAnalytics", "rows", "data"]));
+  const gscPageTotals = normalizeGscExportRows(rowsFrom(gscInput, ["pageTotals"]));
+  const events = normalizeGa4CalculatorEventRows(rowsFrom(eventsInput, ["events", "rows", "data"]));
+  const indexingRows = normalizeIndexingExportRows(rowsFrom(indexingInput, ["indexing", "rows", "data"]));
   const funnelRows = buildCalculatorFunnelSummary(events);
-  const priorities = buildCalculatorGrowthPriorities({ gscRows, funnelRows, indexingRows });
+  const priorities = buildCalculatorGrowthPriorities({ gscRows, gscPageTotals, funnelRows, indexingRows });
 
   console.log(renderCalculatorGrowthMarkdown(priorities));
   const actionable = priorities.filter((row) => row.primaryOpportunity).slice(0, 3);
@@ -28,12 +32,10 @@ if (!gscPath || !eventsPath) {
   }
 }
 
-async function loadRows(filePath, keys) {
+async function loadInput(filePath) {
   const text = await readFile(filePath, "utf8");
   const trimmed = text.replace(/^\uFEFF/, "").trimStart();
-  if (trimmed.startsWith("[") || trimmed.startsWith("{")) {
-    return rowsFrom(JSON.parse(trimmed), keys);
-  }
+  if (trimmed.startsWith("[") || trimmed.startsWith("{")) return JSON.parse(trimmed);
   return parseDelimitedText(text);
 }
 

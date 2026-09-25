@@ -5,6 +5,8 @@ import {
   defaultGscDateRange,
   exactGscDomainProperty,
   gscPageQueryRequest,
+  gscPageTotalRequest,
+  normalizeSearchAnalyticsPageTotal,
   normalizeSearchAnalyticsRows,
   normalizeUrlInspection,
   selectExactGscProperty,
@@ -89,5 +91,24 @@ test("defaultGscDateRange uses a stable 28-day window ending three days before n
   assert.deepEqual(defaultGscDateRange(new Date("2026-09-25T08:00:00Z")), {
     startDate: "2026-08-26",
     endDate: "2026-09-22",
+  });
+});
+
+
+test("page-total request keeps authoritative page metrics separate from query privacy", () => {
+  const url = "https://mypowersetup.com/kalkulacky/prurez-kabelu-12v/";
+  const request = gscPageTotalRequest(url, "2026-08-26", "2026-09-22");
+  assert.equal(request.dimensions, undefined);
+  assert.equal(request.rowLimit, 1);
+  assert.equal(request.dimensionFilterGroups[0].filters[0].expression, url);
+
+  assert.deepEqual(normalizeSearchAnalyticsPageTotal(url, {
+    rows: [{ clicks: 0, impressions: 8, ctr: 0, position: 13.75 }],
+  }), {
+    page: url,
+    clicks: 0,
+    impressions: 8,
+    ctr: 0,
+    position: 13.75,
   });
 });
