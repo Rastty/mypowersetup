@@ -85,6 +85,17 @@ export function calculatorUrlsFromSitemap(xml, targetHostname = "mypowersetup.co
   return Object.freeze(urls);
 }
 
+function pageEqualsFilter(url) {
+  return [{
+    groupType: "and",
+    filters: [{
+      dimension: "page",
+      operator: "equals",
+      expression: String(url),
+    }],
+  }];
+}
+
 export function gscPageQueryRequest(url, startDate, endDate) {
   return Object.freeze({
     startDate,
@@ -92,14 +103,28 @@ export function gscPageQueryRequest(url, startDate, endDate) {
     dimensions: ["query"],
     type: "web",
     rowLimit: 25000,
-    dimensionFilterGroups: [{
-      groupType: "and",
-      filters: [{
-        dimension: "page",
-        operator: "equals",
-        expression: String(url),
-      }],
-    }],
+    dimensionFilterGroups: pageEqualsFilter(url),
+  });
+}
+
+export function gscPageTotalRequest(url, startDate, endDate) {
+  return Object.freeze({
+    startDate,
+    endDate,
+    type: "web",
+    rowLimit: 1,
+    dimensionFilterGroups: pageEqualsFilter(url),
+  });
+}
+
+export function normalizeSearchAnalyticsPageTotal(url, response = {}) {
+  const row = Array.isArray(response?.rows) ? response.rows[0] : null;
+  return Object.freeze({
+    page: String(url),
+    clicks: Number(row?.clicks || 0),
+    impressions: Number(row?.impressions || 0),
+    ctr: Number(row?.ctr || 0),
+    position: Number(row?.position || 0),
   });
 }
 
