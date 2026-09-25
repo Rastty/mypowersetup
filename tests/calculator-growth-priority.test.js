@@ -60,3 +60,49 @@ test("growth markdown exposes the evidence table without inventing actions", () 
   assert.match(markdown, /search_ctr/);
   assert.match(markdown, /\/kalkulacky\/dc-dc-nabijecka\//);
 });
+
+
+test("authoritative page totals override privacy-filtered query sums without losing query intent", () => {
+  const [row] = aggregateGscCalculatorRows(
+    [{
+      keys: ["https://mypowersetup.com/kalkulacky/prurez-kabelu-12v/", "výpočet průřezu kabelu kalkulačka"],
+      clicks: 0,
+      impressions: 1,
+      position: 48,
+    }],
+    [{
+      page: "https://mypowersetup.com/kalkulacky/prurez-kabelu-12v/",
+      clicks: 0,
+      impressions: 8,
+      position: 13.75,
+    }],
+  );
+
+  assert.equal(row.impressions, 8);
+  assert.equal(row.clicks, 0);
+  assert.equal(row.position, 13.75);
+  assert.equal(row.metricsSource, "page_totals");
+  assert.equal(row.topQuery.query, "výpočet průřezu kabelu kalkulačka");
+  assert.equal(row.topQuery.impressions, 1);
+});
+
+test("growth thresholds use page totals instead of privacy-filtered query totals", () => {
+  const [row] = buildCalculatorGrowthPriorities({
+    gscRows: [{
+      page: "https://mypowersetup.com/kalkulacky/solarni-panely/",
+      query: "solarni panel karavan",
+      clicks: 0,
+      impressions: 3,
+      position: 9,
+    }],
+    gscPageTotals: [{
+      page: "https://mypowersetup.com/kalkulacky/solarni-panely/",
+      clicks: 0,
+      impressions: 25,
+      position: 9,
+    }],
+  });
+  assert.equal(row.searchImpressions, 25);
+  assert.equal(row.searchMetricsSource, "page_totals");
+  assert.equal(row.primaryOpportunity, "search_ctr");
+});
