@@ -4,6 +4,8 @@ import {
   calculatorUrlsFromSitemap,
   defaultGscDateRange,
   gscPageQueryRequest,
+  gscPageTotalRequest,
+  normalizeSearchAnalyticsPageTotal,
   normalizeSearchAnalyticsRows,
   normalizeUrlInspection,
   selectExactGscProperty,
@@ -31,11 +33,16 @@ if (!clientPath || !tokenPath) {
     const selected = selectExactGscProperty(sites, targetHostname);
     const urls = calculatorUrlsFromSitemap(sitemapXml, targetHostname);
 
+    const pageTotals = [];
     const searchAnalytics = [];
     const indexing = [];
 
     for (const url of urls) {
-      const search = await querySearchAnalytics(accessToken, selected.siteUrl, gscPageQueryRequest(url, startDate, endDate));
+      const [total, search] = await Promise.all([
+        querySearchAnalytics(accessToken, selected.siteUrl, gscPageTotalRequest(url, startDate, endDate)),
+        querySearchAnalytics(accessToken, selected.siteUrl, gscPageQueryRequest(url, startDate, endDate)),
+      ]);
+      pageTotals.push(normalizeSearchAnalyticsPageTotal(url, total));
       searchAnalytics.push(...normalizeSearchAnalyticsRows(url, search));
 
       const inspection = await inspectUrl(accessToken, selected.siteUrl, url);
@@ -43,7 +50,7 @@ if (!clientPath || !tokenPath) {
     }
 
     const payload = {
-      schemaVersion: 1,
+      schemaVersion: 2,
       generatedAt: new Date().toISOString(),
       targetHostname,
       property: selected,
@@ -51,6 +58,7 @@ if (!clientPath || !tokenPath) {
       sitemapPath,
       urlCount: urls.length,
       urls,
+      pageTotals,
       searchAnalytics,
       indexing,
       status: "ready",
@@ -60,13 +68,13 @@ if (!clientPath || !tokenPath) {
     const indexedCount = indexing.filter((row) => row.indexed === true).length;
     const notIndexedCount = indexing.filter((row) => row.indexed === false).length;
     const unknownCount = indexing.length - indexedCount - notIndexedCount;
-    const impressions = searchAnalytics.reduce((sum, row) => sum + Number(row.impressions || 0), 0);
-    const clicks = searchAnalytics.reduce((sum, row) => sum + Number(row.clicks || 0), 0);
+    const impressions = pageTotals.reduce((sum, row) => sum + Number(row.impressions || 0), 0);
+    const clicks = pageTotals.reduce((sum, row) => sum + Number(row.clicks || 0), 0);
 
     console.log(`GSC property: ${selected.siteUrl} (${selected.permissionLevel || "permission unknown"})`);
     console.log(`Calculator URLs inspected: ${urls.length}`);
     console.log(`Indexing: ${indexedCount} indexed / ${notIndexedCount} not indexed / ${unknownCount} unknown`);
-    console.log(`Search Analytics ${startDate}..${endDate}: ${impressions} impressions / ${clicks} clicks / ${searchAnalytics.length} page-query rows`);
+    console.log(`Search Analytics ${startDate}..${endDate}: ${impressions} page impressions / ${clicks} page clicks / ${searchAnalytics.length} visible page-query rows`);
     console.log(`Evidence written to ${outputPath}`);
   } catch (error) {
     console.error(safeError(error));
