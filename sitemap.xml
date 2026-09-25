@@ -7,7 +7,7 @@
   <url><loc>https://mypowersetup.com/pl/metodologia/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://mypowersetup.com/pl/afiliacja/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://mypowersetup.com/pl/prywatnosc/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://mypowersetup.com/pl/poradnik/</loc><lastmod>2026-09-07</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mypowersetup.com/pl/poradnik/</loc><lastmod>2026-09-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pl/poradnik/schemat-instalacji-elektrycznej-kampera/</loc><lastmod>2026-09-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pl/poradnik/12-v-czy-24-v-kamper/</loc><lastmod>2026-09-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pl/poradnik/power-station-czy-stala-instalacja-kamper/</loc><lastmod>2026-09-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -43,7 +43,7 @@
   <url><loc>https://mypowersetup.com/pruvodce/12-v-nebo-24-v-karavan/</loc><lastmod>2026-09-14</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pruvodce/kapacita-baterie-do-karavanu/</loc><lastmod>2026-09-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pruvodce/agm-vs-lifepo4/</loc><lastmod>2026-09-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/</loc><lastmod>2026-09-14</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/</loc><lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/</loc><lastmod>2026-09-14</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pruvodce/jak-vybrat-dc-dc-nabijecku/</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pruvodce/jak-vybrat-nabijecku-230-v/</loc><lastmod>2026-09-12</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -130,7 +130,7 @@
   <url><loc>https://mypowersetup.com/kalkulacky/</loc><lastmod>2026-09-24</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/kalkulacky/kapacita-baterie/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/kalkulacky/vydrz-baterie/</loc><lastmod>2026-09-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://mypowersetup.com/kalkulacky/solarni-panely/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mypowersetup.com/kalkulacky/solarni-panely/</loc><lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/kalkulacky/mppt-regulator/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/kalkulacky/vykon-menice/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -140,7 +140,7 @@
   <url><loc>https://mypowersetup.com/sk/kalkulacky/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mypowersetup.com/sk/kalkulacky/kapacita-baterie/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mypowersetup.com/sk/kalkulacky/solarne-panely/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mypowersetup.com/pl/kalkulatory/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mypowersetup.com/pl/kalkulatory/</loc><lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mypowersetup.com/pl/kalkulatory/pojemnosc-akumulatora/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mypowersetup.com/pl/kalkulatory/panele-solarne/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mypowersetup.com/hu/kalkulatorok/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>

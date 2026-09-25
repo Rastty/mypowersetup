@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-25T14:30:53.708Z",
+  "source": {
+    "kind": "live_google_read_only",
+    "prometheusWorkflowRunId": 36147966609,
+    "artifactSha256": "512170eca9011ff186a897197cd0ac2fe90e64ba94185f83adee6f81cf162445"
+  },
+  "window": {
+    "startDate": "2026-08-26",
+    "endDate": "2026-09-22"
+  },
+  "gsc": {
+    "property": "sc-domain:mypowersetup.com",
+    "permissionLevel": "siteOwner",
+    "calculatorUrlCount": 19,
+    "indexedCount": 16,
+    "notIndexedCount": 3,
+    "previousBaseline": {
+      "capturedAt": "2026-09-17",
+      "indexedCount": 1,
+      "urlCount": 18
+    },
+    "remainingIndexingGaps": [
+      {
+        "url": "https://mypowersetup.com/kalkulacky/vydrz-baterie/",
+        "coverageState": "URL is unknown to Google",
+        "interpretation": "new route published 2026-09-24; observe before further intervention"
+      },
+      {
+        "url": "https://mypowersetup.com/kalkulacky/mppt-regulator/",
+        "coverageState": "Discovered - currently not indexed",
+        "interpretation": "strengthen direct contextual internal discovery without changing title/meta/H1"
+      },
+      {
+        "url": "https://mypowersetup.com/pl/kalkulatory/",
+        "coverageState": "Crawled - currently not indexed",
+        "interpretation": "strengthen contextual discovery and unique hub decision value without changing title/meta/H1"
+      }
+    ],
+    "searchSignals": [
+      {
+        "url": "https://mypowersetup.com/kalkulacky/prurez-kabelu-12v/",
+        "clicks": 0,
+        "impressions": 8,
+        "averagePosition": 13.75,
+        "decision": "observe; below the 20-impression CTR action threshold"
+      },
+      {
+        "url": "https://mypowersetup.com/sk/kalkulacky/kapacita-baterie/",
+        "clicks": 1,
+        "impressions": 1,
+        "averagePosition": 8,
+        "decision": "observe; insufficient volume"
+      }
+    ],
+    "totalClicks": 1,
+    "totalImpressions": 9
+  },
+  "ga4": {
+    "status": "blocked",
+    "reason": "insufficient_authentication_scopes",
+    "observedCredentialDeclaredAnalyticsReadonly": false,
+    "decision": "do not infer route funnel or change the production measurement ID"
+  },
+  "wave9Intervention": {
+    "date": "2026-09-25",
+    "hypothesis": "Direct contextual links into the discovered-but-not-indexed MPPT route and the crawled-but-not-indexed PL calculator hub, plus additional unique hub decision value, should improve crawl/indexing signals without speculative SERP-copy changes.",
+    "measurement": "Re-run live URL Inspection after Google has had time to recrawl the changed source/target pages; only use title/meta/H1 changes after sufficient query evidence."
+  }
+}
