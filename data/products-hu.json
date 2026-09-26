@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-25T08:54:28.301Z",
+  "generatedAt": "2026-09-26T08:40:41.037Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12511,
-      "relevantProducts": 159
+      "parsedProducts": 12528,
+      "relevantProducts": 160
     },
     "ampul_hu": {
       "status": "ok",
@@ -3528,6 +3528,40 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 4000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12,
+          24
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:104293_30481",
+      "merchant": "padabo_hu",
+      "name": "Dometic SinePower DPSI-TS 12 V vagy 24 V-os feszültségátalakító állandó/csúcsteljesítmény 3000 / 6000 W feszültség 12 V",
+      "description": "Szinuszos inverter érzékeny eszközökhözA Dometic SinePower DPSI-TS feszültségátalakító prémium teljesítményt nyújt a mobil áramellátáshoz, és új mércét állít fel a mobil áramellátás terén. A 12 vagy 24 V-os akkumulátorteljesítmény 230 V/50 Hz váltakozó feszültségűre történő átalakítására tervezték, így akár 3000 W-os elektromos berendezések megbízható működését biztosítja - közvetlenül a jármű akkumulátorából származó energiával. Legyen szó kempingezésről vagy mobil munkahelyekről - a DPSI-TS sz",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Dometic",
+      "priceCzk": 662805,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 6000,
         "currentA": null,
         "chargingVoltagesV": [
           12,

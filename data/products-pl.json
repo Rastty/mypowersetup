@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-25T08:54:17.410Z",
+  "generatedAt": "2026-09-26T08:40:31.079Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16487,
+      "parsedProducts": 16506,
       "relevantProducts": 207
     },
     "powerqueen_eu": {
@@ -4082,6 +4082,40 @@
       }
     },
     {
+      "id": "padabo_pl:104293_30481",
+      "merchant": "padabo_pl",
+      "name": "Przetwornica napięcia Dometic SinePower DPSI-TS 12 V lub 24 V wydajność stała/szczytowa 3000/6000 W napięcie 12 V",
+      "description": "Falownik sinusoidalny dla wrażliwych urządzeńPrzetwornica napięcia Dometic SinePower DPSI-TS zapewnia najwyższą wydajność mobilnego zasilania i wyznacza standardy mobilnego zasilania. Zaprojektowany do konwersji zasilania akumulatorowego 12 lub 24 V na prąd zmienny 230 V/50 Hz, zapewnia niezawodne działanie urządzeń elektrycznych o mocy do 3000 W - z zasilaniem bezpośrednio z akumulatora pojazdu. Niezależnie od tego, czy jest to kemping, czy mobilne miejsce pracy - dzięki serii falowników sinuso",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Przetwornice napięcia",
+      "category": "inverter",
+      "brand": "Dometic",
+      "priceCzk": 7002.77,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/przetwornica-napiecia-dometic-sinepower-dpsi-ts-12-v-lub-24-v_z104293/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fprzetwornica-napiecia-dometic-sinepower-dpsi-ts-12-v-lub-24-v_z104293%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 6000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12,
+          24
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_pl:104293_30482",
       "merchant": "padabo_pl",
       "name": "Przetwornica napięcia Dometic SinePower DPSI-TS 12 V lub 24 V wydajność stała/szczytowa 3000/6000 W napięcie 24 V",
@@ -6155,38 +6189,6 @@
       }
     },
     {
-      "id": "padabo_pl:107546_32890",
-      "merchant": "padabo_pl",
-      "name": "Bateria litowa Caratec CEB pojemność 180 Ah",
-      "description": "Najnowsza generacja baterii mobilnych Bateria litowa Caratec CEB należy do najnowszej generacji baterii mobilnych. Akumulator posiada zintegrowany system zarządzania akumulatorem (BMS), aplikację Bluetooth i automatyczne podgrzewanie ogniw, co zapewnia maksymalną wydajność, wysokie bezpieczeństwo i pełną kontrolę. Akumulator nadaje się do kamperów i przyczep kempingowych. W porównaniu do konwencjonalnych akumulatorów AGM, Caratec CEB zapewnia do czterech razy większą pojemność przy niższej wadze",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
-      "category": "battery",
-      "brand": "Caratec",
-      "priceCzk": 5356,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/bateria-litowa-caratec-ceb_z107546/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fbateria-litowa-caratec-ceb_z107546%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/4/191854_102.jpg?1774474742_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 180,
-        "capacityWh": 1344,
-        "powerW": null,
-        "currentA": 300,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_pl:107546_32891",
       "merchant": "padabo_pl",
       "name": "Bateria litowa Caratec CEB pojemność 150 Ah",
@@ -6378,7 +6380,7 @@
       "categoryPath": "Chłodzenie i ogrzewanie | Lodówki turystyczne i torby termiczne | Akcesoria do lodówek samochodowych",
       "category": "battery",
       "brand": "Mestic",
-      "priceCzk": 966.9,
+      "priceCzk": 967.42,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/dodatkowy-akumulator-do-lodowek-kompresorowych-mestic-mccm-mcc_z108321/",
@@ -6500,7 +6502,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Przetwornice napięcia",
       "category": "inverter",
       "brand": "Victron",
-      "priceCzk": 1457.74,
+      "priceCzk": 1458.52,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/przetwornica-sinusoidalna-victron-energy-12-v-1600-va-ve-direct_z109017/",
@@ -6533,7 +6535,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
       "category": "solar_panel",
       "brand": "Victron",
-      "priceCzk": 481.53,
+      "priceCzk": 481.79,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/panel-sloneczny-victron-energy-bluesolar-190-wp-mono-12-v_z109069/",
@@ -6566,7 +6568,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
       "category": "battery",
       "brand": "Renogy",
-      "priceCzk": 4088.92,
+      "priceCzk": 4091.13,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/akumulator-z-ogrzewaniem-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090/",
