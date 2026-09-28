@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-27T09:20:43.679Z",
+  "generatedAt": "2026-09-28T09:55:30.639Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12510,
+      "parsedProducts": 12527,
       "relevantProducts": 160
     },
     "ampul_hu": {
@@ -5942,7 +5942,7 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 549,
+      "priceCzk": 569,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r1500-portable-home-backup-power-station-1800w-1152wh-lifep04-battery",
@@ -6267,7 +6267,7 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 1799,
+      "priceCzk": 1899,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r4000-portable-power-station-4000w-3600wh",

@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-27T09:20:34.088Z",
+  "generatedAt": "2026-09-28T09:55:19.358Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16484,
+      "parsedProducts": 16505,
       "relevantProducts": 207
     },
     "powerqueen_eu": {
@@ -7821,7 +7821,7 @@
     {
       "id": "allpowers_pl:9242496041115",
       "merchant": "allpowers_pl",
-      "name": "Stacja Zasilania 1800W 1024Wh Akumulator LiFePO4 ALLPOWERS VOLIT P1800",
+      "name": "Stacja Zasilania 1800W 1024Wh Akumulator LiFePO4 ALLPOWERS VOLIX P1800",
       "description": "",
       "categoryPath": "Portable Power Station",
       "category": "power_station",
@@ -7829,8 +7829,8 @@
       "priceCzk": 2359,
       "priceCurrency": "PLN",
       "available": true,
-      "productUrl": "https://allpowers.com.pl/products/volit-p1800-stacja-zasilania",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=121776&awinaffid=3044971&ued=https%3A%2F%2Fallpowers.com.pl%2Fproducts%2Fvolit-p1800-stacja-zasilania",
+      "productUrl": "https://allpowers.com.pl/products/volix-p1800-stacja-zasilania",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=121776&awinaffid=3044971&ued=https%3A%2F%2Fallpowers.com.pl%2Fproducts%2Fvolix-p1800-stacja-zasilania",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0687/7875/4203/files/ALLPOWERS-P1800-Portable-Power-Station-1800W-1024Wh-ALLPOWERS-125459426.webp?v=1786009355",
       "specs": {
         "voltageV": null,
