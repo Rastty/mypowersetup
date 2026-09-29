@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-28T09:55:30.639Z",
+  "generatedAt": "2026-09-29T09:55:29.790Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12527,
+      "parsedProducts": 12508,
       "relevantProducts": 160
     },
     "ampul_hu": {
@@ -5944,7 +5944,7 @@
       "brand": "ALLPOWERS",
       "priceCzk": 569,
       "priceCurrency": "EUR",
-      "available": true,
+      "available": false,
       "productUrl": "https://iallpowers.eu/products/allpowers-r1500-portable-home-backup-power-station-1800w-1152wh-lifep04-battery",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r1500-portable-home-backup-power-station-1800w-1152wh-lifep04-battery",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R1500-Portable-Power-Station-1800W-1152Wh-LiFeP04-Battery-ALLPOWERS-123497827.webp?v=1783440297",
@@ -6401,7 +6401,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 699.99,
+      "priceCzk": 689.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-320ah-dense-smart-lifepo4-batterie-fur-wohnmobil-untersitz",

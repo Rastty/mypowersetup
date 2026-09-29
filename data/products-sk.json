@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-28T09:53:48.753Z",
+  "generatedAt": "2026-09-29T09:55:09.419Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16491,
+      "parsedProducts": 16465,
       "relevantProducts": 252
     },
     "allpowers_eu": {
@@ -555,7 +555,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
+      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -7228,6 +7228,38 @@
       }
     },
     {
+      "id": "padabo_sk:107518",
+      "merchant": "padabo_sk",
+      "name": "Lítiová batéria Büttner Dometic Tempra TLB100SF L3, 100 Ah",
+      "description": "Kompaktná lítiová batéria s optimalizovaným riadením Büttner Dometic Tempra TLB100SF L3 je lítiová batéria s kapacitou 100 Ah. Vďaka pokročilým článkom HDP (High Density Power) ponúka vysokú hustotu energie v kompaktnom prevedení. Inteligentný systém riadenia batérie zabezpečuje optimálne nabíjanie a umožňuje pripojenie batérie k akejkoľvek nabíjačke - vrátane olovenej. Kompaktná batéria sa zmestí pod sedadlo Fiatu Ducato. Optimalizovaný systém riadenia batérie zabezpečuje maximálnu účinnosť a p",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
+      "category": "battery",
+      "brand": "Büttner Elektronik",
+      "priceCzk": 974.17,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/litiova-bateria-buttner-dometic-tempra-tlb100sf-l3-100-ah_z107518/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-buttner-dometic-tempra-tlb100sf-l3-100-ah_z107518%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/191709_102.jpg?1774290779_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 100,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 100,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_sk:107522_32861",
       "merchant": "padabo_sk",
       "name": "Štartovacia lítiová batéria BullTron kapacita 55 Ah",
@@ -7454,38 +7486,6 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 280,
-        "capacityWh": 1344,
-        "powerW": null,
-        "currentA": 300,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:107546_32891",
-      "merchant": "padabo_sk",
-      "name": "Lítiová batéria Caratec CEB kapacita 150 Ah",
-      "description": "Najnovšia generácia mobilných batérií Lítiová batéria Caratec CEB patrí k najnovšej generácii mobilných batérií. Batéria má integrovaný systém riadenia batérie (BMS), aplikáciu Bluetooth a automatické vyhrievanie článkov, čo zaručuje maximálny výkon, vysokú bezpečnosť a úplnú kontrolu. Batéria je vhodná pre obytné vozidlá a karavany. V porovnaní s bežnými batériami AGM poskytuje Caratec CEB až štyrikrát väčšiu kapacitu pri nižšej hmotnosti. Bluetooth poskytuje monitorovanie a zabudovaný systém s",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
-      "category": "battery",
-      "brand": "Caratec",
-      "priceCzk": 1036.4,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/litiova-bateria-caratec-ceb_z107546/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-caratec-ceb_z107546%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/191855_102.jpg?1774474742_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 150,
         "capacityWh": 1344,
         "powerW": null,
         "currentA": 300,
@@ -8439,7 +8439,7 @@
       "brand": "ALLPOWERS",
       "priceCzk": 569,
       "priceCurrency": "EUR",
-      "available": true,
+      "available": false,
       "productUrl": "https://iallpowers.eu/products/allpowers-r1500-portable-home-backup-power-station-1800w-1152wh-lifep04-battery",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r1500-portable-home-backup-power-station-1800w-1152wh-lifep04-battery",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R1500-Portable-Power-Station-1800W-1152Wh-LiFeP04-Battery-ALLPOWERS-123497827.webp?v=1783440297",
@@ -8896,7 +8896,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 699.99,
+      "priceCzk": 689.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-320ah-dense-smart-lifepo4-batterie-fur-wohnmobil-untersitz",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T09:55:31.651Z",
+  "generatedAt": "2026-09-29T09:55:30.806Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": false,
@@ -536,7 +536,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 699.99,
+      "priceCzk": 689.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-320ah-dense-smart-lifepo4-batterie-fur-wohnmobil-untersitz",

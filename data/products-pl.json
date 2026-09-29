@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-28T09:55:19.358Z",
+  "generatedAt": "2026-09-29T09:55:20.575Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16505,
+      "parsedProducts": 16477,
       "relevantProducts": 207
     },
     "powerqueen_eu": {
@@ -5946,6 +5946,38 @@
       }
     },
     {
+      "id": "padabo_pl:107518",
+      "merchant": "padabo_pl",
+      "name": "Bateria litowa Büttner Dometic Tempra TLB100SF L3, 100 Ah",
+      "description": "Kompaktowa bateria litowa ze zoptymalizowanym zarządzaniem baterią Büttner Dometic Tempra TLB100SF L3 to akumulator litowy o pojemności 100 Ah. Dzięki zaawansowanym ogniwom HDP (High Density Power) oferuje wysoką gęstość energii w kompaktowej konstrukcji. Inteligentny system zarządzania akumulatorem zapewnia optymalne ładowanie i umożliwia podłączenie akumulatora do dowolnej ładowarki - w tym kwasowo-ołowiowej. Kompaktowy akumulator mieści się pod siedzeniem Fiata Ducato. Zoptymalizowany system ",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
+      "category": "battery",
+      "brand": "Büttner Elektronik",
+      "priceCzk": 4339.46,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/bateria-litowa-buttner-dometic-tempra-tlb100sf-l3-100-ah_z107518/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fbateria-litowa-buttner-dometic-tempra-tlb100sf-l3-100-ah_z107518%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/9/191709_102.jpg?1774290779_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 100,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 100,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_pl:107522_32861",
       "merchant": "padabo_pl",
       "name": "Litowy akumulator rozruchowy BullTron pojemność 55 Ah",
@@ -6173,38 +6205,6 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 280,
-        "capacityWh": 1344,
-        "powerW": null,
-        "currentA": 300,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:107546_32891",
-      "merchant": "padabo_pl",
-      "name": "Bateria litowa Caratec CEB pojemność 150 Ah",
-      "description": "Najnowsza generacja baterii mobilnych Bateria litowa Caratec CEB należy do najnowszej generacji baterii mobilnych. Akumulator posiada zintegrowany system zarządzania akumulatorem (BMS), aplikację Bluetooth i automatyczne podgrzewanie ogniw, co zapewnia maksymalną wydajność, wysokie bezpieczeństwo i pełną kontrolę. Akumulator nadaje się do kamperów i przyczep kempingowych. W porównaniu do konwencjonalnych akumulatorów AGM, Caratec CEB zapewnia do czterech razy większą pojemność przy niższej wadze",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
-      "category": "battery",
-      "brand": "Caratec",
-      "priceCzk": 4616.71,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/bateria-litowa-caratec-ceb_z107546/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fbateria-litowa-caratec-ceb_z107546%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/5/191855_102.jpg?1774474742_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 150,
         "capacityWh": 1344,
         "powerW": null,
         "currentA": 300,
@@ -6669,7 +6669,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 699.99,
+      "priceCzk": 689.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-320ah-dense-smart-lifepo4-batterie-fur-wohnmobil-untersitz",
