@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-29T09:55:20.575Z",
+  "generatedAt": "2026-09-30T09:47:38.041Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16477,
-      "relevantProducts": 207
+      "parsedProducts": 16486,
+      "relevantProducts": 206
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -1343,42 +1343,6 @@
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:24829_26599",
-      "merchant": "padabo_pl",
-      "name": "Ładowarka Victron Energy Orion-Tr Smart DC-DC izolowana prąd 12/12-18A",
-      "description": "Trzystopniowa ładowarka i zasilacz Victron EnergyŁadowarka Victron Energy Orion-Tr Smart DC-DC w wersji izolowanej umożliwia podłączenie, konwersję i izolację różnych obwodów elektrycznych, systemów zasilania i innych urządzeń, które mają różne napięcia bazowe. Izolacja zapewnia oddzielenie tych obwodów i potencjałów między wejściem i wyjściem ładowarki. Sprawia to, że trójstopniowa ładowarka adaptacyjna nadaje się do użytku w systemach z dwoma akumulatorami w samochodach kempingowych lub łodzia",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Ładowarki i boostery | Ładowarki",
-      "category": "dc_charger",
-      "brand": "Victron",
-      "priceCzk": 813.04,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/ladowarka-victron-energy-orion-tr-smart-dc-dc-izolowana_z24829/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fladowarka-victron-energy-orion-tr-smart-dc-dc-izolowana_z24829%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/2/158732_102.jpg?1704380234_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 280,
-        "currentA": 18,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -6380,7 +6344,7 @@
       "categoryPath": "Chłodzenie i ogrzewanie | Lodówki turystyczne i torby termiczne | Akcesoria do lodówek samochodowych",
       "category": "battery",
       "brand": "Mestic",
-      "priceCzk": 967.42,
+      "priceCzk": 963.09,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/dodatkowy-akumulator-do-lodowek-kompresorowych-mestic-mccm-mcc_z108321/",
@@ -6502,7 +6466,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Przetwornice napięcia",
       "category": "inverter",
       "brand": "Victron",
-      "priceCzk": 1458.52,
+      "priceCzk": 1452,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/przetwornica-sinusoidalna-victron-energy-12-v-1600-va-ve-direct_z109017/",
@@ -6535,7 +6499,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
       "category": "solar_panel",
       "brand": "Victron",
-      "priceCzk": 481.79,
+      "priceCzk": 479.64,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/panel-sloneczny-victron-energy-bluesolar-190-wp-mono-12-v_z109069/",
@@ -6568,7 +6532,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
       "category": "battery",
       "brand": "Renogy",
-      "priceCzk": 4091.13,
+      "priceCzk": 4072.84,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/akumulator-z-ogrzewaniem-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090/",
