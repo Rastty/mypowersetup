@@ -88,8 +88,10 @@ export function buildProductPackages(recommendations, setup) {
   if (categories.length < 2 || categories.some((category) => eligibleCandidates(recommendations, category).length === 0)) return [];
 
   const candidates = [
-    buildVariant("economy", categories, recommendations, bestValue),
+    // Put the strongest fit first so the default decision path is obvious.
+    // Economy and reserve remain safe alternatives, not competing defaults.
     buildVariant("recommended", categories, recommendations, (items) => items[0]),
+    buildVariant("economy", categories, recommendations, bestValue),
     buildVariant("reserve", categories, recommendations, withReserve),
   ];
   const recommendedSignature = signature(candidates.find(({ id }) => id === "recommended"));
