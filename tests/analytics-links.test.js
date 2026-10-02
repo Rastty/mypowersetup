@@ -12,6 +12,15 @@ test("guide calculator classifier accepts exact calculator anchors for all publi
   assert.deepEqual(classifyGuideCalculatorLink("/ro/#calculator-preview"), { destination_path: "/ro/" });
 });
 
+test("guide calculator classifier accepts direct calculator landing routes", () => {
+  assert.deepEqual(classifyGuideCalculatorLink("/kalkulacky/vykon-menice/"), { destination_path: "/kalkulacky/vykon-menice/" });
+  assert.deepEqual(classifyGuideCalculatorLink("/sk/kalkulacky/solarne-panely/"), { destination_path: "/sk/kalkulacky/solarne-panely/" });
+  assert.deepEqual(classifyGuideCalculatorLink("/pl/kalkulatory/pojemnosc-akumulatora/"), { destination_path: "/pl/kalkulatory/pojemnosc-akumulatora/" });
+  assert.deepEqual(classifyGuideCalculatorLink("/hu/kalkulatorok/napelem-teljesitmeny/"), { destination_path: "/hu/kalkulatorok/napelem-teljesitmeny/" });
+  assert.equal(classifyGuideCalculatorLink("/kalkulacky/"), null);
+  assert.equal(classifyGuideCalculatorLink("/kalkulacky/vykon-menice/#detail"), null);
+});
+
 test("scenario calculator links expose the campaign on the guide click event", () => {
   assert.deepEqual(
     classifyGuideCalculatorLink("/?loads=fridge:8:1&utm_source=scenario_page&utm_medium=internal&utm_campaign=family#kalkulator"),

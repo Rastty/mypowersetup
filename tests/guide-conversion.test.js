@@ -2,15 +2,18 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
+import { classifyGuideCalculatorLink } from "../src/analytics-links.js";
 import { coreMoneyGuideRoutes, enhanceGuideConversion, isCoreMoneyGuide } from "../src/guide-conversion.js";
 
 function attrNode(initial = []) {
   const attributes = new Set(initial);
+  const values = new Map();
   return {
     attributes,
-    setAttribute(name) { attributes.add(name); },
-    removeAttribute(name) { attributes.delete(name); },
+    setAttribute(name, value = "") { attributes.add(name); values.set(name, value); },
+    removeAttribute(name) { attributes.delete(name); values.delete(name); },
     hasAttribute(name) { return attributes.has(name); },
+    getAttribute(name) { return values.get(name) ?? null; },
   };
 }
 
@@ -39,12 +42,15 @@ test("every early-CTA money route has an answer block and local calculator CTA",
     const html = await readFile(`${route.slice(1)}index.html`, "utf8");
     assert.match(html, /class="answer"/, `${route} is missing the answer-first block`);
     assert.match(html, /<section class="cta">/, `${route} is missing the conversion CTA`);
-    assert.match(html, /href="[^\"]*#kalkulator"/, `${route} is missing the local calculator link`);
+    const cta = html.match(/<section class="cta">[\s\S]*?<\/section>/)?.[0] ?? "";
+    const href = cta.match(/<a\s+href="([^"]+)"/)?.[1];
+    assert.ok(href && classifyGuideCalculatorLink(href), `${route} is missing a recognized local calculator link`);
   }
 });
 
 test("enhancer inserts one early CTA and marks the existing CTA as late", () => {
   const lateLink = attrNode();
+  lateLink.setAttribute("href", "/kalkulacky/mppt-regulator/");
   const earlyLink = attrNode(["data-guide-conversion-cta"]);
   const earlyCta = {
     attributes: new Set(),
@@ -52,7 +58,7 @@ test("enhancer inserts one early CTA and marks the existing CTA as late", () => 
     querySelector(selector) { return selector === "[data-guide-conversion-cta]" ? earlyLink : null; },
   };
   const lateCta = {
-    querySelector(selector) { return selector === 'a[href*="#kalkulator"]' ? lateLink : null; },
+    querySelector(selector) { return selector === "a[href]" ? lateLink : null; },
     cloneNode() { return earlyCta; },
   };
   let inserted = null;

@@ -11,6 +11,24 @@ const CALCULATOR_HASH_BY_PATH = Object.freeze({
   "/ro/": "#calculator-preview",
 });
 
+const CALCULATOR_LANDING_PATHS = new Set([
+  "/kalkulacky/kapacita-baterie/",
+  "/kalkulacky/vydrz-baterie/",
+  "/kalkulacky/solarni-panely/",
+  "/kalkulacky/mppt-regulator/",
+  "/kalkulacky/dc-dc-nabijecka/",
+  "/kalkulacky/vykon-menice/",
+  "/kalkulacky/prurez-kabelu-12v/",
+  "/kalkulacky/jisteni-12v/",
+  "/kalkulacky/12v-nebo-24v/",
+  "/sk/kalkulacky/kapacita-baterie/",
+  "/sk/kalkulacky/solarne-panely/",
+  "/pl/kalkulatory/pojemnosc-akumulatora/",
+  "/pl/kalkulatory/panele-solarne/",
+  "/hu/kalkulatorok/akkumulator-kapacitas/",
+  "/hu/kalkulatorok/napelem-teljesitmeny/",
+]);
+
 export function classifyGuideCalculatorLink(href, { origin = "https://mypowersetup.com" } = {}) {
   let url;
   try {
@@ -21,8 +39,11 @@ export function classifyGuideCalculatorLink(href, { origin = "https://mypowerset
 
   const expectedOrigin = new URL(origin).origin;
   if (url.origin !== expectedOrigin) return null;
+
+  const isLanding = CALCULATOR_LANDING_PATHS.has(url.pathname) && !url.hash;
   const expectedHash = CALCULATOR_HASH_BY_PATH[url.pathname];
-  if (!expectedHash || url.hash !== expectedHash) return null;
+  const isEmbeddedCalculator = Boolean(expectedHash && url.hash === expectedHash);
+  if (!isLanding && !isEmbeddedCalculator) return null;
 
   const scenario = readScenarioAttribution(url.search);
   return Object.freeze({ destination_path: url.pathname, ...(scenario || {}) });

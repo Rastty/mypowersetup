@@ -1,3 +1,4 @@
+import { classifyGuideCalculatorLink } from "./analytics-links.js";
 import { rememberGuideAttribution } from "./guide-attribution.js";
 
 const CORE_MONEY_GUIDES = new Set([
@@ -52,8 +53,8 @@ function bindGuideAttribution(article, pathname, root) {
   if (article.dataset?.guideAttributionBound === "true") return;
   if (article.dataset) article.dataset.guideAttributionBound = "true";
   article.addEventListener?.("click", (event) => {
-    const link = event.target?.closest?.('a[href*="#kalkulator"]');
-    if (!link || !article.contains?.(link)) return;
+    const link = event.target?.closest?.("a[href]");
+    if (!link || !article.contains?.(link) || !classifyGuideCalculatorLink(link.getAttribute?.("href"))) return;
     const localStorage = root?.defaultView?.localStorage || globalThis.localStorage;
     const sessionStorage = root?.defaultView?.sessionStorage || globalThis.sessionStorage;
     if (!hasAnalyticsConsent(localStorage)) return;
@@ -84,8 +85,9 @@ export function enhanceGuideConversion({
 
   const answer = article.querySelector?.(".answer");
   const lateCta = article.querySelector?.(".cta");
-  const lateLink = lateCta?.querySelector?.('a[href*="#kalkulator"]');
-  if (!answer || !lateCta || !lateLink || typeof lateCta.cloneNode !== "function") return false;
+  const lateLink = lateCta?.querySelector?.("a[href]");
+  const lateHref = lateLink?.getAttribute?.("href");
+  if (!answer || !lateCta || !lateLink || !classifyGuideCalculatorLink(lateHref) || typeof lateCta.cloneNode !== "function") return false;
 
   lateLink.setAttribute?.("data-guide-conversion-cta", "");
   bindGuideAttribution(article, pathname, root);
