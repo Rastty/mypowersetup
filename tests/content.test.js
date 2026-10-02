@@ -639,7 +639,8 @@ test("hidden calculator actions stay hidden even when component styles set displ
   ]);
   assert.match(styles, /\[hidden\]\s*\{\s*display:\s*none\s*!important;/);
   for (const source of [app, appSk, appPl]) {
-    assert.ok(source.includes('document.querySelector("#result-products-link").hidden = total === 0'));
+    assert.ok(source.includes('const resultProductsLink = document.querySelector("#result-products-link")'));
+    assert.ok(source.includes('resultProductsLink.hidden = total === 0'));
   }
   for (const html of [czech, slovak, polish]) assert.ok(html.includes('/styles.css?v=20260902-product-roles1'));
 });

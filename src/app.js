@@ -143,8 +143,11 @@ function bindNavigation() {
   document.querySelector("#start-over").addEventListener("click", resetForm);
   form.addEventListener("input", () => trackCalculatorStarted("form_input"), { once: true });
   form.addEventListener("submit", handleSubmit);
-  document.querySelector("#result-products-link").addEventListener("click", () => {
-    trackEvent("product_recommendations_opened", { source: "result_next" });
+  document.querySelector("#result-products-link").addEventListener("click", (event) => {
+    trackEvent("product_recommendations_opened", {
+      source: "result_next",
+      result_next_variant: event.currentTarget?.dataset?.resultNextVariant || "product_matches",
+    });
   });
 }
 
@@ -490,6 +493,8 @@ function renderProductRecommendations(result) {
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
   const coverage = assessRecommendationCoverage(recommendations, result, "cs");
+  const packages = buildProductPackages(rankedRecommendations, result);
+  const hasRecommendedPackage = packages.some(({ id }) => id === "recommended");
   trackEvent("product_coverage_calculated", {
     locale: "cs",
     required_categories: coverage.required.length,
@@ -499,9 +504,14 @@ function renderProductRecommendations(result) {
   const resultNext = document.querySelector("#result-next");
   resultNext.hidden = false;
   document.querySelector("#result-product-count").textContent = total
-    ? `Našli jsme ${total} ověřených shod v ${categoryCount} kategoriích. Produktové pokrytí sestavy: ${coverage.covered.length} z ${coverage.required.length} potřebných kategorií.`
+    ? hasRecommendedPackage
+      ? `Máme doporučenou nákupní variantu pro všechny potřebné kategorie a celkem ${total} ověřených shod v ${categoryCount} kategoriích.`
+      : `Našli jsme ${total} ověřených shod v ${categoryCount} kategoriích. Produktové pokrytí sestavy: ${coverage.covered.length} z ${coverage.required.length} potřebných kategorií.`
     : "Pro tuto konfiguraci zatím nemáme dostatečně ověřenou produktovou shodu. Technický výsledek můžete dál použít jako podklad pro výběr.";
-  document.querySelector("#result-products-link").hidden = total === 0;
+  const resultProductsLink = document.querySelector("#result-products-link");
+  resultProductsLink.hidden = total === 0;
+  resultProductsLink.textContent = hasRecommendedPackage ? "Zobrazit doporučenou sestavu ↓" : "Zobrazit doporučené produkty ↓";
+  resultProductsLink.dataset.resultNextVariant = hasRecommendedPackage ? "complete_package" : "product_matches";
   const freshness = productCatalogUpdatedAt
     ? ` Produktová data byla načtena ${new Date(productCatalogUpdatedAt).toLocaleDateString("cs-CZ")}.`
     : "";
@@ -517,7 +527,7 @@ function renderProductRecommendations(result) {
 
   heading.textContent = "Komponenty odpovídající vašemu výpočtu";
   intro.textContent = `Nejdříve ověřujeme technickou kompatibilitu. Pořadí následně zohledňuje shodu parametrů, dostupnost a úplnost produktových dat.${freshness}`;
-  renderProductPackages(buildProductPackages(rankedRecommendations, result));
+  renderProductPackages(packages);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Co katalog zatím nepokrývá:</strong> ${coverage.message}</p>`;
   const productGroups = Object.entries(recommendations)
     .filter(([, items]) => items.length)

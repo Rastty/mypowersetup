@@ -139,8 +139,11 @@ function bindNavigation() {
   document.querySelector("#start-over").addEventListener("click", resetForm);
   form.addEventListener("input", () => trackCalculatorStarted("form_input"), { once: true });
   form.addEventListener("submit", handleSubmit);
-  document.querySelector("#result-products-link").addEventListener("click", () => {
-    trackEvent("product_recommendations_opened", { source: "result_next" });
+  document.querySelector("#result-products-link").addEventListener("click", (event) => {
+    trackEvent("product_recommendations_opened", {
+      source: "result_next",
+      result_next_variant: event.currentTarget?.dataset?.resultNextVariant || "product_matches",
+    });
   });
 }
 
@@ -488,6 +491,8 @@ function renderProductRecommendations(result) {
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
   const coverage = assessRecommendationCoverage(recommendations, result, "pl");
+  const packages = buildProductPackages(rankedRecommendations, result);
+  const hasRecommendedPackage = packages.some(({ id }) => id === "recommended");
   trackEvent("product_coverage_calculated", {
     locale: "pl",
     required_categories: coverage.required.length,
@@ -497,9 +502,14 @@ function renderProductRecommendations(result) {
   const resultNext = document.querySelector("#result-next");
   resultNext.hidden = false;
   document.querySelector("#result-product-count").textContent = total
-    ? `Znaleźliśmy ${total} zweryfikowanych dopasowań w ${categoryCount} kategoriach. Pokrycie zestawu produktami: ${coverage.covered.length} z ${coverage.required.length} wymaganych kategorii.`
+    ? hasRecommendedPackage
+      ? `Mamy polecany wariant zakupowy dla wszystkich wymaganych kategorii oraz ${total} zweryfikowanych dopasowań w ${categoryCount} kategoriach.`
+      : `Znaleźliśmy ${total} zweryfikowanych dopasowań w ${categoryCount} kategoriach. Pokrycie zestawu produktami: ${coverage.covered.length} z ${coverage.required.length} wymaganych kategorii.`
     : "Dla tej konfiguracji nie mamy jeszcze dostatecznie zweryfikowanego dopasowania produktów. Wynik techniczny możesz wykorzystać jako podstawę wyboru.";
-  document.querySelector("#result-products-link").hidden = total === 0;
+  const resultProductsLink = document.querySelector("#result-products-link");
+  resultProductsLink.hidden = total === 0;
+  resultProductsLink.textContent = hasRecommendedPackage ? "Pokaż polecany zestaw ↓" : "Pokaż polecane produkty ↓";
+  resultProductsLink.dataset.resultNextVariant = hasRecommendedPackage ? "complete_package" : "product_matches";
   const freshness = productCatalogUpdatedAt
     ? ` Dane produktowe pobrano ${new Date(productCatalogUpdatedAt).toLocaleDateString("pl-PL")}.`
     : "";
@@ -515,7 +525,7 @@ function renderProductRecommendations(result) {
 
   heading.textContent = "Komponenty zgodne z obliczeniem";
   intro.textContent = `Najpierw sprawdzamy zgodność techniczną. Kolejność uwzględnia następnie dopasowanie parametrów, dostępność i kompletność danych.${freshness}`;
-  renderProductPackages(buildProductPackages(rankedRecommendations, result));
+  renderProductPackages(packages);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Czego katalog jeszcze nie obejmuje:</strong> ${coverage.message}</p>`;
   const productGroups = Object.entries(recommendations)
     .filter(([, items]) => items.length)
