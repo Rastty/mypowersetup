@@ -42,7 +42,9 @@ test("every early-CTA money route has an answer block and local calculator CTA",
     const html = await readFile(`${route.slice(1)}index.html`, "utf8");
     assert.match(html, /class="answer"/, `${route} is missing the answer-first block`);
     assert.match(html, /<section class="cta">/, `${route} is missing the conversion CTA`);
-    assert.match(html, /href="[^\"]*#kalkulator"/, `${route} is missing the local calculator link`);
+    const cta = html.match(/<section class="cta">[\s\S]*?<\/section>/)?.[0] ?? "";
+    const href = cta.match(/<a\s+href="([^"]+)"/)?.[1];
+    assert.ok(href && classifyGuideCalculatorLink(href), `${route} is missing a recognized local calculator link`);
   }
 });
 
