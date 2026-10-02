@@ -3,12 +3,12 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
 const markets = [
-  ["../src/app.js", "Porovnat jednotlivé produkty"],
-  ["../src/app-sk.js", "Porovnať jednotlivé produkty"],
-  ["../src/app-pl.js", "Porównaj pojedyncze produkty"],
+  ["../src/app.js", "Porovnat jednotlivé produkty", "Začněte doporučenou variantou"],
+  ["../src/app-sk.js", "Porovnať jednotlivé produkty", "Začnite odporúčanou variantou"],
+  ["../src/app-pl.js", "Porównaj pojedyncze produkty", "Zacznij od wariantu polecanego"],
 ];
 
-for (const [path, summary] of markets) {
+for (const [path, summary, recommendedIntro] of markets) {
   test(`${path} keeps three purchase routes primary and puts the long catalog behind disclosure`, async () => {
     const source = await readFile(new URL(path, import.meta.url), "utf8");
     assert.match(source, /renderProductPackages\(buildProductPackages\(rankedRecommendations, result\)\)/);
@@ -42,4 +42,10 @@ test("expansion product disclosure has dedicated visual treatment", async () => 
   assert.match(styles, /\.expansion-product-alternatives \{/);
   assert.match(styles, /\.expansion-product-alternatives summary \{/);
   assert.match(styles, /\.expansion-product-alternatives\[open\] summary/);
+});
+
+
+test("Hungarian package UX makes the recommended route the starting point", async () => {
+  const source = await readFile(new URL("../src/app-hu-browser.js", import.meta.url), "utf8");
+  assert.ok(source.includes("Kezdd az ajánlott változattal"));
 });
