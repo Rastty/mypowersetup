@@ -70,6 +70,7 @@ function buildVariant(id, categories, recommendations, selector) {
     items,
     ...packageQuality(items),
     purchaseSequence: items.map(({ category }) => category),
+    requiredCategoryCount: categories.length,
     totalPriceCzk: priced.every((price) => price !== null) && currencies.size <= 1
       ? priced.reduce((total, price) => total + price, 0)
       : null,
