@@ -52,3 +52,28 @@ test("changed calculator surfaces carry current lastmod in both calculator and p
     assert.ok(primarySitemap.includes(needle), `primary sitemap missing ${url}`);
   }
 });
+
+
+test("Wave 17 strengthens contextual discovery for the battery autonomy calculator", async () => {
+  const [batteryCalculator, calculatorSitemap, primarySitemap] = await Promise.all([
+    read("kalkulacky/kapacita-baterie/index.html"),
+    read("sitemap-calculators.xml"),
+    read("sitemap.xml"),
+  ]);
+
+  assert.match(
+    batteryCalculator,
+    /href="\/kalkulacky\/vydrz-baterie\/"[^>]*>Mám baterii — spočítat její výdrž<\/a>/,
+  );
+
+  const sourceNeedle = "<loc>https://mypowersetup.com/kalkulacky/kapacita-baterie/</loc><lastmod>2026-10-02</lastmod>";
+  assert.ok(calculatorSitemap.includes(sourceNeedle));
+  assert.ok(primarySitemap.includes(sourceNeedle));
+
+  const evidence = JSON.parse(await read("data/calculator-growth-evidence-2026-09-25.json"));
+  assert.equal(
+    new Map(evidence.gsc.remainingIndexingGaps.map((row) => [row.url, row.coverageState]))
+      .get("https://mypowersetup.com/kalkulacky/vydrz-baterie/"),
+    "URL is unknown to Google",
+  );
+});
