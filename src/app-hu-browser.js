@@ -148,7 +148,7 @@ function renderHungarianProductPackages(variants) {
     target.innerHTML = "";
     return;
   }
-  target.innerHTML = `<div class="package-intro"><strong>Három biztonságos vásárlási út</strong><p>Mindhárom változat ugyanazt a számított igényt teljesíti. A fő alkatrészeket és az elérhető töltést tartalmazza, de nem teljes szerelési anyaglista.</p></div><div class="package-grid">${variants.map((variant) => {
+  target.innerHTML = `<div class="package-intro"><strong>Kezdd az ajánlott változattal</strong><p>Az ajánlott összeállítást mutatjuk elsőként: ez adja a paraméterek és az adatminőség legjobb egyensúlyát. A takarékos vagy nagyobb tartalékú változat alternatíva az ár és a kívánt műszaki tartalék szerint. Minden megjelenített változat teljesíti a számított igényt, de nem teljes szerelési anyaglista.</p></div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
     return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => hungarianPackageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Ár a webáruházban" : formatHungarianPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Tájékoztató termékösszeg; szállítás és szerelés nélkül.</small></article>`;
   }).join("")}</div>`;
