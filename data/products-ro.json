@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T09:50:39.286Z",
+  "generatedAt": "2026-10-02T09:55:11.647Z",
   "market": "ro-RO",
   "currency": "EUR",
   "private": false,
@@ -27,8 +27,8 @@
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 60,
-      "relevantProducts": 23,
-      "batteries": 17,
+      "relevantProducts": 22,
+      "batteries": 16,
       "controllers": 1,
       "inverters": 1,
       "shoreChargers": 4,
@@ -37,7 +37,7 @@
       "shippingEligible": true,
       "shippingEvidenceUrl": "https://www.ipowerqueen.de/en/pages/shipping-policy",
       "shippingVerifiedAt": "2026-09-01",
-      "exactProducts": 23
+      "exactProducts": 22
     },
     "xdatou": {
       "status": "blocked",
@@ -182,7 +182,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:10257573445939",
@@ -246,7 +246,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:8205919715635",
@@ -277,7 +277,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:10143263129907",
@@ -308,7 +308,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:10143246418227",
@@ -339,7 +339,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:9948837937459",
@@ -370,7 +370,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:9875554074931",
@@ -401,7 +401,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:9855868961075",
@@ -432,7 +432,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:9802731815219",
@@ -463,7 +463,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:9801383051571",
@@ -494,7 +494,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:9763001073971",
@@ -558,7 +558,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:9598354719027",
@@ -589,7 +589,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:9598338564403",
@@ -620,7 +620,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:8630287532339",
@@ -684,7 +684,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:8431037645107",
@@ -715,7 +715,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:8300246663475",
@@ -746,7 +746,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:8336481124659",
@@ -810,7 +810,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:8205916733747",
@@ -841,7 +841,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:8205905887539",
@@ -872,7 +872,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:8205901234483",
@@ -903,7 +903,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:8205897105715",
@@ -934,7 +934,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:8205889012019",
@@ -965,7 +965,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-09-30"
+      "verifiedAt": "2026-10-02"
     },
     {
       "id": "allpowers_eu:8205880623411",
@@ -975,7 +975,7 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 1899,
+      "priceCzk": 1799,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r4000-portable-power-station-4000w-3600wh",
@@ -1036,12 +1036,12 @@
     {
       "id": "powerqueen_eu:9633915175132",
       "merchant": "powerqueen_eu",
-      "name": "Power Queen 12V 125Ah Group 27 Smart LiFePO4 Versorgungsbatterie",
-      "description": "Die smarte Group 27 LiFePO4 Versorgungsbatterie für Angelboot, Campervan &amp; Off-Grid Group 27 LiFePO4 Batterie für 30–70 lbs Trolling-Motoren &amp; Bootsangler (Seewasserfest &amp; IP65): Perfekt abgestimmt auf die Group 27 Norm: Mit den Maßen 308 x 170 x 211 mm und nur 11,68 kg lässt sich diese 12V LiFePO4 Batterie mühelos tragen und passt exakt in gängige Boots-Batterieboxen (z. B. Minn Kota). Sie bietet die ideale Stromversorgung für Trolling-Motoren von 30 bis 70 lbs . Das IP65-wassergeschützte und salzwasserkorrosionsbeständige Gehäuse schützt die Elektronik zuverlässig vor Spritzwasser auf dem Angelboot. 12V 125Ah Versorgungsbatterie: Genug Power für einen ganzen Tag auf dem Wasser: Spürbar mehr Reichweite: Diese Versorgungsbatterie bietet auf kompakter Group 27-Grundfläche satte 125Ah (1.600Wh) . Betreiben Sie z. B. einen 55 lbs Trolling-Motor über 2,5 Stunden bei Vollgas oder eine 12V 35W Kompressor-Kühlbox für bis zu 40–45 Stunden durchgehend, ohne nachzuladen. Platzsparender liegender Einbau unter dem Beifahrersitz (Campervan): Smarte Lösung für Campervans: Neben der aufrechten Montage unterstützt dieser Akku auch den flachen, liegenden Einbau auf der Seite. Dadurch reduziert sich die effektive Einbauhöhe von 211 mm auf extrem kompakte 170 mm – damit passt die Batterie problemlos unter die niedrige Sitzkonsole von Fiat Ducato, Citroën Jumper oder Ford Transit. Integriertes 100A BMS: 1.280W Direct-DC Power &amp; sichere 1.000W über Wechselrichter: Maximale Sicherheit für Ihre Geräte: Das leistungsstarke 100A BMS liefert bis zu 1.280W reine Gleichstrom-Leistung (DC) für direkte 12V-Verbraucher. Bei Nutzung eines Wechselrichters betreiben Sie 230V-Haushaltsgeräte bis 1.000 Watt Dauerleistung (z. B. Reise-Wasserkocher, Reiskocher oder Werkzeuge) absolut stabil und ohne das Risiko einer BMS-Abschaltung. Automatischer 0°C Kälteschutz: Zuverlässiges Überwintern &amp; Ganzjahreseinsatz: Smarte Lösung für die kalte Jahreszeit: Die integrierte Low-Temperature Cut-Off Funktion ( Tieftemperaturschutz ) stoppt den Ladevorgang automatisch bei Temperaturen unter 0°C . So bleiben die hochwertigen Lithium-Zellen beim Frühjahrs-Angeln auf dem kalten See oder beim Wintercamping im Campervan perfekt vor dauerhaften Frostschäden geschützt. Smart Bluetooth 5.0: App-Steuerung ohne teuren Zusatz-Monitor: Volle Kontrolle per Smartphone: Dank Bluetooth 5.0 sehen Sie Restkapazität und genaue Restlaufzeit direkt in der App – sparen Sie sich den Kauf eines teuren Batterie-Monitors (Shunt). Mit dem integrierten Entladungsschalter schalten Sie die Batterie bei Nichtgebrauch einfach aus der Ferne ab.",
+      "name": "Power Queen 12V 125Ah Group 27 Smart LiFePO4 supply battery",
+      "description": "The smart Group 27 LiFePO4 supply battery for fishing boats and campervans &amp; Off-Grid Group 27 LiFePO4 battery for 30–70 lbs trolling motors &amp; Boat anglers (seawater resistant) &amp; IP65): Perfectly matched to the Group 27 standard: With the dimensions 308 x 170 x 211 mm and only 11.68 kg This 12V LiFePO4 battery is easy to carry and fits perfectly into standard boat battery boxes (e.g., Minn Kota). It provides the ideal power supply for trolling motors from 30 to 70 lbs . The IP65 waterproof and saltwater corrosion-resistant housing reliably protects the electronics from splashing water on the fishing boat. 12V 125Ah leisure battery: Enough power for a whole day on the water: Noticeably more range: This auxiliary battery offers a full 125Ah on a compact Group 27 footprint. (1,600Wh) . For example, operate a 55 lbs trolling motor via 2.5 hours at full throttle or a 12V 35W compressor cool box for up to 40–45 hours continuously, without reloading. Space-saving horizontal installation under the passenger seat (campervan): Smart solution for campervans: In addition to upright mounting, this battery also supports flat, horizontal installation on its side. This reduces the effective installation height. 211 mm down to an extremely compact 170 mm – this means the battery fits easily under the low seat console of Fiat Ducato, Citroën Jumper or Ford Transit. Integrated 100A BMS: 1,280W direct DC power &amp; A safe 1000W via inverter: Maximum safety for your devices: The powerful 100A BMS delivers up to 1,280W of pure DC power for direct 12V loads. When using an inverter, you can operate 230V household appliances up to 1,000 watts continuous power (e.g., travel kettles, rice cookers, or tools) with absolute stability and without the risk of BMS shutdown. Automatic 0°C cold protection: Reliable winterization &amp; Year-round use: Smart solution for the cold season: The integrated low-temperature cut-off function ( Low temperature protection ) automatically stops the charging process at certain temperatures below 0°C . This ensures that the high-quality lithium cells remain perfectly protected from permanent frost damage during spring fishing on the cold lake or winter camping in a campervan. Smart Bluetooth 5.0: App control without an expensive additional monitor: Full control via smartphone: Thanks to Bluetooth 5.0, you can see the remaining capacity and exact remaining runtime directly in the app – saving you the purchase of an expensive battery monitor (shunt). With the integrated discharge switch, you can easily switch off the battery remotely when not in use.",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 339.99,
+      "priceCzk": 322.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
@@ -1070,50 +1070,14 @@
       "marketEligible": true
     },
     {
-      "id": "powerqueen_eu:10313906946268",
-      "merchant": "powerqueen_eu",
-      "name": "(0% MwSt.) Power Queen 12V 125Ah Group 27 Smart LiFePO4 Batterie mit Bluetooth",
-      "description": "Die smarte 12V 125Ah LiFePO4 Solar-Batterie (0% MwSt. für PV-Anlagen) – Perfekt für Wohnmobil, Angelboot &amp; Off-Grid Group 27 LiFePO4 Batterie für PV-Anlagen, Angelboote &amp; Trolling-Motoren (IP65): Perfekt abgestimmt auf die Group 27 Norm: Mit den Maßen 308 x 170 x 211 mm und nur 11,68 kg passt diese 12V LiFePO4 Batterie exakt in gängige Boots-Batterieboxen (z. B. Minn Kota) oder kompakte Solarschränke. Als steuerfreier PV-Speicher (§12 Abs. 3 UStG) oder Stromquelle für Trolling-Motoren von 30 bis 70 lbs schützt das IP65-wassergeschützte und salzwasserfeste Gehäuse die Elektronik zuverlässig vor Spritzwasser und Feuchtigkeit. 12V 125Ah Versorgungsbatterie (1.600Wh): Ausreichend Solar-Speicher für Inselanlagen &amp; Bootsausflüge: Spürbar mehr Reichweite und Autarkie: Diese kompakte Group 27 Batterie liefert satte 125Ah (1.600Wh) nutzbare Kapazität. Ideal als Pufferspeicher für Balkonkraftwerke und Solaranlagen oder für unterwegs: Betreiben Sie z. B. einen 55 lbs Trolling-Motor über 2,5 Stunden bei Vollgas oder eine 12V 35W Kompressor-Kühlbox für bis zu 40–45 Stunden durchgehend. Platzsparender liegender Einbau unter dem Beifahrersitz (Campervan &amp; Off-Grid): Smarte Lösung für Campervans und PV-Installationen: Neben der klassischen aufrechten Montage unterstützt dieser Akku auch den flachen, liegenden Einbau auf der Seite. Dadurch reduziert sich die effektive Einbauhöhe von 211 mm auf extrem kompakte 170 mm – damit passt die Batterie mühelos unter die niedrige Sitzkonsole von Fiat Ducato, Citroën Jumper oder Ford Transit. Integriertes 100A BMS: 1.280W Direct-DC Power &amp; sichere 1.000W über Wechselrichter: Maximale Sicherheit für Ihre Solaranlage und Endgeräte: Das leistungsstarke 100A BMS liefert bis zu 1.280W reine Gleichstrom-Leistung (DC) für direkte 12V-Verbraucher. Bei Nutzung eines 230V-Wechselrichters betreiben Sie Haushaltsgeräte bis 1.000 Watt Dauerleistung (z. B. Kaffeemaschine, Reise-Wasserkocher oder Werkzeuge) absolut stabil und ohne Risiko einer BMS-Sicherheitsabschaltung. Automatischer 0°C Kälteschutz: Zuverlässiger Ganzjahreseinsatz &amp; Schutz im Winter: Smarte Sicherheit für Solarspeicher und Winter-Camping: Die integrierte Low-Temperature Cut-Off Funktion ( Tieftemperaturschutz ) stoppt den Ladevorgang automatisch bei Temperaturen unter 0°C . So bleiben die hochwertigen LiFePO4-Zellen beim Laden über Solarmodule im Winter oder beim Frühjahrs-Angeln auf dem kalten See dauerhaft vor Frostschäden geschützt. Smart Bluetooth 5.0: App-Überwachung für PV-Anlage &amp; Wohnmobil ohne teuren Monitor: Volle Kontrolle per Smartphone: Dank Bluetooth 5.0 sehen Sie Ladezustand (SoC), Spannung und Restlaufzeit Ihrer Solar-Batterie direkt in der App – sparen Sie sich den Kauf eines teuren Batterie-Monitors (Shunt). Mit dem integrierten Entladungsschalter schalten Sie die Batterie bei Nichtgebrauch oder nach der Saison einfach aus der Ferne ab.",
-      "categoryPath": "Batteries",
-      "category": "battery",
-      "brand": "PQ-DE-Tax Free",
-      "priceCzk": 285.71,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.ipowerqueen.de/en/products/0-mwst-power-queen-12v-125ah-group-27-smart-lifepo4-batterie-mit-bluetooth",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2F0-mwst-power-queen-12v-125ah-group-27-smart-lifepo4-batterie-mit-bluetooth",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/Power_Queen_12V_125Ah_Group_27_Smart_LiFePO4_Versorgungsbatterie.webp?v=1789973708",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 125,
-        "capacityWh": null,
-        "powerW": 35,
-        "currentA": 100,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "marketEligible": true
-    },
-    {
       "id": "powerqueen_eu:9382555746524",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 12V 320Ah Dense Smart LiFePO4 Battery for RV Underseat",
-      "description": "Power Queen Dense Series: More room for adventure - Maximum power, minimum space. 1. Maximum self-sufficiency on the go With a generous 4096 Wh energy This 12V 320Ah LiFePO4 battery is the ultimate upgrade to the standard 300Ah class. Whether you're wild camping in Scandinavia, off-grid camping in the Alps, or on weeks-long road trips across Europe – you can run your cool box, coffee machine, and lights completely independently for days, maximizing your holiday progress. 2. Ultra-compact: Perfect for under the seat of a motorhome Space is a luxury in a panel van or campervan. Thanks to its extremely high energy density, this battery 35% smaller than a conventional 12V 300Ah LiFePO4 battery. It fits ideally into tight storage spaces or directly under the driver's or passenger's seat . Replace three bulky 100Ah batteries with a single powerhouse and reclaim valuable storage space. 3. Powerful performance for real-life camper use No compromises on comfort: The integrated 200-A-BMS supports continuous loads of up to 2560 W . This allows you to easily operate even energy-intensive appliances – from hair dryers and induction cooktops to air conditioners. Enjoy the same comfort you're used to at home, even when you're on the go. 4. The smart alternative: Replaces 6 heavy lead-acid batteries Get rid of unnecessary weight. A single Power Queen 320Ah battery replaces six heavy 100Ah gel or AGM batteries. This means: 84% less weight , 74% space saving and 13.8% more usable energy with significantly less cable clutter. Ideal for staying within the permissible total weight of your camper (keyword: 3.5-ton limit). 5. Intelligent Bluetooth monitoring via app Concealed installation under the seat or in a narrow storage compartment? No problem! Thanks to the integrated Bluetooth You don't need to painstakingly access the battery. Read the exact state of charge (SOC), voltage, and power conveniently and wirelessly on your smartphone at any time – for complete control without the hassle. 6. Maximum security &amp; reliability The advanced Smart BMS features more than 20 protective functions , This includes protection against overload, deep discharge, short circuits, and overheating. Particularly important for winter campers in Europe: the integrated Cold protection (shutdown at sub-zero temperatures) prevents charging in freezing conditions and protects the cells from permanent damage. 7. Robust and weatherproof for every camping adventure Whether winter camping in the snowy Black Forest or in the summer heat on the Baltic coast – the battery delivers power at temperatures of -20°C to 60°C Absolutely reliable power. Thanks IP65 protection The housing is optimally protected against dust, condensation and vibrations during travel – perfect for permanent use in your campervan. 8. Flexibly expandable to meet growing demands Is your electricity demand growing? No problem. The battery supports the expansion of up to... 4P4S (4 in series, 4 in parallel) , which equates to a gigantic total capacity of up to 65.5 kWh This is ideal. Perfect for starting small and later flexibly expanding the system as a home storage system or for larger off-grid projects. 9. Long-lasting &amp; Economical (10+ years of driving pleasure) With over 4000+ cycles at 100% DOD and an extremely low self-discharge of only approx.At 2% per month, this LiFePO4 battery is an investment that pays off in the long run. It lasts up to 10 years and outlasts conventional lead-acid batteries many times over. This means excellent value for money and maximum peace of mind on all your travels.",
+      "description": "Power Queen Dense Series: More room for adventure - Maximum power, minimum space. 1. Maximum self-sufficiency on the go With a generous 4096 Wh energy This 12V 320Ah LiFePO4 battery is the ultimate upgrade to the standard 300Ah class. Whether you're wild camping in Scandinavia, off-grid camping in the Alps, or on weeks-long road trips across Europe – you can run your cool box, coffee machine, and lights completely independently for days, maximizing your holiday progress. 2. Ultra-compact: Perfect for under the seat of a motorhome Space is a luxury in a panel van or campervan. Thanks to its extremely high energy density, this battery 35% smaller than a conventional 12V 300Ah LiFePO4 battery. It fits ideally into tight storage spaces or directly under the driver's or passenger's seat . Replace three bulky 100Ah batteries with a single powerhouse and reclaim valuable storage space. 3. Powerful performance for real-life camper use No compromises on comfort: The integrated 200-A-BMS supports continuous loads of up to 2560 W . This allows you to easily operate even energy-intensive appliances – from hair dryers and induction cooktops to air conditioners. Enjoy the same comfort you're used to at home, even when you're on the go. 4. The smart alternative: Replaces 6 heavy lead-acid batteries Get rid of unnecessary weight. A single Power Queen 320Ah battery replaces six heavy 100Ah gel or AGM batteries. This means: 84% less weight , 74% space saving and 13.8% more usable energy with significantly less cable clutter. Ideal for staying within the permissible total weight of your camper (keyword: 3.5-ton limit). 5. Intelligent Bluetooth monitoring via app Concealed installation under the seat or in a narrow storage compartment? No problem! Thanks to the integrated Bluetooth You don't need to painstakingly access the battery. Read the exact state of charge (SOC), voltage, and power conveniently and wirelessly on your smartphone at any time – for complete control without the hassle. 6. Maximum security &amp; reliability The advanced Smart BMS features more than 20 protective functions , This includes protection against overload, deep discharge, short circuits, and overheating. Particularly important for winter campers in Europe: the integrated Cold protection (shutdown at sub-zero temperatures) prevents charging in freezing conditions and protects the cells from permanent damage. 7. Robust and weatherproof for every camping adventure Whether winter camping in the snowy Black Forest or in the summer heat on the Baltic coast – the battery delivers power at temperatures of -20°C to 60°C Absolutely reliable power. Thanks IP65 protection The housing is optimally protected against dust, condensation and vibrations during travel – perfect for permanent use in your campervan. 8. Flexibly expandable to meet growing demands Is your electricity demand growing? No problem. The battery supports the expansion of up to... 4P4S (4 in series, 4 in parallel) , which equates to a gigantic total capacity of up to 65.5 kWh This is ideal. Perfect for starting small and later flexibly expanding the system as a home storage system or for larger off-grid projects. 9. Long-lasting &amp; Economical (10+ years of driving pleasure) With over 4000+ cycles at 100% DOD With an extremely low self-discharge rate of only about 2% per month, this LiFePO4 battery is an investment that pays off in the long run.It lasts up to 10 years and outlasts conventional lead-acid batteries many times over. This means excellent value for money and maximum peace of mind on all your travels.",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 689.99,
+      "priceCzk": 609.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-320ah-dense-smart-lifepo4-batterie-fur-wohnmobil-untersitz",
@@ -1150,7 +1114,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 584.99,
+      "priceCzk": 569.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-125ah-smart-lifepo4-bootsbatterie-mit-selbstheizung",
@@ -1186,7 +1150,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 399.99,
+      "priceCzk": 372.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-140ah-190h-smart-wohnmobil-lithium-batterie-mit-bluetooth",
@@ -1222,7 +1186,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 288.99,
+      "priceCzk": 259.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-group-24-smart-lifepo4-battery-with-bluetooth",
@@ -1258,7 +1222,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 298.99,
+      "priceCzk": 269.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-12v-100ah-190h-smart-motorhome-battery",
@@ -1294,7 +1258,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 513.99,
+      "priceCzk": 475.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-smart-solar-battery-with-bluetooth",
@@ -1330,7 +1294,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 549.99,
+      "priceCzk": 539.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-300ah-lifepo4-battery-integrated-200a-bms",
@@ -1403,7 +1367,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 1159.99,
+      "priceCzk": 999.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-400ah-lifepo4-battery-built-in-250a-bms",
@@ -1439,7 +1403,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 308.99,
+      "priceCzk": 259.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-self-heating-lifepo4-battery",
@@ -1471,11 +1435,11 @@
       "id": "powerqueen_eu:7881294676188",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 24V 200Ah LiFePO4 battery, built-in 200A BMS",
-      "description": "5120W stable high power - worry-free energy consumption The Power Queen 24V 200Ah LiFePO4 battery delivers a continuous power output of 5120 W. It enables the simultaneous operation of high-power devices (air conditioner, coffee machine, oven, stereo system, etc.) with a consistently stable power supply. The stable current flow avoids voltage fluctuations or tripping risks, thus ensuring a reliable power supply for house meetings or RV adventures. Compact design - space-saving solution Weighing 37.5 kg, the Power Queen 24V 200Ah lithium battery offers 77% less space and 83% less weight compared to four 12V 200Ah lead-acid batteries, while delivering more energy. Simplify the power supply to your RV or home while reducing the costs of wiring, the risk of overheating, and the maintenance of multiple batteries. 16 cells of EV quality &amp; multi-layered BMS protection With 16 EV-quality cells for balanced power distribution and higher energy density, it achieves a lifespan of 10 years with more than 15,000 cycles, surpassing AGM/SLA/FLA batteries (3 years/200-500 cycles). This saves on repair costs, battery replacements, and performance degradation. The improved 200A BMS offers safety through overcharge, over-discharge, overcurrent, overheating and short-circuit protection. Scalable capacity - maximum efficiency Expandable to up to 8 batteries in a 4P2S configuration, creating a 51.2V 800Ah (40,960Wh) system for an entire house or off-grid living. This modular design optimizes the cost-efficiency of green energy storage while meeting a wide range of energy needs. Hot tip: This battery is an energy storage battery and not a starter battery; we do not recommend using it to start engines or golf carts. If the positive and negative terminals are directly fastened with screws less than 2 mm in diameter, please use washers to ensure a secure connection and prevent loosening or overheating. The same precaution applies when using clamps.",
+      "description": "5120W stable high power - worry-free energy consumption The Power Queen 24V 200Ah LiFePO4 battery delivers a continuous power output of 5120 W. It enables the simultaneous operation of high-power devices (air conditioner, coffee machine, oven, stereo system, etc.) with a consistently stable power supply. The stable current flow avoids voltage fluctuations or tripping risks, thus ensuring a reliable power supply for house meetings or RV adventures. Compact design - space-saving solution Weighing 37.5 kg, the Power Queen 24V 200Ah lithium battery offers 77% less space and 83% less weight compared to four 12V 200Ah lead-acid batteries, while delivering more energy. Simplify the power supply to your RV or home while reducing the costs of wiring, heat risk, and maintenance of multiple batteries. 16 cells of EV quality &amp; multi-layered BMS protection With 16 EV-quality cells for balanced power distribution and higher energy density, it achieves a lifespan of 10 years with more than 15,000 cycles, surpassing AGM/SLA/FLA batteries (3 years/200-500 cycles). This saves on repair costs, battery replacements, and performance degradation. The improved 200A BMS offers safety through overcharge, over-discharge, overcurrent, overheating and short-circuit protection. Scalable capacity - maximum efficiency Expandable to up to 8 batteries in a 4P2S configuration, creating a 51.2V 800Ah (40,960Wh) system for an entire house or off-grid living. This modular design optimizes the cost-efficiency of green energy storage while meeting a wide range of energy needs. Hot tip: This battery is an energy storage battery and not a starter battery; we do not recommend using it to start engines or golf carts. If the positive and negative terminals are directly fastened with screws less than 2 mm in diameter, please use washers to ensure a secure connection and prevent loosening or overheating. The same precaution applies when using clamps.",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 1133.99,
+      "priceCzk": 1059.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-200ah-lifepo4-solar-battery-with-200a-bms",
@@ -1512,7 +1476,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 484.99,
+      "priceCzk": 455.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-deep-cycle-solar-battery",
@@ -1544,11 +1508,11 @@
       "id": "powerqueen_eu:7752838578396",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 12V 200Ah Plus LiFePO4 Battery, Built-in 200A BMS",
-      "description": "200A max. continuous discharge current &amp; 2560W power The Power Queen 12V 200Ah Plus LiFePO4 battery effortlessly handles high power demands with consistent efficiency. With a maximum continuous discharge current of 200A and a maximum continuous power output of 2560W, it powers multiple high-performance devices simultaneously and guarantees uninterrupted operation for heavy loads. A 200Ah battery replaces two 100Ah batteries, simplifying installation and minimizing wiring complexity and energy losses. Low weight with high energy density The Power Queen 12V 200Ah Plus lithium battery combines low weight with high energy density. Weighing only 19.2 kg – one-third the weight of a lead-acid battery of the same capacity (58.97 kg) – it improves the fuel efficiency of the motorhome, increases its range, and simplifies installation. With an energy density of 133.33Wh/kg (compared to 20.35Wh/kg for a 12V 200Ah lead-acid battery), the capacity of 2,560Wh provides devices with energy for longer and reduces the frequency of charging for greater convenience. Increased safety and longer lifespan Designed for safety and longevity. A built-in 200A BMS provides comprehensive protection against overcharging, over-discharging, overheating, short circuits, and overcurrent. Utilizing EV-grade cells with FCC, CE, RoHS, and UN38.3 certifications, the battery meets global environmental and safety standards. The IP65-rated housing protects against dust and water ingress, ensuring reliable outdoor operation. With 4,000 to 15,000 cycles and a lifespan of 10 years, replacement costs are drastically reduced while ensuring long-term performance stability. Max. 40.96 kWh &amp; Wide range of applications Supports up to 4 batteries in parallel and 4 batteries in series (max. 4P4S) for increased capacity (200Ah, 400Ah, 600Ah, max. 800Ah) and higher voltage (12.8V, 25.6V, 38.4V, max. 51.2V). Max connects 16 batteries to form a 51.2V 800Ah battery system with 40.96kWh of energy. This high-performance storage solution could be widely used, making it the ideal choice for off-grid, home solar systems, UPS systems, and it also suits RVs, camping, and boats. Hot tip: This battery is an energy storage battery and not a starter battery; we do not recommend using it to start engines or golf carts. If the positive and negative terminals are directly fastened with screws less than 2 mm in diameter, please use washers to ensure a secure connection and prevent loosening or overheating. The same precaution applies when using clamps.",
+      "description": "200A max. continuous discharge current &amp; 2560W power The Power Queen 12V 200Ah Plus LiFePO4 battery effortlessly handles high power demands with consistent efficiency. With a maximum continuous discharge current of 200A and a maximum continuous power output of 2560W, it powers multiple high-performance devices simultaneously and guarantees uninterrupted operation for heavy loads. A 200Ah battery replaces two 100Ah batteries, simplifying installation and minimizing wiring complexity and energy losses. Low weight with high energy density The Power Queen 12V 200Ah Plus lithium battery combines low weight with high energy density. Weighing only 19.2 kg – one-third the weight of a lead-acid battery of the same capacity (58.97 kg) – it improves the fuel efficiency of the motorhome, increases its range, and simplifies installation. With an energy density of 133.33Wh/kg (compared to 20.35Wh/kg for a 12V 200Ah lead-acid battery), the capacity of 2,560Wh provides devices with energy for longer and reduces the frequency of charging for greater convenience. Increased safety and longer lifespan Designed for safety and longevity. A built-in 200A BMS provides comprehensive protection against overcharging, over-discharging, overheating, short circuits, and overcurrent. Utilizing EV-grade cells with FCC, CE, RoHS, and UN38.3 certifications, the battery meets global environmental and safety standards. The IP65-rated housing protects against dust and water ingress, ensuring reliable outdoor operation. With 4,000 to 15,000 cycles and a lifespan of 10 years, replacement costs are drastically reduced while ensuring long-term performance stability. Max. 40.96 kWh &amp; Wide range of applications Supports up to 4 batteries in parallel and 4 batteries in series (max. 4P4S) for increased capacity (200Ah, 400Ah, 600Ah, max. 800Ah) and higher voltage (12.8V, 25.6V, 38.4V, max. 51.2V). Max connects 16 batteries to form a 51.2V 800Ah battery system with 40.96kWh of energy. This high-performance storage solution could be widely used, making it the ideal choice for off-grid, home solar systems, UPS systems. It also suits RVs, camping, and boats. Hot tip: This battery is an energy storage battery and not a starter battery; we do not recommend using it to start engines or golf carts. If the positive and negative terminals are directly fastened with screws less than 2 mm in diameter, please use washers to ensure a secure connection and prevent loosening or overheating. The same precaution applies when using clamps.",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 508.99,
+      "priceCzk": 459.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-plus-lifepo4-solar-battery",
@@ -1580,7 +1544,7 @@
       "id": "powerqueen_eu:7752832352476",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 12V 200Ah LiFePO4 battery, built-in 100A BMS",
-      "description": "Replaces lead-acid dual battery, 65% lighter and 57% more compact: A 12V 200Ah LiFePO4 battery (2560Wh) replaces two 12V 200Ah lead-acid batteries (2400Wh, 1C). It delivers 160Wh more energy, 8x longer lifespan, 65% less weight and 57% less space – maximizing energy density and lifespan. Better than dual 12V 100Ah LiFePO4: simpler, more efficient: It outperforms two 12V 100Ah LiFePO4 batteries connected in parallel at the same energy output. Fewer connections reduce wiring complexity, lower internal resistance, and ensure balanced charging efficiency with minimal power loss. Intelligent BMS protection &amp; 10-year lifespan and eco-saving: The BMS developed by Power Queen offers comprehensive protection against overcharging, over-discharging, overcurrent, short circuits, and high temperatures. With a lifespan of 10 years, one 12V 200Ah lithium battery replaces six 12V 200Ah or twelve 12V 100Ah lead-acid batteries, minimizing battery waste and enabling long-term cost savings. Lightweight motorhome battery - 19.94 kg, 1280 W power: Weighing just 19.94 kg, the Power Queen 12V 200Ah LiFePO4 battery is easy to handle and install in motorhomes, improving fuel efficiency and range compared to bulky lead-acid batteries. A maximum power output of 1280 W powers most devices. It recharges quickly with Power Queen MPPT, DC-DC, or AC-DC chargers and offers reliable operation in sunny or cloudy weather. Reliability at extreme temperatures &amp; max. 4P4S system: Safe discharge at temperatures from -20°C to 60°C (-4°F to 140°F). Connect up to 16 batteries in 4P4S configurations for DIY power systems – ideal for homes, farms, boats, RVs, and off-grid installations.",
+      "description": "Replaces lead-acid dual batteries, 65% lighter and 57% more compact: A 12V 200Ah LiFePO4 battery (2560Wh) replaces two 12V 200Ah lead-acid batteries (2400Wh, 1C). It delivers 160Wh more energy, 8x longer lifespan, 65% less weight and 57% less space – maximizing energy density and lifespan. Better than dual 12V 100Ah LiFePO4: simpler, more efficient: It outperforms two 12V 100Ah LiFePO4 batteries connected in parallel at the same energy output. Fewer connections reduce wiring complexity, lower internal resistance, and ensure balanced charging efficiency with minimal power loss. Intelligent BMS protection &amp; 10-year lifespan and eco-saving: The BMS developed by Power Queen offers comprehensive protection against overcharging, over-discharging, overcurrent, short circuits, and high temperatures. With a lifespan of 10 years, one 12V 200Ah lithium battery replaces six 12V 200Ah or twelve 12V 100Ah lead-acid batteries, minimizing battery waste and enabling long-term cost savings. Lightweight motorhome battery - 19.94 kg, 1280 W power: Weighing just 19.94 kg, the Power Queen 12V 200Ah LiFePO4 battery is easy to handle and install in motorhomes, improving fuel efficiency and range compared to bulky lead-acid batteries. A maximum power output of 1280 W powers most devices. It recharges quickly with Power Queen MPPT, DC-DC, or AC-DC chargers and offers reliable operation in sunny or cloudy weather. Reliability at extreme temperatures &amp; max. 4P4S system: Safe discharge at temperatures from -20°C to 60°C (-4°F to 140°F). Connect up to 16 batteries in 4P4S configurations for DIY power systems – ideal for homes, farms, boats, RVs, and off-grid installations.",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
@@ -1620,7 +1584,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 268.99,
+      "priceCzk": 239.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-lifepo4-deep-cycle-battery",
