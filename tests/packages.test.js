@@ -12,9 +12,10 @@ test("builds distinct economy, recommended and reserve packages from compatible 
     solar_panel: [item("panel-fit", 4000, 94, 1.02, 2), item("panel-cheap", 3000, 80, 1.1, 2), item("panel-reserve", 4500, 86, 1.24, 2)],
     controller: [item("mppt-fit", 3500, 95, 1.05), item("mppt-cheap", 2500, 81, 1.1), item("mppt-reserve", 4200, 87, 1.3)],
   }, { inverterWatts: 0 });
-  assert.deepEqual(packages.map(({ id }) => id), ["economy", "recommended", "reserve"]);
-  assert.deepEqual(packages[0].items.map(({ product }) => product.id), ["battery-cheap", "panel-cheap", "mppt-cheap"]);
-  assert.equal(packages[0].totalPriceCzk, 17500);
+  assert.deepEqual(packages.map(({ id }) => id), ["recommended", "economy", "reserve"]);
+  assert.deepEqual(packages[0].items.map(({ product }) => product.id), ["battery-fit", "panel-fit", "mppt-fit"]);
+  assert.deepEqual(packages[1].items.map(({ product }) => product.id), ["battery-cheap", "panel-cheap", "mppt-cheap"]);
+  assert.equal(packages[1].totalPriceCzk, 17500);
   assert.deepEqual(packages[2].items.map(({ product }) => product.id), ["battery-reserve", "panel-reserve", "mppt-reserve"]);
 });
 
