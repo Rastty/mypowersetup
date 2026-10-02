@@ -557,7 +557,7 @@ function renderProductPackages(variants) {
     : "";
   target.innerHTML = `<div class="package-intro"><strong>Zacznij od wariantu polecanego</strong><p>Wariant polecany pokazujemy jako pierwszy: ma najlepsze dopasowanie parametrów i kompletności danych. Wariant oszczędny lub z większym zapasem traktuj jako alternatywę zależnie od ceny i oczekiwanego zapasu. Wszystkie pokazane warianty spełniają wynik obliczeń; to nie jest kompletny materiał instalacyjny ani kosztorys wykonania.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
-    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena w sklepie" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientacyjna suma produktów; bez dostawy i montażu.</small></article>`;
+    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Pokrycie obliczenia: ${variant.items.length}/${variant.requiredCategoryCount} kategorii</small><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena w sklepie" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientacyjna suma produktów; bez dostawy i montażu.</small></article>`;
   }).join("")}</div>`;
 }
 

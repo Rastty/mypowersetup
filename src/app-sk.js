@@ -556,7 +556,7 @@ function renderProductPackages(variants) {
     : "";
   target.innerHTML = `<div class="package-intro"><strong>Začnite odporúčanou variantou</strong><p>Odporúčanú zostavu zobrazujeme ako prvú: má najlepšiu zhodu parametrov a úplnosti údajov. Úspornú alebo rezervnú variantu berte ako alternatívu podľa ceny a požadovanej rezervy. Všetky zobrazené varianty spĺňajú vypočítanú požiadavku; nejde o kompletný inštalačný materiál ani realizačný rozpočet.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
-    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podľa obchodu" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientačný súčet produktov; doprava a montáž nie sú zahrnuté.</small></article>`;
+    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Pokrytie výpočtu: ${variant.items.length}/${variant.requiredCategoryCount} kategórií</small><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podľa obchodu" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientačný súčet produktov; doprava a montáž nie sú zahrnuté.</small></article>`;
   }).join("")}</div>`;
 }
 

@@ -14,6 +14,8 @@ test("builds distinct economy, recommended and reserve packages from compatible 
   }, { inverterWatts: 0 });
   assert.deepEqual(packages.map(({ id }) => id), ["recommended", "economy", "reserve"]);
   assert.deepEqual(packages[0].items.map(({ product }) => product.id), ["battery-fit", "panel-fit", "mppt-fit"]);
+  assert.equal(packages[0].requiredCategoryCount, 3);
+  assert.equal(packages[0].items.length, packages[0].requiredCategoryCount);
   assert.deepEqual(packages[1].items.map(({ product }) => product.id), ["battery-cheap", "panel-cheap", "mppt-cheap"]);
   assert.equal(packages[1].totalPriceCzk, 17500);
   assert.deepEqual(packages[2].items.map(({ product }) => product.id), ["battery-reserve", "panel-reserve", "mppt-reserve"]);
