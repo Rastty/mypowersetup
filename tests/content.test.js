@@ -789,8 +789,10 @@ test("both calculators explain product packages without weakening technical requ
     readFile("src/affiliate-analytics.js", "utf8"),
   ]);
   for (const html of [czech, slovak]) assert.ok(html.includes('id="package-variants"'));
-  assert.ok(app.includes("Všechny varianty splňují stejný vypočtený požadavek"));
-  assert.ok(appSk.includes("Všetky varianty spĺňajú rovnakú vypočítanú požiadavku"));
+  assert.ok(app.includes("Začněte doporučenou variantou"));
+  assert.ok(app.includes("Všechny zobrazené varianty splňují vypočtený požadavek"));
+  assert.ok(appSk.includes("Začnite odporúčanou variantou"));
+  assert.ok(appSk.includes("Všetky zobrazené varianty spĺňajú vypočítanú požiadavku"));
   assert.ok(packages.includes('buildVariant("economy"'));
   assert.ok(packages.includes('buildVariant("recommended"'));
   assert.ok(packages.includes('buildVariant("reserve"'));
