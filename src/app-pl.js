@@ -564,8 +564,9 @@ function renderProductPackages(variants) {
 function packageProductLink(category, product, packageId) {
   const quantity = product.recommendedQuantity || 1;
   const quantityLabel = quantity > 1 ? `${quantity} szt. · ` : "";
-  const unitPrice = Number(product.priceCzk);
-  const itemPrice = Number.isFinite(unitPrice) ? formatPrice(unitPrice * quantity, product.priceCurrency) : "";
+  const hasFeedPrice = product.priceCzk !== null && product.priceCzk !== undefined && product.priceCzk !== "";
+  const unitPrice = hasFeedPrice ? Number(product.priceCzk) : NaN;
+  const itemPrice = Number.isFinite(unitPrice) && unitPrice >= 0 ? formatPrice(unitPrice * quantity, product.priceCurrency) : "";
   const itemPriceLabel = itemPrice ? `${itemPrice}${quantity > 1 ? " łącznie" : ""} · ` : "";
   return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(itemPriceLabel)}${escapeHtml(merchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(attributedAwinUrl(product, category, packageId === "economy" ? "budget" : packageId, "package"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("pl", merchantLabel(product.merchant)))}</a></li>`;
 }
