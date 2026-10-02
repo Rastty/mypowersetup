@@ -74,6 +74,12 @@ function bindNavigation() {
 }
 
 function bindActions() {
+  document.querySelector("#result-products-link").addEventListener("click", (event) => {
+    track("product_recommendations_opened", {
+      source: "result_next",
+      result_next_variant: event.currentTarget?.dataset?.resultNextVariant || "product_matches",
+    });
+  });
   document.querySelector("#result-copy").addEventListener("click", async () => setShareStatus(await copyText(latest?.shareText || "") ? "Az összefoglaló a vágólapra került." : "A másolás nem sikerült."));
   document.querySelector("#result-share").addEventListener("click", async () => {
     if (!latest) return;
@@ -123,10 +129,18 @@ function renderProducts(output) {
   const entries = Object.entries(output.recommendations).filter(([,items]) => items.length);
   const total = entries.reduce((sum,[,items]) => sum + items.length,0);
   const coverage = output.recommendationCoverage;
+  const hasRecommendedPackage = output.packages?.some(({ id }) => id === "recommended") === true;
   track("product_coverage_calculated", { locale:"hu", required_categories:coverage.required.length, covered_categories:coverage.covered.length, missing_categories:coverage.missing.join(",") });
   document.querySelector("#result-next").hidden = false;
-  document.querySelector("#result-product-count").textContent = total ? `${total} ellenőrzött műszaki találat ${entries.length} kategóriában. Terméklefedettség: ${coverage.covered.length}/${coverage.required.length} szükséges kategória.` : "Ehhez a konfigurációhoz még nincs elég ellenőrzött termék.";
-  document.querySelector("#result-products-link").hidden = !total;
+  document.querySelector("#result-product-count").textContent = total
+    ? hasRecommendedPackage
+      ? `Minden szükséges kategóriához van ajánlott vásárlási változatunk, összesen ${total} ellenőrzött találattal ${entries.length} kategóriában.`
+      : `${total} ellenőrzött műszaki találat ${entries.length} kategóriában. Terméklefedettség: ${coverage.covered.length}/${coverage.required.length} szükséges kategória.`
+    : "Ehhez a konfigurációhoz még nincs elég ellenőrzött termék.";
+  const resultProductsLink = document.querySelector("#result-products-link");
+  resultProductsLink.hidden = !total;
+  resultProductsLink.textContent = hasRecommendedPackage ? "Ajánlott összeállítás megjelenítése ↓" : "Ajánlott termékek megjelenítése ↓";
+  resultProductsLink.dataset.resultNextVariant = hasRecommendedPackage ? "complete_package" : "product_matches";
   document.querySelector("#product-heading").textContent = total ? HU_UI_COPY.products.heading : HU_UI_COPY.products.preparing;
   renderHungarianProductPackages(total ? output.packages : []);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>A katalógusból még hiányzik:</strong> ${escapeHtml(coverage.message)}</p>`;
