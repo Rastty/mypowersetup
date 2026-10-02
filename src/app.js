@@ -547,7 +547,7 @@ function renderProductPackages(variants) {
   const stalePriceNote = Object.values(productCatalogSources).some((source) => source?.status === "stale")
     ? '<p class="catalog-source-note is-stale"><strong>Aktualizace cen:</strong> U jednoho obchodu používáme poslední úspěšně načtený feed. Aktuální cenu a dostupnost vždy potvrďte na stránce produktu.</p>'
     : "";
-  target.innerHTML = `<div class="package-intro"><strong>Tři bezpečné cesty k nákupu</strong><p>Všechny varianty splňují stejný vypočtený požadavek a zahrnují dostupné hlavní i nabíjecí komponenty. Nejde o kompletní instalační materiál ani realizační rozpočet.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
+  target.innerHTML = `<div class="package-intro"><strong>Začněte doporučenou variantou</strong><p>Doporučenou sestavu zobrazujeme jako první: má nejlepší shodu parametrů a úplnosti dat. Úspornou nebo rezervní variantu berte jako alternativu podle ceny a požadované rezervy. Všechny zobrazené varianty splňují vypočtený požadavek; nejde o kompletní instalační materiál ani realizační rozpočet.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
     return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podle obchodu" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientační součet produktů; doprava a montáž nejsou zahrnuté.</small></article>`;
   }).join("")}</div>`;
