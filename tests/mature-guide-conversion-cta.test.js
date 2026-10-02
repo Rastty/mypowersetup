@@ -48,7 +48,7 @@ test("all mature-market core guides promise the calculator-to-compatible-product
       const html = await readFile(file, "utf8");
       const cta = html.match(/<section class="cta">[\s\S]*?<\/section>/)?.[0] ?? "";
       assert.ok(cta.includes(market.promise), `${file} is missing the conversion promise`);
-      const href = cta.match(/<a\\s+href="([^"]+)"/)?.[1];
+      const href = cta.match(/<a\s+href="([^"]+)"/)?.[1];
       assert.ok(href && classifyGuideCalculatorLink(href), `${file} does not link to a recognized calculator destination`);
     }
   }
