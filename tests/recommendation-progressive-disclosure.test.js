@@ -11,7 +11,8 @@ const markets = [
 for (const [path, summary, recommendedIntro] of markets) {
   test(`${path} keeps three purchase routes primary and puts the long catalog behind disclosure`, async () => {
     const source = await readFile(new URL(path, import.meta.url), "utf8");
-    assert.match(source, /renderProductPackages\(buildProductPackages\(rankedRecommendations, result\)\)/);
+    assert.match(source, /const packages = buildProductPackages\(rankedRecommendations, result\)/);
+    assert.match(source, /renderProductPackages\(packages\)/);
     assert.match(source, /<details class="product-comparison-details">/);
     assert.match(source, new RegExp(summary));
     assert.match(source, /<div class="product-comparison-groups">\$\{productGroups\}<\/div>/);
