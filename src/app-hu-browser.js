@@ -172,7 +172,10 @@ function hungarianPackageProductLink(category, product, packageId) {
   const labels = { battery:"Akkumulátor",solar_panel:"Napelem",inverter:"Inverter",controller:"MPPT",dc_charger:"DC–DC töltő",shore_charger:"230 V-os töltő" };
   const quantity = product.recommendedQuantity || 1;
   const quantityLabel = quantity > 1 ? `${quantity} db · ` : "";
-  return `<li><small>${labels[category] || category}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(hungarianMerchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(attributedAwinUrl(product, category, packageId === "economy" ? "budget" : packageId, "package"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("hu", hungarianMerchantLabel(product.merchant)))}</a></li>`;
+  const unitPrice = Number(product.priceCzk);
+  const itemPrice = Number.isFinite(unitPrice) ? formatHungarianPrice(unitPrice * quantity, product.priceCurrency) : "";
+  const itemPriceLabel = itemPrice ? `${itemPrice}${quantity > 1 ? " összesen" : ""} · ` : "";
+  return `<li><small>${labels[category] || category}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(itemPriceLabel)}${escapeHtml(hungarianMerchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(attributedAwinUrl(product, category, packageId === "economy" ? "budget" : packageId, "package"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("hu", hungarianMerchantLabel(product.merchant)))}</a></li>`;
 }
 
 function attributedAwinUrl(product, category, recommendationRole, source) {
