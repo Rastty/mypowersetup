@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-01T10:14:11.375Z",
+  "generatedAt": "2026-10-02T09:51:44.307Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16456,
-      "relevantProducts": 250
+      "parsedProducts": 16583,
+      "relevantProducts": 252
     },
     "allpowers_eu": {
       "status": "ok",
@@ -17,8 +17,8 @@
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 60,
-      "relevantProducts": 23,
-      "batteries": 17,
+      "relevantProducts": 22,
+      "batteries": 16,
       "controllers": 1,
       "inverters": 1,
       "shoreChargers": 4
@@ -359,37 +359,6 @@
       }
     },
     {
-      "id": "padabo_sk:16597_17411",
-      "merchant": "padabo_sk",
-      "name": "EXIDE Duálna batéria AGM kapacita 100 Ah variant EP 900",
-      "description": "Odolná batéria pre akýkoľvek druh rekreačného vozidlaBatérie pre najbežnejšie obytné vozidlá a karavany. Ich konštrukcia ponúka vysokú flexibilitu pri inštalácii. Technológia AGM (Absorbent Glass Mat) so zliatinou vápnika a ventiláciou VRLA pokrýva výkonový rozsah od 450 do 2100 Wh, čím ponúka široký výber pre akýkoľvek druh rekreačného vozidla. Kľúčové vlastnosti batérie EXIDE Dual AGM: Je úplne bezúdržbový, čo uľahčuje jeho dlhodobé používanie. Ponúka vysokú flexibilitu inštalácie, pretože nem",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 475.86,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/exide-dualna-bateria-agm_z16597/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fexide-dualna-bateria-agm_z16597%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/154563_102.jpg?1704380087_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 100,
-        "capacityWh": 2100,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:16597_17412",
       "merchant": "padabo_sk",
       "name": "EXIDE Duálna batéria AGM kapacita 140 Ah variant EP 1200",
@@ -406,6 +375,68 @@
       "specs": {
         "voltageV": null,
         "capacityAh": 140,
+        "capacityWh": 2100,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:16597_17414",
+      "merchant": "padabo_sk",
+      "name": "EXIDE Duálna batéria AGM kapacita 240 Ah variant EP 2100",
+      "description": "Odolná batéria pre akýkoľvek druh rekreačného vozidlaBatérie pre najbežnejšie obytné vozidlá a karavany. Ich konštrukcia ponúka vysokú flexibilitu pri inštalácii. Technológia AGM (Absorbent Glass Mat) so zliatinou vápnika a ventiláciou VRLA pokrýva výkonový rozsah od 450 do 2100 Wh, čím ponúka široký výber pre akýkoľvek druh rekreačného vozidla. Kľúčové vlastnosti batérie EXIDE Dual AGM: Je úplne bezúdržbový, čo uľahčuje jeho dlhodobé používanie. Ponúka vysokú flexibilitu inštalácie, pretože nem",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 787.88,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/exide-dualna-bateria-agm_z16597/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fexide-dualna-bateria-agm_z16597%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/154566_102.jpg?1704380087_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 240,
+        "capacityWh": 2100,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:16597_22219",
+      "merchant": "padabo_sk",
+      "name": "EXIDE Duálna batéria AGM kapacita 92 Ah variant EP 800",
+      "description": "Odolná batéria pre akýkoľvek druh rekreačného vozidlaBatérie pre najbežnejšie obytné vozidlá a karavany. Ich konštrukcia ponúka vysokú flexibilitu pri inštalácii. Technológia AGM (Absorbent Glass Mat) so zliatinou vápnika a ventiláciou VRLA pokrýva výkonový rozsah od 450 do 2100 Wh, čím ponúka široký výber pre akýkoľvek druh rekreačného vozidla. Kľúčové vlastnosti batérie EXIDE Dual AGM: Je úplne bezúdržbový, čo uľahčuje jeho dlhodobé používanie. Ponúka vysokú flexibilitu inštalácie, pretože nem",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 330.64,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/exide-dualna-bateria-agm_z16597/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fexide-dualna-bateria-agm_z16597%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/156009_102.jpg?1704380136_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 92,
         "capacityWh": 2100,
         "powerW": null,
         "currentA": null,
@@ -1031,37 +1062,6 @@
         "capacityWh": null,
         "powerW": null,
         "currentA": 20,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:23822_25452",
-      "merchant": "padabo_sk",
-      "name": "Lítiové batérie RKB Smart kapacita 200 Ah",
-      "description": "Batérie RKB pre všetkých cestujúcichBatérie RKB Smart LiFePO4 boli vyvinuté ako náhrada za kyslé batérie a vo všetkých ohľadoch spĺňajú vysoké nároky kladené na najmodernejšie batérie na súčasnom trhu. Batérie RKB Smart sú výkonné, ľahké a robustné, vďaka čomu sú ideálne pre obytné automobily a energeticky nezávislé cestovanie. Batérie používajú cyklicky odolné a bezpečné články LiFePO4. Okrem toho sú vybavené integrovaným systémom riadenia batérií(BMS), ktorý ich chráni pred nadprúdom, prebíjan",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
-      "category": "battery",
-      "brand": "Rkb Electronic",
-      "priceCzk": 2764.09,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/litiove-baterie-rkb-smart_z23822/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiove-baterie-rkb-smart_z23822%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/158381_102.jpg?1704380221_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 200,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [
@@ -4869,6 +4869,40 @@
       }
     },
     {
+      "id": "padabo_sk:104293_30481",
+      "merchant": "padabo_sk",
+      "name": "Dometic SinePower DPSI-TS 12 V alebo 24 V menič napätia stály / špičkový výkon 3000 / 6000 W napätie 12 V",
+      "description": "Sinusový menič pre citlivé zariadeniaMenič napätia Dometic SinePower DPSI-TS poskytuje špičkový výkon pre mobilné napájanie a stanovuje štandard v oblasti mobilného napájania. Je navrhnutý na konverziu 12 alebo 24 V napájania z batérie na striedavý prúd 230 V/50 Hz a zabezpečuje spoľahlivú prevádzku elektrických zariadení s výkonom do 3000 W - s napájaním priamo z batérie vozidla. Či už ide o kempovanie alebo mobilné pracoviská - so sériou meničov so sínusovým priebehom DPSI-TS zostanete nezávis",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
+      "category": "inverter",
+      "brand": "Dometic",
+      "priceCzk": 1572.05,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 6000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12,
+          24
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_sk:104293_30482",
       "merchant": "padabo_sk",
       "name": "Dometic SinePower DPSI-TS 12 V alebo 24 V menič napätia stály / špičkový výkon 3000 / 6000 W napätie 24 V",
@@ -6449,6 +6483,39 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 1000,
+        "currentA": 1,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:106296_33731",
+      "merchant": "padabo_sk",
+      "name": "Menič napätia Renogy 12 V výkon 2000 W",
+      "description": "Výkonný usmerňovač napätia pre širokú škálu spotrebičov Menič napätia Renogy využíva pokročilú technológiu čistej sínusoidy na dosiahnutie maximálnej účinnosti vášho systému. Nastavenie meniča je také jednoduché, že ho zvládne aj úplný laik. Výstup s čistou sínusoidou zabezpečuje plynulé a stabilné napájanie, ktoré plnohodnotne nahrádza napájanie z verejnej siete. Menič je univerzálny a kompatibilný so širokou škálou elektrických spotrebičov, vrátane tých citlivejších, bez akýchkoľvek problémov ",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
+      "category": "inverter",
+      "brand": "Renogy",
+      "priceCzk": 277.12,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-renogy-12-v_z106296%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
         "currentA": 1,
         "chargingVoltagesV": [
           12
@@ -8756,8 +8823,8 @@
     {
       "id": "powerqueen_eu:9633915175132",
       "merchant": "powerqueen_eu",
-      "name": "Power Queen 12V 125Ah Group 27 Smart LiFePO4 Versorgungsbatterie",
-      "description": "Die smarte Group 27 LiFePO4 Versorgungsbatterie für Angelboot, Campervan &amp; Off-Grid Group 27 LiFePO4 Batterie für 30–70 lbs Trolling-Motoren &amp; Bootsangler (Seewasserfest &amp; IP65): Perfekt abgestimmt auf die Group 27 Norm: Mit den Maßen 308 x 170 x 211 mm und nur 11,68 kg lässt sich diese 12V LiFePO4 Batterie mühelos tragen und passt exakt in gängige Boots-Batterieboxen (z. B. Minn Kota). Sie bietet die ideale Stromversorgung für Trolling-Motoren von 30 bis 70 lbs . Das IP65-wassergesc",
+      "name": "Power Queen 12V 125Ah Group 27 Smart LiFePO4 supply battery",
+      "description": "The smart Group 27 LiFePO4 supply battery for fishing boats and campervans &amp; Off-Grid Group 27 LiFePO4 battery for 30–70 lbs trolling motors &amp; Boat anglers (seawater resistant) &amp; IP65): Perfectly matched to the Group 27 standard: With the dimensions 308 x 170 x 211 mm and only 11.68 kg This 12V LiFePO4 battery is easy to carry and fits perfectly into standard boat battery boxes (e.g., Minn Kota). It provides the ideal power supply for trolling motors from 30 to 70 lbs . The IP65 wate",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
@@ -8766,41 +8833,6 @@
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/Power_Queen_12V_125Ah_Group_27_Smart_LiFePO4_Versorgungsbatterie.webp?v=1789973708",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 125,
-        "capacityWh": null,
-        "powerW": 35,
-        "currentA": 100,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "powerqueen_eu:10313906946268",
-      "merchant": "powerqueen_eu",
-      "name": "(0% MwSt.) Power Queen 12V 125Ah Group 27 Smart LiFePO4 Batterie mit Bluetooth",
-      "description": "Die smarte 12V 125Ah LiFePO4 Solar-Batterie (0% MwSt. für PV-Anlagen) – Perfekt für Wohnmobil, Angelboot &amp; Off-Grid Group 27 LiFePO4 Batterie für PV-Anlagen, Angelboote &amp; Trolling-Motoren (IP65): Perfekt abgestimmt auf die Group 27 Norm: Mit den Maßen 308 x 170 x 211 mm und nur 11,68 kg passt diese 12V LiFePO4 Batterie exakt in gängige Boots-Batterieboxen (z. B. Minn Kota) oder kompakte Solarschränke. Als steuerfreier PV-Speicher (§12 Abs. 3 UStG) oder Stromquelle für Trolling-Motoren vo",
-      "categoryPath": "Batteries",
-      "category": "battery",
-      "brand": "PQ-DE-Tax Free",
-      "priceCzk": 271.42,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.ipowerqueen.de/en/products/0-mwst-power-queen-12v-125ah-group-27-smart-lifepo4-batterie-mit-bluetooth",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2F0-mwst-power-queen-12v-125ah-group-27-smart-lifepo4-batterie-mit-bluetooth",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/Power_Queen_12V_125Ah_Group_27_Smart_LiFePO4_Versorgungsbatterie.webp?v=1789973708",
       "specs": {
         "voltageV": 12,
@@ -9285,7 +9317,7 @@
       "id": "powerqueen_eu:7752832352476",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 12V 200Ah LiFePO4 battery, built-in 100A BMS",
-      "description": "Replaces lead-acid dual battery, 65% lighter and 57% more compact: A 12V 200Ah LiFePO4 battery (2560Wh) replaces two 12V 200Ah lead-acid batteries (2400Wh, 1C). It delivers 160Wh more energy, 8x longer lifespan, 65% less weight and 57% less space – maximizing energy density and lifespan. Better than dual 12V 100Ah LiFePO4: simpler, more efficient: It outperforms two 12V 100Ah LiFePO4 batteries connected in parallel at the same energy output. Fewer connections reduce wiring complexity, lower inte",
+      "description": "Replaces lead-acid dual batteries, 65% lighter and 57% more compact: A 12V 200Ah LiFePO4 battery (2560Wh) replaces two 12V 200Ah lead-acid batteries (2400Wh, 1C). It delivers 160Wh more energy, 8x longer lifespan, 65% less weight and 57% less space – maximizing energy density and lifespan. Better than dual 12V 100Ah LiFePO4: simpler, more efficient: It outperforms two 12V 100Ah LiFePO4 batteries connected in parallel at the same energy output. Fewer connections reduce wiring complexity, lower in",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",

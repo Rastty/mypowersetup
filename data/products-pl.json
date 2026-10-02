@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-10-01T10:14:23.482Z",
+  "generatedAt": "2026-10-02T09:51:56.493Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16466,
-      "relevantProducts": 204
+      "parsedProducts": 16587,
+      "relevantProducts": 205
     },
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 60,
-      "relevantProducts": 23,
-      "batteries": 17,
+      "relevantProducts": 22,
+      "batteries": 16,
       "controllers": 1,
       "inverters": 1,
       "shoreChargers": 4
@@ -297,37 +297,6 @@
       }
     },
     {
-      "id": "padabo_pl:16597_17411",
-      "merchant": "padabo_pl",
-      "name": "Akumulator EXIDE Dual AGM pojemność 100 Ah wersja EP 900",
-      "description": "Wytrzymały akumulator do każdego rodzaju pojazdu rekreacyjnegoAkumulatory do najpopularniejszych kamperów i przyczep kempingowych. Ich konstrukcja zapewnia dużą elastyczność instalacji. Technologia AGM (Absorbent Glass Mat) ze stopem wapnia i wentylacją VRLA obejmuje zakres mocy od 450 do 2100 Wh, oferując szeroki wybór dla każdego rodzaju pojazdu rekreacyjnego. Kluczowe cechy akumulatora EXIDE Dual AGM: Jest całkowicie bezobsługowy, co ułatwia jego długotrwałe użytkowanie. Oferujewysoką elastyc",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory AGM",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 2119.75,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/akumulator-exide-dual-agm_z16597/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-exide-dual-agm_z16597%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/3/154563_102.jpg?1704380087_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 100,
-        "capacityWh": 2100,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_pl:16597_17412",
       "merchant": "padabo_pl",
       "name": "Akumulator EXIDE Dual AGM pojemność 140 Ah wersja EP 1200",
@@ -344,6 +313,68 @@
       "specs": {
         "voltageV": null,
         "capacityAh": 140,
+        "capacityWh": 2100,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:16597_17414",
+      "merchant": "padabo_pl",
+      "name": "Akumulator EXIDE Dual AGM pojemność 240 Ah wersja EP 2100",
+      "description": "Wytrzymały akumulator do każdego rodzaju pojazdu rekreacyjnegoAkumulatory do najpopularniejszych kamperów i przyczep kempingowych. Ich konstrukcja zapewnia dużą elastyczność instalacji. Technologia AGM (Absorbent Glass Mat) ze stopem wapnia i wentylacją VRLA obejmuje zakres mocy od 450 do 2100 Wh, oferując szeroki wybór dla każdego rodzaju pojazdu rekreacyjnego. Kluczowe cechy akumulatora EXIDE Dual AGM: Jest całkowicie bezobsługowy, co ułatwia jego długotrwałe użytkowanie. Oferujewysoką elastyc",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory AGM",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 3509.61,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/akumulator-exide-dual-agm_z16597/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-exide-dual-agm_z16597%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/6/154566_102.jpg?1704380087_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 240,
+        "capacityWh": 2100,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:16597_22219",
+      "merchant": "padabo_pl",
+      "name": "Akumulator EXIDE Dual AGM pojemność 92 Ah wersja EP 800",
+      "description": "Wytrzymały akumulator do każdego rodzaju pojazdu rekreacyjnegoAkumulatory do najpopularniejszych kamperów i przyczep kempingowych. Ich konstrukcja zapewnia dużą elastyczność instalacji. Technologia AGM (Absorbent Glass Mat) ze stopem wapnia i wentylacją VRLA obejmuje zakres mocy od 450 do 2100 Wh, oferując szeroki wybór dla każdego rodzaju pojazdu rekreacyjnego. Kluczowe cechy akumulatora EXIDE Dual AGM: Jest całkowicie bezobsługowy, co ułatwia jego długotrwałe użytkowanie. Oferujewysoką elastyc",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory AGM",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 1472.86,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/akumulator-exide-dual-agm_z16597/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-exide-dual-agm_z16597%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/9/156009_102.jpg?1704380136_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 92,
         "capacityWh": 2100,
         "powerW": null,
         "currentA": null,
@@ -932,38 +963,6 @@
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [
           "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:23822_25452",
-      "merchant": "padabo_pl",
-      "name": "Baterie litowe RKB Smart pojemność 200 Ah",
-      "description": "Akumulatory RKB dla wszystkich podróżującychAkumulatory RKB Smart LiFePO4 zostały opracowane w celu zastąpienia akumulatorów kwasowych i pod każdym względem spełniają wysokie wymagania stawiane najbardziej zaawansowanym akumulatorom dostępnym obecnie na rynku. Akumulatory RKB Smart są wydajne, lekkie i wytrzymałe, dzięki czemu idealnie nadają się do kamperów i niezależnych energetycznie podróży. Akumulatory wykorzystują odporne na cykle i bezpieczne ogniwa LiFePO4. Ponadto są one wyposażone w zi",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
-      "category": "battery",
-      "brand": "Rkb electronic",
-      "priceCzk": 12312.76,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/baterie-litowe-rkb-smart_z23822/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fbaterie-litowe-rkb-smart_z23822%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/1/158381_102.jpg?1704380221_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 200,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
         ],
         "batteryType": "lifepo4",
         "pureSine": null,
@@ -4015,6 +4014,40 @@
       }
     },
     {
+      "id": "padabo_pl:104293_30481",
+      "merchant": "padabo_pl",
+      "name": "Przetwornica napięcia Dometic SinePower DPSI-TS 12 V lub 24 V wydajność stała/szczytowa 3000/6000 W napięcie 12 V",
+      "description": "Falownik sinusoidalny dla wrażliwych urządzeńPrzetwornica napięcia Dometic SinePower DPSI-TS zapewnia najwyższą wydajność mobilnego zasilania i wyznacza standardy mobilnego zasilania. Zaprojektowany do konwersji zasilania akumulatorowego 12 lub 24 V na prąd zmienny 230 V/50 Hz, zapewnia niezawodne działanie urządzeń elektrycznych o mocy do 3000 W - z zasilaniem bezpośrednio z akumulatora pojazdu. Niezależnie od tego, czy jest to kemping, czy mobilne miejsce pracy - dzięki serii falowników sinuso",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Przetwornice napięcia",
+      "category": "inverter",
+      "brand": "Dometic",
+      "priceCzk": 7002.77,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/przetwornica-napiecia-dometic-sinepower-dpsi-ts-12-v-lub-24-v_z104293/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fprzetwornica-napiecia-dometic-sinepower-dpsi-ts-12-v-lub-24-v_z104293%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 6000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12,
+          24
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_pl:104293_30482",
       "merchant": "padabo_pl",
       "name": "Przetwornica napięcia Dometic SinePower DPSI-TS 12 V lub 24 V wydajność stała/szczytowa 3000/6000 W napięcie 24 V",
@@ -6279,7 +6312,7 @@
       "categoryPath": "Chłodzenie i ogrzewanie | Lodówki turystyczne i torby termiczne | Akcesoria do lodówek samochodowych",
       "category": "battery",
       "brand": "Mestic",
-      "priceCzk": 963.09,
+      "priceCzk": 963.27,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/dodatkowy-akumulator-do-lodowek-kompresorowych-mestic-mccm-mcc_z108321/",
@@ -6401,7 +6434,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Przetwornice napięcia",
       "category": "inverter",
       "brand": "Victron",
-      "priceCzk": 1452,
+      "priceCzk": 1452.26,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/przetwornica-sinusoidalna-victron-energy-12-v-1600-va-ve-direct_z109017/",
@@ -6434,7 +6467,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
       "category": "solar_panel",
       "brand": "Victron",
-      "priceCzk": 479.64,
+      "priceCzk": 479.72,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/panel-sloneczny-victron-energy-bluesolar-190-wp-mono-12-v_z109069/",
@@ -6467,7 +6500,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
       "category": "battery",
       "brand": "Renogy",
-      "priceCzk": 4072.84,
+      "priceCzk": 4073.57,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/akumulator-z-ogrzewaniem-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090/",
@@ -6493,8 +6526,8 @@
     {
       "id": "powerqueen_eu:9633915175132",
       "merchant": "powerqueen_eu",
-      "name": "Power Queen 12V 125Ah Group 27 Smart LiFePO4 Versorgungsbatterie",
-      "description": "Die smarte Group 27 LiFePO4 Versorgungsbatterie für Angelboot, Campervan &amp; Off-Grid Group 27 LiFePO4 Batterie für 30–70 lbs Trolling-Motoren &amp; Bootsangler (Seewasserfest &amp; IP65): Perfekt abgestimmt auf die Group 27 Norm: Mit den Maßen 308 x 170 x 211 mm und nur 11,68 kg lässt sich diese 12V LiFePO4 Batterie mühelos tragen und passt exakt in gängige Boots-Batterieboxen (z. B. Minn Kota). Sie bietet die ideale Stromversorgung für Trolling-Motoren von 30 bis 70 lbs . Das IP65-wassergesc",
+      "name": "Power Queen 12V 125Ah Group 27 Smart LiFePO4 supply battery",
+      "description": "The smart Group 27 LiFePO4 supply battery for fishing boats and campervans &amp; Off-Grid Group 27 LiFePO4 battery for 30–70 lbs trolling motors &amp; Boat anglers (seawater resistant) &amp; IP65): Perfectly matched to the Group 27 standard: With the dimensions 308 x 170 x 211 mm and only 11.68 kg This 12V LiFePO4 battery is easy to carry and fits perfectly into standard boat battery boxes (e.g., Minn Kota). It provides the ideal power supply for trolling motors from 30 to 70 lbs . The IP65 wate",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
@@ -6503,41 +6536,6 @@
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/Power_Queen_12V_125Ah_Group_27_Smart_LiFePO4_Versorgungsbatterie.webp?v=1789973708",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 125,
-        "capacityWh": null,
-        "powerW": 35,
-        "currentA": 100,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "powerqueen_eu:10313906946268",
-      "merchant": "powerqueen_eu",
-      "name": "(0% MwSt.) Power Queen 12V 125Ah Group 27 Smart LiFePO4 Batterie mit Bluetooth",
-      "description": "Die smarte 12V 125Ah LiFePO4 Solar-Batterie (0% MwSt. für PV-Anlagen) – Perfekt für Wohnmobil, Angelboot &amp; Off-Grid Group 27 LiFePO4 Batterie für PV-Anlagen, Angelboote &amp; Trolling-Motoren (IP65): Perfekt abgestimmt auf die Group 27 Norm: Mit den Maßen 308 x 170 x 211 mm und nur 11,68 kg passt diese 12V LiFePO4 Batterie exakt in gängige Boots-Batterieboxen (z. B. Minn Kota) oder kompakte Solarschränke. Als steuerfreier PV-Speicher (§12 Abs. 3 UStG) oder Stromquelle für Trolling-Motoren vo",
-      "categoryPath": "Batteries",
-      "category": "battery",
-      "brand": "PQ-DE-Tax Free",
-      "priceCzk": 271.42,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.ipowerqueen.de/en/products/0-mwst-power-queen-12v-125ah-group-27-smart-lifepo4-batterie-mit-bluetooth",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2F0-mwst-power-queen-12v-125ah-group-27-smart-lifepo4-batterie-mit-bluetooth",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/Power_Queen_12V_125Ah_Group_27_Smart_LiFePO4_Versorgungsbatterie.webp?v=1789973708",
       "specs": {
         "voltageV": 12,
@@ -7022,7 +7020,7 @@
       "id": "powerqueen_eu:7752832352476",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 12V 200Ah LiFePO4 battery, built-in 100A BMS",
-      "description": "Replaces lead-acid dual battery, 65% lighter and 57% more compact: A 12V 200Ah LiFePO4 battery (2560Wh) replaces two 12V 200Ah lead-acid batteries (2400Wh, 1C). It delivers 160Wh more energy, 8x longer lifespan, 65% less weight and 57% less space – maximizing energy density and lifespan. Better than dual 12V 100Ah LiFePO4: simpler, more efficient: It outperforms two 12V 100Ah LiFePO4 batteries connected in parallel at the same energy output. Fewer connections reduce wiring complexity, lower inte",
+      "description": "Replaces lead-acid dual batteries, 65% lighter and 57% more compact: A 12V 200Ah LiFePO4 battery (2560Wh) replaces two 12V 200Ah lead-acid batteries (2400Wh, 1C). It delivers 160Wh more energy, 8x longer lifespan, 65% less weight and 57% less space – maximizing energy density and lifespan. Better than dual 12V 100Ah LiFePO4: simpler, more efficient: It outperforms two 12V 100Ah LiFePO4 batteries connected in parallel at the same energy output. Fewer connections reduce wiring complexity, lower in",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
