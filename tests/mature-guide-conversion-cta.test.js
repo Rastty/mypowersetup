@@ -36,7 +36,11 @@ function routeFile(route) {
   return `${route.slice(1)}index.html`;
 }
 
-test("all mature-market core guides promise the calculator-to-compatible-products journey", async () => {
+const TECHNICAL_ONLY_CTA = new Map([
+  ["/pruvodce/kabely-a-pojistky-12-v/", "Výsledek je podklad ke kontrole, nikoli instalační pokyn."],
+]);
+
+test("mature-market guide CTAs stay truthful and point to recognized calculator destinations", async () => {
   const sitemap = await readFile("sitemap.xml", "utf8");
 
   for (const market of markets) {
@@ -47,7 +51,13 @@ test("all mature-market core guides promise the calculator-to-compatible-product
       const file = routeFile(route);
       const html = await readFile(file, "utf8");
       const cta = html.match(/<section class="cta">[\s\S]*?<\/section>/)?.[0] ?? "";
-      assert.ok(cta.includes(market.promise), `${file} is missing the conversion promise`);
+      const technicalOnlyCopy = TECHNICAL_ONLY_CTA.get(route);
+      if (technicalOnlyCopy) {
+        assert.ok(cta.includes(technicalOnlyCopy), `${file} is missing the technical-only safety promise`);
+        assert.ok(!cta.includes(market.promise), `${file} must not promise product matching from a technical-only calculator`);
+      } else {
+        assert.ok(cta.includes(market.promise), `${file} is missing the conversion promise`);
+      }
       const href = cta.match(/<a\s+href="([^"]+)"/)?.[1];
       assert.ok(href && classifyGuideCalculatorLink(href), `${file} does not link to a recognized calculator destination`);
     }

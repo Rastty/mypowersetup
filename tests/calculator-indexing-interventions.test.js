@@ -77,3 +77,28 @@ test("Wave 17 strengthens contextual discovery for the battery autonomy calculat
     "URL is unknown to Google",
   );
 });
+
+
+test("Wave 18 strengthens the contextual path to the calculator with the strongest search signal", async () => {
+  const [guide, sitemap] = await Promise.all([
+    read("pruvodce/kabely-a-pojistky-12-v/index.html"),
+    read("sitemap.xml"),
+  ]);
+
+  assert.match(
+    guide,
+    /<section class="cta">[\s\S]*href="\/kalkulacky\/prurez-kabelu-12v\/"[\s\S]*Spočítat průřez kabelu →/,
+  );
+  assert.match(guide, /"dateModified":"2026-10-02"/);
+  assert.ok(
+    sitemap.includes("<loc>https://mypowersetup.com/pruvodce/kabely-a-pojistky-12-v/</loc><lastmod>2026-10-02</lastmod>"),
+  );
+
+  const evidence = JSON.parse(await read("data/calculator-growth-evidence-2026-09-25.json"));
+  const signal = evidence.gsc.searchSignals.find(
+    (row) => row.url === "https://mypowersetup.com/kalkulacky/prurez-kabelu-12v/",
+  );
+  assert.equal(signal.impressions, 8);
+  assert.equal(signal.clicks, 0);
+  assert.equal(signal.averagePosition, 13.75);
+});
