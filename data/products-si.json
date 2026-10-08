@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T10:24:56.547Z",
+  "generatedAt": "2026-10-08T10:45:21.256Z",
   "market": "sl-SI",
   "currency": "EUR",
   "private": false,
@@ -174,7 +174,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:10257573445939",
@@ -238,7 +238,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:8205919715635",
@@ -269,7 +269,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:10143263129907",
@@ -300,7 +300,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:10143246418227",
@@ -331,7 +331,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:9948837937459",
@@ -362,7 +362,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:9875554074931",
@@ -393,7 +393,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:9855868961075",
@@ -424,7 +424,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:9802731815219",
@@ -455,7 +455,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:9801383051571",
@@ -486,7 +486,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:9763001073971",
@@ -496,7 +496,7 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 449,
+      "priceCzk": 474,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r1500-lite-portable-power-station",
@@ -550,7 +550,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:9598354719027",
@@ -581,7 +581,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:9598338564403",
@@ -612,7 +612,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:8630287532339",
@@ -676,7 +676,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:8431037645107",
@@ -707,7 +707,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:8300246663475",
@@ -738,7 +738,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:8336481124659",
@@ -802,7 +802,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:8205916733747",
@@ -833,7 +833,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:8205905887539",
@@ -864,7 +864,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:8205901234483",
@@ -895,7 +895,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:8205897105715",
@@ -926,7 +926,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:8205889012019",
@@ -957,7 +957,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-07"
+      "verifiedAt": "2026-10-08"
     },
     {
       "id": "allpowers_eu:8205880623411",
@@ -967,7 +967,7 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 1749,
+      "priceCzk": 1899,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r4000-portable-power-station-4000w-3600wh",
@@ -1142,7 +1142,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 367.99,
+      "priceCzk": 372.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-140ah-190h-smart-wohnmobil-lithium-batterie-mit-bluetooth",
@@ -1250,7 +1250,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 462.99,
+      "priceCzk": 475.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-smart-solar-battery-with-bluetooth",
@@ -1286,7 +1286,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 514.99,
+      "priceCzk": 539.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-300ah-lifepo4-battery-integrated-200a-bms",
@@ -1431,7 +1431,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 1050.99,
+      "priceCzk": 1059.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-200ah-lifepo4-solar-battery-with-200a-bms",
@@ -1504,7 +1504,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 450.99,
+      "priceCzk": 459.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-plus-lifepo4-solar-battery",
