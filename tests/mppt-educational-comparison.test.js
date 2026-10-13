@@ -32,8 +32,9 @@ test("four localized MPPT buying guides show grounded comparison, trustworthy so
     for (const link of section.matchAll(/href="([^"]+)"/g)) {
       const target = link[1];
       if (/^https:\/\//.test(target)) continue;
-      assert.ok(target.startsWith("/") && target.endsWith("/"), `${route}: expected a public internal landing route: ${target}`);
-      await access(target === "/" ? "index.html" : target.slice(1) + "index.html");
+      const pathname = new URL(target, root + route).pathname;
+      assert.ok(target.startsWith("/") && pathname.endsWith("/"), `${route}: expected a public internal landing route: ${target}`);
+      await access(pathname === "/" ? "index.html" : pathname.slice(1) + "index.html");
     }
   }
 });
