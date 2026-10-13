@@ -8,6 +8,7 @@ const CONFIG = Object.freeze({
 });
 
 export function matureGuideMarket(route) {
+  if (route === "/pruvodce/modelove-sestavy/") return null;
   return Object.entries(CONFIG).find(([, config]) => config.route.test(route))?.[0] || null;
 }
 
