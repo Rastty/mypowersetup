@@ -60,7 +60,7 @@ function canonicalProductPath(value) {
 }
 
 /**
- * Fail closed: only independently verified 12 V LiFePO4 battery SKUs.
+ * Fail closed: independently verified LiFePO4 batteries and MPPT controllers only.
  * A live Heureka XML offer must include an exact merchant product page,
  * positive CZK price and affirmative stock signal. Never infer stock.
  */
