@@ -66,7 +66,8 @@ async function worker() {
     let liveText = "";
     if (live.html) {
       liveText = textContent(live.html);
-      const minChars = guide ? (entry.path.split("/").length <= 4 ? 200 : 900) : 80;
+      const hub = ["/pruvodce/", "/pruvodce/modelove-sestavy/", "/sk/sprievodca/", "/pl/poradnik/", "/hu/utmutatok/", "/pt/guias/", "/ro/ghiduri/", "/si/vodici/"].includes(entry.path);
+      const minChars = guide ? (hub ? 200 : 900) : 80;
       if (liveText.length < minChars) issues.push("LIVE_TEXT_TOO_SHORT:" + liveText.length);
       if (!h1(live.html)) warnings.push("H1_MISSING");
       if (entry.h1 && h1(live.html) !== entry.h1) warnings.push("H1_DIFF");
