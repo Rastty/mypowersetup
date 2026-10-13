@@ -113,3 +113,14 @@ test("missing or malformed explicit DELIVERY_DATE never silently turns into in-s
   assert.equal(parseVselektroVerifiedFeed(shop([available.replace("<DELIVERY_DATE>0</DELIVERY_DATE>","")])).length,0);
   assert.equal(parseVselektroVerifiedFeed(shop([available.replace("<DELIVERY_DATE>0</DELIVERY_DATE>","<DELIVERY_DATE>4</DELIVERY_DATE>")])).length,0);
 });
+
+test("Heureka CDATA stock signal is parsed consistently with the generic feed reader",()=>{
+  const xml=shop([item().replace("<DELIVERY_DATE>0</DELIVERY_DATE>","<DELIVERY_DATE><![CDATA[0]]></DELIVERY_DATE>")]);
+  const parsed=parseVselektroVerifiedFeed(xml);
+  assert.equal(parsed.length,1);
+  assert.equal(parsed[0].available,true);
+  const stockText=shop([item().replace("<DELIVERY_DATE>0</DELIVERY_DATE>","<DELIVERY_DATE>skladem</DELIVERY_DATE>")]);
+  assert.equal(parseVselektroVerifiedFeed(stockText).length,1);
+  const delayed=shop([item().replace("<DELIVERY_DATE>0</DELIVERY_DATE>","<DELIVERY_DATE><![CDATA[4]]></DELIVERY_DATE>")]);
+  assert.equal(parseVselektroVerifiedFeed(delayed).length,0);
+});
