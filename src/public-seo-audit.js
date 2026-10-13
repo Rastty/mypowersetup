@@ -182,7 +182,7 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
       const list = nodes.find((node) => node?.["@type"] === "ItemList");
       const breadcrumbs = nodes.filter((node) => node?.["@type"] === "BreadcrumbList");
       if (!collection || collection.url !== expectedCanonical || collection.inLanguage !== "cs-CZ"
-        || !/^\\d{4}-\\d{2}-\\d{2}$/.test(collection.dateModified || "")) {
+        || !/^\d{4}-\d{2}-\d{2}$/.test(collection.dateModified || "")) {
         failures.push(`${route}:SCENARIO_COLLECTION_INVALID`);
       }
       const expectedScenarios = ["vikend-v-karavanu", "rodinna-dovolena", "prace-z-karavanu"]
