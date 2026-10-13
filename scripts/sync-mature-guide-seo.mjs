@@ -11,7 +11,7 @@ import {
 const sitemapPath = "sitemap.xml";
 let sitemap = await readFile(sitemapPath, "utf8");
 const routes = matureGuideRoutesFromSitemap(sitemap);
-if (routes.length !== 51) throw new Error(`MATURE_GUIDE_ROUTE_COUNT:${routes.length}`);
+if (routes.length !== 52) throw new Error(`MATURE_GUIDE_ROUTE_COUNT:${routes.length}`);
 
 let changedPages = 0;
 for (const route of routes) {
