@@ -20,6 +20,46 @@ const VERIFIED = Object.freeze({
   "/lifepo4-baterie-12v-300ah-slpo12-300n-hc200a-sunstone-power/": Object.freeze({
     id: "sunstone-slpo12-300n-hc200a", voltageV: 12, capacityAh: 300, bmsContinuousCurrentA: 200,
   }),
+  "/solarni-regulator-victron-energy-mppt-smartsolar-100v-20a/": Object.freeze({
+    id: "victron-smartsolar-100-20", category: "controller", brand: "victron",
+    currentA: 20, maxPvVocV: 100, maxPvIscA: 20,
+    systemVoltagesV: [12,24,48], maxPvWattsBySystemVoltage: {12:290,24:580,48:1160},
+    model: /100\s*v\s*[/ -]\s*20\s*a|100\s*[/ -]\s*20\b/i,
+  }),
+  "/solarni-regulator-victron-energy-smartsolar-30a/": Object.freeze({
+    id: "victron-smartsolar-100-30", category: "controller", brand: "victron",
+    currentA: 30, maxPvVocV: 100, maxPvIscA: 35,
+    systemVoltagesV: [12,24], maxPvWattsBySystemVoltage: {12:440,24:880},
+    model: /100\s*v\s*[/ -]\s*30\s*a|100\s*[/ -]\s*30\b/i,
+  }),
+  "/solarni-regulator-victron-energy-mppt-smartsolar-100v-50a/": Object.freeze({
+    id: "victron-smartsolar-100-50", category: "controller", brand: "victron",
+    currentA: 50, maxPvVocV: 100, maxPvIscA: 35,
+    systemVoltagesV: [12,24], maxPvWattsBySystemVoltage: {12:700,24:1400},
+    model: /100\s*v\s*[/ -]\s*50\s*a|100\s*[/ -]\s*50\b/i,
+  }),
+  "/solarni-regulator-sr-ml2430-30a/": Object.freeze({
+    id: "srne-ml2430-30a", category: "controller", brand: "srne",
+    currentA: 30, maxPvVocV: 100,
+    systemVoltagesV: [12,24], maxPvWattsBySystemVoltage: {12:400,24:800},
+    model: /(?:sr[ -]?ml2430|ml2430)/i,
+  }),
+  "/nabijecka-dc-dc-orion-tr-smart-12-12-18a/": Object.freeze({
+    id:"victron-orion-tr-12-12-18-isolated", category:"dc_charger",
+    currentA:18, model:/orion[-\s]*tr\s*smart/i, isolated:true,
+  }),
+  "/nabijecka-dc-dc-orion-tr-smart-12-12-30a/": Object.freeze({
+    id:"victron-orion-tr-12-12-30-isolated", category:"dc_charger",
+    currentA:30, model:/orion[-\s]*tr\s*smart/i, isolated:true,
+  }),
+  "/nabijecka-dc-dc-orion-tr-smart-12-12-30a-neizolovana/": Object.freeze({
+    id:"victron-orion-tr-12-12-30-nonisolated", category:"dc_charger",
+    currentA:30, model:/orion[-\s]*tr\s*smart/i, isolated:false,
+  }),
+  "/nabijecka-dc-dc-orion-xs-smart-12-12-50a-neizolovana/": Object.freeze({
+    id:"victron-orion-xs-12-12-50-nonisolated", category:"dc_charger",
+    currentA:50, model:/orion[-\s]*xs\s*smart/i, isolated:false,
+  }),
 });
 export const VSELEKTRO_VERIFIED_PATHS = Object.freeze(Object.keys(VERIFIED));
 
@@ -36,7 +76,7 @@ function canonicalProductPath(value) {
 }
 
 /**
- * Fail closed: only independently verified 12 V LiFePO4 battery SKUs.
+ * Fail closed: independently verified LiFePO4 batteries and MPPT controllers only.
  * A live Heureka XML offer must include an exact merchant product page,
  * positive CZK price and affirmative stock signal. Never infer stock.
  */
@@ -88,10 +128,61 @@ export function parseVselektroVerifiedFeed(xml) {
     // Both must be excluded from public recommendations.
     if (item.available !== true || item.priceCurrency !== "CZK"
       || !(Number.isFinite(item.priceCzk) && item.priceCzk > 0 && item.priceCzk < 200000)) continue;
-    if (!/sunstone/i.test(item.name)
-      || !/lifepo4|lithium[\s-]*iron/i.test(item.name + " " + item.description)
-      || !/bateri|akumulátor|akumulator/i.test(item.name)
-      || /(?:startovac|autobateri|motobateri|ups|solar[nní]* sestava|hybrid|set|kit|souprav|sestav)/i.test(item.name)) continue;
+    const title = item.name;
+    if (/(?:startovac|autobateri|motobateri|ups|solar[nní]* sestava|hybrid|set|kit|souprav|sestav)/i.test(title)) continue;
+    if (verified.category === "controller") {
+      // SKU exact path and independent model/spec sheet must both agree.
+      // A DC/DC converter is NOT a battery charger and may not enter here.
+      if (!/\bmppt\b/i.test(title) || !/regulátor|regulator|controller/i.test(title)
+        || !new RegExp(verified.brand, "i").test(title) || !verified.model.test(title)) continue;
+      if (item.specs.currentA && item.specs.currentA !== verified.currentA) continue;
+      result.push(Object.freeze({
+        ...item,
+        id: "vselektro:" + verified.id,
+        category: "controller",
+        verifiedAt: "2026-10-13",
+        specs: Object.freeze({
+          ...item.specs,
+          currentA: verified.currentA,
+          maxPvVocV: verified.maxPvVocV,
+          ...(verified.maxPvIscA ? { maxPvIscA: verified.maxPvIscA } : {}),
+          systemVoltagesV: [...verified.systemVoltagesV],
+          maxPvWattsBySystemVoltage: { ...verified.maxPvWattsBySystemVoltage },
+        }),
+      }));
+      continue;
+    }
+    if (verified.category === "dc_charger") {
+      // DC/DC voltage converters are NOT chargers; require an exact Victron
+      // Orion Smart charger model and matching 12V input/output plus isolation.
+      const modelRating = new RegExp("12\\s*[-/]\\s*12\\s*[/]\\s*" + verified.currentA + "\\s*a\\b", "i");
+      if (!/nabíječ|nabijec|nabijeck|charger/i.test(title)
+        || !/dc\s*[-–]?\s*dc/i.test(title)
+        || !/victron/i.test(title + " " + item.description + " " + item.brand)
+        || !verified.model.test(title) || !modelRating.test(title)
+        || !/izolovan/i.test(title)
+        || /neizolovan/i.test(title) === verified.isolated) continue;
+      if (item.specs.currentA && item.specs.currentA !== verified.currentA) continue;
+      result.push(Object.freeze({
+        ...item,
+        id: "vselektro:" + verified.id,
+        category: "dc_charger",
+        verifiedAt: "2026-10-13",
+        specs: Object.freeze({
+          ...item.specs,
+          currentA: verified.currentA,
+          chargingVoltagesV: [12],
+          chargingInputVoltagesV: [12],
+          chargingBatteryTypes: ["lifepo4","lead"],
+          smartAlternatorCompatible: true,
+          isolated: verified.isolated,
+        }),
+      }));
+      continue;
+    }
+    if (!/sunstone/i.test(title)
+      || !/lifepo4|lithium[\s-]*iron/i.test(title + " " + item.description)
+      || !/bateri|akumulátor|akumulator/i.test(title)) continue;
     if (item.specs.capacityAh && item.specs.capacityAh !== verified.capacityAh) continue;
     if (item.specs.voltageV && item.specs.voltageV !== verified.voltageV) continue;
     result.push(Object.freeze({

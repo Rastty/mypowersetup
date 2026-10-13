@@ -20,8 +20,9 @@ const setup = (overrides={})=>({
   ...overrides
 });
 
-test("only two independently verified 12V battery SKUs are eligible from Heureka feed", () => {
-  assert.equal(VSELEKTRO_VERIFIED_PATHS.length,5);
+test("only independently verified 12V battery SKUs are eligible from Heureka feed", () => {
+  assert.equal(VSELEKTRO_VERIFIED_PATHS.filter(path=>path.startsWith("/lifepo4-baterie-")).length,5);
+  assert.equal(VSELEKTRO_VERIFIED_PATHS.length,13);
   const xml=shop([
     item(),item({id:"200",path:p200,name:"Sunstone Power LiFePO4 baterie 12,8 V 200Ah",price:"21990"}),
     item({id:"kit",path:"/solarni-sestava-hybrid-i/",name:"Solární sestava hybrid 3500W LiFePO4 100Ah",price:"80000"})
