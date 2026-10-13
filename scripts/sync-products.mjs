@@ -6,7 +6,10 @@ const feeds = [
   ["reslshop", process.env.RESLSHOP_FEED_URL, true],
   ["svetkaravanu", process.env.SVETKARAVANU_FEED_URL, true],
   ["solarimport", process.env.SOLAR_IMPORT_FEED_URL, false],
-  ["batterycz", process.env.BATTERY_CZ_FEED_URL, false]
+  ["batterycz", process.env.BATTERY_CZ_FEED_URL, false],
+  // Approved VSelektro: no public recommendation eligibility until a live
+  // merchant feed provides price, availability and current product metadata.
+  ["vselektro", process.env.VSELEKTRO_FEED_URL, false]
 ];
 
 const missing = feeds.filter(([, url, required]) => required && !url).map(([merchant]) => merchant);
