@@ -89,9 +89,9 @@ test("Wave 18 strengthens the contextual path to the calculator with the stronge
     guide,
     /<section class="cta">[\s\S]*href="\/kalkulacky\/prurez-kabelu-12v\/"[\s\S]*Spočítat průřez kabelu →/,
   );
-  assert.match(guide, /"dateModified":"2026-10-02"/);
+  assert.match(guide, /"dateModified":"2026-10-03"/);
   assert.ok(
-    sitemap.includes("<loc>https://mypowersetup.com/pruvodce/kabely-a-pojistky-12-v/</loc><lastmod>2026-10-02</lastmod>"),
+    sitemap.includes("<loc>https://mypowersetup.com/pruvodce/kabely-a-pojistky-12-v/</loc><lastmod>2026-10-03</lastmod>"),
   );
 
   const evidence = JSON.parse(await read("data/calculator-growth-evidence-2026-09-25.json"));
@@ -101,4 +101,51 @@ test("Wave 18 strengthens the contextual path to the calculator with the stronge
   assert.equal(signal.impressions, 8);
   assert.equal(signal.clicks, 0);
   assert.equal(signal.averagePosition, 13.75);
+});
+
+
+test("Wave 19 records fresh evidence and promotes the final two indexing gaps from the homepage", async () => {
+  const [homepage, sitemap, evidenceRaw] = await Promise.all([
+    read("index.html"),
+    read("sitemap.xml"),
+    read("data/calculator-growth-evidence-2026-10-13.json"),
+  ]);
+  const evidence = JSON.parse(evidenceRaw);
+
+  assert.equal(evidence.gsc.calculatorUrlCount, 19);
+  assert.equal(evidence.gsc.indexedCount, 17);
+  assert.equal(evidence.gsc.notIndexedCount, 2);
+  assert.equal(evidence.gsc.totalImpressions, 18);
+  assert.equal(evidence.gsc.totalClicks, 1);
+
+  const gaps = new Map(evidence.gsc.remainingIndexingGaps.map((row) => [row.url, row.coverageState]));
+  assert.equal(
+    gaps.get("https://mypowersetup.com/kalkulacky/vydrz-baterie/"),
+    "Discovered - currently not indexed",
+  );
+  assert.equal(
+    gaps.get("https://mypowersetup.com/kalkulacky/mppt-regulator/"),
+    "Discovered - currently not indexed",
+  );
+
+  assert.match(homepage, /id="quick-calculators-title"/);
+  assert.match(homepage, /href="\/kalkulacky\/vydrz-baterie\/"/);
+  assert.match(homepage, /href="\/kalkulacky\/mppt-regulator\/"/);
+  assert.match(homepage, /href="\/kalkulacky\/kapacita-baterie\/"/);
+  assert.match(homepage, /href="\/kalkulacky\/solarni-panely\/"/);
+  assert.ok(
+    sitemap.includes("<loc>https://mypowersetup.com/</loc><lastmod>2026-10-13</lastmod>"),
+  );
+});
+
+test("Wave 19 keeps SERP-copy changes gated below the search-volume threshold", async () => {
+  const evidence = JSON.parse(await read("data/calculator-growth-evidence-2026-10-13.json"));
+  const cable = evidence.gsc.pageSignals.find(
+    (row) => row.url === "https://mypowersetup.com/kalkulacky/prurez-kabelu-12v/",
+  );
+  assert.equal(cable.impressions, 10);
+  assert.equal(cable.clicks, 0);
+  assert.equal(cable.averagePosition, 16.5);
+  assert.match(cable.decision, /below the 20-impression CTR action threshold/);
+  assert.equal(evidence.ga4.status, "blocked");
 });
