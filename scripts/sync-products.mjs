@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
+import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 
 const feeds = [
@@ -59,25 +60,33 @@ for (const [merchant, url] of feeds) {
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-    const parsed = parseProductFeed(await response.text(), merchant);
+    const xml = await response.text();
+    const parsed = merchant === "vselektro"
+      ? parseVselektroVerifiedFeed(xml)
+      : parseProductFeed(xml, merchant);
     if (parsed.length === 0) throw new Error("feed neobsahuje použitelné produkty");
     products.push(...parsed);
     sources[merchant] = { status: "ok", parsedProducts: parsed.length };
     console.log(`${merchant}: načteno ${parsed.length} produktů.`);
   } catch (error) {
+    // A feed URL may carry a bearer key. Never put that URL or a raw fetch
+    // exception into tracked source diagnostics, CI logs or public JSON.
+    const safeMessage = merchant === "vselektro"
+      ? "VSelektro feed nedostupný nebo bez aktuálně ověřených kompatibilních produktů"
+      : error.message;
     const preserved = disablePreservedProducts(previousProducts, merchant);
     if (preserved.length > 0) {
       products.push(...preserved);
       sources[merchant] = {
         status: "stale",
-        error: error.message,
+        error: safeMessage,
         preservedProducts: preserved.length,
         recommendationsDisabled: true
       };
-      console.warn(`${merchant}: synchronizace selhala (${error.message}), ${preserved.length} posledních produktů zachováno jen jako diagnostická data a vyřazeno z doporučení.`);
+      console.warn(`${merchant}: synchronizace selhala (${safeMessage}), ${preserved.length} posledních produktů zachováno jen jako diagnostická data a vyřazeno z doporučení.`);
     } else {
-      sources[merchant] = { status: "error", error: error.message };
-      console.error(`${merchant}: synchronizace selhala (${error.message}).`);
+      sources[merchant] = { status: "error", error: safeMessage };
+      console.error(`${merchant}: synchronizace selhala (${safeMessage}).`);
     }
   }
 }
