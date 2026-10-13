@@ -1,0 +1,29 @@
+name: Browser-visible article audit
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "19 7 * * 1"
+  push:
+    branches:
+      - audit/browser-visible-articles-20261013
+permissions:
+  contents: read
+concurrency:
+  group: browser-visible-article-audit
+  cancel-in-progress: true
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Check rendered content and visibility on 390px mobile viewport
+        run: node scripts/audit-browser-visible.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-visible-article-audit
+          path: browser-visible-report.json
