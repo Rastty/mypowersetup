@@ -89,9 +89,9 @@ test("Wave 18 strengthens the contextual path to the calculator with the stronge
     guide,
     /<section class="cta">[\s\S]*href="\/kalkulacky\/prurez-kabelu-12v\/"[\s\S]*Spočítat průřez kabelu →/,
   );
-  assert.match(guide, /"dateModified":"2026-10-02"/);
+  assert.match(guide, /"dateModified":"2026-10-03"/);
   assert.ok(
-    sitemap.includes("<loc>https://mypowersetup.com/pruvodce/kabely-a-pojistky-12-v/</loc><lastmod>2026-10-02</lastmod>"),
+    sitemap.includes("<loc>https://mypowersetup.com/pruvodce/kabely-a-pojistky-12-v/</loc><lastmod>2026-10-03</lastmod>"),
   );
 
   const evidence = JSON.parse(await read("data/calculator-growth-evidence-2026-09-25.json"));
