@@ -429,12 +429,12 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .method-section { padding: 100px 24px; color: white; background: var(--forest-deep); }
 .header-nav { display: flex; align-items: center; gap: 24px; }
 .guide-preview { padding: 90px 24px; background: #f7f8f4; }
-.guide-preview-grid { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.guide-preview-grid a { padding: 26px; border: 1px solid var(--line); border-radius: var(--radius-md); color: var(--ink); background: white; text-decoration: none; transition: transform .18s ease, border-color .18s ease; }
-.guide-preview-grid a:hover { transform: translateY(-3px); border-color: #86a994; }
-.guide-preview-grid span { color: #4f8068; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
-.guide-preview-grid h3 { margin: 16px 0 10px; font-size: 20px; }
-.guide-preview-grid p { margin: 0; color: var(--ink-soft); line-height: 1.55; }
+.guide-preview-grid, .quick-calculator-grid { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.guide-preview-grid a, .quick-calculator-grid a { padding: 26px; border: 1px solid var(--line); border-radius: var(--radius-md); color: var(--ink); background: white; text-decoration: none; transition: transform .18s ease, border-color .18s ease; }
+.guide-preview-grid a:hover, .quick-calculator-grid a:hover { transform: translateY(-3px); border-color: #86a994; }
+.guide-preview-grid span, .quick-calculator-grid span { color: #4f8068; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
+.guide-preview-grid h3, .quick-calculator-grid h3 { margin: 16px 0 10px; font-size: 20px; }
+.guide-preview-grid p, .quick-calculator-grid p { margin: 0; color: var(--ink-soft); line-height: 1.55; }
 .guide-preview-action { max-width: 1040px; margin: 26px auto 0; text-align: center; }
 .section-heading-light .eyebrow { color: var(--lime); }
 .section-heading-light > p:last-child { color: #b8cbc3; }
@@ -481,7 +481,7 @@ footer small { font-size: 12px; }
   .step small { display: none; }
   .form-step { padding: 32px 18px 26px; }
   .calculator-error { margin: 14px 18px 0; }
-  .choice-grid-season, .appliance-grid, .advanced-grid, .result-columns, .method-grid, .product-grid, .guide-preview-grid, .decision-grid, .charging-grid, .installation-list, .package-grid { grid-template-columns: 1fr; }
+  .choice-grid-season, .appliance-grid, .advanced-grid, .result-columns, .method-grid, .product-grid, .guide-preview-grid, .quick-calculator-grid, .decision-grid, .charging-grid, .installation-list, .package-grid { grid-template-columns: 1fr; }
   .custom-appliance-controls { grid-template-columns: 1fr 1fr; }
   .custom-name-field, .custom-select-field { grid-column: 1 / -1; }
   .choice-grid-season .choice-card { min-height: 76px; }
