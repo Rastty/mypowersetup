@@ -10,6 +10,16 @@ const VERIFIED = Object.freeze({
   "/lifepo4-baterie-12v-200ah-slpo12-200n-hc200a-sunstone-power/": Object.freeze({
     id: "sunstone-slpo12-200n", voltageV: 12, capacityAh: 200, bmsContinuousCurrentA: 200,
   }),
+  "/lifepo4-baterie-12v-150ah-slpo12-150n-hc150a-sunstone-power/": Object.freeze({
+    id: "sunstone-slpo12-150n-hc150a", voltageV: 12, capacityAh: 150, bmsContinuousCurrentA: 150,
+  }),
+  "/lifepo4-baterie-12v-200ah-slpo12-200m-hc200a-sunstone-power/": Object.freeze({
+    id: "sunstone-slpo12-200m-hc200a", voltageV: 12, capacityAh: 200, bmsContinuousCurrentA: 200,
+    formFactor: "under_seat",
+  }),
+  "/lifepo4-baterie-12v-300ah-slpo12-300n-hc200a-sunstone-power/": Object.freeze({
+    id: "sunstone-slpo12-300n-hc200a", voltageV: 12, capacityAh: 300, bmsContinuousCurrentA: 200,
+  }),
 });
 export const VSELEKTRO_VERIFIED_PATHS = Object.freeze(Object.keys(VERIFIED));
 
@@ -26,12 +36,35 @@ function canonicalProductPath(value) {
 }
 
 /**
- * Fail closed: only two independently verified 12 V LiFePO4 battery SKUs.
+ * Fail closed: only independently verified 12 V LiFePO4 battery SKUs.
  * A live Heureka XML offer must include an exact merchant product page,
  * positive CZK price and affirmative stock signal. Never infer stock.
  */
+
+// Heureka SHOPITEM DELIVERY_DATE=0 means physically in stock; positive
+// integers represent delivery lead time. The general feed parser intentionally
+// treats both as orderable, so VSelektro must check the original XML value to
+// avoid claiming that made-to-order batteries are in stock. Absent or ambiguous
+// delivery tags fail closed.
+function readInStockPaths(xml) {
+  const stock = new Map();
+  for (const match of xml.matchAll(/<SHOPITEM\b[^>]*>([\s\S]*?)<\/SHOPITEM>/gi)) {
+    const item = match[1];
+    const rawUrl = item.match(/<URL(?:\s[^>]*)?>([\s\S]*?)<\/URL>/i)?.[1];
+    if (!rawUrl) continue;
+    const url = rawUrl.replace(/^\s*<!\[CDATA\[([\s\S]*?)\]\]>\s*$/, "$1").trim().replaceAll("&amp;", "&");
+    const path = canonicalProductPath(url);
+    if (!path) continue;
+    const delivery = item.match(/<DELIVERY_DATE(?:\s[^>]*)?>([\s\S]*?)<\/DELIVERY_DATE>/i)?.[1]?.trim() ?? "";
+    if (stock.has(path)) stock.set(path, false); // duplicate source SKU
+    else stock.set(path, delivery === "0");
+  }
+  return stock;
+}
+
 export function parseVselektroVerifiedFeed(xml) {
   if (typeof xml !== "string" || !/<SHOPITEM\b/i.test(xml)) return Object.freeze([]);
+  const inStockPaths = readInStockPaths(xml);
   const parsed = parseProductFeed(xml, "vselektro");
   const byPath = new Map();
   const duplicates = new Set();
@@ -43,7 +76,7 @@ export function parseVselektroVerifiedFeed(xml) {
   }
   const result = [];
   for (const [path, item] of byPath) {
-    if (duplicates.has(path)) continue;
+    if (duplicates.has(path) || inStockPaths.get(path) !== true) continue;
     const verified = VERIFIED[path];
     // Some merchant XMLs contain out-of-stock SKUs or no stock field.
     // Both must be excluded from public recommendations.
@@ -66,6 +99,7 @@ export function parseVselektroVerifiedFeed(xml) {
         capacityAh: verified.capacityAh,
         batteryType: "lifepo4",
         bmsContinuousCurrentA: verified.bmsContinuousCurrentA,
+        ...(verified.formFactor ? { formFactor: verified.formFactor } : {}),
       }),
     }));
   }
