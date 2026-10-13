@@ -140,6 +140,6 @@ test("committed sitemap passes the seven-market public SEO audit", async () => {
   assert.equal(Object.keys(report.marketCounts).length, 7);
   assert.ok(Object.values(report.marketCounts).every((count) => count > 0));
   assert.equal(report.articlePages, 87);
-  assert.equal(report.breadcrumbPages, 84);
+  assert.equal(report.breadcrumbPages, 87);
   assert.equal(report.guideHubPages, 7);
 });
