@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-13T06:41:11.825Z",
+  "source": {
+    "kind": "live_google_read_only",
+    "prometheusWorkflowRunId": 38358068076,
+    "artifactSha256": "c344ac4a6a1da0b7242e20dc4497d5b5e60d4e83fd6422fbdf21bc98288f1307",
+    "artifactArchiveSha256": "4491126f1ed258cdb557d27f69df29886974f65fea80091c1e6e3ea3f5e1c5b8"
+  },
+  "window": {
+    "startDate": "2026-09-13",
+    "endDate": "2026-10-10"
+  },
+  "gsc": {
+    "property": "sc-domain:mypowersetup.com",
+    "calculatorUrlCount": 19,
+    "indexedCount": 17,
+    "notIndexedCount": 2,
+    "previousBaseline": {
+      "capturedAt": "2026-09-25",
+      "indexedCount": 16,
+      "notIndexedCount": 3,
+      "urlCount": 19,
+      "totalClicks": 1,
+      "totalImpressions": 9
+    },
+    "resolvedSincePrevious": [
+      {
+        "url": "https://mypowersetup.com/pl/kalkulatory/",
+        "previousCoverageState": "Crawled - currently not indexed",
+        "currentIndexed": true
+      }
+    ],
+    "remainingIndexingGaps": [
+      {
+        "url": "https://mypowersetup.com/kalkulacky/vydrz-baterie/",
+        "coverageState": "Discovered - currently not indexed",
+        "lastCrawlTime": "",
+        "interpretation": "Persistent after Wave 17 contextual linking; strengthen crawl priority from the root homepage without changing SERP copy."
+      },
+      {
+        "url": "https://mypowersetup.com/kalkulacky/mppt-regulator/",
+        "coverageState": "Discovered - currently not indexed",
+        "lastCrawlTime": "",
+        "interpretation": "Persistent after Wave 9 contextual linking; strengthen crawl priority from the root homepage without changing title, meta description or H1."
+      }
+    ],
+    "pageSignals": [
+      {
+        "url": "https://mypowersetup.com/kalkulacky/solarni-panely/",
+        "clicks": 0,
+        "impressions": 1,
+        "averagePosition": 41
+      },
+      {
+        "url": "https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/",
+        "clicks": 0,
+        "impressions": 1,
+        "averagePosition": 44
+      },
+      {
+        "url": "https://mypowersetup.com/kalkulacky/prurez-kabelu-12v/",
+        "clicks": 0,
+        "impressions": 10,
+        "averagePosition": 16.5,
+        "decision": "observe; still below the 20-impression CTR action threshold"
+      },
+      {
+        "url": "https://mypowersetup.com/kalkulacky/12v-nebo-24v/",
+        "clicks": 0,
+        "impressions": 2,
+        "averagePosition": 50
+      },
+      {
+        "url": "https://mypowersetup.com/sk/kalkulacky/kapacita-baterie/",
+        "clicks": 1,
+        "impressions": 2,
+        "averagePosition": 27.5
+      },
+      {
+        "url": "https://mypowersetup.com/sk/kalkulacky/solarne-panely/",
+        "clicks": 0,
+        "impressions": 1,
+        "averagePosition": 45
+      },
+      {
+        "url": "https://mypowersetup.com/hu/kalkulatorok/napelem-teljesitmeny/",
+        "clicks": 0,
+        "impressions": 1,
+        "averagePosition": 100
+      }
+    ],
+    "querySignals": [
+      {
+        "url": "https://mypowersetup.com/kalkulacky/prurez-kabelu-12v/",
+        "query": "výpočet průřezu kabelu kalkulačka",
+        "clicks": 0,
+        "impressions": 1,
+        "averagePosition": 48
+      },
+      {
+        "url": "https://mypowersetup.com/hu/kalkulatorok/napelem-teljesitmeny/",
+        "query": "napelem rendszer kalkulátor",
+        "clicks": 0,
+        "impressions": 1,
+        "averagePosition": 100
+      }
+    ],
+    "totalClicks": 1,
+    "totalImpressions": 18
+  },
+  "ga4": {
+    "status": "blocked",
+    "reason": "insufficient_authentication_scopes",
+    "observedCredentialDeclaredAnalyticsReadonly": false,
+    "decision": "Do not infer route funnel or alter the production measurement ID; obtain analytics.readonly only through the established credential boundary."
+  },
+  "wave19Intervention": {
+    "date": "2026-10-13",
+    "hypothesis": "Root-level, user-visible links from the homepage to the two persistently discovered-but-not-indexed calculators should increase crawl priority. The block also links two already-indexed sibling calculators so it is a useful navigation surface rather than an SEO-only link injection.",
+    "measurement": "Re-run the same live URL Inspection and Search Analytics evidence after Google has recrawled the homepage. Keep title/meta/H1 unchanged until search-volume thresholds are met."
+  }
+}
