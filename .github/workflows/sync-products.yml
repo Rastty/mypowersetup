@@ -8,6 +8,7 @@ on:
       - "src/products.js"
       - "src/products-pt.js"
       - "src/feed.js"
+      - "src/vselektro-feed.js"
       - "src/oxe-affiliate.js"
       - "src/oxe-feed.js"
       - "src/ro-recommendations.js"
@@ -64,6 +65,7 @@ on:
       - "tests/commercial-coverage.test.js"
       - "tests/commercial-scenarios.test.js"
       - "tests/current-catalog-safety.test.js"
+      - "tests/vselektro-live-feed.test.js"
       - "tests/cz-dcdc-coverage.test.js"
       - ".github/workflows/sync-products.yml"
   schedule:
