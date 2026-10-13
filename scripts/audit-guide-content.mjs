@@ -34,7 +34,7 @@ for (const root of ROOTS) {
     const paragraphs=(article.match(/<p\b/gi)||[]).length;
     const anchor=(body.match(/<a\b[^>]*href=/gi)||[]).length;
     const canonical=html.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)/i)?.[1] || null;
-    const placeholder=/\b(lorem ipsum|TODO|coming soon|placeholder|připravujeme|wkrótce|hamarosan)\b/i.test(text);
+    const placeholder=/\b(lorem ipsum|coming soon|placeholder|připravujeme|wkrótce|hamarosan)\b/i.test(text) || /\\bTODO\\b/.test(text);
     const status=!h1 || !canonical || !body.trim() || text.length < THRESHOLDS.empty ? "empty_or_broken"
       : !hub && (text.length < THRESHOLDS.thin || h2 < 2 || paragraphs < 4 || placeholder) ? "thin"
       : !hub && text.length < THRESHOLDS.short ? "short" : "ok";
