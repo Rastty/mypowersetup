@@ -20,6 +20,30 @@ const VERIFIED = Object.freeze({
   "/lifepo4-baterie-12v-300ah-slpo12-300n-hc200a-sunstone-power/": Object.freeze({
     id: "sunstone-slpo12-300n-hc200a", voltageV: 12, capacityAh: 300, bmsContinuousCurrentA: 200,
   }),
+  "/solarni-regulator-victron-energy-mppt-smartsolar-100v-20a/": Object.freeze({
+    id: "victron-smartsolar-100-20", category: "controller", brand: "victron",
+    currentA: 20, maxPvVocV: 100, maxPvIscA: 20,
+    systemVoltagesV: [12,24,48], maxPvWattsBySystemVoltage: {12:290,24:580,48:1160},
+    model: /100\s*v\s*[/ -]\s*20\s*a|100\s*[/ -]\s*20\b/i,
+  }),
+  "/solarni-regulator-victron-energy-smartsolar-30a/": Object.freeze({
+    id: "victron-smartsolar-100-30", category: "controller", brand: "victron",
+    currentA: 30, maxPvVocV: 100, maxPvIscA: 35,
+    systemVoltagesV: [12,24], maxPvWattsBySystemVoltage: {12:440,24:880},
+    model: /100\s*v\s*[/ -]\s*30\s*a|100\s*[/ -]\s*30\b/i,
+  }),
+  "/solarni-regulator-victron-energy-mppt-smartsolar-100v-50a/": Object.freeze({
+    id: "victron-smartsolar-100-50", category: "controller", brand: "victron",
+    currentA: 50, maxPvVocV: 100, maxPvIscA: 35,
+    systemVoltagesV: [12,24], maxPvWattsBySystemVoltage: {12:700,24:1400},
+    model: /100\s*v\s*[/ -]\s*50\s*a|100\s*[/ -]\s*50\b/i,
+  }),
+  "/solarni-regulator-sr-ml2430-30a/": Object.freeze({
+    id: "srne-ml2430-30a", category: "controller", brand: "srne",
+    currentA: 30, maxPvVocV: 100,
+    systemVoltagesV: [12,24], maxPvWattsBySystemVoltage: {12:400,24:800},
+    model: /(?:sr[ -]?ml2430|ml2430)/i,
+  }),
 });
 export const VSELEKTRO_VERIFIED_PATHS = Object.freeze(Object.keys(VERIFIED));
 
@@ -88,10 +112,33 @@ export function parseVselektroVerifiedFeed(xml) {
     // Both must be excluded from public recommendations.
     if (item.available !== true || item.priceCurrency !== "CZK"
       || !(Number.isFinite(item.priceCzk) && item.priceCzk > 0 && item.priceCzk < 200000)) continue;
-    if (!/sunstone/i.test(item.name)
-      || !/lifepo4|lithium[\s-]*iron/i.test(item.name + " " + item.description)
-      || !/bateri|akumulátor|akumulator/i.test(item.name)
-      || /(?:startovac|autobateri|motobateri|ups|solar[nní]* sestava|hybrid|set|kit|souprav|sestav)/i.test(item.name)) continue;
+    const title = item.name;
+    if (/(?:startovac|autobateri|motobateri|ups|solar[nní]* sestava|hybrid|set|kit|souprav|sestav)/i.test(title)) continue;
+    if (verified.category === "controller") {
+      // SKU exact path and independent model/spec sheet must both agree.
+      // A DC/DC converter is NOT a battery charger and may not enter here.
+      if (!/\bmppt\b/i.test(title) || !/regulátor|regulator|controller/i.test(title)
+        || !new RegExp(verified.brand, "i").test(title) || !verified.model.test(title)) continue;
+      if (item.specs.currentA && item.specs.currentA !== verified.currentA) continue;
+      result.push(Object.freeze({
+        ...item,
+        id: "vselektro:" + verified.id,
+        category: "controller",
+        verifiedAt: "2026-10-13",
+        specs: Object.freeze({
+          ...item.specs,
+          currentA: verified.currentA,
+          maxPvVocV: verified.maxPvVocV,
+          ...(verified.maxPvIscA ? { maxPvIscA: verified.maxPvIscA } : {}),
+          systemVoltagesV: [...verified.systemVoltagesV],
+          maxPvWattsBySystemVoltage: { ...verified.maxPvWattsBySystemVoltage },
+        }),
+      }));
+      continue;
+    }
+    if (!/sunstone/i.test(title)
+      || !/lifepo4|lithium[\s-]*iron/i.test(title + " " + item.description)
+      || !/bateri|akumulátor|akumulator/i.test(title)) continue;
     if (item.specs.capacityAh && item.specs.capacityAh !== verified.capacityAh) continue;
     if (item.specs.voltageV && item.specs.voltageV !== verified.voltageV) continue;
     result.push(Object.freeze({
