@@ -25,6 +25,12 @@ const MERCHANTS = {
     destinationParam: "desturl",
     currency: "CZK"
   },
+  vselektro: {
+    hostname: "www.vselektro.eu",
+    affiliateBaseUrl: "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=f897865f",
+    destinationParam: "desturl",
+    currency: "CZK"
+  },
   padabo: {
     hostname: "www.padabo.sk",
     affiliateBaseUrl: null,
