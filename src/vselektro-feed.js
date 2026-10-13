@@ -134,7 +134,8 @@ export function parseVselektroVerifiedFeed(xml) {
       // SKU exact path and independent model/spec sheet must both agree.
       // A DC/DC converter is NOT a battery charger and may not enter here.
       if (!/\bmppt\b/i.test(title) || !/regulátor|regulator|controller/i.test(title)
-        || !new RegExp(verified.brand, "i").test(title) || !verified.model.test(title)) continue;
+        || (verified.brand !== "srne" && !new RegExp(verified.brand, "i").test(title))
+        || !verified.model.test(title)) continue;
       if (item.specs.currentA && item.specs.currentA !== verified.currentA) continue;
       result.push(Object.freeze({
         ...item,
