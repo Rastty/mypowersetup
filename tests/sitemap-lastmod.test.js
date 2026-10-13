@@ -26,11 +26,11 @@ function articleModified(html) {
   return null;
 }
 
-test("all 87 guide sitemap lastmod values match Article.dateModified", async () => {
+test("all 88 guide sitemap lastmod values match Article.dateModified", async () => {
   const xml = await readFile("sitemap.xml", "utf8");
   const entries = sitemapEntries(xml);
   const routes = [...entries.keys()].filter((route) =>
-    (/^\/pruvodce\/.+\/$/.test(route) && route !== "/pruvodce/") ||
+    (/^\/pruvodce\/.+\/$/.test(route) && route !== "/pruvodce/" && route !== "/pruvodce/modelove-sestavy/") ||
     (/^\/sk\/sprievodca\/.+\/$/.test(route) && route !== "/sk/sprievodca/") ||
     (/^\/pl\/poradnik\/.+\/$/.test(route) && route !== "/pl/poradnik/") ||
     (/^\/hu\/utmutatok\/.+\/$/.test(route) && route !== "/hu/utmutatok/") ||
@@ -39,7 +39,7 @@ test("all 87 guide sitemap lastmod values match Article.dateModified", async () 
     (/^\/si\/vodici\/.+\/$/.test(route) && route !== "/si/vodici/")
   );
 
-  assert.equal(routes.length, 87);
+  assert.equal(routes.length, 88);
   for (const route of routes) {
     const html = await readFile(publicRoutePath(route), "utf8");
     const modified = articleModified(html);
