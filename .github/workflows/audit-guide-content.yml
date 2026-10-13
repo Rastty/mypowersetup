@@ -1,0 +1,24 @@
+name: Audit guide content completeness
+on:
+  push:
+    branches:
+      - audit/guide-content-completeness-20261013
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Audit 7-language guides
+        run: node scripts/audit-guide-content.mjs
+      - name: Store JSON audit report
+        run: node scripts/audit-guide-content.mjs --json > guide-content-audit.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: seven-market-guide-content-audit
+          path: guide-content-audit.json
