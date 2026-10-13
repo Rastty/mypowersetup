@@ -44,6 +44,22 @@ const VERIFIED = Object.freeze({
     systemVoltagesV: [12,24], maxPvWattsBySystemVoltage: {12:400,24:800},
     model: /(?:sr[ -]?ml2430|ml2430)/i,
   }),
+  "/nabijecka-dc-dc-orion-tr-smart-12-12-18a/": Object.freeze({
+    id:"victron-orion-tr-12-12-18-isolated", category:"dc_charger",
+    currentA:18, model:/orion[-\s]*tr\s*smart/i, isolated:true,
+  }),
+  "/nabijecka-dc-dc-orion-tr-smart-12-12-30a/": Object.freeze({
+    id:"victron-orion-tr-12-12-30-isolated", category:"dc_charger",
+    currentA:30, model:/orion[-\s]*tr\s*smart/i, isolated:true,
+  }),
+  "/nabijecka-dc-dc-orion-tr-smart-12-12-30a-neizolovana/": Object.freeze({
+    id:"victron-orion-tr-12-12-30-nonisolated", category:"dc_charger",
+    currentA:30, model:/orion[-\s]*tr\s*smart/i, isolated:false,
+  }),
+  "/nabijecka-dc-dc-orion-xs-smart-12-12-50a-neizolovana/": Object.freeze({
+    id:"victron-orion-xs-12-12-50-nonisolated", category:"dc_charger",
+    currentA:50, model:/orion[-\s]*xs\s*smart/i, isolated:false,
+  }),
 });
 export const VSELEKTRO_VERIFIED_PATHS = Object.freeze(Object.keys(VERIFIED));
 
@@ -132,6 +148,34 @@ export function parseVselektroVerifiedFeed(xml) {
           ...(verified.maxPvIscA ? { maxPvIscA: verified.maxPvIscA } : {}),
           systemVoltagesV: [...verified.systemVoltagesV],
           maxPvWattsBySystemVoltage: { ...verified.maxPvWattsBySystemVoltage },
+        }),
+      }));
+      continue;
+    }
+    if (verified.category === "dc_charger") {
+      // DC/DC voltage converters are NOT chargers; require an exact Victron
+      // Orion Smart charger model and matching 12V input/output plus isolation.
+      const modelRating = new RegExp("12\\s*[-/]\\s*12\\s*[/]\\s*" + verified.currentA + "\\s*a\\b", "i");
+      if (!/nabíječ|nabijec|nabijeck|charger/i.test(title)
+        || !/dc\s*[-–]?\s*dc/i.test(title)
+        || !/victron/i.test(title + " " + item.description + " " + item.brand)
+        || !verified.model.test(title) || !modelRating.test(title)
+        || !/izolovan/i.test(title)
+        || /neizolovan/i.test(title) === verified.isolated) continue;
+      if (item.specs.currentA && item.specs.currentA !== verified.currentA) continue;
+      result.push(Object.freeze({
+        ...item,
+        id: "vselektro:" + verified.id,
+        category: "dc_charger",
+        verifiedAt: "2026-10-13",
+        specs: Object.freeze({
+          ...item.specs,
+          currentA: verified.currentA,
+          chargingVoltagesV: [12],
+          chargingInputVoltagesV: [12],
+          chargingBatteryTypes: ["lifepo4","lead"],
+          smartAlternatorCompatible: true,
+          isolated: verified.isolated,
         }),
       }));
       continue;
