@@ -35,3 +35,22 @@ Produktové a technické údaje byly ověřeny dne 2026-10-13 na obchodních str
 Feed již běží v GitHub Actions, proto dále ověřovat, zda se nově povolené SKU objeví v `data/products.json`, a zda nejde o `DELIVERY_DATE>0`, chybějící cenu nebo technicky odlišný model. Prodejce lze dál rozšiřovat až po ověření přesných produktových stránek a parametrů; feed se nesmí nahrazovat kopírováním starých cen.
 
 Používat `rel="sponsored nofollow noopener"` v externích komerčních odkazech a zachovávat oddělení nákupního příkladu od matematického výběru sestavy.
+
+## Ověřené rozšíření nabídky — MPPT a DC–DC (2026-10-13)
+
+Povoleny pouze níže uvedené přesné URL a výrobkové varianty. Automatické zveřejnění je možné **jen při shodě titulku/modelu, kladné CZK ceně a okamžité dostupnosti z čerstvého Heureka feedu**; ostatní produkty zůstávají mimo. Modely se mohou stát nepoužitelnými, když z obchodu zmizí nebo budou pouze na objednávku.
+
+| Komponent | Přesný produkt u prodejce | Ověřené parametry |
+|---|---|---|
+| Victron SmartSolar MPPT 100/20 | https://www.vselektro.eu/solarni-regulator-victron-energy-mppt-smartsolar-100v-20a/ | 12/24/48 V baterie, 20 A, nominální FV 290/580/1160 Wp, max. Voc 100 V, max. FV Isc 20 A |
+| Victron SmartSolar MPPT 100/30 | https://www.vselektro.eu/solarni-regulator-victron-energy-smartsolar-30a/ | 12/24 V baterie, 30 A, nominální FV 440/880 Wp, max. Voc 100 V, max. FV Isc 35 A |
+| Victron SmartSolar MPPT 100/50 | https://www.vselektro.eu/solarni-regulator-victron-energy-mppt-smartsolar-100v-50a/ | 12/24 V baterie, 50 A, nominální FV 700/1400 Wp, max. Voc 100 V, max. FV Isc 35 A |
+| SRNE SR-ML2430 MPPT | https://www.vselektro.eu/solarni-regulator-sr-ml2430-30a/ | 12/24 V baterie, 30 A, nominální FV 400/800 Wp, max. Voc 100 V |
+| Victron Orion-Tr Smart 12-12/18 izolovaná | https://www.vselektro.eu/nabijecka-dc-dc-orion-tr-smart-12-12-18a/ | 12V vstup, 12V servisní baterie, 18 A, programovatelný profil pro olovo i lithium |
+| Victron Orion-Tr Smart 12-12/30 izolovaná | https://www.vselektro.eu/nabijecka-dc-dc-orion-tr-smart-12-12-30a/ | 12V vstup/výstup, 30 A, oddělené mínus, olovo/LiFePO4 |
+| Victron Orion-Tr Smart 12-12/30 neizolovaná | https://www.vselektro.eu/nabijecka-dc-dc-orion-tr-smart-12-12-30a-neizolovana/ | 12V vstup/výstup, 30 A, společné mínus, olovo/LiFePO4 |
+| Victron Orion XS Smart 12-12/50 neizolovaná | https://www.vselektro.eu/nabijecka-dc-dc-orion-xs-smart-12-12-50a-neizolovana/ | 12V vstup/výstup, 50 A, společné mínus, olovo/LiFePO4, 700 W |
+
+**Výběrové brzdy:** Kalkulačka prověřuje jmenovitý výkon FV pole, výstupní proud MPPT, napětí baterie a u DC–DC proud/napětí startovací i servisní baterie a technologii. Nezná však skutečný Voc panelového stringu za mrazu ani Isc panelů; na produktové kartě proto musí zůstat upozornění na fyzickou kontrolu zapojení, jištění a limitů datasheetu. U DC–DC vždy ověřit omezení odběru ze startovací baterie/alternátoru, kabely, BMS, profil a požadavek na galvanické oddělení; nelze generický DC/DC **měnič napětí** považovat za nabíječku baterie. Z dostupnosti v e-shopu nelze usuzovat na skladovou dostupnost v XML.
+
+**Poznámka k historickým datům:** Ceny se nesmí propsat ze statického veřejného katalogu ani z ručně napsaného souboru. Autoritativní je živý feed a jeho časová značka `generatedAt`.
