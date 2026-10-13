@@ -26,7 +26,7 @@ function articleModified(html) {
   return null;
 }
 
-test("all 84 guide sitemap lastmod values match Article.dateModified", async () => {
+test("all 87 guide sitemap lastmod values match Article.dateModified", async () => {
   const xml = await readFile("sitemap.xml", "utf8");
   const entries = sitemapEntries(xml);
   const routes = [...entries.keys()].filter((route) =>
@@ -39,7 +39,7 @@ test("all 84 guide sitemap lastmod values match Article.dateModified", async () 
     (/^\/si\/vodici\/.+\/$/.test(route) && route !== "/si/vodici/")
   );
 
-  assert.equal(routes.length, 84);
+  assert.equal(routes.length, 87);
   for (const route of routes) {
     const html = await readFile(publicRoutePath(route), "utf8");
     const modified = articleModified(html);
