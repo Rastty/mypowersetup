@@ -175,7 +175,29 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
       if (!guideHubSchemaIsValid(hubNodes, html, market, route)) failures.push(`${route}:GUIDE_HUB_SCHEMA_INVALID`);
     }
 
-    const isArticle = route.startsWith(market.guideHub) && route !== market.guideHub;
+    const isScenarioHub = route === "/pruvodce/modelove-sestavy/";
+    if (isScenarioHub) {
+      const nodes = schemaNodes(schemas);
+      const collection = nodes.find((node) => node?.["@type"] === "CollectionPage");
+      const list = nodes.find((node) => node?.["@type"] === "ItemList");
+      const breadcrumbs = nodes.filter((node) => node?.["@type"] === "BreadcrumbList");
+      if (!collection || collection.url !== expectedCanonical || collection.inLanguage !== "cs-CZ"
+        || !/^\d{4}-\d{2}-\d{2}$/.test(collection.dateModified || "")) {
+        failures.push(`${route}:SCENARIO_COLLECTION_INVALID`);
+      }
+      const expectedScenarios = ["vikend-v-karavanu", "rodinna-dovolena", "prace-z-karavanu"]
+        .map((slug) => `${SITE_URL}${route}${slug}/`);
+      const targets = list?.itemListElement?.map((item) => item.url || item.item) || [];
+      if (list?.numberOfItems !== 3 || targets.length !== 3 || expectedScenarios.some((url) => !targets.includes(url))) {
+        failures.push(`${route}:SCENARIO_COLLECTION_LIST_INVALID`);
+      }
+      if (breadcrumbs.length !== 1 || !breadcrumbNodeIsValid(breadcrumbs[0], market, route)) {
+        failures.push(`${route}:BREADCRUMB_SCHEMA_INVALID`);
+      }
+      if (!visibleBreadcrumbIsValid(html, market)) failures.push(`${route}:BREADCRUMB_VISIBLE_MISSING`);
+    }
+
+    const isArticle = !isScenarioHub && route.startsWith(market.guideHub) && route !== market.guideHub;
     if (isArticle) {
       articlePages += 1;
       const nodes = schemaNodes(schemas);
