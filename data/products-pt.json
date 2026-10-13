@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-02T09:52:07.724Z",
+  "generatedAt": "2026-10-13T10:42:41.986Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": false,
@@ -60,7 +60,7 @@
         {
           "candidateId": "solaris-victron-phoenix-12-250",
           "trackingVerified": false,
-          "stockVerified": true,
+          "stockVerified": false,
           "marketVerified": false,
           "ready": false,
           "stockStatus": "dispatch_5_7_days",
@@ -70,7 +70,7 @@
         {
           "candidateId": "solaris-victron-phoenix-24-250",
           "trackingVerified": false,
-          "stockVerified": true,
+          "stockVerified": false,
           "marketVerified": false,
           "ready": false,
           "stockStatus": "dispatch_1_2_days",
@@ -98,14 +98,14 @@
       "productStates": [
         {
           "candidateId": "butler-victron-scc125060321",
-          "stockVerified": true,
+          "stockVerified": false,
           "ready": false,
           "blocker": "awin_program_approval_pending",
           "stockVerifiedAt": "2026-09-22"
         },
         {
           "candidateId": "butler-victron-orion-xs-12-12-50",
-          "stockVerified": true,
+          "stockVerified": false,
           "ready": false,
           "blocker": "awin_program_approval_pending",
           "stockVerifiedAt": "2026-09-22"

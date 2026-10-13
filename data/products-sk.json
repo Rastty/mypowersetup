@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-02T09:51:44.307Z",
+  "generatedAt": "2026-10-13T10:42:17.252Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16583,
-      "relevantProducts": 252
+      "parsedProducts": 16608,
+      "relevantProducts": 249
     },
     "allpowers_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7715,
+      "parsedProducts": 7716,
       "relevantProducts": 15
     }
   },
@@ -347,37 +347,6 @@
         "capacityWh": null,
         "powerW": null,
         "currentA": 200,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:16597_17412",
-      "merchant": "padabo_sk",
-      "name": "EXIDE Duálna batéria AGM kapacita 140 Ah variant EP 1200",
-      "description": "Odolná batéria pre akýkoľvek druh rekreačného vozidlaBatérie pre najbežnejšie obytné vozidlá a karavany. Ich konštrukcia ponúka vysokú flexibilitu pri inštalácii. Technológia AGM (Absorbent Glass Mat) so zliatinou vápnika a ventiláciou VRLA pokrýva výkonový rozsah od 450 do 2100 Wh, čím ponúka široký výber pre akýkoľvek druh rekreačného vozidla. Kľúčové vlastnosti batérie EXIDE Dual AGM: Je úplne bezúdržbový, čo uľahčuje jeho dlhodobé používanie. Ponúka vysokú flexibilitu inštalácie, pretože nem",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 532.7,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/exide-dualna-bateria-agm_z16597/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fexide-dualna-bateria-agm_z16597%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/154564_102.jpg?1704380087_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 140,
-        "capacityWh": 2100,
-        "powerW": null,
-        "currentA": null,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [
@@ -1198,37 +1167,6 @@
         "capacityWh": null,
         "powerW": null,
         "currentA": 30,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:24792_26574",
-      "merchant": "padabo_sk",
-      "name": "AGM batérie EXIDE kapacita 70 Ah",
-      "description": "Robustná a bezúdržbová batéria s dlhou životnosťouRobustná batéria AGM EXIDE sa vyznačuje vysokou kvalitou, bezúdržbovosťou a veľmi nízkym samovybíjaním. Technológia AGM zaručuje trvalo vysokú úroveň dodávky energie aj pri používaní energeticky náročných zariadení a je kľúčom k zaisteniu čo najdlhšej životnosti batérie. Kľúčové vlastnosti batérie AGM EXIDE: Batéria je bezúdržbová, čo znamená, že počas celej svojej životnosti nevyžaduje žiadnu údržbu. Má nízku mieru samovybíjania, a tak si zachov",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 242.26,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/agm-baterie-exide_z24792/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-baterie-exide_z24792%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/158711_102.jpg?1704380233_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 70,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [
@@ -3619,6 +3557,37 @@
         "chargingInputVoltagesV": [
           12
         ],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:101622",
+      "merchant": "padabo_sk",
+      "name": "Mobilný ohrievač Pundmann s nádržou na naftu a batériou AGM",
+      "description": "Prídavné naftové kúrenie Pundmann s batériou AGMNezávislé prenosné kúrenie Pundmann s 5l nádržou na naftu a batériou AGM (30 Ah) účinne vyhreje váš karavan, strešný stan alebo akýkoľvek menší priestor. Má kompaktné rozmery, vďaka ktorým ho možno ľahko uložiť do batožinového priestoru a prenášať pomocou dvoch praktických držadiel. Mobilné prídavné kúrenie s batériou AGM (30 Ah) a nádržou má objem nádrže 5 litrov. Batéria dokáže ohrievač poháňať minimálne 12 hodín (max. 50 hodín), potom sa musí do",
+      "categoryPath": "Chladenie a vykurovanie | Kúrenie do karavanu | Naftové kúrenie",
+      "category": "battery",
+      "brand": "Pundmann",
+      "priceCzk": 1566.25,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/mobilny-ohrievac-pundmann-s-nadrzou-na-naftu-a-bateriou-agm_z101622/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmobilny-ohrievac-pundmann-s-nadrzou-na-naftu-a-bateriou-agm_z101622%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/164492_102.jpg?1719409638_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 30,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [
           "lead"
         ],
@@ -7352,35 +7321,6 @@
       }
     },
     {
-      "id": "padabo_sk:107532_32873",
-      "merchant": "padabo_sk",
-      "name": "Solárny regulátor nabíjania VOTRONIC MPPT nabíjací prúd 18,5 A",
-      "description": "Solárny regulátor nabíjania MPP pre obytné automobily, karavany a lode Solárny regulátor nabíjania značky VOTRONIC disponuje nabíjacou charakteristikou IU1oU2 a pripája sa ako rozhranie medzi solárnym panelom a batériou. Technológia MPP umožňuje regulátoru určovať nepretržite a automaticky maximálny výstupný výkon (MPP) solárnych modulov. Následne dochádza k transformácii prebytočného napätia zo solárneho modulu na vyšší nabíjací prúd pre batériu. Zvýšený nabíjací prúd skracuje dobu nabíjania a ",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Solárne regulátory",
-      "category": "controller",
-      "brand": "Votronic",
-      "priceCzk": 210.74,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-votronic-mppt_z107532/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-votronic-mppt_z107532%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/191812_102.jpg?1774371844_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 170,
-        "currentA": 18.5,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:107532_32874",
       "merchant": "padabo_sk",
       "name": "Solárny regulátor nabíjania VOTRONIC MPPT nabíjací prúd 13 A",
@@ -7410,22 +7350,22 @@
       }
     },
     {
-      "id": "padabo_sk:107543_32888",
+      "id": "padabo_sk:107543_32887",
       "merchant": "padabo_sk",
-      "name": "Lítiová batéria pod sedadlo BullTron Polar kapacita 700 Ah",
+      "name": "Lítiová batéria pod sedadlo BullTron Polar kapacita 350 Ah",
       "description": "Kompaktná lítiová batéria s integrovaným inteligentným systémom správy batérie BullTron Polar je kompaktná lithiová batéria umiestnená pod sedadlom vo vozidle Fiat Ducato. Jej hlavnou prednosťou je vysoký výkon, dlhá životnosť a moderné technológie. Integrovaný inteligentný systém správy batérie s aktívnym 5A balancerom zaisťuje maximálnu účinnosť a bezpečnosť. Všetky parametre je možné sledovať prostredníctvom smartfónu a Bluetooth 4.0 . Lítiová batéria značky BullTron ponúka zvislú či vodorovn",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
       "category": "battery",
       "brand": "BullTron",
-      "priceCzk": 5704.14,
+      "priceCzk": 2903.5,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-pod-sedadlo-bulltron-polar_z107543/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-pod-sedadlo-bulltron-polar_z107543%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/191842_102.jpg?1774456502_1",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/191721_102.jpg?1774298722_1",
       "specs": {
         "voltageV": 12,
-        "capacityAh": 700,
+        "capacityAh": 350,
         "capacityWh": null,
         "powerW": null,
         "currentA": 5,
@@ -7732,35 +7672,6 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 3000,
-        "currentA": 0.6,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:108740_33864",
-      "merchant": "padabo_sk",
-      "name": "Sinusový menič napätia Carbest PowerWave, 12/230 V výkon 2000 W",
-      "description": "Menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie Carbest PowerWave je menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie. Integrovaný prepínač priority sieťového napájania 230 V preruší prevádzku hneď, ako je obytný automobil alebo karavan pripojený k napájaniu 230 V (napríklad v kempingu). Prevádzka meniča sa obnoví po odpojení od externého napájania. Prevodník tak mení napätie 12 V na 230 V s čistou sínusovou vlnou. ",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 621.49,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/195961_102.jpg?1783252443_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 2000,
         "currentA": 0.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
@@ -8764,12 +8675,12 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 1799,
+      "priceCzk": 1899,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r4000-portable-power-station-4000w-3600wh",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r4000-portable-power-station-4000w-3600wh",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R4000-V2-Portable-Power-Station-4000W-2880Wh-ALLPOWERS-122569930.jpg?v=1778232545",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R4000-Portable-Power-Station-4000W-3456Wh-ALLPOWERS-115573173.jpg?v=1775664236",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,

@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-10-02T09:52:06.456Z",
+  "generatedAt": "2026-10-13T10:42:40.482Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12591,
-      "relevantProducts": 160
+      "parsedProducts": 12615,
+      "relevantProducts": 158
     },
     "ampul_hu": {
       "status": "ok",
-      "parsedProducts": 7715,
+      "parsedProducts": 7716,
       "relevantProducts": 13
     },
     "allpowers_eu": {
@@ -42,76 +42,6 @@
     }
   },
   "products": [
-    {
-      "id": "padabo_hu:50_80",
-      "merchant": "padabo_hu",
-      "name": "AGM akkumulátor Optima 12 V modell Optima YTS 4.2",
-      "description": "Hosszú élettartamú újratölthető akkumulátorAz AGM Optima akkumulátor a Trumou által ajánlott akkumulátor, 55 Ah és 75 Ah változatban. Mechanikailag stabil, biztonságos és karbantartásmentes akkumulátor kiváló elektromos tulajdonságokkal. Használja ki a szabadalmaztatott spirálcellás AGM technológia legfőbb előnyeit, amely sok tekintetben felülmúlja a hagyományos zselés vagy ólomsavas akkumulátorokat. Az AGM technológiával ellátott Optima akkumulátort széles körű alkalmazásra tervezték, beleértve",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Optima Batteries",
-      "priceCzk": 124010,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/agm-akkumulator-optima-12-v_z50/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-optima-12-v_z50%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/127637_102.jpg?1704378225_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 55,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:50_81",
-      "merchant": "padabo_hu",
-      "name": "AGM akkumulátor Optima 12 V modell Optima YTS 5.5",
-      "description": "Hosszú élettartamú újratölthető akkumulátorAz AGM Optima akkumulátor a Trumou által ajánlott akkumulátor, 55 Ah és 75 Ah változatban. Mechanikailag stabil, biztonságos és karbantartásmentes akkumulátor kiváló elektromos tulajdonságokkal. Használja ki a szabadalmaztatott spirálcellás AGM technológia legfőbb előnyeit, amely sok tekintetben felülmúlja a hagyományos zselés vagy ólomsavas akkumulátorokat. Az AGM technológiával ellátott Optima akkumulátort széles körű alkalmazásra tervezték, beleértve",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Optima Batteries",
-      "priceCzk": 173870,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/agm-akkumulator-optima-12-v_z50/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-optima-12-v_z50%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/127637_102.jpg?1704378225_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 55,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
     {
       "id": "padabo_hu:15459_15877",
       "merchant": "padabo_hu",
@@ -1178,6 +1108,37 @@
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:101622",
+      "merchant": "padabo_hu",
+      "name": "Pundmann mobil fűtőberendezés dízeltartállyal és AGM akkumulátorral",
+      "description": "Pundmann kiegészítő dízel fűtés AGM akkumulátorralA Pundmann független hordozható fűtőberendezés 5 literes dízelüzemű tartállyal és AGM akkumulátorral (30 Ah) hatékonyan fűti lakókocsiját, tetősátrát vagy bármilyen kisebb helyiséget. Kompakt méreteinek köszönhetően könnyen tárolható a csomagtérben, és két praktikus fogantyú segítségével könnyen szállítható. A mobil kiegészítő fűtőberendezés AGM akkumulátorral (30 Ah) és tartállyal 5 literes tartálykapacitással rendelkezik. Az akkumulátor legaláb",
+      "categoryPath": "Hűtés és fűtés | Fűtés lakókocsiba | Dízel fűtés",
+      "category": "battery",
+      "brand": "Pundmann",
+      "priceCzk": 660350,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/pundmann-mobil-futoberendezes-dizeltartallyal-es-agm-akkumulatorral_z101622/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fpundmann-mobil-futoberendezes-dizeltartallyal-es-agm-akkumulatorral_z101622%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/164492_102.jpg?1719409638_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 30,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -2809,37 +2770,6 @@
       }
     },
     {
-      "id": "padabo_hu:16597_17412",
-      "merchant": "padabo_hu",
-      "name": "EXIDE Dual AGM akkumulátor kapacitás 140 Ah opció EP 1200",
-      "description": "Tartós akkumulátor bármilyen szabadidőjárműhözAkkumulátorok a leggyakoribb lakóautókhoz és lakókocsikhoz. Kialakításuk nagy telepítési rugalmasságot biztosít. Az AGM (Absorbent Glass Mat) technológia kalciumötvözettel és VRLA szellőzéssel 450 és 2100 Wh közötti teljesítménytartományt fed le, így széles választékot kínálnak bármilyen szabadidőjárműhöz. Az EXIDE Dual AGM akkumulátor legfontosabb jellemzői: Teljesen karbantartásmentes, ami megkönnyíti a hosszú távú használatát. Nagy telepítési ruga",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 224600,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/exide-dual-agm-akkumulator_z16597/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fexide-dual-agm-akkumulator_z16597%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/154564_102.jpg?1704380087_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 140,
-        "capacityWh": 2100,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_hu:106299",
       "merchant": "padabo_hu",
       "name": "Renogy DC-DC akkumulátortöltő, 12V/60A",
@@ -3259,7 +3189,7 @@
     {
       "id": "padabo_hu:19287_21292",
       "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
       "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
       "category": "inverter",
@@ -4168,37 +4098,6 @@
       }
     },
     {
-      "id": "padabo_hu:24792_26574",
-      "merchant": "padabo_hu",
-      "name": "AGM akkumulátorok EXIDE kapacitás 70 Ah",
-      "description": "Robusztus és karbantartásmentes akkumulátor hosszú élettartammalA robusztus AGM EXIDE akkumulátort kiváló minőség, karbantartásmentesség és nagyon alacsony önkisülés jellemzi. Az AGM-technológia még energiaigényes berendezések használata esetén is egyenletesen magas szintű energiaellátást garantál, és a lehető leghosszabb akkumulátor-élettartam biztosításának kulcsa. Az EXIDE AGM akkumulátor legfontosabb jellemzői: Az akkumulátor karbantartásmentes, ami azt jelenti, hogy teljes élettartama alatt",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 102150,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/agm-akkumulatorok-exide_z24792/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulatorok-exide_z24792%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/158711_102.jpg?1704380233_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 70,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_hu:103559",
       "merchant": "padabo_hu",
       "name": "Mestic Power Station MPS-1800",
@@ -4278,35 +4177,6 @@
         "capacityWh": null,
         "powerW": 170,
         "currentA": 26,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:107532_32873",
-      "merchant": "padabo_hu",
-      "name": "VOTRONIC MPPT napelemes töltésvezérlő töltési áram 18,5 A",
-      "description": "MPP napelemes töltésvezérlő lakóautókhoz, lakókocsikhoz és hajókhoz A VOTRONIC napelemes töltésszabályozó az IU1oU2 töltési karakterisztikával rendelkezik, és a napelem és az akkumulátor közötti interfészként van csatlakoztatva. Az MPP technológia lehetővé teszi, hogy a szabályozó folyamatosan és automatikusan meghatározza a napelemmodulok maximális teljesítményét (MPP). Ezt követően a napelemmodulból származó többletfeszültséget az akkumulátor számára nagyobb töltőárammá alakítja át. A megnövel",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Töltésvezérlők",
-      "category": "controller",
-      "brand": "Votronic",
-      "priceCzk": 88850,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/votronic-mppt-napelemes-toltesvezerlo_z107532/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvotronic-mppt-napelemes-toltesvezerlo_z107532%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/191812_102.jpg?1774371844_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 170,
-        "currentA": 18.5,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -4681,6 +4551,39 @@
       }
     },
     {
+      "id": "padabo_hu:106296_33731",
+      "merchant": "padabo_hu",
+      "name": "Renogy 12 V-os feszültségátalakító teljesítmény 2000 W",
+      "description": "Nagy teljesítményű feszültségegyenirányító a készülékek széles skálájához A Renogy feszültségátalakító fejlett tiszta szinuszhullámú technológiával rendelkezik, hogy maximalizálja a rendszer hatékonyságát. Az inverter beállítása olyan egyszerű, hogy még egy teljes analfabéta is meg tudja csinálni. A tiszta szinuszos kimenet folyamatos és stabil áramellátást biztosít, amely helyettesíti a közüzemi áramellátást. Az inverter sokoldalú és kompatibilis az elektromos készülékek széles skálájával, bele",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Renogy",
+      "priceCzk": 116840,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/renogy-12-v-os-feszultsegatalakito_z106296/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-12-v-os-feszultsegatalakito_z106296%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": 1,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_hu:108760",
       "merchant": "padabo_hu",
       "name": "Mestic MAB-170 AGM vontatóakkumulátor",
@@ -4801,35 +4704,6 @@
       }
     },
     {
-      "id": "padabo_hu:108740_33864",
-      "merchant": "padabo_hu",
-      "name": "Carbest PowerWave szinuszos feszültségátalakító, 12/230 V teljesítmény 2000 W",
-      "description": "A legújabb generációs szinuszos kimenetű átalakító hálózati tápellátás-prioritás kapcsolóval A Carbest PowerWave egy szinuszos kimenettel rendelkező, legújabb generációs hálózati tápellátás-prioritáskapcsolóval ellátott áramátalakító. A beépített 230 V-os hálózati tápellátás-prioritás kapcsoló leállítja a működését, amint a lakóautót vagy lakókocsit 230 V-os hálózati tápellátáshoz csatlakoztatják (például egy kempingben). Az inverter működése a külső tápellátásról való leválasztás után újraindul",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 262035,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/195961_102.jpg?1783252443_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 2000,
-        "currentA": 0.6,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_hu:108740_33865",
       "merchant": "padabo_hu",
       "name": "Carbest PowerWave szinuszos feszültségátalakító, 12/230 V teljesítmény 1000 W",
@@ -4923,37 +4797,6 @@
       }
     },
     {
-      "id": "padabo_hu:49",
-      "merchant": "padabo_hu",
-      "name": "AGM akkumulátor Exide Dual 50 Ah",
-      "description": "Vontatási akkumulátor minden típusú szabadidőjárműhözAz Exide Dual 50 Ah AGM akkumulátor kialakításával nagy telepítési rugalmasságot kínál. Kettős, alkalmas indításra és hosszabb távú kisütésre egyaránt. Az AGM technológiának, a VRLA légtelenítésnek és a 450 és 2100 Wh közötti teljesítménytartományának köszönhetően minden típusú szabadidőjárműhöz alkalmas. Az Exide Dual 50 Ah AGM akkumulátor egy olyan mélyciklusú akkumulátor típus, amely AGM (Absorbent Glass Mat) technológiát használ. Ennél az ",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 150775,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/agm-akkumulator-exide-dual-50-ah_z49/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-exide-dual-50-ah_z49%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/127636_102.jpg?1704378225_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 50,
-        "capacityWh": 2100,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_hu:109090",
       "merchant": "padabo_hu",
       "name": "Renogy Pro 12,8 V 200 Ah Smart LiFePO4 fűtött akkumulátor",
@@ -5039,6 +4882,107 @@
         "currentA": null,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:49",
+      "merchant": "padabo_hu",
+      "name": "Exide Dual 50 Ah AGM akkumulátor",
+      "description": "Vontatási akkumulátor minden típusú szabadidőjárműhöz Az Exide Dual 50 Ah AGM akkumulátor kialakításával nagy telepítési rugalmasságot kínál. Kettős, alkalmas indításra és hosszabb távú kisütésre egyaránt. Az AGM technológiának, a VRLA légtelenítésnek és a 450 és 2100 Wh közötti teljesítménytartományának köszönhetően minden típusú szabadidőjárműhöz alkalmas. Az Exide Dual 50 Ah AGM akkumulátor egy olyan mélyciklusú akkumulátor típus, amely AGM (Absorbent Glass Mat) technológiát használ. Ennél az",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 150775,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/exide-dual-50-ah-agm-akkumulator_z49/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fexide-dual-50-ah-agm-akkumulator_z49%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/127636_102.jpg?1704378225_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 50,
+        "capacityWh": 2100,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:50_80",
+      "merchant": "padabo_hu",
+      "name": "Optima 12 V AGM akkumulátor modell Optima YTS 4.2",
+      "description": "Hosszú élettartamú újratölthető akkumulátor Az AGM Optima akkumulátor a Trumou által ajánlott akkumulátor, 55 Ah és 75 Ah változatban. Mechanikailag stabil, biztonságos és karbantartásmentes akkumulátor kiváló elektromos tulajdonságokkal. Használja ki a szabadalmaztatott spirálcellás AGM technológia legfőbb előnyeit, amely sok tekintetben felülmúlja a hagyományos zselés vagy ólomsavas akkumulátorokat. Az AGM technológiával ellátott Optima akkumulátort széles körű alkalmazásra tervezték, beleértv",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Optima Batteries",
+      "priceCzk": 124010,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/optima-12-v-agm-akkumulator_z50/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Foptima-12-v-agm-akkumulator_z50%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/127637_102.jpg?1704378225_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 55,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:50_81",
+      "merchant": "padabo_hu",
+      "name": "Optima 12 V AGM akkumulátor modell Optima YTS 5.5",
+      "description": "Hosszú élettartamú újratölthető akkumulátor Az AGM Optima akkumulátor a Trumou által ajánlott akkumulátor, 55 Ah és 75 Ah változatban. Mechanikailag stabil, biztonságos és karbantartásmentes akkumulátor kiváló elektromos tulajdonságokkal. Használja ki a szabadalmaztatott spirálcellás AGM technológia legfőbb előnyeit, amely sok tekintetben felülmúlja a hagyományos zselés vagy ólomsavas akkumulátorokat. Az AGM technológiával ellátott Optima akkumulátort széles körű alkalmazásra tervezték, beleértv",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Optima Batteries",
+      "priceCzk": 173870,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/optima-12-v-agm-akkumulator_z50/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Foptima-12-v-agm-akkumulator_z50%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/127637_102.jpg?1704378225_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 55,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
         "chargingBatteryTypes": [
           "lead"
         ],
@@ -6267,12 +6211,12 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 1799,
+      "priceCzk": 1899,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r4000-portable-power-station-4000w-3600wh",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r4000-portable-power-station-4000w-3600wh",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R4000-V2-Portable-Power-Station-4000W-2880Wh-ALLPOWERS-122569930.jpg?v=1778232545",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R4000-Portable-Power-Station-4000W-3456Wh-ALLPOWERS-115573173.jpg?v=1775664236",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,

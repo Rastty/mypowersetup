@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-02T09:51:56.493Z",
+  "generatedAt": "2026-10-13T10:42:29.867Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16587,
-      "relevantProducts": 205
+      "parsedProducts": 16624,
+      "relevantProducts": 203
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_pl": {
       "status": "ok",
-      "parsedProducts": 7715,
+      "parsedProducts": 7716,
       "relevantProducts": 15
     }
   },
@@ -297,37 +297,6 @@
       }
     },
     {
-      "id": "padabo_pl:16597_17412",
-      "merchant": "padabo_pl",
-      "name": "Akumulator EXIDE Dual AGM pojemność 140 Ah wersja EP 1200",
-      "description": "Wytrzymały akumulator do każdego rodzaju pojazdu rekreacyjnegoAkumulatory do najpopularniejszych kamperów i przyczep kempingowych. Ich konstrukcja zapewnia dużą elastyczność instalacji. Technologia AGM (Absorbent Glass Mat) ze stopem wapnia i wentylacją VRLA obejmuje zakres mocy od 450 do 2100 Wh, oferując szeroki wybór dla każdego rodzaju pojazdu rekreacyjnego. Kluczowe cechy akumulatora EXIDE Dual AGM: Jest całkowicie bezobsługowy, co ułatwia jego długotrwałe użytkowanie. Oferujewysoką elastyc",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory AGM",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 2372.95,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/akumulator-exide-dual-agm_z16597/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-exide-dual-agm_z16597%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/4/154564_102.jpg?1704380087_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 140,
-        "capacityWh": 2100,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_pl:16597_17414",
       "merchant": "padabo_pl",
       "name": "Akumulator EXIDE Dual AGM pojemność 240 Ah wersja EP 2100",
@@ -384,35 +353,6 @@
           "lead"
         ],
         "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:16618_17504",
-      "merchant": "padabo_pl",
-      "name": "Panele słoneczne Solara S-Series moc nominalna (wp) 120",
-      "description": "Panele słoneczne Solara serii SSolidne i niezawodne panele słoneczne Solara serii S są doskonałym wyborem dla kamperów, domków letniskowych lub łodzi ze względu na ich wysoką wydajność i solidną konstrukcję. Seria S działa bezproblemowo nawet w ekstremalnych warunkach pogodowych, takich jak burze, grad, mróz, śnieg, wysoka wilgotność lub ekstremalne wahania temperatury. Wydajne ogniwa niezawodnie przekształcają każdą ilość światła w maksymalną moc wyjściową. Cechy paneli słonecznych Solara serii",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
-      "category": "solar_panel",
-      "brand": "Solara",
-      "priceCzk": 1705.74,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/panele-sloneczne-solara-s-series_z16618/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fpanele-sloneczne-solara-s-series_z16618%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/4/142654_102.jpg?1704378450_1",
-      "specs": {
-        "voltageV": 24,
-        "capacityAh": null,
-        "capacityWh": 380,
-        "powerW": 120,
-        "currentA": 4.4,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -1110,37 +1050,6 @@
       }
     },
     {
-      "id": "padabo_pl:24792_26574",
-      "merchant": "padabo_pl",
-      "name": "Akumulatory AGM EXIDE pojemność 70 Ah",
-      "description": "Wytrzymały i bezobsługowy akumulator o długiej żywotnościWytrzymały akumulator AGM EXIDE charakteryzuje się wysoką jakością, bezobsługowością i bardzo niskim poziomem samorozładowania. Technologia AGM gwarantuje niezmiennie wysoki poziom dostarczanej energii nawet w przypadku korzystania z energochłonnego sprzętu i jest kluczem do zapewnienia możliwie najdłuższej żywotności akumulatora. Kluczowe cechy akumulatora AGM EXIDE: Akumulator jest bezobsługowy, co oznacza, że nie wymaga konserwacji prze",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory AGM",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 1079.19,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/akumulatory-agm-exide_z24792/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulatory-agm-exide_z24792%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/1/158711_102.jpg?1704380233_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 70,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_pl:24792_26575",
       "merchant": "padabo_pl",
       "name": "Akumulatory AGM EXIDE pojemność 95 Ah",
@@ -1342,6 +1251,42 @@
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:24829_26599",
+      "merchant": "padabo_pl",
+      "name": "Ładowarka Victron Energy Orion-Tr Smart DC-DC izolowana prąd 12/12-18A",
+      "description": "Trzystopniowa ładowarka i zasilacz Victron EnergyŁadowarka Victron Energy Orion-Tr Smart DC-DC w wersji izolowanej umożliwia podłączenie, konwersję i izolację różnych obwodów elektrycznych, systemów zasilania i innych urządzeń, które mają różne napięcia bazowe. Izolacja zapewnia oddzielenie tych obwodów i potencjałów między wejściem i wyjściem ładowarki. Sprawia to, że trójstopniowa ładowarka adaptacyjna nadaje się do użytku w systemach z dwoma akumulatorami w samochodach kempingowych lub łodzia",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Ładowarki i boostery | Ładowarki",
+      "category": "dc_charger",
+      "brand": "Victron",
+      "priceCzk": 813.04,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/ladowarka-victron-energy-orion-tr-smart-dc-dc-izolowana_z24829/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fladowarka-victron-energy-orion-tr-smart-dc-dc-izolowana_z24829%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/2/158732_102.jpg?1704380234_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 280,
+        "currentA": 18,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -3054,6 +2999,37 @@
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:101622",
+      "merchant": "padabo_pl",
+      "name": "Mobilna nagrzewnica Pundmann ze zbiornikiem oleju napędowego i akumulatorem AGM",
+      "description": "Dodatkowe ogrzewanie na olej napędowy Pundmann z akumulatorem AGMNiezależna przenośna nagrzewnica Pundmann z 5 l zbiornikiem oleju napędowego i akumulatorem AGM (30 Ah) skutecznie ogrzeje przyczepę kempingową, namiot dachowy lub inną mniejszą przestrzeń. Ma kompaktowe wymiary, które ułatwiają przechowywanie w bagażniku i przenoszenie za pomocą dwóch praktycznych uchwytów. Mobilny ogrzewacz pomocniczy z akumulatorem AGM (30 Ah) i zbiornikiem ma pojemność 5 litrów. Akumulator może zasilać nagrzewn",
+      "categoryPath": "Chłodzenie i ogrzewanie | Ogrzewanie do przyczepy kempingowej | Ogrzewanie na diesla",
+      "category": "battery",
+      "brand": "Pundmann",
+      "priceCzk": 6976.9,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/mobilna-nagrzewnica-pundmann-ze-zbiornikiem-oleju-napedowego-i-akumulatorem-agm_z101622/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fmobilna-nagrzewnica-pundmann-ze-zbiornikiem-oleju-napedowego-i-akumulatorem-agm_z101622%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/2/164492_102.jpg?1719409638_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 30,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -6000,35 +5976,6 @@
       }
     },
     {
-      "id": "padabo_pl:107532_32873",
-      "merchant": "padabo_pl",
-      "name": "Regulator ładowania VOTRONIC MPPT prąd ładowania 18,5 A",
-      "description": "Kontroler ładowania słonecznego MPP do kamperów, przyczep kempingowych i łodzi Regulator ładowania VOTRONIC ma charakterystykę ładowania IU1oU2 i jest podłączony jako interfejs między panelem słonecznym a akumulatorem. Technologia MPP umożliwia kontrolerowi określenie maksymalnej mocy wyjściowej (MPP) modułów słonecznych w sposób ciągły i automatyczny. Następnie nadwyżka napięcia z modułu solarnego jest przekształcana w wyższy prąd ładowania akumulatora. Zwiększony prąd ładowania skraca czas ład",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
-      "category": "controller",
-      "brand": "Votronic",
-      "priceCzk": 938.72,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/regulator-ladowania-votronic-mppt_z107532/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fregulator-ladowania-votronic-mppt_z107532%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/2/191812_102.jpg?1774371844_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 170,
-        "currentA": 18.5,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_pl:107532_32874",
       "merchant": "padabo_pl",
       "name": "Regulator ładowania VOTRONIC MPPT prąd ładowania 13 A",
@@ -6058,22 +6005,22 @@
       }
     },
     {
-      "id": "padabo_pl:107543_32888",
+      "id": "padabo_pl:107543_32887",
       "merchant": "padabo_pl",
-      "name": "Bateria litowa BullTron Polar pod siedzeniem pojemność 700 Ah",
+      "name": "Bateria litowa BullTron Polar pod siedzeniem pojemność 350 Ah",
       "description": "Kompaktowa bateria litowa ze zintegrowanym inteligentnym systemem zarządzania baterią BullTron Polar to kompaktowy akumulator litowy umieszczony pod siedzeniem w Fiacie Ducato. Jego główne zalety to wysoka wydajność, długa żywotność i nowoczesna technologia. Zintegrowany inteligentny system zarządzania akumulatorem z aktywnym balanserem 5A zapewnia maksymalną wydajność i bezpieczeństwo. Wszystkie parametry można monitorować za pomocą smartfona i Bluetooth 4.0. Bateria litowa BullTron umożliwia i",
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
       "category": "battery",
       "brand": "BullTron",
-      "priceCzk": 25409.34,
+      "priceCzk": 12933.76,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/bateria-litowa-bulltron-polar-pod-siedzeniem_z107543/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fbateria-litowa-bulltron-polar-pod-siedzeniem_z107543%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/2/191842_102.jpg?1774456502_1",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/1/191721_102.jpg?1774298722_1",
       "specs": {
         "voltageV": 12,
-        "capacityAh": 700,
+        "capacityAh": 350,
         "capacityWh": null,
         "powerW": null,
         "currentA": 5,
@@ -6312,7 +6259,7 @@
       "categoryPath": "Chłodzenie i ogrzewanie | Lodówki turystyczne i torby termiczne | Akcesoria do lodówek samochodowych",
       "category": "battery",
       "brand": "Mestic",
-      "priceCzk": 963.27,
+      "priceCzk": 968.46,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/dodatkowy-akumulator-do-lodowek-kompresorowych-mestic-mccm-mcc_z108321/",
@@ -6434,7 +6381,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Przetwornice napięcia",
       "category": "inverter",
       "brand": "Victron",
-      "priceCzk": 1452.26,
+      "priceCzk": 1460.1,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/przetwornica-sinusoidalna-victron-energy-12-v-1600-va-ve-direct_z109017/",
@@ -6467,7 +6414,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
       "category": "solar_panel",
       "brand": "Victron",
-      "priceCzk": 479.72,
+      "priceCzk": 482.31,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/panel-sloneczny-victron-energy-bluesolar-190-wp-mono-12-v_z109069/",
@@ -6500,7 +6447,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
       "category": "battery",
       "brand": "Renogy",
-      "priceCzk": 4073.57,
+      "priceCzk": 4095.54,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/akumulator-z-ogrzewaniem-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090/",
