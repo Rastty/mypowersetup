@@ -28,7 +28,7 @@ function directGuideRoutes(sitemap, prefix) {
     .filter((route) => route.startsWith(prefix) && route !== prefix);
   return routes.filter((route) => {
     const remainder = route.slice(prefix.length);
-    return remainder.endsWith("/") && !remainder.slice(0, -1).includes("/");
+    return remainder.endsWith("/") && !remainder.slice(0, -1).includes("/") && !["/pruvodce/modelove-sestavy/", "/pl/poradnik/zasilanie-kampera-na-weekend/"].includes(route);
   });
 }
 
