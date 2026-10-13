@@ -1,0 +1,28 @@
+name: Production HTML content parity
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "43 7 * * *"
+  push:
+    branches:
+      - audit/live-html-parity-20261013
+permissions:
+  contents: read
+concurrency:
+  group: audit-production-html-content
+  cancel-in-progress: true
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Fetch all published HTML routes and compare substantive content
+        run: node scripts/audit-live-html-parity.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: production-html-content-parity
+          path: live-content-audit.json
