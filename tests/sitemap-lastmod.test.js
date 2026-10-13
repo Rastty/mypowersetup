@@ -69,6 +69,6 @@ test("guide hub sitemap lastmod matches CollectionPage.dateModified", async () =
 
 test("recently changed CZ and SK homes expose truthful lastmod", async () => {
   const entries = sitemapEntries(await readFile("sitemap.xml", "utf8"));
-  assert.equal(entries.get("/"), "2026-09-07");
+  assert.equal(entries.get("/"), "2026-10-13");
   assert.equal(entries.get("/sk/"), "2026-09-07");
 });
