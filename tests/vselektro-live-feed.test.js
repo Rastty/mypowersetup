@@ -6,6 +6,9 @@ import { recommendProducts, buildAffiliateUrl } from "../src/products.js";
 const base="https://www.vselektro.eu";
 const p100="/lifepo4-baterie-12v-100ah-sunstone-power-slpo12-100n/";
 const p200="/lifepo4-baterie-12v-200ah-slpo12-200n-hc200a-sunstone-power/";
+const p150="/lifepo4-baterie-12v-150ah-slpo12-150n-hc150a-sunstone-power/";
+const p200m="/lifepo4-baterie-12v-200ah-slpo12-200m-hc200a-sunstone-power/";
+const p300="/lifepo4-baterie-12v-300ah-slpo12-300n-hc200a-sunstone-power/";
 function item({id="100",path=p100,name="Sunstone Power LiFePO4 baterie 12,8 V 100Ah",
   price="12990",available="0",category="LiFePO4 baterie"}={}) {
   return "<SHOPITEM><ITEM_ID>"+id+"</ITEM_ID><PRODUCTNAME>"+name+"</PRODUCTNAME><URL>"+base+path+"</URL><CATEGORYTEXT>"+category+"</CATEGORYTEXT><DESCRIPTION>Sunstone baterie s BMS Bluetooth</DESCRIPTION><PRICE_VAT>"+price+"</PRICE_VAT><DELIVERY_DATE>"+available+"</DELIVERY_DATE></SHOPITEM>";
@@ -18,7 +21,7 @@ const setup = (overrides={})=>({
 });
 
 test("only two independently verified 12V battery SKUs are eligible from Heureka feed", () => {
-  assert.equal(VSELEKTRO_VERIFIED_PATHS.length,2);
+  assert.equal(VSELEKTRO_VERIFIED_PATHS.length,5);
   const xml=shop([
     item(),item({id:"200",path:p200,name:"Sunstone Power LiFePO4 baterie 12,8 V 200Ah",price:"21990"}),
     item({id:"kit",path:"/solarni-sestava-hybrid-i/",name:"Solární sestava hybrid 3500W LiFePO4 100Ah",price:"80000"})
@@ -35,7 +38,7 @@ test("only two independently verified 12V battery SKUs are eligible from Heureka
 });
 
 test("missing availability, zero or missing price and foreign currency do not become recommendations",()=>{
-  for(const update of [{available:""},{available:"-1"},{price:""},{price:"0"},{price:"129 EUR"}]) {
+  for(const update of [{available:""},{available:"-1"},{available:"4"},{available:"1"},{price:""},{price:"0"},{price:"129 EUR"}]) {
     assert.equal(parseVselektroVerifiedFeed(shop([item(update)])).length,0,JSON.stringify(update));
   }
 });
@@ -76,4 +79,37 @@ test("affiliate URLs stay anchored to approved eHub campaign",()=>{
   assert.equal(url.searchParams.get("a_aid"),"f34c86c8");
   assert.equal(url.searchParams.get("a_bid"),"f897865f");
   assert.equal(url.searchParams.get("desturl"),base+p100);
+});
+
+test("150 Ah intermediate and 200 Ah under-seat / 300 Ah batteries have correct verified BMS limits", () => {
+  const xml=shop([
+    item({id:"150",path:p150,name:"Sunstone Power LiFePO4 Baterie 12V/150Ah SLPO12-150N HC150A",price:"16480",available:"0"}),
+    item({id:"200m",path:p200m,name:"Sunstone Power LiFePO4 Baterie 12V/200Ah SLPO12-200M HC200A",price:"19439",available:"0"}),
+    item({id:"300",path:p300,name:"Sunstone Power LiFePO4 Baterie 12V/300Ah SLPO12-300N HC200A",price:"26965",available:"0"}),
+  ]);
+  const parsed=parseVselektroVerifiedFeed(xml);
+  assert.equal(parsed.length,3);
+  assert.deepEqual(parsed.map(p=>p.specs.capacityAh),[150,200,300]);
+  assert.deepEqual(parsed.map(p=>p.specs.bmsContinuousCurrentA),[150,200,200]);
+  assert.equal(parsed[1].specs.formFactor,"under_seat");
+  const mid=recommendProducts(parsed,setup({batteryAh:140,inverterWatts:1000})).battery;
+  assert.ok(mid.some(p=>p.product.specs.capacityAh===150));
+  const large=recommendProducts(parsed,setup({batteryAh:250,inverterWatts:2000})).battery;
+  assert.equal(large.length,1);
+  assert.equal(large[0].product.specs.capacityAh,300);
+  assert.equal(recommendProducts(parsed,setup({batteryAh:250,inverterWatts:2800})).battery.length,0);
+});
+
+test("150 Ah temporarily unavailable in live Heureka XML must never appear despite being in allowlist", () => {
+  const unavailable=item({id:"150",path:p150,name:"Sunstone Power LiFePO4 Baterie 12V/150Ah SLPO12-150N HC150A",price:"16480",available:"4"});
+  const inStock=item({id:"200",path:p200,name:"Sunstone Power LiFePO4 Baterie 12V/200Ah SLPO12-200N HC200A",price:"19439",available:"0"});
+  const parsed=parseVselektroVerifiedFeed(shop([unavailable,inStock]));
+  assert.equal(parsed.length,1);
+  assert.equal(parsed[0].specs.capacityAh,200);
+});
+
+test("missing or malformed explicit DELIVERY_DATE never silently turns into in-stock",()=>{
+  const available=item();
+  assert.equal(parseVselektroVerifiedFeed(shop([available.replace("<DELIVERY_DATE>0</DELIVERY_DATE>","")])).length,0);
+  assert.equal(parseVselektroVerifiedFeed(shop([available.replace("<DELIVERY_DATE>0</DELIVERY_DATE>","<DELIVERY_DATE>4</DELIVERY_DATE>")])).length,0);
 });
