@@ -73,3 +73,15 @@ test("all four MPPT SKUs fail closed when the live feed repeats a product URL",(
     assert.equal(parseVselektroVerifiedFeed(xml([offer(row),offer(row)])).length,0,row.key);
   }
 });
+
+test("SRNE exact reviewed ML2430 remains valid when Heureka title omits manufacturer name",()=>{
+  const source=rows.find(r=>r.key==="srne-30");
+  const withoutBrand="Solární regulátor SR-ML2430, 12/24V, 30A, MPPT";
+  const result=parseVselektroVerifiedFeed(xml([offer(source,{title:withoutBrand,description:"Solární nabíjecí regulátor MPPT 12/24V"})]));
+  assert.equal(result.length,1);
+  assert.equal(result[0].id,"vselektro:srne-ml2430-30a");
+  assert.equal(result[0].category,"controller");
+  assert.equal(result[0].specs.currentA,30);
+  const fake=offer(source,{title:"Solární regulátor jiný model 12/24V, 30A, MPPT",description:"MPPT"});
+  assert.equal(parseVselektroVerifiedFeed(xml([fake])).length,0);
+});
