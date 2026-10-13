@@ -48,8 +48,18 @@ for (const [merchant, url] of feeds) {
     continue;
   }
   try {
+    if (merchant === "vselektro") {
+      const source = new URL(url);
+      // Keyed export is a credential. Reject unexpected hosts, paths,
+      // plaintext transport and redirects that could expose it.
+      if (source.protocol !== "https:" || source.hostname !== "www.vselektro.eu"
+        || source.pathname !== "/heureka/" || !source.searchParams.has("key")
+        || !source.searchParams.get("key") || source.username || source.password || source.hash) {
+        throw new Error("VSelektro feed URL nevyhovuje schválenému bezpečnostnímu formátu");
+      }
+    }
     const response = await fetch(url, {
-      redirect: "follow",
+      redirect: merchant === "vselektro" ? "manual" : "follow",
       headers: {
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36",
         "accept": "application/xml,text/xml,application/rss+xml,text/plain;q=0.9,*/*;q=0.8",
