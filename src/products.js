@@ -456,6 +456,15 @@ function scoreProduct(product, setup) {
     if (specs.voltageV !== setup.systemVoltage) return null;
     if (!specs.capacityAh || specs.capacityAh < setup.batteryAh) return null;
     if (!specs.batteryType || specs.batteryType !== setup.batteryType) return null;
+    // VSelektro feed products currently come from a strict, two-SKU shortlist.
+    // Do not recommend a battery against an inverter load above its verified
+    // continuous BMS rating. This is a conservative screening rule, not an
+    // installation design or a guarantee of the full system's compatibility.
+    if (product.merchant === "vselektro") {
+      const bmsAmps = Number(specs.bmsContinuousCurrentA);
+      if (!(bmsAmps > 0)) return null;
+      if (Number(setup.inverterWatts) > 0 && Number(setup.inverterWatts) / 0.85 > bmsAmps * setup.systemVoltage) return null;
+    }
     fit = specs.capacityAh / setup.batteryAh;
   }
   if (product.category === "solar_panel") {
