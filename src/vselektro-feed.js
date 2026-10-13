@@ -55,9 +55,15 @@ function readInStockPaths(xml) {
     const url = rawUrl.replace(/^\s*<!\[CDATA\[([\s\S]*?)\]\]>\s*$/, "$1").trim().replaceAll("&amp;", "&");
     const path = canonicalProductPath(url);
     if (!path) continue;
-    const delivery = item.match(/<DELIVERY_DATE(?:\s[^>]*)?>([\s\S]*?)<\/DELIVERY_DATE>/i)?.[1]?.trim() ?? "";
+    const rawDelivery = item.match(/<DELIVERY_DATE(?:\s[^>]*)?>([\s\S]*?)<\/DELIVERY_DATE>/i)?.[1] ?? "";
+    // Shoptet can place XML tag values inside CDATA; the generic XML reader
+    // already unwraps those, so apply the same rule here. A 1–N delivery
+    // lead time is NOT the same as immediately available stock.
+    const delivery = rawDelivery.trim()
+      .replace(/^<!\[CDATA\[([\s\S]*?)\]\]>$/, "$1")
+      .trim();
     if (stock.has(path)) stock.set(path, false); // duplicate source SKU
-    else stock.set(path, delivery === "0");
+    else stock.set(path, delivery === "0" || /^skladem$/i.test(delivery));
   }
   return stock;
 }
