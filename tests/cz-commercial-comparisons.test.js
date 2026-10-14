@@ -72,7 +72,7 @@ test("three distinct high-intent original pages have canonical, full static answ
   assert.ok(html.includes('rel="canonical" href="'+canonical+'"'));
   assert.ok(html.includes('name="description"'));
   assert.ok(html.includes('data-guide-category="'+category+'"'));
-  assert.ok(html.includes('href="/pruvodce/'+existing+'/")'));
+  assert.ok(html.includes('href="/pruvodce/'+existing+'/'));
   assert.ok(html.includes('href="/#kalkulator"')||html.includes('href="/kalkulacky/dc-dc-nabijecka/"'));
   assert.ok(html.includes('src="/src/guide-verified-offers.js?v=20261014-1"'));
   assert.ok(html.includes('"@type":"Article"'));
