@@ -53,33 +53,55 @@ const markets = [
 const expectedHreflangs = ["cs-CZ", "sk-SK", "pl-PL", "x-default"];
 const port = Number(process.env.PUBLIC_SMOKE_PORT || 4184);
 const origin = `http://127.0.0.1:${port}`;
-const profileDir = `/tmp/mypowersetup-public-chrome-${process.pid}`;
 const chromeBin = findChrome();
 const server = spawn(process.execPath, ["server.mjs"], {
   env: { ...process.env, PORT: String(port) },
   stdio: ["ignore", "pipe", "pipe"],
 });
-const chrome = spawn(chromeBin, [
-  "--headless=new",
-  "--no-sandbox",
-  "--disable-gpu",
-  "--disable-dev-shm-usage",
-  "--no-first-run",
-  "--no-default-browser-check",
-  "--remote-allow-origins=*",
-  "--remote-debugging-address=127.0.0.1",
-  "--remote-debugging-port=0",
-  `--user-data-dir=${profileDir}`,
-  "about:blank",
-], { stdio: ["ignore", "pipe", "pipe"] });
-
 const serverDiagnostics = captureDiagnostics(server);
-const chromeDiagnostics = captureDiagnostics(chrome);
+// Starting Chrome while the local server boots can starve the GitHub runner.
+// Launch it only once HTTP is ready, and retry a startup that never exposes
+// DevToolsActivePort. Do not skip the mobile/browser assertions.
+let chrome;
+let profileDir;
+async function launchChromeWithRetry() {
+  let lastError;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    profileDir = `/tmp/mypowersetup-public-chrome-${process.pid}-${attempt}`;
+    chrome = spawn(chromeBin, [
+      "--headless=new",
+      "--no-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-background-networking",
+      "--disable-extensions",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--remote-allow-origins=*",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      `--user-data-dir=${profileDir}`,
+      "about:blank",
+    ], { stdio: ["ignore", "pipe", "pipe"] });
+    const diagnostics = captureDiagnostics(chrome);
+    try {
+      const debugPort = await waitForDevToolsPort(profileDir, chrome, diagnostics);
+      return await waitForChromeTarget(debugPort, chrome, diagnostics);
+    } catch (error) {
+      lastError = error;
+      if (chrome.exitCode === null && chrome.signalCode === null) chrome.kill("SIGTERM");
+      await waitForExit(chrome);
+      await cleanupProfile(profileDir);
+      console.warn(`Public mobile Chrome startup retry ${attempt}/3: ${error.message.split(":")[0]}`);
+    }
+  }
+  throw lastError;
+}
+
 let cdp;
 try {
   await waitForHttp(`${origin}/`, server, serverDiagnostics, "SERVER");
-  const debugPort = await waitForDevToolsPort(profileDir, chrome, chromeDiagnostics);
-  const target = await waitForChromeTarget(debugPort, chrome, chromeDiagnostics);
+  const target = await launchChromeWithRetry();
   cdp = await CdpClient.connect(target.webSocketDebuggerUrl);
   await cdp.send("Page.enable");
   await cdp.send("Runtime.enable");
@@ -106,9 +128,9 @@ try {
   if (cdp) await cdp.send("Browser.close").catch(() => {});
   await cdp?.close().catch(() => {});
   server.kill("SIGTERM");
-  if (chrome.exitCode === null && chrome.signalCode === null) chrome.kill("SIGTERM");
-  await Promise.allSettled([waitForExit(server), waitForExit(chrome)]);
-  await cleanupProfile(profileDir);
+  if (chrome && chrome.exitCode === null && chrome.signalCode === null) chrome.kill("SIGTERM");
+  await Promise.allSettled([waitForExit(server), chrome ? waitForExit(chrome) : Promise.resolve()]);
+  if (profileDir) await cleanupProfile(profileDir);
 }
 
 async function smokeMarket(client, market) {
