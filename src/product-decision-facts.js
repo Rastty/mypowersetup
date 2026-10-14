@@ -76,3 +76,26 @@ export function czechProductDecisionFacts(product = {}, setup = {}) {
     facts.push(fact("Trvalý výkon", amount(specs.powerW) + " W"));
   return facts;
 }
+
+/** Compact choice rationale displayed before opening the per-product comparison. */
+export function czechPackageFitSummary(product = {}, setup = {}) {
+  const specs = product.specs || {};
+  if (product.merchant !== "vselektro") return null;
+  if (product.category === "battery" && positive(specs.capacityAh)) {
+    const bms = positive(specs.bmsContinuousCurrentA);
+    return amount(specs.capacityAh) + " Ah" + (bms ? " · BMS " + amount(bms) + " A" : "")
+      + (specs.formFactor === "under_seat" ? " · nízké pod sedadlo" : "");
+  }
+  if (product.category === "controller" && positive(specs.currentA)) {
+    const voltage = positive(setup.systemVoltage);
+    const pv = voltage ? positive(specs.maxPvWattsBySystemVoltage?.[voltage]) : null;
+    return "MPPT " + amount(specs.currentA) + " A"
+      + (pv ? " · FV " + amount(pv) + " Wp při " + amount(voltage) + " V" : "");
+  }
+  if (product.category === "dc_charger" && positive(specs.currentA)) {
+    const isolation = specs.isolated === true ? " · izolovaná"
+      : specs.isolated === false ? " · neizolovaná" : "";
+    return "DC–DC nabíjení " + amount(specs.currentA) + " A" + isolation;
+  }
+  return null;
+}
