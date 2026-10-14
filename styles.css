@@ -407,6 +407,12 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .package-purchase-steps[open] > summary { border-bottom: 1px solid #e5ece7; }
 .package-purchase-guidance { margin: 12px 0 4px; color: var(--ink-soft); font-size: 11px !important; line-height: 1.45; }
 .package-purchase-steps > ul { margin-top: 11px; }
+.package-purchase-steps .package-product-link { padding: 8px 12px; border: 1px solid #bdcfc3; border-radius: 8px; background: #f4f8f5; line-height: 1.4; text-decoration: none; }
+.package-purchase-steps .package-product-link:hover { border-color: var(--forest); background: #e9f2eb; }
+.package-purchase-steps .package-product-link:focus-visible { outline: 3px solid #739b85; outline-offset: 2px; }
+.package-card.is-recommended .package-purchase-steps li:first-child .package-product-link { color: #fff; border-color: var(--forest); background: var(--forest); }
+.package-card.is-recommended .package-purchase-steps li:first-child .package-product-link:hover { background: var(--forest-deep); }
+
 .package-card.is-recommended .package-purchase-steps > summary { color: #1f5138; }
 
 .package-price-note { display: block; margin-top: 6px; color: var(--ink-soft); font-size: 10px; line-height: 1.4; }
