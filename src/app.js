@@ -150,6 +150,21 @@ function bindNavigation() {
       result_next_variant: event.currentTarget?.dataset?.resultNextVariant || "product_matches",
     });
   });
+  document.querySelector("#product-recommendations").addEventListener("click", (event) => {
+    const summary = event.target.closest?.("summary");
+    const details = summary?.parentElement;
+    if (!details || details.open) return; // only intentional opening, not closing
+    if (details.matches(".package-purchase-steps")) {
+      trackEvent("package_variant_opened", {
+        source: "package_disclosure",
+        variant_id: details.dataset.packageDisclosure,
+        item_count: Number(details.dataset.itemCount || 0),
+        price_known: details.dataset.priceKnown === "true",
+      });
+    } else if (details.matches(".product-comparison-details")) {
+      trackEvent("product_comparison_opened", { source: "product_comparison" });
+    }
+  });
 }
 
 function bindResultSharing() {
@@ -559,10 +574,18 @@ function renderProductPackages(variants) {
   const stalePriceNote = Object.values(productCatalogSources).some((source) => source?.status === "stale")
     ? '<p class="catalog-source-note is-stale"><strong>Aktualizace cen:</strong> U jednoho obchodu používáme poslední úspěšně načtený feed. Aktuální cenu a dostupnost vždy potvrďte na stránce produktu.</p>'
     : "";
-  target.innerHTML = `<div class="package-intro"><strong>Začněte doporučenou variantou</strong><p>Doporučenou sestavu zobrazujeme jako první: má nejlepší shodu parametrů a úplnosti dat. Úspornou nebo rezervní variantu berte jako alternativu podle ceny a požadované rezervy. Všechny zobrazené varianty splňují vypočtený požadavek; nejde o kompletní instalační materiál ani realizační rozpočet.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
+  target.innerHTML = `<div class="package-intro"><strong>Začněte doporučenou variantou</strong><p>Doporučený nákupní seznam je otevřený rovnou. Úspornou a rezervní sestavu rozbalte jen tehdy, když je chcete porovnat. Všechny zobrazené varianty splňují vypočtený požadavek na komponenty. Každý odkaz vede na konkrétní produkt u prodejce, nejde o společný nákupní košík. Výpočet neobsahuje veškerý instalační materiál ani montáž.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
-    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Pokrytí výpočtu: ${variant.items.length}/${variant.requiredCategoryCount} kategorií</small><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podle obchodu" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientační součet produktů; doprava a montáž nejsou zahrnuté.</small></article>`;
+    const isRecommended = variant.id === "recommended";
+    const pricesKnown = variant.totalPriceCzk !== null;
+    return `<article class="package-card ${isRecommended ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Pokrytí výpočtu: ${variant.items.length}/${variant.requiredCategoryCount} kategorií</small><p>${description}</p><b>${pricesKnown ? formatPrice(variant.totalPriceCzk, variant.totalCurrency) : "Cena podle obchodu"}</b><small class="package-price-note">Orientační součet produktů; doprava a montáž nejsou zahrnuté.</small><details class="package-purchase-steps" data-package-disclosure="${escapeHtml(variant.id)}" data-item-count="${variant.items.length}" data-price-known="${pricesKnown}" ${isRecommended ? "open" : ""}><summary>Nákupní seznam · ${variant.items.length} ${variant.items.length === 1 ? "produkt" : variant.items.length < 5 ? "produkty" : "produktů"}</summary><p class="package-purchase-guidance">Postupujte podle pořadí položek; před objednáním ověřte dostupnost a parametry u prodejce.</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul></details></article>`;
   }).join("")}</div>`;
+  trackEvent("package_variants_rendered", {
+    source: "result_packages",
+    variant_count: variants.length,
+    recommended_item_count: variants.find(({ id }) => id === "recommended")?.items.length || 0,
+    priced_variant_count: variants.filter(({ totalPriceCzk }) => totalPriceCzk !== null).length,
+  });
 }
 
 function packageProductLink(category, product, packageId) {

@@ -158,3 +158,29 @@ test("primary portable product choices expose route priority on impressions and 
     ctaVariant: "portable-primary",
   });
 });
+
+
+test("collapsed budget and reserve baskets create impressions only after intentionally opening", () => {
+  const details = { open: false };
+  const recommended = {
+    dataset: { category: "battery", recommendationRole: "recommended", source: "package", packageId: "recommended" },
+    closest(selector) { return selector === "[hidden], details:not([open])" ? null : null; },
+  };
+  const budget = {
+    dataset: { category: "battery", recommendationRole: "budget", source: "package", packageId: "economy" },
+    closest(selector) {
+      return selector === "[hidden], details:not([open])" && !details.open ? details : null;
+    },
+  };
+  const root = { querySelectorAll: () => [recommended, budget] };
+  const events = [];
+  const track = (name, params) => { events.push({name,params}); return true; };
+  assert.equal(trackVisibleAffiliateImpressions(root, track),true);
+  assert.deepEqual(events.filter(x=>x.name==="product_choice_impression").map(x=>x.params.recommendationRole),["recommended"]);
+  details.open = true;
+  assert.equal(trackVisibleAffiliateImpressions(root, track),true);
+  assert.deepEqual(events.filter(x=>x.name==="product_choice_impression").map(x=>x.params.recommendationRole),["recommended","budget"]);
+  assert.equal(trackVisibleAffiliateImpressions(root, track),true);
+  assert.equal(events.filter(x=>x.name==="product_choice_impression").length,2);
+  assert.deepEqual(events.filter(x=>x.name==="product_choices_rendered").map(x=>x.params.productCount),[1,1]);
+});

@@ -397,7 +397,24 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .package-card li strong { margin-top: 3px; font-size: 11px; line-height: 1.35; }
 .package-product-meta { margin-top: 4px; color: var(--ink-soft); font-size: 10px; }
 .package-product-link { display: inline-flex; min-height: 44px; align-items: center; margin-top: 3px; color: var(--forest); font-size: 11px; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
-.package-card > b { color: var(--forest); font-size: 17px; }
+.package-card > b { display: block; margin-top: 12px; color: var(--forest); font-size: 17px; }
+.package-purchase-steps { margin-top: 15px; border-top: 1px solid var(--line); }
+.package-purchase-steps > summary { display: flex; align-items: center; min-height: 48px; gap: 8px; padding: 11px 0; color: var(--forest-deep); font-size: 12px; line-height: 1.4; font-weight: 800; cursor: pointer; }
+.package-purchase-steps > summary:focus-visible { outline: 3px solid #739b85; outline-offset: 3px; border-radius: 3px; }
+.package-purchase-steps > summary:hover { text-decoration: underline; text-underline-offset: 3px; }
+.package-purchase-steps > summary::after { content: "▾"; margin-left: auto; font-size: 17px; transition: transform 140ms ease; }
+.package-purchase-steps[open] > summary::after { transform: rotate(180deg); }
+.package-purchase-steps[open] > summary { border-bottom: 1px solid #e5ece7; }
+.package-purchase-guidance { margin: 12px 0 4px; color: var(--ink-soft); font-size: 11px !important; line-height: 1.45; }
+.package-purchase-steps > ul { margin-top: 11px; }
+.package-purchase-steps .package-product-link { padding: 8px 12px; border: 1px solid #bdcfc3; border-radius: 8px; background: #f4f8f5; line-height: 1.4; text-decoration: none; }
+.package-purchase-steps .package-product-link:hover { border-color: var(--forest); background: #e9f2eb; }
+.package-purchase-steps .package-product-link:focus-visible { outline: 3px solid #739b85; outline-offset: 2px; }
+.package-card.is-recommended .package-purchase-steps li:first-child .package-product-link { color: #fff; border-color: var(--forest); background: var(--forest); }
+.package-card.is-recommended .package-purchase-steps li:first-child .package-product-link:hover { background: var(--forest-deep); }
+
+.package-card.is-recommended .package-purchase-steps > summary { color: #1f5138; }
+
 .package-price-note { display: block; margin-top: 6px; color: var(--ink-soft); font-size: 10px; line-height: 1.4; }
 /* Source-backed buying explanation, not an installation approval badge. */
 .package-product-decision { display: block; margin: 5px 0 2px; color: #355447; font-size: 11px; font-weight: 700; line-height: 1.45; }

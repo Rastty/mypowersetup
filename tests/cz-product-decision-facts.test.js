@@ -81,6 +81,6 @@ test("CZ Builder renders the explanation in package and comparison but preserves
   assert.match(css,/\.product-decision-facts/);
   assert.match(css,/\.product-requirement/);
   assert.match(css,/\.package-product-decision/);
-  assert.match(html,/styles\.css\?v=20261014-product-decision/);
-  assert.match(html,/app\.js\?v=20261014-product-decision/);
+  assert.match(html,/styles\.css\?v=20261014-purchase-steps1/);
+  assert.match(html,/app\.js\?v=20261014-purchase-steps1/);
 });
