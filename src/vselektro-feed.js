@@ -34,7 +34,7 @@ const VERIFIED = Object.freeze({
   }),
   "/solarni-regulator-victron-energy-mppt-smartsolar-100v-50a/": Object.freeze({
     id: "victron-smartsolar-100-50", category: "controller", brand: "victron",
-    currentA: 50, maxPvVocV: 100, maxPvIscA: 35,
+    currentA: 50, maxPvVocV: 100, maxPvIscA: 60,
     systemVoltagesV: [12,24], maxPvWattsBySystemVoltage: {12:700,24:1400},
     model: /100\s*v\s*[/ -]\s*50\s*a|100\s*[/ -]\s*50\b/i,
   }),
