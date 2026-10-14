@@ -73,3 +73,23 @@ test("mature route discovery and sitemap lastmod remain deterministic", () => {
   const updated = setSitemapLastmod(xml, "/pruvodce/a/", "2026-09-07");
   assert.match(updated, /<loc>https:\/\/mypowersetup.com\/pruvodce\/a\/<\/loc><lastmod>2026-09-07<\/lastmod>/);
 });
+
+
+test("regenerator keeps the original 52-guide baseline and accepts indexed comparison pages", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const xml = await readFile("sitemap.xml", "utf8");
+  const routes = matureGuideRoutesFromSitemap(xml);
+  assert.equal(routes.length, 55);
+  assert.equal(new Set(routes).size, 55);
+  for (const slug of [
+    "lifepo4-100ah-nebo-200ah-karavan",
+    "victron-mppt-100-20-vs-100-30-vs-100-50",
+    "dc-dc-nabijecka-18a-vs-30a-vs-50a-karavan",
+  ]) {
+    assert.ok(routes.includes("/pruvodce/" + slug + "/"));
+  }
+  const source = await readFile("scripts/sync-mature-guide-seo.mjs", "utf8");
+  assert.match(source, /routes.length < 52/);
+  assert.match(source, /new Set\(routes\)\.size !== routes\.length/);
+  assert.doesNotMatch(source, /routes.length !== 52/);
+});
