@@ -93,6 +93,7 @@ export function mountGuideOffers(root, payload, now = Date.now()) {
   const old = root.querySelector(".guide-offer-list");
   old?.remove();
   root.append(list);
+  root.querySelector(".guide-offer-fallback")?.remove();
   root.dataset.liveOffers = String(offers.length);
   return offers.length;
 }
