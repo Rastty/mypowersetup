@@ -1,0 +1,16 @@
+/* Lightweight conversion UI for original Czech editorial comparisons. */
+.guide-live-offers { margin: 20px 0 28px; padding: 18px; border-radius: 12px; border: 1px solid #c9d8cc; background: #f4f8f5; }
+.guide-live-offers > .guide-offer-fallback { margin: 0 0 12px; color: #456554; font-size: 13px; line-height: 1.5; }
+.guide-offer-list { display: grid; gap: 12px; padding: 0; margin: 8px 0 0; list-style: none; }
+.guide-offer-list > li { display: grid; gap: 7px; background: white; border: 1px solid #d4e0d7; border-radius: 9px; padding: 14px; }
+.guide-offer-list strong { display: block; font-size: 14px; color: #173a29; line-height: 1.45; }
+.guide-offer-price { display: block; color: #355444; font-size: 12px; }
+.guide-offer-link { display: inline-flex; width: fit-content; align-items: center; min-height: 44px; padding: 10px 15px; background: #194d36; border-radius: 8px; color: white !important; text-decoration: none; font-weight: 700; font-size: 13px; }
+.guide-offer-link:hover { background: #123b29; }
+.guide-offer-link:focus-visible { outline: 3px solid #8cac48; outline-offset: 3px; }
+.guide-disclosure { padding: 13px 0; margin-top: 18px; border-top: 1px solid #d4e0d7; color: #53695c; font-size: 12px; line-height: 1.5; }
+.article table { display: block; max-width: 100%; overflow-x: auto; }
+.article table th, .article table td { min-width: 100px; }
+.article code { font-size: .9em; white-space: normal; }
+.article-meta { display: flex; flex-wrap: wrap; gap: 15px; }
+@media (max-width: 640px) { .guide-live-offers { padding: 12px; } .guide-offer-link { width: 100%; justify-content: center; } }
