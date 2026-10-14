@@ -399,6 +399,14 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .package-product-link { display: inline-flex; min-height: 44px; align-items: center; margin-top: 3px; color: var(--forest); font-size: 11px; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
 .package-card > b { color: var(--forest); font-size: 17px; }
 .package-price-note { display: block; margin-top: 6px; color: var(--ink-soft); font-size: 10px; line-height: 1.4; }
+/* Source-backed buying explanation, not an installation approval badge. */
+.package-product-decision { display: block; margin: 5px 0 2px; color: #355447; font-size: 11px; font-weight: 700; line-height: 1.45; }
+.product-requirement { padding: 11px 13px; margin: 0 0 12px !important; border-left: 3px solid var(--forest); border-radius: 6px; background: #f2f7f3; color: #274b3c; font-size: 12px; line-height: 1.55; }
+.product-decision-facts { display: grid; gap: 6px; margin: 11px 0; padding: 10px 12px; border-radius: 10px; background: #f7f9f5; }
+.product-decision-facts > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.product-decision-facts dt { color: var(--ink-soft); font-size: 11px; line-height: 1.35; }
+.product-decision-facts dd { margin: 0; color: var(--forest-deep); text-align: right; font-size: 11px; font-weight: 800; line-height: 1.4; }
+@media (max-width: 640px) { .product-decision-facts > div { flex-wrap: wrap; gap: 2px 10px; } .product-decision-facts dd { text-align: left; } }
 .product-group + .product-group { margin-top: 24px; }
 .product-group h5 { margin: 0 0 12px; font: 800 15px/1.2 "Manrope", sans-serif; }
 .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
