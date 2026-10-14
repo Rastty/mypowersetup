@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-13T13:17:24.011Z",
+  "generatedAt": "2026-10-14T08:48:26.535Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16617,
-      "relevantProducts": 249
+      "parsedProducts": 16611,
+      "relevantProducts": 248
     },
     "allpowers_eu": {
       "status": "ok",
@@ -6452,39 +6452,6 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 1000,
-        "currentA": 1,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:106296_33731",
-      "merchant": "padabo_sk",
-      "name": "Menič napätia Renogy 12 V výkon 2000 W",
-      "description": "Výkonný usmerňovač napätia pre širokú škálu spotrebičov Menič napätia Renogy využíva pokročilú technológiu čistej sínusoidy na dosiahnutie maximálnej účinnosti vášho systému. Nastavenie meniča je také jednoduché, že ho zvládne aj úplný laik. Výstup s čistou sínusoidou zabezpečuje plynulé a stabilné napájanie, ktoré plnohodnotne nahrádza napájanie z verejnej siete. Menič je univerzálny a kompatibilný so širokou škálou elektrických spotrebičov, vrátane tých citlivejších, bez akýchkoľvek problémov ",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
-      "category": "inverter",
-      "brand": "Renogy",
-      "priceCzk": 277.12,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-renogy-12-v_z106296%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/187879_102.jpg?1759325853_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 2000,
         "currentA": 1,
         "chargingVoltagesV": [
           12

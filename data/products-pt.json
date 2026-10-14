@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-13T13:19:21.327Z",
+  "generatedAt": "2026-10-14T08:50:33.868Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": false,
   "sources": {
     "allpowers_pt": {
       "status": "ok",
-      "relevantProducts": 16,
-      "solarPanels": 11,
+      "relevantProducts": 15,
+      "solarPanels": 10,
       "technicallyVerifiedPowerStations": 5
     },
     "powerqueen_eu": {
@@ -284,25 +284,6 @@
       "productUrl": "https://allpowers-pt.com/products/allpowers-sp020-painel-solar-monocristalino-60w",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-sp020-painel-solar-monocristalino-60w",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/ALLPOWERSSP020SOLARPANELS_a026038b-b7cd-4f0a-a2b5-a5abf8595c09.jpg?v=1767075704",
-      "specs": {
-        "powerW": 60
-      },
-      "verifiedAt": null
-    },
-    {
-      "id": "allpowers_pt-10037468037437",
-      "merchant": "allpowers_pt",
-      "name": "ALLPOWERS SP026 Comprar Painel Solar Dobrável De Polissilício 60W",
-      "description": "Alta Eficiência de Conversão; Dobrável & Portátil; Leve & Extremamente Flexível Material ETFE à prova de água IP67; Painel solar especial de carregamento ALLPOWERS S200; Compatível: estação de energia/ baterias recarregáveis 12V/ laptops 18V-22V/ iPhone/ iPad/ câmaras digitais/ MP3, etc.",
-      "categoryPath": "Solar Panel",
-      "category": "solar_panel",
-      "brand": "ALLPOWERS",
-      "priceCzk": 79.99,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://allpowers-pt.com/products/allpowers-sp026-painel-solar-dobravel-de-polissilicio-60w",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-sp026-painel-solar-dobravel-de-polissilicio-60w",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/33_1800x1800_2fb6acda-5b92-4c52-be54-abda2518ff0f.jpg?v=1767075684",
       "specs": {
         "powerW": 60
       },
