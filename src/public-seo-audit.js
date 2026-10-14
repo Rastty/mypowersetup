@@ -86,7 +86,7 @@ function guideHubSchemaIsValid(nodes, html, market, route) {
   const links = guideHubLinks(html, market);
   // Czech hub adds three original purchase-intent comparisons to the 12 core guides.
   // Other markets retain their 12 canonical core guide routes.
-  if (links.length !== (market.key === "cz" ? 15 : 12)) return false;
+  if (links.length !== (market.key === "cs" ? 15 : 12)) return false;
   const items = Array.isArray(itemLists[0].itemListElement) ? itemLists[0].itemListElement : [];
   if (itemLists[0].numberOfItems !== links.length || items.length !== links.length) return false;
   if (!items.every((item, index) =>
