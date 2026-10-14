@@ -574,7 +574,7 @@ function renderProductPackages(variants) {
   const stalePriceNote = Object.values(productCatalogSources).some((source) => source?.status === "stale")
     ? '<p class="catalog-source-note is-stale"><strong>Aktualizace cen:</strong> U jednoho obchodu používáme poslední úspěšně načtený feed. Aktuální cenu a dostupnost vždy potvrďte na stránce produktu.</p>'
     : "";
-  target.innerHTML = `<div class="package-intro"><strong>Začněte doporučenou variantou</strong><p>Doporučený nákupní seznam je otevřený rovnou. Úspornou a rezervní sestavu rozbalte jen tehdy, když je chcete porovnat. Každý odkaz vede na konkrétní produkt u prodejce, nejde o společný nákupní košík. Výpočet neobsahuje veškerý instalační materiál ani montáž.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
+  target.innerHTML = `<div class="package-intro"><strong>Začněte doporučenou variantou</strong><p>Doporučený nákupní seznam je otevřený rovnou. Úspornou a rezervní sestavu rozbalte jen tehdy, když je chcete porovnat. Všechny zobrazené varianty splňují vypočtený požadavek na komponenty. Každý odkaz vede na konkrétní produkt u prodejce, nejde o společný nákupní košík. Výpočet neobsahuje veškerý instalační materiál ani montáž.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
     const isRecommended = variant.id === "recommended";
     const pricesKnown = variant.totalPriceCzk !== null;
