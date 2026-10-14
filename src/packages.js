@@ -7,8 +7,11 @@ const VALUE_SCORE_GAP = 15;
 const MIN_VALUE_SCORE = 70;
 
 function effectivePrice(candidate) {
-  const price = Number(candidate?.product?.priceCzk);
-  if (!Number.isFinite(price) || price < 0) return null;
+  const rawPrice = candidate?.product?.priceCzk;
+  // Number(null) === 0: missing feed prices must NEVER be sold as free.
+  if (rawPrice === null || rawPrice === undefined || rawPrice === "") return null;
+  const price = Number(rawPrice);
+  if (!Number.isFinite(price) || price <= 0) return null;
   return price * (candidate.product.recommendedQuantity || 1);
 }
 

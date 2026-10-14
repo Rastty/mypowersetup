@@ -110,6 +110,27 @@ test("omits charger products when the calculated charging source is disabled", (
   assert.deepEqual(packages[0].items.map(({ category }) => category), ["battery", "solar_panel", "controller"]);
 });
 
+test("missing or zero feed prices are not treated as free purchases or valid package totals", () => {
+  for (const missing of [null, undefined, "", 0]) {
+    const battery = item("battery-priced", 10000, 95, 1.1);
+    const mppt = item("mppt-without-price", missing, 93, 1.1);
+    const panel = item("panel-priced", 2000, 91, 1.1);
+    const [variant] = buildProductPackages({
+      battery:[battery], solar_panel:[panel], controller:[mppt],
+    }, {inverterWatts:0});
+    assert.equal(variant.totalPriceCzk, null, "must not print a fake full-system price for "+String(missing));
+  }
+  const cheapUnknown = item("unknown-price", null, 80, 1.1);
+  const known = item("known-price", 3000, 90, 1.08);
+  const recommended = buildProductPackages({
+    battery:[known,cheapUnknown],
+    solar_panel:[item("panel",2000,92,1.1)],
+    controller:[item("mppt",1200,93,1.1)]
+  }, {inverterWatts:0});
+  assert.equal(recommended[0].items[0].product.id, "known-price");
+  assert.ok(recommended.every(v=>v.totalPriceCzk===null || v.totalPriceCzk >= 6200));
+});
+
 test("does not add prices expressed in different currencies", () => {
   const battery = item("battery", 1000, 95, 1.05);
   battery.product.priceCurrency = "PLN";

@@ -11,6 +11,7 @@ import { buildInstallationPlan } from "./installation.js?v=20260822-installation
 import { buildProductPackages } from "./packages.js?v=20260823-packages2";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20260828-1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
+import { czechProductRequirement, czechProductDecisionFacts, czechPackageFitSummary } from "./product-decision-facts.js?v=20261014-1";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
@@ -534,8 +535,9 @@ function renderProductRecommendations(result) {
     .map(([category, items]) => `
       <section class="product-group" id="product-group-${category}" data-product-category="${category}">
         <h5>${categoryLabels[category]}</h5>
+        ${czechProductRequirement(category, result) ? `<p class="product-requirement">${escapeHtml(czechProductRequirement(category, result))}</p>` : ""}
         <div class="product-grid">
-          ${items.map(({ product, reason, checks, verify }, index) => productCard(product, reason, checks, verify, index === 0 ? "recommended" : "alternative")).join("")}
+          ${items.map(({ product, reason, checks, verify }, index) => productCard(product, reason, checks, verify, index === 0 ? "recommended" : "alternative", result)).join("")}
         </div>
       </section>
     `).join("");
@@ -570,7 +572,8 @@ function packageProductLink(category, product, packageId) {
   const unitPrice = hasFeedPrice ? Number(product.priceCzk) : NaN;
   const itemPrice = Number.isFinite(unitPrice) && unitPrice >= 0 ? formatPrice(unitPrice * quantity, product.priceCurrency) : "";
   const itemPriceLabel = itemPrice ? `${itemPrice}${quantity > 1 ? " celkem" : ""} · ` : "";
-  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(itemPriceLabel)}${escapeHtml(merchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(attributedAwinUrl(product, category, packageId === "economy" ? "budget" : packageId, "package"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a></li>`;
+  const fitSummary = product.merchant === "vselektro" ? czechPackageFitSummary(product, latestResult) : null;
+  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(itemPriceLabel)}${escapeHtml(merchantLabel(product.merchant))}</span>${fitSummary ? `<span class="package-product-decision">${escapeHtml(fitSummary)}</span>` : ""}<a class="package-product-link" href="${escapeHtml(attributedAwinUrl(product, category, packageId === "economy" ? "budget" : packageId, "package"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a></li>`;
 }
 
 function attributedAwinUrl(product, category, recommendationRole, source) {
@@ -581,7 +584,9 @@ function packageCategoryLabel(category) {
   return ({ battery: "Baterie", solar_panel: "Solár", inverter: "Měnič", controller: "MPPT", dc_charger: "DC–DC nabíječka", shore_charger: "Nabíječka 230 V" })[category] || category;
 }
 
-function productCard(product, reason, checks, verify, recommendationRole) {
+function productCard(product, reason, checks, verify, recommendationRole, setup) {
+  const decisionFacts = czechProductDecisionFacts(product, setup);
+  const factsHtml = decisionFacts.length ? `<dl class="product-decision-facts">${decisionFacts.map(({ label, value }) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("")}</dl>` : "";
   const sourceIsStale = productCatalogSources[product.merchant]?.status === "stale";
   const sourceNote = sourceIsStale
     ? '<p class="product-source-status is-stale"><strong>Starší produktový feed:</strong> Parametry prošly kontrolou shody, ale cenu a dostupnost ověřte po prokliku.</p>'
@@ -594,6 +599,7 @@ function productCard(product, reason, checks, verify, recommendationRole) {
         <span>${escapeHtml(product.brand || merchantLabel(product.merchant))} · ${escapeHtml(merchantLabel(product.merchant))}</span>
         <h6>${escapeHtml(product.name)}</h6>
         <p class="product-reason"><strong>Proč sedí:</strong> ${escapeHtml(reason)}</p>
+        ${factsHtml}
         <ul class="product-checks">${checks.map((check) => `<li>${escapeHtml(check)}</li>`).join("")}</ul>
         <p class="product-verify"><strong>Před nákupem:</strong> ${escapeHtml(verify)}</p>
         ${sourceNote}
@@ -628,6 +634,7 @@ function merchantLabel(merchant) {
     svetkaravanu: "SvětKaravanů.cz",
     solarimport: "Solar-import.cz",
     batterycz: "Battery.cz",
+    vselektro: "VšeElektro.eu",
     ampul_cz: "Ampul.eu",
     powerqueen_eu: "Power Queen EU"
   })[merchant] || merchant;
