@@ -11,7 +11,11 @@ import {
 const sitemapPath = "sitemap.xml";
 let sitemap = await readFile(sitemapPath, "utf8");
 const routes = matureGuideRoutesFromSitemap(sitemap);
-if (routes.length !== 52) throw new Error(`MATURE_GUIDE_ROUTE_COUNT:${routes.length}`);
+// Keep a floor for the original 52 mature guides while allowing newly indexed
+// comparison pages to join the same metadata/lastmod workflow automatically.
+if (routes.length < 52 || new Set(routes).size !== routes.length) {
+  throw new Error(`MATURE_GUIDE_ROUTE_SET_INVALID:${routes.length}`);
+}
 
 let changedPages = 0;
 for (const route of routes) {
@@ -35,7 +39,8 @@ console.log(JSON.stringify({ ok: true, routes: routes.length, changedPages, site
 
 function gitDates(path) {
   const output = execFileSync("git", ["log", "--follow", "--format=%cs", "--", path], { encoding: "utf8" }).trim();
-  const dates = output.split(/\r?\n/).map((value) => value.trim()).filter((value) => /^\d{4}-\d{2}-\d{2}$/.test(value));
+  const dates = output.split(/\r?
+/).map((value) => value.trim()).filter((value) => /^\d{4}-\d{2}-\d{2}$/.test(value));
   if (!dates.length) throw new Error(`MATURE_GUIDE_GIT_DATES_MISSING:${path}`);
   return { dateModified: dates[0], datePublished: dates.at(-1) };
 }
