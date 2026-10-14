@@ -402,6 +402,8 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .package-purchase-steps > summary { display: flex; align-items: center; min-height: 48px; gap: 8px; padding: 11px 0; color: var(--forest-deep); font-size: 12px; line-height: 1.4; font-weight: 800; cursor: pointer; }
 .package-purchase-steps > summary:focus-visible { outline: 3px solid #739b85; outline-offset: 3px; border-radius: 3px; }
 .package-purchase-steps > summary:hover { text-decoration: underline; text-underline-offset: 3px; }
+.package-purchase-steps > summary::after { content: "▾"; margin-left: auto; font-size: 17px; transition: transform 140ms ease; }
+.package-purchase-steps[open] > summary::after { transform: rotate(180deg); }
 .package-purchase-steps[open] > summary { border-bottom: 1px solid #e5ece7; }
 .package-purchase-guidance { margin: 12px 0 4px; color: var(--ink-soft); font-size: 11px !important; line-height: 1.45; }
 .package-purchase-steps > ul { margin-top: 11px; }
