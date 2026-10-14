@@ -11,7 +11,7 @@ import {
 const sitemapPath = "sitemap.xml";
 let sitemap = await readFile(sitemapPath, "utf8");
 const routes = matureGuideRoutesFromSitemap(sitemap);
-if (routes.length !== 52) throw new Error(`MATURE_GUIDE_ROUTE_COUNT:${routes.length}`);
+// Keep a floor for the original 52 mature guides while allowing newly indexed\n// comparison pages to join the same metadata/lastmod workflow automatically.\nif (routes.length < 52 || new Set(routes).size !== routes.length) {\n  throw new Error(`MATURE_GUIDE_ROUTE_SET_INVALID:${routes.length}`);\n}
 
 let changedPages = 0;
 for (const route of routes) {
