@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-10-17T07:55:25.651Z",
+  "generatedAt": "2026-10-18T08:10:01.086Z",
   "policy": "verification_only_fail_closed_no_publication",
   "actionCount": 2,
   "topAction": {
