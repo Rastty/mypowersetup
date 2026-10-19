@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-14T12:07:34.325Z",
+  "generatedAt": "2026-10-19T09:02:20.860Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16621,
-      "relevantProducts": 203
+      "parsedProducts": 16573,
+      "relevantProducts": 199
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_pl": {
       "status": "ok",
-      "parsedProducts": 7716,
+      "parsedProducts": 7719,
       "relevantProducts": 15
     }
   },
@@ -412,39 +412,6 @@
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:19284_21274",
-      "merchant": "padabo_pl",
-      "name": "Przetwornica sinusoidalna Dometic SinePower DSP napięcie 24 V wydajność stała/szczytowa 150/300 W",
-      "description": "Doskonałe zasilanie nawet wrażliwych urządzeń dzięki inwerterowi sinusoidalnemu Dometic Cechy falownika sinusoidalnego Dometic SinePower DSP: Parametry: Dometic SinePower DSP to inwerter sinusoidalny, który zapewnia czyste napięcie sinusoidalne, optymalne do zasilania wrażliwych urządzeń 230 V. Dzięki szerokiemu zakresowi napięcia wejściowego działa również w pojazdach EURO 6. Jeśli wystąpi przeciążenie, przegrzanie, przepięcie lub zbyt niskie napięcie, nastąpi prewencyjne wyłączenie, aby umożli",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Przetwornice napięcia",
-      "category": "inverter",
-      "brand": "Dometic",
-      "priceCzk": 642.99,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/przetwornica-sinusoidalna-dometic-sinepower-dsp_z19284/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fprzetwornica-sinusoidalna-dometic-sinepower-dsp_z19284%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/4/183564_102.jpg?1746373072_1",
-      "specs": {
-        "voltageV": 24,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 300,
-        "currentA": null,
-        "chargingVoltagesV": [
-          24
-        ],
-        "chargingInputVoltagesV": [
-          24
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
       }
@@ -3222,37 +3189,6 @@
       }
     },
     {
-      "id": "padabo_pl:101985",
-      "merchant": "padabo_pl",
-      "name": "Kontroler słoneczny MPPT Victron Energy SmartSolar 100/50",
-      "description": "Inteligentna kontrola ładowania z ultraszybkim MPPT i łącznością BluetoothJeśli chcesz uzyskać maksymalną energię z paneli słonecznych i przedłużyć żywotność baterii, kontroler słoneczny Victron Energy SmartSolar 100/50 MPPT jest właściwym wyborem. Ten potężny kontroler zapewnia wydajne ładowanie i optymalizację energii, nawet w zmiennych warunkach słonecznych. Kontroler słoneczny MPPT to urządzenie, które przetwarza energię z paneli słonecznych i przechowuje ją w akumulatorach. Dzięki zaawansow",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
-      "category": "controller",
-      "brand": "Victron",
-      "priceCzk": 936.87,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/kontroler-sloneczny-mppt-victron-energy-smartsolar-100-50_z101985/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fkontroler-sloneczny-mppt-victron-energy-smartsolar-100-50_z101985%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/0/167410_102.jpg?1723111301_1",
-      "specs": {
-        "voltageV": 24,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 700,
-        "currentA": 50,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_pl:103559",
       "merchant": "padabo_pl",
       "name": "Mestic Power Station MPS-1800",
@@ -5287,78 +5223,6 @@
       }
     },
     {
-      "id": "padabo_pl:106299",
-      "merchant": "padabo_pl",
-      "name": "Ładowarka akumulatorów DC-DC Renogy, 12V/60A",
-      "description": "Trzystopniowa ładowarka dla wszystkich typów akumulatorów Ładowarka akumulatorów DC-DC Renogy jest jednym z najbardziej wydajnych sposobów ładowania akumulatorów doładowujących podczas pracy silnika. Ładowarka jest kompatybilna z wieloma typami alternatorów i zapewnia prawidłowe ładowanie akumulatorów AGM, trakcyjnych, żelowych i litowych o głębokim cyklu. Trzystopniowa ładowarka z wieloma elektronicznymi zabezpieczeniami jest niezwykle niezawodna i pomaga zapewnić optymalne i automatyczne ładow",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Ładowarki i boostery | Ładowarki",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 1433.31,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/ladowarka-akumulatorow-dc-dc-renogy-12v-60a_z106299/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fladowarka-akumulatorow-dc-dc-renogy-12v-60a_z106299%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/1/187901_102.jpg?1759387751_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 750,
-        "currentA": 60,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:107308",
-      "merchant": "padabo_pl",
-      "name": "Ładowarka Renogy DC-DC 12 V/40 A",
-      "description": "Inteligentna, wytrzymała i kompaktowa ładowarka Ładowarka akumulatorów Renogy DC-DC 12V/40A umożliwia wydajne ładowanie akumulatorów podczas pracy silnika. Ładowarka DC-DC jest kompatybilna z wieloma typami alternatorów i umożliwia prawidłowe ładowanie akumulatorów AGM, trakcyjnych, żelowych, a nawet litowych o głębokim cyklu. Dzięki 3-stopniowej ładowarce akumulatorów i wielu elektronicznym zabezpieczeniom będziesz mieć pewność, że Twoje akumulatory są ładowane optymalnie i automatycznie. Dla d",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Ładowarki i boostery | Ładowarki",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 829.86,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/ladowarka-renogy-dc-dc-12-v-40-a_z107308/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fladowarka-renogy-dc-dc-12-v-40-a_z107308%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/3/190963_102.jpg?1772370977_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 500,
-        "currentA": 40,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_pl:107312_33733",
       "merchant": "padabo_pl",
       "name": "Panel słoneczny Renogy ShadowFlux moc nominalna (wp) 120",
@@ -6259,7 +6123,7 @@
       "categoryPath": "Chłodzenie i ogrzewanie | Lodówki turystyczne i torby termiczne | Akcesoria do lodówek samochodowych",
       "category": "battery",
       "brand": "Mestic",
-      "priceCzk": 967.24,
+      "priceCzk": 967.42,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/dodatkowy-akumulator-do-lodowek-kompresorowych-mestic-mccm-mcc_z108321/",
@@ -6381,7 +6245,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Przetwornice napięcia",
       "category": "inverter",
       "brand": "Victron",
-      "priceCzk": 1458.26,
+      "priceCzk": 1458.52,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/przetwornica-sinusoidalna-victron-energy-12-v-1600-va-ve-direct_z109017/",
@@ -6414,7 +6278,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
       "category": "solar_panel",
       "brand": "Victron",
-      "priceCzk": 481.71,
+      "priceCzk": 481.79,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/panel-sloneczny-victron-energy-bluesolar-190-wp-mono-12-v_z109069/",
@@ -6447,7 +6311,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
       "category": "battery",
       "brand": "Renogy",
-      "priceCzk": 4090.39,
+      "priceCzk": 4091.13,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/akumulator-z-ogrzewaniem-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090/",
@@ -6478,7 +6342,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 322.99,
+      "priceCzk": 339.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
@@ -6513,7 +6377,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 609.99,
+      "priceCzk": 649.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-320ah-dense-smart-lifepo4-batterie-fur-wohnmobil-untersitz",
@@ -6549,7 +6413,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 569.99,
+      "priceCzk": 629.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-125ah-smart-lifepo4-bootsbatterie-mit-selbstheizung",
@@ -6584,7 +6448,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 372.99,
+      "priceCzk": 409.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-140ah-190h-smart-wohnmobil-lithium-batterie-mit-bluetooth",
@@ -6619,7 +6483,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 259.99,
+      "priceCzk": 288.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-group-24-smart-lifepo4-battery-with-bluetooth",
@@ -6654,7 +6518,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 269.99,
+      "priceCzk": 298.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-12v-100ah-190h-smart-motorhome-battery",
@@ -6689,7 +6553,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 475.99,
+      "priceCzk": 525.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-smart-solar-battery-with-bluetooth",
@@ -6724,7 +6588,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 539.99,
+      "priceCzk": 599.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-300ah-lifepo4-battery-integrated-200a-bms",
@@ -6795,7 +6659,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 999.99,
+      "priceCzk": 1219.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-400ah-lifepo4-battery-built-in-250a-bms",
@@ -6830,7 +6694,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 259.99,
+      "priceCzk": 308.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-self-heating-lifepo4-battery",
@@ -6865,7 +6729,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 1059.99,
+      "priceCzk": 1159.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-200ah-lifepo4-solar-battery-with-200a-bms",
@@ -6901,7 +6765,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 455.99,
+      "priceCzk": 495.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-deep-cycle-solar-battery",
@@ -6936,7 +6800,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 459.99,
+      "priceCzk": 508.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-plus-lifepo4-solar-battery",
@@ -6971,7 +6835,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 439.99,
+      "priceCzk": 488.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-lifepo4-solar-battery",
@@ -7006,7 +6870,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 239.99,
+      "priceCzk": 268.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-lifepo4-deep-cycle-battery",
@@ -7041,7 +6905,7 @@
       "categoryPath": "Battery Charge Controllers",
       "category": "controller",
       "brand": "PQ-DE",
-      "priceCzk": 129.99,
+      "priceCzk": 125.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12-24v-30amp-mppt-solar-charge-controller-and-bluetooth-adapter",
@@ -7118,7 +6982,7 @@
       "categoryPath": "Nabíječky",
       "category": "shore_charger",
       "brand": "PQ-DE",
-      "priceCzk": 169.99,
+      "priceCzk": 175.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-40a-lifepo4-charger-without-handle",
@@ -7226,7 +7090,7 @@
       "categoryPath": "Nabíječky",
       "category": "shore_charger",
       "brand": "PQ-DE",
-      "priceCzk": 71.99,
+      "priceCzk": 68.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-10a-lifepo4-battery-charger",

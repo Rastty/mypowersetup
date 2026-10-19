@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-14T12:07:23.592Z",
+  "generatedAt": "2026-10-19T09:00:04.671Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16612,
-      "relevantProducts": 248
+      "parsedProducts": 16564,
+      "relevantProducts": 243
     },
     "allpowers_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7716,
+      "parsedProducts": 7719,
       "relevantProducts": 15
     }
   },
@@ -421,39 +421,6 @@
       }
     },
     {
-      "id": "padabo_sk:19284_21274",
-      "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP napätie 24 V stály / špičkový výkon 150 W / 300 W",
-      "description": "Dokonalé napájanie aj citlivých zariadení so sínusovým meničom DometicSínusové meniče Dometic SinePower DSP poskytujú čisté sínusové napätie, ktoré dokonale napája aj citlivé 230 V zariadenia. Vďaka veľkému rozsahu vstupného napätia meniče dokonale fungujú aj v moderných vozidlách v súlade s normou EURO 6. Tieto inteligentné meniče sa automaticky vypnú v prípade preťaženia, prepätia, podpätia a prehriatia a opäť sa zapnú, len čo sa hodnoty vrátia do normálu. Integrovaná ventilácia sa flexibilne ",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
-      "category": "inverter",
-      "brand": "Dometic",
-      "priceCzk": 144.35,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/sinusovy-menic-dometic-sinepower-dsp_z19284/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-dometic-sinepower-dsp_z19284%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/183564_102.jpg?1746373072_1",
-      "specs": {
-        "voltageV": 24,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 150,
-        "currentA": null,
-        "chargingVoltagesV": [
-          24
-        ],
-        "chargingInputVoltagesV": [
-          24
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:19284_21277",
       "merchant": "padabo_sk",
       "name": "Sínusový menič Dometic SinePower DSP napätie 24 V stály / špičkový výkon 1000 / 2000 W",
@@ -555,7 +522,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
+      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -3877,37 +3844,6 @@
       }
     },
     {
-      "id": "padabo_sk:101985",
-      "merchant": "padabo_sk",
-      "name": "Solárny regulátor MPPT Victron Energy SmartSolar 100/50",
-      "description": "Inteligentné riadenie nabíjania s ultrarýchlym MPPT a pripojením BluetoothAk chcete získať maximum energie zo solárnych panelov a predĺžiť životnosť batérie, solárny regulátor Victron Energy SmartSolar 100/50 MPPT je tou správnou voľbou. Tento výkonný regulátor zabezpečuje efektívne nabíjanie a optimalizáciu energie aj pri premenlivých slnečných podmienkach. Solárny regulátor MPPT je zariadenie, ktoré spracováva energiu zo solárnych panelov a ukladá ju do batérií. Vďaka pokročilej technológii MP",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Solárne regulátory",
-      "category": "controller",
-      "brand": "Victron Energy",
-      "priceCzk": 210.32,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/solarny-regulator-mppt-victron-energy-smartsolar-100-50_z101985/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-mppt-victron-energy-smartsolar-100-50_z101985%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/167410_102.jpg?1723111301_1",
-      "specs": {
-        "voltageV": 24,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 700,
-        "currentA": 50,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:103627",
       "merchant": "padabo_sk",
       "name": "Sledovač stavu batérie Victron Energy BMV 700",
@@ -6467,109 +6403,6 @@
       }
     },
     {
-      "id": "padabo_sk:106296_33732",
-      "merchant": "padabo_sk",
-      "name": "Menič napätia Renogy 12 V výkon 3000 W",
-      "description": "Výkonný usmerňovač napätia pre širokú škálu spotrebičov Menič napätia Renogy využíva pokročilú technológiu čistej sínusoidy na dosiahnutie maximálnej účinnosti vášho systému. Nastavenie meniča je také jednoduché, že ho zvládne aj úplný laik. Výstup s čistou sínusoidou zabezpečuje plynulé a stabilné napájanie, ktoré plnohodnotne nahrádza napájanie z verejnej siete. Menič je univerzálny a kompatibilný so širokou škálou elektrických spotrebičov, vrátane tých citlivejších, bez akýchkoľvek problémov ",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
-      "category": "inverter",
-      "brand": "Renogy",
-      "priceCzk": 364.08,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-renogy-12-v_z106296%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/187879_102.jpg?1759325853_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 3000,
-        "currentA": 1,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:106299",
-      "merchant": "padabo_sk",
-      "name": "Nabíjačka batérií Renogy DC-DC, 12V/60A",
-      "description": "Trojstupňová nabíjačka pre všetky typy akumulátorov Nabíjačka batérií Renogy DC-DC patrí medzi najúčinnejšie spôsoby nabíjania nadstavbových batérií pri spustenom motore. Nabíjačka je kompatibilná s mnohými typmi alternátorov a ponúka správne nabíjanie pre nabíjanie AGM, trakčné, gélové aj lítiové batérie s hlbokým cyklom. Trojstupňová nabíjačka s viacnásobnou elektronickou ochranou je maximálne spoľahlivá a prispieva k istote, že sa vaša batéria nabije optimálne a automaticky. Ako dodatok izolu",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Nabíjačky a boostery | Nabíjačky",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 216.12,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/nabijacka-baterii-renogy-dc-dc-12v-60a_z106299/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-renogy-dc-dc-12v-60a_z106299%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/187901_102.jpg?1759387751_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 750,
-        "currentA": 60,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:107308",
-      "merchant": "padabo_sk",
-      "name": "Nabíjačka Renogy DC-DC 12V/40 A",
-      "description": "Smart, robustná a kompaktná nabíjačka Pomocou nabíjačky Renogy DC-DC 12V/40A môžete efektívne nabíjať akumulátory počas chodu motora. Nabíjačka batérií DC-DC je kompatibilná s mnohými typmi alternátorov a umožňuje správne nabíjať batérie AGM, trakčné, gélové a dokonca aj lítiové batérie s hlbokým cyklom. Vďaka 3-stupňovej nabíjačke akumulátorov a viacerým elektronickým ochranám budete mať istotu, že sa vaše akumulátory nabíjajú optimálne a automaticky. Pre zvýšenie bezpečnosti izoluje vstup od v",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Nabíjačky a boostery | Nabíjačky",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 161.77,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/nabijacka-renogy-dc-dc-12v-40-a_z107308/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-renogy-dc-dc-12v-40-a_z107308%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/190963_102.jpg?1772370977_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 500,
-        "currentA": 40,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:107312_33733",
       "merchant": "padabo_sk",
       "name": "Solárny panel Renogy ShadowFlux nominálny výkon (wp) 120",
@@ -8706,7 +8539,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 322.99,
+      "priceCzk": 339.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
@@ -8741,7 +8574,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 609.99,
+      "priceCzk": 649.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-320ah-dense-smart-lifepo4-batterie-fur-wohnmobil-untersitz",
@@ -8777,7 +8610,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 569.99,
+      "priceCzk": 629.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-125ah-smart-lifepo4-bootsbatterie-mit-selbstheizung",
@@ -8812,7 +8645,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 372.99,
+      "priceCzk": 409.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-140ah-190h-smart-wohnmobil-lithium-batterie-mit-bluetooth",
@@ -8847,7 +8680,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 259.99,
+      "priceCzk": 288.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-group-24-smart-lifepo4-battery-with-bluetooth",
@@ -8882,7 +8715,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 269.99,
+      "priceCzk": 298.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-12v-100ah-190h-smart-motorhome-battery",
@@ -8917,7 +8750,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 475.99,
+      "priceCzk": 525.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-smart-solar-battery-with-bluetooth",
@@ -8952,7 +8785,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 539.99,
+      "priceCzk": 599.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-300ah-lifepo4-battery-integrated-200a-bms",
@@ -9023,7 +8856,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 999.99,
+      "priceCzk": 1219.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-400ah-lifepo4-battery-built-in-250a-bms",
@@ -9058,7 +8891,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 259.99,
+      "priceCzk": 308.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-self-heating-lifepo4-battery",
@@ -9093,7 +8926,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 1059.99,
+      "priceCzk": 1159.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-200ah-lifepo4-solar-battery-with-200a-bms",
@@ -9129,7 +8962,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 455.99,
+      "priceCzk": 495.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-deep-cycle-solar-battery",
@@ -9164,7 +8997,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 459.99,
+      "priceCzk": 508.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-plus-lifepo4-solar-battery",
@@ -9199,7 +9032,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 439.99,
+      "priceCzk": 488.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-lifepo4-solar-battery",
@@ -9234,7 +9067,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 239.99,
+      "priceCzk": 268.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-lifepo4-deep-cycle-battery",
@@ -9269,7 +9102,7 @@
       "categoryPath": "Battery Charge Controllers",
       "category": "controller",
       "brand": "PQ-DE",
-      "priceCzk": 129.99,
+      "priceCzk": 125.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12-24v-30amp-mppt-solar-charge-controller-and-bluetooth-adapter",
@@ -9346,7 +9179,7 @@
       "categoryPath": "Nabíječky",
       "category": "shore_charger",
       "brand": "PQ-DE",
-      "priceCzk": 169.99,
+      "priceCzk": 175.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-40a-lifepo4-charger-without-handle",
@@ -9454,7 +9287,7 @@
       "categoryPath": "Nabíječky",
       "category": "shore_charger",
       "brand": "PQ-DE",
-      "priceCzk": 71.99,
+      "priceCzk": 68.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-10a-lifepo4-battery-charger",

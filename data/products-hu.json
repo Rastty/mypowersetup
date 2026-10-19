@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-10-14T12:07:43.922Z",
+  "generatedAt": "2026-10-19T09:02:29.422Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12616,
-      "relevantProducts": 157
+      "parsedProducts": 12574,
+      "relevantProducts": 153
     },
     "ampul_hu": {
       "status": "ok",
-      "parsedProducts": 7716,
+      "parsedProducts": 7719,
       "relevantProducts": 13
     },
     "allpowers_eu": {
@@ -43,103 +43,10 @@
   },
   "products": [
     {
-      "id": "padabo_hu:15459_15877",
-      "merchant": "padabo_hu",
-      "name": "AGM Running Bull akkumulátor kapacitás 70 Ah",
-      "description": "Újratölthető akkumulátor nagy energiafogyasztású autókhozA Running Bull AGM akkumulátor AGM technológiával készül, ahol az elektrolitot egy nem szőtt üvegszálas szövetbe áztatják. Az ilyen technológiával készült akkumulátorok sokkal nagyobb teljesítményűek a hagyományos akkumulátorokhoz képest. A Running Bull akkumulátor nagy energiafogyasztású járművekhez alkalmas, legyen szó luxusautókról, mentőautókról, szabadidőjárművekről, taxikról, start & stop rendszerrel felszerelt autókról. Általánosság",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Banner",
-      "priceCzk": 106345,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/agm-running-bull-akkumulator_z15459/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-running-bull-akkumulator_z15459%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/154200_102.jpg?1704380076_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 70,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:15459_15878",
-      "merchant": "padabo_hu",
-      "name": "AGM Running Bull akkumulátor kapacitás 80 Ah",
-      "description": "Újratölthető akkumulátor nagy energiafogyasztású autókhozA Running Bull AGM akkumulátor AGM technológiával készül, ahol az elektrolitot egy nem szőtt üvegszálas szövetbe áztatják. Az ilyen technológiával készült akkumulátorok sokkal nagyobb teljesítményűek a hagyományos akkumulátorokhoz képest. A Running Bull akkumulátor nagy energiafogyasztású járművekhez alkalmas, legyen szó luxusautókról, mentőautókról, szabadidőjárművekről, taxikról, start & stop rendszerrel felszerelt autókról. Általánosság",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Banner",
-      "priceCzk": 111590,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/agm-running-bull-akkumulator_z15459/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-running-bull-akkumulator_z15459%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/154201_102.jpg?1704380076_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 80,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:15459_15879",
-      "merchant": "padabo_hu",
-      "name": "AGM Running Bull akkumulátor kapacitás 92 Ah",
-      "description": "Újratölthető akkumulátor nagy energiafogyasztású autókhozA Running Bull AGM akkumulátor AGM technológiával készül, ahol az elektrolitot egy nem szőtt üvegszálas szövetbe áztatják. Az ilyen technológiával készült akkumulátorok sokkal nagyobb teljesítményűek a hagyományos akkumulátorokhoz képest. A Running Bull akkumulátor nagy energiafogyasztású járművekhez alkalmas, legyen szó luxusautókról, mentőautókról, szabadidőjárművekről, taxikról, start & stop rendszerrel felszerelt autókról. Általánosság",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Banner",
-      "priceCzk": 130490,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/agm-running-bull-akkumulator_z15459/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-running-bull-akkumulator_z15459%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/154202_102.jpg?1704380076_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 92,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_hu:16597_17414",
       "merchant": "padabo_hu",
       "name": "EXIDE Dual AGM akkumulátor kapacitás 240 Ah opció EP 2100",
-      "description": "Tartós akkumulátor bármilyen szabadidőjárműhözAkkumulátorok a leggyakoribb lakóautókhoz és lakókocsikhoz. Kialakításuk nagy telepítési rugalmasságot biztosít. Az AGM (Absorbent Glass Mat) technológia kalciumötvözettel és VRLA szellőzéssel 450 és 2100 Wh közötti teljesítménytartományt fed le, így széles választékot kínálnak bármilyen szabadidőjárműhöz. Az EXIDE Dual AGM akkumulátor legfontosabb jellemzői: Teljesen karbantartásmentes, ami megkönnyíti a hosszú távú használatát. Nagy telepítési ruga",
+      "description": "Tartós akkumulátor bármilyen szabadidőjárműhöz A leggyakoribb lakóautókhoz és lakókocsikhoz készült akkumulátor. Felépítése nagy rugalmasságot biztosít a beszerelés során. A kalciumötvözetet tartalmazó AGM (Absorbent Glass Mat) technológia és a VRLA szellőzés 450 és 2100 Wh közötti teljesítménytartományt fed le, így széles választékot kínál bármilyen típusú szabadidős járműhöz. Az EXIDE Dual AGM akkumulátor legfontosabb jellemzői: Teljesen karbantartásmentes, ami megkönnyíti a hosszú távú haszná",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
       "category": "battery",
       "brand": "EXIDE",
@@ -1201,35 +1108,6 @@
           "lead"
         ],
         "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:101985",
-      "merchant": "padabo_hu",
-      "name": "MPPT napelemes vezérlő Victron Energy SmartSolar 100/50",
-      "description": "Intelligens töltésvezérlés ultragyors MPPT-vel és Bluetooth-kapcsolattalHa maximális energiát szeretne kinyerni napelemtábláiból és meghosszabbítani az akkumulátor élettartamát, a Victron Energy SmartSolar 100/50 MPPT napelemszabályozó a megfelelő választás. Ez a nagy teljesítményű vezérlő biztosítja a hatékony töltést és az energia optimalizálását, még változó napfényviszonyok mellett is. Az MPPT napelemvezérlő egy olyan eszköz, amely feldolgozza a napelemekből származó energiát, és akkumulátor",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Töltésvezérlők",
-      "category": "controller",
-      "brand": "Victron Energy",
-      "priceCzk": 153050,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/mppt-napelemes-vezerlo-victron-energy-smartsolar-100-50_z101985/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmppt-napelemes-vezerlo-victron-energy-smartsolar-100-50_z101985%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/167410_102.jpg?1723111301_1",
-      "specs": {
-        "voltageV": 24,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 700,
-        "currentA": 50,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -2770,42 +2648,6 @@
       }
     },
     {
-      "id": "padabo_hu:106299",
-      "merchant": "padabo_hu",
-      "name": "Renogy DC-DC akkumulátortöltő, 12V/60A",
-      "description": "Háromfokozatú töltő minden akkumulátortípushoz A Renogy DC-DC akkumulátortöltő az egyik leghatékonyabb módja annak, hogy a kompresszor akkumulátorokat a motor működése közben töltse. A töltő számos generátortípussal kompatibilis, és megfelelő töltést biztosít AGM, vontatási, zselés és mélyciklusú lítium akkumulátorok számára. A többszörös elektronikus védelemmel ellátott háromfokozatú töltő rendkívül megbízható, és segít biztosítani, hogy az akkumulátor optimálisan és automatikusan töltődjön. To",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Töltők és boosterek | Akkumulátor töltők",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 91125,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/renogy-dc-dc-akkumulatortolto-12v-60a_z106299/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-dc-dc-akkumulatortolto-12v-60a_z106299%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/187901_102.jpg?1759387751_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 750,
-        "currentA": 60,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_hu:104293_30476",
       "merchant": "padabo_hu",
       "name": "Dometic SinePower DPSI-TS 12 V vagy 24 V-os feszültségátalakító állandó/csúcsteljesítmény 600 / 1200 W feszültség 12 V",
@@ -2963,39 +2805,6 @@
         ],
         "batteryType": "lifepo4",
         "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:19284_21274",
-      "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 150 / 300 W",
-      "description": "Áramellátás érzékeny 230 V-os készülékek számára A Dometic SinePower DSP szinuszos feszültségátalakító főbb jellemzői: A Dometic SinePower DSP szinuszos feszültségátalakító paraméterei:",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
-      "category": "inverter",
-      "brand": "Dometic",
-      "priceCzk": 62085,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-szinuszos-feszultsegatalakito_z19284/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-szinuszos-feszultsegatalakito_z19284%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/183564_102.jpg?1746373072_1",
-      "specs": {
-        "voltageV": 24,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 300,
-        "currentA": null,
-        "chargingVoltagesV": [
-          24
-        ],
-        "chargingInputVoltagesV": [
-          24
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
       }
@@ -3189,7 +2998,7 @@
     {
       "id": "padabo_hu:19287_21292",
       "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
       "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
       "category": "inverter",
@@ -3310,7 +3119,7 @@
       "id": "padabo_hu:16597_22219",
       "merchant": "padabo_hu",
       "name": "EXIDE Dual AGM akkumulátor kapacitás 92 Ah opció EP 800",
-      "description": "Tartós akkumulátor bármilyen szabadidőjárműhözAkkumulátorok a leggyakoribb lakóautókhoz és lakókocsikhoz. Kialakításuk nagy telepítési rugalmasságot biztosít. Az AGM (Absorbent Glass Mat) technológia kalciumötvözettel és VRLA szellőzéssel 450 és 2100 Wh közötti teljesítménytartományt fed le, így széles választékot kínálnak bármilyen szabadidőjárműhöz. Az EXIDE Dual AGM akkumulátor legfontosabb jellemzői: Teljesen karbantartásmentes, ami megkönnyíti a hosszú távú használatát. Nagy telepítési ruga",
+      "description": "Tartós akkumulátor bármilyen szabadidőjárműhöz A leggyakoribb lakóautókhoz és lakókocsikhoz készült akkumulátor. Felépítése nagy rugalmasságot biztosít a beszerelés során. A kalciumötvözetet tartalmazó AGM (Absorbent Glass Mat) technológia és a VRLA szellőzés 450 és 2100 Wh közötti teljesítménytartományt fed le, így széles választékot kínál bármilyen típusú szabadidős járműhöz. Az EXIDE Dual AGM akkumulátor legfontosabb jellemzői: Teljesen karbantartásmentes, ami megkönnyíti a hosszú távú haszná",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
       "category": "battery",
       "brand": "EXIDE",
@@ -4458,39 +4267,6 @@
       }
     },
     {
-      "id": "padabo_hu:106296_33732",
-      "merchant": "padabo_hu",
-      "name": "Renogy 12 V-os feszültségátalakító teljesítmény 3000 W",
-      "description": "Nagy teljesítményű feszültségegyenirányító a készülékek széles skálájához A Renogy feszültségátalakító fejlett tiszta szinuszhullámú technológiával rendelkezik, hogy maximalizálja a rendszer hatékonyságát. Az inverter beállítása olyan egyszerű, hogy még egy teljes analfabéta is meg tudja csinálni. A tiszta szinuszos kimenet folyamatos és stabil áramellátást biztosít, amely helyettesíti a közüzemi áramellátást. Az inverter sokoldalú és kompatibilis az elektromos készülékek széles skálájával, bele",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
-      "category": "inverter",
-      "brand": "Renogy",
-      "priceCzk": 153505,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/renogy-12-v-os-feszultsegatalakito_z106296/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-12-v-os-feszultsegatalakito_z106296%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/187879_102.jpg?1759325853_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 3000,
-        "currentA": 1,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_hu:107312_33733",
       "merchant": "padabo_hu",
       "name": "Renogy ShadowFlux napelem névleges teljesítmény (wp) 120",
@@ -4950,6 +4726,99 @@
         "chargingInputVoltagesV": [
           12
         ],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:15459_15877",
+      "merchant": "padabo_hu",
+      "name": "Banner Running Bull AGM akkumulátor kapacitás 70 Ah",
+      "description": "Újratölthető akkumulátor nagy energiafogyasztású autókhoz A Running Bull AGM akkumulátor AGM technológiával készül, amelynek során az elektrolitot üvegszálas nem szőtt szövetbe áztatják. Az ezzel a technológiával készült akkumulátorok a hagyományos akkumulátorokhoz képest sokkal nagyobb teljesítményűek. A Running Bull akkumulátor nagy energiafogyasztású járművekhez alkalmas, legyen szó luxusautókról, mentőautókról, szabadidős járművekről, taxikról vagy start-stop rendszerrel felszerelt járművekr",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Banner",
+      "priceCzk": 106345,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/banner-running-bull-agm-akkumulator_z15459/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fbanner-running-bull-agm-akkumulator_z15459%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/154200_102.jpg?1704380076_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 70,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:15459_15878",
+      "merchant": "padabo_hu",
+      "name": "Banner Running Bull AGM akkumulátor kapacitás 80 Ah",
+      "description": "Újratölthető akkumulátor nagy energiafogyasztású autókhoz A Running Bull AGM akkumulátor AGM technológiával készül, amelynek során az elektrolitot üvegszálas nem szőtt szövetbe áztatják. Az ezzel a technológiával készült akkumulátorok a hagyományos akkumulátorokhoz képest sokkal nagyobb teljesítményűek. A Running Bull akkumulátor nagy energiafogyasztású járművekhez alkalmas, legyen szó luxusautókról, mentőautókról, szabadidős járművekről, taxikról vagy start-stop rendszerrel felszerelt járművekr",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Banner",
+      "priceCzk": 111590,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/banner-running-bull-agm-akkumulator_z15459/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fbanner-running-bull-agm-akkumulator_z15459%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/154201_102.jpg?1704380076_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 80,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:15459_15879",
+      "merchant": "padabo_hu",
+      "name": "Banner Running Bull AGM akkumulátor kapacitás 92 Ah",
+      "description": "Újratölthető akkumulátor nagy energiafogyasztású autókhoz A Running Bull AGM akkumulátor AGM technológiával készül, amelynek során az elektrolitot üvegszálas nem szőtt szövetbe áztatják. Az ezzel a technológiával készült akkumulátorok a hagyományos akkumulátorokhoz képest sokkal nagyobb teljesítményűek. A Running Bull akkumulátor nagy energiafogyasztású járművekhez alkalmas, legyen szó luxusautókról, mentőautókról, szabadidős járművekről, taxikról vagy start-stop rendszerrel felszerelt járművekr",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Banner",
+      "priceCzk": 130490,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/banner-running-bull-agm-akkumulator_z15459/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fbanner-running-bull-agm-akkumulator_z15459%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/154202_102.jpg?1704380076_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 92,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [
           "lead"
         ],
@@ -6242,7 +6111,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 322.99,
+      "priceCzk": 339.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
@@ -6277,7 +6146,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 609.99,
+      "priceCzk": 649.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-320ah-dense-smart-lifepo4-batterie-fur-wohnmobil-untersitz",
@@ -6313,7 +6182,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 569.99,
+      "priceCzk": 629.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-125ah-smart-lifepo4-bootsbatterie-mit-selbstheizung",
@@ -6348,7 +6217,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 372.99,
+      "priceCzk": 409.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-140ah-190h-smart-wohnmobil-lithium-batterie-mit-bluetooth",
@@ -6383,7 +6252,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 259.99,
+      "priceCzk": 288.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-group-24-smart-lifepo4-battery-with-bluetooth",
@@ -6418,7 +6287,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 269.99,
+      "priceCzk": 298.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-12v-100ah-190h-smart-motorhome-battery",
@@ -6453,7 +6322,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 475.99,
+      "priceCzk": 525.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-smart-solar-battery-with-bluetooth",
@@ -6488,7 +6357,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 539.99,
+      "priceCzk": 599.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-300ah-lifepo4-battery-integrated-200a-bms",
@@ -6559,7 +6428,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 999.99,
+      "priceCzk": 1219.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-400ah-lifepo4-battery-built-in-250a-bms",
@@ -6594,7 +6463,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 259.99,
+      "priceCzk": 308.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-self-heating-lifepo4-battery",
@@ -6629,7 +6498,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 1059.99,
+      "priceCzk": 1159.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-200ah-lifepo4-solar-battery-with-200a-bms",
@@ -6665,7 +6534,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 455.99,
+      "priceCzk": 495.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-deep-cycle-solar-battery",
@@ -6700,7 +6569,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 459.99,
+      "priceCzk": 508.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-plus-lifepo4-solar-battery",
@@ -6735,7 +6604,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 439.99,
+      "priceCzk": 488.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-lifepo4-solar-battery",
@@ -6770,7 +6639,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 239.99,
+      "priceCzk": 268.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-lifepo4-deep-cycle-battery",
@@ -6805,7 +6674,7 @@
       "categoryPath": "Battery Charge Controllers",
       "category": "controller",
       "brand": "PQ-DE",
-      "priceCzk": 129.99,
+      "priceCzk": 125.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12-24v-30amp-mppt-solar-charge-controller-and-bluetooth-adapter",
@@ -6882,7 +6751,7 @@
       "categoryPath": "Nabíječky",
       "category": "shore_charger",
       "brand": "PQ-DE",
-      "priceCzk": 169.99,
+      "priceCzk": 175.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-40a-lifepo4-charger-without-handle",
@@ -6990,7 +6859,7 @@
       "categoryPath": "Nabíječky",
       "category": "shore_charger",
       "brand": "PQ-DE",
-      "priceCzk": 71.99,
+      "priceCzk": 68.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-10a-lifepo4-battery-charger",
