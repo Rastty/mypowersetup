@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-20T08:39:45.997Z",
+  "generatedAt": "2026-10-21T08:39:38.071Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
       "parsedProducts": 16564,
-      "relevantProducts": 243
+      "relevantProducts": 242
     },
     "allpowers_eu": {
       "status": "ok",
@@ -6081,35 +6081,6 @@
         "capacityWh": 1024,
         "powerW": 400,
         "currentA": 13,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:105444",
-      "merchant": "padabo_sk",
-      "name": "Ohybný solárny panel Carbest Flex 120 W",
-      "description": "Flexibilný a výkonný fotovoltaický panel Solárny panel Carbest Flex s výkonom 120 W je vďaka ohybnej konštrukcii možné prispôsobiť podkladu, na ktorý ho nainštalujete. Vďaka vysokokvalitnému povrchu, ktorý tvorí fólie ETFE, má modul výrazne vyšší výkon za súmraku a v oblačnom počasí. Najmä pri vysokých teplotách je výkon výrazne vyšší ako u porovnateľných modulov, čo znamená maximálnu účinnosť bez straty výkonu. Panel má predinštalovaný kábel s dĺžkou 6 m. Kľúčové vlastnosti ohybného solárneho p",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Solárne panely a príslušenstvo | Fotovoltaické panely",
-      "category": "solar_panel",
-      "brand": "Carbest",
-      "priceCzk": 347.65,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/ohybny-solarny-panel-carbest-flex-120-w_z105444/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fohybny-solarny-panel-carbest-flex-120-w_z105444%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/185501_102.jpg?1750235483_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 120,
-        "currentA": null,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
