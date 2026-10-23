@@ -116,11 +116,30 @@ test("committed Polish catalog offers panels and only fully verified power stati
   const recommendations = recommendProducts(catalog.products, setup);
 
   assert.equal(recommendations.solar_panel.length, 3);
-  assert.equal(recommendations.power_station.length, 2);
+  // This test also runs after a live Shopify feed refresh. A verified model can
+  // become unavailable between runs; it must disappear from recommendations,
+  // not fail CI or be silently replaced with an unverified power station.
+  const reviewedFullSizeIds = [
+    "allpowers_pl:8562503319707",
+    "allpowers_pl:8428259246235"
+  ];
+  const expectedAvailableIds = reviewedFullSizeIds.filter((id) =>
+    catalog.products.some((product) => product.id === id && product.available === true)
+  );
   assert.deepEqual(
     new Set(recommendations.power_station.map(({ product }) => product.id)),
-    new Set(["allpowers_pl:8562503319707", "allpowers_pl:8428259246235"])
+    new Set(expectedAvailableIds)
   );
+  assert.equal(recommendations.power_station.length, expectedAvailableIds.length);
+  assert.ok(recommendations.power_station.every(({ product }) =>
+    product.verifiedAt && product.available === true && product.specs.solarInputW >= 300
+      && product.specs.dcOutputA >= 5
+  ));
+  // An all-unavailable snapshot must never fall back to an unverified SKU.
+  const unavailableCatalog = catalog.products.map((product) =>
+    reviewedFullSizeIds.includes(product.id) ? { ...product, available: false } : product
+  );
+  assert.equal(recommendProducts(unavailableCatalog, setup).power_station.length, 0);
   const padaboFresh = catalog.sources?.padabo_pl?.status === "ok";
   assert.equal(
     recommendations.solar_panel.some(({ product }) => product.merchant === "padabo_pl"),
