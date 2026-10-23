@@ -101,3 +101,18 @@ test("manufacturer spec citations and companion styles are present",async()=>{
  assert.match(css,/\.guide-offer-link:focus-visible/);
  assert.match(css,/@media \(max-width: 640px\)/);
 });
+
+test("calculator result connects three distinct sourced purchase comparisons without new affiliate routes", async () => {
+ const html=await readFile("index.html","utf8");
+ const css=await readFile("styles.css","utf8");
+ const section=html.split('<section class="next-step-card" id="product-recommendations">')[1]?.split('</section>')[0];
+ assert.ok(section, "calculator purchase result missing");
+ assert.match(section, /aria-label="Porovnat komponenty před nákupem"/);
+ for(const [slug] of pages){
+  assert.equal(section.split('href="/pruvodce/'+slug+'/"').length-1,1,slug+" missing or duplicated");
+ }
+ assert.ok(section.indexOf('class="component-comparison-links"')>section.indexOf('id="recommendation-groups"'));
+ assert.match(section,/srovnání nejsou cenovou ani skladovou nabídkou/);
+ assert.doesNotMatch(section,/ehub\\.cz|go\\.dognet\\.com|a_aid=|a_bid=/);
+ assert.match(css,/\\.component-comparison-links a:focus-visible/);
+});
