@@ -434,7 +434,7 @@ test("every market measures anonymous product coverage and ships a fresh calcula
   ];
   for (const [htmlPath, appPath, locale] of markets) {
     const [html, app] = await Promise.all([readFile(htmlPath, "utf8"), readFile(appPath, "utf8")]);
-    assert.ok(html.includes(locale === "cs" ? "20261023-comparison-handoff1" : "20260902-product-roles1"), `${htmlPath} nemá novou verzi aktiv`);
+    assert.ok(html.includes(locale === "cs" ? "20261014-purchase-steps1" : "20260902-product-roles1"), `${htmlPath} nemá novou verzi aktiv`);
     assert.ok(app.includes('trackEvent("product_coverage_calculated"'));
     assert.ok(app.includes(`locale: "${locale}"`));
     assert.ok(app.includes("missing_categories: coverage.missing.join"));
@@ -447,7 +447,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20261023-comparison-handoff1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20261014-purchase-steps1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
   assert.ok(app.includes('from "./products.js?v=20260828-ampul1"'));
