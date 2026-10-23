@@ -18,6 +18,11 @@ function pagePath(value) {
   if (!text) return "";
   try {
     const url = new URL(text, "https://mypowersetup.com");
+    // GSC can include external URLs when inputs are joined or properties change.
+    // Never assign another site's impressions/indexing state to our calculators.
+    if (!["http:", "https:"].includes(url.protocol) ||
+        !["mypowersetup.com", "www.mypowersetup.com"].includes(url.hostname) ||
+        url.port) return "";
     return url.pathname.endsWith("/") ? url.pathname : `${url.pathname}/`;
   } catch {
     return "";
