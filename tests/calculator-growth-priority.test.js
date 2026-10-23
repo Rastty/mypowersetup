@@ -106,3 +106,38 @@ test("growth thresholds use page totals instead of privacy-filtered query totals
   assert.equal(row.searchMetricsSource, "page_totals");
   assert.equal(row.primaryOpportunity, "search_ctr");
 });
+
+
+test("cross-property URLs cannot create false calculator search or indexing opportunities", () => {
+  const target = "/kalkulacky/solarni-panely/";
+  const rows = buildCalculatorGrowthPriorities({
+    gscRows: [
+      { page: "https://another-site.example" + target, query: "cizí solár", clicks: 0, impressions: 9000, position: 4 },
+      { page: "https://mypowersetup.com" + target, query: "solární panely karavan", clicks: 0, impressions: 4, position: 14 },
+      { page: "//another-site.example" + target, query: "cizí solar", clicks: 0, impressions: 8000, position: 3 },
+      { page: "javascript:alert(1)", clicks: 0, impressions: 9000, position: 1 },
+    ],
+    gscPageTotals: [
+      { page: "https://another-site.example" + target, clicks: 0, impressions: 10000, position: 2 },
+    ],
+    indexingRows: [
+      { page: "https://another-site.example" + target, coverageState: "URL is not on Google" },
+    ],
+  });
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].path, target);
+  assert.equal(rows[0].searchImpressions, 4);
+  assert.equal(rows[0].searchMetricsSource, "query_rows");
+  assert.equal(rows[0].indexed, null);
+  assert.equal(rows[0].primaryOpportunity, null);
+});
+
+test("canonical www and relative paths remain valid in growth evidence", () => {
+  const rows = aggregateGscCalculatorRows([
+    { page: "https://www.mypowersetup.com/kalkulacky/dc-dc-nabijecka/", query: "dc dc", impressions: 3, clicks: 0, position: 8 },
+    { page: "/kalkulacky/dc-dc-nabijecka/", query: "nabíječka", impressions: 2, clicks: 0, position: 9 },
+  ]);
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].impressions, 5);
+  assert.equal(rows[0].queries.length, 2);
+});
