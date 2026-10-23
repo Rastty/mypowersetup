@@ -48,15 +48,20 @@ export function decodeSetupQuery(search, allowedApplianceIds) {
   if (!loads) return null;
 
   const allowedIds = new Set(allowedApplianceIds);
-  const appliances = loads.split(",").flatMap((token) => {
+  const appliances = [];
+  const seenIds = new Set();
+  // Never silently drop a load from a shared design: doing so can undersize
+  // battery, solar, wiring and inverter recommendations after auto-submit.
+  for (const token of loads.split(",")) {
     const [id, hoursText, quantityText, ...extra] = token.split(":");
     const hours = Number(hoursText);
     const quantity = Number(quantityText);
-    if (extra.length || !allowedIds.has(id)) return [];
-    if (!Number.isFinite(hours) || hours < 0.01 || hours > 24) return [];
-    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 20) return [];
-    return [{ id, hours, quantity }];
-  });
+    if (extra.length || !allowedIds.has(id) || seenIds.has(id)) return null;
+    if (!Number.isFinite(hours) || hours < 0.01 || hours > 24) return null;
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 20) return null;
+    seenIds.add(id);
+    appliances.push({ id, hours, quantity });
+  }
   if (!appliances.length) return null;
 
   const customIndex = appliances.findIndex((item) => item.id === "custom");
