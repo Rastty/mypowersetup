@@ -501,7 +501,7 @@ test("language switch remains available on mobile", async () => {
   assert.match(slovak, /aria-label="Přepnout do češtiny"/);
   assert.match(slovak, /class="header-link language-switch" href="\/pl\/"/);
   assert.match(styles, /\.header-link\.language-switch \{ display: inline-flex; \}/);
-  assert.ok(czech.includes('href="/styles.css?v=20261014-purchase-steps1"'));
+  assert.ok(czech.includes('href="/styles.css?v=20261023-comparison-handoff1"'));
   assert.ok(slovak.includes('href="/styles.css?v=20260902-product-roles1"'));
 });
 
@@ -642,7 +642,7 @@ test("hidden calculator actions stay hidden even when component styles set displ
     assert.ok(source.includes('const resultProductsLink = document.querySelector("#result-products-link")'));
     assert.ok(source.includes('resultProductsLink.hidden = total === 0'));
   }
-  assert.ok(czech.includes('/styles.css?v=20261014-purchase-steps1'));
+  assert.ok(czech.includes('/styles.css?v=20261023-comparison-handoff1'));
   for (const html of [slovak, polish]) assert.ok(html.includes('/styles.css?v=20260902-product-roles1'));
 });
 
@@ -684,7 +684,7 @@ test("all calculators offer a clean printable PDF summary", async () => {
     assert.ok(html.includes('id="result-print"'));
     assert.ok(html.includes('id="print-generated-at"'));
   }
-  assert.ok(czech.includes('/styles.css?v=20261014-purchase-steps1'));
+  assert.ok(czech.includes('/styles.css?v=20261023-comparison-handoff1'));
   for (const html of [slovak, polish]) assert.ok(html.includes('/styles.css?v=20260902-product-roles1'));
   for (const source of [app, appSk, appPl]) {
     assert.ok(source.includes('trackEvent("result_print_requested")'));

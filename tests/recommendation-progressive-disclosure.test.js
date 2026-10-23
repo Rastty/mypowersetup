@@ -75,5 +75,5 @@ test("CZ purchase journey shows one immediately actionable recommended basket, n
   assert.match(styles, /\.package-purchase-steps > summary:focus-visible/);
   assert.match(styles, /\.package-purchase-steps\[open\]/);
   assert.match(html, /app\.js\?v=20261014-purchase-steps1/);
-  assert.match(html, /styles\.css\?v=20261014-purchase-steps1/);
+  assert.match(html, /styles\.css\?v=20261023-comparison-handoff1/);
 });
