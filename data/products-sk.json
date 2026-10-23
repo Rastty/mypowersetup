@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-21T08:39:38.071Z",
+  "generatedAt": "2026-10-23T07:02:02.912Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16564,
-      "relevantProducts": 242
+      "parsedProducts": 16575,
+      "relevantProducts": 245
     },
     "allpowers_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7719,
+      "parsedProducts": 7720,
       "relevantProducts": 15
     }
   },
@@ -1134,6 +1134,37 @@
         "capacityWh": null,
         "powerW": null,
         "currentA": 30,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:24792_26574",
+      "merchant": "padabo_sk",
+      "name": "AGM batérie EXIDE kapacita 70 Ah",
+      "description": "Robustná a bezúdržbová batéria s dlhou životnosťouRobustná batéria AGM EXIDE sa vyznačuje vysokou kvalitou, bezúdržbovosťou a veľmi nízkym samovybíjaním. Technológia AGM zaručuje trvalo vysokú úroveň dodávky energie aj pri používaní energeticky náročných zariadení a je kľúčom k zaisteniu čo najdlhšej životnosti batérie. Kľúčové vlastnosti batérie AGM EXIDE: Batéria je bezúdržbová, čo znamená, že počas celej svojej životnosti nevyžaduje žiadnu údržbu. Má nízku mieru samovybíjania, a tak si zachov",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 242.26,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/agm-baterie-exide_z24792/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-baterie-exide_z24792%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/158711_102.jpg?1704380233_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 70,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [
@@ -6341,14 +6372,14 @@
       }
     },
     {
-      "id": "padabo_sk:106296_33729",
+      "id": "padabo_sk:106296_33732",
       "merchant": "padabo_sk",
-      "name": "Menič napätia Renogy 12 V výkon 1000 W",
+      "name": "Menič napätia Renogy 12 V výkon 3000 W",
       "description": "Výkonný usmerňovač napätia pre širokú škálu spotrebičov Menič napätia Renogy využíva pokročilú technológiu čistej sínusoidy na dosiahnutie maximálnej účinnosti vášho systému. Nastavenie meniča je také jednoduché, že ho zvládne aj úplný laik. Výstup s čistou sínusoidou zabezpečuje plynulé a stabilné napájanie, ktoré plnohodnotne nahrádza napájanie z verejnej siete. Menič je univerzálny a kompatibilný so širokou škálou elektrických spotrebičov, vrátane tých citlivejších, bez akýchkoľvek problémov ",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
       "brand": "Renogy",
-      "priceCzk": 192.89,
+      "priceCzk": 364.08,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
@@ -6358,7 +6389,7 @@
         "voltageV": 12,
         "capacityAh": null,
         "capacityWh": null,
-        "powerW": 1000,
+        "powerW": 3000,
         "currentA": 1,
         "chargingVoltagesV": [
           12
@@ -6369,6 +6400,76 @@
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:106299",
+      "merchant": "padabo_sk",
+      "name": "Nabíjačka batérií Renogy DC-DC, 12V/60A",
+      "description": "Trojstupňová nabíjačka pre všetky typy akumulátorov Nabíjačka batérií Renogy DC-DC patrí medzi najúčinnejšie spôsoby nabíjania nadstavbových batérií pri spustenom motore. Nabíjačka je kompatibilná s mnohými typmi alternátorov a ponúka správne nabíjanie pre nabíjanie AGM, trakčné, gélové aj lítiové batérie s hlbokým cyklom. Trojstupňová nabíjačka s viacnásobnou elektronickou ochranou je maximálne spoľahlivá a prispieva k istote, že sa vaša batéria nabije optimálne a automaticky. Ako dodatok izolu",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Nabíjačky a boostery | Nabíjačky",
+      "category": "dc_charger",
+      "brand": "Renogy",
+      "priceCzk": 216.12,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/nabijacka-baterii-renogy-dc-dc-12v-60a_z106299/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-renogy-dc-dc-12v-60a_z106299%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/187901_102.jpg?1759387751_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 750,
+        "currentA": 60,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:107308",
+      "merchant": "padabo_sk",
+      "name": "Nabíjačka Renogy DC-DC 12V/40 A",
+      "description": "Smart, robustná a kompaktná nabíjačka Pomocou nabíjačky Renogy DC-DC 12V/40A môžete efektívne nabíjať akumulátory počas chodu motora. Nabíjačka batérií DC-DC je kompatibilná s mnohými typmi alternátorov a umožňuje správne nabíjať batérie AGM, trakčné, gélové a dokonca aj lítiové batérie s hlbokým cyklom. Vďaka 3-stupňovej nabíjačke akumulátorov a viacerým elektronickým ochranám budete mať istotu, že sa vaše akumulátory nabíjajú optimálne a automaticky. Pre zvýšenie bezpečnosti izoluje vstup od v",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Nabíjačky a boostery | Nabíjačky",
+      "category": "dc_charger",
+      "brand": "Renogy",
+      "priceCzk": 161.77,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/nabijacka-renogy-dc-dc-12v-40-a_z107308/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-renogy-dc-dc-12v-40-a_z107308%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/190963_102.jpg?1772370977_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 500,
+        "currentA": 40,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
       }

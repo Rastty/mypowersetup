@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-21T08:39:28.327Z",
+  "generatedAt": "2026-10-23T07:01:53.497Z",
   "market": "cs-CZ",
   "status": "ready",
   "requirement": {
@@ -10,7 +10,7 @@
     "batteryType": "lifepo4",
     "minimumCurrentA": 30
   },
-  "matchCount": 5,
+  "matchCount": 7,
   "matches": [
     {
       "id": "vselektro:victron-orion-tr-12-12-30-nonisolated",
@@ -46,6 +46,17 @@
       "score": 97
     },
     {
+      "id": "svetkaravanu:107308",
+      "merchant": "svetkaravanu",
+      "name": "Nabíječka Renogy DC-DC 12V/40 A",
+      "currentA": 40,
+      "priceCzk": 3899,
+      "priceCurrency": "CZK",
+      "productUrl": "https://www.svetkaravanu.cz/nabijecka-renogy-dc-dc-12v-40-a_z107308/",
+      "verifiedAt": null,
+      "score": 85
+    },
+    {
       "id": "vselektro:victron-orion-xs-12-12-50-nonisolated",
       "merchant": "vselektro",
       "name": "Victron Energy Nabíječka DC-DC Orion XS Smart 12-12/50A, neizolovaná",
@@ -55,6 +66,17 @@
       "productUrl": "https://www.vselektro.eu/nabijecka-dc-dc-orion-xs-smart-12-12-50a-neizolovana/",
       "verifiedAt": "2026-10-13",
       "score": 74
+    },
+    {
+      "id": "svetkaravanu:106299",
+      "merchant": "svetkaravanu",
+      "name": "Nabíječka baterií Renogy DC-DC, 12V/60A",
+      "currentA": 60,
+      "priceCzk": 5209,
+      "priceCurrency": "CZK",
+      "productUrl": "https://www.svetkaravanu.cz/nabijecka-baterii-renogy-dc-dc-12v-60a_z106299/",
+      "verifiedAt": null,
+      "score": 62
     },
     {
       "id": "solarimport:E8945",
