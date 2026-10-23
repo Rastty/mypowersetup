@@ -113,6 +113,6 @@ test("calculator result connects three distinct sourced purchase comparisons wit
  }
  assert.ok(section.indexOf('class="component-comparison-links"')>section.indexOf('id="recommendation-groups"'));
  assert.match(section,/srovnání nejsou cenovou ani skladovou nabídkou/);
- assert.doesNotMatch(section,/ehub\\.cz|go\\.dognet\\.com|a_aid=|a_bid=/);
- assert.match(css,/\\.component-comparison-links a:focus-visible/);
+ assert.doesNotMatch(section,/ehub[.]cz|go[.]dognet[.]com|a_aid=|a_bid=/);
+ assert.ok(css.includes('.component-comparison-links a:focus-visible'));
 });
