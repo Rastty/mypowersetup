@@ -634,3 +634,12 @@ footer small { font-size: 12px; }
 }
 .breadcrumbs a { font-weight: 700; text-underline-offset: 3px; }
 .breadcrumbs [aria-current="page"] { color: var(--ink); font-weight: 700; }
+
+/* Contextual purchase-decision handoff from the calculated component basket. */
+.component-comparison-links { margin-top: 20px; padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fafbf8; }
+.component-comparison-links p { margin: 0 0 10px; }
+.component-comparison-links ul { margin: 0 0 10px; padding-left: 20px; display: grid; gap: 8px; }
+.component-comparison-links a { text-underline-offset: 3px; font-weight: 700; }
+.component-comparison-links a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+.component-comparison-links .comparison-disclaimer { color: var(--ink-soft); font-size: 0.9rem; margin-bottom: 0; }
+@media (max-width: 640px) { .component-comparison-links { padding: 14px; } }
