@@ -70,9 +70,26 @@ test("AGM configuration uses the calculator's lead identifier", () => {
   assert.equal(decodeSetupQuery("?loads=fridge:24:1&battery=agm", ["fridge"]), null);
 });
 
-test("decoder keeps valid loads and drops malformed extras", () => {
-  const decoded = decodeSetupQuery("?loads=fridge:24:1,unknown:2:1,fridge:2:1:extra", ["fridge"]);
-  assert.deepEqual(decoded.appliances, [{ id: "fridge", hours: 24, quantity: 1 }]);
+test("shared calculator never silently drops invalid loads or duplicates", () => {
+  const allowed = ["fridge", "notebook", "custom"];
+  const invalid = [
+    "?loads=fridge:24:1,unknown:2:1",
+    "?loads=unknown:2:1,fridge:24:1",
+    "?loads=fridge:24:1,fridge:2:1:extra",
+    "?loads=fridge:24:1,fridge:2:1",
+    "?loads=fridge:24:1,notebook:25:1",
+    "?loads=fridge:24:1,notebook:2:0",
+    "?loads=fridge:24:1,",
+    "?loads=,fridge:24:1",
+    "?loads=fridge:24:1,notebook:2:1:extra",
+  ];
+  for (const query of invalid) {
+    assert.equal(decodeSetupQuery(query, allowed), null, query);
+  }
+  assert.deepEqual(
+    decodeSetupQuery("?loads=fridge:24:1,notebook:2:1", allowed).appliances,
+    [{ id: "fridge", hours: 24, quantity: 1 }, { id: "notebook", hours: 2, quantity: 1 }],
+  );
 });
 
 test("custom appliance round-trips its bounded electrical data", () => {
