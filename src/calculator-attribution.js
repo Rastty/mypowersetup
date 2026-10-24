@@ -162,6 +162,25 @@ export function resolveCalculatorAttribution({ storage = null, market, now = Dat
   return Object.freeze({ ...attribution, ...sanitizeResultContext(parsed.intent, parsed.resultContext) });
 }
 
+// A changed electrical-sizing form invalidates its calculated recommendation, not
+// the visitor's consent-gated landing attribution. Never erase another route's
+// context or create a new attribution record on an input event.
+export function clearCalculatorResultContext({ sourcePath, intent, locale, storage = null } = {}) {
+  const attribution = validateLanding({ sourcePath, intent, locale });
+  if (!attribution) return false;
+  const existing = parseStored(storage);
+  if (!existing
+    || existing.sourcePath !== attribution.calculator_landing_path
+    || existing.intent !== intent
+    || normalizeLocale(existing.locale) !== attribution.calculator_landing_locale
+    || !Object.hasOwn(existing, "resultContext")) return false;
+  const { resultContext: _discarded, ...attributionOnly } = existing;
+  try {
+    storage?.setItem?.(STORAGE_KEY, JSON.stringify(attributionOnly));
+    return true;
+  } catch { return false; }
+}
+
 export function clearCalculatorAttribution(storage = null) {
   try { storage?.removeItem?.(STORAGE_KEY); return true; } catch { return false; }
 }

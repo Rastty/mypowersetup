@@ -1,5 +1,5 @@
 import "./analytics.js";
-import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution, rememberCalculatorResultContext } from "./calculator-attribution.js";
+import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution, rememberCalculatorResultContext, clearCalculatorResultContext } from "./calculator-attribution.js";
 import { classifyCalculatorContinuation } from "./calculator-copy.js";
 import { calculateDcDcCharger } from "./dc-dc-charger.js";
 import { calculateDcProtectionPlan } from "./dc-protection-planner.js";
@@ -10,6 +10,7 @@ if (root) {
   const form = root.querySelector("[data-calculator-form]");
   const resultPanel = root.querySelector("[data-calculator-result]");
   const errorPanel = root.querySelector("[data-calculator-error]");
+  const staleNotice = root.querySelector("[data-calculator-stale]");
   const intent = root.dataset.calculatorIntent;
   const locale = "cs";
   const landingPath = window.location.pathname;
@@ -109,6 +110,7 @@ if (root) {
 
   function render({ userInitiated = false } = {}) {
     errorPanel.hidden = true;
+    staleNotice.hidden = true;
     try {
       const data = Object.fromEntries(new FormData(form).entries());
       const result = calculate(data);
@@ -141,6 +143,22 @@ if (root) {
     }
   }
 
+  // A new electrical input must never leave an old charger/fuse recommendation
+  // on screen or attributed to a later merchant click before recalculation.
+  function invalidateResult() {
+    resultPanel.hidden = true;
+    errorPanel.hidden = true;
+    staleNotice.hidden = false;
+    clearCalculatorResultContext({
+      sourcePath: landingPath,
+      intent,
+      locale,
+      storage: window.sessionStorage,
+    });
+  }
+  form.addEventListener("input", invalidateResult);
+  form.addEventListener("change", invalidateResult);
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     track("calculator_started", { source: "seo_landing_submit" });
@@ -149,6 +167,14 @@ if (root) {
   root.addEventListener("click", trackContinuation);
   document.addEventListener("mypowersetup:analytics-granted", trackLandingView);
 
+  // Default form inputs are not restored from the previous visit. A previous
+  // calculated amperage must therefore not survive a page reload.
+  clearCalculatorResultContext({
+    sourcePath: landingPath,
+    intent,
+    locale,
+    storage: window.sessionStorage,
+  });
   trackLandingView();
   render();
 }
