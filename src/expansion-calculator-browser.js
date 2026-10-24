@@ -67,6 +67,7 @@ mountUsageProfiles({
 let currentStep = 1;
 let latestResult = null;
 let latestShareUrl = "";
+let resultRevision = 0;
 showStep(1);
 updateApplianceUi();
 
@@ -111,8 +112,12 @@ root.addEventListener("toggle", (event) => {
   });
 }, true);
 
-form.addEventListener("change", updateApplianceUi);
+form.addEventListener("change", () => {
+  invalidateResult();
+  updateApplianceUi();
+});
 form.addEventListener("input", () => {
+  invalidateResult();
   track("calculator_started", { source: "form_input" });
   updateApplianceUi();
 });
@@ -146,7 +151,19 @@ function showStep(step) {
   }
 }
 
+function invalidateResult() {
+  // A changed sizing input invalidates the old electrical recommendation AND its
+  // merchant links immediately, even if an earlier catalog request is in flight.
+  resultRevision += 1;
+  latestResult = null;
+  latestShareUrl = "";
+  result.replaceChildren();
+  if (currentStep === 3) showStep(2);
+}
+
 async function calculateAndRender({ source }) {
+  invalidateResult();
+  const revision = resultRevision;
   const selected = [...form.querySelectorAll("[data-appliance]:checked")];
   if (!selected.length) {
     error.textContent = labels.required;
@@ -197,9 +214,9 @@ async function calculateAndRender({ source }) {
   // Recommendations are deliberately loaded only after the core calculation is
   // complete. A broken catalog, affiliate parser or recommendation module must
   // never prevent the calculator itself from starting or showing a result.
-  if (locale === "pt") await renderPortugalProducts(calculation);
-  if (locale === "si") await renderSloveniaProducts(calculation);
-  if (locale === "ro") await renderRomaniaProducts(calculation);
+  if (locale === "pt") await renderPortugalProducts(calculation, revision);
+  if (locale === "si") await renderSloveniaProducts(calculation, revision);
+  if (locale === "ro") await renderRomaniaProducts(calculation, revision);
   return true;
 }
 
@@ -313,11 +330,12 @@ function renderResult(value) {
   result.innerHTML = `<p class="result-summary">${escapeHtml(verdict)}</p><div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div>${warnings}${renderResultGuides()}${renderComponentPlan(value)}<div data-product-recommendations aria-live="polite">${renderProductLoading()}</div><div class="step-actions"><button class="button button-primary" type="button" data-share-result>${labels.share}</button><button class="button button-secondary" type="button" data-edit>${labels.again}</button></div>`;
 }
 
-async function renderPortugalProducts(calculation) {
+async function renderPortugalProducts(calculation, revision) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
     const { buildPortugalRecommendations, loadPortugalProductCatalog, portugalRecommendationCoverage } = await import("./pt-recommendations.js");
     const catalog = await loadPortugalProductCatalog();
+    if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildPortugalRecommendations(catalog, calculation, 3);
     const coverage = portugalRecommendationCoverage(recommendations);
     const products = orderedExpansionProducts(recommendations);
@@ -328,6 +346,7 @@ async function renderPortugalProducts(calculation) {
     target.innerHTML = renderProductSection("pt-products-title", products, portableGap, routePriority);
     trackRenderedProductChoices(target);
   } catch {
+    if (revision !== resultRevision || !target.isConnected) return;
     trackProductCoverage({}, calculation);
     track("product_recommendations_rendered", { market: "pt", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
     target.innerHTML = renderNoVerifiedProducts();
@@ -335,11 +354,12 @@ async function renderPortugalProducts(calculation) {
   }
 }
 
-async function renderSloveniaProducts(calculation) {
+async function renderSloveniaProducts(calculation, revision) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
     const { buildSloveniaRecommendations, loadSloveniaProductCatalog } = await import("./si-recommendations.js");
     const catalog = await loadSloveniaProductCatalog();
+    if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildSloveniaRecommendations(catalog, calculation, 3);
     const products = orderedExpansionProducts(recommendations);
     const routePriority = trackProductCoverage(recommendations, calculation);
@@ -349,6 +369,7 @@ async function renderSloveniaProducts(calculation) {
     target.innerHTML = renderProductSection("si-products-title", products, portableGap, routePriority);
     trackRenderedProductChoices(target);
   } catch {
+    if (revision !== resultRevision || !target.isConnected) return;
     trackProductCoverage({}, calculation);
     track("product_recommendations_rendered", { market: "si", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
     target.innerHTML = renderNoVerifiedProducts();
@@ -356,11 +377,12 @@ async function renderSloveniaProducts(calculation) {
   }
 }
 
-async function renderRomaniaProducts(calculation) {
+async function renderRomaniaProducts(calculation, revision) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
     const { buildRomaniaRecommendations, loadRomaniaProductCatalog } = await import("./ro-recommendations.js");
     const catalog = await loadRomaniaProductCatalog();
+    if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildRomaniaRecommendations(catalog, calculation, 3);
     const products = orderedExpansionProducts(recommendations);
     const routePriority = trackProductCoverage(recommendations, calculation);
@@ -370,6 +392,7 @@ async function renderRomaniaProducts(calculation) {
     target.innerHTML = renderProductSection("ro-products-title", products, portableGap, routePriority);
     trackRenderedProductChoices(target);
   } catch {
+    if (revision !== resultRevision || !target.isConnected) return;
     trackProductCoverage({}, calculation);
     track("product_recommendations_rendered", { market: "ro", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
     target.innerHTML = renderNoVerifiedProducts();
