@@ -124,3 +124,35 @@ test("decoder rejects incomplete or unsafe custom appliance data", () => {
   assert.equal(decodeSetupQuery(`${base}&customWatts=10001`, ["custom"]), null);
   assert.equal(decodeSetupQuery("?loads=custom:2:1&customName=Topení&customWatts=100&customAc=0&customSurge=3", ["custom"]), null);
 });
+
+test("shared calculator rejects repeated sizing fields instead of silently choosing the first", () => {
+  const base = encodeSetupQuery(config);
+  const allowed = ["fridge", "notebook", "tv", "custom"];
+  const ambiguous = [
+    "&loads=notebook%3A8%3A1",
+    "&days=1",
+    "&voltage=12",
+    "&battery=lead",
+    "&drive=12",
+    "&starter=24",
+    "&dcdcCable=15",
+    "&shore=0",
+    "&roofL=0.5",
+    "&roofW=0.5",
+    "&customWatts=500",
+  ];
+  for (const suffix of ambiguous) {
+    assert.equal(decodeSetupQuery(base + suffix, allowed), null, suffix);
+  }
+  // An analytics campaign may add repeated unrelated UTM keys without changing
+  // the electrical design. Only sizing-state duplicates must fail closed.
+  assert.deepEqual(
+    decodeSetupQuery(base + "&utm_source=one&utm_source=two", allowed),
+    decodeSetupQuery(base, allowed),
+  );
+});
+
+test("custom appliance rejects conflicting duplicate watts even when both values are valid", () => {
+  const query = "?loads=custom:2:1&customName=Heating&customWatts=40&customWatts=4000&customAc=1&customSurge=2";
+  assert.equal(decodeSetupQuery(query, ["custom"]), null);
+});
