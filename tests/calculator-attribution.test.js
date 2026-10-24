@@ -5,6 +5,7 @@ import { readFile } from "node:fs/promises";
 import {
   CALCULATOR_ATTRIBUTION_MAX_AGE_MS,
   clearCalculatorAttribution,
+  clearCalculatorResultContext,
   rememberCalculatorAttribution,
   rememberCalculatorResultContext,
   resolveCalculatorAttribution,
@@ -234,4 +235,44 @@ test("invalid DC-DC result values are dropped rather than persisted", () => {
   assert.equal("calculator_system_voltage" in resolved, false);
   assert.equal("calculator_source_voltage" in resolved, false);
   assert.equal("calculator_target_met" in resolved, false);
+});
+
+test("changing DC-DC inputs invalidates only the matching result context, never landing attribution", () => {
+  const storage = memoryStorage();
+  const sourcePath = "/kalkulacky/dc-dc-nabijecka/";
+  const intent = "dcdc-sizing";
+  const locale = "cs";
+  const now = Date.now();
+  rememberCalculatorResultContext({
+    sourcePath, intent, locale, storage, now,
+    result: { recommendedChargerCurrentA: 40, requiredOutputCurrentA: 50, batteryVoltage: 12 },
+  });
+  assert.equal(resolveCalculatorAttribution({ storage, market: "cs", now }).calculator_recommended_current_a, 40);
+  assert.equal(clearCalculatorResultContext({
+    sourcePath: "/kalkulacky/jisteni-12v/", intent: "dc-protection", locale, storage,
+  }), false, "unrelated electrical calculator must not erase DC-DC context");
+  assert.equal(clearCalculatorResultContext({ sourcePath, intent, locale: "pl", storage }), false);
+  assert.equal(clearCalculatorResultContext({ sourcePath, intent, locale, storage }), true);
+  assert.equal(clearCalculatorResultContext({ sourcePath, intent, locale, storage }), false);
+  const result = resolveCalculatorAttribution({ storage, market: "cs", now });
+  assert.equal(result.calculator_landing_path, sourcePath);
+  assert.equal(result.calculator_landing_intent, intent);
+  assert.equal("calculator_recommended_current_a" in result, false);
+  assert.equal("calculator_required_current_a" in result, false);
+  assert.equal("calculator_system_voltage" in result, false);
+  assert.equal(storage.values.size, 1, "consent-gated attribution must survive recalculation");
+});
+
+test("invalidating before consent or with blocked storage never creates a new attribution", () => {
+  const storage = memoryStorage();
+  const input = { sourcePath: "/kalkulacky/dc-dc-nabijecka/", intent: "dcdc-sizing", locale: "cs", storage };
+  assert.equal(clearCalculatorResultContext(input), false);
+  assert.equal(storage.values.size, 0);
+  assert.equal(clearCalculatorResultContext({ ...input, storage: {
+    getItem: () => JSON.stringify({
+      sourcePath: input.sourcePath, intent: input.intent, locale: input.locale,
+      resultContext: { calculator_recommended_current_a: 30 },
+    }),
+    setItem: () => { throw Error("Storage disabled"); },
+  } }), false);
 });
