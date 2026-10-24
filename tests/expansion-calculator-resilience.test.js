@@ -13,5 +13,5 @@ test("market recommendations are lazy-loaded after calculation", () => {
   for (const market of ["pt", "si", "ro"]) {
     assert.match(source, new RegExp(`await import\\(\\"\\./${market}-recommendations\\.js\\"\\)`));
   }
-  assert.match(source, /renderResult\(calculation\);[\s\S]*showStep\(3\);[\s\S]*renderPortugalProducts\(calculation\)/);
+  assert.match(source, /renderResult\(calculation\);[\s\S]*showStep\(3\);[\s\S]*renderPortugalProducts\(calculation, revision\)/);
 });
