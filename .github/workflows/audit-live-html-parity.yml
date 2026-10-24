@@ -1,5 +1,10 @@
 name: Production HTML content parity
 on:
+  pull_request:
+    paths:
+      - scripts/verify-phase2-stale-live.mjs
+      - scripts/verify-phase2-stale-live.test.mjs
+      - .github/workflows/audit-live-html-parity.yml
   workflow_dispatch:
   schedule:
     - cron: "43 7 * * *"
@@ -21,6 +26,10 @@ jobs:
           node-version: '22'
       - name: Fetch all published HTML routes and compare substantive content
         run: node scripts/audit-live-html-parity.mjs
+      - name: Test exact-route public readback contract
+        run: node --test scripts/verify-phase2-stale-live.test.mjs
+      - name: Verify both live electrical calculator HTML pages and served JS
+        run: node scripts/verify-phase2-stale-live.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
