@@ -44,6 +44,16 @@ export function encodeSetupQuery(config) {
 
 export function decodeSetupQuery(search, allowedApplianceIds) {
   const params = new URLSearchParams(search);
+  // URLSearchParams.get() silently chooses the first value. A shared link with
+  // repeated electrical sizing inputs could therefore omit loads or change the
+  // intended battery/voltage calculation. Reject ambiguous sizing state, while
+  // still allowing unrelated analytics/query parameters.
+  const sizingKeys = [
+    "loads", "customName", "customWatts", "customAc", "customSurge",
+    "days", "season", "battery", "voltage", "cable", "drive", "starter",
+    "dcdcCable", "shore", "roofL", "roofW",
+  ];
+  if (sizingKeys.some((key) => params.getAll(key).length > 1)) return null;
   const loads = params.get("loads");
   if (!loads) return null;
 
