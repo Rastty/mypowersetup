@@ -89,6 +89,11 @@ jobs:
         with:
           node-version: 22
           package-manager-cache: false
+      # Run deterministic repository tests against the committed, reviewed fixture catalog.
+      # Live merchant feeds are mutable and may legitimately become stale/unhealthy;
+      # post-sync fail-closed commercial gates below validate the refreshed catalog.
+      - name: Test committed application and catalog contracts
+        run: node --test
       - run: node scripts/sync-products.mjs
         env:
           RESLSHOP_FEED_URL: ${{ secrets.RESLSHOP_FEED_URL }}
@@ -116,7 +121,7 @@ jobs:
       - run: node scripts/write-cz-dcdc-coverage.mjs
       - run: node scripts/write-commercial-opportunity-report.mjs
       - run: node scripts/write-owner-action-queue.mjs
-      - run: node --test
+      # Revalidate regenerated merchant data; do not commit if commercial safety fails.
       - run: npm run check:commercial:coverage:safe
       - run: npm run check:commercial:scenarios:safe
       - run: npm run check:commercial:opportunities
