@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-23T08:39:13.071Z",
+  "generatedAt": "2026-10-24T11:08:36.982Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16577,
+      "parsedProducts": 16578,
       "relevantProducts": 245
     },
     "allpowers_eu": {
@@ -6372,6 +6372,39 @@
       }
     },
     {
+      "id": "padabo_sk:106296_33731",
+      "merchant": "padabo_sk",
+      "name": "Menič napätia Renogy 12 V výkon 2000 W",
+      "description": "Výkonný usmerňovač napätia pre širokú škálu spotrebičov Menič napätia Renogy využíva pokročilú technológiu čistej sínusoidy na dosiahnutie maximálnej účinnosti vášho systému. Nastavenie meniča je také jednoduché, že ho zvládne aj úplný laik. Výstup s čistou sínusoidou zabezpečuje plynulé a stabilné napájanie, ktoré plnohodnotne nahrádza napájanie z verejnej siete. Menič je univerzálny a kompatibilný so širokou škálou elektrických spotrebičov, vrátane tých citlivejších, bez akýchkoľvek problémov ",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
+      "category": "inverter",
+      "brand": "Renogy",
+      "priceCzk": 277.12,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-renogy-12-v_z106296%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": 1,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_sk:106296_33732",
       "merchant": "padabo_sk",
       "name": "Menič napätia Renogy 12 V výkon 3000 W",
@@ -7515,35 +7548,6 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 500,
-        "currentA": 0.6,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:108740_33863",
-      "merchant": "padabo_sk",
-      "name": "Sinusový menič napätia Carbest PowerWave, 12/230 V výkon 3000 W",
-      "description": "Menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie Carbest PowerWave je menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie. Integrovaný prepínač priority sieťového napájania 230 V preruší prevádzku hneď, ako je obytný automobil alebo karavan pripojený k napájaniu 230 V (napríklad v kempingu). Prevádzka meniča sa obnoví po odpojení od externého napájania. Prevodník tak mení napätie 12 V na 230 V s čistou sínusovou vlnou. ",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 765.88,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/195963_102.jpg?1783252526_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 3000,
         "currentA": 0.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
@@ -9752,7 +9756,7 @@
       "merchant": "ampul_sk",
       "name": "Nabíjačka batériu z 12V na 29.2V, 20A, 584W, IP65, slim",
       "description": "Nabíjačka 24V LiFePO4 a LiMn2O4 batériu z 12V/24V DC zdroja.",
-      "categoryPath": "Nabíjačky",
+      "categoryPath": "Napájacie zdroje > Nabíjačky",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 163.05,
@@ -9787,7 +9791,7 @@
       "merchant": "ampul_sk",
       "name": "Nabíjačka batériu z 12V na 43.8V, 13A, 569W, IP65, slim",
       "description": "Nabíjačka 36V LiFePO4 a LiMn2O4 batériu z 12V/24V DC zdroja.",
-      "categoryPath": "Nabíjačky",
+      "categoryPath": "Napájacie zdroje > Nabíjačky",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 163.05,
@@ -9822,7 +9826,7 @@
       "merchant": "ampul_sk",
       "name": "Nabíjačka batériu z 12V/24V na 58.4V, 10A, 584W, IP65, slim",
       "description": "Nabíjačka 48V LiFePO4 a LiMn2O4 batériu z 12V/24V DC zdroja.",
-      "categoryPath": "Nabíjačky",
+      "categoryPath": "Napájacie zdroje > Nabíjačky",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 163.05,
@@ -9858,7 +9862,7 @@
       "merchant": "ampul_sk",
       "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 12 V DC",
       "description": "Invertor",
-      "categoryPath": "Meniče napätia",
+      "categoryPath": "Napájacie zdroje > Meniče napätia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 349.3,
@@ -9891,7 +9895,7 @@
       "merchant": "ampul_sk",
       "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 24 V DC",
       "description": "Invertor",
-      "categoryPath": "Meniče napätia",
+      "categoryPath": "Napájacie zdroje > Meniče napätia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 349.3,
@@ -9907,10 +9911,10 @@
         "powerW": 2000,
         "currentA": null,
         "chargingVoltagesV": [
-          12
+          24
         ],
         "chargingInputVoltagesV": [
-          12
+          24
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
@@ -9924,7 +9928,7 @@
       "merchant": "ampul_sk",
       "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 36 V DC",
       "description": "Invertor",
-      "categoryPath": "Meniče napätia",
+      "categoryPath": "Napájacie zdroje > Meniče napätia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 349.3,
@@ -9940,10 +9944,10 @@
         "powerW": 2000,
         "currentA": null,
         "chargingVoltagesV": [
-          12
+          36
         ],
         "chargingInputVoltagesV": [
-          12
+          36
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
@@ -9957,7 +9961,7 @@
       "merchant": "ampul_sk",
       "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 48 V DC",
       "description": "Invertor",
-      "categoryPath": "Meniče napätia",
+      "categoryPath": "Napájacie zdroje > Meniče napätia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 349.3,
@@ -9973,10 +9977,10 @@
         "powerW": 2000,
         "currentA": null,
         "chargingVoltagesV": [
-          12
+          48
         ],
         "chargingInputVoltagesV": [
-          12
+          48
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
@@ -9990,7 +9994,7 @@
       "merchant": "ampul_sk",
       "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 60 V DC",
       "description": "Invertor",
-      "categoryPath": "Meniče napätia",
+      "categoryPath": "Napájacie zdroje > Meniče napätia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 349.3,
@@ -10005,12 +10009,8 @@
         "capacityWh": null,
         "powerW": 2000,
         "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
@@ -10023,7 +10023,7 @@
       "merchant": "ampul_sk",
       "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 72 V DC",
       "description": "Invertor",
-      "categoryPath": "Meniče napätia",
+      "categoryPath": "Napájacie zdroje > Meniče napätia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 349.3,
@@ -10038,12 +10038,8 @@
         "capacityWh": null,
         "powerW": 2000,
         "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
@@ -10056,7 +10052,7 @@
       "merchant": "ampul_sk",
       "name": "Menič napätia z DC na 230V AC, 50Hz, 2000W - 84 V DC",
       "description": "Invertor",
-      "categoryPath": "Meniče napätia",
+      "categoryPath": "Napájacie zdroje > Meniče napätia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 349.3,
@@ -10071,12 +10067,8 @@
         "capacityWh": null,
         "powerW": 2000,
         "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
@@ -10089,7 +10081,7 @@
       "merchant": "ampul_sk",
       "name": "DC/DC nabíjačka LiFePO4 batérií 14.6V, 30A, 400W, IP68",
       "description": "Profesionálna DC-DC nabíjačka WG-12C400L je ideálnou voľbou pre bezpečné a efektívne nabíjanie lítium-železo-fosfátových (LiFePO4) batérií. Vďaka pokročilej PWM technológii, vysokej účinnosti a robustnému hliníkovému puzdru je vhodná pre širokú škálu aplikácií, vrátane inštalácií vo vozidlách, karavanoch, lodiach či solárnych systémoch. Ochranné funkcie a jednoduchá inštalácia z nej robí spoľahlivého partnera pre všetkých náročných užívateľov. Technické špecifikácie Vstupný napäťový rozsah: 10-3",
-      "categoryPath": "Nabíjačky",
+      "categoryPath": "Napájacie zdroje > Nabíjačky",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 282.83,
@@ -10126,7 +10118,7 @@
       "merchant": "ampul_sk",
       "name": "Napájací zdroj zásuvkový 36V, 2A, 5.5x2.1mm, nabíjačka olovených batérií",
       "description": "Inteligentná sieťová nabíjačka určená pre 36V olovené akumulátory s koncovým nabíjacím napätím 43,2 V . Využíva automatický CC/CV nabíjací režim, LED indikáciu stavu a kompletnú sadu ochranných prvkov. Vďaka širokému vstupnému rozsahu 100–240 V AC je vhodná na univerzálne použitie v Európe i ďalších regiónoch. Technické špecifikácie Vstupné napätie: 100–240 V AC, 50/60 Hz Výstupné napätie: 36 V DC (nabíjacie napätie 43,2 V) Výstupný prúd: 2 A Maximálny výkon: 84 W Konektor: XLR 3-pin (polarita: ",
-      "categoryPath": "Nabíjačky",
+      "categoryPath": "Napájacie zdroje > Nabíjačky",
       "category": "shore_charger",
       "brand": "",
       "priceCzk": 27.04,
@@ -10162,7 +10154,7 @@
       "merchant": "ampul_sk",
       "name": "Napájací zdroj zásuvkový 24V, 5A, 5.5x2.1mm, nabíjačka olovených batérií",
       "description": "Inteligentná nabíjačka pre 24V olovené akumulátory určená pre spoľahlivé a bezpečné nabíjanie batériových zostáv s koncovým napätím 28,8 V. Vhodná pre elektrické vozíky, skútre, priemyselné aplikácie, záložné systémy a ďalšie zariadenia využívajúce olovené akumulátory. Nabíjačka využíva automatický režim CC/CV a je vybavená svetelnou signalizáciou stavu nabíjania. Technické špecifikácie Vstupné napätie: 100–240 V AC, 50/60 Hz Výstupné napätie: 24 V DC (nabíjacie napätie 28,8 V) Výstupný prúd: 5 ",
-      "categoryPath": "Nabíjačky",
+      "categoryPath": "Napájacie zdroje > Nabíjačky",
       "category": "shore_charger",
       "brand": "",
       "priceCzk": 38.93,
@@ -10197,7 +10189,7 @@
       "merchant": "ampul_sk",
       "name": "Menič napätia 110V DC / 230V AC, 12 kVA / 9600 W, 19\" 4U, RS485",
       "description": "Priemyselný menič napätia určený na prevod jednosmerného vstupného napätia na striedavý výstup 220 VAC. Zariadenie je prevedené v 19\" rackovom formáte 4U a je vhodné pre aplikácie, kde je k dispozícii DC napájanie a je požadovaný čistý sínusový AC výstup pre napájanie zariadení citlivých na kvalitu napätia. Produkt je vybavený komunikačným rozhraním RS485, LCD indikáciou a ochrannými funkciami pre prevádzku v technických a priemyselných inštaláciách. Technické špecifikácie Typ zariadenia: DC/AC ",
-      "categoryPath": "Meniče napätia",
+      "categoryPath": "Napájacie zdroje > Meniče napätia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 3590.33,
@@ -10226,7 +10218,7 @@
       "merchant": "ampul_sk",
       "name": "Menič napätia 48V / 230V AC, 10 kVA / 8000 W, 19\" 4U, RS485",
       "description": "Menič napätia slúži na prevod jednosmerného napätia 48 V DC na striedavé napätie 220–240 V AC. Prevedenie v 19\" rack formáte 4U je určené na inštaláciu do rozvádzačov, technologických skríň a záložných či energetických systémov, kde je vyžadovaný centralizovaný výkonový menič s komunikačným rozhraním RS485. Technické špecifikácie Model: IPS-DTA10000-482-4U Typ zariadenia: menič napätia DC/AC Vstupné napätie: 48 V DC Rozsah pracovného vstupného napätia: 40–58.8 VDC Štartovací napäťový rozsah: 42-",
-      "categoryPath": "Meniče napätia",
+      "categoryPath": "Napájacie zdroje > Meniče napätia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 3138.63,

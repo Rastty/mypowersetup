@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-23T08:39:25.584Z",
+  "generatedAt": "2026-10-24T11:08:47.510Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16589,
+      "parsedProducts": 16590,
       "relevantProducts": 201
     },
     "powerqueen_eu": {
@@ -6197,7 +6197,7 @@
       "categoryPath": "Chłodzenie i ogrzewanie | Lodówki turystyczne i torby termiczne | Akcesoria do lodówek samochodowych",
       "category": "battery",
       "brand": "Mestic",
-      "priceCzk": 969.86,
+      "priceCzk": 972.83,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/dodatkowy-akumulator-do-lodowek-kompresorowych-mestic-mccm-mcc_z108321/",
@@ -6319,7 +6319,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Przetwornice napięcia",
       "category": "inverter",
       "brand": "Victron",
-      "priceCzk": 1462.2,
+      "priceCzk": 1466.69,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/przetwornica-sinusoidalna-victron-energy-12-v-1600-va-ve-direct_z109017/",
@@ -6352,7 +6352,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
       "category": "solar_panel",
       "brand": "Victron",
-      "priceCzk": 483.01,
+      "priceCzk": 484.49,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/panel-sloneczny-victron-energy-bluesolar-190-wp-mono-12-v_z109069/",
@@ -6385,7 +6385,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
       "category": "battery",
       "brand": "Renogy",
-      "priceCzk": 4101.44,
+      "priceCzk": 4114.03,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/akumulator-z-ogrzewaniem-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090/",
@@ -8436,7 +8436,7 @@
       "merchant": "ampul_pl",
       "name": "Ładowarka akumulatorów od 12V do 29,2V, 20A, 584W, IP65, wąska",
       "description": "Ładowarka do akumulatorów LiFePO4 i LiMn2O4 24V ze źródła 12V/24V DC.",
-      "categoryPath": "Ładowarki",
+      "categoryPath": "Zasilacze > Ładowarki",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 712.46,
@@ -8471,7 +8471,7 @@
       "merchant": "ampul_pl",
       "name": "Ładowarka akumulatorów od 12V do 43,8V, 13A, 569W, IP65, wąska",
       "description": "Ładowarka do akumulatorów LiFePO4 i LiMn2O4 36V ze źródła 12V/24V DC.",
-      "categoryPath": "Ładowarki",
+      "categoryPath": "Zasilacze > Ładowarki",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 712.46,
@@ -8506,7 +8506,7 @@
       "merchant": "ampul_pl",
       "name": "Ładowarka akumulatorów od 12V/24V do 58,4V, 10A, 584W, IP65, wąska",
       "description": "Ładowarka do akumulatorów LiFePO4 i LiMn2O4 48V ze źródła 12V/24V DC.",
-      "categoryPath": "Ładowarki",
+      "categoryPath": "Zasilacze > Ładowarki",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 712.46,
@@ -8542,7 +8542,7 @@
       "merchant": "ampul_pl",
       "name": "Przetwornica napięcia z DC na 230V AC, 50Hz, 2000W - 12 V DC",
       "description": "Falownik",
-      "categoryPath": "Przekształtniki napięcia",
+      "categoryPath": "Zasilacze > Przekształtniki napięcia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 1526.34,
@@ -8575,7 +8575,7 @@
       "merchant": "ampul_pl",
       "name": "Przetwornica napięcia z DC na 230V AC, 50Hz, 2000W - 24 V DC",
       "description": "Falownik",
-      "categoryPath": "Przekształtniki napięcia",
+      "categoryPath": "Zasilacze > Przekształtniki napięcia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 1526.34,
@@ -8591,10 +8591,10 @@
         "powerW": 2000,
         "currentA": null,
         "chargingVoltagesV": [
-          12
+          24
         ],
         "chargingInputVoltagesV": [
-          12
+          24
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
@@ -8608,7 +8608,7 @@
       "merchant": "ampul_pl",
       "name": "Przetwornica napięcia z DC na 230V AC, 50Hz, 2000W - 36 V DC",
       "description": "Falownik",
-      "categoryPath": "Przekształtniki napięcia",
+      "categoryPath": "Zasilacze > Przekształtniki napięcia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 1526.34,
@@ -8624,10 +8624,10 @@
         "powerW": 2000,
         "currentA": null,
         "chargingVoltagesV": [
-          12
+          36
         ],
         "chargingInputVoltagesV": [
-          12
+          36
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
@@ -8641,7 +8641,7 @@
       "merchant": "ampul_pl",
       "name": "Przetwornica napięcia z DC na 230V AC, 50Hz, 2000W - 48 V DC",
       "description": "Falownik",
-      "categoryPath": "Przekształtniki napięcia",
+      "categoryPath": "Zasilacze > Przekształtniki napięcia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 1526.34,
@@ -8657,10 +8657,10 @@
         "powerW": 2000,
         "currentA": null,
         "chargingVoltagesV": [
-          12
+          48
         ],
         "chargingInputVoltagesV": [
-          12
+          48
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
@@ -8674,7 +8674,7 @@
       "merchant": "ampul_pl",
       "name": "Przetwornica napięcia z DC na 230V AC, 50Hz, 2000W - 60 V DC",
       "description": "Falownik",
-      "categoryPath": "Przekształtniki napięcia",
+      "categoryPath": "Zasilacze > Przekształtniki napięcia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 1526.34,
@@ -8689,12 +8689,8 @@
         "capacityWh": null,
         "powerW": 2000,
         "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
@@ -8707,7 +8703,7 @@
       "merchant": "ampul_pl",
       "name": "Przetwornica napięcia z DC na 230V AC, 50Hz, 2000W - 72 V DC",
       "description": "Falownik",
-      "categoryPath": "Przekształtniki napięcia",
+      "categoryPath": "Zasilacze > Przekształtniki napięcia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 1526.34,
@@ -8722,12 +8718,8 @@
         "capacityWh": null,
         "powerW": 2000,
         "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
@@ -8740,7 +8732,7 @@
       "merchant": "ampul_pl",
       "name": "Przetwornica napięcia z DC na 230V AC, 50Hz, 2000W - 84 V DC",
       "description": "Falownik",
-      "categoryPath": "Przekształtniki napięcia",
+      "categoryPath": "Zasilacze > Przekształtniki napięcia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 1526.34,
@@ -8755,12 +8747,8 @@
         "capacityWh": null,
         "powerW": 2000,
         "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
@@ -8773,7 +8761,7 @@
       "merchant": "ampul_pl",
       "name": "Ładowarka akumulatorów LiFePO4 DC/DC 14,6 V, 30 A, 400 W, IP68",
       "description": "Profesjonalna ładowarka DC-DC WG-12C400L to idealny wybór do bezpiecznego i wydajnego ładowania akumulatorów litowo-żelazowo-fosforanowych (LiFePO4). Dzięki zaawansowanej technologii PWM, wysokiej wydajności i solidnej aluminiowej obudowie, nadaje się do szerokiego zakresu zastosowań, w tym instalacji w pojazdach, przyczepach kempingowych, łodziach czy systemach solarnych. Funkcje ochronne i łatwa instalacja czynią ją niezawodnym partnerem dla wszystkich wymagających użytkowników. Dane techniczn",
-      "categoryPath": "Ładowarki",
+      "categoryPath": "Zasilacze > Ładowarki",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 1235.9,
@@ -8810,7 +8798,7 @@
       "merchant": "ampul_pl",
       "name": "Gniazdo zasilania 36V, 2A, 5,5x2,1mm, ładowarka akumulatora kwasowo-ołowiowego",
       "description": "Inteligentna ładowarka sieciowa przeznaczona do akumulatorów kwasowo-ołowiowych 36 V o końcowym napięciu ładowania 43,2 V. Wyposażona jest w automatyczny tryb ładowania CC/CV, wskaźnik stanu LED oraz kompletny zestaw zabezpieczeń. Dzięki szerokiemu zakresowi napięcia wejściowego 100–240 V AC, nadaje się do uniwersalnego zastosowania w Europie i innych regionach. Dane techniczne Napięcie wejściowe: 100-240 V AC, 50/60 Hz Napięcie wyjściowe: 36 V DC (napięcie ładowania 43,2 V) Prąd wyjściowy: 2 A ",
-      "categoryPath": "Ładowarki",
+      "categoryPath": "Zasilacze > Ładowarki",
       "category": "shore_charger",
       "brand": "",
       "priceCzk": 118.14,
@@ -8846,7 +8834,7 @@
       "merchant": "ampul_pl",
       "name": "Gniazdo zasilania 24V, 5A, 5,5x2,1mm, ładowarka akumulatora kwasowo-ołowiowego",
       "description": "Inteligentna ładowarka do akumulatorów kwasowo-ołowiowych 24 V, zaprojektowana do niezawodnego i bezpiecznego ładowania akumulatorów o napięciu końcowym 28,8 V. Nadaje się do wózków elektrycznych, skuterów, zastosowań przemysłowych, systemów zapasowych i innych urządzeń wykorzystujących akumulatory kwasowo-ołowiowe. Ładowarka wykorzystuje automatyczny tryb CC/CV i jest wyposażona w kontrolkę świetlną informującą o stanie ładowania. Dane techniczne Napięcie wejściowe: 100-240 V AC, 50/60 Hz Napię",
-      "categoryPath": "Ładowarki",
+      "categoryPath": "Zasilacze > Ładowarki",
       "category": "shore_charger",
       "brand": "",
       "priceCzk": 170.12,
@@ -8881,7 +8869,7 @@
       "merchant": "ampul_pl",
       "name": "Przetwornica napięcia 110 V DC / 230 V AC, 12 kVA / 9600 W, 19\" 4U, RS485",
       "description": "Przemysłowy konwerter napięcia przeznaczony do konwersji napięcia wejściowego DC na napięcie wyjściowe AC 220 VAC. Urządzenie jest przeznaczone do montażu w szafie rack 19\" 4U i nadaje się do zastosowań, w których dostępne jest zasilanie DC, a do zasilania urządzeń wrażliwych na jakość napięcia wymagany jest czysty sinusoidalny sygnał wyjściowy AC. Produkt jest wyposażony w interfejs komunikacyjny RS485, wyświetlacz LCD oraz funkcje zabezpieczające, co umożliwia jego zastosowanie w instalacjach ",
-      "categoryPath": "Przekształtniki napięcia",
+      "categoryPath": "Zasilacze > Przekształtniki napięcia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 15688.68,
@@ -8910,7 +8898,7 @@
       "merchant": "ampul_pl",
       "name": "Przetwornica napięcia 48V / 230V AC, 10 kVA / 8000 W, 19\" 4U, RS485",
       "description": "Przetwornica napięcia służy do konwersji napięcia stałego 48 V na napięcie przemienne 220–240 V. Wersja 19\" 4U do montażu w szafie rack jest przeznaczona do montażu w rozdzielnicach, szafach technologicznych oraz systemach zasilania awaryjnego i energetycznego, gdzie wymagany jest scentralizowany przetwornik napięcia z interfejsem komunikacyjnym RS485. Dane techniczne Model: IPS-DTA10000-482-4U Typ urządzenia: Przetwornica napięcia DC/AC Napięcie wejściowe: 48 V DC Zakres napięcia wejściowego: 4",
-      "categoryPath": "Przekształtniki napięcia",
+      "categoryPath": "Zasilacze > Przekształtniki napięcia",
       "category": "inverter",
       "brand": "",
       "priceCzk": 13714.88,

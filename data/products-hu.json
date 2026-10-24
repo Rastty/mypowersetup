@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-23T08:39:36.303Z",
+  "generatedAt": "2026-10-24T11:08:55.980Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12584,
+      "parsedProducts": 12581,
       "relevantProducts": 156
     },
     "ampul_hu": {
@@ -2732,7 +2732,7 @@
     {
       "id": "padabo_hu:19287_21292",
       "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
       "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
       "category": "inverter",
@@ -3941,6 +3941,39 @@
       }
     },
     {
+      "id": "padabo_hu:106296_33731",
+      "merchant": "padabo_hu",
+      "name": "Renogy 12 V-os feszültségátalakító teljesítmény 2000 W",
+      "description": "Nagy teljesítményű feszültségegyenirányító a készülékek széles skálájához A Renogy feszültségátalakító fejlett tiszta szinuszhullámú technológiával rendelkezik, hogy maximalizálja a rendszer hatékonyságát. Az inverter beállítása olyan egyszerű, hogy még egy teljes analfabéta is meg tudja csinálni. A tiszta szinuszos kimenet folyamatos és stabil áramellátást biztosít, amely helyettesíti a közüzemi áramellátást. Az inverter sokoldalú és kompatibilis az elektromos készülékek széles skálájával, bele",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Renogy",
+      "priceCzk": 116840,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/renogy-12-v-os-feszultsegatalakito_z106296/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-12-v-os-feszultsegatalakito_z106296%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": 1,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_hu:108760",
       "merchant": "padabo_hu",
       "name": "Mestic MAB-170 AGM vontatóakkumulátor",
@@ -4021,35 +4054,6 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 500,
-        "currentA": 0.6,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:108740_33863",
-      "merchant": "padabo_hu",
-      "name": "Carbest PowerWave szinuszos feszültségátalakító, 12/230 V teljesítmény 3000 W",
-      "description": "A legújabb generációs szinuszos kimenetű átalakító hálózati tápellátás-prioritás kapcsolóval A Carbest PowerWave egy szinuszos kimenettel rendelkező, legújabb generációs hálózati tápellátás-prioritáskapcsolóval ellátott áramátalakító. A beépített 230 V-os hálózati tápellátás-prioritás kapcsoló leállítja a működését, amint a lakóautót vagy lakókocsit 230 V-os hálózati tápellátáshoz csatlakoztatják (például egy kempingben). Az inverter működése a külső tápellátásról való leválasztás után újraindul",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 322915,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/195963_102.jpg?1783252526_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 3000,
         "currentA": 0.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
@@ -4935,7 +4939,7 @@
       "merchant": "ampul_hu",
       "name": "Akkumulátortöltő 12V-tól 29,2V-ig, 20A, 584W, IP65, vékony",
       "description": "Töltő 24V-os LiFePO4 és LiMn2O4 akkumulátorokhoz 12V/24V DC forrásról.",
-      "categoryPath": "Töltők",
+      "categoryPath": "Áramforrás > Töltők",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 168.35,
@@ -4970,7 +4974,7 @@
       "merchant": "ampul_hu",
       "name": "Akkumulátortöltő 12V-tól 43,8V-ig, 13A, 569W, IP65, vékony",
       "description": "Töltő 36V-os LiFePO4 és LiMn2O4 akkumulátorokhoz 12V/24V DC forrásról.",
-      "categoryPath": "Töltők",
+      "categoryPath": "Áramforrás > Töltők",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 168.35,
@@ -5005,7 +5009,7 @@
       "merchant": "ampul_hu",
       "name": "Akkumulátortöltő 12V/24V-tól 58.4V-ig, 10A, 584W, IP65, vékony",
       "description": "Töltő 48V-os LiFePO4 és LiMn2O4 akkumulátorokhoz 12V/24V DC forrásról.",
-      "categoryPath": "Töltők",
+      "categoryPath": "Áramforrás > Töltők",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 168.35,
@@ -5041,7 +5045,7 @@
       "merchant": "ampul_hu",
       "name": "Feszültség átalakító DC-ről 230V AC-ra, 50Hz, 2000W - 12 V DC",
       "description": "Inverter",
-      "categoryPath": "Feszültség átalakítók",
+      "categoryPath": "Áramforrás > Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
       "priceCzk": 360.66,
@@ -5074,7 +5078,7 @@
       "merchant": "ampul_hu",
       "name": "Feszültség átalakító DC-ről 230V AC-ra, 50Hz, 2000W - 24 V DC",
       "description": "Inverter",
-      "categoryPath": "Feszültség átalakítók",
+      "categoryPath": "Áramforrás > Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
       "priceCzk": 360.66,
@@ -5090,10 +5094,10 @@
         "powerW": 2000,
         "currentA": null,
         "chargingVoltagesV": [
-          12
+          24
         ],
         "chargingInputVoltagesV": [
-          12
+          24
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
@@ -5107,7 +5111,7 @@
       "merchant": "ampul_hu",
       "name": "Feszültség átalakító DC-ről 230V AC-ra, 50Hz, 2000W - 36 V DC",
       "description": "Inverter",
-      "categoryPath": "Feszültség átalakítók",
+      "categoryPath": "Áramforrás > Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
       "priceCzk": 360.66,
@@ -5123,10 +5127,10 @@
         "powerW": 2000,
         "currentA": null,
         "chargingVoltagesV": [
-          12
+          36
         ],
         "chargingInputVoltagesV": [
-          12
+          36
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
@@ -5140,7 +5144,7 @@
       "merchant": "ampul_hu",
       "name": "Feszültség átalakító DC-ről 230V AC-ra, 50Hz, 2000W - 48 V DC",
       "description": "Inverter",
-      "categoryPath": "Feszültség átalakítók",
+      "categoryPath": "Áramforrás > Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
       "priceCzk": 360.66,
@@ -5156,10 +5160,10 @@
         "powerW": 2000,
         "currentA": null,
         "chargingVoltagesV": [
-          12
+          48
         ],
         "chargingInputVoltagesV": [
-          12
+          48
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
@@ -5173,7 +5177,7 @@
       "merchant": "ampul_hu",
       "name": "Feszültség átalakító DC-ről 230V AC-ra, 50Hz, 2000W - 60 V DC",
       "description": "Inverter",
-      "categoryPath": "Feszültség átalakítók",
+      "categoryPath": "Áramforrás > Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
       "priceCzk": 360.66,
@@ -5188,12 +5192,8 @@
         "capacityWh": null,
         "powerW": 2000,
         "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
@@ -5206,7 +5206,7 @@
       "merchant": "ampul_hu",
       "name": "Feszültség átalakító DC-ről 230V AC-ra, 50Hz, 2000W - 72 V DC",
       "description": "Inverter",
-      "categoryPath": "Feszültség átalakítók",
+      "categoryPath": "Áramforrás > Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
       "priceCzk": 360.66,
@@ -5221,12 +5221,8 @@
         "capacityWh": null,
         "powerW": 2000,
         "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
@@ -5239,7 +5235,7 @@
       "merchant": "ampul_hu",
       "name": "Feszültség átalakító DC-ről 230V AC-ra, 50Hz, 2000W - 84 V DC",
       "description": "Inverter",
-      "categoryPath": "Feszültség átalakítók",
+      "categoryPath": "Áramforrás > Feszültség átalakítók",
       "category": "inverter",
       "brand": "",
       "priceCzk": 360.66,
@@ -5254,12 +5250,8 @@
         "capacityWh": null,
         "powerW": 2000,
         "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
@@ -5272,7 +5264,7 @@
       "merchant": "ampul_hu",
       "name": "DC/DC LiFePO4 akkumulátortöltő 14,6 V, 30 A, 400 W, IP68",
       "description": "A WG-12C400L professzionális DC-DC töltő ideális választás lítium-vas-foszfát (LiFePO4) akkumulátorok biztonságos és hatékony töltéséhez. A fejlett PWM technológiának, a nagy hatékonyságnak és a robusztus alumínium háznak köszönhetően széles körű alkalmazásokhoz alkalmas, beleértve a járművekbe, lakókocsikba, hajókba vagy napelemes rendszerekbe való telepítést. A védelmi funkciók és az egyszerű telepítés megbízható partnerré teszi minden igényes felhasználó számára. Műszaki adatok Bemeneti feszü",
-      "categoryPath": "Töltők",
+      "categoryPath": "Áramforrás > Töltők",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 292.03,
@@ -5309,7 +5301,7 @@
       "merchant": "ampul_hu",
       "name": "Tápegység aljzat 36V, 2A, 5,5x2,1mm, ólomakkumulátor töltő",
       "description": "Intelligens hálózati töltő 36 V-os ólomakkumulátorokhoz, 43,2 V végső töltési feszültséggel. Automatikus CC/CV töltési móddal, LED állapotjelzéssel és teljes körű védelmi funkciókkal rendelkezik. A 100–240 V AC széles bemeneti tartománynak köszönhetően univerzálisan használható Európában és más régiókban. Műszaki adatok Bemeneti feszültség: 100-240V AC, 50/60Hz Kimeneti feszültség: 36 V DC (töltési feszültség 43,2 V) Kimeneti áram: 2 A Maximális teljesítmény: 84W Csatlakozó: XLR 3-tűs (polaritás",
-      "categoryPath": "Töltők",
+      "categoryPath": "Áramforrás > Töltők",
       "category": "shore_charger",
       "brand": "",
       "priceCzk": 27.91,
@@ -5345,7 +5337,7 @@
       "merchant": "ampul_hu",
       "name": "Tápegység aljzat 24V, 5A, 5,5x2,1mm, ólom-savas akkumulátor töltő",
       "description": "Intelligens töltő 24 V-os ólomakkumulátorokhoz, amelyet 28,8 V végfeszültségű akkumulátorcsomagok megbízható és biztonságos töltésére terveztek. Elektromos kisautókhoz, robogókhoz, ipari alkalmazásokhoz, tartalék rendszerekhez és egyéb, ólomakkumulátorokat használó eszközökhöz alkalmas. A töltő automatikus CC/CV módot használ, és fényjelzéssel jelzi a töltési állapotot. Műszaki adatok Bemeneti feszültség: 100-240V AC, 50/60Hz Kimeneti feszültség: 24 V DC (töltési feszültség 28,8 V) Kimeneti áram",
-      "categoryPath": "Töltők",
+      "categoryPath": "Áramforrás > Töltők",
       "category": "shore_charger",
       "brand": "",
       "priceCzk": 40.2,

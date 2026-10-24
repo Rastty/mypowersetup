@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T08:37:36.091Z",
+  "generatedAt": "2026-10-24T11:08:27.606Z",
   "market": "cs-CZ",
   "currency": "CZK",
   "sources": {
@@ -15,7 +15,7 @@
       "merchant": "ampul_cz",
       "name": "Nabíječka baterii z 12V na 29.2V, 20A, 584W, IP65, slim",
       "description": "Nabíječka baterii z 12V na 29.2V, 20A, 584W, IP65, slim je ideální pro bezpečné nabíjení LiFePO4 a LiMn2O4 akumulátorů. Nabízí vysokou účinnost 95,5 %, integrované automatické ochrany proti zkratu či přepětí a elegantní slim provedení.",
-      "categoryPath": "Nabíječky",
+      "categoryPath": "Napájecí zdroje > Nabíječky",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 3920,
@@ -50,7 +50,7 @@
       "merchant": "ampul_cz",
       "name": "Nabíječka baterii z 12V na 43.8V, 13A, 569W, IP65, slim",
       "description": "Nabíječka baterií z 12V na 43.8V 13A 569W slim představuje špičkový DC/DC měnič pro LiFePO4 a LiMn2O4 akumulátory. Vyniká vysokou účinností 94,4 %, robustním hliníkovým tělem s krytím IP65 a komplexní soustavou automatických pojistek.",
-      "categoryPath": "Nabíječky",
+      "categoryPath": "Napájecí zdroje > Nabíječky",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 3920,
@@ -85,7 +85,7 @@
       "merchant": "ampul_cz",
       "name": "Nabíječka baterii z 12V/24V na 58.4V, 10A, 584W, IP65, slim",
       "description": "Nabíječka baterií z 12V/24V na 58.4V 10A 584W slim je profesionální měnič pro 48V LiFePO4 a LiMn2O4 články. Poskytuje vynikající účinnost 94,5 %, certifikaci IP65, integrované tepelné a přepěťové jištění v odolném hliníkovém pouzdře.",
-      "categoryPath": "Nabíječky",
+      "categoryPath": "Napájecí zdroje > Nabíječky",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 3920,
@@ -121,7 +121,7 @@
       "merchant": "ampul_cz",
       "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 12 V DC",
       "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
-      "categoryPath": "Měniče napětí",
+      "categoryPath": "Napájecí zdroje > Měniče napětí",
       "category": "inverter",
       "brand": "",
       "priceCzk": 8398,
@@ -154,7 +154,7 @@
       "merchant": "ampul_cz",
       "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 24 V DC",
       "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
-      "categoryPath": "Měniče napětí",
+      "categoryPath": "Napájecí zdroje > Měniče napětí",
       "category": "inverter",
       "brand": "",
       "priceCzk": 8398,
@@ -170,10 +170,10 @@
         "powerW": 2000,
         "currentA": null,
         "chargingVoltagesV": [
-          12
+          24
         ],
         "chargingInputVoltagesV": [
-          12
+          24
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
@@ -187,7 +187,7 @@
       "merchant": "ampul_cz",
       "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 36 V DC",
       "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
-      "categoryPath": "Měniče napětí",
+      "categoryPath": "Napájecí zdroje > Měniče napětí",
       "category": "inverter",
       "brand": "",
       "priceCzk": 8398,
@@ -203,10 +203,10 @@
         "powerW": 2000,
         "currentA": null,
         "chargingVoltagesV": [
-          12
+          36
         ],
         "chargingInputVoltagesV": [
-          12
+          36
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
@@ -220,7 +220,7 @@
       "merchant": "ampul_cz",
       "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 48 V DC",
       "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
-      "categoryPath": "Měniče napětí",
+      "categoryPath": "Napájecí zdroje > Měniče napětí",
       "category": "inverter",
       "brand": "",
       "priceCzk": 8398,
@@ -236,10 +236,10 @@
         "powerW": 2000,
         "currentA": null,
         "chargingVoltagesV": [
-          12
+          48
         ],
         "chargingInputVoltagesV": [
-          12
+          48
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
@@ -253,7 +253,7 @@
       "merchant": "ampul_cz",
       "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 60 V DC",
       "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
-      "categoryPath": "Měniče napětí",
+      "categoryPath": "Napájecí zdroje > Měniče napětí",
       "category": "inverter",
       "brand": "",
       "priceCzk": 8398,
@@ -268,12 +268,8 @@
         "capacityWh": null,
         "powerW": 2000,
         "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
@@ -286,7 +282,7 @@
       "merchant": "ampul_cz",
       "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 72 V DC",
       "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
-      "categoryPath": "Měniče napětí",
+      "categoryPath": "Napájecí zdroje > Měniče napětí",
       "category": "inverter",
       "brand": "",
       "priceCzk": 8398,
@@ -301,12 +297,8 @@
         "capacityWh": null,
         "powerW": 2000,
         "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
@@ -319,7 +311,7 @@
       "merchant": "ampul_cz",
       "name": "Měnič napětí z DC na 230V AC, 50Hz, 2000W - 84 V DC",
       "description": "Výkonný měnič napětí z DC na 230V AC s čistým sinusem a maximálním výkonem 2000W. Zaručuje vysokou účinnost nad 95 % a nabízí integrovanou ochranu proti přetížení, zkratu i přehřátí. Dostupný ve více variantách vstupního napětí.",
-      "categoryPath": "Měniče napětí",
+      "categoryPath": "Napájecí zdroje > Měniče napětí",
       "category": "inverter",
       "brand": "",
       "priceCzk": 8398,
@@ -334,12 +326,8 @@
         "capacityWh": null,
         "powerW": 2000,
         "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
@@ -352,7 +340,7 @@
       "merchant": "ampul_cz",
       "name": "DC/DC nabíječka LiFePO4 baterií 14.6V, 30A, 400W, IP68",
       "description": "Profesionální DC/DC nabíječka LiFePO4 baterií 14.6V 30A s výkonem 400W a vstupem 10-36V DC. Díky pokročilé PWM technologii, hliníkovému pouzdru a krytí IP68 je perfektní pro solární systémy, karavany a námořní instalace.",
-      "categoryPath": "Nabíječky",
+      "categoryPath": "Napájecí zdroje > Nabíječky",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 6800,
@@ -389,7 +377,7 @@
       "merchant": "ampul_cz",
       "name": "Napájecí zdroj zásuvkový 36V, 2A, 5.5x2.1mm, nabíječka olověných baterií",
       "description": "Napájecí zdroj zásuvkový 36V, 2A, 5.5x2.1mm funguje jako inteligentní nabíječka olověných baterií. Využívá automatický CC/CV režim a LED indikaci. Vstupní napětí 100-240 V, výstupní 42 V DC, maximální výkon 84 W, krytí IP22.",
-      "categoryPath": "Nabíječky",
+      "categoryPath": "Napájecí zdroje > Nabíječky",
       "category": "shore_charger",
       "brand": "",
       "priceCzk": 650,
@@ -424,7 +412,7 @@
       "merchant": "ampul_cz",
       "name": "Napájecí zdroj zásuvkový 24V, 5A, 5.5x2.1mm, nabíječka olověných baterií",
       "description": "Spolehlivý napájecí zdroj zásuvkový 24V, 5A, 5.5x2.1mm je inteligentní nabíječka olověných baterií s automatickým režimem CC/CV. Nabízí maximální výkon 150 W a zajišťuje stabilní nabíjení pro vozíky, skútry i záložní systémy.",
-      "categoryPath": "Nabíječky",
+      "categoryPath": "Napájecí zdroje > Nabíječky",
       "category": "shore_charger",
       "brand": "",
       "priceCzk": 936,
@@ -459,7 +447,7 @@
       "merchant": "ampul_cz",
       "name": "Měnič napětí 110V DC / 230V AC, 12 kVA / 9600 W, 19\" 4U, RS485",
       "description": "Měnič napětí 110V DC / 230V AC, 12 kVA, 19\" 4U je určen pro náročné průmyslové instalace. Nabízí čistý sinus, RS485 komunikaci, přehledný LCD displej a ochranné funkce. Výkon 9600 W a frekvence 50 Hz zaručí stabilní chod vašich systémů.",
-      "categoryPath": "Měniče napětí",
+      "categoryPath": "Napájecí zdroje > Měniče napětí",
       "category": "inverter",
       "brand": "",
       "priceCzk": 86320,
@@ -488,7 +476,7 @@
       "merchant": "ampul_cz",
       "name": "Měnič napětí 48V / 230V AC, 10 kVA / 8000 W, 19\" 4U, RS485",
       "description": "Výkonný měnič napětí 48V/230V AC v rackovém provedení 19\" 4U je určen pro rozvaděče a záložní systémy. Nabízí trvalý výkon 8000 W, čistou sinusovku, komunikaci RS485, vstup 48 V DC a krytí IP20. Spolehlivé řešení pro náročné provozy.",
-      "categoryPath": "Měniče napětí",
+      "categoryPath": "Napájecí zdroje > Měniče napětí",
       "category": "inverter",
       "brand": "",
       "priceCzk": 75460,
