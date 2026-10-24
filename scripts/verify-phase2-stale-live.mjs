@@ -14,7 +14,7 @@ function requireExactPage(response, origin, path) {
   if (!response.ok) throw new Error("PUBLIC_HTTP_" + response.status);
   const expected = new URL(path, origin);
   const actual = new URL(response.url);
-  if (actual.origin !== expected.origin || actual.pathname !== expected.pathname || actual.search || actual.hash)
+  if (actual.origin !== expected.origin || actual.pathname !== expected.pathname || actual.search !== expected.search || actual.hash)
     throw new Error("PUBLIC_ROUTE_DRIFT");
 }
 
@@ -69,7 +69,7 @@ export async function verifyLive({ fetchImpl = fetch, origin = DEFAULT_ORIGIN } 
         redirect: "follow", cache: "no-store", signal: AbortSignal.timeout(20000),
         headers: { accept: "text/javascript,application/javascript,*/*", "user-agent": "MyPowerSetup-phase2-live-proof/1.0" },
       });
-      requireExactPage(jsResponse, base, SCRIPT_PATH);
+      requireExactPage(jsResponse, base, script);
       servedJs = await jsResponse.text();
       checkJavascript(servedJs);
     }
