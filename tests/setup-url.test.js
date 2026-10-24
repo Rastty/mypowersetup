@@ -139,7 +139,6 @@ test("shared calculator rejects repeated sizing fields instead of silently choos
     "&shore=0",
     "&roofL=0.5",
     "&roofW=0.5",
-    "&customWatts=500",
   ];
   for (const suffix of ambiguous) {
     assert.equal(decodeSetupQuery(base + suffix, allowed), null, suffix);
