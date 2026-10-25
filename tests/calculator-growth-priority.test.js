@@ -103,8 +103,8 @@ test("an observed route with no step denominator has unknown rates, not fake 0% 
   assert.equal(row.continuationRate, null);
   assert.equal(row.productClickRate, null);
   assert.equal(row.viewToClickRate, null);
-  assert.match(renderCalculatorGrowthMarkdown([row]), /n\\/a/);
-  assert.doesNotMatch(renderCalculatorGrowthMarkdown([row]), /0\\.0%/);
+  assert.ok(renderCalculatorGrowthMarkdown([row]).includes("n/a"));
+  assert.ok(!renderCalculatorGrowthMarkdown([row]).includes("0.0%"));
 });
 
 test("mismatched GA4 locale cannot contaminate another market's calculator", () => {
