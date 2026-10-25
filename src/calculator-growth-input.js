@@ -159,7 +159,8 @@ export function normalizeGa4CalculatorEventRows(rows = []) {
       event_name: clean(eventName),
       event_count: normalizedEventCount,
       ...(normalizedTotalUsers === null ? {} : { total_users: normalizedTotalUsers }),
-      // A GA4 eventCount is the action count. totalUsers is distinct users, never a substitute.\n      funnel_count: normalizedEventCount,
+      // A GA4 eventCount is the action count. totalUsers is distinct users, never a substitute.
+      funnel_count: normalizedEventCount,
       calculator_landing_path: clean(path),
       calculator_landing_locale: clean(locale),
       calculator_landing_intent: clean(intent),
