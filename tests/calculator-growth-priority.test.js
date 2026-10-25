@@ -51,6 +51,28 @@ test("low-volume rows stay observational instead of creating fake optimization w
   assert.match(row.rationale, /Collect more GSC\/GA evidence/);
 });
 
+test("missing GA4 route evidence is unavailable, not a measured zero-percent funnel", () => {
+  const path = "/kalkulacky/solarni-panely/";
+  const [unknown] = buildCalculatorGrowthPriorities({
+    gscRows: [{ page: "https://mypowersetup.com" + path, query: "solarni panely", clicks: 1, impressions: 100, position: 8 }],
+    funnelRows: [],
+  });
+  assert.equal(unknown.funnelEvidenceStatus, "unavailable");
+  assert.equal(unknown.startRate, null);
+  assert.equal(unknown.productClickRate, null);
+  assert.equal(unknown.viewToClickRate, null);
+  const markdown = renderCalculatorGrowthMarkdown([unknown]);
+  assert.match(markdown, /n\/a/);
+  assert.doesNotMatch(markdown, /0\.0%/);
+
+  const [observed] = buildCalculatorGrowthPriorities({
+    funnelRows: [{ path, locale: "cs", intent: "solar-sizing", views: 10, starts: 0, completes: 0, continues: 0, impressions: 0, clicks: 0 }],
+  });
+  assert.equal(observed.funnelEvidenceStatus, "observed");
+  assert.equal(observed.startRate, 0);
+  assert.match(renderCalculatorGrowthMarkdown([observed]), /0\.0%/);
+});
+
 test("growth markdown exposes the evidence table without inventing actions", () => {
   const rows = buildCalculatorGrowthPriorities({
     gscRows: [{ page: "/kalkulacky/dc-dc-nabijecka/", query: "dc dc", clicks: 1, impressions: 100, position: 5 }],
