@@ -73,6 +73,48 @@ test("missing GA4 route evidence is unavailable, not a measured zero-percent fun
   assert.match(renderCalculatorGrowthMarkdown([observed]), /0\.0%/);
 });
 
+test("two GA4 intents on one calculator landing aggregate instead of last-row-wins", () => {
+  const path = "/kalkulacky/dc-dc-nabijecka/";
+  const first = { path, locale: "cs", intent: "battery-upgrade", views: 30, starts: 15, completes: 12, continues: 8, impressions: 10, clicks: 1 };
+  const second = { path, locale: "cs", intent: "alternator-charging", views: 70, starts: 45, completes: 30, continues: 12, impressions: 20, clicks: 4 };
+  for (const funnelRows of [[first, second], [second, first]]) {
+    const [row] = buildCalculatorGrowthPriorities({ funnelRows });
+    assert.equal(row.funnelEvidenceStatus, "observed");
+    assert.equal(row.intent, "multiple");
+    assert.equal(row.views, 100);
+    assert.equal(row.starts, 60);
+    assert.equal(row.completes, 42);
+    assert.equal(row.continues, 20);
+    assert.equal(row.productImpressions, 30);
+    assert.equal(row.affiliateClicks, 5);
+    assert.equal(row.startRate, 0.6);
+    assert.equal(row.completionRate, 0.7);
+    assert.equal(row.viewToClickRate, 0.05);
+  }
+});
+
+test("an observed route with no step denominator has unknown rates, not fake 0% conversion", () => {
+  const [row] = buildCalculatorGrowthPriorities({
+    funnelRows: [{ path: "/kalkulacky/solarni-panely/", locale: "cs", intent: "solar", views: 0, starts: 0, completes: 0, continues: 0, impressions: 0, clicks: 0 }],
+  });
+  assert.equal(row.funnelEvidenceStatus, "observed");
+  assert.equal(row.startRate, null);
+  assert.equal(row.completionRate, null);
+  assert.equal(row.continuationRate, null);
+  assert.equal(row.productClickRate, null);
+  assert.equal(row.viewToClickRate, null);
+  const cells = renderCalculatorGrowthMarkdown([row]).split("\n")[2].split("|").map((value) => value.trim());
+  assert.deepEqual(cells.slice(7, 11), ["n/a", "n/a", "n/a", "n/a"]);
+  // The independent GSC CTR can legitimately be 0.0% with zero impressions.
+});
+
+test("mismatched GA4 locale cannot contaminate another market's calculator", () => {
+  const rows = buildCalculatorGrowthPriorities({
+    funnelRows: [{ path: "/sk/kalkulacky/solarne-panely/", locale: "cs", intent: "solar", views: 1000, starts: 900, clicks: 300 }],
+  });
+  assert.equal(rows.length, 0);
+});
+
 test("growth markdown exposes the evidence table without inventing actions", () => {
   const rows = buildCalculatorGrowthPriorities({
     gscRows: [{ page: "/kalkulacky/dc-dc-nabijecka/", query: "dc dc", clicks: 1, impressions: 100, position: 5 }],
