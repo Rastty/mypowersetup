@@ -98,9 +98,10 @@ export function renderCalculatorFunnelMarkdown(rows = []) {
 }
 
 function rate(numerator, denominator) {
-  return denominator > 0 ? numerator / denominator : 0;
+  // No observed denominator means the rate is unknown, not a measured 0%.
+  return denominator > 0 ? numerator / denominator : null;
 }
 
 function percent(value) {
-  return `${(Number(value || 0) * 100).toFixed(1)}%`;
+  return value === null || value === undefined ? "n/a" : `${(Number(value) * 100).toFixed(1)}%`;
 }
