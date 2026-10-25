@@ -51,3 +51,44 @@ test("calculator funnel renders a GA/GSC-friendly markdown table", () => {
   assert.match(markdown, /\/kalkulacky\/kapacita-baterie\//);
   assert.match(markdown, /20\.0%/);
 });
+
+test("real GA4 Data API rows retain route attribution and count actions, not distinct users", async () => {
+  const { calculatorEventsFromGa4RunReport } = await import("../src/ga4-live-baseline.js");
+  const dimensionHeaders = [
+    "eventName", "customEvent:calculator_landing_path",
+    "customEvent:calculator_landing_locale", "customEvent:calculator_landing_intent", "hostName",
+  ].map((name) => ({ name }));
+  const dimensionValues = (name) => [
+    name, "/kalkulacky/kapacita-baterie/", "cs", "battery-capacity", "mypowersetup.com",
+  ].map((value) => ({ value }));
+  const raw = {
+    dimensionHeaders,
+    metricHeaders: [{ name: "eventCount" }, { name: "totalUsers" }],
+    rows: [
+      { dimensionValues: dimensionValues("calculation_completed"), metricValues: [{ value: "13" }, { value: "8" }] },
+      { dimensionValues: dimensionValues("affiliate_click"), metricValues: [{ value: "4" }, { value: "2" }] },
+    ],
+  };
+  const rows = buildCalculatorFunnelSummary(calculatorEventsFromGa4RunReport(raw));
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].path, "/kalkulacky/kapacita-baterie/");
+  assert.equal(rows[0].completes, 13);
+  assert.equal(rows[0].clicks, 4);
+  assert.equal(rows[0].views, 0);
+  assert.equal(rows[0].clickThroughRate, null); // missing denominator is not measured zero
+  assert.match(renderCalculatorFunnelMarkdown(rows), /n\/a/);
+});
+
+test("snake-case aggregated GA4 event count wins over distinct users", () => {
+  const rows = buildCalculatorFunnelSummary([{
+    event_name: "calculator_started",
+    event_count: 7,
+    total_users: 3,
+    parameters: {
+      calculator_landing_path: "/kalkulacky/solarni-panely/",
+      calculator_landing_locale: "cs",
+      calculator_landing_intent: "solar-sizing",
+    },
+  }]);
+  assert.equal(rows[0].starts, 7);
+});
