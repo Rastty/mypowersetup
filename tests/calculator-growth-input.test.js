@@ -75,6 +75,43 @@ test("uses aggregate GA4 event counts as funnel weights", () => {
   assert.equal(row.productClickRate, 0.25);
 });
 
+test("GA4 eventCount, not distinct totalUsers, is the funnel action weight", () => {
+  const events = normalizeGa4CalculatorEventRows([
+    {
+      eventName: "calculator_landing_view",
+      eventCount: 40,
+      totalUsers: 18,
+      calculatorLandingPath: "/kalkulacky/kapacita-baterie/",
+      calculatorLandingLocale: "cs",
+      calculatorLandingIntent: "battery-capacity",
+    },
+    {
+      eventName: "affiliate_click",
+      eventCount: 13,
+      totalUsers: 8,
+      calculatorLandingPath: "/kalkulacky/kapacita-baterie/",
+      calculatorLandingLocale: "cs",
+      calculatorLandingIntent: "battery-capacity",
+    },
+    {
+      eventName: "calculation_completed",
+      eventCount: 0,
+      totalUsers: 0,
+      calculatorLandingPath: "/kalkulacky/kapacita-baterie/",
+      calculatorLandingLocale: "cs",
+      calculatorLandingIntent: "battery-capacity",
+    },
+  ]);
+  assert.equal(events[1].event_count, 13);
+  assert.equal(events[1].total_users, 8);
+  assert.equal(events[1].funnel_count, 13);
+  const [funnel] = buildCalculatorFunnelSummary(events);
+  assert.equal(funnel.views, 40);
+  assert.equal(funnel.clicks, 13);
+  assert.equal(funnel.completes, 0);
+  assert.equal(funnel.clickThroughRate, 13 / 40);
+});
+
 test("preserves explicit zero GA4 counts", () => {
   const [event] = normalizeGa4CalculatorEventRows([{
     "Event name": "affiliate_click",
