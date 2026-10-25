@@ -103,8 +103,9 @@ test("an observed route with no step denominator has unknown rates, not fake 0% 
   assert.equal(row.continuationRate, null);
   assert.equal(row.productClickRate, null);
   assert.equal(row.viewToClickRate, null);
-  assert.ok(renderCalculatorGrowthMarkdown([row]).includes("n/a"));
-  assert.ok(!renderCalculatorGrowthMarkdown([row]).includes("0.0%"));
+  const cells = renderCalculatorGrowthMarkdown([row]).split("\n")[2].split("|").map((value) => value.trim());
+  assert.deepEqual(cells.slice(7, 11), ["n/a", "n/a", "n/a", "n/a"]);
+  // The independent GSC CTR can legitimately be 0.0% with zero impressions.
 });
 
 test("mismatched GA4 locale cannot contaminate another market's calculator", () => {
