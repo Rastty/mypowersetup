@@ -13,6 +13,11 @@ function ratio(numerator, denominator) {
   return denominator > 0 ? numerator / denominator : 0;
 }
 
+// Funnel rates need an observed denominator; an absent step is not a measured 0%.
+function funnelRatio(numerator, denominator) {
+  return denominator > 0 ? numerator / denominator : null;
+}
+
 function pagePath(value) {
   const text = clean(value);
   if (!text) return "";
@@ -149,7 +154,25 @@ export function buildCalculatorGrowthPriorities({ gscRows = [], gscPageTotals = 
   const funnel = new Map();
   for (const row of Array.isArray(funnelRows) ? funnelRows : []) {
     const path = calculatorPath(row?.path);
-    if (path) funnel.set(path, row);
+    if (!path) continue;
+    const locale = calculatorLocaleForPath(path);
+    const reportedLocale = clean(row?.locale).toLowerCase().split("-")[0];
+    if (reportedLocale && reportedLocale !== locale) continue;
+    // The upstream GA4 summary is grouped by locale + intent + path.
+    // Multiple intents can share one landing; last-row-wins loses real actions.
+    const previous = funnel.get(path);
+    const intent = clean(row?.intent);
+    funnel.set(path, {
+      path,
+      locale,
+      intent: previous ? (previous.intent === intent ? intent : "multiple") : intent,
+      views: finite(previous?.views) + finite(row?.views),
+      starts: finite(previous?.starts) + finite(row?.starts),
+      completes: finite(previous?.completes) + finite(row?.completes),
+      continues: finite(previous?.continues) + finite(row?.continues),
+      impressions: finite(previous?.impressions) + finite(row?.impressions),
+      clicks: finite(previous?.clicks) + finite(row?.clicks),
+    });
   }
   const indexing = new Map();
   for (const row of Array.isArray(indexingRows) ? indexingRows : []) {
@@ -188,11 +211,11 @@ export function buildCalculatorGrowthPriorities({ gscRows = [], gscPageTotals = 
       continues,
       productImpressions,
       affiliateClicks,
-      startRate: hasFunnelEvidence ? ratio(starts, views) : null,
-      completionRate: hasFunnelEvidence ? ratio(completes, starts) : null,
-      continuationRate: hasFunnelEvidence ? ratio(continues, completes) : null,
-      productClickRate: hasFunnelEvidence ? ratio(affiliateClicks, productImpressions) : null,
-      viewToClickRate: hasFunnelEvidence ? ratio(affiliateClicks, views) : null,
+      startRate: hasFunnelEvidence ? funnelRatio(starts, views) : null,
+      completionRate: hasFunnelEvidence ? funnelRatio(completes, starts) : null,
+      continuationRate: hasFunnelEvidence ? funnelRatio(continues, completes) : null,
+      productClickRate: hasFunnelEvidence ? funnelRatio(affiliateClicks, productImpressions) : null,
+      viewToClickRate: hasFunnelEvidence ? funnelRatio(affiliateClicks, views) : null,
     };
     const opportunities = detectOpportunities(evidence);
     const top = opportunities[0] || null;
