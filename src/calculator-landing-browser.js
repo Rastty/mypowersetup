@@ -152,8 +152,10 @@ if (root) {
       renderer(result);
       renderWarnings(result.warnings);
       resultPanel.hidden = false;
-      resultPanel.focus({ preventScroll: true });
+      // The initial SEO preview is not a user action: keep keyboard/screen-reader
+      // focus on the form until a visitor explicitly requests a calculation.
       if (userInitiated) {
+        resultPanel.focus({ preventScroll: true });
         track("calculation_completed", { source: "seo_landing" });
         root.dispatchEvent(new CustomEvent("mypowersetup:calculator-result", {
           bubbles: true,
