@@ -161,6 +161,7 @@ export function buildCalculatorGrowthPriorities({ gscRows = [], gscPageTotals = 
   const paths = new Set([...gsc.keys(), ...funnel.keys(), ...indexing.keys()].filter(Boolean));
   const rows = [...paths].map((path) => {
     const search = gsc.get(path) || { path, clicks: 0, impressions: 0, ctr: 0, position: 0, topQuery: null, queries: [] };
+    const hasFunnelEvidence = funnel.has(path);
     const flow = funnel.get(path) || {};
     const views = finite(flow.views);
     const starts = finite(flow.starts);
@@ -173,6 +174,8 @@ export function buildCalculatorGrowthPriorities({ gscRows = [], gscPageTotals = 
       locale: clean(flow.locale).toLowerCase() || calculatorLocaleForPath(path),
       intent: clean(flow.intent),
       indexed: indexing.has(path) ? indexing.get(path) : null,
+      // No GA4 route row is missing evidence, not an observed zero-conversion funnel.
+      funnelEvidenceStatus: hasFunnelEvidence ? "observed" : "unavailable",
       searchClicks: search.clicks,
       searchImpressions: search.impressions,
       searchCtr: search.ctr,
@@ -185,11 +188,11 @@ export function buildCalculatorGrowthPriorities({ gscRows = [], gscPageTotals = 
       continues,
       productImpressions,
       affiliateClicks,
-      startRate: ratio(starts, views),
-      completionRate: ratio(completes, starts),
-      continuationRate: ratio(continues, completes),
-      productClickRate: ratio(affiliateClicks, productImpressions),
-      viewToClickRate: ratio(affiliateClicks, views),
+      startRate: hasFunnelEvidence ? ratio(starts, views) : null,
+      completionRate: hasFunnelEvidence ? ratio(completes, starts) : null,
+      continuationRate: hasFunnelEvidence ? ratio(continues, completes) : null,
+      productClickRate: hasFunnelEvidence ? ratio(affiliateClicks, productImpressions) : null,
+      viewToClickRate: hasFunnelEvidence ? ratio(affiliateClicks, views) : null,
     };
     const opportunities = detectOpportunities(evidence);
     const top = opportunities[0] || null;
@@ -243,10 +246,10 @@ export function renderCalculatorGrowthMarkdown(rows = [], limit = 10) {
   const selected = rows.slice(0, Math.max(0, limit));
   const header = "| Priority | Landing | GSC impressions | CTR | Position | Views | Start | Complete | Continue | Product→click | Action |";
   const divider = "| ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |";
-  const body = selected.map((row, index) => `| ${index + 1} | ${row.path} | ${row.searchImpressions} | ${percent(row.searchCtr)} | ${row.averagePosition ? row.averagePosition.toFixed(1) : "—"} | ${row.views} | ${percent(row.startRate)} | ${percent(row.completionRate)} | ${percent(row.continuationRate)} | ${percent(row.productClickRate)} | ${row.primaryOpportunity || "observe"} |`);
+  const body = selected.map((row, index) => `| ${index + 1} | ${row.path} | ${row.searchImpressions} | ${percent(row.searchCtr)} | ${row.averagePosition ? row.averagePosition.toFixed(1) : "—"} | ${row.funnelEvidenceStatus === "unavailable" ? "n/a" : row.views} | ${percent(row.startRate)} | ${percent(row.completionRate)} | ${percent(row.continuationRate)} | ${percent(row.productClickRate)} | ${row.primaryOpportunity || "observe"} |`);
   return [header, divider, ...body].join("\n");
 }
 
 function percent(value) {
-  return `${(finite(value) * 100).toFixed(1)}%`;
+  return value === null || value === undefined ? "n/a" : `${(finite(value) * 100).toFixed(1)}%`;
 }
