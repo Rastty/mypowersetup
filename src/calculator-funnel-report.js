@@ -27,14 +27,19 @@ function language(value) {
 }
 
 function eventWeight(event, params) {
+  // GA4 eventCount counts actions; totalUsers is only a fallback.
   const value = event?.funnel_count
-    ?? event?.total_users
     ?? event?.event_count
+    ?? event?.eventCount
     ?? event?.count
+    ?? event?.total_users
+    ?? event?.totalUsers
     ?? params?.funnel_count
-    ?? params?.total_users
     ?? params?.event_count
-    ?? params?.count;
+    ?? params?.eventCount
+    ?? params?.count
+    ?? params?.total_users
+    ?? params?.totalUsers;
   if (value === undefined || value === null || value === "") return 1;
   const number = Number(value);
   return Number.isFinite(number) && number >= 0 ? number : 1;
@@ -56,13 +61,14 @@ export function buildCalculatorFunnelSummary(events = []) {
   const groups = new Map();
 
   for (const event of events) {
-    const eventName = clean(event?.event_name || event?.name);
+    const eventName = clean(event?.event_name || event?.eventName || event?.name);
     const step = STEP_BY_EVENT[eventName];
     if (!step) continue;
     const params = eventParameters(event);
-    const path = clean(params.calculator_landing_path || params.landing_path);
-    const locale = language(params.calculator_landing_locale || params.landing_locale);
-    const intent = clean(params.calculator_landing_intent || params.landing_intent);
+    // Accept both consent-gated browser events and the real GA4 Data API adapter.
+    const path = clean(params.calculator_landing_path || params.calculatorLandingPath || params.landing_path);
+    const locale = language(params.calculator_landing_locale || params.calculatorLandingLocale || params.landing_locale);
+    const intent = clean(params.calculator_landing_intent || params.calculatorLandingIntent || params.landing_intent);
     if (!isCalculatorLandingPath(path, locale) || !intent) continue;
 
     const key = `${locale}\t${intent}\t${path}`;
