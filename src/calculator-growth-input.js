@@ -129,32 +129,36 @@ export function parseDelimitedText(text, delimiter = detectDelimiter(text)) {
 
 export function normalizeGscExportRows(rows = []) {
   return (Array.isArray(rows) ? rows : []).map((row) => {
-    if (Array.isArray(row?.keys)) return row;
+    if (Array.isArray(row?.keys)) return {
+      ...row,
+      clicks: strictNonNegativeCount(row.clicks, "GSC", "clicks"),
+      impressions: strictNonNegativeCount(row.impressions, "GSC", "impressions"),
+    };
     const page = aliasLookup(row, GSC_ALIASES.page);
     const query = aliasLookup(row, GSC_ALIASES.query);
     const ctr = aliasLookup(row, GSC_ALIASES.ctr);
     return {
       ...(page ? { page: clean(page) } : {}),
       ...(query ? { query: clean(query) } : {}),
-      clicks: parseLocalizedNumber(aliasLookup(row, GSC_ALIASES.clicks)),
-      impressions: parseLocalizedNumber(aliasLookup(row, GSC_ALIASES.impressions)),
+      clicks: strictNonNegativeCount(aliasLookup(row, GSC_ALIASES.clicks), "GSC", "clicks"),
+      impressions: strictNonNegativeCount(aliasLookup(row, GSC_ALIASES.impressions), "GSC", "impressions"),
       ctr: parseLocalizedNumber(ctr, { percent: clean(ctr).includes("%") }),
       position: parseLocalizedNumber(aliasLookup(row, GSC_ALIASES.position)),
     };
   }).filter((row) => row.page || row.query || row.keys);
 }
 
-function strictGa4Count(value, field) {
+function strictNonNegativeCount(value, source, field) {
   if (typeof value === "number") {
     if (Number.isSafeInteger(value) && value >= 0) return value;
-    throw new Error(`GA4_${field.toUpperCase()}_INVALID`);
+    throw new Error(`${source}_${field.toUpperCase()}_INVALID`);
   }
   const text = clean(value);
   // Allow whole numbers and localized thousands grouping (1,234 / 1.234 /
   // 1 234), but never decimals, negatives, units or an absent value.
   const valid = /^\d+$/.test(text) || /^\d{1,3}(?:[.,\s\u00a0\u202f]\d{3})+$/.test(text);
   const count = valid ? Number(text.replace(/[.,\s\u00a0\u202f]/g, "")) : NaN;
-  if (!Number.isSafeInteger(count) || count < 0) throw new Error(`GA4_${field.toUpperCase()}_INVALID`);
+  if (!Number.isSafeInteger(count) || count < 0) throw new Error(`${source}_${field.toUpperCase()}_INVALID`);
   return count;
 }
 
@@ -169,8 +173,8 @@ export function normalizeGa4CalculatorEventRows(rows = []) {
     const intent = aliasLookup(row, GA_ALIASES.calculator_landing_intent);
     // Aggregate GA4 exports are not individual raw events. Missing or corrupt
     // counts are UNKNOWN, never one synthetic affiliate click or a fake zero.
-    const normalizedEventCount = strictGa4Count(eventCount, "event_count");
-    const normalizedTotalUsers = totalUsers === undefined ? null : strictGa4Count(totalUsers, "total_users");
+    const normalizedEventCount = strictNonNegativeCount(eventCount, "GA4", "event_count");
+    const normalizedTotalUsers = totalUsers === undefined ? null : strictNonNegativeCount(totalUsers, "GA4", "total_users");
     return {
       event_name: clean(eventName),
       event_count: normalizedEventCount,
