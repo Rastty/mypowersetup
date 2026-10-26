@@ -152,8 +152,8 @@ function strictGa4Count(value, field) {
   const text = clean(value);
   // Allow whole numbers and localized thousands grouping (1,234 / 1.234 /
   // 1 234), but never decimals, negatives, units or an absent value.
-  const valid = /^\\d+$/.test(text) || /^\\d{1,3}(?:[.,\\s\\u00a0\\u202f]\\d{3})+$/.test(text);
-  const count = valid ? Number(text.replace(/[.,\\s\\u00a0\\u202f]/g, "")) : NaN;
+  const valid = /^\d+$/.test(text) || /^\d{1,3}(?:[.,\s\u00a0\u202f]\d{3})+$/.test(text);
+  const count = valid ? Number(text.replace(/[.,\s\u00a0\u202f]/g, "")) : NaN;
   if (!Number.isSafeInteger(count) || count < 0) throw new Error(`GA4_${field.toUpperCase()}_INVALID`);
   return count;
 }
