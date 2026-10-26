@@ -117,3 +117,25 @@ test("normalizes Czech URL inspection status", () => {
   assert.equal(rows[0].indexed, false);
   assert.equal(rows[1].indexed, true);
 });
+
+
+test("GA4 event counts, not unique users, drive affiliate click and impression denominators", () => {
+  const base = {
+    "Calculator landing path": "/kalkulacky/kapacita-baterie/",
+    "Calculator landing locale": "cs",
+    "Calculator landing intent": "battery-capacity",
+  };
+  const events = normalizeGa4CalculatorEventRows([
+    { ...base, "Event name": "product_choice_impression", "Event count": "12", "Total users": "4" },
+    { ...base, "Event name": "affiliate_click", "Event count": "5", "Total users": "2" },
+  ]);
+  assert.equal(events[0].funnel_count, 4);
+  assert.equal(events[1].funnel_count, 2);
+  assert.equal(events[1].total_users, 2, "unique-user evidence remains available separately");
+  const [summary] = buildCalculatorFunnelSummary(events);
+  assert.equal(summary.impressions, 4);
+  assert.equal(summary.clicks, 2);
+  assert.equal(summary.impressionEvents, 12);
+  assert.equal(summary.clickEvents, 5);
+  assert.equal(summary.productClickRate, 0.5, "existing unique-user rate is unchanged");
+});

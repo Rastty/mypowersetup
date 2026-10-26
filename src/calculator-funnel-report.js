@@ -50,6 +50,23 @@ function eventWeight(event, params) {
   return number;
 }
 
+// Distinguish observed click/impression events from unique-user funnel rates.
+// Missing aggregate event counts must not be inferred from unique users.
+function actionCount(event, params) {
+  const value = event?.event_count ?? event?.eventCount ?? event?.count
+    ?? params?.event_count ?? params?.eventCount ?? params?.count;
+  if (value === undefined || value === null) {
+    if (event?.funnel_count !== undefined || event?.total_users !== undefined ||
+        event?.totalUsers !== undefined || params?.funnel_count !== undefined) return null;
+    return 1; // An individual consented browser event.
+  }
+  const count = Number(value);
+  if (!Number.isSafeInteger(count) || count < 0 || !String(value).trim()) {
+    throw new Error("CALCULATOR_FUNNEL_INVALID_EVENT_COUNT");
+  }
+  return count;
+}
+
 export function calculatorLocaleForPath(path) {
   const value = clean(path);
   for (const [locale, root] of Object.entries(CALCULATOR_ROOT_BY_LOCALE)) {
@@ -78,9 +95,15 @@ export function buildCalculatorFunnelSummary(events = []) {
 
     const key = `${locale}\t${intent}\t${path}`;
     if (!groups.has(key)) {
-      groups.set(key, { locale, intent, path, views: 0, starts: 0, completes: 0, continues: 0, impressions: 0, clicks: 0 });
+      groups.set(key, { locale, intent, path, views: 0, starts: 0, completes: 0, continues: 0, impressions: 0, clicks: 0, impressionEvents: 0, clickEvents: 0 });
     }
-    groups.get(key)[step] += eventWeight(event, params);
+    const group = groups.get(key);
+    group[step] += eventWeight(event, params); // Existing unique-user funnel semantics.
+    if (step === "impressions" || step === "clicks") {
+      const field = step === "impressions" ? "impressionEvents" : "clickEvents";
+      const actions = actionCount(event, params);
+      group[field] = group[field] === null || actions === null ? null : group[field] + actions;
+    }
   }
 
   return [...groups.values()]
@@ -96,9 +119,9 @@ export function buildCalculatorFunnelSummary(events = []) {
 }
 
 export function renderCalculatorFunnelMarkdown(rows = []) {
-  const header = "| Locale | Intent | Landing | Views | Starts | Complete | Continue | Product impressions | Affiliate clicks | View→click |";
-  const divider = "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |";
-  const body = rows.map((row) => `| ${row.locale} | ${row.intent} | ${row.path} | ${row.views} | ${row.starts} | ${row.completes} | ${row.continues} | ${row.impressions} | ${row.clicks} | ${percent(row.clickThroughRate)} |`);
+  const header = "| Locale | Intent | Landing | Views | Starts | Complete | Continue | Product impressions (users) | Affiliate clicks (users) | Click events | View→click |";
+  const divider = "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |";
+  const body = rows.map((row) => `| ${row.locale} | ${row.intent} | ${row.path} | ${row.views} | ${row.starts} | ${row.completes} | ${row.continues} | ${row.impressions} | ${row.clicks} | ${row.clickEvents ?? "n/a"} | ${percent(row.clickThroughRate)} |`);
   return [header, divider, ...body].join("\n");
 }
 
