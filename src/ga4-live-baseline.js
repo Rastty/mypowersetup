@@ -90,18 +90,31 @@ export function flattenGa4RunReport(response = {}) {
   });
 }
 
+function parseGa4Count(value, field, required = true) {
+  // Missing GA4 aggregate data is UNKNOWN, not a measured zero conversion.
+  if (value === null || value === undefined || String(value).trim() === "") {
+    if (!required) return null;
+    throw new Error(`GA4_CALCULATOR_${field}_MISSING`);
+  }
+  const count = Number(value);
+  if (!Number.isSafeInteger(count) || count < 0) {
+    throw new Error(`GA4_CALCULATOR_${field}_INVALID`);
+  }
+  return count;
+}
+
 export function calculatorEventsFromGa4RunReport(response = {}) {
   return flattenGa4RunReport(response)
+    .filter((row) => TARGET_EVENT_NAMES.includes(row.eventName))
     .map((row) => ({
-      eventName: row.eventName || "",
-      eventCount: Number(row.eventCount || 0),
-      totalUsers: Number(row.totalUsers || 0),
+      eventName: row.eventName,
+      eventCount: parseGa4Count(row.eventCount, "EVENT_COUNT"),
+      totalUsers: parseGa4Count(row.totalUsers, "TOTAL_USERS", false),
       calculatorLandingPath: row["customEvent:calculator_landing_path"] || "",
       calculatorLandingLocale: row["customEvent:calculator_landing_locale"] || "",
       calculatorLandingIntent: row["customEvent:calculator_landing_intent"] || "",
       hostName: row.hostName || "",
-    }))
-    .filter((row) => TARGET_EVENT_NAMES.includes(row.eventName));
+    }));
 }
 
 export function ga4CalculatorDimensionFilter(targetHostname = "mypowersetup.com") {
