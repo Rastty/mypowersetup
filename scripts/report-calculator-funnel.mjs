@@ -13,7 +13,7 @@ if (!input) {
   // GA4 report, even if a stale status field says ready.
   const events = Array.isArray(payload) ? payload : payload?.events;
   if (!Array.isArray(events) || (!Array.isArray(payload) && payload.status && payload.status !== "ready")) {
-    console.error(`Calculator funnel evidence unavailable: ${payload?.status || "events_missing"}`);
+    console.error(`Calculator funnel evidence unavailable: ${!Array.isArray(events) ? "events_missing" : payload.status}`);
     process.exitCode = 2;
   } else {
     console.log(renderCalculatorFunnelMarkdown(buildCalculatorFunnelSummary(events)));
