@@ -26,6 +26,8 @@ test("GA4 Total users drives funnel rates when repeat event counts are higher", 
   assert.equal(row.continues, 8);
   assert.equal(row.impressions, 12);
   assert.equal(row.clicks, 3);
+  assert.equal(row.clickEvents, 5, "real affiliate actions remain distinct from unique clickers");
+  assert.equal(row.impressionEvents, 30);
   assert.equal(row.startRate, 0.625);
   assert.equal(row.completionRate, 0.8);
   assert.equal(row.continuationRate, 0.4);
