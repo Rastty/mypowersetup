@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 import { readFile, writeFile } from "node:fs/promises";
 import {
+  assertCompleteGa4Report,
   calculatorEventsFromGa4RunReport,
+  ga4SummaryRowsFromRunReport,
   ga4CalculatorDimensionFilter,
   ga4MetadataDimensionState,
   selectExactGa4WebStream,
@@ -60,7 +62,7 @@ if (!clientPath || !tokenPath) {
           { name: "hostName" },
         ],
       });
-      events = calculatorEventsFromGa4RunReport(detailedReport);
+      events = calculatorEventsFromGa4RunReport(assertCompleteGa4Report(detailedReport));
     }
 
     const payload = {
@@ -80,7 +82,7 @@ if (!clientPath || !tokenPath) {
         hostname: selected.hostname,
       },
       customDimensions,
-      summary: reportRows(summaryReport),
+      summary: ga4SummaryRowsFromRunReport(summaryReport),
       events,
       status: customDimensions.ready ? "ready" : "route_dimensions_missing",
     };
@@ -189,17 +191,6 @@ async function apiJson(url, { accessToken, method = "GET", body } = {}) {
     throw new Error(`GA4_API_FAILED:${response.status}${scopeHint}:${apiMessage}`);
   }
   return payload;
-}
-
-function reportRows(response = {}) {
-  const dimensionHeaders = (response.dimensionHeaders || []).map((item) => item?.name || "");
-  const metricHeaders = (response.metricHeaders || []).map((item) => item?.name || "");
-  return (response.rows || []).map((row) => {
-    const out = {};
-    dimensionHeaders.forEach((name, index) => { out[name] = row?.dimensionValues?.[index]?.value ?? ""; });
-    metricHeaders.forEach((name, index) => { out[name] = Number(row?.metricValues?.[index]?.value ?? 0); });
-    return out;
-  });
 }
 
 function safeError(error) {
