@@ -42,7 +42,12 @@ function eventWeight(event, params) {
     ?? params?.totalUsers;
   if (value === undefined || value === null || value === "") return 1;
   const number = Number(value);
-  return Number.isFinite(number) && number >= 0 ? number : 1;
+  // An explicit GA4 aggregate with a corrupt count is UNKNOWN, never one
+  // invented conversion. Unweighted browser events above still count once.
+  if (!Number.isSafeInteger(number) || number < 0 || !String(value).trim()) {
+    throw new Error("CALCULATOR_FUNNEL_INVALID_EVENT_COUNT");
+  }
+  return number;
 }
 
 export function calculatorLocaleForPath(path) {
