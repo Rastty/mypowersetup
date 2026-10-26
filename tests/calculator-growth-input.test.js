@@ -50,6 +50,30 @@ test("handles semicolon exports, quoted delimiters and decimal comma", () => {
   assert.equal(parseLocalizedNumber("1.234,56"), 1234.56);
 });
 
+test("GSC missing and malformed counts fail closed instead of creating false zero-click SEO opportunities", () => {
+  const base = {
+    "Top pages": "https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/",
+    Clicks: "0",
+    Impressions: "10",
+  };
+  for (const value of [undefined, "", "n/a", "not available", "-1", "1.5", "Infinity", "1,,2"]) {
+    assert.throws(() => normalizeGscExportRows([{ ...base, Clicks: value }]), /GSC_CLICKS_INVALID/);
+    assert.throws(() => normalizeGscExportRows([{ ...base, Impressions: value }]), /GSC_IMPRESSIONS_INVALID/);
+  }
+  assert.deepEqual(normalizeGscExportRows([{ ...base, Clicks: "0", Impressions: "1,234" }])
+    .map(({ clicks, impressions }) => ({ clicks, impressions })), [{ clicks: 0, impressions: 1234 }]);
+});
+
+test("GSC Search Console keyed JSON rows cannot bypass count validation", () => {
+  const keys = ["https://mypowersetup.com/kalkulacky/solarni-panely/", "solarni panel karavan"];
+  assert.throws(() => normalizeGscExportRows([{ keys, impressions: 100 }]), /GSC_CLICKS_INVALID/);
+  assert.throws(() => normalizeGscExportRows([{ keys, clicks: 0, impressions: "unknown" }]), /GSC_IMPRESSIONS_INVALID/);
+  const [valid] = normalizeGscExportRows([{ keys, clicks: "2", impressions: "1 234", position: 8 }]);
+  assert.equal(valid.clicks, 2);
+  assert.equal(valid.impressions, 1234);
+  assert.deepEqual(valid.keys, keys);
+});
+
 test("uses aggregate GA4 event counts as funnel weights", () => {
   const csv = [
     "Event name,Event count,Calculator landing path,Calculator landing locale,Calculator landing intent",
