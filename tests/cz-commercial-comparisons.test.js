@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { eligibleGuideOffer, guideCatalogFresh, selectGuideOffers } from "../src/guide-verified-offers.js";
+import { eligibleGuideOffer, guideCatalogFresh, selectGuideOffers, mountGuideOffers } from "../src/guide-verified-offers.js";
 import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
 
 const now=Date.parse("2026-10-14T11:00:00Z");
@@ -43,6 +43,47 @@ test("affiliate URL, exact approved SKU, nonzero feed price and origin cannot be
    {affiliateUrl:"https://attacker.example/"},
    {affiliateUrl:"https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=f897865f&desturl=https%3A%2F%2Fevil.example%2F"},
  ]) assert.equal(eligibleGuideOffer({...original,...modified},"controller",now),false,JSON.stringify(modified));
+});
+
+
+test("a stale guide feed removes prior tracked offers and restores the honest calculator fallback", () => {
+ const previousDocument = globalThis.document;
+ const element = (tagName = "div") => ({
+   tagName, className: "", children: [], dataset: {}, hidden: false,
+   append(child) { child.parent = this; this.children.push(child); },
+   remove() {
+     if (this.parent) this.parent.children = this.parent.children.filter((item) => item !== this);
+     this.parent = null;
+   },
+   querySelector(selector) {
+     if (selector === ".guide-offer-list") return this.children.find((child) => child.className === "guide-offer-list") || null;
+     if (selector === ".guide-offer-fallback") return this.children.find((child) => child.className === "guide-offer-fallback") || null;
+     return null;
+   },
+ });
+ const root = element();
+ root.dataset.guideCategory = "controller";
+ const fallback = element("p");
+ fallback.className = "guide-offer-fallback";
+ root.append(fallback);
+ globalThis.document = { createElement: element };
+ try {
+   assert.equal(mountGuideOffers(root, payload(), now), 1);
+   assert.equal(root.dataset.liveOffers, "1");
+   assert.equal(fallback.hidden, true);
+   assert.equal(root.children.filter((child) => child.className === "guide-offer-list").length, 1);
+   const stale = { ...payload(), sources: { vselektro: { status: "stale" } } };
+   assert.equal(mountGuideOffers(root, stale, now), 0);
+   assert.equal(root.dataset.liveOffers, "0");
+   assert.equal(fallback.hidden, false);
+   assert.equal(root.querySelector(".guide-offer-list"), null);
+   assert.equal(mountGuideOffers(root, payload(), now), 1);
+   assert.equal(root.children.filter((child) => child.className === "guide-offer-list").length, 1);
+   assert.equal(fallback.hidden, true);
+ } finally {
+   if (previousDocument === undefined) delete globalThis.document;
+   else globalThis.document = previousDocument;
+ }
 });
 
 test("verified SmartSolar 100/50 PV input Isc is exactly 60 A per Victron data sheet",()=>{
