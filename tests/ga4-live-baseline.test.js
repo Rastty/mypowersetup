@@ -140,7 +140,7 @@ test("builds an exact target-host and calculator-event filter", () => {
 
 test("GA4 report completeness rejects silent 10000-row truncation and missing rowCount", () => {
   const report = { rowCount: 2, rows: [{ dimensionValues: [{ value: "affiliate_click" }] }] };
-  assert.throws(() => assertCompleteGa4Report(report), /GA4_REPORT_ROWS_INCOMPLETE:1\\/2/);
+  assert.throws(() => assertCompleteGa4Report(report), /GA4_REPORT_ROWS_INCOMPLETE:1\/2/);
   assert.throws(() => assertCompleteGa4Report({ rows: [] }), /GA4_REPORT_ROW_COUNT_MISSING_OR_INVALID/);
   assert.deepEqual(assertCompleteGa4Report({ rowCount: 0, rows: [] }).rows, []);
 });
