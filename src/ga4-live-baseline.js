@@ -103,6 +103,33 @@ function parseGa4Count(value, field, required = true) {
   return count;
 }
 
+/**
+ * GA4 Data API may return only the first `limit` rows while reporting a larger
+ * `rowCount`. Never publish partial affiliate-click evidence as a complete funnel.
+ */
+export function assertCompleteGa4Report(response = {}) {
+  const expected = Number(response?.rowCount);
+  if (response?.rowCount === undefined || response?.rowCount === null ||
+      !Number.isSafeInteger(expected) || expected < 0) {
+    throw new Error("GA4_REPORT_ROW_COUNT_MISSING_OR_INVALID");
+  }
+  const actual = Array.isArray(response?.rows) ? response.rows.length : 0;
+  if (actual !== expected) {
+    throw new Error(`GA4_REPORT_ROWS_INCOMPLETE:${actual}/${expected}`);
+  }
+  return response;
+}
+
+/** Aggregate event counts must be present; missing values are never zero. */
+export function ga4SummaryRowsFromRunReport(response = {}) {
+  return flattenGa4RunReport(assertCompleteGa4Report(response)).map((row) => ({
+    eventName: row.eventName || "",
+    hostName: row.hostName || "",
+    eventCount: parseGa4Count(row.eventCount, "EVENT_COUNT"),
+    totalUsers: parseGa4Count(row.totalUsers, "TOTAL_USERS", false),
+  }));
+}
+
 export function calculatorEventsFromGa4RunReport(response = {}) {
   return flattenGa4RunReport(response)
     .filter((row) => TARGET_EVENT_NAMES.includes(row.eventName))
