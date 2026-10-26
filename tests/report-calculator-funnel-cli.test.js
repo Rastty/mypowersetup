@@ -32,10 +32,61 @@ test("ready GA4 payload without events is unavailable, not an observed empty fun
     assert.equal(result.status, 2);
     assert.match(result.stderr, /Calculator funnel evidence unavailable: events_missing/);
     assert.equal(result.stdout, "");
-    writeFileSync(input, JSON.stringify({ status: "ready", events: [] }));
+    writeFileSync(input, JSON.stringify({ status: "ready", customDimensions: { ready: true }, events: [] }));
     const observed = spawnSync(process.execPath, [script, input], { encoding: "utf8" });
     assert.equal(observed.status, 0);
     assert.match(observed.stdout, /Affiliate clicks/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("missing GA4 status is unknown even with an explicit empty events array", () => {
+  const dir = mkdtempSync(join(tmpdir(), "mps-ga4-funnel-"));
+  try {
+    const input = join(dir, "missing-status.json");
+    for (const payload of [
+      { events: [] },
+      { events: [], customDimensions: { ready: true } },
+      { status: null, events: [], customDimensions: { ready: true } },
+    ]) {
+      writeFileSync(input, JSON.stringify(payload));
+      const result = spawnSync(process.execPath, [script, input], { encoding: "utf8" });
+      assert.equal(result.status, 2, result.stderr);
+      assert.match(result.stderr, /status_missing/);
+      assert.equal(result.stdout, "");
+    }
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("ready GA4 status without verified route dimensions is not a measured funnel", () => {
+  const dir = mkdtempSync(join(tmpdir(), "mps-ga4-funnel-"));
+  try {
+    const input = join(dir, "dimensions.json");
+    for (const payload of [
+      { status: "ready", events: [] },
+      { status: "ready", events: [], customDimensions: { ready: false } },
+    ]) {
+      writeFileSync(input, JSON.stringify(payload));
+      const result = spawnSync(process.execPath, [script, input], { encoding: "utf8" });
+      assert.equal(result.status, 2, result.stderr);
+      assert.match(result.stderr, /route_dimensions_missing/);
+    }
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("raw event arrays remain supported as intentional offline imports", () => {
+  const dir = mkdtempSync(join(tmpdir(), "mps-ga4-funnel-"));
+  try {
+    const input = join(dir, "raw-events.json");
+    writeFileSync(input, "[]");
+    const result = spawnSync(process.execPath, [script, input], { encoding: "utf8" });
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /Affiliate clicks/);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
