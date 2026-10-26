@@ -2,7 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  assertCompleteGa4Report,
   calculatorEventsFromGa4RunReport,
+  ga4SummaryRowsFromRunReport,
   ga4CalculatorDimensionFilter,
   ga4MetadataDimensionState,
   normalizeWebHostname,
@@ -133,4 +135,32 @@ test("builds an exact target-host and calculator-event filter", () => {
   const [hostExpression, eventExpression] = filter.andGroup.expressions;
   assert.deepEqual(hostExpression.filter.inListFilter.values, ["mypowersetup.com", "www.mypowersetup.com"]);
   assert.ok(eventExpression.filter.inListFilter.values.includes("affiliate_click"));
+});
+
+
+test("GA4 report completeness rejects silent 10000-row truncation and missing rowCount", () => {
+  const report = { rowCount: 2, rows: [{ dimensionValues: [{ value: "affiliate_click" }] }] };
+  assert.throws(() => assertCompleteGa4Report(report), /GA4_REPORT_ROWS_INCOMPLETE:1\\/2/);
+  assert.throws(() => assertCompleteGa4Report({ rows: [] }), /GA4_REPORT_ROW_COUNT_MISSING_OR_INVALID/);
+  assert.deepEqual(assertCompleteGa4Report({ rowCount: 0, rows: [] }).rows, []);
+});
+
+test("GA4 summary keeps genuine zero but never invents missing affiliate-click counts", () => {
+  const report = (count, users = "") => ({
+    rowCount: 1,
+    dimensionHeaders: [{ name: "eventName" }, { name: "hostName" }],
+    metricHeaders: [{ name: "eventCount" }, { name: "totalUsers" }],
+    rows: [{
+      dimensionValues: [{ value: "affiliate_click" }, { value: "mypowersetup.com" }],
+      metricValues: [{ value: count }, { value: users }],
+    }],
+  });
+  assert.deepEqual(ga4SummaryRowsFromRunReport(report("0")), [{
+    eventName: "affiliate_click", hostName: "mypowersetup.com", eventCount: 0, totalUsers: null,
+  }]);
+  assert.deepEqual(ga4SummaryRowsFromRunReport(report("2", "1"))[0].totalUsers, 1);
+  for (const count of ["", "  ", null, undefined]) {
+    assert.throws(() => ga4SummaryRowsFromRunReport(report(count)), /GA4_CALCULATOR_EVENT_COUNT_MISSING/);
+  }
+  assert.throws(() => ga4SummaryRowsFromRunReport(report("-1")), /GA4_CALCULATOR_EVENT_COUNT_INVALID/);
 });
