@@ -30,7 +30,7 @@ test("ready GA4 payload without events is unavailable, not an observed empty fun
     writeFileSync(input, JSON.stringify({ status: "ready", summary: [] }));
     const result = spawnSync(process.execPath, [script, input], { encoding: "utf8" });
     assert.equal(result.status, 2);
-    assert.match(result.stderr, /Calculator funnel evidence unavailable: ready/);
+    assert.match(result.stderr, /Calculator funnel evidence unavailable: events_missing/);
     assert.equal(result.stdout, "");
     writeFileSync(input, JSON.stringify({ status: "ready", events: [] }));
     const observed = spawnSync(process.execPath, [script, input], { encoding: "utf8" });
