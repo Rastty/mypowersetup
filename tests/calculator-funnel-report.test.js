@@ -27,6 +27,8 @@ test("calculator funnel groups events by locale, intent and landing path", () =>
     continues: 1,
     impressions: 1,
     clicks: 1,
+    impressionEvents: 1,
+    clickEvents: 1,
     startRate: 1,
     completionRate: 1,
     continuationRate: 1,
@@ -109,4 +111,18 @@ test("malformed explicit GA4 counts fail closed instead of inventing one affilia
     eventName: "affiliate_click", eventCount: 0, ...common,
   }]);
   assert.equal(zero[0].clicks, 0, "a genuine observed zero remains zero");
+});
+
+test("unknown aggregate click event count stays unknown, not equal to unique clickers", () => {
+  const [row] = buildCalculatorFunnelSummary([{
+    event_name: "affiliate_click",
+    funnel_count: 3,
+    total_users: 3,
+    calculator_landing_path: "/kalkulacky/kapacita-baterie/",
+    calculator_landing_locale: "cs",
+    calculator_landing_intent: "battery-capacity",
+  }]);
+  assert.equal(row.clicks, 3);
+  assert.equal(row.clickEvents, null);
+  assert.match(renderCalculatorFunnelMarkdown([row]), /n\/a/);
 });
