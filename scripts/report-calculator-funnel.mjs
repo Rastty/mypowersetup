@@ -17,7 +17,7 @@ if (!input) {
   // Raw event arrays remain supported for intentional offline imports.
   const issue = !Array.isArray(events) ? "events_missing"
     : !Array.isArray(payload) && payload.status !== "ready" ? (payload.status || "status_missing")
-    : !Array.isArray(payload) && payload.customDimensions?.ready === false ? "route_dimensions_missing"
+    : !Array.isArray(payload) && payload.customDimensions?.ready !== true ? "route_dimensions_missing"
     : null;
   if (issue) {
     console.error(`Calculator funnel evidence unavailable: ${issue}`);
