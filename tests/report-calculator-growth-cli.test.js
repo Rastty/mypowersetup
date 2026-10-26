@@ -33,6 +33,10 @@ test("growth prioritization rejects unavailable GSC or GA4 instead of inventing 
     [readyGsc, { status: "ready", summary: [] }, "ga4:rows_missing"],
     [{ status: "ready" }, readyGa4, "gsc:rows_missing"],
     [readyGsc, { status: "ready", customDimensions: { ready: false }, events: [] }, "ga4:route_dimensions_missing"],
+    [readyGsc, { status: "ready", events: [] }, "ga4:route_dimensions_missing"],
+    [readyGsc, { status: "ready", customDimensions: null, events: [] }, "ga4:route_dimensions_missing"],
+    [readyGsc, { events: [], customDimensions: { ready: true } }, "ga4:status_missing"],
+    [readyGsc, { status: null, events: [], customDimensions: { ready: true } }, "ga4:status_missing"],
   ]) {
     const result = runGrowth(gsc, ga4);
     assert.equal(result.status, 2, `${reason}: ${result.stderr}`);
