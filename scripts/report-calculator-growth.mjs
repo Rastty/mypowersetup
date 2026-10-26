@@ -20,24 +20,24 @@ if (!gscPath || !eventsPath) {
     console.error(`Calculator growth evidence unavailable: ${unavailable}`);
     process.exitCode = 2;
   } else {
-  const gscRows = normalizeGscExportRows(rowsFrom(gscInput, ["searchAnalytics", "rows", "data"]));
-  const gscPageTotals = normalizeGscExportRows(rowsFrom(gscInput, ["pageTotals"]));
-  const events = normalizeGa4CalculatorEventRows(rowsFrom(eventsInput, ["events", "rows", "data"]));
-  const indexingRows = normalizeIndexingExportRows(rowsFrom(indexingInput, ["indexing", "rows", "data"]));
-  const funnelRows = buildCalculatorFunnelSummary(events);
-  const priorities = buildCalculatorGrowthPriorities({ gscRows, gscPageTotals, funnelRows, indexingRows });
-
-  console.log(renderCalculatorGrowthMarkdown(priorities));
-  const actionable = priorities.filter((row) => row.primaryOpportunity).slice(0, 3);
-  if (!actionable.length) {
-    console.log("\nNo evidence-backed optimization is ready yet. Keep collecting GSC/GA data.");
-  } else {
-    console.log("\nTop evidence-backed actions:");
-    actionable.forEach((row, index) => {
-      console.log(`${index + 1}. ${row.path} — ${row.primaryOpportunity}: ${row.rationale}`);
-      console.log(`   ${row.action}`);
-    });
-  }
+    const gscRows = normalizeGscExportRows(rowsFrom(gscInput, ["searchAnalytics", "rows", "data"]));
+    const gscPageTotals = normalizeGscExportRows(rowsFrom(gscInput, ["pageTotals"]));
+    const events = normalizeGa4CalculatorEventRows(rowsFrom(eventsInput, ["events", "rows", "data"]));
+    const indexingRows = normalizeIndexingExportRows(rowsFrom(indexingInput, ["indexing", "rows", "data"]));
+    const funnelRows = buildCalculatorFunnelSummary(events);
+    const priorities = buildCalculatorGrowthPriorities({ gscRows, gscPageTotals, funnelRows, indexingRows });
+  
+    console.log(renderCalculatorGrowthMarkdown(priorities));
+    const actionable = priorities.filter((row) => row.primaryOpportunity).slice(0, 3);
+    if (!actionable.length) {
+      console.log("\nNo evidence-backed optimization is ready yet. Keep collecting GSC/GA data.");
+    } else {
+      console.log("\nTop evidence-backed actions:");
+      actionable.forEach((row, index) => {
+        console.log(`${index + 1}. ${row.path} — ${row.primaryOpportunity}: ${row.rationale}`);
+        console.log(`   ${row.action}`);
+      });
+    }
   }
 }
 
