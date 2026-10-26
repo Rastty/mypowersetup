@@ -9,11 +9,13 @@ if (!input) {
 } else {
   const payload = JSON.parse(await readFile(input, "utf8"));
   // Missing GA4 auth or custom dimensions means UNKNOWN, never a zero-click funnel.
-  if (!Array.isArray(payload) && payload.status && payload.status !== "ready") {
-    console.error(`Calculator funnel evidence unavailable: ${payload.status}`);
+  // An object without an explicit events array is not a measured zero-event
+  // GA4 report, even if a stale status field says ready.
+  const events = Array.isArray(payload) ? payload : payload?.events;
+  if (!Array.isArray(events) || (!Array.isArray(payload) && payload.status && payload.status !== "ready")) {
+    console.error(`Calculator funnel evidence unavailable: ${payload?.status || "events_missing"}`);
     process.exitCode = 2;
   } else {
-    const events = Array.isArray(payload) ? payload : Array.isArray(payload.events) ? payload.events : [];
     console.log(renderCalculatorFunnelMarkdown(buildCalculatorFunnelSummary(events)));
   }
 }
