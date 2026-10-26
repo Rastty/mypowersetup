@@ -12,24 +12,42 @@ if (!gscPath || !eventsPath) {
   const gscInput = await loadInput(gscPath);
   const eventsInput = await loadInput(eventsPath);
   const indexingInput = indexingPath ? await loadInput(indexingPath) : [];
-  const gscRows = normalizeGscExportRows(rowsFrom(gscInput, ["searchAnalytics", "rows", "data"]));
-  const gscPageTotals = normalizeGscExportRows(rowsFrom(gscInput, ["pageTotals"]));
-  const events = normalizeGa4CalculatorEventRows(rowsFrom(eventsInput, ["events", "rows", "data"]));
-  const indexingRows = normalizeIndexingExportRows(rowsFrom(indexingInput, ["indexing", "rows", "data"]));
-  const funnelRows = buildCalculatorFunnelSummary(events);
-  const priorities = buildCalculatorGrowthPriorities({ gscRows, gscPageTotals, funnelRows, indexingRows });
-
-  console.log(renderCalculatorGrowthMarkdown(priorities));
-  const actionable = priorities.filter((row) => row.primaryOpportunity).slice(0, 3);
-  if (!actionable.length) {
-    console.log("\nNo evidence-backed optimization is ready yet. Keep collecting GSC/GA data.");
+  // A blocked/malformed API export is UNKNOWN, never a measured zero-traffic
+  // or zero-conversion baseline. Keep legacy CSV/array imports supported.
+  const unavailable = evidenceIssue(gscInput, "gsc", ["searchAnalytics", "pageTotals", "rows", "data"])
+    || evidenceIssue(eventsInput, "ga4", ["events", "rows", "data"]);
+  if (unavailable) {
+    console.error(`Calculator growth evidence unavailable: ${unavailable}`);
+    process.exitCode = 2;
   } else {
-    console.log("\nTop evidence-backed actions:");
-    actionable.forEach((row, index) => {
-      console.log(`${index + 1}. ${row.path} — ${row.primaryOpportunity}: ${row.rationale}`);
-      console.log(`   ${row.action}`);
-    });
+    const gscRows = normalizeGscExportRows(rowsFrom(gscInput, ["searchAnalytics", "rows", "data"]));
+    const gscPageTotals = normalizeGscExportRows(rowsFrom(gscInput, ["pageTotals"]));
+    const events = normalizeGa4CalculatorEventRows(rowsFrom(eventsInput, ["events", "rows", "data"]));
+    const indexingRows = normalizeIndexingExportRows(rowsFrom(indexingInput, ["indexing", "rows", "data"]));
+    const funnelRows = buildCalculatorFunnelSummary(events);
+    const priorities = buildCalculatorGrowthPriorities({ gscRows, gscPageTotals, funnelRows, indexingRows });
+  
+    console.log(renderCalculatorGrowthMarkdown(priorities));
+    const actionable = priorities.filter((row) => row.primaryOpportunity).slice(0, 3);
+    if (!actionable.length) {
+      console.log("\nNo evidence-backed optimization is ready yet. Keep collecting GSC/GA data.");
+    } else {
+      console.log("\nTop evidence-backed actions:");
+      actionable.forEach((row, index) => {
+        console.log(`${index + 1}. ${row.path} — ${row.primaryOpportunity}: ${row.rationale}`);
+        console.log(`   ${row.action}`);
+      });
+    }
   }
+}
+
+function evidenceIssue(payload, source, keys) {
+  if (Array.isArray(payload)) return null;
+  if (!payload || typeof payload !== "object") return `${source}:invalid_input`;
+  if (payload.status && payload.status !== "ready") return `${source}:${payload.status}`;
+  if (source === "ga4" && payload.customDimensions?.ready === false) return "ga4:route_dimensions_missing";
+  if (!keys.some((key) => Array.isArray(payload[key]))) return `${source}:rows_missing`;
+  return null;
 }
 
 async function loadInput(filePath) {
