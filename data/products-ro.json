@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-25T08:34:18.971Z",
+  "generatedAt": "2026-10-26T09:09:18.930Z",
   "market": "ro-RO",
   "currency": "EUR",
   "private": false,
@@ -182,7 +182,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:10257573445939",
@@ -225,7 +225,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 239,
+      "priceCzk": 219,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sp035-foldable-solar-panel-200w",
@@ -246,7 +246,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:8205919715635",
@@ -277,7 +277,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:10143263129907",
@@ -308,7 +308,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:10143246418227",
@@ -318,7 +318,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 399,
+      "priceCzk": 379,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-2pcs-sf200-flexible-solar-panel-200w",
@@ -339,7 +339,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:9948837937459",
@@ -370,7 +370,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:9875554074931",
@@ -401,7 +401,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:9855868961075",
@@ -432,7 +432,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:9802731815219",
@@ -463,7 +463,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:9801383051571",
@@ -494,7 +494,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:9763001073971",
@@ -558,7 +558,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:9598354719027",
@@ -589,7 +589,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:9598338564403",
@@ -620,7 +620,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:8630287532339",
@@ -684,7 +684,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:8431037645107",
@@ -694,7 +694,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 109,
+      "priceCzk": 99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sf100-flexible-solar-panel-100w",
@@ -715,7 +715,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:8300246663475",
@@ -725,7 +725,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 654,
+      "priceCzk": 649,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sp039-600w-monocrystalline-portable-solar-panel",
@@ -746,7 +746,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:8336481124659",
@@ -810,7 +810,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:8205916733747",
@@ -841,7 +841,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:8205905887539",
@@ -872,7 +872,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:8205901234483",
@@ -903,7 +903,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:8205897105715",
@@ -913,7 +913,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 449,
+      "priceCzk": 419,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sp037-portable-solar-panel-400w",
@@ -934,7 +934,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:8205889012019",
@@ -965,7 +965,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-26"
     },
     {
       "id": "allpowers_eu:8205880623411",
@@ -1008,7 +1008,7 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 236,
+      "priceCzk": 219,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r600-portable-power-station-600w-299wh-with-lifep04-battery-1",
