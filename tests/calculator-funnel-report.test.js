@@ -64,6 +64,7 @@ test("real GA4 Data API rows retain route attribution and count actions, not dis
     name, "/kalkulacky/kapacita-baterie/", "cs", "battery-capacity", "mypowersetup.com",
   ].map((value) => ({ value }));
   const raw = {
+    rowCount: 2,
     dimensionHeaders,
     metricHeaders: [{ name: "eventCount" }, { name: "totalUsers" }],
     rows: [
