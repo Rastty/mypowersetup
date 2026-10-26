@@ -48,8 +48,8 @@ function evidenceIssue(payload, source, keys) {
   // Raw event arrays remain supported for intentional offline imports.
   if (source === "ga4" && payload.status !== "ready") return `ga4:${payload.status || "status_missing"}`;
   if (source !== "ga4" && payload.status && payload.status !== "ready") return `${source}:${payload.status}`;
-  if (source === "ga4" && payload.customDimensions?.ready !== true) return "ga4:route_dimensions_missing";
   if (!keys.some((key) => Array.isArray(payload[key]))) return `${source}:rows_missing`;
+  if (source === "ga4" && payload.customDimensions?.ready !== true) return "ga4:route_dimensions_missing";
   return null;
 }
 
