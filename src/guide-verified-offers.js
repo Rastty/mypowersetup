@@ -70,8 +70,16 @@ export function mountGuideOffers(root, payload, now = Date.now()) {
   if (!root) return 0;
   const category = root.dataset.guideCategory;
   const offers = selectGuideOffers(payload, category, now);
-  // Keep a real editorial route to the Builder when offers cannot be verified.
-  if (!offers.length) return 0;
+  // A later failed/stale refresh must not leave an earlier price or tracked
+  // purchase link visible. Keep the editorial Builder fallback reversible.
+  const previous = root.querySelector(".guide-offer-list");
+  const fallback = root.querySelector(".guide-offer-fallback");
+  if (!offers.length) {
+    previous?.remove();
+    if (fallback) fallback.hidden = false;
+    root.dataset.liveOffers = "0";
+    return 0;
+  }
   const list = document.createElement("ul");
   list.className = "guide-offer-list";
   for (const item of offers) {
@@ -90,10 +98,9 @@ export function mountGuideOffers(root, payload, now = Date.now()) {
     row.append(link);
     list.append(row);
   }
-  const old = root.querySelector(".guide-offer-list");
-  old?.remove();
+  previous?.remove();
   root.append(list);
-  root.querySelector(".guide-offer-fallback")?.remove();
+  if (fallback) fallback.hidden = true;
   root.dataset.liveOffers = String(offers.length);
   return offers.length;
 }
