@@ -144,6 +144,20 @@ export function normalizeGscExportRows(rows = []) {
   }).filter((row) => row.page || row.query || row.keys);
 }
 
+function strictGa4Count(value, field) {
+  if (typeof value === "number") {
+    if (Number.isSafeInteger(value) && value >= 0) return value;
+    throw new Error(`GA4_${field.toUpperCase()}_INVALID`);
+  }
+  const text = clean(value);
+  // Allow whole numbers and localized thousands grouping (1,234 / 1.234 /
+  // 1 234), but never decimals, negatives, units or an absent value.
+  const valid = /^\d+$/.test(text) || /^\d{1,3}(?:[.,\s\u00a0\u202f]\d{3})+$/.test(text);
+  const count = valid ? Number(text.replace(/[.,\s\u00a0\u202f]/g, "")) : NaN;
+  if (!Number.isSafeInteger(count) || count < 0) throw new Error(`GA4_${field.toUpperCase()}_INVALID`);
+  return count;
+}
+
 export function normalizeGa4CalculatorEventRows(rows = []) {
   return (Array.isArray(rows) ? rows : []).map((row) => {
     if (row?.parameters && typeof row.parameters === "object") return row;
@@ -153,8 +167,10 @@ export function normalizeGa4CalculatorEventRows(rows = []) {
     const path = aliasLookup(row, GA_ALIASES.calculator_landing_path);
     const locale = aliasLookup(row, GA_ALIASES.calculator_landing_locale);
     const intent = aliasLookup(row, GA_ALIASES.calculator_landing_intent);
-    const normalizedEventCount = eventCount === undefined ? 1 : Math.max(0, parseLocalizedNumber(eventCount));
-    const normalizedTotalUsers = totalUsers === undefined ? null : Math.max(0, parseLocalizedNumber(totalUsers));
+    // Aggregate GA4 exports are not individual raw events. Missing or corrupt
+    // counts are UNKNOWN, never one synthetic affiliate click or a fake zero.
+    const normalizedEventCount = strictGa4Count(eventCount, "event_count");
+    const normalizedTotalUsers = totalUsers === undefined ? null : strictGa4Count(totalUsers, "total_users");
     return {
       event_name: clean(eventName),
       event_count: normalizedEventCount,
