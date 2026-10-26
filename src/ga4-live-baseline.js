@@ -131,7 +131,10 @@ export function ga4SummaryRowsFromRunReport(response = {}) {
 }
 
 export function calculatorEventsFromGa4RunReport(response = {}) {
-  return flattenGa4RunReport(response)
+  // A truncated GA4 route-level response must not look like a complete
+  // affiliate-click funnel. Validate at the conversion boundary as well as
+  // at the CLI caller so future consumers cannot silently skip the guard.
+  return flattenGa4RunReport(assertCompleteGa4Report(response))
     .filter((row) => TARGET_EVENT_NAMES.includes(row.eventName))
     .map((row) => ({
       eventName: row.eventName,
