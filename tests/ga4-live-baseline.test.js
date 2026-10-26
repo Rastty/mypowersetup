@@ -139,7 +139,7 @@ test("route-level GA4 events reject truncated or uncounted reports before counti
     metricHeaders: [{ name: "eventCount" }],
     rows: [{ dimensionValues: [{ value: "affiliate_click" }], metricValues: [{ value: "4" }] }],
   };
-  assert.throws(() => calculatorEventsFromGa4RunReport(report), /GA4_REPORT_ROWS_INCOMPLETE:1\\/2/);
+  assert.throws(() => calculatorEventsFromGa4RunReport(report), /GA4_REPORT_ROWS_INCOMPLETE:1\/2/);
   const { rowCount, ...uncounted } = report;
   assert.throws(() => calculatorEventsFromGa4RunReport(uncounted), /GA4_REPORT_ROW_COUNT_MISSING_OR_INVALID/);
   assert.equal(calculatorEventsFromGa4RunReport({ ...report, rowCount: 1 })[0].eventCount, 4);
