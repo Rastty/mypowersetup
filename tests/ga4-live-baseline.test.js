@@ -108,6 +108,26 @@ test("flattens a GA4 Data API report into the existing funnel input shape", () =
   }]);
 });
 
+test("GA4 missing or malformed eventCount fails closed instead of becoming measured zero", () => {
+  const report = (value) => ({
+    dimensionHeaders: [{ name: "eventName" }],
+    metricHeaders: [{ name: "eventCount" }, { name: "totalUsers" }],
+    rows: [{ dimensionValues: [{ value: "affiliate_click" }], metricValues: [{ value }, { value: "1" }] }],
+  });
+  for (const value of ["", "  ", null, undefined]) {
+    assert.throws(() => calculatorEventsFromGa4RunReport(report(value)), /GA4_CALCULATOR_EVENT_COUNT_MISSING/);
+  }
+  for (const value of ["not-a-number", "-1", "1.5", "9007199254740992"]) {
+    assert.throws(() => calculatorEventsFromGa4RunReport(report(value)), /GA4_CALCULATOR_EVENT_COUNT_INVALID/);
+  }
+  const zero = calculatorEventsFromGa4RunReport(report("0"));
+  assert.equal(zero[0].eventCount, 0, "observed numeric zero must stay zero");
+  assert.equal(zero[0].totalUsers, 1);
+  const missingUsers = report("2");
+  missingUsers.rows[0].metricValues[1] = { value: "" };
+  assert.equal(calculatorEventsFromGa4RunReport(missingUsers)[0].totalUsers, null, "unknown users are not zero");
+});
+
 test("builds an exact target-host and calculator-event filter", () => {
   const filter = ga4CalculatorDimensionFilter("mypowersetup.com");
   const [hostExpression, eventExpression] = filter.andGroup.expressions;
