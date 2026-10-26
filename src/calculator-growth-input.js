@@ -175,7 +175,9 @@ export function normalizeGa4CalculatorEventRows(rows = []) {
       event_name: clean(eventName),
       event_count: normalizedEventCount,
       ...(normalizedTotalUsers === null ? {} : { total_users: normalizedTotalUsers }),
-      funnel_count: normalizedTotalUsers ?? normalizedEventCount,
+      // A GA4 eventCount is an action count; totalUsers is a separate unique-user metric.
+      // Using totalUsers as the funnel weight silently undercounts repeat affiliate clicks.
+      funnel_count: normalizedEventCount,
       calculator_landing_path: clean(path),
       calculator_landing_locale: clean(locale),
       calculator_landing_intent: clean(intent),
