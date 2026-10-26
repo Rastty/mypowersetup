@@ -100,7 +100,7 @@ test("malformed explicit GA4 counts fail closed instead of inventing one affilia
     calculator_landing_locale: "cs",
     calculator_landing_intent: "battery-capacity",
   };
-  for (const bad of ["not-a-number", -1, 1.5, " ", Infinity, Number.MAX_SAFE_INTEGER + 1]) {
+  for (const bad of ["not-a-number", -1, 1.5, "", " ", Infinity, Number.MAX_SAFE_INTEGER + 1]) {
     assert.throws(() => buildCalculatorFunnelSummary([{
       eventName: "affiliate_click", eventCount: bad, totalUsers: 7, ...common,
     }]), /CALCULATOR_FUNNEL_INVALID_EVENT_COUNT/, String(bad));
