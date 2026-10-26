@@ -79,6 +79,7 @@ test("requires all canonical route-level calculator custom dimensions", () => {
 
 test("flattens a GA4 Data API report into the existing funnel input shape", () => {
   const events = calculatorEventsFromGa4RunReport({
+    rowCount: 1,
     dimensionHeaders: [
       { name: "eventName" },
       { name: "customEvent:calculator_landing_path" },
@@ -112,6 +113,7 @@ test("flattens a GA4 Data API report into the existing funnel input shape", () =
 
 test("GA4 missing or malformed eventCount fails closed instead of becoming measured zero", () => {
   const report = (value) => ({
+    rowCount: 1,
     dimensionHeaders: [{ name: "eventName" }],
     metricHeaders: [{ name: "eventCount" }, { name: "totalUsers" }],
     rows: [{ dimensionValues: [{ value: "affiliate_click" }], metricValues: [{ value }, { value: "1" }] }],
@@ -128,6 +130,20 @@ test("GA4 missing or malformed eventCount fails closed instead of becoming measu
   const missingUsers = report("2");
   missingUsers.rows[0].metricValues[1] = { value: "" };
   assert.equal(calculatorEventsFromGa4RunReport(missingUsers)[0].totalUsers, null, "unknown users are not zero");
+});
+
+test("route-level GA4 events reject truncated or uncounted reports before counting affiliate clicks", () => {
+  const report = {
+    rowCount: 2,
+    dimensionHeaders: [{ name: "eventName" }],
+    metricHeaders: [{ name: "eventCount" }],
+    rows: [{ dimensionValues: [{ value: "affiliate_click" }], metricValues: [{ value: "4" }] }],
+  };
+  assert.throws(() => calculatorEventsFromGa4RunReport(report), /GA4_REPORT_ROWS_INCOMPLETE:1\\/2/);
+  const { rowCount, ...uncounted } = report;
+  assert.throws(() => calculatorEventsFromGa4RunReport(uncounted), /GA4_REPORT_ROW_COUNT_MISSING_OR_INVALID/);
+  assert.equal(calculatorEventsFromGa4RunReport({ ...report, rowCount: 1 })[0].eventCount, 4);
+  assert.deepEqual(calculatorEventsFromGa4RunReport({ rowCount: 0, rows: [] }), []);
 });
 
 test("builds an exact target-host and calculator-event filter", () => {
