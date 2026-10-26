@@ -12,8 +12,15 @@ if (!input) {
   // An object without an explicit events array is not a measured zero-event
   // GA4 report, even if a stale status field says ready.
   const events = Array.isArray(payload) ? payload : payload?.events;
-  if (!Array.isArray(events) || (!Array.isArray(payload) && payload.status && payload.status !== "ready")) {
-    console.error(`Calculator funnel evidence unavailable: ${!Array.isArray(events) ? "events_missing" : payload.status}`);
+  // Structured GA4 exports require an explicit ready status. Missing status or
+  // unregistered route dimensions is UNKNOWN, never a measured zero-click funnel.
+  // Raw event arrays remain supported for intentional offline imports.
+  const issue = !Array.isArray(events) ? "events_missing"
+    : !Array.isArray(payload) && payload.status !== "ready" ? (payload.status || "status_missing")
+    : !Array.isArray(payload) && payload.customDimensions?.ready !== true ? "route_dimensions_missing"
+    : null;
+  if (issue) {
+    console.error(`Calculator funnel evidence unavailable: ${issue}`);
     process.exitCode = 2;
   } else {
     console.log(renderCalculatorFunnelMarkdown(buildCalculatorFunnelSummary(events)));
