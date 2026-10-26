@@ -40,7 +40,7 @@ function eventWeight(event, params) {
     ?? params?.count
     ?? params?.total_users
     ?? params?.totalUsers;
-  if (value === undefined || value === null || value === "") return 1;
+  if (value === undefined || value === null) return 1;
   const number = Number(value);
   // An explicit GA4 aggregate with a corrupt count is UNKNOWN, never one
   // invented conversion. Unweighted browser events above still count once.
