@@ -19,6 +19,22 @@ const APPROVED = Object.freeze({
     "vselektro:victron-orion-xs-12-12-50-nonisolated",
   ]),
 });
+// Independent exact destination guard for editorial SKU cards. A catalog row
+// must not reuse an approved ID while pointing at a different merchant product.
+// Paths mirror the independently reviewed exact-SKU feed allowlist; any new
+// editorial offer needs a deliberate reviewed addition here as well.
+const EXACT_PRODUCT_PATHS = Object.freeze({
+  "vselektro:sunstone-slpo12-100n": "/lifepo4-baterie-12v-100ah-sunstone-power-slpo12-100n/",
+  "vselektro:sunstone-slpo12-200n": "/lifepo4-baterie-12v-200ah-slpo12-200n-hc200a-sunstone-power/",
+  "vselektro:sunstone-slpo12-200m-hc200a": "/lifepo4-baterie-12v-200ah-slpo12-200m-hc200a-sunstone-power/",
+  "vselektro:victron-smartsolar-100-20": "/solarni-regulator-victron-energy-mppt-smartsolar-100v-20a/",
+  "vselektro:victron-smartsolar-100-30": "/solarni-regulator-victron-energy-smartsolar-30a/",
+  "vselektro:victron-smartsolar-100-50": "/solarni-regulator-victron-energy-mppt-smartsolar-100v-50a/",
+  "vselektro:victron-orion-tr-12-12-18-isolated": "/nabijecka-dc-dc-orion-tr-smart-12-12-18a/",
+  "vselektro:victron-orion-tr-12-12-30-isolated": "/nabijecka-dc-dc-orion-tr-smart-12-12-30a/",
+  "vselektro:victron-orion-tr-12-12-30-nonisolated": "/nabijecka-dc-dc-orion-tr-smart-12-12-30a-neizolovana/",
+  "vselektro:victron-orion-xs-12-12-50-nonisolated": "/nabijecka-dc-dc-orion-xs-smart-12-12-50a-neizolovana/",
+});
 const MAX_FEED_AGE_MS = 72 * 60 * 60 * 1000;
 const ID_PREFIX = "vselektro:";
 
@@ -46,7 +62,7 @@ export function eligibleGuideOffer(product, category, now = Date.now()) {
     // Only the exact approved HTTPS origins are valid purchase routes.
     if (!["https://www.vselektro.eu", "https://vselektro.eu"].includes(origin.origin)
       || origin.username || origin.password
-      || origin.search || origin.hash || !origin.pathname.endsWith("/")) return false;
+      || origin.search || origin.hash || origin.pathname !== EXACT_PRODUCT_PATHS[product.id]) return false;
     if (outbound.origin !== "https://ehub.cz" || outbound.username || outbound.password
       || outbound.pathname !== "/system/scripts/click.php"
       || outbound.searchParams.get("a_aid") !== "f34c86c8"
