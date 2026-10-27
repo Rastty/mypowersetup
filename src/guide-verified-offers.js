@@ -60,7 +60,13 @@ export function guideCatalogFresh(payload, now = Date.now()) {
 
 export function selectGuideOffers(payload, category, now = Date.now()) {
   if (!guideCatalogFresh(payload, now) || !APPROVED[category]) return [];
-  return payload.products.filter((p) => eligibleGuideOffer(p, category, now));
+  // A repeated approved SKU may carry contradictory feed price or availability.
+  // Do not silently choose a winner or show duplicate purchase links.
+  const counts = new Map();
+  for (const product of payload.products) {
+    if (APPROVED[category].has(product?.id)) counts.set(product.id, (counts.get(product.id) || 0) + 1);
+  }
+  return payload.products.filter((p) => counts.get(p?.id) === 1 && eligibleGuideOffer(p, category, now));
 }
 
 function displayPrice(price) {
