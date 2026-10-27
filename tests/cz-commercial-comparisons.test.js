@@ -6,7 +6,10 @@ import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
 
 const now=Date.parse("2026-10-14T11:00:00Z");
 function offer(id="vselektro:victron-smartsolar-100-50",category="controller"){
- const productUrl="https://www.vselektro.eu/solarni-regulator-victron-energy-mppt-smartsolar-100v-50a/";
+ const path=id==="vselektro:victron-smartsolar-100-30"
+  ? "/solarni-regulator-victron-energy-smartsolar-30a/"
+  : "/solarni-regulator-victron-energy-mppt-smartsolar-100v-50a/";
+ const productUrl="https://www.vselektro.eu"+path;
  const tracking=new URL("https://ehub.cz/system/scripts/click.php");
  tracking.searchParams.set("a_aid","f34c86c8");
  tracking.searchParams.set("a_bid","f897865f");
@@ -71,6 +74,19 @@ test("affiliate URL, exact approved SKU, nonzero feed price and origin cannot be
  ]) assert.equal(eligibleGuideOffer({...original,...modified},"controller",now),false,JSON.stringify(modified));
 });
 
+
+test("approved SKU cannot silently route a purchase to another merchant product", () => {
+ const valid=offer();
+ assert.equal(eligibleGuideOffer(valid,"controller",now),true);
+ const wrongProductUrl="https://www.vselektro.eu/solarni-regulator-victron-energy-smartsolar-30a/";
+ const tracked=new URL(valid.affiliateUrl);
+ tracked.searchParams.set("desturl",wrongProductUrl);
+ assert.equal(eligibleGuideOffer({...valid,productUrl:wrongProductUrl,affiliateUrl:tracked.href},"controller",now),false);
+ // A generic storefront route is not evidence of the approved exact product.
+ tracked.searchParams.set("desturl","https://www.vselektro.eu/");
+ assert.equal(eligibleGuideOffer({...valid,productUrl:"https://www.vselektro.eu/",affiliateUrl:tracked.href},"controller",now),false);
+ assert.equal(eligibleGuideOffer(offer("vselektro:victron-smartsolar-100-30"),"controller",now),true);
+});
 
 test("ambiguous duplicate affiliate tracking parameters never create a purchase recommendation", () => {
  const valid = offer();
