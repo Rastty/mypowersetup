@@ -27,6 +27,16 @@ test("editorial offers require current successful source and in-stock verified e
  assert.equal(selectGuideOffers(payload([offer()],now+1000),"controller",now).length,0);
 });
 
+test("fresh catalog never revives stale, future-dated or invalid per-product offers",()=>{
+ const valid=offer();
+ assert.equal(selectGuideOffers(payload([valid]),"controller",now).length,1);
+ for(const verifiedAt of ["2026-10-01", "2026-10-15", "invalid-date", ""]) {
+  const stale=offer(); stale.verifiedAt=verifiedAt;
+  assert.equal(eligibleGuideOffer(stale,"controller",now),false,verifiedAt);
+  assert.equal(selectGuideOffers(payload([stale]),"controller",now).length,0,verifiedAt);
+ }
+});
+
 test("affiliate URL, exact approved SKU, nonzero feed price and origin cannot be substituted",()=>{
  const original=offer();
  assert.equal(eligibleGuideOffer(original,"controller",now),true);
