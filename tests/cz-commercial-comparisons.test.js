@@ -86,6 +86,25 @@ test("ambiguous duplicate affiliate tracking parameters never create a purchase 
  }
 });
 
+test("approved guide routes reject alternate HTTPS ports and URL credentials", () => {
+ const valid = offer();
+ for (const productUrl of [
+   valid.productUrl.replace("https://www.vselektro.eu/", "https://www.vselektro.eu:8443/"),
+   valid.productUrl.replace("https://www.vselektro.eu/", "https://user:pass@www.vselektro.eu/"),
+ ]) {
+   const tracked = new URL(valid.affiliateUrl);
+   tracked.searchParams.set("desturl", productUrl);
+   assert.equal(eligibleGuideOffer({...valid, productUrl, affiliateUrl: tracked.href}, "controller", now), false, productUrl);
+ }
+ for (const affiliateUrl of [
+   valid.affiliateUrl.replace("https://ehub.cz/", "https://ehub.cz:8443/"),
+   valid.affiliateUrl.replace("https://ehub.cz/", "https://user:pass@ehub.cz/"),
+ ]) {
+   assert.equal(eligibleGuideOffer({...valid, affiliateUrl}, "controller", now), false, affiliateUrl);
+ }
+ assert.equal(eligibleGuideOffer(valid, "controller", now), true, "approved canonical route must remain eligible");
+});
+
 test("a stale guide feed removes prior tracked offers and restores the honest calculator fallback", () => {
  const previousDocument = globalThis.document;
  const element = (tagName = "div") => ({
