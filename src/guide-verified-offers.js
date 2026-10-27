@@ -26,11 +26,14 @@ export function eligibleGuideOffer(product, category, now = Date.now()) {
   if (!APPROVED[category]?.has(product?.id)) return false;
   if (product.merchant !== "vselektro" || product.category !== category || product.staleSource || product.available !== true) return false;
   if (!Number.isFinite(product.priceCzk) || product.priceCzk <= 0 || product.priceCurrency !== "CZK") return false;
-  if (!product.verifiedAt || !product.productUrl || !product.affiliateUrl) return false;
-  // A freshly generated catalog does not refresh an old individual merchant
-  // observation. Never show a stale SKU price/clickout as currently verified.
-  const verifiedAt = Date.parse(product.verifiedAt);
-  if (!Number.isFinite(verifiedAt) || verifiedAt > now || now - verifiedAt > MAX_FEED_AGE_MS) return false;
+  if (!product.verifiedAt || !product.offerObservedAt || !product.productUrl || !product.affiliateUrl) return false;
+  // The independent technical/SKU review date is not a live merchant price
+  // observation. Only a successful fresh feed fetch can refresh an offer.
+  const reviewedAt = Date.parse(product.verifiedAt);
+  const observedAt = Date.parse(product.offerObservedAt);
+  if (!Number.isFinite(reviewedAt) || reviewedAt > now
+    || !Number.isFinite(observedAt) || observedAt > now
+    || now - observedAt > MAX_FEED_AGE_MS) return false;
   try {
     const origin = new URL(product.productUrl);
     const outbound = new URL(product.affiliateUrl);
