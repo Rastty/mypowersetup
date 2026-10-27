@@ -43,6 +43,16 @@ test("fresh catalog cannot re-date a stale or unobserved merchant offer",()=>{
  assert.equal(eligibleGuideOffer({...valid,verifiedAt:"2026-09-20"},"controller",now),true);
 });
 
+test("duplicate approved SKU rows fail closed even if one appears valid",()=>{
+ const valid=offer();
+ const duplicate={...valid,priceCzk:9999};
+ assert.equal(selectGuideOffers(payload([valid,duplicate]),"controller",now).length,0);
+ assert.equal(selectGuideOffers(payload([valid,{...valid,available:false}]),"controller",now).length,0);
+ const other=offer("vselektro:victron-smartsolar-100-30");
+ assert.equal(selectGuideOffers(payload([valid,other]),"controller",now).length,2);
+ assert.equal(selectGuideOffers(payload([valid,valid,other]),"controller",now).length,1);
+});
+
 test("affiliate URL, exact approved SKU, nonzero feed price and origin cannot be substituted",()=>{
  const original=offer();
  assert.equal(eligibleGuideOffer(original,"controller",now),true);
