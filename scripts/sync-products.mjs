@@ -72,7 +72,12 @@ for (const [merchant, url] of feeds) {
 
     const xml = await response.text();
     const parsed = merchant === "vselektro"
-      ? parseVselektroVerifiedFeed(xml)
+      ? parseVselektroVerifiedFeed(xml).map((product) => ({
+          ...product,
+          // A successful live merchant fetch observes price/stock now; it does
+          // NOT renew the independent 2026-10-13 technical specification review.
+          offerObservedAt: new Date().toISOString()
+        }))
       : parseProductFeed(xml, merchant);
     if (parsed.length === 0) throw new Error("feed neobsahuje použitelné produkty");
     products.push(...parsed);
