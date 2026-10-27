@@ -27,6 +27,10 @@ export function eligibleGuideOffer(product, category, now = Date.now()) {
   if (product.merchant !== "vselektro" || product.category !== category || product.staleSource || product.available !== true) return false;
   if (!Number.isFinite(product.priceCzk) || product.priceCzk <= 0 || product.priceCurrency !== "CZK") return false;
   if (!product.verifiedAt || !product.productUrl || !product.affiliateUrl) return false;
+  // A freshly generated catalog does not refresh an old individual merchant
+  // observation. Never show a stale SKU price/clickout as currently verified.
+  const verifiedAt = Date.parse(product.verifiedAt);
+  if (!Number.isFinite(verifiedAt) || verifiedAt > now || now - verifiedAt > MAX_FEED_AGE_MS) return false;
   try {
     const origin = new URL(product.productUrl);
     const outbound = new URL(product.affiliateUrl);
