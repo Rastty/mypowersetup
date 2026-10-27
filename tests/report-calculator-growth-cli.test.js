@@ -29,6 +29,8 @@ test("growth prioritization rejects unavailable GSC or GA4 instead of inventing 
   const readyGa4 = { status: "ready", customDimensions: { ready: true }, events: [] };
   for (const [gsc, ga4, reason] of [
     [{ status: "missing-google-auth", searchAnalytics: [] }, readyGa4, "gsc:missing-google-auth"],
+    [{ searchAnalytics: [], pageTotals: [] }, readyGa4, "gsc:status_missing"],
+    [{ status: null, searchAnalytics: [] }, readyGa4, "gsc:status_missing"],
     [readyGsc, { status: "route_dimensions_missing", events: [] }, "ga4:route_dimensions_missing"],
     [readyGsc, { status: "ready", summary: [] }, "ga4:rows_missing"],
     [{ status: "ready" }, readyGa4, "gsc:rows_missing"],
