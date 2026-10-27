@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-26T09:03:41.262Z",
+  "generatedAt": "2026-10-27T09:07:32.484Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12551,
-      "relevantProducts": 156
+      "parsedProducts": 12566,
+      "relevantProducts": 155
     },
     "ampul_hu": {
       "status": "ok",
@@ -21,9 +21,9 @@
     },
     "powerqueen_eu": {
       "status": "ok",
-      "parsedProducts": 60,
-      "relevantProducts": 22,
-      "batteries": 16,
+      "parsedProducts": 61,
+      "relevantProducts": 23,
+      "batteries": 17,
       "controllers": 1,
       "inverters": 1,
       "shoreChargers": 4
@@ -1875,7 +1875,7 @@
       "id": "padabo_hu:104849_30966",
       "merchant": "padabo_hu",
       "name": "LILIE Campere napelem névleges teljesítmény (wp) 105",
-      "description": "Rugalmas moduláris napelem rendszer alacsony veszteséggel és könnyű telepítéssel A LILIE Campere napelem főbb jellemzői: Panelek párhuzamos összekapcsolása. Független teljesítményt biztosít még részleges árnyékolás esetén is. Plug and play rendszer. Gyors telepítés bonyolult kábelvezetés nélkül. Moduláris kialakítás. Lehetőség az SPL25 és az SPL105 kombinálására igény szerint. SPL25 (25 Wp) és SPL105 (105 Wp) – két változat. Könnyű és kompakt kialakítás. Hatékony helykihasználás a gépkocsi tetej",
+      "description": "Rugalmas moduláris napelem rendszer alacsony veszteséggel és könnyű telepítéssel A LILIE Campere napelem egy innovatív megoldás a lakókocsi vagy lakóautó független áramellátására. Az első választás monokristályos celláinak és az SPL25 (25 Wp), SPL105 (105 Wp) és SPL140 (140 Wp) modulok párhuzamos összekapcsolásának köszönhetően még részleges árnyékolás esetén is nagyobb hatásfokot érhet el. Minden egyes panel önállóan működik, ami azt jelenti, hogy az egyik panel árnyékolása nem korlátozza az eg",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
       "category": "solar_panel",
       "brand": "LILIE",
@@ -1904,7 +1904,7 @@
       "id": "padabo_hu:104849_30967",
       "merchant": "padabo_hu",
       "name": "LILIE Campere napelem névleges teljesítmény (wp) 25",
-      "description": "Rugalmas moduláris napelem rendszer alacsony veszteséggel és könnyű telepítéssel A LILIE Campere napelem főbb jellemzői: Panelek párhuzamos összekapcsolása. Független teljesítményt biztosít még részleges árnyékolás esetén is. Plug and play rendszer. Gyors telepítés bonyolult kábelvezetés nélkül. Moduláris kialakítás. Lehetőség az SPL25 és az SPL105 kombinálására igény szerint. SPL25 (25 Wp) és SPL105 (105 Wp) – két változat. Könnyű és kompakt kialakítás. Hatékony helykihasználás a gépkocsi tetej",
+      "description": "Rugalmas moduláris napelem rendszer alacsony veszteséggel és könnyű telepítéssel A LILIE Campere napelem egy innovatív megoldás a lakókocsi vagy lakóautó független áramellátására. Az első választás monokristályos celláinak és az SPL25 (25 Wp), SPL105 (105 Wp) és SPL140 (140 Wp) modulok párhuzamos összekapcsolásának köszönhetően még részleges árnyékolás esetén is nagyobb hatásfokot érhet el. Minden egyes panel önállóan működik, ami azt jelenti, hogy az egyik panel árnyékolása nem korlátozza az eg",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
       "category": "solar_panel",
       "brand": "LILIE",
@@ -2168,7 +2168,7 @@
       "id": "padabo_hu:105299",
       "merchant": "padabo_hu",
       "name": "EcoFlow 100 W-os napelem",
-      "description": "Rugalmas napelemA 100 Wp EcoFlow napelem könnyen felszerelhető ívelt felületekre, hogy a lehető legjobban kihasználja a lakókocsiján vagy lakóautóján rendelkezésre álló helyet. A 23%-os hatásfokkal rendelkező, nagy hatékonyságú és a külső hatásoktól védett napelem prémium MC4-es napelemcsatlakozókkal van felszerelve. Ezt a könnyű és rugalmas napelemet úgy tervezték, hogy tökéletesen illeszkedjen a furgon vagy lakóautó tetejének görbületéhez, és lehetővé tegye a Power Kits rendszer vagy az EcoFlo",
+      "description": "Rugalmas napelem A 100 Wp EcoFlow napelem könnyen felszerelhető ívelt felületekre, hogy a lehető legjobban kihasználja a lakókocsiján vagy lakóautóján rendelkezésre álló helyet. A 23%-os hatásfokkal rendelkező, nagy hatékonyságú és a külső hatásoktól védett napelem prémium MC4-es napelemcsatlakozókkal van felszerelve. Ezt a könnyű és rugalmas napelemet úgy tervezték, hogy tökéletesen illeszkedjen a furgon vagy lakóautó tetejének görbületéhez, és lehetővé tegye a Power Kits rendszer vagy az EcoFl",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
       "category": "solar_panel",
       "brand": "EcoFlow",
@@ -2453,7 +2453,7 @@
       "id": "padabo_hu:105883_32168",
       "merchant": "padabo_hu",
       "name": "Hepa Solar Sunseeker napelem nyomkövetővel névleges teljesítmény (wp) 135",
-      "description": "Napelem automatikus útválasztással A legkorszerűbb fényerő-érzékelőnek és négy precíziós működtetőnek köszönhetően a panel mind a dőlésszöget (0-45°), mind a forgást (akár 300°) optimálisan a nap állásához igazítja. A biztonságról egy szélérzékelő gondoskodik, amely 60-70 km/h-s szélsebességnél aktiválja a rendszert, és automatikusan megdől. A Hepa Solar Sunseeker 135 Wp napelemes panel és nyomkövető legfontosabb jellemzői: A Hepa Solar Sunseeker egy innovatív napelem, amely maximális energiahat",
+      "description": "Napelem automatikus útválasztással A Hepa Solar Sunseeker egy innovatív napelem, amely maximális energiahatékonyságot biztosít az utazások során. A beépített nyomkövető automatikusan a nap felé irányítja magát, és a hagyományos lapos panelekhez képest akár 250%-kal hatékonyabb. A panelt kifejezetten lakóautók és lakókocsik számára tervezték és szabadalmaztatták. A legkorszerűbb fényerő-érzékelőnek és négy precíziós működtetőnek köszönhetően a panel mind a dőlésszöget (0-45°), mind a forgást (aká",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
       "category": "solar_panel",
       "brand": "Frankana Freiko",
@@ -2482,7 +2482,7 @@
       "id": "padabo_hu:105883_32169",
       "merchant": "padabo_hu",
       "name": "Hepa Solar Sunseeker napelem nyomkövetővel névleges teljesítmény (wp) 200",
-      "description": "Napelem automatikus útválasztással A legkorszerűbb fényerő-érzékelőnek és négy precíziós működtetőnek köszönhetően a panel mind a dőlésszöget (0-45°), mind a forgást (akár 300°) optimálisan a nap állásához igazítja. A biztonságról egy szélérzékelő gondoskodik, amely 60-70 km/h-s szélsebességnél aktiválja a rendszert, és automatikusan megdől. A Hepa Solar Sunseeker 135 Wp napelemes panel és nyomkövető legfontosabb jellemzői: A Hepa Solar Sunseeker egy innovatív napelem, amely maximális energiahat",
+      "description": "Napelem automatikus útválasztással A Hepa Solar Sunseeker egy innovatív napelem, amely maximális energiahatékonyságot biztosít az utazások során. A beépített nyomkövető automatikusan a nap felé irányítja magát, és a hagyományos lapos panelekhez képest akár 250%-kal hatékonyabb. A panelt kifejezetten lakóautók és lakókocsik számára tervezték és szabadalmaztatták. A legkorszerűbb fényerő-érzékelőnek és négy precíziós működtetőnek köszönhetően a panel mind a dőlésszöget (0-45°), mind a forgást (aká",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
       "category": "solar_panel",
       "brand": "Frankana Freiko",
@@ -3936,39 +3936,6 @@
         ],
         "batteryType": "lifepo4",
         "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:106296_33731",
-      "merchant": "padabo_hu",
-      "name": "Renogy 12 V-os feszültségátalakító teljesítmény 2000 W",
-      "description": "Nagy teljesítményű feszültségegyenirányító a készülékek széles skálájához A Renogy feszültségátalakító fejlett tiszta szinuszhullámú technológiával rendelkezik, hogy maximalizálja a rendszer hatékonyságát. Az inverter beállítása olyan egyszerű, hogy még egy teljes analfabéta is meg tudja csinálni. A tiszta szinuszos kimenet folyamatos és stabil áramellátást biztosít, amely helyettesíti a közüzemi áramellátást. Az inverter sokoldalú és kompatibilis az elektromos készülékek széles skálájával, bele",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
-      "category": "inverter",
-      "brand": "Renogy",
-      "priceCzk": 116840,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/renogy-12-v-os-feszultsegatalakito_z106296/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-12-v-os-feszultsegatalakito_z106296%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/187879_102.jpg?1759325853_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 2000,
-        "currentA": 1,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
       }
@@ -6196,6 +6163,41 @@
         "dcOutputA": 10
       },
       "verifiedAt": "2026-08-28"
+    },
+    {
+      "id": "powerqueen_eu:15452515238108",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen 12V 100Ah Dual Purpose Group 24 LiFePO4 Außenbordmotor Batterie",
+      "description": "Rundum-Power für Ihr Angelboot: Ersetzt Ihre schwere Blei-Säure-Starterbatterie 1:1 (Group 24) – für volle Zündkraft am Außenborder und verlässlichen Strom fürs Echolot in einem Akku. Starker Motorstart (1000A MCA / 900A CCA): Zuverlässiges Zünden am kalten Morgen: Extrem hohe Impulsströme mit 1000A MCA (0°C) und 900A CCA (-10°C) starten Benzin-Außenbordmotoren von Yamaha, Mercury, Suzuki und Honda absolut mühelos. In der standardisierten Group 24 Passform ersetzt diese Batterie Ihre schwere Blei-Säure-Starterbatterie 1:1 direkt im vorhandenen Akkufach. Echter Dual-Purpose-Einsatz: Starterkraft &amp; Stromversorgung in Einem: Kein zweiter Akku nötig: Diese vielseitige Batterie liefert einerseits die benötigte Spitzenleistung zum Starten des Hauptmotors und versorgt andererseits verlässlich Ihre Bordelektronik wie Echolote, Navigationsgeräte oder Beleuchtung mit konstanter Deep-Cycle-Energie. Intelligenter Schutz &amp; App-Notstart: Nie wieder auf dem Wasser stranden: Sicherheit für Ihre Bootstour: Sinkt der Akkustand unter ca. 25% SOC, stoppt die Batterie die Entladung für Verbraucher automatisch, um genügend Energie zum Motorstart zu reservieren. Sollte sie dennoch leer sein, aktivieren Sie den Entladevorgang ganz einfach per \"Notstart\"-Button in der Bluetooth-App , um sicher ans Ufer zurückzukehren. Automatische Selbstheizung: Problemlos Laden bei Minustemperaturen: Perfekt für das Angeln im Frühjahr &amp; Spätherbst: Die integrierte Heizfunktion aktiviert sich bei Minustemperaturen automatisch, sobald eine Ladequelle angeschlossen wird. Das schützt die Zellen beim Laden über die Lichtmaschine des Außenborders oder am Landstrom effektiv vor Kälteschäden. Smartes Bluetooth 5.0 BMS: Volle Kontrolle direkt auf Ihrem Smartphone: Echtzeit-Daten im Blick: Überwachen Sie Ladezustand (SOC), Spannung, Temperatur und Systemstatus bequem per Bluetooth-App. Sie sparen sich einen teuren externen Batterie-Monitor und behalten auf dem Wasser stets die volle Kontrolle. Zertifizierte Marine-Qualität nach ABYC-Standard &amp; Mercury-Konformität: Geprüfte Sicherheit auf See: Erfüllt die strengen Richtlinien des American Boat and Yacht Council (ABYC) für Lithiumbatterien auf Wasserfahrzeugen sowie die Anforderungen moderner Mercury-Außenbordmotoren an Lithium-Startbatterien. Extrem leicht, langlebig &amp; wartungsfrei (5 Jahre Garantie): Bis zu 70% weniger Gewicht als alte Blei-Säure-Akkus für bessere Bootstrimm und Performance. Ausgelegt auf über 5.000 Motorstarts (oder über 4.000 Zyklen im reinen Stromspeicher-Betrieb) inklusive 5 Jahren Herstellergarantie. IP67 Wasserdicht &amp; Vibrationsfest für raue Bedingungen: Das robuste, nach IP67 geschützte Gehäuse trotzt Spritzwasser und Erschütterungen bei Wellengang mühelos. (Tipp: Für maximale Lebensdauer empfehlen wir die Montage an einem trockenem, leicht erhöhtem Ort im Boot).",
+      "categoryPath": "Batteries",
+      "category": "battery",
+      "brand": "PQ-DE",
+      "priceCzk": 349.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-dual-purpose-group-24-lifepo4-aussenbordmotor-batterie",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-12v-100ah-dual-purpose-group-24-lifepo4-aussenbordmotor-batterie",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/12V_100Ah_Gruppe_24_Dual_Purpose-A70.jpg?v=1793090041",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 100,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 1000,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
     },
     {
       "id": "powerqueen_eu:9633915175132",

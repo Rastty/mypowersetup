@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-26T09:03:19.110Z",
+  "generatedAt": "2026-10-27T09:07:12.100Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16542,
-      "relevantProducts": 245
+      "parsedProducts": 16558,
+      "relevantProducts": 244
     },
     "allpowers_eu": {
       "status": "ok",
@@ -16,9 +16,9 @@
     },
     "powerqueen_eu": {
       "status": "ok",
-      "parsedProducts": 60,
-      "relevantProducts": 22,
-      "batteries": 16,
+      "parsedProducts": 61,
+      "relevantProducts": 23,
+      "batteries": 17,
       "controllers": 1,
       "inverters": 1,
       "shoreChargers": 4
@@ -522,7 +522,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
+      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -6372,39 +6372,6 @@
       }
     },
     {
-      "id": "padabo_sk:106296_33731",
-      "merchant": "padabo_sk",
-      "name": "Menič napätia Renogy 12 V výkon 2000 W",
-      "description": "Výkonný usmerňovač napätia pre širokú škálu spotrebičov Menič napätia Renogy využíva pokročilú technológiu čistej sínusoidy na dosiahnutie maximálnej účinnosti vášho systému. Nastavenie meniča je také jednoduché, že ho zvládne aj úplný laik. Výstup s čistou sínusoidou zabezpečuje plynulé a stabilné napájanie, ktoré plnohodnotne nahrádza napájanie z verejnej siete. Menič je univerzálny a kompatibilný so širokou škálou elektrických spotrebičov, vrátane tých citlivejších, bez akýchkoľvek problémov ",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
-      "category": "inverter",
-      "brand": "Renogy",
-      "priceCzk": 277.12,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-renogy-12-v_z106296%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/187879_102.jpg?1759325853_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 2000,
-        "currentA": 1,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:106296_33732",
       "merchant": "padabo_sk",
       "name": "Menič napätia Renogy 12 V výkon 3000 W",
@@ -8606,6 +8573,41 @@
         "dcOutputA": 10
       },
       "verifiedAt": "2026-08-28"
+    },
+    {
+      "id": "powerqueen_eu:15452515238108",
+      "merchant": "powerqueen_eu",
+      "name": "Power Queen 12V 100Ah Dual Purpose Group 24 LiFePO4 Außenbordmotor Batterie",
+      "description": "Rundum-Power für Ihr Angelboot: Ersetzt Ihre schwere Blei-Säure-Starterbatterie 1:1 (Group 24) – für volle Zündkraft am Außenborder und verlässlichen Strom fürs Echolot in einem Akku. Starker Motorstart (1000A MCA / 900A CCA): Zuverlässiges Zünden am kalten Morgen: Extrem hohe Impulsströme mit 1000A MCA (0°C) und 900A CCA (-10°C) starten Benzin-Außenbordmotoren von Yamaha, Mercury, Suzuki und Honda absolut mühelos. In der standardisierten Group 24 Passform ersetzt diese Batterie Ihre schwere Ble",
+      "categoryPath": "Batteries",
+      "category": "battery",
+      "brand": "PQ-DE",
+      "priceCzk": 349.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-dual-purpose-group-24-lifepo4-aussenbordmotor-batterie",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-12v-100ah-dual-purpose-group-24-lifepo4-aussenbordmotor-batterie",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/12V_100Ah_Gruppe_24_Dual_Purpose-A70.jpg?v=1793090041",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 100,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 1000,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
     },
     {
       "id": "powerqueen_eu:9633915175132",
