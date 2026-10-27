@@ -13,7 +13,7 @@ function offer(id="vselektro:victron-smartsolar-100-50",category="controller"){
  tracking.searchParams.set("desturl",productUrl);
  return {id,category,merchant:"vselektro",productUrl,affiliateUrl:tracking.href,
    name:"Victron SmartSolar 100/50",priceCzk:4946,priceCurrency:"CZK",
-   available:true,verifiedAt:"2026-10-13",staleSource:false};
+   available:true,verifiedAt:"2026-10-13",offerObservedAt:"2026-10-14T10:00:00Z",staleSource:false};
 }
 function payload(products=[offer()],at=now){return {generatedAt:new Date(at).toISOString(),sources:{vselektro:{status:"ok"}},products};}
 
@@ -27,14 +27,20 @@ test("editorial offers require current successful source and in-stock verified e
  assert.equal(selectGuideOffers(payload([offer()],now+1000),"controller",now).length,0);
 });
 
-test("fresh catalog never revives stale, future-dated or invalid per-product offers",()=>{
+test("fresh catalog cannot re-date a stale or unobserved merchant offer",()=>{
  const valid=offer();
  assert.equal(selectGuideOffers(payload([valid]),"controller",now).length,1);
- for(const verifiedAt of ["2026-10-01", "2026-10-15", "invalid-date", ""]) {
-  const stale=offer(); stale.verifiedAt=verifiedAt;
-  assert.equal(eligibleGuideOffer(stale,"controller",now),false,verifiedAt);
-  assert.equal(selectGuideOffers(payload([stale]),"controller",now).length,0,verifiedAt);
+ for(const offerObservedAt of ["2026-10-01", "2026-10-15", "invalid-date", "", undefined]) {
+  const stale={...offer(),offerObservedAt};
+  assert.equal(eligibleGuideOffer(stale,"controller",now),false,String(offerObservedAt));
+  assert.equal(selectGuideOffers(payload([stale]),"controller",now).length,0,String(offerObservedAt));
  }
+ // Technical evidence remains separately dated and must not be fabricated.
+ for(const verifiedAt of ["2026-10-15", "invalid-date", ""]) {
+  assert.equal(eligibleGuideOffer({...valid,verifiedAt},"controller",now),false,verifiedAt);
+ }
+ // A historic technical review can coexist with a genuinely fresh price fetch.
+ assert.equal(eligibleGuideOffer({...valid,verifiedAt:"2026-09-20"},"controller",now),true);
 });
 
 test("affiliate URL, exact approved SKU, nonzero feed price and origin cannot be substituted",()=>{
