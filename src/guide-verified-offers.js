@@ -37,6 +37,10 @@ export function eligibleGuideOffer(product, category, now = Date.now()) {
   try {
     const origin = new URL(product.productUrl);
     const outbound = new URL(product.affiliateUrl);
+    // URLSearchParams.get() reads only the first value. A duplicate tracking
+    // parameter can be interpreted differently by the network redirector.
+    // Require a single unambiguous approved merchant and destination.
+    if (["a_aid", "a_bid", "desturl"].some((key) => outbound.searchParams.getAll(key).length !== 1)) return false;
     const finalUrl = new URL(outbound.searchParams.get("desturl"));
     if (origin.protocol !== "https:" || !["www.vselektro.eu", "vselektro.eu"].includes(origin.hostname)
       || origin.search || origin.hash || !origin.pathname.endsWith("/")) return false;

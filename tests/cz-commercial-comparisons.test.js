@@ -72,6 +72,20 @@ test("affiliate URL, exact approved SKU, nonzero feed price and origin cannot be
 });
 
 
+test("ambiguous duplicate affiliate tracking parameters never create a purchase recommendation", () => {
+ const valid = offer();
+ assert.equal(eligibleGuideOffer(valid, "controller", now), true);
+ for (const [key, value] of [
+   ["desturl", "https://unapproved.example/"],
+   ["a_aid", "different-publisher"],
+   ["a_bid", "different-campaign"],
+ ]) {
+   const link = new URL(valid.affiliateUrl);
+   link.searchParams.append(key, value);
+   assert.equal(eligibleGuideOffer({...valid, affiliateUrl: link.href}, "controller", now), false, key);
+ }
+});
+
 test("a stale guide feed removes prior tracked offers and restores the honest calculator fallback", () => {
  const previousDocument = globalThis.document;
  const element = (tagName = "div") => ({
