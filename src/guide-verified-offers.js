@@ -42,9 +42,12 @@ export function eligibleGuideOffer(product, category, now = Date.now()) {
     // Require a single unambiguous approved merchant and destination.
     if (["a_aid", "a_bid", "desturl"].some((key) => outbound.searchParams.getAll(key).length !== 1)) return false;
     const finalUrl = new URL(outbound.searchParams.get("desturl"));
-    if (origin.protocol !== "https:" || !["www.vselektro.eu", "vselektro.eu"].includes(origin.hostname)
+    // Hostname alone permits alternate HTTPS ports and userinfo URLs.
+    // Only the exact approved HTTPS origins are valid purchase routes.
+    if (!["https://www.vselektro.eu", "https://vselektro.eu"].includes(origin.origin)
+      || origin.username || origin.password
       || origin.search || origin.hash || !origin.pathname.endsWith("/")) return false;
-    if (outbound.protocol !== "https:" || outbound.hostname !== "ehub.cz"
+    if (outbound.origin !== "https://ehub.cz" || outbound.username || outbound.password
       || outbound.pathname !== "/system/scripts/click.php"
       || outbound.searchParams.get("a_aid") !== "f34c86c8"
       || outbound.searchParams.get("a_bid") !== "f897865f"
