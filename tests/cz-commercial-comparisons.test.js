@@ -157,6 +157,17 @@ test("a stale guide feed removes prior tracked offers and restores the honest ca
    assert.equal(fallback.hidden, true);
    // A later HTTP failure, invalid JSON, or expired catalog must not retain
    // the earlier price and tracked purchase link in a long-lived browser tab.
+   // An unresolved refresh must remove the old tracked link BEFORE fetch resolves.
+   let releaseFetch;
+   const pending = refreshGuideOffers([root], () => new Promise((resolve) => {
+     releaseFetch = resolve;
+   }), now);
+   assert.equal(root.querySelector(".guide-offer-list"), null);
+   assert.equal(root.dataset.liveOffers, "0");
+   assert.equal(fallback.hidden, false);
+   releaseFetch({ ok: true, json: async () => payload() });
+   await pending;
+   assert.equal(root.dataset.liveOffers, "1");
    await refreshGuideOffers([root], async () => ({ ok: false }), now);
    assert.equal(root.querySelector(".guide-offer-list"), null);
    assert.equal(root.dataset.liveOffers, "0");
