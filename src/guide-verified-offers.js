@@ -38,6 +38,23 @@ const EXACT_PRODUCT_PATHS = Object.freeze({
 const MAX_FEED_AGE_MS = 72 * 60 * 60 * 1000;
 const ID_PREFIX = "vselektro:";
 
+// Merchant offer observations and catalog generation times are evidence, not
+// loose browser dates. Reject local/ambiguous and normalized-invalid dates.
+function feedEvidenceTime(value) {
+  if (typeof value !== "string") return NaN;
+  const match = /^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})(?:\\.\\d{1,3})?(Z|[+-]\\d{2}:\\d{2})$/.exec(value);
+  if (!match) return NaN;
+  const zone = match[7];
+  const hours = zone === "Z" ? 0 : Number(zone.slice(1, 3));
+  const minutes = zone === "Z" ? 0 : Number(zone.slice(4, 6));
+  if (hours > 14 || minutes > 59 || (hours === 14 && minutes !== 0)) return NaN;
+  const offset = zone === "Z" ? 0 : (zone[0] === "-" ? -1 : 1) * (hours * 60 + minutes);
+  const parsed = Date.parse(value);
+  if (!Number.isFinite(parsed)) return NaN;
+  const local = new Date(parsed + offset * 60_000).toISOString().slice(0, 19);
+  return local === match[0].slice(0, 19) ? parsed : NaN;
+}
+
 export function eligibleGuideOffer(product, category, now = Date.now()) {
   if (!APPROVED[category]?.has(product?.id)) return false;
   if (product.merchant !== "vselektro" || product.category !== category || product.staleSource || product.available !== true) return false;
@@ -46,7 +63,7 @@ export function eligibleGuideOffer(product, category, now = Date.now()) {
   // The independent technical/SKU review date is not a live merchant price
   // observation. Only a successful fresh feed fetch can refresh an offer.
   const reviewedAt = Date.parse(product.verifiedAt);
-  const observedAt = Date.parse(product.offerObservedAt);
+  const observedAt = feedEvidenceTime(product.offerObservedAt);
   if (!Number.isFinite(reviewedAt) || reviewedAt > now
     || !Number.isFinite(observedAt) || observedAt > now
     || now - observedAt > MAX_FEED_AGE_MS) return false;
@@ -81,7 +98,7 @@ export function eligibleGuideOffer(product, category, now = Date.now()) {
 
 export function guideCatalogFresh(payload, now = Date.now()) {
   if (payload?.sources?.vselektro?.status !== "ok") return false;
-  const updated = Date.parse(payload.generatedAt);
+  const updated = feedEvidenceTime(payload.generatedAt);
   return Number.isFinite(updated) && updated <= now && now - updated <= MAX_FEED_AGE_MS
     && Array.isArray(payload.products);
 }
