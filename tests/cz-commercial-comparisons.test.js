@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { eligibleGuideOffer, guideCatalogFresh, selectGuideOffers, mountGuideOffers, refreshGuideOffers } from "../src/guide-verified-offers.js";
+import { eligibleGuideOffer, guideCatalogFresh, selectGuideOffers, mountGuideOffers, refreshGuideOffers, guideOffersExpireAt } from "../src/guide-verified-offers.js";
 import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
 
 const now=Date.parse("2026-10-14T11:00:00Z");
@@ -44,6 +44,23 @@ test("fresh catalog cannot re-date a stale or unobserved merchant offer",()=>{
  }
  // A historic technical review can coexist with a genuinely fresh price fetch.
  assert.equal(eligibleGuideOffer({...valid,verifiedAt:"2026-09-20"},"controller",now),true);
+});
+
+test("visible verified offers expire at the earliest feed or per-product observation deadline", async () => {
+ const hour=60*60*1000;
+ const valid=offer();
+ const current=payload([valid],now);
+ assert.equal(guideOffersExpireAt(current,["controller"],now),
+   Date.parse(valid.offerObservedAt)+72*hour+1);
+ assert.equal(guideOffersExpireAt(current,["battery"],now),null);
+ assert.equal(guideOffersExpireAt({...current,sources:{vselektro:{status:"stale"}}},["controller"],now),null);
+ const later={...valid,offerObservedAt:new Date(now).toISOString()};
+ assert.equal(guideOffersExpireAt(payload([later],now),["controller"],now),now+72*hour+1);
+ // The actual browser must schedule invalidation and remove old links before
+ // refetch; an hourly refresh alone can leave a stale price visible.
+ const script=await readFile(new URL("../src/guide-verified-offers.js",import.meta.url),"utf8");
+ assert.match(script,/expiryTimer = window\.setTimeout/);
+ assert.match(script,/for \(const root of roots\) mountGuideOffers\(root, null, Date\.now\(\)\)/);
 });
 
 test("duplicate approved SKU rows fail closed even if one appears valid",()=>{
