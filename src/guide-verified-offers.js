@@ -145,6 +145,9 @@ export function mountGuideOffers(root, payload, now = Date.now()) {
 // network/JSON failures must remove its tracked purchase link rather than
 // leaving a misleading cached price visible.
 export async function refreshGuideOffers(roots, fetchImpl = fetch, now = Date.now()) {
+  // Returning to a long-lived tab must disable old purchase links immediately.
+  // Do not leave them clickable while a slow or stalled network read is pending.
+  for (const root of roots) mountGuideOffers(root, null, now);
   let payload = null;
   try {
     const response = await fetchImpl("/data/products.json", { cache: "no-store" });
