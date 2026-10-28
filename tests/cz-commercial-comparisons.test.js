@@ -152,6 +152,19 @@ test("approved guide routes reject alternate HTTPS ports and URL credentials", (
  assert.equal(eligibleGuideOffer(valid, "controller", now), true, "approved canonical route must remain eligible");
 });
 
+test("guide feed fetch must reject redirects before trusting catalog prices", async () => {
+ const observed=[];
+ await refreshGuideOffers([], async (url, options) => {
+  observed.push({url, options});
+  return {ok:false};
+ }, now);
+ assert.equal(observed.length,1);
+ assert.equal(observed[0].url,"/data/products.json");
+ assert.equal(observed[0].options.cache,"no-store");
+ assert.equal(observed[0].options.redirect,"error");
+ assert.ok(observed[0].options.signal instanceof AbortSignal);
+});
+
 test("a stale guide feed removes prior tracked offers and restores the honest calculator fallback", async () => {
  const previousDocument = globalThis.document;
  const element = (tagName = "div") => ({
