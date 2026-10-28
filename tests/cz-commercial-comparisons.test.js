@@ -168,6 +168,20 @@ test("a stale guide feed removes prior tracked offers and restores the honest ca
    releaseFetch({ ok: true, json: async () => payload() });
    await pending;
    assert.equal(root.dataset.liveOffers, "1");
+   // A tab can be suspended while its feed request is in flight. The catalog
+   // was valid when the request started, but is no longer valid at response.
+   let virtualNow = now;
+   let finishSlowFetch;
+   const slow = refreshGuideOffers([root], () => new Promise((resolve) => {
+     finishSlowFetch = resolve;
+   }), () => virtualNow);
+   assert.equal(root.dataset.liveOffers, "0");
+   virtualNow = now + 73 * 60 * 60 * 1000;
+   finishSlowFetch({ ok: true, json: async () => payload() });
+   await slow;
+   assert.equal(root.dataset.liveOffers, "0", "expired offer cannot return after a delayed fetch");
+   assert.equal(root.querySelector(".guide-offer-list"), null);
+   assert.equal(fallback.hidden, false);
    await refreshGuideOffers([root], async () => ({ ok: false }), now);
    assert.equal(root.querySelector(".guide-offer-list"), null);
    assert.equal(root.dataset.liveOffers, "0");
