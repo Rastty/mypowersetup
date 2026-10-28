@@ -141,16 +141,40 @@ export function mountGuideOffers(root, payload, now = Date.now()) {
   return offers.length;
 }
 
+// Recheck on return to an open tab: a previous offer may have expired, and
+// network/JSON failures must remove its tracked purchase link rather than
+// leaving a misleading cached price visible.
+export async function refreshGuideOffers(roots, fetchImpl = fetch, now = Date.now()) {
+  let payload = null;
+  try {
+    const response = await fetchImpl("/data/products.json", { cache: "no-store" });
+    if (response.ok) payload = await response.json();
+  } catch {
+    // No trusted live catalog: show the permanent calculator fallback.
+  }
+  for (const root of roots) mountGuideOffers(root, payload, now);
+}
+
 async function init() {
   const roots = document.querySelectorAll("[data-guide-category]");
   if (!roots.length) return;
-  let payload;
-  try {
-    const response = await fetch("/data/products.json", { cache: "no-store" });
-    if (!response.ok) return;
-    payload = await response.json();
-  } catch { return; }
-  for (const root of roots) mountGuideOffers(root, payload);
+  let refreshing = null;
+  const refresh = () => {
+    if (!refreshing) {
+      refreshing = refreshGuideOffers(roots).finally(() => { refreshing = null; });
+    }
+    return refreshing;
+  };
+  await refresh();
+  // Hidden tabs can sleep for days. Revalidate when the user returns and
+  // periodically while visible, without overlapping refresh requests.
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) void refresh();
+  });
+  window.addEventListener("focus", () => { void refresh(); });
+  window.setInterval(() => {
+    if (!document.hidden) void refresh();
+  }, 60 * 60 * 1000);
   document.addEventListener("click", (event) => {
     const link = event.target.closest?.("[data-guide-category] a[data-affiliate-click]");
     if (!link) return;
