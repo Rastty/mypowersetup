@@ -385,3 +385,22 @@ test("calculator result connects three distinct sourced purchase comparisons wit
  assert.doesNotMatch(section,/ehub[.]cz|go[.]dognet[.]com|a_aid=|a_bid=/);
  assert.ok(css.includes('.component-comparison-links a:focus-visible'));
 });
+
+
+test("merchant freshness evidence requires real timezone-qualified calendar timestamps", () => {
+ const valid=offer();
+ assert.equal(eligibleGuideOffer(valid,"controller",now),true);
+ const invalid=[
+  "2026-10-14", "2026-10-14T10:00:00", "2026-02-30T10:00:00Z",
+  "2026-10-14T24:00:00Z", "2026-10-14T10:00:00+14:30",
+  "2026-10-14T10:00:00+02:99", "2026-13-14T10:00:00Z",
+ ];
+ for(const stamp of invalid){
+  assert.equal(eligibleGuideOffer({...valid,offerObservedAt:stamp},"controller",now),false,stamp);
+  assert.equal(guideCatalogFresh({...payload(),generatedAt:stamp},now),false,stamp);
+ }
+ // Valid offset timestamps must preserve the same instant, not depend on
+ // the browser's local timezone. Historic technical review dates are separate.
+ assert.equal(eligibleGuideOffer({...valid,offerObservedAt:"2026-10-14T12:00:00+02:00"},"controller",now),true);
+ assert.equal(guideCatalogFresh({...payload(),generatedAt:"2026-10-14T13:00:00+02:00"},now),true);
+});
