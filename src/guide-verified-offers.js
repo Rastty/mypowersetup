@@ -193,6 +193,25 @@ export async function refreshGuideOffers(roots, fetchImpl = fetch, now = Date.no
   return payload;
 }
 
+// Only genuine primary clicks and middle-button opens count as outbound
+// intent. Right-button/context-menu actions are not purchases. A stale
+// blocked click must never inflate the consent-aware affiliate denominator.
+export function trackGuideAffiliateClick(event, analytics) {
+  if (event.defaultPrevented) return;
+  if (event.type === "auxclick" ? event.button !== 1
+      : event.type !== "click" || (event.button !== 0 && event.button !== undefined)) return;
+  const link = event.target?.closest?.("[data-guide-category] a[data-affiliate-click]");
+  if (!link) return;
+  // The shared adapter enforces consent. Never attach personal identifiers.
+  analytics?.track?.("affiliate_click", {
+    productId: link.dataset.productId,
+    merchant: "vselektro",
+    category: link.dataset.category,
+    source: "editorial-comparison",
+    purchaseRoute: "components",
+  });
+}
+
 async function init() {
   const roots = document.querySelectorAll("[data-guide-category]");
   if (!roots.length) return;
@@ -229,18 +248,9 @@ async function init() {
   window.setInterval(() => {
     if (!document.hidden) void refresh();
   }, 60 * 60 * 1000);
-  document.addEventListener("click", (event) => {
-    const link = event.target.closest?.("[data-guide-category] a[data-affiliate-click]");
-    if (!link) return;
-    // Shared analytics respects user consent; never store click identifiers locally.
-    window.MyPowerSetupAnalytics?.track("affiliate_click", {
-      productId: link.dataset.productId,
-      merchant: "vselektro",
-      category: link.dataset.category,
-      source: "editorial-comparison",
-      purchaseRoute: "components",
-    });
-  });
+  const trackOutbound = (event) => trackGuideAffiliateClick(event, window.MyPowerSetupAnalytics);
+  document.addEventListener("click", trackOutbound);
+  document.addEventListener("auxclick", trackOutbound);
 }
 
 if (typeof window !== "undefined" && typeof document !== "undefined") init();
