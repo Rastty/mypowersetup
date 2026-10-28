@@ -102,7 +102,7 @@ function appendText(parent, name, text, className) {
   parent.append(element);
   return element;
 }
-export function mountGuideOffers(root, payload, now = Date.now()) {
+export function mountGuideOffers(root, payload, now = Date.now(), clickNow = Date.now) {
   if (!root) return 0;
   const category = root.dataset.guideCategory;
   const offers = selectGuideOffers(payload, category, now);
@@ -131,6 +131,19 @@ export function mountGuideOffers(root, payload, now = Date.now()) {
     link.dataset.category = category;
     link.dataset.productId = item.id;
     link.dataset.merchant = "vselektro";
+    // A suspended tab can outlive the last successful hourly refresh. Check
+    // current feed and SKU eligibility at the actual outbound-click moment.
+    // Never count a blocked stale click as an affiliate conversion event.
+    const verifyBeforeClick = (event) => {
+      const current = clickNow();
+      if (!selectGuideOffers(payload, category, current).some((candidate) => candidate === item)) {
+        event.preventDefault();
+        event.stopPropagation();
+        mountGuideOffers(root, null, current);
+      }
+    };
+    link.addEventListener("click", verifyBeforeClick);
+    link.addEventListener("auxclick", verifyBeforeClick);
     row.append(link);
     list.append(row);
   }
