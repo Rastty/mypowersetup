@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { eligibleGuideOffer, guideCatalogFresh, selectGuideOffers, mountGuideOffers, refreshGuideOffers, guideOffersExpireAt } from "../src/guide-verified-offers.js";
+import { eligibleGuideOffer, guideCatalogFresh, selectGuideOffers, mountGuideOffers, refreshGuideOffers, guideOffersExpireAt, trackGuideAffiliateClick } from "../src/guide-verified-offers.js";
 import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
 
 const now=Date.parse("2026-10-14T11:00:00Z");
@@ -150,6 +150,35 @@ test("approved guide routes reject alternate HTTPS ports and URL credentials", (
    assert.equal(eligibleGuideOffer({...valid, affiliateUrl}, "controller", now), false, affiliateUrl);
  }
  assert.equal(eligibleGuideOffer(valid, "controller", now), true, "approved canonical route must remain eligible");
+});
+
+test("consent-aware editorial affiliate denominator includes eligible middle clicks but not blocked or context clicks", async () => {
+ const recorded=[];
+ const analytics={track:(event,detail)=>recorded.push({event,detail})};
+ const link={dataset:{productId:"vselektro:victron-smartsolar-100-50",category:"controller"},
+  closest:(selector)=>selector==="[data-guide-category] a[data-affiliate-click]"?link:null};
+ const emit=(type,button,defaultPrevented=false,target=link)=>
+  trackGuideAffiliateClick({type,button,defaultPrevented,target},analytics);
+ emit("click",0);
+ emit("auxclick",1);
+ emit("click",0,true); // stale SKU guard prevented navigation
+ emit("auxclick",1,true);
+ emit("auxclick",2); // context menu is not an outbound click
+ emit("click",2);
+ emit("mousemove",0);
+ emit("click",0,false,{closest:()=>null});
+ assert.equal(recorded.length,2);
+ for(const {event,detail} of recorded){
+  assert.equal(event,"affiliate_click");
+  assert.equal(detail.productId,"vselektro:victron-smartsolar-100-50");
+  assert.equal(detail.category,"controller");
+  assert.equal(detail.source,"editorial-comparison");
+  assert.equal(detail.purchaseRoute,"components");
+  assert.ok(!("clickId" in detail));
+ }
+ const js=await readFile(new URL("../src/guide-verified-offers.js",import.meta.url),"utf8");
+ assert.match(js,/document\.addEventListener\("click", trackOutbound\)/);
+ assert.match(js,/document\.addEventListener\("auxclick", trackOutbound\)/);
 });
 
 test("guide feed fetch must reject redirects before trusting catalog prices", async () => {
