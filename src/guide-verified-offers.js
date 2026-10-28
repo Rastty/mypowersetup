@@ -97,6 +97,17 @@ export function selectGuideOffers(payload, category, now = Date.now()) {
   return payload.products.filter((p) => counts.get(p?.id) === 1 && eligibleGuideOffer(p, category, now));
 }
 
+// Expire displayed offers at the first actual evidence deadline, not only
+// at the next hourly network refresh. A sleeping tab still has click guards.
+export function guideOffersExpireAt(payload, categories, now = Date.now()) {
+  const offers = categories.flatMap((category) => selectGuideOffers(payload, category, now));
+  if (!offers.length) return null;
+  return Math.min(
+    Date.parse(payload.generatedAt) + MAX_FEED_AGE_MS,
+    ...offers.map((offer) => Date.parse(offer.offerObservedAt) + MAX_FEED_AGE_MS)
+  ) + 1;
+}
+
 function displayPrice(price) {
   return new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 }).format(price);
 }
@@ -179,15 +190,32 @@ export async function refreshGuideOffers(roots, fetchImpl = fetch, now = Date.no
     // No trusted live catalog: show the permanent calculator fallback.
   }
   for (const root of roots) mountGuideOffers(root, payload, currentTime());
+  return payload;
 }
 
 async function init() {
   const roots = document.querySelectorAll("[data-guide-category]");
   if (!roots.length) return;
   let refreshing = null;
+  let expiryTimer = null;
   const refresh = () => {
     if (!refreshing) {
-      refreshing = refreshGuideOffers(roots).finally(() => { refreshing = null; });
+      refreshing = refreshGuideOffers(roots).then((payload) => {
+        if (expiryTimer !== null) window.clearTimeout(expiryTimer);
+        expiryTimer = null;
+        const expiry = guideOffersExpireAt(
+          payload, Array.from(roots, (root) => root.dataset.guideCategory)
+        );
+        if (expiry !== null) {
+          expiryTimer = window.setTimeout(() => {
+            expiryTimer = null;
+            // Remove stale prices and tracked links before attempting a new
+            // fetch; a failed refresh must leave the calculator fallback.
+            for (const root of roots) mountGuideOffers(root, null, Date.now());
+            void refresh();
+          }, Math.max(1, expiry - Date.now()));
+        }
+      }).finally(() => { refreshing = null; });
     }
     return refreshing;
   };
