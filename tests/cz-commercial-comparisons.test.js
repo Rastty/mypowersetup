@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { eligibleGuideOffer, guideCatalogFresh, selectGuideOffers, mountGuideOffers } from "../src/guide-verified-offers.js";
+import { eligibleGuideOffer, guideCatalogFresh, selectGuideOffers, mountGuideOffers, refreshGuideOffers } from "../src/guide-verified-offers.js";
 import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
 
 const now=Date.parse("2026-10-14T11:00:00Z");
@@ -121,7 +121,7 @@ test("approved guide routes reject alternate HTTPS ports and URL credentials", (
  assert.equal(eligibleGuideOffer(valid, "controller", now), true, "approved canonical route must remain eligible");
 });
 
-test("a stale guide feed removes prior tracked offers and restores the honest calculator fallback", () => {
+test("a stale guide feed removes prior tracked offers and restores the honest calculator fallback", async () => {
  const previousDocument = globalThis.document;
  const element = (tagName = "div") => ({
    tagName, className: "", children: [], dataset: {}, hidden: false,
@@ -155,6 +155,23 @@ test("a stale guide feed removes prior tracked offers and restores the honest ca
    assert.equal(mountGuideOffers(root, payload(), now), 1);
    assert.equal(root.children.filter((child) => child.className === "guide-offer-list").length, 1);
    assert.equal(fallback.hidden, true);
+   // A later HTTP failure, invalid JSON, or expired catalog must not retain
+   // the earlier price and tracked purchase link in a long-lived browser tab.
+   await refreshGuideOffers([root], async () => ({ ok: false }), now);
+   assert.equal(root.querySelector(".guide-offer-list"), null);
+   assert.equal(root.dataset.liveOffers, "0");
+   assert.equal(fallback.hidden, false);
+   await refreshGuideOffers([root], async () => ({ ok: true, json: async () => payload() }), now);
+   assert.equal(root.dataset.liveOffers, "1");
+   await refreshGuideOffers([root], async () => { throw new Error("offline"); }, now);
+   assert.equal(root.dataset.liveOffers, "0");
+   await refreshGuideOffers([root], async () => ({ ok: true, json: async () => { throw new Error("bad JSON"); } }), now);
+   assert.equal(root.querySelector(".guide-offer-list"), null);
+   await refreshGuideOffers([root], async () => ({ ok: true, json: async () => payload() }), now + 73 * 60 * 60 * 1000);
+   assert.equal(root.dataset.liveOffers, "0");
+   assert.equal(fallback.hidden, false);
+   await refreshGuideOffers([root], async () => ({ ok: true, json: async () => payload() }), now);
+   assert.equal(root.dataset.liveOffers, "1");
  } finally {
    if (previousDocument === undefined) delete globalThis.document;
    else globalThis.document = previousDocument;
