@@ -184,7 +184,7 @@ export async function refreshGuideOffers(roots, fetchImpl = fetch, now = Date.no
   let payload = null;
   try {
     // A permanently stalled fetch must not suppress future focus/visibility retries.
-    const response = await fetchImpl("/data/products.json", { cache: "no-store", signal: AbortSignal.timeout(timeoutMs) });
+    const response = await fetchImpl("/data/products.json", { cache: "no-store", redirect: "error", signal: AbortSignal.timeout(timeoutMs) });
     if (response.ok) payload = await response.json();
   } catch {
     // No trusted live catalog: show the permanent calculator fallback.
