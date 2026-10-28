@@ -124,8 +124,18 @@ test("approved guide routes reject alternate HTTPS ports and URL credentials", (
 test("a stale guide feed removes prior tracked offers and restores the honest calculator fallback", async () => {
  const previousDocument = globalThis.document;
  const element = (tagName = "div") => ({
-   tagName, className: "", children: [], dataset: {}, hidden: false,
+   tagName, className: "", children: [], dataset: {}, hidden: false, listeners: {},
    append(child) { child.parent = this; this.children.push(child); },
+   addEventListener(type, handler) { (this.listeners[type] ||= []).push(handler); },
+   dispatch(type) {
+     const event = {
+       defaultPrevented: false, propagationStopped: false,
+       preventDefault() { this.defaultPrevented = true; },
+       stopPropagation() { this.propagationStopped = true; },
+     };
+     for (const handler of this.listeners[type] || []) handler(event);
+     return event;
+   },
    remove() {
      if (this.parent) this.parent.children = this.parent.children.filter((item) => item !== this);
      this.parent = null;
@@ -147,6 +157,18 @@ test("a stale guide feed removes prior tracked offers and restores the honest ca
    assert.equal(root.dataset.liveOffers, "1");
    assert.equal(fallback.hidden, true);
    assert.equal(root.children.filter((child) => child.className === "guide-offer-list").length, 1);
+   const currentLink = root.querySelector(".guide-offer-list").children[0].children.find((child) => child.tagName === "a");
+   assert.equal(currentLink.dispatch("click").defaultPrevented, false, "fresh link remains usable");
+   // The page may remain visible across a feed expiry without a visibility event.
+   // A click on an old price must not navigate or bubble as a tracked sale.
+   assert.equal(mountGuideOffers(root, payload(), now, () => now + 73 * 60 * 60 * 1000), 1);
+   const expiredLink = root.querySelector(".guide-offer-list").children[0].children.find((child) => child.tagName === "a");
+   const blocked = expiredLink.dispatch("auxclick");
+   assert.equal(blocked.defaultPrevented, true);
+   assert.equal(blocked.propagationStopped, true);
+   assert.equal(root.querySelector(".guide-offer-list"), null);
+   assert.equal(root.dataset.liveOffers, "0");
+   assert.equal(fallback.hidden, false);
    const stale = { ...payload(), sources: { vselektro: { status: "stale" } } };
    assert.equal(mountGuideOffers(root, stale, now), 0);
    assert.equal(root.dataset.liveOffers, "0");
