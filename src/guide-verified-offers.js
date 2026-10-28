@@ -19,21 +19,73 @@ const APPROVED = Object.freeze({
     "vselektro:victron-orion-xs-12-12-50-nonisolated",
   ]),
 });
+// Independent exact destination guard for editorial SKU cards. A catalog row
+// must not reuse an approved ID while pointing at a different merchant product.
+// Paths mirror the independently reviewed exact-SKU feed allowlist; any new
+// editorial offer needs a deliberate reviewed addition here as well.
+const EXACT_PRODUCT_PATHS = Object.freeze({
+  "vselektro:sunstone-slpo12-100n": "/lifepo4-baterie-12v-100ah-sunstone-power-slpo12-100n/",
+  "vselektro:sunstone-slpo12-200n": "/lifepo4-baterie-12v-200ah-slpo12-200n-hc200a-sunstone-power/",
+  "vselektro:sunstone-slpo12-200m-hc200a": "/lifepo4-baterie-12v-200ah-slpo12-200m-hc200a-sunstone-power/",
+  "vselektro:victron-smartsolar-100-20": "/solarni-regulator-victron-energy-mppt-smartsolar-100v-20a/",
+  "vselektro:victron-smartsolar-100-30": "/solarni-regulator-victron-energy-smartsolar-30a/",
+  "vselektro:victron-smartsolar-100-50": "/solarni-regulator-victron-energy-mppt-smartsolar-100v-50a/",
+  "vselektro:victron-orion-tr-12-12-18-isolated": "/nabijecka-dc-dc-orion-tr-smart-12-12-18a/",
+  "vselektro:victron-orion-tr-12-12-30-isolated": "/nabijecka-dc-dc-orion-tr-smart-12-12-30a/",
+  "vselektro:victron-orion-tr-12-12-30-nonisolated": "/nabijecka-dc-dc-orion-tr-smart-12-12-30a-neizolovana/",
+  "vselektro:victron-orion-xs-12-12-50-nonisolated": "/nabijecka-dc-dc-orion-xs-smart-12-12-50a-neizolovana/",
+});
 const MAX_FEED_AGE_MS = 72 * 60 * 60 * 1000;
 const ID_PREFIX = "vselektro:";
+
+// Merchant offer observations and catalog generation times are evidence, not
+// loose browser dates. Reject local/ambiguous and normalized-invalid dates.
+function feedEvidenceTime(value) {
+  if (typeof value !== "string") return NaN;
+  const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d{1,3})?(Z|[+-]\d{2}:\d{2})$/.exec(value);
+  if (!match) return NaN;
+  const zone = match[7];
+  const hours = zone === "Z" ? 0 : Number(zone.slice(1, 3));
+  const minutes = zone === "Z" ? 0 : Number(zone.slice(4, 6));
+  if (hours > 14 || minutes > 59 || (hours === 14 && minutes !== 0)) return NaN;
+  const offset = zone === "Z" ? 0 : (zone[0] === "-" ? -1 : 1) * (hours * 60 + minutes);
+  const parsed = Date.parse(value);
+  if (!Number.isFinite(parsed)) return NaN;
+  const local = new Date(parsed + offset * 60_000).toISOString().slice(0, 19);
+  return local === match[0].slice(0, 19) ? parsed : NaN;
+}
 
 export function eligibleGuideOffer(product, category, now = Date.now()) {
   if (!APPROVED[category]?.has(product?.id)) return false;
   if (product.merchant !== "vselektro" || product.category !== category || product.staleSource || product.available !== true) return false;
   if (!Number.isFinite(product.priceCzk) || product.priceCzk <= 0 || product.priceCurrency !== "CZK") return false;
-  if (!product.verifiedAt || !product.productUrl || !product.affiliateUrl) return false;
+  if (!product.verifiedAt || !product.offerObservedAt || !product.productUrl || !product.affiliateUrl) return false;
+  // The independent technical/SKU review date is not a live merchant price
+  // observation. Only a successful fresh feed fetch can refresh an offer.
+  const reviewedAt = Date.parse(product.verifiedAt);
+  const observedAt = feedEvidenceTime(product.offerObservedAt);
+  if (!Number.isFinite(reviewedAt) || reviewedAt > now
+    || !Number.isFinite(observedAt) || observedAt > now
+    || now - observedAt > MAX_FEED_AGE_MS) return false;
   try {
     const origin = new URL(product.productUrl);
     const outbound = new URL(product.affiliateUrl);
+    // URLSearchParams.get() reads only the first value. A duplicate tracking
+    // parameter can be interpreted differently by the network redirector.
+    // Require a single unambiguous approved merchant and destination.
+    if (["a_aid", "a_bid", "desturl"].some((key) => outbound.searchParams.getAll(key).length !== 1)) return false;
     const finalUrl = new URL(outbound.searchParams.get("desturl"));
-    if (origin.protocol !== "https:" || !["www.vselektro.eu", "vselektro.eu"].includes(origin.hostname)
-      || origin.search || origin.hash || !origin.pathname.endsWith("/")) return false;
-    if (outbound.protocol !== "https:" || outbound.hostname !== "ehub.cz"
+    // Hostname alone permits alternate HTTPS ports and userinfo URLs.
+    // Only the exact approved HTTPS origins are valid purchase routes.
+    if (!["https://www.vselektro.eu", "https://vselektro.eu"].includes(origin.origin)
+      || origin.username || origin.password
+      || origin.search || origin.hash || origin.pathname !== EXACT_PRODUCT_PATHS[product.id]) return false;
+    // Extra redirect parameters or fragments are not part of the reviewed
+    // exact-SKU tracking contract and may change the final destination.
+    if (outbound.hash || [...outbound.searchParams.keys()].some(
+      (key) => !["a_aid", "a_bid", "desturl"].includes(key)
+    )) return false;
+    if (outbound.origin !== "https://ehub.cz" || outbound.username || outbound.password
       || outbound.pathname !== "/system/scripts/click.php"
       || outbound.searchParams.get("a_aid") !== "f34c86c8"
       || outbound.searchParams.get("a_bid") !== "f897865f"
@@ -46,14 +98,31 @@ export function eligibleGuideOffer(product, category, now = Date.now()) {
 
 export function guideCatalogFresh(payload, now = Date.now()) {
   if (payload?.sources?.vselektro?.status !== "ok") return false;
-  const updated = Date.parse(payload.generatedAt);
+  const updated = feedEvidenceTime(payload.generatedAt);
   return Number.isFinite(updated) && updated <= now && now - updated <= MAX_FEED_AGE_MS
     && Array.isArray(payload.products);
 }
 
 export function selectGuideOffers(payload, category, now = Date.now()) {
   if (!guideCatalogFresh(payload, now) || !APPROVED[category]) return [];
-  return payload.products.filter((p) => eligibleGuideOffer(p, category, now));
+  // A repeated approved SKU may carry contradictory feed price or availability.
+  // Do not silently choose a winner or show duplicate purchase links.
+  const counts = new Map();
+  for (const product of payload.products) {
+    if (APPROVED[category].has(product?.id)) counts.set(product.id, (counts.get(product.id) || 0) + 1);
+  }
+  return payload.products.filter((p) => counts.get(p?.id) === 1 && eligibleGuideOffer(p, category, now));
+}
+
+// Expire displayed offers at the first actual evidence deadline, not only
+// at the next hourly network refresh. A sleeping tab still has click guards.
+export function guideOffersExpireAt(payload, categories, now = Date.now()) {
+  const offers = categories.flatMap((category) => selectGuideOffers(payload, category, now));
+  if (!offers.length) return null;
+  return Math.min(
+    Date.parse(payload.generatedAt) + MAX_FEED_AGE_MS,
+    ...offers.map((offer) => Date.parse(offer.offerObservedAt) + MAX_FEED_AGE_MS)
+  ) + 1;
 }
 
 function displayPrice(price) {
@@ -66,12 +135,20 @@ function appendText(parent, name, text, className) {
   parent.append(element);
   return element;
 }
-export function mountGuideOffers(root, payload, now = Date.now()) {
+export function mountGuideOffers(root, payload, now = Date.now(), clickNow = Date.now) {
   if (!root) return 0;
   const category = root.dataset.guideCategory;
   const offers = selectGuideOffers(payload, category, now);
-  // Keep a real editorial route to the Builder when offers cannot be verified.
-  if (!offers.length) return 0;
+  // A later failed/stale refresh must not leave an earlier price or tracked
+  // purchase link visible. Keep the editorial Builder fallback reversible.
+  const previous = root.querySelector(".guide-offer-list");
+  const fallback = root.querySelector(".guide-offer-fallback");
+  if (!offers.length) {
+    previous?.remove();
+    if (fallback) fallback.hidden = false;
+    root.dataset.liveOffers = "0";
+    return 0;
+  }
   const list = document.createElement("ul");
   list.className = "guide-offer-list";
   for (const item of offers) {
@@ -87,39 +164,110 @@ export function mountGuideOffers(root, payload, now = Date.now()) {
     link.dataset.category = category;
     link.dataset.productId = item.id;
     link.dataset.merchant = "vselektro";
+    // A suspended tab can outlive the last successful hourly refresh. Check
+    // current feed and SKU eligibility at the actual outbound-click moment.
+    // Never count a blocked stale click as an affiliate conversion event.
+    const verifyBeforeClick = (event) => {
+      const current = clickNow();
+      if (!selectGuideOffers(payload, category, current).some((candidate) => candidate === item)) {
+        event.preventDefault();
+        event.stopPropagation();
+        mountGuideOffers(root, null, current);
+      }
+    };
+    link.addEventListener("click", verifyBeforeClick);
+    link.addEventListener("auxclick", verifyBeforeClick);
     row.append(link);
     list.append(row);
   }
-  const old = root.querySelector(".guide-offer-list");
-  old?.remove();
+  previous?.remove();
   root.append(list);
-  root.querySelector(".guide-offer-fallback")?.remove();
+  if (fallback) fallback.hidden = true;
   root.dataset.liveOffers = String(offers.length);
   return offers.length;
+}
+
+// Recheck on return to an open tab: a previous offer may have expired, and
+// network/JSON failures must remove its tracked purchase link rather than
+// leaving a misleading cached price visible.
+export async function refreshGuideOffers(roots, fetchImpl = fetch, now = Date.now, timeoutMs = 15_000) {
+  // A slow/suspended request may resolve hours after it began. Evaluate offer
+  // freshness at render time, not at the beginning of the network request.
+  // Numeric clock injection is retained for deterministic offline regressions.
+  const currentTime = () => typeof now === "function" ? now() : now;
+  // Returning to a long-lived tab must disable old purchase links immediately.
+  // Do not leave them clickable while a slow or stalled network read is pending.
+  for (const root of roots) mountGuideOffers(root, null, currentTime());
+  let payload = null;
+  try {
+    // A permanently stalled fetch must not suppress future focus/visibility retries.
+    const response = await fetchImpl("/data/products.json", { cache: "no-store", redirect: "error", signal: AbortSignal.timeout(timeoutMs) });
+    if (response.ok) payload = await response.json();
+  } catch {
+    // No trusted live catalog: show the permanent calculator fallback.
+  }
+  for (const root of roots) mountGuideOffers(root, payload, currentTime());
+  return payload;
+}
+
+// Only genuine primary clicks and middle-button opens count as outbound
+// intent. Right-button/context-menu actions are not purchases. A stale
+// blocked click must never inflate the consent-aware affiliate denominator.
+export function trackGuideAffiliateClick(event, analytics) {
+  if (event.defaultPrevented) return;
+  if (event.type === "auxclick" ? event.button !== 1
+      : event.type !== "click" || (event.button !== 0 && event.button !== undefined)) return;
+  const link = event.target?.closest?.("[data-guide-category] a[data-affiliate-click]");
+  if (!link) return;
+  // The shared adapter enforces consent. Never attach personal identifiers.
+  analytics?.track?.("affiliate_click", {
+    productId: link.dataset.productId,
+    merchant: "vselektro",
+    category: link.dataset.category,
+    source: "editorial-comparison",
+    purchaseRoute: "components",
+  });
 }
 
 async function init() {
   const roots = document.querySelectorAll("[data-guide-category]");
   if (!roots.length) return;
-  let payload;
-  try {
-    const response = await fetch("/data/products.json", { cache: "no-store" });
-    if (!response.ok) return;
-    payload = await response.json();
-  } catch { return; }
-  for (const root of roots) mountGuideOffers(root, payload);
-  document.addEventListener("click", (event) => {
-    const link = event.target.closest?.("[data-guide-category] a[data-affiliate-click]");
-    if (!link) return;
-    // Shared analytics respects user consent; never store click identifiers locally.
-    window.MyPowerSetupAnalytics?.track("affiliate_click", {
-      productId: link.dataset.productId,
-      merchant: "vselektro",
-      category: link.dataset.category,
-      source: "editorial-comparison",
-      purchaseRoute: "components",
-    });
+  let refreshing = null;
+  let expiryTimer = null;
+  const refresh = () => {
+    if (!refreshing) {
+      refreshing = refreshGuideOffers(roots).then((payload) => {
+        if (expiryTimer !== null) window.clearTimeout(expiryTimer);
+        expiryTimer = null;
+        const expiry = guideOffersExpireAt(
+          payload, Array.from(roots, (root) => root.dataset.guideCategory)
+        );
+        if (expiry !== null) {
+          expiryTimer = window.setTimeout(() => {
+            expiryTimer = null;
+            // Remove stale prices and tracked links before attempting a new
+            // fetch; a failed refresh must leave the calculator fallback.
+            for (const root of roots) mountGuideOffers(root, null, Date.now());
+            void refresh();
+          }, Math.max(1, expiry - Date.now()));
+        }
+      }).finally(() => { refreshing = null; });
+    }
+    return refreshing;
+  };
+  await refresh();
+  // Hidden tabs can sleep for days. Revalidate when the user returns and
+  // periodically while visible, without overlapping refresh requests.
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) void refresh();
   });
+  window.addEventListener("focus", () => { void refresh(); });
+  window.setInterval(() => {
+    if (!document.hidden) void refresh();
+  }, 60 * 60 * 1000);
+  const trackOutbound = (event) => trackGuideAffiliateClick(event, window.MyPowerSetupAnalytics);
+  document.addEventListener("click", trackOutbound);
+  document.addEventListener("auxclick", trackOutbound);
 }
 
 if (typeof window !== "undefined" && typeof document !== "undefined") init();

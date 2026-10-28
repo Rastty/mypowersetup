@@ -134,8 +134,21 @@ test("current owner queue follows live commercial gaps instead of stale candidat
 
   const butler = actions.find(({ merchant }) => merchant === "butler_technik");
   assert.equal(butler.currentStandaloneUnlockWeight, 0);
-  assert.equal(butler.currentAffectedWeight, 6);
-  assert.equal(butler.currentOpportunityScore, 18);
+  // The live report can gain a new country/category opportunity (e.g. HU
+  // controller on 2026-10-28). Verify actual report-derived impacts rather
+  // than freezing an older 3-market weight of 6 in the test suite.
+  const eligibleMarkets = new Set(["hu-HU", "pt-PT", "ro-RO", "sl-SI"]);
+  const expectedController = report.markets
+    .filter(({ market }) => eligibleMarkets.has(market))
+    .map(({ opportunities }) => opportunities.find(({ category }) => category === "controller"))
+    .filter(Boolean);
+  assert.equal(butler.currentAffectedWeight,
+    expectedController.reduce((sum, opportunity) => sum + Math.min(5, opportunity.affectedWeight || 0), 0));
+  const expectedDcScore = report.markets
+    .filter(({ market }) => ["pt-PT", "ro-RO", "sl-SI"].includes(market))
+    .reduce((sum, { opportunities }) => sum + (opportunities.find(({ category }) => category === "dc_charger")?.score || 0), 0);
+  assert.equal(butler.currentOpportunityScore,
+    expectedController.reduce((sum, opportunity) => sum + opportunity.score, 0) + expectedDcScore);
   assert.deepEqual(butler.activationFieldsNeeded, ["approvalConfirmed", "approvalSource", "trackingVerifiedAt"]);
 });
 
