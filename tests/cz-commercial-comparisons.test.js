@@ -153,7 +153,7 @@ test("a stale guide feed removes prior tracked offers and restores the honest ca
  root.append(fallback);
  globalThis.document = { createElement: element };
  try {
-   assert.equal(mountGuideOffers(root, payload(), now), 1);
+   assert.equal(mountGuideOffers(root, payload(), now, () => now), 1);
    assert.equal(root.dataset.liveOffers, "1");
    assert.equal(fallback.hidden, true);
    assert.equal(root.children.filter((child) => child.className === "guide-offer-list").length, 1);
