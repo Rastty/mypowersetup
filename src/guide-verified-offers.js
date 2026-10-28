@@ -144,10 +144,14 @@ export function mountGuideOffers(root, payload, now = Date.now()) {
 // Recheck on return to an open tab: a previous offer may have expired, and
 // network/JSON failures must remove its tracked purchase link rather than
 // leaving a misleading cached price visible.
-export async function refreshGuideOffers(roots, fetchImpl = fetch, now = Date.now()) {
+export async function refreshGuideOffers(roots, fetchImpl = fetch, now = Date.now) {
+  // A slow/suspended request may resolve hours after it began. Evaluate offer
+  // freshness at render time, not at the beginning of the network request.
+  // Numeric clock injection is retained for deterministic offline regressions.
+  const currentTime = () => typeof now === "function" ? now() : now;
   // Returning to a long-lived tab must disable old purchase links immediately.
   // Do not leave them clickable while a slow or stalled network read is pending.
-  for (const root of roots) mountGuideOffers(root, null, now);
+  for (const root of roots) mountGuideOffers(root, null, currentTime());
   let payload = null;
   try {
     const response = await fetchImpl("/data/products.json", { cache: "no-store" });
@@ -155,7 +159,7 @@ export async function refreshGuideOffers(roots, fetchImpl = fetch, now = Date.no
   } catch {
     // No trusted live catalog: show the permanent calculator fallback.
   }
-  for (const root of roots) mountGuideOffers(root, payload, now);
+  for (const root of roots) mountGuideOffers(root, payload, currentTime());
 }
 
 async function init() {
