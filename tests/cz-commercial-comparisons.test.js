@@ -102,6 +102,20 @@ test("ambiguous duplicate affiliate tracking parameters never create a purchase 
  }
 });
 
+test("unreviewed eHUB redirect parameters and fragments cannot masquerade as verified purchase routes", () => {
+ const valid = offer();
+ for (const change of [
+  (url) => url.searchParams.set("redirect", "https://example.com/"),
+  (url) => url.searchParams.set("desturl2", "https://example.com/"),
+  (url) => { url.hash = "#redirect"; },
+ ]) {
+  const url = new URL(valid.affiliateUrl);
+  change(url);
+  assert.equal(eligibleGuideOffer({...valid, affiliateUrl:url.href}, "controller", now), false);
+ }
+ assert.equal(eligibleGuideOffer(valid, "controller", now), true);
+});
+
 test("approved guide routes reject alternate HTTPS ports and URL credentials", () => {
  const valid = offer();
  for (const productUrl of [
