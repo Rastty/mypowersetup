@@ -63,6 +63,11 @@ export function eligibleGuideOffer(product, category, now = Date.now()) {
     if (!["https://www.vselektro.eu", "https://vselektro.eu"].includes(origin.origin)
       || origin.username || origin.password
       || origin.search || origin.hash || origin.pathname !== EXACT_PRODUCT_PATHS[product.id]) return false;
+    // Extra redirect parameters or fragments are not part of the reviewed
+    // exact-SKU tracking contract and may change the final destination.
+    if (outbound.hash || [...outbound.searchParams.keys()].some(
+      (key) => !["a_aid", "a_bid", "desturl"].includes(key)
+    )) return false;
     if (outbound.origin !== "https://ehub.cz" || outbound.username || outbound.password
       || outbound.pathname !== "/system/scripts/click.php"
       || outbound.searchParams.get("a_aid") !== "f34c86c8"
