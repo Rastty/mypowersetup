@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-28T09:46:53.268Z",
+  "generatedAt": "2026-10-28T22:01:36.864Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16579,
-      "relevantProducts": 201
+      "parsedProducts": 16591,
+      "relevantProducts": 204
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -138,35 +138,6 @@
           "lead"
         ],
         "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:146",
-      "merchant": "padabo_pl",
-      "name": "Akumulator Nissen 6 V",
-      "description": "Zasilanie rezerwowe dla pompyAkumulator 6 V odpowiedni np. do zasilania pompy (w tym celu potrzebne będą co najmniej 2 sztuki). Cechy akumulatora Nissen 6 V: Bezrtęciowa i bezkadmowa bateria cynkowo-węglowa o średniej gęstości energii i dużej pojemności. Ma długą żywotność i długi okres trwałości. Parametry: pojemność 9 Ah napięcie znamionowe 6 V wymiary (szer. × wys. × gł.): 6,5 × 11 × 6,5 cm wymiary opakowania (szer. × wys. × gł.): 6,8 × 11,2 × 6,7 cm waga 432 g",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory",
-      "category": "battery",
-      "brand": "Nissen Niemcy",
-      "priceCzk": 35.36,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/akumulator-nissen-6-v_z146/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-nissen-6-v_z146%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/7/146007_102.jpg?1704378911_1",
-      "specs": {
-        "voltageV": 6,
-        "capacityAh": 9,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -353,6 +324,35 @@
           "lead"
         ],
         "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:16618_17504",
+      "merchant": "padabo_pl",
+      "name": "Panele słoneczne Solara S-Series moc nominalna (wp) 120",
+      "description": "Panele słoneczne Solara serii SSolidne i niezawodne panele słoneczne Solara serii S są doskonałym wyborem dla kamperów, domków letniskowych lub łodzi ze względu na ich wysoką wydajność i solidną konstrukcję. Seria S działa bezproblemowo nawet w ekstremalnych warunkach pogodowych, takich jak burze, grad, mróz, śnieg, wysoka wilgotność lub ekstremalne wahania temperatury. Wydajne ogniwa niezawodnie przekształcają każdą ilość światła w maksymalną moc wyjściową. Cechy paneli słonecznych Solara serii",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
+      "category": "solar_panel",
+      "brand": "Solara",
+      "priceCzk": 1705.74,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/panele-sloneczne-solara-s-series_z16618/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fpanele-sloneczne-solara-s-series_z16618%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/4/142654_102.jpg?1704378450_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": 380,
+        "powerW": 120,
+        "currentA": 4.4,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -559,6 +559,37 @@
       "specs": {
         "voltageV": null,
         "capacityAh": 80,
+        "capacityWh": 2400,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:22317_22227",
+      "merchant": "padabo_pl",
+      "name": "Akumulator żelowy EXIDE Equipment ES pojemność 85 Ah wersja ES 950",
+      "description": "Bezobsługowy akumulator trakcyjny o wysokiej żywotnościAkumulator żelowy EXIDE Equipment Gel ES jest odpowiedni do kamperów i przyczep kempingowych. Jego konstrukcja zapewnia wyjątkową elastyczność w zakresie instalacji. Zintegrowana technologia żelowa ze stopem wapnia i odpowietrzaniem sterowanym zaworem obejmuje zakres mocy od 650 do 2400 Wh, a tym samym oferuje szeroki zakres zastosowań w najnowszych i najbardziej wymagających kamperach. Akumulator żelowy EXIDE zapewnia najwyższą możliwą stab",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory żelowe",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 1665.08,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/akumulator-zelowy-exide-equipment-es_z22317/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-zelowy-exide-equipment-es_z22317%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/4/156014_102.jpg?1704380137_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 85,
         "capacityWh": 2400,
         "powerW": null,
         "currentA": null,
@@ -5914,6 +5945,35 @@
       }
     },
     {
+      "id": "padabo_pl:107532_32873",
+      "merchant": "padabo_pl",
+      "name": "Regulator ładowania VOTRONIC MPPT prąd ładowania 18,5 A",
+      "description": "Kontroler ładowania słonecznego MPP do kamperów, przyczep kempingowych i łodzi Regulator ładowania VOTRONIC ma charakterystykę ładowania IU1oU2 i jest podłączony jako interfejs między panelem słonecznym a akumulatorem. Technologia MPP umożliwia kontrolerowi określenie maksymalnej mocy wyjściowej (MPP) modułów słonecznych w sposób ciągły i automatyczny. Następnie nadwyżka napięcia z modułu solarnego jest przekształcana w wyższy prąd ładowania akumulatora. Zwiększony prąd ładowania skraca czas ład",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Kontrolery solarne",
+      "category": "controller",
+      "brand": "Votronic",
+      "priceCzk": 938.72,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/regulator-ladowania-votronic-mppt_z107532/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fregulator-ladowania-votronic-mppt_z107532%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/2/191812_102.jpg?1774371844_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 170,
+        "currentA": 18.5,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_pl:107532_32874",
       "merchant": "padabo_pl",
       "name": "Regulator ładowania VOTRONIC MPPT prąd ładowania 13 A",
@@ -5959,6 +6019,38 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 350,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 5,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:107543_32888",
+      "merchant": "padabo_pl",
+      "name": "Bateria litowa BullTron Polar pod siedzeniem pojemność 700 Ah",
+      "description": "Kompaktowa bateria litowa ze zintegrowanym inteligentnym systemem zarządzania baterią BullTron Polar to kompaktowy akumulator litowy umieszczony pod siedzeniem w Fiacie Ducato. Jego główne zalety to wysoka wydajność, długa żywotność i nowoczesna technologia. Zintegrowany inteligentny system zarządzania akumulatorem z aktywnym balanserem 5A zapewnia maksymalną wydajność i bezpieczeństwo. Wszystkie parametry można monitorować za pomocą smartfona i Bluetooth 4.0. Bateria litowa BullTron umożliwia i",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
+      "category": "battery",
+      "brand": "BullTron",
+      "priceCzk": 25409.34,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/bateria-litowa-bulltron-polar-pod-siedzeniem_z107543/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fbateria-litowa-bulltron-polar-pod-siedzeniem_z107543%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/2/191842_102.jpg?1774456502_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 700,
         "capacityWh": null,
         "powerW": null,
         "currentA": 5,
@@ -6412,7 +6504,7 @@
       "id": "powerqueen_eu:15452515238108",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 12V 100Ah Dual Purpose Group 24 LiFePO4 Outboard Motor Battery",
-      "description": "All-round power for your fishing boat: Replaces your heavy lead-acid starter battery 1:1 (Group 24) – for full ignition power on the outboard motor and reliable power for the fish finder in one battery. Powerful engine start (1000A MCA/900A CCA): Reliable ignition on cold mornings: Extremely high impulse currents with 1000A MCA (0°C) and 900A CCA (-10°C) Gasoline outboard motors from Yamaha, Mercury, Suzuki and Honda start absolutely effortlessly. In the standardized Group 24 fit This battery re",
+      "description": "All-round power for your fishing boat: Replaces your heavy lead-acid starter battery 1:1 (Group 24) – for full ignition power at all times on the outboard motor and effortless echo sounder operation all day and beyond. Powerful engine start (1000A MCA/900A CCA): Reliable ignition on cold mornings: Extremely high impulse currents with 1000A MCA (0°C) and 900A CCA (-10°C) Gasoline outboard motors from Yamaha, Mercury, Suzuki and Honda start absolutely effortlessly. In the standardized Group 24 fit",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",

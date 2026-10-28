@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-28T09:46:43.081Z",
+  "generatedAt": "2026-10-28T22:01:25.059Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16567,
-      "relevantProducts": 245
+      "parsedProducts": 16580,
+      "relevantProducts": 247
     },
     "allpowers_eu": {
       "status": "ok",
@@ -138,35 +138,6 @@
           "lead"
         ],
         "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:146",
-      "merchant": "padabo_sk",
-      "name": "Batéria Nissen 6 V",
-      "description": "Záložné napájanie čerpadla6 V batéria vhodná napr. na napájanie čerpadla (na tento účel budú potrebné aspoň 2 ks). Vlastnosti batérie Nissen 6 V: Zinkovo-uhlíkový akumulátor bez obsahu ortuti a kadmia so strednou hustotou energie a vysokou kapacitou. Má dlhú životnosť a dlhú skladovateľnosť. Parametre: kapacita 9 Ah menovité napätie 6 V rozmery (Š × V × H): 6,5 × 11 × 6,5 cm veľkosť balenia (š × v × h): 6,8 × 11,2 × 6,7 cm hmotnosť 432 g",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie",
-      "category": "battery",
-      "brand": "Nissen Germany",
-      "priceCzk": 8.25,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/bateria-nissen-6-v_z146/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-nissen-6-v_z146%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/146007_102.jpg?1704378911_1",
-      "specs": {
-        "voltageV": 6,
-        "capacityAh": 9,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -720,6 +691,37 @@
       "specs": {
         "voltageV": null,
         "capacityAh": 80,
+        "capacityWh": 2400,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:22317_22227",
+      "merchant": "padabo_sk",
+      "name": "Zariadenia EXIDE Gélová batéria ES kapacita 85 Ah variant ES 950",
+      "description": "Bezúdržbová trakčná batéria s vysokou životnosťouGélovábatéria EXIDE Equipment Gel ES je vhodná pre obytné vozidlá a karavany. Jej konštrukcia poskytuje mimoriadnu flexibilitu z hľadiska inštalácie. Integrovaná gélová technológia so zliatinou vápnika a ventilom riadeným odvzdušňovaním pokrýva rozsah výkonu od 650 do 2400 Wh, a tak ponúka široké možnosti použitia v najnovších a najnáročnejších obytných vozidlách. Gélová batéria EXIDE poskytuje najvyššiu možnú stabilitu cyklov: pri hĺbke vybitia 5",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Gélové batérie",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 373.8,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/156014_102.jpg?1704380137_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 85,
         "capacityWh": 2400,
         "powerW": null,
         "currentA": null,
@@ -7193,6 +7195,35 @@
       }
     },
     {
+      "id": "padabo_sk:107532_32873",
+      "merchant": "padabo_sk",
+      "name": "Solárny regulátor nabíjania VOTRONIC MPPT nabíjací prúd 18,5 A",
+      "description": "Solárny regulátor nabíjania MPP pre obytné automobily, karavany a lode Solárny regulátor nabíjania značky VOTRONIC disponuje nabíjacou charakteristikou IU1oU2 a pripája sa ako rozhranie medzi solárnym panelom a batériou. Technológia MPP umožňuje regulátoru určovať nepretržite a automaticky maximálny výstupný výkon (MPP) solárnych modulov. Následne dochádza k transformácii prebytočného napätia zo solárneho modulu na vyšší nabíjací prúd pre batériu. Zvýšený nabíjací prúd skracuje dobu nabíjania a ",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Solárne regulátory",
+      "category": "controller",
+      "brand": "Votronic",
+      "priceCzk": 210.74,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-votronic-mppt_z107532/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-votronic-mppt_z107532%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/191812_102.jpg?1774371844_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 170,
+        "currentA": 18.5,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_sk:107532_32874",
       "merchant": "padabo_sk",
       "name": "Solárny regulátor nabíjania VOTRONIC MPPT nabíjací prúd 13 A",
@@ -7238,6 +7269,37 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 350,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 5,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:107543_32888",
+      "merchant": "padabo_sk",
+      "name": "Lítiová batéria pod sedadlo BullTron Polar kapacita 700 Ah",
+      "description": "Kompaktná lítiová batéria s integrovaným inteligentným systémom správy batérie BullTron Polar je kompaktná lithiová batéria umiestnená pod sedadlom vo vozidle Fiat Ducato. Jej hlavnou prednosťou je vysoký výkon, dlhá životnosť a moderné technológie. Integrovaný inteligentný systém správy batérie s aktívnym 5A balancerom zaisťuje maximálnu účinnosť a bezpečnosť. Všetky parametre je možné sledovať prostredníctvom smartfónu a Bluetooth 4.0 . Lítiová batéria značky BullTron ponúka zvislú či vodorovn",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
+      "category": "battery",
+      "brand": "BullTron",
+      "priceCzk": 5704.14,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/litiova-bateria-pod-sedadlo-bulltron-polar_z107543/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-pod-sedadlo-bulltron-polar_z107543%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/191842_102.jpg?1774456502_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 700,
         "capacityWh": null,
         "powerW": null,
         "currentA": 5,
@@ -8607,7 +8669,7 @@
       "id": "powerqueen_eu:15452515238108",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 12V 100Ah Dual Purpose Group 24 LiFePO4 Outboard Motor Battery",
-      "description": "All-round power for your fishing boat: Replaces your heavy lead-acid starter battery 1:1 (Group 24) – for full ignition power on the outboard motor and reliable power for the fish finder in one battery. Powerful engine start (1000A MCA/900A CCA): Reliable ignition on cold mornings: Extremely high impulse currents with 1000A MCA (0°C) and 900A CCA (-10°C) Gasoline outboard motors from Yamaha, Mercury, Suzuki and Honda start absolutely effortlessly. In the standardized Group 24 fit This battery re",
+      "description": "All-round power for your fishing boat: Replaces your heavy lead-acid starter battery 1:1 (Group 24) – for full ignition power at all times on the outboard motor and effortless echo sounder operation all day and beyond. Powerful engine start (1000A MCA/900A CCA): Reliable ignition on cold mornings: Extremely high impulse currents with 1000A MCA (0°C) and 900A CCA (-10°C) Gasoline outboard motors from Yamaha, Mercury, Suzuki and Honda start absolutely effortlessly. In the standardized Group 24 fit",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",

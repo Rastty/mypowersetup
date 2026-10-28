@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-28T09:47:02.415Z",
+  "generatedAt": "2026-10-28T22:02:09.104Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12576,
-      "relevantProducts": 157
+      "parsedProducts": 12586,
+      "relevantProducts": 158
     },
     "ampul_hu": {
       "status": "ok",
@@ -140,289 +140,6 @@
           "lead"
         ],
         "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:25768_28263",
-      "merchant": "padabo_hu",
-      "name": "Napelem Carbest CB Silver 12 V névleges teljesítmény (wp) 135 modell CB sorozat ezüst",
-      "description": "Fotovoltaikus panel Carbest CB Silver 12 VA Carbest CB Silver 12 V-os napelemes panel ideális lakóautókhoz és lakókocsikhoz. A panel monokristályos cellákkal van felszerelve, amelyeket edzett üveg véd. A magasabb töltési feszültségnek köszönhetően a panel még kedvezőtlen fényviszonyok és részleges árnyékolás esetén is nagy hozamot biztosít. A beépített bypass diódák áthidalják a cella magas ellenállását részleges árnyékolás, szennyeződés vagy hiba esetén, és optimális töltést biztosítanak. A tar",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
-      "category": "solar_panel",
-      "brand": "Carbest",
-      "priceCzk": 143955,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/napelem-carbest-cb-silver-12-v_z25768/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-carbest-cb-silver-12-v_z25768%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152798_102.jpg?1704379099_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 135,
-        "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:25768_28264",
-      "merchant": "padabo_hu",
-      "name": "Napelem Carbest CB Silver 12 V névleges teljesítmény (wp) 155 modell CB sorozat ezüst",
-      "description": "Fotovoltaikus panel Carbest CB Silver 12 VA Carbest CB Silver 12 V-os napelemes panel ideális lakóautókhoz és lakókocsikhoz. A panel monokristályos cellákkal van felszerelve, amelyeket edzett üveg véd. A magasabb töltési feszültségnek köszönhetően a panel még kedvezőtlen fényviszonyok és részleges árnyékolás esetén is nagy hozamot biztosít. A beépített bypass diódák áthidalják a cella magas ellenállását részleges árnyékolás, szennyeződés vagy hiba esetén, és optimális töltést biztosítanak. A tar",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
-      "category": "solar_panel",
-      "brand": "Carbest",
-      "priceCzk": 152700,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/napelem-carbest-cb-silver-12-v_z25768/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-carbest-cb-silver-12-v_z25768%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152798_102.jpg?1704379099_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 155,
-        "currentA": null,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:25851_27314",
-      "merchant": "padabo_hu",
-      "name": "Carbest AGM Power Line mélyciklusú akkumulátor kapacitás 80 Ah",
-      "description": "Carbest AGM Power Line - Megbízható áramforrás lakóautókhozA Carbest AGM Power Line mélyciklusú akkumulátor kifejezetten szabadidőjárművek szervizakkumulátoraként lett kifejlesztve. Nagyon jó ciklusstabilitása és alacsony önkisülése miatt ideális lakóautókban és csónakokban való használatra. Kompakt méreteinek köszönhetően elfér a szokásos akkumulátortároló rekeszekben. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen (alulról",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Carbest",
-      "priceCzk": 97245,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/carbest-agm-power-line-melyciklusu-akkumulator_z25851/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-melyciklusu-akkumulator_z25851%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/160166_102.jpg?1704380282_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 80,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 750,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:25851_27315",
-      "merchant": "padabo_hu",
-      "name": "Carbest AGM Power Line mélyciklusú akkumulátor kapacitás 100 Ah",
-      "description": "Carbest AGM Power Line - Megbízható áramforrás lakóautókhozA Carbest AGM Power Line mélyciklusú akkumulátor kifejezetten szabadidőjárművek szervizakkumulátoraként lett kifejlesztve. Nagyon jó ciklusstabilitása és alacsony önkisülése miatt ideális lakóautókban és csónakokban való használatra. Kompakt méreteinek köszönhetően elfér a szokásos akkumulátortároló rekeszekben. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen (alulról",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Carbest",
-      "priceCzk": 109845,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/carbest-agm-power-line-melyciklusu-akkumulator_z25851/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-melyciklusu-akkumulator_z25851%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/160167_102.jpg?1704380282_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 100,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 750,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:25851_28121",
-      "merchant": "padabo_hu",
-      "name": "Carbest AGM Power Line mélyciklusú akkumulátor kapacitás 60 Ah",
-      "description": "Carbest AGM Power Line - Megbízható áramforrás lakóautókhozA Carbest AGM Power Line mélyciklusú akkumulátor kifejezetten szabadidőjárművek szervizakkumulátoraként lett kifejlesztve. Nagyon jó ciklusstabilitása és alacsony önkisülése miatt ideális lakóautókban és csónakokban való használatra. Kompakt méreteinek köszönhetően elfér a szokásos akkumulátortároló rekeszekben. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen (alulról",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Carbest",
-      "priceCzk": 107220,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/carbest-agm-power-line-melyciklusu-akkumulator_z25851/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-melyciklusu-akkumulator_z25851%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/160168_102.jpg?1704380282_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 60,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 750,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:25851_28122",
-      "merchant": "padabo_hu",
-      "name": "Carbest AGM Power Line mélyciklusú akkumulátor kapacitás 90 Ah",
-      "description": "Carbest AGM Power Line - Megbízható áramforrás lakóautókhozA Carbest AGM Power Line mélyciklusú akkumulátor kifejezetten szabadidőjárművek szervizakkumulátoraként lett kifejlesztve. Nagyon jó ciklusstabilitása és alacsony önkisülése miatt ideális lakóautókban és csónakokban való használatra. Kompakt méreteinek köszönhetően elfér a szokásos akkumulátortároló rekeszekben. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen (alulról",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Carbest",
-      "priceCzk": 129085,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/carbest-agm-power-line-melyciklusu-akkumulator_z25851/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-melyciklusu-akkumulator_z25851%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/160169_102.jpg?1704380282_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 90,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 750,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:25851_28123",
-      "merchant": "padabo_hu",
-      "name": "Carbest AGM Power Line mélyciklusú akkumulátor kapacitás 120 Ah",
-      "description": "Carbest AGM Power Line - Megbízható áramforrás lakóautókhozA Carbest AGM Power Line mélyciklusú akkumulátor kifejezetten szabadidőjárművek szervizakkumulátoraként lett kifejlesztve. Nagyon jó ciklusstabilitása és alacsony önkisülése miatt ideális lakóautókban és csónakokban való használatra. Kompakt méreteinek köszönhetően elfér a szokásos akkumulátortároló rekeszekben. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen (alulról",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Carbest",
-      "priceCzk": 139760,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/carbest-agm-power-line-melyciklusu-akkumulator_z25851/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-melyciklusu-akkumulator_z25851%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/160170_102.jpg?1704380282_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 120,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 750,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:25851_28124",
-      "merchant": "padabo_hu",
-      "name": "Carbest AGM Power Line mélyciklusú akkumulátor kapacitás 134 Ah",
-      "description": "Carbest AGM Power Line - Megbízható áramforrás lakóautókhozA Carbest AGM Power Line mélyciklusú akkumulátor kifejezetten szabadidőjárművek szervizakkumulátoraként lett kifejlesztve. Nagyon jó ciklusstabilitása és alacsony önkisülése miatt ideális lakóautókban és csónakokban való használatra. Kompakt méreteinek köszönhetően elfér a szokásos akkumulátortároló rekeszekben. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen (alulról",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Carbest",
-      "priceCzk": 177720,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/carbest-agm-power-line-melyciklusu-akkumulator_z25851/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-melyciklusu-akkumulator_z25851%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/160171_102.jpg?1704380282_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 134,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 750,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:25852",
-      "merchant": "padabo_hu",
-      "name": "Carbest AGM-T Power Line mélyciklusú akkumulátor, 100 Ah",
-      "description": "Akkumulátor Carbest AGM-T Power LineA Carbest AGM-T Power Line mélyciklusú, 100 Ah-s akkumulátor a VW T5/T6 utasülése alá szerelhető. A Carbest AGM akkumulátorokat kifejezetten szabadidőjárművek szervizakkumulátoraként fejlesztették ki. Nagyon jó ciklusstabilitásuk és alacsony önkisülésük miatt ideálisak lakóautókban és hajókban való használatra. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen (az alulról felfelé történő elhe",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Carbest",
-      "priceCzk": 123660,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/carbest-agm-t-power-line-melyciklusu-akkumulator-100-ah_z25852/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-t-power-line-melyciklusu-akkumulator-100-ah_z25852%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152538_102.jpg?1704379091_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 100,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 800,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -2670,7 +2387,7 @@
     {
       "id": "padabo_hu:19287_21292",
       "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
       "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
       "category": "inverter",
@@ -3598,6 +3315,35 @@
         "capacityWh": null,
         "powerW": 170,
         "currentA": 26,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:107532_32873",
+      "merchant": "padabo_hu",
+      "name": "VOTRONIC MPPT napelemes töltésvezérlő töltési áram 18,5 A",
+      "description": "MPP napelemes töltésvezérlő lakóautókhoz, lakókocsikhoz és hajókhoz A VOTRONIC napelemes töltésszabályozó az IU1oU2 töltési karakterisztikával rendelkezik, és a napelem és az akkumulátor közötti interfészként van csatlakoztatva. Az MPP technológia lehetővé teszi, hogy a szabályozó folyamatosan és automatikusan meghatározza a napelemmodulok maximális teljesítményét (MPP). Ezt követően a napelemmodulból származó többletfeszültséget az akkumulátor számára nagyobb töltőárammá alakítja át. A megnövel",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Töltésvezérlők",
+      "category": "controller",
+      "brand": "Votronic",
+      "priceCzk": 88850,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/votronic-mppt-napelemes-toltesvezerlo_z107532/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvotronic-mppt-napelemes-toltesvezerlo_z107532%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/191812_102.jpg?1774371844_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 170,
+        "currentA": 18.5,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -4963,6 +4709,289 @@
       }
     },
     {
+      "id": "padabo_hu:25768_28263",
+      "merchant": "padabo_hu",
+      "name": "Carbest CB Silver 12 V napelem névleges teljesítmény (wp) 135 modell CB sorozat ezüst",
+      "description": "Carbest CB Silver 12 V napelem A Carbest CB Silver 12 V-os napelem ideális lakóautókhoz és lakókocsikhoz. A panel edzett üveggel védett monokristályos cellákkal van felszerelve. A magasabb töltési feszültségnek köszönhetően a panel kedvezőtlen fényviszonyok mellett és részleges árnyékolás esetén is magas hozamot biztosít. A beépített bypass-diódák áthidalják a cellák magas ellenállását részleges árnyékolás, szennyeződés vagy meghibásodás esetén, és biztosítják az optimális töltést. A szállítmány",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
+      "category": "solar_panel",
+      "brand": "Carbest",
+      "priceCzk": 143955,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-cb-silver-12-v-napelem_z25768/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-cb-silver-12-v-napelem_z25768%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152798_102.jpg?1704379099_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 135,
+        "currentA": 5.81,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:25768_28264",
+      "merchant": "padabo_hu",
+      "name": "Carbest CB Silver 12 V napelem névleges teljesítmény (wp) 155 modell CB sorozat ezüst",
+      "description": "Carbest CB Silver 12 V napelem A Carbest CB Silver 12 V-os napelem ideális lakóautókhoz és lakókocsikhoz. A panel edzett üveggel védett monokristályos cellákkal van felszerelve. A magasabb töltési feszültségnek köszönhetően a panel kedvezőtlen fényviszonyok mellett és részleges árnyékolás esetén is magas hozamot biztosít. A beépített bypass-diódák áthidalják a cellák magas ellenállását részleges árnyékolás, szennyeződés vagy meghibásodás esetén, és biztosítják az optimális töltést. A szállítmány",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
+      "category": "solar_panel",
+      "brand": "Carbest",
+      "priceCzk": 152700,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-cb-silver-12-v-napelem_z25768/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-cb-silver-12-v-napelem_z25768%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152798_102.jpg?1704379099_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 155,
+        "currentA": 5.81,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:25851_27314",
+      "merchant": "padabo_hu",
+      "name": "Carbest AGM Power Line munkaakkumulátor kapacitás 80 Ah",
+      "description": "Carbest AGM Power Line akkumulátorok – Megbízható energiaforrás lakóautókhoz A Carbest AGM Power Line munkaakkumulátor kifejezetten szabadidőjárművek szervizakkumulátoraként lett kifejlesztve. Nagyon jó ciklusstabilitása és alacsony önkisülése miatt ideális lakóautókban és hajókban való használatra. Kompakt méreteinek köszönhetően elfér a szokásos akkumulátortároló rekeszekben. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen ",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Carbest",
+      "priceCzk": 97245,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-agm-power-line-munkaakkumulator_z25851/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-munkaakkumulator_z25851%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/160166_102.jpg?1704380282_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 80,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 600,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:25851_27315",
+      "merchant": "padabo_hu",
+      "name": "Carbest AGM Power Line munkaakkumulátor kapacitás 100 Ah",
+      "description": "Carbest AGM Power Line akkumulátorok – Megbízható energiaforrás lakóautókhoz A Carbest AGM Power Line munkaakkumulátor kifejezetten szabadidőjárművek szervizakkumulátoraként lett kifejlesztve. Nagyon jó ciklusstabilitása és alacsony önkisülése miatt ideális lakóautókban és hajókban való használatra. Kompakt méreteinek köszönhetően elfér a szokásos akkumulátortároló rekeszekben. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen ",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Carbest",
+      "priceCzk": 109845,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-agm-power-line-munkaakkumulator_z25851/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-munkaakkumulator_z25851%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/160167_102.jpg?1704380282_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 100,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 600,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:25851_28121",
+      "merchant": "padabo_hu",
+      "name": "Carbest AGM Power Line munkaakkumulátor kapacitás 60 Ah",
+      "description": "Carbest AGM Power Line akkumulátorok – Megbízható energiaforrás lakóautókhoz A Carbest AGM Power Line munkaakkumulátor kifejezetten szabadidőjárművek szervizakkumulátoraként lett kifejlesztve. Nagyon jó ciklusstabilitása és alacsony önkisülése miatt ideális lakóautókban és hajókban való használatra. Kompakt méreteinek köszönhetően elfér a szokásos akkumulátortároló rekeszekben. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen ",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Carbest",
+      "priceCzk": 107220,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-agm-power-line-munkaakkumulator_z25851/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-munkaakkumulator_z25851%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/160168_102.jpg?1704380282_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 60,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 600,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:25851_28122",
+      "merchant": "padabo_hu",
+      "name": "Carbest AGM Power Line munkaakkumulátor kapacitás 90 Ah",
+      "description": "Carbest AGM Power Line akkumulátorok – Megbízható energiaforrás lakóautókhoz A Carbest AGM Power Line munkaakkumulátor kifejezetten szabadidőjárművek szervizakkumulátoraként lett kifejlesztve. Nagyon jó ciklusstabilitása és alacsony önkisülése miatt ideális lakóautókban és hajókban való használatra. Kompakt méreteinek köszönhetően elfér a szokásos akkumulátortároló rekeszekben. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen ",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Carbest",
+      "priceCzk": 129085,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-agm-power-line-munkaakkumulator_z25851/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-munkaakkumulator_z25851%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/160169_102.jpg?1704380282_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 90,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 600,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:25851_28123",
+      "merchant": "padabo_hu",
+      "name": "Carbest AGM Power Line munkaakkumulátor kapacitás 120 Ah",
+      "description": "Carbest AGM Power Line akkumulátorok – Megbízható energiaforrás lakóautókhoz A Carbest AGM Power Line munkaakkumulátor kifejezetten szabadidőjárművek szervizakkumulátoraként lett kifejlesztve. Nagyon jó ciklusstabilitása és alacsony önkisülése miatt ideális lakóautókban és hajókban való használatra. Kompakt méreteinek köszönhetően elfér a szokásos akkumulátortároló rekeszekben. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen ",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Carbest",
+      "priceCzk": 139760,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-agm-power-line-munkaakkumulator_z25851/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-munkaakkumulator_z25851%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/160170_102.jpg?1704380282_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 120,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 600,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:25851_28124",
+      "merchant": "padabo_hu",
+      "name": "Carbest AGM Power Line munkaakkumulátor kapacitás 134 Ah",
+      "description": "Carbest AGM Power Line akkumulátorok – Megbízható energiaforrás lakóautókhoz A Carbest AGM Power Line munkaakkumulátor kifejezetten szabadidőjárművek szervizakkumulátoraként lett kifejlesztve. Nagyon jó ciklusstabilitása és alacsony önkisülése miatt ideális lakóautókban és hajókban való használatra. Kompakt méreteinek köszönhetően elfér a szokásos akkumulátortároló rekeszekben. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző pozíciókban, pl. oldalra vagy függőlegesen ",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Carbest",
+      "priceCzk": 177720,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-agm-power-line-munkaakkumulator_z25851/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-munkaakkumulator_z25851%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/160171_102.jpg?1704380282_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 134,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 600,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:25852",
+      "merchant": "padabo_hu",
+      "name": "Carbest AGM-T Power Line munkaakkumulátor, 100 Ah",
+      "description": "Carbest AGM-T Power Line akkumulátor A Carbest AGM-T Power Line 100 Ah-s munkaakkumulátor a VW T5/T6 utasülés alá történő beszerelésre alkalmas. A Carbest AGM akkumulátorokat kifejezetten szabadidős járművekhez szánt szervizakkumulátorokként fejlesztették ki. Kiváló ciklusstabilitásuknak és alacsony önkisülésüknek köszönhetően ideálisak lakóautókban és hajókon való használatra. Az akkumulátor teljesen karbantartásmentes és -40 °C-ig fagyálló. Különböző helyzetekben szerelhető be, pl. oldalra fek",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "Carbest",
+      "priceCzk": 123660,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-agm-t-power-line-munkaakkumulator-100-ah_z25852/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-t-power-line-munkaakkumulator-100-ah_z25852%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152538_102.jpg?1704379091_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 100,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 800,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "ampul_hu:5479",
       "merchant": "ampul_hu",
       "name": "Akkumulátortöltő 12V-tól 29,2V-ig, 20A, 584W, IP65, vékony",
@@ -6229,7 +6258,7 @@
       "id": "powerqueen_eu:15452515238108",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 12V 100Ah Dual Purpose Group 24 LiFePO4 Outboard Motor Battery",
-      "description": "All-round power for your fishing boat: Replaces your heavy lead-acid starter battery 1:1 (Group 24) – for full ignition power on the outboard motor and reliable power for the fish finder in one battery. Powerful engine start (1000A MCA/900A CCA): Reliable ignition on cold mornings: Extremely high impulse currents with 1000A MCA (0°C) and 900A CCA (-10°C) Gasoline outboard motors from Yamaha, Mercury, Suzuki and Honda start absolutely effortlessly. In the standardized Group 24 fit This battery replaces your heavy lead-acid starter battery 1:1 directly in the existing battery compartment. True dual-purpose use: Starter power &amp; Power supply in one: No second battery needed: This versatile battery provides the necessary peak power to start the main engine and also reliably supplies your on-board electronics such as echo sounders, navigation devices or lighting with constant deep-cycle energy. Intelligent protection &amp; Emergency app launch: Never get stranded on the water again! Safety for your boat trip: If the battery level drops below approximately 25% SOC, the battery automatically stops discharging to consumers to reserve enough energy for starting the engine. Should it nevertheless become completely empty, you can easily activate the discharge process manually. &quot;Emergency start&quot; button in the Bluetooth app , to return safely to the shore. Automatic self-heating: Problem-free charging at sub-zero temperatures: Perfect for spring fishing &amp; Late autumn: The integrated heating function activates automatically at sub-zero temperatures as soon as a charging source is connected. This effectively protects the cells from cold damage when charging via the outboard motor's alternator or shore power. Smart Bluetooth 5.0 BMS: Full control directly on your smartphone: Real-time data at a glance: Easily monitor charge level (SOC), voltage, temperature, and system status via Bluetooth app. This eliminates the need for an expensive external battery monitor, ensuring you always maintain full control on the water. Certified marine quality according to ABYC standard &amp; Mercury compliance: Certified safety at sea: Meets the strict guidelines of the American Boat and Yacht Council (ABYC) for lithium batteries on watercraft as well as the requirements of modern Mercury outboard motors for lithium starter batteries. Extremely lightweight, durable &amp; Maintenance-free (5-year warranty): Up to 70% less weight than old lead-acid batteries for better boat trim and performance. Designed for over 5,000 engine starts (or over 4,000 cycles in pure energy storage operation) including a 5-year manufacturer's warranty. IP67 Waterproof &amp; Vibration resistant for harsh conditions: The robust, IP67-protected housing easily withstands splashing water and vibrations during rough seas. (Tip: For maximum lifespan, we recommend mounting in a dry, slightly elevated location in the boat).",
+      "description": "All-round power for your fishing boat: Replaces your heavy lead-acid starter battery 1:1 (Group 24) – for full ignition power at all times on the outboard motor and effortless echo sounder operation all day and beyond. Powerful engine start (1000A MCA/900A CCA): Reliable ignition on cold mornings: Extremely high impulse currents with 1000A MCA (0°C) and 900A CCA (-10°C) Gasoline outboard motors from Yamaha, Mercury, Suzuki and Honda start absolutely effortlessly. In the standardized Group 24 fit This battery replaces your heavy lead-acid starter battery 1:1 directly in the existing battery compartment. True dual-purpose use: Starter power &amp; Power supply in one: No second battery needed: This versatile battery provides the necessary peak power to start the main engine and also reliably supplies your on-board electronics such as echo sounders, navigation devices or lighting with constant deep-cycle energy. Intelligent protection &amp; Emergency app launch: Never get stranded on the water again! Safety for your boat trip: If the battery level drops below approximately 25% SOC, the battery automatically stops discharging to consumers to reserve enough energy for starting the engine. Should it nevertheless become completely empty, you can easily activate the discharge process manually. &quot;Emergency start&quot; button in the Bluetooth app , to return safely to the shore. Automatic self-heating: Problem-free charging at sub-zero temperatures: Perfect for spring fishing &amp; Late autumn: The integrated heating function activates automatically at sub-zero temperatures as soon as a charging source is connected. This effectively protects the cells from cold damage when charging via the outboard motor's alternator or shore power. Smart Bluetooth 5.0 BMS: Full control directly on your smartphone: Real-time data at a glance: Easily monitor charge level (SOC), voltage, temperature, and system status via Bluetooth app. This eliminates the need for an expensive external battery monitor, ensuring you always maintain full control on the water. Certified marine quality according to ABYC standard &amp; Mercury compliance: Certified safety at sea: Meets the strict guidelines of the American Boat and Yacht Council (ABYC) for lithium batteries on watercraft as well as the requirements of modern Mercury outboard motors for lithium starter batteries. Extremely lightweight, durable &amp; Maintenance-free (5-year warranty): Up to 70% less weight than old lead-acid batteries for better boat trim and performance. Designed for over 5,000 engine starts (or over 4,000 cycles in pure energy storage operation) including a 5-year manufacturer's warranty. IP67 Waterproof &amp; Vibration resistant for harsh conditions: The robust, IP67-protected housing easily withstands splashing water and vibrations during rough seas. (Tip: For maximum lifespan, we recommend mounting in a dry, slightly elevated location in the boat).",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
