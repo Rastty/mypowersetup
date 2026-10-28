@@ -42,7 +42,7 @@ const ID_PREFIX = "vselektro:";
 // loose browser dates. Reject local/ambiguous and normalized-invalid dates.
 function feedEvidenceTime(value) {
   if (typeof value !== "string") return NaN;
-  const match = /^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})(?:\\.\\d{1,3})?(Z|[+-]\\d{2}:\\d{2})$/.exec(value);
+  const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d{1,3})?(Z|[+-]\d{2}:\d{2})$/.exec(value);
   if (!match) return NaN;
   const zone = match[7];
   const hours = zone === "Z" ? 0 : Number(zone.slice(1, 3));
