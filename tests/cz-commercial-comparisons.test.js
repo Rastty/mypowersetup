@@ -195,6 +195,22 @@ test("a stale guide feed removes prior tracked offers and restores the honest ca
    await refreshGuideOffers([root], async () => ({ ok: true, json: async () => payload() }), now + 73 * 60 * 60 * 1000);
    assert.equal(root.dataset.liveOffers, "0");
    assert.equal(fallback.hidden, false);
+   // A permanently stalled feed request must time out, keep purchase links
+   // disabled, and allow the next visibility/focus refresh to recover.
+   let stalledSignal;
+   const keepEventLoopAlive = setTimeout(() => {}, 70);
+   try {
+     await refreshGuideOffers([root], (_url, options) => new Promise((_resolve, reject) => {
+       stalledSignal = options.signal;
+       options.signal.addEventListener("abort", () => reject(options.signal.reason), { once: true });
+     }), now, 20);
+   } finally {
+     clearTimeout(keepEventLoopAlive);
+   }
+   assert.equal(stalledSignal.aborted, true);
+   assert.equal(root.dataset.liveOffers, "0");
+   assert.equal(root.querySelector(".guide-offer-list"), null);
+   assert.equal(fallback.hidden, false);
    await refreshGuideOffers([root], async () => ({ ok: true, json: async () => payload() }), now);
    assert.equal(root.dataset.liveOffers, "1");
  } finally {
