@@ -52,10 +52,11 @@ test("expansion shared electrical sizing never accepts repeated query keys", () 
   const base = encodeExpansionSetupQuery(config);
   for (const suffix of [
     "&loads=tv", "&days=1", "&season=winter", "&battery=lead",
-    "&voltage=24", "&usage=fridge:24:1",
+    "&voltage=24",
   ]) {
     assert.equal(decodeExpansionSetupQuery(base + suffix, allowedIds), null, suffix);
   }
+  assert.equal(decodeExpansionSetupQuery(base + "&usage=fridge:24:1&usage=fridge:2:1", allowedIds), null);
   // Unrelated campaign tags are not electrical inputs.
   assert.deepEqual(
     decodeExpansionSetupQuery(base + "&utm_source=a&utm_source=b", allowedIds),
