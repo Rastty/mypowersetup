@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-28T22:01:25.059Z",
+  "generatedAt": "2026-10-29T10:05:25.171Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16580,
+      "parsedProducts": 16578,
       "relevantProducts": 247
     },
     "allpowers_eu": {
@@ -493,7 +493,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
+      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -8020,7 +8020,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 189,
+      "priceCzk": 179,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/solax-se200",
@@ -8316,7 +8316,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 249,
+      "priceCzk": 219,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sf200-flexible-solar-panel-200w",
@@ -8374,7 +8374,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 649,
+      "priceCzk": 599,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sp039-600w-monocrystalline-portable-solar-panel",
@@ -8493,7 +8493,7 @@
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
-      "priceCzk": 189,
+      "priceCzk": 169,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-sp012-solar-panel-100w",
@@ -8641,7 +8641,7 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 219,
+      "priceCzk": 199,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r600-portable-power-station-600w-299wh-with-lifep04-battery-1",
