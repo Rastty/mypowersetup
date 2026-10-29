@@ -15,7 +15,10 @@ if (!gscPath || !eventsPath) {
   // A blocked/malformed API export is UNKNOWN, never a measured zero-traffic
   // or zero-conversion baseline. Keep legacy CSV/array imports supported.
   const unavailable = evidenceIssue(gscInput, "gsc", ["searchAnalytics", "pageTotals", "rows", "data"])
-    || evidenceIssue(eventsInput, "ga4", ["events", "rows", "data"]);
+    || evidenceIssue(eventsInput, "ga4", ["events", "rows", "data"])
+    // Optional indexing is still evidence: an explicit blocked export must
+    // never be silently normalized to zero indexed pages.
+    || (indexingPath ? evidenceIssue(indexingInput, "indexing", ["indexing", "rows", "data"]) : null);
   if (unavailable) {
     console.error(`Calculator growth evidence unavailable: ${unavailable}`);
     process.exitCode = 2;
