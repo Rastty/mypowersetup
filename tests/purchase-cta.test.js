@@ -22,7 +22,7 @@ test("inherited object keys are not supported CTA locales", () => {
 });
 
 test("merchant identity must be a visible plain string", () => {
-  for (const label of [42, ["Ampul.eu"], { name: "Ampul.eu" }, "Shop\\u202e.moc", "Shop\\u0000"]) {
+  for (const label of [42, ["Ampul.eu"], { name: "Ampul.eu" }, "Shop\u202e.moc", "Shop\u0000"]) {
     assert.throws(() => merchantPurchaseCta("cs", label), /PURCHASE_CTA_LOCALE_AND_MERCHANT_REQUIRED/);
   }
   assert.equal(merchantPurchaseCta("cs", "  Ampul.eu  "), "Zkontrolovat cenu na Ampul.eu →");
