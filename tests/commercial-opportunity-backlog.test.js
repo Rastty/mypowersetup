@@ -62,3 +62,39 @@ test("standalone gain excludes scenarios that need another missing category", ()
     );
   }
 });
+
+test("repeated market snapshots cannot double-count affiliate sourcing opportunities", () => {
+  const market = {
+    market: "cs-CZ",
+    opportunities: [{
+      category: "battery", label: "battery", priority: "P0", score: 8,
+      maxPurchaseReadyGain: 0.3, standalonePurchaseReadyGain: 0.2,
+    }],
+  };
+  assert.throws(
+    () => aggregateCommercialOpportunityBacklogs([market, structuredClone(market)]),
+    /DUPLICATE_OR_INVALID_COMMERCIAL_MARKET/,
+  );
+  const valid = aggregateCommercialOpportunityBacklogs([
+    market, { ...market, market: "sk-SK" },
+  ]);
+  assert.equal(valid[0].score, 16);
+  assert.equal(valid[0].markets.length, 2);
+});
+
+test("one market cannot inflate its sourcing score with duplicate categories", () => {
+  const item = {
+    category: "inverter", label: "inverter", priority: "P1", score: 4,
+    maxPurchaseReadyGain: 0.1,
+  };
+  assert.throws(
+    () => aggregateCommercialOpportunityBacklogs([
+      { market: "cs-CZ", opportunities: [item, { ...item }] },
+    ]),
+    /DUPLICATE_OR_INVALID_COMMERCIAL_CATEGORY/,
+  );
+  assert.throws(
+    () => aggregateCommercialOpportunityBacklogs([{ market: "", opportunities: [item] }]),
+    /DUPLICATE_OR_INVALID_COMMERCIAL_MARKET/,
+  );
+});
