@@ -1,6 +1,6 @@
 {
   "schemaVersion": 6,
-  "generatedAt": "2026-10-29T10:12:18.156Z",
+  "generatedAt": "2026-10-30T10:10:14.910Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -335,32 +335,8 @@
     {
       "category": "controller",
       "label": "MPPT controller",
-      "score": 8,
+      "score": 6,
       "markets": [
-        {
-          "market": "hu-HU",
-          "priority": "P2",
-          "score": 2,
-          "maxPurchaseReadyGain": 0,
-          "standalonePurchaseReadyGain": 0,
-          "primaryRequirements": [
-            {
-              "requirement": {
-                "category": "controller",
-                "technology": "mppt",
-                "minCurrentA": 50,
-                "maxCurrentA": 150,
-                "systemVoltage": 12,
-                "minArrayWatts": 550
-              },
-              "weight": 2,
-              "scenarioIds": [
-                "winter-basic"
-              ]
-            }
-          ],
-          "secondaryRequirements": []
-        },
         {
           "market": "pt-PT",
           "priority": "P2",
@@ -763,32 +739,8 @@
     {
       "category": "controller",
       "label": "MPPT controller",
-      "score": 8,
+      "score": 6,
       "markets": [
-        {
-          "market": "hu-HU",
-          "priority": "P2",
-          "score": 2,
-          "maxPurchaseReadyGain": 0,
-          "standalonePurchaseReadyGain": 0,
-          "primaryRequirements": [
-            {
-              "requirement": {
-                "category": "controller",
-                "technology": "mppt",
-                "minCurrentA": 50,
-                "maxCurrentA": 150,
-                "systemVoltage": 12,
-                "minArrayWatts": 550
-              },
-              "weight": 2,
-              "scenarioIds": [
-                "winter-basic"
-              ]
-            }
-          ],
-          "secondaryRequirements": []
-        },
         {
           "market": "pt-PT",
           "priority": "P2",
@@ -869,7 +821,7 @@
   "markets": [
     {
       "market": "cs-CZ",
-      "generatedAt": "2026-10-29T10:05:14.635Z",
+      "generatedAt": "2026-10-30T10:08:13.483Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
@@ -881,7 +833,7 @@
     },
     {
       "market": "sk-SK",
-      "generatedAt": "2026-10-29T10:05:25.171Z",
+      "generatedAt": "2026-10-30T10:08:23.213Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -931,7 +883,7 @@
     },
     {
       "market": "pl-PL",
-      "generatedAt": "2026-10-29T10:05:36.206Z",
+      "generatedAt": "2026-10-30T10:10:04.224Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.21052631578947367,
@@ -981,119 +933,13 @@
     },
     {
       "market": "hu-HU",
-      "generatedAt": "2026-10-29T10:05:46.084Z",
+      "generatedAt": "2026-10-30T10:10:13.703Z",
       "purchaseReadyRatio": 1,
-      "componentReadyRatio": 0.8947368421052632,
+      "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
-      "weightedCoverage": 0.9649122807017543,
-      "topOpportunity": {
-        "category": "controller",
-        "label": "MPPT controller",
-        "priority": "P2",
-        "score": 2,
-        "maxPurchaseReadyGain": 0,
-        "standalonePurchaseReadyGain": 0,
-        "affectedWeight": 2,
-        "unlockWeight": 0,
-        "standaloneUnlockWeight": 0,
-        "primaryScenarioIds": [
-          "winter-basic"
-        ],
-        "unlockScenarioIds": [],
-        "standaloneUnlockScenarioIds": [],
-        "secondaryScenarioIds": [],
-        "primaryRequirements": [
-          {
-            "weight": 2,
-            "scenarioIds": [
-              "winter-basic"
-            ],
-            "requirement": {
-              "category": "controller",
-              "technology": "mppt",
-              "minCurrentA": 50,
-              "maxCurrentA": 150,
-              "systemVoltage": 12,
-              "minArrayWatts": 550
-            }
-          }
-        ],
-        "secondaryRequirements": [],
-        "bestSourcingRoute": {
-          "id": "butler-victron-scc125060321",
-          "category": "controller",
-          "merchant": "butler_technik",
-          "productName": "Victron SmartSolar MPPT 250/60-MC4",
-          "status": "pending_affiliate_approval",
-          "blocker": "awin_program_approval",
-          "secondaryBlocker": null,
-          "standaloneUnlockWeight": 0,
-          "affectedWeight": 5,
-          "shippingVerified": true,
-          "stockStatus": "in_stock",
-          "nextActionOwner": "user",
-          "nextAction": "join_awin_program_31291",
-          "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
-          "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
-          "activationFieldsNeeded": null,
-          "checkoutStatus": null
-        }
-      },
-      "opportunities": [
-        {
-          "category": "controller",
-          "label": "MPPT controller",
-          "priority": "P2",
-          "score": 2,
-          "maxPurchaseReadyGain": 0,
-          "standalonePurchaseReadyGain": 0,
-          "affectedWeight": 2,
-          "unlockWeight": 0,
-          "standaloneUnlockWeight": 0,
-          "primaryScenarioIds": [
-            "winter-basic"
-          ],
-          "unlockScenarioIds": [],
-          "standaloneUnlockScenarioIds": [],
-          "secondaryScenarioIds": [],
-          "primaryRequirements": [
-            {
-              "weight": 2,
-              "scenarioIds": [
-                "winter-basic"
-              ],
-              "requirement": {
-                "category": "controller",
-                "technology": "mppt",
-                "minCurrentA": 50,
-                "maxCurrentA": 150,
-                "systemVoltage": 12,
-                "minArrayWatts": 550
-              }
-            }
-          ],
-          "secondaryRequirements": [],
-          "bestSourcingRoute": {
-            "id": "butler-victron-scc125060321",
-            "category": "controller",
-            "merchant": "butler_technik",
-            "productName": "Victron SmartSolar MPPT 250/60-MC4",
-            "status": "pending_affiliate_approval",
-            "blocker": "awin_program_approval",
-            "secondaryBlocker": null,
-            "standaloneUnlockWeight": 0,
-            "affectedWeight": 5,
-            "shippingVerified": true,
-            "stockStatus": "in_stock",
-            "nextActionOwner": "user",
-            "nextAction": "join_awin_program_31291",
-            "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
-            "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
-            "activationFieldsNeeded": null,
-            "checkoutStatus": null
-          }
-        }
-      ],
+      "weightedCoverage": 1,
+      "topOpportunity": null,
+      "opportunities": [],
       "topSourcingRoute": {
         "id": "butler-victron-scc125060321",
         "category": "controller",
@@ -1137,7 +983,7 @@
     },
     {
       "market": "pt-PT",
-      "generatedAt": "2026-10-29T10:05:47.983Z",
+      "generatedAt": "2026-10-30T10:10:14.910Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,

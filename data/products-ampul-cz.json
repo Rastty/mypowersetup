@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T10:05:14.635Z",
+  "generatedAt": "2026-10-30T10:08:13.483Z",
   "market": "cs-CZ",
   "currency": "CZK",
   "sources": {
@@ -13,8 +13,8 @@
     {
       "id": "ampul_cz:5479",
       "merchant": "ampul_cz",
-      "name": "Nabíječka baterii z 12V na 29.2V, 20A, 584W, IP65, slim",
-      "description": "Nabíječka baterii z 12V na 29.2V, 20A, 584W, IP65, slim je ideální pro bezpečné nabíjení LiFePO4 a LiMn2O4 akumulátorů. Nabízí vysokou účinnost 95,5 %, integrované automatické ochrany proti zkratu či přepětí a elegantní slim provedení.",
+      "name": "Nabíječka baterií z 12V na 29.2V, 20A, 584W, IP65, slim",
+      "description": "Nabíječka baterií z 12V na 29.2V, 20A, 584W, IP65, slim je ideální pro bezpečné nabíjení LiFePO4 a LiMn2O4 akumulátorů. Nabízí vysokou účinnost 95,5 %, integrované automatické ochrany proti zkratu či přepětí a elegantní slim provedení.",
       "categoryPath": "Napájecí zdroje > Nabíječky",
       "category": "dc_charger",
       "brand": "",
@@ -48,7 +48,7 @@
     {
       "id": "ampul_cz:5522",
       "merchant": "ampul_cz",
-      "name": "Nabíječka baterii z 12V na 43.8V, 13A, 569W, IP65, slim",
+      "name": "Nabíječka baterií z 12V na 43.8V, 13A, 569W, IP65, slim",
       "description": "Nabíječka baterií z 12V na 43.8V 13A 569W slim představuje špičkový DC/DC měnič pro LiFePO4 a LiMn2O4 akumulátory. Vyniká vysokou účinností 94,4 %, robustním hliníkovým tělem s krytím IP65 a komplexní soustavou automatických pojistek.",
       "categoryPath": "Napájecí zdroje > Nabíječky",
       "category": "dc_charger",
@@ -83,7 +83,7 @@
     {
       "id": "ampul_cz:5523",
       "merchant": "ampul_cz",
-      "name": "Nabíječka baterii z 12V/24V na 58.4V, 10A, 584W, IP65, slim",
+      "name": "Nabíječka baterií z 12V/24V na 58.4V, 10A, 584W, IP65, slim",
       "description": "Nabíječka baterií z 12V/24V na 58.4V 10A 584W slim je profesionální měnič pro 48V LiFePO4 a LiMn2O4 články. Poskytuje vynikající účinnost 94,5 %, certifikaci IP65, integrované tepelné a přepěťové jištění v odolném hliníkovém pouzdře.",
       "categoryPath": "Napájecí zdroje > Nabíječky",
       "category": "dc_charger",
