@@ -74,9 +74,25 @@ export function buildCommercialOpportunityBacklog(catalog, locale = "cs") {
 }
 
 export function aggregateCommercialOpportunityBacklogs(backlogs) {
+  // Repeated market evidence must never be counted twice as independent
+  // purchase-ready opportunity. A duplicate can otherwise inflate sourcing
+  // priority without adding a single new visitor or purchasable journey.
+  if (!Array.isArray(backlogs)) throw new TypeError("COMMERCIAL_BACKLOGS_REQUIRED");
+  const seenMarkets = new Set();
   const categories = new Map();
   for (const backlog of backlogs) {
+    if (!backlog || typeof backlog.market !== "string" || !backlog.market.trim()
+      || seenMarkets.has(backlog.market) || !Array.isArray(backlog.opportunities)) {
+      throw new TypeError("DUPLICATE_OR_INVALID_COMMERCIAL_MARKET");
+    }
+    seenMarkets.add(backlog.market);
+    const seenCategories = new Set();
     for (const item of backlog.opportunities) {
+      if (!item || typeof item.category !== "string" || !item.category
+        || seenCategories.has(item.category)) {
+        throw new TypeError("DUPLICATE_OR_INVALID_COMMERCIAL_CATEGORY");
+      }
+      seenCategories.add(item.category);
       const current = categories.get(item.category) || {
         category: item.category,
         label: item.label,
