@@ -74,9 +74,38 @@ export function buildCommercialOpportunityBacklog(catalog, locale = "cs") {
 }
 
 export function aggregateCommercialOpportunityBacklogs(backlogs) {
+  // Repeated market evidence must never be counted twice as independent
+  // purchase-ready opportunity. A duplicate can otherwise inflate sourcing
+  // priority without adding a single new visitor or purchasable journey.
+  if (!Array.isArray(backlogs)) throw new TypeError("COMMERCIAL_BACKLOGS_REQUIRED");
+  const seenMarkets = new Set();
   const categories = new Map();
   for (const backlog of backlogs) {
+    const market = typeof backlog?.market === "string" ? backlog.market.trim() : "";
+    // Case and surrounding whitespace must not create another "market".
+    if (!market || market !== backlog.market
+      || seenMarkets.has(market.toLowerCase()) || !Array.isArray(backlog.opportunities)) {
+      throw new TypeError("DUPLICATE_OR_INVALID_COMMERCIAL_MARKET");
+    }
+    seenMarkets.add(market.toLowerCase());
+    const seenCategories = new Set();
     for (const item of backlog.opportunities) {
+      if (!item || typeof item.category !== "string"
+        || !/^[a-z][a-z0-9_]*$/.test(item.category)
+        || seenCategories.has(item.category)) {
+        throw new TypeError("DUPLICATE_OR_INVALID_COMMERCIAL_CATEGORY");
+      }
+      seenCategories.add(item.category);
+      // Bad imported numbers must not silently inflate (or NaN-poison) the
+      // cross-market economic ranking. Unknown standalone gain may be omitted.
+      const standalone = item.standalonePurchaseReadyGain;
+      if (!Number.isFinite(item.score) || item.score < 0
+        || !Number.isFinite(item.maxPurchaseReadyGain)
+        || item.maxPurchaseReadyGain < 0 || item.maxPurchaseReadyGain > 1
+        || (standalone !== undefined && (!Number.isFinite(standalone)
+          || standalone < 0 || standalone > item.maxPurchaseReadyGain))) {
+        throw new TypeError("INVALID_COMMERCIAL_OPPORTUNITY_METRICS");
+      }
       const current = categories.get(item.category) || {
         category: item.category,
         label: item.label,
