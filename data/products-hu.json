@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-30T10:10:13.703Z",
+  "generatedAt": "2026-10-31T09:44:51.243Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12600,
-      "relevantProducts": 160
+      "parsedProducts": 12591,
+      "relevantProducts": 161
     },
     "ampul_hu": {
       "status": "ok",
@@ -146,39 +146,10 @@
       }
     },
     {
-      "id": "padabo_hu:26746",
-      "merchant": "padabo_hu",
-      "name": "Összecsukható napelem Carbest SC200 200 W",
-      "description": "Összecsukható fotovoltaikus panel Carbest SC200A Carbest SC200 200 W-os összecsukható napelem nagy teljesítményű PERC monokristályos napelemekkel van felszerelve. A panel felállítható vagy felakasztható. A kiváló minőségű monokristályos cellákat tartós, nagy fényáteresztő képességű ETFE réteg védi. A panel hátuljára egy zseb van varrva integrált kábelcsatlakozóval és 3 USB kimenettel. Egy további, az összekötő kábelek tárolására szolgáló zsebbel ellátott védőtáska is tartozék. Autóakkumulátorhoz",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
-      "category": "solar_panel",
-      "brand": "Carbest",
-      "priceCzk": 283900,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/osszecsukhato-napelem-carbest-sc200-200-w_z26746/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fosszecsukhato-napelem-carbest-sc200-200-w_z26746%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/152501_102.jpg?1704379090_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 200,
-        "currentA": 200,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_hu:26747",
       "merchant": "padabo_hu",
       "name": "Összecsukható napelem Carbest HC130 - 130 W",
-      "description": "Összecsukható fotovoltaikus panel Carbest HC130A Carbest HC 130 W-os összecsukható napelem nagy teljesítményű monokristályos napelemekkel van felszerelve. A napelemeket tartós, nagy fényáteresztő képességű ETFE réteggel borítják. A panel szélei alumínium sínnel vannak védve. A panel hátoldalán 2 csuklós támasztóláb található a pozicionáláshoz és a kábelek csatlakoztatásához. A panel fogantyúi mágneses zárást tartalmaznak, amely összecsukott állapotban rögzíti a panelt. A tartozék egy hosszabbító",
+      "description": "Összecsukható fotovoltaikus panel Carbest HC130 A Carbest HC 130 W-os összecsukható napelem nagy teljesítményű monokristályos napelemekkel van felszerelve. A napelemeket tartós, nagy fényáteresztő képességű ETFE réteggel borítják. A panel szélei alumínium sínnel vannak védve. A panel hátoldalán 2 csuklós támasztóláb található a pozicionáláshoz és a kábelek csatlakoztatásához. A panel fogantyúi mágneses zárást tartalmaznak, amely összecsukott állapotban rögzíti a panelt. A tartozék egy hosszabbít",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Hordozható napelemes rendszerek",
       "category": "solar_panel",
       "brand": "Carbest",
@@ -5048,6 +5019,64 @@
           "lead"
         ],
         "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:26743",
+      "merchant": "padabo_hu",
+      "name": "Carbest SFX135 napelem",
+      "description": "Carbest SFX135 enyhén rugalmas napelem A Carbest SFX135 napelem egy új anyagösszetételű, félig rugalmas napelemmodul. A nagy teljesítményű SUNPOWER monokristályos napelemek egy stabil, fekete üvegszálas hordozólemezen helyezkednek el, amelyet rendkívül ellenálló ETFE-réteg borít. Az ETFE-fólia a modul mindkét oldalát borítja, és a szélein hegesztve van. Ez a szerkezet biztosítja a belső cellák optimális védelmét. Az SFX135 napelem rendkívül ellenálló a karcolásokkal, a magas hőmérsékletekkel, a ",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
+      "category": "solar_panel",
+      "brand": "Carbest",
+      "priceCzk": 222500,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-sfx135-napelem_z26743/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-sfx135-napelem_z26743%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/152486_102.jpg?1704379090_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 135,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:26746",
+      "merchant": "padabo_hu",
+      "name": "Carbest SC200 200 W-os összecsukható napelem",
+      "description": "Carbest SC200 összecsukható napelem A Carbest SC200 200 W-os összecsukható napelem nagy teljesítményű PERC monokristályos napelemcellákkal van felszerelve. A panel felállítható vagy felakasztható. A kiváló minőségű monokristályos cellákat nagy fényáteresztő képességű, strapabíró ETFE-bevonat védi. A panel hátoldalán egy varrt zseb található, amelybe integrált kábelcsatlakozás és 3 USB-kimenet van beépítve. A csomaghoz tartozik egy kiegészítő védőtáska is, amelyben a csatlakozó kábelek tárolhatók",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
+      "category": "solar_panel",
+      "brand": "Carbest",
+      "priceCzk": 283900,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-sc200-200-w-os-osszecsukhato-napelem_z26746/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-sc200-200-w-os-osszecsukhato-napelem_z26746%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/152501_102.jpg?1704379090_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 200,
+        "currentA": 50,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null

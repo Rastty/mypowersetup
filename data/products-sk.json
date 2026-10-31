@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-30T10:08:23.213Z",
+  "generatedAt": "2026-10-31T09:44:32.759Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16603,
-      "relevantProducts": 249
+      "parsedProducts": 16591,
+      "relevantProducts": 248
     },
     "allpowers_eu": {
       "status": "ok",
@@ -493,7 +493,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
+      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -753,37 +753,6 @@
       "specs": {
         "voltageV": null,
         "capacityAh": 120,
-        "capacityWh": 2400,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:22317_22229",
-      "merchant": "padabo_sk",
-      "name": "Zariadenia EXIDE Gélová batéria ES kapacita 140 Ah variant ES 1600",
-      "description": "Bezúdržbová trakčná batéria s vysokou životnosťouGélovábatéria EXIDE Equipment Gel ES je vhodná pre obytné vozidlá a karavany. Jej konštrukcia poskytuje mimoriadnu flexibilitu z hľadiska inštalácie. Integrovaná gélová technológia so zliatinou vápnika a ventilom riadeným odvzdušňovaním pokrýva rozsah výkonu od 650 do 2400 Wh, a tak ponúka široké možnosti použitia v najnovších a najnáročnejších obytných vozidlách. Gélová batéria EXIDE poskytuje najvyššiu možnú stabilitu cyklov: pri hĺbke vybitia 5",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Gélové batérie",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 577.1,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/156016_102.jpg?1704380137_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 140,
         "capacityWh": 2400,
         "powerW": null,
         "currentA": null,

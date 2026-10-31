@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-30T10:10:04.224Z",
+  "generatedAt": "2026-10-31T09:44:42.138Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16616,
-      "relevantProducts": 205
+      "parsedProducts": 16602,
+      "relevantProducts": 204
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -621,37 +621,6 @@
       "specs": {
         "voltageV": null,
         "capacityAh": 120,
-        "capacityWh": 2400,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:22317_22229",
-      "merchant": "padabo_pl",
-      "name": "Akumulator żelowy EXIDE Equipment ES pojemność 140 Ah wersja ES 1600",
-      "description": "Bezobsługowy akumulator trakcyjny o wysokiej żywotnościAkumulator żelowy EXIDE Equipment Gel ES jest odpowiedni do kamperów i przyczep kempingowych. Jego konstrukcja zapewnia wyjątkową elastyczność w zakresie instalacji. Zintegrowana technologia żelowa ze stopem wapnia i odpowietrzaniem sterowanym zaworem obejmuje zakres mocy od 650 do 2400 Wh, a tym samym oferuje szeroki zakres zastosowań w najnowszych i najbardziej wymagających kamperach. Akumulator żelowy EXIDE zapewnia najwyższą możliwą stab",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory żelowe",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 2570.71,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/akumulator-zelowy-exide-equipment-es_z22317/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-zelowy-exide-equipment-es_z22317%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/6/156016_102.jpg?1704380137_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 140,
         "capacityWh": 2400,
         "powerW": null,
         "currentA": null,
