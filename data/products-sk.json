@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-02T11:19:29.254Z",
+  "generatedAt": "2026-11-03T10:58:10.816Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16587,
-      "relevantProducts": 249
+      "parsedProducts": 16569,
+      "relevantProducts": 248
     },
     "allpowers_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7720,
+      "parsedProducts": 7725,
       "relevantProducts": 15
     }
   },
@@ -138,35 +138,6 @@
           "lead"
         ],
         "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:146",
-      "merchant": "padabo_sk",
-      "name": "Batéria Nissen 6 V",
-      "description": "Záložné napájanie čerpadla6 V batéria vhodná napr. na napájanie čerpadla (na tento účel budú potrebné aspoň 2 ks). Vlastnosti batérie Nissen 6 V: Zinkovo-uhlíkový akumulátor bez obsahu ortuti a kadmia so strednou hustotou energie a vysokou kapacitou. Má dlhú životnosť a dlhú skladovateľnosť. Parametre: kapacita 9 Ah menovité napätie 6 V rozmery (Š × V × H): 6,5 × 11 × 6,5 cm veľkosť balenia (š × v × h): 6,8 × 11,2 × 6,7 cm hmotnosť 432 g",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie",
-      "category": "battery",
-      "brand": "Nissen Germany",
-      "priceCzk": 8.25,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/bateria-nissen-6-v_z146/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-nissen-6-v_z146%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/146007_102.jpg?1704378911_1",
-      "specs": {
-        "voltageV": 6,
-        "capacityAh": 9,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -522,7 +493,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
+      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -2381,7 +2352,7 @@
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
       "brand": "Carbest",
-      "priceCzk": 51,
+      "priceCzk": 51.82,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.padabo.sk/12-v-sinusovy-menic-napatia-carbest_z25871/",
@@ -2414,7 +2385,7 @@
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
       "brand": "Carbest",
-      "priceCzk": 64.69,
+      "priceCzk": 73.39,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.padabo.sk/12-v-sinusovy-menic-napatia-carbest_z25871/",
@@ -2447,7 +2418,7 @@
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
       "brand": "Carbest",
-      "priceCzk": 108.67,
+      "priceCzk": 120.28,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.padabo.sk/12-v-sinusovy-menic-napatia-carbest_z25871/",
@@ -7568,7 +7539,7 @@
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
       "category": "battery",
       "brand": "ECTIVE",
-      "priceCzk": 102.85,
+      "priceCzk": 110.74,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-ective-x-clesana-lc4cs-4-ah_z108152/",

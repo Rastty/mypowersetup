@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-02T11:19:48.842Z",
+  "generatedAt": "2026-11-03T10:59:54.921Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12588,
+      "parsedProducts": 12593,
       "relevantProducts": 161
     },
     "ampul_hu": {
       "status": "ok",
-      "parsedProducts": 7720,
+      "parsedProducts": 7725,
       "relevantProducts": 13
     },
     "allpowers_eu": {
@@ -2129,7 +2129,7 @@
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
       "category": "inverter",
       "brand": "Dometic",
-      "priceCzk": 473000,
+      "priceCzk": 488920,
       "priceCurrency": "HUF",
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287/",
@@ -3038,7 +3038,7 @@
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | LiFePO4 akkumulátorok",
       "category": "battery",
       "brand": "ECTIVE",
-      "priceCzk": 43375,
+      "priceCzk": 46695,
       "priceCurrency": "HUF",
       "available": true,
       "productUrl": "https://www.padabo.hu/lithiova-baterie-ective-x-clesana-lc4cs-4-ah_z108152/",

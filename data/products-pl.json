@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-02T11:19:39.634Z",
+  "generatedAt": "2026-11-03T10:59:44.989Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16598,
-      "relevantProducts": 205
+      "parsedProducts": 16574,
+      "relevantProducts": 204
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_pl": {
       "status": "ok",
-      "parsedProducts": 7720,
+      "parsedProducts": 7725,
       "relevantProducts": 15
     }
   },
@@ -138,35 +138,6 @@
           "lead"
         ],
         "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:146",
-      "merchant": "padabo_pl",
-      "name": "Akumulator Nissen 6 V",
-      "description": "Zasilanie rezerwowe dla pompyAkumulator 6 V odpowiedni np. do zasilania pompy (w tym celu potrzebne będą co najmniej 2 sztuki). Cechy akumulatora Nissen 6 V: Bezrtęciowa i bezkadmowa bateria cynkowo-węglowa o średniej gęstości energii i dużej pojemności. Ma długą żywotność i długi okres trwałości. Parametry: pojemność 9 Ah napięcie znamionowe 6 V wymiary (szer. × wys. × gł.): 6,5 × 11 × 6,5 cm wymiary opakowania (szer. × wys. × gł.): 6,8 × 11,2 × 6,7 cm waga 432 g",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory",
-      "category": "battery",
-      "brand": "Nissen Niemcy",
-      "priceCzk": 35.36,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/akumulator-nissen-6-v_z146/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-nissen-6-v_z146%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/7/146007_102.jpg?1704378911_1",
-      "specs": {
-        "voltageV": 6,
-        "capacityAh": 9,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -1518,7 +1489,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory AGM",
       "category": "battery",
       "brand": "Victron",
-      "priceCzk": 2256.51,
+      "priceCzk": 2169.33,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/akumulator-solarny-victron-energy-agm-super-cycle_z24831/",
@@ -2164,6 +2135,42 @@
         "capacityWh": null,
         "powerW": null,
         "currentA": 20,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:25942_27403",
+      "merchant": "padabo_pl",
+      "name": "Akumulatory litowe Super B Nomia 12 V pojemność 210 Ah",
+      "description": "Bateria litowa ze zintegrowanym systemem zarządzania bateriąAkumulatory Super B LiFePO4 firmy Nomia zostały opracowane w celu zastąpienia akumulatorów kwasowych i pod każdym względem spełniają wysokie wymagania stawiane najbardziej zaawansowanym akumulatorom dostępnym obecnie na rynku. Ten typ baterii wykorzystuje odporne na cykle i bezpieczne ogniwa LiFePO4. Sprawiają one również, że akumulatory LiFePO4 są jednymi z najbardziej wytrzymałych akumulatorów litowo-jonowych na rynku. Akumulator Supe",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
+      "category": "battery",
+      "brand": "Super B",
+      "priceCzk": 18358.33,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/akumulatory-litowe-super-b-nomia-12-v_z25942/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulatory-litowe-super-b-nomia-12-v_z25942%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/3/159753_102.jpg?1704380267_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 210,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
         "chargingVoltagesV": [
           12
         ],
@@ -3350,7 +3357,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Wskaźniki stanu naładowania akumulatora",
       "category": "battery",
       "brand": "Victron",
-      "priceCzk": 522.86,
+      "priceCzk": 508.08,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/monitor-stanu-dwoch-akumulatorow-victron-energy-smartshunt_z103630/",
@@ -4318,37 +4325,6 @@
         "chargingBatteryTypes": [],
         "batteryType": null,
         "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:104333_30512",
-      "merchant": "padabo_pl",
-      "name": "Akumulator AGM Dometic NDS Greenpower GP pojemność 100 Ah",
-      "description": "Akumulatory do samochodów kempingowychAkumulator Dometic NDS Greenpower GP AGM to pierwszy akumulator o głębokim cyklu zaprojektowany i opracowany do użytku w pojazdach kempingowych. Ten akumulator AGM zawiera specjalne płyty ze stopu ołowiu i stali i oferuje wyjątkowo długą żywotność wynoszącą od 4 do 7 lat przy 1200 cyklach. Specjalne separatory z włókna szklanego pochłaniają elektrolit, zapobiegając wyciekom i umożliwiając montaż akumulatora w dowolnej pozycji i/lub pod dowolnym kątem bez kon",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory AGM",
-      "category": "battery",
-      "brand": "Dometic",
-      "priceCzk": 1533.23,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/akumulator-agm-dometic-nds-greenpower-gp_z104333/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-agm-dometic-nds-greenpower-gp_z104333%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/0/180280_102.jpg?1741255029_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 100,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
       }
@@ -6287,7 +6263,7 @@
       "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
       "category": "battery",
       "brand": "ECTIVE",
-      "priceCzk": 458.18,
+      "priceCzk": 493.29,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://www.padabo.pl/lithiova-baterie-ective-x-clesana-lc4cs-4-ah_z108152/",
