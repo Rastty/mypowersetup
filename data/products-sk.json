@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-03T10:58:10.816Z",
+  "generatedAt": "2026-11-04T11:02:11.955Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16569,
-      "relevantProducts": 248
+      "parsedProducts": 16558,
+      "relevantProducts": 246
     },
     "allpowers_eu": {
       "status": "ok",
@@ -16,7 +16,7 @@
     },
     "powerqueen_eu": {
       "status": "ok",
-      "parsedProducts": 61,
+      "parsedProducts": 62,
       "relevantProducts": 23,
       "batteries": 17,
       "controllers": 1,
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7725,
+      "parsedProducts": 7720,
       "relevantProducts": 15
     }
   },
@@ -2589,6 +2589,41 @@
       }
     },
     {
+      "id": "padabo_sk:25942_27403",
+      "merchant": "padabo_sk",
+      "name": "Lítiové batérie Super B Nomia 12 V kapacita 210 Ah",
+      "description": "Lítiová batéria s integrovaným systémom riadenia batérieBatérie Super B LiFePO4 od spoločnosti Nomia boli vyvinuté ako náhrada za kyselinové batérie a vo všetkých ohľadoch spĺňajú vysoké nároky kladené na najmodernejšie batérie na súčasnom trhu. Tento typ batérií využíva cyklicky odolné a bezpečné články LiFePO4. Vďaka nim sú batérie LiFePO4 zároveň jednými z najodolnejších lítium-iónových batérií na trhu. Batéria Super B Nomia má tiež integrovaný systém riadenia batérie(BMS), ktorý ju chráni pr",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
+      "category": "battery",
+      "brand": "Super B",
+      "priceCzk": 4121.26,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/litiove-baterie-super-b-nomia-12-v_z25942/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiove-baterie-super-b-nomia-12-v_z25942%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/159753_102.jpg?1704380267_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 210,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_sk:26743",
       "merchant": "padabo_sk",
       "name": "Solárny panel Carbest SFX135",
@@ -3175,37 +3210,6 @@
           "lead"
         ],
         "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:26964_28362",
-      "merchant": "padabo_sk",
-      "name": "Batéria Victron Energy LiFePO Smart 12,8 V kapacita 100 Ah",
-      "description": "Victron Energy LiFePO Smart 12,8 V - Moderná batéria s pokročilou technológiouAkumulátor Victron Energy LiFePO Smart 12,8 V s balancerom je ideálny pre náročné aplikácie. Môže byť zapojená sériovo, paralelne alebo kombinovane sériovo-paralelne. Táto flexibilita umožňuje prispôsobiť kapacitu a napätie potrebám používateľa. Pripojenie Bluetooth a monitorovanie:Batéria je vybavená pripojením Bluetooth, ktoré umožňuje sledovať napätie článkov, teplotu a stav alarmu priamo na smartfóne prostredníctvo",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
-      "category": "battery",
-      "brand": "Victron Energy",
-      "priceCzk": 777.5,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-smart-12-8-v_z26964/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-smart-12-8-v_z26964%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/160249_102.jpg?1704380286_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 100,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -5113,37 +5117,6 @@
       }
     },
     {
-      "id": "padabo_sk:104333_30512",
-      "merchant": "padabo_sk",
-      "name": "AGM batéria Dometic NDS Greenpower GP kapacita 100 Ah",
-      "description": "Batérie pre obytné automobilyBatéria Dometic NDS Greenpower GP AGM je prvá batéria s hlbokým cyklom navrhnutá a vyvinutá na použitie v obytných vozidlách. Tento akumulátor AGM obsahuje špeciálne dosky zo zliatiny olova a ocele a ponúka mimoriadne dlhú životnosť 4 až 7 rokov s až 1 200 cyklami. Špeciálne separátory zo sklených vlákien absorbujú elektrolyt, čím zabraňujú jeho úniku a umožňujú inštaláciu batérie v akejkoľvek polohe a/alebo uhle bez potreby údržby. Kľúčové vlastnosti batérie AGM Dom",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
-      "category": "battery",
-      "brand": "Dometic",
-      "priceCzk": 358.03,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/agm-bateria-dometic-nds-greenpower-gp_z104333/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-dometic-nds-greenpower-gp_z104333%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/180280_102.jpg?1741255029_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 100,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 4,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:104333_30513",
       "merchant": "padabo_sk",
       "name": "AGM batéria Dometic NDS Greenpower GP kapacita 150 Ah",
@@ -6459,41 +6432,6 @@
         "capacityWh": null,
         "powerW": 750,
         "currentA": 60,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:107308",
-      "merchant": "padabo_sk",
-      "name": "Nabíjačka Renogy DC-DC 12V/40 A",
-      "description": "Smart, robustná a kompaktná nabíjačka Pomocou nabíjačky Renogy DC-DC 12V/40A môžete efektívne nabíjať akumulátory počas chodu motora. Nabíjačka batérií DC-DC je kompatibilná s mnohými typmi alternátorov a umožňuje správne nabíjať batérie AGM, trakčné, gélové a dokonca aj lítiové batérie s hlbokým cyklom. Vďaka 3-stupňovej nabíjačke akumulátorov a viacerým elektronickým ochranám budete mať istotu, že sa vaše akumulátory nabíjajú optimálne a automaticky. Pre zvýšenie bezpečnosti izoluje vstup od v",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Nabíjačky a boostery | Nabíjačky",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 161.77,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/nabijacka-renogy-dc-dc-12v-40-a_z107308/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-renogy-dc-dc-12v-40-a_z107308%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/190963_102.jpg?1772370977_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 500,
-        "currentA": 40,
         "chargingVoltagesV": [
           12
         ],

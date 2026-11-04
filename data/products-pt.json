@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T10:59:55.974Z",
+  "generatedAt": "2026-11-04T11:02:33.912Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": false,
@@ -12,7 +12,7 @@
     },
     "powerqueen_eu": {
       "status": "ok",
-      "parsedProducts": 61,
+      "parsedProducts": 62,
       "relevantProducts": 23,
       "batteries": 17,
       "controllers": 1,

@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-03T10:59:54.921Z",
+  "generatedAt": "2026-11-04T11:02:32.487Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12593,
+      "parsedProducts": 12591,
       "relevantProducts": 161
     },
     "ampul_hu": {
       "status": "ok",
-      "parsedProducts": 7725,
+      "parsedProducts": 7720,
       "relevantProducts": 13
     },
     "allpowers_eu": {
@@ -21,7 +21,7 @@
     },
     "powerqueen_eu": {
       "status": "ok",
-      "parsedProducts": 61,
+      "parsedProducts": 62,
       "relevantProducts": 23,
       "batteries": 17,
       "controllers": 1,
@@ -3188,6 +3188,39 @@
       }
     },
     {
+      "id": "padabo_hu:106296_33731",
+      "merchant": "padabo_hu",
+      "name": "Renogy 12 V-os feszültségátalakító teljesítmény 2000 W",
+      "description": "Nagy teljesítményű feszültségegyenirányító a készülékek széles skálájához A Renogy feszültségátalakító fejlett tiszta szinuszhullámú technológiával rendelkezik, hogy maximalizálja a rendszer hatékonyságát. Az inverter beállítása olyan egyszerű, hogy még egy teljes analfabéta is meg tudja csinálni. A tiszta szinuszos kimenet folyamatos és stabil áramellátást biztosít, amely helyettesíti a közüzemi áramellátást. Az inverter sokoldalú és kompatibilis az elektromos készülékek széles skálájával, bele",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Renogy",
+      "priceCzk": 121040,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/renogy-12-v-os-feszultsegatalakito_z106296/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-12-v-os-feszultsegatalakito_z106296%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": 1,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_hu:108760",
       "merchant": "padabo_hu",
       "name": "Mestic MAB-170 AGM vontatóakkumulátor",
@@ -3459,37 +3492,6 @@
         ],
         "chargingBatteryTypes": [],
         "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:104333_30512",
-      "merchant": "padabo_hu",
-      "name": "AGM akkumulátor Dometic NDS Greenpower GP NDS Greenpower GP kapacitás 100 Ah",
-      "description": "Akkumulátorok lakóautókhozA Dometic NDS Greenpower GP AGM akkumulátor az első lakóautókban való használatra tervezett és kifejlesztett mélyciklusú akkumulátor. Ez az AGM akkumulátor speciális ólom/acél ötvözetű lemezeket tartalmaz, és extra hosszú, 4-7 éves élettartamot kínál , akár 1200 ciklussal. A speciális üvegszálas elválasztók felszívják az elektrolitot, megakadályozva a szivárgást, és lehetővé téve, hogy az akkumulátor bármilyen helyzetben és/vagy szögben, karbantartás nélkül telepíthető ",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "Dometic",
-      "priceCzk": 150955,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/agm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/180280_102.jpg?1741255029_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 100,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null

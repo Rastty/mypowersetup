@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-03T10:59:44.989Z",
+  "generatedAt": "2026-11-04T11:02:23.127Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
       "parsedProducts": 16574,
-      "relevantProducts": 204
+      "relevantProducts": 202
     },
     "powerqueen_eu": {
       "status": "ok",
-      "parsedProducts": 61,
+      "parsedProducts": 62,
       "relevantProducts": 23,
       "batteries": 17,
       "controllers": 1,
@@ -37,7 +37,7 @@
     },
     "ampul_pl": {
       "status": "ok",
-      "parsedProducts": 7725,
+      "parsedProducts": 7720,
       "relevantProducts": 15
     }
   },
@@ -2785,37 +2785,6 @@
       }
     },
     {
-      "id": "padabo_pl:26964_28362",
-      "merchant": "padabo_pl",
-      "name": "Akumulator Victron Energy LiFePO Smart 12,8 V pojemność 100 Ah",
-      "description": "Victron Energy LiFePO Smart 12,8 V - Nowoczesny akumulator z zaawansowaną technologiąAkumulator Victron Energy LiFePO Smart 12,8 V z balanserem jest idealny do wymagających zastosowań. Można go podłączyć szeregowo, równolegle lub w kombinacji szeregowo-równoległej. Ta elastyczność pozwala na dostosowanie pojemności i napięcia do potrzeb użytkownika. Łączność Bluetooth i monitorowanie:Akumulator jest wyposażony w łączność Bluetooth, która umożliwia monitorowanie napięcia ogniwa, temperatury i sta",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
-      "category": "battery",
-      "brand": "Victron",
-      "priceCzk": 3463.41,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/akumulator-victron-energy-lifepo-smart-12-8-v_z26964/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-victron-energy-lifepo-smart-12-8-v_z26964%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/9/160249_102.jpg?1704380286_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 100,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_pl:26964_28364",
       "merchant": "padabo_pl",
       "name": "Akumulator Victron Energy LiFePO Smart 12,8 V pojemność 200 Ah",
@@ -5280,42 +5249,6 @@
         "capacityWh": null,
         "powerW": 750,
         "currentA": 60,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:107308",
-      "merchant": "padabo_pl",
-      "name": "Ładowarka Renogy DC-DC 12 V/40 A",
-      "description": "Inteligentna, wytrzymała i kompaktowa ładowarka Ładowarka akumulatorów Renogy DC-DC 12V/40A umożliwia wydajne ładowanie akumulatorów podczas pracy silnika. Ładowarka DC-DC jest kompatybilna z wieloma typami alternatorów i umożliwia prawidłowe ładowanie akumulatorów AGM, trakcyjnych, żelowych, a nawet litowych o głębokim cyklu. Dzięki 3-stopniowej ładowarce akumulatorów i wielu elektronicznym zabezpieczeniom będziesz mieć pewność, że Twoje akumulatory są ładowane optymalnie i automatycznie. Dla d",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Ładowarki i boostery | Ładowarki",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 829.86,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/ladowarka-renogy-dc-dc-12-v-40-a_z107308/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fladowarka-renogy-dc-dc-12-v-40-a_z107308%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/3/190963_102.jpg?1772370977_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 500,
-        "currentA": 40,
         "chargingVoltagesV": [
           12
         ],

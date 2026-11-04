@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-03T10:58:00.327Z",
+  "generatedAt": "2026-11-04T11:02:03.701Z",
   "market": "cs-CZ",
   "currency": "CZK",
   "sources": {
     "ampul_cz": {
       "status": "ok",
-      "parsedProducts": 7725,
+      "parsedProducts": 7720,
       "relevantProducts": 15
     }
   },
@@ -376,7 +376,7 @@
       "id": "ampul_cz:6653",
       "merchant": "ampul_cz",
       "name": "Napájecí zdroj zásuvkový 36V, 2A, 5.5x2.1mm, nabíječka olověných baterií",
-      "description": "Napájecí zdroj zásuvkový 36V, 2A, 5.5x2.1mm funguje jako inteligentní nabíječka olověných baterií. Využívá automatický CC/CV režim a LED indikaci. Vstupní napětí 100-240 V, výstupní 42 V DC, maximální výkon 84 W, krytí IP22.",
+      "description": "Napájecí zdroj zásuvkový 36V, 2A, 5.5x2.1mm funguje jako inteligentní nabíječka olověných baterií. Využívá automatický CC/CV režim a LED indikaci. Vstupní napětí 100-240 V, výstupní 36 V DC, maximální výkon 72 W, krytí IP22.",
       "categoryPath": "Napájecí zdroje > Nabíječky",
       "category": "shore_charger",
       "brand": "",
@@ -390,7 +390,7 @@
         "voltageV": 36,
         "capacityAh": null,
         "capacityWh": null,
-        "powerW": 84,
+        "powerW": 72,
         "currentA": 2,
         "chargingVoltagesV": [
           36

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-03T10:58:00.327Z",
+  "generatedAt": "2026-11-04T11:02:03.701Z",
   "market": "cs-CZ",
   "status": "ready",
   "requirement": {
@@ -10,7 +10,7 @@
     "batteryType": "lifepo4",
     "minimumCurrentA": 30
   },
-  "matchCount": 7,
+  "matchCount": 6,
   "matches": [
     {
       "id": "vselektro:victron-orion-tr-12-12-30-nonisolated",
@@ -44,17 +44,6 @@
       "productUrl": "https://ampul.eu/cs/nabijecky/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
       "verifiedAt": "2026-08-30",
       "score": 97
-    },
-    {
-      "id": "svetkaravanu:107308",
-      "merchant": "svetkaravanu",
-      "name": "Nabíječka Renogy DC-DC 12V/40 A",
-      "currentA": 40,
-      "priceCzk": 3899,
-      "priceCurrency": "CZK",
-      "productUrl": "https://www.svetkaravanu.cz/nabijecka-renogy-dc-dc-12v-40-a_z107308/",
-      "verifiedAt": null,
-      "score": 85
     },
     {
       "id": "vselektro:victron-orion-xs-12-12-50-nonisolated",
