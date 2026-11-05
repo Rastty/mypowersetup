@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-04T11:02:11.955Z",
+  "generatedAt": "2026-11-05T11:03:07.051Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16558,
+      "parsedProducts": 16579,
       "relevantProducts": 246
     },
     "allpowers_eu": {
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7720,
+      "parsedProducts": 7721,
       "relevantProducts": 15
     }
   },
@@ -6380,6 +6380,39 @@
       }
     },
     {
+      "id": "padabo_sk:106296_33731",
+      "merchant": "padabo_sk",
+      "name": "Menič napätia Renogy 12 V výkon 2000 W",
+      "description": "Výkonný usmerňovač napätia pre širokú škálu spotrebičov Menič napätia Renogy využíva pokročilú technológiu čistej sínusoidy na dosiahnutie maximálnej účinnosti vášho systému. Nastavenie meniča je také jednoduché, že ho zvládne aj úplný laik. Výstup s čistou sínusoidou zabezpečuje plynulé a stabilné napájanie, ktoré plnohodnotne nahrádza napájanie z verejnej siete. Menič je univerzálny a kompatibilný so širokou škálou elektrických spotrebičov, vrátane tých citlivejších, bez akýchkoľvek problémov ",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
+      "category": "inverter",
+      "brand": "Renogy",
+      "priceCzk": 287.08,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-renogy-12-v_z106296%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
+        "currentA": 1,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_sk:106296_33732",
       "merchant": "padabo_sk",
       "name": "Menič napätia Renogy 12 V výkon 3000 W",
@@ -7548,35 +7581,6 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 500,
-        "currentA": 0.6,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:108740_33863",
-      "merchant": "padabo_sk",
-      "name": "Sinusový menič napätia Carbest PowerWave, 12/230 V výkon 3000 W",
-      "description": "Menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie Carbest PowerWave je menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie. Integrovaný prepínač priority sieťového napájania 230 V preruší prevádzku hneď, ako je obytný automobil alebo karavan pripojený k napájaniu 230 V (napríklad v kempingu). Prevádzka meniča sa obnoví po odpojení od externého napájania. Prevodník tak mení napätie 12 V na 230 V s čistou sínusovou vlnou. ",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 765.88,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/195963_102.jpg?1783252526_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 3000,
         "currentA": 0.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],

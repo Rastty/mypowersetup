@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-04T11:02:32.487Z",
+  "generatedAt": "2026-11-05T11:03:25.652Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12591,
-      "relevantProducts": 161
+      "parsedProducts": 12597,
+      "relevantProducts": 160
     },
     "ampul_hu": {
       "status": "ok",
-      "parsedProducts": 7720,
+      "parsedProducts": 7721,
       "relevantProducts": 13
     },
     "allpowers_eu": {
@@ -3312,35 +3312,6 @@
       }
     },
     {
-      "id": "padabo_hu:108740_33863",
-      "merchant": "padabo_hu",
-      "name": "Carbest PowerWave szinuszos feszültségátalakító, 12/230 V teljesítmény 3000 W",
-      "description": "A legújabb generációs szinuszos kimenetű átalakító hálózati tápellátás-prioritás kapcsolóval A Carbest PowerWave egy szinuszos kimenettel rendelkező, legújabb generációs hálózati tápellátás-prioritáskapcsolóval ellátott áramátalakító. A beépített 230 V-os hálózati tápellátás-prioritás kapcsoló leállítja a működését, amint a lakóautót vagy lakókocsit 230 V-os hálózati tápellátáshoz csatlakoztatják (például egy kempingben). Az inverter működése a külső tápellátásról való leválasztás után újraindul",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 322915,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/195963_102.jpg?1783252526_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 3000,
-        "currentA": 0.6,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_hu:108740_33865",
       "merchant": "padabo_hu",
       "name": "Carbest PowerWave szinuszos feszültségátalakító, 12/230 V teljesítmény 1000 W",
@@ -3501,7 +3472,7 @@
       "id": "padabo_hu:49",
       "merchant": "padabo_hu",
       "name": "Exide Dual 50 Ah AGM akkumulátor",
-      "description": "Vontatási akkumulátor minden típusú szabadidőjárműhöz Az Exide Dual 50 Ah AGM akkumulátor kialakításával nagy telepítési rugalmasságot kínál. Kettős, alkalmas indításra és hosszabb távú kisütésre egyaránt. Az AGM technológiának, a VRLA légtelenítésnek és a 450 és 2100 Wh közötti teljesítménytartományának köszönhetően minden típusú szabadidőjárműhöz alkalmas. Az Exide Dual 50 Ah AGM akkumulátor egy olyan mélyciklusú akkumulátor típus, amely AGM (Absorbent Glass Mat) technológiát használ. Ennél az",
+      "description": "Munkaakkumulátor minden típusú szabadidős járműhöz Az Exide Dual 50 Ah AGM akkumulátor kialakításának köszönhetően nagy rugalmasságot biztosít a beszerelés során. Kettős funkciójú, így indításra és hosszabb ideig tartó áramfelvételre egyaránt alkalmas. Az AGM technológiának, a VRLA szellőzésnek és a 450–2100 Wh teljesítménytartománynak köszönhetően minden típusú szabadidős járműhöz alkalmas. Az Exide Dual 50 Ah AGM akkumulátor egy mélyciklusú akkumulátor, amely az AGM (Absorbent Glass Mat) techn",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
       "category": "battery",
       "brand": "EXIDE",
@@ -3532,7 +3503,7 @@
       "id": "padabo_hu:50_80",
       "merchant": "padabo_hu",
       "name": "Optima 12 V AGM akkumulátor modell Optima YTS 4.2",
-      "description": "Hosszú élettartamú újratölthető akkumulátor Az AGM Optima akkumulátor a Trumou által ajánlott akkumulátor, 55 Ah és 75 Ah változatban. Mechanikailag stabil, biztonságos és karbantartásmentes akkumulátor kiváló elektromos tulajdonságokkal. Használja ki a szabadalmaztatott spirálcellás AGM technológia legfőbb előnyeit, amely sok tekintetben felülmúlja a hagyományos zselés vagy ólomsavas akkumulátorokat. Az AGM technológiával ellátott Optima akkumulátort széles körű alkalmazásra tervezték, beleértv",
+      "description": "Hosszú élettartamú akkumulátor Az Optima AGM akkumulátor a Trumou által ajánlott akkumulátor, 55 Ah-s és 75 Ah-s változatokban. Mechanikailag stabil, biztonságos és karbantartásmentes akkumulátor, kiváló elektromos tulajdonságokkal. Használja ki a szabadalmaztatott spirális AGM-cellás technológia fő előnyeit, amely számos tekintetben felülmúlja a hagyományos zselés- vagy ólom-akkumulátorokat. Az AGM technológiával készült Optima akkumulátorok széles körű alkalmazási területekre készültek, beleér",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
       "category": "battery",
       "brand": "Optima Batteries",
@@ -3567,7 +3538,7 @@
       "id": "padabo_hu:50_81",
       "merchant": "padabo_hu",
       "name": "Optima 12 V AGM akkumulátor modell Optima YTS 5.5",
-      "description": "Hosszú élettartamú újratölthető akkumulátor Az AGM Optima akkumulátor a Trumou által ajánlott akkumulátor, 55 Ah és 75 Ah változatban. Mechanikailag stabil, biztonságos és karbantartásmentes akkumulátor kiváló elektromos tulajdonságokkal. Használja ki a szabadalmaztatott spirálcellás AGM technológia legfőbb előnyeit, amely sok tekintetben felülmúlja a hagyományos zselés vagy ólomsavas akkumulátorokat. Az AGM technológiával ellátott Optima akkumulátort széles körű alkalmazásra tervezték, beleértv",
+      "description": "Hosszú élettartamú akkumulátor Az Optima AGM akkumulátor a Trumou által ajánlott akkumulátor, 55 Ah-s és 75 Ah-s változatokban. Mechanikailag stabil, biztonságos és karbantartásmentes akkumulátor, kiváló elektromos tulajdonságokkal. Használja ki a szabadalmaztatott spirális AGM-cellás technológia fő előnyeit, amely számos tekintetben felülmúlja a hagyományos zselés- vagy ólom-akkumulátorokat. Az AGM technológiával készült Optima akkumulátorok széles körű alkalmazási területekre készültek, beleér",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
       "category": "battery",
       "brand": "Optima Batteries",
