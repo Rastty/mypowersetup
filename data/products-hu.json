@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-05T11:03:25.652Z",
+  "generatedAt": "2026-11-06T11:00:52.036Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12597,
-      "relevantProducts": 160
+      "parsedProducts": 12586,
+      "relevantProducts": 161
     },
     "ampul_hu": {
       "status": "ok",
@@ -2157,7 +2157,7 @@
     {
       "id": "padabo_hu:19287_21292",
       "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
       "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
       "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
       "category": "inverter",
@@ -3301,6 +3301,35 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 500,
+        "currentA": 0.6,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:108740_33863",
+      "merchant": "padabo_hu",
+      "name": "Carbest PowerWave szinuszos feszültségátalakító, 12/230 V teljesítmény 3000 W",
+      "description": "A legújabb generációs szinuszos kimenetű átalakító hálózati tápellátás-prioritás kapcsolóval A Carbest PowerWave egy szinuszos kimenettel rendelkező, legújabb generációs hálózati tápellátás-prioritáskapcsolóval ellátott áramátalakító. A beépített 230 V-os hálózati tápellátás-prioritás kapcsoló leállítja a működését, amint a lakóautót vagy lakókocsit 230 V-os hálózati tápellátáshoz csatlakoztatják (például egy kempingben). Az inverter működése a külső tápellátásról való leválasztás után újraindul",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Carbest",
+      "priceCzk": 322915,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
+      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/195963_102.jpg?1783252526_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 3000,
         "currentA": 0.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
@@ -6322,7 +6351,7 @@
       "id": "powerqueen_eu:15452515238108",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 12V 100Ah Dual Purpose Group 24 LiFePO4 Outboard Motor Battery",
-      "description": "All-round power for your fishing boat: Replaces your heavy lead-acid starter battery 1:1 (Group 24) – for full ignition power at the outboard motor at all times and effortless echo sounder operation all day and beyond. Powerful engine start (1000A MCA/900A CCA): Reliable ignition on cold mornings: Extremely high impulse currents with 1000A MCA (0°C) and 900A CCA (-10°C) Gasoline outboard motors from Yamaha, Mercury, Suzuki and Honda start absolutely effortlessly. In the standardized Group 24 fit This battery replaces your heavy lead-acid starter battery 1:1 directly in the existing battery compartment. True dual-purpose use: Starter power &amp; Power supply in one: No second battery needed: This versatile battery provides the necessary peak power to start the main engine and also reliably supplies your on-board electronics such as echo sounders, navigation devices or lighting with constant deep-cycle energy. Intelligent protection &amp; Emergency app launch: Never get stranded on the water again! Safety for your boat trip: If the battery level drops below approximately 25% SOC, the battery automatically stops discharging to consumers to reserve enough energy for starting the engine. Should it nevertheless become completely empty, you can easily activate the discharge process manually. &quot;Emergency start&quot; button in the Bluetooth app , to return safely to the shore. Automatic self-heating: Problem-free charging at sub-zero temperatures: Perfect for spring fishing &amp; Late autumn: The integrated heating function activates automatically at sub-zero temperatures as soon as a charging source is connected. This effectively protects the cells from cold damage when charging via the outboard motor's alternator or shore power. Smart Bluetooth 5.0 BMS: Full control directly on your smartphone: Real-time data at a glance: Easily monitor charge level (SOC), voltage, temperature, and system status via Bluetooth app. This eliminates the need for an expensive external battery monitor, ensuring you always maintain full control on the water. Certified marine quality according to ABYC standard &amp; Mercury compliance: Certified safety at sea: Meets the strict guidelines of the American Boat and Yacht Council (ABYC) for lithium batteries on watercraft as well as the requirements of modern Mercury outboard motors for lithium starter batteries. Extremely lightweight, durable &amp; Maintenance-free (5-year warranty): Up to 70% less weight than old lead-acid batteries for better boat trim and performance. Designed for over 5,000 engine starts (or over 4,000 cycles in pure energy storage operation) including a 5-year manufacturer's warranty. IP67 Waterproof &amp; Vibration resistant for harsh conditions: The robust, IP67-protected housing easily withstands splashing water and vibrations during waves. (Tip: For maximum lifespan, we recommend mounting in a dry, slightly elevated location in the boat).",
+      "description": "All-round power for your fishing boat: Replaces your heavy lead-acid starter battery 1:1 (Group 24) – for full ignition power at the outboard motor at all times and effortless echo sounder operation all day and beyond. Powerful engine start (1000A MCA/900A CCA): Reliable ignition on cold mornings: Extremely high impulse currents with 1000A MCA (0°C) and 900A CCA (-10°C) Gasoline outboard motors from Yamaha, Mercury, Suzuki and Honda start absolutely effortlessly. In the standardized Group 24 fit This battery replaces your heavy lead-acid starter battery 1:1 directly in the existing battery compartment. True dual-purpose use: Starter power &amp; Power supply in one: No second battery needed: This versatile battery provides the necessary peak power to start the main engine and also reliably supplies your on-board electronics such as echo sounders, navigation devices or lighting with constant deep-cycle energy. Intelligent protection &amp; Emergency app launch: Never get stranded on the water again! Safety for your boat trip: If the battery level drops below approximately 25% SOC, the battery automatically stops discharging to consumers to reserve enough energy for starting the engine. Should it nevertheless become completely empty, you can easily activate the discharge process manually. &quot;Emergency start&quot; button in the Bluetooth app , to return safely to the shore. Automatic self-heating: Problem-free charging at sub-zero temperatures: Perfect for spring fishing &amp; Late autumn: The integrated heating function activates automatically at sub-zero temperatures as soon as a charging source is connected. This effectively protects the cells from cold damage when charging via the outboard motor's alternator or shore power. Smart Bluetooth 5.0 BMS: Full control directly on your smartphone: Real-time data at a glance: Easily monitor charge level (SOC), voltage, temperature, and system status via Bluetooth app. This eliminates the need for an expensive external battery monitor, ensuring you always maintain full control on the water. Certified marine quality according to ABYC standard &amp; Mercury compliance: Certified safety at sea: Meets the strict guidelines of the American Boat and Yacht Council (ABYC) for lithium batteries on watercraft as well as the requirements of modern Mercury outboard motors for lithium starter batteries. Extremely lightweight, durable &amp; Maintenance-free (5-year warranty): Up to 70% less weight than old lead-acid batteries for better boat trim and performance. Designed for over 5,000 engine starts (or over 4,000 cycles in pure energy storage operation) including a 5-year manufacturer's warranty. IP67 Waterproof &amp; Vibration resistant for harsh conditions: The robust, IP67-protected housing easily withstands splashing water and vibrations during rough seas. (Tip: For maximum lifespan, we recommend mounting in a dry, slightly elevated location in the boat).",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
@@ -6357,7 +6386,7 @@
       "id": "powerqueen_eu:9633915175132",
       "merchant": "powerqueen_eu",
       "name": "Power Queen 12V 125Ah Group 27 Smart LiFePO4 supply battery",
-      "description": "The smart Group 27 LiFePO4 supply battery for fishing boats and campervans &amp; Off-Grid Group 27 LiFePO4 battery for 30–70 lbs trolling motors &amp; Boat anglers (seawater resistant) &amp; IP65): Perfectly matched to the Group 27 standard: With the dimensions 308 x 170 x 211 mm and only 11.68 kg This 12V LiFePO4 battery is easy to carry and fits perfectly into standard boat battery boxes (e.g., Minn Kota). It provides the ideal power supply for trolling motors from 30 to 70 lbs . The IP65 waterproof and saltwater corrosion-resistant housing reliably protects the electronics from splashing water on the fishing boat. 12V 125Ah leisure battery: Enough power for a whole day on the water: Noticeably more range: This auxiliary battery offers a full 125Ah on a compact Group 27 footprint. (1,600Wh) . For example, operate a 55 lbs trolling motor via 2.5 hours at full throttle or a 12V 35W compressor cool box for up to 40–45 hours continuously, without reloading. Space-saving horizontal installation under the passenger seat (campervan): Smart solution for campervans: In addition to upright mounting, this battery also supports flat, horizontal installation on its side. This reduces the effective installation height. 211 mm down to an extremely compact 170 mm – this means the battery fits easily under the low seat console of Fiat Ducato, Citroën Jumper or Ford Transit. Integrated 100A BMS: 1,280W direct DC power &amp; A safe 1000W via inverter: Maximum safety for your devices: The powerful 100A BMS delivers up to 1,280W of pure DC power for direct 12V loads. When using an inverter, you can operate 230V household appliances up to 1,000 watts continuous power (e.g., travel kettles, rice cookers, or tools) with absolute stability and without the risk of BMS shutdown. Automatic 0°C cold protection: Reliable winterization &amp; Year-round use: Smart solution for the cold season: The integrated low-temperature cut-off function ( Low temperature protection ) automatically stops the charging process at certain temperatures below 0°C . This ensures that the high-quality lithium cells remain perfectly protected from permanent frost damage during spring fishing on the cold lake or winter camping in a campervan. Smart Bluetooth 5.0: App control without an expensive additional monitor: Full control via smartphone: Thanks to Bluetooth 5.0, you can see the remaining capacity and exact remaining runtime directly in the app – saving you the purchase of an expensive battery monitor (shunt). With the integrated discharge switch, you can easily switch off the battery remotely when not in use.",
+      "description": "The smart Group 27 LiFePO4 supply battery for fishing boats and campervans &amp; Off-Grid Group 27 LiFePO4 battery for 30–70 lbs trolling motors &amp; Boat anglers (seawater resistant) &amp; IP65): Perfectly matched to the Group 27 standard: With the dimensions 308 x 170 x 211 mm and only 11.68 kg This 12V LiFePO4 battery is easy to carry and fits perfectly into standard boat battery boxes (e.g., Minn Kota). It provides the ideal power supply for trolling motors from 30 to 70 lbs . The IP65 waterproof and saltwater corrosion-resistant housing reliably protects the electronics from splashing water on the fishing boat. 12V 125Ah leisure battery: Enough power for a whole day on the water: Noticeably more range: This auxiliary battery offers a full 125Ah on a compact Group 27 footprint. (1,600Wh) . For example, operate a 55 lbs trolling motor via 2.5 hours at full throttle or a 12V 35W compressor cool box for up to 40–45 hours continuously, without reloading. Space-saving horizontal installation under the passenger seat (campervan): Smart solution for campervans: In addition to upright mounting, this battery also supports flat, horizontal installation on its side. This reduces the effective installation height. 211 mm down to an extremely compact 170 mm – this means the battery fits easily under the low seat console of Fiat Ducato, Citroën Jumper or Ford Transit. Integrated 100A BMS: 1,280W direct DC power &amp; A reliable 1000W via inverter: Maximum safety for your devices: The powerful 100A BMS delivers up to 1,280W of pure DC power for direct 12V loads. When using an inverter, you can operate 230V household appliances up to 1,000 watts continuous power (e.g., travel kettles, rice cookers, or tools) with absolute stability and without the risk of BMS shutdown. Automatic 0°C cold protection: Reliable winterization &amp; Year-round use: Smart solution for the cold season: The integrated low-temperature cut-off function ( Low temperature protection ) automatically stops the charging process at certain temperatures below 0°C . This ensures that the high-quality lithium cells remain perfectly protected from permanent frost damage during spring fishing on the cold lake or winter camping in a campervan. Smart Bluetooth 5.0: App control without an expensive additional monitor: Full control via smartphone: Thanks to Bluetooth 5.0, you can see the remaining capacity and exact remaining runtime directly in the app – saving you the purchase of an expensive battery monitor (shunt). With the integrated discharge switch, you can easily switch off the battery remotely when not in use.",
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
