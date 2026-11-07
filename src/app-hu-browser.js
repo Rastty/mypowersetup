@@ -1,5 +1,5 @@
 import { APPLIANCES } from "./catalog-hu.js";
-import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20260901-padabo2";
+import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261107-source-gate1";
 import { HU_UI_COPY } from "./ui-copy-hu.js";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { copyText } from "./share.js";
