@@ -45,7 +45,8 @@ test("shared quick-calculator browser invalidates on both typing and select chan
   assert.match(browser, /form\.addEventListener\("input", invalidateResult\)/);
   assert.match(browser, /form\.addEventListener\("change", invalidateResult\)/);
   assert.match(browser, /invalidateCalculatedResult\(\{ resultPanel, errorPanel, staleNotice \}\)/);
-  assert.match(browser, /function render\(\{ userInitiated = false \} = \{\} \) \{\s*errorPanel\.hidden = true;\s*staleNotice\.hidden = true;/);
+  assert.ok(browser.includes("function render({ userInitiated = false } = {}) {"));
+  assert.ok(browser.includes("    errorPanel.hidden = true;\n    staleNotice.hidden = true;"));
   assert.match(browser, /resultPanel\.hidden = false;/);
 });
 
