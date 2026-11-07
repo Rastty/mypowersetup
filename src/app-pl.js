@@ -475,7 +475,7 @@ function renderProductRecommendations(result) {
   const heading = document.querySelector("#product-heading");
   const intro = document.querySelector("#product-intro");
   const groups = document.querySelector("#recommendation-groups");
-  const rankedRecommendations = recommendProducts(productCatalog, result, 24);
+  const rankedRecommendations = recommendProducts(productCatalog, result, 24, productCatalogSources);
   const recommendations = Object.fromEntries(
     Object.entries(rankedRecommendations).map(([category, items]) => [category, items.slice(0, 3)])
   );
