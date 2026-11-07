@@ -3,6 +3,7 @@ import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttributio
 import { calculateLanding } from "./calculator-landing.js";
 import { classifyCalculatorContinuation, getCalculatorCopy } from "./calculator-copy.js";
 import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
+import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js";
 
 const root = document.querySelector("[data-calculator-landing]");
 
@@ -31,6 +32,19 @@ if (root) {
   });
   const n = (value) => formatNumber.format(value);
 
+  // Handoff URLs contain only validated, non-personal electrical inputs.
+  // Never auto-submit: visitors can inspect and change the receiving form.
+  const prefill = applyCalculatorHandoffPrefill({
+    form, intent, locale, pathname: landingPath, search: window.location.search,
+  });
+  if (prefill) {
+    const notice = document.createElement("p");
+    notice.className = "calculator-help";
+    notice.setAttribute("role", "status");
+    notice.textContent = copy.prefillNote;
+    form.insertAdjacentElement("afterbegin", notice);
+  }
+
   function track(event, parameters = {}) {
     return Boolean(window.MyPowerSetupAnalytics?.track(event, { ...landingParameters, ...parameters }));
   }
@@ -58,6 +72,29 @@ if (root) {
       destination_type: destinationType,
       destination_path: `${url.pathname}${url.hash || ""}`,
     });
+  }
+
+  function updateHandoffLink(result, inputs) {
+    const target = calculatorHandoffTarget(intent, locale);
+    const actions = resultPanel.querySelector(".calculator-actions");
+    if (!target || !actions) return;
+    const href = buildCalculatorHandoffUrl({ intent, locale, result, inputs });
+    // Reuse CZ's existing MPPT continuation rather than showing duplicate CTAs.
+    let link = actions.querySelector("[data-calculator-handoff]")
+      || actions.querySelector(`a[href="${target.path}"]`);
+    if (!href) {
+      if (link) link.hidden = true; // E.g. solar exceeds MPPT's 5000 Wp input limit.
+      return;
+    }
+    if (!link) {
+      link = document.createElement("a");
+      link.className = "calculator-cta calculator-cta-secondary";
+      actions.append(link);
+    }
+    link.setAttribute("data-calculator-handoff", "");
+    link.textContent = intent === "battery-capacity" ? copy.nextSolar : copy.nextMppt;
+    link.setAttribute("href", href);
+    link.hidden = false;
   }
 
   function setText(selector, value) {
@@ -162,6 +199,7 @@ if (root) {
 
       renderer(result);
       renderWarnings(result.warnings);
+      updateHandoffLink(result, data);
       resultPanel.hidden = false;
       // The initial SEO preview is not a user action: keep keyboard/screen-reader
       // focus on the form until a visitor explicitly requests a calculation.
