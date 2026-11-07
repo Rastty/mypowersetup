@@ -1,3 +1,5 @@
+import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js";
+
 // Progressive enhancement for CZ editorial comparison pages. Actual prices,
 // stock and destinations always come from the same guarded catalog as Builder.
 // No evergreen HTML prices or fabricated "in stock" claims.
@@ -164,6 +166,11 @@ export function mountGuideOffers(root, payload, now = Date.now(), clickNow = Dat
     link.dataset.category = category;
     link.dataset.productId = item.id;
     link.dataset.merchant = "vselektro";
+    // Exposure tracking must reject offers whose source or SKU evidence
+    // expires while a tab is asleep, even before the scheduled refresh.
+    link.dataset.offerExpiresAt = String(Math.min(
+      feedEvidenceTime(payload.generatedAt), feedEvidenceTime(item.offerObservedAt)
+    ) + MAX_FEED_AGE_MS);
     // A suspended tab can outlive the last successful hourly refresh. Check
     // current feed and SKU eligibility at the actual outbound-click moment.
     // Never count a blocked stale click as an affiliate conversion event.
@@ -232,11 +239,20 @@ export function trackGuideAffiliateClick(event, analytics) {
 async function init() {
   const roots = document.querySelectorAll("[data-guide-category]");
   if (!roots.length) return;
+  const impressionTracker = createVerifiedGuideImpressionTracker({
+    documentRoot: document,
+    sections: [...roots],
+    getAnalytics: () => window.MyPowerSetupAnalytics,
+    Observer: window.IntersectionObserver,
+  });
   let refreshing = null;
   let expiryTimer = null;
   const refresh = () => {
     if (!refreshing) {
       refreshing = refreshGuideOffers(roots).then((payload) => {
+        // A new catalog rebuilds the DOM links: observe only the new,
+        // still-approved offers, never the detached previous catalog.
+        impressionTracker?.scan();
         if (expiryTimer !== null) window.clearTimeout(expiryTimer);
         expiryTimer = null;
         const expiry = guideOffersExpireAt(
