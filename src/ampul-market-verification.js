@@ -28,7 +28,7 @@ function normalizeMarketRecord(verification, candidateId, market) {
 
   const record = verification?.products?.[candidateId]?.markets?.[marketCode] || null;
   const evidenceUrl = validHttpsUrl(record?.evidenceUrl) ? record.evidenceUrl : null;
-  const verifiedAt = /^\d{4}-\d{2}-\d{2}$/.test(record?.verifiedAt || "") ? record.verifiedAt : null;
+  const verifiedAt = validVerificationDate(record?.verifiedAt) ? record.verifiedAt : null;
   const verified = record?.verified === true && Boolean(evidenceUrl && verifiedAt);
 
   return Object.freeze({
@@ -48,4 +48,14 @@ function validHttpsUrl(value) {
   } catch {
     return false;
   }
+}
+
+// An impossible or future date cannot certify completed market checkout.
+// Date.parse normalizes 2026-02-30, so verify a strict UTC round-trip.
+function validVerificationDate(value) {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const timestamp = Date.parse(value + "T00:00:00Z");
+  return Number.isFinite(timestamp)
+    && new Date(timestamp).toISOString().slice(0, 10) === value
+    && timestamp <= Date.now();
 }
