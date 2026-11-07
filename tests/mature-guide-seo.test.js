@@ -93,3 +93,9 @@ test("regenerator keeps the original 52-guide baseline and accepts indexed compa
   assert.match(source, /new Set\(routes\)\.size !== routes\.length/);
   assert.doesNotMatch(source, /routes.length !== 52/);
 });
+
+test("regenerator script is parseable by Node before automated SEO publication", async () => {
+  const { spawnSync } = await import("node:child_process");
+  const result = spawnSync(process.execPath, ["--check", "scripts/sync-mature-guide-seo.mjs"], { encoding: "utf8" });
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+});
