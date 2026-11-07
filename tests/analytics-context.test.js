@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { buildAnalyticsContext, classifyAnalyticsPage } from "../src/analytics-context.js";
+import { rememberGuideAttribution, resolveGuideAttribution } from "../src/guide-attribution.js";
 
 test("calculator events get explicit market and calculator context", () => {
   for (const [lang, path, market] of [["cs","/","cz"],["sk-SK","/sk/","sk"],["pl","/pl/","pl"],["hu","/hu/","hu"],["ro-RO","/ro/","ro"],["pt-PT","/pt/","pt"],["sl-SI","/si/","si"]]) {
@@ -31,4 +32,63 @@ test("unknown language stays explicit instead of being silently counted as Czech
   assert.equal(context.market, "xx");
   assert.equal(context.page_path, "/xx/");
   assert.equal(context.page_type, "content");
+});
+
+
+test("all published localized calculator landing pages and hubs are measured as calculators", () => {
+  const cases = [
+    ["sk", "/sk/kalkulacky/"],
+    ["sk", "/sk/kalkulacky/kapacita-baterie/"],
+    ["sk", "/sk/kalkulacky/solarne-panely/"],
+    ["pl", "/pl/kalkulatory/"],
+    ["pl", "/pl/kalkulatory/pojemnosc-akumulatora/"],
+    ["pl", "/pl/kalkulatory/panele-solarne/"],
+    ["hu", "/hu/kalkulatorok/"],
+    ["hu", "/hu/kalkulatorok/akkumulator-kapacitas/"],
+    ["hu", "/hu/kalkulatorok/napelem-teljesitmeny/"],
+  ];
+  for (const [lang, pathname] of cases) {
+    const context = buildAnalyticsContext({ lang, pathname, hasCalculator: false });
+    assert.equal(context.market, lang, pathname);
+    assert.equal(context.page_path, pathname);
+    assert.equal(context.page_type, "calculator", pathname);
+  }
+});
+
+test("localized calculator classification does not swallow other pages or similar-looking slugs", () => {
+  for (const pathname of [
+    "/sk/kalkulacky-novinky/",
+    "/pl/kalkulatory-porady/",
+    "/hu/kalkulatorokrad/",
+    "/sk/sprievodca/kapacita-baterie-do-karavanu/",
+    "/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/",
+    "/hu/utmutatok/lakoauto-akkumulator-kapacitas/",
+  ]) assert.notEqual(classifyAnalyticsPage(pathname), "calculator", pathname);
+  assert.equal(classifyAnalyticsPage("/ro/ghiduri/invertor-autorulota-putere/"), "guide");
+});
+
+test("localized guide to calculator journey can carry consent-gated CTA position", () => {
+  const cases = [
+    ["sk", "/sk/sprievodca/kapacita-baterie-do-karavanu/", "/sk/kalkulacky/kapacita-baterie/"],
+    ["pl", "/pl/poradnik/ile-wat-paneli-solarnych-do-kampera/", "/pl/kalkulatory/panele-solarne/"],
+    ["hu", "/hu/utmutatok/lakoauto-akkumulator-kapacitas/", "/hu/kalkulatorok/akkumulator-kapacitas/"],
+  ];
+  const now = 1_700_000_000_000;
+  for (const [lang, guidePath, landingPath] of cases) {
+    const values = new Map();
+    const storage = {
+      getItem(key) { return values.get(key) ?? null; },
+      setItem(key, value) { values.set(key, String(value)); },
+      removeItem(key) { values.delete(key); },
+    };
+    rememberGuideAttribution({ sourcePath: guidePath, sourcePosition: "early", storage, now });
+    const context = buildAnalyticsContext({ lang, pathname: landingPath, hasCalculator: false });
+    assert.equal(context.page_type, "calculator", landingPath);
+    const source = context.page_type === "calculator"
+      ? resolveGuideAttribution({ storage, market: context.market, now: now + 1000 })
+      : null;
+    assert.equal(source?.guide_source_path, guidePath);
+    assert.equal(source?.guide_source_market, lang);
+    assert.equal(source?.guide_source_position, "early");
+  }
 });
