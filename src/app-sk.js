@@ -1,6 +1,6 @@
 import { APPLIANCES } from "./catalog-sk.js?v=20260823-custom1";
 import { calculateSetup } from "./engine.js?v=20260821-sk1";
-import { recommendProducts } from "./products.js?v=20260901-padabo1";
+import { recommendProducts } from "./products.js?v=20261107-source-gate1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20261023-safe-loads1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -475,7 +475,7 @@ function renderProductRecommendations(result) {
   const heading = document.querySelector("#product-heading");
   const intro = document.querySelector("#product-intro");
   const groups = document.querySelector("#recommendation-groups");
-  const rankedRecommendations = recommendProducts(productCatalog, result, 24);
+  const rankedRecommendations = recommendProducts(productCatalog, result, 24, productCatalogSources);
   const recommendations = Object.fromEntries(
     Object.entries(rankedRecommendations).map(([category, items]) => [category, items.slice(0, 3)])
   );

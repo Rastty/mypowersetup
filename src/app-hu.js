@@ -1,6 +1,6 @@
 import { APPLIANCES } from "./catalog-hu.js";
 import { calculateSetup } from "./engine.js";
-import { recommendProducts } from "./products.js?v=20260901-padabo2";
+import { recommendProducts } from "./products.js?v=20261107-source-gate1";
 import { buildResultShareText } from "./share.js";
 import { buildSetupUrl } from "./setup-url.js";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js";
@@ -104,7 +104,7 @@ export function buildHungarianApplicationResult(config, catalog = { products: []
     roofWidth: config?.roofWidth ?? null,
   }, HU_MARKET.locale, origin);
 
-  const rankedRecommendations = recommendProducts(catalog.products || [], result, 24);
+  const rankedRecommendations = recommendProducts(catalog.products || [], result, 24, catalog.sources);
   const recommendations = Object.freeze(Object.fromEntries(
     Object.entries(rankedRecommendations).map(([category, items]) => [category, Object.freeze(items.slice(0, 3))])
   ));

@@ -434,7 +434,7 @@ test("every market measures anonymous product coverage and ships a fresh calcula
   ];
   for (const [htmlPath, appPath, locale] of markets) {
     const [html, app] = await Promise.all([readFile(htmlPath, "utf8"), readFile(appPath, "utf8")]);
-    assert.ok(html.includes(locale === "cs" ? "20261014-purchase-steps1" : "20260902-product-roles1"), `${htmlPath} nemá novou verzi aktiv`);
+    assert.ok(html.includes(locale === "cs" ? "20261107-source-gate1" : "20260902-product-roles1"), `${htmlPath} nemá novou verzi aktiv`);
     assert.ok(app.includes('trackEvent("product_coverage_calculated"'));
     assert.ok(app.includes(`locale: "${locale}"`));
     assert.ok(app.includes("missing_categories: coverage.missing.join"));
@@ -447,10 +447,10 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20261014-purchase-steps1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20261107-source-gate1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20260821-1"'));
-  assert.ok(app.includes('from "./products.js?v=20260828-ampul1"'));
+  assert.ok(app.includes('from "./products.js?v=20261107-source-gate1"'));
   assert.ok(app.includes("calculatorError.hidden = false"));
   assert.ok(engine.includes('from "./catalog.js?v=20260821-1"'));
 });
@@ -544,7 +544,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20260907-awin-clickref1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20261107-source-gate1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency = "EUR"'));
@@ -580,8 +580,8 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
   assert.ok(html.includes('"@id": "https://mypowersetup.com/pl/o-projekcie/#petr-galik"'));
   assert.ok(html.includes('"url": "https://mypowersetup.com/pl/o-projekcie/"'));
   assert.doesNotMatch(html, /placeholder="napr\./);
-  assert.ok(html.includes('src="/src/app-pl.js?v=20260907-awin-clickref1"'));
-  assert.ok(app.includes('products.js?v=20260901-padabo2'));
+  assert.ok(html.includes('src="/src/app-pl.js?v=20261107-source-gate1"'));
+  assert.ok(app.includes('products.js?v=20261107-source-gate1'));
   assert.match(html, /Jakiego akumulatora i paneli naprawdę potrzebujesz/);
   assert.match(html, /Zanim zaczniesz kupować/);
   assert.doesNotMatch(html, /sprievodca|sukromie|Vypočítať|Koľko batérie|slovenské návody/);
