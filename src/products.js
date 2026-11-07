@@ -381,8 +381,19 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
   return "other";
 }
 
-export function recommendProducts(products, setup, limitPerCategory = 3) {
+// A stale or failed merchant feed is not purchase-ready evidence.
+// Existing integrations that do not provide source metadata remain compatible;
+// any explicitly reported non-OK source must fail closed.
+export function hasCurrentRecommendationSource(product, sources = null) {
+  if (!product || product.staleSource === true) return false;
+  const source = sources && typeof sources === "object" && product.merchant
+    ? sources[product.merchant] : null;
+  return !source || source.status === "ok";
+}
+
+export function recommendProducts(products, setup, limitPerCategory = 3, sources = null) {
   const candidates = products
+    .filter((product) => hasCurrentRecommendationSource(product, sources))
     .map(refreshCatalogProduct)
     .filter((product) => product.available !== false)
     .map((product) => scoreProduct(product, setup))
