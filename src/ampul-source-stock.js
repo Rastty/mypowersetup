@@ -50,7 +50,7 @@ function parseCatalogTimestamp(value) {
   // The feed writer emits UTC ISO timestamps. Do not accept ambiguous dates,
   // normalized impossible dates, future snapshots or timezone-free strings.
   if (typeof value !== "string"
-    || !/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,3})?Z$/.test(value)) return null;
+    || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/.test(value)) return null;
   const parsed = Date.parse(value);
   if (!Number.isFinite(parsed) || new Date(parsed).toISOString().slice(0, 19) !== value.slice(0, 19)) return null;
   return parsed;
