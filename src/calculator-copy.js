@@ -2,6 +2,7 @@ const COPY = Object.freeze({
   cs: Object.freeze({
     numberLocale: "cs-CZ",
     failed: "Výpočet se nepodařilo dokončit.",
+    staleResult: "Změnili jste zadání. Pro aktuální návrh spusťte výpočet znovu.",
     batterySummary: ({ n, result }) => `Pro ${n(result.dailyWh)} Wh denní spotřeby a ${result.autonomyDays} dny autonomie vychází minimální doporučená kapacita ${n(result.batteryWh)} Wh, tedy přibližně ${n(result.batteryAh)} Ah při ${result.systemVoltage} V.`,
     batteryReserve: ({ result }) => `Výpočet zahrnuje ${result.assumptions.batteryMarginPercent}% rezervu a počítá s využitelnou hloubkou vybití ${result.assumptions.usableDepthPercent} %.`,
     autonomySummary: ({ n, result }) => `Baterie ${n(result.batteryCapacityAh)} Ah při ${result.systemVoltage} V a denní spotřebě ${n(result.dailyWh)} Wh vychází konzervativně přibližně na ${n(result.autonomyDays)} dne, tedy asi ${n(result.autonomyHours)} hodin bez dobíjení.`,
@@ -21,6 +22,7 @@ const COPY = Object.freeze({
   sk: Object.freeze({
     numberLocale: "sk-SK",
     failed: "Výpočet sa nepodarilo dokončiť.",
+    staleResult: "Zmenili ste vstupné údaje. Pre aktuálny návrh spustite výpočet znova.",
     batterySummary: ({ n, result }) => `Pri dennej spotrebe ${n(result.dailyWh)} Wh a autonómii ${result.autonomyDays} dni vychádza minimálna odporúčaná kapacita ${n(result.batteryWh)} Wh, približne ${n(result.batteryAh)} Ah pri ${result.systemVoltage} V.`,
     batteryReserve: ({ result }) => `Výpočet zahŕňa ${result.assumptions.batteryMarginPercent} % rezervu a počíta s využiteľnou hĺbkou vybitia ${result.assumptions.usableDepthPercent} %.`,
     solarSummary: ({ n, result }) => `Pri spotrebe ${n(result.dailyWh)} Wh/deň vychádza orientačné minimum ${n(result.solarWatts)} Wp panelov a regulátor aspoň ${n(result.controllerAmps)} A pre ${result.systemVoltage} V systém.`,
@@ -38,6 +40,7 @@ const COPY = Object.freeze({
   pl: Object.freeze({
     numberLocale: "pl-PL",
     failed: "Nie udało się wykonać obliczenia.",
+    staleResult: "Zmieniono dane wejściowe. Oblicz ponownie, aby zobaczyć aktualny wynik.",
     batterySummary: ({ n, result }) => `Dla zużycia ${n(result.dailyWh)} Wh dziennie i autonomii ${result.autonomyDays} dni minimalna zalecana pojemność wynosi ${n(result.batteryWh)} Wh, czyli około ${n(result.batteryAh)} Ah przy ${result.systemVoltage} V.`,
     batteryReserve: ({ result }) => `Obliczenie uwzględnia ${result.assumptions.batteryMarginPercent} % zapasu i ${result.assumptions.usableDepthPercent} % użytecznej głębokości rozładowania.`,
     solarSummary: ({ n, result }) => `Dla zużycia ${n(result.dailyWh)} Wh/dzień orientacyjne minimum to ${n(result.solarWatts)} Wp paneli i regulator co najmniej ${n(result.controllerAmps)} A dla systemu ${result.systemVoltage} V.`,
@@ -55,6 +58,7 @@ const COPY = Object.freeze({
   hu: Object.freeze({
     numberLocale: "hu-HU",
     failed: "A számítást nem sikerült befejezni.",
+    staleResult: "Megváltoztattad az adatokat. Az aktuális eredményhez indítsd újra a számítást.",
     batterySummary: ({ n, result }) => `Napi ${n(result.dailyWh)} Wh fogyasztás és ${result.autonomyDays} nap autonómia mellett a javasolt minimális kapacitás ${n(result.batteryWh)} Wh, vagyis körülbelül ${n(result.batteryAh)} Ah ${result.systemVoltage} V-on.`,
     batteryReserve: ({ result }) => `A számítás ${result.assumptions.batteryMarginPercent} % tartalékkal és ${result.assumptions.usableDepthPercent} % hasznosítható kisütési mélységgel számol.`,
     solarSummary: ({ n, result }) => `Napi ${n(result.dailyWh)} Wh fogyasztáshoz az irányadó minimum ${n(result.solarWatts)} Wp napelem és legalább ${n(result.controllerAmps)} A-es szabályozó ${result.systemVoltage} V-os rendszerhez.`,
