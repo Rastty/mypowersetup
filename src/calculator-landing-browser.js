@@ -2,6 +2,7 @@ import "./analytics.js";
 import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution } from "./calculator-attribution.js";
 import { calculateLanding } from "./calculator-landing.js";
 import { classifyCalculatorContinuation, getCalculatorCopy } from "./calculator-copy.js";
+import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
 
 const root = document.querySelector("[data-calculator-landing]");
 
@@ -9,6 +10,15 @@ if (root) {
   const form = root.querySelector("[data-calculator-form]");
   const resultPanel = root.querySelector("[data-calculator-result]");
   const errorPanel = root.querySelector("[data-calculator-error]");
+  // Keep a visible, localized explanation while hiding stale metrics and
+  // outbound continuation links. No HTML duplication across 13 public routes.
+  const staleNotice = document.createElement("p");
+  staleNotice.className = "calculator-help";
+  staleNotice.dataset.calculatorStale = "";
+  staleNotice.setAttribute("role", "status");
+  staleNotice.hidden = true;
+  staleNotice.textContent = getCalculatorCopy(root.dataset.calculatorLocale || "cs").staleResult;
+  errorPanel.insertAdjacentElement("afterend", staleNotice);
   const intent = root.dataset.calculatorIntent || "battery-capacity";
   const locale = root.dataset.calculatorLocale || "cs";
   const copy = getCalculatorCopy(locale);
@@ -141,6 +151,7 @@ if (root) {
 
   function render({ userInitiated = false } = {}) {
     errorPanel.hidden = true;
+    staleNotice.hidden = true;
 
     try {
       const data = Object.fromEntries(new FormData(form).entries());
@@ -169,6 +180,12 @@ if (root) {
       if (userInitiated) track("calculation_failed", { source: "seo_landing" });
     }
   }
+
+  // The initial SEO preview is valid only for the initial input values.
+  // After a change, never leave a previous electrical recommendation clickable.
+  const invalidateResult = () => invalidateCalculatedResult({ resultPanel, errorPanel, staleNotice });
+  form.addEventListener("input", invalidateResult);
+  form.addEventListener("change", invalidateResult);
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
