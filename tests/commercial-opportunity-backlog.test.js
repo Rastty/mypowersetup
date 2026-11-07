@@ -62,3 +62,98 @@ test("standalone gain excludes scenarios that need another missing category", ()
     );
   }
 });
+
+test("repeated market snapshots cannot double-count affiliate sourcing opportunities", () => {
+  const market = {
+    market: "cs-CZ",
+    opportunities: [{
+      category: "battery", label: "battery", priority: "P0", score: 8,
+      maxPurchaseReadyGain: 0.3, standalonePurchaseReadyGain: 0.2,
+    }],
+  };
+  assert.throws(
+    () => aggregateCommercialOpportunityBacklogs([market, structuredClone(market)]),
+    /DUPLICATE_OR_INVALID_COMMERCIAL_MARKET/,
+  );
+  const valid = aggregateCommercialOpportunityBacklogs([
+    market, { ...market, market: "sk-SK" },
+  ]);
+  assert.equal(valid[0].score, 16);
+  assert.equal(valid[0].markets.length, 2);
+});
+
+test("one market cannot inflate its sourcing score with duplicate categories", () => {
+  const item = {
+    category: "inverter", label: "inverter", priority: "P1", score: 4,
+    maxPurchaseReadyGain: 0.1,
+  };
+  assert.throws(
+    () => aggregateCommercialOpportunityBacklogs([
+      { market: "cs-CZ", opportunities: [item, { ...item }] },
+    ]),
+    /DUPLICATE_OR_INVALID_COMMERCIAL_CATEGORY/,
+  );
+  assert.throws(
+    () => aggregateCommercialOpportunityBacklogs([{ market: "", opportunities: [item] }]),
+    /DUPLICATE_OR_INVALID_COMMERCIAL_MARKET/,
+  );
+});
+
+test("portfolio sourcing aggregation rejects corrupted scores and gains", () => {
+  const base = {
+    market: "cs-CZ",
+    opportunities: [{
+      category: "battery", label: "battery", priority: "P1", score: 5,
+      maxPurchaseReadyGain: 0.5, standalonePurchaseReadyGain: 0.2,
+    }],
+  };
+  const broken = [
+    { score: NaN }, { score: Infinity }, { score: -1 }, { score: "5" },
+    { maxPurchaseReadyGain: NaN }, { maxPurchaseReadyGain: -0.1 },
+    { maxPurchaseReadyGain: 1.1 }, { maxPurchaseReadyGain: "0.5" },
+    { standalonePurchaseReadyGain: Infinity },
+    { standalonePurchaseReadyGain: null }, { standalonePurchaseReadyGain: -0.1 },
+    { standalonePurchaseReadyGain: 0.6 },
+  ];
+  for (const mutation of broken) {
+    const item = { ...base.opportunities[0], ...mutation };
+    assert.throws(
+      () => aggregateCommercialOpportunityBacklogs([{ ...base, opportunities: [item] }]),
+      /INVALID_COMMERCIAL_OPPORTUNITY_METRICS/,
+      JSON.stringify(mutation),
+    );
+  }
+  const optional = { ...base.opportunities[0] };
+  delete optional.standalonePurchaseReadyGain;
+  assert.equal(aggregateCommercialOpportunityBacklogs([
+    { ...base, opportunities: [optional] },
+  ])[0].standalonePurchaseReadyGain, 0);
+});
+
+test("case variants and whitespace cannot invent independent markets or categories", () => {
+  const item = {
+    category: "battery", label: "battery", priority: "P1", score: 4,
+    maxPurchaseReadyGain: 0.25,
+  };
+  assert.throws(
+    () => aggregateCommercialOpportunityBacklogs([
+      { market: "cs-CZ", opportunities: [item] },
+      { market: "CS-cz", opportunities: [item] },
+    ]),
+    /DUPLICATE_OR_INVALID_COMMERCIAL_MARKET/,
+  );
+  for (const market of [" cs-CZ", "cs-CZ ", "  "]) {
+    assert.throws(
+      () => aggregateCommercialOpportunityBacklogs([{ market, opportunities: [item] }]),
+      /DUPLICATE_OR_INVALID_COMMERCIAL_MARKET/,
+    );
+  }
+  for (const category of ["Battery", "battery ", " battery", ""]) {
+    assert.throws(
+      () => aggregateCommercialOpportunityBacklogs([
+        { market: "cs-CZ", opportunities: [{ ...item, category }] },
+      ]),
+      /DUPLICATE_OR_INVALID_COMMERCIAL_CATEGORY/,
+    );
+  }
+});
