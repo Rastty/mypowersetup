@@ -54,7 +54,11 @@ const STOCK_STATES = new Set(["in_stock"]);
 const MAX_STOCK_EVIDENCE_AGE_MS = 14 * 24 * 60 * 60 * 1000;
 
 function validDate(value) {
-  return /^\d{4}-\d{2}-\d{2}$/.test(value || "") && Number.isFinite(Date.parse(`${value}T00:00:00Z`));
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const parsed = Date.parse(`${value}T00:00:00Z`);
+  // Date.parse normalizes impossible calendar days (e.g. 2026-09-31 to
+  // 2026-10-01). Never let a normalized date certify stock or tracking proof.
+  return Number.isFinite(parsed) && new Date(parsed).toISOString().slice(0, 10) === value;
 }
 
 function validEvidenceUrl(value) {

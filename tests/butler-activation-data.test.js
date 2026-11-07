@@ -107,3 +107,35 @@ test("mutated Butler electrical specs fail runtime validation", async () => {
     /BUTLER_DCDC_SPECS_INVALID/,
   );
 });
+
+test("impossible calendar dates cannot certify Butler tracking or fresh stock", async () => {
+  const activation = fullyApprove(await activationFile());
+  activation.trackingVerifiedAt = "2026-02-30"; // Date.parse normalizes to March 2.
+  const invalidTracking = butlerActivationState(activation, CONTROLLER, "pt-PT", { now: NOW });
+  assert.equal(invalidTracking.trackingVerifiedAt, null);
+  assert.equal(invalidTracking.ready, false);
+  assert.equal(invalidTracking.blocker, "awin_tracking_verification_pending");
+
+  activation.trackingVerifiedAt = "2026-09-16";
+  activation.products[CONTROLLER].stockVerifiedAt = "2026-09-31"; // Normalizes to October 1.
+  const invalidStock = butlerActivationState(activation, CONTROLLER, "pt-PT", {
+    now: Date.parse("2026-10-02T12:00:00Z"),
+  });
+  assert.equal(invalidStock.stockVerified, false);
+  assert.equal(invalidStock.stockVerifiedAt, null);
+  assert.equal(invalidStock.ready, false);
+  assert.equal(invalidStock.blocker, "exact_product_stock_unverified");
+});
+
+test("real leap-day evidence remains valid for exact Butler products", async () => {
+  const activation = fullyApprove(await activationFile());
+  activation.trackingVerifiedAt = "2028-02-29";
+  activation.products[CONTROLLER].stockVerifiedAt = "2028-02-29";
+  const state = butlerActivationState(activation, CONTROLLER, "pt-PT", {
+    now: Date.parse("2028-03-01T12:00:00Z"),
+  });
+  assert.equal(state.trackingVerifiedAt, "2028-02-29");
+  assert.equal(state.stockVerifiedAt, "2028-02-29");
+  assert.equal(state.stockVerified, true);
+  assert.equal(state.ready, true);
+});
