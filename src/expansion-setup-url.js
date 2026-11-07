@@ -38,12 +38,23 @@ export function encodeExpansionSetupQuery(config) {
 
 export function decodeExpansionSetupQuery(search, allowedApplianceIds) {
   const params = new URLSearchParams(search);
+  // URLSearchParams.get() silently chooses the first value. Conflicting
+  // electrical sizing state must not produce an apparently valid shared plan.
+  const sizingKeys = [
+    "loads", "usage", "days", "season", "battery", "voltage",
+    "custom_name", "custom_watts", "custom_hours", "custom_qty",
+    "custom_ac", "custom_surge",
+  ];
+  if (sizingKeys.some((key) => params.getAll(key).length > 1)) return null;
   const loads = params.get("loads");
   if (!loads) return null;
 
   const allowed = new Set(allowedApplianceIds);
-  const applianceIds = [...new Set(loads.split(",").map((item) => item.trim()).filter(Boolean))];
-  if (!applianceIds.length || applianceIds.some((id) => !allowed.has(id))) return null;
+  // Reject duplicates and empty load tokens: silently deduplicating or
+  // discarding a load can undersize the user's power system.
+  const applianceIds = loads.split(",").map((item) => item.trim());
+  if (!applianceIds.length || applianceIds.some((id) => !id || !allowed.has(id))
+    || new Set(applianceIds).size !== applianceIds.length) return null;
 
   const autonomyDays = params.get("days") || "2";
   const season = params.get("season") || "summer";
@@ -56,9 +67,10 @@ export function decodeExpansionSetupQuery(search, allowedApplianceIds) {
 
   const applianceState = {};
   const usage = params.get("usage");
+  if (params.has("usage") && !usage) return null;
   if (usage) {
     const seen = new Set();
-    for (const record of usage.split(";").filter(Boolean)) {
+    for (const record of usage.split(";")) {
       const parts = record.split(":");
       if (parts.length !== 3) return null;
       const [id, hoursText, quantityText] = parts;
