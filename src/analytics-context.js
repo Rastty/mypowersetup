@@ -11,7 +11,10 @@ export function buildAnalyticsContext({ lang, pathname, hasCalculator }) {
 }
 
 export function classifyAnalyticsPage(pathname, hasCalculator = false) {
-  if (hasCalculator || /^\/kalkulacky(?:\/|$)/i.test(pathname)) return "calculator";
+  // Localized micro-calculators have a data-calculator form, not #setup-form.
+  // Classify their published route families as calculators for consent-based
+  // guide -> calculator -> affiliate journey attribution in every core market.
+  if (hasCalculator || /^\/(?:kalkulacky|sk\/kalkulacky|pl\/kalkulatory|hu\/kalkulatorok)(?:\/|$)/i.test(pathname)) return "calculator";
   if (/\/(?:pruvodce|sprievodca|poradnik|utmutatok|guias|vodici|ghiduri)(?:\/|$)/i.test(pathname)) return "guide";
   if (/\/(?:o-projektu|o-projekte|o-projekcie|a-projektrol|sobre-o-projeto|despre-proiect|metodika|metodologia|metodologie|modszer|soukromi|sukromie|prywatnosc|adatvedelem|privacidade|zasebnost|confidentialitate|affiliate|afiliacao|afiliere|partner)(?:\/|$)/i.test(pathname)) return "trust";
   return "content";
