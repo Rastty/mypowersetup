@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-06T11:00:44.517Z",
+  "generatedAt": "2026-11-07T08:10:33.101Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16581,
-      "relevantProducts": 202
+      "parsedProducts": 16575,
+      "relevantProducts": 200
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_pl": {
       "status": "ok",
-      "parsedProducts": 7721,
+      "parsedProducts": 7720,
       "relevantProducts": 15
     }
   },
@@ -3993,40 +3993,6 @@
       }
     },
     {
-      "id": "padabo_pl:104293_30481",
-      "merchant": "padabo_pl",
-      "name": "Przetwornica napięcia Dometic SinePower DPSI-TS 12 V lub 24 V wydajność stała/szczytowa 3000/6000 W napięcie 12 V",
-      "description": "Falownik sinusoidalny dla wrażliwych urządzeńPrzetwornica napięcia Dometic SinePower DPSI-TS zapewnia najwyższą wydajność mobilnego zasilania i wyznacza standardy mobilnego zasilania. Zaprojektowany do konwersji zasilania akumulatorowego 12 lub 24 V na prąd zmienny 230 V/50 Hz, zapewnia niezawodne działanie urządzeń elektrycznych o mocy do 3000 W - z zasilaniem bezpośrednio z akumulatora pojazdu. Niezależnie od tego, czy jest to kemping, czy mobilne miejsce pracy - dzięki serii falowników sinuso",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Przetwornice napięcia",
-      "category": "inverter",
-      "brand": "Dometic",
-      "priceCzk": 7002.77,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/przetwornica-napiecia-dometic-sinepower-dpsi-ts-12-v-lub-24-v_z104293/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fprzetwornica-napiecia-dometic-sinepower-dpsi-ts-12-v-lub-24-v_z104293%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/6/180086_102.jpg?1740996813_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 6000,
-        "currentA": null,
-        "chargingVoltagesV": [
-          12,
-          24
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_pl:104293_30482",
       "merchant": "padabo_pl",
       "name": "Przetwornica napięcia Dometic SinePower DPSI-TS 12 V lub 24 V wydajność stała/szczytowa 3000/6000 W napięcie 24 V",
@@ -6123,37 +6089,6 @@
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:107554",
-      "merchant": "padabo_pl",
-      "name": "Bateria litowa BullTron dla Clesana C1, w tym zarządzanie energią",
-      "description": "Niezawodne zasilanie dla toalety Clesana C1 z zarządzaniem energią Bateria litowa BullTron 6 Ah została zaprojektowana do zasilania toalety Clesana C1. Bateria zapewnia prąd ciągły 6 A i prąd szczytowy do 30 A. Akumulatorjest optymalnie dopasowany do systemu zarządzania energią VOTRONIC (brak w zestawie) - zapewniając wydajne, bezpieczne i długotrwałe zasilanie dla samochodów kempingowych. W zestawie znajduje się praktyczny uchwyt na akumulator ułatwiający przenoszenie, system zarządzania energi",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
-      "category": "battery",
-      "brand": "BullTron",
-      "priceCzk": 1197.47,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/bateria-litowa-bulltron-dla-clesana-c1-w-tym-zarzadzanie-energia_z107554/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fbateria-litowa-bulltron-dla-clesana-c1-w-tym-zarzadzanie-energia_z107554%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/1/191871_102.jpg?1774529522_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 6,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 6,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null

@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-06T11:00:35.996Z",
+  "generatedAt": "2026-11-07T08:10:22.470Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16569,
-      "relevantProducts": 247
+      "parsedProducts": 16564,
+      "relevantProducts": 244
     },
     "allpowers_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7721,
+      "parsedProducts": 7720,
       "relevantProducts": 15
     }
   },
@@ -4811,40 +4811,6 @@
       }
     },
     {
-      "id": "padabo_sk:104293_30481",
-      "merchant": "padabo_sk",
-      "name": "Dometic SinePower DPSI-TS 12 V alebo 24 V menič napätia stály / špičkový výkon 3000 / 6000 W napätie 12 V",
-      "description": "Sinusový menič pre citlivé zariadeniaMenič napätia Dometic SinePower DPSI-TS poskytuje špičkový výkon pre mobilné napájanie a stanovuje štandard v oblasti mobilného napájania. Je navrhnutý na konverziu 12 alebo 24 V napájania z batérie na striedavý prúd 230 V/50 Hz a zabezpečuje spoľahlivú prevádzku elektrických zariadení s výkonom do 3000 W - s napájaním priamo z batérie vozidla. Či už ide o kempovanie alebo mobilné pracoviská - so sériou meničov so sínusovým priebehom DPSI-TS zostanete nezávis",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
-      "category": "inverter",
-      "brand": "Dometic",
-      "priceCzk": 1572.05,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 6000,
-        "currentA": null,
-        "chargingVoltagesV": [
-          12,
-          24
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:104293_30482",
       "merchant": "padabo_sk",
       "name": "Dometic SinePower DPSI-TS 12 V alebo 24 V menič napätia stály / špičkový výkon 3000 / 6000 W napätie 24 V",
@@ -7443,37 +7409,6 @@
       }
     },
     {
-      "id": "padabo_sk:107554",
-      "merchant": "padabo_sk",
-      "name": "Lítiová batéria BullTron pre Clesana C1 vrátane správy napájania",
-      "description": "Spoľahlivé napájanie toalety Clesana C1 s riadením napájania Lítiová batéria BullTron 6 Ah je určená na napájanie toalety Clesana C1. Batéria poskytuje trvalý prúd 6 A a špičkový prúd až 30 A. Batéria je optimálne prispôsobená systému riadenia napájania VOTRONIC (nie je súčasťou dodávky) - zabezpečuje efektívne, bezpečné a dlhotrvajúce napájanie obytných vozidiel. Súčasťou dodávky je praktický držiak batérie na jednoduché prenášanie, systém riadenia napájania, pripojovací kábel s 30 A poistkou a",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
-      "category": "battery",
-      "brand": "BullTron",
-      "priceCzk": 268.82,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/litiova-bateria-bulltron-pre-clesana-c1-vratane-spravy-napajania_z107554/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-bulltron-pre-clesana-c1-vratane-spravy-napajania_z107554%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/191871_102.jpg?1774529522_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 6,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 6,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:107831",
       "merchant": "padabo_sk",
       "name": "Skladací solárny panel EcoFlow 110 W 2. generácie",
@@ -7581,35 +7516,6 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 500,
-        "currentA": 0.6,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:108740_33863",
-      "merchant": "padabo_sk",
-      "name": "Sinusový menič napätia Carbest PowerWave, 12/230 V výkon 3000 W",
-      "description": "Menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie Carbest PowerWave je menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie. Integrovaný prepínač priority sieťového napájania 230 V preruší prevádzku hneď, ako je obytný automobil alebo karavan pripojený k napájaniu 230 V (napríklad v kempingu). Prevádzka meniča sa obnoví po odpojení od externého napájania. Prevodník tak mení napätie 12 V na 230 V s čistou sínusovou vlnou. ",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
-      "category": "inverter",
-      "brand": "Carbest",
-      "priceCzk": 765.88,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/195963_102.jpg?1783252526_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 3000,
         "currentA": 0.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
