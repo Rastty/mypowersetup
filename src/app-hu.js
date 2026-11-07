@@ -104,7 +104,7 @@ export function buildHungarianApplicationResult(config, catalog = { products: []
     roofWidth: config?.roofWidth ?? null,
   }, HU_MARKET.locale, origin);
 
-  const rankedRecommendations = recommendProducts(catalog.products || [], result, 24);
+  const rankedRecommendations = recommendProducts(catalog.products || [], result, 24, catalog.sources);
   const recommendations = Object.freeze(Object.fromEntries(
     Object.entries(rankedRecommendations).map(([category, items]) => [category, Object.freeze(items.slice(0, 3))])
   ));
