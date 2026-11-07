@@ -57,25 +57,25 @@ test("VSelektro optional feed products normalize as batteries but don't invent a
   assert.equal(item.priceCzk, null);
 });
 
-test("Czech battery guide discloses exactly two merchant examples, without claiming calculated match", async () => {
+test("Czech battery guide retains two technical examples but gates outbound offers on live catalog", async () => {
   const html = await readFile("pruvodce/kapacita-baterie-do-karavanu/index.html", "utf8");
   const section = html.match(/<section\b[^>]*data-vselektro-cz-products[^>]*>([\s\S]*?)<\/section>/i)?.[1];
   assert.ok(section, "CZ guide should expose a clear example section");
-  const links = [...section.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/gi)];
-  const external = links.filter(([all]) => all.includes("rel=\"sponsored nofollow noopener\""));
-  assert.equal(external.length, 2);
-  for (let index=0; index<products.length;index++) {
-    const decoded = external[index][1].replaceAll("&amp;", "&");
-    assert.equal(decoded, buildAffiliateUrl("vselektro", products[index].url));
-    assert.ok(section.includes(`data-vselektro-product="${products[index].id}"`));
-    assert.ok(section.includes(`${products[index].bmsA} A`));
+  // Old permanent eHub CTAs had no stock/freshness validation.
+  assert.doesNotMatch(section, /https:\/\/ehub\.cz\/system\/scripts\/click\.php/);
+  for (const item of products) {
+    assert.ok(section.includes(`data-vselektro-product="${item.id}"`));
+    assert.ok(section.includes(`${item.bmsA} A`));
   }
+  assert.match(html, /data-guide-category="battery"/);
+  assert.match(html, /guide-verified-offers\.js\?v=20261107-core-money1/);
+  assert.match(html, /Aktuální nabídky baterií ke srovnání/);
   assert.match(section, /Nejde o univerzální doporučení/);
   assert.match(section, /100Ah varianta v tomto modelu nestačí/);
   assert.match(section, /cenu a dostupnost ověřte/i);
-  assert.match(html, /"dateModified":"2026-10-13"/);
+  assert.match(html, /"dateModified":"2026-11-07"/);
   const sitemap = await readFile("sitemap.xml", "utf8");
   const entry = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)]
     .find((match)=>match[1].includes("<loc>https://mypowersetup.com/pruvodce/kapacita-baterie-do-karavanu/</loc>"))?.[1];
-  assert.match(entry||"", /<lastmod>2026-10-13<\/lastmod>/);
+  assert.match(entry||"", /<lastmod>2026-11-07<\/lastmod>/);
 });
