@@ -85,6 +85,7 @@ jobs:
       - uses: actions/checkout@v5
         with:
           ref: main
+          fetch-depth: 0
       - uses: actions/setup-node@v5
         with:
           node-version: 22
@@ -133,4 +134,20 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add -- $FILES
           git commit -m "data: refresh affiliate product catalog"
-          git push
+          # Generated feed data must never overwrite newer source/data commits.
+          # A concurrent PR merge can move main after checkout; rebase only if
+          # changes are disjoint, otherwise fail closed and let the next sync run.
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "::warning::main moved during catalog generation; safe rebase attempt ${attempt}/3"
+            git fetch origin +refs/heads/main:refs/remotes/origin/main
+            if ! git rebase origin/main; then
+              git rebase --abort || true
+              echo "::error::Catalog changes conflict with newer main; refusing a force push"
+              exit 1
+            fi
+          done
+          echo "::error::Catalog refresh not pushed after 3 safe retries"
+          exit 1
