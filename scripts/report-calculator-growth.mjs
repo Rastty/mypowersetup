@@ -15,7 +15,10 @@ if (!gscPath || !eventsPath) {
   // A blocked/malformed API export is UNKNOWN, never a measured zero-traffic
   // or zero-conversion baseline. Keep legacy CSV/array imports supported.
   const unavailable = evidenceIssue(gscInput, "gsc", ["searchAnalytics", "pageTotals", "rows", "data"])
-    || evidenceIssue(eventsInput, "ga4", ["events", "rows", "data"]);
+    || evidenceIssue(eventsInput, "ga4", ["events", "rows", "data"])
+    // Optional indexing is still evidence: an explicit blocked export must
+    // never be silently normalized to zero indexed pages.
+    || (indexingPath ? evidenceIssue(indexingInput, "indexing", ["indexing", "rows", "data"]) : null);
   if (unavailable) {
     console.error(`Calculator growth evidence unavailable: ${unavailable}`);
     process.exitCode = 2;
@@ -47,7 +50,9 @@ function evidenceIssue(payload, source, keys) {
   // A structured GA4 export without explicit readiness is not observed data.
   // Raw event arrays remain supported for intentional offline imports.
   if (source === "ga4" && payload.status !== "ready") return `ga4:${payload.status || "status_missing"}`;
-  if (source !== "ga4" && payload.status && payload.status !== "ready") return `${source}:${payload.status}`;
+  // A structured GSC export without an explicit successful read is UNKNOWN.
+  // Preserve intentional raw array/CSV imports as the offline compatibility path.
+  if (source !== "ga4" && payload.status !== "ready") return `${source}:${payload.status || "status_missing"}`;
   if (!keys.some((key) => Array.isArray(payload[key]))) return `${source}:rows_missing`;
   if (source === "ga4" && payload.customDimensions?.ready !== true) return "ga4:route_dimensions_missing";
   return null;
