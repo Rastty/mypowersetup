@@ -155,8 +155,8 @@ test("Hungarian private page template stays noindex while committed HU output is
   }
   assert.match(browser, /buildHungarianApplicationResult/);
   assert.match(html, /app-hu-browser\.js\?v=20260902-merchant-cta1/);
-  assert.match(browser, /app-hu\.js\?v=20260901-padabo2/);
-  assert.match(app, /products\.js\?v=20260901-padabo2/);
+  assert.match(browser, /app-hu\.js\?v=20261107-source-gate1/);
+  assert.match(app, /products\.js\?v=20261107-source-gate1/);
   assert.match(browser, /loadHungarianProductCatalog/);
   assert.match(browser, /mountExistingSetupCheck/);
   assert.match(browser, /data-affiliate-click/);
