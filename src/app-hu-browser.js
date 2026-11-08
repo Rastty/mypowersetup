@@ -113,6 +113,8 @@ function calculate(event) {
     history.replaceState({}, "", latest.shareUrl.replace(window.location.origin, ""));
     renderResult(latest); existingSetup.setResult(latest.result); showStep(3); track("calculation_completed", { dailyWh: latest.result.dailyWh, batteryAh: latest.result.batteryAh, solarWatts: latest.result.solarWatts, systemVoltage: latest.result.systemVoltage });
   } catch (failure) {
+    // A failed/partial render must never leave a shareable or purchasable stale result.
+    invalidateStaleResult();
     const target = document.querySelector("#calculator-error"); target.textContent = failure?.message === "ROOF_DIMENSIONS_INCOMPLETE" ? "A tető ellenőrzéséhez add meg mindkét méretet, vagy hagyd mindkettőt üresen." : "A számítás nem jeleníthető meg. Ellenőrizd a megadott értékeket."; target.hidden = false;
   }
 }

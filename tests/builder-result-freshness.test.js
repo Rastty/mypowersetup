@@ -6,8 +6,9 @@ import { bindBuilderResultInvalidation, invalidateBuilderResult } from "../src/b
 const selectorsToClear = [
   "#result-grid", "#package-variants", "#recommendation-groups",
   "#result-reasons", "#consumption-breakdown", "#result-notes", "#system-diagram",
+  "#installation-plan", "#charging-options", "#roof-fit", "#power-station-profile",
 ];
-const textSelectors = ["#result-intro", "#result-verdict", "#result-product-count", "#result-share-status"];
+const textSelectors = ["#result-intro", "#result-verdict", "#result-product-count", "#result-share-status", "#print-generated-at"];
 
 function fakeFixture(fresh = true) {
   const nodes = new Map();
@@ -107,8 +108,34 @@ test("all four core Builder pages serve the refreshed JS version, without changi
     ["pl/index.html", "app-pl.js"], ["hu/index.html", "app-hu-browser.js"],
   ]) {
     const html = await readFile(new URL("../" + path, import.meta.url), "utf8");
-    assert.ok(html.includes(`src="/src/${app}?v=20261108-stale-builder1"`), path);
+    assert.ok(html.includes(`src="/src/${app}?v=20261108-fail-closed-builder2"`), path);
     assert.match(html, /class="form-step[^"]*" data-step="3"/, path);
     assert.match(html, /id="product-recommendations"/, path);
   }
+});
+
+
+test("every core Builder fails closed after a partially completed result render", async () => {
+  for (const path of ["src/app.js", "src/app-sk.js", "src/app-pl.js", "src/app-hu-browser.js"]) {
+    const source = await readFile(new URL("../" + path, import.meta.url), "utf8");
+    const catchBlock = path.endsWith("app-hu-browser.js")
+      ? source.slice(source.indexOf("function calculate(event)"), source.indexOf("function renderResult(output)"))
+      : source.slice(source.indexOf("function handleSubmit(event)"), source.indexOf("function trackCalculatorStarted(source)"));
+    assert.match(catchBlock, /renderResult\(/, path);
+    // Reject any implementation that only clears the current error, leaving
+    // old share URLs, an installation plan or purchase recommendations intact.
+    assert.match(catchBlock, /\} catch \((?:error|failure)\) \{\s*\/\/[^\n]*\n\s*invalidateStaleResult\(\);/, path);
+    assert.match(catchBlock, /history\.replaceState/, path);
+  }
+});
+
+test("all output ids populated by each Builder are covered by the shared result invalidator", async () => {
+  const selectors = [
+    "#result-grid", "#package-variants", "#recommendation-groups",
+    "#result-reasons", "#consumption-breakdown", "#result-notes",
+    "#system-diagram", "#installation-plan", "#charging-options",
+    "#roof-fit", "#power-station-profile", "#print-generated-at",
+  ];
+  const helper = await readFile(new URL("../src/builder-result-freshness.js", import.meta.url), "utf8");
+  for (const id of selectors) assert.ok(helper.includes(id), `${id} must be cleared on edit and render failure`);
 });
