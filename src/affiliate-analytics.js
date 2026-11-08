@@ -81,12 +81,61 @@ export function trackVisibleAffiliateImpressions(root, tracker) {
   return trackAffiliateImpressions(links, tracker);
 }
 
-export function bindAffiliateImpressionTracking(root, tracker) {
-  const documentRoot = root?.ownerDocument || root;
-  const scan = () => trackVisibleAffiliateImpressions(root, tracker);
-  root?.addEventListener?.("toggle", (event) => {
-    if (event.target?.open) trackVisibleAffiliateImpressions(event.target, tracker);
+// Builder renders recommendations before its result step becomes visible.
+// An impression must represent >=50% real viewport visibility, not DOM insertion.
+export function bindAffiliateImpressionTracking(root, tracker, {
+  Observer = globalThis.IntersectionObserver,
+  documentRoot = root?.ownerDocument || root,
+} = {}) {
+  if (!root || typeof Observer !== "function") {
+    // Fail closed on older clients rather than inventing observed impressions.
+    return () => false;
+  }
+
+  const observed = new Set();
+  const visible = new Set();
+  const isExposed = (link) => link?.isConnected !== false
+    && (!root.contains || root.contains(link))
+    && !link.closest?.("[hidden], details:not([open])");
+
+  const flush = () => {
+    if (documentRoot?.hidden) return false;
+    const candidates = [...visible].filter((link) => observed.has(link) && isExposed(link));
+    return candidates.length ? trackAffiliateImpressions(candidates, tracker) : false;
+  };
+
+  const observer = new Observer((entries) => {
+    for (const entry of entries) {
+      if (!observed.has(entry.target)) continue;
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) visible.add(entry.target);
+      else visible.delete(entry.target);
+    }
+    flush();
+  }, { threshold: [0, 0.5, 1] });
+
+  const scan = () => {
+    const present = new Set(root.querySelectorAll?.("[data-affiliate-click], [data-affiliate-product]") || []);
+    for (const link of observed) {
+      if (present.has(link)) continue;
+      observer.unobserve(link);
+      observed.delete(link);
+      visible.delete(link);
+    }
+    for (const link of present) {
+      if (observed.has(link)) continue;
+      observed.add(link);
+      observer.observe(link);
+    }
+    return flush();
+  };
+
+  // Details expansions may expose previously hidden links; IO reports their
+  // intersection and scan also registers dynamic links on each expansion.
+  root.addEventListener?.("toggle", (event) => {
+    if (event.target?.open) scan();
   }, true);
-  documentRoot?.addEventListener?.("mypowersetup:analytics-granted", scan);
+  // Consent and tab visibility can change without any new scroll event.
+  documentRoot?.addEventListener?.("mypowersetup:analytics-granted", flush);
+  documentRoot?.addEventListener?.("visibilitychange", flush);
   return scan;
 }

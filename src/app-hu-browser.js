@@ -6,7 +6,7 @@ import { copyText } from "./share.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { mountExistingSetupCheck } from "./existing-setup.js";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
-import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20260902-product-impressions1";
+import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { bindBuilderResultInvalidation } from "./builder-result-freshness.js";
 
 const form = document.querySelector("#setup-form");
