@@ -19,6 +19,7 @@ import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { bindBuilderResultInvalidation } from "./builder-result-freshness.js";
+import { buildBuilderOfferEvidence, bindBuilderOfferClickGuard, showExpiredBuilderOfferNotice } from "./builder-offer-click-guard.js";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -32,6 +33,7 @@ let latestShareUrl = "https://mypowersetup.com/#kalkulator";
 let productCatalog = [];
 let productCatalogUpdatedAt = null;
 let productCatalogSources = {};
+let productOfferEvidence = new Map();
 let calculatorStarted = false;
 const invalidateStaleResult = bindBuilderResultInvalidation({
   form,
@@ -46,6 +48,16 @@ const invalidateStaleResult = bindBuilderResultInvalidation({
   },
 });
 const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector("#product-recommendations"), trackEvent);
+bindBuilderOfferClickGuard({
+  documentRoot: document,
+  getEvidence: () => productOfferEvidence,
+  onBlocked: () => showExpiredBuilderOfferNotice({
+    documentRoot: document,
+    message: "Nabídka už nemá aktuální produktové podklady. Před otevřením obchodu načtěte čerstvý katalog.",
+    refreshLabel: "Načíst aktuální nabídky",
+    reload: () => window.location.reload(),
+  }),
+});
 
 renderAppliances();
 mountUsageProfiles({
@@ -81,12 +93,14 @@ async function loadProductCatalog() {
     ]);
     const payloads = await Promise.all(responses.filter((response) => response.ok).map((response) => response.json()));
     productCatalog = payloads.flatMap((payload) => Array.isArray(payload.products) ? payload.products : []);
+    productOfferEvidence = buildBuilderOfferEvidence(payloads);
     productCatalogUpdatedAt = payloads.map((payload) => payload.updatedAt || payload.generatedAt).filter(Boolean).sort().at(-1) || null;
     productCatalogSources = Object.assign({}, ...payloads.map((payload) =>
       payload.sources && typeof payload.sources === "object" ? payload.sources : {}
     ));
   } catch {
     productCatalog = [];
+    productOfferEvidence = new Map();
   }
 }
 
