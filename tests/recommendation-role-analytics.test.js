@@ -10,7 +10,7 @@ test("every mature market measures recommendation role on package and product-ca
     assert.match(source, /data-source="package"[^>]*data-recommendation-role=/, application);
     assert.match(source, /data-source="product-card"[^>]*data-recommendation-role=/, application);
     assert.match(source, /packageId === "economy" \? "budget" : packageId/, application);
-    assert.match(source, /affiliate-analytics\.js\?v=20260902-product-impressions1/, application);
+    assert.match(source, /affiliate-analytics\.js\?v=20261108-viewport1/, application);
   }
 });
 
