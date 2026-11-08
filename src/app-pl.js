@@ -331,6 +331,8 @@ function handleSubmit(event) {
     });
     showStep(3);
   } catch (error) {
+    // A failed/partial render must never leave a shareable or purchasable stale result.
+    invalidateStaleResult();
     console.error("Obliczenie zestawu nie powiodło się", error);
     calculatorError.textContent = error?.message === "ROOF_DIMENSIONS_INCOMPLETE"
       ? "Aby sprawdzić dach, podaj długość i szerokość wolnego prostokąta albo pozostaw oba pola puste."
