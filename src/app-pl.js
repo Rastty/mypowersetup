@@ -16,7 +16,7 @@ import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
 import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
-import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-product-impressions1";
+import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { bindBuilderResultInvalidation } from "./builder-result-freshness.js";
 
 const form = document.querySelector("#setup-form");
