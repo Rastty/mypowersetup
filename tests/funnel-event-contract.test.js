@@ -23,12 +23,15 @@ test("all calculator implementations use the same affiliate click event", async 
   assert.doesNotMatch(expansion, /mypowersetup:affiliate-click/);
 });
 
-test("all calculators expose the same visible product-choice impression denominator", async () => {
-  for (const file of [...matureBrowserFiles, expansionBrowserFile]) {
+test("core Builders use the viewport impression version; controlled expansion keeps its pinned importer", async () => {
+  for (const file of matureBrowserFiles) {
     const source = await readFile(file, "utf8");
     assert.match(source, /bindAffiliateImpressionTracking\(/);
     assert.match(source, /affiliate-analytics\.js\?v=20261108-viewport1/);
   }
+  const expansion = await readFile(expansionBrowserFile, "utf8");
+  assert.match(expansion, /bindAffiliateImpressionTracking\(/);
+  assert.match(expansion, /affiliate-analytics\.js\?v=20260902-product-impressions1/);
 });
 
 test("all markets use one shared calculator-to-guide event", async () => {
