@@ -8,6 +8,10 @@ const RESULT_SELECTORS = Object.freeze([
   "#consumption-breakdown",
   "#result-notes",
   "#system-diagram",
+  "#installation-plan",
+  "#charging-options",
+  "#roof-fit",
+  "#power-station-profile",
 ]);
 
 export function invalidateBuilderResult({ resultStep, hasResult, onInvalidate } = {}) {
@@ -17,7 +21,7 @@ export function invalidateBuilderResult({ resultStep, hasResult, onInvalidate } 
   for (const selector of RESULT_SELECTORS) {
     resultStep.querySelector?.(selector)?.replaceChildren?.();
   }
-  for (const selector of ["#result-intro", "#result-verdict", "#result-product-count", "#result-share-status"]) {
+  for (const selector of ["#result-intro", "#result-verdict", "#result-product-count", "#result-share-status", "#print-generated-at"]) {
     const node = resultStep.querySelector?.(selector);
     if (node) node.textContent = "";
   }
