@@ -331,6 +331,8 @@ function handleSubmit(event) {
     });
     showStep(3);
   } catch (error) {
+    // A failed/partial render must never leave a shareable or purchasable stale result.
+    invalidateStaleResult();
     console.error("Výpočet zostavy zlyhal", error);
     calculatorError.textContent = error?.message === "ROOF_DIMENSIONS_INCOMPLETE"
       ? "Na kontrolu strechy vyplňte dĺžku aj šírku voľného obdĺžnika, alebo nechajte obe polia prázdne."
