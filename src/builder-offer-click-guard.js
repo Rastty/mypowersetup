@@ -22,8 +22,7 @@ export function buildBuilderOfferEvidence(payloads) {
       const id = product?.id;
       const merchant = product?.merchant;
       if (typeof id !== "string" || !id || typeof merchant !== "string" || !merchant) continue;
-      const prior = offers.get(id);
-      if (prior) {
+      if (offers.has(id)) {
         offers.set(id, null);
         continue;
       }
@@ -48,9 +47,19 @@ export function builderAffiliateHrefMatches(expected, actual) {
     if (original.protocol !== "https:" || outbound.protocol !== "https:"
       || original.origin !== outbound.origin || original.pathname !== outbound.pathname
       || original.username || original.password || outbound.username || outbound.password) return false;
-    for (const [name, value] of original.searchParams) {
-      if (outbound.searchParams.getAll(name).filter((x) => x === value).length
-        < original.searchParams.getAll(name).filter((x) => x === value).length) return false;
+    const extra = ["www.awin1.com", "awin1.com"].includes(original.hostname)
+      ? new Set(["clickref", "clickref2", "clickref3", "clickref4"])
+      : ["ehub.cz", "www.ehub.cz", "ehub.sk", "www.ehub.sk"].includes(original.hostname)
+        ? new Set(["data1", "data2"]) : new Set();
+    const keys = new Set([...original.searchParams.keys(), ...outbound.searchParams.keys()]);
+    for (const name of keys) {
+      const verified = original.searchParams.getAll(name);
+      const clicked = outbound.searchParams.getAll(name);
+      if (verified.length) {
+        if (verified.length !== clicked.length || verified.some((value, i) => value !== clicked[i])) return false;
+      } else if (!extra.has(name) || clicked.length !== 1 || !/^[a-zA-Z0-9_-]{1,64}$/.test(clicked[0])) {
+        return false;
+      }
     }
     return true;
   } catch { return false; }
