@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-07T10:49:36.624Z",
+  "generatedAt": "2026-11-08T10:30:06.504Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12589,
+      "parsedProducts": 12572,
       "relevantProducts": 159
     },
     "ampul_hu": {
