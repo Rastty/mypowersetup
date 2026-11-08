@@ -8,13 +8,25 @@ import { mountExistingSetupCheck } from "./existing-setup.js";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { bindBuilderResultInvalidation } from "./builder-result-freshness.js";
+import { buildBuilderOfferEvidence, bindBuilderOfferClickGuard, showExpiredBuilderOfferNotice } from "./builder-offer-click-guard.js";
 
 const form = document.querySelector("#setup-form");
 const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector("#product-recommendations"), track);
+bindBuilderOfferClickGuard({
+  documentRoot: document,
+  getEvidence: () => productOfferEvidence,
+  onBlocked: () => showExpiredBuilderOfferNotice({
+    documentRoot: document,
+    message: "A termékajánlat adatai elavultak. Az áruház megnyitása előtt frissítsd a termékkatalógust.",
+    refreshLabel: "Ajánlatok frissítése",
+    reload: () => window.location.reload(),
+  }),
+});
 const grid = document.querySelector("#appliance-grid");
 let currentStep = 1;
 let latest = null;
 let catalog = { products: [], sources: {}, generatedAt: null };
+let productOfferEvidence = new Map();
 const invalidateStaleResult = bindBuilderResultInvalidation({
   form,
   resultStep: form.querySelector('.form-step[data-step="3"]'),
@@ -35,7 +47,7 @@ const existingSetup = mountExistingSetupCheck({
 });
 bindNavigation();
 bindActions();
-loadHungarianProductCatalog().then((value) => { catalog = value; }).catch(() => {});
+loadHungarianProductCatalog().then((value) => { catalog = value; productOfferEvidence = buildBuilderOfferEvidence([value]); }).catch(() => { productOfferEvidence = new Map(); });
 document.querySelector("#year").textContent = new Date().getFullYear();
 
 function renderAppliances() {
