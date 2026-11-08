@@ -107,7 +107,7 @@ test("all four core Builder pages serve the refreshed JS version, without changi
     ["pl/index.html", "app-pl.js"], ["hu/index.html", "app-hu-browser.js"],
   ]) {
     const html = await readFile(new URL("../" + path, import.meta.url), "utf8");
-    assert.ok(html.includes(`src="/src/${app}?v=20261108-stale-builder1"`), path);
+    assert.ok(html.includes(`src="/src/${app}?v=20261108-fail-closed-builder2"`), path);
     assert.match(html, /class="form-step[^"]*" data-step="3"/, path);
     assert.match(html, /id="product-recommendations"/, path);
   }
