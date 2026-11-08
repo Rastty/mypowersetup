@@ -18,6 +18,7 @@ import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { bindBuilderResultInvalidation } from "./builder-result-freshness.js";
+import { buildBuilderOfferEvidence, bindBuilderOfferClickGuard, showExpiredBuilderOfferNotice } from "./builder-offer-click-guard.js";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -31,6 +32,7 @@ let latestShareUrl = "https://mypowersetup.com/pl/#kalkulator";
 let productCatalog = [];
 let productCatalogUpdatedAt = null;
 let productCatalogSources = {};
+let productOfferEvidence = new Map();
 let calculatorStarted = false;
 const invalidateStaleResult = bindBuilderResultInvalidation({
   form,
@@ -45,6 +47,16 @@ const invalidateStaleResult = bindBuilderResultInvalidation({
   },
 });
 const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector("#product-recommendations"), trackEvent);
+bindBuilderOfferClickGuard({
+  documentRoot: document,
+  getEvidence: () => productOfferEvidence,
+  onBlocked: () => showExpiredBuilderOfferNotice({
+    documentRoot: document,
+    message: "Dane oferty nie są już aktualne. Przed przejściem do sklepu odśwież katalog produktów.",
+    refreshLabel: "Odśwież oferty",
+    reload: () => window.location.reload(),
+  }),
+});
 
 renderAppliances();
 mountUsageProfiles({
@@ -78,10 +90,12 @@ async function loadProductCatalog() {
     if (!response.ok) return;
     const payload = await response.json();
     productCatalog = Array.isArray(payload.products) ? payload.products : [];
+    productOfferEvidence = buildBuilderOfferEvidence([payload]);
     productCatalogUpdatedAt = payload.updatedAt || payload.generatedAt || null;
     productCatalogSources = payload.sources && typeof payload.sources === "object" ? payload.sources : {};
   } catch {
     productCatalog = [];
+    productOfferEvidence = new Map();
   }
 }
 
