@@ -7,6 +7,7 @@ import { mountUsageProfiles } from "./usage-profiles.js";
 import { mountExistingSetupCheck } from "./existing-setup.js";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20260902-product-impressions1";
+import { bindBuilderResultInvalidation } from "./builder-result-freshness.js";
 
 const form = document.querySelector("#setup-form");
 const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector("#product-recommendations"), track);
@@ -14,9 +15,20 @@ const grid = document.querySelector("#appliance-grid");
 let currentStep = 1;
 let latest = null;
 let catalog = { products: [], sources: {}, generatedAt: null };
+const invalidateStaleResult = bindBuilderResultInvalidation({
+  form,
+  resultStep: form.querySelector('.form-step[data-step="3"]'),
+  hasResult: () => Boolean(latest),
+  onInvalidate: () => {
+    latest = null;
+    history.replaceState({}, "", `${window.location.pathname}#kalkulator`);
+    setShareStatus("");
+    document.querySelector('.step[data-step-target="3"]').disabled = true;
+  },
+});
 
 renderAppliances();
-mountUsageProfiles({ locale: "hu", form, applianceGrid: grid, appliances: APPLIANCES, onChange: updateSummary });
+mountUsageProfiles({ locale: "hu", form, applianceGrid: grid, appliances: APPLIANCES, onChange: () => { updateSummary(); invalidateStaleResult(); } });
 const existingSetup = mountExistingSetupCheck({
   target: document.querySelector("#existing-setup-check"), locale: "hu", getResult: () => latest?.result,
   hasProductCategory: (category) => Boolean(document.querySelector(`[data-product-category="${category}"]`)),
@@ -70,7 +82,7 @@ function bindNavigation() {
   document.querySelectorAll("[data-back]").forEach((button) => button.addEventListener("click", () => showStep(currentStep - 1)));
   document.querySelectorAll('.choice-card input[type="radio"]').forEach((input) => input.addEventListener("change", () => document.querySelectorAll(`input[name="${input.name}"]`).forEach((peer) => peer.closest(".choice-card").classList.toggle("is-selected", peer.checked))));
   form.addEventListener("submit", calculate);
-  document.querySelector("#start-over").addEventListener("click", () => { form.reset(); latest = null; updateSummary(); showStep(1); });
+  document.querySelector("#start-over").addEventListener("click", () => { invalidateStaleResult(); form.reset(); latest = null; updateSummary(); showStep(1); });
 }
 
 function bindActions() {
@@ -183,7 +195,7 @@ function attributedAwinUrl(product, category, recommendationRole, source) {
   return decorateAwinAffiliateUrl(product?.affiliateUrl, { market: "hu", category, recommendationRole, source });
 }
 
-function showStep(step) { currentStep=Math.max(1,Math.min(3,step)); document.querySelectorAll(".form-step").forEach((section) => { const visible=Number(section.dataset.step)===currentStep; section.hidden=!visible; section.classList.toggle("is-visible",visible); }); document.querySelectorAll(".step").forEach((button,index) => { button.disabled=index+1>currentStep; button.classList.toggle("is-active",index+1===currentStep); button.classList.toggle("is-complete",index+1<currentStep); }); document.querySelector("#kalkulator").scrollIntoView({ behavior:"smooth",block:"start" }); }
+function showStep(step) { currentStep=Math.max(1,Math.min(3,step === 3 && !latest ? 2 : step)); document.querySelectorAll(".form-step").forEach((section) => { const visible=Number(section.dataset.step)===currentStep; section.hidden=!visible; section.classList.toggle("is-visible",visible); }); document.querySelectorAll(".step").forEach((button,index) => { button.disabled=index+1>currentStep; button.classList.toggle("is-active",index+1===currentStep); button.classList.toggle("is-complete",index+1<currentStep); }); document.querySelector("#kalkulator").scrollIntoView({ behavior:"smooth",block:"start" }); }
 function setShareStatus(value) { document.querySelector("#result-share-status").textContent=value; }
 function formatEnergy(wh) { return wh>=1000 ? `${(wh/1000).toLocaleString("hu-HU",{maximumFractionDigits:2})} kWh` : `${Math.round(wh).toLocaleString("hu-HU")} Wh`; }
 function escapeHtml(value) { return String(value||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"); }

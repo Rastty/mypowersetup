@@ -17,6 +17,7 @@ import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
 import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-product-impressions1";
+import { bindBuilderResultInvalidation } from "./builder-result-freshness.js";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -31,6 +32,18 @@ let productCatalog = [];
 let productCatalogUpdatedAt = null;
 let productCatalogSources = {};
 let calculatorStarted = false;
+const invalidateStaleResult = bindBuilderResultInvalidation({
+  form,
+  resultStep: form.querySelector('.form-step[data-step="3"]'),
+  hasResult: () => Boolean(latestResult),
+  onInvalidate: () => {
+    latestResult = null;
+    latestShareUrl = `${window.location.origin}${window.location.pathname}#kalkulator`;
+    history.replaceState({}, "", `${window.location.pathname}#kalkulator`);
+    setShareStatus("");
+    document.querySelector('.step[data-step-target="3"]').disabled = true;
+  },
+});
 const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector("#product-recommendations"), trackEvent);
 
 renderAppliances();
@@ -39,7 +52,7 @@ mountUsageProfiles({
   form,
   applianceGrid,
   appliances: APPLIANCES,
-  onChange: updateLiveSummary,
+  onChange: () => { updateLiveSummary(); invalidateStaleResult(); },
   onSelect: (profile) => {
     trackCalculatorStarted("usage_profile");
     trackEvent("usage_profile_selected", { profile });
@@ -651,7 +664,7 @@ function formatNumber(value) {
 }
 
 function showStep(step) {
-  currentStep = Math.max(1, Math.min(3, step));
+  currentStep = Math.max(1, Math.min(3, step === 3 && !latestResult ? 2 : step));
   document.querySelectorAll(".form-step").forEach((section) => {
     const isVisible = Number(section.dataset.step) === currentStep;
     section.hidden = !isVisible;
@@ -672,6 +685,7 @@ function showStep(step) {
 }
 
 function resetForm() {
+  invalidateStaleResult();
   form.reset();
   calculatorStarted = false;
   document.querySelectorAll(".choice-card").forEach((card) => {
