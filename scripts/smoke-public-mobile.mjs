@@ -319,6 +319,31 @@ async function smokeFridgeGuideHandoff(client) {
 
 
 async function smokeMpptBuyerMatches(client) {
+  // A small reviewed SKU fixture exercises the actual browser, offer expiry,
+  // DOM, tracking attributes and click path deterministically. Loading the
+  // 1.6MB production catalog is tested separately from this mobile UI test.
+  const stub = [
+    "(() => {",
+    "  const realFetch = window.fetch.bind(window);",
+    "  window.__mpsMpptMockMode = 'fresh';",
+    "  window.fetch = (input, options) => {",
+    "    if (String(input) !== '/data/products.json') return realFetch(input, options);",
+    "    const page = 'https://www.vselektro.eu/solarni-regulator-victron-energy-mppt-smartsolar-100v-50a/';",
+    "    const affiliate = new URL('https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=f897865f');",
+    "    affiliate.searchParams.set('desturl', page);",
+    "    const instant = new Date().toISOString();",
+    "    const product = { id:'vselektro:victron-smartsolar-100-50', name:'Victron MPPT SmartSolar 100/50',",
+    "      merchant:'vselektro', category:'controller', available:window.__mpsMpptMockMode === 'fresh',",
+    "      staleSource:false, priceCzk:4990, priceCurrency:'CZK', verifiedAt:'2026-10-13',",
+    "      offerObservedAt:instant, productUrl:page, affiliateUrl:affiliate.href,",
+    "      specs:{ currentA:50, maxPvVocV:100, maxPvIscA:60, systemVoltagesV:[12,24],",
+    "        maxPvWattsBySystemVoltage:{12:700,24:1400} } };",
+    "    return Promise.resolve({ok:true, json:async()=>({ generatedAt:instant,",
+    "      sources:{vselektro:{status:'ok'}}, products:[product] })});",
+    "  };",
+    "})();",
+  ].join("\n");
+  await client.send("Page.addScriptToEvaluateOnNewDocument", { source: stub });
   await client.send("Page.navigate", { url: origin + "/kalkulacky/mppt-regulator/" });
   await waitFor(async () => await evaluate(client,
     'document.readyState === "complete" && Boolean(document.querySelector("[data-calculator-intent=mppt-sizing] [data-calculator-form]"))'));
@@ -346,6 +371,11 @@ async function smokeMpptBuyerMatches(client) {
   }
   assert(after.fallbackHidden === (after.links.length > 0),
     "MPPT missing-feed fallback and real offer links must be mutually exclusive");
+  assert(after.links.length === 1 && after.links[0].id === "vselektro:victron-smartsolar-100-50",
+    "confirmed fresh 400Wp/12V input must show the exact reviewed 100/50");
+  await evaluate(client, 'window.__mpsMpptMockMode = "stale"; document.querySelector("[data-calculator-form]").requestSubmit()');
+  await waitFor(async () => await evaluate(client,
+    '(() => { const p=document.querySelector("[data-mppt-buyers]"); return !p.hidden && !p.querySelector("[data-mppt-offer-fallback]").hidden && p.querySelectorAll("a[data-affiliate-click]").length===0; })()'));
   await evaluate(client, '(() => { const input=document.querySelector("#panelWatts"); input.value="900"; input.dispatchEvent(new Event("input",{bubbles:true})); })()');
   const invalidated = await evaluate(client, '(() => { const root=document.querySelector("[data-calculator-landing]"); const offers=root.querySelector("[data-mppt-buyers]"); return {hidden:offers.hidden,links:offers.querySelectorAll("a[data-affiliate-click]").length,resultHidden:root.querySelector("[data-calculator-result]").hidden,staleNotice:!document.querySelector("[data-calculator-stale]").hidden}; })()');
   assert(invalidated.hidden && invalidated.links === 0 && invalidated.resultHidden && invalidated.staleNotice,
