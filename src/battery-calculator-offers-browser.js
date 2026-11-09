@@ -1,4 +1,5 @@
 import { buildAffiliateClickParameters } from "./affiliate-analytics.js";
+import { loadCalculatorOffers } from "./calculator-offer-catalog.js?v=20261109-lightweight-cz1";
 import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261109-mppt-buyer1";
 import {
   batteryOfferExpiresAt, isBatteryOfferStillEligible, selectBatteryCalculatorOffers,
@@ -145,10 +146,7 @@ export function mountBatteryCalculatorBuyers(root, {
     fallback.hidden = false;
     let payload = null;
     try {
-      const response = await fetchImpl("/data/products.json", {
-        cache: "no-store", redirect: "error", signal: AbortSignal.timeout(15000),
-      });
-      if (response.ok) payload = await response.json();
+      payload = await loadCalculatorOffers(fetchImpl);
     } catch {
       // No trustworthy live feed: no prices and no affiliate purchase links.
     }
