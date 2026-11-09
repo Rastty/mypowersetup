@@ -62,7 +62,8 @@ if (root) {
 
   function trackContinuation(event) {
     const link = event.target.closest?.("a[href]");
-    if (!link || !root.contains(link)) return;
+    const continuationSection = link?.closest?.("[data-calculator-continuation-section]");
+    if (!link || (!root.contains(link) && !continuationSection)) return;
     let url;
     try { url = new URL(link.href, window.location.origin); } catch { return; }
     if (url.origin !== window.location.origin) return;
@@ -71,6 +72,7 @@ if (root) {
     track("calculator_landing_continue", {
       destination_type: destinationType,
       destination_path: `${url.pathname}${url.hash || ""}`,
+      ...(continuationSection ? { source_section: continuationSection.dataset.calculatorContinuationSection } : {}),
     });
   }
 
@@ -231,6 +233,11 @@ if (root) {
     render({ userInitiated: true });
   });
   root.addEventListener("click", trackContinuation);
+  // Opt-in tracking for helpful reference links outside the interactive form.
+  // All events still use the existing consent-gated track() contract.
+  document.querySelectorAll("[data-calculator-continuation-section]").forEach(section => {
+    if (!root.contains(section)) section.addEventListener("click", trackContinuation);
+  });
   document.addEventListener("mypowersetup:analytics-granted", trackLandingView);
 
   trackLandingView();
