@@ -138,8 +138,9 @@ export async function verifyBuyerPathsLive({
     // Resolve the *actual* versioned import used by the served calculator
     // browser. Checking an unversioned dependency could miss stale CDN bytes.
     const dependency = asset === "src/calculator-handoff.js" || asset === "src/calculator-copy.js";
+    const imports = [...localBrowser.matchAll(/from ["']\.\/([^"']+)["']/g)].map(match => match[1]);
     const imported = dependency
-      ? localBrowser.match(new RegExp("from [\\\"']\\./(" + asset.split("/").at(-1).replaceAll(".", "\\.") + "\\?v=[^\\\"']+)[\\\"']"))?.[1]
+      ? imports.find(value => value.startsWith(asset.split("/").at(-1) + "?v="))
       : null;
     if (dependency && !imported) fail("PUBLIC_VERSIONED_IMPORT_MISSING:" + asset);
     const paths = asset === "src/calculator-landing-browser.js"
