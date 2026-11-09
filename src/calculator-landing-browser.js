@@ -41,7 +41,7 @@ if (root) {
     const notice = document.createElement("p");
     notice.className = "calculator-help";
     notice.setAttribute("role", "status");
-    notice.textContent = copy.prefillNote;
+    notice.textContent = prefill.from === "fridge-guide" ? copy.guidePrefillNote : copy.prefillNote;
     form.insertAdjacentElement("afterbegin", notice);
   }
 
