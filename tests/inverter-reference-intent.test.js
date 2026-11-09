@@ -46,7 +46,7 @@ test("reference scenarios answer comparison intent without pretending to certify
   assert.match(html, /data-calculator-intent="inverter-sizing"/);
   assert.match(html, /id="priklady-menicu"[^>]*data-calculator-continuation-section="inverter_reference"/);
   assert.match(html, /Měnič 300, 1000, 1500 nebo 2000 W/);
-  for (const phrase of ["50 % další zátěže", "25% rezerva", "Proudový limit baterie/BMS"]) {
+  for (const phrase of ["50 % další zátěže", "25% rezerva", "proudový limit baterie/BMS"]) {
     assert.ok(html.includes(phrase), "missing safety or model context: " + phrase);
   }
   assert.match(html, /proudový limit baterie\/BMS/i);
