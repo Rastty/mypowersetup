@@ -4,6 +4,8 @@ on:
     paths:
       - scripts/verify-phase2-stale-live.mjs
       - scripts/verify-phase2-stale-live.test.mjs
+      - scripts/verify-buyer-paths-live.mjs
+      - scripts/verify-buyer-paths-live.test.mjs
       - .github/workflows/audit-live-html-parity.yml
   workflow_dispatch:
   schedule:
@@ -30,6 +32,10 @@ jobs:
         run: node --test scripts/verify-phase2-stale-live.test.mjs
       - name: Verify both live electrical calculator HTML pages and served JS
         run: node scripts/verify-phase2-stale-live.mjs
+      - name: Test five public buyer paths and exact served asset contract
+        run: node --test scripts/verify-buyer-paths-live.test.mjs
+      - name: Verify live fridge and MPPT purchase paths, served HTML and JavaScript
+        run: node scripts/verify-buyer-paths-live.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
