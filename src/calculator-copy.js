@@ -4,6 +4,7 @@ const COPY = Object.freeze({
     failed: "Výpočet se nepodařilo dokončit.",
     staleResult: "Změnili jste zadání. Pro aktuální návrh spusťte výpočet znovu.",
     prefillNote: "Převzali jsme spotřebu, napětí a typ baterie z předchozí kalkulačky. Údaje zkontrolujte a spusťte nový výpočet.",
+    nextBattery: "Spočítat potřebnou baterii na 2 dny →",
     nextSolar: "Pokračovat výpočtem soláru →",
     nextMppt: "Předat výkon panelů do MPPT →",
     batterySummary: ({ n, result }) => `Pro ${n(result.dailyWh)} Wh denní spotřeby a ${result.autonomyDays} dny autonomie vychází minimální doporučená kapacita ${n(result.batteryWh)} Wh, tedy přibližně ${n(result.batteryAh)} Ah při ${result.systemVoltage} V.`,
@@ -108,7 +109,7 @@ export function classifyCalculatorContinuation(pathname, hash, locale = "cs") {
   // Only supported, same-market calculator-to-calculator handoffs get
   // a distinct analytics destination type. Never treat unrelated routes as a calculator.
   const calculatorTargets = {
-    cs: ["/kalkulacky/solarni-panely/", "/kalkulacky/mppt-regulator/"],
+    cs: ["/kalkulacky/kapacita-baterie/", "/kalkulacky/solarni-panely/", "/kalkulacky/mppt-regulator/"],
     sk: ["/sk/kalkulacky/solarne-panely/"],
     pl: ["/pl/kalkulatory/panele-solarne/"],
     hu: ["/hu/kalkulatorok/napelem-teljesitmeny/"],

@@ -94,7 +94,8 @@ if (root) {
       actions.append(link);
     }
     link.setAttribute("data-calculator-handoff", "");
-    link.textContent = intent === "battery-capacity" ? copy.nextSolar : copy.nextMppt;
+    link.textContent = intent === "battery-autonomy" ? copy.nextBattery
+      : intent === "battery-capacity" ? copy.nextSolar : copy.nextMppt;
     link.setAttribute("href", href);
     link.hidden = false;
   }
