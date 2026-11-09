@@ -10,6 +10,38 @@ const ROUTES = Object.freeze({
 const NEXT_INTENT = Object.freeze({ "battery-autonomy": "battery-capacity", "battery-capacity": "solar-sizing", "solar-sizing": "mppt-sizing" });
 const INPUT_KEYS = Object.freeze({ "battery-capacity": "dailyWh", "solar-sizing": "dailyWh", "mppt-sizing": "panelWatts" });
 
+ // Wh-only handoff from the factual fridge guide to an existing CZ battery
+ // runtime calculator. 268/557 Wh measured daily values are intentionally
+ // rounded UP to the receiving form's 10 Wh step (270/560 Wh), never down.
+ // Battery size, voltage and chemistry remain visible, editable defaults.
+const FRIDGE_GUIDE_SOURCE = "fridge-guide";
+const FRIDGE_GUIDE_WH = Object.freeze([270, 560]);
+const FRIDGE_BATTERY_PATH = ROUTES.cs["battery-autonomy"];
+
+export function buildFridgeGuideAutonomyUrl(dailyWh) {
+  const wh = validSizingNumber(dailyWh, 50, 20000);
+  if (wh === null || !FRIDGE_GUIDE_WH.includes(wh)) return null;
+  return FRIDGE_BATTERY_PATH +
+    "?" + new URLSearchParams({ mps_from: FRIDGE_GUIDE_SOURCE, dailyWh: String(wh) });
+}
+
+function applyFridgeGuidePrefill({ form, intent, locale, pathname, params }) {
+  if (intent !== "battery-autonomy" || locale !== "cs" || pathname !== FRIDGE_BATTERY_PATH)
+    return null;
+  if (params.getAll("mps_from").length !== 1 || params.getAll("dailyWh").length !== 1)
+    return null;
+  // Guide claims must never carry hidden voltage, chemistry or capacity values.
+  if ([...params.keys()].some((key) => key !== "mps_from" && key !== "dailyWh"))
+    return null;
+  const wh = validSizingNumber(params.get("dailyWh"), 50, 20000);
+  if (wh === null || !FRIDGE_GUIDE_WH.includes(wh)) return null;
+  const field = form?.elements?.namedItem?.("dailyWh");
+  if (!field || typeof field.value !== "string") return null;
+  field.value = String(wh);
+  return Object.freeze({ from: FRIDGE_GUIDE_SOURCE, values: Object.freeze({ dailyWh: String(wh) }) });
+}
+
+
 function validSizingNumber(value, min, max) {
   const n = Number(value);
   // The published receiving forms use step=10; never round or clamp a
@@ -57,6 +89,8 @@ export function applyCalculatorHandoffPrefill({ form, intent, locale, pathname, 
   try { params = new URLSearchParams(String(search || "").replace(/^\?/, "")); } catch { return null; }
   const sourceIntent = params.get("mps_from");
   if (!sourceIntent || params.getAll("mps_from").length !== 1) return null;
+  if (sourceIntent === FRIDGE_GUIDE_SOURCE)
+    return applyFridgeGuidePrefill({ form, intent, locale, pathname, params });
   const expected = calculatorHandoffTarget(sourceIntent, locale);
   if (!expected || expected.intent !== intent || expected.path !== pathname) return null;
   const key = INPUT_KEYS[intent];
