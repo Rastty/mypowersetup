@@ -123,14 +123,14 @@ test("published MPPT page has an accessible, after-submit-only, truthful buyer s
   assert.match(page, /Voc panelů za mrazu/);
   assert.match(page, /Isc/);
   assert.match(page, /není potvrzení úplné kompatibility/);
-  assert.match(page, /\/src\/calculator-landing-browser\.js\?v=20261109-mppt-buyer1/);
+  assert.match(page, /\/src\/calculator-landing-browser\.js\?v=20261109-lightweight-cz1/);
   assert.match(page, /\/kalkulacky\/calculator\.css\?v=20261109-mppt-buyer1/);
   assert.match(browser, /if \(mpptBuyers\) void mpptBuyers\.update\(result\)/);
   assert.match(browser, /mpptBuyers\?\.invalidate\(\)/);
   assert.match(ui, /selectMpptCalculatorOffers/);
   assert.match(ui, /isMpptOfferStillEligible\(payload, activeResult, offer, now\(\)\)/);
-  assert.match(ui, /AbortSignal\.timeout\(15000\)/);
-  assert.match(ui, /cache: "no-store", redirect: "error"/);
+  assert.match(ui, /loadCalculatorOffers\(fetchImpl\)/);
+  assert.match(ui, /calculator-offer-catalog\.js\?v=20261109-lightweight-cz1/);
   assert.match(ui, /track\?\.\("affiliate_click"/);
   assert.match(impression, /"product_choice_impression"/);
   assert.match(ui, /allowedSources: \["mppt-calculator-match"\]/);
