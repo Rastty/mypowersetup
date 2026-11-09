@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
+import { projectCalculatorOffers } from "../src/calculator-offer-catalog.js";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 
 const feeds = [
@@ -115,10 +116,20 @@ if (products.length === 0) {
   throw new Error("Nepodařilo se načíst žádný produktový feed.");
 }
 await mkdir("data", { recursive: true });
+const fullCatalog = { generatedAt: new Date().toISOString(), sources, products: catalogProducts };
 await writeFile(
   "data/products.json",
-  `${JSON.stringify({ generatedAt: new Date().toISOString(), sources, products: catalogProducts })}\n`
+  `${JSON.stringify(fullCatalog)}\n`
 );
+// Reuse independently verified SKU selection; do not copy the entire
+// 1.6 MB merchant catalog into a calculator result page on mobile.
+const calculatorCatalog = projectCalculatorOffers(fullCatalog, Date.parse(fullCatalog.generatedAt));
+const compactBytes = Buffer.byteLength(JSON.stringify(calculatorCatalog));
+if (calculatorCatalog.products.length > 6 || compactBytes > 12_000) {
+  throw new Error("CALCULATOR_OFFERS_PROJECTION_UNSAFE_SIZE");
+}
+await writeFile("data/calculator-offers-cz.json", `${JSON.stringify(calculatorCatalog)}\n`);
+console.log(`Kalkulačky: ${calculatorCatalog.products.length} ověřených SKU, ${compactBytes} B namísto úplného katalogu.`);
 
 console.log(`Uloženo ${catalogProducts.length} relevantních produktů z ${products.length} načtených položek.`);
 

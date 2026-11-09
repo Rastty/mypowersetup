@@ -1,4 +1,5 @@
 import { buildAffiliateClickParameters } from "./affiliate-analytics.js";
+import { loadCalculatorOffers } from "./calculator-offer-catalog.js?v=20261109-lightweight-cz1";
 import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261109-mppt-buyer1";
 import {
   isMpptOfferStillEligible, mpptOfferExpiresAt, selectMpptCalculatorOffers,
@@ -158,12 +159,8 @@ export function mountMpptCalculatorBuyers(root, {
     fallback.hidden = false;
     let payload = null;
     try {
-      const response = await fetchImpl("/data/products.json", {
-        cache: "no-store", redirect: "error", signal: AbortSignal.timeout(15000),
-      });
-      section.dataset.buyerFetchState = "response_" + response.status;
-      if (response.ok) payload = await response.json();
-      section.dataset.buyerFetchState = "parsed";
+      payload = await loadCalculatorOffers(fetchImpl);
+      section.dataset.buyerFetchState = payload ? "parsed" : "missing";
     } catch {
       section.dataset.buyerFetchState = "failed";
       // Fail closed: no live feed, no offer, price, or outbound link.

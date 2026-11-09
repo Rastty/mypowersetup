@@ -39,17 +39,21 @@ test("six buyer pages including battery sizing plus every actual versioned calcu
   assert.equal(result.status, "PUBLIC_BUYER_HTML_AND_JS_VERIFIED");
   assert.equal(result.pages.length, PAGES.length);
   assert.equal(result.pages.length, 6);
-  assert.equal(result.assets.length, ASSETS.length + 2, "three distinct browser cache keys");
+  assert.equal(result.assets.length, ASSETS.length + 1, "two distinct browser cache keys after reuse");
   assert.equal(result.productionActions, 0);
   assert.equal(result.browserInteractionsVerified, false);
   assert.equal(result.seoUpliftMeasured, false);
   assert.equal(result.transientRetries, 0);
-  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 2);
+  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 1);
   assert.ok(result.browserVersions.battery_runtime.includes("fridge-community1"));
-  assert.ok(result.browserVersions.mppt_calculator.includes("mppt-buyer1"));
-  assert.ok(result.browserVersions.battery_capacity.includes("battery-buyer1"));
+  assert.ok(result.browserVersions.mppt_calculator.includes("lightweight-cz1"));
+  assert.ok(result.browserVersions.battery_capacity.includes("lightweight-cz1"));
   assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261109-battery-buyer1")));
+    row.servedPath.includes("?v=20261109-lightweight-cz1")));
+  assert.ok(result.assets.some(row => row.asset === "src/mppt-calculator-offers-browser.js" &&
+    row.servedPath.includes("?v=20261109-lightweight-cz1")));
+  assert.ok(result.assets.some(row => row.asset === "src/calculator-offer-catalog.js" &&
+    row.servedPath.includes("?v=20261109-lightweight-cz1")));
   for (const row of result.pages) assert.equal(row.http, 200);
 });
 
@@ -122,7 +126,7 @@ test("bounded 503 retries recover once, while permanent 502 fails closed", async
   const success = await verifyBuyerPathsLive({ fetchImpl: transient, sleep: async ms => { delays.push(ms); } });
   assert.equal(success.transientRetries, 1);
   assert.deepEqual(delays, [250]);
-  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 3);
+  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 2);
   let calls = 0;
   await assert.rejects(verifyBuyerPathsLive({ sleep: async () => {}, fetchImpl: async input => {
     calls++;
