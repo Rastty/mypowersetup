@@ -12,6 +12,7 @@ class CdpClient {
   constructor(url) {
     this.nextId = 1;
     this.pending = new Map();
+    this.exceptions = [];
     this.socket = new WebSocket(url);
     this.opened = new Promise((resolve, reject) => {
       this.socket.addEventListener("open", resolve, { once: true });
@@ -19,6 +20,10 @@ class CdpClient {
     });
     this.socket.addEventListener("message", (event) => {
       const message = JSON.parse(event.data);
+      if (message.method === "Runtime.exceptionThrown") {
+        this.exceptions.push(message.params?.exceptionDetails?.exception?.description ||
+          message.params?.exceptionDetails?.text || "unknown JS exception");
+      }
       if (!message.id || !this.pending.has(message.id)) return;
       const { resolve, reject } = this.pending.get(message.id);
       this.pending.delete(message.id);
@@ -119,6 +124,7 @@ try {
   for (const market of markets) reports.push(await smokeMarket(cdp, market));
   const batteryUpgrade = await smokeBatteryUpgrade(cdp);
   const fridgeGuide = await smokeFridgeGuideHandoff(cdp);
+  const mpptBuyerMatches = await smokeMpptBuyerMatches(cdp);
 
   console.log(JSON.stringify({
     ok: true,
@@ -127,6 +133,7 @@ try {
     markets: reports,
     batteryUpgrade,
     fridgeGuide,
+    mpptBuyerMatches,
   }, null, 2));
 } finally {
   if (cdp) await cdp.send("Browser.close").catch(() => {});
@@ -309,6 +316,78 @@ async function smokeFridgeGuideHandoff(client) {
     roundedFormDailyWh: [270,560], communityAttributionPreserved: true, untouchedBatteryFields: true,
     mobileHorizontalOverflow: false };
 }
+
+
+async function smokeMpptBuyerMatches(client) {
+  // A small reviewed SKU fixture exercises the actual browser, offer expiry,
+  // DOM, tracking attributes and click path deterministically. Loading the
+  // 1.6MB production catalog is tested separately from this mobile UI test.
+  const stub = [
+    "(() => {",
+    "  const realFetch = window.fetch.bind(window);",
+    "  window.__mpsMpptMockMode = 'fresh';",
+    "  window.__mpsMpptMockCalls = 0;",
+    "  window.__mpsMpptUnhandled = [];",
+    "  window.addEventListener('unhandledrejection', event => window.__mpsMpptUnhandled.push(String(event.reason)));",
+    "  window.fetch = (input, options) => {",
+    "    if (String(input) !== '/data/products.json') return realFetch(input, options);",
+    "    window.__mpsMpptMockCalls++;",
+    "    const page = 'https://www.vselektro.eu/solarni-regulator-victron-energy-mppt-smartsolar-100v-50a/';",
+    "    const affiliate = new URL('https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=f897865f');",
+    "    affiliate.searchParams.set('desturl', page);",
+    "    const instant = new Date().toISOString();",
+    "    const product = { id:'vselektro:victron-smartsolar-100-50', name:'Victron MPPT SmartSolar 100/50',",
+    "      merchant:'vselektro', category:'controller', available:window.__mpsMpptMockMode === 'fresh',",
+    "      staleSource:false, priceCzk:4990, priceCurrency:'CZK', verifiedAt:'2026-10-13',",
+    "      offerObservedAt:instant, productUrl:page, affiliateUrl:affiliate.href,",
+    "      specs:{ currentA:50, maxPvVocV:100, maxPvIscA:60, systemVoltagesV:[12,24],",
+    "        maxPvWattsBySystemVoltage:{12:700,24:1400} } };",
+    "    return Promise.resolve({ok:true, json:async()=>({ generatedAt:instant,",
+    "      sources:{vselektro:{status:'ok'}}, products:[product] })});",
+    "  };",
+    "})();",
+  ].join("\n");
+  await client.send("Page.addScriptToEvaluateOnNewDocument", { source: stub });
+  await client.send("Page.navigate", { url: origin + "/kalkulacky/mppt-regulator/" });
+  await waitFor(async () => await evaluate(client,
+    'document.readyState === "complete" && Boolean(document.querySelector("[data-calculator-intent=mppt-sizing] [data-calculator-form]"))'));
+  const before = await evaluate(client, '(() => { const root=document.querySelector("[data-calculator-landing]"); const p=root.querySelector("[data-mppt-buyers]"); return {hidden:p.hidden,links:p.querySelectorAll("a[data-affiliate-click]").length,result:!root.querySelector("[data-calculator-result]").hidden,overflow:document.documentElement.scrollWidth>innerWidth+2}; })()');
+  assert(before.hidden && before.links === 0 && before.result && !before.overflow,
+    "MPPT preview must not show unverified offers or horizontally overflow");
+
+  await evaluate(client, 'document.querySelector("[data-calculator-intent=mppt-sizing] [data-calculator-form]").requestSubmit()');
+  try {
+    await waitFor(async () => await evaluate(client,
+      '(() => { const p=document.querySelector("[data-mppt-buyers]"); const note=p.querySelector("[data-mppt-offer-fallback]"); return !p.hidden && (note.hidden || !note.textContent.startsWith("Ověřujeme")); })()'), 200);
+  } catch {
+    const debug = await evaluate(client, '(() => { const p=document.querySelector("[data-mppt-buyers]"); const form=document.querySelector("[data-calculator-form]"); return {url:location.href,readyState:document.readyState,buyerHidden:p?.hidden,buyerState:p?.dataset.buyerFetchState,generation:p?.dataset.buyerGeneration,mockMode:window.__mpsMpptMockMode,mockCalls:window.__mpsMpptMockCalls,unhandled:window.__mpsMpptUnhandled,fallback:p?.querySelector("[data-mppt-offer-fallback]")?.textContent,metric:document.querySelector("[data-result-controller-amps]")?.textContent,formPresent:Boolean(form),scripts:[...document.querySelectorAll("script[src]")].map(s=>s.src)}; })()');
+    throw new Error("MPPT_BUYER_BROWSER_DIAGNOSTIC:" + JSON.stringify(debug) +
+      ":JS_EXCEPTIONS:" + JSON.stringify(client.exceptions.slice(-5)));
+  }
+  const after = await evaluate(client, '(() => { const p=document.querySelector("[data-mppt-buyers]"); const links=[...p.querySelectorAll("a[data-affiliate-click]")]; return {links:links.map(x=>({id:x.dataset.productId,source:x.dataset.source,merchant:x.dataset.merchant,href:x.href,expiry:Number(x.dataset.offerExpiresAt)})),fallbackHidden:p.querySelector("[data-mppt-offer-fallback]").hidden,result:!document.querySelector("[data-calculator-result]").hidden,overflow:document.documentElement.scrollWidth>innerWidth+2}; })()');
+  assert(after.result && !after.overflow, "MPPT result must be visible without mobile horizontal overflow");
+  for (const link of after.links) {
+    assert(/^vselektro:victron-smartsolar-100-(20|30|50)$/.test(link.id), "unapproved MPPT candidate in live browser");
+    assert(link.merchant === "vselektro" && link.source === "mppt-calculator-match",
+      "MPPT candidate has wrong measurement attribution");
+    assert(link.href.startsWith("https://ehub.cz/system/scripts/click.php?") && Number.isFinite(link.expiry),
+      "MPPT candidate lacks exact affiliate guard and expiry");
+  }
+  assert(after.fallbackHidden === (after.links.length > 0),
+    "MPPT missing-feed fallback and real offer links must be mutually exclusive");
+  assert(after.links.length === 1 && after.links[0].id === "vselektro:victron-smartsolar-100-50",
+    "confirmed fresh 400Wp/12V input must show the exact reviewed 100/50");
+  await evaluate(client, 'window.__mpsMpptMockMode = "stale"; document.querySelector("[data-calculator-form]").requestSubmit()');
+  await waitFor(async () => await evaluate(client,
+    '(() => { const p=document.querySelector("[data-mppt-buyers]"); return !p.hidden && !p.querySelector("[data-mppt-offer-fallback]").hidden && p.querySelectorAll("a[data-affiliate-click]").length===0; })()'));
+  await evaluate(client, '(() => { const input=document.querySelector("#panelWatts"); input.value="900"; input.dispatchEvent(new Event("input",{bubbles:true})); })()');
+  const invalidated = await evaluate(client, '(() => { const root=document.querySelector("[data-calculator-landing]"); const offers=root.querySelector("[data-mppt-buyers]"); return {hidden:offers.hidden,links:offers.querySelectorAll("a[data-affiliate-click]").length,resultHidden:root.querySelector("[data-calculator-result]").hidden,staleNotice:!document.querySelector("[data-calculator-stale]").hidden}; })()');
+  assert(invalidated.hidden && invalidated.links === 0 && invalidated.resultHidden && invalidated.staleNotice,
+    "MPPT input change must invalidate result and all previous product offers");
+  return { route: "/kalkulacky/mppt-regulator/", candidates: after.links.length, freshOrFallback: true,
+    previewPurchaseLinks: 0, staleOffersCleared: true, mobileHorizontalOverflow: false };
+}
+
 
 function findChrome() {
   const candidates = [process.env.CHROME_BIN, "google-chrome", "google-chrome-stable", "chromium", "chromium-browser"].filter(Boolean);

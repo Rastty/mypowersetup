@@ -46,7 +46,7 @@ test("five real buyer pages plus every actual versioned calculator browser JS ar
   assert.equal(result.transientRetries, 0);
   assert.equal(fetchImpl.calls.length, 12);
   assert.ok(result.browserVersions.battery_runtime.includes("fridge-community1"));
-  assert.ok(result.browserVersions.mppt_calculator.includes("handoff1"));
+  assert.ok(result.browserVersions.mppt_calculator.includes("mppt-buyer1"));
   for (const row of result.pages) assert.equal(row.http, 200);
 });
 

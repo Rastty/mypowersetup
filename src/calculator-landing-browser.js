@@ -4,6 +4,7 @@ import { calculateLanding } from "./calculator-landing.js";
 import { classifyCalculatorContinuation, getCalculatorCopy } from "./calculator-copy.js?v=20261109-fridge-guide1";
 import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
 import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261109-fridge-community1";
+import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261109-mppt-buyer1";
 
 const root = document.querySelector("[data-calculator-landing]");
 
@@ -25,6 +26,8 @@ if (root) {
   const copy = getCalculatorCopy(locale);
   const landingPath = window.location.pathname;
   const landingParameters = buildCalculatorLandingAnalyticsParameters({ sourcePath: landingPath, intent, locale });
+  const mpptBuyers = intent === "mppt-sizing" && locale === "cs"
+    ? mountMpptCalculatorBuyers(root) : null;
   if (!landingParameters) throw new Error(`CALCULATOR_LANDING_ATTRIBUTION_MISMATCH:${landingPath}:${intent}:${locale}`);
 
   const formatNumber = new Intl.NumberFormat(copy.numberLocale, {
@@ -209,12 +212,16 @@ if (root) {
       if (userInitiated) {
         resultPanel.focus({ preventScroll: true });
         track("calculation_completed", { source: "seo_landing" });
+        // Only a real, submitted calculation can unlock fresh merchant offers.
+        // The initial static/SEO preview never creates a purchase link.
+        if (mpptBuyers) void mpptBuyers.update(result);
         root.dispatchEvent(new CustomEvent("mypowersetup:calculator-result", {
           bubbles: true,
           detail: { intent, locale, userInitiated: true },
         }));
       }
     } catch (error) {
+      mpptBuyers?.invalidate();
       resultPanel.hidden = true;
       errorPanel.textContent = error instanceof Error ? error.message : copy.failed;
       errorPanel.hidden = false;
@@ -224,7 +231,10 @@ if (root) {
 
   // The initial SEO preview is valid only for the initial input values.
   // After a change, never leave a previous electrical recommendation clickable.
-  const invalidateResult = () => invalidateCalculatedResult({ resultPanel, errorPanel, staleNotice });
+  const invalidateResult = () => {
+    invalidateCalculatedResult({ resultPanel, errorPanel, staleNotice });
+    mpptBuyers?.invalidate();
+  };
   form.addEventListener("input", invalidateResult);
   form.addEventListener("change", invalidateResult);
 

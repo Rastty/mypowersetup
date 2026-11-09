@@ -8,6 +8,9 @@ on:
       - scripts/verify-buyer-paths-live.test.mjs
       - .github/workflows/audit-live-html-parity.yml
   workflow_dispatch:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
   schedule:
     - cron: "43 7 * * *"
   push:
@@ -20,6 +23,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   audit:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -35,6 +39,10 @@ jobs:
       - name: Test five public buyer paths and exact served asset contract
         run: node --test scripts/verify-buyer-paths-live.test.mjs
       - name: Verify live fridge and MPPT purchase paths, served HTML and JavaScript
+        # PR code may intentionally differ from currently deployed production.
+        # Exact source parity is asserted after the Pages deploy completes
+        # (workflow_run), at daily schedule, or on manual dispatch.
+        if: github.event_name != 'pull_request'
         run: node scripts/verify-buyer-paths-live.mjs
       - uses: actions/upload-artifact@v4
         if: always()

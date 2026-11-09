@@ -73,6 +73,7 @@ function harness(initialLinks = [link()], opts = {}) {
   };
   const tracker = createVerifiedGuideImpressionTracker({
     documentRoot: doc, sections: [section], getAnalytics: () => analytics, Observer: MockObserver, now: () => time,
+    ...(opts.allowedSources ? { allowedSources: opts.allowedSources } : {}),
   });
   return {
     tracker, doc, section, events,
@@ -165,4 +166,40 @@ test("all six CZ offer-bearing pages load the refreshed impression-capable scrip
   const source = await readFile(new URL("../src/guide-verified-offers.js", import.meta.url), "utf8");
   assert.match(source, /impressionTracker\?\.scan\(\)/);
   assert.match(source, /dataset\.offerExpiresAt/);
+});
+
+test("calculator MPPT matches reuse viewport impression rules without altering editorial source defaults", () => {
+  const matched = link("vselektro:victron-smartsolar-100-50", {
+    source: "mppt-calculator-match", offerExpiresAt: "5000",
+  });
+  const editorial = harness([matched], { allowed: true, now: 1000 });
+  editorial.tracker.scan();
+  editorial.observer.intersect(matched, 0.75);
+  assert.equal(editorial.events.length, 0, "editorial tracker refuses calculator-only source by default");
+
+  const actual = link("vselektro:victron-smartsolar-100-50", {
+    source: "mppt-calculator-match", offerExpiresAt: "5000",
+  });
+  const calculator = harness([actual], {
+    allowed: false, now: 1000, allowedSources: ["mppt-calculator-match"],
+  });
+  calculator.tracker.scan();
+  calculator.observer.intersect(actual, 0.4);
+  assert.equal(calculator.events.length, 0, "40% visible does not count");
+  calculator.observer.intersect(actual, 0.7);
+  assert.equal(calculator.events.length, 0, "no consent means no recorded event");
+  calculator.setConsent(true);
+  assert.equal(calculator.events.length, 1);
+  assert.equal(calculator.events[0].event, "product_choice_impression");
+  assert.equal(calculator.events[0].parameters.source, "mppt-calculator-match");
+  calculator.doc.emit("visibilitychange");
+  assert.equal(calculator.events.length, 1, "one SKU counted once");
+  calculator.setNow(5001);
+  const another = link("vselektro:victron-smartsolar-100-30", {
+    source: "mppt-calculator-match", offerExpiresAt: "5000",
+  });
+  calculator.section.links = [another];
+  calculator.tracker.scan();
+  calculator.observer.intersect(another, 0.8);
+  assert.equal(calculator.events.length, 1, "expired visible product must never count");
 });

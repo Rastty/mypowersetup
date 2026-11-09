@@ -51,14 +51,14 @@ test("published MPPT sizing tool remains the primary working experience and craw
   assert.match(html,/name="panelWatts"/);
   assert.match(html,/name="systemVoltage"/);
   assert.match(html,/name="batteryType"/);
-  assert.match(html,/src="\/src\/calculator-landing-browser\.js\?v=20261107-handoff1"/);
+  assert.match(html,/src="\/src\/calculator-landing-browser\.js\?v=20261109-mppt-buyer1"/);
   assert.match(html,/id="mppt-priklady"/);
   assert.ok(html.indexOf("data-calculator-landing") < html.indexOf('id="mppt-priklady"'),"tool before additional content");
   assert.doesNotMatch(html,/<meta name="robots" content="[^"]*noindex/i);
   const json=html.match(/<script type="application\/ld\+json">([\s\S]+?)<\/script>/)?.[1];
   assert.ok(json,"valid readable WebApplication structured data");
   const graph=JSON.parse(json)["@graph"];
-  assert.equal(graph.find(node=>node["@type"]==="WebApplication").dateModified,"2026-11-08");
+  assert.equal(graph.find(node=>node["@type"]==="WebApplication").dateModified,"2026-11-09");
 });
 
 test("published sitemap dates reflect real change for this URL only",async()=>{
@@ -66,14 +66,14 @@ test("published sitemap dates reflect real change for this URL only",async()=>{
     const xml=await readFile(filename,"utf8");
     const item=xml.match(/<url><loc>https:\/\/mypowersetup\.com\/kalkulacky\/mppt-regulator\/<\/loc><lastmod>(\d{4}-\d{2}-\d{2})<\/lastmod>/g);
     assert.equal(item?.length,1,filename);
-    assert.ok(item[0].includes("<lastmod>2026-11-08</lastmod>"),filename);
+    assert.ok(item[0].includes("<lastmod>2026-11-09</lastmod>"),filename);
   }
 });
 
 test("MPPT reference is scrollable on narrow screens without modifying other calculators",async()=>{
   const html=await readFile(PAGE,"utf8");
   const css=await readFile("kalkulacky/calculator.css","utf8");
-  assert.match(html,/href="\/kalkulacky\/calculator\.css\?v=20261108-mppt-reference1"/);
+  assert.match(html,/href="\/kalkulacky\/calculator\.css\?v=20261109-mppt-buyer1"/);
   assert.match(html,/class="calculator-table-scroll"/);
   assert.match(css,/\.calculator-table-scroll\s*\{[^}]*overflow-x: auto/s);
   assert.match(css,/\.calculator-reference-table\s*\{[^}]*border-collapse: collapse/s);
