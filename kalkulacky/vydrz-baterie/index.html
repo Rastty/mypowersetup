@@ -23,7 +23,7 @@
   <meta name="twitter:description" content="Konzervativní výdrž 12/24V LiFePO4 nebo AGM baterie podle skutečné denní spotřeby.">
   <meta name="twitter:image" content="https://mypowersetup.com/social-card.png">
   <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
-  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20261108-mppt-reference1">
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -35,7 +35,8 @@
         "applicationCategory":"UtilitiesApplication",
         "operatingSystem":"Web",
         "isAccessibleForFree":true,
-        "description":"Konzervativní výpočet výdrže baterie v hodinách a dnech podle kapacity Ah, napětí, chemie a denní spotřeby."
+        "description":"Konzervativní výpočet výdrže baterie v hodinách a dnech podle kapacity Ah, napětí, chemie a denní spotřeby.",
+        "dateModified":"2026-11-09"
       },
       {
         "@type":"BreadcrumbList",
@@ -157,6 +158,31 @@
       <h2 id="example">Příklad: 100 Ah LiFePO₄, 12 V, spotřeba 600 Wh/den</h2>
       <p>100 Ah × 12 V = 1 200 Wh jmenovité energie. Při 80% využitelné hloubce vybití je to 960 Wh. Po zachování stejné 15% návrhové rezervy zbývá pro konzervativní plánování přibližně 835 Wh. Při spotřebě 600 Wh/den je to asi <strong>1,4 dne</strong> neboli zhruba <strong>33 hodin</strong>.</p>
       <p>Skutečná výdrž se může lišit podle teploty, stáří baterie, vlastního odběru měniče, účinnosti spotřebičů a reálného profilu zatížení. Kalkulačka proto není měřením zbývajícího času baterie ani náhradou údajů BMS.</p>
+    </section>
+
+    <section class="calculator-section calculator-content-card" id="priklady-vydrze" aria-labelledby="priklady-vydrze-nadpis">
+      <h2 id="priklady-vydrze-nadpis">Jak dlouho vydrží baterie 100, 150 nebo 200 Ah?</h2>
+      <p>Pro rychlé porovnání uvádíme šest výsledků stejného výpočetního modelu jako v kalkulačce výše. Ve všech případech jde o <strong>12V baterii, spotřebu 600 Wh za den a provoz bez dobíjení</strong>. U LiFePO₄ započítáváme 80% využitelnou hloubku vybití, u AGM/olova 50 %; oba typy mají navíc 15% návrhovou rezervu.</p>
+      <div class="calculator-table-scroll">
+        <table class="calculator-reference-table" aria-label="Modelová výdrž 12V baterií při spotřebě 600 Wh denně">
+          <caption>Modelové výsledky pro 12 V a 600 Wh/den bez solárního nebo jiného dobíjení</caption>
+          <thead><tr><th scope="col">Baterie</th><th scope="col">Typ</th><th scope="col">Výdrž ve dnech</th><th scope="col">Přibližně hodin</th></tr></thead>
+          <tbody>
+            <tr data-autonomy-example data-battery-ah="100" data-battery-type="lifepo4" data-daily-wh="600"><th scope="row">100 Ah</th><td>LiFePO₄</td><td><strong data-autonomy-days="1.4">1,4 dne</strong></td><td data-autonomy-hours="33">33 h</td></tr>
+            <tr data-autonomy-example data-battery-ah="100" data-battery-type="lead" data-daily-wh="600"><th scope="row">100 Ah</th><td>AGM / olovo</td><td><strong data-autonomy-days="0.9">0,9 dne</strong></td><td data-autonomy-hours="21">21 h</td></tr>
+            <tr data-autonomy-example data-battery-ah="150" data-battery-type="lifepo4" data-daily-wh="600"><th scope="row">150 Ah</th><td>LiFePO₄</td><td><strong data-autonomy-days="2.1">2,1 dne</strong></td><td data-autonomy-hours="50">50 h</td></tr>
+            <tr data-autonomy-example data-battery-ah="150" data-battery-type="lead" data-daily-wh="600"><th scope="row">150 Ah</th><td>AGM / olovo</td><td><strong data-autonomy-days="1.3">1,3 dne</strong></td><td data-autonomy-hours="31">31 h</td></tr>
+            <tr data-autonomy-example data-battery-ah="200" data-battery-type="lifepo4" data-daily-wh="600"><th scope="row">200 Ah</th><td>LiFePO₄</td><td><strong data-autonomy-days="2.8">2,8 dne</strong></td><td data-autonomy-hours="67">67 h</td></tr>
+            <tr data-autonomy-example data-battery-ah="200" data-battery-type="lead" data-daily-wh="600"><th scope="row">200 Ah</th><td>AGM / olovo</td><td><strong data-autonomy-days="1.7">1,7 dne</strong></td><td data-autonomy-hours="42">42 h</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Jak tabulku použít:</strong> 100Ah LiFePO₄ vystačí při uvedené spotřebě přibližně na 33 hodin, zatímco 100Ah AGM zhruba na 21 hodin. Pokud spotřebujete 300 Wh/den místo 600 Wh/den, orientační výdrž bude dvojnásobná. Výsledek ale závisí i na teplotě, stárnutí baterie, odběru měniče, účinnosti zařízení a omezeních BMS.</p>
+      <p>Tabulka neříká, zda konkrétní baterie bezpečně utáhne špičkový odběr. Při <strong>24 V</strong> má stejná Ah kapacita dvojnásobnou jmenovitou energii oproti 12 V; změňte napětí přímo v kalkulačce, nevybírejte baterii jen podle tohoto srovnání.</p>
+      <div class="calculator-actions">
+        <a class="calculator-cta" href="/#kalkulator">Neznám svoji spotřebu — spočítat spotřebiče</a>
+        <a class="calculator-cta calculator-cta-secondary" href="/pruvodce/kapacita-baterie-do-karavanu/">Jak vybrat vhodnou kapacitu baterie</a>
+      </div>
     </section>
 
     <section class="calculator-section" aria-labelledby="faq">
