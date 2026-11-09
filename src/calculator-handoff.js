@@ -2,7 +2,7 @@
 // never require re-entering the same Wh, DC voltage, or battery chemistry.
 // No synthetic appliance loads or hidden inverter assumptions are invented.
 const ROUTES = Object.freeze({
-  cs: Object.freeze({ "battery-capacity": "/kalkulacky/kapacita-baterie/", "solar-sizing": "/kalkulacky/solarni-panely/", "mppt-sizing": "/kalkulacky/mppt-regulator/" }),
+  cs: Object.freeze({ "battery-autonomy": "/kalkulacky/vydrz-baterie/", "battery-capacity": "/kalkulacky/kapacita-baterie/", "solar-sizing": "/kalkulacky/solarni-panely/", "mppt-sizing": "/kalkulacky/mppt-regulator/" }),
   sk: Object.freeze({ "battery-capacity": "/sk/kalkulacky/kapacita-baterie/", "solar-sizing": "/sk/kalkulacky/solarne-panely/" }),
   pl: Object.freeze({ "battery-capacity": "/pl/kalkulatory/pojemnosc-akumulatora/", "solar-sizing": "/pl/kalkulatory/panele-solarne/" }),
   hu: Object.freeze({ "battery-capacity": "/hu/kalkulatorok/akkumulator-kapacitas/", "solar-sizing": "/hu/kalkulatorok/napelem-teljesitmeny/" }),
@@ -30,7 +30,9 @@ function validatedValues(destinationIntent, raw) {
 export function calculatorHandoffTarget(intent, locale) {
   const normalizedLocale = String(locale || "").toLowerCase();
   const nextIntent = NEXT_INTENT[intent];
-  const target = ROUTES[normalizedLocale]?.[nextIntent];
+  const routes = ROUTES[normalizedLocale];
+  // A target route alone must never imply that the source calculator exists.
+  const target = routes?.[intent] && nextIntent ? routes[nextIntent] : null;
   return target ? Object.freeze({ path: target, intent: nextIntent }) : null;
 }
 
