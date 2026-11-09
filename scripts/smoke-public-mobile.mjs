@@ -118,6 +118,7 @@ try {
   const reports = [];
   for (const market of markets) reports.push(await smokeMarket(cdp, market));
   const batteryUpgrade = await smokeBatteryUpgrade(cdp);
+  const fridgeGuide = await smokeFridgeGuideHandoff(cdp);
 
   console.log(JSON.stringify({
     ok: true,
@@ -125,6 +126,7 @@ try {
     viewport: "390x844",
     markets: reports,
     batteryUpgrade,
+    fridgeGuide,
   }, null, 2));
 } finally {
   if (cdp) await cdp.send("Browser.close").catch(() => {});
@@ -263,6 +265,40 @@ async function smokeBatteryUpgrade(client) {
     staleResultInvalidated: true,
     mobileHorizontalOverflow: false,
   };
+}
+
+
+async function smokeFridgeGuideHandoff(client) {
+  const guidePath = "/pruvodce/spotreba-kompresorove-lednice/";
+  const destination = "/kalkulacky/vydrz-baterie/";
+  const cases = [
+    { dailyWh: "270", measuredWh: 268 },
+    { dailyWh: "560", measuredWh: 557 },
+  ];
+  for (const { dailyWh, measuredWh } of cases) {
+    await client.send("Page.navigate", { url: origin + guidePath });
+    await waitFor(async () => await evaluate(client, 'document.readyState === "complete" && document.querySelectorAll("a[href*=\\"mps_from=fridge-guide\\"]").length === 2'));
+    const link = await evaluate(client,
+      '(function(){ const a=Array.from(document.querySelectorAll("a[href]")).find(a=>a.href.includes("mps_from=fridge-guide") && a.href.includes("dailyWh=' + dailyWh + '")); return a && {href:a.getAttribute("href"),width:innerWidth,scrollWidth:document.documentElement.scrollWidth}; })()');
+    assert(link && link.href.includes("dailyWh=" + dailyWh), "measured fridge scenario link missing");
+    assert(link.scrollWidth <= link.width + 2, "fridge guide overflows 390px");
+    assert(Number(dailyWh) >= measuredWh && Number(dailyWh) - measuredWh < 10,
+      "fridge case was not rounded conservatively to form step");
+    await evaluate(client,
+      '(function(){ Array.from(document.querySelectorAll("a[href]")).find(a=>a.href.includes("mps_from=fridge-guide") && a.href.includes("dailyWh=' + dailyWh + '")).click(); })()');
+    await waitFor(async () => await evaluate(client,
+      '(function(){ const f=document.querySelector("[data-calculator-form]"); return location.pathname==="/kalkulacky/vydrz-baterie/" && f?.elements.namedItem("dailyWh").value==="' + dailyWh + '" && !document.querySelector("[data-calculator-result]").hidden; })()'));
+    const arrival = await evaluate(client,
+      '(function(){ const f=document.querySelector("[data-calculator-form]"); return {dailyWh:f.elements.namedItem("dailyWh").value,capacity:f.elements.namedItem("batteryCapacityAh").value,voltage:f.elements.namedItem("systemVoltage").value,chemistry:f.elements.namedItem("batteryType").value,note:f.querySelector("[role=status]")?.textContent||"",width:innerWidth,scrollWidth:document.documentElement.scrollWidth}; })()');
+    assert(arrival.dailyWh === dailyWh && arrival.capacity === "100"
+      && arrival.voltage === "12" && arrival.chemistry === "lifepo4",
+      "guide handoff silently changed unverified battery parameters");
+    assert(arrival.note.includes("lednice"), "guide scenario prefill notice missing");
+    assert(arrival.scrollWidth <= arrival.width + 2, "receiving battery form overflows 390px");
+  }
+  return { source: guidePath, destination, measuredDailyWh: [268,557],
+    roundedFormDailyWh: cases.map(x=>Number(x.dailyWh)), untouchedBatteryFields: true,
+    mobileHorizontalOverflow: false };
 }
 
 function findChrome() {
