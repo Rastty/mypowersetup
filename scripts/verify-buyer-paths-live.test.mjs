@@ -46,8 +46,8 @@ test("six buyer pages including battery sizing plus every actual versioned calcu
   assert.equal(result.transientRetries, 0);
   assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 1);
   assert.ok(result.browserVersions.battery_runtime.includes("fridge-community1"));
-  assert.ok(result.browserVersions.mppt_calculator.includes("mppt-buyer1"));
-  assert.ok(result.browserVersions.battery_capacity.includes("battery-buyer1"));
+  assert.ok(result.browserVersions.mppt_calculator.includes("lightweight-cz1"));
+  assert.ok(result.browserVersions.battery_capacity.includes("lightweight-cz1"));
   assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
     row.servedPath.includes("?v=20261109-lightweight-cz1")));
   assert.ok(result.assets.some(row => row.asset === "src/mppt-calculator-offers-browser.js" &&
