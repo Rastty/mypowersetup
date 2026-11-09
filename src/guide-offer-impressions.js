@@ -9,6 +9,7 @@ export function createVerifiedGuideImpressionTracker({
   getAnalytics,
   Observer = globalThis.IntersectionObserver,
   now = Date.now,
+  allowedSources = ["editorial-comparison"],
 } = {}) {
   if (!documentRoot || typeof Observer !== "function" || !Array.isArray(sections)) return null;
 
@@ -27,7 +28,7 @@ export function createVerifiedGuideImpressionTracker({
       if (!Number.isFinite(expiresAt) || expiresAt <= 0 || now() > expiresAt) continue;
       const params = buildAffiliateClickParameters(link);
       if (params.productId === "unknown" || params.merchant !== "vselektro"
-        || params.source !== "editorial-comparison") continue;
+        || !allowedSources.includes(params.source)) continue;
       const key = `${params.merchant}:${params.category}:${params.productId}`;
       if (counted.has(key)) continue;
       // The existing Analytics adapter owns consent and enriches market,
