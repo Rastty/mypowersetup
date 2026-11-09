@@ -10,6 +10,18 @@ export const ROUTES = Object.freeze([
 export const VERSION = "20261024-stale1";
 export const SCRIPT_PATH = "/src/phase2-calculator-browser.js";
 
+// Retry only temporary HTTP availability failures. A wrong route, invalid content,
+// stale client JS or a persistent 503 must still fail the production proof.
+const RETRYABLE_HTTP = new Set([429, 502, 503, 504]);
+async function fetchWithTransientRetry(url, options, fetchImpl, sleep, onRetry) {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const response = await fetchImpl(url, options);
+    if (!RETRYABLE_HTTP.has(response.status) || attempt === 2) return response;
+    onRetry();
+    await sleep(250 * (2 ** attempt));
+  }
+}
+
 function requireExactPage(response, origin, path) {
   if (!response.ok) throw new Error("PUBLIC_HTTP_" + response.status);
   const expected = new URL(path, origin);
@@ -48,27 +60,30 @@ export function checkJavascript(source) {
   return true;
 }
 
-export async function verifyLive({ fetchImpl = fetch, origin = DEFAULT_ORIGIN } = {}) {
+export async function verifyLive({ fetchImpl = fetch, origin = DEFAULT_ORIGIN,
+  sleep = ms => new Promise(resolve => setTimeout(resolve, ms)) } = {}) {
   const base = new URL(origin);
   if (base.protocol !== "https:" || base.pathname !== "/" || base.search || base.hash)
     throw new Error("INVALID_PRODUCTION_ORIGIN");
   const results = [];
   let servedJs = null;
+  let transientRetries = 0;
+  const onRetry = () => { transientRetries++; };
   for (const route of ROUTES) {
-    const response = await fetchImpl(new URL(route.path, base), {
+    const response = await fetchWithTransientRetry(new URL(route.path, base), {
       redirect: "follow", cache: "no-store", signal: AbortSignal.timeout(20000),
       headers: { accept: "text/html", "user-agent": "MyPowerSetup-phase2-live-proof/1.0" },
-    });
+    }, fetchImpl, sleep, onRetry);
     requireExactPage(response, base, route.path);
     if (!response.headers.get("content-type")?.includes("text/html"))
       throw new Error("PUBLIC_NON_HTML");
     const html = await response.text();
     const script = checkHtml(html, route);
     if (servedJs === null) {
-      const jsResponse = await fetchImpl(new URL(script, base), {
+      const jsResponse = await fetchWithTransientRetry(new URL(script, base), {
         redirect: "follow", cache: "no-store", signal: AbortSignal.timeout(20000),
         headers: { accept: "text/javascript,application/javascript,*/*", "user-agent": "MyPowerSetup-phase2-live-proof/1.0" },
-      });
+      }, fetchImpl, sleep, onRetry);
       requireExactPage(jsResponse, base, script);
       servedJs = await jsResponse.text();
       checkJavascript(servedJs);
@@ -76,7 +91,7 @@ export async function verifyLive({ fetchImpl = fetch, origin = DEFAULT_ORIGIN } 
     results.push({ path: route.path, intent: route.intent, http: response.status, version: VERSION, htmlMarker: true, servedJsGuard: true });
   }
   return { status: "PUBLIC_HTML_AND_SERVED_JS_VERIFIED", origin: base.origin, routes: results,
-    browserInteractionVerified: false, affiliateOrRevenueEffectVerified: false, productionActions: 0 };
+    browserInteractionVerified: false, affiliateOrRevenueEffectVerified: false, transientRetries, productionActions: 0 };
 }
 
 if (process.argv[1] && import.meta.url === new URL("file://" + process.argv[1]).href) {
