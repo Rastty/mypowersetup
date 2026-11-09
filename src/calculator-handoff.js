@@ -7,8 +7,8 @@ const ROUTES = Object.freeze({
   pl: Object.freeze({ "battery-capacity": "/pl/kalkulatory/pojemnosc-akumulatora/", "solar-sizing": "/pl/kalkulatory/panele-solarne/" }),
   hu: Object.freeze({ "battery-capacity": "/hu/kalkulatorok/akkumulator-kapacitas/", "solar-sizing": "/hu/kalkulatorok/napelem-teljesitmeny/" }),
 });
-const NEXT_INTENT = Object.freeze({ "battery-capacity": "solar-sizing", "solar-sizing": "mppt-sizing" });
-const INPUT_KEYS = Object.freeze({ "solar-sizing": "dailyWh", "mppt-sizing": "panelWatts" });
+const NEXT_INTENT = Object.freeze({ "battery-autonomy": "battery-capacity", "battery-capacity": "solar-sizing", "solar-sizing": "mppt-sizing" });
+const INPUT_KEYS = Object.freeze({ "battery-capacity": "dailyWh", "solar-sizing": "dailyWh", "mppt-sizing": "panelWatts" });
 
 function validSizingNumber(value, min, max) {
   const n = Number(value);
@@ -37,7 +37,9 @@ export function calculatorHandoffTarget(intent, locale) {
 export function buildCalculatorHandoffUrl({ intent, locale, result, inputs } = {}) {
   const destination = calculatorHandoffTarget(intent, locale);
   if (!destination) return null;
-  const raw = destination.intent === "solar-sizing"
+  // Reuse observed Wh, voltage and chemistry. Never infer desired days of autonomy:
+  // the receiving form keeps its own explicit editable default of two days.
+  const raw = destination.intent === "solar-sizing" || destination.intent === "battery-capacity"
     ? { dailyWh: result?.dailyWh, systemVoltage: result?.systemVoltage, batteryType: inputs?.batteryType }
     : { panelWatts: result?.solarWatts, systemVoltage: result?.systemVoltage, batteryType: inputs?.batteryType };
   const values = validatedValues(destination.intent, raw);
