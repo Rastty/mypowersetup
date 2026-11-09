@@ -5,6 +5,7 @@ import { classifyCalculatorContinuation, getCalculatorCopy } from "./calculator-
 import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
 import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261109-fridge-community1";
 import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261109-mppt-buyer1";
+import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261109-battery-buyer1";
 
 const root = document.querySelector("[data-calculator-landing]");
 
@@ -28,6 +29,8 @@ if (root) {
   const landingParameters = buildCalculatorLandingAnalyticsParameters({ sourcePath: landingPath, intent, locale });
   const mpptBuyers = intent === "mppt-sizing" && locale === "cs"
     ? mountMpptCalculatorBuyers(root) : null;
+  const batteryBuyers = intent === "battery-capacity" && locale === "cs"
+    ? mountBatteryCalculatorBuyers(root) : null;
   if (!landingParameters) throw new Error(`CALCULATOR_LANDING_ATTRIBUTION_MISMATCH:${landingPath}:${intent}:${locale}`);
 
   const formatNumber = new Intl.NumberFormat(copy.numberLocale, {
@@ -215,6 +218,7 @@ if (root) {
         // Only a real, submitted calculation can unlock fresh merchant offers.
         // The initial static/SEO preview never creates a purchase link.
         if (mpptBuyers) void mpptBuyers.update(result);
+        if (batteryBuyers) void batteryBuyers.update(result);
         root.dispatchEvent(new CustomEvent("mypowersetup:calculator-result", {
           bubbles: true,
           detail: { intent, locale, userInitiated: true },
@@ -222,6 +226,7 @@ if (root) {
       }
     } catch (error) {
       mpptBuyers?.invalidate();
+      batteryBuyers?.invalidate();
       resultPanel.hidden = true;
       errorPanel.textContent = error instanceof Error ? error.message : copy.failed;
       errorPanel.hidden = false;
@@ -234,6 +239,7 @@ if (root) {
   const invalidateResult = () => {
     invalidateCalculatedResult({ resultPanel, errorPanel, staleNotice });
     mpptBuyers?.invalidate();
+    batteryBuyers?.invalidate();
   };
   form.addEventListener("input", invalidateResult);
   form.addEventListener("change", invalidateResult);
