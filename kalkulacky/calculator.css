@@ -196,6 +196,55 @@
   font-weight: 700;
 }
 
+
+/* Dynamic, verified MPPT offers on the calculator result only. */
+.calculator-mppt-buyers {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #cbd5e1;
+}
+
+.calculator-mppt-buyers h3 {
+  font-size: 1.15rem;
+  margin: 0 0 10px;
+}
+
+.calculator-mppt-offer-list {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  margin: 16px 0;
+  padding: 0;
+}
+
+.calculator-mppt-offer-list li {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.calculator-mppt-offer-facts {
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.calculator-mppt-offer-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 700;
+  color: #0f172a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
 @media (max-width: 760px) {
   .calculator-grid,
   .calculator-card-grid {
