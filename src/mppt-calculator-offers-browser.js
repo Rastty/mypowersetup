@@ -1,5 +1,5 @@
 import { buildAffiliateClickParameters } from "./affiliate-analytics.js";
-import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js";
+import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261109-mppt-buyer1";
 import {
   isMpptOfferStillEligible, mpptOfferExpiresAt, selectMpptCalculatorOffers,
 } from "./mppt-calculator-offers.js";
