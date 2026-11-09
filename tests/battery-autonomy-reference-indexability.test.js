@@ -33,7 +33,7 @@ test("comparison retains the interactive calculator and communicates assumptions
   assert.match(html, /data-calculator-intent="battery-autonomy"/);
   assert.match(html, /name="batteryCapacityAh"/);
   assert.match(html, /name="dailyWh"/);
-  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20260924-autonomy1"/);
+  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261109-reference-funnel1"/);
   assert.ok(html.indexOf('data-calculator-intent="battery-autonomy"') < html.indexOf('id="priklady-vydrze"'));
   for (const term of ["600 Wh", "80%", "50 %", "15%", "bez dobíjení", "BMS", "24 V"]) {
     assert.ok(html.includes(term), "missing assumption " + term);
@@ -61,4 +61,19 @@ test("reference comparison remains horizontally scrollable on small screens", as
   assert.match(html, /class="calculator-table-scroll"/);
   assert.match(html, /class="calculator-reference-table"/);
   assert.match(css, /\.calculator-table-scroll\s*\{[^}]*overflow-x: auto/s);
+});
+
+// The comparison is outside the interactive calculator root. A visitor clicking
+// to the Builder or buying guide should still enter the consented funnel report.
+test("comparison continuation links use opt-in consented calculator funnel tracking", async () => {
+  const [html, browser] = await Promise.all([read(path), read("src/calculator-landing-browser.js")]);
+  assert.match(html, /id="priklady-vydrze"[^>]*data-calculator-continuation-section="battery_autonomy_reference"/);
+  assert.match(browser, /document\.querySelectorAll\("\[data-calculator-continuation-section\]"\)/);
+  assert.match(browser, /section\.addEventListener\("click", trackContinuation\)/);
+  assert.match(browser, /source_section: continuationSection\.dataset\.calculatorContinuationSection/);
+  assert.match(browser, /const continuationSection = link\?\.closest\?\.\("\[data-calculator-continuation-section\]"\)/);
+  // Event still passes through the existing consent-gated analytics API.
+  assert.match(browser, /window\.MyPowerSetupAnalytics\?\.track\(event,/);
+  assert.match(browser, /if \(url\.origin !== window\.location\.origin\) return/);
+  assert.match(browser, /if \(!destinationType\) return/);
 });
