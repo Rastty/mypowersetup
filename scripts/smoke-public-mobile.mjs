@@ -434,7 +434,7 @@ async function smokeBatteryBuyerMatches(client) {
   }
   const shown = await evaluate(client, '(() => { const p=document.querySelector("[data-battery-buyers]"); return {links:[...p.querySelectorAll("a[data-affiliate-click]")].map(a=>({id:a.dataset.productId,source:a.dataset.source,merchant:a.dataset.merchant,href:a.href,expiry:Number(a.dataset.offerExpiresAt)})),capacity:document.querySelector("[data-result-battery-ah]").textContent,fallbackHidden:p.querySelector("[data-battery-offer-fallback]").hidden,overflow:document.documentElement.scrollWidth>innerWidth+2}; })()');
   assert(shown.capacity === "80 Ah" && shown.links.length === 2 && shown.fallbackHidden && !shown.overflow,
-    "300Wh/day for 2 days must show only single >=80Ah approved fresh 12V batteries");
+    "300Wh/day for 2 days must show only single >=80Ah approved fresh 12V batteries: " + JSON.stringify(shown));
   for (const item of shown.links) {
     assert(/^vselektro:sunstone-slpo12-(100n|200n)$/.test(item.id));
     assert(item.source === "battery-calculator-match" && item.merchant === "vselektro");
