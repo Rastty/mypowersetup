@@ -10,6 +10,7 @@ export const PAGES = Object.freeze([
   Object.freeze({ path: "/pruvodce/agm-vs-lifepo4/", kind: "battery_guide" }),
   Object.freeze({ path: "/pruvodce/victron-mppt-100-20-vs-100-30-vs-100-50/", kind: "mppt_guide" }),
   Object.freeze({ path: "/kalkulacky/vydrz-baterie/", kind: "battery_runtime" }),
+  Object.freeze({ path: "/kalkulacky/kapacita-baterie/", kind: "battery_capacity" }),
   Object.freeze({ path: "/kalkulacky/mppt-regulator/", kind: "mppt_calculator" }),
 ]);
 export const ASSETS = Object.freeze([
@@ -19,6 +20,12 @@ export const ASSETS = Object.freeze([
   "src/community-attribution.js",
   "src/analytics.js",
   "src/community-navigation.js",
+  "src/battery-calculator-offers-browser.js",
+  "src/battery-calculator-offers.js",
+  "src/mppt-calculator-offers-browser.js",
+  "src/mppt-calculator-offers.js",
+  "src/guide-offer-impressions.js",
+  "src/guide-verified-offers.js",
 ]);
 const TRANSIENT_HTTP = new Set([429, 502, 503, 504]);
 const VERSIONED_BROWSER = /<script\b[^>]*\bsrc=["'](\/src\/calculator-landing-browser\.js\?v=[^"']+)["'][^>]*>/i;
@@ -49,8 +56,9 @@ export function checkPublicHtml(html, local, { path, kind }) {
     fail("PUBLIC_BATTERY_GUIDE_LINK_MISSING");
   if (kind === "mppt_guide" && !html.includes('href="/kalkulacky/mppt-regulator/"'))
     fail("PUBLIC_MPPT_GUIDE_LINK_MISSING");
-  if (kind === "battery_runtime" || kind === "mppt_calculator") {
-    const intent = kind === "battery_runtime" ? "battery-autonomy" : "mppt-sizing";
+  if (kind === "battery_runtime" || kind === "mppt_calculator" || kind === "battery_capacity") {
+    const intent = kind === "battery_runtime" ? "battery-autonomy"
+      : kind === "battery_capacity" ? "battery-capacity" : "mppt-sizing";
     if (!html.includes('data-calculator-intent="' + intent + '"') ||
         !html.includes("data-calculator-result") || !html.includes("data-calculator-form"))
       fail("PUBLIC_CALCULATOR_MISSING:" + path);
@@ -58,6 +66,10 @@ export function checkPublicHtml(html, local, { path, kind }) {
     const liveScripts = [...html.matchAll(new RegExp(VERSIONED_BROWSER.source, "gi"))].map(m => m[1]);
     if (!localScript || liveScripts.length !== 1 || liveScripts[0] !== localScript)
       fail("PUBLIC_CALCULATOR_VERSION_DRIFT:" + path);
+    if (kind === "battery_capacity" &&
+        (!html.includes('data-battery-buyers') || !html.includes('data-battery-offer-list') ||
+         !html.includes("Nejde o automatické potvrzení kompatibility")))
+      fail("PUBLIC_BATTERY_BUYER_GUARD_MISSING");
     if (kind === "battery_runtime" &&
         (!html.includes('name="dailyWh"') || !html.includes('name="batteryCapacityAh"') ||
          !html.includes('name="systemVoltage"') || !html.includes('name="batteryType"')))
@@ -131,7 +143,8 @@ export async function verifyBuyerPathsLive({
     if (browserScript) browserVersions.set(page.kind, browserScript);
     checkedPages.push({ path: page.path, http: 200, canonical: "exact", content: "verified" });
   }
-  if (!browserVersions.has("battery_runtime") || !browserVersions.has("mppt_calculator"))
+  if (!browserVersions.has("battery_runtime") || !browserVersions.has("battery_capacity") ||
+      !browserVersions.has("mppt_calculator"))
     fail("PUBLIC_CALCULATOR_COVERAGE_INCOMPLETE");
 
   const checkedAssets = [];
@@ -140,7 +153,9 @@ export async function verifyBuyerPathsLive({
     const local = await readLocal(asset);
     // Resolve the *actual* versioned import used by the served calculator
     // browser. Checking an unversioned dependency could miss stale CDN bytes.
-    const dependency = asset === "src/calculator-handoff.js" || asset === "src/calculator-copy.js";
+    const dependency = ["src/calculator-handoff.js", "src/calculator-copy.js",
+      "src/battery-calculator-offers-browser.js",
+      "src/mppt-calculator-offers-browser.js"].includes(asset);
     const imports = [...localBrowser.matchAll(/from ["']\.\/([^"']+)["']/g)].map(match => match[1]);
     const imported = dependency
       ? imports.find(value => value.startsWith(asset.split("/").at(-1) + "?v="))

@@ -125,6 +125,7 @@ try {
   const batteryUpgrade = await smokeBatteryUpgrade(cdp);
   const fridgeGuide = await smokeFridgeGuideHandoff(cdp);
   const mpptBuyerMatches = await smokeMpptBuyerMatches(cdp);
+  const batteryBuyerMatches = await smokeBatteryBuyerMatches(cdp);
 
   console.log(JSON.stringify({
     ok: true,
@@ -134,6 +135,7 @@ try {
     batteryUpgrade,
     fridgeGuide,
     mpptBuyerMatches,
+    batteryBuyerMatches,
   }, null, 2));
 } finally {
   if (cdp) await cdp.send("Browser.close").catch(() => {});
@@ -386,6 +388,74 @@ async function smokeMpptBuyerMatches(client) {
     "MPPT input change must invalidate result and all previous product offers");
   return { route: "/kalkulacky/mppt-regulator/", candidates: after.links.length, freshOrFallback: true,
     previewPurchaseLinks: 0, staleOffersCleared: true, mobileHorizontalOverflow: false };
+}
+
+
+
+async function smokeBatteryBuyerMatches(client) {
+  const path = "/kalkulacky/kapacita-baterie/";
+  const fixture = [
+    "(() => {",
+    " window.__batteryFeedMode='fresh';",
+    " const prior=window.fetch.bind(window);",
+    " window.fetch=(input,options)=>{",
+    "  if(String(input)!=='/data/products.json') return prior(input,options);",
+    "  const at=new Date().toISOString();",
+    "  const specs=[['sunstone-slpo12-100n','/lifepo4-baterie-12v-100ah-sunstone-power-slpo12-100n/',100],",
+    "    ['sunstone-slpo12-200n','/lifepo4-baterie-12v-200ah-slpo12-200n-hc200a-sunstone-power/',200]];",
+    "  const products=specs.map(([suffix,path,ah])=>{",
+    "   const productUrl='https://www.vselektro.eu'+path;",
+    "   const url=new URL('https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=f897865f');",
+    "   url.searchParams.set('desturl',productUrl);",
+    "   return {id:'vselektro:'+suffix,name:'Sunstone '+ah+'Ah',merchant:'vselektro',",
+    "    category:'battery',available:window.__batteryFeedMode==='fresh',",
+    "    staleSource:false,verifiedAt:'2026-10-13',offerObservedAt:at,",
+    "    priceCzk:9999,priceCurrency:'CZK',productUrl,affiliateUrl:url.href,",
+    "    specs:{voltageV:12,batteryType:'lifepo4',capacityAh:ah,bmsContinuousCurrentA:ah}};",
+    "  });",
+    "  return Promise.resolve({ok:true,json:async()=>({generatedAt:at,sources:{vselektro:{status:'ok'}},products})});",
+    " };",
+    "})();",
+  ].join("\n");
+  await client.send("Page.addScriptToEvaluateOnNewDocument", { source: fixture });
+  await client.send("Page.navigate", { url: origin + path });
+  await waitFor(async () => await evaluate(client,
+    'document.readyState === "complete" && Boolean(document.querySelector("[data-calculator-intent=battery-capacity] [data-calculator-form]"))'));
+  const before = await evaluate(client, '(() => { const p=document.querySelector("[data-battery-buyers]"); return {hidden:p.hidden,links:p.querySelectorAll("a[data-affiliate-click]").length,overflow:document.documentElement.scrollWidth>innerWidth+2}; })()');
+  assert(before.hidden && before.links === 0 && !before.overflow,
+    "preview cannot expose buyer links or overflow");
+
+  await evaluate(client, '(() => { const f=document.querySelector("[data-calculator-form]"); const wh=f.elements.namedItem("dailyWh"); wh.value="300"; wh.dispatchEvent(new Event("input",{bubbles:true})); f.elements.namedItem("systemVoltage").value="12"; f.requestSubmit(); })()');
+  try {
+    await waitFor(async () => await evaluate(client,
+      '(() => { const p=document.querySelector("[data-battery-buyers]"); const f=p.querySelector("[data-battery-offer-fallback]"); return !p.hidden && (f.hidden || !f.textContent.startsWith("Ověřujeme")); })()'));
+  } catch {
+    const details = await evaluate(client,'(() => {const p=document.querySelector("[data-battery-buyers]");return {state:p.dataset.buyerFetchState,hidden:p.hidden,text:p.querySelector("[data-battery-offer-fallback]").textContent,battery:document.querySelector("[data-result-battery-ah]").textContent};})()');
+    throw new Error("BATTERY_BUYER_SMOKE_TIMEOUT:"+JSON.stringify(details));
+  }
+  const shown = await evaluate(client, '(() => { const p=document.querySelector("[data-battery-buyers]"); return {links:[...p.querySelectorAll("a[data-affiliate-click]")].map(a=>({id:a.dataset.productId,source:a.dataset.source,merchant:a.dataset.merchant,href:a.href,expiry:Number(a.dataset.offerExpiresAt)})),capacity:document.querySelector("[data-result-battery-ah]").textContent,fallbackHidden:p.querySelector("[data-battery-offer-fallback]").hidden,overflow:document.documentElement.scrollWidth>innerWidth+2}; })()');
+  assert(shown.capacity === "80 Ah" && shown.links.length === 2 && shown.fallbackHidden && !shown.overflow,
+    "300Wh/day for 2 days must show only single >=80Ah approved fresh 12V batteries: " + JSON.stringify(shown));
+  for (const item of shown.links) {
+    assert(/^vselektro:sunstone-slpo12-(100n|200n)$/.test(item.id));
+    assert(item.source === "battery-calculator-match" && item.merchant === "vselektro");
+    assert(item.href.startsWith("https://ehub.cz/system/scripts/click.php?") && Number.isFinite(item.expiry));
+  }
+  // A chemistry change or 24V must never surface 12V LiFePO4 purchase links.
+  for (const [key,value] of [["batteryType","lead"],["batteryType","lifepo4"],["systemVoltage","24"]]) {
+    await evaluate(client, '(() => { const f=document.querySelector("[data-calculator-form]");const e=f.elements.namedItem("'+key+'");e.value="'+value+'";e.dispatchEvent(new Event("change",{bubbles:true}));if("'+value+'"!=="lifepo4")f.requestSubmit(); })()');
+    if (value === "lifepo4") continue;
+    await waitFor(async () => await evaluate(client,
+      '(() => {const p=document.querySelector("[data-battery-buyers]");return !p.hidden && !p.querySelector("[data-battery-offer-fallback]").hidden && p.querySelectorAll("a[data-affiliate-click]").length===0;})()'));
+  }
+  await evaluate(client, '(() => {const f=document.querySelector("[data-calculator-form]");const e=f.elements.namedItem("systemVoltage");e.value="12";e.dispatchEvent(new Event("change",{bubbles:true}));window.__batteryFeedMode="stale";f.requestSubmit();})()');
+  await waitFor(async () => await evaluate(client,
+    '(() => {const p=document.querySelector("[data-battery-buyers]");return !p.hidden && !p.querySelector("[data-battery-offer-fallback]").hidden && p.querySelectorAll("a[data-affiliate-click]").length===0;})()'));
+  await evaluate(client, '(() => {const f=document.querySelector("[data-calculator-form]");const e=f.elements.namedItem("dailyWh");e.value="900";e.dispatchEvent(new Event("input",{bubbles:true}));})()');
+  const cleared = await evaluate(client, '(() => {const p=document.querySelector("[data-battery-buyers]");return p.hidden && p.querySelectorAll("a[data-affiliate-click]").length===0 && document.querySelector("[data-calculator-result]").hidden;})()');
+  assert(cleared,"edited inputs must invalidate previous result and every old purchase link");
+  return {route:path,approvedFreshOffers:shown.links.length,agmBlocked:true,voltage24Blocked:true,
+    expiredFeedBlocked:true,staleResultCleared:true,mobileHorizontalOverflow:false};
 }
 
 

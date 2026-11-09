@@ -168,7 +168,8 @@ test("all nine receiving and sending pages reference the current handoff module 
   const paths = [...cases.flatMap(([, battery, solar]) => [battery, solar]), "/kalkulacky/mppt-regulator/"];
   for (const path of paths) {
     const html = await readFile(new URL("../" + path.slice(1) + "index.html", import.meta.url), "utf8");
-    const expectedVersion = path === "/kalkulacky/mppt-regulator/" ? "20261109-mppt-buyer1" : "20261107-handoff1";
+    const expectedVersion = path === "/kalkulacky/mppt-regulator/" ? "20261109-mppt-buyer1"
+      : path === "/kalkulacky/kapacita-baterie/" ? "20261109-battery-buyer1" : "20261107-handoff1";
     assert.ok(html.includes('src="/src/calculator-landing-browser.js?v=' + expectedVersion + '"'), path);
   }
   const script = await readFile(new URL("../src/calculator-landing-browser.js", import.meta.url), "utf8");

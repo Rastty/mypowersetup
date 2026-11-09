@@ -33,20 +33,23 @@ function mockResponse(url, body, type = "text/html", status = 200) {
   };
 }
 
-test("five real buyer pages plus every actual versioned calculator browser JS are public-evidence verified", async () => {
+test("six buyer pages including battery sizing plus every actual versioned calculator JS are public-evidence verified", async () => {
   const fetchImpl = mockFetch();
   const result = await verifyBuyerPathsLive({ fetchImpl });
   assert.equal(result.status, "PUBLIC_BUYER_HTML_AND_JS_VERIFIED");
   assert.equal(result.pages.length, PAGES.length);
-  assert.equal(result.pages.length, 5);
-  assert.equal(result.assets.length, ASSETS.length + 1, "distinct MPPT and battery browser cache keys");
+  assert.equal(result.pages.length, 6);
+  assert.equal(result.assets.length, ASSETS.length + 2, "three distinct browser cache keys");
   assert.equal(result.productionActions, 0);
   assert.equal(result.browserInteractionsVerified, false);
   assert.equal(result.seoUpliftMeasured, false);
   assert.equal(result.transientRetries, 0);
-  assert.equal(fetchImpl.calls.length, 12);
+  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 2);
   assert.ok(result.browserVersions.battery_runtime.includes("fridge-community1"));
   assert.ok(result.browserVersions.mppt_calculator.includes("mppt-buyer1"));
+  assert.ok(result.browserVersions.battery_capacity.includes("battery-buyer1"));
+  assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
+    row.servedPath.includes("?v=20261109-battery-buyer1")));
   for (const row of result.pages) assert.equal(row.http, 200);
 });
 
@@ -75,6 +78,19 @@ test("missing precise fridge links and wrong calculator script cache key both fa
     const body = (await local(file)).replace("20261109-fridge-community1", "old-version");
     return mockResponse(url.href, body);
   } }) }), /PUBLIC_CALCULATOR_VERSION_DRIFT/);
+});
+
+test("battery capacity route and exact buyer JS fail the audit on production drift", async () => {
+  await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({url,file}) => {
+    if (url.pathname !== "/kalkulacky/kapacita-baterie/") return null;
+    return mockResponse(url.href, (await local(file)).replace(
+      "Nejde o automatické potvrzení kompatibility", "Bez výhrad je kompatibilní"));
+  } }) }), /PUBLIC_BATTERY_BUYER_GUARD_MISSING/);
+  await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({url,file}) => {
+    if (file !== "src/battery-calculator-offers-browser.js") return null;
+    return mockResponse(url.href, (await local(file)).replace(
+      "battery-calculator-match", "untrusted"), "text/javascript");
+  } }) }), /PUBLIC_ASSET_SOURCE_DRIFT/);
 });
 
 test("served JS must equal local source; stale community and result guards never pass", async () => {
@@ -106,7 +122,7 @@ test("bounded 503 retries recover once, while permanent 502 fails closed", async
   const success = await verifyBuyerPathsLive({ fetchImpl: transient, sleep: async ms => { delays.push(ms); } });
   assert.equal(success.transientRetries, 1);
   assert.deepEqual(delays, [250]);
-  assert.equal(transient.calls.length, 13);
+  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 3);
   let calls = 0;
   await assert.rejects(verifyBuyerPathsLive({ sleep: async () => {}, fetchImpl: async input => {
     calls++;
