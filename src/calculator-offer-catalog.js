@@ -13,7 +13,10 @@ export function projectCalculatorOffers(fullCatalog, now = Date.now()) {
   const approved = fresh
     ? ["battery", "controller"].flatMap(category => selectGuideOffers(fullCatalog, category, now))
     : [];
-  const products = approved.map(product => ({
+  // Incomplete upstream specs must not crash the daily catalog sync or
+  // accidentally become a calculator recommendation.
+  const products = approved.filter(product => product?.specs && typeof product.specs === "object")
+    .map(product => ({
     id: product.id,
     name: product.name,
     merchant: product.merchant,
