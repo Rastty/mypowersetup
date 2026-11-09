@@ -5,6 +5,7 @@ import { buildFridgeGuideAutonomyUrl, applyCalculatorHandoffPrefill } from "../s
 import { calculateLanding } from "../src/calculator-landing.js";
 import { classifyGuideCalculatorLink } from "../src/analytics-links.js";
 import { getCalculatorCopy } from "../src/calculator-copy.js";
+import { carryCommunityAttributionToUrl } from "../src/community-navigation.js";
 
 const target = "/kalkulacky/vydrz-baterie/";
 const fridgeGuide = "pruvodce/spotreba-kompresorove-lednice/index.html";
@@ -97,6 +98,47 @@ test("fridge handoff fails closed for extras, duplicate, tampered and cross-mark
   }), null);
 });
 
+test("real community guide click carries its bounded attribution without discarding safe Wh", () => {
+  const referrerSearch = "?utm_source=reddit&utm_medium=community&utm_campaign=cz_technical_help&utm_content=fridge-help-01";
+  const guideUrl = "https://mypowersetup.com/pruvodce/spotreba-kompresorove-lednice/" + referrerSearch;
+  for (const wh of [270, 560]) {
+    const plain = buildFridgeGuideAutonomyUrl(wh);
+    const carried = carryCommunityAttributionToUrl(plain, { search: referrerSearch, pageUrl: guideUrl });
+    const url = new URL(carried, "https://mypowersetup.com");
+    assert.equal(url.pathname, target);
+    assert.equal(url.searchParams.get("mps_from"), "fridge-guide");
+    assert.equal(url.searchParams.get("dailyWh"), String(wh));
+    assert.equal(url.searchParams.get("utm_source"), "reddit");
+    assert.equal(url.searchParams.get("utm_medium"), "community");
+    assert.equal(url.searchParams.get("utm_campaign"), "cz_technical_help");
+    assert.equal(url.searchParams.get("utm_content"), "fridge-help-01");
+    const form = fakeForm();
+    const filled = applyCalculatorHandoffPrefill({
+      form, intent: "battery-autonomy", locale: "cs", pathname: target, search: url.search,
+    });
+    assert.equal(filled?.from, "fridge-guide");
+    assert.equal(form.values.dailyWh.value, String(wh));
+    assert.equal(form.values.batteryCapacityAh.value, "100");
+    assert.equal(form.values.systemVoltage.value, "12");
+    assert.equal(form.values.batteryType.value, "lifepo4");
+  }
+  const valid = "?mps_from=fridge-guide&dailyWh=270" + referrerSearch.replace("?", "&");
+  for (const broken of [
+    valid + "&utm_source=facebook", valid + "&systemVoltage=24",
+    valid.replace("utm_medium=community", "utm_medium=cpc"),
+    valid.replace("utm_campaign=cz_technical_help", "utm_campaign=../evil"),
+    valid.replace("utm_content=fridge-help-01", "utm_content=space%20invalid"),
+    valid.replace("&utm_content=fridge-help-01", ""),
+  ]) {
+    const form = fakeForm();
+    const outcome = applyCalculatorHandoffPrefill({
+      form, intent: "battery-autonomy", locale: "cs", pathname: target, search: broken,
+    });
+    assert.equal(outcome, null, broken);
+    assert.equal(form.values.dailyWh.value, "600");
+  }
+});
+
 test("guide prefill notice and versioned browser are truthful without auto-submit", async () => {
   const [browser, html] = await Promise.all([
     read("src/calculator-landing-browser.js"), read("kalkulacky/vydrz-baterie/index.html"),
@@ -105,8 +147,8 @@ test("guide prefill notice and versioned browser are truthful without auto-submi
   assert.match(browser, /prefill\.from === "fridge-guide" \? copy\.guidePrefillNote : copy\.prefillNote/);
   assert.ok(copy.guidePrefillNote.includes("lednice"));
   assert.ok(copy.guidePrefillNote.includes("kapacitu"));
-  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261109-fridge-guide1"/);
-  assert.match(browser, /calculator-handoff\.js\?v=20261109-fridge-guide1/);
+  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261109-fridge-community1"/);
+  assert.match(browser, /calculator-handoff\.js\?v=20261109-fridge-community1/);
   assert.match(browser, /calculator-copy\.js\?v=20261109-fridge-guide1/);
   assert.match(html, /<link rel="canonical" href="https:\/\/mypowersetup\.com\/kalkulacky\/vydrz-baterie\/">/);
   assert.match(browser, /form\.addEventListener\("submit"/);

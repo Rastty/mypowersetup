@@ -274,9 +274,11 @@ async function smokeFridgeGuideHandoff(client) {
   const cases = [
     { dailyWh: "270", measuredWh: 268 },
     { dailyWh: "560", measuredWh: 557 },
+    { dailyWh: "270", measuredWh: 268, community: true },
   ];
-  for (const { dailyWh, measuredWh } of cases) {
-    await client.send("Page.navigate", { url: origin + guidePath });
+  const communitySearch = "?utm_source=reddit&utm_medium=community&utm_campaign=cz_technical_help&utm_content=fridge-help-01";
+  for (const { dailyWh, measuredWh, community = false } of cases) {
+    await client.send("Page.navigate", { url: origin + guidePath + (community ? communitySearch : "") });
     await waitFor(async () => await evaluate(client, 'document.readyState === "complete" && document.querySelectorAll("a[href*=\\"mps_from=fridge-guide\\"]").length === 2'));
     const link = await evaluate(client,
       '(function(){ const a=Array.from(document.querySelectorAll("a[href]")).find(a=>a.href.includes("mps_from=fridge-guide") && a.href.includes("dailyWh=' + dailyWh + '")); return a && {href:a.getAttribute("href"),width:innerWidth,scrollWidth:document.documentElement.scrollWidth}; })()');
@@ -289,15 +291,22 @@ async function smokeFridgeGuideHandoff(client) {
     await waitFor(async () => await evaluate(client,
       '(function(){ const f=document.querySelector("[data-calculator-form]"); return location.pathname==="/kalkulacky/vydrz-baterie/" && f?.elements.namedItem("dailyWh").value==="' + dailyWh + '" && !document.querySelector("[data-calculator-result]").hidden; })()'));
     const arrival = await evaluate(client,
-      '(function(){ const f=document.querySelector("[data-calculator-form]"); return {dailyWh:f.elements.namedItem("dailyWh").value,capacity:f.elements.namedItem("batteryCapacityAh").value,voltage:f.elements.namedItem("systemVoltage").value,chemistry:f.elements.namedItem("batteryType").value,note:f.querySelector("[role=status]")?.textContent||"",width:innerWidth,scrollWidth:document.documentElement.scrollWidth}; })()');
+      '(function(){ const f=document.querySelector("[data-calculator-form]"); return {dailyWh:f.elements.namedItem("dailyWh").value,capacity:f.elements.namedItem("batteryCapacityAh").value,voltage:f.elements.namedItem("systemVoltage").value,chemistry:f.elements.namedItem("batteryType").value,note:f.querySelector("[role=status]")?.textContent||"",search:location.search,width:innerWidth,scrollWidth:document.documentElement.scrollWidth}; })()');
     assert(arrival.dailyWh === dailyWh && arrival.capacity === "100"
       && arrival.voltage === "12" && arrival.chemistry === "lifepo4",
       "guide handoff silently changed unverified battery parameters");
     assert(arrival.note.includes("lednice"), "guide scenario prefill notice missing");
     assert(arrival.scrollWidth <= arrival.width + 2, "receiving battery form overflows 390px");
+    if (community) {
+      const utm = new URLSearchParams(arrival.search);
+      assert(utm.get("utm_source") === "reddit" && utm.get("utm_medium") === "community"
+        && utm.get("utm_campaign") === "cz_technical_help"
+        && utm.get("utm_content") === "fridge-help-01",
+        "community attribution did not survive guide-to-calculator navigation");
+    }
   }
   return { source: guidePath, destination, measuredDailyWh: [268,557],
-    roundedFormDailyWh: cases.map(x=>Number(x.dailyWh)), untouchedBatteryFields: true,
+    roundedFormDailyWh: [270,560], communityAttributionPreserved: true, untouchedBatteryFields: true,
     mobileHorizontalOverflow: false };
 }
 

@@ -33,7 +33,7 @@ test("comparison retains the interactive calculator and communicates assumptions
   assert.match(html, /data-calculator-intent="battery-autonomy"/);
   assert.match(html, /name="batteryCapacityAh"/);
   assert.match(html, /name="dailyWh"/);
-  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261109-fridge-guide1"/);
+  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261109-fridge-community1"/);
   assert.ok(html.indexOf('data-calculator-intent="battery-autonomy"') < html.indexOf('id="priklady-vydrze"'));
   for (const term of ["600 Wh", "80%", "50 %", "15%", "bez dobíjení", "BMS", "24 V"]) {
     assert.ok(html.includes(term), "missing assumption " + term);

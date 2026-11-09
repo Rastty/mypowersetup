@@ -1,3 +1,5 @@
+import { readCommunityAttribution } from "./community-attribution.js";
+
 // Narrow, explicit micro-calculator handoffs. A valid linked calculation should
 // never require re-entering the same Wh, DC voltage, or battery chemistry.
 // No synthetic appliance loads or hidden inverter assumptions are invented.
@@ -30,9 +32,16 @@ function applyFridgeGuidePrefill({ form, intent, locale, pathname, params }) {
     return null;
   if (params.getAll("mps_from").length !== 1 || params.getAll("dailyWh").length !== 1)
     return null;
-  // Guide claims must never carry hidden voltage, chemistry or capacity values.
-  if ([...params.keys()].some((key) => key !== "mps_from" && key !== "dailyWh"))
-    return null;
+  // The shared guide click tracker can carry an existing, validated community
+  // UTM quartet. Keep that marketing context without accepting even one extra
+  // electrical field or allowing UTM data to affect the sizing calculation.
+  const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
+  const allowed = new Set(["mps_from", "dailyWh", ...utmKeys]);
+  if ([...params.keys()].some((key) => !allowed.has(key))) return null;
+  if (utmKeys.some((key) => params.has(key))) {
+    if (utmKeys.some((key) => params.getAll(key).length !== 1) ||
+        !readCommunityAttribution(params.toString())) return null;
+  }
   const wh = validSizingNumber(params.get("dailyWh"), 50, 20000);
   if (wh === null || !FRIDGE_GUIDE_WH.includes(wh)) return null;
   const field = form?.elements?.namedItem?.("dailyWh");
