@@ -394,12 +394,6 @@ async function smokeMpptBuyerMatches(client) {
 
 async function smokeBatteryBuyerMatches(client) {
   const path = "/kalkulacky/kapacita-baterie/";
-  await client.send("Page.navigate", { url: origin + path });
-  await waitFor(async () => await evaluate(client,
-    'document.readyState === "complete" && Boolean(document.querySelector("[data-calculator-intent=battery-capacity] [data-calculator-form]"))'));
-  const before = await evaluate(client, '(() => { const p=document.querySelector("[data-battery-buyers]"); return {hidden:p.hidden,links:p.querySelectorAll("a[data-affiliate-click]").length,overflow:document.documentElement.scrollWidth>innerWidth+2}; })()');
-  assert(before.hidden && before.links === 0 && !before.overflow,
-    "preview cannot expose buyer links or overflow");
   const fixture = [
     "(() => {",
     " window.__batteryFeedMode='fresh';",
@@ -423,7 +417,14 @@ async function smokeBatteryBuyerMatches(client) {
     " };",
     "})();",
   ].join("\n");
-  await evaluate(client,fixture);
+  await client.send("Page.addScriptToEvaluateOnNewDocument", { source: fixture });
+  await client.send("Page.navigate", { url: origin + path });
+  await waitFor(async () => await evaluate(client,
+    'document.readyState === "complete" && Boolean(document.querySelector("[data-calculator-intent=battery-capacity] [data-calculator-form]"))'));
+  const before = await evaluate(client, '(() => { const p=document.querySelector("[data-battery-buyers]"); return {hidden:p.hidden,links:p.querySelectorAll("a[data-affiliate-click]").length,overflow:document.documentElement.scrollWidth>innerWidth+2}; })()');
+  assert(before.hidden && before.links === 0 && !before.overflow,
+    "preview cannot expose buyer links or overflow");
+
   await evaluate(client, '(() => { const f=document.querySelector("[data-calculator-form]"); const wh=f.elements.namedItem("dailyWh"); wh.value="300"; wh.dispatchEvent(new Event("input",{bubbles:true})); f.elements.namedItem("systemVoltage").value="12"; f.requestSubmit(); })()');
   try {
     await waitFor(async () => await evaluate(client,
