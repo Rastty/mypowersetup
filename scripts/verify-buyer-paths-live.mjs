@@ -136,11 +136,13 @@ export async function verifyBuyerPathsLive({
     const local = await readLocal(asset);
     // The browser import version is explicit on the HTML; apply it to the
     // served browser request so the audit checks the actual referenced asset.
-    const path = asset === "src/calculator-landing-browser.js"
-      ? browserVersions.get("battery_runtime") : "/" + asset;
-    const served = await fetchPage(fetchImpl, new URL(path, base), "js", sleep, () => retries++);
-    checkServedAsset(served, local, asset);
-    checkedAssets.push({ asset, source: "exact", http: 200 });
+    const paths = asset === "src/calculator-landing-browser.js"
+      ? [...new Set(browserVersions.values())] : ["/" + asset];
+    for (const path of paths) {
+      const served = await fetchPage(fetchImpl, new URL(path, base), "js", sleep, () => retries++);
+      checkServedAsset(served, local, asset);
+      checkedAssets.push({ asset, servedPath: path, source: "exact", http: 200 });
+    }
   }
   return Object.freeze({
     status: "PUBLIC_BUYER_HTML_AND_JS_VERIFIED",
