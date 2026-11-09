@@ -4,6 +4,7 @@ const COPY = Object.freeze({
     failed: "Výpočet se nepodařilo dokončit.",
     staleResult: "Změnili jste zadání. Pro aktuální návrh spusťte výpočet znovu.",
     prefillNote: "Převzali jsme spotřebu, napětí a typ baterie z předchozí kalkulačky. Údaje zkontrolujte a spusťte nový výpočet.",
+    guidePrefillNote: "Předvyplněná denní spotřeba lednice je orientační scénář zaokrouhlený nahoru po 10 Wh. Zkontrolujte kapacitu, napětí, typ své baterie i ostatní spotřebiče a spusťte vlastní výpočet.",
     nextBattery: "Spočítat potřebnou baterii na 2 dny →",
     nextSolar: "Pokračovat výpočtem soláru →",
     nextMppt: "Předat výkon panelů do MPPT →",
