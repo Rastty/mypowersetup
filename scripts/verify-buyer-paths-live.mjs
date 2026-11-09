@@ -132,12 +132,19 @@ export async function verifyBuyerPathsLive({
     fail("PUBLIC_CALCULATOR_COVERAGE_INCOMPLETE");
 
   const checkedAssets = [];
+  const localBrowser = await readLocal("src/calculator-landing-browser.js");
   for (const asset of ASSETS) {
     const local = await readLocal(asset);
-    // The browser import version is explicit on the HTML; apply it to the
-    // served browser request so the audit checks the actual referenced asset.
+    // Resolve the *actual* versioned import used by the served calculator
+    // browser. Checking an unversioned dependency could miss stale CDN bytes.
+    const dependency = asset === "src/calculator-handoff.js" || asset === "src/calculator-copy.js";
+    const imported = dependency
+      ? localBrowser.match(new RegExp("from [\\\"']\\./(" + asset.split("/").at(-1).replaceAll(".", "\\.") + "\\?v=[^\\\"']+)[\\\"']"))?.[1]
+      : null;
+    if (dependency && !imported) fail("PUBLIC_VERSIONED_IMPORT_MISSING:" + asset);
     const paths = asset === "src/calculator-landing-browser.js"
-      ? [...new Set(browserVersions.values())] : ["/" + asset];
+      ? [...new Set(browserVersions.values())]
+      : [dependency ? "/src/" + imported : "/" + asset];
     for (const path of paths) {
       const served = await fetchPage(fetchImpl, new URL(path, base), "js", sleep, () => retries++);
       checkServedAsset(served, local, asset);
