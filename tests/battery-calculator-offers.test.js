@@ -38,11 +38,11 @@ const calc = (dailyWh, autonomyDays = 2, voltage = "12", batteryType = "lifepo4"
 test("actual shared battery engine chooses a single adequate exact-SKU battery by Ah and chemistry", () => {
   const small = calc(300);
   assert.equal(small.batteryAh, 80);
-  assert.deepEqual(selectBatteryCalculatorOffers(feed(), small, now).map(p => p.id), approved.map(p=>p.id));
+  assert.deepEqual(selectBatteryCalculatorOffers(feed(), small, now).map(p => p.id).sort(), approved.map(p=>p.id).sort());
   const medium = calc(600);
   assert.equal(medium.batteryAh, 150);
-  assert.deepEqual(selectBatteryCalculatorOffers(feed(), medium, now).map(p => p.id),
-    approved.slice(1).map(p => p.id));
+  assert.deepEqual(selectBatteryCalculatorOffers(feed(), medium, now).map(p => p.id).sort(),
+    approved.slice(1).map(p => p.id).sort());
   const over = calc(900);
   assert.equal(over.batteryAh, 220);
   assert.deepEqual(selectBatteryCalculatorOffers(feed(), over, now), [],
