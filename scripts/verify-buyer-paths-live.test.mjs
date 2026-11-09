@@ -49,7 +49,11 @@ test("six buyer pages including battery sizing plus every actual versioned calcu
   assert.ok(result.browserVersions.mppt_calculator.includes("mppt-buyer1"));
   assert.ok(result.browserVersions.battery_capacity.includes("battery-buyer1"));
   assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261109-battery-buyer1")));
+    row.servedPath.includes("?v=20261109-lightweight-cz1")));
+  assert.ok(result.assets.some(row => row.asset === "src/mppt-calculator-offers-browser.js" &&
+    row.servedPath.includes("?v=20261109-lightweight-cz1")));
+  assert.ok(result.assets.some(row => row.asset === "src/calculator-offer-catalog.js" &&
+    row.servedPath.includes("?v=20261109-lightweight-cz1")));
   for (const row of result.pages) assert.equal(row.http, 200);
 });
 
