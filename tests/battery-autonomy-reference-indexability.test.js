@@ -88,5 +88,5 @@ test("autonomy calculator can continue to capacity for two explicitly editable d
   assert.match(browser, /intent === "battery-autonomy" \? copy\.nextBattery/);
   assert.match(copy, /nextBattery: "Spočítat potřebnou baterii na 2 dny/);
   assert.match(target, /name="autonomyDays"[^>]*value="2"/);
-  assert.match(target, /src="\/src\/calculator-landing-browser\.js\?v=20261107-handoff1"/);
+  assert.match(target, /src="\/src\/calculator-landing-browser\.js\?v=20261109-battery-buyer1"/);
 });
