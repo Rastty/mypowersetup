@@ -1,9 +1,9 @@
 import "./analytics.js";
 import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution } from "./calculator-attribution.js";
 import { calculateLanding } from "./calculator-landing.js";
-import { classifyCalculatorContinuation, getCalculatorCopy } from "./calculator-copy.js";
+import { classifyCalculatorContinuation, getCalculatorCopy } from "./calculator-copy.js?v=20261109-fridge-guide1";
 import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
-import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js";
+import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261109-fridge-guide1";
 
 const root = document.querySelector("[data-calculator-landing]");
 
