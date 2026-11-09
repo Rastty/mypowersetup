@@ -26,6 +26,7 @@ export const ASSETS = Object.freeze([
   "src/mppt-calculator-offers.js",
   "src/guide-offer-impressions.js",
   "src/guide-verified-offers.js",
+  "src/calculator-offer-catalog.js",
 ]);
 const TRANSIENT_HTTP = new Set([429, 502, 503, 504]);
 const VERSIONED_BROWSER = /<script\b[^>]*\bsrc=["'](\/src\/calculator-landing-browser\.js\?v=[^"']+)["'][^>]*>/i;
@@ -149,17 +150,24 @@ export async function verifyBuyerPathsLive({
 
   const checkedAssets = [];
   const localBrowser = await readLocal("src/calculator-landing-browser.js");
+  const mpptBuyer = await readLocal("src/mppt-calculator-offers-browser.js");
+  const batteryBuyer = await readLocal("src/battery-calculator-offers-browser.js");
   for (const asset of ASSETS) {
     const local = await readLocal(asset);
     // Resolve the *actual* versioned import used by the served calculator
     // browser. Checking an unversioned dependency could miss stale CDN bytes.
     const dependency = ["src/calculator-handoff.js", "src/calculator-copy.js",
       "src/battery-calculator-offers-browser.js",
-      "src/mppt-calculator-offers-browser.js"].includes(asset);
-    const imports = [...localBrowser.matchAll(/from ["']\.\/([^"']+)["']/g)].map(match => match[1]);
+      "src/mppt-calculator-offers-browser.js",
+      "src/calculator-offer-catalog.js"].includes(asset);
+    const importer = asset === "src/calculator-offer-catalog.js" ? batteryBuyer : localBrowser;
+    const imports = [...importer.matchAll(/from ["']\.\/([^"']+)["']/g)].map(match => match[1]);
     const imported = dependency
       ? imports.find(value => value.startsWith(asset.split("/").at(-1) + "?v="))
       : null;
+    if (asset === "src/calculator-offer-catalog.js" &&
+        !mpptBuyer.includes(`from "./${imported}"`))
+      fail("PUBLIC_BUYER_CATALOG_IMPORT_DRIFT");
     if (dependency && !imported) fail("PUBLIC_VERSIONED_IMPORT_MISSING:" + asset);
     const paths = asset === "src/calculator-landing-browser.js"
       ? [...new Set(browserVersions.values())]
