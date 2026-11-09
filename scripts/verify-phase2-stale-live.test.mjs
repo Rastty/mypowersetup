@@ -66,3 +66,73 @@ test("requires both electrical calculator intents and exact script version", () 
   assert.equal(checkHtml(html("dc-protection"), { intent: "dc-protection" }),
     "/src/phase2-calculator-browser.js?v=" + VERSION);
 });
+
+// A single transient outage should not create a false negative, but repeated
+// failures and semantic regressions must not be hidden by the retry layer.
+test("recovers from one HTTP 503 on a page without skipping either route", async () => {
+  const baseFetch = mockFetch();
+  const calls = [];
+  const delays = [];
+  let failed = false;
+  const result = await verifyLive({
+    sleep: async ms => { delays.push(ms); },
+    fetchImpl: async input => {
+      const url = String(input);
+      calls.push(url);
+      if (!failed && url.endsWith(ROUTES[0].path)) {
+        failed = true;
+        return mockResponse(url, "Unavailable", "text/html", 503);
+      }
+      return baseFetch(input);
+    },
+  });
+  assert.equal(result.status, "PUBLIC_HTML_AND_SERVED_JS_VERIFIED");
+  assert.equal(result.transientRetries, 1);
+  assert.deepEqual(delays, [250]);
+  assert.equal(calls.length, 4);
+  assert.equal(result.routes.length, 2);
+});
+
+test("recovers from a temporary HTTP 502 on versioned JS", async () => {
+  const baseFetch = mockFetch();
+  let jsAttempts = 0;
+  const result = await verifyLive({ sleep: async () => {}, fetchImpl: async input => {
+    const url = String(input);
+    if (url.includes("phase2-calculator-browser.js") && ++jsAttempts === 1)
+      return mockResponse(url, "Bad Gateway", "text/plain", 502);
+    return baseFetch(input);
+  } });
+  assert.equal(jsAttempts, 2);
+  assert.equal(result.transientRetries, 1);
+  assert.equal(result.routes.length, 2);
+});
+
+test("permanent 503 fails after bounded retries", async () => {
+  const calls = [];
+  const delays = [];
+  await assert.rejects(verifyLive({
+    sleep: async ms => { delays.push(ms); },
+    fetchImpl: async input => {
+      calls.push(String(input));
+      return mockResponse(String(input), "Unavailable", "text/html", 503);
+    },
+  }), /PUBLIC_HTTP_503/);
+  assert.equal(calls.length, 3);
+  assert.deepEqual(delays, [250, 500]);
+});
+
+test("404 is not retried and semantic regressions still fail", async () => {
+  let calls = 0;
+  await assert.rejects(verifyLive({
+    sleep: async () => { throw new Error("must not sleep"); },
+    fetchImpl: async input => {
+      calls++;
+      return mockResponse(String(input), "Missing", "text/html", 404);
+    },
+  }), /PUBLIC_HTTP_404/);
+  assert.equal(calls, 1);
+  const invalid = mockFetch({ staleJs: true });
+  await assert.rejects(verifyLive({ fetchImpl: invalid,
+    sleep: async () => { throw new Error("must not retry stale JS"); } }), /SERVED_JS_STALE_GUARD_MISSING/);
+  assert.equal(invalid.calls.length, 2);
+});
