@@ -114,6 +114,7 @@ test("published MPPT page has an accessible, after-submit-only, truthful buyer s
   const page = await readFile("kalkulacky/mppt-regulator/index.html", "utf8");
   const browser = await readFile("src/calculator-landing-browser.js", "utf8");
   const ui = await readFile("src/mppt-calculator-offers-browser.js", "utf8");
+  const impression = await readFile("src/guide-offer-impressions.js", "utf8");
   const stylesheet = await readFile("kalkulacky/calculator.css", "utf8");
   const sitemap = await readFile("sitemap.xml", "utf8");
   const calcSitemap = await readFile("sitemap-calculators.xml", "utf8");
@@ -131,7 +132,8 @@ test("published MPPT page has an accessible, after-submit-only, truthful buyer s
   assert.match(ui, /AbortSignal\.timeout\(15000\)/);
   assert.match(ui, /cache: "no-store", redirect: "error"/);
   assert.match(ui, /track\?\.\("affiliate_click"/);
-  assert.match(ui, /"product_choice_impression"/); // must be emitted by shared intersection source (see tracker)
+  assert.match(impression, /"product_choice_impression"/);
+  assert.match(ui, /allowedSources: \["mppt-calculator-match"\]/);
   assert.match(stylesheet, /\.calculator-mppt-offer-list/);
   assert.doesNotMatch(page, /href="https:\/\/ehub\.cz\/system\/scripts\/click\.php/);
   for (const xml of [sitemap, calcSitemap]) {
