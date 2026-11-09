@@ -55,6 +55,63 @@ test("CZ solar sizing passes real Wp and lead charging voltage into its MPPT cal
   assert.equal(target.controllerAmps, result.controllerAmps);
 });
 
+
+test("CZ battery autonomy passes known daily demand, selected voltage and chemistry to battery capacity", () => {
+  const targetPath = "/kalkulacky/kapacita-baterie/";
+  assert.deepEqual(calculatorHandoffTarget("battery-autonomy", "cs"),
+    { path: targetPath, intent: "battery-capacity" });
+  for (const [batteryCapacityAh, systemVoltage, batteryType, dailyWh] of [
+    [100, 12, "lifepo4", 600], [200, 24, "lead", 1200],
+  ]) {
+    const inputs = { batteryCapacityAh, systemVoltage, batteryType, dailyWh };
+    const result = calculateLanding("battery-autonomy", inputs, "cs").result;
+    const href = buildCalculatorHandoffUrl({ intent: "battery-autonomy", locale: "cs", result, inputs });
+    assert.ok(href?.startsWith(targetPath + "?"), "only local capacity calculator");
+    const f = form();
+    const applied = applyCalculatorHandoffPrefill({
+      form: f, intent: "battery-capacity", locale: "cs",
+      pathname: targetPath, search: new URL(href, "https://mypowersetup.com").search,
+    });
+    assert.equal(applied?.from, "battery-autonomy");
+    assert.equal(f.values.dailyWh.value, String(dailyWh));
+    assert.equal(f.values.systemVoltage.value, String(systemVoltage));
+    assert.equal(f.values.batteryType.value, batteryType);
+    const downstream = calculateLanding("battery-capacity", {
+      dailyWh: Number(f.values.dailyWh.value), systemVoltage: f.values.systemVoltage.value,
+      batteryType: f.values.batteryType.value, autonomyDays: 2,
+    }, "cs").result;
+    assert.equal(downstream.dailyWh, dailyWh);
+    assert.equal(downstream.autonomyDays, 2);
+    assert.equal(downstream.systemVoltage, systemVoltage);
+  }
+  assert.equal(classifyCalculatorContinuation(targetPath, "", "cs"), "calculator");
+});
+
+test("autonomy-to-capacity handoff refuses invalid values and tampered source query atomically", () => {
+  const source = { intent: "battery-autonomy", locale: "cs",
+    result: { dailyWh: 600, systemVoltage: 12 }, inputs: { batteryType: "lifepo4" } };
+  for (const dailyWh of [0, 55, 20010, 100.5, Number.NaN]) {
+    assert.equal(buildCalculatorHandoffUrl({ ...source, result: { ...source.result, dailyWh } }), null);
+  }
+  assert.equal(buildCalculatorHandoffUrl({ ...source, inputs: { batteryType: "unknown" } }), null);
+  assert.equal(buildCalculatorHandoffUrl({ ...source, result: { ...source.result, systemVoltage: 48 } }), null);
+  for (const locale of ["sk", "pl", "hu", "pt"]) {
+    assert.equal(calculatorHandoffTarget("battery-autonomy", locale), null);
+  }
+  const qs = "?mps_from=battery-autonomy&dailyWh=600&systemVoltage=12&batteryType=lifepo4";
+  for (const invalid of [
+    qs + "&dailyWh=1200", qs + "&batteryType=lead",
+    qs.replace("dailyWh=600", "dailyWh=602"),
+    qs.replace("mps_from=battery-autonomy", "mps_from=solar-sizing"),
+    qs.replace("systemVoltage=12", "systemVoltage=48"),
+  ]) {
+    const f = form();
+    assert.equal(applyCalculatorHandoffPrefill({ form: f, intent: "battery-capacity",
+      locale: "cs", pathname: "/kalkulacky/kapacita-baterie/", search: invalid }), null);
+    assert.ok(Object.values(f.values).every(field => field.value === "initial"));
+  }
+});
+
 test("no fabricated MPPT prefill for oversized array, no foreign-market MPPT link", () => {
   const huge = { solarWatts: 10000, systemVoltage: 24 };
   assert.equal(buildCalculatorHandoffUrl({ intent: "solar-sizing", locale: "cs", result: huge, inputs: { batteryType: "lifepo4" } }), null);
