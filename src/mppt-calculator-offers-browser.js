@@ -69,10 +69,12 @@ export function mountMpptCalculatorBuyers(root, {
 
   function render(payload, calculation, token) {
     if (token !== generation || !activeResult) return;
+    section.dataset.buyerFetchState = "selecting";
     const current = now();
     const offers = selectMpptCalculatorOffers(payload, calculation, current);
     clearOffers();
     if (!offers.length) {
+      section.dataset.buyerFetchState = "empty";
       noOffers("Pro zadané parametry nyní nemáme čerstvou ověřenou nabídku. Porovnejte proud, Wp, Voc a Isc v průvodci nebo navrhněte celou sestavu v Builderu.");
       return;
     }
@@ -130,6 +132,7 @@ export function mountMpptCalculatorBuyers(root, {
     fallback.hidden = true;
     section.dataset.liveOffers = String(list.childElementCount);
     section.hidden = false;
+    section.dataset.buyerFetchState = "shown";
     impressionTracker?.scan();
     if (Number.isFinite(earliestExpiry) && windowRoot?.setTimeout) {
       expiryTimer = windowRoot.setTimeout(() => {
@@ -148,6 +151,8 @@ export function mountMpptCalculatorBuyers(root, {
       batteryType: calculation.batteryType,
     });
     const token = generation;
+    section.dataset.buyerFetchState = "loading";
+    section.dataset.buyerGeneration = String(token);
     section.hidden = false;
     fallback.textContent = "Ověřujeme čerstvé nabídky přesných modelů MPPT…";
     fallback.hidden = false;
@@ -156,8 +161,11 @@ export function mountMpptCalculatorBuyers(root, {
       const response = await fetchImpl("/data/products.json", {
         cache: "no-store", redirect: "error", signal: AbortSignal.timeout(15000),
       });
+      section.dataset.buyerFetchState = "response_" + response.status;
       if (response.ok) payload = await response.json();
+      section.dataset.buyerFetchState = "parsed";
     } catch {
+      section.dataset.buyerFetchState = "failed";
       // Fail closed: no live feed, no offer, price, or outbound link.
     }
     if (token !== generation || !activeResult) return;
