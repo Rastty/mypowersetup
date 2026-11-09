@@ -4,8 +4,8 @@ import { calculateLanding } from "./calculator-landing.js";
 import { classifyCalculatorContinuation, getCalculatorCopy } from "./calculator-copy.js?v=20261109-fridge-guide1";
 import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
 import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261109-fridge-community1";
-import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261109-mppt-buyer1";
-import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261109-battery-buyer1";
+import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261109-lightweight-cz1";
+import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261109-lightweight-cz1";
 
 const root = document.querySelector("[data-calculator-landing]");
 
