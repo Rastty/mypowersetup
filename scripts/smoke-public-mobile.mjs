@@ -358,7 +358,7 @@ async function smokeMpptBuyerMatches(client) {
   await evaluate(client, 'document.querySelector("[data-calculator-intent=mppt-sizing] [data-calculator-form]").requestSubmit()');
   try {
     await waitFor(async () => await evaluate(client,
-      '(() => { const p=document.querySelector("[data-mppt-buyers]"); return !p.hidden && !p.querySelector("[data-mppt-offer-fallback]").textContent.startsWith("Ověřujeme"); })()'), 200);
+      '(() => { const p=document.querySelector("[data-mppt-buyers]"); const note=p.querySelector("[data-mppt-offer-fallback]"); return !p.hidden && (note.hidden || !note.textContent.startsWith("Ověřujeme")); })()'), 200);
   } catch {
     const debug = await evaluate(client, '(() => { const p=document.querySelector("[data-mppt-buyers]"); const form=document.querySelector("[data-calculator-form]"); return {url:location.href,readyState:document.readyState,buyerHidden:p?.hidden,buyerState:p?.dataset.buyerFetchState,generation:p?.dataset.buyerGeneration,mockMode:window.__mpsMpptMockMode,mockCalls:window.__mpsMpptMockCalls,unhandled:window.__mpsMpptUnhandled,fallback:p?.querySelector("[data-mppt-offer-fallback]")?.textContent,metric:document.querySelector("[data-result-controller-amps]")?.textContent,formPresent:Boolean(form),scripts:[...document.querySelectorAll("script[src]")].map(s=>s.src)}; })()');
     throw new Error("MPPT_BUYER_BROWSER_DIAGNOSTIC:" + JSON.stringify(debug) +
