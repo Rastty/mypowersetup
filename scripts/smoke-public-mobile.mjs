@@ -12,6 +12,7 @@ class CdpClient {
   constructor(url) {
     this.nextId = 1;
     this.pending = new Map();
+    this.exceptions = [];
     this.socket = new WebSocket(url);
     this.opened = new Promise((resolve, reject) => {
       this.socket.addEventListener("open", resolve, { once: true });
@@ -19,6 +20,10 @@ class CdpClient {
     });
     this.socket.addEventListener("message", (event) => {
       const message = JSON.parse(event.data);
+      if (message.method === "Runtime.exceptionThrown") {
+        this.exceptions.push(message.params?.exceptionDetails?.exception?.description ||
+          message.params?.exceptionDetails?.text || "unknown JS exception");
+      }
       if (!message.id || !this.pending.has(message.id)) return;
       const { resolve, reject } = this.pending.get(message.id);
       this.pending.delete(message.id);
@@ -322,8 +327,14 @@ async function smokeMpptBuyerMatches(client) {
     "MPPT preview must not show unverified offers or horizontally overflow");
 
   await evaluate(client, 'document.querySelector("[data-calculator-intent=mppt-sizing] [data-calculator-form]").requestSubmit()');
-  await waitFor(async () => await evaluate(client,
-    '(() => { const p=document.querySelector("[data-mppt-buyers]"); return !p.hidden && !p.querySelector("[data-mppt-offer-fallback]").textContent.startsWith("Ověřujeme"); })()'), 200);
+  try {
+    await waitFor(async () => await evaluate(client,
+      '(() => { const p=document.querySelector("[data-mppt-buyers]"); return !p.hidden && !p.querySelector("[data-mppt-offer-fallback]").textContent.startsWith("Ověřujeme"); })()'), 200);
+  } catch {
+    const debug = await evaluate(client, '(() => { const p=document.querySelector("[data-mppt-buyers]"); const form=document.querySelector("[data-calculator-form]"); return {url:location.href,readyState:document.readyState,buyerHidden:p?.hidden,fallback:p?.querySelector("[data-mppt-offer-fallback]")?.textContent,metric:document.querySelector("[data-result-controller-amps]")?.textContent,formPresent:Boolean(form),scripts:[...document.querySelectorAll("script[src]")].map(s=>s.src)}; })()');
+    throw new Error("MPPT_BUYER_BROWSER_DIAGNOSTIC:" + JSON.stringify(debug) +
+      ":JS_EXCEPTIONS:" + JSON.stringify(client.exceptions.slice(-5)));
+  }
   const after = await evaluate(client, '(() => { const p=document.querySelector("[data-mppt-buyers]"); const links=[...p.querySelectorAll("a[data-affiliate-click]")]; return {links:links.map(x=>({id:x.dataset.productId,source:x.dataset.source,merchant:x.dataset.merchant,href:x.href,expiry:Number(x.dataset.offerExpiresAt)})),fallbackHidden:p.querySelector("[data-mppt-offer-fallback]").hidden,result:!document.querySelector("[data-calculator-result]").hidden,overflow:document.documentElement.scrollWidth>innerWidth+2}; })()');
   assert(after.result && !after.overflow, "MPPT result must be visible without mobile horizontal overflow");
   for (const link of after.links) {
