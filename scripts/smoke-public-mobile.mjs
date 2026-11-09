@@ -326,8 +326,12 @@ async function smokeMpptBuyerMatches(client) {
     "(() => {",
     "  const realFetch = window.fetch.bind(window);",
     "  window.__mpsMpptMockMode = 'fresh';",
+    "  window.__mpsMpptMockCalls = 0;",
+    "  window.__mpsMpptUnhandled = [];",
+    "  window.addEventListener('unhandledrejection', event => window.__mpsMpptUnhandled.push(String(event.reason)));",
     "  window.fetch = (input, options) => {",
     "    if (String(input) !== '/data/products.json') return realFetch(input, options);",
+    "    window.__mpsMpptMockCalls++;",
     "    const page = 'https://www.vselektro.eu/solarni-regulator-victron-energy-mppt-smartsolar-100v-50a/';",
     "    const affiliate = new URL('https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=f897865f');",
     "    affiliate.searchParams.set('desturl', page);",
@@ -356,7 +360,7 @@ async function smokeMpptBuyerMatches(client) {
     await waitFor(async () => await evaluate(client,
       '(() => { const p=document.querySelector("[data-mppt-buyers]"); return !p.hidden && !p.querySelector("[data-mppt-offer-fallback]").textContent.startsWith("Ověřujeme"); })()'), 200);
   } catch {
-    const debug = await evaluate(client, '(() => { const p=document.querySelector("[data-mppt-buyers]"); const form=document.querySelector("[data-calculator-form]"); return {url:location.href,readyState:document.readyState,buyerHidden:p?.hidden,fallback:p?.querySelector("[data-mppt-offer-fallback]")?.textContent,metric:document.querySelector("[data-result-controller-amps]")?.textContent,formPresent:Boolean(form),scripts:[...document.querySelectorAll("script[src]")].map(s=>s.src)}; })()');
+    const debug = await evaluate(client, '(() => { const p=document.querySelector("[data-mppt-buyers]"); const form=document.querySelector("[data-calculator-form]"); return {url:location.href,readyState:document.readyState,buyerHidden:p?.hidden,buyerState:p?.dataset.buyerFetchState,generation:p?.dataset.buyerGeneration,mockMode:window.__mpsMpptMockMode,mockCalls:window.__mpsMpptMockCalls,unhandled:window.__mpsMpptUnhandled,fallback:p?.querySelector("[data-mppt-offer-fallback]")?.textContent,metric:document.querySelector("[data-result-controller-amps]")?.textContent,formPresent:Boolean(form),scripts:[...document.querySelectorAll("script[src]")].map(s=>s.src)}; })()');
     throw new Error("MPPT_BUYER_BROWSER_DIAGNOSTIC:" + JSON.stringify(debug) +
       ":JS_EXCEPTIONS:" + JSON.stringify(client.exceptions.slice(-5)));
   }
