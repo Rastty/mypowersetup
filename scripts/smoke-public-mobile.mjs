@@ -117,12 +117,14 @@ try {
 
   const reports = [];
   for (const market of markets) reports.push(await smokeMarket(cdp, market));
+  const batteryUpgrade = await smokeBatteryUpgrade(cdp);
 
   console.log(JSON.stringify({
     ok: true,
     chrome: chromeBin,
     viewport: "390x844",
     markets: reports,
+    batteryUpgrade,
   }, null, 2));
 } finally {
   if (cdp) await cdp.send("Browser.close").catch(() => {});
@@ -213,6 +215,53 @@ async function smokeMarket(client, market) {
     productGroups: result.productGroups,
     productCards: result.productCards,
     horizontalOverflow: false,
+  };
+}
+
+
+async function smokeBatteryUpgrade(client) {
+  // Browser-prove the measurable next step: invalidation, exact input transfer,
+  // mobile navigation, and a visibly editable two-day receiving assumption.
+  await client.send("Page.navigate", { url: origin + "/kalkulacky/vydrz-baterie/" });
+  await waitFor(async () => await evaluate(client,
+    'document.readyState === "complete" && Boolean(document.querySelector("[data-calculator-handoff]"))'));
+
+  const invalidated = await evaluate(client,
+    '(function(){ const form=document.querySelector("[data-calculator-form]"); for (const [name,value] of Object.entries({batteryCapacityAh:"150",systemVoltage:"24",batteryType:"lead",dailyWh:"1200"})){ const field=form.elements.namedItem(name); if(!field) throw new Error("missing "+name); field.value=value; field.dispatchEvent(new Event("change",{bubbles:true})); } return {resultHidden:document.querySelector("[data-calculator-result]").hidden, staleNoticeVisible:!document.querySelector("[data-calculator-stale]").hidden}; })()');
+  assert(invalidated.resultHidden && invalidated.staleNoticeVisible,
+    "battery result was not invalidated after changing the form");
+
+  await evaluate(client, 'document.querySelector("[data-calculator-form]").requestSubmit()');
+  await waitFor(async () => await evaluate(client,
+    '(function(){ const link=document.querySelector("[data-calculator-handoff]"); return Boolean(link && !link.hidden && !document.querySelector("[data-calculator-result]").hidden); })()'));
+
+  const outgoing = await evaluate(client,
+    '(function(){ const link=document.querySelector("[data-calculator-handoff]"); return {href:link.getAttribute("href"),label:link.textContent.trim(),width:window.innerWidth,scrollWidth:document.documentElement.scrollWidth}; })()');
+  const destination = new URL(outgoing.href, origin);
+  assert(destination.origin === origin && destination.pathname === "/kalkulacky/kapacita-baterie/",
+    "battery upgrade has wrong destination");
+  for (const [key,value] of Object.entries({
+    mps_from:"battery-autonomy",dailyWh:"1200",systemVoltage:"24",batteryType:"lead"
+  })) assert(destination.searchParams.get(key) === value, "battery handoff lost "+key);
+  assert(outgoing.label.includes("2 dny"), "battery upgrade hides editable two-day target");
+  assert(outgoing.scrollWidth <= outgoing.width + 2, "battery autonomy overflows mobile screen");
+
+  await evaluate(client, 'document.querySelector("[data-calculator-handoff]").click()');
+  await waitFor(async () => await evaluate(client,
+    '(function(){ const form=document.querySelector("[data-calculator-form]"); return location.pathname === "/kalkulacky/kapacita-baterie/" && Boolean(form) && form.elements.namedItem("dailyWh").value === "1200" && form.elements.namedItem("systemVoltage").value === "24" && form.elements.namedItem("batteryType").value === "lead"; })()'));
+
+  const incoming = await evaluate(client,
+    '(function(){ const form=document.querySelector("[data-calculator-form]"); return {days:form.elements.namedItem("autonomyDays").value,resultVisible:!document.querySelector("[data-calculator-result]").hidden,width:window.innerWidth,scrollWidth:document.documentElement.scrollWidth}; })()');
+  assert(incoming.days === "2", "destination silently changed required days of autonomy");
+  assert(incoming.resultVisible, "receiving battery sizing result did not render");
+  assert(incoming.scrollWidth <= incoming.width + 2, "receiving capacity form overflows mobile screen");
+  return {
+    source: "/kalkulacky/vydrz-baterie/",
+    destination: destination.pathname,
+    preserved: ["dailyWh", "systemVoltage", "batteryType"],
+    editableAutonomyDays: Number(incoming.days),
+    staleResultInvalidated: true,
+    mobileHorizontalOverflow: false,
   };
 }
 
