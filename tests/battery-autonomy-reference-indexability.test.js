@@ -33,7 +33,7 @@ test("comparison retains the interactive calculator and communicates assumptions
   assert.match(html, /data-calculator-intent="battery-autonomy"/);
   assert.match(html, /name="batteryCapacityAh"/);
   assert.match(html, /name="dailyWh"/);
-  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261109-reference-funnel1"/);
+  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261109-battery-upgrade1"/);
   assert.ok(html.indexOf('data-calculator-intent="battery-autonomy"') < html.indexOf('id="priklady-vydrze"'));
   for (const term of ["600 Wh", "80%", "50 %", "15%", "bez dobíjení", "BMS", "24 V"]) {
     assert.ok(html.includes(term), "missing assumption " + term);
@@ -76,4 +76,17 @@ test("comparison continuation links use opt-in consented calculator funnel track
   assert.match(browser, /window\.MyPowerSetupAnalytics\?\.track\(event,/);
   assert.match(browser, /if \(url\.origin !== window\.location\.origin\) return/);
   assert.match(browser, /if \(!destinationType\) return/);
+});
+
+test("autonomy calculator can continue to capacity for two explicitly editable days", async () => {
+  const [html, browser, copy, target] = await Promise.all([
+    read(path), read("src/calculator-landing-browser.js"),
+    read("src/calculator-copy.js"), read("kalkulacky/kapacita-baterie/index.html"),
+  ]);
+  assert.match(html, /2 dny bez dobíjení/);
+  assert.match(html, /požadovaný počet dnů si na další stránce můžete změnit/);
+  assert.match(browser, /intent === "battery-autonomy" \? copy\.nextBattery/);
+  assert.match(copy, /nextBattery: "Spočítat potřebnou baterii na 2 dny/);
+  assert.match(target, /name="autonomyDays"[^>]*value="2"/);
+  assert.match(target, /src="\/src\/calculator-landing-browser\.js\?v=20261107-handoff1"/);
 });
