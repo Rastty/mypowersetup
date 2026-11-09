@@ -31,8 +31,11 @@ export function checkPublicHtml(html, local, { path, kind }) {
   if (!/<main\b/i.test(html)) fail("PUBLIC_MAIN_MISSING:" + path);
   if (/<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html))
     fail("PUBLIC_NOINDEX:" + path);
-  const canonical = 'href="' + PRODUCTION_ORIGIN + path + '"';
-  if (!html.includes(canonical) || !local.includes(canonical)) fail("PUBLIC_CANONICAL_MISMATCH:" + path);
+  const canonicalHref = markup => markup.match(/<link\b[^>]*\brel=["']canonical["'][^>]*\bhref=["']([^"']+)/i)?.[1] || null;
+  const canonical = PRODUCTION_ORIGIN + path;
+  // Alternate hreflang or article links cannot substitute for canonical.
+  if (canonicalHref(html) !== canonical || canonicalHref(local) !== canonical)
+    fail("PUBLIC_CANONICAL_MISMATCH:" + path);
   if (kind === "fridge_guide") {
     for (const wh of GUIDE_WH) {
       const href = '/kalkulacky/vydrz-baterie/?mps_from=fridge-guide&amp;dailyWh=' + wh;
