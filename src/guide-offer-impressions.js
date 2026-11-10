@@ -1,4 +1,4 @@
-import { buildAffiliateClickParameters } from "./affiliate-analytics.js";
+import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js";
 
 // A product_choice_impression means the *actual*, still-current commercial
 // link crossed 50% viewport visibility. Merely rendering the article, or
@@ -26,7 +26,7 @@ export function createVerifiedGuideImpressionTracker({
       if (!observed.has(link) || link.isConnected === false || link.closest?.("[hidden], details:not([open])")) continue;
       const expiresAt = Number(link.dataset?.offerExpiresAt);
       if (!Number.isFinite(expiresAt) || expiresAt <= 0 || now() > expiresAt) continue;
-      const params = buildAffiliateClickParameters(link);
+      const params = buildAttributedAffiliateParameters(link);
       if (params.productId === "unknown" || params.merchant !== "vselektro"
         || !allowedSources.includes(params.source)) continue;
       const key = `${params.merchant}:${params.category}:${params.productId}`;
