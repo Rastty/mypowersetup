@@ -80,7 +80,7 @@ export function checkBuyerJavascript(source) {
     /allowedSources:\s*\["dcdc-calculator-compare"\]/,
     /event\.preventDefault\(\)/,
   ];
-  if (!required.every(pattern => pattern.test(source))
+  if (!required.every(pattern => pattern.test(source)))
     throw new Error("SERVED_DCDC_BUYER_GUARD_MISSING");
   return true;
 }
