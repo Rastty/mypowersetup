@@ -1,4 +1,5 @@
 import { calculatorLocaleForPath } from "./calculator-funnel-report.js";
+import { classifyGscIndexingStatus } from "./gsc-indexing-status.js";
 
 function clean(value) {
   return String(value ?? "").trim();
@@ -51,14 +52,7 @@ function gscQuery(row) {
   return "";
 }
 
-function normalizeIndexed(value) {
-  if (typeof value === "boolean") return value;
-  const text = clean(value).toLowerCase();
-  if (!text) return null;
-  if (text === "indexed" || text.includes("submitted and indexed") || text.includes("url is on google")) return true;
-  if (text === "not indexed" || text.includes("not on google") || text.includes("excluded")) return false;
-  return null;
-}
+
 
 function aggregateGscPageMetricRows(rows = []) {
   const pages = new Map();
@@ -177,7 +171,7 @@ export function buildCalculatorGrowthPriorities({ gscRows = [], gscPageTotals = 
   const indexing = new Map();
   for (const row of Array.isArray(indexingRows) ? indexingRows : []) {
     const path = calculatorPath(row?.page || row?.url || row?.path);
-    const indexed = normalizeIndexed(row?.indexed ?? row?.coverageState ?? row?.verdict ?? row?.status);
+    const indexed = classifyGscIndexingStatus(row?.indexed ?? row?.coverageState ?? row?.verdict ?? row?.status);
     if (path && indexed !== null) indexing.set(path, indexed);
   }
 
