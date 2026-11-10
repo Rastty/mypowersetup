@@ -2,6 +2,7 @@ import "./analytics.js";
 import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution, rememberCalculatorResultContext, clearCalculatorResultContext } from "./calculator-attribution.js";
 import { classifyCalculatorContinuation } from "./calculator-copy.js";
 import { calculateDcDcCharger } from "./dc-dc-charger.js";
+import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261110-dcdc-buyer1";
 import { calculateDcProtectionPlan } from "./dc-protection-planner.js";
 
 const root = document.querySelector("[data-phase2-calculator]");
@@ -18,6 +19,7 @@ if (root) {
   const n = (value) => formatNumber.format(value);
   const landingParameters = buildCalculatorLandingAnalyticsParameters({ sourcePath: landingPath, intent, locale });
   if (!landingParameters) throw new Error(`CALCULATOR_LANDING_ATTRIBUTION_MISMATCH:${landingPath}:${intent}:${locale}`);
+  const dcdcBuyers = intent === "dcdc-sizing" ? mountDcdcCalculatorBuyers(root) : null;
 
   function track(event, parameters = {}) {
     return Boolean(window.MyPowerSetupAnalytics?.track(event, { ...landingParameters, ...parameters }));
@@ -132,12 +134,15 @@ if (root) {
             storage: window.sessionStorage,
           });
         }
+        // Product discovery uses this explicit result, never the SEO preview.
+        if (intent === "dcdc-sizing") void dcdcBuyers?.update(result);
         root.dispatchEvent(new CustomEvent("mypowersetup:calculator-result", {
           bubbles: true,
           detail: { intent, locale, userInitiated: true },
         }));
       }
     } catch (error) {
+      dcdcBuyers?.invalidate();
       resultPanel.hidden = true;
       errorPanel.textContent = error instanceof Error ? error.message : "Výpočet se nepodařilo dokončit.";
       errorPanel.hidden = false;
@@ -148,6 +153,7 @@ if (root) {
   // A new electrical input must never leave an old charger/fuse recommendation
   // on screen or attributed to a later merchant click before recalculation.
   function invalidateResult() {
+    dcdcBuyers?.invalidate();
     resultPanel.hidden = true;
     errorPanel.hidden = true;
     staleNotice.hidden = false;
