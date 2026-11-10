@@ -5,6 +5,8 @@ import {
   articleModifiedDate,
   enhanceMatureGuideSeo,
   matureGuideRoutesFromSitemap,
+  significantMatureGuideChange,
+  lastSignificantGuideDate,
   setSitemapLastmod,
 } from "../src/mature-guide-seo.js";
 
@@ -98,4 +100,73 @@ test("regenerator script is parseable by Node before automated SEO publication",
   const { spawnSync } = await import("node:child_process");
   const result = spawnSync(process.execPath, ["--check", "scripts/sync-mature-guide-seo.mjs"], { encoding: "utf8" });
   assert.equal(result.status, 0, result.stderr || result.stdout);
+});
+
+test("asset-only guide cache bust and bot date rewrite do not claim a fresh article", () => {
+  const route = "/pruvodce/jak-vybrat-mppt-regulator/";
+  const original = page(route, {publisher: true});
+  const technicalOnly = original
+    .replace('"dateModified":"2026-08-21"', '"dateModified":"2026-11-10"')
+    .replace("</body>", '<script src="/src/guide-verified-offers.js?v=20261110-new"></script></body>');
+  assert.equal(significantMatureGuideChange(original, technicalOnly), false);
+  assert.equal(significantMatureGuideChange(technicalOnly, original), false);
+  const otherScript = technicalOnly.replace('v=20261110-new', 'v=20261110-next');
+  assert.equal(significantMatureGuideChange(technicalOnly, otherScript), false);
+});
+
+test("real article text, links, title, and Article structured data remain significant", () => {
+  const route = "/pruvodce/jak-vybrat-mppt-regulator/";
+  const original = page(route, {publisher: true});
+  const cases = [
+    original.replace("Jak vybrat MPPT regulátor", "Jak vybrat MPPT regulátor podle panelů"),
+    original.replace("<h1>", '<a href="/kalkulacky/mppt-regulator/">Kalkulačka</a><h1>'),
+    original.replace("<head>", "<head><title>Nový praktický výběr</title>"),
+    original.replace('"headline":"MPPT test"', '"headline":"MPPT praktický test"'),
+    original.replace('"name":"Petr Gálík"', '"name":"Redakční tým"'),
+  ];
+  for (const modified of cases)
+    assert.equal(significantMatureGuideChange(original, modified), true);
+});
+
+test("multi-version history skips consecutive technical/metadata-only commits", () => {
+  const route = "/pruvodce/jak-vybrat-mppt-regulator/";
+  const original = page(route, {publisher:true});
+  const substantive = original.replace("Jak vybrat MPPT regulátor", "Kdy je MPPT lepší než PWM");
+  const cacheBusted = substantive.replace("</body>", '<script src="/src/a.js?v=2"></script></body>');
+  const metadataOnly = cacheBusted.replace('"dateModified":"2026-08-21"', '"dateModified":"2026-11-10"');
+  const revisions = [
+    {sha:"metadata-bot", date:"2026-11-10"},
+    {sha:"asset-cache", date:"2026-11-09"},
+    {sha:"editorial", date:"2026-10-03"},
+    {sha:"original", date:"2026-08-21"},
+  ];
+  const snapshots = {
+    "metadata-bot":metadataOnly,
+    "asset-cache":cacheBusted,
+    editorial:substantive,
+    original,
+  };
+  const chosen = lastSignificantGuideDate(revisions, sha => snapshots[sha]);
+  assert.equal(chosen, "2026-10-03");
+  // No semantic changes? Use the creation date, not latest bot timestamp.
+  const withoutEditorial = {...snapshots, editorial:original};
+  assert.equal(lastSignificantGuideDate(revisions, sha => withoutEditorial[sha]), "2026-10-03",
+    "a later semantic rollback is itself a significant update");
+  const allEquivalent = {
+    "metadata-bot": original.replace('"dateModified":"2026-08-21"','"dateModified":"2026-11-10"'),
+    "asset-cache": original.replace("</body>", '<script src="/src/a.js?v=2"></script></body>'),
+    editorial:original,
+    original,
+  };
+  assert.equal(lastSignificantGuideDate(revisions, sha => allEquivalent[sha]), "2026-08-21");
+  assert.throws(()=>lastSignificantGuideDate([],()=>original),/MATURE_GUIDE_REVISION_HISTORY_MISSING/);
+});
+
+test("historical regenerator inspects Git content rather than taking newest commit date blindly", async () => {
+  const {readFile} = await import("node:fs/promises");
+  const source = await readFile("scripts/sync-mature-guide-seo.mjs", "utf8");
+  assert.match(source,/lastSignificantGuideDate\(/);
+  assert.match(source,/"log", "--follow", "--format=%H\|%cs"/);
+  assert.match(source,/"show"/);
+  assert.match(source,/lastSignificant = revisions\[0\]\.date/);
 });
