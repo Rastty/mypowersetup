@@ -4,7 +4,7 @@ import { loadDcdcGuideOffers } from "./verified-offer-catalog-fetch.js";
 import {
   dcdcReviewedModel, dcdcCalculatorOfferExpiresAt, dcdcOfferDriveTime,
   isDcdcOfferStillEligible, selectDcdcCalculatorOffers, supportsDcdcBuyerShortlist,
-} from "./dcdc-calculator-offers.js";
+} from "./dcdc-calculator-offers.js?v=20261110-drivefit1";
 
 function appendText(parent, tag, text, className) {
   const element = parent.ownerDocument.createElement(tag);
