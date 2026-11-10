@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { checkHtml, checkJavascript, checkBuyerJavascript, verifyLive, ROUTES, VERSION } from "./verify-phase2-stale-live.mjs";
+import { checkHtml, checkJavascript, checkBuyerJavascript, checkModelJavascript, verifyLive, ROUTES, VERSION } from "./verify-phase2-stale-live.mjs";
 
 const origin = "https://mypowersetup.com";
 const js = [
@@ -20,9 +20,21 @@ const buyerJs = [
   "loadDcdcGuideOffers(fetchImpl);",
   "selectDcdcCalculatorOffers(payload, result, now());",
   "isDcdcOfferStillEligible(payload, result, offer, now());",
+  'import { dcdcOfferDriveTime } from "./dcdc-calculator-offers.js?v=20261110-drivefit1";',
+  "dcdcOfferDriveTime(result, offer);",
+  'timingLine.dataset.dcdcTimeFit = "too-slow";',
+  'link.dataset.ctaVariant = "dcdc-longer-drive";',
   "buildAttributedAffiliateParameters(link);",
   'allowedSources: ["dcdc-calculator-compare"]',
   "event.preventDefault();",
+].join("\n");
+const modelJs = [
+  "export function dcdcOfferDriveTime(result, offer) {",
+  "  const neededAh = batteryAh * replenishPercent / 100;",
+  "  const minimumHours = neededAh / outputA;",
+  "  return { displayedMinimumHours: Math.ceil(minimumHours * 10) / 10,",
+  "    meetsIdealTarget: neededAh <= outputA * targetDriveHours };",
+  "}",
 ].join("\n");
 function html(intent, version = VERSION) {
   return '<!doctype html><html><body><div data-calculator-intent="' + intent + '">'
@@ -37,7 +49,7 @@ function mockResponse(url, body, type = "text/html", status = 200) {
     headers: { get(name) { return name === "content-type" ? type : null; } },
     async text() { return body; } };
 }
-function mockFetch({ wrongRedirect = false, staleHtml = false, staleJs = false, staleBuyerJs = false } = {}) {
+function mockFetch({ wrongRedirect = false, staleHtml = false, staleJs = false, staleBuyerJs = false, staleModelJs = false } = {}) {
   const calls = [];
   const fn = async input => {
     const url = String(input);
@@ -46,6 +58,8 @@ function mockFetch({ wrongRedirect = false, staleHtml = false, staleJs = false, 
       staleJs ? 'form.addEventListener("submit",()=>{});' : js, "text/javascript");
     if (url.includes("dcdc-calculator-offers-browser.js")) return mockResponse(url,
       staleBuyerJs ? 'function unsafeBuyer() {}' : buyerJs, "text/javascript");
+    if (url.includes("dcdc-calculator-offers.js")) return mockResponse(url,
+      staleModelJs ? 'function unknown() {}' : modelJs, "text/javascript");
     const route = ROUTES.find(item => url.endsWith(item.path));
     assert.ok(route, "unexpected request " + url);
     return mockResponse(wrongRedirect ? origin + "/" : url,
@@ -61,8 +75,9 @@ test("both actual CZ routes and the same served versioned JS are verified", asyn
   assert.equal(result.routes.length, 2);
   assert.equal(result.productionActions, 0);
   assert.equal(result.browserInteractionVerified, false);
-  assert.equal(fetchImpl.calls.length, 4);
+  assert.equal(fetchImpl.calls.length, 5);
   assert.equal(result.buyerModuleVerified, true);
+  assert.equal(result.modelModuleVerified, true);
   assert.ok(result.buyerModuleVersion.includes("dcdc-calculator-offers-browser.js?v=" + VERSION));
   assert.ok(fetchImpl.calls.some(url => url.endsWith("?v=" + VERSION)));
 });
@@ -105,7 +120,7 @@ test("recovers from one HTTP 503 on a page without skipping either route", async
   assert.equal(result.status, "PUBLIC_HTML_AND_SERVED_JS_VERIFIED");
   assert.equal(result.transientRetries, 1);
   assert.deepEqual(delays, [250]);
-  assert.equal(calls.length, 5);
+  assert.equal(calls.length, 6);
   assert.equal(result.routes.length, 2);
 });
 
@@ -162,4 +177,13 @@ test("missing DC-DC buyer or stale served buyer JS cannot be misreported as depl
   await assert.rejects(verifyLive({ fetchImpl: invalid }),
     /SERVED_DCDC_BUYER_GUARD_MISSING/);
   assert.equal(invalid.calls.length, 4);
+});
+
+
+test("missing served sizing module never passes the live buyer comparison proof", async () => {
+  const mock = mockFetch({ staleModelJs: true });
+  await assert.rejects(verifyLive({ fetchImpl: mock }), /SERVED_DCDC_TIMING_MODEL_MISSING/);
+  assert.equal(mock.calls.length, 5);
+  assert.throws(() => checkModelJavascript("export function dcdcOfferDriveTime() {}"),
+    /SERVED_DCDC_TIMING_MODEL_MISSING/);
 });
