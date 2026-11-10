@@ -91,3 +91,61 @@ test("raw event arrays remain supported as intentional offline imports", () => {
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("ready GA4 API rows use distinct users for funnel rates but preserve click actions", () => {
+  const dir = mkdtempSync(join(tmpdir(), "mps-ga4-funnel-"));
+  try {
+    const input = join(dir, "ga4-live.json");
+    const base = {
+      calculatorLandingPath: "/kalkulacky/kapacita-baterie/",
+      calculatorLandingLocale: "cs",
+      calculatorLandingIntent: "battery-capacity",
+      hostName: "mypowersetup.com",
+    };
+    const event = (eventName, eventCount, totalUsers) => ({ ...base, eventName, eventCount, totalUsers });
+    writeFileSync(input, JSON.stringify({
+      status: "ready",
+      customDimensions: { ready: true },
+      events: [
+        event("calculator_landing_view", 20, 10),
+        event("calculator_started", 18, 9),
+        event("calculation_completed", 13, 8),
+        event("product_choice_impression", 11, 5),
+        event("affiliate_click", 4, 2),
+      ],
+    }));
+    const result = spawnSync(process.execPath, [script, input], { encoding: "utf8" });
+    assert.equal(result.status, 0, result.stderr);
+    const row = result.stdout.split("\n").find((line) => line.includes("/kalkulacky/kapacita-baterie/"));
+    assert.ok(row, result.stdout);
+    const cells = row.split("|").map((value) => value.trim());
+    assert.deepEqual(cells.slice(4, 12), ["10", "9", "8", "0", "5", "2", "4", "20.0%"]);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("aggregate GA4 rows with malformed eventCount fail instead of using user totals", () => {
+  const dir = mkdtempSync(join(tmpdir(), "mps-ga4-funnel-"));
+  try {
+    const input = join(dir, "corrupt-count.json");
+    writeFileSync(input, JSON.stringify({
+      status: "ready",
+      customDimensions: { ready: true },
+      events: [{
+        eventName: "affiliate_click",
+        eventCount: "unknown",
+        totalUsers: 2,
+        calculatorLandingPath: "/kalkulacky/kapacita-baterie/",
+        calculatorLandingLocale: "cs",
+        calculatorLandingIntent: "battery-capacity",
+      }],
+    }));
+    const result = spawnSync(process.execPath, [script, input], { encoding: "utf8" });
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /GA4_EVENT_COUNT_INVALID/);
+    assert.equal(result.stdout, "");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
