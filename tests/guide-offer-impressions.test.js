@@ -161,7 +161,7 @@ test("all six CZ offer-bearing pages load the refreshed impression-capable scrip
   for (const route of PAGE) {
     const html = await readFile(new URL("../" + route + "index.html", import.meta.url), "utf8");
     assert.match(html, /data-guide-category="(battery|controller|dc_charger)"/, route);
-    assert.match(html, /src="\/src\/guide-verified-offers\.js\?v=20261110-compact-guides1"/, route);
+    assert.match(html, /src="\/src\/guide-verified-offers\.js\?v=20261110-dcdc-view1"/, route);
   }
   const source = await readFile(new URL("../src/guide-verified-offers.js", import.meta.url), "utf8");
   assert.match(source, /impressionTracker\?\.scan\(\)/);
