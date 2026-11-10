@@ -1,6 +1,6 @@
-import { buildAffiliateClickParameters } from "./affiliate-analytics.js";
+import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js";
 import { loadCalculatorOffers } from "./calculator-offer-catalog.js?v=20261109-lightweight-cz1";
-import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261109-mppt-buyer1";
+import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-attributed-guide1";
 import {
   batteryOfferExpiresAt, isBatteryOfferStillEligible, selectBatteryCalculatorOffers,
 } from "./battery-calculator-offers.js";
@@ -107,7 +107,7 @@ export function mountBatteryCalculatorBuyers(root, {
           noOffers("Tato nabídka už není aktuálně ověřena. Znovu spusťte výpočet.");
           return;
         }
-        windowRoot?.MyPowerSetupAnalytics?.track?.("affiliate_click", buildAffiliateClickParameters(link));
+        windowRoot?.MyPowerSetupAnalytics?.track?.("affiliate_click", buildAttributedAffiliateParameters(link));
       };
       link.addEventListener("click", click);
       link.addEventListener("auxclick", click);
