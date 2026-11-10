@@ -8,7 +8,7 @@ const expectedCanonical="https://mypowersetup.com/kalkulacky/mppt-regulator/";
 
 test("MPPT buyer can verify panel-side Voc/Vmp using a real specialized tool, without duplicating its engine", async()=>{
   const html=await readFile(path,"utf8");
-  const section=html.match(/<section class="calculator-section calculator-content-card" id="mppt-kontrola-stringu">([\s\S]*?)<\/section>/)?.[1];
+  const section=html.match(/<section class="calculator-section calculator-content-card" id="mppt-kontrola-stringu" data-calculator-continuation-section="mppt_string_check">([\s\S]*?)<\/section>/)?.[1];
   assert.ok(section,"the check must be visible independently of dynamic offer availability");
   assert.match(section, /proud do baterie/);
   assert.match(section, /Voc/);
