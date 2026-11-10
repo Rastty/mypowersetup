@@ -203,3 +203,73 @@ test("calculator MPPT matches reuse viewport impression rules without altering e
   calculator.observer.intersect(another, 0.8);
   assert.equal(calculator.events.length, 1, "expired visible product must never count");
 });
+
+
+test("DC-DC impressions count one real exposure per reviewed SKU and drive-time variant", () => {
+  const initial = link("vselektro:victron-orion-tr-12-12-30-isolated", {
+    category: "dc_charger", source: "dcdc-calculator-compare",
+    ctaVariant: "dcdc-longer-drive", offerExpiresAt: "5000",
+  });
+  const h = harness([initial], {
+    allowed: true, now: 1000, allowedSources: ["dcdc-calculator-compare"],
+  });
+  h.tracker.scan();
+  h.observer.intersect(initial, 0.75);
+  assert.equal(h.events.length, 1);
+  assert.equal(h.events[0].parameters.ctaVariant, "dcdc-longer-drive");
+
+  // Scrolls, focus events and a refreshed catalog with the same comparison
+  // must not generate synthetic additional impressions.
+  h.doc.emit("visibilitychange");
+  h.observer.intersect(initial, 0.8);
+  const same = link(initial.dataset.productId, { ...initial.dataset });
+  h.section.links = [same];
+  h.tracker.scan();
+  h.observer.intersect(same, 0.8);
+  assert.equal(h.events.length, 1);
+
+  // A new explicit calculation changes the same SKU from "too slow" to
+  // "ideal only"; the user now actually sees a distinct commercial claim.
+  const changed = link(initial.dataset.productId, {
+    ...initial.dataset, ctaVariant: "dcdc-ideal-target-only",
+  });
+  h.section.links = [changed];
+  h.tracker.scan();
+  h.observer.intersect(changed, 0.4);
+  assert.equal(h.events.length, 1);
+  h.observer.intersect(changed, 0.7);
+  assert.equal(h.events.length, 2);
+  assert.deepEqual(h.events.map(item => item.parameters.ctaVariant),
+    ["dcdc-longer-drive", "dcdc-ideal-target-only"]);
+  h.doc.emit("mypowersetup:analytics-granted");
+  h.observer.intersect(changed, 0.9);
+  assert.equal(h.events.length, 2, "same SKU + same variant only once");
+
+  // The original combination was already seen and must not be counted a
+  // second time when a later explicit recalculation returns to that state.
+  const again = link(initial.dataset.productId, { ...initial.dataset });
+  h.section.links = [again];
+  h.tracker.scan();
+  h.observer.intersect(again, 0.8);
+  assert.equal(h.events.length, 2);
+});
+
+test("missing or unreviewed DC-DC variant cannot create a new impression denominator", () => {
+  const bad = link("vselektro:victron-orion-tr-12-12-30-isolated", {
+    category: "dc_charger", source: "dcdc-calculator-compare",
+    offerExpiresAt: "5000",
+  });
+  const h = harness([bad], {
+    allowed: true, now: 1000, allowedSources: ["dcdc-calculator-compare"],
+  });
+  h.tracker.scan();
+  h.observer.intersect(bad, 0.9);
+  assert.equal(h.events.length, 0);
+  for (const variant of ["unreviewed", "", "dcdc-ideal-target-only-copy"]) {
+    const next = link(bad.dataset.productId, { ...bad.dataset, ctaVariant: variant });
+    h.section.links = [next];
+    h.tracker.scan();
+    h.observer.intersect(next, 0.9);
+  }
+  assert.equal(h.events.length, 0);
+});
