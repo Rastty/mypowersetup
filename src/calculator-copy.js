@@ -118,3 +118,30 @@ export function classifyCalculatorContinuation(pathname, hash, locale = "cs") {
   if (!hash && calculatorTargets[locale]?.includes(pathname)) return "calculator";
   return guidePrefix && pathname.startsWith(guidePrefix) ? "guide" : null;
 }
+
+/**
+ * One approved cross-site portfolio journey. The target must match the exact
+ * reviewed MPPT tool with NO query, hash or user-input parameters. Returning
+ * a fixed event payload prevents URLs or panel specs leaking into analytics.
+ *
+ * Only a visitor's actual click on the designated Czech MPPT follow-up is
+ * eligible. The browser keeps the existing consent gate and noreferrer link.
+ */
+export function classifyCalculatorSpecialistHandoff({
+  href, sourceSection, intent, locale,
+} = {}) {
+  if (intent !== "mppt-sizing" || locale !== "cs" ||
+      sourceSection !== "mppt_string_check" || typeof href !== "string") return null;
+  let url;
+  try { url = new URL(href); } catch { return null; }
+  if (url.origin !== "https://solar-expert.cz" ||
+      url.pathname !== "/mppt-kalkulacka/" ||
+      url.username || url.password || url.search || url.hash) return null;
+  return Object.freeze({
+    destination_type: "mppt_string_validation",
+    destination_site: "solar-expert.cz",
+    destination_path: "/mppt-kalkulacka/",
+    source_section: "mppt_string_check",
+    handoff_method: "manual_no_input_transfer",
+  });
+}
