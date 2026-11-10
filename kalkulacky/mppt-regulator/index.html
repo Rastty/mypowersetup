@@ -37,7 +37,7 @@
       </div>
     </section>
     <section class="calculator-section calculator-content-card"><h2>Co výsledek znamená</h2><p>Doporučená hodnota v ampérech je první filtr pro nabíjecí proud regulátoru. Nestačí ale sama o sobě: před nákupem ověřte v datasheetu konkrétního MPPT také maximální napětí FV vstupu <strong>Voc</strong> při nejnižší očekávané teplotě, povolený <strong>Isc</strong>, maximální FV výkon pro 12/24 V a nabíjecí profil vaší baterie.</p></section>
-    <section class="calculator-section calculator-content-card" id="mppt-kontrola-stringu">
+    <section class="calculator-section calculator-content-card" id="mppt-kontrola-stringu" data-calculator-continuation-section="mppt_string_check">
       <h2>Druhý krok: ověřte napětí stringu Voc a Vmp</h2>
       <p>Tato kalkulačka vypočítá <strong>proud do baterie</strong>. Nezná ale Voc a Vmp konkrétních panelů, počet panelů v sérii ani teplotní koeficient Voc. Proto samotný výsledek nestačí k potvrzení vhodnosti regulátoru ani k nákupu.</p>
       <p>Pokud máte datasheet panelů, můžete pokračovat v <a href="https://solar-expert.cz/mppt-kalkulacka/" target="_blank" rel="noopener noreferrer">samostatné MPPT kalkulačce Solar Expert pro kontrolu Voc, Vmp a zapojení panelů ↗</a>. Otevře se další nástroj bez předání zde zadaných hodnot: parametry opíšete z datasheetu a ověříte pracovní i maximální napětí stringu. Nejde o potvrzení instalace; pro finální návrh je stále nutné zkontrolovat Isc, teplotní minimum a dokumentaci regulátoru i baterie.</p>
@@ -64,5 +64,5 @@
       <p>Například u označení <strong>Victron SmartSolar 100/30</strong> znamená 100 maximální FV vstupní napětí ve voltech a 30 maximální nabíjecí proud do baterie v ampérech. Ověřte si konkrétní řadu a její limity v <a href="https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_100-30__100-50/en/introduction.html" rel="noopener noreferrer">oficiálním manuálu výrobce</a>. Po výpočtu můžete porovnat parametry v <a href="/pruvodce/victron-mppt-100-20-vs-100-30-vs-100-50/">průvodci řadou 100/20, 100/30 a 100/50</a>; ani ten nenahrazuje kontrolu datasheetu a jištění.</p>
     </section>
     <section class="calculator-section"><h2>Časté otázky</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Je 40 A dost pro 400 Wp na 12 V?</h3><p>Pro 400 Wp a LiFePO₄ vychází s použitou rezervou proudová třída 40 A. Konkrétní model však musí zároveň povolit daný FV výkon, Voc a Isc.</p></article><article class="calculator-content-card"><h3>Co se změní při 24 V?</h3><p>Při stejném výkonu panelů je nabíjecí proud přibližně poloviční. Vyšší systémové napětí ale nemění povinnost zkontrolovat vstupní limity regulátoru.</p></article></div></section>
-  </main><script type="module" src="/src/calculator-landing-browser.js?v=20261109-lightweight-cz1"></script>
+  </main><script type="module" src="/src/calculator-landing-browser.js?v=20261110-mppt-specialist1"></script>
 </body></html>
