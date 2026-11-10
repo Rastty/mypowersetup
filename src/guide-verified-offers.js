@@ -1,6 +1,6 @@
 import { loadGuideCatalog } from "./verified-offer-catalog-fetch.js";
-import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js";
-import { trackAffiliateClick } from "./affiliate-analytics.js";
+import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-attributed-guide1";
+import { trackAffiliateClick } from "./affiliate-analytics.js?v=20261110-attributed-products1";
 
 // Progressive enhancement for CZ editorial comparison pages. Actual prices,
 // stock and destinations always come from the same guarded catalog as Builder.
