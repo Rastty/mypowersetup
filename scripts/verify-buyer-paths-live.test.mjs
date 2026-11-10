@@ -2,11 +2,16 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import {
-  PAGES, ASSETS, checkPublicHtml, checkServedAsset, checkPublicCompactCatalog, verifyBuyerPathsLive,
+  PAGES, ASSETS, checkPublicHtml, checkServedAsset, checkPublicCompactCatalog,
+  checkPublicDcdcGuideCatalog, verifyBuyerPathsLive,
 } from "./verify-buyer-paths-live.mjs";
 
 const origin = "https://mypowersetup.com";
 const local = async path => readFile(new URL("../" + path, import.meta.url), "utf8");
+const dcdcReady = async () => {
+  try { await local("data/dcdc-guide-offers-cz.json"); return true; }
+  catch (error) { if (error?.code === "ENOENT") return false; throw error; }
+};
 
 function mockFetch({ mutate = () => null, retryStatus = null } = {}) {
   const calls = [];
@@ -45,7 +50,15 @@ test("eleven buyer pages, exact versioned JS and deployed compact catalog are pu
   assert.equal(result.browserInteractionsVerified, false);
   assert.equal(result.seoUpliftMeasured, false);
   assert.equal(result.transientRetries, 0);
-  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 2);
+  const dcdcPublished = await dcdcReady();
+  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 2 + Number(dcdcPublished));
+  assert.equal(result.dcdcCatalog.status, dcdcPublished
+    ? "PUBLIC_DCDC_CATALOG_VERIFIED" : "LEGACY_FULL_CATALOG_UNTIL_FIRST_SYNC");
+  if (dcdcPublished) {
+    assert.ok(result.dcdcCatalog.bytes < 6000);
+    assert.ok(result.dcdcCatalog.reviewedProducts <= 4);
+    assert.equal(result.dcdcCatalog.outboundClickVerified, false);
+  }
   assert.ok(result.compactCatalog.bytes > 0);
   assert.ok(result.compactCatalog.bytes < 12_000);
   assert.equal(result.compactCatalog.reviewedProducts, 6);
@@ -134,7 +147,7 @@ test("bounded 503 retries recover once, while permanent 502 fails closed", async
   const success = await verifyBuyerPathsLive({ fetchImpl: transient, sleep: async ms => { delays.push(ms); } });
   assert.equal(success.transientRetries, 1);
   assert.deepEqual(delays, [250]);
-  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 3);
+  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 3 + Number(await dcdcReady()));
   let calls = 0;
   await assert.rejects(verifyBuyerPathsLive({ sleep: async () => {}, fetchImpl: async input => {
     calls++;
@@ -191,4 +204,34 @@ test("public compact JSON must exactly match deployed approved snapshot, not mer
     if (url.pathname !== "/data/calculator-offers-cz.json") return null;
     return mockResponse(url.href, expected, "text/html");
   } }) }), /PUBLIC_NON_JSON/);
+});
+
+test("new public DC-DC view has exact source parity and never asserts recorded buyer clicks", async () => {
+  const empty=JSON.stringify({
+    schemaVersion:1,projection:"dc_charger",generatedAt:"2026-11-10T12:00:00Z",
+    sources:{vselektro:{status:"ok"}},products:[],
+  })+"\n";
+  const report=checkPublicDcdcGuideCatalog(empty,empty,Date.parse("2026-11-10T12:00:00Z"));
+  assert.equal(report.status,"PUBLIC_DCDC_CATALOG_VERIFIED");
+  assert.equal(report.reviewedProducts,0);
+  assert.equal(report.eligibleDcdcOffers,0);
+  assert.equal(report.commissionVerified,false);
+  assert.throws(()=>checkPublicDcdcGuideCatalog(empty+" ",empty.replace('"schemaVersion":1','"schemaVersion":2')),
+    /PUBLIC_DCDC_CATALOG_SOURCE_DRIFT/);
+  assert.throws(()=>checkPublicDcdcGuideCatalog("{broken","{broken"),/PUBLIC_DCDC_CATALOG_INVALID_JSON/);
+  assert.throws(()=>checkPublicDcdcGuideCatalog("x".repeat(6001),"x".repeat(6001)),
+    /PUBLIC_DCDC_CATALOG_TOO_LARGE/);
+  const corrupted=empty.replace('"projection":"dc_charger"','"projection":"wrong"');
+  assert.throws(()=>checkPublicDcdcGuideCatalog(corrupted,corrupted),/PUBLIC_DCDC_CATALOG_INVALID_SCHEMA/);
+
+  if (await dcdcReady()) {
+    const original=await local("data/dcdc-guide-offers-cz.json");
+    const audit=checkPublicDcdcGuideCatalog(original,original,Date.parse(JSON.parse(original).generatedAt));
+    assert.ok(audit.reviewedProducts<=4);
+    await assert.rejects(verifyBuyerPathsLive({fetchImpl:mockFetch({mutate:async({url})=>{
+      if (url.pathname!=="/data/dcdc-guide-offers-cz.json") return null;
+      return mockResponse(url.href,original.replace('"projection":"dc_charger"','"projection":"wrong"'),
+        "application/json");
+    }})}),/PUBLIC_DCDC_CATALOG_SOURCE_DRIFT/);
+  }
 });
