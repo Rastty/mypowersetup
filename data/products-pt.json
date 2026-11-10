@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T21:10:21.055Z",
+  "generatedAt": "2026-11-10T10:54:43.498Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": false,
@@ -12,9 +12,9 @@
     },
     "powerqueen_eu": {
       "status": "ok",
-      "parsedProducts": 62,
-      "relevantProducts": 23,
-      "batteries": 17,
+      "parsedProducts": 63,
+      "relevantProducts": 24,
+      "batteries": 18,
       "controllers": 1,
       "inverters": 1,
       "shoreChargers": 4,
@@ -436,6 +436,42 @@
         "batteryType": "lifepo4"
       },
       "verifiedAt": "2026-08-30"
+    },
+    {
+      "id": "powerqueen_eu:15512052695260",
+      "merchant": "powerqueen_eu",
+      "name": "Battery Power Queen 24V 125Ah Smart LiFePO4 with Bluetooth",
+      "description": "1. Compact design, maximum performance This battery 24V 125Ah is pink for feeding cow engines, так і для надійного енергозабезпечення під час відключень світла. Bluetooth speakers, The indoor system is IP67 rated, він гарантує абсолютну безперебійність живлення у будь-яку пору roku. The ideal vibrator for electric motors has a capacity of 70-100 lbs, Convert to your home storage system. 2. If there is energy, my people are in the country and the cow Open your system with a live compact containing LiFePO4 accumulator, You can get up to 25% more than the average person. The visocoeffective chamber has two 12V 100Ah wine-acid batteries: If you place it in 2, 66 types of large energy sources for animal technology. 3. До 3.2 кВт·год енергії — впевненсть під час блек-AUTів The 3200Wh batteries are powered by LiFePO4 batteries in the current dates пЖдтримувати роботу вашого Жнвертора, холодильника, котельного бладнання, освітлення та зв'язку, на водоймі — забезпечити додин безперервної роботи тролінгового мотора (при 7A). The power to control the energy source is evacuated. 4. Quickly charge - go to the battery with my connectors The charger is available for all ages up to 6. 25 days (for the additional charger 29. 2V 20A LiFePO4) provides maximum energy saving in the period of power електромережі. Підключіть кумулятор під час подачі світла — і ви знову повністю забезпечені втономним живленням. 5. Інтелектуальний самонагрів у мороз та неопалюваних приміщеннях If the temperature is low there is no problem. Завдяки подвійному режиму самонагриву кумулятор автоматично прогрівається at a temperature below 0°C. To secure the hearts, you can use the charger to find out Neopaluvian garage, підвалі, On the balcony there is a winter clock. 6. Створений для суворих умов та інтенсивних навантажень The battery is not tested: cholod, Please note that the driver is not a car. The IP67 waterproof body has a pink BMS board and a vacuum cleaner low temperature and converted, The energy system increases in absolute peace and quiet. 7. Universal energy supply for the budding plants From the storage area, The office of the office has a clock on the front desk of the forest з риболовлі — цей кумулятор надає стабільну напругу всюди. Єдине, Another important thing for you, This is a universal energy platform. 8. 5 років гарантії для вашої впевненості The Power Queen 24V 125Ah LiFePO4 battery has 5 official guarantees. Інвестуйте у власну енергонезалежність із упевнененістю в тривалому терміні служби та надійній підтримці.",
+      "categoryPath": "Batteries",
+      "category": "battery",
+      "brand": "PQ-UA-Tax Free",
+      "priceCzk": 629.99,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-125ah-smart-lifepo4-battery-shipping-ukraine",
+      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-24v-125ah-smart-lifepo4-battery-shipping-ukraine",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/24V_125Ah_Self-heating_Smart_Battery.webp?v=1794301160",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": 125,
+        "capacityWh": 3200,
+        "powerW": null,
+        "currentA": 7,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          24
+        ],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      },
+      "marketEligible": true
     },
     {
       "id": "powerqueen_eu:15452515238108",
