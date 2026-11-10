@@ -7,9 +7,9 @@ export const ROUTES = Object.freeze([
   { path: "/kalkulacky/dc-dc-nabijecka/", intent: "dcdc-sizing" },
   { path: "/kalkulacky/jisteni-12v/", intent: "dc-protection" },
 ]);
-export const VERSION = "20261110-drivefit1";
+export const VERSION = "20261110-variant-impression2";
 export const SCRIPT_PATH = "/src/phase2-calculator-browser.js";
-export const BUYER_SCRIPT = "/src/dcdc-calculator-offers-browser.js?v=20261110-drivefit1";
+export const BUYER_SCRIPT = "/src/dcdc-calculator-offers-browser.js?v=20261110-variant-impression2";
 export const MODEL_SCRIPT = "/src/dcdc-calculator-offers.js?v=20261110-drivefit1";
 
 // Retry only temporary HTTP availability failures. A wrong route, invalid content,
@@ -63,7 +63,7 @@ export function checkJavascript(source) {
     /form\.addEventListener\(\s*["']submit["']/,
     /dcdcBuyers\?\.invalidate\(\)/,
     /dcdcBuyers\?\.update\(result\)/,
-    /dcdc-calculator-offers-browser\.js\?v=20261110-drivefit1/,
+    /dcdc-calculator-offers-browser\.js\?v=20261110-variant-impression2/,
   ];
   if (!required.every(pattern => pattern.test(source))) throw new Error("SERVED_JS_STALE_GUARD_MISSING");
   return true;
@@ -78,7 +78,7 @@ export function checkBuyerJavascript(source) {
     /selectDcdcCalculatorOffers\(/,
     /isDcdcOfferStillEligible\(/,
     /dcdcOfferDriveTime\(/,
-    /dcdc-calculator-offers\.js\?v=20261110-drivefit1/,
+    /dcdc-calculator-offers\.js\?v=20261110-variant-impression2/,
     /dcdcTimeFit/,
     /ctaVariant/,
     /buildAttributedAffiliateParameters\(/,
