@@ -1,6 +1,6 @@
-import { buildAffiliateClickParameters } from "./affiliate-analytics.js";
+import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js";
 import { loadCalculatorOffers } from "./calculator-offer-catalog.js?v=20261109-lightweight-cz1";
-import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261109-mppt-buyer1";
+import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-attributed-guide1";
 import {
   isMpptOfferStillEligible, mpptOfferExpiresAt, selectMpptCalculatorOffers,
 } from "./mppt-calculator-offers.js";
@@ -119,7 +119,7 @@ export function mountMpptCalculatorBuyers(root, {
           noOffers("Nabídka mezitím vypršela. Spusťte nový výpočet a zkontrolujte čerstvé produkty.");
           return;
         }
-        windowRoot?.MyPowerSetupAnalytics?.track?.("affiliate_click", buildAffiliateClickParameters(link));
+        windowRoot?.MyPowerSetupAnalytics?.track?.("affiliate_click", buildAttributedAffiliateParameters(link));
       };
       link.addEventListener("click", click);
       link.addEventListener("auxclick", click);
