@@ -79,7 +79,7 @@ test("both electrical safety calculators invalidate stale visible recommendation
   const browser = await read("src/phase2-calculator-browser.js");
   assert.match(browser, /form\.addEventListener\("input", invalidateResult\)/);
   assert.match(browser, /form\.addEventListener\("change", invalidateResult\)/);
-  assert.match(browser, /function invalidateResult\(\)\s*\{\s*resultPanel\.hidden = true;/);
+  assert.match(browser, /function invalidateResult\(\)\s*\{\s*dcdcBuyers\?\.invalidate\(\);\s*resultPanel\.hidden = true;/);
   assert.match(browser, /clearCalculatorResultContext\(\{[\s\S]*?sourcePath: landingPath,[\s\S]*?storage: window\.sessionStorage/);
   assert.match(browser, /staleNotice\.hidden = false/);
   assert.match(browser, /function render\(\{ userInitiated = false \} = \{\}\)\s*\{\s*errorPanel\.hidden = true;\s*staleNotice\.hidden = true/);
