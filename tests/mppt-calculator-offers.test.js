@@ -123,7 +123,7 @@ test("published MPPT page has an accessible, after-submit-only, truthful buyer s
   assert.match(page, /Voc panelů za mrazu/);
   assert.match(page, /Isc/);
   assert.match(page, /není potvrzení úplné kompatibility/);
-  assert.match(page, /\/src\/calculator-landing-browser\.js\?v=20261109-lightweight-cz1/);
+  assert.match(page, /\/src\/calculator-landing-browser\.js\?v=20261110-mppt-specialist1/);
   assert.match(page, /\/kalkulacky\/calculator\.css\?v=20261109-mppt-buyer1/);
   assert.match(browser, /if \(mpptBuyers\) void mpptBuyers\.update\(result\)/);
   assert.match(browser, /mpptBuyers\?\.invalidate\(\)/);
