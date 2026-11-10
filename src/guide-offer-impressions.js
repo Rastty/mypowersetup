@@ -1,4 +1,4 @@
-import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js";
+import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=20261110-attributed-products1";
 
 // A product_choice_impression means the *actual*, still-current commercial
 // link crossed 50% viewport visibility. Merely rendering the article, or
