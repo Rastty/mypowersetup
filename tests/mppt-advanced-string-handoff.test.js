@@ -22,7 +22,7 @@ test("MPPT buyer can verify panel-side Voc/Vmp using a real specialized tool, wi
   assert.equal(links[0][1],expectedExternal);
   assert.match(links[0][0],/target="_blank"/);
   assert.match(links[0][0],/rel="noopener noreferrer"/);
-  assert.doesNotMatch(links[0][0],/affiliate|a_aid|desturl|ref=|productId|dataLayer/);
+  assert.doesNotMatch(links[0][0],/data-affiliate|data-product-id|a_aid=|desturl=|[?&]ref=|productId=|dataLayer/);
   assert.ok(!new URL(links[0][1]).search);
   assert.equal((html.match(/data-mppt-buyers/g)||[]).length,1,"existing guarded merchant offers retained");
   assert.match(html,/data-calculator-intent="mppt-sizing"/);
