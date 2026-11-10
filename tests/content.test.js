@@ -79,18 +79,19 @@ test("every Czech content page has a complete share preview", async () => {
 test("DC-DC guide matches the calculator model and preserves installation limits", async () => {
   const [guide, charging, hub, llms] = await Promise.all([
     readFile("pruvodce/jak-vybrat-dc-dc-nabijecku/index.html", "utf8"),
-    readFile("src/charging.js", "utf8"),
+    readFile("src/dc-dc-charger.js", "utf8"),
     readFile("pruvodce/index.html", "utf8"),
     readFile("llms-full.txt", "utf8"),
   ]);
-  assert.ok(guide.includes("účinnost 90 %"));
-  assert.ok(guide.includes("0,2 C pro LiFePO₄ a 0,1 C pro AGM"));
+  assert.ok(guide.includes("výchozí odhad 90 %"));
+  assert.ok(guide.includes("Sama nepředpokládá univerzální strop 0,2 C pro LiFePO₄ ani 0,1 C pro AGM"));
   assert.ok(guide.includes("maximálním vstupním proudem"));
   assert.ok(guide.includes("manuálu přesného modelu"));
   assert.ok(guide.includes("victronenergy.com/upload/documents/Orion-Tr_Smart"));
   assert.doesNotMatch(guide, /pojistk[^<.]{0,40}\b\d+\s*A\b/i);
-  assert.ok(charging.includes("const CHARGING_EFFICIENCY = 0.9"));
-  assert.ok(charging.includes("lifepo4: 0.2, lead: 0.1"));
+  assert.ok(charging.includes("const efficiency = efficiencyPercent / 100"));
+  assert.ok(charging.includes("batteryMaxChargeCurrentA"));
+  assert.ok(guide.includes("600 ÷ 2 ÷ 12 = <strong>25 A výstupního proudu</strong>"));
   assert.ok(hub.includes('/pruvodce/jak-vybrat-dc-dc-nabijecku/'));
   assert.ok(llms.includes("DC–DC a 230V nabíječka"));
 });
@@ -969,21 +970,28 @@ test("Czech and Slovak MPPT guides share bounded checks and reciprocal language 
   assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/"'));
 });
 
-test("Czech and Slovak DC-DC guides share the charging model and reciprocal language links", async () => {
-  const [czech, slovak, charging] = await Promise.all([
+test("Czech dedicated and Slovak Builder DC-DC guides describe their distinct models and reciprocal links", async () => {
+  const [czech, slovak, dedicated, builder] = await Promise.all([
     readFile("pruvodce/jak-vybrat-dc-dc-nabijecku/index.html", "utf8"),
     readFile("sk/sprievodca/ako-vybrat-dc-dc-nabijacku/index.html", "utf8"),
+    readFile("src/dc-dc-charger.js", "utf8"),
     readFile("src/charging.js", "utf8"),
   ]);
-  for (const html of [czech, slovak]) {
-    assert.match(html, /600 ÷ 2 ÷ 12 ÷ 0,90 ≈ 27,8 A/);
-    assert.match(html, /0,2 C/);
-    assert.match(html, /0,1 C/);
-    assert.ok(html.includes("Orion-Tr_Smart"));
-  }
+  // Dedicated CZ calculator calculates the requested OUTPUT current without
+  // including loss twice, and uses a user-supplied BMS current limit.
+  assert.match(czech, /600 ÷ 2 ÷ 12 = <strong>25 A výstupního proudu<\/strong>/);
+  assert.match(czech, /Sama nepředpokládá univerzální strop 0,2 C/);
+  assert.match(dedicated, /requiredOutputCurrentA = energyToReplaceWh \/ \(batteryVoltage \* targetDriveHours\)/);
+  // SK still points to the original all-in-one Builder, whose separate
+  // conservative charging-planning model uses 90% and C-rate ceilings.
+  assert.match(slovak, /600 ÷ 2 ÷ 12 ÷ 0,90 ≈ 27,8 A/);
+  assert.match(slovak, /0,2 C/);
+  assert.match(slovak, /0,1 C/);
+  assert.ok(builder.includes("const CHARGING_EFFICIENCY = 0.9"));
+  assert.ok(builder.includes("lifepo4: 0.2, lead: 0.1"));
+  for (const html of [czech, slovak]) assert.ok(html.includes("Orion-Tr_Smart"));
   assert.ok(czech.includes('hreflang="sk-SK" href="https://mypowersetup.com/sk/sprievodca/ako-vybrat-dc-dc-nabijacku/"'));
   assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/jak-vybrat-dc-dc-nabijecku/"'));
-  assert.ok(charging.includes("const CHARGING_EFFICIENCY = 0.9"));
 });
 
 test("Czech and Slovak 230V charger guides share the charging model and reciprocal language links", async () => {
