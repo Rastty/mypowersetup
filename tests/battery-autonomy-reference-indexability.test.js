@@ -74,7 +74,8 @@ test("comparison continuation links use opt-in consented calculator funnel track
   assert.match(browser, /const continuationSection = link\?\.closest\?\.\("\[data-calculator-continuation-section\]"\)/);
   // Event still passes through the existing consent-gated analytics API.
   assert.match(browser, /window\.MyPowerSetupAnalytics\?\.track\(event,/);
-  assert.match(browser, /if \(url\.origin !== window\.location\.origin\) return/);
+  assert.match(browser, /if \(url\.origin !== window\.location\.origin\) \{/);
+  assert.match(browser, /classifyCalculatorSpecialistHandoff/);
   assert.match(browser, /if \(!destinationType\) return/);
 });
 
