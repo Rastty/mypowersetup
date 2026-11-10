@@ -43,6 +43,7 @@ function routeFile(route) {
 
 const TECHNICAL_ONLY_CTA = new Map([
   ["/pruvodce/kabely-a-pojistky-12-v/", "Výsledek je podklad ke kontrole, nikoli instalační pokyn."],
+  ["/pruvodce/jak-vybrat-dc-dc-nabijecku/", "Konkrétní modely automaticky neschvaluje"],
 ]);
 
 test("mature-market guide CTAs stay truthful and point to recognized calculator destinations", async () => {
