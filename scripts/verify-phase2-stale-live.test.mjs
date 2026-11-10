@@ -22,6 +22,10 @@ const buyerJs = [
   "isDcdcOfferStillEligible(payload, result, offer, now());",
   'import { dcdcOfferDriveTime } from "./dcdc-calculator-offers.js?v=20261110-outcome1";',
   "dcdcOfferDriveTime(result, offer);",
+  "classifyDcdcOfferOutcome(payload, result, now());",
+  'function trackOutcome(outcome, explicit) {',
+  '  windowRoot?.MyPowerSetupAnalytics?.track?.("dcdc_offers_" + outcome);',
+  '  if (!documentRoot.hidden && active) void update(active, { explicit: false });',
   'import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-drive-variant2";',
   'timingLine.dataset.dcdcTimeFit = "too-slow";',
   'link.dataset.ctaVariant = "dcdc-longer-drive";',
@@ -39,6 +43,9 @@ const impressionJs = [
 ].join("\n");
 const modelJs = [
   "export function dcdcOfferDriveTime(result, offer) {",
+  "export function classifyDcdcOfferOutcome(payload, result, now) {",
+  "  if (!guideCatalogFresh(payload, now)) return 'unavailable';",
+  '  return "no_safe_match";',
   "  const neededAh = batteryAh * replenishPercent / 100;",
   "  const minimumHours = neededAh / outputA;",
   "  return { displayedMinimumHours: Math.ceil(minimumHours * 10) / 10,",
