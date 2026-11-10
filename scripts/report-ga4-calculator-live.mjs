@@ -12,6 +12,10 @@ import {
   ga4EditorialBuyerDimensionState, ga4EditorialBuyerFilter,
   editorialBuyerFromGa4RunReport,
 } from "../src/ga4-editorial-buyer-evidence.js";
+import {
+  ga4DcdcBuyerDimensionState, ga4DcdcBuyerFilter,
+  dcdcBuyerFromGa4RunReport,
+} from "../src/ga4-dcdc-buyer-evidence.js";
 
 const [clientPath, tokenPath, outputPath = "ga4-calculator-live.json"] = process.argv.slice(2);
 const targetHostname = process.env.GA4_TARGET_HOSTNAME || "mypowersetup.com";
@@ -42,6 +46,7 @@ if (!clientPath || !tokenPath) {
     );
     const customDimensions = ga4MetadataDimensionState(metadata);
     const editorialBuyerDimensions = ga4EditorialBuyerDimensionState(metadata);
+    const dcdcBuyerDimensions = ga4DcdcBuyerDimensionState(metadata);
     const baseRequest = {
       dateRanges: [{ startDate, endDate }],
       metrics: [{ name: "eventCount" }, { name: "totalUsers" }],
@@ -91,6 +96,29 @@ if (!clientPath || !tokenPath) {
       };
     }
 
+    // Direct post-calculation DC-DC purchase comparisons are a different
+    // source and landing from the six editorial-guide buyer paths. Built-in
+    // GA4 page/event/hostname still provide page totals even if source/merchant
+    // event dimensions are not registered; never label those totals as reviewed
+    // merchant events. SKU and requested-drive variants are optional.
+    let dcdcBuyer;
+    if (dcdcBuyerDimensions.ready) {
+      const dcdcReport = await runReport(accessToken, selected.property, {
+        dateRanges: [{ startDate, endDate }],
+        metrics: [{ name: "eventCount" }],
+        dimensions: dcdcBuyerDimensions.dimensions.map(name => ({ name })),
+        dimensionFilter: ga4DcdcBuyerFilter(targetHostname),
+        limit: "10000",
+      });
+      dcdcBuyer = dcdcBuyerFromGa4RunReport(dcdcReport, dcdcBuyerDimensions);
+    } else {
+      dcdcBuyer = {
+        status: "missing_dimensions",
+        missing: dcdcBuyerDimensions.missing,
+        merchantConversionsMeasured: false, revenueMeasured: false,
+      };
+    }
+
     const payload = {
       schemaVersion: 1,
       generatedAt: new Date().toISOString(),
@@ -111,6 +139,7 @@ if (!clientPath || !tokenPath) {
       summary: ga4SummaryRowsFromRunReport(summaryReport),
       events,
       editorialBuyer,
+      dcdcBuyer,
       status: customDimensions.ready ? "ready" : "route_dimensions_missing",
     };
 
@@ -128,6 +157,10 @@ if (!clientPath || !tokenPath) {
         clicks: sum.clicks + row.affiliateClicks,
       }), {pageViews: 0, impressions: 0, clicks: 0});
       console.log(`Editorial GA4 consented events: views=${totals.pageViews} impressions=${totals.impressions} outboundClicks=${totals.clicks}; commissions=UNKNOWN`);
+    }
+    console.log(`Direct DC-DC buyer: ${dcdcBuyer.status} (${dcdcBuyer.attribution || "unavailable"}; variant=${dcdcBuyer.variantAttribution || "unavailable"}; sku=${dcdcBuyer.skuAttribution || "unavailable"})`);
+    if (dcdcBuyer.status === "ready") {
+      console.log(`Direct DC-DC GA4 consented events: pageViews=${dcdcBuyer.totals.pageViews} impressions=${dcdcBuyer.totals.productImpressions} outboundClicks=${dcdcBuyer.totals.affiliateClicks}; commissions=UNKNOWN`);
     }
     console.log(`Evidence written to ${outputPath}`);
 
