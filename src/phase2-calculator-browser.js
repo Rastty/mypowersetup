@@ -118,8 +118,10 @@ if (root) {
       else renderProtection(result);
       renderWarnings(result.warnings);
       resultPanel.hidden = false;
-      resultPanel.focus({ preventScroll: true });
+      // Initial SEO preview must not steal keyboard or screen-reader focus.
+      // Move focus only after a visitor submits a calculation explicitly.
       if (userInitiated) {
+        resultPanel.focus({ preventScroll: true });
         const completionTracked = track("calculation_completed", { source: "seo_landing" });
         if (completionTracked && intent === "dcdc-sizing") {
           rememberCalculatorResultContext({
