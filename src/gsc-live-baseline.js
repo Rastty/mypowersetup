@@ -1,3 +1,5 @@
+import { classifyGscIndexingStatus } from "./gsc-indexing-status.js";
+
 const CALCULATOR_ROOTS = Object.freeze([
   "/kalkulacky/",
   "/sk/kalkulacky/",
@@ -156,17 +158,12 @@ export function normalizeUrlInspection(url, response = {}) {
   const userCanonical = clean(result.userCanonical);
   const sitemap = Array.isArray(result.sitemap) ? result.sitemap.map(clean).filter(Boolean) : [];
 
-  const lowerVerdict = verdict.toLowerCase();
-  const lowerCoverage = coverageState.toLowerCase();
-  let indexed = null;
-  if (lowerVerdict === "pass" || (lowerCoverage.includes("indexed") && !lowerCoverage.includes("not indexed"))) indexed = true;
-  else if (
-    lowerVerdict === "fail"
-    || lowerCoverage.includes("unknown to google")
-    || lowerCoverage.includes("not on google")
-    || lowerCoverage.includes("not indexed")
-    || lowerCoverage.includes("excluded")
-  ) indexed = false;
+  // GSC verdicts take precedence when explicit. A neutral verdict alone
+  // does not mean indexed: interpret its known coverage state consistently
+  // with manual CSV/JSON inspections, including "Discovered - currently not indexed".
+  const indexed = verdict.toUpperCase() === "PASS" ? true
+    : verdict.toUpperCase() === "FAIL" ? false
+      : classifyGscIndexingStatus(coverageState);
 
   return Object.freeze({
     url: String(url),
