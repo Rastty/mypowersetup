@@ -343,7 +343,7 @@ test("three distinct high-intent original pages have canonical, full static answ
   assert.ok(html.includes('data-guide-category="'+category+'"'));
   assert.ok(html.includes('href="/pruvodce/'+existing+'/'));
   assert.ok(html.includes('href="/#kalkulator"')||html.includes('href="/kalkulacky/dc-dc-nabijecka/"'));
-  assert.ok(html.includes('src="/src/guide-verified-offers.js?v=20261110-compact-guides1"'));
+  assert.ok(html.includes('src="/src/guide-verified-offers.js?v=20261110-dcdc-view1"'));
   assert.ok(html.includes('"@type":"Article"'));
   assert.ok(html.includes('"@type":"BreadcrumbList"'));
   assert.ok(html.includes('<table>'));
