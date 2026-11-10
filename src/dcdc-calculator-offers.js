@@ -33,10 +33,19 @@ export function supportsDcdcBuyerShortlist(result) {
 
 export function selectDcdcCalculatorOffers(payload, result, now = Date.now()) {
   if (!supportsDcdcBuyerShortlist(result)) return [];
+  // The calculator publishes a one-decimal feasible current for display.
+  // Recompute the unrounded alternator ceiling so a 17.96 A actual limit
+  // cannot accidentally authorize an 18 A product after rounding to 18.0.
+  const unroundedAlternatorOutputA = (
+    result.spareAlternatorCurrentA * result.sourceVoltage *
+    (result.efficiencyPercent / 100)
+  ) / result.batteryVoltage;
+  if (!Number.isFinite(unroundedAlternatorOutputA) || unroundedAlternatorOutputA <= 0) return [];
   const ceiling = Math.min(
     result.feasibleOutputCurrentA,
     result.batteryMaxChargeCurrentA,
     result.recommendedChargerCurrentA,
+    unroundedAlternatorOutputA,
   );
   return selectGuideOffers(payload, "dc_charger", now)
     .filter(offer => REVIEWED_DCDC[offer.id]?.outputA <= ceiling + 1e-9)
