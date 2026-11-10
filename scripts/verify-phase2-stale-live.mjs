@@ -84,7 +84,7 @@ export function checkBuyerJavascript(source) {
     /explicit: false/,
     /dcdc_offers_/,
 
-    /dcdc-calculator-offers\.js\?v=20261110-drivefit1/,
+    /dcdc-calculator-offers\.js\?v=20261110-outcome1/,
     /dcdcTimeFit/,
     /ctaVariant/,
     /guide-offer-impressions\.js\?v=20261110-drive-variant2/,
