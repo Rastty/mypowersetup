@@ -150,7 +150,7 @@ test("multi-version history skips consecutive technical/metadata-only commits", 
   assert.equal(chosen, "2026-10-03");
   // No semantic changes? Use the creation date, not latest bot timestamp.
   const withoutEditorial = {...snapshots, editorial:original};
-  assert.equal(lastSignificantGuideDate(revisions, sha => withoutEditorial[sha]), "2026-10-03",
+  assert.equal(lastSignificantGuideDate(revisions, sha => withoutEditorial[sha]), "2026-11-09",
     "a later semantic rollback is itself a significant update");
   const allEquivalent = {
     "metadata-bot": original.replace('"dateModified":"2026-08-21"','"dateModified":"2026-11-10"'),
