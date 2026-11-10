@@ -32,7 +32,15 @@ forbidMatch(analytics, /calculator_(?:result|component)_guide_click/, "calculato
 requireMatch(navigation, /destination\.origin !== page\.origin/, "community_carry_is_same_origin_only");
 requireMatch(navigation, /searchParams\.set\("utm_medium", "community"\)/, "community_carry_keeps_medium");
 forbidMatch(navigation, /sessionStorage|localStorage|gtag\(|fetch\(/, "community_navigation_must_not_persist_track_or_send");
-requireMatch(affiliateAnalytics, /tracker\("affiliate_click",\s*\{/, "affiliate_click_has_one_shared_tracker");
+requireMatch(affiliateAnalytics, /tracker\("affiliate_click",\s*buildAttributedAffiliateParameters\(link\)\)/, "affiliate_click_has_one_shared_tracker");
+const editorial = read("src/guide-verified-offers.js");
+const editorialImpressions = read("src/guide-offer-impressions.js");
+const batteryBuyer = read("src/battery-calculator-offers-browser.js");
+const mpptBuyer = read("src/mppt-calculator-offers-browser.js");
+requireMatch(editorial, /trackAffiliateClick\(link,/, "editorial_purchase_click_reuses_shared_attribution");
+requireMatch(editorialImpressions, /buildAttributedAffiliateParameters\(link\)/, "editorial_product_impression_uses_same_attribution");
+requireMatch(batteryBuyer, /buildAttributedAffiliateParameters\(link\)/, "battery_calculator_click_uses_shared_attribution");
+requireMatch(mpptBuyer, /buildAttributedAffiliateParameters\(link\)/, "mppt_calculator_click_uses_shared_attribution");
 requireMatch(affiliateAnalytics, /tracker\("product_choice_impression",\s*\{/, "product_impressions_share_click_dimensions");
 requireMatch(affiliateAnalytics, /resolveCalculatorAttribution/, "affiliate_events_receive_calculator_landing_attribution");
 requireMatch(affiliateAnalytics, /details:not\(\[open\]\)/, "closed_product_comparisons_are_not_impressions");

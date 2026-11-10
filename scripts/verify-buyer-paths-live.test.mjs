@@ -68,11 +68,11 @@ test("eleven buyer pages, exact versioned JS and deployed compact catalog are pu
   assert.equal(fetchImpl.calls.filter(url => url.includes("/data/calculator-offers-cz.json")).length, 1);
   assert.ok(result.browserVersions.battery_runtime.includes("fridge-community1"));
   assert.ok(result.browserVersions.mppt_calculator.includes("mppt-specialist1"));
-  assert.ok(result.browserVersions.battery_capacity.includes("lightweight-cz1"));
+  assert.ok(result.browserVersions.battery_capacity.includes("attributed-buyer1"));
   assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261109-lightweight-cz1")));
+    row.servedPath.includes("?v=20261110-attributed-buyer1")));
   assert.ok(result.assets.some(row => row.asset === "src/mppt-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261109-lightweight-cz1")));
+    row.servedPath.includes("?v=20261110-attributed-buyer1")));
   assert.ok(result.assets.some(row => row.asset === "src/calculator-offer-catalog.js" &&
     row.servedPath.includes("?v=20261109-lightweight-cz1")));
   for (const row of result.pages) assert.equal(row.http, 200);
@@ -167,7 +167,7 @@ test("wrong editorial guide browser version or recommendation category cannot pa
   const page = "/pruvodce/kapacita-baterie-do-karavanu/";
   await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url, file }) => {
     if (url.pathname !== page) return null;
-    return mockResponse(url.href, (await local(file)).replace("20261110-dcdc-view1", "stale-version"));
+    return mockResponse(url.href, (await local(file)).replace("20261110-attributed-offers1", "stale-version"));
   } }) }), /PUBLIC_EDITORIAL_SCRIPT_VERSION_DRIFT/);
   await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url, file }) => {
     if (url.pathname !== "/pruvodce/dc-dc-nabijecka-18a-vs-30a-vs-50a-karavan/") return null;

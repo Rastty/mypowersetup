@@ -1,5 +1,6 @@
 import { loadGuideCatalog } from "./verified-offer-catalog-fetch.js";
-import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js";
+import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-attributed-guide1";
+import { trackAffiliateClick } from "./affiliate-analytics.js?v=20261110-attributed-products1";
 
 // Progressive enhancement for CZ editorial comparison pages. Actual prices,
 // stock and destinations always come from the same guarded catalog as Builder.
@@ -221,14 +222,13 @@ export function trackGuideAffiliateClick(event, analytics) {
       : event.type !== "click" || (event.button !== 0 && event.button !== undefined)) return;
   const link = event.target?.closest?.("[data-guide-category] a[data-affiliate-click]");
   if (!link) return;
-  // The shared adapter enforces consent. Never attach personal identifiers.
-  analytics?.track?.("affiliate_click", {
-    productId: link.dataset.productId,
-    merchant: "vselektro",
-    category: link.dataset.category,
-    source: "editorial-comparison",
-    purchaseRoute: "components",
-  });
+  // Only an approved editorial offer can enter this funnel. Its own
+  // per-link click guard already prevented stale or unverified redirects.
+  if (link.dataset?.merchant !== "vselektro" ||
+      link.dataset?.source !== "editorial-comparison") return;
+  // Reuse the exact calculator attribution contract already used by Builder.
+  // The adapter still owns analytics consent and rejects declined events.
+  trackAffiliateClick(link, (name, parameters) => analytics?.track?.(name, parameters));
 }
 
 async function init() {

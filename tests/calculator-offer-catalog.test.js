@@ -161,8 +161,8 @@ test("release wiring shares the compact loader and generates it in existing dail
     assert.doesNotMatch(source,/fetchImpl\("\/data\/products\.json"/);
     assert.match(source,/calculator-offer-catalog\.js\?v=20261109-lightweight-cz1/);
   }
-  assert.match(mpptHtml,/calculator-landing-browser\.js\?v=20261110-mppt-specialist1/);
-  assert.match(batteryHtml,/calculator-landing-browser\.js\?v=20261109-lightweight-cz1/);
+  assert.match(mpptHtml,/calculator-landing-browser\.js\?v=20261110-attributed-mppt-specialist1/);
+  assert.match(batteryHtml,/calculator-landing-browser\.js\?v=20261110-attributed-buyer1/);
   assert.match(sync,/projectCalculatorOffers\(fullCatalog/);
   assert.match(sync,/data\/calculator-offers-cz\.json/);
   assert.match(workflow,/FILES="data\/products\.json data\/calculator-offers-cz\.json/);
