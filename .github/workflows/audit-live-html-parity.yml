@@ -36,6 +36,7 @@ on:
       - src/calculator-landing-browser.js
       - src/guide-offer-impressions.js
       - data/calculator-offers-cz.json
+      - data/dcdc-guide-offers-cz.json
       - data/products.json
       - pruvodce/**
       - kalkulacky/**
