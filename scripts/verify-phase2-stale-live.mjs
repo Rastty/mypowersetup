@@ -79,6 +79,11 @@ export function checkBuyerJavascript(source) {
     /selectDcdcCalculatorOffers\(/,
     /isDcdcOfferStillEligible\(/,
     /dcdcOfferDriveTime\(/,
+    /classifyDcdcOfferOutcome\(/,
+    /trackOutcome\(/,
+    /explicit: false/,
+    /dcdc_offers_/,
+
     /dcdc-calculator-offers\.js\?v=20261110-drivefit1/,
     /dcdcTimeFit/,
     /ctaVariant/,
@@ -98,6 +103,10 @@ export function checkBuyerJavascript(source) {
 export function checkModelJavascript(source) {
   const required = [
     /export function dcdcOfferDriveTime\(/,
+    /export function classifyDcdcOfferOutcome\(/,
+    /guideCatalogFresh\(/,
+    /"no_safe_match"/,
+
     /const neededAh = batteryAh \* replenishPercent \/ 100/,
     /const minimumHours = neededAh \/ outputA/,
     /displayedMinimumHours: Math\.ceil\(/,
