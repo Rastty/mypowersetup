@@ -1,3 +1,4 @@
+import { loadGuideCatalog } from "./verified-offer-catalog-fetch.js";
 import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js";
 
 // Progressive enhancement for CZ editorial comparison pages. Actual prices,
@@ -205,14 +206,8 @@ export async function refreshGuideOffers(roots, fetchImpl = fetch, now = Date.no
   // Returning to a long-lived tab must disable old purchase links immediately.
   // Do not leave them clickable while a slow or stalled network read is pending.
   for (const root of roots) mountGuideOffers(root, null, currentTime());
-  let payload = null;
-  try {
-    // A permanently stalled fetch must not suppress future focus/visibility retries.
-    const response = await fetchImpl("/data/products.json", { cache: "no-store", redirect: "error", signal: AbortSignal.timeout(timeoutMs) });
-    if (response.ok) payload = await response.json();
-  } catch {
-    // No trusted live catalog: show the permanent calculator fallback.
-  }
+  // Shared tiny SKU view for battery/MPPT; full catalog is still required for DC–DC.
+  const payload = await loadGuideCatalog(roots, fetchImpl, timeoutMs);
   for (const root of roots) mountGuideOffers(root, payload, currentTime());
   return payload;
 }

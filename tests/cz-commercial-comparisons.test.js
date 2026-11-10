@@ -18,7 +18,7 @@ function offer(id="vselektro:victron-smartsolar-100-50",category="controller"){
    name:"Victron SmartSolar 100/50",priceCzk:4946,priceCurrency:"CZK",
    available:true,verifiedAt:"2026-10-13",offerObservedAt:"2026-10-14T10:00:00Z",staleSource:false};
 }
-function payload(products=[offer()],at=now){return {generatedAt:new Date(at).toISOString(),sources:{vselektro:{status:"ok"}},products};}
+function payload(products=[offer()],at=now){return {schemaVersion:1,generatedAt:new Date(at).toISOString(),sources:{vselektro:{status:"ok"}},products};}
 
 test("editorial offers require current successful source and in-stock verified exact catalog SKU",()=>{
  assert.equal(guideCatalogFresh(payload(),now),true);
@@ -343,7 +343,7 @@ test("three distinct high-intent original pages have canonical, full static answ
   assert.ok(html.includes('data-guide-category="'+category+'"'));
   assert.ok(html.includes('href="/pruvodce/'+existing+'/'));
   assert.ok(html.includes('href="/#kalkulator"')||html.includes('href="/kalkulacky/dc-dc-nabijecka/"'));
-  assert.ok(html.includes('src="/src/guide-verified-offers.js?v=20261107-visible-impressions1"'));
+  assert.ok(html.includes('src="/src/guide-verified-offers.js?v=20261110-compact-guides1"'));
   assert.ok(html.includes('"@type":"Article"'));
   assert.ok(html.includes('"@type":"BreadcrumbList"'));
   assert.ok(html.includes('<table>'));
