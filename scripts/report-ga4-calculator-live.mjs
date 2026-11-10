@@ -8,6 +8,10 @@ import {
   ga4MetadataDimensionState,
   selectExactGa4WebStream,
 } from "../src/ga4-live-baseline.js";
+import {
+  ga4EditorialBuyerDimensionState, ga4EditorialBuyerFilter,
+  editorialBuyerFromGa4RunReport,
+} from "../src/ga4-editorial-buyer-evidence.js";
 
 const [clientPath, tokenPath, outputPath = "ga4-calculator-live.json"] = process.argv.slice(2);
 const targetHostname = process.env.GA4_TARGET_HOSTNAME || "mypowersetup.com";
@@ -37,6 +41,7 @@ if (!clientPath || !tokenPath) {
       { accessToken },
     );
     const customDimensions = ga4MetadataDimensionState(metadata);
+    const editorialBuyerDimensions = ga4EditorialBuyerDimensionState(metadata);
     const baseRequest = {
       dateRanges: [{ startDate, endDate }],
       metrics: [{ name: "eventCount" }, { name: "totalUsers" }],
@@ -65,6 +70,27 @@ if (!clientPath || !tokenPath) {
       events = calculatorEventsFromGa4RunReport(assertCompleteGa4Report(detailedReport));
     }
 
+    // Guide event evidence needs only built-in GA4 eventName/pagePath/hostName.
+    // No new browser tracker or OAuth flow. If optional custom source+merchant
+    // dimensions are absent, page totals MUST be labeled all merchants.
+    let editorialBuyer;
+    if (editorialBuyerDimensions.ready) {
+      const editorialReport = await runReport(accessToken, selected.property, {
+        dateRanges: [{ startDate, endDate }],
+        metrics: [{ name: "eventCount" }],
+        dimensions: editorialBuyerDimensions.dimensions.map(name => ({name})),
+        dimensionFilter: ga4EditorialBuyerFilter(targetHostname),
+        limit: "10000",
+      });
+      editorialBuyer = editorialBuyerFromGa4RunReport(editorialReport, editorialBuyerDimensions);
+    } else {
+      editorialBuyer = {
+        status: "missing_dimensions",
+        missing: editorialBuyerDimensions.missing,
+        revenueMeasured: false, merchantConversionsMeasured: false,
+      };
+    }
+
     const payload = {
       schemaVersion: 1,
       generatedAt: new Date().toISOString(),
@@ -84,6 +110,7 @@ if (!clientPath || !tokenPath) {
       customDimensions,
       summary: ga4SummaryRowsFromRunReport(summaryReport),
       events,
+      editorialBuyer,
       status: customDimensions.ready ? "ready" : "route_dimensions_missing",
     };
 
@@ -93,6 +120,15 @@ if (!clientPath || !tokenPath) {
     console.log(`GA4 measurement ID discovered: ${payload.stream.measurementId || "not returned"}`);
     console.log(`Calculator summary rows: ${payload.summary.length}`);
     console.log(`Route-level calculator rows: ${events.length}`);
+    console.log(`Editorial buyer route rows: ${editorialBuyer.rows?.length ?? "unavailable"} (${editorialBuyer.status}; ${editorialBuyer.attribution || "unavailable"})`);
+    if (editorialBuyer.rows) {
+      const totals = editorialBuyer.rows.reduce((sum, row) => ({
+        pageViews: sum.pageViews + row.pageViews,
+        impressions: sum.impressions + row.productImpressions,
+        clicks: sum.clicks + row.affiliateClicks,
+      }), {pageViews: 0, impressions: 0, clicks: 0});
+      console.log(`Editorial GA4 consented events: views=${totals.pageViews} impressions=${totals.impressions} outboundClicks=${totals.clicks}; commissions=UNKNOWN`);
+    }
     console.log(`Evidence written to ${outputPath}`);
 
     if (!customDimensions.ready) {
