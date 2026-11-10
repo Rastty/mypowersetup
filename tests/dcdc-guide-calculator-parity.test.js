@@ -29,7 +29,7 @@ test("DC-DC guide example current steps agree with actual calculator algorithm",
     assert.equal(result.recommendedChargerCurrentA, example.stepA);
     assert.ok(guide.includes(example.guideText), example.guideText);
   }
-  assert.match(guide, /Potřebný výstupní proud \\(A\\) ≈ energie k doplnění/);
+  assert.match(guide, /Potřebný výstupní proud \(A\) ≈ energie k doplnění/);
   assert.match(guide, /Účinnost .*se započítává při kontrole potřebného vstupního proudu/);
   assert.doesNotMatch(guide, /600 ÷ 2 ÷ 12 ÷ 0,90/);
   assert.doesNotMatch(guide, /Kalkulátor používá pouze konzervativní plánovací strop/);
@@ -54,13 +54,13 @@ test("DC-DC calculator result links directly to reviewed comparison, not to a gu
     read("kalkulacky/dc-dc-nabijecka/index.html"),
     read("pruvodce/jak-vybrat-dc-dc-nabijecku/index.html"),
   ]);
-  assert.match(calculator, /href="\\/pruvodce\\/jak-vybrat-dc-dc-nabijecku\\/#overene-nabidky"/);
+  assert.match(calculator, /href="\/pruvodce\/jak-vybrat-dc-dc-nabijecku\/#overene-nabidky"/);
   assert.match(calculator, /nikoli automaticky kompatibilní nabídky/);
   assert.match(guide, /id="overene-nabidky" data-guide-category="dc_charger"/);
-  assert.match(guide, /guide-verified-offers\\.js/);
+  assert.match(guide, /guide-verified-offers\.js/);
   assert.match(guide, /Konkrétní modely automaticky neschvaluje/);
   assert.doesNotMatch(guide, /ukáže kompatibilní DC–DC nabíječky z katalogu/);
-  assert.doesNotMatch(calculator, /ehub\\.cz\\/system\\/scripts\\/click/, "public calculator must not hardcode affiliate tracking links");
+  assert.doesNotMatch(calculator, /ehub\.cz\/system\/scripts\/click/, "public calculator must not hardcode affiliate tracking links");
 });
 
 test("phase-2 calculator preview leaves keyboard focus alone until explicit submit", async () => {
@@ -68,10 +68,10 @@ test("phase-2 calculator preview leaves keyboard focus alone until explicit subm
   const segment = browser.split('function render({ userInitiated = false } = {}) {')[1]
     ?.split('} catch (error) {')[0];
   assert.ok(segment, "browser still has the guarded render path");
-  assert.match(segment, /resultPanel\\.hidden = false;[\\s\\S]*?if \\(userInitiated\\) \\{\\s*resultPanel\\.focus\\(\\{ preventScroll: true \\}\\);/);
-  assert.equal((segment.match(/resultPanel\\.focus\\(/g) || []).length, 1);
+  assert.match(segment, /resultPanel\.hidden = false;[\s\S]*?if \(userInitiated\) \{\s*resultPanel\.focus\(\{ preventScroll: true \}\);/);
+  assert.equal((segment.match(/resultPanel\.focus\(/g) || []).length, 1);
   for (const route of ["kalkulacky/dc-dc-nabijecka/index.html", "kalkulacky/jisteni-12v/index.html"]) {
     const html = await read(route);
-    assert.match(html, /phase2-calculator-browser\\.js/);
+    assert.match(html, /phase2-calculator-browser\.js/);
   }
 });
