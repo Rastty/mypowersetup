@@ -3,7 +3,7 @@
 // A successful Pages deployment is not proof the CDN serves the updated
 // HTML and versioned JS. This audit does not submit forms or click offers.
 import { readFile } from "node:fs/promises";
-import { acceptCalculatorOffersSnapshot } from "../src/verified-offer-catalog-fetch.js";
+import { acceptCalculatorOffersSnapshot, acceptDcdcGuideSnapshot } from "../src/verified-offer-catalog-fetch.js";
 import { selectGuideOffers } from "../src/guide-verified-offers.js";
 
 const PRODUCTION_ORIGIN = "https://mypowersetup.com";
@@ -153,6 +153,28 @@ export function checkPublicCompactCatalog(served, local, now = Date.now()) {
   });
 }
 
+// This artifact intentionally appears only after the first merchant feed sync.
+// Until then DC–DC guides keep their previously verified legacy full-catalog
+// fallback. If committed, a stale/malformed public DC–DC view MUST fail audit.
+export function checkPublicDcdcGuideCatalog(served, local, now = Date.now()) {
+  if (Buffer.byteLength(served, "utf8") > 6000) fail("PUBLIC_DCDC_CATALOG_TOO_LARGE");
+  if (normalText(served) !== normalText(local)) fail("PUBLIC_DCDC_CATALOG_SOURCE_DRIFT");
+  let payload;
+  try { payload = JSON.parse(served); } catch { fail("PUBLIC_DCDC_CATALOG_INVALID_JSON"); }
+  if (!acceptDcdcGuideSnapshot(payload)) fail("PUBLIC_DCDC_CATALOG_INVALID_SCHEMA");
+  return Object.freeze({
+    status: "PUBLIC_DCDC_CATALOG_VERIFIED",
+    path: "/data/dcdc-guide-offers-cz.json",
+    bytes: Buffer.byteLength(served, "utf8"),
+    reviewedProducts: payload.products.length,
+    eligibleDcdcOffers: selectGuideOffers(payload, "dc_charger", now).length,
+    generatedAt: payload.generatedAt,
+    sourceStatus: payload.sources.vselektro.status,
+    outboundClickVerified: false,
+    commissionVerified: false,
+  });
+}
+
 async function fetchPage(fetchImpl, url, contentType, sleep, onRetry) {
   let response;
   for (let attempt = 0; attempt < 3; attempt++) {
@@ -241,11 +263,27 @@ export async function verifyBuyerPathsLive({
   const compactCatalog = checkPublicCompactCatalog(
     publicCatalog, await readLocal(catalogPath.slice(1)), now()
   );
+  const dcdcPath = "/data/dcdc-guide-offers-cz.json";
+  let dcdcLocal;
+  try {
+    dcdcLocal = await readLocal(dcdcPath.slice(1));
+  } catch (error) {
+    // The first scheduled merchant sync will produce this new artifact.
+    // Don't falsely report an HTTP 404 as an observed available offer.
+    if (error?.code !== "ENOENT") throw error;
+  }
+  const dcdcCatalog = dcdcLocal === undefined
+    ? Object.freeze({status: "LEGACY_FULL_CATALOG_UNTIL_FIRST_SYNC", source: "not_published"})
+    : checkPublicDcdcGuideCatalog(
+      await fetchPage(fetchImpl, new URL(dcdcPath, base), "json", sleep, () => retries++),
+      dcdcLocal, now()
+    );
   return Object.freeze({
     status: "PUBLIC_BUYER_HTML_JS_AND_CATALOG_VERIFIED",
     origin: base.origin, pages: checkedPages, assets: checkedAssets,
     browserVersions: Object.fromEntries(browserVersions),
     compactCatalog,
+    dcdcCatalog,
     transientRetries: retries,
     browserInteractionsVerified: false,
     seoUpliftMeasured: false,

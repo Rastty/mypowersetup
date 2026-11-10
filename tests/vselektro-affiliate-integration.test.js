@@ -68,7 +68,7 @@ test("Czech battery guide retains two technical examples but gates outbound offe
     assert.ok(section.includes(`${item.bmsA} A`));
   }
   assert.match(html, /data-guide-category="battery"/);
-  assert.match(html, /guide-verified-offers\.js\?v=20261110-compact-guides1/);
+  assert.match(html, /guide-verified-offers\.js\?v=20261110-dcdc-view1/);
   assert.match(html, /Aktuální nabídky baterií ke srovnání/);
   assert.match(section, /Nejde o univerzální doporučení/);
   assert.match(section, /100Ah varianta v tomto modelu nestačí/);
