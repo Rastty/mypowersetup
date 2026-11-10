@@ -6,6 +6,8 @@ on:
       - scripts/verify-phase2-stale-live.test.mjs
       - scripts/verify-buyer-paths-live.mjs
       - scripts/verify-buyer-paths-live.test.mjs
+      - scripts/wait-for-pages-deployment.mjs
+      - scripts/wait-for-pages-deployment.test.mjs
       - .github/workflows/audit-live-html-parity.yml
   workflow_dispatch:
   workflow_run:
@@ -13,35 +15,64 @@ on:
     types: [completed]
   schedule:
     - cron: "43 7 * * *"
+  # The built-in GitHub Pages dynamic workflow has not emitted workflow_run
+  # events for this repository. A bounded exact-SHA deployment barrier makes
+  # a targeted main push a reliable postdeploy audit trigger instead.
   push:
-    branches:
-      - audit/live-html-parity-20261013
+    branches: [main, audit/live-html-parity-20261013]
+    paths:
+      - .github/workflows/audit-live-html-parity.yml
+      - scripts/wait-for-pages-deployment.mjs
+      - scripts/wait-for-pages-deployment.test.mjs
+      - scripts/verify-buyer-paths-live.mjs
+      - scripts/verify-buyer-paths-live.test.mjs
+      - scripts/verify-phase2-stale-live.mjs
+      - scripts/verify-phase2-stale-live.test.mjs
+      - src/guide-verified-offers.js
+      - src/verified-offer-catalog-fetch.js
+      - src/calculator-offer-catalog.js
+      - src/battery-calculator-offers*.js
+      - src/mppt-calculator-offers*.js
+      - src/calculator-landing-browser.js
+      - src/guide-offer-impressions.js
+      - data/calculator-offers-cz.json
+      - data/products.json
+      - pruvodce/**
+      - kalkulacky/**
 permissions:
   contents: read
+  actions: read
 concurrency:
-  group: audit-production-html-content
+  group: audit-production-html-content-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   audit:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
+      - name: Wait for the exact GitHub Pages commit to finish deploying
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/wait-for-pages-deployment.mjs
       - name: Fetch all published HTML routes and compare substantive content
         run: node scripts/audit-live-html-parity.mjs
       - name: Test exact-route public readback contract
         run: node --test scripts/verify-phase2-stale-live.test.mjs
       - name: Verify both live electrical calculator HTML pages and served JS
         run: node scripts/verify-phase2-stale-live.mjs
-      - name: Test five public buyer paths and exact served asset contract
+      - name: Test public buyer paths and exact served asset contract
         run: node --test scripts/verify-buyer-paths-live.test.mjs
-      - name: Verify live fridge and MPPT purchase paths, served HTML and JavaScript
+      - name: Verify public buyer HTML, JS and reviewed compact catalog after deployment
         # PR code may intentionally differ from currently deployed production.
-        # Exact source parity is asserted after the Pages deploy completes
-        # (workflow_run), at daily schedule, or on manual dispatch.
+        # Exact source parity is asserted on targeted main pushes ONLY after
+        # the matching Pages deployment is successful; schedule/dispatch also
+        # perform independent checks and workflow_run remains a fallback.
         if: github.event_name != 'pull_request'
         run: node scripts/verify-buyer-paths-live.mjs
       - uses: actions/upload-artifact@v4
