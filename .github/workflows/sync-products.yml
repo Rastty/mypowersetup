@@ -74,6 +74,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: affiliate-catalog-write
@@ -156,3 +157,13 @@ jobs:
           done
           echo "::error::Catalog refresh not pushed after 3 safe retries"
           exit 1
+      - name: Prove the exact published buyer catalog after this feed sync
+        # GitHub's GITHUB_TOKEN data pushes do not create ordinary push
+        # workflow runs, so the daily parity workflow cannot validate them.
+        # Reuse the existing exact-SHA Pages release barrier in this writer.
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          export GITHUB_SHA="$(git rev-parse HEAD)"
+          node scripts/wait-for-pages-deployment.mjs
+          node scripts/verify-buyer-paths-live.mjs
