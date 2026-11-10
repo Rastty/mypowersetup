@@ -70,9 +70,9 @@ test("eleven buyer pages, exact versioned JS and deployed compact catalog are pu
   assert.ok(result.browserVersions.mppt_calculator.includes("mppt-specialist1"));
   assert.ok(result.browserVersions.battery_capacity.includes("attributed-buyer1"));
   assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261109-lightweight-cz1")));
+    row.servedPath.includes("?v=20261110-attributed-buyer1")));
   assert.ok(result.assets.some(row => row.asset === "src/mppt-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261109-lightweight-cz1")));
+    row.servedPath.includes("?v=20261110-attributed-buyer1")));
   assert.ok(result.assets.some(row => row.asset === "src/calculator-offer-catalog.js" &&
     row.servedPath.includes("?v=20261109-lightweight-cz1")));
   for (const row of result.pages) assert.equal(row.http, 200);
