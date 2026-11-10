@@ -1,4 +1,4 @@
-import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js";
+import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=20261110-attributed-products1";
 import { loadCalculatorOffers } from "./calculator-offer-catalog.js?v=20261109-lightweight-cz1";
 import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-attributed-guide1";
 import {
