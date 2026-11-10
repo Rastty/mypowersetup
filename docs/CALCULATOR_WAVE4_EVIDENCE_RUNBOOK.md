@@ -196,3 +196,8 @@ npm run report:calculator:growth -- gsc.json ga4-calculator-live.json indexing.j
 
 The GA4 live adapter is read-only. It never creates custom dimensions, changes a property, changes consent behavior, or switches the production measurement ID.
 
+### Reading the funnel counts consistently
+
+Both `report:calculator:growth` and `report:calculator:funnel` normalize ready GA4 Data API exports the same way: where `totalUsers` is supplied, the funnel stages and rates use distinct users instead of repeated actions. The funnel report still shows the raw `affiliate_click` **Click events** separately. For legacy raw event arrays with one browser event per row, each row still counts as one event. Missing or malformed aggregate `eventCount` remains an error, never a synthetic click.
+
+
