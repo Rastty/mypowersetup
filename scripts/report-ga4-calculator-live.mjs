@@ -161,6 +161,7 @@ if (!clientPath || !tokenPath) {
     console.log(`Direct DC-DC buyer: ${dcdcBuyer.status} (${dcdcBuyer.attribution || "unavailable"}; variant=${dcdcBuyer.variantAttribution || "unavailable"}; sku=${dcdcBuyer.skuAttribution || "unavailable"})`);
     if (dcdcBuyer.status === "ready") {
       console.log(`Direct DC-DC GA4 consented events: pageViews=${dcdcBuyer.totals.pageViews} impressions=${dcdcBuyer.totals.productImpressions} outboundClicks=${dcdcBuyer.totals.affiliateClicks}; commissions=UNKNOWN`);
+      console.log(`Direct DC-DC calculation coverage (consented event counts, not buyers): shown=${dcdcBuyer.coverageEvents.shown} noSafeMatch=${dcdcBuyer.coverageEvents.noSafeMatch} unavailable=${dcdcBuyer.coverageEvents.unavailable} unsupported=${dcdcBuyer.coverageEvents.unsupported}`);
     }
     console.log(`Evidence written to ${outputPath}`);
 

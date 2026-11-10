@@ -2,9 +2,9 @@ import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=2
 import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-drive-variant2";
 import { loadDcdcGuideOffers } from "./verified-offer-catalog-fetch.js";
 import {
-  dcdcReviewedModel, dcdcCalculatorOfferExpiresAt, dcdcOfferDriveTime,
+  classifyDcdcOfferOutcome, dcdcReviewedModel, dcdcCalculatorOfferExpiresAt, dcdcOfferDriveTime,
   isDcdcOfferStillEligible, selectDcdcCalculatorOffers, supportsDcdcBuyerShortlist,
-} from "./dcdc-calculator-offers.js?v=20261110-drivefit1";
+} from "./dcdc-calculator-offers.js?v=20261110-outcome1";
 
 function appendText(parent, tag, text, className) {
   const element = parent.ownerDocument.createElement(tag);
@@ -69,8 +69,9 @@ export function mountDcdcCalculatorBuyers(root, {
   }
 
   function render(payload, result, token) {
-    if (token !== generation || !active) return;
+    if (token !== generation || !active) return null;
     clear();
+    const outcome = classifyDcdcOfferOutcome(payload, result, now());
     const current = now();
     const offers = selectDcdcCalculatorOffers(payload, result, current);
     if (!offers.length) {
@@ -78,7 +79,7 @@ export function mountDcdcCalculatorBuyers(root, {
         ? "Pro zadané limity není dostupný žádný dostatečně čerstvý ověřený model 12→12 V. Podívejte se do průvodce nebo upravte návrh; nepřekračujte bezpečné proudové limity."
         : "Zde porovnáváme pouze ověřené modely pro 12V vstup a 12V servisní baterii. Pro 24V nebo neurčité vstupní napětí použijte průvodce a ověřte vhodný model u výrobce.");
       section.dataset.buyerFetchState = "empty";
-      return;
+      return outcome;
     }
 
     let earliestExpiry = Infinity;
@@ -138,7 +139,7 @@ export function mountDcdcCalculatorBuyers(root, {
     }
     if (!list.childElementCount) {
       showFallback("Platnost ověřených nabídek mezitím vypršela. Znovu spusťte výpočet.");
-      return;
+      return "unavailable";
     }
     list.hidden = false;
     fallback.hidden = true;
@@ -153,9 +154,18 @@ export function mountDcdcCalculatorBuyers(root, {
           "Platnost ověřených cen vypršela. Pro aktuální nabídky spusťte výpočet znovu.");
       }, Math.max(1, earliestExpiry - now() + 1));
     }
+    return "shown";
   }
 
-  async function update(result) {
+  // Exactly one consent-gated event per *explicit* submitted calculation,
+  // including "no purchase link" outcomes. Focus and visibility refreshes
+  // may recheck a source but must not inflate this calculation denominator.
+  function trackOutcome(outcome, explicit) {
+    if (!explicit || !["shown", "no_safe_match", "unavailable", "unsupported"].includes(outcome)) return;
+    windowRoot?.MyPowerSetupAnalytics?.track?.("dcdc_offers_" + outcome);
+  }
+
+  async function update(result, { explicit = true } = {}) {
     invalidate();
     if (!result) return;
     active = result;
@@ -164,7 +174,7 @@ export function mountDcdcCalculatorBuyers(root, {
     section.dataset.buyerFetchState = "loading";
     fallback.hidden = false;
     if (!supportsDcdcBuyerShortlist(result)) {
-      render(null, result, token);
+      trackOutcome(render(null, result, token), explicit);
       return;
     }
     fallback.textContent = "Ověřujeme čerstvé nabídky 12→12 V modelů pod zadaným proudovým limitem…";
@@ -175,14 +185,14 @@ export function mountDcdcCalculatorBuyers(root, {
       // Never render prices or outbound links from untrusted/failed feeds.
     }
     if (token !== generation || !active) return;
-    render(payload, active, token);
+    trackOutcome(render(payload, active, token), explicit);
   }
 
   documentRoot.addEventListener?.("visibilitychange", () => {
-    if (!documentRoot.hidden && active) void update(active);
+    if (!documentRoot.hidden && active) void update(active, { explicit: false });
   });
   windowRoot?.addEventListener?.("focus", () => {
-    if (active) void update(active);
+    if (active) void update(active, { explicit: false });
   });
   return Object.freeze({ update, invalidate });
 }

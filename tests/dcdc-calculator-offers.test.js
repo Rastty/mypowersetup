@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { calculateDcDcCharger } from "../src/dc-dc-charger.js";
 import {
-  dcdcCalculatorOfferExpiresAt, dcdcReviewedModel, dcdcOfferDriveTime,
+  classifyDcdcOfferOutcome, dcdcCalculatorOfferExpiresAt, dcdcReviewedModel, dcdcOfferDriveTime,
   isDcdcOfferStillEligible, selectDcdcCalculatorOffers,
   supportsDcdcBuyerShortlist,
 } from "../src/dcdc-calculator-offers.js";
@@ -94,6 +94,7 @@ test("expired merchant evidence, duplicate SKUs, unchecked URLs and unavailable 
 
 function harness({ consent = true, fetchImpl = null } = {}) {
   const events = [];
+  const coverageEvents = [];
   const listeners = {};
   let observer = null;
   class Observer {
@@ -143,7 +144,8 @@ function harness({ consent = true, fetchImpl = null } = {}) {
     IntersectionObserver: Observer,
     MyPowerSetupAnalytics: { track(name, params) {
       if (!consent) return false;
-      events.push({ name, params });
+      const target = name.startsWith("dcdc_offers_") ? coverageEvents : events;
+      target.push({ name, params });
       return true;
     } },
     addEventListener(type, callback) { (listeners[type] ||= []).push(callback); },
@@ -169,7 +171,7 @@ function harness({ consent = true, fetchImpl = null } = {}) {
     return prevented;
   };
   return {
-    buyer, doc, list, section, fallback, win, events, click,
+    buyer, doc, list, section, fallback, win, events, coverageEvents, click,
     get observer() { return observer; },
     get fetches() { return fetches; },
     setClock(value) { clock = value; },
@@ -250,8 +252,8 @@ test("public wiring isolates comparisons to the 12V DC-DC route and never hardco
   assert.match(calc, /data-dcdc-buyers/);
   assert.match(calc, /data-dcdc-offer-list/);
   assert.match(calc, /nikoli potvrzení kompatibility/);
-  assert.match(calc, /phase2-calculator-browser\.js\?v=20261110-variant-impression2/);
-  assert.match(protection, /phase2-calculator-browser\.js\?v=20261110-variant-impression2/);
+  assert.match(calc, /phase2-calculator-browser\.js\?v=20261110-coverage1/);
+  assert.match(protection, /phase2-calculator-browser\.js\?v=20261110-coverage1/);
   assert.doesNotMatch(protection, /data-dcdc-buyers/);
   assert.doesNotMatch(calc, /ehub\.cz\/system\/scripts\/click/);
   assert.match(browser, /if \(intent === "dcdc-sizing"\) void dcdcBuyers\?\.update\(result\)/);
@@ -348,4 +350,66 @@ test("recalculating the same 30A SKU from too slow to ideal fit records distinct
   const third = h.list.children[0].children.find(x => x.tag === "a");
   h.observer.intersect(third);
   assert.equal(h.events.length, 2);
+});
+
+
+test("safe buyer coverage classifier distinguishes unsupported hardware, failed/stale feeds and below-ceiling absence", () => {
+  assert.equal(classifyDcdcOfferOutcome(feed, base, now), "shown");
+  const unsupported = calculateDcDcCharger({ ...base, batteryVoltage: 24, sourceVoltage: 28.4 });
+  assert.equal(classifyDcdcOfferOutcome(feed, unsupported, now), "unsupported");
+  assert.equal(classifyDcdcOfferOutcome(null, base, now), "unavailable");
+  assert.equal(classifyDcdcOfferOutcome({ ...capture(), sources: { vselektro: { status: "stale" } } }, base, now), "unavailable");
+  assert.equal(classifyDcdcOfferOutcome(feed, base, Date.parse("2026-11-15T12:26:30Z")), "unavailable");
+  const unavailable = capture();
+  unavailable.products.forEach(p => { p.available = false; });
+  assert.equal(classifyDcdcOfferOutcome(unavailable, base, now), "unavailable");
+
+  // Approved stock exists, but the only safe recommendation is under 18 A.
+  const restricted = { ...base, batteryMaxChargeCurrentA: 14, recommendedChargerCurrentA: 10 };
+  assert.equal(classifyDcdcOfferOutcome(feed, restricted, now), "no_safe_match");
+  assert.deepEqual(selectDcdcCalculatorOffers(feed, restricted, now), []);
+});
+
+test("one consented coverage event per deliberate submit, including missing/unsupported merchant outcome", async () => {
+  const h = harness();
+  assert.equal(h.coverageEvents.length, 0, "the SEO preview cannot create an outcome event");
+  await h.buyer.update(base);
+  assert.deepEqual(h.coverageEvents.map(e => e.name), ["dcdc_offers_shown"]);
+  assert.equal(h.coverageEvents[0].params, undefined, "no electrical inputs, SKU or session data in outcome");
+  const unsupported = calculateDcDcCharger({ ...base, batteryVoltage: 24, sourceVoltage: 28.4 });
+  await h.buyer.update(unsupported);
+  assert.deepEqual(h.coverageEvents.map(e => e.name), ["dcdc_offers_shown", "dcdc_offers_unsupported"]);
+  assert.equal(h.section.dataset.liveOffers, "0");
+  assert.equal(h.coverageEvents.at(-1).params, undefined);
+
+  await h.buyer.update(base, { explicit: false });
+  assert.equal(h.coverageEvents.length, 2, "a focus/tab refresh must not count as a new calculation");
+  await h.buyer.update({ ...base, batteryMaxChargeCurrentA: 14, recommendedChargerCurrentA: 10 });
+  assert.equal(h.coverageEvents.at(-1).name, "dcdc_offers_no_safe_match");
+  assert.equal(h.coverageEvents.length, 3);
+});
+
+test("failed feed outcome has no links; consent denial and superseded requests never report phantom results", async () => {
+  const unavailable = harness({ fetchImpl: async () => ({ ok: false, status: 503 }) });
+  await unavailable.buyer.update(base);
+  assert.deepEqual(unavailable.coverageEvents.map(e => e.name), ["dcdc_offers_unavailable"]);
+  assert.equal(unavailable.section.dataset.liveOffers, "0");
+  assert.equal(unavailable.events.length, 0);
+
+  const denied = harness({ consent: false });
+  await denied.buyer.update(base);
+  assert.equal(denied.coverageEvents.length, 0);
+  denied.setConsent(true);
+  assert.equal(denied.coverageEvents.length, 0, "consent after submission must not backfill prior actions");
+  await denied.buyer.update(base);
+  assert.deepEqual(denied.coverageEvents.map(e => e.name), ["dcdc_offers_shown"]);
+
+  let resolveFetch;
+  const pending = new Promise(resolve => { resolveFetch = resolve; });
+  const race = harness({ fetchImpl: () => pending });
+  const first = race.buyer.update(base);
+  race.buyer.invalidate();
+  resolveFetch({ ok: true, json: async () => feed });
+  await first;
+  assert.equal(race.coverageEvents.length, 0, "cancelled fetch cannot emit obsolete result");
 });

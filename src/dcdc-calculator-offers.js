@@ -1,4 +1,4 @@
-import { selectGuideOffers } from "./guide-verified-offers.js";
+import { guideCatalogFresh, selectGuideOffers } from "./guide-verified-offers.js";
 
 // Exact-SKU facts from the independently reviewed VseElektro feed allowlist.
 // The small public projection intentionally excludes unverified mutable
@@ -56,6 +56,20 @@ export function selectDcdcCalculatorOffers(payload, result, now = Date.now()) {
 export function dcdcReviewedModel(id) {
   return REVIEWED_DCDC[id] || null;
 }
+ 
+// Result coverage is distinct from a buyer impression: a user may submit a
+// valid calculation while seeing no outbound links. This emits only one of
+// four non-personal outcome labels, never electrical inputs or an inferred
+// merchant conversion. The selector remains the single product safety gate.
+export function classifyDcdcOfferOutcome(payload, result, now = Date.now()) {
+  if (!supportsDcdcBuyerShortlist(result)) return "unsupported";
+  if (!guideCatalogFresh(payload, now) ||
+      selectGuideOffers(payload, "dc_charger", now).length === 0)
+    return "unavailable";
+  return selectDcdcCalculatorOffers(payload, result, now).length
+    ? "shown" : "no_safe_match";
+}
+
 
 // An offer may be within the allowed electrical current yet too slow for the
 // user's requested drive time. Compare exact (unrounded) battery Ah, charge

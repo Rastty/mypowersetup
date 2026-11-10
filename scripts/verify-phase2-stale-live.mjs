@@ -7,11 +7,11 @@ export const ROUTES = Object.freeze([
   { path: "/kalkulacky/dc-dc-nabijecka/", intent: "dcdc-sizing" },
   { path: "/kalkulacky/jisteni-12v/", intent: "dc-protection" },
 ]);
-export const VERSION = "20261110-variant-impression2";
+export const VERSION = "20261110-coverage1";
 export const SCRIPT_PATH = "/src/phase2-calculator-browser.js";
-export const BUYER_SCRIPT = "/src/dcdc-calculator-offers-browser.js?v=20261110-variant-impression2";
+export const BUYER_SCRIPT = "/src/dcdc-calculator-offers-browser.js?v=20261110-coverage1";
 export const IMPRESSION_SCRIPT = "/src/guide-offer-impressions.js?v=20261110-drive-variant2";
-export const MODEL_SCRIPT = "/src/dcdc-calculator-offers.js?v=20261110-drivefit1";
+export const MODEL_SCRIPT = "/src/dcdc-calculator-offers.js?v=20261110-outcome1";
 
 // Retry only temporary HTTP availability failures. A wrong route, invalid content,
 // stale client JS or a persistent 503 must still fail the production proof.
@@ -64,7 +64,7 @@ export function checkJavascript(source) {
     /form\.addEventListener\(\s*["']submit["']/,
     /dcdcBuyers\?\.invalidate\(\)/,
     /dcdcBuyers\?\.update\(result\)/,
-    /dcdc-calculator-offers-browser\.js\?v=20261110-variant-impression2/,
+    /dcdc-calculator-offers-browser\.js\?v=20261110-coverage1/,
   ];
   if (!required.every(pattern => pattern.test(source))) throw new Error("SERVED_JS_STALE_GUARD_MISSING");
   return true;
@@ -79,7 +79,12 @@ export function checkBuyerJavascript(source) {
     /selectDcdcCalculatorOffers\(/,
     /isDcdcOfferStillEligible\(/,
     /dcdcOfferDriveTime\(/,
-    /dcdc-calculator-offers\.js\?v=20261110-drivefit1/,
+    /classifyDcdcOfferOutcome\(/,
+    /trackOutcome\(/,
+    /explicit: false/,
+    /dcdc_offers_/,
+
+    /dcdc-calculator-offers\.js\?v=20261110-outcome1/,
     /dcdcTimeFit/,
     /ctaVariant/,
     /guide-offer-impressions\.js\?v=20261110-drive-variant2/,
@@ -98,6 +103,10 @@ export function checkBuyerJavascript(source) {
 export function checkModelJavascript(source) {
   const required = [
     /export function dcdcOfferDriveTime\(/,
+    /export function classifyDcdcOfferOutcome\(/,
+    /guideCatalogFresh\(/,
+    /"no_safe_match"/,
+
     /const neededAh = batteryAh \* replenishPercent \/ 100/,
     /const minimumHours = neededAh \/ outputA/,
     /displayedMinimumHours: Math\.ceil\(/,

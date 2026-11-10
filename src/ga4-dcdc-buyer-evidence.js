@@ -8,7 +8,18 @@ export const DCDC_BUYER_VARIANTS = Object.freeze([
   "dcdc-ideal-target-only",
   "dcdc-longer-drive",
 ]);
-const EVENTS = Object.freeze(["page_view", "product_choice_impression", "affiliate_click"]);
+// Built-in GA4 eventName can classify no-offer outcomes even before the owner
+// registers optional custom event-scoped dimensions for merchant/SKU variants.
+export const DCDC_COVERAGE_EVENT_NAMES = Object.freeze({
+  shown: "dcdc_offers_shown",
+  noSafeMatch: "dcdc_offers_no_safe_match",
+  unavailable: "dcdc_offers_unavailable",
+  unsupported: "dcdc_offers_unsupported",
+});
+const EVENTS = Object.freeze([
+  "page_view", "product_choice_impression", "affiliate_click",
+  ...Object.values(DCDC_COVERAGE_EVENT_NAMES),
+]);
 const REQUIRED_DIMENSIONS = Object.freeze(["eventName", "pagePath", "hostName"]);
 const SOURCE_DIMENSION = "customEvent:source";
 const MERCHANT_DIMENSION = "customEvent:merchant";
@@ -95,6 +106,7 @@ export function dcdcBuyerFromGa4RunReport(report, state) {
     throw new Error("GA4_DCDC_REPORT_HEADERS_INCOMPLETE");
 
   const totals = { pageViews: 0, productImpressions: 0, affiliateClicks: 0 };
+  const coverageEvents = { shown: 0, noSafeMatch: 0, unavailable: 0, unsupported: 0 };
   const skuEvents = new Map();
   const variantEvents = new Map();
   const unclassifiedVariantEvents = { impressionEvents: 0, clickEvents: 0 };
@@ -109,6 +121,15 @@ export function dcdcBuyerFromGa4RunReport(report, state) {
 
     if (row.eventName === "page_view") {
       totals.pageViews += count;
+      continue;
+    }
+    // These are explicitly submitted calculator outcomes; an unavailable
+    // catalog is not a missed conversion. Count them independently of custom
+    // merchant dimensions because eventName and the exact page are built-ins.
+    const coverageLabel = Object.keys(DCDC_COVERAGE_EVENT_NAMES)
+      .find(key => DCDC_COVERAGE_EVENT_NAMES[key] === row.eventName);
+    if (coverageLabel) {
+      coverageEvents[coverageLabel] += count;
       continue;
     }
     if (exactSource && (row[SOURCE_DIMENSION] !== "dcdc-calculator-compare"
@@ -139,6 +160,10 @@ export function dcdcBuyerFromGa4RunReport(report, state) {
     variantAttribution: state.variantAttribution,
     skuAttribution: state.skuAttribution,
     totals: Object.freeze(totals),
+    coverageEvents: Object.freeze(coverageEvents),
+    // One event per deliberate calculation when consent exists; these are
+    // event counts, not unique people or checkout outcomes.
+    coverageUnit: "consented_calculation_event_count",
     variantEvents: orderedEvents(variantEvents, "ctaVariant"),
     productEvents: orderedEvents(skuEvents, "productId"),
     // When dimension is not registered, missing is not an observed zero.

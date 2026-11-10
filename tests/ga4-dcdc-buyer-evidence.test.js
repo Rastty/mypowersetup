@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import {
-  DCDC_BUYER_PATH, DCDC_BUYER_VARIANTS, ga4DcdcBuyerDimensionState,
+  DCDC_BUYER_PATH, DCDC_BUYER_VARIANTS, DCDC_COVERAGE_EVENT_NAMES, ga4DcdcBuyerDimensionState,
   ga4DcdcBuyerFilter, dcdcBuyerFromGa4RunReport,
 } from "../src/ga4-dcdc-buyer-evidence.js";
 
@@ -46,7 +46,7 @@ test("direct DC-DC buyer report filters only the exact local route and approved 
   });
   assert.equal(rules[2].filter.fieldName, "eventName");
   assert.deepEqual(rules[2].filter.inListFilter.values,
-    ["page_view", "product_choice_impression", "affiliate_click"]);
+    ["page_view", "product_choice_impression", "affiliate_click", ...Object.values(DCDC_COVERAGE_EVENT_NAMES)]);
   for (const wrong of ["untrusted.example", "shop.mypowersetup.com", "example.com"]) {
     assert.throws(() => ga4DcdcBuyerFilter(wrong), /GA4_DCDC_TARGET_HOST_INVALID/);
   }
@@ -74,6 +74,7 @@ test("missing source or merchant dimension reports page totals, never verified D
     assert.equal(result.unclassifiedVariantEvents, null);
     assert.equal(result.unclassifiedProductEvents, null);
     assert.equal(result.metricUnit, "consented_event_count");
+    assert.deepEqual(result.coverageEvents, { shown: 0, noSafeMatch: 0, unavailable: 0, unsupported: 0 });
     assert.equal(result.merchantConversionsMeasured, false);
     assert.equal(result.revenueMeasured, false);
   }
@@ -203,4 +204,50 @@ test("existing GA4 exporter wires independent direct buyer evidence without chan
   assert.match(cli, /limit: "10000"/);
   assert.match(cli, /dcdcBuyer,\s*status: customDimensions\.ready/);
   assert.match(cli, /Direct DC-DC GA4 consented events/);
+});
+
+
+test("outcome reasons are measurable from built-in GA4 eventName without source/merchant registrations", () => {
+  const state = ga4DcdcBuyerDimensionState(dimensions());
+  const rows = [
+    observed("page_view", 100),
+    observed("dcdc_offers_shown", 25),
+    observed("dcdc_offers_no_safe_match", 4),
+    observed("dcdc_offers_unavailable", 6),
+    observed("dcdc_offers_unsupported", 10),
+    observed("affiliate_click", 2),
+  ];
+  const result = dcdcBuyerFromGa4RunReport(report(rows), state);
+  assert.deepEqual(result.coverageEvents, {
+    shown: 25, noSafeMatch: 4, unavailable: 6, unsupported: 10,
+  });
+  assert.equal(result.coverageUnit, "consented_calculation_event_count");
+  assert.deepEqual(result.totals, { pageViews: 100, productImpressions: 0, affiliateClicks: 2 });
+  assert.equal(result.attribution, "page_only_all_merchants");
+  assert.equal(result.revenueMeasured, false);
+});
+
+test("optional merchant attribution does not suppress explicitly submitted no-offer reasons", () => {
+  const state = ga4DcdcBuyerDimensionState(dimensions(...source, sku, variant));
+  const rows = [
+    observed("dcdc_offers_shown", 8),
+    observed("dcdc_offers_unavailable", 2),
+    observed("dcdc_offers_no_safe_match", 3),
+    observed("dcdc_offers_unsupported", 1),
+    observed("product_choice_impression", 4, eventAttrs("vselektro:victron-orion-tr-12-12-18-isolated", "dcdc-ideal-target-only")),
+    observed("affiliate_click", 2, eventAttrs("vselektro:victron-orion-tr-12-12-18-isolated", "dcdc-ideal-target-only")),
+    observed("affiliate_click", 40, { ...eventAttrs("vselektro:victron-orion-tr-12-12-18-isolated", "dcdc-ideal-target-only"), "customEvent:source": "editorial-comparison" }),
+  ];
+  const result = dcdcBuyerFromGa4RunReport(report(rows, state.dimensions.slice(3)), state);
+  assert.deepEqual(result.coverageEvents, { shown: 8, noSafeMatch: 3, unavailable: 2, unsupported: 1 });
+  assert.deepEqual(result.totals, { pageViews: 0, productImpressions: 4, affiliateClicks: 2 });
+  assert.deepEqual(result.variantEvents, [{ctaVariant:"dcdc-ideal-target-only", impressionEvents:4, clickEvents:2}]);
+  assert.equal(result.merchantConversionsMeasured, false);
+});
+
+test("GA4 read-only CLI reports coverage outcomes even if optional custom SKU/CTA dimensions are absent", async () => {
+  const cli = await readFile(new URL("../scripts/report-ga4-calculator-live.mjs", import.meta.url), "utf8");
+  assert.match(cli, /Direct DC-DC calculation coverage \(consented event counts, not buyers\)/);
+  for (const key of ["shown", "noSafeMatch", "unavailable", "unsupported"])
+    assert.match(cli, new RegExp("dcdcBuyer\\.coverageEvents\\." + key));
 });
