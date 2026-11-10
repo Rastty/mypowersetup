@@ -73,9 +73,10 @@ test("Czech battery guide retains two technical examples but gates outbound offe
   assert.match(section, /Nejde o univerzální doporučení/);
   assert.match(section, /100Ah varianta v tomto modelu nestačí/);
   assert.match(section, /cenu a dostupnost ověřte/i);
-  assert.match(html, /"dateModified":"2026-11-07"/);
+  const modified = html.match(/"dateModified":"(\d{4}-\d{2}-\d{2})"/)?.[1];
+  assert.ok(modified && modified >= "2026-11-07");
   const sitemap = await readFile("sitemap.xml", "utf8");
   const entry = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)]
     .find((match)=>match[1].includes("<loc>https://mypowersetup.com/pruvodce/kapacita-baterie-do-karavanu/</loc>"))?.[1];
-  assert.match(entry||"", /<lastmod>2026-11-07<\/lastmod>/);
+  assert.ok(entry?.includes(`<lastmod>${modified}</lastmod>`));
 });

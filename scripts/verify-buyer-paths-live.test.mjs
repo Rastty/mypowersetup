@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import {
-  PAGES, ASSETS, checkPublicHtml, checkServedAsset, verifyBuyerPathsLive,
+  PAGES, ASSETS, checkPublicHtml, checkServedAsset, checkPublicCompactCatalog, verifyBuyerPathsLive,
 } from "./verify-buyer-paths-live.mjs";
 
 const origin = "https://mypowersetup.com";
@@ -13,9 +13,10 @@ function mockFetch({ mutate = () => null, retryStatus = null } = {}) {
   const impl = async input => {
     const url = new URL(String(input));
     calls.push(url.href);
-    const file = url.pathname.startsWith("/src/")
+    const file = url.pathname.startsWith("/src/") || url.pathname.startsWith("/data/")
       ? url.pathname.slice(1) : url.pathname.slice(1) + "index.html";
-    const type = url.pathname.startsWith("/src/") ? "text/javascript" : "text/html";
+    const type = url.pathname.startsWith("/src/") ? "text/javascript"
+      : url.pathname.startsWith("/data/") ? "application/json" : "text/html";
     const response = await mutate({ url, file, calls });
     if (response) return response;
     if (retryStatus && calls.length === 1) return mockResponse(url.href, "Temporary", type, retryStatus);
@@ -33,18 +34,25 @@ function mockResponse(url, body, type = "text/html", status = 200) {
   };
 }
 
-test("six buyer pages including battery sizing plus every actual versioned calculator JS are public-evidence verified", async () => {
+test("eleven buyer pages, exact versioned JS and deployed compact catalog are public-evidence verified", async () => {
   const fetchImpl = mockFetch();
   const result = await verifyBuyerPathsLive({ fetchImpl });
-  assert.equal(result.status, "PUBLIC_BUYER_HTML_AND_JS_VERIFIED");
+  assert.equal(result.status, "PUBLIC_BUYER_HTML_JS_AND_CATALOG_VERIFIED");
   assert.equal(result.pages.length, PAGES.length);
-  assert.equal(result.pages.length, 6);
+  assert.equal(result.pages.length, 11);
   assert.equal(result.assets.length, ASSETS.length + 1, "two distinct browser cache keys after reuse");
   assert.equal(result.productionActions, 0);
   assert.equal(result.browserInteractionsVerified, false);
   assert.equal(result.seoUpliftMeasured, false);
   assert.equal(result.transientRetries, 0);
-  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 1);
+  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 2);
+  assert.ok(result.compactCatalog.bytes > 0);
+  assert.ok(result.compactCatalog.bytes < 12_000);
+  assert.equal(result.compactCatalog.reviewedProducts, 6);
+  assert.equal(result.compactCatalog.source, "exact");
+  assert.equal(result.compactCatalog.outboundClickVerified, false);
+  assert.equal(result.compactCatalog.commissionVerified, false);
+  assert.equal(fetchImpl.calls.filter(url => url.includes("/data/calculator-offers-cz.json")).length, 1);
   assert.ok(result.browserVersions.battery_runtime.includes("fridge-community1"));
   assert.ok(result.browserVersions.mppt_calculator.includes("lightweight-cz1"));
   assert.ok(result.browserVersions.battery_capacity.includes("lightweight-cz1"));
@@ -126,7 +134,7 @@ test("bounded 503 retries recover once, while permanent 502 fails closed", async
   const success = await verifyBuyerPathsLive({ fetchImpl: transient, sleep: async ms => { delays.push(ms); } });
   assert.equal(success.transientRetries, 1);
   assert.deepEqual(delays, [250]);
-  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 2);
+  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 3);
   let calls = 0;
   await assert.rejects(verifyBuyerPathsLive({ sleep: async () => {}, fetchImpl: async input => {
     calls++;
@@ -140,4 +148,47 @@ test("readback cannot be redirected to an arbitrary origin or perform writes", a
     /PUBLIC_ORIGIN_NOT_ALLOWLISTED/);
   await assert.rejects(verifyBuyerPathsLive({ origin: "https://other.example", fetchImpl: mockFetch() }),
     /PUBLIC_ORIGIN_NOT_ALLOWLISTED/);
+});
+
+test("wrong editorial guide browser version or recommendation category cannot pass live parity", async () => {
+  const page = "/pruvodce/kapacita-baterie-do-karavanu/";
+  await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url, file }) => {
+    if (url.pathname !== page) return null;
+    return mockResponse(url.href, (await local(file)).replace("20261110-compact-guides1", "stale-version"));
+  } }) }), /PUBLIC_EDITORIAL_SCRIPT_VERSION_DRIFT/);
+  await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url, file }) => {
+    if (url.pathname !== "/pruvodce/dc-dc-nabijecka-18a-vs-30a-vs-50a-karavan/") return null;
+    return mockResponse(url.href, (await local(file)).replace('data-guide-category="dc_charger"',
+      'data-guide-category="controller"'));
+  } }) }), /PUBLIC_EDITORIAL_CATEGORY_DRIFT/);
+});
+
+test("public compact JSON must exactly match deployed approved snapshot, not merely exist", async () => {
+  const file = "data/calculator-offers-cz.json";
+  const expected = await local(file);
+  const good = checkPublicCompactCatalog(expected, expected, Date.parse(JSON.parse(expected).generatedAt));
+  assert.equal(good.source, "exact");
+  assert.equal(good.reviewedProducts, 6);
+  assert.equal(good.eligibleBatteryOffers, 3);
+  assert.equal(good.eligibleControllerOffers, 3);
+  assert.equal(good.outboundClickVerified, false);
+
+  assert.throws(() => checkPublicCompactCatalog(expected.replace('"schemaVersion":1', '"schemaVersion":2'), expected),
+    /PUBLIC_COMPACT_CATALOG_SOURCE_DRIFT/);
+  assert.throws(() => checkPublicCompactCatalog("x".repeat(12_001), "x".repeat(12_001)),
+    /PUBLIC_COMPACT_CATALOG_TOO_LARGE/);
+  assert.throws(() => checkPublicCompactCatalog("{bad", "{bad"),
+    /PUBLIC_COMPACT_CATALOG_INVALID_JSON/);
+  assert.throws(() => checkPublicCompactCatalog('{"products":[]}', '{"products":[]}'),
+    /PUBLIC_COMPACT_CATALOG_INVALID_SCHEMA/);
+
+  await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url }) => {
+    if (url.pathname !== "/data/calculator-offers-cz.json") return null;
+    return mockResponse(url.href, expected.replace('"schemaVersion":1', '"schemaVersion":2'),
+      "application/json");
+  } }) }), /PUBLIC_COMPACT_CATALOG_SOURCE_DRIFT/);
+  await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url }) => {
+    if (url.pathname !== "/data/calculator-offers-cz.json") return null;
+    return mockResponse(url.href, expected, "text/html");
+  } }) }), /PUBLIC_NON_JSON/);
 });

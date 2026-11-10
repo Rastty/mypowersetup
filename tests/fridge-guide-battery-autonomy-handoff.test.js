@@ -172,8 +172,9 @@ test("contextual internal links lead readers to the correct calculator and remai
     ["/pruvodce/agm-vs-lifepo4/", agm],
     ["/pruvodce/victron-mppt-100-20-vs-100-30-vs-100-50/", victron],
   ]) {
-    assert.ok(html.includes('"dateModified":"2026-11-09"'));
-    const loc = "<loc>https://mypowersetup.com" + path + "</loc><lastmod>2026-11-09</lastmod>";
+    const modified = html.match(/"dateModified":"(\d{4}-\d{2}-\d{2})"/)?.[1];
+    assert.ok(modified && modified >= "2026-11-09", path + ": dateModified must not regress");
+    const loc = "<loc>https://mypowersetup.com" + path + "</loc><lastmod>" + modified + "</lastmod>";
     assert.equal(sitemap.split(loc).length - 1, 1, path + " sitemap must update exactly once");
   }
   assert.ok(fridge.includes('"https://mypowersetup.com/pruvodce/spotreba-kompresorove-lednice/"'));
