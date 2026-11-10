@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { calculateDcDcCharger } from "../src/dc-dc-charger.js";
 import {
-  dcdcCalculatorOfferExpiresAt, dcdcReviewedModel,
+  dcdcCalculatorOfferExpiresAt, dcdcReviewedModel, dcdcOfferDriveTime,
   isDcdcOfferStillEligible, selectDcdcCalculatorOffers,
   supportsDcdcBuyerShortlist,
 } from "../src/dcdc-calculator-offers.js";
@@ -203,6 +203,7 @@ test("direct purchase cards render only after a deliberate calculation, preserve
   assert.equal(h.events[1].name, "affiliate_click");
   assert.equal(h.events[1].params.productId, link.dataset.productId);
   assert.equal(h.events[1].params.source, "dcdc-calculator-compare");
+  assert.equal(h.events[1].params.ctaVariant, "dcdc-longer-drive");
   assert.equal(h.click(link, { type: "auxclick", button: 2 }), false);
   assert.equal(h.events.length, 2, "context menu must not invent a commercial click");
   h.buyer.invalidate();
@@ -249,10 +250,67 @@ test("public wiring isolates comparisons to the 12V DC-DC route and never hardco
   assert.match(calc, /data-dcdc-buyers/);
   assert.match(calc, /data-dcdc-offer-list/);
   assert.match(calc, /nikoli potvrzení kompatibility/);
-  assert.match(calc, /phase2-calculator-browser\.js\?v=20261110-dcdc-buyer1/);
-  assert.match(protection, /phase2-calculator-browser\.js\?v=20261110-dcdc-buyer1/);
+  assert.match(calc, /phase2-calculator-browser\.js\?v=20261110-drivefit1/);
+  assert.match(protection, /phase2-calculator-browser\.js\?v=20261110-drivefit1/);
   assert.doesNotMatch(protection, /data-dcdc-buyers/);
   assert.doesNotMatch(calc, /ehub\.cz\/system\/scripts\/click/);
   assert.match(browser, /if \(intent === "dcdc-sizing"\) void dcdcBuyers\?\.update\(result\)/);
   assert.match(browser, /function invalidateResult\(\) \{\s*dcdcBuyers\?\.invalidate\(\)/);
+});
+
+
+test("each reviewed SKU truthfully states whether ideal constant-current charging fits the requested drive", async () => {
+  const full = selectDcdcCalculatorOffers(feed, base, now);
+  assert.deepEqual(full.map(o => dcdcOfferDriveTime(base, o).displayedMinimumHours),
+    [3.4, 3.4, 5.6]);
+  assert.deepEqual(full.map(o => dcdcOfferDriveTime(base, o).meetsIdealTarget),
+    [false, false, false], "a safe current ceiling is not evidence the desired 3h charge finishes");
+
+  const h = harness();
+  await h.buyer.update(base);
+  const timingLines = h.list.children.map(row => row.children.find(node => node.dataset.dcdcTimeFit));
+  assert.deepEqual(timingLines.map(node => node.dataset.dcdcTimeFit),
+    ["too-slow", "too-slow", "too-slow"]);
+  assert.match(timingLines[0].textContent, /nestihne ani při stálém plném proudu/);
+  assert.match(timingLines[0].textContent, /nejméně 3,4 h/);
+  const link = h.list.children[0].children.find(node => node.tag === "a");
+  assert.equal(link.dataset.ctaVariant, "dcdc-longer-drive");
+});
+
+test("smaller charge requirement can fit while remaining an ideal-only estimate, not a promise", async () => {
+  const smaller = calculateDcDcCharger({
+    batteryCapacityAh: 100, replenishPercent: 50, targetDriveHours: 3,
+    batteryVoltage: 12, sourceVoltage: 14.2, spareAlternatorCurrentA: 50,
+    batteryMaxChargeCurrentA: 100, efficiencyPercent: 90,
+  });
+  const [offer] = selectDcdcCalculatorOffers(feed, smaller, now);
+  const timing = dcdcOfferDriveTime(smaller, offer);
+  assert.deepEqual({ outputA: timing.outputA, minimum: timing.displayedMinimumHours, fits: timing.meetsIdealTarget },
+    { outputA: 18, minimum: 2.8, fits: true });
+  const h = harness();
+  await h.buyer.update(smaller);
+  const line = h.list.children[0].children.find(node => node.dataset.dcdcTimeFit);
+  assert.equal(line.dataset.dcdcTimeFit, "ideal-only");
+  assert.match(line.textContent, /reálně to může trvat déle/);
+  assert.match(line.textContent, /nejméně 2,8 h/);
+  assert.equal(h.list.children[0].children.find(node => node.tag === "a").dataset.ctaVariant,
+    "dcdc-ideal-target-only");
+});
+
+test("drive-time fit uses exact charge fraction and rejects corrupt input instead of rounded calculated current", () => {
+  const offer = feed.products.find(item => item.id.includes("30-isolated"));
+  const fits = { ...base, batteryCapacityAh: 120, replenishPercent: 50, targetDriveHours: 2 };
+  const needsLonger = { ...fits, batteryCapacityAh: 120.00002 };
+  const exact = dcdcOfferDriveTime(fits, offer);
+  assert.equal(exact.minimumHours, 2);
+  assert.equal(exact.meetsIdealTarget, true);
+  const longer = dcdcOfferDriveTime(needsLonger, offer);
+  assert.equal(longer.meetsIdealTarget, false);
+  assert.equal(longer.displayedMinimumHours, 2.1,
+    "the display must never round the ideal minimum down to the requested time");
+  for(const candidate of [{...fits, targetDriveHours: 0}, {...fits, batteryCapacityAh: NaN},
+      {...fits, replenishPercent: 101}, {...fits, targetDriveHours: Infinity}, null]) {
+    assert.equal(dcdcOfferDriveTime(candidate, offer), null);
+  }
+  assert.equal(dcdcOfferDriveTime(fits, { id: "vselektro:unapproved" }), null);
 });

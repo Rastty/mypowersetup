@@ -57,6 +57,32 @@ export function dcdcReviewedModel(id) {
   return REVIEWED_DCDC[id] || null;
 }
 
+// An offer may be within the allowed electrical current yet too slow for the
+// user's requested drive time. Compare exact (unrounded) battery Ah, charge
+// fraction and current: the sizing engine's displayed current is rounded.
+// This is an ideal constant-current lower bound, not a real-world ETA: BMS,
+// temperature and the absorption phase may lengthen actual charging.
+export function dcdcOfferDriveTime(result, offer) {
+  const outputA = REVIEWED_DCDC[offer?.id]?.outputA;
+  const batteryAh = result?.batteryCapacityAh;
+  const replenishPercent = result?.replenishPercent;
+  const targetDriveHours = result?.targetDriveHours;
+  if (![outputA, batteryAh, replenishPercent, targetDriveHours].every(
+    value => Number.isFinite(value) && value > 0
+  ) || replenishPercent > 100) return null;
+  const neededAh = batteryAh * replenishPercent / 100;
+  const minimumHours = neededAh / outputA;
+  if (!Number.isFinite(minimumHours) || minimumHours <= 0) return null;
+  return Object.freeze({
+    outputA,
+    minimumHours,
+    // Never round the minimum down: 3.33 hours should display "at least 3.4".
+    displayedMinimumHours: Math.ceil(minimumHours * 10 - 1e-10) / 10,
+    targetDriveHours,
+    meetsIdealTarget: neededAh <= outputA * targetDriveHours + 1e-9,
+  });
+}
+
 export function dcdcCalculatorOfferExpiresAt(payload, offer) {
   if (!payload || !offer) return null;
   const expiresAt = Math.min(Date.parse(payload.generatedAt), Date.parse(offer.offerObservedAt)) + MAX_FEED_AGE_MS;
