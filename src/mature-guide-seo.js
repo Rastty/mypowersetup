@@ -21,6 +21,23 @@ export function significantMatureGuideChange(before, after) {
   return matureGuideEvidence(before) !== matureGuideEvidence(after);
 }
 
+/**
+ * Most recent meaningful content revision, from newest to oldest Git records.
+ * This is intentionally independent of the current Article.dateModified:
+ * the latter is generated and must not create a self-reinforcing freshness loop.
+ */
+export function lastSignificantGuideDate(revisions, readVersion) {
+  if (!Array.isArray(revisions) || !revisions.length || typeof readVersion !== "function")
+    throw new Error("MATURE_GUIDE_REVISION_HISTORY_MISSING");
+  let newer = readVersion(revisions[0].sha);
+  for (let i = 1; i < revisions.length; i++) {
+    const older = readVersion(revisions[i].sha);
+    if (significantMatureGuideChange(older, newer)) return revisions[i - 1].date;
+    newer = older;
+  }
+  return revisions.at(-1).date;
+}
+
 function matureGuideEvidence(html) {
   return String(html ?? "").replace(
     /<script\b([^>]*)>([\s\S]*?)<\/script>/gi,
