@@ -58,7 +58,7 @@ test("published MPPT sizing tool remains the primary working experience and craw
   const json=html.match(/<script type="application\/ld\+json">([\s\S]+?)<\/script>/)?.[1];
   assert.ok(json,"valid readable WebApplication structured data");
   const graph=JSON.parse(json)["@graph"];
-  assert.equal(graph.find(node=>node["@type"]==="WebApplication").dateModified,"2026-11-09");
+  assert.equal(graph.find(node=>node["@type"]==="WebApplication").dateModified,"2026-11-10");
 });
 
 test("published sitemap dates reflect real change for this URL only",async()=>{
@@ -66,7 +66,7 @@ test("published sitemap dates reflect real change for this URL only",async()=>{
     const xml=await readFile(filename,"utf8");
     const item=xml.match(/<url><loc>https:\/\/mypowersetup\.com\/kalkulacky\/mppt-regulator\/<\/loc><lastmod>(\d{4}-\d{2}-\d{2})<\/lastmod>/g);
     assert.equal(item?.length,1,filename);
-    assert.ok(item[0].includes("<lastmod>2026-11-09</lastmod>"),filename);
+    assert.ok(item[0].includes("<lastmod>2026-11-10</lastmod>"),filename);
   }
 });
 

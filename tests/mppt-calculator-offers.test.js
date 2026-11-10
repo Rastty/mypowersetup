@@ -137,6 +137,6 @@ test("published MPPT page has an accessible, after-submit-only, truthful buyer s
   assert.match(stylesheet, /\.calculator-mppt-offer-list/);
   assert.doesNotMatch(page, /href="https:\/\/ehub\.cz\/system\/scripts\/click\.php/);
   for (const xml of [sitemap, calcSitemap]) {
-    assert.ok(xml.includes("<loc>https://mypowersetup.com/kalkulacky/mppt-regulator/</loc><lastmod>2026-11-09</lastmod>"));
+    assert.ok(xml.includes("<loc>https://mypowersetup.com/kalkulacky/mppt-regulator/</loc><lastmod>2026-11-10</lastmod>"));
   }
 });
