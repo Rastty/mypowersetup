@@ -173,7 +173,7 @@ test("public compact JSON must exactly match deployed approved snapshot, not mer
   assert.equal(good.eligibleControllerOffers, 3);
   assert.equal(good.outboundClickVerified, false);
 
-  assert.throws(() => checkPublicCompactCatalog(expected + " ", expected),
+  assert.throws(() => checkPublicCompactCatalog(expected.replace('"schemaVersion":1', '"schemaVersion":2'), expected),
     /PUBLIC_COMPACT_CATALOG_SOURCE_DRIFT/);
   assert.throws(() => checkPublicCompactCatalog("x".repeat(12_001), "x".repeat(12_001)),
     /PUBLIC_COMPACT_CATALOG_TOO_LARGE/);
