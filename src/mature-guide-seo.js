@@ -7,6 +7,56 @@ const CONFIG = Object.freeze({
   hu: Object.freeze({ locale: "hu-HU", home: "/hu/", hub: "/hu/utmutatok/", about: "/hu/a-projektrol/", homeLabel: "Kezdőlap", hubLabel: "Útmutatók", aria: "Morzsamenü", route: /^\/hu\/utmutatok\/.+\/$/ }),
 });
 
+/**
+ * Detect an SEO-meaningful update, not just any Git commit touching a static
+ * guide. CDN cache-busting `<script src="?v=...">`, consent/analytics JS and
+ * bot-regenerated Article.dateModified should never claim the ARTICLE was
+ * freshly updated. Preserve changed text, links, metadata, Article schema
+ * (except its generated date), and breadcrumbs as significant.
+ *
+ * Conservative on unknown/malformed structured data: keep it in the
+ * fingerprint so a real schema edit cannot be hidden.
+ */
+export function significantMatureGuideChange(before, after) {
+  return matureGuideEvidence(before) !== matureGuideEvidence(after);
+}
+
+/**
+ * Most recent meaningful content revision, from newest to oldest Git records.
+ * This is intentionally independent of the current Article.dateModified:
+ * the latter is generated and must not create a self-reinforcing freshness loop.
+ */
+export function lastSignificantGuideDate(revisions, readVersion) {
+  if (!Array.isArray(revisions) || !revisions.length || typeof readVersion !== "function")
+    throw new Error("MATURE_GUIDE_REVISION_HISTORY_MISSING");
+  let newer = readVersion(revisions[0].sha);
+  for (let i = 1; i < revisions.length; i++) {
+    const older = readVersion(revisions[i].sha);
+    if (significantMatureGuideChange(older, newer)) return revisions[i - 1].date;
+    newer = older;
+  }
+  return revisions.at(-1).date;
+}
+
+function matureGuideEvidence(html) {
+  return String(html ?? "").replace(
+    /<script\b([^>]*)>([\s\S]*?)<\/script>/gi,
+    (full, attrs, contents) => {
+      if (!/\btype\s*=\s*["']application\/ld\+json["']/i.test(attrs)) return "";
+      try {
+        const schema = JSON.parse(contents);
+        const nodes = Array.isArray(schema?.["@graph"]) ? schema["@graph"] : [schema];
+        for (const node of nodes) {
+          if (node?.["@type"] === "Article") delete node.dateModified;
+        }
+        return `<script ${attrs}>${JSON.stringify(schema)}</script>`;
+      } catch {
+        return full;
+      }
+    }
+  ).replace(/\s+/g, " ").trim();
+}
+
 export function matureGuideMarket(route) {
   if (route === "/pruvodce/modelove-sestavy/") return null;
   return Object.entries(CONFIG).find(([, config]) => config.route.test(route))?.[0] || null;
