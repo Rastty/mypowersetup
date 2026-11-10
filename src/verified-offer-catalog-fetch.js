@@ -49,8 +49,7 @@ export async function loadCalculatorOffers(fetchImpl = fetch, timeoutMs = 15_000
 // must retain access to the entire catalog. Eligibility is always rechecked.
 export async function loadGuideCatalog(roots, fetchImpl = fetch, timeoutMs = 15_000) {
   const categories = Array.from(roots || [], root => root?.dataset?.guideCategory);
-  if (!categories.length) return null;
-  if (categories.every(category => category === "battery" || category === "controller"))
+  if (categories.length && categories.every(category => category === "battery" || category === "controller"))
     return loadCalculatorOffers(fetchImpl, timeoutMs);
   try {
     const response = await fetchImpl(FULL_CATALOG_PATH, {
