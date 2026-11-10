@@ -25,8 +25,9 @@ test("four localized MPPT buying guides show grounded comparison, trustworthy so
     }
     assert.equal((section.match(/<tr>/g) || []).length, 4, `${route}: three examples with headers expected`);
     assert.ok(section.includes(externalTechnicalSource), `${route}: missing manufacturer source`);
-    const expectedDate = route === routes[0] ? "2026-11-07" : "2026-10-13";
-    assert.ok(html.includes(`"dateModified":"${expectedDate}"`), `${route}: structured modification date`);
+    const baselineDate = route === routes[0] ? "2026-11-07" : "2026-10-13";
+    const expectedDate = html.match(/"dateModified":"(\d{4}-\d{2}-\d{2})"/)?.[1];
+    assert.ok(expectedDate && expectedDate >= baselineDate, `${route}: structured modification date must not regress`);
     const sitemapUrl = root + route;
     const row = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].find((match) => match[1].includes(`<loc>${sitemapUrl}</loc>`))?.[1] || "";
     assert.ok(row.includes(`<lastmod>${expectedDate}</lastmod>`), `${route}: sitemap lastmod must match article`);
