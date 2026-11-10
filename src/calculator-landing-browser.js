@@ -1,7 +1,7 @@
 import "./analytics.js";
 import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution } from "./calculator-attribution.js";
 import { calculateLanding } from "./calculator-landing.js";
-import { classifyCalculatorContinuation, getCalculatorCopy } from "./calculator-copy.js?v=20261109-fridge-guide1";
+import { classifyCalculatorContinuation, classifyCalculatorSpecialistHandoff, getCalculatorCopy } from "./calculator-copy.js?v=20261110-mppt-specialist1";
 import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
 import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261109-fridge-community1";
 import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261109-lightweight-cz1";
@@ -72,7 +72,18 @@ if (root) {
     if (!link || (!root.contains(link) && !continuationSection)) return;
     let url;
     try { url = new URL(link.href, window.location.origin); } catch { return; }
-    if (url.origin !== window.location.origin) return;
+    if (url.origin !== window.location.origin) {
+      // The only measured external destination is the already-reviewed
+      // portfolio MPPT checker; the same user-consent gate applies.
+      // This event contains NO panel inputs, referer URL or affiliate ID.
+      const specialist = classifyCalculatorSpecialistHandoff({
+        href: link.href,
+        sourceSection: continuationSection?.dataset?.calculatorContinuationSection,
+        intent, locale,
+      });
+      if (specialist) track("calculator_landing_continue", specialist);
+      return;
+    }
     const destinationType = classifyCalculatorContinuation(url.pathname, url.hash, locale);
     if (!destinationType) return;
     track("calculator_landing_continue", {
