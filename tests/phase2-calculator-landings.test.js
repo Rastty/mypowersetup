@@ -88,6 +88,6 @@ test("both electrical safety calculators invalidate stale visible recommendation
     const html = await read(path);
     assert.match(html, /data-calculator-stale role="status" hidden/);
     assert.match(html, /Před použitím návrhu znovu klikněte/);
-    assert.match(html, /phase2-calculator-browser\.js\?v=20261024-stale1/);
+    assert.match(html, /phase2-calculator-browser\.js\?v=20261110-dcdc-buyer1/);
   }
 });
