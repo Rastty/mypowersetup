@@ -46,7 +46,9 @@ test("only 404/410 allow transitional legacy fallback; malformed and failed snap
     assert.equal(await loadGuideCatalog([root("controller")],h.fetchImpl),null);
     assert.deepEqual(h.requests.map(r=>r.path),[LIGHTWEIGHT_CATALOG_PATH]);
   }
-  assert.equal(await loadGuideCatalog([],async()=>{throw Error("should not request")}),null);
+  const empty=harness();
+  assert.deepEqual(await loadGuideCatalog([],empty.fetchImpl),{full:true});
+  assert.deepEqual(empty.requests.map(r=>r.path),[FULL_CATALOG_PATH]);
   assert.equal(await loadGuideCatalog([root("battery")],async()=>{throw Error("offline")}),null);
 });
 
