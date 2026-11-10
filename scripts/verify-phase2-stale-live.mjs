@@ -7,8 +7,9 @@ export const ROUTES = Object.freeze([
   { path: "/kalkulacky/dc-dc-nabijecka/", intent: "dcdc-sizing" },
   { path: "/kalkulacky/jisteni-12v/", intent: "dc-protection" },
 ]);
-export const VERSION = "20261024-stale1";
+export const VERSION = "20261110-dcdc-buyer1";
 export const SCRIPT_PATH = "/src/phase2-calculator-browser.js";
+export const BUYER_SCRIPT = "/src/dcdc-calculator-offers-browser.js?v=20261110-dcdc-buyer1";
 
 // Retry only temporary HTTP availability failures. A wrong route, invalid content,
 // stale client JS or a persistent 503 must still fail the production proof.
@@ -37,6 +38,10 @@ export function checkHtml(html, { intent }) {
     throw new Error("CALCULATOR_INTENT_MISMATCH");
   if (!html.includes('data-calculator-result'))
     throw new Error("RESULT_PANEL_MISSING");
+  if (intent === "dcdc-sizing" &&
+      (!html.includes("data-dcdc-buyers") || !html.includes("data-dcdc-offer-list") ||
+       !html.includes("nikoli potvrzení kompatibility")))
+    throw new Error("DCDC_VERIFIED_BUYER_SLOT_MISSING");
   const scriptTags = [...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi)].map(m => m[1]);
   const expected = SCRIPT_PATH + "?v=" + VERSION;
   if (scriptTags.filter(src => src === expected).length !== 1)
@@ -55,8 +60,28 @@ export function checkJavascript(source) {
     /form\.addEventListener\(\s*["']input["']\s*,\s*invalidateResult\s*\)/,
     /form\.addEventListener\(\s*["']change["']\s*,\s*invalidateResult\s*\)/,
     /form\.addEventListener\(\s*["']submit["']/,
+    /dcdcBuyers\?\.invalidate\(\)/,
+    /dcdcBuyers\?\.update\(result\)/,
+    /dcdc-calculator-offers-browser\.js\?v=20261110-dcdc-buyer1/,
   ];
   if (!required.every(pattern => pattern.test(source))) throw new Error("SERVED_JS_STALE_GUARD_MISSING");
+  return true;
+}
+
+// The new direct comparison must be served at the exact versioned import
+// referenced by the phase-2 browser. Main JS parity alone cannot prove
+// the module graph reaches the shopper's browser.
+export function checkBuyerJavascript(source) {
+  const required = [
+    /loadDcdcGuideOffers\(/,
+    /selectDcdcCalculatorOffers\(/,
+    /isDcdcOfferStillEligible\(/,
+    /buildAttributedAffiliateParameters\(/,
+    /allowedSources:\s*\["dcdc-calculator-compare"\]/,
+    /event\.preventDefault\(\)/,
+  ];
+  if (!required.every(pattern => pattern.test(source)))
+    throw new Error("SERVED_DCDC_BUYER_GUARD_MISSING");
   return true;
 }
 
@@ -90,7 +115,16 @@ export async function verifyLive({ fetchImpl = fetch, origin = DEFAULT_ORIGIN,
     }
     results.push({ path: route.path, intent: route.intent, http: response.status, version: VERSION, htmlMarker: true, servedJsGuard: true });
   }
+  const buyerResponse = await fetchWithTransientRetry(new URL(BUYER_SCRIPT, base), {
+    redirect: "follow", cache: "no-store", signal: AbortSignal.timeout(20000),
+    headers: { accept: "text/javascript,application/javascript,*/*", "user-agent": "MyPowerSetup-phase2-live-proof/1.0" },
+  }, fetchImpl, sleep, onRetry);
+  requireExactPage(buyerResponse, base, BUYER_SCRIPT);
+  if (!/(?:java|ecma)script|text\/plain/.test(buyerResponse.headers.get("content-type") || ""))
+    throw new Error("PUBLIC_NON_JS");
+  checkBuyerJavascript(await buyerResponse.text());
   return { status: "PUBLIC_HTML_AND_SERVED_JS_VERIFIED", origin: base.origin, routes: results,
+    buyerModuleVersion: BUYER_SCRIPT, buyerModuleVerified: true,
     browserInteractionVerified: false, affiliateOrRevenueEffectVerified: false, transientRetries, productionActions: 0 };
 }
 
