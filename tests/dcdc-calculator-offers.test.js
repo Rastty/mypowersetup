@@ -314,3 +314,38 @@ test("drive-time fit uses exact charge fraction and rejects corrupt input instea
   }
   assert.equal(dcdcOfferDriveTime(fits, { id: "vselektro:unapproved" }), null);
 });
+
+
+test("recalculating the same 30A SKU from too slow to ideal fit records distinct visible GA4 impression variants", async () => {
+  const h = harness();
+  await h.buyer.update(base); // 100 Ah / 30 A = 3.33 h, 3 h target cannot be met.
+  const first = h.list.children[0].children.find(x => x.tag === "a");
+  assert.equal(first.dataset.ctaVariant, "dcdc-longer-drive");
+  h.observer.intersect(first);
+  assert.equal(h.events.length, 1);
+  assert.equal(h.events[0].params.ctaVariant, "dcdc-longer-drive");
+
+  const longerDrive = calculateDcDcCharger({
+    batteryCapacityAh: 200, replenishPercent: 50, targetDriveHours: 4,
+    batteryVoltage: 12, sourceVoltage: 14.2, spareAlternatorCurrentA: 50,
+    batteryMaxChargeCurrentA: 100, efficiencyPercent: 90,
+  });
+  assert.equal(longerDrive.recommendedChargerCurrentA, 30);
+  await h.buyer.update(longerDrive);
+  const second = h.list.children[0].children.find(x => x.tag === "a");
+  assert.equal(second.dataset.productId, first.dataset.productId);
+  assert.equal(second.dataset.ctaVariant, "dcdc-ideal-target-only");
+  h.observer.intersect(second);
+  assert.equal(h.events.length, 2);
+  assert.equal(h.events[1].params.ctaVariant, "dcdc-ideal-target-only");
+  assert.equal(h.events[1].params.productId, first.dataset.productId);
+  h.observer.intersect(second);
+  assert.equal(h.events.length, 2, "visibility never inflates the same variant denominator");
+
+  // A third recalculation with the first time constraint must NOT count a
+  // previously exposed identical SKU+variant combination again.
+  await h.buyer.update(base);
+  const third = h.list.children[0].children.find(x => x.tag === "a");
+  h.observer.intersect(third);
+  assert.equal(h.events.length, 2);
+});
