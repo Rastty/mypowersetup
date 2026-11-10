@@ -139,7 +139,7 @@ const dcdcBytes = Buffer.byteLength(JSON.stringify(dcdcGuideCatalog));
 if (dcdcGuideCatalog.products.length > 4 || dcdcBytes > 6000) {
   throw new Error("DCDC_GUIDE_OFFERS_PROJECTION_UNSAFE_SIZE");
 }
-await writeFile("data/dcdc-guide-offers-cz.json", `${JSON.stringify(dcdcGuideCatalog)}\\n`.replace(/\\\\n$/, "\\n"));
+await writeFile("data/dcdc-guide-offers-cz.json", JSON.stringify(dcdcGuideCatalog) + String.fromCharCode(10));
 console.log(`DC–DC průvodce: ${dcdcGuideCatalog.products.length} ověřených SKU, ${dcdcBytes} B.`);
 
 console.log(`Uloženo ${catalogProducts.length} relevantních produktů z ${products.length} načtených položek.`);
