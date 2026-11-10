@@ -2,7 +2,7 @@ import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=2
 import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-attributed-guide1";
 import { loadDcdcGuideOffers } from "./verified-offer-catalog-fetch.js";
 import {
-  dcdcReviewedModel, dcdcCalculatorOfferExpiresAt,
+  dcdcReviewedModel, dcdcCalculatorOfferExpiresAt, dcdcOfferDriveTime,
   isDcdcOfferStillEligible, selectDcdcCalculatorOffers, supportsDcdcBuyerShortlist,
 } from "./dcdc-calculator-offers.js";
 
@@ -39,6 +39,7 @@ export function mountDcdcCalculatorBuyers(root, {
   const formatter = new Intl.NumberFormat("cs-CZ", {
     style: "currency", currency: "CZK", maximumFractionDigits: 0,
   });
+  const formatHours = new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 1 });
   let generation = 0;
   let active = null;
   let expiryTimer = null;
@@ -83,8 +84,9 @@ export function mountDcdcCalculatorBuyers(root, {
     let earliestExpiry = Infinity;
     for (const offer of offers) {
       const model = dcdcReviewedModel(offer.id);
+      const timing = dcdcOfferDriveTime(result, offer);
       const expiresAt = dcdcCalculatorOfferExpiresAt(payload, offer);
-      if (!model || !Number.isFinite(expiresAt) || expiresAt <= current) continue;
+      if (!model || !timing || !Number.isFinite(expiresAt) || expiresAt <= current) continue;
       earliestExpiry = Math.min(earliestExpiry, expiresAt);
       const item = documentRoot.createElement("li");
       appendText(item, "strong", offer.name);
@@ -94,6 +96,16 @@ export function mountDcdcCalculatorBuyers(root, {
       appendText(item, "span",
         formatter.format(offer.priceCzk) + " · poslední ověřená cena z feedu",
         "calculator-mppt-offer-facts");
+      const timingText = timing.meetsIdealTarget
+        ? "Ideální dolní odhad dobití: nejméně " + formatHours.format(timing.displayedMinimumHours)
+          + " h. Do cíle " + formatHours.format(timing.targetDriveHours)
+          + " h se vejde jen za předpokladu plného stálého proudu; reálně to může trvat déle."
+        : "Pozor: cíl " + formatHours.format(timing.targetDriveHours)
+          + " h tento model nestihne ani při stálém plném proudu. "
+          + "Ideální dolní odhad je nejméně " + formatHours.format(timing.displayedMinimumHours)
+          + " h; skutečné dobíjení může trvat déle.";
+      const timingLine = appendText(item, "span", timingText, "calculator-mppt-offer-facts");
+      timingLine.dataset.dcdcTimeFit = timing.meetsIdealTarget ? "ideal-only" : "too-slow";
 
       const link = appendText(item, "a", "Ověřit cenu, profil a vstupní proud →", "calculator-mppt-offer-link");
       link.href = offer.affiliateUrl;
@@ -104,6 +116,7 @@ export function mountDcdcCalculatorBuyers(root, {
       link.dataset.merchant = "vselektro";
       link.dataset.category = "dc_charger";
       link.dataset.source = "dcdc-calculator-compare";
+      link.dataset.ctaVariant = timing.meetsIdealTarget ? "dcdc-ideal-target-only" : "dcdc-longer-drive";
       link.dataset.offerExpiresAt = String(expiresAt);
       const click = event => {
         if (event.defaultPrevented) return;
