@@ -10,6 +10,7 @@ export const ROUTES = Object.freeze([
 export const VERSION = "20261110-drivefit1";
 export const SCRIPT_PATH = "/src/phase2-calculator-browser.js";
 export const BUYER_SCRIPT = "/src/dcdc-calculator-offers-browser.js?v=20261110-drivefit1";
+export const MODEL_SCRIPT = "/src/dcdc-calculator-offers.js?v=20261110-drivefit1";
 
 // Retry only temporary HTTP availability failures. A wrong route, invalid content,
 // stale client JS or a persistent 503 must still fail the production proof.
@@ -76,12 +77,32 @@ export function checkBuyerJavascript(source) {
     /loadDcdcGuideOffers\(/,
     /selectDcdcCalculatorOffers\(/,
     /isDcdcOfferStillEligible\(/,
+    /dcdcOfferDriveTime\(/,
+    /dcdc-calculator-offers\.js\?v=20261110-drivefit1/,
+    /dcdcTimeFit/,
+    /ctaVariant/,
     /buildAttributedAffiliateParameters\(/,
     /allowedSources:\s*\["dcdc-calculator-compare"\]/,
     /event\.preventDefault\(\)/,
   ];
   if (!required.every(pattern => pattern.test(source)))
     throw new Error("SERVED_DCDC_BUYER_GUARD_MISSING");
+  return true;
+}
+
+// The browser's compared charge-time math must also be served from the exact
+// versioned dependency. A stale CDN model must never silently disagree with
+// the new per-product target-fit messages.
+export function checkModelJavascript(source) {
+  const required = [
+    /export function dcdcOfferDriveTime\(/,
+    /const neededAh = batteryAh \* replenishPercent \/ 100/,
+    /const minimumHours = neededAh \/ outputA/,
+    /displayedMinimumHours: Math\.ceil\(/,
+    /meetsIdealTarget: neededAh <= outputA \* targetDriveHours/,
+  ];
+  if (!required.every(pattern => pattern.test(source)))
+    throw new Error("SERVED_DCDC_TIMING_MODEL_MISSING");
   return true;
 }
 
@@ -123,8 +144,17 @@ export async function verifyLive({ fetchImpl = fetch, origin = DEFAULT_ORIGIN,
   if (!/(?:java|ecma)script|text\/plain/.test(buyerResponse.headers.get("content-type") || ""))
     throw new Error("PUBLIC_NON_JS");
   checkBuyerJavascript(await buyerResponse.text());
+  const modelResponse = await fetchWithTransientRetry(new URL(MODEL_SCRIPT, base), {
+    redirect: "follow", cache: "no-store", signal: AbortSignal.timeout(20000),
+    headers: { accept: "text/javascript,application/javascript,*/*", "user-agent": "MyPowerSetup-phase2-live-proof/1.0" },
+  }, fetchImpl, sleep, onRetry);
+  requireExactPage(modelResponse, base, MODEL_SCRIPT);
+  if (!/(?:java|ecma)script|text\/plain/.test(modelResponse.headers.get("content-type") || ""))
+    throw new Error("PUBLIC_NON_JS");
+  checkModelJavascript(await modelResponse.text());
   return { status: "PUBLIC_HTML_AND_SERVED_JS_VERIFIED", origin: base.origin, routes: results,
     buyerModuleVersion: BUYER_SCRIPT, buyerModuleVerified: true,
+    modelModuleVersion: MODEL_SCRIPT, modelModuleVerified: true,
     browserInteractionVerified: false, affiliateOrRevenueEffectVerified: false, transientRetries, productionActions: 0 };
 }
 
