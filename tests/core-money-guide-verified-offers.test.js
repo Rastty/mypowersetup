@@ -18,7 +18,8 @@ test("three CZ core money guides render one fresh-SKU-gated offer container with
     assert.match(html, /guide-verified-offers\.js\?v=20261110-compact-guides1/, route);
     assert.match(html, /Nejde o automatickou shodu|nikoli potvrzení shody|Nejde o univerzální doporučení/, route);
     assert.ok(html.includes('href="/#kalkulator"'), route);
-    assert.match(html, /"dateModified":"2026-11-07"/, route);
+    const modified = html.match(/"dateModified":"(\d{4}-\d{2}-\d{2})"/)?.[1];
+    assert.ok(modified && modified >= "2026-11-07", route + ": credible publication date");
     assert.doesNotMatch(html, /<a[^>]+href="https:\/\/ehub\.cz\/system\/scripts\/click\.php/, route);
   }
 });
@@ -26,7 +27,10 @@ test("three CZ core money guides render one fresh-SKU-gated offer container with
 test("changed core money guides expose actual lastmod in the main sitemap without new URLs", async () => {
   const sitemap = await readFile(new URL("../sitemap.xml", import.meta.url), "utf8");
   for (const [route] of routes) {
-    const loc = `<loc>https://mypowersetup.com/${route}</loc><lastmod>2026-11-07</lastmod>`;
+    const html = await readFile(new URL("../" + route + "index.html", import.meta.url), "utf8");
+    const modified = html.match(/"dateModified":"(\d{4}-\d{2}-\d{2})"/)?.[1];
+    assert.ok(modified && modified >= "2026-11-07", route);
+    const loc = `<loc>https://mypowersetup.com/${route}</loc><lastmod>${modified}</lastmod>`;
     assert.ok(sitemap.includes(loc), loc);
   }
 });
