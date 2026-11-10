@@ -14,13 +14,13 @@ const js = [
   'form.addEventListener("submit", (event) => render(event));',
   'dcdcBuyers?.invalidate();',
   'void dcdcBuyers?.update(result);',
-  'import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261110-variant-impression2";',
+  'import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261110-coverage1";',
 ].join("\n");
 const buyerJs = [
   "loadDcdcGuideOffers(fetchImpl);",
   "selectDcdcCalculatorOffers(payload, result, now());",
   "isDcdcOfferStillEligible(payload, result, offer, now());",
-  'import { dcdcOfferDriveTime } from "./dcdc-calculator-offers.js?v=20261110-drivefit1";',
+  'import { dcdcOfferDriveTime } from "./dcdc-calculator-offers.js?v=20261110-outcome1";',
   "dcdcOfferDriveTime(result, offer);",
   'import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-drive-variant2";',
   'timingLine.dataset.dcdcTimeFit = "too-slow";',
