@@ -51,7 +51,7 @@ test("published MPPT sizing tool remains the primary working experience and craw
   assert.match(html,/name="panelWatts"/);
   assert.match(html,/name="systemVoltage"/);
   assert.match(html,/name="batteryType"/);
-  assert.match(html,/src="\/src\/calculator-landing-browser\.js\?v=20261110-mppt-specialist1"/);
+  assert.match(html,/src="\/src\/calculator-landing-browser\.js\?v=20261110-attributed-mppt-specialist1"/);
   assert.match(html,/id="mppt-priklady"/);
   assert.ok(html.indexOf("data-calculator-landing") < html.indexOf('id="mppt-priklady"'),"tool before additional content");
   assert.doesNotMatch(html,/<meta name="robots" content="[^"]*noindex/i);
