@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
-import { projectCalculatorOffers } from "../src/calculator-offer-catalog.js";
+import { projectCalculatorOffers, projectDcdcGuideOffers } from "../src/calculator-offer-catalog.js";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 
 const feeds = [
@@ -130,6 +130,17 @@ if (calculatorCatalog.products.length > 6 || compactBytes > 12_000) {
 }
 await writeFile("data/calculator-offers-cz.json", `${JSON.stringify(calculatorCatalog)}\n`);
 console.log(`Kalkulačky: ${calculatorCatalog.products.length} ověřených SKU, ${compactBytes} B namísto úplného katalogu.`);
+
+// DC–DC editorial sections previously downloaded the full catalog. Generate
+// a second bounded same-source projection only from exact approved SKUs.
+// Its first publication is atomic with the normal scheduled catalog refresh.
+const dcdcGuideCatalog = projectDcdcGuideOffers(fullCatalog, Date.parse(fullCatalog.generatedAt));
+const dcdcBytes = Buffer.byteLength(JSON.stringify(dcdcGuideCatalog));
+if (dcdcGuideCatalog.products.length > 4 || dcdcBytes > 6000) {
+  throw new Error("DCDC_GUIDE_OFFERS_PROJECTION_UNSAFE_SIZE");
+}
+await writeFile("data/dcdc-guide-offers-cz.json", `${JSON.stringify(dcdcGuideCatalog)}\\n`.replace(/\\\\n$/, "\\n"));
+console.log(`DC–DC průvodce: ${dcdcGuideCatalog.products.length} ověřených SKU, ${dcdcBytes} B.`);
 
 console.log(`Uloženo ${catalogProducts.length} relevantních produktů z ${products.length} načtených položek.`);
 
