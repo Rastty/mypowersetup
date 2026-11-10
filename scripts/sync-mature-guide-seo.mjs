@@ -5,7 +5,7 @@ import {
   enhanceMatureGuideSeo,
   matureGuidePublicPath,
   matureGuideRoutesFromSitemap,
-  significantMatureGuideChange,
+  lastSignificantGuideDate,
   setSitemapLastmod,
 } from "../src/mature-guide-seo.js";
 
@@ -52,20 +52,14 @@ function gitDates(path) {
     .map(([, sha, date]) => ({ sha, date }));
   if (!revisions.length) throw new Error(`MATURE_GUIDE_GIT_DATES_MISSING:${path}`);
 
-  let lastSignificant = revisions.at(-1).date;
+  let lastSignificant;
   try {
-    let newer = gitFile(revisions[0].sha, path);
-    for (let i = 1; i < revisions.length; i++) {
-      const older = gitFile(revisions[i].sha, path);
-      if (significantMatureGuideChange(older, newer)) {
-        lastSignificant = revisions[i - 1].date;
-        break;
-      }
-      newer = older;
-    }
+    lastSignificant = lastSignificantGuideDate(
+      revisions, sha => gitFile(sha, path)
+    );
   } catch {
-    // E.g. a renamed file whose historic path cannot be resolved by
-    // git show: never infer an earlier update date from incomplete proof.
+    // Renames can make historic objects unavailable with their modern path.
+    // On uncertainty use the newest Git date, never claim an older source.
     lastSignificant = revisions[0].date;
   }
   return { dateModified: lastSignificant, datePublished: revisions.at(-1).date };
