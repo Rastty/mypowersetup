@@ -7,9 +7,10 @@ export const ROUTES = Object.freeze([
   { path: "/kalkulacky/dc-dc-nabijecka/", intent: "dcdc-sizing" },
   { path: "/kalkulacky/jisteni-12v/", intent: "dc-protection" },
 ]);
-export const VERSION = "20261110-drivefit1";
+export const VERSION = "20261110-variant-impression2";
 export const SCRIPT_PATH = "/src/phase2-calculator-browser.js";
-export const BUYER_SCRIPT = "/src/dcdc-calculator-offers-browser.js?v=20261110-drivefit1";
+export const BUYER_SCRIPT = "/src/dcdc-calculator-offers-browser.js?v=20261110-variant-impression2";
+export const IMPRESSION_SCRIPT = "/src/guide-offer-impressions.js?v=20261110-drive-variant2";
 export const MODEL_SCRIPT = "/src/dcdc-calculator-offers.js?v=20261110-drivefit1";
 
 // Retry only temporary HTTP availability failures. A wrong route, invalid content,
@@ -63,7 +64,7 @@ export function checkJavascript(source) {
     /form\.addEventListener\(\s*["']submit["']/,
     /dcdcBuyers\?\.invalidate\(\)/,
     /dcdcBuyers\?\.update\(result\)/,
-    /dcdc-calculator-offers-browser\.js\?v=20261110-drivefit1/,
+    /dcdc-calculator-offers-browser\.js\?v=20261110-variant-impression2/,
   ];
   if (!required.every(pattern => pattern.test(source))) throw new Error("SERVED_JS_STALE_GUARD_MISSING");
   return true;
@@ -81,6 +82,7 @@ export function checkBuyerJavascript(source) {
     /dcdc-calculator-offers\.js\?v=20261110-drivefit1/,
     /dcdcTimeFit/,
     /ctaVariant/,
+    /guide-offer-impressions\.js\?v=20261110-drive-variant2/,
     /buildAttributedAffiliateParameters\(/,
     /allowedSources:\s*\["dcdc-calculator-compare"\]/,
     /event\.preventDefault\(\)/,
@@ -103,6 +105,21 @@ export function checkModelJavascript(source) {
   ];
   if (!required.every(pattern => pattern.test(source)))
     throw new Error("SERVED_DCDC_TIMING_MODEL_MISSING");
+  return true;
+}
+
+// The new SKU + drive-time variant deduplication must be in the actual
+// served browser dependency, not just in a GitHub source file or mock test.
+export function checkImpressionJavascript(source) {
+  const required = [
+    /params\.source === "dcdc-calculator-compare"/,
+    /params\.ctaVariant === "dcdc-ideal-target-only"/,
+    /params\.ctaVariant === "dcdc-longer-drive"/,
+    /const key = JSON\.stringify\(\[params\.source, params\.merchant, params\.category, params\.productId, variant\]\)/,
+    /counted\.has\(key\)/,
+  ];
+  if (!required.every(pattern => pattern.test(source)))
+    throw new Error("SERVED_DCDC_VARIANT_IMPRESSIONS_MISSING");
   return true;
 }
 
@@ -144,6 +161,14 @@ export async function verifyLive({ fetchImpl = fetch, origin = DEFAULT_ORIGIN,
   if (!/(?:java|ecma)script|text\/plain/.test(buyerResponse.headers.get("content-type") || ""))
     throw new Error("PUBLIC_NON_JS");
   checkBuyerJavascript(await buyerResponse.text());
+  const impressionResponse = await fetchWithTransientRetry(new URL(IMPRESSION_SCRIPT, base), {
+    redirect: "follow", cache: "no-store", signal: AbortSignal.timeout(20000),
+    headers: { accept: "text/javascript,application/javascript,*/*", "user-agent": "MyPowerSetup-phase2-live-proof/1.0" },
+  }, fetchImpl, sleep, onRetry);
+  requireExactPage(impressionResponse, base, IMPRESSION_SCRIPT);
+  if (!/(?:java|ecma)script|text\/plain/.test(impressionResponse.headers.get("content-type") || ""))
+    throw new Error("PUBLIC_NON_JS");
+  checkImpressionJavascript(await impressionResponse.text());
   const modelResponse = await fetchWithTransientRetry(new URL(MODEL_SCRIPT, base), {
     redirect: "follow", cache: "no-store", signal: AbortSignal.timeout(20000),
     headers: { accept: "text/javascript,application/javascript,*/*", "user-agent": "MyPowerSetup-phase2-live-proof/1.0" },
@@ -154,6 +179,7 @@ export async function verifyLive({ fetchImpl = fetch, origin = DEFAULT_ORIGIN,
   checkModelJavascript(await modelResponse.text());
   return { status: "PUBLIC_HTML_AND_SERVED_JS_VERIFIED", origin: base.origin, routes: results,
     buyerModuleVersion: BUYER_SCRIPT, buyerModuleVerified: true,
+    impressionModuleVersion: IMPRESSION_SCRIPT, impressionModuleVerified: true,
     modelModuleVersion: MODEL_SCRIPT, modelModuleVerified: true,
     browserInteractionVerified: false, affiliateOrRevenueEffectVerified: false, transientRetries, productionActions: 0 };
 }

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { checkHtml, checkJavascript, checkBuyerJavascript, checkModelJavascript, verifyLive, ROUTES, VERSION } from "./verify-phase2-stale-live.mjs";
+import { checkHtml, checkJavascript, checkBuyerJavascript, checkModelJavascript, checkImpressionJavascript, verifyLive, ROUTES, VERSION } from "./verify-phase2-stale-live.mjs";
 
 const origin = "https://mypowersetup.com";
 const js = [
@@ -14,7 +14,7 @@ const js = [
   'form.addEventListener("submit", (event) => render(event));',
   'dcdcBuyers?.invalidate();',
   'void dcdcBuyers?.update(result);',
-  'import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261110-drivefit1";',
+  'import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261110-variant-impression2";',
 ].join("\n");
 const buyerJs = [
   "loadDcdcGuideOffers(fetchImpl);",
@@ -22,11 +22,20 @@ const buyerJs = [
   "isDcdcOfferStillEligible(payload, result, offer, now());",
   'import { dcdcOfferDriveTime } from "./dcdc-calculator-offers.js?v=20261110-drivefit1";',
   "dcdcOfferDriveTime(result, offer);",
+  'import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-drive-variant2";',
   'timingLine.dataset.dcdcTimeFit = "too-slow";',
   'link.dataset.ctaVariant = "dcdc-longer-drive";',
   "buildAttributedAffiliateParameters(link);",
   'allowedSources: ["dcdc-calculator-compare"]',
   "event.preventDefault();",
+].join("\n");
+const impressionJs = [
+  'const variant = params.source === "dcdc-calculator-compare"',
+  '  ? (params.ctaVariant === "dcdc-ideal-target-only"',
+  '    || params.ctaVariant === "dcdc-longer-drive" ? params.ctaVariant : null)',
+  '  : "";',
+  'const key = JSON.stringify([params.source, params.merchant, params.category, params.productId, variant]);',
+  'if (counted.has(key)) continue;',
 ].join("\n");
 const modelJs = [
   "export function dcdcOfferDriveTime(result, offer) {",
@@ -49,7 +58,7 @@ function mockResponse(url, body, type = "text/html", status = 200) {
     headers: { get(name) { return name === "content-type" ? type : null; } },
     async text() { return body; } };
 }
-function mockFetch({ wrongRedirect = false, staleHtml = false, staleJs = false, staleBuyerJs = false, staleModelJs = false } = {}) {
+function mockFetch({ wrongRedirect = false, staleHtml = false, staleJs = false, staleBuyerJs = false, staleModelJs = false, staleImpressionJs = false } = {}) {
   const calls = [];
   const fn = async input => {
     const url = String(input);
@@ -58,6 +67,8 @@ function mockFetch({ wrongRedirect = false, staleHtml = false, staleJs = false, 
       staleJs ? 'form.addEventListener("submit",()=>{});' : js, "text/javascript");
     if (url.includes("dcdc-calculator-offers-browser.js")) return mockResponse(url,
       staleBuyerJs ? 'function unsafeBuyer() {}' : buyerJs, "text/javascript");
+    if (url.includes("guide-offer-impressions.js")) return mockResponse(url,
+      staleImpressionJs ? "function oldImpression() {}" : impressionJs, "text/javascript");
     if (url.includes("dcdc-calculator-offers.js")) return mockResponse(url,
       staleModelJs ? 'function unknown() {}' : modelJs, "text/javascript");
     const route = ROUTES.find(item => url.endsWith(item.path));
@@ -75,9 +86,10 @@ test("both actual CZ routes and the same served versioned JS are verified", asyn
   assert.equal(result.routes.length, 2);
   assert.equal(result.productionActions, 0);
   assert.equal(result.browserInteractionVerified, false);
-  assert.equal(fetchImpl.calls.length, 5);
+  assert.equal(fetchImpl.calls.length, 6);
   assert.equal(result.buyerModuleVerified, true);
   assert.equal(result.modelModuleVerified, true);
+  assert.equal(result.impressionModuleVerified, true);
   assert.ok(result.buyerModuleVersion.includes("dcdc-calculator-offers-browser.js?v=" + VERSION));
   assert.ok(fetchImpl.calls.some(url => url.endsWith("?v=" + VERSION)));
 });
@@ -120,7 +132,7 @@ test("recovers from one HTTP 503 on a page without skipping either route", async
   assert.equal(result.status, "PUBLIC_HTML_AND_SERVED_JS_VERIFIED");
   assert.equal(result.transientRetries, 1);
   assert.deepEqual(delays, [250]);
-  assert.equal(calls.length, 6);
+  assert.equal(calls.length, 7);
   assert.equal(result.routes.length, 2);
 });
 
@@ -183,7 +195,17 @@ test("missing DC-DC buyer or stale served buyer JS cannot be misreported as depl
 test("missing served sizing module never passes the live buyer comparison proof", async () => {
   const mock = mockFetch({ staleModelJs: true });
   await assert.rejects(verifyLive({ fetchImpl: mock }), /SERVED_DCDC_TIMING_MODEL_MISSING/);
-  assert.equal(mock.calls.length, 5);
+  assert.equal(mock.calls.length, 6);
   assert.throws(() => checkModelJavascript("export function dcdcOfferDriveTime() {}"),
     /SERVED_DCDC_TIMING_MODEL_MISSING/);
+});
+
+
+test("direct DC-DC production proof rejects old browser impression deduplication", async () => {
+  const mock = mockFetch({ staleImpressionJs: true });
+  await assert.rejects(verifyLive({ fetchImpl: mock }),
+    /SERVED_DCDC_VARIANT_IMPRESSIONS_MISSING/);
+  assert.equal(mock.calls.length, 5, "the new impression dependency fails before model evidence");
+  assert.throws(() => checkImpressionJavascript('const key = params.productId;'),
+    /SERVED_DCDC_VARIANT_IMPRESSIONS_MISSING/);
 });

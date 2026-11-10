@@ -2,7 +2,7 @@ import "./analytics.js";
 import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution, rememberCalculatorResultContext, clearCalculatorResultContext } from "./calculator-attribution.js";
 import { classifyCalculatorContinuation } from "./calculator-copy.js";
 import { calculateDcDcCharger } from "./dc-dc-charger.js";
-import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261110-drivefit1";
+import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261110-variant-impression2";
 import { calculateDcProtectionPlan } from "./dc-protection-planner.js";
 
 const root = document.querySelector("[data-phase2-calculator]");

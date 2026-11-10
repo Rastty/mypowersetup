@@ -1,5 +1,5 @@
 import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=20261110-attributed-products1";
-import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-attributed-guide1";
+import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-drive-variant2";
 import { loadDcdcGuideOffers } from "./verified-offer-catalog-fetch.js";
 import {
   dcdcReviewedModel, dcdcCalculatorOfferExpiresAt, dcdcOfferDriveTime,

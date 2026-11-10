@@ -29,7 +29,17 @@ export function createVerifiedGuideImpressionTracker({
       const params = buildAttributedAffiliateParameters(link);
       if (params.productId === "unknown" || params.merchant !== "vselektro"
         || !allowedSources.includes(params.source)) continue;
-      const key = `${params.merchant}:${params.category}:${params.productId}`;
+      // Editorial guides still count a SKU once per page. Only the DC-DC
+      // calculator exposes two *different* drive-time-fit variants of the
+      // same SKU after a new calculation. Give each actually seen variant
+      // a separate consented impression, matching the CTA variant on clicks.
+      // Never count invalid/unknown variants as a fresh denominator.
+      const variant = params.source === "dcdc-calculator-compare"
+        ? (params.ctaVariant === "dcdc-ideal-target-only"
+          || params.ctaVariant === "dcdc-longer-drive" ? params.ctaVariant : null)
+        : "";
+      if (variant === null) continue;
+      const key = JSON.stringify([params.source, params.merchant, params.category, params.productId, variant]);
       if (counted.has(key)) continue;
       // The existing Analytics adapter owns consent and enriches market,
       // page_path and page_type. Never mark a declined event as recorded.
