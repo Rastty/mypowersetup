@@ -106,6 +106,8 @@ jobs:
           VSELEKTRO_FEED_URL: ${{ secrets.VSELEKTRO_FEED_URL }}
       - name: Validate small, same-source CZ buyer catalog
         run: node scripts/check-calculator-offers-cz.mjs
+      - name: Validate small, same-source CZ DC-DC editorial offers
+        run: node scripts/check-dcdc-guide-offers-cz.mjs
       - run: node scripts/sync-products-ampul-cz.mjs
         env:
           AMPUL_CZ_FEED_URL: ${{ secrets.AMPUL_CZ_FEED_URL }}
@@ -131,7 +133,7 @@ jobs:
       - run: npm run check:commercial:opportunities
       - name: Commit refreshed catalog
         run: |
-          FILES="data/products.json data/calculator-offers-cz.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json data/cz-dcdc-coverage.json data/commercial-opportunity-report.json data/owner-action-queue.json"
+          FILES="data/products.json data/calculator-offers-cz.json data/dcdc-guide-offers-cz.json data/products-ampul-cz.json data/products-sk.json data/products-pl.json data/products-hu.json data/products-pt.json data/cz-dcdc-coverage.json data/commercial-opportunity-report.json data/owner-action-queue.json"
           if [[ -z "$(git status --porcelain -- $FILES)" ]]; then exit 0; fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"
