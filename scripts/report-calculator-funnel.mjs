@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { readFile } from "node:fs/promises";
 import { buildCalculatorFunnelSummary, renderCalculatorFunnelMarkdown } from "../src/calculator-funnel-report.js";
+import { normalizeGa4CalculatorEventRows } from "../src/calculator-growth-input.js";
 
 const input = process.argv[2];
 if (!input) {
@@ -23,6 +24,11 @@ if (!input) {
     console.error(`Calculator funnel evidence unavailable: ${issue}`);
     process.exitCode = 2;
   } else {
-    console.log(renderCalculatorFunnelMarkdown(buildCalculatorFunnelSummary(events)));
+    // A ready GA4 Data API export includes eventCount and totalUsers. Use the
+    // same user-based funnel weighting as report:calculator:growth while keeping
+    // event_count for click-action diagnostics. Legacy raw browser event arrays
+    // remain unmodified and count once per event.
+    const normalized = Array.isArray(payload) ? events : normalizeGa4CalculatorEventRows(events);
+    console.log(renderCalculatorFunnelMarkdown(buildCalculatorFunnelSummary(normalized)));
   }
 }
