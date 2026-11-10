@@ -53,7 +53,7 @@ test("public MPPT buyer link is enabled for opt-in delegated analytics, without 
   ]);
   assert.match(html, /id="mppt-kontrola-stringu" data-calculator-continuation-section="mppt_string_check"/);
   assert.match(html, /href="https:\/\/solar-expert\.cz\/mppt-kalkulacka\/"/);
-  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261110-mppt-specialist1"/);
+  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261110-attributed-mppt-specialist1"/);
   assert.match(browser, /classifyCalculatorSpecialistHandoff/);
   assert.match(browser, /if \(url\.origin !== window\.location\.origin\) \{/);
   assert.match(browser, /track\("calculator_landing_continue", specialist\)/);
