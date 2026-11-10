@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { checkHtml, checkJavascript, verifyLive, ROUTES, VERSION } from "./verify-phase2-stale-live.mjs";
+import { checkHtml, checkJavascript, checkBuyerJavascript, verifyLive, ROUTES, VERSION } from "./verify-phase2-stale-live.mjs";
 
 const origin = "https://mypowersetup.com";
 const js = [
@@ -12,11 +12,23 @@ const js = [
   'form.addEventListener("input", invalidateResult);',
   'form.addEventListener("change", invalidateResult);',
   'form.addEventListener("submit", (event) => render(event));',
+  'dcdcBuyers?.invalidate();',
+  'void dcdcBuyers?.update(result);',
+  'import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261110-dcdc-buyer1";',
+].join("\n");
+const buyerJs = [
+  "loadDcdcGuideOffers(fetchImpl);",
+  "selectDcdcCalculatorOffers(payload, result, now());",
+  "isDcdcOfferStillEligible(payload, result, offer, now());",
+  "buildAttributedAffiliateParameters(link);",
+  'allowedSources: ["dcdc-calculator-compare"]',
+  "event.preventDefault();",
 ].join("\n");
 function html(intent, version = VERSION) {
   return '<!doctype html><html><body><div data-calculator-intent="' + intent + '">'
     + '<p data-calculator-stale role="status" hidden>Recalculate</p>'
     + '<div data-calculator-result></div></div>'
+    + (intent === "dcdc-sizing" ? '<section data-dcdc-buyers><ul data-dcdc-offer-list></ul><p>nikoli potvrzení kompatibility</p></section>' : "")
     + '<script type="module" src="/src/phase2-calculator-browser.js?v=' + version + '"></script>'
     + '</body></html>';
 }
@@ -25,13 +37,15 @@ function mockResponse(url, body, type = "text/html", status = 200) {
     headers: { get(name) { return name === "content-type" ? type : null; } },
     async text() { return body; } };
 }
-function mockFetch({ wrongRedirect = false, staleHtml = false, staleJs = false } = {}) {
+function mockFetch({ wrongRedirect = false, staleHtml = false, staleJs = false, staleBuyerJs = false } = {}) {
   const calls = [];
   const fn = async input => {
     const url = String(input);
     calls.push(url);
     if (url.includes("phase2-calculator-browser.js")) return mockResponse(url,
       staleJs ? 'form.addEventListener("submit",()=>{});' : js, "text/javascript");
+    if (url.includes("dcdc-calculator-offers-browser.js")) return mockResponse(url,
+      staleBuyerJs ? 'function unsafeBuyer() {}' : buyerJs, "text/javascript");
     const route = ROUTES.find(item => url.endsWith(item.path));
     assert.ok(route, "unexpected request " + url);
     return mockResponse(wrongRedirect ? origin + "/" : url,
@@ -47,7 +61,9 @@ test("both actual CZ routes and the same served versioned JS are verified", asyn
   assert.equal(result.routes.length, 2);
   assert.equal(result.productionActions, 0);
   assert.equal(result.browserInteractionVerified, false);
-  assert.equal(fetchImpl.calls.length, 3);
+  assert.equal(fetchImpl.calls.length, 4);
+  assert.equal(result.buyerModuleVerified, true);
+  assert.ok(result.buyerModuleVersion.includes("dcdc-calculator-offers-browser.js?v=" + VERSION));
   assert.ok(fetchImpl.calls.some(url => url.endsWith("?v=" + VERSION)));
 });
 test("rejects stale HTML version and missing recalculation prompt", async () => {
@@ -89,7 +105,7 @@ test("recovers from one HTTP 503 on a page without skipping either route", async
   assert.equal(result.status, "PUBLIC_HTML_AND_SERVED_JS_VERIFIED");
   assert.equal(result.transientRetries, 1);
   assert.deepEqual(delays, [250]);
-  assert.equal(calls.length, 4);
+  assert.equal(calls.length, 5);
   assert.equal(result.routes.length, 2);
 });
 
@@ -135,4 +151,15 @@ test("404 is not retried and semantic regressions still fail", async () => {
   await assert.rejects(verifyLive({ fetchImpl: invalid,
     sleep: async () => { throw new Error("must not retry stale JS"); } }), /SERVED_JS_STALE_GUARD_MISSING/);
   assert.equal(invalid.calls.length, 2);
+});
+
+test("missing DC-DC buyer or stale served buyer JS cannot be misreported as deployed", async () => {
+  assert.throws(() => checkHtml(html("dcdc-sizing").replace("data-dcdc-offer-list", "broken-list"),
+    { intent: "dcdc-sizing" }), /DCDC_VERIFIED_BUYER_SLOT_MISSING/);
+  assert.throws(() => checkBuyerJavascript("function unsafeBuyer() {}"),
+    /SERVED_DCDC_BUYER_GUARD_MISSING/);
+  const invalid = mockFetch({ staleBuyerJs: true });
+  await assert.rejects(verifyLive({ fetchImpl: invalid }),
+    /SERVED_DCDC_BUYER_GUARD_MISSING/);
+  assert.equal(invalid.calls.length, 4);
 });
