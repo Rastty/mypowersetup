@@ -155,7 +155,7 @@ test("approved guide routes reject alternate HTTPS ports and URL credentials", (
 test("consent-aware editorial affiliate denominator includes eligible middle clicks but not blocked or context clicks", async () => {
  const recorded=[];
  const analytics={track:(event,detail)=>recorded.push({event,detail})};
- const link={dataset:{productId:"vselektro:victron-smartsolar-100-50",category:"controller"},
+ const link={dataset:{productId:"vselektro:victron-smartsolar-100-50",category:"controller",merchant:"vselektro",source:"editorial-comparison"},
   closest:(selector)=>selector==="[data-guide-category] a[data-affiliate-click]"?link:null};
  const emit=(type,button,defaultPrevented=false,target=link)=>
   trackGuideAffiliateClick({type,button,defaultPrevented,target},analytics);
@@ -343,7 +343,7 @@ test("three distinct high-intent original pages have canonical, full static answ
   assert.ok(html.includes('data-guide-category="'+category+'"'));
   assert.ok(html.includes('href="/pruvodce/'+existing+'/'));
   assert.ok(html.includes('href="/#kalkulator"')||html.includes('href="/kalkulacky/dc-dc-nabijecka/"'));
-  assert.ok(html.includes('src="/src/guide-verified-offers.js?v=20261110-dcdc-view1"'));
+  assert.ok(html.includes('src="/src/guide-verified-offers.js?v=20261110-attributed-offers1"'));
   assert.ok(html.includes('"@type":"Article"'));
   assert.ok(html.includes('"@type":"BreadcrumbList"'));
   assert.ok(html.includes('<table>'));
