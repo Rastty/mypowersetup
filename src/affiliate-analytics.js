@@ -3,8 +3,19 @@ import { resolveCalculatorAttribution } from "./calculator-attribution.js";
 
 function currentCalculatorAttribution() {
   if (typeof window === "undefined" || typeof document === "undefined") return null;
-  const market = document.documentElement?.lang || null;
-  return resolveCalculatorAttribution({ storage: window.sessionStorage, market });
+  // Accessing sessionStorage can throw in privacy-restricted browsers. Never
+  // break an outbound purchase click because analytics storage is unavailable.
+  try {
+    const market = document.documentElement?.lang || null;
+    return resolveCalculatorAttribution({ storage: window.sessionStorage, market });
+  } catch { return null; }
+}
+
+// The same validated 30-minute, same-market calculator context must reach both
+// in-Builder products and verified editorial guide offers. No new storage,
+// fingerprinting or tracking event is introduced by this function.
+export function buildAttributedAffiliateParameters(link) {
+  return { ...buildAffiliateClickParameters(link), ...(currentCalculatorAttribution() || {}) };
 }
 
 export function buildAffiliateClickParameters(link) {
@@ -24,10 +35,7 @@ export function buildAffiliateClickParameters(link) {
 
 export function trackAffiliateClick(link, tracker) {
   if (typeof tracker !== "function") return false;
-  return tracker("affiliate_click", {
-    ...buildAffiliateClickParameters(link),
-    ...(currentCalculatorAttribution() || {}),
-  });
+  return tracker("affiliate_click", buildAttributedAffiliateParameters(link));
 }
 
 export function buildAffiliateImpressionParameters(links) {
