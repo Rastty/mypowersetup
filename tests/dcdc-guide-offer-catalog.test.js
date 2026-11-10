@@ -96,6 +96,14 @@ test("existing source sync writes and CI validates DC-DC view before publication
  assert.match(sync,/projectDcdcGuideOffers\(fullCatalog/);
  assert.match(sync,/data\/dcdc-guide-offers-cz\.json/);
  assert.match(workflow,/node scripts\/check-dcdc-guide-offers-cz\.mjs/);
+ assert.match(workflow,/actions: read/,"the job needs only read permission to inspect Pages");
+ assert.match(workflow,/export GITHUB_SHA="\$\(git rev-parse HEAD\)"/,
+   "the release barrier must prove the new data commit, not the initiating source SHA");
+ assert.match(workflow,/node scripts\/wait-for-pages-deployment\.mjs/);
+ assert.match(workflow,/node scripts\/verify-buyer-paths-live\.mjs/);
+ assert.ok(workflow.indexOf("name: Prove the exact published buyer catalog after this feed sync") >
+   workflow.indexOf("name: Commit refreshed catalog"),"public buyer readback runs only after data push");
+
  assert.match(workflow,/data\/calculator-offers-cz\.json data\/dcdc-guide-offers-cz\.json/);
  assert.match(checker,/DCDC_GUIDE_SOURCE_DRIFT/);
  assert.match(fetcher,/DCDC_GUIDE_CATALOG_PATH/);
