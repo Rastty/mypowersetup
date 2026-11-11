@@ -17,10 +17,13 @@ function decorateCategory(items) {
   const badges = items.map(() => []);
   badges[0].push("recommended");
 
-  const priced = items
-    .map((item, index) => ({ index, price: Number(item.price) }))
-    .filter(({ price }) => Number.isFinite(price));
-  if (priced.length > 1) {
+  // An unavailable merchant price is null, never a free product.
+  // Never compare unlike currencies or claim a budget winner from a single
+  // known price. The storefront already hides unavailable prices.
+  const priced = items.flatMap((item, index) =>
+    typeof item.price === "number" && Number.isFinite(item.price) && item.price > 0
+      ? [{ index, price: item.price, currency: item.currency || null }] : []);
+  if (priced.length > 1 && new Set(priced.map(({ currency }) => currency)).size === 1) {
     const budget = priced.reduce((best, candidate) => candidate.price < best.price ? candidate : best);
     badges[budget.index].push("budget");
   }

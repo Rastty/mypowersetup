@@ -7,7 +7,7 @@ import { expansionComponentPlan } from "./expansion-component-plan.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { expansionPurchaseRoutePriority } from "./expansion-purchase-route-priority.js";
 import { bindAffiliateImpressionTracking, trackAffiliateClick, trackVisibleAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-product-impressions1";
-import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js";
+import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js?v=20261111-price-truth1";
 import { groupExpansionProductsForDisclosure } from "./expansion-product-disclosure.js";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 
