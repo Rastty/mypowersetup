@@ -26,3 +26,20 @@ test("Portugal distinguishes component matches from a missing full portable-syst
   assert.match(source, /coverage\.powerStation \? ""/);
   assert.match(source, /produtos abaixo cobrem partes da instalação por componentes/);
 });
+
+test("PT RO SI explicitly warn that a partial component list is not a complete purchasable system", () => {
+  for (const phrase of [
+    "A instalação por componentes ainda não está completa",
+    "Instalația din componente nu este încă completă",
+    "Sistem iz komponent še ni popoln",
+  ]) assert.ok(source.includes(phrase), "missing localized partial component warning: " + phrase);
+
+  assert.match(source, /const missing = routePriority\.coverage\?\.missing \|\| \[\]/);
+  assert.match(source, /const componentGapNote = !preferPortable && missing\.length/);
+  assert.match(source, /data-component-gap-note/);
+  assert.match(source, /labels\.componentGap\(missing\.map\(expansionCategoryLabel\)\.join\(", "\)\)/);
+  assert.match(source, /\$\{priorityNote\}\$\{componentGapNote\}\$\{routes\}/);
+  assert.match(source, /escapeHtml\(labels\.componentGap\(/,
+    "missing category names must be escaped before rendering");
+  assert.match(source, /const priorityNote = preferPortable/, "a complete portable fallback keeps its own distinct warning");
+});
