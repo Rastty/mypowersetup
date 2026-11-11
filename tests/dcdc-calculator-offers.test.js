@@ -252,8 +252,8 @@ test("public wiring isolates comparisons to the 12V DC-DC route and never hardco
   assert.match(calc, /data-dcdc-buyers/);
   assert.match(calc, /data-dcdc-offer-list/);
   assert.match(calc, /nikoli potvrzení kompatibility/);
-  assert.match(calc, /phase2-calculator-browser\.js\?v=20261110-coverage1/);
-  assert.match(protection, /phase2-calculator-browser\.js\?v=20261110-coverage1/);
+  assert.match(calc, /phase2-calculator-browser\.js\?v=20261111-offer-reason1/);
+  assert.match(protection, /phase2-calculator-browser\.js\?v=20261111-offer-reason1/);
   assert.doesNotMatch(protection, /data-dcdc-buyers/);
   assert.doesNotMatch(calc, /ehub\.cz\/system\/scripts\/click/);
   assert.match(browser, /if \(intent === "dcdc-sizing"\) void dcdcBuyers\?\.update\(result\)/);
@@ -412,4 +412,27 @@ test("failed feed outcome has no links; consent denial and superseded requests n
   resolveFetch({ ok: true, json: async () => feed });
   await first;
   assert.equal(race.coverageEvents.length, 0, "cancelled fetch cannot emit obsolete result");
+});
+
+test("no-SKU reasons tell shoppers whether safe limits or merchant evidence block an offer", async () => {
+  const h = harness();
+  await h.buyer.update({ ...base, batteryMaxChargeCurrentA: 14, recommendedChargerCurrentA: 10 });
+  assert.equal(h.section.dataset.liveOffers, "0");
+  assert.match(h.fallback.textContent, /žádný se nevejde do bezpečného proudového limitu/);
+  assert.match(h.fallback.textContent, /Nezvyšujte limit jen kvůli nákupu/);
+  assert.doesNotMatch(h.fallback.textContent, /Aktuální ceny a dostupnost nelze bezpečně ověřit/);
+  assert.deepEqual(h.coverageEvents.map(e => e.name), ["dcdc_offers_no_safe_match"]);
+
+  const unavailable = harness({ fetchImpl: async () => ({ ok: false, status: 503 }) });
+  await unavailable.buyer.update(base);
+  assert.equal(unavailable.section.dataset.liveOffers, "0");
+  assert.match(unavailable.fallback.textContent, /Aktuální ceny a dostupnost nelze bezpečně ověřit/);
+  assert.doesNotMatch(unavailable.fallback.textContent, /žádný se nevejde do bezpečného proudového limitu/);
+  assert.deepEqual(unavailable.coverageEvents.map(e => e.name), ["dcdc_offers_unavailable"]);
+
+  const unsupported = harness();
+  await unsupported.buyer.update(calculateDcDcCharger({ ...base, batteryVoltage: 24, sourceVoltage: 28.4 }));
+  assert.match(unsupported.fallback.textContent, /Pro 24V nebo neurčité vstupní napětí/);
+  assert.equal(unsupported.fetches, 0);
+  assert.deepEqual(unsupported.coverageEvents.map(e => e.name), ["dcdc_offers_unsupported"]);
 });

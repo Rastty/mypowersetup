@@ -66,6 +66,10 @@ jobs:
       - name: Test exact-route public readback contract
         run: node --test scripts/verify-phase2-stale-live.test.mjs
       - name: Verify both live electrical calculator HTML pages and served JS
+        # PRs intentionally contain a future script version absent from live
+        # Pages. Enforce the live check only after the exact main SHA deploys
+        # (or in independent scheduled/dispatch/workflow_run audits).
+        if: github.event_name != 'pull_request'
         run: node scripts/verify-phase2-stale-live.mjs
       - name: Test public buyer paths and exact served asset contract
         run: node --test scripts/verify-buyer-paths-live.test.mjs

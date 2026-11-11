@@ -75,9 +75,14 @@ export function mountDcdcCalculatorBuyers(root, {
     const current = now();
     const offers = selectDcdcCalculatorOffers(payload, result, current);
     if (!offers.length) {
-      showFallback(supportsDcdcBuyerShortlist(result)
-        ? "Pro zadané limity není dostupný žádný dostatečně čerstvý ověřený model 12→12 V. Podívejte se do průvodce nebo upravte návrh; nepřekračujte bezpečné proudové limity."
-        : "Zde porovnáváme pouze ověřené modely pro 12V vstup a 12V servisní baterii. Pro 24V nebo neurčité vstupní napětí použijte průvodce a ověřte vhodný model u výrobce.");
+      // A product blocked by a safe current ceiling is not the same as a
+      // stale/unavailable merchant feed. Neither warrants weakening safety.
+      const reason = outcome === "no_safe_match"
+        ? "Ověřené modely 12→12 V existují, ale žádný se nevejde do bezpečného proudového limitu tohoto výpočtu. Nezvyšujte limit jen kvůli nákupu; ověřte rezervu alternátoru, BMS a případně hledejte slabší model v průvodci."
+        : outcome === "unavailable"
+          ? "Aktuální ceny a dostupnost nelze bezpečně ověřit (feed, sklad nebo platnost údajů). To neznamená, že kompatibilní nabíječka neexistuje. Zkuste nabídky později a parametry ověřte u prodejce."
+          : "Zde porovnáváme pouze ověřené modely pro 12V vstup a 12V servisní baterii. Pro 24V nebo neurčité vstupní napětí použijte průvodce a ověřte vhodný model u výrobce.";
+      showFallback(reason);
       section.dataset.buyerFetchState = "empty";
       return outcome;
     }

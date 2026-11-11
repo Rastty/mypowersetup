@@ -14,7 +14,7 @@ const js = [
   'form.addEventListener("submit", (event) => render(event));',
   'dcdcBuyers?.invalidate();',
   'void dcdcBuyers?.update(result);',
-  'import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261110-coverage1";',
+  'import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261111-offer-reason1";',
 ].join("\n");
 const buyerJs = [
   "loadDcdcGuideOffers(fetchImpl);",
@@ -23,6 +23,8 @@ const buyerJs = [
   'import { dcdcOfferDriveTime } from "./dcdc-calculator-offers.js?v=20261110-outcome1";',
   "dcdcOfferDriveTime(result, offer);",
   "classifyDcdcOfferOutcome(payload, result, now());",
+  'const noMatch = "žádný se nevejde do bezpečného proudového limitu";',
+  'const feedMissing = "Aktuální ceny a dostupnost nelze bezpečně ověřit";',
   'function trackOutcome(outcome, explicit) {',
   '  windowRoot?.MyPowerSetupAnalytics?.track?.("dcdc_offers_" + outcome);',
   '  if (!documentRoot.hidden && active) void update(active, { explicit: false });',
@@ -215,4 +217,11 @@ test("direct DC-DC production proof rejects old browser impression deduplication
   assert.equal(mock.calls.length, 5, "the new impression dependency fails before model evidence");
   assert.throws(() => checkImpressionJavascript('const key = params.productId;'),
     /SERVED_DCDC_VARIANT_IMPRESSIONS_MISSING/);
+});
+
+test("served buyer proof rejects either missing actionable no-offer explanation", () => {
+  assert.throws(() => checkBuyerJavascript(buyerJs.replace("žádný se nevejde do bezpečného proudového limitu", "obecná zpráva")),
+    /SERVED_DCDC_BUYER_GUARD_MISSING/);
+  assert.throws(() => checkBuyerJavascript(buyerJs.replace("Aktuální ceny a dostupnost nelze bezpečně ověřit", "obecná zpráva")),
+    /SERVED_DCDC_BUYER_GUARD_MISSING/);
 });

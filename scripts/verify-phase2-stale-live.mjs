@@ -7,9 +7,9 @@ export const ROUTES = Object.freeze([
   { path: "/kalkulacky/dc-dc-nabijecka/", intent: "dcdc-sizing" },
   { path: "/kalkulacky/jisteni-12v/", intent: "dc-protection" },
 ]);
-export const VERSION = "20261110-coverage1";
+export const VERSION = "20261111-offer-reason1";
 export const SCRIPT_PATH = "/src/phase2-calculator-browser.js";
-export const BUYER_SCRIPT = "/src/dcdc-calculator-offers-browser.js?v=20261110-coverage1";
+export const BUYER_SCRIPT = "/src/dcdc-calculator-offers-browser.js?v=20261111-offer-reason1";
 export const IMPRESSION_SCRIPT = "/src/guide-offer-impressions.js?v=20261110-drive-variant2";
 export const MODEL_SCRIPT = "/src/dcdc-calculator-offers.js?v=20261110-outcome1";
 
@@ -64,7 +64,7 @@ export function checkJavascript(source) {
     /form\.addEventListener\(\s*["']submit["']/,
     /dcdcBuyers\?\.invalidate\(\)/,
     /dcdcBuyers\?\.update\(result\)/,
-    /dcdc-calculator-offers-browser\.js\?v=20261110-coverage1/,
+    /dcdc-calculator-offers-browser\.js\?v=20261111-offer-reason1/,
   ];
   if (!required.every(pattern => pattern.test(source))) throw new Error("SERVED_JS_STALE_GUARD_MISSING");
   return true;
@@ -80,6 +80,8 @@ export function checkBuyerJavascript(source) {
     /isDcdcOfferStillEligible\(/,
     /dcdcOfferDriveTime\(/,
     /classifyDcdcOfferOutcome\(/,
+    /žádný se nevejde do bezpečného proudového limitu/,
+    /Aktuální ceny a dostupnost nelze bezpečně ověřit/,
     /trackOutcome\(/,
     /explicit: false/,
     /dcdc_offers_/,
