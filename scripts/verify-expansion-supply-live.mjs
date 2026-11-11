@@ -13,6 +13,7 @@ const BROWSER_ASSET = "src/expansion-calculator-browser.js";
 const SUPPLY_ASSET = "src/expansion-supply-evidence.js";
 const PRICE_ASSET = "src/expansion-line-price.js";
 const ROLES_ASSET = "src/expansion-recommendation-roles.js";
+const COMPONENT_ASSET = "src/expansion-component-recommendations.js";
 const SCRIPT_PATTERN = /<script\b[^>]*\bsrc=["'](\/src\/expansion-calculator-browser\.js\?v=[^"']+)["'][^>]*>/gi;
 const MODULE_PATTERN = /from ["']\.\/expansion-supply-evidence\.js\?v=([^"']+)["']/g;
 const TEMPORARY = new Set([429, 502, 503, 504]);
@@ -36,6 +37,37 @@ function expectedVersionedImport(source, filename) {
     .filter((match) => match[1] === filename);
   if (matches.length !== 1) fail("PRICE_DEPENDENCY_VERSION_DRIFT");
   return "/src/" + filename + "?v=" + matches[0][2];
+}
+
+function expectedMarketModule(source, market) {
+  if (!["pt", "ro", "si"].includes(market)) fail("MARKET_INVALID");
+  const pattern = new RegExp('import\\("\\./' + market + '-recommendations\\.js\\?v=([0-9]{8}-[a-z0-9-]+)"\\)', "g");
+  const matches = [...source.matchAll(pattern)];
+  if (matches.length !== 1) fail("MARKET_MODULE_VERSION_DRIFT:" + market);
+  return "/src/" + market + "-recommendations.js?v=" + matches[0][1];
+}
+
+function expectedComponentModule(source) {
+  const matches = [...source.matchAll(/from ["']\.\/expansion-component-recommendations\.js\?v=([0-9]{8}-[a-z0-9-]+)["']/g)];
+  if (matches.length !== 2 || matches[0][1] !== matches[1][1])
+    fail("SHARED_COMPONENT_VERSION_DRIFT");
+  return "/src/expansion-component-recommendations.js?v=" + matches[0][1];
+}
+
+export function verifyExpansionSourceJavascript(served, local, kind) {
+  if (normalize(served) !== normalize(local)) fail("SOURCE_JS_SOURCE_DRIFT:" + kind);
+  const markers = kind === "component" ? [
+    "export function hasExpansionSourceGaps(catalog)",
+    "hasCurrentRecommendationSource(product, catalog.sources)",
+    "}, limitPerCategory, sources);",
+  ] : ["pt", "ro", "si"].includes(kind) ? [
+    "hasCurrentRecommendationSource(product, ",
+    "buildExpansionComponentRecommendations(",
+    "hasExpansionSourceGaps",
+  ] : [];
+  if (!markers.length || !markers.every(marker => served.includes(marker)))
+    fail("SOURCE_HEALTH_GUARD_MISSING:" + kind);
+  return true;
 }
 
 export function verifyExpansionHtml(served, local, market) {
@@ -151,6 +183,28 @@ export async function verifyExpansionSupplyLive({
   const localRoles = await readLocal(ROLES_ASSET);
   const servedRoles = await fetchProof(new URL(rolesUrl, base), "js", fetchImpl, sleep);
   verifyExpansionPriceJavascript(servedRoles, localRoles, "roles");
+  // Validate the actual *served* merchant-specific recommendation modules, not
+  // just the entrypoint: the live catalog must not expose stale-source offers.
+  const marketModules = [];
+  let componentUrl = null;
+  for (const market of ["pt", "ro", "si"]) {
+    const moduleUrl = expectedMarketModule(servedBrowser, market);
+    const path = "src/" + market + "-recommendations.js";
+    const [localModule, servedModule] = await Promise.all([
+      readLocal(path),
+      fetchProof(new URL(moduleUrl, base), "js", fetchImpl, sleep),
+    ]);
+    verifyExpansionSourceJavascript(servedModule, localModule, market);
+    const shared = expectedComponentModule(servedModule);
+    if (componentUrl && componentUrl !== shared) fail("CROSS_MARKET_COMPONENT_MODULE_DRIFT");
+    componentUrl = shared;
+    marketModules.push(Object.freeze({ market, script: moduleUrl, sourceParity: true }));
+  }
+  const [localComponent, servedComponent] = await Promise.all([
+    readLocal(COMPONENT_ASSET),
+    fetchProof(new URL(componentUrl, base), "js", fetchImpl, sleep),
+  ]);
+  verifyExpansionSourceJavascript(servedComponent, localComponent, "component");
   return Object.freeze({
     status: "verified_served_assets",
     pages,
@@ -158,6 +212,8 @@ export async function verifyExpansionSupplyLive({
     supplyScript: importUrl,
     priceScript: priceUrl,
     rolesScript: rolesUrl,
+    marketModules: Object.freeze(marketModules),
+    componentScript: componentUrl,
     sourceParity: true,
     ga4EventsObserved: false,
     purchaseOrCommissionVerified: false,
