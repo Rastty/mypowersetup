@@ -1,4 +1,5 @@
 import { calculatePowerStationProfile } from "./power-station.js";
+import { hasCurrentRecommendationSource } from "./products.js";
 import { validatePtCatalog } from "./products-pt.js";
 import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
 
@@ -21,7 +22,7 @@ export function buildPortugalRecommendations(catalog, setup, limitPerCategory = 
   }, { bluettiActivation });
 
   const solar = safeCatalog.products
-    .filter((product) => product.category === "solar_panel" && product.available !== false && product.specs?.powerW > 0)
+    .filter((product) => product.category === "solar_panel" && product.available !== false && product.specs?.powerW > 0 && hasCurrentRecommendationSource(product, safeCatalog.sources))
     .map((product) => {
       const quantity = Math.max(1, Math.ceil(setup.solarWatts / product.specs.powerW));
       const fit = (product.specs.powerW * quantity) / setup.solarWatts;
@@ -34,7 +35,7 @@ export function buildPortugalRecommendations(catalog, setup, limitPerCategory = 
 
   const profile = calculatePowerStationProfile(setup);
   const powerStations = profile.profile === "individual" ? [] : safeCatalog.products
-    .filter((product) => product.category === "power_station" && product.available !== false)
+    .filter((product) => product.category === "power_station" && product.available !== false && hasCurrentRecommendationSource(product, safeCatalog.sources))
     .filter((product) => {
       const specs = product.specs || {};
       if (!(specs.capacityWh >= profile.capacityWh)) return false;
@@ -46,7 +47,7 @@ export function buildPortugalRecommendations(catalog, setup, limitPerCategory = 
     .sort((a, b) => Number(a.priceCzk ?? Infinity) - Number(b.priceCzk ?? Infinity))
     .slice(0, limitPerCategory)
     .map((product) => recommendationView(product));
-  const components = buildExpansionComponentRecommendations(safeCatalog.products, setup, limitPerCategory);
+  const components = buildExpansionComponentRecommendations(safeCatalog.products, setup, limitPerCategory, safeCatalog.sources);
 
   return Object.freeze({
     ...components,
