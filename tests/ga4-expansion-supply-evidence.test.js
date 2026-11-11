@@ -103,7 +103,8 @@ test("wrong page/host/event, truncated report and missing metrics fail closed", 
 test("buyer and reporter keep fail-closed outcome semantics without new tracking consent", async () => {
   const browser = await readFile(new URL("../src/expansion-calculator-browser.js", import.meta.url), "utf8");
   assert.match(browser, /track\(expansionSupplyEventName\(classifyExpansionSupplyOutcome\(priority\)\), \{ market: locale \}\)/);
-  assert.equal((browser.match(/trackCatalogUnavailable\(\);/g) || []).length, 3);
+  assert.equal((browser.match(/trackCatalogUnavailable\(\);/g) || []).length, 4);
+  assert.match(browser, /if \(sourceGap\) \{ trackCatalogUnavailable\(\); return priority; \}/);
   assert.doesNotMatch(browser, /trackProductCoverage\(\{\}, calculation\)/);
   assert.match(browser, /data-recommendation-unavailable/);
   for (const value of [
