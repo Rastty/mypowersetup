@@ -6,7 +6,7 @@ import { listCommercialSourcingCandidates } from "./commercial-sourcing-candidat
 export const OWNER_STOCK_EVIDENCE_DAYS = 14;
 const DAY_MS = 24 * 60 * 60 * 1000;
 function checkedUtcDay(value) {
-  if (typeof value !== "string" || !/^\\d{4}-\\d{2}-\\d{2}$/.test(value)) return NaN;
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return NaN;
   const timestamp = Date.parse(value + "T00:00:00Z");
   if (!Number.isFinite(timestamp)) return NaN;
   return new Date(timestamp).toISOString().slice(0, 10) === value ? timestamp : NaN;
