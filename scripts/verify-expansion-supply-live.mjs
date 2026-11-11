@@ -11,6 +11,8 @@ export const ROUTES = Object.freeze(["/pt/", "/ro/", "/si/"]);
 const DEFAULT_ORIGIN = "https://mypowersetup.com";
 const BROWSER_ASSET = "src/expansion-calculator-browser.js";
 const SUPPLY_ASSET = "src/expansion-supply-evidence.js";
+const PRICE_ASSET = "src/expansion-line-price.js";
+const ROLES_ASSET = "src/expansion-recommendation-roles.js";
 const SCRIPT_PATTERN = /<script\b[^>]*\bsrc=["'](\/src\/expansion-calculator-browser\.js\?v=[^"']+)["'][^>]*>/gi;
 const MODULE_PATTERN = /from ["']\.\/expansion-supply-evidence\.js\?v=([^"']+)["']/g;
 const TEMPORARY = new Set([429, 502, 503, 504]);
@@ -27,6 +29,13 @@ function expectedSupplyImport(source) {
   if (matches.length !== 1 || !/^\d{8}-[a-z0-9-]+$/.test(matches[0]))
     fail("SUPPLY_DEPENDENCY_VERSION_DRIFT");
   return "/src/expansion-supply-evidence.js?v=" + matches[0];
+}
+
+function expectedVersionedImport(source, filename) {
+  const matches = [...source.matchAll(/from ["']\.\/([a-z-]+\.js)\?v=([0-9]{8}-[a-z0-9-]+)["']/g)]
+    .filter((match) => match[1] === filename);
+  if (matches.length !== 1) fail("PRICE_DEPENDENCY_VERSION_DRIFT");
+  return "/src/" + filename + "?v=" + matches[0][2];
 }
 
 export function verifyExpansionHtml(served, local, market) {
@@ -54,6 +63,23 @@ export function verifyExpansionJavascript(served, local) {
   ];
   if (!required.every(marker => served.includes(marker))) fail("CALCULATOR_SUPPLY_EVENT_MISSING");
   return expectedSupplyImport(served);
+}
+
+export function verifyExpansionPriceJavascript(served, local, kind) {
+  if (normalize(served) !== normalize(local)) fail("PRICE_JS_SOURCE_DRIFT:" + kind);
+  const markers = kind === "line" ? [
+    "export function expansionLinePrice(item)",
+    "unitPrice: item.price",
+    "totalPrice",
+    'item.category === "solar_panel"',
+  ] : kind === "roles" ? [
+    "import { expansionLinePrice }",
+    "const line = expansionLinePrice(item)",
+    "price: line.totalPrice",
+  ] : [];
+  if (!markers.length || !markers.every(marker => served.includes(marker)))
+    fail("PRICE_COMPARISON_GUARD_MISSING:" + kind);
+  return true;
 }
 
 export function verifyExpansionSupplyJavascript(served, local) {
@@ -114,14 +140,24 @@ export async function verifyExpansionSupplyLive({
   const localBrowser = await readLocal(BROWSER_ASSET);
   const servedBrowser = await fetchProof(new URL(browserScript, base), "js", fetchImpl, sleep);
   const importUrl = verifyExpansionJavascript(servedBrowser, localBrowser);
+  const priceUrl = expectedVersionedImport(servedBrowser, "expansion-line-price.js");
+  const rolesUrl = expectedVersionedImport(servedBrowser, "expansion-recommendation-roles.js");
   const localSupply = await readLocal(SUPPLY_ASSET);
   const servedSupply = await fetchProof(new URL(importUrl, base), "js", fetchImpl, sleep);
   verifyExpansionSupplyJavascript(servedSupply, localSupply);
+  const localPrice = await readLocal(PRICE_ASSET);
+  const servedPrice = await fetchProof(new URL(priceUrl, base), "js", fetchImpl, sleep);
+  verifyExpansionPriceJavascript(servedPrice, localPrice, "line");
+  const localRoles = await readLocal(ROLES_ASSET);
+  const servedRoles = await fetchProof(new URL(rolesUrl, base), "js", fetchImpl, sleep);
+  verifyExpansionPriceJavascript(servedRoles, localRoles, "roles");
   return Object.freeze({
     status: "verified_served_assets",
     pages,
     browserScript,
     supplyScript: importUrl,
+    priceScript: priceUrl,
+    rolesScript: rolesUrl,
     sourceParity: true,
     ga4EventsObserved: false,
     purchaseOrCommissionVerified: false,
