@@ -29,7 +29,7 @@ const labels = {
     required: "Selectează cel puțin un consumator.", invalid: "Verifică numele, puterea, orele pe zi și cantitatea consumatorilor selectați.",
     daily: "Consum zilnic", battery: "Baterie", solar: "Panouri solare", inverter: "Invertor", mppt: "Controler MPPT", dcCharger: "Încărcător DC–DC", shoreCharger: "Încărcător de la 230 V", voltage: "Sistem", again: "Modifică datele", share: "Copiază rezultatul", copied: "Rezultat copiat", copyFailed: "Nu s-a putut copia", products: "Produse compatibile verificate", productsIntro: "Afișăm doar produse cu destinația exactă, limitele electrice critice și livrarea în România verificate.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W acoperă puterea solară calculată`, componentFit: "Parametrii verificați acoperă minimul calculat", powerStationFit: "Limitele electrice verificate acoperă profilul calculat", powerStation: "Stație portabilă de energie", pureSine: "sinus pur", viewProduct: "Vezi produsul", affiliate: "Link afiliat; recomandarea tehnică nu depinde de comision.",
     recommendationBadges: { recommended: "Recomandarea noastră", budget: "Cel mai mic preț", reserve: "Rezervă mai mare", alternative: "Alternativă compatibilă" }, purchaseChecks: ["Potrivire tehnică", "Link exact", "Livrare verificată"], viewAt: (merchant) => `Vezi prețul la ${merchant}`, portableViewAt: (merchant) => `Vezi soluția completă la ${merchant}`, compareAlternatives: (count) => `Compară alternativele (${count})`,
-    componentRoute: "Instalație din componente", componentRouteIntro: "Combină numai componentele necesare din categoriile de mai jos; acestea nu trebuie cumpărate împreună cu stația portabilă.", portableRoute: "Alternativă portabilă completă", portableRouteIntro: "O singură stație portabilă poate înlocui această cale din componente doar dacă limitele ei acoperă întregul profil.", portablePriority: (missing) => `Pentru acest calcul, calea din componente nu are încă o potrivire verificată completă pentru: ${missing}. Stația portabilă de mai jos acoperă profilul complet verificat și este afișată prima.`, loadingProducts: "Verificăm produsele compatibile pentru rezultatul tău…", noProducts: "Niciun produs verificat nu acoperă încă toate limitele calculate. Folosește ghidurile de mai sus pentru o instalație pe componente; nu micșora cerințele doar pentru a forța o recomandare.", noPortableFit: "Produsele de mai jos acoperă părți din instalația pe componente, dar nicio stație portabilă verificată nu acoperă întregul profil.", componentGap: (missing) => `Instalația din componente nu este încă completă: lipsesc produse verificate pentru ${missing}. Produsele afișate acoperă doar părți din sistem. Verifică cerințele calculate în ghiduri înainte de achiziție.`, catalogUnavailable: "Nu putem încărca momentan ofertele verificate. Rezultatul tehnic rămâne valabil; încearcă mai târziu. Aceasta nu înseamnă că produsele compatibile lipsesc de pe piață.",
+    componentRoute: "Instalație din componente", componentRouteIntro: "Combină numai componentele necesare din categoriile de mai jos; acestea nu trebuie cumpărate împreună cu stația portabilă.", portableRoute: "Alternativă portabilă completă", portableRouteIntro: "O singură stație portabilă poate înlocui această cale din componente doar dacă limitele ei acoperă întregul profil.", portablePriority: (missing) => `Pentru acest calcul, calea din componente nu are încă o potrivire verificată completă pentru: ${missing}. Stația portabilă de mai jos acoperă profilul complet verificat și este afișată prima.`, loadingProducts: "Verificăm produsele compatibile pentru rezultatul tău…", noProducts: "Niciun produs verificat nu acoperă încă toate limitele calculate. Folosește ghidurile de mai sus pentru o instalație pe componente; nu micșora cerințele doar pentru a forța o recomandare.", noPortableFit: "Produsele de mai jos acoperă părți din instalația pe componente, dar nicio stație portabilă verificată nu acoperă întregul profil.", componentGap: (missing) => `Instalația din componente nu este încă completă: lipsesc produse verificate pentru ${missing}. Produsele afișate acoperă doar părți din sistem. Verifică cerințele calculate în ghiduri înainte de achiziție.`, catalogUnavailable: "Nu putem încărca momentan ofertele verificate. Rezultatul tehnic rămâne valabil; încearcă mai târziu. Aceasta nu înseamnă că produsele compatibile lipsesc de pe piață.", partialSourceUnavailable: "Unele surse de produse nu sunt disponibile momentan. Sunt afișate numai ofertele din surse funcționale; lipsa altor produse nu dovedește indisponibilitatea lor pe piață.",
     solarSubtotal: (quantity, total, unit) => `Estimare pentru ${quantity} panouri: ${total} (${unit}/panou; livrarea nu este inclusă).`,
     hours: "h/zi", quantity: "buc.", custom: "Alt consumator", customHint: "Adaugă un consumator care nu este în listă.", customName: "Nume", watts: "W", dc: "12/24 V DC", ac: "230 V AC", noSurge: "Fără vârf cunoscut", motorSurge: "Motor / compresor · 2×", selected: "Selectate", estimated: "Consum estimat",
   },
@@ -37,7 +37,7 @@ const labels = {
     required: "Seleciona pelo menos um equipamento.", invalid: "Confirma o nome, a potência, as horas por dia e a quantidade dos equipamentos selecionados.",
     daily: "Consumo diário", battery: "Bateria", solar: "Painéis solares", inverter: "Inversor", mppt: "Controlador MPPT", dcCharger: "Carregador DC–DC", shoreCharger: "Carregador de 230 V", voltage: "Sistema", again: "Alterar dados", share: "Copiar resultado", copied: "Resultado copiado", copyFailed: "Não foi possível copiar", products: "Produtos compatíveis verificados", productsIntro: "Mostramos apenas produtos cujo destino exato e requisitos técnicos conseguimos validar.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W cobre a potência solar calculada`, componentFit: "Os parâmetros verificados cobrem o mínimo calculado", powerStationFit: "Os limites elétricos verificados cobrem o perfil calculado", powerStation: "Estação de energia portátil", pureSine: "onda sinusoidal pura", viewProduct: "Ver produto", affiliate: "Ligação de afiliado; a recomendação técnica não depende da comissão.",
     recommendationBadges: { recommended: "A nossa recomendação", budget: "Preço mais baixo", reserve: "Maior margem", alternative: "Alternativa compatível" }, purchaseChecks: ["Compatibilidade técnica", "Ligação exata", "Entrega verificada"], viewAt: (merchant) => `Ver preço na ${merchant}`, portableViewAt: (merchant) => `Ver solução completa na ${merchant}`, compareAlternatives: (count) => `Comparar alternativas (${count})`,
-    componentRoute: "Instalação por componentes", componentRouteIntro: "Combina apenas os componentes necessários das categorias abaixo; não tens de os comprar juntamente com a estação portátil.", portableRoute: "Alternativa portátil completa", portableRouteIntro: "Uma única estação portátil só substitui a instalação por componentes quando os seus limites cobrem todo o perfil.", portablePriority: (missing) => `Para este cálculo, a instalação por componentes ainda não tem correspondência verificada completa para: ${missing}. A estação portátil abaixo cobre o perfil completo verificado e aparece primeiro.`, loadingProducts: "Estamos a verificar produtos compatíveis para o teu resultado…", noProducts: "Nenhum produto verificado cobre ainda todos os limites calculados. Usa os guias acima para uma instalação por componentes; não reduzas os requisitos apenas para forçar uma recomendação.", noPortableFit: "Os produtos abaixo cobrem partes da instalação por componentes, mas nenhuma estação de energia portátil verificada cobre todo o perfil.", componentGap: (missing) => `A instalação por componentes ainda não está completa: faltam produtos verificados para ${missing}. Os itens apresentados são apenas correspondências parciais. Confirma os requisitos calculados nos guias antes de comprar.`, catalogUnavailable: "Não conseguimos carregar agora as ofertas verificadas. O cálculo técnico mantém-se válido; tenta novamente mais tarde. Isto não significa que não existam produtos compatíveis.",
+    componentRoute: "Instalação por componentes", componentRouteIntro: "Combina apenas os componentes necessários das categorias abaixo; não tens de os comprar juntamente com a estação portátil.", portableRoute: "Alternativa portátil completa", portableRouteIntro: "Uma única estação portátil só substitui a instalação por componentes quando os seus limites cobrem todo o perfil.", portablePriority: (missing) => `Para este cálculo, a instalação por componentes ainda não tem correspondência verificada completa para: ${missing}. A estação portátil abaixo cobre o perfil completo verificado e aparece primeiro.`, loadingProducts: "Estamos a verificar produtos compatíveis para o teu resultado…", noProducts: "Nenhum produto verificado cobre ainda todos os limites calculados. Usa os guias acima para uma instalação por componentes; não reduzas os requisitos apenas para forçar uma recomendação.", noPortableFit: "Os produtos abaixo cobrem partes da instalação por componentes, mas nenhuma estação de energia portátil verificada cobre todo o perfil.", componentGap: (missing) => `A instalação por componentes ainda não está completa: faltam produtos verificados para ${missing}. Os itens apresentados são apenas correspondências parciais. Confirma os requisitos calculados nos guias antes de comprar.`, catalogUnavailable: "Não conseguimos carregar agora as ofertas verificadas. O cálculo técnico mantém-se válido; tenta novamente mais tarde. Isto não significa que não existam produtos compatíveis.", partialSourceUnavailable: "Algumas fontes de produtos estão temporariamente indisponíveis. Só mostramos ofertas de fontes operacionais; a falta de outras opções não prova indisponibilidade no mercado.",
     solarSubtotal: (quantity, total, unit) => `Estimativa para ${quantity} painéis: ${total} (${unit}/painel; portes não incluídos).`,
     hours: "h/dia", quantity: "unid.", custom: "Outro equipamento", customHint: "Adiciona um equipamento que não esteja na lista.", customName: "Nome", watts: "W", dc: "12/24 V DC", ac: "230 V AC", noSurge: "Sem pico conhecido", motorSurge: "Motor / compressor · 2×", selected: "Selecionados", estimated: "Consumo estimado",
   },
@@ -45,7 +45,7 @@ const labels = {
     required: "Izberi vsaj en porabnik.", invalid: "Preveri ime, moč, ure na dan in količino izbranih porabnikov.",
     daily: "Dnevna poraba", battery: "Baterija", solar: "Solarni paneli", inverter: "Inverter", mppt: "Regulator MPPT", dcCharger: "DC–DC polnilnik", shoreCharger: "230 V polnilnik", voltage: "Sistem", again: "Spremeni podatke", share: "Kopiraj rezultat", copied: "Rezultat kopiran", copyFailed: "Kopiranje ni uspelo", products: "Preverjeni združljivi izdelki", productsIntro: "Prikažemo samo izdelke, pri katerih smo preverili točen cilj povezave, ključne električne omejitve in dostavo v Slovenijo.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W pokrije izračunano solarno moč`, componentFit: "Preverjeni parametri pokrivajo izračunani minimum", powerStationFit: "Preverjene električne omejitve pokrivajo izračunani profil", powerStation: "Prenosna elektrarna", pureSine: "čisti sinus", viewProduct: "Poglej izdelek", affiliate: "Partnerska povezava; tehnično priporočilo ni odvisno od provizije.",
     recommendationBadges: { recommended: "Naše priporočilo", budget: "Najnižja cena", reserve: "Več rezerve", alternative: "Združljiva alternativa" }, purchaseChecks: ["Tehnična ustreznost", "Točna povezava", "Preverjena dostava"], viewAt: (merchant) => `Preveri ceno pri ${merchant}`, portableViewAt: (merchant) => `Poglej celovito rešitev pri ${merchant}`, compareAlternatives: (count) => `Primerjaj alternative (${count})`,
-    componentRoute: "Sistem iz posameznih komponent", componentRouteIntro: "Združi samo potrebne komponente iz spodnjih kategorij; ni jih treba kupiti skupaj s prenosno elektrarno.", portableRoute: "Celovita prenosna alternativa", portableRouteIntro: "Ena prenosna elektrarna nadomesti sistem iz komponent le, če njene omejitve pokrijejo celoten profil.", portablePriority: (missing) => `Pri tem izračunu pot iz posameznih komponent še nima popolnoma preverjenega ujemanja za: ${missing}. Spodnja prenosna elektrarna pokriva celoten preverjeni profil, zato je prikazana prva.`, loadingProducts: "Preverjamo združljive izdelke za tvoj rezultat…", noProducts: "Noben preverjen izdelek še ne pokriva vseh izračunanih omejitev. Uporabi zgornje vodnike za sistem iz posameznih komponent; zahtev ne zmanjšuj samo zato, da bi dobil priporočilo.", noPortableFit: "Spodnji izdelki pokrijejo dele sistema iz posameznih komponent, vendar nobena preverjena prenosna elektrarna ne pokrije celotnega profila.", componentGap: (missing) => `Sistem iz komponent še ni popoln: ni preverjenih izdelkov za ${missing}. Prikazani izdelki pokrivajo le del sistema. Pred nakupom preveri izračunane zahteve v vodnikih.`, catalogUnavailable: "Trenutno ni mogoče naložiti preverjenih ponudb. Tehnični izračun ostaja veljaven; poskusi pozneje. To ne pomeni, da ni združljivih izdelkov.",
+    componentRoute: "Sistem iz posameznih komponent", componentRouteIntro: "Združi samo potrebne komponente iz spodnjih kategorij; ni jih treba kupiti skupaj s prenosno elektrarno.", portableRoute: "Celovita prenosna alternativa", portableRouteIntro: "Ena prenosna elektrarna nadomesti sistem iz komponent le, če njene omejitve pokrijejo celoten profil.", portablePriority: (missing) => `Pri tem izračunu pot iz posameznih komponent še nima popolnoma preverjenega ujemanja za: ${missing}. Spodnja prenosna elektrarna pokriva celoten preverjeni profil, zato je prikazana prva.`, loadingProducts: "Preverjamo združljive izdelke za tvoj rezultat…", noProducts: "Noben preverjen izdelek še ne pokriva vseh izračunanih omejitev. Uporabi zgornje vodnike za sistem iz posameznih komponent; zahtev ne zmanjšuj samo zato, da bi dobil priporočilo.", noPortableFit: "Spodnji izdelki pokrijejo dele sistema iz posameznih komponent, vendar nobena preverjena prenosna elektrarna ne pokrije celotnega profila.", componentGap: (missing) => `Sistem iz komponent še ni popoln: ni preverjenih izdelkov za ${missing}. Prikazani izdelki pokrivajo le del sistema. Pred nakupom preveri izračunane zahteve v vodnikih.`, catalogUnavailable: "Trenutno ni mogoče naložiti preverjenih ponudb. Tehnični izračun ostaja veljaven; poskusi pozneje. To ne pomeni, da ni združljivih izdelkov.", partialSourceUnavailable: "Nekateri viri izdelkov trenutno niso na voljo. Prikazane so samo ponudbe iz delujočih virov; odsotnost drugih ponudb ni dokaz, da jih na trgu ni.",
     solarSubtotal: (quantity, total, unit) => `Okvirna cena za ${quantity} panelov: ${total} (${unit}/panel; brez dostave).`,
     hours: "h/dan", quantity: "kos", custom: "Drug porabnik", customHint: "Dodaj porabnik, ki ga ni na seznamu.", customName: "Ime", watts: "W", dc: "12/24 V DC", ac: "230 V AC", noSurge: "Brez znane konice", motorSurge: "Motor / kompresor · 2×", selected: "Izbrano", estimated: "Ocenjena poraba",
   },
@@ -338,17 +338,18 @@ function renderResult(value) {
 async function renderPortugalProducts(calculation, revision) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
-    const { buildPortugalRecommendations, loadPortugalProductCatalog, portugalRecommendationCoverage } = await import("./pt-recommendations.js");
+    const { buildPortugalRecommendations, loadPortugalProductCatalog, portugalRecommendationCoverage , hasExpansionSourceGaps } = await import("./pt-recommendations.js?v=20261111-source-health1");
     const catalog = await loadPortugalProductCatalog();
     if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildPortugalRecommendations(catalog, calculation, 3);
+    const sourceGap = hasExpansionSourceGaps(catalog);
     const coverage = portugalRecommendationCoverage(recommendations);
     const products = orderedExpansionProducts(recommendations);
-    const routePriority = trackProductCoverage(recommendations, calculation);
+    const routePriority = trackProductCoverage(recommendations, calculation, sourceGap);
     track("product_recommendations_rendered", { market: "pt", solar_panel_covered: coverage.solarPanel, power_station_covered: coverage.powerStation, product_count: products.length });
-    if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
+    if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
     const portableGap = coverage.powerStation ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
-    target.innerHTML = renderProductSection("pt-products-title", products, portableGap, routePriority);
+    target.innerHTML = renderProductSection("pt-products-title", products, portableGap, routePriority, sourceGap);
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
@@ -361,16 +362,17 @@ async function renderPortugalProducts(calculation, revision) {
 async function renderSloveniaProducts(calculation, revision) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
-    const { buildSloveniaRecommendations, loadSloveniaProductCatalog } = await import("./si-recommendations.js");
+    const { buildSloveniaRecommendations, loadSloveniaProductCatalog , hasExpansionSourceGaps } = await import("./si-recommendations.js?v=20261111-source-health1");
     const catalog = await loadSloveniaProductCatalog();
     if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildSloveniaRecommendations(catalog, calculation, 3);
+    const sourceGap = hasExpansionSourceGaps(catalog);
     const products = orderedExpansionProducts(recommendations);
-    const routePriority = trackProductCoverage(recommendations, calculation);
+    const routePriority = trackProductCoverage(recommendations, calculation, sourceGap);
     track("product_recommendations_rendered", { market: "si", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
-    if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
+    if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
     const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
-    target.innerHTML = renderProductSection("si-products-title", products, portableGap, routePriority);
+    target.innerHTML = renderProductSection("si-products-title", products, portableGap, routePriority, sourceGap);
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
@@ -383,16 +385,17 @@ async function renderSloveniaProducts(calculation, revision) {
 async function renderRomaniaProducts(calculation, revision) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
-    const { buildRomaniaRecommendations, loadRomaniaProductCatalog } = await import("./ro-recommendations.js");
+    const { buildRomaniaRecommendations, loadRomaniaProductCatalog , hasExpansionSourceGaps } = await import("./ro-recommendations.js?v=20261111-source-health1");
     const catalog = await loadRomaniaProductCatalog();
     if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildRomaniaRecommendations(catalog, calculation, 3);
+    const sourceGap = hasExpansionSourceGaps(catalog);
     const products = orderedExpansionProducts(recommendations);
-    const routePriority = trackProductCoverage(recommendations, calculation);
+    const routePriority = trackProductCoverage(recommendations, calculation, sourceGap);
     track("product_recommendations_rendered", { market: "ro", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
-    if (!products.length) { target.innerHTML = renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
+    if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
     const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
-    target.innerHTML = renderProductSection("ro-products-title", products, portableGap, routePriority);
+    target.innerHTML = renderProductSection("ro-products-title", products, portableGap, routePriority, sourceGap);
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
@@ -402,9 +405,13 @@ async function renderRomaniaProducts(calculation, revision) {
   }
 }
 
-function trackProductCoverage(recommendations, calculation) {
+function trackProductCoverage(recommendations, calculation, sourceGap = false) {
   const priority = expansionPurchaseRoutePriority(recommendations, calculation, locale);
   const { coverage } = priority;
+  // A mixed catalog with a failed merchant source is NOT evidence that an
+  // inverter is truly missing from the market. Keep healthy offers visible,
+  // but exclude the partial result from verified supply-gap measurements.
+  if (sourceGap) { trackCatalogUnavailable(); return priority; }
   // GA4 can count verified inverter gaps by eventName without requiring an
   // event-scoped missing_categories dimension. Do not send electrical inputs.
   track(expansionSupplyEventName(classifyExpansionSupplyOutcome(priority)), { market: locale });
@@ -428,11 +435,12 @@ function trackProductCoverage(recommendations, calculation) {
 function trackCatalogUnavailable() { track(expansionSupplyEventName("unavailable"), { market: locale }); }
 function renderCatalogUnavailable() { return `<p class="result-products-empty" data-recommendation-unavailable>${escapeHtml(labels.catalogUnavailable)}</p>`; }
 function renderNoVerifiedProducts() { return `<p class="result-products-empty" data-recommendation-empty>${escapeHtml(labels.noProducts)}</p>`; }
+function renderPartialSourceNotice() { return `<p class="result-products-empty" data-recommendation-partial-source>${escapeHtml(labels.partialSourceUnavailable)}</p>`; }
 function renderProductLoading() { return `<p class="result-products-loading" data-recommendation-loading>${escapeHtml(labels.loadingProducts)}</p>`; }
 function trackRenderedProductChoices(target) { return trackVisibleAffiliateImpressions(target, track); }
 function renderResultGuides() { const config = expansionResultGuides(locale); return `<aside class="related result-guides" data-result-guides><h4>${escapeHtml(config.title)}</h4><p>${escapeHtml(config.intro)}</p><ul>${config.links.map((item) => `<li><a data-result-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`).join("")}</ul></aside>`; }
 function renderComponentPlan(value) { const plan = expansionComponentPlan(locale, value); return `<section class="result-products component-plan" data-component-plan><h4>${escapeHtml(plan.title)}</h4><p>${escapeHtml(plan.intro)}</p><div class="result-grid">${plan.items.map((item) => `<article class="result-card" data-component-item="${escapeHtml(item.topic)}" data-required="${item.required}"><span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.spec)}</strong><a data-component-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.guideLabel)}</a></article>`).join("")}</div><p><small>${escapeHtml(plan.notice)}</small></p></section>`; }
-function renderProductSection(id, products, gap = "", routePriority = {}) {
+function renderProductSection(id, products, gap = "", routePriority = {}, sourceGap = false) {
   const components = products.filter((item) => item.category !== "power_station");
   const portable = products.filter((item) => item.category === "power_station");
   const preferPortable = routePriority.preferPortable === true && portable.length > 0;
@@ -452,11 +460,12 @@ function renderProductSection(id, products, gap = "", routePriority = {}) {
   // alternative exists, do not let a few buy buttons look like a full system.
   // A primary portable route already states the missing component categories.
   const missing = routePriority.coverage?.missing || [];
-  const componentGapNote = !preferPortable && missing.length
+  const componentGapNote = !sourceGap && !preferPortable && missing.length
     ? `<p class="purchase-route-priority-note" data-component-gap-note>${escapeHtml(labels.componentGap(missing.map(expansionCategoryLabel).join(", ")))}</p>`
     : "";
   const routes = preferPortable ? `${portableRoute}${componentRoute}` : `${componentRoute}${portableRoute}`;
-  return `<section class="result-products" aria-labelledby="${id}"><h4 id="${id}">${labels.products}</h4><p>${labels.productsIntro}</p>${priorityNote}${componentGapNote}${routes}<p><small>${labels.affiliate}</small></p></section>`;
+  const sourceNote = sourceGap ? renderPartialSourceNotice() : "";
+  return `<section class="result-products" aria-labelledby="${id}"><h4 id="${id}">${labels.products}</h4><p>${labels.productsIntro}</p>${priorityNote}${sourceNote}${componentGapNote}${routes}<p><small>${labels.affiliate}</small></p></section>`;
 }
 
 function renderExpansionProductCollection(products, routePriority) {
