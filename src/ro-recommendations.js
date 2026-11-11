@@ -7,8 +7,8 @@ import { isAmpulExpansionProduct, validateAmpulExpansionProduct } from "./affili
 import { isBluettiElite300Product, validateBluettiElite300Product } from "./affiliate-bluetti-eu.js";
 import { isSolarisExpansionProduct, validateSolarisExpansionProduct } from "./affiliate-solaris.js";
 import { isButlerExpansionProduct, validateButlerExpansionProduct } from "./affiliate-butler.js";
-import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
-export { hasExpansionSourceGaps } from "./expansion-component-recommendations.js";
+import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js?v=20261111-source-health1";
+export { hasExpansionSourceGaps } from "./expansion-component-recommendations.js?v=20261111-source-health1";
 
 export const RO_CATALOG_URL = "/data/products-ro.json";
 const AWIN_MERCHANT_ID = "38934";
