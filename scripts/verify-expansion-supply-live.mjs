@@ -92,6 +92,8 @@ export function verifyExpansionJavascript(served, local) {
     "Não conseguimos carregar agora as ofertas verificadas",
     "Nu putem încărca momentan ofertele verificate",
     "Trenutno ni mogoče naložiti preverjenih ponudb",
+    "data-recommendation-partial-source",
+    "if (sourceGap) { trackCatalogUnavailable(); return priority; }",
   ];
   if (!required.every(marker => served.includes(marker))) fail("CALCULATOR_SUPPLY_EVENT_MISSING");
   return expectedSupplyImport(served);
