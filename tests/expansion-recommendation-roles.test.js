@@ -80,9 +80,10 @@ test("different currencies cannot be compared without a documented exchange rate
 
 test("all three public expansion calculators load the new budget logic, not stale cached code", async () => {
   const { readFile } = await import("node:fs/promises");
-  const version = "20261111-price-truth1";
+  const version = "20261111-component-gap1";
+  const rolesVersion = "20261111-price-truth1";
   const browser = await readFile(new URL("../src/expansion-calculator-browser.js", import.meta.url), "utf8");
-  assert.ok(browser.includes('expansion-recommendation-roles.js?v=' + version));
+  assert.ok(browser.includes('expansion-recommendation-roles.js?v=' + rolesVersion));
   for (const market of ["pt", "ro", "si"]) {
     const html = await readFile(new URL("../" + market + "/index.html", import.meta.url), "utf8");
     assert.ok(html.includes('src="/src/expansion-calculator-browser.js?v=' + version + '"'),
