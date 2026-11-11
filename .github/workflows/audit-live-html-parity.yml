@@ -39,6 +39,10 @@ on:
       - src/mppt-calculator-offers*.js
       - src/calculator-landing-browser.js
       - src/expansion-calculator-browser.js
+      - src/expansion-component-recommendations.js
+      - src/pt-recommendations.js
+      - src/ro-recommendations.js
+      - src/si-recommendations.js
       - src/expansion-supply-evidence.js
       - src/expansion-line-price.js
       - src/expansion-recommendation-roles.js

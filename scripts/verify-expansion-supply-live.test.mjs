@@ -3,7 +3,8 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import {
   ROUTES, verifyExpansionHtml, verifyExpansionJavascript,
-  verifyExpansionSupplyJavascript, verifyExpansionPriceJavascript, verifyExpansionSupplyLive,
+  verifyExpansionSupplyJavascript, verifyExpansionPriceJavascript,
+  verifyExpansionSourceJavascript, verifyExpansionSupplyLive,
 } from "./verify-expansion-supply-live.mjs";
 
 const ORIGIN = "https://mypowersetup.com";
@@ -12,6 +13,8 @@ const browserPath = "src/expansion-calculator-browser.js";
 const supplyPath = "src/expansion-supply-evidence.js";
 const pricePath = "src/expansion-line-price.js";
 const rolesPath = "src/expansion-recommendation-roles.js";
+const componentPath = "src/expansion-component-recommendations.js";
+const marketPaths = ["src/pt-recommendations.js", "src/ro-recommendations.js", "src/si-recommendations.js"];
 
 function server({ transform = () => null, statusAt = () => null } = {}) {
   const requests = [];
@@ -49,13 +52,17 @@ test("every public expansion calculator and both modules pass exact served-versi
   assert.equal(proof.sourceParity, true);
   assert.equal(proof.ga4EventsObserved, false);
   assert.equal(proof.purchaseOrCommissionVerified, false);
-  assert.match(proof.browserScript, /20261111-solar-subtotal1/);
+  assert.match(proof.browserScript, /20261111-source-health1/);
   assert.match(proof.supplyScript, /20261111-supply-evidence1/);
   assert.match(proof.priceScript, /20261111-solar-subtotal1/);
   assert.match(proof.rolesScript, /20261111-solar-subtotal1/);
+  assert.equal(proof.marketModules.length, 3);
+  assert.ok(proof.marketModules.every(row => row.script.includes("20261111-source-health1")));
+  assert.match(proof.componentScript, /20261111-source-health1/);
   assert.deepEqual(mock.requests.map(r => r.path), [
     "pt/index.html", "ro/index.html", "si/index.html",
     browserPath, supplyPath, pricePath, rolesPath,
+    ...marketPaths, componentPath,
   ]);
   assert.ok(mock.requests.every(r => r.options.cache === "no-store"));
   assert.ok(mock.requests.every(r => r.options.redirect === "follow"));
@@ -63,7 +70,7 @@ test("every public expansion calculator and both modules pass exact served-versi
 
 test("a stale public market HTML version fails rather than trusting Pages deploy status", async () => {
   const mock = server({ transform: ({ path, text }) => path === "ro/index.html"
-    ? { text: text.replace("20261111-solar-subtotal1", "20261111-stale") } : null });
+    ? { text: text.replace("20261111-source-health1", "20261111-stale") } : null });
   await assert.rejects(
     verifyExpansionSupplyLive({ fetchImpl: mock.fetchImpl, sleep: async () => {} }),
     /EXPANSION_PUBLIC_SCRIPT_VERSION_DRIFT_ro/,
@@ -102,7 +109,7 @@ test("a temporary HTTP 503 retries; persistent failed responses fail closed", as
   const retry = server({ statusAt: (url, count) => count === 1 ? 503 : null });
   const result = await verifyExpansionSupplyLive({ fetchImpl: retry.fetchImpl, sleep: async () => {} });
   assert.equal(result.status, "verified_served_assets");
-  assert.equal(retry.requests.length, 8);
+  assert.equal(retry.requests.length, 12);
   const blocked = server({ statusAt: url => url.endsWith("/pt/") ? 503 : null });
   await assert.rejects(verifyExpansionSupplyLive({ fetchImpl: blocked.fetchImpl, sleep: async () => {} }),
     /EXPANSION_PUBLIC_HTTP_503/);
@@ -128,4 +135,27 @@ test("a stale served panel-price or cheapest-badge dependency cannot pass public
     await assert.rejects(verifyExpansionSupplyLive({ fetchImpl: mock.fetchImpl, sleep: async () => {} }),
       /EXPANSION_PUBLIC_PRICE_JS_SOURCE_DRIFT/);
   }
+});
+
+test("all three public recommendation modules and shared source health gate are served from the exact release", async () => {
+  for (const path of [...marketPaths, componentPath]) {
+    const original = await local(path);
+    const kind = path === componentPath ? "component" : path.split("/")[1].slice(0, 2);
+    assert.equal(verifyExpansionSourceJavascript(original, original, kind), true);
+    const stale = server({ transform: ({ path: offeredPath, text }) => offeredPath === path
+      ? { text: text.replace("hasCurrentRecommendationSource", "oldSourceHealth") } : null });
+    await assert.rejects(
+      verifyExpansionSupplyLive({ fetchImpl: stale.fetchImpl, sleep: async () => {} }),
+      /EXPANSION_PUBLIC_SOURCE_JS_SOURCE_DRIFT/,
+    );
+  }
+});
+
+test("partial source failure copy and verified supply telemetry gate must be in served calculator", async () => {
+  const js = await local(browserPath);
+  assert.match(js, /data-recommendation-partial-source/);
+  assert.match(js, /if \(sourceGap\) \{ trackCatalogUnavailable\(\); return priority; \}/);
+  const fake = server({ transform: ({ path, text }) => path === browserPath
+    ? { text: text.replace("data-recommendation-partial-source", "outdated-partial-copy") } : null });
+  await assert.rejects(verifyExpansionSupplyLive({ fetchImpl: fake.fetchImpl }), /EXPANSION_PUBLIC_CALCULATOR_JS_SOURCE_DRIFT/);
 });

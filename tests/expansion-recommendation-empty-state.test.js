@@ -38,11 +38,18 @@ test("PT RO SI explicitly warn that a partial component list is not a complete p
   ]) assert.ok(source.includes(phrase), "missing localized partial component warning: " + phrase);
 
   assert.match(source, /const missing = routePriority\.coverage\?\.missing \|\| \[\]/);
-  assert.match(source, /const componentGapNote = !preferPortable && missing\.length/);
+  assert.match(source, /const componentGapNote = !sourceGap && !preferPortable && missing\.length/);
   assert.match(source, /data-component-gap-note/);
   assert.match(source, /labels\.componentGap\(missing\.map\(expansionCategoryLabel\)\.join\(", "\)\)/);
-  assert.match(source, /\$\{priorityNote\}\$\{componentGapNote\}\$\{routes\}/);
+  assert.match(source, /\$\{priorityNote\}\$\{sourceNote\}\$\{componentGapNote\}\$\{routes\}/);
   assert.match(source, /escapeHtml\(labels\.componentGap\(/,
     "missing category names must be escaped before rendering");
   assert.match(source, /const priorityNote = preferPortable/, "a complete portable fallback keeps its own distinct warning");
+});
+
+test("partial feed failure renders only healthy offers and must not claim verified supply gaps", () => {
+  assert.match(source, /const sourceNote = sourceGap \? renderPartialSourceNotice\(\) : ""/);
+  assert.match(source, /data-recommendation-partial-source/);
+  assert.match(source, /if \(sourceGap\) \{ trackCatalogUnavailable\(\); return priority; \}/);
+  assert.doesNotMatch(source, /trackProductCoverage\(\{\}, calculation\)/);
 });

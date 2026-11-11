@@ -1,11 +1,13 @@
 import { calculatePowerStationProfile } from "./power-station.js";
+import { hasCurrentRecommendationSource } from "./products.js";
 import { validateOxeDognetDeeplink, validateOxeProductUrl } from "./oxe-affiliate.js";
 import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js";
 import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affiliate-xdatou.js";
 import { isAmpulExpansionProduct, validateAmpulExpansionProduct } from "./affiliate-ampul-expansion.js";
 import { isSolarisExpansionProduct, validateSolarisExpansionProduct } from "./affiliate-solaris.js";
 import { isButlerExpansionProduct, validateButlerExpansionProduct } from "./affiliate-butler.js";
-import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
+import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js?v=20261111-source-health1";
+export { hasExpansionSourceGaps } from "./expansion-component-recommendations.js?v=20261111-source-health1";
 
 export const SI_CATALOG_URL = "/data/products-si.json";
 const AWIN_MERCHANT_ID = "38934";
@@ -51,7 +53,7 @@ export function buildSloveniaRecommendations(catalog, setup, limit = 3) {
   validateSloveniaCatalog(catalog);
   const solarTargetWatts = Number(setup.solarWatts) || 0;
   const solarPanels = solarTargetWatts > 0 ? catalog.products
-    .filter((product) => product.category === "solar_panel" && product.available !== false)
+    .filter((product) => product.category === "solar_panel" && product.available !== false && hasCurrentRecommendationSource(product, catalog.sources))
     .map((product) => {
       const quantity = Math.max(1, Math.ceil(solarTargetWatts / product.specs.powerW));
       return { product, quantity, fit: (product.specs.powerW * quantity) / solarTargetWatts };
@@ -63,7 +65,7 @@ export function buildSloveniaRecommendations(catalog, setup, limit = 3) {
 
   const profile = calculatePowerStationProfile(setup);
   const powerStations = profile.profile === "individual" ? [] : catalog.products
-    .filter((product) => product.category === "power_station" && product.available !== false)
+    .filter((product) => product.category === "power_station" && product.available !== false && hasCurrentRecommendationSource(product, catalog.sources))
     .filter((product) => product.specs.capacityWh >= profile.capacityWh)
     .filter((product) => product.specs.powerW >= profile.acOutputWatts)
     .filter((product) => product.specs.solarInputW >= profile.solarInputWatts)
@@ -71,7 +73,7 @@ export function buildSloveniaRecommendations(catalog, setup, limit = 3) {
     .sort((a, b) => fitScore(a, profile) - fitScore(b, profile))
     .slice(0, limit)
     .map((product) => recommendationView(product));
-  const components = buildExpansionComponentRecommendations(catalog.products, setup, limit);
+  const components = buildExpansionComponentRecommendations(catalog.products, setup, limit, catalog.sources);
 
   return Object.freeze({
     ...components,
