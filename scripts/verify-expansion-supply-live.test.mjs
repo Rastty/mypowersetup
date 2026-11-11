@@ -49,7 +49,7 @@ test("every public expansion calculator and both modules pass exact served-versi
   assert.equal(proof.sourceParity, true);
   assert.equal(proof.ga4EventsObserved, false);
   assert.equal(proof.purchaseOrCommissionVerified, false);
-  assert.match(proof.browserScript, /20261111-solar-subtotal1/);
+  assert.match(proof.browserScript, /20261111-source-health1/);
   assert.match(proof.supplyScript, /20261111-supply-evidence1/);
   assert.match(proof.priceScript, /20261111-solar-subtotal1/);
   assert.match(proof.rolesScript, /20261111-solar-subtotal1/);
