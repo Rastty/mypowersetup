@@ -42,7 +42,11 @@
     "maxAffectedWeight": 5,
     "candidateCount": 3,
     "categoryCount": 2,
-    "inStockCandidates": 3,
+    "inStockCandidates": 0,
+    "listedAvailableCandidates": 3,
+    "staleStockEvidenceCandidates": 3,
+    "stockEvidenceAsOf": "2026-11-11T08:00:41.741Z",
+    "stockEvidenceMaxAgeDays": 14,
     "activeCandidateIds": [
       "solaris-victron-phoenix-12-250",
       "solaris-victron-phoenix-24-250",
@@ -146,7 +150,11 @@
       "maxAffectedWeight": 5,
       "candidateCount": 3,
       "categoryCount": 2,
-      "inStockCandidates": 3,
+      "inStockCandidates": 0,
+      "listedAvailableCandidates": 3,
+      "staleStockEvidenceCandidates": 3,
+      "stockEvidenceAsOf": "2026-11-11T08:00:41.741Z",
+      "stockEvidenceMaxAgeDays": 14,
       "activeCandidateIds": [
         "solaris-victron-phoenix-12-250",
         "solaris-victron-phoenix-24-250",
@@ -249,7 +257,11 @@
       "maxAffectedWeight": 5,
       "candidateCount": 1,
       "categoryCount": 1,
-      "inStockCandidates": 1,
+      "inStockCandidates": 0,
+      "listedAvailableCandidates": 1,
+      "staleStockEvidenceCandidates": 1,
+      "stockEvidenceAsOf": "2026-11-11T08:00:41.741Z",
+      "stockEvidenceMaxAgeDays": 14,
       "activeCandidateIds": [
         "xdatou-datouboss-2000w-24v"
       ],
@@ -334,7 +346,11 @@
       "maxAffectedWeight": 5,
       "candidateCount": 2,
       "categoryCount": 2,
-      "inStockCandidates": 2,
+      "inStockCandidates": 0,
+      "listedAvailableCandidates": 2,
+      "staleStockEvidenceCandidates": 2,
+      "stockEvidenceAsOf": "2026-11-11T08:00:41.741Z",
+      "stockEvidenceMaxAgeDays": 14,
       "activeCandidateIds": [
         "butler-victron-orion-xs-12-12-50",
         "butler-victron-scc125060321"
