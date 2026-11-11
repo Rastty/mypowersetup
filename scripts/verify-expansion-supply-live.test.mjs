@@ -3,13 +3,15 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import {
   ROUTES, verifyExpansionHtml, verifyExpansionJavascript,
-  verifyExpansionSupplyJavascript, verifyExpansionSupplyLive,
+  verifyExpansionSupplyJavascript, verifyExpansionPriceJavascript, verifyExpansionSupplyLive,
 } from "./verify-expansion-supply-live.mjs";
 
 const ORIGIN = "https://mypowersetup.com";
 const local = async path => readFile(new URL("../" + path, import.meta.url), "utf8");
 const browserPath = "src/expansion-calculator-browser.js";
 const supplyPath = "src/expansion-supply-evidence.js";
+const pricePath = "src/expansion-line-price.js";
+const rolesPath = "src/expansion-recommendation-roles.js";
 
 function server({ transform = () => null, statusAt = () => null } = {}) {
   const requests = [];
@@ -47,11 +49,13 @@ test("every public expansion calculator and both modules pass exact served-versi
   assert.equal(proof.sourceParity, true);
   assert.equal(proof.ga4EventsObserved, false);
   assert.equal(proof.purchaseOrCommissionVerified, false);
-  assert.match(proof.browserScript, /20261111-supply-evidence1/);
+  assert.match(proof.browserScript, /20261111-solar-subtotal1/);
   assert.match(proof.supplyScript, /20261111-supply-evidence1/);
+  assert.match(proof.priceScript, /20261111-solar-subtotal1/);
+  assert.match(proof.rolesScript, /20261111-solar-subtotal1/);
   assert.deepEqual(mock.requests.map(r => r.path), [
     "pt/index.html", "ro/index.html", "si/index.html",
-    browserPath, supplyPath,
+    browserPath, supplyPath, pricePath, rolesPath,
   ]);
   assert.ok(mock.requests.every(r => r.options.cache === "no-store"));
   assert.ok(mock.requests.every(r => r.options.redirect === "follow"));
@@ -59,7 +63,7 @@ test("every public expansion calculator and both modules pass exact served-versi
 
 test("a stale public market HTML version fails rather than trusting Pages deploy status", async () => {
   const mock = server({ transform: ({ path, text }) => path === "ro/index.html"
-    ? { text: text.replace("20261111-supply-evidence1", "20261111-stale") } : null });
+    ? { text: text.replace("20261111-solar-subtotal1", "20261111-stale") } : null });
   await assert.rejects(
     verifyExpansionSupplyLive({ fetchImpl: mock.fetchImpl, sleep: async () => {} }),
     /EXPANSION_PUBLIC_SCRIPT_VERSION_DRIFT_ro/,
@@ -98,7 +102,7 @@ test("a temporary HTTP 503 retries; persistent failed responses fail closed", as
   const retry = server({ statusAt: (url, count) => count === 1 ? 503 : null });
   const result = await verifyExpansionSupplyLive({ fetchImpl: retry.fetchImpl, sleep: async () => {} });
   assert.equal(result.status, "verified_served_assets");
-  assert.equal(retry.requests.length, 6);
+  assert.equal(retry.requests.length, 8);
   const blocked = server({ statusAt: url => url.endsWith("/pt/") ? 503 : null });
   await assert.rejects(verifyExpansionSupplyLive({ fetchImpl: blocked.fetchImpl, sleep: async () => {} }),
     /EXPANSION_PUBLIC_HTTP_503/);
@@ -112,4 +116,16 @@ test("HTML gate independently rejects missing calculator or invalid canonical", 
     /EXPANSION_PUBLIC_CALCULATOR_HTML_MISSING_pt/);
   assert.throws(() => verifyExpansionHtml(html.replace('rel="canonical"', 'rel="alternate"'), html, "pt"),
     /EXPANSION_PUBLIC_CANONICAL_DRIFT_pt/);
+});
+
+test("a stale served panel-price or cheapest-badge dependency cannot pass public readback", async () => {
+  for (const path of [pricePath, rolesPath]) {
+    const original = await local(path);
+    assert.equal(verifyExpansionPriceJavascript(original, original,
+      path === pricePath ? "line" : "roles"), true);
+    const mock = server({ transform: ({ path: servedPath, text }) => servedPath === path
+      ? { text: text.replace("expansionLinePrice", "otherPrice") } : null });
+    await assert.rejects(verifyExpansionSupplyLive({ fetchImpl: mock.fetchImpl, sleep: async () => {} }),
+      /EXPANSION_PUBLIC_PRICE_JS_SOURCE_DRIFT/);
+  }
 });
