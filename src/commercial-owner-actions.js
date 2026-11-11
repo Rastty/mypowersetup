@@ -1,5 +1,30 @@
 import { listCommercialSourcingCandidates } from "./commercial-sourcing-candidates.js";
 
+// A historical merchant listing is not current purchase-ready stock.
+// 14 days is a bounded owner-queue freshness signal (not a publication gate).
+// The stricter merchant-specific catalog adapters continue to own eligibility.
+export const OWNER_STOCK_EVIDENCE_DAYS = 14;
+const DAY_MS = 24 * 60 * 60 * 1000;
+function checkedUtcDay(value) {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return NaN;
+  const timestamp = Date.parse(value + "T00:00:00Z");
+  if (!Number.isFinite(timestamp)) return NaN;
+  return new Date(timestamp).toISOString().slice(0, 10) === value ? timestamp : NaN;
+}
+function ownerEvidenceTimestamp(asOf) {
+  const timestamp = typeof asOf === "number" ? asOf : Date.parse(asOf);
+  if (!Number.isFinite(timestamp) || timestamp < 0) throw new Error("OWNER_STOCK_AS_OF_INVALID");
+  return timestamp;
+}
+export function isFreshCommercialStockEvidence(candidate, asOf = Date.now()) {
+  if (!candidate || !(candidate.stockStatus === "in_stock" ||
+    /^dispatch_/.test(candidate.stockStatus || ""))) return false;
+  const observed = checkedUtcDay(candidate.stockVerifiedAt);
+  const timestamp = ownerEvidenceTimestamp(asOf);
+  return Number.isFinite(observed) && observed <= timestamp
+    && timestamp - observed <= OWNER_STOCK_EVIDENCE_DAYS * DAY_MS;
+}
+
 const STATUS_RANK = Object.freeze({
   ready_for_ingest: 0,
   pending_affiliate_approval: 1,
@@ -35,7 +60,8 @@ const OWNER_ACTIVATION_FIELDS = Object.freeze({
   ]),
 });
 
-export function buildCommercialOwnerActionQueue() {
+export function buildCommercialOwnerActionQueue({ asOf = Date.now() } = {}) {
+  const evidenceTimestamp = ownerEvidenceTimestamp(asOf);
   const groups = new Map();
 
   for (const candidate of listCommercialSourcingCandidates()) {
@@ -62,6 +88,8 @@ export function buildCommercialOwnerActionQueue() {
       maxAffectedWeight: 0,
       bestStatusRank: 99,
       inStockCandidates: 0,
+      listedAvailableCandidates: 0,
+      staleStockEvidenceCandidates: 0,
     };
 
     if (group.applicationUrl && candidate.applicationUrl && group.applicationUrl !== candidate.applicationUrl) {
@@ -87,7 +115,14 @@ export function buildCommercialOwnerActionQueue() {
     group.maxStandaloneUnlockWeight = Math.max(group.maxStandaloneUnlockWeight, standaloneUnlockWeight);
     group.maxAffectedWeight = Math.max(group.maxAffectedWeight, affectedWeight);
     group.bestStatusRank = Math.min(group.bestStatusRank, STATUS_RANK[candidate.status] ?? 99);
-    if (candidate.stockStatus === "in_stock" || /^dispatch_/.test(candidate.stockStatus || "")) group.inStockCandidates += 1;
+    // Keep marketplace claims separate from a recent dated proof. In Sep
+    // Solaris/Xdatou/Butler were listed, but those observations do not
+    // certify in-stock offers in November.
+    if (candidate.stockStatus === "in_stock" || /^dispatch_/.test(candidate.stockStatus || "")) {
+      group.listedAvailableCandidates += 1;
+      if (isFreshCommercialStockEvidence(candidate, evidenceTimestamp)) group.inStockCandidates += 1;
+      else group.staleStockEvidenceCandidates += 1;
+    }
     groups.set(actionKey, group);
   }
 
@@ -112,6 +147,10 @@ export function buildCommercialOwnerActionQueue() {
     candidateCount: group.candidateIds.size,
     categoryCount: group.categories.size,
     inStockCandidates: group.inStockCandidates,
+    listedAvailableCandidates: group.listedAvailableCandidates,
+    staleStockEvidenceCandidates: group.staleStockEvidenceCandidates,
+    stockEvidenceAsOf: new Date(evidenceTimestamp).toISOString(),
+    stockEvidenceMaxAgeDays: OWNER_STOCK_EVIDENCE_DAYS,
   }));
 
   actions.sort((a, b) =>
@@ -125,9 +164,9 @@ export function buildCommercialOwnerActionQueue() {
   return Object.freeze(actions);
 }
 
-export function buildCurrentCommercialOwnerActionQueue(backlogs = []) {
+export function buildCurrentCommercialOwnerActionQueue(backlogs = [], { asOf = Date.now() } = {}) {
   const backlogByMarket = new Map((backlogs || []).map((backlog) => [backlog.market, backlog]));
-  const baseActions = new Map(buildCommercialOwnerActionQueue().map((action) => [action.actionKey, action]));
+  const baseActions = new Map(buildCommercialOwnerActionQueue({ asOf }).map((action) => [action.actionKey, action]));
   const groups = new Map();
 
   for (const candidate of listCommercialSourcingCandidates()) {

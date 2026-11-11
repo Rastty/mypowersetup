@@ -6,7 +6,11 @@ const OUTPUT = new URL("../data/owner-action-queue.json", import.meta.url);
 const checkOnly = process.argv.includes("--check");
 
 const commercialReport = JSON.parse(await readFile(COMMERCIAL_REPORT, "utf8"));
-const actions = buildCurrentCommercialOwnerActionQueue(commercialReport.markets || []);
+// Anchor evidence freshness to the same snapshot as the prioritized backlog.
+// --check must remain deterministic across days until the next report refresh.
+const actions = buildCurrentCommercialOwnerActionQueue(commercialReport.markets || [], {
+  asOf: commercialReport.generatedAt,
+});
 const payload = {
   schemaVersion: 2,
   generatedAt: commercialReport.generatedAt || null,

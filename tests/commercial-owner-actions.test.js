@@ -7,6 +7,7 @@ import {
   bestCurrentCommercialOwnerAction,
   buildCommercialOwnerActionQueue,
   buildCurrentCommercialOwnerActionQueue,
+  isFreshCommercialStockEvidence, OWNER_STOCK_EVIDENCE_DAYS,
 } from "../src/commercial-owner-actions.js";
 
 test("owner action queue deduplicates shared merchant actions and ranks the most actionable unlock first", () => {
@@ -53,7 +54,10 @@ test("one Solaris ambassador action aggregates three exact products across inver
   assert.equal(action.maxAffectedWeight, 5);
   assert.equal(action.candidateCount, 3);
   assert.equal(action.categoryCount, 2);
-  assert.equal(action.inStockCandidates, 3);
+  assert.equal(action.inStockCandidates, 0, "Sep price/dispatch snapshots cannot establish November stock");
+  assert.equal(action.listedAvailableCandidates, 3);
+  assert.equal(action.staleStockEvidenceCandidates, 3);
+  assert.equal(action.stockEvidenceMaxAgeDays, 14);
 });
 
 test("Butler Awin action groups controller and DC-DC under one programme join", () => {
@@ -71,7 +75,9 @@ test("Butler Awin action groups controller and DC-DC under one programme join", 
   assert.deepEqual(action.activationFieldsNeeded, ["approvalConfirmed", "approvalSource", "trackingVerifiedAt"]);
   assert.equal(action.maxStandaloneUnlockWeight, 0);
   assert.equal(action.maxAffectedWeight, 5);
-  assert.equal(action.inStockCandidates, 2);
+  assert.equal(action.inStockCandidates, 0);
+  assert.equal(action.listedAvailableCandidates, 2);
+  assert.equal(action.staleStockEvidenceCandidates, 2);
 });
 
 test("Xdatou stays a separate approval action with explicit activation fields", () => {
@@ -159,4 +165,46 @@ test("committed owner-action artifact is dynamic schema v2 and points at the cur
   assert.equal(payload.topAction.merchant, "solaris_store");
   assert.deepEqual(payload.actions.map(({ merchant }) => merchant), ["solaris_store", "xdatou", "butler_technik"]);
   assert.ok(payload.actions.every((action) => action.currentOpportunityScore > 0));
+});
+
+test("commercial stock proof is a real UTC date, not an old or malformed availability claim", () => {
+  assert.equal(OWNER_STOCK_EVIDENCE_DAYS, 14);
+  const candidate = { stockStatus: "in_stock", stockVerifiedAt: "2026-09-22" };
+  assert.equal(isFreshCommercialStockEvidence(candidate, "2026-09-22T12:00:00Z"), true);
+  assert.equal(isFreshCommercialStockEvidence(candidate, "2026-10-06T00:00:00Z"), true);
+  assert.equal(isFreshCommercialStockEvidence(candidate, "2026-10-06T00:00:01Z"), false);
+  assert.equal(isFreshCommercialStockEvidence(candidate, "2026-11-11T08:00:41Z"), false);
+  assert.equal(isFreshCommercialStockEvidence(candidate, "2026-09-21T23:59:00Z"), false, "future observations invalid");
+  assert.equal(isFreshCommercialStockEvidence({ ...candidate, stockStatus: "backorder" }, "2026-09-23T00:00:00Z"), false);
+  assert.equal(isFreshCommercialStockEvidence({ ...candidate, stockStatus: "dispatch_1_2_days" }, "2026-09-23T00:00:00Z"), true);
+  for (const date of ["2026-02-30", "2026-09-31", "2026-9-22", "not-a-day", null, "9999-12-31"]) {
+    assert.equal(isFreshCommercialStockEvidence({ ...candidate, stockVerifiedAt: date }, "2026-11-11T08:00:41Z"), false, String(date));
+  }
+  assert.throws(() => buildCommercialOwnerActionQueue({ asOf: "bad-date" }), /OWNER_STOCK_AS_OF_INVALID/);
+});
+
+test("owner stock queue distinguishes historical claims from genuinely recent supply observations", () => {
+  // The sourcing queue is seeded from Sep 7 per-candidate observations.
+  // A separate Solaris activation artifact was refreshed Sep 22, but it is
+  // NOT the input to this owner queue and must not be silently substituted.
+  const fresh = buildCommercialOwnerActionQueue({ asOf: "2026-09-10T10:00:00Z" });
+  const solaris = fresh.find(item => item.merchant === "solaris_store");
+  assert.equal(solaris.inStockCandidates, 3, "Sep 7 candidate observations were still fresh Sep 10");
+  assert.equal(solaris.listedAvailableCandidates, 3);
+  assert.equal(solaris.staleStockEvidenceCandidates, 0);
+  const november = buildCommercialOwnerActionQueue({ asOf: "2026-11-11T08:00:41.741Z" });
+  assert.deepEqual(november.map(item => item.inStockCandidates), [0, 0, 0, 0]);
+  assert.deepEqual(november.map(item => item.listedAvailableCandidates), [1, 3, 2, 1]);
+  assert.ok(november.every(item => item.staleStockEvidenceCandidates === item.listedAvailableCandidates));
+  assert.ok(november.every(item => item.stockEvidenceAsOf === "2026-11-11T08:00:41.741Z"));
+});
+
+test("committed owner queue stock evidence is anchored to the same opportunity snapshot", async () => {
+  const report = JSON.parse(await readFile(new URL("../data/commercial-opportunity-report.json", import.meta.url), "utf8"));
+  const artifact = JSON.parse(await readFile(new URL("../data/owner-action-queue.json", import.meta.url), "utf8"));
+  const expected = buildCurrentCommercialOwnerActionQueue(report.markets, { asOf: report.generatedAt });
+  assert.deepEqual(artifact.actions, expected);
+  assert.equal(artifact.topAction.stockEvidenceAsOf, report.generatedAt);
+  assert.equal(artifact.topAction.listedAvailableCandidates, 3);
+  assert.equal(artifact.topAction.inStockCandidates, 0);
 });
