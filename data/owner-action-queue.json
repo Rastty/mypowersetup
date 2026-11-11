@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-11T11:13:47.791Z",
+  "generatedAt": "2026-11-11T15:26:12.065Z",
   "actionCount": 3,
   "topAction": {
     "actionKey": "solaris_store:submit_ambassador_application",
@@ -45,7 +45,7 @@
     "inStockCandidates": 0,
     "listedAvailableCandidates": 3,
     "staleStockEvidenceCandidates": 3,
-    "stockEvidenceAsOf": "2026-11-11T11:13:47.791Z",
+    "stockEvidenceAsOf": "2026-11-11T15:26:12.065Z",
     "stockEvidenceMaxAgeDays": 14,
     "activeCandidateIds": [
       "solaris-victron-phoenix-12-250",
@@ -153,7 +153,7 @@
       "inStockCandidates": 0,
       "listedAvailableCandidates": 3,
       "staleStockEvidenceCandidates": 3,
-      "stockEvidenceAsOf": "2026-11-11T11:13:47.791Z",
+      "stockEvidenceAsOf": "2026-11-11T15:26:12.065Z",
       "stockEvidenceMaxAgeDays": 14,
       "activeCandidateIds": [
         "solaris-victron-phoenix-12-250",
@@ -260,7 +260,7 @@
       "inStockCandidates": 0,
       "listedAvailableCandidates": 1,
       "staleStockEvidenceCandidates": 1,
-      "stockEvidenceAsOf": "2026-11-11T11:13:47.791Z",
+      "stockEvidenceAsOf": "2026-11-11T15:26:12.065Z",
       "stockEvidenceMaxAgeDays": 14,
       "activeCandidateIds": [
         "xdatou-datouboss-2000w-24v"
@@ -349,7 +349,7 @@
       "inStockCandidates": 0,
       "listedAvailableCandidates": 2,
       "staleStockEvidenceCandidates": 2,
-      "stockEvidenceAsOf": "2026-11-11T11:13:47.791Z",
+      "stockEvidenceAsOf": "2026-11-11T15:26:12.065Z",
       "stockEvidenceMaxAgeDays": 14,
       "activeCandidateIds": [
         "butler-victron-orion-xs-12-12-50",
