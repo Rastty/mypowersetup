@@ -47,8 +47,8 @@ test("every public expansion calculator and both modules pass exact served-versi
   assert.equal(proof.sourceParity, true);
   assert.equal(proof.ga4EventsObserved, false);
   assert.equal(proof.purchaseOrCommissionVerified, false);
-  assert.match(proof.browserScript, /20261111-supply-evidence1/);
-  assert.match(proof.supplyScript, /20261111-supply-evidence1/);
+  assert.match(proof.browserScript, /20261111-solar-subtotal1/);
+  assert.match(proof.supplyScript, /20261111-solar-subtotal1/);
   assert.deepEqual(mock.requests.map(r => r.path), [
     "pt/index.html", "ro/index.html", "si/index.html",
     browserPath, supplyPath,
@@ -59,7 +59,7 @@ test("every public expansion calculator and both modules pass exact served-versi
 
 test("a stale public market HTML version fails rather than trusting Pages deploy status", async () => {
   const mock = server({ transform: ({ path, text }) => path === "ro/index.html"
-    ? { text: text.replace("20261111-supply-evidence1", "20261111-stale") } : null });
+    ? { text: text.replace("20261111-solar-subtotal1", "20261111-stale") } : null });
   await assert.rejects(
     verifyExpansionSupplyLive({ fetchImpl: mock.fetchImpl, sleep: async () => {} }),
     /EXPANSION_PUBLIC_SCRIPT_VERSION_DRIFT_ro/,
