@@ -56,6 +56,6 @@ test("public expansion browser progressively upgrades the MVP controls", () => {
 test("every expansion homepage ships the current calculator asset", () => {
   for (const market of ["pt", "ro", "si"]) {
     const html = readFileSync(new URL(`../${market}/index.html`, import.meta.url), "utf8");
-    assert.match(html, /\/src\/expansion-calculator-browser\.js\?v=20261111-component-gap1/);
+    assert.match(html, /\/src\/expansion-calculator-browser\.js\?v=20261111-supply-evidence1/);
   }
 });
