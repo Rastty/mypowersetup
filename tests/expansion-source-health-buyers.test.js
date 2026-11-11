@@ -42,9 +42,10 @@ test("component buyer matches from a failed merchant must disappear without hidi
     priceCzk: 220, priceCurrency: "EUR",
     specs: { voltageV: 12, powerW: 2000, pureSine: true },
     verifiedAt: "2026-08-29",
+    productUrl: "https://www.ipowerqueen.de/en/products/power-queen-2000w-inverter-12v-dc-to-230v-ac-converter",
   };
   const matching = { ...setup, inverterWatts: 1000 };
-  const other = { ...product, id: "other:inverter", merchant: "other" };
+  const other = { ...product, id: "other:inverter", merchant: "other", productUrl: "https://shop.example/12v-pure-sine-2000w" };
   const fresh = buildExpansionComponentRecommendations([product, other], matching, 3,
     { powerqueen_eu: { status: "ok" }, other: { status: "ok" } });
   assert.equal(fresh.inverter.length, 2);
