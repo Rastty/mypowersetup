@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-10T12:27:54.849Z",
+  "generatedAt": "2026-11-11T07:50:06.017Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16526,
+      "parsedProducts": 16502,
       "relevantProducts": 203
     },
     "powerqueen_eu": {
@@ -6037,38 +6037,6 @@
       }
     },
     {
-      "id": "padabo_pl:107543_32888",
-      "merchant": "padabo_pl",
-      "name": "Bateria litowa BullTron Polar pod siedzeniem pojemność 700 Ah",
-      "description": "Kompaktowa bateria litowa ze zintegrowanym inteligentnym systemem zarządzania baterią BullTron Polar to kompaktowy akumulator litowy umieszczony pod siedzeniem w Fiacie Ducato. Jego główne zalety to wysoka wydajność, długa żywotność i nowoczesna technologia. Zintegrowany inteligentny system zarządzania akumulatorem z aktywnym balanserem 5A zapewnia maksymalną wydajność i bezpieczeństwo. Wszystkie parametry można monitorować za pomocą smartfona i Bluetooth 4.0. Bateria litowa BullTron umożliwia i",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
-      "category": "battery",
-      "brand": "BullTron",
-      "priceCzk": 25409.34,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/bateria-litowa-bulltron-polar-pod-siedzeniem_z107543/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fbateria-litowa-bulltron-polar-pod-siedzeniem_z107543%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/2/191842_102.jpg?1774456502_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 700,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 5,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_pl:107544",
       "merchant": "padabo_pl",
       "name": "Bateria litowa BullTron dla Clesana C1",
@@ -6187,6 +6155,37 @@
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:107554",
+      "merchant": "padabo_pl",
+      "name": "Bateria litowa BullTron dla Clesana C1, w tym zarządzanie energią",
+      "description": "Niezawodne zasilanie dla toalety Clesana C1 z zarządzaniem energią Bateria litowa BullTron 6 Ah została zaprojektowana do zasilania toalety Clesana C1. Bateria zapewnia prąd ciągły 6 A i prąd szczytowy do 30 A. Akumulatorjest optymalnie dopasowany do systemu zarządzania energią VOTRONIC (brak w zestawie) - zapewniając wydajne, bezpieczne i długotrwałe zasilanie dla samochodów kempingowych. W zestawie znajduje się praktyczny uchwyt na akumulator ułatwiający przenoszenie, system zarządzania energi",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory LiFePO4",
+      "category": "battery",
+      "brand": "BullTron",
+      "priceCzk": 1197.47,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/bateria-litowa-bulltron-dla-clesana-c1-w-tym-zarzadzanie-energia_z107554/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fbateria-litowa-bulltron-dla-clesana-c1-w-tym-zarzadzanie-energia_z107554%2F",
+      "imageUrl": "https://www.padabo.pl/data/tmp/102/1/191871_102.jpg?1774529522_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 6,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 6,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null

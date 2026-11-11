@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-10T12:27:44.018Z",
+  "generatedAt": "2026-11-11T07:49:56.854Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16517,
+      "parsedProducts": 16490,
       "relevantProducts": 246
     },
     "allpowers_eu": {
@@ -493,7 +493,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
+      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -7318,37 +7318,6 @@
       }
     },
     {
-      "id": "padabo_sk:107543_32888",
-      "merchant": "padabo_sk",
-      "name": "Lítiová batéria pod sedadlo BullTron Polar kapacita 700 Ah",
-      "description": "Kompaktná lítiová batéria s integrovaným inteligentným systémom správy batérie BullTron Polar je kompaktná lithiová batéria umiestnená pod sedadlom vo vozidle Fiat Ducato. Jej hlavnou prednosťou je vysoký výkon, dlhá životnosť a moderné technológie. Integrovaný inteligentný systém správy batérie s aktívnym 5A balancerom zaisťuje maximálnu účinnosť a bezpečnosť. Všetky parametre je možné sledovať prostredníctvom smartfónu a Bluetooth 4.0 . Lítiová batéria značky BullTron ponúka zvislú či vodorovn",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
-      "category": "battery",
-      "brand": "BullTron",
-      "priceCzk": 5704.14,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/litiova-bateria-pod-sedadlo-bulltron-polar_z107543/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-pod-sedadlo-bulltron-polar_z107543%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/191842_102.jpg?1774456502_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 700,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 5,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:107544",
       "merchant": "padabo_sk",
       "name": "Lítiová batéria BullTron pre Clesana C1",
@@ -7467,6 +7436,37 @@
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
         "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:107554",
+      "merchant": "padabo_sk",
+      "name": "Lítiová batéria BullTron pre Clesana C1 vrátane správy napájania",
+      "description": "Spoľahlivé napájanie toalety Clesana C1 s riadením napájania Lítiová batéria BullTron 6 Ah je určená na napájanie toalety Clesana C1. Batéria poskytuje trvalý prúd 6 A a špičkový prúd až 30 A. Batéria je optimálne prispôsobená systému riadenia napájania VOTRONIC (nie je súčasťou dodávky) - zabezpečuje efektívne, bezpečné a dlhotrvajúce napájanie obytných vozidiel. Súčasťou dodávky je praktický držiak batérie na jednoduché prenášanie, systém riadenia napájania, pripojovací kábel s 30 A poistkou a",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
+      "category": "battery",
+      "brand": "BullTron",
+      "priceCzk": 268.82,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/litiova-bateria-bulltron-pre-clesana-c1-vratane-spravy-napajania_z107554/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-bulltron-pre-clesana-c1-vratane-spravy-napajania_z107554%2F",
+      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/191871_102.jpg?1774529522_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 6,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 6,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -7909,7 +7909,7 @@
       "brand": "ALLPOWERS",
       "priceCzk": 69,
       "priceCurrency": "EUR",
-      "available": true,
+      "available": false,
       "productUrl": "https://iallpowers.eu/products/allpowers-sp020-solar-panel-60w-monocrystalline-cells",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-sp020-solar-panel-60w-monocrystalline-cells",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-SP020-Monocrystalline-Solar-Panel-60W-ALLPOWERS-124549352.webp?v=1785220735",

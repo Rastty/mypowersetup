@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-10T12:28:12.959Z",
+  "generatedAt": "2026-11-11T07:50:14.207Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12548,
+      "parsedProducts": 12527,
       "relevantProducts": 161
     },
     "ampul_hu": {
@@ -5612,7 +5612,7 @@
       "brand": "ALLPOWERS",
       "priceCzk": 69,
       "priceCurrency": "EUR",
-      "available": true,
+      "available": false,
       "productUrl": "https://iallpowers.eu/products/allpowers-sp020-solar-panel-60w-monocrystalline-cells",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-sp020-solar-panel-60w-monocrystalline-cells",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-SP020-Monocrystalline-Solar-Panel-60W-ALLPOWERS-124549352.webp?v=1785220735",
