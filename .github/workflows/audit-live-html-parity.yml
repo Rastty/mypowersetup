@@ -40,6 +40,8 @@ on:
       - src/calculator-landing-browser.js
       - src/expansion-calculator-browser.js
       - src/expansion-supply-evidence.js
+      - src/expansion-line-price.js
+      - src/expansion-recommendation-roles.js
       - pt/index.html
       - ro/index.html
       - si/index.html
