@@ -166,8 +166,8 @@ if (!clientPath || !tokenPath) {
       summary: ga4SummaryRowsFromRunReport(summaryReport),
       events,
       editorialBuyer,
-      dcdcBuyer,
       expansionSupply,
+      dcdcBuyer,
       status: customDimensions.ready ? "ready" : "route_dimensions_missing",
     };
 
