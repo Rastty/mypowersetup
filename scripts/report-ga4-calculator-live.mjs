@@ -16,6 +16,10 @@ import {
   ga4DcdcBuyerDimensionState, ga4DcdcBuyerFilter,
   dcdcBuyerFromGa4RunReport,
 } from "../src/ga4-dcdc-buyer-evidence.js";
+import {
+  ga4ExpansionSupplyDimensionState, ga4ExpansionSupplyFilter,
+  expansionSupplyFromGa4RunReport,
+} from "../src/ga4-expansion-supply-evidence.js";
 
 const [clientPath, tokenPath, outputPath = "ga4-calculator-live.json"] = process.argv.slice(2);
 const targetHostname = process.env.GA4_TARGET_HOSTNAME || "mypowersetup.com";
@@ -47,6 +51,7 @@ if (!clientPath || !tokenPath) {
     const customDimensions = ga4MetadataDimensionState(metadata);
     const editorialBuyerDimensions = ga4EditorialBuyerDimensionState(metadata);
     const dcdcBuyerDimensions = ga4DcdcBuyerDimensionState(metadata);
+    const expansionSupplyDimensions = ga4ExpansionSupplyDimensionState(metadata);
     const baseRequest = {
       dateRanges: [{ startDate, endDate }],
       metrics: [{ name: "eventCount" }, { name: "totalUsers" }],
@@ -119,6 +124,28 @@ if (!clientPath || !tokenPath) {
       };
     }
 
+    // PT/RO/SI need real, consented counts of missing verified inverter fits.
+    // A failed catalog request must NOT masquerade as an absent product.
+    // All three grouping dimensions are built-in; no new custom dimension
+    // registrations or electrical/personal input data are required.
+    let expansionSupply;
+    if (expansionSupplyDimensions.ready) {
+      const expansionSupplyReport = await runReport(accessToken, selected.property, {
+        dateRanges: [{ startDate, endDate }],
+        metrics: [{ name: "eventCount" }],
+        dimensions: expansionSupplyDimensions.dimensions.map(name => ({ name })),
+        dimensionFilter: ga4ExpansionSupplyFilter(targetHostname),
+        limit: "10000",
+      });
+      expansionSupply = expansionSupplyFromGa4RunReport(expansionSupplyReport, expansionSupplyDimensions);
+    } else {
+      expansionSupply = {
+        status: "missing_dimensions",
+        missing: expansionSupplyDimensions.missing,
+        revenueMeasured: false, merchantConversionsMeasured: false,
+      };
+    }
+
     const payload = {
       schemaVersion: 1,
       generatedAt: new Date().toISOString(),
@@ -140,6 +167,7 @@ if (!clientPath || !tokenPath) {
       events,
       editorialBuyer,
       dcdcBuyer,
+      expansionSupply,
       status: customDimensions.ready ? "ready" : "route_dimensions_missing",
     };
 
@@ -162,6 +190,12 @@ if (!clientPath || !tokenPath) {
     if (dcdcBuyer.status === "ready") {
       console.log(`Direct DC-DC GA4 consented events: pageViews=${dcdcBuyer.totals.pageViews} impressions=${dcdcBuyer.totals.productImpressions} outboundClicks=${dcdcBuyer.totals.affiliateClicks}; commissions=UNKNOWN`);
       console.log(`Direct DC-DC calculation coverage (consented event counts, not buyers): shown=${dcdcBuyer.coverageEvents.shown} noSafeMatch=${dcdcBuyer.coverageEvents.noSafeMatch} unavailable=${dcdcBuyer.coverageEvents.unavailable} unsupported=${dcdcBuyer.coverageEvents.unsupported}`);
+    }
+    console.log(`Expansion PT/RO/SI supply evidence: ${expansionSupply.status} (consented calculation events, not sales)`);
+    if (expansionSupply.status === "ready") {
+      for (const row of expansionSupply.rows) {
+        console.log(`Expansion ${row.market}: verifiedInverterGap=${row.inverterMissing} otherGap=${row.otherMissing} complete=${row.complete} catalogUnavailable=${row.unavailable}; commissions=UNKNOWN`);
+      }
     }
     console.log(`Evidence written to ${outputPath}`);
 
