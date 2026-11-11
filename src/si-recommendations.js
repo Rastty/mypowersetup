@@ -6,8 +6,8 @@ import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affi
 import { isAmpulExpansionProduct, validateAmpulExpansionProduct } from "./affiliate-ampul-expansion.js";
 import { isSolarisExpansionProduct, validateSolarisExpansionProduct } from "./affiliate-solaris.js";
 import { isButlerExpansionProduct, validateButlerExpansionProduct } from "./affiliate-butler.js";
-import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
-export { hasExpansionSourceGaps } from "./expansion-component-recommendations.js";
+import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js?v=20261111-source-health1";
+export { hasExpansionSourceGaps } from "./expansion-component-recommendations.js?v=20261111-source-health1";
 
 export const SI_CATALOG_URL = "/data/products-si.json";
 const AWIN_MERCHANT_ID = "38934";
