@@ -6,6 +6,8 @@ on:
       - scripts/verify-phase2-stale-live.test.mjs
       - scripts/verify-buyer-paths-live.mjs
       - scripts/verify-buyer-paths-live.test.mjs
+      - scripts/verify-expansion-supply-live.mjs
+      - scripts/verify-expansion-supply-live.test.mjs
       - scripts/wait-for-pages-deployment.mjs
       - scripts/wait-for-pages-deployment.test.mjs
       - .github/workflows/audit-live-html-parity.yml
@@ -26,6 +28,8 @@ on:
       - scripts/wait-for-pages-deployment.test.mjs
       - scripts/verify-buyer-paths-live.mjs
       - scripts/verify-buyer-paths-live.test.mjs
+      - scripts/verify-expansion-supply-live.mjs
+      - scripts/verify-expansion-supply-live.test.mjs
       - scripts/verify-phase2-stale-live.mjs
       - scripts/verify-phase2-stale-live.test.mjs
       - src/guide-verified-offers.js
@@ -34,6 +38,11 @@ on:
       - src/battery-calculator-offers*.js
       - src/mppt-calculator-offers*.js
       - src/calculator-landing-browser.js
+      - src/expansion-calculator-browser.js
+      - src/expansion-supply-evidence.js
+      - pt/index.html
+      - ro/index.html
+      - si/index.html
       - src/guide-offer-impressions.js
       - data/calculator-offers-cz.json
       - data/dcdc-guide-offers-cz.json
@@ -80,6 +89,14 @@ jobs:
         # perform independent checks and workflow_run remains a fallback.
         if: github.event_name != 'pull_request'
         run: node scripts/verify-buyer-paths-live.mjs
+      - name: Test PT RO SI public served calculator and supply outcome contract
+        run: node --test scripts/verify-expansion-supply-live.test.mjs
+      - name: Verify exact PT RO SI served HTML and versioned supply JS
+        # The new branch code is not deployed during PR checks.
+        # Run the live check only after the expected main Pages commit deploys,
+        # and from schedule/dispatch/workflow_run where production is current.
+        if: github.event_name != 'pull_request'
+        run: node scripts/verify-expansion-supply-live.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
