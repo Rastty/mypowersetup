@@ -274,3 +274,19 @@ test("system queue follows current opportunities and drops resolved categories",
   assert.equal(actions[0].sourceStock[0].state, "available");
   assert.equal(actions[0].publishEligible, false);
 });
+
+test("commercial verification queue cannot mistake a different inverter variant for exact 24V stock", async () => {
+  const { report, ampulMarketVerification, ampulSourceCatalog } = await liveInputs();
+  const catalog = structuredClone(ampulSourceCatalog);
+  const inverter = catalog.products.find(({ id }) => id === "ampul_cz:5577-7392");
+  inverter.available = true; // the feed may claim stock for a substituted SKU
+  inverter.specs.voltageV = 12;
+  const best = bestCurrentCommercialSystemVerification(report.markets, {
+    ampulMarketVerification, ampulSourceCatalog: catalog,
+  });
+  assert.equal(best.sourceStock[0].available, true);
+  assert.equal(best.sourceStock[0].state, "identity_mismatch");
+  assert.equal(best.sourceStock[0].stockVerified, false);
+  assert.equal(best.publishEligible, false);
+  assert.deepEqual(best.marketVerification[0].verifiedMarkets, []);
+});
