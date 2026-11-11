@@ -2,6 +2,7 @@ import { calculatePowerStationProfile } from "./power-station.js";
 import { hasCurrentRecommendationSource } from "./products.js";
 import { validatePtCatalog } from "./products-pt.js";
 import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
+export { hasExpansionSourceGaps } from "./expansion-component-recommendations.js";
 
 export const PT_CATALOG_URL = "/data/products-pt.json";
 
