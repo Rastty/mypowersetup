@@ -171,3 +171,46 @@ test("product-market verification requires explicit evidence URL and date", () =
     [INVERTER_ID]: ["si"],
   });
 });
+
+test("invalid dated or non-HTTPS checkout evidence never unlocks AMPUL 24V inverter publication", () => {
+  const invalid = [
+    { verified: true, evidenceUrl: "http://ampul.eu/checkout", verifiedAt: "2026-09-07" },
+    { verified: true, evidenceUrl: "javascript:alert(1)", verifiedAt: "2026-09-07" },
+    { verified: true, evidenceUrl: "https://ampul.eu/checkout", verifiedAt: "2026-02-30" },
+    { verified: true, evidenceUrl: "https://ampul.eu/checkout", verifiedAt: "9999-12-31" },
+    { verified: true, evidenceUrl: "https://ampul.eu/checkout", verifiedAt: "2026-09-31" },
+    { verified: true, evidenceUrl: "https://ampul.eu/checkout", verifiedAt: "2026-9-7" },
+    { verified: true, evidenceUrl: "", verifiedAt: "2026-09-07" },
+    { verified: "true", evidenceUrl: "https://ampul.eu/checkout", verifiedAt: "2026-09-07" },
+  ];
+  for (const record of invalid) {
+    const evidence = verification({ inverter: ["ro"] });
+    evidence.products[INVERTER_ID].markets.ro = record;
+    assert.deepEqual(verifiedAmpulProductMarkets(evidence, INVERTER_ID), [], JSON.stringify(record));
+    const result = syncAmpulExpansion(sourceCatalog({ inverterAvailable: true }), "ro-RO", evidence, { now });
+    assert.equal(result.source.status, "blocked", JSON.stringify(record));
+    assert.equal(result.source.blocker, "product_market_shipping_checkout_unverified");
+    assert.deepEqual(result.products, [], JSON.stringify(record));
+  }
+});
+
+test("one valid market proof never unlocks another product, locale or invalid schema", () => {
+  const good = verification({ inverter: ["pt"] });
+  assert.deepEqual(verifiedAmpulProductMarkets(good, INVERTER_ID), ["pt"]);
+  assert.deepEqual(verifiedAmpulProductMarkets(good, DCDC_ID), []);
+  assert.deepEqual(syncAmpulExpansion(sourceCatalog({ inverterAvailable: true }), "ro-RO", good, { now }).products, []);
+  const wrongSchema = { ...good, schemaVersion: 1 };
+  assert.deepEqual(verifiedAmpulProductMarkets(wrongSchema, INVERTER_ID), []);
+  assert.deepEqual(syncAmpulExpansion(sourceCatalog({ inverterAvailable: true }), "pt-PT", wrongSchema, { now }).products, []);
+});
+
+test("real leap-day HTTPS checkout evidence can still clear that exact country gate", () => {
+  const evidence = verification();
+  evidence.products[DCDC_ID].markets.si = {
+    verified: true, evidenceUrl: "https://ampul.eu/en/order/verified-si", verifiedAt: "2024-02-29",
+  };
+  assert.deepEqual(verifiedAmpulProductMarkets(evidence, DCDC_ID), ["si"]);
+  const result = syncAmpulExpansion(sourceCatalog({ dcdcAvailable: true }), "sl-SI", evidence, { now });
+  assert.equal(result.products.length, 1);
+  assert.equal(result.products[0].category, "dc_charger");
+});
