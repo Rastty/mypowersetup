@@ -1,3 +1,5 @@
+import { expansionLinePrice } from "./expansion-line-price.js";
+
 const RESERVE_VALUE = Object.freeze({
   battery: (item) => Number(item.specs?.capacityAh),
   solar_panel: (item) => Number(item.quantity) * Number(item.powerW),
@@ -19,10 +21,12 @@ function decorateCategory(items) {
 
   // An unavailable merchant price is null, never a free product.
   // Never compare unlike currencies or claim a budget winner from a single
-  // known price. The storefront already hides unavailable prices.
-  const priced = items.flatMap((item, index) =>
-    typeof item.price === "number" && Number.isFinite(item.price) && item.price > 0
-      ? [{ index, price: item.price, currency: item.currency || null }] : []);
+  // known price. Solar-panel alternatives compare the full calculated
+  // quantity subtotal, not the single-panel sticker price.
+  const priced = items.flatMap((item, index) => {
+    const line = expansionLinePrice(item);
+    return line ? [{ index, price: line.totalPrice, currency: line.currency }] : [];
+  });
   if (priced.length > 1 && new Set(priced.map(({ currency }) => currency)).size === 1) {
     const budget = priced.reduce((best, candidate) => candidate.price < best.price ? candidate : best);
     badges[budget.index].push("budget");
