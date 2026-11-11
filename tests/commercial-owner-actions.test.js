@@ -184,11 +184,14 @@ test("commercial stock proof is a real UTC date, not an old or malformed availab
 });
 
 test("owner stock queue distinguishes historical claims from genuinely recent supply observations", () => {
-  const fresh = buildCommercialOwnerActionQueue({ asOf: "2026-09-25T10:00:00Z" });
+  // The sourcing queue is seeded from Sep 7 per-candidate observations.
+  // A separate Solaris activation artifact was refreshed Sep 22, but it is
+  // NOT the input to this owner queue and must not be silently substituted.
+  const fresh = buildCommercialOwnerActionQueue({ asOf: "2026-09-10T10:00:00Z" });
   const solaris = fresh.find(item => item.merchant === "solaris_store");
-  assert.equal(solaris.inStockCandidates, 2, "the two Sep 22 Phoenix observations would still be fresh");
+  assert.equal(solaris.inStockCandidates, 3, "Sep 7 candidate observations were still fresh Sep 10");
   assert.equal(solaris.listedAvailableCandidates, 3);
-  assert.equal(solaris.staleStockEvidenceCandidates, 1, "Sep 7 controller proof already expired");
+  assert.equal(solaris.staleStockEvidenceCandidates, 0);
   const november = buildCommercialOwnerActionQueue({ asOf: "2026-11-11T08:00:41.741Z" });
   assert.deepEqual(november.map(item => item.inStockCandidates), [0, 0, 0, 0]);
   assert.deepEqual(november.map(item => item.listedAvailableCandidates), [1, 3, 2, 1]);
