@@ -6,6 +6,7 @@ import { expansionResultGuides } from "./expansion-result-guides.js";
 import { expansionComponentPlan } from "./expansion-component-plan.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { expansionPurchaseRoutePriority } from "./expansion-purchase-route-priority.js";
+import { classifyExpansionSupplyOutcome, expansionSupplyEventName } from "./expansion-supply-evidence.js?v=20261111-supply-evidence1";
 import { bindAffiliateImpressionTracking, trackAffiliateClick, trackVisibleAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-product-impressions1";
 import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js?v=20261111-price-truth1";
 import { groupExpansionProductsForDisclosure } from "./expansion-product-disclosure.js";
@@ -27,21 +28,21 @@ const labels = {
     required: "Selectează cel puțin un consumator.", invalid: "Verifică numele, puterea, orele pe zi și cantitatea consumatorilor selectați.",
     daily: "Consum zilnic", battery: "Baterie", solar: "Panouri solare", inverter: "Invertor", mppt: "Controler MPPT", dcCharger: "Încărcător DC–DC", shoreCharger: "Încărcător de la 230 V", voltage: "Sistem", again: "Modifică datele", share: "Copiază rezultatul", copied: "Rezultat copiat", copyFailed: "Nu s-a putut copia", products: "Produse compatibile verificate", productsIntro: "Afișăm doar produse cu destinația exactă, limitele electrice critice și livrarea în România verificate.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W acoperă puterea solară calculată`, componentFit: "Parametrii verificați acoperă minimul calculat", powerStationFit: "Limitele electrice verificate acoperă profilul calculat", powerStation: "Stație portabilă de energie", pureSine: "sinus pur", viewProduct: "Vezi produsul", affiliate: "Link afiliat; recomandarea tehnică nu depinde de comision.",
     recommendationBadges: { recommended: "Recomandarea noastră", budget: "Cel mai mic preț", reserve: "Rezervă mai mare", alternative: "Alternativă compatibilă" }, purchaseChecks: ["Potrivire tehnică", "Link exact", "Livrare verificată"], viewAt: (merchant) => `Vezi prețul la ${merchant}`, portableViewAt: (merchant) => `Vezi soluția completă la ${merchant}`, compareAlternatives: (count) => `Compară alternativele (${count})`,
-    componentRoute: "Instalație din componente", componentRouteIntro: "Combină numai componentele necesare din categoriile de mai jos; acestea nu trebuie cumpărate împreună cu stația portabilă.", portableRoute: "Alternativă portabilă completă", portableRouteIntro: "O singură stație portabilă poate înlocui această cale din componente doar dacă limitele ei acoperă întregul profil.", portablePriority: (missing) => `Pentru acest calcul, calea din componente nu are încă o potrivire verificată completă pentru: ${missing}. Stația portabilă de mai jos acoperă profilul complet verificat și este afișată prima.`, loadingProducts: "Verificăm produsele compatibile pentru rezultatul tău…", noProducts: "Niciun produs verificat nu acoperă încă toate limitele calculate. Folosește ghidurile de mai sus pentru o instalație pe componente; nu micșora cerințele doar pentru a forța o recomandare.", noPortableFit: "Produsele de mai jos acoperă părți din instalația pe componente, dar nicio stație portabilă verificată nu acoperă întregul profil.", componentGap: (missing) => `Instalația din componente nu este încă completă: lipsesc produse verificate pentru ${missing}. Produsele afișate acoperă doar părți din sistem. Verifică cerințele calculate în ghiduri înainte de achiziție.`,
+    componentRoute: "Instalație din componente", componentRouteIntro: "Combină numai componentele necesare din categoriile de mai jos; acestea nu trebuie cumpărate împreună cu stația portabilă.", portableRoute: "Alternativă portabilă completă", portableRouteIntro: "O singură stație portabilă poate înlocui această cale din componente doar dacă limitele ei acoperă întregul profil.", portablePriority: (missing) => `Pentru acest calcul, calea din componente nu are încă o potrivire verificată completă pentru: ${missing}. Stația portabilă de mai jos acoperă profilul complet verificat și este afișată prima.`, loadingProducts: "Verificăm produsele compatibile pentru rezultatul tău…", noProducts: "Niciun produs verificat nu acoperă încă toate limitele calculate. Folosește ghidurile de mai sus pentru o instalație pe componente; nu micșora cerințele doar pentru a forța o recomandare.", noPortableFit: "Produsele de mai jos acoperă părți din instalația pe componente, dar nicio stație portabilă verificată nu acoperă întregul profil.", componentGap: (missing) => `Instalația din componente nu este încă completă: lipsesc produse verificate pentru ${missing}. Produsele afișate acoperă doar părți din sistem. Verifică cerințele calculate în ghiduri înainte de achiziție.`, catalogUnavailable: "Nu putem încărca momentan ofertele verificate. Rezultatul tehnic rămâne valabil; încearcă mai târziu. Aceasta nu înseamnă că produsele compatibile lipsesc de pe piață.",
     hours: "h/zi", quantity: "buc.", custom: "Alt consumator", customHint: "Adaugă un consumator care nu este în listă.", customName: "Nume", watts: "W", dc: "12/24 V DC", ac: "230 V AC", noSurge: "Fără vârf cunoscut", motorSurge: "Motor / compresor · 2×", selected: "Selectate", estimated: "Consum estimat",
   },
   pt: {
     required: "Seleciona pelo menos um equipamento.", invalid: "Confirma o nome, a potência, as horas por dia e a quantidade dos equipamentos selecionados.",
     daily: "Consumo diário", battery: "Bateria", solar: "Painéis solares", inverter: "Inversor", mppt: "Controlador MPPT", dcCharger: "Carregador DC–DC", shoreCharger: "Carregador de 230 V", voltage: "Sistema", again: "Alterar dados", share: "Copiar resultado", copied: "Resultado copiado", copyFailed: "Não foi possível copiar", products: "Produtos compatíveis verificados", productsIntro: "Mostramos apenas produtos cujo destino exato e requisitos técnicos conseguimos validar.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W cobre a potência solar calculada`, componentFit: "Os parâmetros verificados cobrem o mínimo calculado", powerStationFit: "Os limites elétricos verificados cobrem o perfil calculado", powerStation: "Estação de energia portátil", pureSine: "onda sinusoidal pura", viewProduct: "Ver produto", affiliate: "Ligação de afiliado; a recomendação técnica não depende da comissão.",
     recommendationBadges: { recommended: "A nossa recomendação", budget: "Preço mais baixo", reserve: "Maior margem", alternative: "Alternativa compatível" }, purchaseChecks: ["Compatibilidade técnica", "Ligação exata", "Entrega verificada"], viewAt: (merchant) => `Ver preço na ${merchant}`, portableViewAt: (merchant) => `Ver solução completa na ${merchant}`, compareAlternatives: (count) => `Comparar alternativas (${count})`,
-    componentRoute: "Instalação por componentes", componentRouteIntro: "Combina apenas os componentes necessários das categorias abaixo; não tens de os comprar juntamente com a estação portátil.", portableRoute: "Alternativa portátil completa", portableRouteIntro: "Uma única estação portátil só substitui a instalação por componentes quando os seus limites cobrem todo o perfil.", portablePriority: (missing) => `Para este cálculo, a instalação por componentes ainda não tem correspondência verificada completa para: ${missing}. A estação portátil abaixo cobre o perfil completo verificado e aparece primeiro.`, loadingProducts: "Estamos a verificar produtos compatíveis para o teu resultado…", noProducts: "Nenhum produto verificado cobre ainda todos os limites calculados. Usa os guias acima para uma instalação por componentes; não reduzas os requisitos apenas para forçar uma recomendação.", noPortableFit: "Os produtos abaixo cobrem partes da instalação por componentes, mas nenhuma estação de energia portátil verificada cobre todo o perfil.", componentGap: (missing) => `A instalação por componentes ainda não está completa: faltam produtos verificados para ${missing}. Os itens apresentados são apenas correspondências parciais. Confirma os requisitos calculados nos guias antes de comprar.`,
+    componentRoute: "Instalação por componentes", componentRouteIntro: "Combina apenas os componentes necessários das categorias abaixo; não tens de os comprar juntamente com a estação portátil.", portableRoute: "Alternativa portátil completa", portableRouteIntro: "Uma única estação portátil só substitui a instalação por componentes quando os seus limites cobrem todo o perfil.", portablePriority: (missing) => `Para este cálculo, a instalação por componentes ainda não tem correspondência verificada completa para: ${missing}. A estação portátil abaixo cobre o perfil completo verificado e aparece primeiro.`, loadingProducts: "Estamos a verificar produtos compatíveis para o teu resultado…", noProducts: "Nenhum produto verificado cobre ainda todos os limites calculados. Usa os guias acima para uma instalação por componentes; não reduzas os requisitos apenas para forçar uma recomendação.", noPortableFit: "Os produtos abaixo cobrem partes da instalação por componentes, mas nenhuma estação de energia portátil verificada cobre todo o perfil.", componentGap: (missing) => `A instalação por componentes ainda não está completa: faltam produtos verificados para ${missing}. Os itens apresentados são apenas correspondências parciais. Confirma os requisitos calculados nos guias antes de comprar.`, catalogUnavailable: "Não conseguimos carregar agora as ofertas verificadas. O cálculo técnico mantém-se válido; tenta novamente mais tarde. Isto não significa que não existam produtos compatíveis.",
     hours: "h/dia", quantity: "unid.", custom: "Outro equipamento", customHint: "Adiciona um equipamento que não esteja na lista.", customName: "Nome", watts: "W", dc: "12/24 V DC", ac: "230 V AC", noSurge: "Sem pico conhecido", motorSurge: "Motor / compressor · 2×", selected: "Selecionados", estimated: "Consumo estimado",
   },
   si: {
     required: "Izberi vsaj en porabnik.", invalid: "Preveri ime, moč, ure na dan in količino izbranih porabnikov.",
     daily: "Dnevna poraba", battery: "Baterija", solar: "Solarni paneli", inverter: "Inverter", mppt: "Regulator MPPT", dcCharger: "DC–DC polnilnik", shoreCharger: "230 V polnilnik", voltage: "Sistem", again: "Spremeni podatke", share: "Kopiraj rezultat", copied: "Rezultat kopiran", copyFailed: "Kopiranje ni uspelo", products: "Preverjeni združljivi izdelki", productsIntro: "Prikažemo samo izdelke, pri katerih smo preverili točen cilj povezave, ključne električne omejitve in dostavo v Slovenijo.", solarFit: (quantity, powerW) => `${quantity} × ${powerW} W pokrije izračunano solarno moč`, componentFit: "Preverjeni parametri pokrivajo izračunani minimum", powerStationFit: "Preverjene električne omejitve pokrivajo izračunani profil", powerStation: "Prenosna elektrarna", pureSine: "čisti sinus", viewProduct: "Poglej izdelek", affiliate: "Partnerska povezava; tehnično priporočilo ni odvisno od provizije.",
     recommendationBadges: { recommended: "Naše priporočilo", budget: "Najnižja cena", reserve: "Več rezerve", alternative: "Združljiva alternativa" }, purchaseChecks: ["Tehnična ustreznost", "Točna povezava", "Preverjena dostava"], viewAt: (merchant) => `Preveri ceno pri ${merchant}`, portableViewAt: (merchant) => `Poglej celovito rešitev pri ${merchant}`, compareAlternatives: (count) => `Primerjaj alternative (${count})`,
-    componentRoute: "Sistem iz posameznih komponent", componentRouteIntro: "Združi samo potrebne komponente iz spodnjih kategorij; ni jih treba kupiti skupaj s prenosno elektrarno.", portableRoute: "Celovita prenosna alternativa", portableRouteIntro: "Ena prenosna elektrarna nadomesti sistem iz komponent le, če njene omejitve pokrijejo celoten profil.", portablePriority: (missing) => `Pri tem izračunu pot iz posameznih komponent še nima popolnoma preverjenega ujemanja za: ${missing}. Spodnja prenosna elektrarna pokriva celoten preverjeni profil, zato je prikazana prva.`, loadingProducts: "Preverjamo združljive izdelke za tvoj rezultat…", noProducts: "Noben preverjen izdelek še ne pokriva vseh izračunanih omejitev. Uporabi zgornje vodnike za sistem iz posameznih komponent; zahtev ne zmanjšuj samo zato, da bi dobil priporočilo.", noPortableFit: "Spodnji izdelki pokrijejo dele sistema iz posameznih komponent, vendar nobena preverjena prenosna elektrarna ne pokrije celotnega profila.", componentGap: (missing) => `Sistem iz komponent še ni popoln: ni preverjenih izdelkov za ${missing}. Prikazani izdelki pokrivajo le del sistema. Pred nakupom preveri izračunane zahteve v vodnikih.`,
+    componentRoute: "Sistem iz posameznih komponent", componentRouteIntro: "Združi samo potrebne komponente iz spodnjih kategorij; ni jih treba kupiti skupaj s prenosno elektrarno.", portableRoute: "Celovita prenosna alternativa", portableRouteIntro: "Ena prenosna elektrarna nadomesti sistem iz komponent le, če njene omejitve pokrijejo celoten profil.", portablePriority: (missing) => `Pri tem izračunu pot iz posameznih komponent še nima popolnoma preverjenega ujemanja za: ${missing}. Spodnja prenosna elektrarna pokriva celoten preverjeni profil, zato je prikazana prva.`, loadingProducts: "Preverjamo združljive izdelke za tvoj rezultat…", noProducts: "Noben preverjen izdelek še ne pokriva vseh izračunanih omejitev. Uporabi zgornje vodnike za sistem iz posameznih komponent; zahtev ne zmanjšuj samo zato, da bi dobil priporočilo.", noPortableFit: "Spodnji izdelki pokrijejo dele sistema iz posameznih komponent, vendar nobena preverjena prenosna elektrarna ne pokrije celotnega profila.", componentGap: (missing) => `Sistem iz komponent še ni popoln: ni preverjenih izdelkov za ${missing}. Prikazani izdelki pokrivajo le del sistema. Pred nakupom preveri izračunane zahteve v vodnikih.`, catalogUnavailable: "Trenutno ni mogoče naložiti preverjenih ponudb. Tehnični izračun ostaja veljaven; poskusi pozneje. To ne pomeni, da ni združljivih izdelkov.",
     hours: "h/dan", quantity: "kos", custom: "Drug porabnik", customHint: "Dodaj porabnik, ki ga ni na seznamu.", customName: "Ime", watts: "W", dc: "12/24 V DC", ac: "230 V AC", noSurge: "Brez znane konice", motorSurge: "Motor / kompresor · 2×", selected: "Izbrano", estimated: "Ocenjena poraba",
   },
 }[locale];
@@ -347,9 +348,8 @@ async function renderPortugalProducts(calculation, revision) {
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
-    trackProductCoverage({}, calculation);
-    track("product_recommendations_rendered", { market: "pt", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
-    target.innerHTML = renderNoVerifiedProducts();
+    trackCatalogUnavailable();
+    target.innerHTML = renderCatalogUnavailable();
     trackRenderedProductChoices(target);
   }
 }
@@ -370,9 +370,8 @@ async function renderSloveniaProducts(calculation, revision) {
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
-    trackProductCoverage({}, calculation);
-    track("product_recommendations_rendered", { market: "si", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
-    target.innerHTML = renderNoVerifiedProducts();
+    trackCatalogUnavailable();
+    target.innerHTML = renderCatalogUnavailable();
     trackRenderedProductChoices(target);
   }
 }
@@ -393,9 +392,8 @@ async function renderRomaniaProducts(calculation, revision) {
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
-    trackProductCoverage({}, calculation);
-    track("product_recommendations_rendered", { market: "ro", solar_panel_covered: false, power_station_covered: false, product_count: 0 });
-    target.innerHTML = renderNoVerifiedProducts();
+    trackCatalogUnavailable();
+    target.innerHTML = renderCatalogUnavailable();
     trackRenderedProductChoices(target);
   }
 }
@@ -403,6 +401,9 @@ async function renderRomaniaProducts(calculation, revision) {
 function trackProductCoverage(recommendations, calculation) {
   const priority = expansionPurchaseRoutePriority(recommendations, calculation, locale);
   const { coverage } = priority;
+  // GA4 can count verified inverter gaps by eventName without requiring an
+  // event-scoped missing_categories dimension. Do not send electrical inputs.
+  track(expansionSupplyEventName(classifyExpansionSupplyOutcome(priority)), { market: locale });
   track("product_coverage_calculated", {
     market: locale,
     required_categories: coverage.required.length,
@@ -420,6 +421,8 @@ function trackProductCoverage(recommendations, calculation) {
   return priority;
 }
 
+function trackCatalogUnavailable() { track(expansionSupplyEventName("unavailable"), { market: locale }); }
+function renderCatalogUnavailable() { return `<p class="result-products-empty" data-recommendation-unavailable>${escapeHtml(labels.catalogUnavailable)}</p>`; }
 function renderNoVerifiedProducts() { return `<p class="result-products-empty" data-recommendation-empty>${escapeHtml(labels.noProducts)}</p>`; }
 function renderProductLoading() { return `<p class="result-products-loading" data-recommendation-loading>${escapeHtml(labels.loadingProducts)}</p>`; }
 function trackRenderedProductChoices(target) { return trackVisibleAffiliateImpressions(target, track); }
