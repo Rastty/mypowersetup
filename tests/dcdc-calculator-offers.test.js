@@ -10,7 +10,14 @@ import {
 import { mountDcdcCalculatorBuyers } from "../src/dcdc-calculator-offers-browser.js";
 
 const feed = JSON.parse(await readFile(new URL("../data/dcdc-guide-offers-cz.json", import.meta.url), "utf8"));
-const now = Date.parse("2026-11-10T13:26:30Z");
+// The committed merchant projection is refreshed automatically. A fixed
+// calendar clock becomes *earlier* than the next feed snapshot in PR merge
+// checks, falsely rejecting all offers as coming from the future. This test
+// exercises buyer logic one hour after the actual snapshot; expiration tests
+// still advance beyond each SKU's 72-hour deadline.
+const snapshotAt = Date.parse(feed.generatedAt);
+if (!Number.isFinite(snapshotAt)) throw new Error("DCDC_TEST_FIXTURE_TIMESTAMP_INVALID");
+const now = snapshotAt + 60 * 60 * 1000;
 const base = calculateDcDcCharger({
   batteryCapacityAh: 200, replenishPercent: 50, targetDriveHours: 3,
   batteryVoltage: 12, sourceVoltage: 14.2, spareAlternatorCurrentA: 50,

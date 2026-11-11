@@ -1,10 +1,44 @@
-const SOURCE_PRODUCT_IDS = Object.freeze({
-  "ampul-eu-inverter-24v-2000w": "ampul_cz:5577-7392",
-  "ampul-eu-dcdc-12v-30a": "ampul_cz:6195",
+import {
+  AMPUL_24V_2000W_INVERTER,
+  AMPUL_12V_30A_DCDC,
+} from "./affiliate-ampul-expansion.js";
+
+// Match the feed row to the *reviewed variant*, not only to an arbitrary ID
+// carrying available=true. AMPUL's feed may repeat the 12V parent title for
+// 24V and higher-voltage variants, so identity comes from exact URL and specs.
+const SOURCE_PRODUCTS = Object.freeze({
+  [AMPUL_24V_2000W_INVERTER.id]: Object.freeze({
+    id: "ampul_cz:5577-7392",
+    exactUrl: "https://ampul.eu" + AMPUL_24V_2000W_INVERTER.exactPath,
+    category: "inverter",
+    specsMatch: (specs) => specs?.voltageV === 24
+      && specs?.powerW === 2000 && specs?.pureSine === true,
+  }),
+  [AMPUL_12V_30A_DCDC.id]: Object.freeze({
+    id: "ampul_cz:6195",
+    exactUrl: "https://ampul.eu" + AMPUL_12V_30A_DCDC.exactPath,
+    category: "dc_charger",
+    specsMatch: (specs) => specs?.voltageV === 12
+      && specs?.powerW === 400 && specs?.currentA === 30
+      && specs?.chargingVoltagesV?.includes(12)
+      && specs?.chargingInputVoltagesV?.includes(12)
+      && specs?.chargingInputVoltagesV?.includes(24)
+      && specs?.chargingBatteryTypes?.includes("lifepo4"),
+  }),
 });
 
 export function getAmpulSourceProductId(candidateId) {
-  return SOURCE_PRODUCT_IDS[candidateId] || null;
+  return SOURCE_PRODUCTS[candidateId]?.id || null;
+}
+
+function isExactAmpulSourceProduct(product, source) {
+  return Boolean(product
+    && source
+    && product.id === source.id
+    && product.merchant === "ampul_cz"
+    && product.category === source.category
+    && product.productUrl === source.exactUrl
+    && source.specsMatch(product.specs));
 }
 
 // Product availability is only evidence while its source snapshot is fresh.
@@ -19,15 +53,17 @@ export function resolveAmpulSourceStock(sourceCatalog, candidateId, now = Date.n
   const sourceFresh = timestamp !== null && Number.isFinite(now)
     && timestamp <= now && now - timestamp <= MAX_STOCK_SOURCE_AGE_MS;
   const sourceHealthy = sourceStatusOk && sourceFresh;
-  const product = sourceProductId
-    ? (sourceCatalog?.products || []).find(({ id }) => id === sourceProductId) || null
+  const product = sourceProductId && Array.isArray(sourceCatalog?.products)
+    ? sourceCatalog.products.find((row) => row?.id === sourceProductId) || null
     : null;
+  const exactIdentity = isExactAmpulSourceProduct(product, SOURCE_PRODUCTS[candidateId]);
 
   let state = "unknown";
   if (!sourceProductId) state = "unmapped";
   else if (!sourceStatusOk) state = "source_unhealthy";
   else if (!sourceFresh) state = "source_stale";
   else if (!product) state = "missing";
+  else if (!exactIdentity) state = "identity_mismatch";
   else if (product.available === true) state = "available";
   else if (product.available === false) state = "unavailable";
 
