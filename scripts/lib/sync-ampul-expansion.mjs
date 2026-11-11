@@ -1,3 +1,4 @@
+import { verifiedAmpulCandidateMarkets } from "../../src/ampul-market-verification.js";
 import {
   AMPUL_12V_30A_DCDC,
   AMPUL_24V_2000W_INVERTER,
@@ -6,15 +7,18 @@ import {
 } from "../../src/affiliate-ampul-expansion.js";
 
 const MARKET_CODES = Object.freeze({ "pt-PT": "pt", "ro-RO": "ro", "sl-SI": "si" });
+const EXPANSION_MARKETS = Object.freeze(Object.keys(MARKET_CODES));
 const SOURCE_MERCHANT = "ampul_cz";
 const TARGET_MERCHANT = "ampul_eu";
 const MAX_SOURCE_AGE_MS = 48 * 60 * 60 * 1000;
 
 export function verifiedAmpulProductMarkets(verification, productId) {
-  return Object.freeze(Object.entries(verification?.products?.[productId]?.markets || {})
-    .filter(([, value]) => value?.verified === true && value?.evidenceUrl && /^\d{4}-\d{2}-\d{2}$/.test(value?.verifiedAt || ""))
-    .map(([market]) => market)
-    .filter((market) => ["pt", "ro", "si"].includes(market)));
+  // Product publication must use the SAME exact product x country proof gate
+  // as the system verification queue: HTTPS, real calendar day, not future.
+  // The previous local check accepted impossible dates and non-HTTPS strings.
+  if (verification?.schemaVersion !== 2) return Object.freeze([]);
+  return Object.freeze(verifiedAmpulCandidateMarkets(verification, productId, EXPANSION_MARKETS)
+    .map((locale) => MARKET_CODES[locale]));
 }
 
 export function verifiedAmpulMarkets(verification) {
