@@ -1,10 +1,17 @@
-import { recommendProducts } from "./products.js";
+import { hasCurrentRecommendationSource, recommendProducts } from "./products.js";
 
 export const EXPANSION_COMPONENT_CATEGORIES = Object.freeze([
   "battery", "controller", "inverter", "dc_charger", "shore_charger",
 ]);
 
-export function buildExpansionComponentRecommendations(products, setup, limitPerCategory = 3) {
+// A failed merchant refresh can leave previously verified SKUs in a mixed
+// catalogue. Preserve healthy merchants but do not offer the failed source.
+export function hasExpansionSourceGaps(catalog) {
+  if (!Array.isArray(catalog?.products)) throw new TypeError("EXPANSION_SOURCE_CATALOG_REQUIRED");
+  return catalog.products.some((product) => !hasCurrentRecommendationSource(product, catalog.sources));
+}
+
+export function buildExpansionComponentRecommendations(products, setup, limitPerCategory = 3, sources = null) {
   const recommendations = recommendProducts(products, {
     ...setup,
     charging: setup?.charging || {
@@ -12,7 +19,7 @@ export function buildExpansionComponentRecommendations(products, setup, limitPer
       dcDc: { suggestedCurrentAmps: null },
       shore: { suggestedCurrentAmps: null },
     },
-  }, limitPerCategory);
+  }, limitPerCategory, sources);
 
   return Object.freeze(Object.fromEntries(EXPANSION_COMPONENT_CATEGORIES.map((category) => [
     category,
