@@ -7,6 +7,7 @@ import { isAmpulExpansionProduct, validateAmpulExpansionProduct } from "./affili
 import { isSolarisExpansionProduct, validateSolarisExpansionProduct } from "./affiliate-solaris.js";
 import { isButlerExpansionProduct, validateButlerExpansionProduct } from "./affiliate-butler.js";
 import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js";
+export { hasExpansionSourceGaps } from "./expansion-component-recommendations.js";
 
 export const SI_CATALOG_URL = "/data/products-si.json";
 const AWIN_MERCHANT_ID = "38934";
