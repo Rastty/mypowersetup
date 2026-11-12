@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-11T15:27:00.652Z",
+  "generatedAt": "2026-11-12T11:24:51.609Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16507,
-      "relevantProducts": 203
+      "parsedProducts": 16491,
+      "relevantProducts": 202
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_pl": {
       "status": "ok",
-      "parsedProducts": 7722,
+      "parsedProducts": 7720,
       "relevantProducts": 15
     }
   },
@@ -4533,35 +4533,6 @@
         "capacityAh": null,
         "capacityWh": 300,
         "powerW": 75,
-        "currentA": 3.5,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_pl:104338_30526",
-      "merchant": "padabo_pl",
-      "name": "Panel słoneczny Dometic Büttner MT Power Black Line moc nominalna (wp) 100",
-      "description": "Wysokowydajne moduły słonecznePanel słoneczny Dometic Büttner MT Power Black Line wyznacza nowe standardy w branży. Dzięki innowacyjnej szklanej powierzchni i 80 wysokowydajnym ogniwom moduły Dometic Büttner Power Black Line osiągają znacznie wyższy uzysk energii słonecznej, nawet w rozproszonym świetle lub gdy są częściowo zacienione przez gałęzie, antenę satelitarną lub otwarty świetlik. Dzięki nowemu rodzajowi okablowania te nowe, wysokiej klasy moduły solarne tworzą optymalne warunki dla reg",
-      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
-      "category": "solar_panel",
-      "brand": "Dometic",
-      "priceCzk": 2387.74,
-      "priceCurrency": "PLN",
-      "available": true,
-      "productUrl": "https://www.padabo.pl/panel-sloneczny-dometic-buttner-mt-power-black-line_z104338/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fpanel-sloneczny-dometic-buttner-mt-power-black-line_z104338%2F",
-      "imageUrl": "https://www.padabo.pl/data/tmp/102/1/180291_102.jpg?1741272539_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": 300,
-        "powerW": 100,
         "currentA": 3.5,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
