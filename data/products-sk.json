@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-13T10:42:02.144Z",
+  "generatedAt": "2026-11-13T10:54:33.353Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16474,
-      "relevantProducts": 245
+      "parsedProducts": 16469,
+      "relevantProducts": 244
     },
     "allpowers_eu": {
       "status": "ok",
@@ -753,37 +753,6 @@
       "specs": {
         "voltageV": null,
         "capacityAh": 120,
-        "capacityWh": 2400,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:22317_22230",
-      "merchant": "padabo_sk",
-      "name": "Zariadenia EXIDE Gélová batéria ES kapacita 210 Ah variant ES 2400",
-      "description": "Bezúdržbová trakčná batéria s vysokou životnosťouGélovábatéria EXIDE Equipment Gel ES je vhodná pre obytné vozidlá a karavany. Jej konštrukcia poskytuje mimoriadnu flexibilitu z hľadiska inštalácie. Integrovaná gélová technológia so zliatinou vápnika a ventilom riadeným odvzdušňovaním pokrýva rozsah výkonu od 650 do 2400 Wh, a tak ponúka široké možnosti použitia v najnovších a najnáročnejších obytných vozidlách. Gélová batéria EXIDE poskytuje najvyššiu možnú stabilitu cyklov: pri hĺbke vybitia 5",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Gélové batérie",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 600.74,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/156017_102.jpg?1704380137_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 210,
         "capacityWh": 2400,
         "powerW": null,
         "currentA": null,
