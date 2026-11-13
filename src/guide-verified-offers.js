@@ -1,6 +1,7 @@
 import { loadGuideCatalog } from "./verified-offer-catalog-fetch.js";
 import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-attributed-guide1";
 import { trackAffiliateClick } from "./affiliate-analytics.js?v=20261110-attributed-products1";
+import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 
 // Progressive enhancement for CZ editorial comparison pages. Actual prices,
 // stock and destinations always come from the same guarded catalog as Builder.
@@ -160,7 +161,13 @@ export function mountGuideOffers(root, payload, now = Date.now(), clickNow = Dat
     appendText(row, "strong", item.name);
     appendText(row, "span", displayPrice(item.priceCzk) + " · poslední ověřená nabídka z feedu", "guide-offer-price");
     const link = appendText(row, "a", "Ověřit cenu a dostupnost na VšeElektro.eu →", "guide-offer-link");
-    link.href = item.affiliateUrl;
+    // The exact-SKU merchant URL was approved above. Add only the same
+    // network-supported market/category sub-IDs used by the Builder, so an
+    // eventual eHUB commission can be reconciled with the guide category.
+    // The original affiliate destination and tracking IDs must not change.
+    link.href = decorateAwinAffiliateUrl(item.affiliateUrl, {
+      market: "cz", category, source: "product-card",
+    });
     link.target = "_blank";
     link.rel = "sponsored noopener noreferrer";
     link.dataset.affiliateClick = "";

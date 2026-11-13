@@ -20,6 +20,23 @@ function offer(id="vselektro:victron-smartsolar-100-50",category="controller"){
 }
 function payload(products=[offer()],at=now){return {schemaVersion:1,generatedAt:new Date(at).toISOString(),sources:{vselektro:{status:"ok"}},products};}
 
+test("all six editorial buyer guides load the same Builder-compatible network attribution code", async () => {
+ const js=await readFile(new URL("../src/guide-verified-offers.js",import.meta.url),"utf8");
+ assert.match(js,/decorateAwinAffiliateUrl\(item\.affiliateUrl,\s*\{\s*market: "cz", category/);
+ const expected="20261113-guide-network-attribution1";
+ for(const route of [
+  "kapacita-baterie-do-karavanu",
+  "lifepo4-100ah-nebo-200ah-karavan",
+  "jak-vybrat-mppt-regulator",
+  "victron-mppt-100-20-vs-100-30-vs-100-50",
+  "jak-vybrat-dc-dc-nabijecku",
+  "dc-dc-nabijecka-18a-vs-30a-vs-50a-karavan",
+ ]) {
+  const html=await readFile(new URL(`../pruvodce/${route}/index.html`,import.meta.url),"utf8");
+  assert.ok(html.includes(`/src/guide-verified-offers.js?v=${expected}`),route);
+ }
+});
+
 test("editorial offers require current successful source and in-stock verified exact catalog SKU",()=>{
  assert.equal(guideCatalogFresh(payload(),now),true);
  assert.equal(selectGuideOffers(payload(),"controller",now).length,1);
@@ -231,6 +248,15 @@ test("a stale guide feed removes prior tracked offers and restores the honest ca
    assert.equal(fallback.hidden, true);
    assert.equal(root.children.filter((child) => child.className === "guide-offer-list").length, 1);
    const currentLink = root.querySelector(".guide-offer-list").children[0].children.find((child) => child.tagName === "a");
+   const decorated = new URL(currentLink.href);
+   const raw = new URL(offer().affiliateUrl);
+   assert.equal(decorated.searchParams.get("data1"), "mps_cz_controller", "eHUB network reports must identify editorial category");
+   assert.equal(decorated.searchParams.get("data2"), null, "no invented campaign context");
+   for (const key of ["a_aid", "a_bid", "desturl"]) {
+     assert.deepEqual(decorated.searchParams.getAll(key), raw.searchParams.getAll(key), `preserve verified ${key}`);
+   }
+   assert.equal(decorated.origin, raw.origin);
+   assert.equal(decorated.pathname, raw.pathname);
    assert.equal(currentLink.dispatch("click").defaultPrevented, false, "fresh link remains usable");
    // The page may remain visible across a feed expiry without a visibility event.
    // A click on an old price must not navigate or bubble as a tracked sale.
@@ -343,7 +369,7 @@ test("three distinct high-intent original pages have canonical, full static answ
   assert.ok(html.includes('data-guide-category="'+category+'"'));
   assert.ok(html.includes('href="/pruvodce/'+existing+'/'));
   assert.ok(html.includes('href="/#kalkulator"')||html.includes('href="/kalkulacky/dc-dc-nabijecka/"'));
-  assert.ok(html.includes('src="/src/guide-verified-offers.js?v=20261110-attributed-offers1"'));
+  assert.ok(html.includes('src="/src/guide-verified-offers.js?v=20261113-guide-network-attribution1"'));
   assert.ok(html.includes('"@type":"Article"'));
   assert.ok(html.includes('"@type":"BreadcrumbList"'));
   assert.ok(html.includes('<table>'));
