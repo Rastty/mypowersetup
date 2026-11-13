@@ -53,7 +53,9 @@ test("reference scenarios answer comparison intent without pretending to certify
   assert.match(html, /není[\s\S]*?univerzální údaj/);
   assert.match(html, /href="\/#kalkulator"/);
   assert.match(html, /href="\/pruvodce\/jak-velky-menic-do-karavanu\/"/);
-  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261109-inverter-reference1"/);
+  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261113-inverter-buyers1"/);
+  assert.match(html, /data-inverter-buyers/);
+  assert.match(html, /není potvrzení úplné kompatibility/);
   assert.match(html, /class="calculator-table-scroll"/);
   assert.match(html, /class="calculator-reference-table"/);
   assert.match(css, /\.calculator-table-scroll\s*\{[^}]*overflow-x: auto/s);

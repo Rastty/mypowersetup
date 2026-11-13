@@ -2,6 +2,7 @@
 // No UI dependency: loading this module never initializes a second guide listener.
 export const LIGHTWEIGHT_CATALOG_PATH = "/data/calculator-offers-cz.json";
 export const DCDC_GUIDE_CATALOG_PATH = "/data/dcdc-guide-offers-cz.json";
+export const INVERTER_CALCULATOR_CATALOG_PATH = "/data/inverter-calculator-offers-cz.json";
 export const FULL_CATALOG_PATH = "/data/products.json";
 const SNAPSHOT_VERSION = 1;
 const MAX_APPROVED_OFFERS = 6;
@@ -41,6 +42,19 @@ export function acceptDcdcGuideSnapshot(payload) {
       && typeof product.affiliateUrl === "string");
 }
 
+export function acceptInverterCalculatorSnapshot(payload) {
+  return payload?.schemaVersion === SNAPSHOT_VERSION
+    && payload.projection === "inverter"
+    && typeof payload.generatedAt === "string"
+    && typeof payload.sources?.solarimport?.status === "string"
+    && Array.isArray(payload.products) && payload.products.length <= 13
+    && payload.products.every(p => p?.category === "inverter"
+      && p.merchant === "solarimport"
+      && typeof p.id === "string" && /^solarimport:E\d+$/.test(p.id)
+      && typeof p.name === "string" && typeof p.productUrl === "string"
+      && typeof p.affiliateUrl === "string");
+}
+
 async function loadReviewedView(path, accept, fetchImpl, timeoutMs) {
   const options = () => ({
     cache: "no-store",
@@ -71,6 +85,20 @@ export function loadCalculatorOffers(fetchImpl = fetch, timeoutMs = 15_000) {
 
 export function loadDcdcGuideOffers(fetchImpl = fetch, timeoutMs = 15_000) {
   return loadReviewedView(DCDC_GUIDE_CATALOG_PATH, acceptDcdcGuideSnapshot, fetchImpl, timeoutMs);
+}
+
+
+export async function loadInverterCalculatorOffers(fetchImpl = fetch, timeoutMs = 15_000) {
+  // This view ships alongside the page; no heavy-catalog fallback. A missing
+  // or untrusted snapshot always means no direct offer, never a blind clickout.
+  try {
+    const response = await fetchImpl(INVERTER_CALCULATOR_CATALOG_PATH, {
+      cache: "no-store", redirect: "error", signal: AbortSignal.timeout(timeoutMs),
+    });
+    if (!response.ok) return null;
+    const payload = await response.json();
+    return acceptInverterCalculatorSnapshot(payload) ? payload : null;
+  } catch { return null; }
 }
 
 // DC–DC gets a separate tiny reviewed view once the next existing feed sync

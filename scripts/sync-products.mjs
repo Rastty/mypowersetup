@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
-import { projectCalculatorOffers, projectDcdcGuideOffers } from "../src/calculator-offer-catalog.js";
+import { projectCalculatorOffers, projectDcdcGuideOffers, projectInverterCalculatorOffers } from "../src/calculator-offer-catalog.js";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 
 const feeds = [
@@ -141,6 +141,14 @@ if (dcdcGuideCatalog.products.length > 4 || dcdcBytes > 6000) {
 }
 await writeFile("data/dcdc-guide-offers-cz.json", JSON.stringify(dcdcGuideCatalog) + String.fromCharCode(10));
 console.log(`DC–DC průvodce: ${dcdcGuideCatalog.products.length} ověřených SKU, ${dcdcBytes} B.`);
+
+const inverterCatalog = projectInverterCalculatorOffers(fullCatalog, Date.parse(fullCatalog.generatedAt));
+const inverterBytes = Buffer.byteLength(JSON.stringify(inverterCatalog));
+if (inverterCatalog.products.length > 13 || inverterBytes > 8500) {
+  throw new Error("INVERTER_CALCULATOR_PROJECTION_UNSAFE_SIZE");
+}
+await writeFile("data/inverter-calculator-offers-cz.json", JSON.stringify(inverterCatalog) + "\n");
+console.log(`Měniče: ${inverterCatalog.products.length} přesných 12/24V SKU, ${inverterBytes} B.`);
 
 console.log(`Uloženo ${catalogProducts.length} relevantních produktů z ${products.length} načtených položek.`);
 
