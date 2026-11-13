@@ -94,6 +94,8 @@ export function verifyExpansionJavascript(served, local) {
     "Trenutno ni mogoče naložiti preverjenih ponudb",
     "data-recommendation-partial-source",
     "if (sourceGap) { trackCatalogUnavailable(); return priority; }",
+    "isDeliberateExpansionCalculation(source)",
+    "if (!recordIntent) return priority;",
   ];
   if (!required.every(marker => served.includes(marker))) fail("CALCULATOR_SUPPLY_EVENT_MISSING");
   return expectedSupplyImport(served);
@@ -124,6 +126,8 @@ export function verifyExpansionSupplyJavascript(served, local) {
   ]) if (!served.includes(event)) fail("SUPPLY_OUTCOME_EVENT_MISSING");
   if (!served.includes('coverage.missing.includes("inverter")'))
     fail("SUPPLY_CLASSIFIER_MISSING");
+  if (!served.includes('return source === "form_submit"'))
+    fail("SUPPLY_EXPLICIT_INTENT_GUARD_MISSING");
   return true;
 }
 

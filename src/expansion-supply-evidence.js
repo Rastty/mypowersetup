@@ -10,6 +10,13 @@ export const EXPANSION_SUPPLY_EVENTS = Object.freeze({
   unavailable: "expansion_supply_unavailable",
 });
 
+// A shared result URL renders automatically on page load. It may be opened by
+// someone who has not chosen to calculate anything (or by a crawler). Keep
+// that useful preview, but never count it as a deliberate buyer calculation.
+export function isDeliberateExpansionCalculation(source) {
+  return source === "form_submit";
+}
+
 export function classifyExpansionSupplyOutcome(priority) {
   const coverage = priority?.coverage;
   if (typeof coverage?.complete !== "boolean" || !Array.isArray(coverage.missing))

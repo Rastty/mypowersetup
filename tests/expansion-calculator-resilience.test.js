@@ -14,5 +14,5 @@ test("market recommendations are lazy-loaded after calculation", () => {
     assert.ok(source.includes(`await import("./${market}-recommendations.js?v=20261111-source-health1")`),
       market + " must be lazily loaded with the current source health contract");
   }
-  assert.match(source, /renderResult\(calculation\);[\s\S]*showStep\(3\);[\s\S]*renderPortugalProducts\(calculation, revision\)/);
+  assert.match(source, /renderResult\(calculation\);[\s\S]*showStep\(3\);[\s\S]*renderPortugalProducts\(calculation, revision, recordIntent\)/);
 });

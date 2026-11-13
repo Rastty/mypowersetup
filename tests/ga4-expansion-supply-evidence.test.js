@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import {
   EXPANSION_SUPPLY_EVENTS, classifyExpansionSupplyOutcome, expansionSupplyEventName,
+  isDeliberateExpansionCalculation,
 } from "../src/expansion-supply-evidence.js";
 import {
   EXPANSION_SUPPLY_PAGES, ga4ExpansionSupplyDimensionState,
@@ -37,6 +38,13 @@ test("only verified catalog calculations identify a technical inverter supply ga
   assert.equal(new Set(Object.values(EXPANSION_SUPPLY_EVENTS)).size, 4);
 });
 
+test("auto-restored shared links cannot masquerade as deliberate buyer calculations", () => {
+  assert.equal(isDeliberateExpansionCalculation("form_submit"), true);
+  for (const source of ["shared_url", "page_load", "prefill", "form_input", "", null, undefined]) {
+    assert.equal(isDeliberateExpansionCalculation(source), false, String(source));
+  }
+});
+
 test("GA4 uses only exact standard built-in dimensions, pages, host and classified event names", () => {
   assert.deepEqual(EXPANSION_SUPPLY_PAGES, { pt: "/pt/", ro: "/ro/", si: "/si/" });
   assert.equal(state.ready, true);
@@ -62,6 +70,7 @@ test("successful verified inverter gaps are separate from network/catalog failur
   assert.equal(evidence.status, "ready");
   assert.equal(evidence.attribution, "exact_host_page_event");
   assert.equal(evidence.metricUnit, "consented_calculation_event_count");
+  assert.match(evidence.historicalIntentCaveat, /shared-link auto-renders/);
   assert.deepEqual(evidence.rows[0], {
     market: "pt", path: "/pt/", complete: 2, inverterMissing: 7, otherMissing: 0,
     unavailable: 3, verifiedCatalogCalculations: 9, observedCalculations: 12,
@@ -103,6 +112,12 @@ test("wrong page/host/event, truncated report and missing metrics fail closed", 
 test("buyer and reporter keep fail-closed outcome semantics without new tracking consent", async () => {
   const browser = await readFile(new URL("../src/expansion-calculator-browser.js", import.meta.url), "utf8");
   assert.match(browser, /track\(expansionSupplyEventName\(classifyExpansionSupplyOutcome\(priority\)\), \{ market: locale \}\)/);
+  assert.match(browser, /const recordIntent = isDeliberateExpansionCalculation\(source\)/);
+  assert.match(browser, /if \(recordIntent\) track\("calculation_completed",/);
+  assert.match(browser, /if \(!recordIntent\) return priority;/);
+  assert.equal((browser.match(/const routePriority = trackProductCoverage\(recommendations, calculation, sourceGap, recordIntent\)/g) || []).length, 3);
+  assert.equal((browser.match(/if \(recordIntent\) track\("product_recommendations_rendered"/g) || []).length, 3);
+  assert.equal((browser.match(/if \(recordIntent\) trackCatalogUnavailable\(\);/g) || []).length, 3);
   assert.equal((browser.match(/trackCatalogUnavailable\(\);/g) || []).length, 4);
   assert.match(browser, /if \(sourceGap\) \{ trackCatalogUnavailable\(\); return priority; \}/);
   assert.doesNotMatch(browser, /trackProductCoverage\(\{\}, calculation\)/);

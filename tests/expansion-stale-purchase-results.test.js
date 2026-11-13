@@ -36,7 +36,7 @@ test("each lazy market catalog rejects stale asynchronous responses before showi
   for (const [market, next] of [
     ["Portugal", "Slovenia"], ["Slovenia", "Romania"], ["Romania", null],
   ]) {
-    const start = source.indexOf(`async function render${market}Products(calculation, revision) {`);
+    const start = source.indexOf(`async function render${market}Products(calculation, revision, recordIntent) {`);
     const end = next
       ? source.indexOf(`async function render${next}Products`, start)
       : source.indexOf("\nfunction trackProductCoverage", start);
@@ -48,6 +48,6 @@ test("each lazy market catalog rejects stale asynchronous responses before showi
     assert.match(body, /const catalog = await load\w+ProductCatalog\(\);\s*if \(revision !== resultRevision/);
   }
   for (const market of ["Portugal", "Slovenia", "Romania"]) {
-    assert.ok(source.includes(`await render${market}Products(calculation, revision)`));
+    assert.ok(source.includes(`await render${market}Products(calculation, revision, recordIntent)`));
   }
 });
