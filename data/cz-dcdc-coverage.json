@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-12T11:24:32.543Z",
+  "generatedAt": "2026-11-13T10:41:53.934Z",
   "market": "cs-CZ",
   "status": "ready",
   "requirement": {
@@ -41,7 +41,7 @@
       "currentA": 30,
       "priceCzk": 6800,
       "priceCurrency": "CZK",
-      "productUrl": "https://ampul.eu/cs/nabijecky/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
+      "productUrl": "https://ampul.eu/cs/nabijecky-akumulatoru/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
       "verifiedAt": "2026-08-30",
       "score": 97
     },
