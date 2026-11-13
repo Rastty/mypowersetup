@@ -65,6 +65,7 @@ export function expansionSupplyFromGa4RunReport(report, dimensionState) {
     status: "ready",
     attribution: "exact_host_page_event",
     metricUnit: "consented_calculation_event_count",
+    historicalIntentCaveat: "Before the deliberate-submit release, shared-link auto-renders could emit the same events. Do not compare pre/post-release counts as equivalent buyer intent without separating the periods.",
     rows: rows.map(row => Object.freeze({
       ...row,
       verifiedCatalogCalculations: row.complete + row.inverterMissing + row.otherMissing,

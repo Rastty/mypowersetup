@@ -6,7 +6,7 @@ import { expansionResultGuides } from "./expansion-result-guides.js";
 import { expansionComponentPlan } from "./expansion-component-plan.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { expansionPurchaseRoutePriority } from "./expansion-purchase-route-priority.js";
-import { classifyExpansionSupplyOutcome, expansionSupplyEventName } from "./expansion-supply-evidence.js?v=20261111-supply-evidence1";
+import { classifyExpansionSupplyOutcome, expansionSupplyEventName, isDeliberateExpansionCalculation } from "./expansion-supply-evidence.js?v=20261113-explicit-intent1";
 import { bindAffiliateImpressionTracking, trackAffiliateClick, trackVisibleAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-product-impressions1";
 import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js?v=20261113-complete-price1";
 import { expansionLinePrice } from "./expansion-line-price.js?v=20261111-solar-subtotal1";
@@ -169,6 +169,7 @@ function invalidateResult() {
 async function calculateAndRender({ source }) {
   invalidateResult();
   const revision = resultRevision;
+  const recordIntent = isDeliberateExpansionCalculation(source);
   const selected = [...form.querySelectorAll("[data-appliance]:checked")];
   if (!selected.length) {
     error.textContent = labels.required;
@@ -203,7 +204,7 @@ async function calculateAndRender({ source }) {
   latestResult = calculation;
   latestShareUrl = buildExpansionSetupUrl(shareConfig, locale, window.location.origin);
   renderResult(calculation);
-  track("calculation_completed", {
+  if (recordIntent) track("calculation_completed", {
     dailyWh: calculation.dailyWh,
     batteryAh: calculation.batteryAh,
     solarWatts: calculation.solarWatts,
@@ -219,9 +220,9 @@ async function calculateAndRender({ source }) {
   // Recommendations are deliberately loaded only after the core calculation is
   // complete. A broken catalog, affiliate parser or recommendation module must
   // never prevent the calculator itself from starting or showing a result.
-  if (locale === "pt") await renderPortugalProducts(calculation, revision);
-  if (locale === "si") await renderSloveniaProducts(calculation, revision);
-  if (locale === "ro") await renderRomaniaProducts(calculation, revision);
+  if (locale === "pt") await renderPortugalProducts(calculation, revision, recordIntent);
+  if (locale === "si") await renderSloveniaProducts(calculation, revision, recordIntent);
+  if (locale === "ro") await renderRomaniaProducts(calculation, revision, recordIntent);
   return true;
 }
 
@@ -335,7 +336,7 @@ function renderResult(value) {
   result.innerHTML = `<p class="result-summary">${escapeHtml(verdict)}</p><div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div>${warnings}${renderResultGuides()}${renderComponentPlan(value)}<div data-product-recommendations aria-live="polite">${renderProductLoading()}</div><div class="step-actions"><button class="button button-primary" type="button" data-share-result>${labels.share}</button><button class="button button-secondary" type="button" data-edit>${labels.again}</button></div>`;
 }
 
-async function renderPortugalProducts(calculation, revision) {
+async function renderPortugalProducts(calculation, revision, recordIntent) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
     const { buildPortugalRecommendations, loadPortugalProductCatalog, portugalRecommendationCoverage , hasExpansionSourceGaps } = await import("./pt-recommendations.js?v=20261111-source-health1");
@@ -345,21 +346,21 @@ async function renderPortugalProducts(calculation, revision) {
     const sourceGap = hasExpansionSourceGaps(catalog);
     const coverage = portugalRecommendationCoverage(recommendations);
     const products = orderedExpansionProducts(recommendations);
-    const routePriority = trackProductCoverage(recommendations, calculation, sourceGap);
-    track("product_recommendations_rendered", { market: "pt", solar_panel_covered: coverage.solarPanel, power_station_covered: coverage.powerStation, product_count: products.length });
+    const routePriority = trackProductCoverage(recommendations, calculation, sourceGap, recordIntent);
+    if (recordIntent) track("product_recommendations_rendered", { market: "pt", solar_panel_covered: coverage.solarPanel, power_station_covered: coverage.powerStation, product_count: products.length });
     if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
     const portableGap = coverage.powerStation ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
     target.innerHTML = renderProductSection("pt-products-title", products, portableGap, routePriority, sourceGap);
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
-    trackCatalogUnavailable();
+    if (recordIntent) trackCatalogUnavailable();
     target.innerHTML = renderCatalogUnavailable();
     trackRenderedProductChoices(target);
   }
 }
 
-async function renderSloveniaProducts(calculation, revision) {
+async function renderSloveniaProducts(calculation, revision, recordIntent) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
     const { buildSloveniaRecommendations, loadSloveniaProductCatalog , hasExpansionSourceGaps } = await import("./si-recommendations.js?v=20261111-source-health1");
@@ -368,21 +369,21 @@ async function renderSloveniaProducts(calculation, revision) {
     const recommendations = buildSloveniaRecommendations(catalog, calculation, 3);
     const sourceGap = hasExpansionSourceGaps(catalog);
     const products = orderedExpansionProducts(recommendations);
-    const routePriority = trackProductCoverage(recommendations, calculation, sourceGap);
-    track("product_recommendations_rendered", { market: "si", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
+    const routePriority = trackProductCoverage(recommendations, calculation, sourceGap, recordIntent);
+    if (recordIntent) track("product_recommendations_rendered", { market: "si", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
     if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
     const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
     target.innerHTML = renderProductSection("si-products-title", products, portableGap, routePriority, sourceGap);
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
-    trackCatalogUnavailable();
+    if (recordIntent) trackCatalogUnavailable();
     target.innerHTML = renderCatalogUnavailable();
     trackRenderedProductChoices(target);
   }
 }
 
-async function renderRomaniaProducts(calculation, revision) {
+async function renderRomaniaProducts(calculation, revision, recordIntent) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
     const { buildRomaniaRecommendations, loadRomaniaProductCatalog , hasExpansionSourceGaps } = await import("./ro-recommendations.js?v=20261111-source-health1");
@@ -391,23 +392,27 @@ async function renderRomaniaProducts(calculation, revision) {
     const recommendations = buildRomaniaRecommendations(catalog, calculation, 3);
     const sourceGap = hasExpansionSourceGaps(catalog);
     const products = orderedExpansionProducts(recommendations);
-    const routePriority = trackProductCoverage(recommendations, calculation, sourceGap);
-    track("product_recommendations_rendered", { market: "ro", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
+    const routePriority = trackProductCoverage(recommendations, calculation, sourceGap, recordIntent);
+    if (recordIntent) track("product_recommendations_rendered", { market: "ro", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
     if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
     const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
     target.innerHTML = renderProductSection("ro-products-title", products, portableGap, routePriority, sourceGap);
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
-    trackCatalogUnavailable();
+    if (recordIntent) trackCatalogUnavailable();
     target.innerHTML = renderCatalogUnavailable();
     trackRenderedProductChoices(target);
   }
 }
 
-function trackProductCoverage(recommendations, calculation, sourceGap = false) {
+function trackProductCoverage(recommendations, calculation, sourceGap, recordIntent) {
   const priority = expansionPurchaseRoutePriority(recommendations, calculation, locale);
   const { coverage } = priority;
+  // A shared-link preview has no deliberate user action behind it. Keep the
+  // recommendation route, including partial-source messaging, but do not
+  // manufacture GA4 purchase intent or supply-gap evidence from page loads.
+  if (!recordIntent) return priority;
   // A mixed catalog with a failed merchant source is NOT evidence that an
   // inverter is truly missing from the market. Keep healthy offers visible,
   // but exclude the partial result from verified supply-gap measurements.

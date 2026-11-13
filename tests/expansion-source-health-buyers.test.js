@@ -102,7 +102,7 @@ test("RO/SI OXE feed failures never contaminate healthy ALLPOWERS power station 
 test("browser reports partial source outages as unavailable, not confirmed marketwide inverter gaps", async () => {
   const browser = await readFile(new URL("../src/expansion-calculator-browser.js", import.meta.url), "utf8");
   assert.equal((browser.match(/const sourceGap = hasExpansionSourceGaps\(catalog\);/g) || []).length, 3);
-  assert.equal((browser.match(/trackProductCoverage\(recommendations, calculation, sourceGap\)/g) || []).length, 3);
+  assert.equal((browser.match(/const routePriority = trackProductCoverage\(recommendations, calculation, sourceGap, recordIntent\)/g) || []).length, 3);
   assert.match(browser, /if \(sourceGap\) \{ trackCatalogUnavailable\(\); return priority; \}/);
   assert.match(browser, /data-recommendation-partial-source/);
   for (const text of [

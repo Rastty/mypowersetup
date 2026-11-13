@@ -14,6 +14,15 @@ Do not copy secrets, credentials, affiliate tracking URLs or production-only sta
 
 ## Open handovers
 
+### Do not mistake automatically restored shared calculators for deliberate demand
+
+- **Capability / problem solved:** PT/RO/SI calculator shared-result links restore and render a full technical result on page load. The old path also emitted the same `calculation_completed` and supply-gap events as an explicit form submission, potentially inflating demand signals without a human calculation.
+- **Why reusable:** calculators, configurators and AI recommendation tools across the portfolio commonly restore deep links or prefill content. Evidence of an automatic preview must not be merged into the deliberate buyer-action funnel without a documented distinction.
+- **Source / tests:** `src/expansion-supply-evidence.js` exports the positive-allowlist intent gate; `src/expansion-calculator-browser.js` retains visible shared previews and affiliate links while emitting buyer calculation/supply events only after `form_submit`; `tests/ga4-expansion-supply-evidence.test.js` verifies the distinction and all three market call sites. `scripts/verify-expansion-supply-live.mjs` checks that the same guard is served publicly. The GA4 report carries an explicit historical-data caveat.
+- **Expected benefit:** more trustworthy observed calculator completion and missing-inverter signals to prioritize merchant sourcing. Neither an analytics event count nor this correction proves a purchase or commission.
+- **Constraints:** old GA4 events remain mixed with auto-render events and must not be treated as a comparable pre-change baseline; record the eventual exact release timestamp for any period comparison. Consent enforcement, electrical sizing, user-visible result, visible-offer impressions and genuine affiliate clicks are unchanged.
+- **Adoption path:** Core Owner review for a small explicit-vs-restored user-action classification in the existing measurement contracts, with second-site validation on an existing shareable configurator before promotion. No Core repository mutation or speculative economic uplift.
+
 ### Do not award a lowest-price badge with incomplete comparison evidence
 
 - **Capability / problem solved:** PT/RO/SI buyer cards previously awarded the `budget` (lowest-price) badge when at least two offers had comparable prices, even if a third displayed option had an unknown price or an ambiguous currency. A buyer could be told one offer was cheapest without knowing the price of every alternative.
