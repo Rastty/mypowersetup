@@ -154,6 +154,35 @@ test("eHUB links carry market/category and scenario dimensions into data1/data2"
   assert.equal(url.searchParams.get("data2"), "scenario_pl_weekend");
 });
 
+test("all three CZ calculator product links carry the commission category without changing checkout or publisher IDs", async () => {
+  const calculatorBuyers = [
+    ["battery-calculator-offers-browser.js", "battery"],
+    ["mppt-calculator-offers-browser.js", "controller"],
+    ["dcdc-calculator-offers-browser.js", "dc_charger"],
+  ];
+  const exactUrl = "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=f897865f&desturl=" +
+    encodeURIComponent("https://www.vselektro.eu/lifepo4-baterie-12v-100ah-sunstone-power-slpo12-100n/");
+  for (const [file, category] of calculatorBuyers) {
+    const source = await readFile(new URL("../src/" + file, import.meta.url), "utf8");
+    assert.match(source, /import \{ decorateAwinAffiliateUrl \} from "\.\/awin-attribution\.js";/, file);
+    assert.match(source, /link\.href = decorateAwinAffiliateUrl\(offer\.affiliateUrl, \{/, file);
+    assert.ok(source.includes(`market: "cz", category: "${category}"`), file);
+    const decorated = new URL(decorateAwinAffiliateUrl(exactUrl, {
+      market: "cz", category, source: "product-card", scenarioCampaign: "cz_size_result",
+    }));
+    const original = new URL(exactUrl);
+    for (const key of ["a_aid", "a_bid", "desturl"]) {
+      assert.equal(decorated.searchParams.get(key), original.searchParams.get(key), `${file}:${key}`);
+    }
+    assert.equal(decorated.searchParams.get("data1"), `mps_cz_${category}`, file);
+    assert.equal(decorated.searchParams.get("data2"), "scenario_cz_size_result", file);
+    assert.equal(decorated.searchParams.getAll("data1").length, 1, file);
+    const repeated = new URL(decorateAwinAffiliateUrl(decorated.href, { market: "cz", category }));
+    assert.equal(repeated.searchParams.getAll("data1").length, 1, file);
+    assert.equal(repeated.searchParams.get("data1"), `mps_cz_${category}`, file);
+  }
+});
+
 test("eHUB scenario data2 is inferred from browser context and existing publisher data is preserved", () => {
   const previousWindow = globalThis.window;
   globalThis.window = {

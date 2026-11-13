@@ -1,4 +1,5 @@
 import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=20261110-attributed-products1";
+import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 import { loadCalculatorOffers } from "./calculator-offer-catalog.js?v=20261109-lightweight-cz1";
 import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-attributed-guide1";
 import {
@@ -86,7 +87,9 @@ export function mountBatteryCalculatorBuyers(root, {
       }).format(offer.priceCzk) + " · naposledy ověřená cena",
       "calculator-mppt-offer-facts");
       const link = addText(item, "a", "Ověřit cenu a technické parametry →", "calculator-mppt-offer-link");
-      link.href = offer.affiliateUrl;
+      link.href = decorateAwinAffiliateUrl(offer.affiliateUrl, {
+        market: "cz", category: "battery", source: "product-card",
+      });
       link.target = "_blank";
       link.rel = "sponsored noopener noreferrer";
       link.dataset.affiliateClick = "";
