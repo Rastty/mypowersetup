@@ -7,6 +7,7 @@ import {
   AMPUL_12V_30A_DCDC,
   buildAmpulEhubUrl,
   createAmpulExpansionCandidate,
+  isExactAmpulSourceDestination,
   validateAmpulEhubUrl,
 } from "../src/affiliate-ampul-expansion.js";
 
@@ -14,7 +15,11 @@ const inverterDestination = "https://ampul.eu/cs/menice-napeti/5577-7392-menic-n
 const dcdcDestination = "https://ampul.eu/cs/nabijecky/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68";
 
 test("Ampul eHub deeplink builder preserves exact verified destinations", () => {
-  for (const destination of [inverterDestination, dcdcDestination]) {
+  for (const destination of [
+    inverterDestination, dcdcDestination,
+    "https://ampul.eu" + AMPUL_24V_2000W_INVERTER.exactPath,
+    "https://ampul.eu" + AMPUL_12V_30A_DCDC.exactPath,
+  ]) {
     const url = buildAmpulEhubUrl(destination);
     assert.ok(url);
     assert.equal(validateAmpulEhubUrl(url, destination), true);
@@ -28,6 +33,21 @@ test("Ampul eHub deeplink builder preserves exact verified destinations", () => 
 
   assert.equal(buildAmpulEhubUrl("https://ampul.eu/cs/"), null);
   assert.equal(buildAmpulEhubUrl("https://example.com" + AMPUL_24V_2000W_INVERTER.exactPath), null);
+  assert.equal(buildAmpulEhubUrl("https://ampul.eu/cs/other/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68"), null);
+  assert.equal(buildAmpulEhubUrl("https://ampul.eu:8443" + AMPUL_12V_30A_DCDC.exactPath), null);
+  assert.equal(buildAmpulEhubUrl("https://ampul.eu" + AMPUL_12V_30A_DCDC.exactPath + "?redirect=https://example.com"), null);
+});
+
+test("current and reviewed legacy AMPUL routes retain exact SKU identity", () => {
+  for (const [product, legacy] of [
+    [AMPUL_24V_2000W_INVERTER, inverterDestination],
+    [AMPUL_12V_30A_DCDC, dcdcDestination],
+  ]) {
+    assert.equal(isExactAmpulSourceDestination("https://ampul.eu" + product.exactPath, product), true);
+    assert.equal(isExactAmpulSourceDestination(legacy, product), true);
+  }
+  assert.equal(isExactAmpulSourceDestination("https://ampul.eu" + AMPUL_12V_30A_DCDC.exactPath, AMPUL_24V_2000W_INVERTER), false);
+  assert.equal(isExactAmpulSourceDestination("https://ampul.eu/cs/other/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68", AMPUL_12V_30A_DCDC), false);
 });
 
 test("Ampul 24V 2000W inverter remains blocked until both stock and market are verified", () => {
