@@ -31,6 +31,7 @@ jobs:
       - run: node --check src/gsc-live-baseline.js
       - run: node --check src/expansion-money-guide-seo.js
       - run: node --check src/commercial-coverage.js
+      - run: node --check scripts/check-affiliate-ids.mjs
       - run: node --check src/commercial-verification-evidence.js
       - run: node --check src/ampul-market-verification.js
       - run: node --check src/ampul-source-stock.js
@@ -84,6 +85,7 @@ jobs:
       - run: npm run check:conversion:analytics
       - run: node scripts/check-postlaunch-public.mjs
       - run: npm run check:commercial:coverage:safe
+      - run: npm run check:affiliate:ids
       - run: npm run check:commercial:scenarios:safe
       - name: Build commercial opportunity report
         run: npm run check:commercial:opportunities > commercial-opportunities.json

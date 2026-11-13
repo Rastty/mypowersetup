@@ -121,6 +121,8 @@ jobs:
           tests/oxe-feed.test.js
           tests/oxe-affiliate.test.js
           tests/si-recommendations.test.js
+      - name: Verify publisher and merchant IDs before committing regenerated affiliate catalogs
+        run: npm run check:affiliate:ids
       - name: Commit refreshed RO, SI, opportunity and action data
         run: |
           if git diff --quiet -- data/products-ro.json data/products-si.json data/commercial-opportunity-report.json data/owner-action-queue.json data/system-verification-queue.json; then exit 0; fi
