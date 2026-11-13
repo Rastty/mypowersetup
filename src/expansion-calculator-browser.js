@@ -8,7 +8,7 @@ import { mountUsageProfiles } from "./usage-profiles.js";
 import { expansionPurchaseRoutePriority } from "./expansion-purchase-route-priority.js";
 import { classifyExpansionSupplyOutcome, expansionSupplyEventName } from "./expansion-supply-evidence.js?v=20261111-supply-evidence1";
 import { bindAffiliateImpressionTracking, trackAffiliateClick, trackVisibleAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-product-impressions1";
-import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js?v=20261111-solar-subtotal1";
+import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js?v=20261113-complete-price1";
 import { expansionLinePrice } from "./expansion-line-price.js?v=20261111-solar-subtotal1";
 import { groupExpansionProductsForDisclosure } from "./expansion-product-disclosure.js";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";

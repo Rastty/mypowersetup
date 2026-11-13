@@ -5,9 +5,9 @@ import { decorateExpansionRecommendations } from "../src/expansion-recommendatio
 test("expansion recommendations explain the recommended, budget and reserve choices", () => {
   const products = decorateExpansionRecommendations({
     inverter: [
-      { id: "fit", category: "inverter", price: 220, specs: { powerW: 1200 } },
-      { id: "budget", category: "inverter", price: 180, specs: { powerW: 1400 } },
-      { id: "reserve", category: "inverter", price: 260, specs: { powerW: 2000 } },
+      { id: "fit", category: "inverter", price: 220, currency: "EUR", specs: { powerW: 1200 } },
+      { id: "budget", category: "inverter", price: 180, currency: "EUR", specs: { powerW: 1400 } },
+      { id: "reserve", category: "inverter", price: 260, currency: "EUR", specs: { powerW: 2000 } },
     ],
   });
 
@@ -21,8 +21,8 @@ test("expansion recommendations explain the recommended, budget and reserve choi
 test("a recommended product can also be the lowest-price option", () => {
   const products = decorateExpansionRecommendations({
     power_station: [
-      { id: "fit", category: "power_station", price: 500, capacityWh: 1000 },
-      { id: "reserve", category: "power_station", price: 700, capacityWh: 1500 },
+      { id: "fit", category: "power_station", price: 500, currency: "EUR", capacityWh: 1000 },
+      { id: "reserve", category: "power_station", price: 700, currency: "EUR", capacityWh: 1500 },
     ],
   });
 
@@ -41,7 +41,7 @@ test("unranked compatible choices are explicitly described as alternatives", () 
   assert.deepEqual(products[1].recommendationBadges, ["alternative"]);
 });
 
-test("missing, zero and corrupt prices never win the budget label", () => {
+test("missing, zero and corrupt prices prevent a misleading lowest-price claim for the whole category", () => {
   const products = decorateExpansionRecommendations({
     inverter: [
       { id: "unknown", category: "inverter", price: null, specs: { powerW: 1000 } },
@@ -53,9 +53,31 @@ test("missing, zero and corrupt prices never win the budget label", () => {
       { id: "negative", category: "inverter", price: -1, specs: { powerW: 1000 } },
     ],
   });
-  assert.deepEqual(products.filter(p => p.recommendationBadges.includes("budget")).map(p => p.id),
-    ["priced-2"]);
+  assert.deepEqual(products.filter(p => p.recommendationBadges.includes("budget")).map(p => p.id), []);
   assert.deepEqual(products[0].recommendationBadges, ["recommended"]);
+});
+
+test("two known prices do not prove cheapest when another shown offer has no price", () => {
+  const products = decorateExpansionRecommendations({
+    power_station: [
+      { id: "main", category: "power_station", price: 499, currency: "EUR", capacityWh: 1000 },
+      { id: "unknown", category: "power_station", price: null, currency: "EUR", capacityWh: 2000 },
+      { id: "known-cheaper", category: "power_station", price: 399, currency: "EUR", capacityWh: 1500 },
+    ],
+  });
+  assert.ok(products.every(item => !item.recommendationBadges.includes("budget")));
+  assert.ok(products[0].recommendationBadges.includes("recommended"));
+  assert.ok(products[1].recommendationBadges.includes("reserve"));
+});
+
+test("missing currency also prevents lowest-price claim", () => {
+  const products = decorateExpansionRecommendations({
+    inverter: [
+      { id: "ambiguous", category: "inverter", price: 190, specs: { powerW: 1000 } },
+      { id: "also-ambiguous", category: "inverter", price: 200, specs: { powerW: 1200 } },
+    ],
+  });
+  assert.ok(products.every(item => !item.recommendationBadges.includes("budget")));
 });
 
 test("one disclosed price alone cannot establish a cheapest verified alternative", () => {
@@ -80,8 +102,8 @@ test("different currencies cannot be compared without a documented exchange rate
 
 test("all three public expansion calculators load the new budget logic, not stale cached code", async () => {
   const { readFile } = await import("node:fs/promises");
-  const version = "20261111-source-health1";
-  const rolesVersion = "20261111-solar-subtotal1";
+  const version = "20261113-complete-price1";
+  const rolesVersion = "20261113-complete-price1";
   const browser = await readFile(new URL("../src/expansion-calculator-browser.js", import.meta.url), "utf8");
   assert.ok(browser.includes('expansion-recommendation-roles.js?v=' + rolesVersion));
   for (const market of ["pt", "ro", "si"]) {
