@@ -300,13 +300,19 @@ export function buildAffiliateUrl(merchantKey, productUrl) {
 export function extractSpecs(primaryText = "", fallbackText = "") {
   const primary = cleanText(primaryText);
   const fallback = cleanText(fallbackText);
+  // In names such as "REP300-12 300W", the hyphenated 12 is the DC input
+  // voltage, not the thousands prefix of "12 300W". Generic descriptions
+  // often enumerate 12/24/48 V variants; they cannot override the exact SKU.
+  const inverterModel = extractInverterModelElectricalSpecs(primary);
   return {
-    voltageV: extractNominalVoltage(primary) ?? extractNominalVoltage(fallback),
+    voltageV: inverterModel ? inverterModel.voltageV
+      : extractNominalVoltage(primary) ?? extractNominalVoltage(fallback),
     capacityAh: matchNumber(primary, /(\d+(?:[.,]\d+)?)\s*ah\b/i)
       ?? matchNumber(fallback, /(\d+(?:[.,]\d+)?)\s*ah\b/i),
     capacityWh: matchNumber(primary, /(\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?)\s*wh\b/i)
       ?? matchNumber(fallback, /(\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?)\s*wh\b/i),
-    powerW: extractContinuousPower(primary) ?? extractContinuousPower(fallback),
+    powerW: inverterModel ? inverterModel.powerW
+      : extractContinuousPower(primary) ?? extractContinuousPower(fallback),
     currentA: matchNumber(primary, /(\d+(?:[.,]\d+)?)\s*a\b/i)
       ?? matchNumber(fallback, /(\d+(?:[.,]\d+)?)\s*a\b/i),
     chargingVoltagesV: extractChargingVoltages(primary),
@@ -707,6 +713,18 @@ function extractContinuousPower(text) {
   if (continuousAndPeak) return parseLocalizedNumber(continuousAndPeak[1]);
   return matchNumber(text, /\b(\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?)\s*(?:w|wp)\b/i)
     ?? matchNumber(text, /\bwp\)?\s*(\d+(?:[.,]\d+)?)/i);
+}
+
+function extractInverterModelElectricalSpecs(text) {
+  if (!/(?:měnič|menič|inverter|invertor|przetwornic\w*|feszültség\s*átalakító)/i.test(text)) return null;
+  const match = text.match(/\b[a-z]{2,12}(\d{2,5})[-–](12|24|36|48)\s+(\d{2,5})\s*w\b/i);
+  if (!match) return null;
+  const modelPowerW = Number(match[1]);
+  const declaredPowerW = Number(match[3]);
+  // A conflicting model code and advertised wattage is ambiguous: do not
+  // present any power/voltage recommendation until the merchant data agrees.
+  if (modelPowerW !== declaredPowerW) return { voltageV: null, powerW: null };
+  return { voltageV: Number(match[2]), powerW: declaredPowerW };
 }
 
 function extractNominalVoltage(text) {

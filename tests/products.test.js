@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { parseProductFeed } from "../src/feed.js";
-import { buildAffiliateUrl, classifyProduct, configureMerchantAffiliate, normalizeProduct, recommendProducts, refreshCatalogProduct } from "../src/products.js";
+import { buildAffiliateUrl, classifyProduct, configureMerchantAffiliate, extractSpecs, normalizeProduct, recommendProducts, refreshCatalogProduct } from "../src/products.js";
 
 test("affiliate deeplink keeps the exact product destination", () => {
   const destination = "https://www.reslshop.cz/markyza-pro-obytne-dodavky-charly-charlyne/";
@@ -763,6 +763,50 @@ test("classifier accepts products only with their required technical value", () 
   assert.equal(panel.specs.powerW, 200);
   assert.equal(inverter.category, "inverter");
   assert.equal(inverter.specs.powerW, 1000);
+});
+
+test("hyphenated inverter voltage and adjacent wattage never become a fictitious 12,300 W or 48 V product", () => {
+  for (const [id, expectedVoltage, expectedWatts] of [
+    ["solarimport:E7925", 12, 300],
+    ["solarimport:E7926", 12, 500],
+    ["solarimport:E7931", 24, 300],
+    ["solarimport:E7932", 24, 500],
+  ]) {
+    const product = normalizeProduct({
+      id: id.split(":")[1],
+      name: `ROGERELE Sinusový měnič napětí REP${expectedWatts}-${expectedVoltage} ${expectedWatts}W`,
+      description: "Sinusový měnič se zásuvkou 230V/50Hz. K dostání v provedení pro 12V, 24V nebo 48V baterie.",
+      category: "Heureka.cz | Dílna, stavba, zahrada | Solární měniče napětí",
+      url: `https://www.solar-import.cz/off-grid/rogerele-sinusovy-menic-napeti-rep${expectedWatts}-${expectedVoltage}--${expectedWatts}w/`,
+      price: "1490 CZK", available: true,
+    }, "solarimport");
+    assert.equal(product.id, id);
+    const specs = extractSpecs(product.name, `${product.categoryPath} ${product.description}`);
+    assert.equal(specs.voltageV, expectedVoltage, id);
+    assert.equal(specs.powerW, expectedWatts, id);
+    assert.equal(product.specs.voltageV, expectedVoltage, id);
+    assert.equal(product.specs.powerW, expectedWatts, id);
+    // Previously persisted auto-extracted values must be repaired on read,
+    // before the next scheduled feed sync rewrites the catalog snapshot.
+    const staleSnapshot = { ...product, specs: { ...product.specs,
+      voltageV: 48, powerW: Number(`${expectedVoltage}${expectedWatts}`),
+    } };
+    const refreshed = refreshCatalogProduct(staleSnapshot);
+    assert.equal(refreshed.specs.voltageV, expectedVoltage, id);
+    assert.equal(refreshed.specs.powerW, expectedWatts, id);
+    assert.equal(refreshed.category, "inverter", id);
+    assert.ok(recommendProducts([staleSnapshot], {
+      systemVoltage: expectedVoltage, inverterWatts: expectedWatts + 100,
+    }).inverter.length === 0, `${id}: undersized inverter must not be recommended`);
+    assert.equal(recommendProducts([staleSnapshot], {
+      systemVoltage: 48, inverterWatts: expectedWatts,
+    }).inverter.length, 0, `${id}: generic 48V description is not SKU voltage`);
+  }
+  const conflict = extractSpecs("ROGERELE Sinusový měnič napětí REP300-12 500W", "Pro 12 V / 24 V / 48 V baterie");
+  assert.equal(conflict.voltageV, null);
+  assert.equal(conflict.powerW, null);
+  const genuineGrouped = extractSpecs("Sinusový měnič 12 V trvalý výkon 1 500 W", "");
+  assert.equal(genuineGrouped.powerW, 1500, "genuine space-grouped watts still work");
 });
 
 test("product title takes precedence over conflicting description values", () => {
