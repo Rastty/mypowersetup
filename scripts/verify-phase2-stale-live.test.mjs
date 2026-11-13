@@ -14,7 +14,7 @@ const js = [
   'form.addEventListener("submit", (event) => render(event));',
   'dcdcBuyers?.invalidate();',
   'void dcdcBuyers?.update(result);',
-  'import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261111-offer-reason1";',
+  'import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261113-cz-affiliate-subid1";',
 ].join("\n");
 const buyerJs = [
   "loadDcdcGuideOffers(fetchImpl);",
@@ -32,6 +32,7 @@ const buyerJs = [
   'timingLine.dataset.dcdcTimeFit = "too-slow";',
   'link.dataset.ctaVariant = "dcdc-longer-drive";',
   "buildAttributedAffiliateParameters(link);",
+  'link.href = decorateAwinAffiliateUrl(offer.affiliateUrl, { market: "cz", category: "dc_charger" });',
   'allowedSources: ["dcdc-calculator-compare"]',
   "event.preventDefault();",
 ].join("\n");

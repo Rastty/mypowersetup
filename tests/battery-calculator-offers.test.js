@@ -105,7 +105,7 @@ test("Czech battery calculator has an after-submit-only buyer area and no hardco
   assert.match(page, /data-battery-offer-list[^>]*hidden/);
   assert.match(page, /Nejde o automatické potvrzení kompatibility/);
   assert.match(page, /Nesčítáme automaticky více baterií/);
-  assert.match(page, /\/src\/calculator-landing-browser\.js\?v=20261110-attributed-buyer1/);
+  assert.match(page, /\/src\/calculator-landing-browser\.js\?v=20261113-cz-affiliate-subid1/);
   assert.match(page, /\/kalkulacky\/calculator\.css\?v=20261109-battery-buyer1/);
   assert.match(page, /"dateModified": "2026-11-09"/);
   assert.match(browser, /mountBatteryCalculatorBuyers/);

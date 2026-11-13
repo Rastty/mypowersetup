@@ -1,4 +1,5 @@
 import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=20261110-attributed-products1";
+import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-drive-variant2";
 import { loadDcdcGuideOffers } from "./verified-offer-catalog-fetch.js";
 import {
@@ -114,7 +115,9 @@ export function mountDcdcCalculatorBuyers(root, {
       timingLine.dataset.dcdcTimeFit = timing.meetsIdealTarget ? "ideal-only" : "too-slow";
 
       const link = appendText(item, "a", "Ověřit cenu, profil a vstupní proud →", "calculator-mppt-offer-link");
-      link.href = offer.affiliateUrl;
+      link.href = decorateAwinAffiliateUrl(offer.affiliateUrl, {
+        market: "cz", category: "dc_charger", source: "product-card",
+      });
       link.target = "_blank";
       link.rel = "sponsored noopener noreferrer";
       link.dataset.affiliateClick = "";
