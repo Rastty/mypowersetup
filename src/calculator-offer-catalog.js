@@ -1,4 +1,5 @@
 import { guideCatalogFresh, selectGuideOffers } from "./guide-verified-offers.js";
+import { reviewedInverterOffers } from "./inverter-calculator-offers.js";
 export {
   LIGHTWEIGHT_CATALOG_PATH, FULL_CATALOG_PATH,
   acceptCalculatorOffersSnapshot, loadCalculatorOffers,
@@ -79,6 +80,27 @@ export function projectDcdcGuideOffers(fullCatalog, now = Date.now()) {
     projection: "dc_charger",
     generatedAt: typeof fullCatalog?.generatedAt === "string" ? fullCatalog.generatedAt : null,
     sources: { vselektro: { status: fresh ? "ok" : "stale" } },
+    products,
+  };
+}
+
+// Narrow 12/24V inverter projection. The approved exact models are checked
+// against independent model/watt/voltage/path rules both here and on click.
+// Price and availability are facts from this successful feed generation only.
+export function projectInverterCalculatorOffers(fullCatalog, now = Date.now()) {
+  const fresh = fullCatalog?.sources?.solarimport?.status === "ok";
+  const products = fresh ? reviewedInverterOffers(fullCatalog, now).map(p => ({
+    id: p.id, name: p.name, merchant: p.merchant, category: p.category,
+    available: p.available, staleSource: p.staleSource === true,
+    priceCzk: p.priceCzk, priceCurrency: p.priceCurrency,
+    productUrl: p.productUrl, affiliateUrl: p.affiliateUrl,
+    specs: { powerW: p.specs.powerW, voltageV: p.specs.voltageV, pureSine: p.specs.pureSine },
+  })) : [];
+  return {
+    schemaVersion: SNAPSHOT_VERSION,
+    projection: "inverter",
+    generatedAt: typeof fullCatalog?.generatedAt === "string" ? fullCatalog.generatedAt : null,
+    sources: { solarimport: { status: fresh ? "ok" : "stale" } },
     products,
   };
 }
