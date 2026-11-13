@@ -167,7 +167,7 @@ test("wrong editorial guide browser version or recommendation category cannot pa
   const page = "/pruvodce/kapacita-baterie-do-karavanu/";
   await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url, file }) => {
     if (url.pathname !== page) return null;
-    return mockResponse(url.href, (await local(file)).replace("20261110-attributed-offers1", "stale-version"));
+    return mockResponse(url.href, (await local(file)).replace("20261113-guide-network-attribution1", "stale-version"));
   } }) }), /PUBLIC_EDITORIAL_SCRIPT_VERSION_DRIFT/);
   await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url, file }) => {
     if (url.pathname !== "/pruvodce/dc-dc-nabijecka-18a-vs-30a-vs-50a-karavan/") return null;
