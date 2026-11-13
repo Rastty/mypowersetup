@@ -14,6 +14,15 @@ Do not copy secrets, credentials, affiliate tracking URLs or production-only sta
 
 ## Open handovers
 
+### Do not award a lowest-price badge with incomplete comparison evidence
+
+- **Capability / problem solved:** PT/RO/SI buyer cards previously awarded the `budget` (lowest-price) badge when at least two offers had comparable prices, even if a third displayed option had an unknown price or an ambiguous currency. A buyer could be told one offer was cheapest without knowing the price of every alternative.
+- **Why reusable:** any multi-offer affiliate comparison has this same incomplete-evidence trap; the price ranking claim should be narrower than the visible candidate set unless all shown offers have comparable amounts and currencies.
+- **Source / evidence:** `src/expansion-recommendation-roles.js`, `tests/expansion-recommendation-roles.test.js`, `tests/expansion-line-price.test.js`. The badge now requires positive, calculable line totals and one nonempty matching currency for **every** displayed option; sizing and product eligibility stay unchanged. Local full suite: 1,438 tests passing on 2026-11-13. Deployment and real click/conversion impact remain unverified until CI and public readback complete.
+- **Expected benefit:** fewer unsupported "cheapest" claims on mixed-price product lists, while keeping compatible offers and their affiliate routes available.
+- **Constraints:** applies only within one displayed category and its calculated required quantities; does not imply a marketwide cheapest price, checkout totals, delivery costs, or current stock. Never treat a missing merchant price as zero.
+- **Adoption path:** Core Owner can assess whether existing offer-comparison contracts already enforce complete candidate-price evidence; if not, port this narrow badge guard to another multi-offer site (for example Klix), with that site's real currencies and unit/basket semantics. Do not copy merchant URLs or treat this as measured revenue uplift.
+
 ### Localize merchant-specific purchase CTAs
 
 - **Capability / problem solved:** converts generic affiliate buttons into localized, action-specific copy that names the destination merchant, while leaving technical ranking and affiliate URL generation untouched.

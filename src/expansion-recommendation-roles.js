@@ -20,14 +20,15 @@ function decorateCategory(items) {
   badges[0].push("recommended");
 
   // An unavailable merchant price is null, never a free product.
-  // Never compare unlike currencies or claim a budget winner from a single
-  // known price. Solar-panel alternatives compare the full calculated
-  // quantity subtotal, not the single-panel sticker price.
+  // Never claim a lowest-priced alternative if even one displayed option has
+  // an unknown subtotal or incomparable currency: that option may be cheaper.
+  // Solar-panel alternatives compare full calculated quantities, not unit prices.
   const priced = items.flatMap((item, index) => {
     const line = expansionLinePrice(item);
     return line ? [{ index, price: line.totalPrice, currency: line.currency }] : [];
   });
-  if (priced.length > 1 && new Set(priced.map(({ currency }) => currency)).size === 1) {
+  if (priced.length === items.length && priced.length > 1 &&
+      priced[0].currency && new Set(priced.map(({ currency }) => currency)).size === 1) {
     const budget = priced.reduce((best, candidate) => candidate.price < best.price ? candidate : best);
     badges[budget.index].push("budget");
   }

@@ -68,5 +68,5 @@ test("public PT RO SI calculator shows panel subtotal and single-item prices wit
   assert.ok(source.includes("livrarea nu este inclusă"), "Romania shipping costs must not be included in item subtotal");
   assert.ok(source.includes("brez dostave"), "Slovenia shipping costs must not be included in item subtotal");
   assert.match(source, /expansion-line-price\.js\?v=20261111-solar-subtotal1/);
-  assert.match(source, /expansion-recommendation-roles\.js\?v=20261111-solar-subtotal1/);
+  assert.match(source, /expansion-recommendation-roles\.js\?v=20261113-complete-price1/);
 });
