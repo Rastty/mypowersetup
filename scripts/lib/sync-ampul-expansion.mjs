@@ -3,6 +3,7 @@ import {
   AMPUL_12V_30A_DCDC,
   AMPUL_24V_2000W_INVERTER,
   buildAmpulEhubUrl,
+  isExactAmpulSourceDestination,
   validateAmpulExpansionProduct,
 } from "../../src/affiliate-ampul-expansion.js";
 
@@ -78,7 +79,7 @@ export function syncAmpulExpansion(sourceCatalog, targetMarket, verification, {
   const dcDc = sourceProducts.find((product) =>
     product?.merchant === SOURCE_MERCHANT
     && String(product.id || "").endsWith(":6195")
-    && product.productUrl?.endsWith(AMPUL_12V_30A_DCDC.exactPath)
+    && isExactAmpulSourceDestination(product.productUrl, AMPUL_12V_30A_DCDC)
   );
   if (dcDc?.available === true && verifiedProductMarkets[AMPUL_12V_30A_DCDC.id].includes(market)) {
     normalized.push(normalizeDcDc(dcDc, market, verifiedProductMarkets));
@@ -87,7 +88,7 @@ export function syncAmpulExpansion(sourceCatalog, targetMarket, verification, {
   const inverter = sourceProducts.find((product) =>
     product?.merchant === SOURCE_MERCHANT
     && String(product.id || "").endsWith(":5577-7392")
-    && product.productUrl?.endsWith(AMPUL_24V_2000W_INVERTER.exactPath)
+    && isExactAmpulSourceDestination(product.productUrl, AMPUL_24V_2000W_INVERTER)
   );
   if (inverter?.available === true && verifiedProductMarkets[AMPUL_24V_2000W_INVERTER.id].includes(market)) {
     normalized.push(normalizeInverter(inverter, market, verifiedProductMarkets));

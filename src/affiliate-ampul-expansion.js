@@ -11,7 +11,11 @@ export const AMPUL_24V_2000W_INVERTER = Object.freeze({
   id: "ampul-eu-inverter-24v-2000w",
   category: "inverter",
   name: "AMPUL 24V DC to 230V AC 2000W pure-sine inverter",
-  exactPath: "/cs/menice-napeti/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+  exactPath: "/cs/stridace-a-ac-dc-menice/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+  // AMPUL changed its category routes without changing the product IDs.
+  reviewedLegacyPaths: Object.freeze([
+    "/cs/menice-napeti/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+  ]),
   systemVoltageV: 24,
   continuousPowerW: 2000,
   pureSine: true,
@@ -22,7 +26,10 @@ export const AMPUL_12V_30A_DCDC = Object.freeze({
   id: "ampul-eu-dcdc-12v-30a",
   category: "dc_charger",
   name: "AMPUL DC/DC LiFePO4 charger 14.6V 30A 400W IP68",
-  exactPath: "/cs/nabijecky/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
+  exactPath: "/cs/nabijecky-akumulatoru/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
+  reviewedLegacyPaths: Object.freeze([
+    "/cs/nabijecky/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
+  ]),
   inputVoltagesV: Object.freeze([12, 24]),
   outputVoltageV: 14.6,
   currentA: 30,
@@ -45,16 +52,22 @@ function exactDestination(destination) {
   } catch {
     return null;
   }
-  if (url.protocol !== "https:" || url.hostname !== AMPUL_EHUB.merchantHostname) return null;
-  const product = PRODUCTS.find((item) => item.exactPath === url.pathname);
+  if (url.origin !== "https://" + AMPUL_EHUB.merchantHostname
+    || url.username || url.password || url.search || url.hash) return null;
+  const product = PRODUCTS.find((item) => item.exactPath === url.pathname
+    || item.reviewedLegacyPaths.includes(url.pathname));
   if (!product) return null;
-  url.search = "";
-  url.hash = "";
   return { product, destination: url.toString() };
 }
 
 export function isAmpulExpansionProduct(product) {
   return product?.merchant === "ampul_eu";
+}
+
+// Merchant category paths can change while reviewed SKU IDs remain stable.
+// Sync may accept only these two explicitly reviewed URL variants per SKU.
+export function isExactAmpulSourceDestination(destination, reviewedProduct) {
+  return exactDestination(destination)?.product === reviewedProduct;
 }
 
 export function validateAmpulExpansionProduct(product, {

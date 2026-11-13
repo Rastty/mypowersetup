@@ -66,7 +66,7 @@ test("exact AMPUL feed stock distinguishes unknown inverter stock from available
     available: null,
     state: "unknown",
     stockVerified: false,
-    productUrl: "https://ampul.eu/cs/menice-napeti/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+    productUrl: ampulSourceCatalog.products.find(({ id }) => id === "ampul_cz:5577-7392").productUrl,
     priceCzk: 8398,
     priceCurrency: "CZK",
   });

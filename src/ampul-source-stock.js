@@ -9,14 +9,20 @@ import {
 const SOURCE_PRODUCTS = Object.freeze({
   [AMPUL_24V_2000W_INVERTER.id]: Object.freeze({
     id: "ampul_cz:5577-7392",
-    exactUrl: "https://ampul.eu" + AMPUL_24V_2000W_INVERTER.exactPath,
+    approvedUrls: Object.freeze([
+      AMPUL_24V_2000W_INVERTER.exactPath,
+      ...AMPUL_24V_2000W_INVERTER.reviewedLegacyPaths,
+    ].map(path => "https://ampul.eu" + path)),
     category: "inverter",
     specsMatch: (specs) => specs?.voltageV === 24
       && specs?.powerW === 2000 && specs?.pureSine === true,
   }),
   [AMPUL_12V_30A_DCDC.id]: Object.freeze({
     id: "ampul_cz:6195",
-    exactUrl: "https://ampul.eu" + AMPUL_12V_30A_DCDC.exactPath,
+    approvedUrls: Object.freeze([
+      AMPUL_12V_30A_DCDC.exactPath,
+      ...AMPUL_12V_30A_DCDC.reviewedLegacyPaths,
+    ].map(path => "https://ampul.eu" + path)),
     category: "dc_charger",
     specsMatch: (specs) => specs?.voltageV === 12
       && specs?.powerW === 400 && specs?.currentA === 30
@@ -37,7 +43,7 @@ function isExactAmpulSourceProduct(product, source) {
     && product.id === source.id
     && product.merchant === "ampul_cz"
     && product.category === source.category
-    && product.productUrl === source.exactUrl
+    && source.approvedUrls.includes(product.productUrl)
     && source.specsMatch(product.specs));
 }
 

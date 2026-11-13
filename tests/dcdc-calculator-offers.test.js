@@ -366,7 +366,12 @@ test("safe buyer coverage classifier distinguishes unsupported hardware, failed/
   assert.equal(classifyDcdcOfferOutcome(feed, unsupported, now), "unsupported");
   assert.equal(classifyDcdcOfferOutcome(null, base, now), "unavailable");
   assert.equal(classifyDcdcOfferOutcome({ ...capture(), sources: { vselektro: { status: "stale" } } }, base, now), "unavailable");
-  assert.equal(classifyDcdcOfferOutcome(feed, base, Date.parse("2026-11-15T12:26:30Z")), "unavailable");
+  // Merchant snapshots refresh daily. Expiration must be measured against the
+  // committed offers, not a calendar instant that eventually becomes fresh.
+  const allOffersExpiredAt = Math.max(...feed.products.map(offer =>
+    dcdcCalculatorOfferExpiresAt(feed, offer))) + 1;
+  assert.ok(Number.isFinite(allOffersExpiredAt));
+  assert.equal(classifyDcdcOfferOutcome(feed, base, allOffersExpiredAt), "unavailable");
   const unavailable = capture();
   unavailable.products.forEach(p => { p.available = false; });
   assert.equal(classifyDcdcOfferOutcome(unavailable, base, now), "unavailable");

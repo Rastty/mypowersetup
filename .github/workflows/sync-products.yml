@@ -131,6 +131,10 @@ jobs:
       # Revalidate regenerated merchant data; do not commit if commercial safety fails.
       - run: npm run check:commercial:coverage:safe
       - run: npm run check:affiliate:ids
+      # Mutable merchant paths/timestamps can change after the pre-sync tests.
+      # Recheck both exact SKU stock provenance and DC-DC buyer expiry before commit.
+      - name: Test refreshed AMPUL and DC-DC buyer contracts
+        run: node --test tests/affiliate-ampul-expansion.test.js tests/ampul-expansion-market-integration.test.js tests/ampul-expansion-sync.test.js tests/ampul-source-stock-freshness.test.js tests/commercial-system-verification-actions.test.js tests/dcdc-calculator-offers.test.js
       - run: npm run check:commercial:scenarios:safe
       - run: npm run check:commercial:opportunities
       - name: Commit refreshed catalog

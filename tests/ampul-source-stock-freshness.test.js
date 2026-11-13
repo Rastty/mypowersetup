@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { resolveAmpulSourceStock } from "../src/ampul-source-stock.js";
+import { AMPUL_12V_30A_DCDC, AMPUL_24V_2000W_INVERTER } from "../src/affiliate-ampul-expansion.js";
 
 const NOW = Date.parse("2026-11-07T10:00:00.000Z");
 const CANDIDATE = "ampul-eu-dcdc-12v-30a";
@@ -33,6 +34,21 @@ test("a genuinely fresh source and available exact SKU can verify stock", () => 
   assert.equal(row.state, "available");
   assert.equal(row.stockVerified, true);
   assert.equal(row.available, true);
+});
+
+test("merchant category reclassification keeps reviewed exact SKUs eligible, not arbitrary paths", () => {
+  const current = catalog();
+  current.products[0].productUrl = "https://ampul.eu" + AMPUL_12V_30A_DCDC.exactPath;
+  assert.equal(resolveAmpulSourceStock(current, CANDIDATE, NOW).state, "available");
+  current.products[0].productUrl = "https://ampul.eu/cs/other/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68";
+  assert.equal(resolveAmpulSourceStock(current, CANDIDATE, NOW).state, "identity_mismatch");
+  const inverter = catalog();
+  inverter.products[0] = {
+    id: "ampul_cz:5577-7392", merchant: "ampul_cz", category: "inverter",
+    productUrl: "https://ampul.eu" + AMPUL_24V_2000W_INVERTER.exactPath,
+    available: true, specs: { voltageV: 24, powerW: 2000, pureSine: true },
+  };
+  assert.equal(resolveAmpulSourceStock(inverter, "ampul-eu-inverter-24v-2000w", NOW).stockVerified, true);
 });
 
 test("a once-healthy feed cannot certify stock after 72 hours", () => {
