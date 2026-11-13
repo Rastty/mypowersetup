@@ -130,6 +130,7 @@ jobs:
       - run: node scripts/write-owner-action-queue.mjs
       # Revalidate regenerated merchant data; do not commit if commercial safety fails.
       - run: npm run check:commercial:coverage:safe
+      - run: npm run check:affiliate:ids
       - run: npm run check:commercial:scenarios:safe
       - run: npm run check:commercial:opportunities
       - name: Commit refreshed catalog

@@ -16,6 +16,7 @@
     "check:conversion:analytics": "node scripts/check-conversion-analytics.mjs",
     "check:production:live": "node scripts/check-production-live.mjs",
     "check:commercial:coverage": "node scripts/check-commercial-coverage.mjs",
+    "check:affiliate:ids": "node scripts/check-affiliate-ids.mjs",
     "check:commercial:coverage:safe": "node scripts/check-commercial-coverage.mjs --require-core",
     "check:commercial:scenarios": "node scripts/check-commercial-scenarios.mjs",
     "check:commercial:scenarios:safe": "node scripts/check-commercial-scenarios.mjs --require-baseline",

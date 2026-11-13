@@ -14,6 +14,14 @@ Do not copy secrets, credentials, affiliate tracking URLs or production-only sta
 
 ## Open handovers
 
+### An exact product destination is not evidence of a monetizing affiliate identity
+
+- **Capability / problem:** the commercial coverage gate previously counted an offer as purchase-ready if a tracking-shaped URL pointed to the exact product, even when it omitted or changed the publisher/merchant campaign ID (or was simply the raw shop URL). The site now validates approved merchant-specific eHUB, Awin and Dognet IDs before crediting a known merchant's offer; an independent read-only catalog gate runs before CI and both daily feed writers commit.
+- **Site evidence:** `src/commercial-coverage.js`, `scripts/check-affiliate-ids.mjs`, `tests/affiliate-id-integrity.test.js`, the standard Test workflow and both catalog-sync workflows. The initial audit passed **2,112/2,112 URLs across eight live-market catalog snapshots** on 2026-11-13. Mutation tests reject missing, wrong and duplicated publisher/program IDs, extra redirect parameters, unsupported merchants and raw non-affiliate product links. This proves configured link integrity, **not** any click, approved sale or commission.
+- **Why reusable:** a missing affiliate account identity silently converts qualified traffic into unattributed retail referrals; the same risk exists in product/feed-driven sites such as Klix, Solar Expert and ChytrýRybář.
+- **Constraints / owner:** network-specific ID contracts belong to each site's approved partner evidence; never copy IDs or URLs across sites. A changed merchant programme or new merchant must be owner-approved and independently verified before its contract is accepted. Fail-closed post-sync checks can intentionally block catalog publication, never overwrite live data to get a green report.
+- **Suggested Core path:** Core Owner should first inspect the existing affiliate-link validation contracts and the concurrent Core monetization work. Reuse this project's mutation fixtures and eight-catalog outcome only if they fill a genuine Core gap; validate on a second site's own approved merchant IDs. This local change is not an instruction to implement or merge a parallel Core engine.
+
 ### Do not mistake automatically restored shared calculators for deliberate demand
 
 - **Capability / problem solved:** PT/RO/SI calculator shared-result links restore and render a full technical result on page load. The old path also emitted the same `calculation_completed` and supply-gap events as an explicit form submission, potentially inflating demand signals without a human calculation.
