@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-13T13:11:35.649Z",
+  "generatedAt": "2026-11-14T10:35:21.680Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16469,
-      "relevantProducts": 244
+      "parsedProducts": 16471,
+      "relevantProducts": 243
     },
     "allpowers_eu": {
       "status": "ok",
@@ -17,11 +17,11 @@
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 63,
-      "relevantProducts": 24,
+      "relevantProducts": 23,
       "batteries": 18,
       "controllers": 1,
       "inverters": 1,
-      "shoreChargers": 4
+      "shoreChargers": 3
     },
     "oxe_sk": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7720,
+      "parsedProducts": 7731,
       "relevantProducts": 15
     }
   },
@@ -55,7 +55,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-exide-dual-50-ah_z49/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-exide-dual-50-ah_z49%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/127636_102.jpg?1704378225_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/127636_102.jpg?1704378225_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 50,
@@ -86,7 +86,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-optima-12-v_z50/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-optima-12-v_z50%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/127637_102.jpg?1704378225_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/127637_102.jpg?1704378225_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 55,
@@ -121,7 +121,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-optima-12-v_z50/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-optima-12-v_z50%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/127637_102.jpg?1704378225_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/127637_102.jpg?1704378225_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 55,
@@ -156,7 +156,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/tazna-bateria-banner-energy-bull_z6869/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Ftazna-bateria-banner-energy-bull_z6869%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/132550_102.jpg?1704378275_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/132550_102.jpg?1704378275_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -187,7 +187,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/buttner-dometic-mt-menic-napatia-z-12-v-na-230-v_z15255/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbuttner-dometic-mt-menic-napatia-z-12-v-na-230-v_z15255%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/183400_102.jpg?1746201707_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/183400_102.jpg?1746201707_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -218,7 +218,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/buttner-dometic-mt-menic-napatia-z-12-v-na-230-v_z15255/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbuttner-dometic-mt-menic-napatia-z-12-v-na-230-v_z15255%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/183401_102.jpg?1746201906_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/183401_102.jpg?1746201906_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -249,7 +249,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/baterie-agm-running-bull_z15459/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbaterie-agm-running-bull_z15459%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/154200_102.jpg?1704380076_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/154200_102.jpg?1704380076_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 70,
@@ -280,7 +280,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/baterie-agm-running-bull_z15459/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbaterie-agm-running-bull_z15459%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/154201_102.jpg?1704380076_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/154201_102.jpg?1704380076_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 80,
@@ -311,7 +311,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/baterie-agm-running-bull_z15459/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbaterie-agm-running-bull_z15459%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/154202_102.jpg?1704380076_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/154202_102.jpg?1704380076_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 92,
@@ -342,7 +342,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/exide-dualna-bateria-agm_z16597/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fexide-dualna-bateria-agm_z16597%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/154566_102.jpg?1704380087_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/154566_102.jpg?1704380087_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 240,
@@ -373,7 +373,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/exide-dualna-bateria-agm_z16597/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fexide-dualna-bateria-agm_z16597%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/156009_102.jpg?1704380136_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/156009_102.jpg?1704380136_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 92,
@@ -404,7 +404,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-dometic-sinepower-dsp_z19284/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-dometic-sinepower-dsp_z19284%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/183580_102.jpg?1746376154_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/183580_102.jpg?1746376154_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -437,7 +437,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-dometic-sinepower-dsp-t_z19287/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-dometic-sinepower-dsp-t_z19287%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/183588_102.jpg?1746377752_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/183588_102.jpg?1746377752_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -470,7 +470,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-dometic-sinepower-dsp-t_z19287/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-dometic-sinepower-dsp-t_z19287%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/183588_102.jpg?1746377752_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/183588_102.jpg?1746377752_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -503,7 +503,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-dometic-sinepower-dsp-t_z19287/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-dometic-sinepower-dsp-t_z19287%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/183588_102.jpg?1746377752_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/183588_102.jpg?1746377752_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -536,7 +536,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sada-kablov-pre-sinusove-menice-dometic-sinepower-dsp_z19296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsada-kablov-pre-sinusove-menice-dometic-sinepower-dsp_z19296%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/143034_102.jpg?1704378458_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/143034_102.jpg?1704378458_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -565,7 +565,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sada-kablov-pre-sinusove-menice-dometic-sinepower-dsp_z19296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsada-kablov-pre-sinusove-menice-dometic-sinepower-dsp_z19296%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/143034_102.jpg?1704378458_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/143034_102.jpg?1704378458_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -594,7 +594,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/trakcna-bateria-varta-professional-agm_z22313/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Ftrakcna-bateria-varta-professional-agm_z22313%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/156005_102.jpg?1704380136_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/156005_102.jpg?1704380136_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 80,
@@ -625,7 +625,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/trakcna-bateria-varta-professional-agm_z22313/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Ftrakcna-bateria-varta-professional-agm_z22313%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/156006_102.jpg?1704380136_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/156006_102.jpg?1704380136_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 95,
@@ -656,7 +656,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/156012_102.jpg?1704380137_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/156012_102.jpg?1704380137_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 56,
@@ -687,7 +687,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/156013_102.jpg?1704380137_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/156013_102.jpg?1704380137_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 80,
@@ -718,7 +718,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/156014_102.jpg?1704380137_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/156014_102.jpg?1704380137_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 85,
@@ -749,7 +749,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/zariadenia-exide-gelova-bateria-es_z22317/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fzariadenia-exide-gelova-bateria-es_z22317%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/156015_102.jpg?1704380137_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/156015_102.jpg?1704380137_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 120,
@@ -780,7 +780,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-optima-yts_z22319/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-optima-yts_z22319%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/139549_102.jpg?1704378390_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/139549_102.jpg?1704378390_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 38,
@@ -811,7 +811,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/kombinovany-menic-napatia-buttner-elektronik_z22540/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fkombinovany-menic-napatia-buttner-elektronik_z22540%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/156484_102.jpg?1704380152_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/156484_102.jpg?1704380152_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -840,7 +840,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/kombinovany-menic-napatia-buttner-elektronik_z22540/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fkombinovany-menic-napatia-buttner-elektronik_z22540%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/156485_102.jpg?1704380152_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/156485_102.jpg?1704380152_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -869,7 +869,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-palubna-bateria-lifepo4-buttner-mt-li_z22577/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-palubna-bateria-lifepo4-buttner-mt-li_z22577%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/156562_102.jpg?1704380155_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/156562_102.jpg?1704380155_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 85,
@@ -900,7 +900,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-palubna-bateria-lifepo4-buttner-mt-li_z22577/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-palubna-bateria-lifepo4-buttner-mt-li_z22577%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/158823_102.jpg?1704380237_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/158823_102.jpg?1704380237_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 240,
@@ -931,7 +931,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-palubna-bateria-lifepo4-buttner-mt-li_z22577/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-palubna-bateria-lifepo4-buttner-mt-li_z22577%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/158824_102.jpg?1704380237_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/158824_102.jpg?1704380237_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 300,
@@ -962,7 +962,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sada-litiovych-baterii-buttner-elektronik-85-ah_z22953/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsada-litiovych-baterii-buttner-elektronik-85-ah_z22953%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/157657_102.jpg?1704380196_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/157657_102.jpg?1704380196_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 85,
@@ -993,7 +993,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sada-litiovych-baterii-buttner-elektronik-85-ah_z22953/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsada-litiovych-baterii-buttner-elektronik-85-ah_z22953%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/140110_102.jpg?1704378400_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/140110_102.jpg?1704378400_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 85,
@@ -1024,7 +1024,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/nabijacka-baterii-perfectcharge-12-v_z24087/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-perfectcharge-12-v_z24087%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/158411_102.jpg?1704380222_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/158411_102.jpg?1704380222_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1059,7 +1059,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/nabijacka-baterii-perfectcharge-12-v_z24087/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-perfectcharge-12-v_z24087%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/158413_102.jpg?1704380222_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/158413_102.jpg?1704380222_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1094,7 +1094,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/nabijacka-baterii-dometic-perfectcharge-24-v_z24088/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-dometic-perfectcharge-24-v_z24088%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/158418_102.jpg?1704380222_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/158418_102.jpg?1704380222_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": 170,
@@ -1129,7 +1129,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-powerboozt-pb-80-gel_z24791/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-powerboozt-pb-80-gel_z24791%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/145010_102.jpg?1704378886_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/145010_102.jpg?1704378886_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 80,
@@ -1160,7 +1160,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/agm-baterie-exide_z24792/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-baterie-exide_z24792%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/158711_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/158711_102.jpg?1704380233_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 70,
@@ -1191,7 +1191,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/agm-baterie-exide_z24792/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-baterie-exide_z24792%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/158712_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/158712_102.jpg?1704380233_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 95,
@@ -1222,7 +1222,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/agm-baterie-exide_z24792/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-baterie-exide_z24792%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/158713_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/158713_102.jpg?1704380233_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 120,
@@ -1253,7 +1253,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-phoenix-ve-priamy-menic-napatia_z24820/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-phoenix-ve-priamy-menic-napatia_z24820%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/158723_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/158723_102.jpg?1704380233_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1286,7 +1286,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-phoenix-ve-priamy-menic-napatia_z24820/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-phoenix-ve-priamy-menic-napatia_z24820%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/158724_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/158724_102.jpg?1704380233_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1319,7 +1319,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-phoenix-ve-priamy-menic-napatia_z24820/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-phoenix-ve-priamy-menic-napatia_z24820%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/158725_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/158725_102.jpg?1704380233_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1352,7 +1352,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-phoenix-ve-priamy-menic-napatia_z24820/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-phoenix-ve-priamy-menic-napatia_z24820%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/159096_102.jpg?1704380245_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/159096_102.jpg?1704380245_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1385,7 +1385,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/158728_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/158728_102.jpg?1704380233_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -1414,7 +1414,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/158729_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/158729_102.jpg?1704380233_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -1443,7 +1443,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/158730_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/158730_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -1472,7 +1472,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-victron-energy-smartsolar-mppt-75-100-w_z24827%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/158731_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/158731_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -1501,7 +1501,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-mppt-victron-energy-smartsolar-100-30_z24828/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-mppt-victron-energy-smartsolar-100-30_z24828%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/145093_102.jpg?1704378888_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/145093_102.jpg?1704378888_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -1530,7 +1530,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/gelova-bateria-victron-energy-vrla-gel_z24830/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fgelova-bateria-victron-energy-vrla-gel_z24830%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/158734_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/158734_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 130,
@@ -1561,7 +1561,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/gelova-bateria-victron-energy-vrla-gel_z24830/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fgelova-bateria-victron-energy-vrla-gel_z24830%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/158735_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/158735_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 165,
@@ -1592,7 +1592,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/gelova-bateria-victron-energy-vrla-gel_z24830/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fgelova-bateria-victron-energy-vrla-gel_z24830%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/158736_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/158736_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 220,
@@ -1623,7 +1623,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/gelova-bateria-victron-energy-vrla-gel_z24830/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fgelova-bateria-victron-energy-vrla-gel_z24830%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/158737_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/158737_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 265,
@@ -1654,7 +1654,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z24831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z24831%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/158738_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/158738_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 125,
@@ -1685,7 +1685,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z24831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z24831%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/158739_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/158739_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 170,
@@ -1716,7 +1716,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z24831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z24831%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/158740_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/158740_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 230,
@@ -1747,7 +1747,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-powerboozt_z25052/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-powerboozt_z25052%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/158817_102.jpg?1704380236_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/158817_102.jpg?1704380236_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -1779,7 +1779,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/dvojucelova-bateria-agm-powerboozt_z25062/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdvojucelova-bateria-agm-powerboozt_z25062%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/158825_102.jpg?1704380237_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/158825_102.jpg?1704380237_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 70,
@@ -1810,7 +1810,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/dvojucelova-bateria-agm-powerboozt_z25062/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdvojucelova-bateria-agm-powerboozt_z25062%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/158826_102.jpg?1704380237_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/158826_102.jpg?1704380237_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 95,
@@ -1841,7 +1841,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-super-b-epsilon_z25067/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-super-b-epsilon_z25067%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/145686_102.jpg?1704378903_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/145686_102.jpg?1704378903_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -1872,7 +1872,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-super-b-epsilon_z25067/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-super-b-epsilon_z25067%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/145686_102.jpg?1704378903_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/145686_102.jpg?1704378903_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 150,
@@ -1903,7 +1903,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-victron-energy-smartsolar-mppt-ve-can_z25297/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-victron-energy-smartsolar-mppt-ve-can_z25297%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/159226_102.jpg?1704380250_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/159226_102.jpg?1704380250_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -1932,7 +1932,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-carbest-cb-silver-12-v_z25768/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-carbest-cb-silver-12-v_z25768%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/152798_102.jpg?1704379099_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/152798_102.jpg?1704379099_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1965,7 +1965,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-carbest-cb-silver-12-v_z25768/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-carbest-cb-silver-12-v_z25768%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/152798_102.jpg?1704379099_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/152798_102.jpg?1704379099_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1998,7 +1998,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-carbest-li100bt-h-s-bluetooth-a-vyhrievanim_z25850/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-carbest-li100bt-h-s-bluetooth-a-vyhrievanim_z25850%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/149398_102.jpg?1704379002_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/149398_102.jpg?1704379002_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -2030,7 +2030,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-power-line_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-power-line_z25851%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/160166_102.jpg?1704380282_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/160166_102.jpg?1704380282_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 80,
@@ -2061,7 +2061,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-power-line_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-power-line_z25851%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/160167_102.jpg?1704380282_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/160167_102.jpg?1704380282_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -2092,7 +2092,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-power-line_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-power-line_z25851%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/160168_102.jpg?1704380282_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/160168_102.jpg?1704380282_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 60,
@@ -2123,7 +2123,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-power-line_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-power-line_z25851%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/160169_102.jpg?1704380282_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/160169_102.jpg?1704380282_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 90,
@@ -2154,7 +2154,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-power-line_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-power-line_z25851%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/160170_102.jpg?1704380282_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/160170_102.jpg?1704380282_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 120,
@@ -2185,7 +2185,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-power-line_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-power-line_z25851%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/160171_102.jpg?1704380282_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/160171_102.jpg?1704380282_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 134,
@@ -2216,7 +2216,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/hlbokotlakova-bateria-carbest-agm-t-power-line-100-ah_z25852/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fhlbokotlakova-bateria-carbest-agm-t-power-line-100-ah_z25852%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/152538_102.jpg?1704379091_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/152538_102.jpg?1704379091_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -2247,7 +2247,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-nabijacka-carbest-12-v-s-2-vystupmi_z25869/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-nabijacka-carbest-12-v-s-2-vystupmi_z25869%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/149415_102.jpg?1704379002_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/149415_102.jpg?1704379002_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -2283,7 +2283,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-nabijacka-carbest-12-v-s-2-vystupmi_z25869/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-nabijacka-carbest-12-v-s-2-vystupmi_z25869%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/149415_102.jpg?1704379002_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/149415_102.jpg?1704379002_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -2319,7 +2319,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-nabijacka-carbest-12-v-s-2-vystupmi_z25869/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-nabijacka-carbest-12-v-s-2-vystupmi_z25869%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/149415_102.jpg?1704379002_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/149415_102.jpg?1704379002_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -2355,7 +2355,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/12-v-sinusovy-menic-napatia-carbest_z25871/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2F12-v-sinusovy-menic-napatia-carbest_z25871%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/149417_102.jpg?1704379002_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/149417_102.jpg?1704379002_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.17,
@@ -2388,7 +2388,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/12-v-sinusovy-menic-napatia-carbest_z25871/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2F12-v-sinusovy-menic-napatia-carbest_z25871%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/149417_102.jpg?1704379002_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/149417_102.jpg?1704379002_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.17,
@@ -2421,7 +2421,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/12-v-sinusovy-menic-napatia-carbest_z25871/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2F12-v-sinusovy-menic-napatia-carbest_z25871%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/149417_102.jpg?1704379002_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/149417_102.jpg?1704379002_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.17,
@@ -2454,7 +2454,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/12-v-sinusovy-menic-napatia-carbest_z25871/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2F12-v-sinusovy-menic-napatia-carbest_z25871%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/149417_102.jpg?1704379002_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/149417_102.jpg?1704379002_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.17,
@@ -2487,7 +2487,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-ps_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-ps_z25872%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/183406_102.jpg?1746259641_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.6,
@@ -2516,7 +2516,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-ps_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-ps_z25872%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/183406_102.jpg?1746259641_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.6,
@@ -2545,7 +2545,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-ps_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-ps_z25872%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/183406_102.jpg?1746259641_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.6,
@@ -2574,7 +2574,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-ps_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-ps_z25872%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/183406_102.jpg?1746259641_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.6,
@@ -2603,7 +2603,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-ps_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-ps_z25872%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/183406_102.jpg?1746259641_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.6,
@@ -2632,7 +2632,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiove-baterie-super-b-nomia-12-v_z25942/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiove-baterie-super-b-nomia-12-v_z25942%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/159753_102.jpg?1704380267_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/159753_102.jpg?1704380267_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 210,
@@ -2667,7 +2667,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-carbest-sfx135_z26743/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-carbest-sfx135_z26743%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/152486_102.jpg?1704379090_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/152486_102.jpg?1704379090_1",
       "specs": {
         "voltageV": 36,
         "capacityAh": null,
@@ -2696,7 +2696,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-carbest-sc200-200-w_z26746/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-carbest-sc200-200-w_z26746%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/152501_102.jpg?1704379090_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/152501_102.jpg?1704379090_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -2725,7 +2725,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-carbest-hc130-130-w_z26747/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-carbest-hc130-130-w_z26747%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/152511_102.jpg?1704379090_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/152511_102.jpg?1704379090_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -2754,7 +2754,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-carbest-mppt-12-v-12-a-165-wp_z26751/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-carbest-mppt-12-v-12-a-165-wp_z26751%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/152516_102.jpg?1704379090_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/152516_102.jpg?1704379090_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2790,7 +2790,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-carbest-mppt-12-v-12-a-350-wp_z26752/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-carbest-mppt-12-v-12-a-350-wp_z26752%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/152517_102.jpg?1704379090_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/152517_102.jpg?1704379090_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2826,7 +2826,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-lifepo4-carbest-li100_z26753/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-lifepo4-carbest-li100_z26753%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/152518_102.jpg?1704379090_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/152518_102.jpg?1704379090_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -2858,7 +2858,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-carbest-lifepo4-li100bh6-pre-vw-t5-t6_z26754/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-carbest-lifepo4-li100bh6-pre-vw-t5-t6_z26754%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/152520_102.jpg?1704379091_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/152520_102.jpg?1704379091_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -2890,7 +2890,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/lifepo4-bateria-carbest-li200bhd-pre-fiat-ducato-12-8-v_z26755/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flifepo4-bateria-carbest-li200bhd-pre-fiat-ducato-12-8-v_z26755%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/152522_102.jpg?1704379091_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/152522_102.jpg?1704379091_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 200,
@@ -2922,7 +2922,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-carbest-full-black-12-v_z26861/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-carbest-full-black-12-v_z26861%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/152799_102.jpg?1704379099_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/152799_102.jpg?1704379099_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2955,7 +2955,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-victron-energy_z26939/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-victron-energy_z26939%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/152942_102.jpg?1704379104_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/152942_102.jpg?1704379104_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2984,7 +2984,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-victron-energy_z26939/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-victron-energy_z26939%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/152942_102.jpg?1704379104_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/152942_102.jpg?1704379104_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3013,7 +3013,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-victron-energy_z26939/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-victron-energy_z26939%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/152942_102.jpg?1704379104_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/152942_102.jpg?1704379104_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3042,7 +3042,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z26961%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/160239_102.jpg?1704380285_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/160239_102.jpg?1704380285_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 25,
@@ -3073,7 +3073,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z26961%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/160240_102.jpg?1704380285_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/160240_102.jpg?1704380285_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 38,
@@ -3104,7 +3104,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z26961%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/160241_102.jpg?1704380285_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/160241_102.jpg?1704380285_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 60,
@@ -3135,7 +3135,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-agm-super-cycle_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-agm-super-cycle_z26961%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/160242_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/160242_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -3166,7 +3166,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-gel_z26962/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-gel_z26962%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/160243_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/160243_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 60,
@@ -3195,7 +3195,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-gel_z26962/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-gel_z26962%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/160244_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/160244_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 110,
@@ -3224,7 +3224,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/nabijacka-victron-energy-orion-tr-smart-dc-dc-neizolovana_z26963/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-victron-energy-orion-tr-smart-dc-dc-neizolovana_z26963%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/160247_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/160247_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3259,7 +3259,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-smart-12-8-v_z26964/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-smart-12-8-v_z26964%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/160251_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/160251_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 200,
@@ -3290,7 +3290,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/160253_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/160253_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 20,
@@ -3322,7 +3322,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/160254_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/160254_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 60,
@@ -3354,7 +3354,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/160255_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/160255_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -3386,7 +3386,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/160256_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/160256_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 200,
@@ -3418,7 +3418,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-multiplus-12-v-menic-nabijacka_z26971/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-multiplus-12-v-menic-nabijacka_z26971%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/160261_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/160261_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3451,7 +3451,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-multiplus-12-v-menic-nabijacka_z26971/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-multiplus-12-v-menic-nabijacka_z26971%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/160263_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/160263_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3484,7 +3484,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/victron-energy-multiplus-12-v-menic-nabijacka_z26971/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvictron-energy-multiplus-12-v-menic-nabijacka_z26971%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/160265_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/160265_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3517,7 +3517,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-brennenstuhl-ap18650-3-7-v-2-5-ah_z70557/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-brennenstuhl-ap18650-3-7-v-2-5-ah_z70557%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/177870_102.jpg?1738318451_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/177870_102.jpg?1738318451_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 2.5,
@@ -3548,7 +3548,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/dc-dc-neizolovana-nabijacka-victron-energy-orion-xs-12-12-50-a_z101357/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdc-dc-neizolovana-nabijacka-victron-energy-orion-xs-12-12-50-a_z101357%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/163152_102.jpg?1717083863_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/163152_102.jpg?1717083863_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3583,7 +3583,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/mobilny-ohrievac-pundmann-s-nadrzou-na-naftu-a-bateriou-agm_z101622/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmobilny-ohrievac-pundmann-s-nadrzou-na-naftu-a-bateriou-agm_z101622%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/164492_102.jpg?1719409638_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/164492_102.jpg?1719409638_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 30,
@@ -3614,7 +3614,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/mobilny-ohrievac-pundmann-s-nadrzou-na-naftu-a-bateriou-lifepo_z101623/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmobilny-ohrievac-pundmann-s-nadrzou-na-naftu-a-bateriou-lifepo_z101623%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/164494_102.jpg?1719410771_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/164494_102.jpg?1719410771_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 30,
@@ -3645,7 +3645,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-phaesun-fly-weight_z101755/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-phaesun-fly-weight_z101755%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/165310_102.jpg?1720512371_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/165310_102.jpg?1720512371_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -3674,7 +3674,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-phaesun-fly-weight_z101755/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-phaesun-fly-weight_z101755%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/165311_102.jpg?1720512372_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/165311_102.jpg?1720512372_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -3703,7 +3703,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-mppt-bluetooth-regulator-buttner_z101756/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-mppt-bluetooth-regulator-buttner_z101756%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/183943_102.jpg?1747538682_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/183943_102.jpg?1747538682_1",
       "specs": {
         "voltageV": 8,
         "capacityAh": 60,
@@ -3734,7 +3734,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-mppt-bluetooth-regulator-buttner_z101756/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-mppt-bluetooth-regulator-buttner_z101756%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/183944_102.jpg?1747538683_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/183944_102.jpg?1747538683_1",
       "specs": {
         "voltageV": 8,
         "capacityAh": 60,
@@ -3765,7 +3765,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-gel-90-ah_z101948/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-gel-90-ah_z101948%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/167100_102.jpg?1722509006_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/167100_102.jpg?1722509006_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 90,
@@ -3796,7 +3796,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-hoppecke-105-150-sun-power-vr-m-12-v_z101960/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-hoppecke-105-150-sun-power-vr-m-12-v_z101960%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/178700_102.jpg?1739366470_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/178700_102.jpg?1739366470_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 150,
@@ -3831,7 +3831,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarna-bateria-victron-energy-hoppecke-sun-power-vr-m-6-v_z101961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarna-bateria-victron-energy-hoppecke-sun-power-vr-m-6-v_z101961%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/167346_102.jpg?1722879952_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/167346_102.jpg?1722879952_1",
       "specs": {
         "voltageV": 6,
         "capacityAh": 200,
@@ -3862,7 +3862,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-mppt-victron-energy-bluesolar-100-30_z101984/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-mppt-victron-energy-bluesolar-100-30_z101984%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/167404_102.jpg?1723110413_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/167404_102.jpg?1723110413_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -3893,7 +3893,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-mppt-victron-energy-smartsolar-100-50_z101985/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-mppt-victron-energy-smartsolar-100-50_z101985%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/167410_102.jpg?1723111301_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/167410_102.jpg?1723111301_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -3924,7 +3924,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-baterie-victron-energy-bmv-700_z103627/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-baterie-victron-energy-bmv-700_z103627%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/175676_102.jpg?1733579563_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/175676_102.jpg?1733579563_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": 200,
@@ -3956,7 +3956,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-bmv-702_z103628/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-bmv-702_z103628%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/175677_102.jpg?1733582893_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/175677_102.jpg?1733582893_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": 200,
@@ -3988,7 +3988,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-bmv-712-smart_z103629/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-bmv-712-smart_z103629%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/175678_102.jpg?1733583878_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/175678_102.jpg?1733583878_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": 200,
@@ -4020,7 +4020,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/175681_102.jpg?1733586579_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/175681_102.jpg?1733586579_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 200,
@@ -4052,7 +4052,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/175684_102.jpg?1733586661_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/175684_102.jpg?1733586661_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 200,
@@ -4084,7 +4084,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/175687_102.jpg?1733586743_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/175687_102.jpg?1733586743_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 200,
@@ -4116,7 +4116,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt_z103630%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/175690_102.jpg?1733586828_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/175690_102.jpg?1733586828_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 200,
@@ -4148,7 +4148,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/175702_102.jpg?1733590559_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/175702_102.jpg?1733590559_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 200,
@@ -4180,7 +4180,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/175707_102.jpg?1733590679_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/175707_102.jpg?1733590679_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 200,
@@ -4212,7 +4212,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/175711_102.jpg?1733590808_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/175711_102.jpg?1733590808_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 200,
@@ -4244,7 +4244,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsledovac-stavu-dvoch-baterii-victron-energy-smartshunt-ip65_z103631%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/175715_102.jpg?1733590929_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/175715_102.jpg?1733590929_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 200,
@@ -4276,7 +4276,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180081_102.jpg?1740987730_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180081_102.jpg?1740987730_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4310,7 +4310,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180081_102.jpg?1740987730_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180081_102.jpg?1740987730_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4344,7 +4344,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/180080_102.jpg?1740987682_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/180080_102.jpg?1740987682_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4378,7 +4378,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/180080_102.jpg?1740987682_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/180080_102.jpg?1740987682_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4412,7 +4412,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180079_102.jpg?1740987646_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180079_102.jpg?1740987646_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4446,7 +4446,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180079_102.jpg?1740987646_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180079_102.jpg?1740987646_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4480,7 +4480,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180081_102.jpg?1740987730_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180081_102.jpg?1740987730_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4514,7 +4514,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180081_102.jpg?1740987730_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180081_102.jpg?1740987730_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4548,7 +4548,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/180080_102.jpg?1740987682_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/180080_102.jpg?1740987682_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4582,7 +4582,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/180080_102.jpg?1740987682_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/180080_102.jpg?1740987682_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4616,7 +4616,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180079_102.jpg?1740987646_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180079_102.jpg?1740987646_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4650,7 +4650,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180079_102.jpg?1740987646_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180079_102.jpg?1740987646_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4684,7 +4684,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/180084_102.jpg?1740996469_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/180084_102.jpg?1740996469_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4718,7 +4718,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4752,7 +4752,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4786,7 +4786,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4820,7 +4820,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4854,7 +4854,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4888,7 +4888,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-ts-12-v-alebo-24-v-menic-napatia_z104293%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/180084_102.jpg?1740996469_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/180084_102.jpg?1740996469_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4922,7 +4922,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-its-12-v-alebo-24-v-menic-napatia_z104294/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-its-12-v-alebo-24-v-menic-napatia_z104294%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/180087_102.jpg?1740999092_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/180087_102.jpg?1740999092_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4956,7 +4956,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/dometic-sinepower-dpsi-its-12-v-alebo-24-v-menic-napatia_z104294/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdometic-sinepower-dpsi-its-12-v-alebo-24-v-menic-napatia_z104294%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/180087_102.jpg?1740999092_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/180087_102.jpg?1740999092_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4990,7 +4990,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180089_102.jpg?1741000726_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180089_102.jpg?1741000726_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5024,7 +5024,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180089_102.jpg?1741000726_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180089_102.jpg?1741000726_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5058,7 +5058,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180089_102.jpg?1741000726_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180089_102.jpg?1741000726_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -5092,7 +5092,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-dometic-sinepower-dpsi-rcd-12-v-alebo-24-v_z104295%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180089_102.jpg?1741000726_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180089_102.jpg?1741000726_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -5126,7 +5126,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-dometic-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-dometic-nds-greenpower-gp_z104333%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/180279_102.jpg?1741254997_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180279_102.jpg?1741254997_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 150,
@@ -5157,7 +5157,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-dometic-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-dometic-nds-greenpower-gp_z104333%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/180278_102.jpg?1741254964_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/180278_102.jpg?1741254964_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 210,
@@ -5188,7 +5188,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-dometic-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-dometic-nds-greenpower-gp_z104333%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/180277_102.jpg?1741254929_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/180277_102.jpg?1741254929_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 90,
@@ -5219,7 +5219,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/agm-bateria-dometic-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fagm-bateria-dometic-nds-greenpower-gp_z104333%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/180276_102.jpg?1741254877_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180276_102.jpg?1741254877_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 250,
@@ -5250,7 +5250,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-dometic-buttner-tempra-tlb_z104334/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-dometic-buttner-tempra-tlb_z104334%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180281_102.jpg?1741257059_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180281_102.jpg?1741257059_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 120,
@@ -5282,7 +5282,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-dometic-buttner-tempra-tlbf-s-ohrevom_z104335/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-dometic-buttner-tempra-tlbf-s-ohrevom_z104335%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/180283_102.jpg?1741262849_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/180283_102.jpg?1741262849_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 120,
@@ -5314,7 +5314,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-mt-power-black-line_z104338%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180291_102.jpg?1741272539_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180291_102.jpg?1741272539_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5343,7 +5343,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-mt-power-black-line_z104338%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180291_102.jpg?1741272539_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180291_102.jpg?1741272539_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5372,7 +5372,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-mt-power-black-line_z104338%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180291_102.jpg?1741272539_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180291_102.jpg?1741272539_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5401,7 +5401,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-mt-power-black-line_z104338%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180291_102.jpg?1741272539_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180291_102.jpg?1741272539_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5430,7 +5430,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-solenergy-psm_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-solenergy-psm_z104343%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180311_102.jpg?1741341000_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180311_102.jpg?1741341000_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5459,7 +5459,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-solenergy-psm_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-solenergy-psm_z104343%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180311_102.jpg?1741341000_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180311_102.jpg?1741341000_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5488,7 +5488,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-solenergy-psm_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-solenergy-psm_z104343%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180311_102.jpg?1741341000_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180311_102.jpg?1741341000_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5517,7 +5517,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-solenergy-psm_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-solenergy-psm_z104343%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180311_102.jpg?1741341000_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180311_102.jpg?1741341000_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5546,7 +5546,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-solenergy-psm_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-solenergy-psm_z104343%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/180311_102.jpg?1741341000_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180311_102.jpg?1741341000_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5575,7 +5575,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-solenergy-psm-slim_z104344/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-solenergy-psm-slim_z104344%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/180312_102.jpg?1741342404_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/180312_102.jpg?1741342404_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5604,7 +5604,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-lilie-campere_z104849/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-lilie-campere_z104849%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/182055_102.jpg?1743999483_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/182055_102.jpg?1743999483_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -5633,7 +5633,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-lilie-campere_z104849/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-lilie-campere_z104849%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/182054_102.jpg?1743999481_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/182054_102.jpg?1743999481_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -5662,7 +5662,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-lilie-mppt-seria-lsr_z104850/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-lilie-mppt-seria-lsr_z104850%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/182059_102.jpg?1744001757_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/182059_102.jpg?1744001757_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -5694,7 +5694,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-antarion_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-antarion_z104878%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/182149_102.jpg?1744180166_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/182149_102.jpg?1744180166_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5723,7 +5723,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-antarion_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-antarion_z104878%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/182149_102.jpg?1744180166_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/182149_102.jpg?1744180166_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5752,7 +5752,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-antarion_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-antarion_z104878%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/182149_102.jpg?1744180166_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/182149_102.jpg?1744180166_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5781,7 +5781,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-antarion_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-antarion_z104878%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/182149_102.jpg?1744180166_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/182149_102.jpg?1744180166_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5810,7 +5810,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-smi-votronic_z104885/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-smi-votronic_z104885%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/182181_102.jpg?1744260671_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/182181_102.jpg?1744260671_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5839,7 +5839,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-smi-votronic_z104885/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-smi-votronic_z104885%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/182180_102.jpg?1744260669_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/182180_102.jpg?1744260669_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5868,7 +5868,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-smi-votronic_z104885/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-smi-votronic_z104885%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/182182_102.jpg?1744260672_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/182182_102.jpg?1744260672_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5897,7 +5897,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/pridavna-bateria-pre-nabijaciu-stanicu-ecoflow-river-3-plus_z105296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fpridavna-bateria-pre-nabijaciu-stanicu-ecoflow-river-3-plus_z105296%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/184720_102.jpg?1748879839_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/184720_102.jpg?1748879839_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 12.8,
@@ -5928,7 +5928,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/pridavna-bateria-pre-nabijaciu-stanicu-ecoflow-river-3-plus_z105296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fpridavna-bateria-pre-nabijaciu-stanicu-ecoflow-river-3-plus_z105296%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/184726_102.jpg?1748880091_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/184726_102.jpg?1748880091_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 12.8,
@@ -5959,7 +5959,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-ecoflow-175-w_z105298/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-ecoflow-175-w_z105298%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/184800_102.jpg?1748943827_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/184800_102.jpg?1748943827_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -5988,7 +5988,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/ohybny-solarny-panel-ecoflow-100-w_z105299/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fohybny-solarny-panel-ecoflow-100-w_z105299%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/184828_102.jpg?1748952823_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/184828_102.jpg?1748952823_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -6019,7 +6019,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-ecoflow-45-w_z105300/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-ecoflow-45-w_z105300%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/184849_102.jpg?1748958338_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/184849_102.jpg?1748958338_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -6048,42 +6048,13 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/pridavna-bateria-pre-klimatizaciu-ecoflow-wave-3_z105305/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fpridavna-bateria-pre-klimatizaciu-ecoflow-wave-3_z105305%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/185015_102.jpg?1749055453_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/185015_102.jpg?1749055453_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 20,
         "capacityWh": 1024,
         "powerW": 400,
         "currentA": 13,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:105445",
-      "merchant": "padabo_sk",
-      "name": "Ohybný solárny panel Carbest Flex 135 W",
-      "description": "Flexibilný fotovoltaický panel s vysokým výkonom Solárny panel Carbest Flex s výkonom 135 W s ohybnou konštrukciou umožňuje prispôsobenie podkladu, na ktorý ho inštalujete. Vysokokvalitný povrch fólie ETFE umožňuje modulu výrazne lepší výkon za súmraku a v oblačnom počasí. Výkon je výrazne vyšší ako u porovnateľných panelov, najmä pri vysokých teplotách, čo znamená maximálnu účinnosť bez straty výkonu. Panel je vybavený 6 m káblom. Kľúčové vlastnosti ohybného solárneho panelu Carbest Flex 135 W:",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Solárne panely a príslušenstvo | Fotovoltaické panely",
-      "category": "solar_panel",
-      "brand": "Carbest",
-      "priceCzk": 362.17,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/ohybny-solarny-panel-carbest-flex-135-w_z105445/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fohybny-solarny-panel-carbest-flex-135-w_z105445%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/185502_102.jpg?1750242420_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 135,
-        "currentA": null,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -6106,7 +6077,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-carbest-cb-190-full-black-190-w_z105448/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-carbest-cb-190-full-black-190-w_z105448%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/185509_102.jpg?1750246744_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/185509_102.jpg?1750246744_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -6135,7 +6106,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-carbest-mppt-dualcontroller-12-24-v-30-a_z105450/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-carbest-mppt-dualcontroller-12-24-v-30-a_z105450%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/185514_102.jpg?1750251196_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/185514_102.jpg?1750251196_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -6171,7 +6142,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-lifepo4-leuchtwert_z105599/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-lifepo4-leuchtwert_z105599%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/186194_102.jpg?1752750398_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/186194_102.jpg?1752750398_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 230,
@@ -6202,7 +6173,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-s-trackerom-hepa-solar-sunseeker_z105883/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-s-trackerom-hepa-solar-sunseeker_z105883%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/177905_102.jpg?1738408500_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/177905_102.jpg?1738408500_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -6231,7 +6202,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-s-trackerom-hepa-solar-sunseeker_z105883/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-s-trackerom-hepa-solar-sunseeker_z105883%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/177905_102.jpg?1738408500_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/177905_102.jpg?1738408500_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -6260,7 +6231,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-buttner-dometic-mt-sm-120-tl_z106253/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-buttner-dometic-mt-sm-120-tl_z106253%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/187751_102.jpg?1758205489_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/187751_102.jpg?1758205489_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -6291,7 +6262,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-mppt-carbest-12-24-v_z106258/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-mppt-carbest-12-24-v_z106258%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/187763_102.jpg?1758263649_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/187763_102.jpg?1758263649_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -6327,7 +6298,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-renogy-12-v_z106296%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/187879_102.jpg?1759325853_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -6360,7 +6331,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-napatia-renogy-12-v_z106296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-napatia-renogy-12-v_z106296%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/187879_102.jpg?1759325853_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -6393,7 +6364,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/nabijacka-baterii-renogy-dc-dc-12v-60a_z106299/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-baterii-renogy-dc-dc-12v-60a_z106299%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/187901_102.jpg?1759387751_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/187901_102.jpg?1759387751_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -6428,7 +6399,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/nabijacka-renogy-dc-dc-12v-40-a_z107308/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-renogy-dc-dc-12v-40-a_z107308%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/190963_102.jpg?1772370977_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/190963_102.jpg?1772370977_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -6463,7 +6434,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-renogy-shadowflux_z107312/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-renogy-shadowflux_z107312%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/190976_102.jpg?1772443593_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/190976_102.jpg?1772443593_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -6492,7 +6463,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo4-12-8v-300ah-ng_z107353/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo4-12-8v-300ah-ng_z107353%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/191104_102.jpg?1772719234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/191104_102.jpg?1772719234_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 300,
@@ -6523,7 +6494,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-12-8v-ng_z107356/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-lithium-superpack-12-8v-ng_z107356%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/191111_102.jpg?1772790227_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/191111_102.jpg?1772790227_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -6555,7 +6526,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-25-6v-100ah-ng_z107358/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fbateria-victron-energy-lifepo-lithium-superpack-25-6v-100ah-ng_z107358%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/191118_102.jpg?1772808346_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/191118_102.jpg?1772808346_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": 100,
@@ -6587,7 +6558,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-12-24-10a-240-w-dc-dc_z107361/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-12-24-10a-240-w-dc-dc_z107361%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/191123_102.jpg?1772883027_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/191123_102.jpg?1772883027_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -6622,7 +6593,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-12-48-8a-380-w-dc-dc_z107362/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-12-48-8a-380-w-dc-dc_z107362%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/191128_102.jpg?1772885953_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/191128_102.jpg?1772885953_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -6657,7 +6628,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-24-24-12a-280-w-dc-dc_z107371/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-24-24-12a-280-w-dc-dc_z107371%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/191149_102.jpg?1772981004_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/191149_102.jpg?1772981004_1",
       "specs": {
         "voltageV": 36,
         "capacityAh": null,
@@ -6692,7 +6663,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-24-48-8-5a-400-w-dc-dc_z107372/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-24-48-8-5a-400-w-dc-dc_z107372%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/191158_102.jpg?1773041843_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/191158_102.jpg?1773041843_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -6727,7 +6698,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-48-12-20a-240-w-dc-dc_z107373/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-48-12-20a-240-w-dc-dc_z107373%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/191160_102.jpg?1773042753_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/191160_102.jpg?1773042753_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -6762,7 +6733,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-48-12-30a-360-w-dc-dc_z107374/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-48-12-30a-360-w-dc-dc_z107374%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/191163_102.jpg?1773043881_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/191163_102.jpg?1773043881_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -6797,7 +6768,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-48-24-16a-380-w-dc-dc_z107375/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-48-24-16a-380-w-dc-dc_z107375%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/191166_102.jpg?1773044734_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/191166_102.jpg?1773044734_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -6832,7 +6803,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/izolovana-nabijacka-victron-energy-orion-tr-smart-48-48-8a-380-w-dc-dc_z107376/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fizolovana-nabijacka-victron-energy-orion-tr-smart-48-48-8a-380-w-dc-dc_z107376%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/191169_102.jpg?1773045746_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/191169_102.jpg?1773045746_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -6867,7 +6838,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-a-nabijacka-victron-energy-multiplus-ii-48-4k5-55-32-gx_z107382/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-a-nabijacka-victron-energy-multiplus-ii-48-4k5-55-32-gx_z107382%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/191182_102.jpg?1773130698_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/191182_102.jpg?1773130698_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -6898,7 +6869,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-a-nabijacka-victron-energy-multiplus-ii-48-6k5-100-50_z107384/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-a-nabijacka-victron-energy-multiplus-ii-48-6k5-100-50_z107384%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/5/191185_102.jpg?1773132143_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/191185_102.jpg?1773132143_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -6930,7 +6901,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/menic-a-nabijacka-victron-energy-multiplus-ii-48-6k5-100-50-gx_z107385/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fmenic-a-nabijacka-victron-energy-multiplus-ii-48-6k5-100-50-gx_z107385%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/191187_102.jpg?1773133388_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/191187_102.jpg?1773133388_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -6961,7 +6932,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-victron-energy-12-v-mono_z107393/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-victron-energy-12-v-mono_z107393%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/191226_102.jpg?1773236195_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/191226_102.jpg?1773236195_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -6994,7 +6965,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-victron-energy-12-v-mono_z107393/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-victron-energy-12-v-mono_z107393%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/191226_102.jpg?1773236195_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/191226_102.jpg?1773236195_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -7027,7 +6998,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-buttner-dometic-tempra-tlb100s-l3-100-ah_z107517/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-buttner-dometic-tempra-tlb100s-l3-100-ah_z107517%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/191708_102.jpg?1774286380_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/191708_102.jpg?1774286380_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -7059,7 +7030,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-buttner-dometic-tempra-tlb100sf-l3-100-ah_z107518/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-buttner-dometic-tempra-tlb100sf-l3-100-ah_z107518%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/191709_102.jpg?1774290779_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/191709_102.jpg?1774290779_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -7091,7 +7062,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/startovacia-litiova-bateria-bulltron_z107522/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fstartovacia-litiova-bateria-bulltron_z107522%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/191723_102.jpg?1774301015_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/191723_102.jpg?1774301015_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 55,
@@ -7123,7 +7094,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-votronic-mppt_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-votronic-mppt_z107532%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/191810_102.jpg?1774371842_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/191810_102.jpg?1774371842_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -7152,7 +7123,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-votronic-mppt_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-votronic-mppt_z107532%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/191811_102.jpg?1774371843_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/191811_102.jpg?1774371843_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -7181,7 +7152,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-votronic-mppt_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-votronic-mppt_z107532%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/191812_102.jpg?1774371844_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/191812_102.jpg?1774371844_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -7210,7 +7181,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-regulator-nabijania-votronic-mppt_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-regulator-nabijania-votronic-mppt_z107532%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/191813_102.jpg?1774371845_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/191813_102.jpg?1774371845_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -7239,7 +7210,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-pod-sedadlo-bulltron-polar_z107543/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-pod-sedadlo-bulltron-polar_z107543%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/191721_102.jpg?1774298722_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/191721_102.jpg?1774298722_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 350,
@@ -7270,7 +7241,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-bulltron-pre-clesana-c1_z107544/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-bulltron-pre-clesana-c1_z107544%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/191844_102.jpg?1774458249_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/191844_102.jpg?1774458249_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 6,
@@ -7301,7 +7272,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-caratec-ceb_z107546/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-caratec-ceb_z107546%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/191853_102.jpg?1774474741_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/191853_102.jpg?1774474741_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 280,
@@ -7333,7 +7304,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-caratec-ceb_z107546/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-caratec-ceb_z107546%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/191856_102.jpg?1774474743_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/191856_102.jpg?1774474743_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 105,
@@ -7365,7 +7336,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sodikova-bateria-ective-mover-nac-120-bt-120-ah_z107547/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsodikova-bateria-ective-mover-nac-120-bt-120-ah_z107547%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/7/191857_102.jpg?1774478024_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/191857_102.jpg?1774478024_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 120,
@@ -7394,7 +7365,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-bulltron-pre-clesana-c1-vratane-spravy-napajania_z107554/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-bulltron-pre-clesana-c1-vratane-spravy-napajania_z107554%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/191871_102.jpg?1774529522_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/191871_102.jpg?1774529522_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 6,
@@ -7425,7 +7396,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/skladaci-solarny-panel-ecoflow-110-w-2-generacie_z107831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fskladaci-solarny-panel-ecoflow-110-w-2-generacie_z107831%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/8/192918_102.jpg?1777033573_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/192918_102.jpg?1777033573_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -7454,7 +7425,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-ective-x-clesana-lc4cs-4-ah_z108152/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-ective-x-clesana-lc4cs-4-ah_z108152%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/193720_102.jpg?1779637453_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/193720_102.jpg?1779637453_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 4,
@@ -7485,7 +7456,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/pridavna-bateria-pre-kompresorove-chladnicky-mestic-mccm-mcc_z108321/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fpridavna-bateria-pre-kompresorove-chladnicky-mestic-mccm-mcc_z108321%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/194300_102.jpg?1780743352_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/194300_102.jpg?1780743352_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 18,
@@ -7514,7 +7485,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/195952_102.jpg?1783252189_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/195952_102.jpg?1783252189_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -7543,7 +7514,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/9/195959_102.jpg?1783252344_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/195959_102.jpg?1783252344_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -7572,7 +7543,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/litiova-bateria-mestic-mlb-300-smart_z108759/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-mestic-mlb-300-smart_z108759%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/0/196030_102.jpg?1783578776_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/196030_102.jpg?1783578776_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 300,
@@ -7603,7 +7574,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/trakcna-agm-bateria-mestic-mab-170_z108760/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Ftrakcna-agm-bateria-mestic-mab-170_z108760%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/3/196033_102.jpg?1783579826_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/196033_102.jpg?1783579826_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 170,
@@ -7634,7 +7605,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/trakcna-agm-bateria-mestic-mab-170_z108761/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Ftrakcna-agm-bateria-mestic-mab-170_z108761%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/4/196034_102.jpg?1783580615_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/196034_102.jpg?1783580615_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 85,
@@ -7665,7 +7636,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/sinusovy-menic-victron-energy-12-v-1600-va-ve-direct_z109017/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-victron-energy-12-v-1600-va-ve-direct_z109017%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/2/196512_102.jpg?1785318880_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/196512_102.jpg?1785318880_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -7698,7 +7669,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/solarny-panel-victron-energy-bluesolar-190-wp-mono-12-v_z109069/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-victron-energy-bluesolar-190-wp-mono-12-v_z109069%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/1/196671_102.jpg?1785940567_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/196671_102.jpg?1785940567_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -7731,7 +7702,7 @@
       "available": true,
       "productUrl": "https://www.padabo.sk/vyhrievana-bateria-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fvyhrievana-bateria-renogy-pro-12-8-v-200-ah-smart-lifepo4_z109090%2F",
-      "imageUrl": "https://www.padabo.sk/data/tmp/102/6/196766_102.jpg?1786433504_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/196766_102.jpg?1786433504_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 200,
@@ -9350,42 +9321,6 @@
         ],
         "chargingInputVoltagesV": [
           24
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "verifiedAt": "2026-08-29"
-    },
-    {
-      "id": "powerqueen_eu:7752846115036",
-      "merchant": "powerqueen_eu",
-      "name": "Power Queen 14.6V 20A LiFePO4 battery charger for 12V LiFePO4 battery",
-      "description": "Power Queen AC to DC charger for 12.8 V LiFePO4 batteries; 14.6 V charging output at 20 A and 100-240 V AC input.",
-      "categoryPath": "Nabíječky",
-      "category": "shore_charger",
-      "brand": "PQ-DE",
-      "priceCzk": 85.99,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PowerQueen14_6V20ALiFePO4Ladegeratfur12VLiFePO4-Batterie.webp?v=1785835445",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 20,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
         ],
         "chargingBatteryTypes": [
           "lifepo4"

@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-13T13:11:56.559Z",
+  "generatedAt": "2026-11-14T10:35:43.933Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12511,
-      "relevantProducts": 162
+      "parsedProducts": 12516,
+      "relevantProducts": 161
     },
     "ampul_hu": {
       "status": "ok",
-      "parsedProducts": 7720,
+      "parsedProducts": 7731,
       "relevantProducts": 13
     },
     "allpowers_eu": {
@@ -22,11 +22,11 @@
     "powerqueen_eu": {
       "status": "ok",
       "parsedProducts": 63,
-      "relevantProducts": 24,
+      "relevantProducts": 23,
       "batteries": 18,
       "controllers": 1,
       "inverters": 1,
-      "shoreChargers": 4
+      "shoreChargers": 3
     },
     "oxe_hu": {
       "status": "ok",
@@ -55,7 +55,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/exide-dual-agm-akkumulator_z16597/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fexide-dual-agm-akkumulator_z16597%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/154566_102.jpg?1704380087_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/154566_102.jpg?1704380087_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 240,
@@ -86,7 +86,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/perfectcharge-12-v-os-akkumulatortolto_z24087/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fperfectcharge-12-v-os-akkumulatortolto_z24087%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/158411_102.jpg?1704380222_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/158411_102.jpg?1704380222_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -122,7 +122,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/perfectcharge-12-v-os-akkumulatortolto_z24087/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fperfectcharge-12-v-os-akkumulatortolto_z24087%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/158413_102.jpg?1704380222_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/158413_102.jpg?1704380222_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -158,7 +158,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/pundmann-mobil-futoberendezes-dizeltartallyal-es-agm-akkumulatorral_z101622/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fpundmann-mobil-futoberendezes-dizeltartallyal-es-agm-akkumulatorral_z101622%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/164492_102.jpg?1719409638_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/164492_102.jpg?1719409638_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 30,
@@ -189,7 +189,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/mppt-napelemes-vezerlo-victron-energy-smartsolar-100-50_z101985/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmppt-napelemes-vezerlo-victron-energy-smartsolar-100-50_z101985%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/167410_102.jpg?1723111301_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/167410_102.jpg?1723111301_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -218,7 +218,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180081_102.jpg?1740987730_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180081_102.jpg?1740987730_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -252,7 +252,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180081_102.jpg?1740987730_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180081_102.jpg?1740987730_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -286,7 +286,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/180080_102.jpg?1740987682_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/180080_102.jpg?1740987682_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -320,7 +320,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180079_102.jpg?1740987646_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180079_102.jpg?1740987646_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -354,7 +354,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180081_102.jpg?1740987730_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180081_102.jpg?1740987730_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -388,7 +388,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180081_102.jpg?1740987730_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180081_102.jpg?1740987730_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -422,7 +422,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/180080_102.jpg?1740987682_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/180080_102.jpg?1740987682_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -456,7 +456,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/180080_102.jpg?1740987682_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/180080_102.jpg?1740987682_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -490,7 +490,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180079_102.jpg?1740987646_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180079_102.jpg?1740987646_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -524,7 +524,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180079_102.jpg?1740987646_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180079_102.jpg?1740987646_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -558,7 +558,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -592,7 +592,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -626,7 +626,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -660,7 +660,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-its-12-v-vagy-24-v-os-feszultsegatalakito_z104294/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-its-12-v-vagy-24-v-os-feszultsegatalakito_z104294%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/180087_102.jpg?1740999092_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/180087_102.jpg?1740999092_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -694,7 +694,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-its-12-v-vagy-24-v-os-feszultsegatalakito_z104294/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-its-12-v-vagy-24-v-os-feszultsegatalakito_z104294%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/180087_102.jpg?1740999092_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/180087_102.jpg?1740999092_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -728,7 +728,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/feszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Ffeszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180089_102.jpg?1741000726_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180089_102.jpg?1741000726_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -762,7 +762,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/feszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Ffeszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180089_102.jpg?1741000726_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180089_102.jpg?1741000726_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -796,7 +796,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/feszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Ffeszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180089_102.jpg?1741000726_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180089_102.jpg?1741000726_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -830,7 +830,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/feszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Ffeszultseg-atalakito-dometic-sinepower-dpsi-rcd-12-v-vagy-24-v_z104295%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180089_102.jpg?1741000726_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180089_102.jpg?1741000726_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -864,7 +864,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180279_102.jpg?1741254997_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180279_102.jpg?1741254997_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 150,
@@ -895,7 +895,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/180277_102.jpg?1741254929_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/180277_102.jpg?1741254929_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 90,
@@ -926,7 +926,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180276_102.jpg?1741254877_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180276_102.jpg?1741254877_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 250,
@@ -957,7 +957,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180291_102.jpg?1741272539_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180291_102.jpg?1741272539_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -986,7 +986,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180291_102.jpg?1741272539_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180291_102.jpg?1741272539_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1015,7 +1015,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180291_102.jpg?1741272539_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180291_102.jpg?1741272539_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1044,7 +1044,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-solenergy-psm-napkollektor_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-solenergy-psm-napkollektor_z104343%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180311_102.jpg?1741341000_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180311_102.jpg?1741341000_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1073,7 +1073,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-solenergy-psm-napkollektor_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-solenergy-psm-napkollektor_z104343%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180311_102.jpg?1741341000_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180311_102.jpg?1741341000_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1102,7 +1102,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-solenergy-psm-napkollektor_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-solenergy-psm-napkollektor_z104343%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180311_102.jpg?1741341000_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180311_102.jpg?1741341000_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1131,7 +1131,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-solenergy-psm-napkollektor_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-solenergy-psm-napkollektor_z104343%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180311_102.jpg?1741341000_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180311_102.jpg?1741341000_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1160,7 +1160,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-solenergy-psm-napkollektor_z104343/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-solenergy-psm-napkollektor_z104343%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180311_102.jpg?1741341000_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180311_102.jpg?1741341000_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1189,7 +1189,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-solenergy-psm-slim-napelem-dometic-buttner-solenergy-psm-slim_z104344/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-solenergy-psm-slim-napelem-dometic-buttner-solenergy-psm-slim_z104344%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/180312_102.jpg?1741342404_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/180312_102.jpg?1741342404_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1218,7 +1218,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/lilie-campere-napelem_z104849/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flilie-campere-napelem_z104849%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/5/182055_102.jpg?1743999483_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/182055_102.jpg?1743999483_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -1247,7 +1247,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/lilie-campere-napelem_z104849/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flilie-campere-napelem_z104849%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/182054_102.jpg?1743999481_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/182054_102.jpg?1743999481_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -1276,7 +1276,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/napelemes-toltesvezerlo-lilie-mppt-lsr-termekcsalad_z104850/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelemes-toltesvezerlo-lilie-mppt-lsr-termekcsalad_z104850%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/182059_102.jpg?1744001757_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/182059_102.jpg?1744001757_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -1308,7 +1308,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/antarion-szinuszos-feszultsegatalakito_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fantarion-szinuszos-feszultsegatalakito_z104878%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/182149_102.jpg?1744180166_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/182149_102.jpg?1744180166_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1337,7 +1337,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/antarion-szinuszos-feszultsegatalakito_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fantarion-szinuszos-feszultsegatalakito_z104878%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/182149_102.jpg?1744180166_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/182149_102.jpg?1744180166_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1366,7 +1366,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/antarion-szinuszos-feszultsegatalakito_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fantarion-szinuszos-feszultsegatalakito_z104878%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/182149_102.jpg?1744180166_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/182149_102.jpg?1744180166_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1395,7 +1395,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/antarion-szinuszos-feszultsegatalakito_z104878/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fantarion-szinuszos-feszultsegatalakito_z104878%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/182149_102.jpg?1744180166_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/182149_102.jpg?1744180166_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1424,7 +1424,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/smi-votronic-szinuszos-feszultsegatalakito_z104885/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fsmi-votronic-szinuszos-feszultsegatalakito_z104885%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/182181_102.jpg?1744260671_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/182181_102.jpg?1744260671_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1453,7 +1453,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/smi-votronic-szinuszos-feszultsegatalakito_z104885/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fsmi-votronic-szinuszos-feszultsegatalakito_z104885%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/182180_102.jpg?1744260669_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/182180_102.jpg?1744260669_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1482,7 +1482,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/napelem-ecoflow-175-w_z105298/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-ecoflow-175-w_z105298%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/184800_102.jpg?1748943827_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/184800_102.jpg?1748943827_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -1511,7 +1511,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/ecoflow-100-w-os-napelem_z105299/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fecoflow-100-w-os-napelem_z105299%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/184828_102.jpg?1748952823_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/184828_102.jpg?1748952823_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -1540,42 +1540,13 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/ecoflow-45-w-os-osszecsukhato-napelem_z105300/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fecoflow-45-w-os-osszecsukhato-napelem_z105300%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/184849_102.jpg?1748958338_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/184849_102.jpg?1748958338_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 45,
         "currentA": 2.06,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:105445",
-      "merchant": "padabo_hu",
-      "name": "Carbest Flex 135 W hajlítható napelem",
-      "description": "Rugalmas fotovoltaikus panel nagy teljesítménnyel A 135 W-osCarbest Flex napelem rugalmas kialakítású, 135 W-osCarbest Flex napelem lehetővé teszi az aljzat beállítását, amelyre telepíti. A kiváló minőségű ETFE-fólia felületének köszönhetően a modul alkonyatban és felhős időben is jelentősen jobban teljesít. A teljesítmény jelentősen magasabb, mint a hasonló paneleké, különösen magas hőmérsékleten, ami maximális hatékonyságot jelent teljesítményveszteség nélkül. A panel 6 méteres kábellel van fe",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
-      "category": "solar_panel",
-      "brand": "Carbest",
-      "priceCzk": 152700,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/carbest-flex-135-w-hajlithato-napelem_z105445/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-flex-135-w-hajlithato-napelem_z105445%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/185502_102.jpg?1750242420_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 135,
-        "currentA": null,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -1598,7 +1569,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-cb-190-full-black-190-w-napelem_z105448/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-cb-190-full-black-190-w-napelem_z105448%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/185509_102.jpg?1750246744_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/185509_102.jpg?1750246744_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -1627,7 +1598,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-mppt-dualcontroller-12-24-v-30-a-napelemes-szabalyozo_z105450/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-mppt-dualcontroller-12-24-v-30-a-napelemes-szabalyozo_z105450%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/185514_102.jpg?1750251196_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/185514_102.jpg?1750251196_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -1663,7 +1634,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/smi-votronic-szinuszos-feszultsegatalakito_z104885/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fsmi-votronic-szinuszos-feszultsegatalakito_z104885%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/182182_102.jpg?1744260672_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/182182_102.jpg?1744260672_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1692,7 +1663,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/renogy-dc-dc-akkumulatortolto-12v-60a_z106299/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-dc-dc-akkumulatortolto-12v-60a_z106299%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/187901_102.jpg?1759387751_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/187901_102.jpg?1759387751_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1728,7 +1699,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/180084_102.jpg?1740996469_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/180084_102.jpg?1740996469_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1762,7 +1733,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/180084_102.jpg?1740996469_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/180084_102.jpg?1740996469_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1796,7 +1767,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/hepa-solar-sunseeker-napelem-nyomkovetovel_z105883/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fhepa-solar-sunseeker-napelem-nyomkovetovel_z105883%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/5/177905_102.jpg?1738408500_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/177905_102.jpg?1738408500_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1825,7 +1796,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/hepa-solar-sunseeker-napelem-nyomkovetovel_z105883/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fhepa-solar-sunseeker-napelem-nyomkovetovel_z105883%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/5/177905_102.jpg?1738408500_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/177905_102.jpg?1738408500_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -1854,7 +1825,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/mppt-carbest-napelemes-toltesvezerlo-12-24-v_z106258/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmppt-carbest-napelemes-toltesvezerlo-12-24-v_z106258%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/187763_102.jpg?1758263649_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/187763_102.jpg?1758263649_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -1890,7 +1861,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-szinuszos-feszultsegatalakito_z19284/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-szinuszos-feszultsegatalakito_z19284%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/183580_102.jpg?1746376154_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/183580_102.jpg?1746376154_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -1923,7 +1894,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-ps-szinuszos-feszultsegatalakito_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-ps-szinuszos-feszultsegatalakito_z25872%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/183406_102.jpg?1746259641_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.6,
@@ -1952,7 +1923,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-ps-szinuszos-feszultsegatalakito_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-ps-szinuszos-feszultsegatalakito_z25872%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/183406_102.jpg?1746259641_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.6,
@@ -1981,7 +1952,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-ps-szinuszos-feszultsegatalakito_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-ps-szinuszos-feszultsegatalakito_z25872%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/183406_102.jpg?1746259641_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.6,
@@ -2010,7 +1981,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/183588_102.jpg?1746377752_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/183588_102.jpg?1746377752_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -2043,45 +2014,12 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/183588_102.jpg?1746377752_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/183588_102.jpg?1746377752_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 3200,
-        "currentA": null,
-        "chargingVoltagesV": [
-          24
-        ],
-        "chargingInputVoltagesV": [
-          24
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:19287_21292",
-      "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
-      "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
-      "category": "inverter",
-      "brand": "Dometic",
-      "priceCzk": 763040,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/183588_102.jpg?1746377752_1",
-      "specs": {
-        "voltageV": 24,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 4000,
         "currentA": null,
         "chargingVoltagesV": [
           24
@@ -2109,7 +2047,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/kabelkeszlet-a-dometic-sinepower-dsp-szinuszos-feszultsegatalakitokhoz_z19296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fkabelkeszlet-a-dometic-sinepower-dsp-szinuszos-feszultsegatalakitokhoz_z19296%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/143034_102.jpg?1704378458_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/143034_102.jpg?1704378458_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -2138,7 +2076,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/kabelkeszlet-a-dometic-sinepower-dsp-szinuszos-feszultsegatalakitokhoz_z19296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fkabelkeszlet-a-dometic-sinepower-dsp-szinuszos-feszultsegatalakitokhoz_z19296%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/143034_102.jpg?1704378458_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/143034_102.jpg?1704378458_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -2167,7 +2105,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/180291_102.jpg?1741272539_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180291_102.jpg?1741272539_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2196,7 +2134,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/exide-dual-agm-akkumulator_z16597/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fexide-dual-agm-akkumulator_z16597%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/156009_102.jpg?1704380136_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/156009_102.jpg?1704380136_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 92,
@@ -2227,7 +2165,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/180080_102.jpg?1740987682_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/180080_102.jpg?1740987682_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2261,7 +2199,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2295,7 +2233,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-ts-12-v-vagy-24-v-os-feszultsegatalakito_z104293%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/180086_102.jpg?1740996813_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/180086_102.jpg?1740996813_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2329,7 +2267,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/dometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dpsi-12-v-vagy-24-v-os-feszultsegatalakito_z104292%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/180079_102.jpg?1740987646_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/180079_102.jpg?1740987646_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2363,7 +2301,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-multiplus-12-v-inverter-tolto_z26971/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-multiplus-12-v-inverter-tolto_z26971%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/5/160265_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/160265_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2396,7 +2334,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/mppt-napelemes-vezerlo-victron-energy-bluesolar-100-30_z101984/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmppt-napelemes-vezerlo-victron-energy-bluesolar-100-30_z101984%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/167404_102.jpg?1723110413_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/167404_102.jpg?1723110413_1",
       "specs": {
         "voltageV": 6,
         "capacityAh": null,
@@ -2425,7 +2363,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-lifepo4-12-8v-300ah-ng-akkumulator_z107353/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-lifepo4-12-8v-300ah-ng-akkumulator_z107353%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/191104_102.jpg?1772719234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/191104_102.jpg?1772719234_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 300,
@@ -2456,7 +2394,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-lifepo-lithium-superpack-25-6v-100ah-ng-akkumulator_z107358/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-lifepo-lithium-superpack-25-6v-100ah-ng-akkumulator_z107358%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/191118_102.jpg?1772808346_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/191118_102.jpg?1772808346_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": 100,
@@ -2488,7 +2426,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-multiplus-ii-48-4k5-55-32-gx-inverter-es-tolto_z107382/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-multiplus-ii-48-4k5-55-32-gx-inverter-es-tolto_z107382%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/191182_102.jpg?1773130698_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/191182_102.jpg?1773130698_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -2520,7 +2458,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-multiplus-ii-48-6k5-100-50-inverter-es-tolto_z107384/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-multiplus-ii-48-6k5-100-50-inverter-es-tolto_z107384%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/5/191185_102.jpg?1773132143_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/191185_102.jpg?1773132143_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -2552,7 +2490,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-multiplus-ii-48-6k5-100-50-gx-inverter-es-tolto_z107385/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-multiplus-ii-48-6k5-100-50-gx-inverter-es-tolto_z107385%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/191187_102.jpg?1773133388_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/191187_102.jpg?1773133388_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -2584,7 +2522,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-lifepo-lithium-superpack-12-8-v-ng-akkumulator_z107356/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-lifepo-lithium-superpack-12-8-v-ng-akkumulator_z107356%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/191111_102.jpg?1772790227_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/191111_102.jpg?1772790227_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -2616,7 +2554,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-12-v-mono-napelem_z107393/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-12-v-mono-napelem_z107393%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/191226_102.jpg?1773236195_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/191226_102.jpg?1773236195_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2649,7 +2587,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-12-v-mono-napelem_z107393/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-12-v-mono-napelem_z107393%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/191226_102.jpg?1773236195_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/191226_102.jpg?1773236195_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2682,7 +2620,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/mestic-power-station-mps-1800_z103559/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmestic-power-station-mps-1800_z103559%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/175253_102.jpg?1732972504_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/175253_102.jpg?1732972504_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -2713,7 +2651,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/votronic-mppt-napelemes-toltesvezerlo_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvotronic-mppt-napelemes-toltesvezerlo_z107532%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/191810_102.jpg?1774371842_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/191810_102.jpg?1774371842_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2742,7 +2680,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/votronic-mppt-napelemes-toltesvezerlo_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvotronic-mppt-napelemes-toltesvezerlo_z107532%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/191811_102.jpg?1774371843_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/191811_102.jpg?1774371843_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2771,7 +2709,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/votronic-mppt-napelemes-toltesvezerlo_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvotronic-mppt-napelemes-toltesvezerlo_z107532%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/191812_102.jpg?1774371844_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/191812_102.jpg?1774371844_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2800,7 +2738,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/votronic-mppt-napelemes-toltesvezerlo_z107532/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvotronic-mppt-napelemes-toltesvezerlo_z107532%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/191813_102.jpg?1774371845_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/191813_102.jpg?1774371845_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2829,7 +2767,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/agm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fagm-akkumulator-dometic-nds-greenpower-gp-nds-greenpower-gp_z104333%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/180278_102.jpg?1741254964_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/180278_102.jpg?1741254964_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 210,
@@ -2860,7 +2798,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-ps-szinuszos-feszultsegatalakito_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-ps-szinuszos-feszultsegatalakito_z25872%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/183406_102.jpg?1746259641_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.6,
@@ -2889,7 +2827,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-ps-szinuszos-feszultsegatalakito_z25872/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-ps-szinuszos-feszultsegatalakito_z25872%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/183406_102.jpg?1746259641_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/183406_102.jpg?1746259641_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 0.6,
@@ -2918,7 +2856,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/lithiova-baterie-ective-x-clesana-lc4cs-4-ah_z108152/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flithiova-baterie-ective-x-clesana-lc4cs-4-ah_z108152%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/193720_102.jpg?1779637453_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/193720_102.jpg?1779637453_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 4,
@@ -2949,7 +2887,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/renogy-12-v-os-feszultsegatalakito_z106296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-12-v-os-feszultsegatalakito_z106296%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/187879_102.jpg?1759325853_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -2982,7 +2920,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/renogy-12-v-os-feszultsegatalakito_z106296/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-12-v-os-feszultsegatalakito_z106296%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/187879_102.jpg?1759325853_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/187879_102.jpg?1759325853_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3015,7 +2953,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/renogy-shadowflux-napelem_z107312/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-shadowflux-napelem_z107312%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/190976_102.jpg?1772443593_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/190976_102.jpg?1772443593_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -3044,7 +2982,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/lifepo4-leuchtwert-litium-akkumulator_z105599/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flifepo4-leuchtwert-litium-akkumulator_z105599%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/186194_102.jpg?1752750398_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/186194_102.jpg?1752750398_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 230,
@@ -3075,7 +3013,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/mestic-mab-170-agm-vontatoakkumulator_z108760/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmestic-mab-170-agm-vontatoakkumulator_z108760%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/196033_102.jpg?1783579826_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/196033_102.jpg?1783579826_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 170,
@@ -3106,7 +3044,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/mestic-mab-85-agm-vontatoakkumulator_z108761/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fmestic-mab-85-agm-vontatoakkumulator_z108761%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/196034_102.jpg?1783580615_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/196034_102.jpg?1783580615_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 85,
@@ -3137,7 +3075,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/195952_102.jpg?1783252189_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/195952_102.jpg?1783252189_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3166,7 +3104,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/195959_102.jpg?1783252344_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/195959_102.jpg?1783252344_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3195,7 +3133,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-caravan-pwm-190-wp-napelem-rendszer_z108875/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-caravan-pwm-190-wp-napelem-rendszer_z108875%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/196212_102.jpg?1784281803_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/196212_102.jpg?1784281803_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3226,7 +3164,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/tiszta-szinuszos-inverter-victron-energy-12-v-1600-va-ve-direct_z109017/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Ftiszta-szinuszos-inverter-victron-energy-12-v-1600-va-ve-direct_z109017%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/196512_102.jpg?1785318880_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/196512_102.jpg?1785318880_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3259,7 +3197,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/renogy-pro-12-8-v-200-ah-smart-lifepo4-futott-akkumulator_z109090/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-pro-12-8-v-200-ah-smart-lifepo4-futott-akkumulator_z109090%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/196766_102.jpg?1786433504_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/196766_102.jpg?1786433504_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 200,
@@ -3290,7 +3228,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-bluesolar-190-wp-mono-12-v-napelem_z109069/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-bluesolar-190-wp-mono-12-v-napelem_z109069%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/196671_102.jpg?1785940567_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/196671_102.jpg?1785940567_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -3323,7 +3261,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/exide-dual-50-ah-agm-akkumulator_z49/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fexide-dual-50-ah-agm-akkumulator_z49%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/127636_102.jpg?1704378225_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/127636_102.jpg?1704378225_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 50,
@@ -3354,7 +3292,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/optima-12-v-agm-akkumulator_z50/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Foptima-12-v-agm-akkumulator_z50%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/127637_102.jpg?1704378225_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/127637_102.jpg?1704378225_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 55,
@@ -3389,7 +3327,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/optima-12-v-agm-akkumulator_z50/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Foptima-12-v-agm-akkumulator_z50%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/127637_102.jpg?1704378225_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/127637_102.jpg?1704378225_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 55,
@@ -3424,7 +3362,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/banner-running-bull-agm-akkumulator_z15459/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fbanner-running-bull-agm-akkumulator_z15459%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/154200_102.jpg?1704380076_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/154200_102.jpg?1704380076_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 70,
@@ -3455,7 +3393,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/banner-running-bull-agm-akkumulator_z15459/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fbanner-running-bull-agm-akkumulator_z15459%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/154201_102.jpg?1704380076_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/154201_102.jpg?1704380076_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 80,
@@ -3486,7 +3424,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/banner-running-bull-agm-akkumulator_z15459/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fbanner-running-bull-agm-akkumulator_z15459%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/154202_102.jpg?1704380076_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/154202_102.jpg?1704380076_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 92,
@@ -3517,7 +3455,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/varta-professional-agm-munkaakkumulator_z22313/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvarta-professional-agm-munkaakkumulator_z22313%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/5/156005_102.jpg?1704380136_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/156005_102.jpg?1704380136_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 80,
@@ -3548,7 +3486,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/varta-professional-agm-munkaakkumulator_z22313/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvarta-professional-agm-munkaakkumulator_z22313%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/156006_102.jpg?1704380136_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/156006_102.jpg?1704380136_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 95,
@@ -3579,7 +3517,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/lifepo4-buttner-mt-li-litium-akkumulator_z22577/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flifepo4-buttner-mt-li-litium-akkumulator_z22577%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/156562_102.jpg?1704380155_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/156562_102.jpg?1704380155_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 85,
@@ -3610,7 +3548,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/exide-agm-akkumulator_z24792/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fexide-agm-akkumulator_z24792%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/158712_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/158712_102.jpg?1704380233_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 95,
@@ -3641,7 +3579,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/exide-agm-akkumulator_z24792/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fexide-agm-akkumulator_z24792%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/158713_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/158713_102.jpg?1704380233_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 120,
@@ -3672,7 +3610,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-bluesolar-lcd-usb-pwm-napelem-szabalyozo_z24826/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-bluesolar-lcd-usb-pwm-napelem-szabalyozo_z24826%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/160048_102.jpg?1704380278_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/160048_102.jpg?1704380278_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -3704,7 +3642,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-bluesolar-lcd-usb-pwm-napelem-szabalyozo_z24826/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-bluesolar-lcd-usb-pwm-napelem-szabalyozo_z24826%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/160049_102.jpg?1704380278_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/160049_102.jpg?1704380278_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -3736,7 +3674,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-smartsolar-mppt-75-100-v-napelem-szabalyozo_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-smartsolar-mppt-75-100-v-napelem-szabalyozo_z24827%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/158728_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/158728_102.jpg?1704380233_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -3765,7 +3703,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-smartsolar-mppt-75-100-v-napelem-szabalyozo_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-smartsolar-mppt-75-100-v-napelem-szabalyozo_z24827%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/158729_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/158729_102.jpg?1704380233_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -3794,7 +3732,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-smartsolar-mppt-75-100-v-napelem-szabalyozo_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-smartsolar-mppt-75-100-v-napelem-szabalyozo_z24827%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/158730_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/158730_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -3823,7 +3761,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-smartsolar-mppt-75-100-v-napelem-szabalyozo_z24827/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-smartsolar-mppt-75-100-v-napelem-szabalyozo_z24827%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/158731_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/158731_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -3852,7 +3790,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-smartsolar-100-30-mppt-napelem-szabalyozo_z24828/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-smartsolar-100-30-mppt-napelem-szabalyozo_z24828%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/145093_102.jpg?1704378888_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/145093_102.jpg?1704378888_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -3881,7 +3819,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-super-cycle-napelem-akkumulator_z24831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-super-cycle-napelem-akkumulator_z24831%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/158738_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/158738_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 125,
@@ -3912,7 +3850,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-super-cycle-napelem-akkumulator_z24831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-super-cycle-napelem-akkumulator_z24831%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/158739_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/158739_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 170,
@@ -3943,7 +3881,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-super-cycle-napelem-akkumulator_z24831/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-super-cycle-napelem-akkumulator_z24831%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/158740_102.jpg?1704380234_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/158740_102.jpg?1704380234_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 230,
@@ -3974,7 +3912,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/exide-agm-akkumulator_z24792/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fexide-agm-akkumulator_z24792%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/158711_102.jpg?1704380233_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/158711_102.jpg?1704380233_1",
       "specs": {
         "voltageV": null,
         "capacityAh": 70,
@@ -4005,7 +3943,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/powerboozt-agm-kettos-rendeltetesu-akkumulator_z25062/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fpowerboozt-agm-kettos-rendeltetesu-akkumulator_z25062%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/5/158825_102.jpg?1704380237_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/158825_102.jpg?1704380237_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 70,
@@ -4036,7 +3974,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/powerboozt-agm-kettos-rendeltetesu-akkumulator_z25062/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fpowerboozt-agm-kettos-rendeltetesu-akkumulator_z25062%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/158826_102.jpg?1704380237_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/158826_102.jpg?1704380237_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 95,
@@ -4067,7 +4005,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/buttner-elektronik-mt-324-pp-napelem-szabalyozo_z25105/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fbuttner-elektronik-mt-324-pp-napelem-szabalyozo_z25105%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/145904_102.jpg?1704378909_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/145904_102.jpg?1704378909_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4099,7 +4037,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-smartsolar-ve-can-mppt-napelem-szabalyozo_z25297/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-smartsolar-ve-can-mppt-napelem-szabalyozo_z25297%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/159226_102.jpg?1704380250_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/159226_102.jpg?1704380250_1",
       "specs": {
         "voltageV": 48,
         "capacityAh": null,
@@ -4128,7 +4066,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-cb-silver-12-v-napelem_z25768/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-cb-silver-12-v-napelem_z25768%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152798_102.jpg?1704379099_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/152798_102.jpg?1704379099_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4161,7 +4099,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-cb-silver-12-v-napelem_z25768/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-cb-silver-12-v-napelem_z25768%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152798_102.jpg?1704379099_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/152798_102.jpg?1704379099_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4194,7 +4132,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-power-line-munkaakkumulator_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-munkaakkumulator_z25851%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/160166_102.jpg?1704380282_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/160166_102.jpg?1704380282_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 80,
@@ -4225,7 +4163,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-power-line-munkaakkumulator_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-munkaakkumulator_z25851%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/160167_102.jpg?1704380282_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/160167_102.jpg?1704380282_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -4256,7 +4194,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-power-line-munkaakkumulator_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-munkaakkumulator_z25851%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/160168_102.jpg?1704380282_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/160168_102.jpg?1704380282_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 60,
@@ -4287,7 +4225,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-power-line-munkaakkumulator_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-munkaakkumulator_z25851%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/160169_102.jpg?1704380282_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/160169_102.jpg?1704380282_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 90,
@@ -4318,7 +4256,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-power-line-munkaakkumulator_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-munkaakkumulator_z25851%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/160170_102.jpg?1704380282_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/160170_102.jpg?1704380282_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 120,
@@ -4349,7 +4287,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-power-line-munkaakkumulator_z25851/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-power-line-munkaakkumulator_z25851%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/160171_102.jpg?1704380282_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/160171_102.jpg?1704380282_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 134,
@@ -4380,7 +4318,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-agm-t-power-line-munkaakkumulator-100-ah_z25852/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-agm-t-power-line-munkaakkumulator-100-ah_z25852%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152538_102.jpg?1704379091_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/152538_102.jpg?1704379091_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -4411,7 +4349,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-sfx135-napelem_z26743/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-sfx135-napelem_z26743%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/152486_102.jpg?1704379090_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/152486_102.jpg?1704379090_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -4440,7 +4378,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-sc200-200-w-os-osszecsukhato-napelem_z26746/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-sc200-200-w-os-osszecsukhato-napelem_z26746%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/152501_102.jpg?1704379090_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/152501_102.jpg?1704379090_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4469,7 +4407,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-hc130-osszecsukhato-napelem-130-w_z26747/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-hc130-osszecsukhato-napelem-130-w_z26747%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/152511_102.jpg?1704379090_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/152511_102.jpg?1704379090_1",
       "specs": {
         "voltageV": 24,
         "capacityAh": null,
@@ -4498,7 +4436,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-mppt-napelemes-toltesvezerlo-12-v-12-a-165-wp_z26751/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-mppt-napelemes-toltesvezerlo-12-v-12-a-165-wp_z26751%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/6/152516_102.jpg?1704379090_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/152516_102.jpg?1704379090_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4534,7 +4472,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-mppt-napelemes-toltesvezerlo-12-v-12-a-350-wp_z26752/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-mppt-napelemes-toltesvezerlo-12-v-12-a-350-wp_z26752%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/7/152517_102.jpg?1704379090_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/152517_102.jpg?1704379090_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4570,7 +4508,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-li100-lifepo4-akkumulator_z26753/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-li100-lifepo4-akkumulator_z26753%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/8/152518_102.jpg?1704379090_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/152518_102.jpg?1704379090_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -4602,7 +4540,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-li100bh6-lifepo4-akkumulator-vw-t5-t6-hoz_z26754/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-li100bh6-lifepo4-akkumulator-vw-t5-t6-hoz_z26754%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/152520_102.jpg?1704379091_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/152520_102.jpg?1704379091_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -4634,7 +4572,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-li200bhd-lifepo4-akkumulator-fiat-ducatohoz-12-8-v_z26755/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-li200bhd-lifepo4-akkumulator-fiat-ducatohoz-12-8-v_z26755%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/152522_102.jpg?1704379091_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/152522_102.jpg?1704379091_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 200,
@@ -4666,7 +4604,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/carbest-full-black-12-v-napelem_z26861/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-full-black-12-v-napelem_z26861%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/152799_102.jpg?1704379099_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/152799_102.jpg?1704379099_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4699,7 +4637,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-napelem_z26939/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-napelem_z26939%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/152942_102.jpg?1704379104_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/152942_102.jpg?1704379104_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4728,7 +4666,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-napelem_z26939/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-napelem_z26939%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/152942_102.jpg?1704379104_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/152942_102.jpg?1704379104_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4757,7 +4695,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-napelem_z26939/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-napelem_z26939%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/152942_102.jpg?1704379104_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/152942_102.jpg?1704379104_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -4786,7 +4724,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-super-cycle-napelemes-akkumulator_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-super-cycle-napelemes-akkumulator_z26961%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/9/160239_102.jpg?1704380285_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/9/160239_102.jpg?1704380285_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 25,
@@ -4817,7 +4755,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-super-cycle-napelemes-akkumulator_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-super-cycle-napelemes-akkumulator_z26961%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/160240_102.jpg?1704380285_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/160240_102.jpg?1704380285_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 38,
@@ -4848,7 +4786,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-super-cycle-napelemes-akkumulator_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-super-cycle-napelemes-akkumulator_z26961%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/160241_102.jpg?1704380285_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/160241_102.jpg?1704380285_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 60,
@@ -4879,7 +4817,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/victron-energy-agm-super-cycle-napelemes-akkumulator_z26961/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fvictron-energy-agm-super-cycle-napelemes-akkumulator_z26961%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/2/160242_102.jpg?1704380286_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/2/160242_102.jpg?1704380286_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 100,
@@ -4910,7 +4848,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/ecoflow-allithato-napelem-tarto_z103503/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fecoflow-allithato-napelem-tarto_z103503%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/5/174345_102.jpg?1732379373_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/5/174345_102.jpg?1732379373_1",
       "specs": {
         "voltageV": null,
         "capacityAh": null,
@@ -4939,7 +4877,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/lifepo4-buttner-mt-li-litium-akkumulator_z22577/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flifepo4-buttner-mt-li-litium-akkumulator_z22577%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/158823_102.jpg?1704380237_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/158823_102.jpg?1704380237_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 240,
@@ -4970,7 +4908,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/lifepo4-buttner-mt-li-litium-akkumulator_z22577/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Flifepo4-buttner-mt-li-litium-akkumulator_z22577%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/158824_102.jpg?1704380237_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/158824_102.jpg?1704380237_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": 300,
@@ -5001,7 +4939,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/phaesun-fly-weight-osszecsukhato-napelem_z101755/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fphaesun-fly-weight-osszecsukhato-napelem_z101755%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/0/165310_102.jpg?1720512371_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/165310_102.jpg?1720512371_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5030,7 +4968,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/phaesun-fly-weight-osszecsukhato-napelem_z101755/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fphaesun-fly-weight-osszecsukhato-napelem_z101755%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/1/165311_102.jpg?1720512372_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/165311_102.jpg?1720512372_1",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -5059,7 +4997,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/buttner-mppt-napelemes-bluetooth-szabalyozo_z101756/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fbuttner-mppt-napelemes-bluetooth-szabalyozo_z101756%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/3/183943_102.jpg?1747538682_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/183943_102.jpg?1747538682_1",
       "specs": {
         "voltageV": 8,
         "capacityAh": 60,
@@ -5090,7 +5028,7 @@
       "available": true,
       "productUrl": "https://www.padabo.hu/buttner-mppt-napelemes-bluetooth-szabalyozo_z101756/",
       "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fbuttner-mppt-napelemes-bluetooth-szabalyozo_z101756%2F",
-      "imageUrl": "https://www.padabo.hu/data/tmp/102/4/183944_102.jpg?1747538683_1",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/4/183944_102.jpg?1747538683_1",
       "specs": {
         "voltageV": 8,
         "capacityAh": 60,
@@ -5104,6 +5042,39 @@
         ],
         "batteryType": "lead",
         "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:19287_21292",
+      "merchant": "padabo_hu",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
+      "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Dometic",
+      "priceCzk": 763040,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/183588_102.jpg?1746377752_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 4000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          24
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
       }
@@ -7142,42 +7113,6 @@
         ],
         "chargingInputVoltagesV": [
           24
-        ],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "verifiedAt": "2026-08-29"
-    },
-    {
-      "id": "powerqueen_eu:7752846115036",
-      "merchant": "powerqueen_eu",
-      "name": "Power Queen 14.6V 20A LiFePO4 battery charger for 12V LiFePO4 battery",
-      "description": "Power Queen AC to DC charger for 12.8 V LiFePO4 batteries; 14.6 V charging output at 20 A and 100-240 V AC input.",
-      "categoryPath": "Nabíječky",
-      "category": "shore_charger",
-      "brand": "PQ-DE",
-      "priceCzk": 85.99,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=97025&awinaffid=3044971&ued=https%3A%2F%2Fwww.ipowerqueen.de%2Fen%2Fproducts%2Fpower-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PowerQueen14_6V20ALiFePO4Ladegeratfur12VLiFePO4-Batterie.webp?v=1785835445",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": 20,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
         ],
         "chargingBatteryTypes": [
           "lifepo4"
