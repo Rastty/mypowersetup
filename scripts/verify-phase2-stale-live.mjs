@@ -10,7 +10,7 @@ export const ROUTES = Object.freeze([
 export const VERSION = "20261115-placement-events1";
 export const SCRIPT_PATH = "/src/phase2-calculator-browser.js";
 export const BUYER_SCRIPT = "/src/dcdc-calculator-offers-browser.js?v=20261115-placement-events1";
-export const IMPRESSION_SCRIPT = "/src/guide-offer-impressions.js?v=20261110-drive-variant2";
+export const IMPRESSION_SCRIPT = "/src/guide-offer-impressions.js?v=20261115-placement-events1";
 export const MODEL_SCRIPT = "/src/dcdc-calculator-offers.js?v=20261110-outcome1";
 
 // Retry only temporary HTTP availability failures. A wrong route, invalid content,
@@ -89,7 +89,7 @@ export function checkBuyerJavascript(source) {
     /dcdc-calculator-offers\.js\?v=20261110-outcome1/,
     /dcdcTimeFit/,
     /ctaVariant/,
-    /guide-offer-impressions\.js\?v=20261110-drive-variant2/,
+    /guide-offer-impressions\.js\?v=20261115-placement-events1/,
     /buildAttributedAffiliateParameters\(/,
     /decorateAwinAffiliateUrl\(offer\.affiliateUrl, \{/,
     /market: "cz", category: "dc_charger"/,

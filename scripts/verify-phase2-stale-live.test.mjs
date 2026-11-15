@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { checkHtml, checkJavascript, checkBuyerJavascript, checkModelJavascript, checkImpressionJavascript, verifyLive, ROUTES, VERSION } from "./verify-phase2-stale-live.mjs";
+import { checkHtml, checkJavascript, checkBuyerJavascript, checkModelJavascript, checkImpressionJavascript, verifyLive, ROUTES, VERSION, IMPRESSION_SCRIPT } from "./verify-phase2-stale-live.mjs";
 
 const origin = "https://mypowersetup.com";
 const js = [
@@ -28,7 +28,7 @@ const buyerJs = [
   'function trackOutcome(outcome, explicit) {',
   '  windowRoot?.MyPowerSetupAnalytics?.track?.("dcdc_offers_" + outcome);',
   '  if (!documentRoot.hidden && active) void update(active, { explicit: false });',
-  'import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-drive-variant2";',
+  'import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261115-placement-events1";',
   'timingLine.dataset.dcdcTimeFit = "too-slow";',
   'link.dataset.ctaVariant = "dcdc-longer-drive";',
   "buildAttributedAffiliateParameters(link);",
@@ -101,7 +101,15 @@ test("both actual CZ routes and the same served versioned JS are verified", asyn
   assert.equal(result.modelModuleVerified, true);
   assert.equal(result.impressionModuleVerified, true);
   assert.ok(result.buyerModuleVersion.includes("dcdc-calculator-offers-browser.js?v=" + VERSION));
+  assert.equal(IMPRESSION_SCRIPT, "/src/guide-offer-impressions.js?v=" + VERSION);
+  assert.ok(fetchImpl.calls.some(url => url.endsWith(IMPRESSION_SCRIPT)));
   assert.ok(fetchImpl.calls.some(url => url.endsWith("?v=" + VERSION)));
+});
+test("rejects the prior served buyer impression dependency version", () => {
+  assert.throws(() => checkBuyerJavascript(buyerJs.replace(
+    "guide-offer-impressions.js?v=20261115-placement-events1",
+    "guide-offer-impressions.js?v=20261110-drive-variant2")),
+  /SERVED_DCDC_BUYER_GUARD_MISSING/);
 });
 test("rejects stale HTML version and missing recalculation prompt", async () => {
   await assert.rejects(verifyLive({ fetchImpl: mockFetch({ staleHtml: true }) }), /VERSIONED_CALCULATOR_SCRIPT_MISSING/);
