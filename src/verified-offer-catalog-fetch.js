@@ -3,6 +3,7 @@
 export const LIGHTWEIGHT_CATALOG_PATH = "/data/calculator-offers-cz.json";
 export const DCDC_GUIDE_CATALOG_PATH = "/data/dcdc-guide-offers-cz.json";
 export const INVERTER_CALCULATOR_CATALOG_PATH = "/data/inverter-calculator-offers-cz.json";
+export const SOLAR_CALCULATOR_CATALOG_PATH = "/data/solar-calculator-offers-cz.json";
 export const FULL_CATALOG_PATH = "/data/products.json";
 const SNAPSHOT_VERSION = 1;
 const MAX_APPROVED_OFFERS = 6;
@@ -55,6 +56,19 @@ export function acceptInverterCalculatorSnapshot(payload) {
       && typeof p.affiliateUrl === "string");
 }
 
+export function acceptSolarCalculatorSnapshot(payload) {
+  return payload?.schemaVersion === SNAPSHOT_VERSION
+    && payload.projection === "solar_panel"
+    && typeof payload.generatedAt === "string"
+    && typeof payload.sources?.solarimport?.status === "string"
+    && Array.isArray(payload.products) && payload.products.length <= 3
+    && payload.products.every(p => p?.category === "solar_panel"
+      && p.merchant === "solarimport"
+      && ["solarimport:E8722", "solarimport:E7366", "solarimport:E8934"].includes(p.id)
+      && typeof p.name === "string" && typeof p.productUrl === "string"
+      && typeof p.affiliateUrl === "string");
+}
+
 async function loadReviewedView(path, accept, fetchImpl, timeoutMs) {
   const options = () => ({
     cache: "no-store",
@@ -98,6 +112,18 @@ export async function loadInverterCalculatorOffers(fetchImpl = fetch, timeoutMs 
     if (!response.ok) return null;
     const payload = await response.json();
     return acceptInverterCalculatorSnapshot(payload) ? payload : null;
+  } catch { return null; }
+}
+
+export async function loadSolarCalculatorOffers(fetchImpl = fetch, timeoutMs = 15_000) {
+  // Never fall back to the large feed or link to unreviewed panel variants.
+  try {
+    const response = await fetchImpl(SOLAR_CALCULATOR_CATALOG_PATH, {
+      cache: "no-store", redirect: "error", signal: AbortSignal.timeout(timeoutMs),
+    });
+    if (!response.ok) return null;
+    const payload = await response.json();
+    return acceptSolarCalculatorSnapshot(payload) ? payload : null;
   } catch { return null; }
 }
 

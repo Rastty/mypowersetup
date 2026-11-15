@@ -7,6 +7,7 @@ import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHan
 import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261113-cz-affiliate-subid1";
 import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261113-cz-affiliate-subid1";
 import { mountInverterCalculatorBuyers } from "./inverter-calculator-offers-browser.js?v=20261113-inverter-buyers1";
+import { mountSolarCalculatorBuyers } from "./solar-calculator-offers-browser.js?v=20261115-solar-buyers1";
 
 const root = document.querySelector("[data-calculator-landing]");
 
@@ -34,6 +35,8 @@ if (root) {
     ? mountBatteryCalculatorBuyers(root) : null;
   const inverterBuyers = intent === "inverter-sizing" && locale === "cs"
     ? mountInverterCalculatorBuyers(root) : null;
+  const solarBuyers = intent === "solar-sizing" && locale === "cs"
+    ? mountSolarCalculatorBuyers(root) : null;
   if (!landingParameters) throw new Error(`CALCULATOR_LANDING_ATTRIBUTION_MISMATCH:${landingPath}:${intent}:${locale}`);
 
   const formatNumber = new Intl.NumberFormat(copy.numberLocale, {
@@ -234,6 +237,7 @@ if (root) {
         if (mpptBuyers) void mpptBuyers.update(result);
         if (batteryBuyers) void batteryBuyers.update(result);
         if (inverterBuyers) void inverterBuyers.update(result);
+        if (solarBuyers) void solarBuyers.update(result);
         root.dispatchEvent(new CustomEvent("mypowersetup:calculator-result", {
           bubbles: true,
           detail: { intent, locale, userInitiated: true },
@@ -243,6 +247,7 @@ if (root) {
       mpptBuyers?.invalidate();
       batteryBuyers?.invalidate();
       inverterBuyers?.invalidate();
+      solarBuyers?.invalidate();
       resultPanel.hidden = true;
       errorPanel.textContent = error instanceof Error ? error.message : copy.failed;
       errorPanel.hidden = false;

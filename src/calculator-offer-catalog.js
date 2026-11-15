@@ -1,5 +1,6 @@
 import { guideCatalogFresh, selectGuideOffers } from "./guide-verified-offers.js";
 import { reviewedInverterOffers } from "./inverter-calculator-offers.js";
+import { reviewedSolarPanels } from "./solar-calculator-offers.js";
 export {
   LIGHTWEIGHT_CATALOG_PATH, FULL_CATALOG_PATH,
   acceptCalculatorOffersSnapshot, loadCalculatorOffers,
@@ -102,5 +103,23 @@ export function projectInverterCalculatorOffers(fullCatalog, now = Date.now()) {
     generatedAt: typeof fullCatalog?.generatedAt === "string" ? fullCatalog.generatedAt : null,
     sources: { solarimport: { status: fresh ? "ok" : "stale" } },
     products,
+  };
+}
+
+// Three precise solar panel models, not the entire catalog. The UI still
+// checks the approved model, source freshness, price and affiliate target.
+export function projectSolarCalculatorOffers(fullCatalog, now = Date.now()) {
+  const fresh = fullCatalog?.sources?.solarimport?.status === "ok";
+  const products = fresh ? reviewedSolarPanels(fullCatalog, now).map(p => ({
+    id: p.id, name: p.name, merchant: p.merchant, category: p.category,
+    available: p.available, staleSource: p.staleSource === true,
+    priceCzk: p.priceCzk, priceCurrency: p.priceCurrency,
+    productUrl: p.productUrl, affiliateUrl: p.affiliateUrl,
+    specs: { powerW: p.specs.powerW, voltageV: p.specs.voltageV },
+  })) : [];
+  return {
+    schemaVersion: SNAPSHOT_VERSION, projection: "solar_panel",
+    generatedAt: typeof fullCatalog?.generatedAt === "string" ? fullCatalog.generatedAt : null,
+    sources: { solarimport: { status: fresh ? "ok" : "stale" } }, products,
   };
 }

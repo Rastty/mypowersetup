@@ -38,6 +38,7 @@ on:
       - src/battery-calculator-offers*.js
       - src/mppt-calculator-offers*.js
       - src/inverter-calculator-offers*.js
+      - src/solar-calculator-offers*.js
       - src/calculator-landing-browser.js
       - src/expansion-calculator-browser.js
       - src/expansion-component-recommendations.js
@@ -54,6 +55,7 @@ on:
       - data/calculator-offers-cz.json
       - data/dcdc-guide-offers-cz.json
       - data/inverter-calculator-offers-cz.json
+      - data/solar-calculator-offers-cz.json
       - data/products.json
       - pruvodce/**
       - kalkulacky/**
