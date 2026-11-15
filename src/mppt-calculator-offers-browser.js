@@ -1,7 +1,7 @@
-import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=20261110-attributed-products1";
+import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=20261115-placement-events1";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js?v=20261115-placement-subids1";
 import { loadCalculatorOffers } from "./calculator-offer-catalog.js?v=20261109-lightweight-cz1";
-import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-attributed-guide1";
+import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261115-placement-events1";
 import {
   isMpptOfferStillEligible, mpptOfferExpiresAt, selectMpptCalculatorOffers,
 } from "./mppt-calculator-offers.js";

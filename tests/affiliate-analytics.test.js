@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildAffiliateClickParameters, buildAffiliateImpressionParameters, trackAffiliateClick, trackAffiliateImpressions, trackVisibleAffiliateImpressions } from "../src/affiliate-analytics.js";
+import { buildAffiliateClickParameters, buildAffiliateImpressionParameters, readNetworkAffiliatePlacement, trackAffiliateClick, trackAffiliateImpressions, trackVisibleAffiliateImpressions } from "../src/affiliate-analytics.js";
+import { decorateAwinAffiliateUrl } from "../src/awin-attribution.js";
 
 test("affiliate clicks are sent exactly once with stable product dimensions", () => {
   const calls = [];
@@ -48,6 +49,58 @@ test("affiliate click dimensions use explicit fallbacks", () => {
 test("affiliate clicks distinguish portable and component purchase routes", () => {
   assert.equal(buildAffiliateClickParameters({ dataset: { category: "power_station" } }).purchaseRoute, "portable");
   assert.equal(buildAffiliateClickParameters({ dataset: { category: "battery" } }).purchaseRoute, "components");
+});
+
+test("real eHUB calculator placements share their exact click and impression GA4 dimension", () => {
+  const affiliateUrl = "https://ehub.cz/system/scripts/click.php?a_aid=publisher1&a_bid=merchant2&desturl=https%3A%2F%2Fshop.example%2Fitem";
+  for (const [market, category, placement] of [
+    ["cz", "battery", "battery_calculator"],
+    ["cz", "controller", "mppt_calculator"],
+    ["cz", "inverter", "inverter_calculator"],
+    ["cz", "dc_charger", "dcdc_calculator"],
+    ["cz", "solar_panel", "solar_calculator"],
+    ["sk", "solar_panel", "solar_calculator"],
+  ]) {
+    const href = decorateAwinAffiliateUrl(affiliateUrl, { market, category, placement });
+    const link = { href, dataset: { category, source: "product-card" } };
+    assert.equal(readNetworkAffiliatePlacement(link), placement);
+    const clicks = [];
+    trackAffiliateClick(link, (...args) => { clicks.push(args); return true; });
+    assert.equal(clicks[0][1].affiliatePlacement, placement);
+    const impressions = [];
+    trackAffiliateImpressions([link], (...args) => { impressions.push(args); return true; });
+    assert.equal(impressions[0][1].affiliatePlacement, placement);
+    assert.deepEqual(new URL(href).searchParams.getAll("data2"), [`placement_${placement}`]);
+  }
+});
+
+test("AWIN placement matches the network's actual clickref4 value", () => {
+  const url = decorateAwinAffiliateUrl("https://www.awin1.com/cread.php?awinmid=123&awinaffid=456&ued=https%3A%2F%2Fshop.example%2Fitem", {
+    market: "cz", category: "battery", placement: "battery_calculator",
+  });
+  assert.equal(readNetworkAffiliatePlacement({href:url}), "battery_calculator");
+  assert.equal(buildAffiliateClickParameters({href:url,dataset:{category:"battery"}}).affiliatePlacement, "battery_calculator");
+});
+
+test("scenario, merchant-owned, malformed and arbitrary clickrefs are excluded from GA4 placement", () => {
+  const base = "https://ehub.cz/system/scripts/click.php?a_aid=p&a_bid=b&desturl=https%3A%2F%2Fshop.example";
+  const cases = [
+    decorateAwinAffiliateUrl(base, {market:"cz",category:"battery",placement:"battery_calculator",scenarioCampaign:"promo"}),
+    base + "&data1=mps_cz_battery&data2=merchant_label",
+    base + "&data1=mps_cz_battery&data2=placement_battery_calculator&data2=placement_mppt_calculator",
+    base + "&data1=mps_cz_battery&data2=placement_unapproved_calculator",
+    base + "&data2=placement_battery_calculator",
+    "https://ehub.cz/system/scripts/click.php?a_aid=&a_bid=b&data1=mps_cz_battery&data2=placement_battery_calculator",
+    "https://www.awin1.com/cread.php?clickref=mps_cz_battery&clickref4=placement_battery_calculator",
+    "https://shop.example/item?data1=mps_cz_battery&data2=placement_battery_calculator",
+    "javascript:alert(1)",
+  ];
+  for (const href of cases) {
+    const link = {href,dataset:{category:"battery"}};
+    assert.equal(readNetworkAffiliatePlacement(link), null);
+    assert.equal(Object.hasOwn(buildAffiliateClickParameters(link), "affiliatePlacement"), false);
+  }
+  assert.equal(readNetworkAffiliatePlacement({ dataset: {} }), null);
 });
 
 test("choice impressions provide exclusive CTR denominators by role and purchase route", () => {

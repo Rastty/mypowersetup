@@ -84,19 +84,23 @@ test("fifteen CZ and SK buyer pages, exact versioned JS and deployed compact cat
   assert.equal(result.skSolarCatalog.commissionVerified, false);
   assert.ok(result.browserVersions.battery_runtime.includes("fridge-community1"));
   for (const kind of ["mppt_calculator", "battery_capacity", "inverter_calculator", "solar_calculator", "sk_solar_calculator", "dcdc_calculator"])
-    assert.ok(result.browserVersions[kind].includes("20261115-placement-subids1"), kind);
+    assert.ok(result.browserVersions[kind].includes("20261115-placement-events1"), kind);
   assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261115-placement-subids1")));
+    row.servedPath.includes("?v=20261115-placement-events1")));
   assert.ok(result.assets.some(row => row.asset === "src/mppt-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261115-placement-subids1")));
+    row.servedPath.includes("?v=20261115-placement-events1")));
   assert.ok(result.assets.some(row => row.asset === "src/inverter-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261115-placement-subids1")));
+    row.servedPath.includes("?v=20261115-placement-events1")));
   assert.ok(result.assets.some(row => row.asset === "src/solar-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261115-placement-subids1")));
+    row.servedPath.includes("?v=20261115-placement-events1")));
   assert.ok(result.assets.some(row => row.asset === "src/dcdc-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261115-placement-subids1")));
+    row.servedPath.includes("?v=20261115-placement-events1")));
   assert.ok(result.assets.some(row => row.asset === "src/awin-attribution.js" &&
     row.servedPath.includes("?v=20261115-placement-subids1")));
+  assert.ok(result.assets.some(row => row.asset === "src/affiliate-analytics.js" &&
+    row.servedPath.includes("?v=20261115-placement-events1")));
+  assert.ok(result.assets.some(row => row.asset === "src/guide-offer-impressions.js" &&
+    row.servedPath.includes("?v=20261115-placement-events1")));
   assert.ok(result.assets.some(row => row.asset === "src/calculator-offer-catalog.js" &&
     row.servedPath.includes("?v=20261109-lightweight-cz1")));
   for (const row of result.pages) assert.equal(row.http, 200);

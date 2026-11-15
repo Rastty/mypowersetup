@@ -1,6 +1,6 @@
-import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=20261110-attributed-products1";
+import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=20261115-placement-events1";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js?v=20261115-placement-subids1";
-import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-drive-variant2";
+import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261115-placement-events1";
 import { loadDcdcGuideOffers } from "./verified-offer-catalog-fetch.js";
 import {
   classifyDcdcOfferOutcome, dcdcReviewedModel, dcdcCalculatorOfferExpiresAt, dcdcOfferDriveTime,

@@ -1,6 +1,34 @@
 import "./calculator-builder-context.js";
 import { resolveCalculatorAttribution } from "./calculator-attribution.js";
 
+const CALCULATOR_PLACEMENTS = new Set([
+  "battery_calculator", "mppt_calculator", "inverter_calculator",
+  "dcdc_calculator", "solar_calculator",
+]);
+
+// Mirror only the *effective* static sub-ID sent to the affiliate network.
+// Scenario overrides, merchant-owned labels, unknown labels and any dynamic
+// identifiers must never leak through to GA4 as a placement dimension.
+export function readNetworkAffiliatePlacement(link) {
+  let url;
+  try { url = new URL(link?.href); } catch { return null; }
+  if (url.protocol !== "https:") return null;
+
+  const ehub = ["ehub.cz", "www.ehub.cz", "ehub.sk", "www.ehub.sk"].includes(url.hostname)
+    && url.pathname === "/system/scripts/click.php"
+    && url.searchParams.getAll("a_aid").length === 1
+    && url.searchParams.getAll("a_bid").length === 1
+    && Boolean(url.searchParams.get("a_aid") && url.searchParams.get("a_bid"));
+  const awin = ["awin1.com", "www.awin1.com"].includes(url.hostname)
+    && Boolean(url.searchParams.get("awinmid") && url.searchParams.get("awinaffid"));
+  const marketCategory = ehub ? url.searchParams.getAll("data1") : awin ? url.searchParams.getAll("clickref") : [];
+  if (marketCategory.length !== 1 || !/^mps_[a-z]{2}_[a-z0-9_]+$/.test(marketCategory[0])) return null;
+  const refs = ehub ? url.searchParams.getAll("data2") : awin ? url.searchParams.getAll("clickref4") : [];
+  if (refs.length !== 1 || !refs[0].startsWith("placement_")) return null;
+  const placement = refs[0].slice("placement_".length);
+  return CALCULATOR_PLACEMENTS.has(placement) ? placement : null;
+}
+
 function currentCalculatorAttribution() {
   if (typeof window === "undefined" || typeof document === "undefined") return null;
   // Accessing sessionStorage can throw in privacy-restricted browsers. Never
@@ -20,6 +48,7 @@ export function buildAttributedAffiliateParameters(link) {
 
 export function buildAffiliateClickParameters(link) {
   const category = link?.dataset?.category || "unknown";
+  const affiliatePlacement = readNetworkAffiliatePlacement(link);
   return {
     productId: link?.dataset?.productId || "unknown",
     merchant: link?.dataset?.merchant || "unknown",
@@ -30,6 +59,7 @@ export function buildAffiliateClickParameters(link) {
     recommendationRole: link?.dataset?.recommendationRole || undefined,
     ...(link?.dataset?.routePriority ? { routePriority: link.dataset.routePriority } : {}),
     ...(link?.dataset?.ctaVariant ? { ctaVariant: link.dataset.ctaVariant } : {}),
+    ...(affiliatePlacement ? { affiliatePlacement } : {}),
   };
 }
 

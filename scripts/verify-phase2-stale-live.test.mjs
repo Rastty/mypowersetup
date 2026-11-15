@@ -14,7 +14,7 @@ const js = [
   'form.addEventListener("submit", (event) => render(event));',
   'dcdcBuyers?.invalidate();',
   'void dcdcBuyers?.update(result);',
-  'import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261115-placement-subids1";',
+  'import { mountDcdcCalculatorBuyers } from "./dcdc-calculator-offers-browser.js?v=20261115-placement-events1";',
 ].join("\n");
 const buyerJs = [
   "loadDcdcGuideOffers(fetchImpl);",

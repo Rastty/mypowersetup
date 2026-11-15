@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createVerifiedGuideImpressionTracker } from "../src/guide-offer-impressions.js";
 import { buildAffiliateClickParameters } from "../src/affiliate-analytics.js";
+import { decorateAwinAffiliateUrl } from "../src/awin-attribution.js";
 
 const PAGE = [
   "pruvodce/kapacita-baterie-do-karavanu/",
@@ -202,6 +203,22 @@ test("calculator MPPT matches reuse viewport impression rules without altering e
   calculator.tracker.scan();
   calculator.observer.intersect(another, 0.8);
   assert.equal(calculator.events.length, 1, "expired visible product must never count");
+});
+
+test("visible calculator offer carries the same static placement as eHUB Data2", () => {
+  const target = link("vselektro:victron-smartsolar-100-30", {
+    source: "mppt-calculator-match", offerExpiresAt: "5000",
+  });
+  target.href = decorateAwinAffiliateUrl(
+    "https://ehub.cz/system/scripts/click.php?a_aid=p&a_bid=b&desturl=https%3A%2F%2Fmerchant.example%2Fsku",
+    { market: "cz", category: "controller", placement: "mppt_calculator" },
+  );
+  const h = harness([target], { allowed: true, allowedSources: ["mppt-calculator-match"] });
+  h.tracker.scan();
+  h.observer.intersect(target, 0.6);
+  assert.equal(h.events.length, 1);
+  assert.equal(h.events[0].parameters.affiliatePlacement, "mppt_calculator");
+  assert.equal(new URL(target.href).searchParams.get("data2"), "placement_mppt_calculator");
 });
 
 
