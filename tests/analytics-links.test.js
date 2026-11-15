@@ -17,6 +17,9 @@ test("guide calculator classifier accepts direct calculator landing routes", () 
   assert.deepEqual(classifyGuideCalculatorLink("/sk/kalkulacky/solarne-panely/"), { destination_path: "/sk/kalkulacky/solarne-panely/" });
   assert.deepEqual(classifyGuideCalculatorLink("/pl/kalkulatory/pojemnosc-akumulatora/"), { destination_path: "/pl/kalkulatory/pojemnosc-akumulatora/" });
   assert.deepEqual(classifyGuideCalculatorLink("/hu/kalkulatorok/napelem-teljesitmeny/"), { destination_path: "/hu/kalkulatorok/napelem-teljesitmeny/" });
+  assert.deepEqual(classifyGuideCalculatorLink("/sk/kalkulacky/dc-dc-nabijacka/"), { destination_path: "/sk/kalkulacky/dc-dc-nabijacka/" });
+  assert.deepEqual(classifyGuideCalculatorLink("/pl/kalkulatory/bezpiecznik-12v/"), { destination_path: "/pl/kalkulatory/bezpiecznik-12v/" });
+  assert.deepEqual(classifyGuideCalculatorLink("/hu/kalkulatorok/mppt-szabalyozo/"), { destination_path: "/hu/kalkulatorok/mppt-szabalyozo/" });
   assert.equal(classifyGuideCalculatorLink("/kalkulacky/"), null);
   assert.equal(classifyGuideCalculatorLink("/kalkulacky/vykon-menice/#detail"), null);
 });

@@ -78,12 +78,12 @@ function renderDialog() {
 }
 function openSettings() { renderDialog(); document.querySelector("[data-analytics-consent] button")?.focus(); }
 function guideClickZone(link) {
-  return classifyGuideClickZone({ inPrimaryCta: Boolean(link.closest(".cta")), inRelated: Boolean(link.closest(".related")), inHeader: Boolean(link.closest(".article-header")) });
+  return classifyGuideClickZone({ inPrimaryCta: Boolean(link.closest(".cta, .calculator-jump")), inRelated: Boolean(link.closest(".related")), inHeader: Boolean(link.closest(".article-header")) });
 }
 function guideCalculatorClickPosition(link) {
   const cta = link.closest(".cta");
   return classifyGuideCalculatorPosition({
-    inTopCta: Boolean(link.closest("[data-guide-top-cta]")),
+    inTopCta: Boolean(link.closest("[data-guide-top-cta], .calculator-jump")),
     inBottomCta: Boolean(cta?.querySelector("[data-guide-conversion-cta]")),
   });
 }

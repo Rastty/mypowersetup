@@ -83,3 +83,26 @@ test("enhancer inserts one early CTA and marks the existing CTA as late", () => 
   alreadyEnhanced = true;
   assert.equal(enhanceGuideConversion({ root, pathname: "/pruvodce/jak-vybrat-mppt-regulator/" }), false);
 });
+
+test("hand-authored calculator jump prevents duplicate injected early CTA", () => {
+  const link = attrNode();
+  link.setAttribute("href", "/sk/kalkulacky/dc-dc-nabijacka/");
+  const lateCta = {
+    querySelector(selector) { return selector === "a[href]" ? link : null; },
+    cloneNode() { throw new Error("must not clone over native tool jump"); },
+  };
+  const article = {
+    dataset: {},
+    addEventListener() {},
+    querySelector(selector) {
+      if (selector === ".answer") return {};
+      if (selector === ".cta") return lateCta;
+      if (selector === ".calculator-jump") return {};
+      return null;
+    },
+  };
+  const root = { querySelector(selector) { return selector === "main article.article" ? article : null; } };
+  assert.equal(enhanceGuideConversion({ root, pathname: "/sk/sprievodca/ako-vybrat-dc-dc-nabijacku/" }), false);
+  assert.equal(link.hasAttribute("data-guide-conversion-cta"), true);
+  assert.equal(article.dataset.guideAttributionBound, "true");
+});

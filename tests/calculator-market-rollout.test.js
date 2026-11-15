@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { classifyGuideCalculatorLink } from "../src/analytics-links.js";
 
 const ORIGIN = "https://mypowersetup.com";
 const families = Object.freeze({
@@ -309,5 +310,49 @@ test("matching localized guides link back to their calculator landing", async ()
   for (const [file, route] of Object.entries(guideLinks)) {
     const html = await readFile(file, "utf8");
     assert.ok(html.includes(`href="${route}"`), `${file} must link ${route}`);
+  }
+});
+
+const guideCalculatorJourney = Object.freeze({
+  "sk/sprievodca/ako-vybrat-dc-dc-nabijacku/index.html": [families.dcdc.sk],
+  "pl/poradnik/jak-dobrac-ladowarke-dc-dc/index.html": [families.dcdc.pl],
+  "hu/utmutatok/dc-dc-tolto-kivalasztasa/index.html": [families.dcdc.hu],
+  "sk/sprievodca/kable-a-poistky-12-v/index.html": [families.cable.sk, families.protection.sk],
+  "pl/poradnik/przewody-i-bezpieczniki-12-v/index.html": [families.cable.pl, families.protection.pl],
+  "hu/utmutatok/12-v-vezetekek-es-biztositekok/index.html": [families.cable.hu, families.protection.hu],
+  "sk/sprievodca/ako-vybrat-mppt-regulator/index.html": [families.mppt.sk],
+  "pl/poradnik/jak-dobrac-regulator-mppt/index.html": [families.mppt.pl],
+  "hu/utmutatok/mppt-szabalyozo-kivalasztasa/index.html": [families.mppt.hu],
+  "sk/sprievodca/aky-velky-menic-do-karavanu/index.html": [families.inverter.sk],
+  "pl/poradnik/jak-dobrac-przetwornice-do-kampera/index.html": [families.inverter.pl],
+  "hu/utmutatok/lakoauto-inverter-kivalasztasa/index.html": [families.inverter.hu],
+  "sk/sprievodca/12-v-alebo-24-v-karavan/index.html": [families.voltage.sk],
+  "pl/poradnik/12-v-czy-24-v-kamper/index.html": [families.voltage.pl],
+  "hu/utmutatok/12-v-vagy-24-v-lakoauto/index.html": [families.voltage.hu],
+});
+
+test("15 localized buyer guides lead first to native tools and retain builder journey", async () => {
+  const sitemap = await readFile("sitemap.xml", "utf8");
+  const css = await readFile("article.css", "utf8");
+  assert.match(css, /\.calculator-jump-links a\s*\{/);
+  assert.match(css, /\.cta a\.cta-secondary\s*\{/);
+  for (const [file, routes] of Object.entries(guideCalculatorJourney)) {
+    const html = await readFile(file, "utf8");
+    const locale = file.slice(0, 2);
+    const jump = html.match(/<nav class="calculator-jump"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
+    const bottom = html.match(/<section class="cta">([\s\S]*?)<\/section>/)?.[1];
+    assert.ok(jump, `${file} must show an above-fold calculator next step`);
+    assert.ok(bottom, `${file} must have a calculator CTA`);
+    assert.ok(bottom.includes(`href="/${locale}/#kalkulator"`), `${file} must retain the market builder path`);
+    assert.ok(html.includes('"dateModified":"2026-11-15"'), `${file} should reflect the update`);
+    const slug = file.replace(/\/index\.html$/, "/");
+    const sitemapEntry = sitemap.match(new RegExp(`<url><loc>https://mypowersetup.com/${slug}<\\/loc><lastmod>([^<]+)<\\/lastmod>`));
+    assert.equal(sitemapEntry?.[1], "2026-11-15", `${file} sitemap lastmod must match`);
+    for (const route of routes) {
+      assert.ok(jump.includes(`href="${route}"`), `${file} early CTA missing ${route}`);
+      assert.ok(bottom.includes(`href="${route}"`), `${file} final CTA missing ${route}`);
+      assert.deepEqual(classifyGuideCalculatorLink(route), { destination_path: route }, `${route} must be recorded as a calculator click`);
+      await readFile(fileFor(route), "utf8");
+    }
   }
 });
