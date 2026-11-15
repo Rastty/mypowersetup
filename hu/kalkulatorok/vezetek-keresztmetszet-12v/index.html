@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>12/24 V vezeték keresztmetszet kalkulátor | MyPowerSetup</title>
+  <meta name="description" content="Számítsa ki a 12 V-os vagy 24 V-os lakóautó-rendszer rézvezetékének becsült keresztmetszetét a teljesítmény, az egyirányú hossz és a megengedett feszültségesés alapján.">
+  <link rel="canonical" href="https://mypowersetup.com/hu/kalkulatorok/vezetek-keresztmetszet-12v/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/prurez-kabelu-12v/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/prierez-kabla-12v/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/przekroj-przewodu-12v/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/vezetek-keresztmetszet-12v/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/prurez-kabelu-12v/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"12/24 V vezeték-keresztmetszet kalkulátor","url":"https://mypowersetup.com/hu/kalkulatorok/vezetek-keresztmetszet-12v/","inLanguage":"hu-HU","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/hu/"},{"@type":"ListItem","position":2,"name":"Kalkulátorok","item":"https://mypowersetup.com/hu/kalkulatorok/"},{"@type":"ListItem","position":3,"name":"Vezeték keresztmetszete","item":"https://mypowersetup.com/hu/kalkulatorok/vezetek-keresztmetszet-12v/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Oda-vissza számoljam a vezeték hosszát?","acceptedAnswer":{"@type":"Answer","text":"Az egyirányú hosszt adja meg. A kalkulátor a teljes oda-vissza áramutat figyelembe veszi a feszültségesés számításánál."}},{"@type":"Question","name":"A számított keresztmetszet már biztonságos szerelést jelent?","acceptedAnswer":{"@type":"Answer","text":"Nem. Ez csak feszültségesésre méretez. Az áramterhelhetőséget, a környezeti hőmérsékletet, a szerelési módot, a biztosítékot és a gyártói előírásokat szakképzett villanyszerelőnek külön ellenőriznie kell."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/hu/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/hu/kalkulatorok/">Kalkulátorok</a><a class="header-link" href="/hu/utmutatok/">Útmutatók</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/hu/">Kezdőlap</a> / <a href="/hu/kalkulatorok/">Kalkulátorok</a> / Vezeték keresztmetszete</nav>
+  <section class="calculator-hero"><p><strong>12/24 V-os lakóautó-vezetékek</strong></p><h1>Mekkora rézvezeték-keresztmetszet szükséges?</h1><p>Adja meg a fogyasztó teljesítményét, a vezeték egyirányú hosszát és a megengedett feszültségesést. A kalkulátor becslést ad az áramerősségre és a feszültségesés alapján választott szabványos keresztmetszetre.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="cable-voltage-drop" data-calculator-locale="hu">
+    <div class="calculator-card"><h2>Az áramkör adatai</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="loadWatts">Fogyasztó teljesítménye (W)</label><input id="loadWatts" name="loadWatts" type="number" inputmode="decimal" min="10" max="10000" step="10" value="500" required></div>
+      <div class="calculator-field"><label for="oneWayLengthM">Vezeték egyirányú hossza (m)</label><input id="oneWayLengthM" name="oneWayLengthM" type="number" inputmode="decimal" min="0.5" max="30" step="0.5" value="5" required></div>
+      <div class="calculator-field"><label for="systemVoltage">Rendszerfeszültség</label><select id="systemVoltage" name="systemVoltage"><option value="12" selected>12 V</option><option value="24">24 V</option></select></div>
+      <div class="calculator-field"><label for="maxDropPercent">Megengedett feszültségesés</label><select id="maxDropPercent" name="maxDropPercent"><option value="2">2% – érzékeny készülékek</option><option value="3" selected>3% – általános tervezési cél</option><option value="5">5% – kevésbé érzékeny kör</option></select></div>
+      <button class="calculator-button" type="submit">Vezeték méretezése</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Eredmény</strong></p><h2>Keresztmetszet feszültségesés alapján</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Rézvezeték</span><strong data-result-cable-mm2>—</strong></div>
+      <div class="calculator-metric"><span>Áramerősség</span><strong data-result-current-amps>—</strong></div>
+      <div class="calculator-metric"><span>Tényleges esés</span><strong data-result-drop-percent>—</strong></div>
+      <div class="calculator-metric"><span>Feszültségesés</span><strong data-result-drop-volts>—</strong></div>
+    </div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/hu/#kalkulator">Teljes rendszer tervezése</a><a class="calculator-cta calculator-cta-secondary" href="/hu/utmutatok/12-v-vezetekek-es-biztositekok/">Vezetékek és biztosítékok</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Miért az egyirányú hossz szükséges?</h2><p>Az áram a fogyasztóhoz és vissza is folyik, ezért a kalkulátor kétszeres úthosszal számol. Ugyanakkora teljesítmény mellett a 12 V-os rendszerben körülbelül kétszer akkora áram folyik, mint a 24 V-os rendszerben.</p></section>
+  <section class="calculator-section calculator-content-card"><h2>Fontos: a feszültségesés csak egy szempont</h2><p><strong>Az eredmény önmagában nem biztonságos villamos terv.</strong> Külön ellenőrizni kell a vezeték áramterhelhetőségét, a hőmérsékletet, az elhelyezést, a szigetelést és a gyártói előírásokat. A biztosítéknak a vezetéket kell védenie; az akkumulátor és a BMS korlátait is vegye figyelembe. A tervet ellenőriztesse szakképzett villanyszerelővel.</p><p>A tervezés elején hasznos lehet a <a href="/hu/kalkulatorok/12v-vagy-24v/">12 V vagy 24 V rendszerkalkulátor</a> is.</p></section>
+</main>
+<script type="module" src="/src/calculator-landing-browser.js?v=20261115-placement-events1"></script>
+</body>
+</html>

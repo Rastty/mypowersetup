@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Przekrój przewodu 12/24 V – kalkulator spadku napięcia | MyPowerSetup</title>
+  <meta name="description" content="Oblicz orientacyjny przekrój przewodu miedzianego 12 V lub 24 V w kamperze na podstawie mocy odbiornika, długości trasy i dopuszczalnego spadku napięcia.">
+  <link rel="canonical" href="https://mypowersetup.com/pl/kalkulatory/przekroj-przewodu-12v/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/prurez-kabelu-12v/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/prierez-kabla-12v/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/przekroj-przewodu-12v/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/vezetek-keresztmetszet-12v/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/prurez-kabelu-12v/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Kalkulator przekroju przewodu 12/24 V","url":"https://mypowersetup.com/pl/kalkulatory/przekroj-przewodu-12v/","inLanguage":"pl-PL","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/pl/"},{"@type":"ListItem","position":2,"name":"Kalkulatory","item":"https://mypowersetup.com/pl/kalkulatory/"},{"@type":"ListItem","position":3,"name":"Przekrój przewodu","item":"https://mypowersetup.com/pl/kalkulatory/przekroj-przewodu-12v/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Czy podać długość przewodu w obie strony?","acceptedAnswer":{"@type":"Answer","text":"Podaj długość w jedną stronę. Kalkulator uwzględnia obwód prądu do odbiornika i z powrotem."}},{"@type":"Question","name":"Czy obliczony przekrój wystarczy do bezpiecznego montażu?","acceptedAnswer":{"@type":"Answer","text":"Nie. Kalkulator sprawdza wyłącznie spadek napięcia. Obciążalność prądowa, temperatura, sposób prowadzenia przewodu, bezpiecznik oraz wymagania producenta wymagają osobnej weryfikacji przez wykwalifikowanego elektryka."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/pl/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/pl/kalkulatory/">Kalkulatory</a><a class="header-link" href="/pl/poradnik/">Poradniki</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/pl/">Start</a> / <a href="/pl/kalkulatory/">Kalkulatory</a> / Przekrój przewodu</nav>
+  <section class="calculator-hero"><p><strong>Instalacja 12 V i 24 V w kamperze</strong></p><h1>Jaki przekrój przewodu wybrać?</h1><p>Podaj moc odbiornika, długość trasy w jedną stronę i dopuszczalny spadek napięcia. Kalkulator oszacuje prąd oraz typowy przekrój przewodu miedzianego wynikający ze spadku napięcia.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="cable-voltage-drop" data-calculator-locale="pl">
+    <div class="calculator-card"><h2>Parametry obwodu</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="loadWatts">Moc odbiornika (W)</label><input id="loadWatts" name="loadWatts" type="number" inputmode="decimal" min="10" max="10000" step="10" value="500" required></div>
+      <div class="calculator-field"><label for="oneWayLengthM">Długość przewodu w jedną stronę (m)</label><input id="oneWayLengthM" name="oneWayLengthM" type="number" inputmode="decimal" min="0.5" max="30" step="0.5" value="5" required></div>
+      <div class="calculator-field"><label for="systemVoltage">Napięcie instalacji</label><select id="systemVoltage" name="systemVoltage"><option value="12" selected>12 V</option><option value="24">24 V</option></select></div>
+      <div class="calculator-field"><label for="maxDropPercent">Maksymalny spadek napięcia</label><select id="maxDropPercent" name="maxDropPercent"><option value="2">2% – wrażliwe urządzenia</option><option value="3" selected>3% – typowe założenie</option><option value="5">5% – mniej wrażliwy obwód</option></select></div>
+      <button class="calculator-button" type="submit">Oblicz przekrój przewodu</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Wynik</strong></p><h2>Przekrój według spadku napięcia</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Przewód miedziany</span><strong data-result-cable-mm2>—</strong></div>
+      <div class="calculator-metric"><span>Prąd</span><strong data-result-current-amps>—</strong></div>
+      <div class="calculator-metric"><span>Rzeczywisty spadek</span><strong data-result-drop-percent>—</strong></div>
+      <div class="calculator-metric"><span>Spadek napięcia</span><strong data-result-drop-volts>—</strong></div>
+    </div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/pl/#kalkulator">Zaplanuj cały zestaw</a><a class="calculator-cta calculator-cta-secondary" href="/pl/poradnik/przewody-i-bezpieczniki-12-v/">Przewody i bezpieczniki</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Dlaczego długość przewodu ma znaczenie?</h2><p>Prąd płynie do urządzenia i wraca do źródła. Dlatego obliczenie spadku napięcia uwzględnia podwójną długość podanej trasy. Przy tej samej mocy instalacja 12 V przenosi około dwa razy większy prąd niż instalacja 24 V.</p></section>
+  <section class="calculator-section calculator-content-card"><h2>Ważne: wynik dotyczy tylko spadku napięcia</h2><p><strong>Nie traktuj wyniku jako gotowego projektu instalacji.</strong> Należy osobno sprawdzić obciążalność prądową przewodu, temperaturę otoczenia, sposób montażu, izolację i wymagania producenta. Zabezpieczenie nadprądowe powinno chronić przewód i uwzględniać akumulator oraz BMS. Projekt i montaż powierz wykwalifikowanemu elektrykowi.</p><p>Przed wyborem całej instalacji porównaj również <a href="/pl/kalkulatory/12v-czy-24v/">systemy 12 V i 24 V</a>.</p></section>
+</main>
+<script type="module" src="/src/calculator-landing-browser.js?v=20261115-placement-events1"></script>
+</body>
+</html>
