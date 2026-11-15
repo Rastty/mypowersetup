@@ -22,6 +22,9 @@ const LANDINGS = [
   ["/sk/kalkulacky/dc-dc-nabijacka/", "dcdc-sizing", "sk", "dcdc-localized-landing-browser.js"],
   ["/pl/kalkulatory/ladowarka-dc-dc/", "dcdc-sizing", "pl", "dcdc-localized-landing-browser.js"],
   ["/hu/kalkulatorok/dc-dc-tolto/", "dcdc-sizing", "hu", "dcdc-localized-landing-browser.js"],
+  ["/sk/kalkulacky/istenie-12v/", "dc-protection", "sk", "protection-localized-landing-browser.js"],
+  ["/pl/kalkulatory/bezpiecznik-12v/", "dc-protection", "pl", "protection-localized-landing-browser.js"],
+  ["/hu/kalkulatorok/biztositek-12v/", "dc-protection", "hu", "protection-localized-landing-browser.js"],
 ];
 
 test("every published calculator landing has one canonical GA4 attribution shape", () => {
@@ -39,9 +42,9 @@ test("every registered calculator landing HTML declares the matching intent, loc
   for (const [sourcePath, intent, locale, browser] of LANDINGS) {
     const html = await readFile(new URL(`..${sourcePath}index.html`, import.meta.url), "utf8");
     assert.match(html, new RegExp(`data-calculator-intent=["']${intent}["']`), sourcePath);
-    if (browser === "phase2-calculator-browser.js" || browser === "dcdc-localized-landing-browser.js") {
+    if (browser === "phase2-calculator-browser.js" || browser === "dcdc-localized-landing-browser.js" || browser === "protection-localized-landing-browser.js") {
       assert.match(html, /data-phase2-calculator/, sourcePath);
-      if (browser === "dcdc-localized-landing-browser.js") assert.match(html, new RegExp(`data-calculator-locale=["']${locale}["']`), sourcePath);
+      if (browser !== "phase2-calculator-browser.js") assert.match(html, new RegExp(`data-calculator-locale=["']${locale}["']`), sourcePath);
     } else {
       assert.match(html, new RegExp(`data-calculator-locale=["']${locale}["']`), sourcePath);
       assert.match(html, /data-calculator-landing/, sourcePath);
@@ -51,7 +54,7 @@ test("every registered calculator landing HTML declares the matching intent, loc
 });
 
 test("landing browsers emit the canonical calculator parameters used by downstream product events", async () => {
-  for (const file of ["calculator-landing-browser.js", "phase2-calculator-browser.js", "dcdc-localized-landing-browser.js"]) {
+  for (const file of ["calculator-landing-browser.js", "phase2-calculator-browser.js", "dcdc-localized-landing-browser.js", "protection-localized-landing-browser.js"]) {
     const source = await readFile(new URL(`../src/${file}`, import.meta.url), "utf8");
     assert.match(source, /buildCalculatorLandingAnalyticsParameters/);
     assert.doesNotMatch(source, /\blanding_path\s*:/);

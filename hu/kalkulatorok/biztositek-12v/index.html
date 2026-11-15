@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>12/24 V biztosíték és kábel kalkulátor | MyPowerSetup</title>
+  <meta name="description" content="12/24 V biztosíték és vezeték-keresztmetszet tervezése áram, feszültségesés, igazolt áramterhelhetőség és készülékkorlát alapján.">
+  <link rel="canonical" href="https://mypowersetup.com/hu/kalkulatorok/biztositek-12v/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/jisteni-12v/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/istenie-12v/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/bezpiecznik-12v/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/biztositek-12v/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/jisteni-12v/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"12/24 V biztosíték és kábel kalkulátor","url":"https://mypowersetup.com/hu/kalkulatorok/biztositek-12v/","inLanguage":"hu-HU","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/hu/"},{"@type":"ListItem","position":2,"name":"Kalkulátorok","item":"https://mypowersetup.com/hu/kalkulatorok/"},{"@type":"ListItem","position":3,"name":"Biztosítékterv","item":"https://mypowersetup.com/hu/kalkulatorok/biztositek-12v/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Kötelező a 125%-os tartalék?","acceptedAnswer":{"@type":"Answer","text":"Nem. Csak módosítható tervezési kiindulóérték, nem általános szabály minden egyenáramú áramkörre."}},{"@type":"Question","name":"Elég csak a feszültségesést számítani?","acceptedAnswer":{"@type":"Answer","text":"Nem. A vezeték hőterhelhetőségét az adott beépítési körülmények között külön ellenőrizni kell."}}]}]}</script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/hu/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/hu/kalkulatorok/">Kalkulátorok</a><a class="header-link" href="/hu/utmutatok/12-v-vezetekek-es-biztositekok/">Vezetékek és biztosítékok a gyakorlatban</a></nav></header>
+  <main class="calculator-page">
+    <nav class="calculator-breadcrumbs"><a href="/hu/">Kezdőlap</a> / <a href="/hu/kalkulatorok/">Kalkulátorok</a> / Biztosítékterv</nav>
+    <section class="calculator-hero"><p><strong>12/24 V-os áramkör biztonságos tervezése</strong></p><h1>Mekkora biztosítékot és vezetéket válasszunk?</h1><p>Külön számíthatja a feszültségeséshez szükséges keresztmetszetet és az igazolt vezeték-áramterhelhetőség, a tervezési áram és a készülék előírásai alapján választható biztosítékot.</p></section>
+    <section class="calculator-grid" data-phase2-calculator data-calculator-intent="dc-protection" data-calculator-locale="hu">
+      <div class="calculator-card"><h2>Adja meg az áramkör adatait</h2><form class="calculator-form" data-calculator-form>
+        <div class="calculator-field"><label for="continuousCurrentA">Folyamatos üzemi áram (A)</label><input id="continuousCurrentA" name="continuousCurrentA" type="number" inputmode="decimal" min="1" max="400" step="1" value="30" required></div>
+        <div class="calculator-field"><label for="systemVoltage">Rendszerfeszültség</label><select id="systemVoltage" name="systemVoltage"><option value="12">12 V</option><option value="24">24 V</option></select></div>
+        <div class="calculator-field"><label for="oneWayLengthM">Egyirányú vezetékhossz (m)</label><input id="oneWayLengthM" name="oneWayLengthM" type="number" inputmode="decimal" min="0.5" max="30" step="0.5" value="5" required></div>
+        <div class="calculator-field"><label for="maxDropPercent">Megengedett feszültségesés (%)</label><input id="maxDropPercent" name="maxDropPercent" type="number" inputmode="decimal" min="1" max="10" step="0.5" value="3" required></div>
+        <div class="calculator-field"><label for="planningMarginPercent">Tervezési áramtartalék (%)</label><input id="planningMarginPercent" name="planningMarginPercent" type="number" inputmode="decimal" min="100" max="160" step="5" value="125" required></div>
+<div class="calculator-field"><label for="cableAmpacityA">Igazolt vezeték-áramterhelhetőség (A)</label><input id="cableAmpacityA" name="cableAmpacityA" type="number" inputmode="decimal" min="1" max="500" step="1" required></div>
+        <div class="calculator-field"><label for="equipmentMaxFuseA">A készülék maximális biztosítéka (A, opcionális)</label><input id="equipmentMaxFuseA" name="equipmentMaxFuseA" type="number" inputmode="decimal" min="1" max="500" step="1"></div>
+        <button class="calculator-button" type="submit">Biztosíték és vezeték számítása</button>
+      </form><p class="calculator-error" data-calculator-error role="alert" hidden></p><p class="calculator-help" data-calculator-stale role="status" hidden>Módosította az adatokat. A használat előtt számoljon újra.</p></div>
+      <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Eredmény</strong></p><h2>Biztosítékterv</h2><div class="calculator-metrics">
+        <div class="calculator-metric"><span>Tervezési áram</span><strong data-result-design-current>—</strong></div>
+        <div class="calculator-metric"><span>Biztosíték</span><strong data-result-fuse>—</strong></div>
+        <div class="calculator-metric"><span>Keresztmetszet feszültségesés szerint</span><strong data-result-cable-mm2>—</strong></div>
+        <div class="calculator-metric"><span>Tényleges feszültségesés</span><strong data-result-drop-percent>—</strong></div>
+        <div class="calculator-metric"><span>Biztosíték felső határa</span><strong data-result-ceiling>—</strong></div>
+        <div class="calculator-metric"><span>Van megfelelő biztosíték?</span><strong data-result-feasible>—</strong></div>
+      </div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/hu/#kalkulator">Teljes rendszer tervezése</a><a class="calculator-cta calculator-cta-secondary" href="/hu/utmutatok/12-v-vezetekek-es-biztositekok/">Vezetékek és biztosítékok a gyakorlatban</a></div></div>
+    </section>
+    <section class="calculator-section calculator-content-card"><h2>Miért kell két külön ellenőrzés?</h2><p>A feszültségesés alapján választott keresztmetszet nem igazolja a vezeték hőterhelhetőségét. Ezt az anyag, szigetelés, hőmérséklet, kötegelés és szerelési mód szerint külön ellenőrizni kell. A biztosítéknak védenie kell a vezetéket, és meg kell felelnie a készülék, a DC megszakítóképesség és a feszültség besorolásának. A szerelést ellenőriztesse szakemberrel.</p><p><a href="/hu/kalkulatorok/vezetek-keresztmetszet-12v/">Vezeték-keresztmetszet kalkulátor</a> · <a href="/hu/kalkulatorok/dc-dc-tolto/">DC/DC töltő kalkulátor</a></p></section>
+    <section class="calculator-section"><h2>Gyakori kérdések</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Kötelező a 125%-os tartalék?</h3><p>Nem. Csak módosítható tervezési kiindulóérték, nem általános szabály minden egyenáramú áramkörre.</p></article><article class="calculator-content-card"><h3>Elég csak a feszültségesést számítani?</h3><p>Nem. A vezeték hőterhelhetőségét az adott beépítési körülmények között külön ellenőrizni kell.</p></article></div></section>
+  </main>
+  <script type="module" src="/src/protection-localized-landing-browser.js?v=20261115-protection-locales1"></script>
+</body>
+</html>
