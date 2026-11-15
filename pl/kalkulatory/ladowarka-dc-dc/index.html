@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ładowarka DC/DC do kampera – kalkulator 20–50 A | MyPowerSetup</title>
+  <meta name="description" content="Oblicz prąd ładowarki DC/DC według pojemności akumulatora, czasu jazdy, rzeczywistej rezerwy alternatora oraz limitu ładowania BMS.">
+  <link rel="canonical" href="https://mypowersetup.com/pl/kalkulatory/ladowarka-dc-dc/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/dc-dc-nabijacka/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/ladowarka-dc-dc/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/dc-dc-tolto/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Kalkulator ładowarki DC/DC do kampera","url":"https://mypowersetup.com/pl/kalkulatory/ladowarka-dc-dc/","inLanguage":"pl-PL","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/pl/"},{"@type":"ListItem","position":2,"name":"Kalkulatory","item":"https://mypowersetup.com/pl/kalkulatory/"},{"@type":"ListItem","position":3,"name":"Ładowarka DC/DC","item":"https://mypowersetup.com/pl/kalkulatory/ladowarka-dc-dc/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Czy mogę wpisać prąd znamionowy alternatora?","acceptedAnswer":{"@type":"Answer","text":"Nie. Należy podać tylko prąd stale dostępny po uwzględnieniu poboru pojazdu, temperatury i zaleceń producenta."}},{"@type":"Question","name":"Czy większa ładowarka DC/DC zawsze skróci ładowanie?","acceptedAnswer":{"@type":"Answer","text":"Nie. Ograniczeniem może być alternator, akumulator/BMS, przewody, bezpieczniki oraz profil ładowania. Nie wolno przekraczać ich dopuszczalnych parametrów."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/pl/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/pl/kalkulatory/">Kalkulatory</a><a class="header-link" href="/pl/poradnik/">Poradniki</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/pl/">Start</a> / <a href="/pl/kalkulatory/">Kalkulatory</a> / Ładowarka DC/DC</nav>
+  <section class="calculator-hero"><p><strong>Ładowanie akumulatora podczas jazdy</strong></p><h1>Jaki prąd ładowarki DC/DC wybrać?</h1><p>Sprawdź, ile energii chcesz uzupełnić podczas jazdy i jaki prąd faktycznie pozwala wykorzystać rezerwa alternatora oraz maksymalny prąd ładowania akumulatora/BMS.</p></section>
+  <section class="calculator-grid" data-phase2-calculator data-calculator-intent="dcdc-sizing" data-calculator-locale="pl">
+    <div class="calculator-card"><h2>Dane akumulatora i pojazdu</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="batteryCapacityAh">Pojemność akumulatora pokładowego (Ah)</label><input id="batteryCapacityAh" name="batteryCapacityAh" type="number" inputmode="decimal" min="20" max="1000" step="10" value="200" required></div>
+      <div class="calculator-field"><label for="replenishPercent">Ile % akumulatora chcesz uzupełnić</label><input id="replenishPercent" name="replenishPercent" type="number" inputmode="decimal" min="5" max="100" step="5" value="50" required></div>
+      <div class="calculator-field"><label for="targetDriveHours">Czas jazdy (h)</label><input id="targetDriveHours" name="targetDriveHours" type="number" inputmode="decimal" min="0.5" max="24" step="0.5" value="3" required></div>
+      <div class="calculator-field"><label for="batteryVoltage">Napięcie akumulatora pokładowego</label><select id="batteryVoltage" name="batteryVoltage"><option value="12" selected>12 V</option><option value="24">24 V</option></select></div>
+      <div class="calculator-field"><label for="sourceVoltage">Napięcie wejściowe DC/DC podczas ładowania (V)</label><input id="sourceVoltage" name="sourceVoltage" type="number" inputmode="decimal" min="12" max="30" step="0.1" value="14.2" required></div>
+      <div class="calculator-field"><label for="spareAlternatorCurrentA">Stale dostępny prąd alternatora po odjęciu potrzeb pojazdu (A)</label><input id="spareAlternatorCurrentA" name="spareAlternatorCurrentA" type="number" inputmode="decimal" min="1" max="400" step="1" value="50" required></div>
+      <div class="calculator-field"><label for="batteryMaxChargeCurrentA">Maksymalny prąd ładowania akumulatora/BMS (A)</label><input id="batteryMaxChargeCurrentA" name="batteryMaxChargeCurrentA" type="number" inputmode="decimal" min="1" max="400" step="1" value="100" required></div>
+      <div class="calculator-field"><label for="efficiencyPercent">Szacowana sprawność DC/DC (%)</label><input id="efficiencyPercent" name="efficiencyPercent" type="number" inputmode="decimal" min="70" max="100" step="1" value="90" required></div>
+      <button class="calculator-button" type="submit">Oblicz prąd ładowarki DC/DC</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p><p class="calculator-help" data-calculator-stale role="status" hidden>Zmieniono dane. Przed użyciem wyniku uruchom obliczenie ponownie.</p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Wynik</strong></p><h2>Zalecana klasa prądu ładowarki</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Ładowarka DC/DC</span><strong data-result-charger-amps>—</strong></div><div class="calculator-metric"><span>Wymagany prąd wyjściowy</span><strong data-result-required-amps>—</strong></div><div class="calculator-metric"><span>Dostępny prąd wyjściowy</span><strong data-result-feasible-amps>—</strong></div><div class="calculator-metric"><span>Szacowany czas ładowania</span><strong data-result-recharge-hours>—</strong></div><div class="calculator-metric"><span>Prąd wejściowy</span><strong data-result-source-amps>—</strong></div><div class="calculator-metric"><span>Energia do uzupełnienia</span><strong data-result-energy-wh>—</strong></div><div class="calculator-metric"><span>Cel osiągalny?</span><strong data-result-target>—</strong></div>
+    </div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/pl/#kalkulator">Zaplanuj cały zestaw</a><a class="calculator-cta calculator-cta-secondary" href="/pl/poradnik/jak-dobrac-ladowarke-dc-dc/">Jak dobrać ładowarkę DC/DC</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Co sprawdzić przed zakupem i montażem?</h2><p><strong>Prąd znamionowy alternatora nie jest dostępną rezerwą.</strong> Uwzględnij instalację pojazdu i sterowanie inteligentnym alternatorem. Sprawdź kompatybilność napięć wejścia i wyjścia ładowarki, chemii akumulatora oraz profilu ładowania. Przewody, bezpieczniki i limity BMS wymagają osobnego projektu i weryfikacji przez wykwalifikowanego elektryka.</p><p>Do oceny samego spadku napięcia przewodu użyj <a href="/pl/kalkulatory/przekroj-przewodu-12v/">kalkulatora przekroju przewodu</a>.</p></section>
+</main>
+<script type="module" src="/src/dcdc-localized-landing-browser.js?v=20261115-dcdc-locales1"></script>
+</body>
+</html>

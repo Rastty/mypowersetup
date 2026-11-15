@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DC/DC töltő kalkulátor lakóautóhoz – 20–50 A | MyPowerSetup</title>
+  <meta name="description" content="Számítsa ki a DC/DC töltő szükséges áramerősségét az akkumulátor, a vezetési idő, a generátor szabad árama és a BMS töltési korlátja alapján.">
+  <link rel="canonical" href="https://mypowersetup.com/hu/kalkulatorok/dc-dc-tolto/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/dc-dc-nabijacka/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/ladowarka-dc-dc/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/dc-dc-tolto/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"DC/DC töltő méretező kalkulátor","url":"https://mypowersetup.com/hu/kalkulatorok/dc-dc-tolto/","inLanguage":"hu-HU","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/hu/"},{"@type":"ListItem","position":2,"name":"Kalkulátorok","item":"https://mypowersetup.com/hu/kalkulatorok/"},{"@type":"ListItem","position":3,"name":"DC/DC töltő","item":"https://mypowersetup.com/hu/kalkulatorok/dc-dc-tolto/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Megadhatom a generátor névleges áramát?","acceptedAnswer":{"@type":"Answer","text":"Nem. A jármű saját fogyasztása, a hőmérséklet, a fordulatszám és a gyártói előírások figyelembevételével tartósan rendelkezésre álló áram szükséges."}},{"@type":"Question","name":"Mindig jobb a nagyobb DC/DC töltő?","acceptedAnswer":{"@type":"Answer","text":"Nem. A generátor, az akkumulátor/BMS, a kábelek, a biztosítékok és a töltési profil korlátozhatják az áramot. A telepítést szakképzett villanyszerelővel kell ellenőriztetni."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/hu/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/hu/kalkulatorok/">Kalkulátorok</a><a class="header-link" href="/hu/utmutatok/">Útmutatók</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/hu/">Kezdőlap</a> / <a href="/hu/kalkulatorok/">Kalkulátorok</a> / DC/DC töltő</nav>
+  <section class="calculator-hero"><p><strong>A lakóautó akkumulátorának töltése menet közben</strong></p><h1>Mekkora DC/DC töltőre van szüksége?</h1><p>A kívánt energiapótlást összevetjük a generátor tartósan szabadon felhasználható áramával és az akkumulátor/BMS megengedett töltőáramával. A nagyobb áramerősség nem mindig biztonságos.</p></section>
+  <section class="calculator-grid" data-phase2-calculator data-calculator-intent="dcdc-sizing" data-calculator-locale="hu">
+    <div class="calculator-card"><h2>Akkumulátor és vezetési idő</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="batteryCapacityAh">Fedélzeti akkumulátor kapacitása (Ah)</label><input id="batteryCapacityAh" name="batteryCapacityAh" type="number" inputmode="decimal" min="20" max="1000" step="10" value="200" required></div>
+      <div class="calculator-field"><label for="replenishPercent">Pótolni kívánt kapacitás (%)</label><input id="replenishPercent" name="replenishPercent" type="number" inputmode="decimal" min="5" max="100" step="5" value="50" required></div>
+      <div class="calculator-field"><label for="targetDriveHours">Vezetési idő (óra)</label><input id="targetDriveHours" name="targetDriveHours" type="number" inputmode="decimal" min="0.5" max="24" step="0.5" value="3" required></div>
+      <div class="calculator-field"><label for="batteryVoltage">Fedélzeti akkumulátor feszültsége</label><select id="batteryVoltage" name="batteryVoltage"><option value="12" selected>12 V</option><option value="24">24 V</option></select></div>
+      <div class="calculator-field"><label for="sourceVoltage">DC/DC bemeneti feszültség töltés közben (V)</label><input id="sourceVoltage" name="sourceVoltage" type="number" inputmode="decimal" min="12" max="30" step="0.1" value="14.2" required></div>
+      <div class="calculator-field"><label for="spareAlternatorCurrentA">Generátor szabad, tartós árama a jármű igényei felett (A)</label><input id="spareAlternatorCurrentA" name="spareAlternatorCurrentA" type="number" inputmode="decimal" min="1" max="400" step="1" value="50" required></div>
+      <div class="calculator-field"><label for="batteryMaxChargeCurrentA">Akkumulátor/BMS maximális töltőárama (A)</label><input id="batteryMaxChargeCurrentA" name="batteryMaxChargeCurrentA" type="number" inputmode="decimal" min="1" max="400" step="1" value="100" required></div>
+      <div class="calculator-field"><label for="efficiencyPercent">DC/DC becsült hatásfoka (%)</label><input id="efficiencyPercent" name="efficiencyPercent" type="number" inputmode="decimal" min="70" max="100" step="1" value="90" required></div>
+      <button class="calculator-button" type="submit">DC/DC töltő méretezése</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p><p class="calculator-help" data-calculator-stale role="status" hidden>Módosította az adatokat. Az ajánlás használata előtt számoljon újra.</p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Eredmény</strong></p><h2>Javasolt DC/DC töltőáram</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Javasolt töltő</span><strong data-result-charger-amps>—</strong></div><div class="calculator-metric"><span>Szükséges kimeneti áram</span><strong data-result-required-amps>—</strong></div><div class="calculator-metric"><span>Elérhető kimeneti áram</span><strong data-result-feasible-amps>—</strong></div><div class="calculator-metric"><span>Becsült töltési idő</span><strong data-result-recharge-hours>—</strong></div><div class="calculator-metric"><span>Bemeneti áram</span><strong data-result-source-amps>—</strong></div><div class="calculator-metric"><span>Pótlandó energia</span><strong data-result-energy-wh>—</strong></div><div class="calculator-metric"><span>Elérhető a cél?</span><strong data-result-target>—</strong></div>
+    </div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/hu/#kalkulator">Teljes rendszer tervezése</a><a class="calculator-cta calculator-cta-secondary" href="/hu/utmutatok/dc-dc-tolto-kivalasztasa/">DC/DC töltő kiválasztása</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Mire kell figyelni a beszerelés előtt?</h2><p><strong>A generátor névleges árama nem a rendelkezésre álló szabad áram.</strong> Okosgenerátoros járműnél az indítás és a töltésvezérlés módját is ellenőrizni kell. A töltő bemeneti és kimeneti feszültségének, töltési profiljának és az akkumulátor kémiájának egyeznie kell. A vezetéket, a biztosítékokat és a BMS-t együtt kell méretezni, szakképzett villanyszerelő bevonásával.</p><p>A vezeték feszültségesésének vizsgálatához használja a <a href="/hu/kalkulatorok/vezetek-keresztmetszet-12v/">vezeték-keresztmetszet kalkulátort</a>.</p></section>
+</main>
+<script type="module" src="/src/dcdc-localized-landing-browser.js?v=20261115-dcdc-locales1"></script>
+</body>
+</html>

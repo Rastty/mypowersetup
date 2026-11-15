@@ -46,6 +46,12 @@ const families = Object.freeze({
     pl: "/pl/kalkulatory/przekroj-przewodu-12v/",
     hu: "/hu/kalkulatorok/vezetek-keresztmetszet-12v/",
   }),
+  dcdc: Object.freeze({
+    cs: "/kalkulacky/dc-dc-nabijecka/",
+    sk: "/sk/kalkulacky/dc-dc-nabijacka/",
+    pl: "/pl/kalkulatory/ladowarka-dc-dc/",
+    hu: "/hu/kalkulatorok/dc-dc-tolto/",
+  }),
 });
 
 const czPublishedRoutes = Object.freeze([
@@ -87,7 +93,7 @@ function expectedAlternates(family) {
 }
 
 test("published calculator families have reciprocal core-market hreflang", async () => {
-  for (const key of ["hub", "battery", "solar", "mppt", "inverter", "voltage", "cable"]) {
+  for (const key of ["hub", "battery", "solar", "mppt", "inverter", "voltage", "cable", "dcdc"]) {
     const family = families[key];
     const expected = expectedAlternates(family);
     for (const route of Object.values(family)) {
@@ -101,7 +107,7 @@ test("published calculator families have reciprocal core-market hreflang", async
 test("SK PL HU calculator pages are native market handoffs, not cross-market clones", async () => {
   for (const [locale, meta] of Object.entries(localeMeta)) {
     const foreignLocales = Object.keys(localeMeta).filter((candidate) => candidate !== locale);
-    for (const key of ["battery", "solar", "mppt", "inverter", "voltage", "cable"]) {
+    for (const key of ["battery", "solar", "mppt", "inverter", "voltage", "cable", "dcdc"]) {
       const route = families[key][locale];
       const html = await readFile(fileFor(route), "utf8");
       assert.ok(html.includes(`rel="canonical" href="${ORIGIN}${route}"`), `${route} must self-canonicalize`);
@@ -125,6 +131,7 @@ test("localized calculator hubs expose MPPT and inverter with a linked solar nex
     assert.ok(html.includes(`href="${families.inverter[locale]}"`));
     assert.ok(html.includes(`href="${families.voltage[locale]}"`));
     assert.ok(html.includes(`href="${families.cable[locale]}"`));
+    assert.ok(html.includes(`href="${families.dcdc[locale]}"`));
     const solar = await readFile(fileFor(families.solar[locale]), "utf8");
     assert.ok(solar.includes(`href="${families.mppt[locale]}"`), `${families.solar[locale]} must link next-step MPPT`);
     assert.doesNotMatch(html, /href="\/[^\"]*jisteni-12v\//i, `${hubRoute} should not link unimplemented protection calculator`);
@@ -203,6 +210,34 @@ test("localized cable sizing pages render the shared voltage-drop calculator wit
   }
 });
 
+test("localized DC/DC pages render one shared charger engine with safe market-specific guidance", async () => {
+  for (const [locale, meta] of Object.entries(localeMeta)) {
+    const route = families.dcdc[locale];
+    const html = await readFile(fileFor(route), "utf8");
+    assert.match(html, /data-phase2-calculator\s+data-calculator-intent="dcdc-sizing"/);
+    for (const field of ["batteryCapacityAh", "replenishPercent", "targetDriveHours", "batteryVoltage", "sourceVoltage", "spareAlternatorCurrentA", "batteryMaxChargeCurrentA", "efficiencyPercent"]) {
+      assert.ok(html.includes(`name="${field}"`), `${route} needs ${field}`);
+    }
+    for (const metric of ["charger-amps", "required-amps", "feasible-amps", "recharge-hours", "source-amps", "energy-wh", "target", "summary", "reserve", "warnings"]) {
+      assert.match(html, new RegExp(`data-result-${metric}`), `${route} needs result ${metric}`);
+    }
+    assert.ok(html.includes(`href="${meta.builder}"`));
+    assert.ok(html.includes(`href="${meta.guidePrefix}`));
+    assert.ok(html.includes(`href="${families.cable[locale]}"`), `${route} needs cable-sizing handoff`);
+    assert.match(html, /BMS/);
+    assert.match(html, /src="\/src\/dcdc-localized-landing-browser\.js\?v=/);
+    assert.doesNotMatch(html, /data-dcdc-buyers|data-affiliate|ehub\.cz|dognet\.sk/, `${route} must not present unverified market offers`);
+    const schema = JSON.parse([...html.matchAll(/<script type="application\/ld\+json">([^<]+)<\/script>/g)][0][1]);
+    assert.deepEqual(schema["@graph"].map(({ "@type": type }) => type), ["WebApplication", "BreadcrumbList", "FAQPage"]);
+    assert.equal(schema["@graph"][0].inLanguage, `${locale}-${locale.toUpperCase()}`);
+  }
+  const browser = await readFile("src/dcdc-localized-landing-browser.js", "utf8");
+  assert.match(browser, /calculateDcDcCharger/);
+  assert.match(browser, /rememberCalculatorResultContext/);
+  assert.match(browser, /calculator_landing_continue/);
+  assert.doesNotMatch(browser, /from\s+["'][^"']*(?:merchant|feed|productOffers|affiliate-analytics)|data-dcdc-buyers/i);
+});
+
 test("calculator sitemap publishes the complete CZ plus SK PL HU calculator surface exactly once", async () => {
   const xml = await readFile("sitemap-calculators.xml", "utf8");
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
@@ -213,7 +248,7 @@ test("calculator sitemap publishes the complete CZ plus SK PL HU calculator surf
   assert.equal(
     urls.length,
     czPublishedRoutes.length + localized.length,
-    "calculator sitemap should contain 10 CZ URLs plus 21 localized URLs",
+    "calculator sitemap should contain 10 CZ URLs plus 24 localized URLs",
   );
   assert.ok(!urls.some((url) => /\/(?:pt|ro|si)\/.*(?:kalk|calc)/i.test(url)), "PT/RO/SI calculator rollout must stay blocked");
 });

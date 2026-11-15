@@ -17,18 +17,21 @@ const LANDINGS = Object.freeze({
   "/sk/kalkulacky/vykon-menica/": Object.freeze({ intent: "inverter-sizing", locale: "sk" }),
   "/sk/kalkulacky/12v-alebo-24v/": Object.freeze({ intent: "voltage-system", locale: "sk" }),
   "/sk/kalkulacky/prierez-kabla-12v/": Object.freeze({ intent: "cable-voltage-drop", locale: "sk" }),
+  "/sk/kalkulacky/dc-dc-nabijacka/": Object.freeze({ intent: "dcdc-sizing", locale: "sk" }),
   "/pl/kalkulatory/pojemnosc-akumulatora/": Object.freeze({ intent: "battery-capacity", locale: "pl" }),
   "/pl/kalkulatory/panele-solarne/": Object.freeze({ intent: "solar-sizing", locale: "pl" }),
   "/pl/kalkulatory/regulator-mppt/": Object.freeze({ intent: "mppt-sizing", locale: "pl" }),
   "/pl/kalkulatory/moc-przetwornicy/": Object.freeze({ intent: "inverter-sizing", locale: "pl" }),
   "/pl/kalkulatory/12v-czy-24v/": Object.freeze({ intent: "voltage-system", locale: "pl" }),
   "/pl/kalkulatory/przekroj-przewodu-12v/": Object.freeze({ intent: "cable-voltage-drop", locale: "pl" }),
+  "/pl/kalkulatory/ladowarka-dc-dc/": Object.freeze({ intent: "dcdc-sizing", locale: "pl" }),
   "/hu/kalkulatorok/akkumulator-kapacitas/": Object.freeze({ intent: "battery-capacity", locale: "hu" }),
   "/hu/kalkulatorok/napelem-teljesitmeny/": Object.freeze({ intent: "solar-sizing", locale: "hu" }),
   "/hu/kalkulatorok/mppt-szabalyozo/": Object.freeze({ intent: "mppt-sizing", locale: "hu" }),
   "/hu/kalkulatorok/inverter-teljesitmeny/": Object.freeze({ intent: "inverter-sizing", locale: "hu" }),
   "/hu/kalkulatorok/12v-vagy-24v/": Object.freeze({ intent: "voltage-system", locale: "hu" }),
   "/hu/kalkulatorok/vezetek-keresztmetszet-12v/": Object.freeze({ intent: "cable-voltage-drop", locale: "hu" }),
+  "/hu/kalkulatorok/dc-dc-tolto/": Object.freeze({ intent: "dcdc-sizing", locale: "hu" }),
 });
 
 function normalizeLocale(locale) {

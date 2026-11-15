@@ -25,6 +25,7 @@ const CALCULATOR_LANDING_ROUTES = Object.freeze([
   "/sk/kalkulacky/vykon-menica/",
   "/sk/kalkulacky/12v-alebo-24v/",
   "/sk/kalkulacky/prierez-kabla-12v/",
+  "/sk/kalkulacky/dc-dc-nabijacka/",
   "/pl/kalkulatory/",
   "/pl/kalkulatory/pojemnosc-akumulatora/",
   "/pl/kalkulatory/panele-solarne/",
@@ -32,6 +33,7 @@ const CALCULATOR_LANDING_ROUTES = Object.freeze([
   "/pl/kalkulatory/moc-przetwornicy/",
   "/pl/kalkulatory/12v-czy-24v/",
   "/pl/kalkulatory/przekroj-przewodu-12v/",
+  "/pl/kalkulatory/ladowarka-dc-dc/",
   "/hu/kalkulatorok/",
   "/hu/kalkulatorok/akkumulator-kapacitas/",
   "/hu/kalkulatorok/napelem-teljesitmeny/",
@@ -39,6 +41,7 @@ const CALCULATOR_LANDING_ROUTES = Object.freeze([
   "/hu/kalkulatorok/inverter-teljesitmeny/",
   "/hu/kalkulatorok/12v-vagy-24v/",
   "/hu/kalkulatorok/vezetek-keresztmetszet-12v/",
+  "/hu/kalkulatorok/dc-dc-tolto/",
 ]);
 const INDEXNOW_INFRASTRUCTURE_FILES = new Set([
   "robots.txt",
@@ -71,6 +74,7 @@ const CALCULATOR_LANDING_FILES = new Set([
   "src/calculator-copy.js",
   "src/dc-cable.js",
   "src/dc-dc-charger.js",
+  "src/dcdc-localized-landing-browser.js",
   "src/dc-protection-planner.js",
   "src/phase2-calculator-browser.js",
 ]);
