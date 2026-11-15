@@ -22,6 +22,7 @@ const publicHomes = [
 ];
 const calculatorUrls = [
   `${origin}/hu/kalkulatorok/`,
+  `${origin}/hu/kalkulatorok/12v-vagy-24v/`,
   `${origin}/hu/kalkulatorok/akkumulator-kapacitas/`,
   `${origin}/hu/kalkulatorok/inverter-teljesitmeny/`,
   `${origin}/hu/kalkulatorok/mppt-szabalyozo/`,
@@ -37,11 +38,13 @@ const calculatorUrls = [
   `${origin}/kalkulacky/vydrz-baterie/`,
   `${origin}/kalkulacky/vykon-menice/`,
   `${origin}/pl/kalkulatory/`,
+  `${origin}/pl/kalkulatory/12v-czy-24v/`,
   `${origin}/pl/kalkulatory/moc-przetwornicy/`,
   `${origin}/pl/kalkulatory/panele-solarne/`,
   `${origin}/pl/kalkulatory/pojemnosc-akumulatora/`,
   `${origin}/pl/kalkulatory/regulator-mppt/`,
   `${origin}/sk/kalkulacky/`,
+  `${origin}/sk/kalkulacky/12v-alebo-24v/`,
   `${origin}/sk/kalkulacky/kapacita-baterie/`,
   `${origin}/sk/kalkulacky/mppt-regulator/`,
   `${origin}/sk/kalkulacky/solarne-panely/`,

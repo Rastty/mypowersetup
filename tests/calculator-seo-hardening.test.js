@@ -40,6 +40,11 @@ const LOCALIZED_EQUIVALENTS = Object.freeze({
     pl: "/pl/kalkulatory/moc-przetwornicy/",
     hu: "/hu/kalkulatorok/inverter-teljesitmeny/",
   }),
+  "12v-nebo-24v": Object.freeze({
+    sk: "/sk/kalkulacky/12v-alebo-24v/",
+    pl: "/pl/kalkulatory/12v-czy-24v/",
+    hu: "/hu/kalkulatorok/12v-vagy-24v/",
+  }),
 });
 
 

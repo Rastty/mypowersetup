@@ -198,7 +198,7 @@ test("calculator sitemap exposes the complete live calculator cluster", async ()
     assert.ok(xml.includes(`<loc>https://mypowersetup.com/kalkulacky/${slug}</loc>`));
   }
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(urls.length, 25, "calculator sitemap should contain 10 CZ URLs plus 15 published localized URLs");
+  assert.equal(urls.length, 28, "calculator sitemap should contain 10 CZ URLs plus 18 published localized URLs");
   assert.equal(new Set(urls).size, urls.length, "calculator sitemap must not contain duplicate URLs");
 });
 
