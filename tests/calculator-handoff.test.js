@@ -112,13 +112,38 @@ test("autonomy-to-capacity handoff refuses invalid values and tampered source qu
   }
 });
 
-test("no fabricated MPPT prefill for oversized array, no foreign-market MPPT link", () => {
+test("MPPT handoffs reject arrays exceeding the 5000 Wp input limit", () => {
   const huge = { solarWatts: 10000, systemVoltage: 24 };
   assert.equal(buildCalculatorHandoffUrl({ intent: "solar-sizing", locale: "cs", result: huge, inputs: { batteryType: "lifepo4" } }), null);
-  assert.equal(calculatorHandoffTarget("solar-sizing", "sk"), null);
-  assert.equal(calculatorHandoffTarget("solar-sizing", "pl"), null);
-  assert.equal(calculatorHandoffTarget("solar-sizing", "hu"), null);
-  assert.equal(buildCalculatorHandoffUrl({ intent: "solar-sizing", locale: "sk", result: { solarWatts: 500, systemVoltage: 12 }, inputs: { batteryType: "lifepo4" } }), null);
+  for (const locale of ["sk", "pl", "hu"]) {
+    assert.equal(buildCalculatorHandoffUrl({ intent: "solar-sizing", locale, result: huge, inputs: { batteryType: "lifepo4" } }), null);
+  }
+});
+
+test("SK PL HU solar results hand off true Wp, voltage and chemistry to their own new MPPT calculators", () => {
+  const targets = {
+    sk: "/sk/kalkulacky/mppt-regulator/",
+    pl: "/pl/kalkulatory/regulator-mppt/",
+    hu: "/hu/kalkulatorok/mppt-szabalyozo/",
+  };
+  for (const [locale, path] of Object.entries(targets)) {
+    const inputs = { dailyWh: 1200, season: "summer", systemVoltage: "24", batteryType: "lead" };
+    const result = calculateLanding("solar-sizing", inputs, locale).result;
+    const href = buildCalculatorHandoffUrl({ intent: "solar-sizing", locale, result, inputs });
+    assert.ok(href?.startsWith(`${path}?`), locale);
+    const f = form();
+    const applied = applyCalculatorHandoffPrefill({ form: f, intent: "mppt-sizing", locale, pathname: path, search: new URL(href, "https://mypowersetup.com").search });
+    assert.equal(applied?.from, "solar-sizing");
+    assert.equal(f.values.panelWatts.value, String(result.solarWatts));
+    assert.equal(f.values.systemVoltage.value, "24");
+    assert.equal(f.values.batteryType.value, "lead");
+    assert.equal(classifyCalculatorContinuation(path, "", locale), "calculator");
+    assert.equal(calculatorHandoffTarget("solar-sizing", locale)?.path, path);
+    assert.ok(getCalculatorCopy(locale).nextMppt.length > 20);
+    const derived = calculateLanding("mppt-sizing", { panelWatts: f.values.panelWatts.value, systemVoltage: "24", batteryType: "lead" }, locale).result;
+    assert.equal(derived.controllerAmps, result.controllerAmps, `${locale}: same sizing engine`);
+    assert.equal(applyCalculatorHandoffPrefill({ form: form(), intent: "mppt-sizing", locale, pathname: path, search: `?mps_from=solar-sizing&panelWatts=400&systemVoltage=48&batteryType=lead` }), null);
+  }
 });
 
 test("prefill rejects malformed, duplicated, cross-market and incompatible inputs atomically", () => {
@@ -164,11 +189,11 @@ test("localized solar pages expose battery chemistry instead of silently hardcod
   }
 });
 
-test("all nine receiving and sending pages reference the current handoff module bundle", async () => {
-  const paths = [...cases.flatMap(([, battery, solar]) => [battery, solar]), "/kalkulacky/mppt-regulator/"];
+test("all twelve receiving and sending pages reference the current handoff module bundle", async () => {
+  const paths = [...cases.flatMap(([, battery, solar]) => [battery, solar]), "/kalkulacky/mppt-regulator/", "/sk/kalkulacky/mppt-regulator/", "/pl/kalkulatory/regulator-mppt/", "/hu/kalkulatorok/mppt-szabalyozo/"];
   for (const path of paths) {
     const html = await readFile(new URL("../" + path.slice(1) + "index.html", import.meta.url), "utf8");
-    const expectedVersion = ["/kalkulacky/solarni-panely/", "/sk/kalkulacky/solarne-panely/"].includes(path)
+    const expectedVersion = ["/kalkulacky/solarni-panely/", "/sk/kalkulacky/solarne-panely/", "/sk/kalkulacky/mppt-regulator/", "/pl/kalkulatory/regulator-mppt/", "/hu/kalkulatorok/mppt-szabalyozo/"].includes(path)
       ? "20261115-placement-events1"
       : ["/kalkulacky/mppt-regulator/", "/kalkulacky/kapacita-baterie/"].includes(path)
         ? "20261115-placement-events1" : "20261107-handoff1";

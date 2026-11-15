@@ -22,6 +22,12 @@ const families = Object.freeze({
     pl: "/pl/kalkulatory/panele-solarne/",
     hu: "/hu/kalkulatorok/napelem-teljesitmeny/",
   }),
+  mppt: Object.freeze({
+    cs: "/kalkulacky/mppt-regulator/",
+    sk: "/sk/kalkulacky/mppt-regulator/",
+    pl: "/pl/kalkulatory/regulator-mppt/",
+    hu: "/hu/kalkulatorok/mppt-szabalyozo/",
+  }),
 });
 
 const czPublishedRoutes = Object.freeze([
@@ -63,7 +69,7 @@ function expectedAlternates(family) {
 }
 
 test("published calculator families have reciprocal core-market hreflang", async () => {
-  for (const key of ["hub", "battery", "solar"]) {
+  for (const key of ["hub", "battery", "solar", "mppt"]) {
     const family = families[key];
     const expected = expectedAlternates(family);
     for (const route of Object.values(family)) {
@@ -77,7 +83,7 @@ test("published calculator families have reciprocal core-market hreflang", async
 test("SK PL HU calculator pages are native market handoffs, not cross-market clones", async () => {
   for (const [locale, meta] of Object.entries(localeMeta)) {
     const foreignLocales = Object.keys(localeMeta).filter((candidate) => candidate !== locale);
-    for (const key of ["battery", "solar"]) {
+    for (const key of ["battery", "solar", "mppt"]) {
       const route = families[key][locale];
       const html = await readFile(fileFor(route), "utf8");
       assert.ok(html.includes(`rel="canonical" href="${ORIGIN}${route}"`), `${route} must self-canonicalize`);
@@ -91,12 +97,15 @@ test("SK PL HU calculator pages are native market handoffs, not cross-market clo
   }
 });
 
-test("localized calculator hubs expose only the two proven intents", async () => {
+test("localized calculator hubs and solar landings expose their MPPT follow-up", async () => {
   for (const locale of Object.keys(localeMeta)) {
     const hubRoute = families.hub[locale];
     const html = await readFile(fileFor(hubRoute), "utf8");
     assert.ok(html.includes(`href="${families.battery[locale]}"`));
     assert.ok(html.includes(`href="${families.solar[locale]}"`));
+    assert.ok(html.includes(`href="${families.mppt[locale]}"`));
+    const solar = await readFile(fileFor(families.solar[locale]), "utf8");
+    assert.ok(solar.includes(`href="${families.mppt[locale]}"`), `${families.solar[locale]} must link next-step MPPT`);
     assert.doesNotMatch(html, /vykon-menice|prurez-kabelu|12v-nebo-24v|inverter|feszultseg/i, `${hubRoute} should not clone unproven intents`);
   }
 });
@@ -111,7 +120,7 @@ test("calculator sitemap publishes the complete CZ plus SK PL HU calculator surf
   assert.equal(
     urls.length,
     czPublishedRoutes.length + localized.length,
-    "calculator sitemap should contain 10 CZ URLs plus 9 localized URLs",
+    "calculator sitemap should contain 10 CZ URLs plus 12 localized URLs",
   );
   assert.ok(!urls.some((url) => /\/(?:pt|ro|si)\/.*(?:kalk|calc)/i.test(url)), "PT/RO/SI calculator rollout must stay blocked");
 });

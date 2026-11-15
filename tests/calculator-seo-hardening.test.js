@@ -30,6 +30,11 @@ const LOCALIZED_EQUIVALENTS = Object.freeze({
     pl: "/pl/kalkulatory/panele-solarne/",
     hu: "/hu/kalkulatorok/napelem-teljesitmeny/",
   }),
+  "mppt-regulator": Object.freeze({
+    sk: "/sk/kalkulacky/mppt-regulator/",
+    pl: "/pl/kalkulatory/regulator-mppt/",
+    hu: "/hu/kalkulatorok/mppt-szabalyozo/",
+  }),
 });
 
 
