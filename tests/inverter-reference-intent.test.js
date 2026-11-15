@@ -70,10 +70,10 @@ test("SEO updates use one canonical URL and exact matching sitemap lastmod", asy
   assert.match(html, /<link rel="canonical" href="https:\/\/mypowersetup\.com\/kalkulacky\/vykon-menice\/">/);
   assert.doesNotMatch(html, /<meta name="robots" content="[^"]*noindex/i);
   const json = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1]);
-  assert.equal(json["@graph"].find(x => x["@type"] === "WebApplication").dateModified, "2026-11-09");
+  assert.equal(json["@graph"].find(x => x["@type"] === "WebApplication").dateModified, "2026-11-15");
   for (const name of ["sitemap.xml", "sitemap-calculators.xml"]) {
     const xml = await read(name);
-    const rows = xml.match(/<loc>https:\/\/mypowersetup\.com\/kalkulacky\/vykon-menice\/<\/loc><lastmod>2026-11-09<\/lastmod>/g);
+    const rows = xml.match(/<loc>https:\/\/mypowersetup\.com\/kalkulacky\/vykon-menice\/<\/loc><lastmod>2026-11-15<\/lastmod>/g);
     assert.equal(rows?.length, 1, name + " must expose exactly one up-to-date URL");
   }
   assert.ok(html.includes(canonical));

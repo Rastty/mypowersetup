@@ -214,6 +214,14 @@ test("published inverter buyer page and daily source-to-projection verification 
   ]);
   for (const attr of ["data-inverter-buyers", "data-inverter-offer-fallback", "data-inverter-offer-list"])
     assert.ok(page.includes(attr));
+  // A buyer-ready visitor should see exact offers immediately after the
+  // result, before unrelated journeys to the full builder or guide.
+  const buyerStart = page.indexOf('data-inverter-buyers');
+  const builderActions = page.indexOf('class="calculator-actions"');
+  assert.ok(buyerStart > page.indexOf('data-calculator-result'));
+  assert.ok(builderActions > buyerStart);
+  assert.match(page, /Spočítat výkon a ověřit nabídky/);
+  assert.doesNotMatch(page, /canonical logiku/);
   assert.match(browser, /mountInverterCalculatorBuyers\(root\)/);
   assert.match(browser, /inverterBuyers\.update\(result\)/);
   assert.match(browser, /inverterBuyers\?\.invalidate\(\)/);
