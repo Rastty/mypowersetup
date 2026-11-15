@@ -5,6 +5,7 @@ import { syncPadaboMarket } from "./lib/sync-padabo.mjs";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 import { syncOxeMarket } from "./lib/sync-oxe.mjs";
 import { disableStaleProducts } from "./lib/stale-products.mjs";
+import { projectSkSolarCalculatorOffers } from "../src/sk-solar-calculator-offers.js";
 
 const outputPath = "data/products-sk.json";
 let previousCatalog = { generatedAt: null, market: "sk-SK", currency: "EUR", sources: {}, products: [] };
@@ -69,12 +70,14 @@ for (const [merchant, feedUrl, affiliateBaseUrl] of feeds) {
 }
 
 await mkdir("data", { recursive: true });
-await writeFile(outputPath, `${JSON.stringify({
+const catalog = {
   generatedAt: new Date().toISOString(),
   market: "sk-SK",
   currency: "EUR",
   sources,
   products: products.map((product) => ({ ...product, description: product.description.slice(0, 500) }))
-}, null, 2)}\n`);
+};
+await writeFile(outputPath, `${JSON.stringify(catalog, null, 2)}\n`);
+await writeFile("data/solar-calculator-offers-sk.json", JSON.stringify(projectSkSolarCalculatorOffers(catalog)) + "\n");
 
 console.log(`SK: katalog obsahuje ${products.length} relevantních produktů.`);

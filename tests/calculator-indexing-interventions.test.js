@@ -43,11 +43,19 @@ test("changed calculator surfaces carry current lastmod in both calculator and p
     read("sitemap.xml"),
   ]);
   const urls = [
-    "https://mypowersetup.com/kalkulacky/solarni-panely/",
     "https://mypowersetup.com/pl/kalkulatory/",
   ];
   for (const url of urls) {
     const needle = `<loc>${url}</loc><lastmod>2026-09-25</lastmod>`;
+    assert.ok(calculatorSitemap.includes(needle), `calculator sitemap missing ${url}`);
+    assert.ok(primarySitemap.includes(needle), `primary sitemap missing ${url}`);
+  }
+  // The two solar calculators now carry a newer, real customer-facing buyer change.
+  for (const url of [
+    "https://mypowersetup.com/kalkulacky/solarni-panely/",
+    "https://mypowersetup.com/sk/kalkulacky/solarne-panely/",
+  ]) {
+    const needle = `<loc>${url}</loc><lastmod>2026-11-15</lastmod>`;
     assert.ok(calculatorSitemap.includes(needle), `calculator sitemap missing ${url}`);
     assert.ok(primarySitemap.includes(needle), `primary sitemap missing ${url}`);
   }

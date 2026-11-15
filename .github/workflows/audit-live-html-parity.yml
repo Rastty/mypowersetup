@@ -39,6 +39,7 @@ on:
       - src/mppt-calculator-offers*.js
       - src/inverter-calculator-offers*.js
       - src/solar-calculator-offers*.js
+      - src/sk-solar-calculator-offers.js
       - src/calculator-landing-browser.js
       - src/expansion-calculator-browser.js
       - src/expansion-component-recommendations.js
@@ -56,6 +57,8 @@ on:
       - data/dcdc-guide-offers-cz.json
       - data/inverter-calculator-offers-cz.json
       - data/solar-calculator-offers-cz.json
+      - data/solar-calculator-offers-sk.json
+      - sk/kalkulacky/solarne-panely/index.html
       - data/products.json
       - pruvodce/**
       - kalkulacky/**
