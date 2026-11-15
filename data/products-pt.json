@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-14T10:35:44.764Z",
+  "generatedAt": "2026-11-15T07:56:35.685Z",
   "market": "pt-PT",
   "currency": "EUR",
   "private": false,
   "sources": {
     "allpowers_pt": {
       "status": "ok",
-      "relevantProducts": 15,
-      "solarPanels": 10,
+      "relevantProducts": 14,
+      "solarPanels": 9,
       "technicallyVerifiedPowerStations": 5
     },
     "powerqueen_eu": {
@@ -271,29 +271,10 @@
       "verifiedAt": null
     },
     {
-      "id": "allpowers_pt-10037468070205",
-      "merchant": "allpowers_pt",
-      "name": "ALLPOWERS SP020 Comprar Painel Solar Monocristalino 60W",
-      "description": "",
-      "categoryPath": "Solar Panel",
-      "category": "solar_panel",
-      "brand": "ALLPOWERS",
-      "priceCzk": 69,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://allpowers-pt.com/products/allpowers-sp020-painel-solar-monocristalino-60w",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=125820&awinaffid=3044971&ued=https%3A%2F%2Fallpowers-pt.com%2Fproducts%2Fallpowers-sp020-painel-solar-monocristalino-60w",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0953/4495/1613/files/ALLPOWERSSP020SOLARPANELS_a026038b-b7cd-4f0a-a2b5-a5abf8595c09.jpg?v=1767075704",
-      "specs": {
-        "powerW": 60
-      },
-      "verifiedAt": null
-    },
-    {
       "id": "allpowers_pt-10037467873597",
       "merchant": "allpowers_pt",
       "name": "ALLPOWERS SP012 Comprar Painel Solar 100W",
-      "description": "Foldable & Portable When folded, the portable and frame design is suitable for outdoor, indoor, travel, camping, and RV use and takes up no space. Eyeholes make it simple to attach a portable solar panel to a backpack while traveling. Wide Compatibility Equipped with the Dual USB Output, the 100W solar panel is highly compatible with phones, pads and other devices. You also could connect the ALLPOWERS S200/S300/S700 poratble power station.",
+      "description": "",
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
