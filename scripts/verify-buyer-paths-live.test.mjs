@@ -41,19 +41,19 @@ function mockResponse(url, body, type = "text/html", status = 200) {
   };
 }
 
-test("fourteen CZ and SK buyer pages, exact versioned JS and deployed compact catalogs are public-evidence verified", async () => {
+test("fifteen CZ and SK buyer pages, exact versioned JS and deployed compact catalogs are public-evidence verified", async () => {
   const fetchImpl = mockFetch();
   const result = await verifyBuyerPathsLive({ fetchImpl });
   assert.equal(result.status, "PUBLIC_BUYER_HTML_JS_AND_CATALOG_VERIFIED");
   assert.equal(result.pages.length, PAGES.length);
-  assert.equal(result.pages.length, 14);
-  assert.equal(result.assets.length, ASSETS.length + 3, "four distinct browser cache keys: autonomy, shared CZ buyer, inverter and solar");
+  assert.equal(result.pages.length, 15);
+  assert.equal(result.assets.length, ASSETS.length + 1, "two landing browser versions: older autonomy and new buyer attribution");
   assert.equal(result.productionActions, 0);
   assert.equal(result.browserInteractionsVerified, false);
   assert.equal(result.seoUpliftMeasured, false);
   assert.equal(result.transientRetries, 0);
   const dcdcPublished = await dcdcReady();
-  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 7 + Number(dcdcPublished));
+  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 5 + Number(dcdcPublished));
   assert.equal(result.dcdcCatalog.status, dcdcPublished
     ? "PUBLIC_DCDC_CATALOG_VERIFIED" : "LEGACY_FULL_CATALOG_UNTIL_FIRST_SYNC");
   if (dcdcPublished) {
@@ -83,19 +83,20 @@ test("fourteen CZ and SK buyer pages, exact versioned JS and deployed compact ca
   assert.equal(result.skSolarCatalog.eligible24v450wp, 0);
   assert.equal(result.skSolarCatalog.commissionVerified, false);
   assert.ok(result.browserVersions.battery_runtime.includes("fridge-community1"));
-  assert.ok(result.browserVersions.mppt_calculator.includes("cz-affiliate-subid1"));
-  assert.ok(result.browserVersions.battery_capacity.includes("cz-affiliate-subid1"));
-  assert.ok(result.browserVersions.inverter_calculator.includes("inverter-buyers1"));
-  assert.ok(result.browserVersions.solar_calculator.includes("sk-solar-buyers1"));
-  assert.ok(result.browserVersions.sk_solar_calculator.includes("sk-solar-buyers1"));
+  for (const kind of ["mppt_calculator", "battery_capacity", "inverter_calculator", "solar_calculator", "sk_solar_calculator", "dcdc_calculator"])
+    assert.ok(result.browserVersions[kind].includes("20261115-placement-subids1"), kind);
   assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261113-cz-affiliate-subid1")));
+    row.servedPath.includes("?v=20261115-placement-subids1")));
   assert.ok(result.assets.some(row => row.asset === "src/mppt-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261113-cz-affiliate-subid1")));
+    row.servedPath.includes("?v=20261115-placement-subids1")));
   assert.ok(result.assets.some(row => row.asset === "src/inverter-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261113-inverter-buyers1")));
+    row.servedPath.includes("?v=20261115-placement-subids1")));
   assert.ok(result.assets.some(row => row.asset === "src/solar-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261115-sk-solar-buyers1")));
+    row.servedPath.includes("?v=20261115-placement-subids1")));
+  assert.ok(result.assets.some(row => row.asset === "src/dcdc-calculator-offers-browser.js" &&
+    row.servedPath.includes("?v=20261115-placement-subids1")));
+  assert.ok(result.assets.some(row => row.asset === "src/awin-attribution.js" &&
+    row.servedPath.includes("?v=20261115-placement-subids1")));
   assert.ok(result.assets.some(row => row.asset === "src/calculator-offer-catalog.js" &&
     row.servedPath.includes("?v=20261109-lightweight-cz1")));
   for (const row of result.pages) assert.equal(row.http, 200);
@@ -170,7 +171,7 @@ test("bounded 503 retries recover once, while permanent 502 fails closed", async
   const success = await verifyBuyerPathsLive({ fetchImpl: transient, sleep: async ms => { delays.push(ms); } });
   assert.equal(success.transientRetries, 1);
   assert.deepEqual(delays, [250]);
-  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 8 + Number(await dcdcReady()));
+  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 6 + Number(await dcdcReady()));
   let calls = 0;
   await assert.rejects(verifyBuyerPathsLive({ sleep: async () => {}, fetchImpl: async input => {
     calls++;

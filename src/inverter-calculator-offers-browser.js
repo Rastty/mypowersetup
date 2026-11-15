@@ -1,5 +1,5 @@
 import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=20261110-attributed-products1";
-import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
+import { decorateAwinAffiliateUrl } from "./awin-attribution.js?v=20261115-placement-subids1";
 import { loadInverterCalculatorOffers } from "./verified-offer-catalog-fetch.js";
 import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-attributed-guide1";
 import {
@@ -85,7 +85,7 @@ export function mountInverterCalculatorBuyers(root, {
       }).format(offer.priceCzk) + " · poslední ověřená cena", "calculator-mppt-offer-facts");
       const link = add(item, "a", "Ověřit cenu a špičkový výkon →", "calculator-mppt-offer-link");
       link.href = decorateAwinAffiliateUrl(offer.affiliateUrl, {
-        market: "cz", category: "inverter", source: "product-card",
+        market: "cz", category: "inverter", source: "product-card", placement: "inverter_calculator",
       });
       link.rel = "sponsored noopener noreferrer";
       link.target = "_blank";

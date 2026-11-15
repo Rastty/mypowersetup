@@ -1,5 +1,5 @@
 import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=20261110-attributed-products1";
-import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
+import { decorateAwinAffiliateUrl } from "./awin-attribution.js?v=20261115-placement-subids1";
 import { loadSolarCalculatorOffers, loadSkSolarCalculatorOffers } from "./verified-offer-catalog-fetch.js";
 import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261110-attributed-guide1";
 import {
@@ -112,7 +112,7 @@ export function mountSolarCalculatorBuyers(root, {
       }).format(offer.recommendedQuantity * offer.priceCzk) + ` ${market.price}`, "calculator-mppt-offer-facts");
       const link = add(item, "a", market.link, "calculator-mppt-offer-link");
       link.href = decorateAwinAffiliateUrl(offer.affiliateUrl, {
-        market: market.analyticsMarket, category: "solar_panel", source: "product-card",
+        market: market.analyticsMarket, category: "solar_panel", source: "product-card", placement: "solar_calculator",
       });
       link.rel = "sponsored noopener noreferrer";
       link.target = "_blank";

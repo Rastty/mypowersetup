@@ -169,9 +169,9 @@ test("all nine receiving and sending pages reference the current handoff module 
   for (const path of paths) {
     const html = await readFile(new URL("../" + path.slice(1) + "index.html", import.meta.url), "utf8");
     const expectedVersion = ["/kalkulacky/solarni-panely/", "/sk/kalkulacky/solarne-panely/"].includes(path)
-      ? "20261115-sk-solar-buyers1"
+      ? "20261115-placement-subids1"
       : ["/kalkulacky/mppt-regulator/", "/kalkulacky/kapacita-baterie/"].includes(path)
-        ? "20261113-cz-affiliate-subid1" : "20261107-handoff1";
+        ? "20261115-placement-subids1" : "20261107-handoff1";
     assert.ok(html.includes('src="/src/calculator-landing-browser.js?v=' + expectedVersion + '"'), path);
   }
   const script = await readFile(new URL("../src/calculator-landing-browser.js", import.meta.url), "utf8");
