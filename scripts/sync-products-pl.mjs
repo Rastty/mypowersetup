@@ -5,6 +5,7 @@ import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 import { syncPadaboMarket } from "./lib/sync-padabo.mjs";
 import { syncOxeMarket } from "./lib/sync-oxe.mjs";
 import { disableStaleProducts } from "./lib/stale-products.mjs";
+import { projectMarketSolarCalculatorOffers } from "../src/pl-hu-solar-calculator-offers.js";
 
 const endpoint = "https://allpowers.com.pl/products.json?limit=250";
 const outputPath = "data/products-pl.json";
@@ -103,10 +104,12 @@ if (!ampulFeedUrl) {
 }
 
 await mkdir("data", { recursive: true });
-await writeFile(outputPath, `${JSON.stringify({
+const nextCatalog = {
   generatedAt: new Date().toISOString(),
   market: "pl-PL",
   currency: "mixed",
   sources,
   products: products.map((product) => ({ ...product, description: product.description.slice(0, 500) }))
-}, null, 2)}\n`);
+};
+await writeFile(outputPath, `${JSON.stringify(nextCatalog, null, 2)}\n`);
+await writeFile("data/solar-calculator-offers-pl.json", JSON.stringify(projectMarketSolarCalculatorOffers("pl", nextCatalog)) + "\n");

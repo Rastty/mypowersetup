@@ -198,7 +198,7 @@ test("SK page offers sit before navigation; input changes invalidate both CZ and
   assert.ok(sk.indexOf("data-solar-buyers") > sk.indexOf("data-result-warnings"));
   assert.ok(sk.indexOf('class="calculator-actions"') > sk.indexOf("data-solar-buyers"));
   assert.match(sk, /Samotný súčet Wp nezaručuje kompatibilitu celej zostavy/);
-  assert.match(browser, /\["cs", "sk"\]\.includes\(locale\)/);
+  assert.match(browser, /\["cs", "sk", "pl", "hu"\]\.includes\(locale\)/);
   const invalidator = browser.match(/const invalidateResult = \(\) => \{([\s\S]*?)\n  \};/)?.[1] || "";
   assert.match(invalidator, /solarBuyers\?\.invalidate\(\)/);
   assert.match(sync, /projectSkSolarCalculatorOffers\(catalog\)/);

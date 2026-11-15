@@ -1,6 +1,6 @@
 import { buildAttributedAffiliateParameters } from "./affiliate-analytics.js?v=20261115-placement-events1";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js?v=20261115-placement-subids1";
-import { loadSolarCalculatorOffers, loadSkSolarCalculatorOffers } from "./verified-offer-catalog-fetch.js";
+import { loadSolarCalculatorOffers, loadSkSolarCalculatorOffers, loadPlSolarCalculatorOffers, loadHuSolarCalculatorOffers } from "./verified-offer-catalog-fetch.js";
 import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.js?v=20261115-placement-events1";
 import {
   isSolarOfferStillEligible, selectSolarCalculatorOffers, solarOfferExpiresAt,
@@ -8,9 +8,12 @@ import {
 import {
   isSkSolarOfferStillEligible, selectSkSolarCalculatorOffers, skSolarExpiresAt,
 } from "./sk-solar-calculator-offers.js";
+import {
+  isMarketSolarOfferStillEligible, selectMarketSolarCalculatorOffers, marketSolarExpiresAt,
+} from "./pl-hu-solar-calculator-offers.js?v=20261115-plhu-solar1";
 
 // One result/analytics/expiry implementation; only feed, approved SKUs and
-// customer-facing currency/copy differ between the two markets.
+// customer-facing currency/copy differ between the four markets.
 const MARKETS = Object.freeze({
   cs: Object.freeze({
     analyticsMarket: "cz", merchant: "solarimport", currency: "CZK", numberLocale: "cs-CZ",
@@ -35,6 +38,34 @@ const MARKETS = Object.freeze({
     price: "za uvedený počet · cena podľa posledného feedu",
     count: "menovitý výkon · rámové panely",
     link: "Overiť cenu, rozmery a dostupnosť →",
+  }),
+  pl: Object.freeze({
+    analyticsMarket: "pl", merchant: "padabo_pl", currency: "PLN", numberLocale: "pl-PL",
+    load: loadPlSolarCalculatorOffers,
+    select: (payload, result, now) => selectMarketSolarCalculatorOffers("pl", payload, result, now),
+    eligible: (payload, result, offer, now) => isMarketSolarOfferStillEligible("pl", payload, result, offer, now),
+    expiresAt: marketSolarExpiresAt,
+    loading: "Sprawdzamy aktualną cenę i dostępność konkretnego panelu…",
+    empty: "Dla tej mocy lub napięcia nie mamy obecnie aktualnej, zweryfikowanej oferty. Sprawdź wymiary dachu i parametry regulatora MPPT w poradniku.",
+    expired: "Dane o cenie i dostępności straciły ważność. Uruchom obliczenie ponownie.",
+    invalid: "Oferta straciła ważność. Uruchom obliczenie ponownie.",
+    price: "za podaną liczbę · cena z ostatniego feedu",
+    count: "moc nominalna · panel w ramie",
+    link: "Sprawdź cenę, wymiary i dostępność →",
+  }),
+  hu: Object.freeze({
+    analyticsMarket: "hu", merchant: "padabo_hu", currency: "HUF", numberLocale: "hu-HU",
+    load: loadHuSolarCalculatorOffers,
+    select: (payload, result, now) => selectMarketSolarCalculatorOffers("hu", payload, result, now),
+    eligible: (payload, result, offer, now) => isMarketSolarOfferStillEligible("hu", payload, result, offer, now),
+    expiresAt: marketSolarExpiresAt,
+    loading: "Ellenőrizzük a konkrét panel árát és elérhetőségét…",
+    empty: "Ehhez a teljesítményhez vagy feszültséghez jelenleg nincs friss, ellenőrzött ajánlat. Ellenőrizd a tetőméretet és az MPPT szabályozó adatait.",
+    expired: "Az ár- és készletadatok érvényessége lejárt. Indíts új számítást.",
+    invalid: "Az ajánlat már nem aktuális. Indíts új számítást.",
+    price: "a megadott darabszámra · legutóbbi termékadat alapján",
+    count: "névleges teljesítmény · keretes panel",
+    link: "Ár, méret és elérhetőség ellenőrzése →",
   }),
 });
 

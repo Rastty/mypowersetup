@@ -5,6 +5,8 @@ export const DCDC_GUIDE_CATALOG_PATH = "/data/dcdc-guide-offers-cz.json";
 export const INVERTER_CALCULATOR_CATALOG_PATH = "/data/inverter-calculator-offers-cz.json";
 export const SOLAR_CALCULATOR_CATALOG_PATH = "/data/solar-calculator-offers-cz.json";
 export const SK_SOLAR_CALCULATOR_CATALOG_PATH = "/data/solar-calculator-offers-sk.json";
+export const PL_SOLAR_CALCULATOR_CATALOG_PATH = "/data/solar-calculator-offers-pl.json";
+export const HU_SOLAR_CALCULATOR_CATALOG_PATH = "/data/solar-calculator-offers-hu.json";
 export const FULL_CATALOG_PATH = "/data/products.json";
 const SNAPSHOT_VERSION = 1;
 const MAX_APPROVED_OFFERS = 6;
@@ -83,6 +85,20 @@ export function acceptSkSolarCalculatorSnapshot(payload) {
       && typeof p.affiliateUrl === "string");
 }
 
+export function acceptMarketSolarCalculatorSnapshot(market, payload) {
+  const merchant = `padabo_${market}`;
+  return ["pl", "hu"].includes(market)
+    && payload?.schemaVersion === SNAPSHOT_VERSION
+    && payload.projection === "solar_panel" && payload.market === `${market}-${market.toUpperCase()}`
+    && typeof payload.generatedAt === "string"
+    && typeof payload.sources?.[merchant]?.status === "string"
+    && Array.isArray(payload.products) && payload.products.length <= 1
+    && payload.products.every(p => p?.category === "solar_panel"
+      && p.merchant === merchant && p.id === `${merchant}:109069`
+      && typeof p.name === "string" && typeof p.productUrl === "string"
+      && typeof p.affiliateUrl === "string");
+}
+
 async function loadReviewedView(path, accept, fetchImpl, timeoutMs) {
   const options = () => ({
     cache: "no-store",
@@ -150,6 +166,27 @@ export async function loadSkSolarCalculatorOffers(fetchImpl = fetch, timeoutMs =
     const payload = await response.json();
     return acceptSkSolarCalculatorSnapshot(payload) ? payload : null;
   } catch { return null; }
+}
+
+
+async function loadMarketSolarCalculatorOffers(market, path, fetchImpl, timeoutMs) {
+  // No fallback to a full market feed or a different currency/merchant.
+  try {
+    const response = await fetchImpl(path, {
+      cache: "no-store", redirect: "error", signal: AbortSignal.timeout(timeoutMs),
+    });
+    if (!response.ok) return null;
+    const payload = await response.json();
+    return acceptMarketSolarCalculatorSnapshot(market, payload) ? payload : null;
+  } catch { return null; }
+}
+
+export function loadPlSolarCalculatorOffers(fetchImpl = fetch, timeoutMs = 15_000) {
+  return loadMarketSolarCalculatorOffers("pl", PL_SOLAR_CALCULATOR_CATALOG_PATH, fetchImpl, timeoutMs);
+}
+
+export function loadHuSolarCalculatorOffers(fetchImpl = fetch, timeoutMs = 15_000) {
+  return loadMarketSolarCalculatorOffers("hu", HU_SOLAR_CALCULATOR_CATALOG_PATH, fetchImpl, timeoutMs);
 }
 
 // DC–DC gets a separate tiny reviewed view once the next existing feed sync
