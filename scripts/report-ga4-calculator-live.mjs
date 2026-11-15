@@ -17,6 +17,10 @@ import {
   dcdcBuyerFromGa4RunReport,
 } from "../src/ga4-dcdc-buyer-evidence.js";
 import {
+  ga4AffiliatePlacementDimensionState, ga4AffiliatePlacementFilter,
+  affiliatePlacementsFromGa4RunReport,
+} from "../src/ga4-affiliate-placement-evidence.js";
+import {
   ga4ExpansionSupplyDimensionState, ga4ExpansionSupplyFilter,
   expansionSupplyFromGa4RunReport,
 } from "../src/ga4-expansion-supply-evidence.js";
@@ -51,6 +55,7 @@ if (!clientPath || !tokenPath) {
     const customDimensions = ga4MetadataDimensionState(metadata);
     const editorialBuyerDimensions = ga4EditorialBuyerDimensionState(metadata);
     const dcdcBuyerDimensions = ga4DcdcBuyerDimensionState(metadata);
+    const placementDimensions = ga4AffiliatePlacementDimensionState(metadata);
     const expansionSupplyDimensions = ga4ExpansionSupplyDimensionState(metadata);
     const baseRequest = {
       dateRanges: [{ startDate, endDate }],
@@ -124,6 +129,27 @@ if (!clientPath || !tokenPath) {
       };
     }
 
+    // Optional event-scoped placement reporting uses *only* registered GA4
+    // dimensions. It cannot prove a merchant received a click, let alone an
+    // approved or paid commission. Do not query an unregistered dimension.
+    let affiliatePlacementEvidence;
+    if (placementDimensions.ready) {
+      const placementReport = await runReport(accessToken, selected.property, {
+        dateRanges: [{ startDate, endDate }],
+        metrics: [{ name: "eventCount" }],
+        dimensions: placementDimensions.dimensions.map(name => ({ name })),
+        dimensionFilter: ga4AffiliatePlacementFilter(targetHostname),
+        limit: "10000",
+      });
+      affiliatePlacementEvidence = affiliatePlacementsFromGa4RunReport(placementReport, placementDimensions);
+    } else {
+      affiliatePlacementEvidence = {
+        status: "missing_dimensions", missing: placementDimensions.missing,
+        affiliateNetworkClicksVerified: false,
+        merchantConversionsMeasured: false, revenueMeasured: false,
+      };
+    }
+
     // PT/RO/SI need real, consented counts of missing verified inverter fits.
     // A failed catalog request must NOT masquerade as an absent product.
     // All three grouping dimensions are built-in; no new custom dimension
@@ -167,6 +193,7 @@ if (!clientPath || !tokenPath) {
       events,
       editorialBuyer,
       expansionSupply,
+      affiliatePlacementEvidence,
       dcdcBuyer,
       status: customDimensions.ready ? "ready" : "route_dimensions_missing",
     };
@@ -187,6 +214,13 @@ if (!clientPath || !tokenPath) {
       console.log(`Editorial GA4 consented events: views=${totals.pageViews} impressions=${totals.impressions} outboundClicks=${totals.clicks}; commissions=UNKNOWN`);
     }
     console.log(`Direct DC-DC buyer: ${dcdcBuyer.status} (${dcdcBuyer.attribution || "unavailable"}; variant=${dcdcBuyer.variantAttribution || "unavailable"}; sku=${dcdcBuyer.skuAttribution || "unavailable"})`);
+    console.log(`Calculator placement GA4 evidence: ${affiliatePlacementEvidence.status} (consented event counts, network click/commission receipts=UNKNOWN)`);
+    if (affiliatePlacementEvidence.status === "ready") {
+      for (const row of affiliatePlacementEvidence.routes) {
+        console.log(`Placement ${row.placement} ${row.path}: impressions=${row.impressionEvents} outboundClickEvents=${row.clickEvents}; commissions=UNKNOWN`);
+      }
+      console.log(`Unclassified calculator placement events: impressions=${affiliatePlacementEvidence.unclassified.impressionEvents} clickEvents=${affiliatePlacementEvidence.unclassified.clickEvents}`);
+    }
     if (dcdcBuyer.status === "ready") {
       console.log(`Direct DC-DC GA4 consented events: pageViews=${dcdcBuyer.totals.pageViews} impressions=${dcdcBuyer.totals.productImpressions} outboundClicks=${dcdcBuyer.totals.affiliateClicks}; commissions=UNKNOWN`);
       console.log(`Direct DC-DC calculation coverage (consented event counts, not buyers): shown=${dcdcBuyer.coverageEvents.shown} noSafeMatch=${dcdcBuyer.coverageEvents.noSafeMatch} unavailable=${dcdcBuyer.coverageEvents.unavailable} unsupported=${dcdcBuyer.coverageEvents.unsupported}`);

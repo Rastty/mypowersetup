@@ -196,6 +196,30 @@ npm run report:calculator:growth -- gsc.json ga4-calculator-live.json indexing.j
 
 The GA4 live adapter is read-only. It never creates custom dimensions, changes a property, changes consent behavior, or switches the production measurement ID.
 
+### Optional calculator → affiliate-network placement evidence
+
+The existing GA4 live report can now include `affiliatePlacementEvidence` for the
+six eligible CZ/SK product-choice calculator routes. It compares consented
+`product_choice_impression` and `affiliate_click` **event counts** on each exact
+page with a bounded placement label (`battery_calculator`, `mppt_calculator`,
+`inverter_calculator`, `dcdc_calculator`, `solar_calculator`). Both CZ and SK
+solar pages share one network label but remain separate GA4 page rows.
+
+The event-scoped GA4 custom dimension **`affiliatePlacement`** must first be
+registered in the exact MyPowerSetup property (Data API name
+`customEvent:affiliatePlacement`). If the metadata does not advertise it, the
+report explicitly returns `missing_dimensions` and **does not** query an
+unregistered dimension or fabricate historical data. GA4 registration is an
+owner-managed property change, not performed by this read-only script.
+
+Other/missing/mismatched labels are reported as `unclassified`, never
+silently counted under a known merchant. `clickPerImpression` is `null` when
+there is no observed impression denominator. These are GA4 event counts from
+consenting users, **not unique buyers**, network-confirmed outbound clicks,
+sales, approved commission or paid commission. True economics require the
+corresponding eHUB Data2 / AWIN clickref4 reporting rows and merchant
+transaction settlement, collected separately without synthetic tracking clicks.
+
 ### Reading the funnel counts consistently
 
 Both `report:calculator:growth` and `report:calculator:funnel` normalize ready GA4 Data API exports the same way: where `totalUsers` is supplied, the funnel stages and rates use distinct users instead of repeated actions. The funnel report still shows the raw `affiliate_click` **Click events** separately. For legacy raw event arrays with one browser event per row, each row still counts as one event. Missing or malformed aggregate `eventCount` remains an error, never a synthetic click.
