@@ -4,10 +4,10 @@ import { calculateLanding } from "./calculator-landing.js";
 import { classifyCalculatorContinuation, classifyCalculatorSpecialistHandoff, getCalculatorCopy } from "./calculator-copy.js?v=20261110-mppt-specialist1";
 import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
 import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261109-fridge-community1";
-import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261115-placement-subids1";
-import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261115-placement-subids1";
-import { mountInverterCalculatorBuyers } from "./inverter-calculator-offers-browser.js?v=20261115-placement-subids1";
-import { mountSolarCalculatorBuyers } from "./solar-calculator-offers-browser.js?v=20261115-placement-subids1";
+import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261115-placement-events1";
+import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261115-placement-events1";
+import { mountInverterCalculatorBuyers } from "./inverter-calculator-offers-browser.js?v=20261115-placement-events1";
+import { mountSolarCalculatorBuyers } from "./solar-calculator-offers-browser.js?v=20261115-placement-events1";
 
 const root = document.querySelector("[data-calculator-landing]");
 

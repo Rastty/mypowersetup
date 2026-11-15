@@ -43,6 +43,7 @@ export const ASSETS = Object.freeze([
   "src/inverter-calculator-offers.js",
   "src/solar-calculator-offers-browser.js",
   "src/dcdc-calculator-offers-browser.js",
+  "src/affiliate-analytics.js",
   "src/awin-attribution.js",
   "src/solar-calculator-offers.js",
   "src/sk-solar-calculator-offers.js",
@@ -335,11 +336,15 @@ export async function verifyBuyerPathsLive({
       "src/inverter-calculator-offers-browser.js",
       "src/solar-calculator-offers-browser.js",
       "src/dcdc-calculator-offers-browser.js",
+      "src/affiliate-analytics.js",
+      "src/guide-offer-impressions.js",
       "src/awin-attribution.js",
       "src/calculator-offer-catalog.js"].includes(asset);
     const importer = asset === "src/calculator-offer-catalog.js" ? batteryBuyer
       : asset === "src/dcdc-calculator-offers-browser.js" ? phase2Browser
-      : asset === "src/awin-attribution.js" ? buyerModules[0] : localBrowser;
+      : asset === "src/awin-attribution.js" || asset === "src/affiliate-analytics.js"
+        || asset === "src/guide-offer-impressions.js"
+        ? buyerModules[0] : localBrowser;
     const imports = [...importer.matchAll(/from ["']\.\/([^"']+)["']/g)].map(match => match[1]);
     const imported = dependency
       ? imports.find(value => value.startsWith(asset.split("/").at(-1) + "?v="))
@@ -350,6 +355,12 @@ export async function verifyBuyerPathsLive({
     if (asset === "src/awin-attribution.js" &&
         buyerModules.some(source => !source.includes(`from "./${imported}"`)))
       fail("PUBLIC_AFFILIATE_PLACEMENT_IMPORT_DRIFT");
+    if (asset === "src/affiliate-analytics.js" &&
+        buyerModules.some(source => !source.includes(`from "./${imported}"`)))
+      fail("PUBLIC_AFFILIATE_EVENT_IMPORT_DRIFT");
+    if (asset === "src/guide-offer-impressions.js" &&
+        buyerModules.some(source => !source.includes(`from "./${imported}"`)))
+      fail("PUBLIC_AFFILIATE_IMPRESSION_IMPORT_DRIFT");
     if (dependency && !imported) fail("PUBLIC_VERSIONED_IMPORT_MISSING:" + asset);
     const paths = asset === "src/calculator-landing-browser.js"
       ? [...new Set([...browserVersions.entries()]
