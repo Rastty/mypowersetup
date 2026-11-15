@@ -56,6 +56,15 @@ test("DC-DC calculator result links directly to reviewed comparison, not to a gu
   ]);
   assert.match(calculator, /href="\/pruvodce\/jak-vybrat-dc-dc-nabijecku\/#overene-nabidky"/);
   assert.match(calculator, /nikoli automaticky kompatibilní nabídky/);
+  const resultIndex = calculator.indexOf("data-calculator-result");
+  const buyersIndex = calculator.indexOf("data-dcdc-buyers");
+  const actionsIndex = calculator.indexOf('class="calculator-actions"', resultIndex);
+  assert.ok(resultIndex >= 0 && buyersIndex > resultIndex && actionsIndex > buyersIndex,
+    "after a calculation, verified DC-DC offers must precede alternative builder/guide navigation");
+  assert.match(calculator, /data-dcdc-buyers data-live-offers="0" hidden/,
+    "buyer section remains closed until a verified calculation has matching offers");
+  assert.match(calculator, /Před nákupem ověřte vstupní i výstupní napětí, izolaci/,
+    "product comparisons retain the electrical compatibility warning");
   assert.match(guide, /id="overene-nabidky" data-guide-category="dc_charger"/);
   assert.match(guide, /guide-verified-offers\.js/);
   assert.match(guide, /Konkrétní modely automaticky neschvaluje/);
