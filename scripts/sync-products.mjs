@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
-import { projectCalculatorOffers, projectDcdcGuideOffers, projectInverterCalculatorOffers } from "../src/calculator-offer-catalog.js";
+import { projectCalculatorOffers, projectDcdcGuideOffers, projectInverterCalculatorOffers, projectSolarCalculatorOffers } from "../src/calculator-offer-catalog.js";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 
 const feeds = [
@@ -149,6 +149,14 @@ if (inverterCatalog.products.length > 13 || inverterBytes > 8500) {
 }
 await writeFile("data/inverter-calculator-offers-cz.json", JSON.stringify(inverterCatalog) + "\n");
 console.log(`Měniče: ${inverterCatalog.products.length} přesných 12/24V SKU, ${inverterBytes} B.`);
+
+const solarCatalog = projectSolarCalculatorOffers(fullCatalog, Date.parse(fullCatalog.generatedAt));
+const solarBytes = Buffer.byteLength(JSON.stringify(solarCatalog));
+if (solarCatalog.products.length > 3 || solarBytes > 2700) {
+  throw new Error("SOLAR_CALCULATOR_PROJECTION_UNSAFE_SIZE");
+}
+await writeFile("data/solar-calculator-offers-cz.json", JSON.stringify(solarCatalog) + "\n");
+console.log(`Solární panely: ${solarCatalog.products.length} přesných 12V SKU, ${solarBytes} B.`);
 
 console.log(`Uloženo ${catalogProducts.length} relevantních produktů z ${products.length} načtených položek.`);
 
