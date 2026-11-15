@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DC/DC nabíjačka do karavanu: kalkulačka 20–50 A | MyPowerSetup</title>
+  <meta name="description" content="Vypočítajte vhodný prúd DC/DC nabíjačky pre karavan podľa batérie, času jazdy, skutočnej rezervy alternátora a limitu BMS.">
+  <link rel="canonical" href="https://mypowersetup.com/sk/kalkulacky/dc-dc-nabijacka/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/dc-dc-nabijacka/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/ladowarka-dc-dc/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/dc-dc-tolto/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/dc-dc-nabijecka/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Kalkulačka DC/DC nabíjačky do karavanu","url":"https://mypowersetup.com/sk/kalkulacky/dc-dc-nabijacka/","inLanguage":"sk-SK","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/sk/"},{"@type":"ListItem","position":2,"name":"Kalkulačky","item":"https://mypowersetup.com/sk/kalkulacky/"},{"@type":"ListItem","position":3,"name":"DC/DC nabíjačka","item":"https://mypowersetup.com/sk/kalkulacky/dc-dc-nabijacka/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Stačí menovitý prúd alternátora?","acceptedAnswer":{"@type":"Answer","text":"Nie. Dôležitý je skutočne voľný trvalý prúd po odpočítaní spotreby vozidla, pri prevádzkovej teplote a otáčkach."}},{"@type":"Question","name":"Prečo nemôžem vždy zvoliť 50 A nabíjačku?","acceptedAnswer":{"@type":"Answer","text":"Prúd môže obmedzovať alternátor, BMS, batéria, kabeláž, istenie a konkrétny nabíjací profil. Bez overenia kompatibility nemožno automaticky odporučiť vyšší výkon."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/sk/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/sk/kalkulacky/">Kalkulačky</a><a class="header-link" href="/sk/sprievodca/">Sprievodca</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/sk/">Domov</a> / <a href="/sk/kalkulacky/">Kalkulačky</a> / DC/DC nabíjačka</nav>
+  <section class="calculator-hero"><p><strong>Dobíjanie batérie počas jazdy</strong></p><h1>Akú silnú DC/DC nabíjačku potrebujete?</h1><p>Vypočítajte prúd, ktorý by bol potrebný na doplnenie energie počas jazdy, a porovnajte ho so skutočnou rezervou alternátora a maximálnym nabíjacím prúdom batérie/BMS.</p></section>
+  <section class="calculator-grid" data-phase2-calculator data-calculator-intent="dcdc-sizing" data-calculator-locale="sk">
+    <div class="calculator-card"><h2>Zadajte batériu a parametre jazdy</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="batteryCapacityAh">Kapacita servisnej batérie (Ah)</label><input id="batteryCapacityAh" name="batteryCapacityAh" type="number" inputmode="decimal" min="20" max="1000" step="10" value="200" required></div>
+      <div class="calculator-field"><label for="replenishPercent">Koľko % batérie chcete doplniť</label><input id="replenishPercent" name="replenishPercent" type="number" inputmode="decimal" min="5" max="100" step="5" value="50" required></div>
+      <div class="calculator-field"><label for="targetDriveHours">Čas jazdy (h)</label><input id="targetDriveHours" name="targetDriveHours" type="number" inputmode="decimal" min="0.5" max="24" step="0.5" value="3" required></div>
+      <div class="calculator-field"><label for="batteryVoltage">Napätie servisnej batérie</label><select id="batteryVoltage" name="batteryVoltage"><option value="12" selected>12 V</option><option value="24">24 V</option></select></div>
+      <div class="calculator-field"><label for="sourceVoltage">Napätie vstupu DC/DC pri nabíjaní (V)</label><input id="sourceVoltage" name="sourceVoltage" type="number" inputmode="decimal" min="12" max="30" step="0.1" value="14.2" required></div>
+      <div class="calculator-field"><label for="spareAlternatorCurrentA">Voľný trvalý prúd alternátora po odpočítaní potrieb vozidla (A)</label><input id="spareAlternatorCurrentA" name="spareAlternatorCurrentA" type="number" inputmode="decimal" min="1" max="400" step="1" value="50" required></div>
+      <div class="calculator-field"><label for="batteryMaxChargeCurrentA">Maximálny nabíjací prúd batérie/BMS (A)</label><input id="batteryMaxChargeCurrentA" name="batteryMaxChargeCurrentA" type="number" inputmode="decimal" min="1" max="400" step="1" value="100" required></div>
+      <div class="calculator-field"><label for="efficiencyPercent">Odhad účinnosti DC/DC (%)</label><input id="efficiencyPercent" name="efficiencyPercent" type="number" inputmode="decimal" min="70" max="100" step="1" value="90" required></div>
+      <button class="calculator-button" type="submit">Vypočítať DC/DC nabíjačku</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p><p class="calculator-help" data-calculator-stale role="status" hidden>Zmenili ste zadanie. Pred použitím odporúčania spustite výpočet znovu.</p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Výsledok</strong></p><h2>Prúdová trieda DC/DC nabíjačky</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Odporúčaný prúd</span><strong data-result-charger-amps>—</strong></div><div class="calculator-metric"><span>Potrebný výstup</span><strong data-result-required-amps>—</strong></div><div class="calculator-metric"><span>Dostupný výstup</span><strong data-result-feasible-amps>—</strong></div><div class="calculator-metric"><span>Odhad dobitia</span><strong data-result-recharge-hours>—</strong></div><div class="calculator-metric"><span>Vstupný prúd</span><strong data-result-source-amps>—</strong></div><div class="calculator-metric"><span>Energia na doplnenie</span><strong data-result-energy-wh>—</strong></div><div class="calculator-metric"><span>Cieľ splniteľný?</span><strong data-result-target>—</strong></div>
+    </div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/sk/#kalkulator">Navrhnúť celý systém</a><a class="calculator-cta calculator-cta-secondary" href="/sk/sprievodca/ako-vybrat-dc-dc-nabijacku/">Ako vybrať DC/DC nabíjačku</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Čo pred montážou skontrolovať?</h2><p><strong>Voliteľný výkon nabíjačky nie je len o čase jazdy.</strong> Pri inteligentnom alternátore je nevyhnutné preveriť spôsob spínania a skutočný voľný prúd v prevádzke. Nabíjačka musí podporovať vstupné a výstupné napätie, chémiu batérie a správny nabíjací profil. Káble, poistky a BMS treba navrhnúť spolu podľa výrobcu; montáž nechajte posúdiť kvalifikovaným elektrikárom.</p><p>Ak potrebujete len overiť úbytok napätia vedenia, použite aj <a href="/sk/kalkulacky/prierez-kabla-12v/">kalkulačku prierezu kábla</a>.</p></section>
+</main>
+<script type="module" src="/src/dcdc-localized-landing-browser.js?v=20261115-dcdc-locales1"></script>
+</body>
+</html>
