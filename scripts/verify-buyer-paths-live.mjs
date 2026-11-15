@@ -3,8 +3,9 @@
 // A successful Pages deployment is not proof the CDN serves the updated
 // HTML and versioned JS. This audit does not submit forms or click offers.
 import { readFile } from "node:fs/promises";
-import { acceptCalculatorOffersSnapshot, acceptDcdcGuideSnapshot } from "../src/verified-offer-catalog-fetch.js";
+import { acceptCalculatorOffersSnapshot, acceptDcdcGuideSnapshot, acceptInverterCalculatorSnapshot } from "../src/verified-offer-catalog-fetch.js";
 import { selectGuideOffers } from "../src/guide-verified-offers.js";
+import { selectInverterCalculatorOffers } from "../src/inverter-calculator-offers.js";
 
 const PRODUCTION_ORIGIN = "https://mypowersetup.com";
 export const PAGES = Object.freeze([
@@ -14,6 +15,7 @@ export const PAGES = Object.freeze([
   Object.freeze({ path: "/kalkulacky/vydrz-baterie/", kind: "battery_runtime" }),
   Object.freeze({ path: "/kalkulacky/kapacita-baterie/", kind: "battery_capacity" }),
   Object.freeze({ path: "/kalkulacky/mppt-regulator/", kind: "mppt_calculator" }),
+  Object.freeze({ path: "/kalkulacky/vykon-menice/", kind: "inverter_calculator" }),
   Object.freeze({ path: "/pruvodce/kapacita-baterie-do-karavanu/", kind: "battery_offers_guide" }),
   Object.freeze({ path: "/pruvodce/lifepo4-100ah-nebo-200ah-karavan/", kind: "battery_offers_comparison" }),
   Object.freeze({ path: "/pruvodce/jak-vybrat-mppt-regulator/", kind: "mppt_offers_guide" }),
@@ -31,6 +33,8 @@ export const ASSETS = Object.freeze([
   "src/battery-calculator-offers.js",
   "src/mppt-calculator-offers-browser.js",
   "src/mppt-calculator-offers.js",
+  "src/inverter-calculator-offers-browser.js",
+  "src/inverter-calculator-offers.js",
   "src/guide-offer-impressions.js",
   "src/guide-verified-offers.js",
   "src/calculator-offer-catalog.js",
@@ -85,9 +89,10 @@ export function checkPublicHtml(html, local, { path, kind }) {
     fail("PUBLIC_BATTERY_GUIDE_LINK_MISSING");
   if (kind === "mppt_guide" && !html.includes('href="/kalkulacky/mppt-regulator/"'))
     fail("PUBLIC_MPPT_GUIDE_LINK_MISSING");
-  if (kind === "battery_runtime" || kind === "mppt_calculator" || kind === "battery_capacity") {
+  if (kind === "battery_runtime" || kind === "mppt_calculator" || kind === "battery_capacity" || kind === "inverter_calculator") {
     const intent = kind === "battery_runtime" ? "battery-autonomy"
-      : kind === "battery_capacity" ? "battery-capacity" : "mppt-sizing";
+      : kind === "battery_capacity" ? "battery-capacity"
+      : kind === "inverter_calculator" ? "inverter-sizing" : "mppt-sizing";
     if (!html.includes('data-calculator-intent="' + intent + '"') ||
         !html.includes("data-calculator-result") || !html.includes("data-calculator-form"))
       fail("PUBLIC_CALCULATOR_MISSING:" + path);
@@ -99,6 +104,10 @@ export function checkPublicHtml(html, local, { path, kind }) {
         (!html.includes('data-battery-buyers') || !html.includes('data-battery-offer-list') ||
          !html.includes("Nejde o automatické potvrzení kompatibility")))
       fail("PUBLIC_BATTERY_BUYER_GUARD_MISSING");
+    if (kind === "inverter_calculator" &&
+        (!html.includes('data-inverter-buyers') || !html.includes('data-inverter-offer-list')
+         || !html.includes("není potvrzení úplné kompatibility")))
+      fail("PUBLIC_INVERTER_BUYER_GUARD_MISSING");
     if (kind === "battery_runtime" &&
         (!html.includes('name="dailyWh"') || !html.includes('name="batteryCapacityAh"') ||
          !html.includes('name="systemVoltage"') || !html.includes('name="batteryType"')))
@@ -175,6 +184,22 @@ export function checkPublicDcdcGuideCatalog(served, local, now = Date.now()) {
   });
 }
 
+export function checkPublicInverterCatalog(served, local, now = Date.now()) {
+  if (Buffer.byteLength(served, "utf8") > 8500) fail("PUBLIC_INVERTER_CATALOG_TOO_LARGE");
+  if (normalText(served) !== normalText(local)) fail("PUBLIC_INVERTER_CATALOG_SOURCE_DRIFT");
+  let payload;
+  try { payload = JSON.parse(served); } catch { fail("PUBLIC_INVERTER_CATALOG_INVALID_JSON"); }
+  if (!acceptInverterCalculatorSnapshot(payload)) fail("PUBLIC_INVERTER_CATALOG_INVALID_SCHEMA");
+  return Object.freeze({
+    path: "/data/inverter-calculator-offers-cz.json",
+    bytes: Buffer.byteLength(served), reviewedProducts: payload.products.length,
+    eligible12v400w: selectInverterCalculatorOffers(payload, { inverterWatts: 400, systemVoltage: 12 }, now).length,
+    eligible24v1300w: selectInverterCalculatorOffers(payload, { inverterWatts: 1300, systemVoltage: 24 }, now).length,
+    generatedAt: payload.generatedAt, sourceStatus: payload.sources.solarimport.status,
+    outboundClickVerified: false, commissionVerified: false,
+  });
+}
+
 async function fetchPage(fetchImpl, url, contentType, sleep, onRetry) {
   let response;
   for (let attempt = 0; attempt < 3; attempt++) {
@@ -223,7 +248,7 @@ export async function verifyBuyerPathsLive({
     checkedPages.push({ path: page.path, http: 200, canonical: "exact", content: "verified" });
   }
   if (!browserVersions.has("battery_runtime") || !browserVersions.has("battery_capacity") ||
-      !browserVersions.has("mppt_calculator"))
+      !browserVersions.has("mppt_calculator") || !browserVersions.has("inverter_calculator"))
     fail("PUBLIC_CALCULATOR_COVERAGE_INCOMPLETE");
 
   const checkedAssets = [];
@@ -237,6 +262,7 @@ export async function verifyBuyerPathsLive({
     const dependency = ["src/calculator-handoff.js", "src/calculator-copy.js",
       "src/battery-calculator-offers-browser.js",
       "src/mppt-calculator-offers-browser.js",
+      "src/inverter-calculator-offers-browser.js",
       "src/calculator-offer-catalog.js"].includes(asset);
     const importer = asset === "src/calculator-offer-catalog.js" ? batteryBuyer : localBrowser;
     const imports = [...importer.matchAll(/from ["']\.\/([^"']+)["']/g)].map(match => match[1]);
@@ -278,12 +304,18 @@ export async function verifyBuyerPathsLive({
       await fetchPage(fetchImpl, new URL(dcdcPath, base), "json", sleep, () => retries++),
       dcdcLocal, now()
     );
+  const inverterPath = "/data/inverter-calculator-offers-cz.json";
+  const inverterCatalog = checkPublicInverterCatalog(
+    await fetchPage(fetchImpl, new URL(inverterPath, base), "json", sleep, () => retries++),
+    await readLocal(inverterPath.slice(1)), now()
+  );
   return Object.freeze({
     status: "PUBLIC_BUYER_HTML_JS_AND_CATALOG_VERIFIED",
     origin: base.origin, pages: checkedPages, assets: checkedAssets,
     browserVersions: Object.fromEntries(browserVersions),
     compactCatalog,
     dcdcCatalog,
+    inverterCatalog,
     transientRetries: retries,
     browserInteractionsVerified: false,
     seoUpliftMeasured: false,

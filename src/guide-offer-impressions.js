@@ -10,6 +10,7 @@ export function createVerifiedGuideImpressionTracker({
   Observer = globalThis.IntersectionObserver,
   now = Date.now,
   allowedSources = ["editorial-comparison"],
+  allowedMerchants = ["vselektro"],
 } = {}) {
   if (!documentRoot || typeof Observer !== "function" || !Array.isArray(sections)) return null;
 
@@ -27,7 +28,7 @@ export function createVerifiedGuideImpressionTracker({
       const expiresAt = Number(link.dataset?.offerExpiresAt);
       if (!Number.isFinite(expiresAt) || expiresAt <= 0 || now() > expiresAt) continue;
       const params = buildAttributedAffiliateParameters(link);
-      if (params.productId === "unknown" || params.merchant !== "vselektro"
+      if (params.productId === "unknown" || !allowedMerchants.includes(params.merchant)
         || !allowedSources.includes(params.source)) continue;
       // Editorial guides still count a SKU once per page. Only the DC-DC
       // calculator exposes two *different* drive-time-fit variants of the
