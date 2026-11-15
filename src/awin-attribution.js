@@ -9,6 +9,7 @@ const SOURCE_VALUES = new Set(["package", "product-card"]);
 export function decorateAwinAffiliateUrl(input, {
   market,
   category,
+  placement,
   recommendationRole,
   routePriority,
   source,
@@ -24,12 +25,12 @@ export function decorateAwinAffiliateUrl(input, {
   if (url.protocol !== "https:") return input;
 
   if (AWIN_HOSTS.has(url.hostname)) {
-    decorateAwinUrl(url, { market, category, recommendationRole, routePriority, source, scenarioCampaign });
+    decorateAwinUrl(url, { market, category, placement, recommendationRole, routePriority, source, scenarioCampaign });
     return url.toString();
   }
 
   if (EHUB_HOSTS.has(url.hostname) && url.pathname === EHUB_PATH) {
-    decorateEhubUrl(url, { market, category, scenarioCampaign });
+    decorateEhubUrl(url, { market, category, placement, scenarioCampaign });
     return url.toString();
   }
 
@@ -39,6 +40,7 @@ export function decorateAwinAffiliateUrl(input, {
 function decorateAwinUrl(url, {
   market,
   category,
+  placement,
   recommendationRole,
   routePriority,
   source,
@@ -62,10 +64,13 @@ function decorateAwinUrl(url, {
   const scenarioRef = buildScenarioRef(scenarioCampaign ?? activeScenarioCampaign(), 50);
   if (scenarioRef && !url.searchParams.has("clickref4")) {
     url.searchParams.set("clickref4", scenarioRef);
+  } else if (!scenarioRef && !url.searchParams.has("clickref4")) {
+    const placementRef = safeToken(market) && safeToken(category) ? buildPlacementRef(placement, 50) : null;
+    if (placementRef) url.searchParams.set("clickref4", placementRef);
   }
 }
 
-function decorateEhubUrl(url, { market, category, scenarioCampaign }) {
+function decorateEhubUrl(url, { market, category, placement, scenarioCampaign }) {
   if (!url.searchParams.get("a_aid") || !url.searchParams.get("a_bid")) return;
 
   const normalizedMarket = safeToken(market);
@@ -78,7 +83,20 @@ function decorateEhubUrl(url, { market, category, scenarioCampaign }) {
   const scenarioRef = buildScenarioRef(scenarioCampaign ?? activeScenarioCampaign(), 64);
   if (scenarioRef && !url.searchParams.has("data2")) {
     url.searchParams.set("data2", scenarioRef);
+  } else if (!scenarioRef && !url.searchParams.has("data2")) {
+    const placementRef = normalizedMarket && normalizedCategory ? buildPlacementRef(placement, 64) : null;
+    if (placementRef) url.searchParams.set("data2", placementRef);
   }
+}
+
+// Static, page-level attribution only: never put a user, session or result ID
+// in merchant click references. Existing publisher data and real scenario
+// campaign labels take precedence over a generic calculator placement.
+function buildPlacementRef(value, maxLength) {
+  const normalized = safeToken(value);
+  if (!normalized) return null;
+  const ref = `placement_${normalized}`;
+  return ref.length <= maxLength ? ref : null;
 }
 
 function buildScenarioRef(value, maxLength) {

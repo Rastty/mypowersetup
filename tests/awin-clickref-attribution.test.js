@@ -154,6 +154,51 @@ test("eHUB links carry market/category and scenario dimensions into data1/data2"
   assert.equal(url.searchParams.get("data2"), "scenario_pl_weekend");
 });
 
+test("approved calculator placements become merchant-visible, non-personal data2/clickref4 labels", async () => {
+  const buyers = [
+    ["battery-calculator-offers-browser.js", "cz", "battery", "battery_calculator"],
+    ["mppt-calculator-offers-browser.js", "cz", "controller", "mppt_calculator"],
+    ["inverter-calculator-offers-browser.js", "cz", "inverter", "inverter_calculator"],
+    ["dcdc-calculator-offers-browser.js", "cz", "dc_charger", "dcdc_calculator"],
+    ["solar-calculator-offers-browser.js", "cz", "solar_panel", "solar_calculator"],
+    ["solar-calculator-offers-browser.js", "sk", "solar_panel", "solar_calculator"],
+  ];
+  for (const [file, market, category, placement] of buyers) {
+    const source = await readFile(new URL(`../src/${file}`, import.meta.url), "utf8");
+    assert.ok(source.includes(`placement: "${placement}"`), `${file} must decorate its outbound affiliate URL`);
+    const options = { market, category, placement, source: "product-card" };
+    const ehubUrl = new URL(decorateAwinAffiliateUrl(ehub, options));
+    assert.equal(ehubUrl.searchParams.get("data1"), `mps_${market}_${category}`);
+    assert.equal(ehubUrl.searchParams.get("data2"), `placement_${placement}`);
+    assert.equal(ehubUrl.searchParams.get("a_aid"), "f34c86c8");
+    assert.equal(ehubUrl.searchParams.get("a_bid"), "95d61abf");
+    assert.equal(ehubUrl.searchParams.get("desturl"), "https://www.padabo.pl/example");
+    assert.equal(ehubUrl.searchParams.getAll("data2").length, 1);
+    const awinUrl = new URL(decorateAwinAffiliateUrl(awin, options));
+    assert.equal(awinUrl.searchParams.get("clickref4"), `placement_${placement}`);
+    assert.equal(awinUrl.searchParams.get("ued"), "https://www.ipowerqueen.de/en/products/example");
+  }
+});
+
+test("scenario campaigns and existing merchant references always win over calculator placement", () => {
+  const options = { market: "sk", category: "solar_panel", placement: "solar_calculator" };
+  const scenario = new URL(decorateAwinAffiliateUrl(ehub, { ...options, scenarioCampaign: "weekend" }));
+  assert.equal(scenario.searchParams.get("data1"), "mps_sk_solar_panel");
+  assert.equal(scenario.searchParams.get("data2"), "scenario_weekend");
+  const preexisting = new URL(decorateAwinAffiliateUrl(`${ehub}&data2=publisher_original`, options));
+  assert.equal(preexisting.searchParams.get("data2"), "publisher_original");
+  const awinScenario = new URL(decorateAwinAffiliateUrl(awin, { ...options, scenarioCampaign: "weekend" }));
+  assert.equal(awinScenario.searchParams.get("clickref4"), "scenario_weekend");
+  const awinOriginal = new URL(decorateAwinAffiliateUrl(`${awin}&clickref4=existing`, options));
+  assert.equal(awinOriginal.searchParams.get("clickref4"), "existing");
+  assert.equal(new URL(decorateAwinAffiliateUrl(ehub, { ...options, placement: "unsafe value" }))
+    .searchParams.has("data2"), false);
+  assert.equal(new URL(decorateAwinAffiliateUrl(ehub, { ...options, placement: "x".repeat(64) }))
+    .searchParams.has("data2"), false);
+  assert.equal(new URL(decorateAwinAffiliateUrl(ehub, { ...options, market: "sk<script>" }))
+    .searchParams.has("data2"), false);
+});
+
 test("all three CZ calculator product links carry the commission category without changing checkout or publisher IDs", async () => {
   const calculatorBuyers = [
     ["battery-calculator-offers-browser.js", "battery"],
@@ -164,7 +209,7 @@ test("all three CZ calculator product links carry the commission category withou
     encodeURIComponent("https://www.vselektro.eu/lifepo4-baterie-12v-100ah-sunstone-power-slpo12-100n/");
   for (const [file, category] of calculatorBuyers) {
     const source = await readFile(new URL("../src/" + file, import.meta.url), "utf8");
-    assert.match(source, /import \{ decorateAwinAffiliateUrl \} from "\.\/awin-attribution\.js";/, file);
+    assert.match(source, /import \{ decorateAwinAffiliateUrl \} from "\.\/awin-attribution\.js\?v=20261115-placement-subids1";/, file);
     assert.match(source, /link\.href = decorateAwinAffiliateUrl\(offer\.affiliateUrl, \{/, file);
     assert.ok(source.includes(`market: "cz", category: "${category}"`), file);
     const decorated = new URL(decorateAwinAffiliateUrl(exactUrl, {

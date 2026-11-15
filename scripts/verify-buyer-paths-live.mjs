@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Read-only public serving proof for existing CZ buyer paths.
+// Read-only public serving proof for existing CZ/SK buyer paths.
 // A successful Pages deployment is not proof the CDN serves the updated
 // HTML and versioned JS. This audit does not submit forms or click offers.
 import { readFile } from "node:fs/promises";
@@ -20,6 +20,7 @@ export const PAGES = Object.freeze([
   Object.freeze({ path: "/kalkulacky/vykon-menice/", kind: "inverter_calculator" }),
   Object.freeze({ path: "/kalkulacky/solarni-panely/", kind: "solar_calculator" }),
   Object.freeze({ path: "/sk/kalkulacky/solarne-panely/", kind: "sk_solar_calculator" }),
+  Object.freeze({ path: "/kalkulacky/dc-dc-nabijecka/", kind: "dcdc_calculator" }),
   Object.freeze({ path: "/pruvodce/kapacita-baterie-do-karavanu/", kind: "battery_offers_guide" }),
   Object.freeze({ path: "/pruvodce/lifepo4-100ah-nebo-200ah-karavan/", kind: "battery_offers_comparison" }),
   Object.freeze({ path: "/pruvodce/jak-vybrat-mppt-regulator/", kind: "mppt_offers_guide" }),
@@ -28,6 +29,7 @@ export const PAGES = Object.freeze([
 ]);
 export const ASSETS = Object.freeze([
   "src/calculator-landing-browser.js",
+  "src/phase2-calculator-browser.js",
   "src/calculator-handoff.js",
   "src/calculator-copy.js",
   "src/community-attribution.js",
@@ -40,6 +42,8 @@ export const ASSETS = Object.freeze([
   "src/inverter-calculator-offers-browser.js",
   "src/inverter-calculator-offers.js",
   "src/solar-calculator-offers-browser.js",
+  "src/dcdc-calculator-offers-browser.js",
+  "src/awin-attribution.js",
   "src/solar-calculator-offers.js",
   "src/sk-solar-calculator-offers.js",
   "src/guide-offer-impressions.js",
@@ -49,6 +53,7 @@ export const ASSETS = Object.freeze([
 ]);
 const TRANSIENT_HTTP = new Set([429, 502, 503, 504]);
 const VERSIONED_BROWSER = /<script\b[^>]*\bsrc=["'](\/src\/calculator-landing-browser\.js\?v=[^"']+)["'][^>]*>/i;
+const VERSIONED_PHASE2_BROWSER = /<script\b[^>]*\bsrc=["'](\/src\/phase2-calculator-browser\.js\?v=[^"']+)["'][^>]*>/i;
 const GUIDE_WH = Object.freeze([270, 560]);
 const EDITORIAL_BUYER_CATEGORIES = Object.freeze({
   "/pruvodce/kapacita-baterie-do-karavanu/": "battery",
@@ -96,6 +101,16 @@ export function checkPublicHtml(html, local, { path, kind }) {
     fail("PUBLIC_BATTERY_GUIDE_LINK_MISSING");
   if (kind === "mppt_guide" && !html.includes('href="/kalkulacky/mppt-regulator/"'))
     fail("PUBLIC_MPPT_GUIDE_LINK_MISSING");
+  if (kind === "dcdc_calculator") {
+    if (!html.includes('data-phase2-calculator') || !html.includes('data-calculator-intent="dcdc-sizing"') ||
+        !html.includes('data-dcdc-buyers') || !html.includes('data-dcdc-offer-list') ||
+        !html.includes('data-calculator-result') || !html.includes('data-calculator-form'))
+      fail("PUBLIC_DCDC_CALCULATOR_MISSING:" + path);
+    const localScript = local.match(VERSIONED_PHASE2_BROWSER)?.[1];
+    const liveScript = html.match(VERSIONED_PHASE2_BROWSER)?.[1];
+    if (!localScript || liveScript !== localScript) fail("PUBLIC_DCDC_VERSION_DRIFT:" + path);
+    return localScript;
+  }
   if (kind === "battery_runtime" || kind === "mppt_calculator" || kind === "battery_capacity" || kind === "inverter_calculator" || kind === "solar_calculator" || kind === "sk_solar_calculator") {
     const intent = kind === "battery_runtime" ? "battery-autonomy"
       : kind === "battery_capacity" ? "battery-capacity"
@@ -298,13 +313,18 @@ export async function verifyBuyerPathsLive({
   }
   if (!browserVersions.has("battery_runtime") || !browserVersions.has("battery_capacity") ||
       !browserVersions.has("mppt_calculator") || !browserVersions.has("inverter_calculator") ||
-      !browserVersions.has("solar_calculator") || !browserVersions.has("sk_solar_calculator"))
+      !browserVersions.has("solar_calculator") || !browserVersions.has("sk_solar_calculator") ||
+      !browserVersions.has("dcdc_calculator"))
     fail("PUBLIC_CALCULATOR_COVERAGE_INCOMPLETE");
 
   const checkedAssets = [];
   const localBrowser = await readLocal("src/calculator-landing-browser.js");
+  const phase2Browser = await readLocal("src/phase2-calculator-browser.js");
   const mpptBuyer = await readLocal("src/mppt-calculator-offers-browser.js");
   const batteryBuyer = await readLocal("src/battery-calculator-offers-browser.js");
+  const buyerModules = await Promise.all([
+    "battery", "mppt", "inverter", "solar", "dcdc",
+  ].map(name => readLocal(`src/${name}-calculator-offers-browser.js`)));
   for (const asset of ASSETS) {
     const local = await readLocal(asset);
     // Resolve the *actual* versioned import used by the served calculator
@@ -314,8 +334,12 @@ export async function verifyBuyerPathsLive({
       "src/mppt-calculator-offers-browser.js",
       "src/inverter-calculator-offers-browser.js",
       "src/solar-calculator-offers-browser.js",
+      "src/dcdc-calculator-offers-browser.js",
+      "src/awin-attribution.js",
       "src/calculator-offer-catalog.js"].includes(asset);
-    const importer = asset === "src/calculator-offer-catalog.js" ? batteryBuyer : localBrowser;
+    const importer = asset === "src/calculator-offer-catalog.js" ? batteryBuyer
+      : asset === "src/dcdc-calculator-offers-browser.js" ? phase2Browser
+      : asset === "src/awin-attribution.js" ? buyerModules[0] : localBrowser;
     const imports = [...importer.matchAll(/from ["']\.\/([^"']+)["']/g)].map(match => match[1]);
     const imported = dependency
       ? imports.find(value => value.startsWith(asset.split("/").at(-1) + "?v="))
@@ -323,9 +347,14 @@ export async function verifyBuyerPathsLive({
     if (asset === "src/calculator-offer-catalog.js" &&
         !mpptBuyer.includes(`from "./${imported}"`))
       fail("PUBLIC_BUYER_CATALOG_IMPORT_DRIFT");
+    if (asset === "src/awin-attribution.js" &&
+        buyerModules.some(source => !source.includes(`from "./${imported}"`)))
+      fail("PUBLIC_AFFILIATE_PLACEMENT_IMPORT_DRIFT");
     if (dependency && !imported) fail("PUBLIC_VERSIONED_IMPORT_MISSING:" + asset);
     const paths = asset === "src/calculator-landing-browser.js"
-      ? [...new Set(browserVersions.values())]
+      ? [...new Set([...browserVersions.entries()]
+        .filter(([kind]) => kind !== "dcdc_calculator").map(([, path]) => path))]
+      : asset === "src/phase2-calculator-browser.js" ? [browserVersions.get("dcdc_calculator")]
       : [dependency ? "/src/" + imported : "/" + asset];
     for (const path of paths) {
       const served = await fetchPage(fetchImpl, new URL(path, base), "js", sleep, () => retries++);
