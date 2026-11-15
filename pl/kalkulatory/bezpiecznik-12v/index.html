@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bezpiecznik i przewód 12/24 V: kalkulator | MyPowerSetup</title>
+  <meta name="description" content="Dobierz bezpiecznik i przekrój przewodu 12/24 V na podstawie prądu, spadku napięcia, zweryfikowanej obciążalności i limitu urządzenia.">
+  <link rel="canonical" href="https://mypowersetup.com/pl/kalkulatory/bezpiecznik-12v/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/jisteni-12v/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/istenie-12v/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/bezpiecznik-12v/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/biztositek-12v/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/jisteni-12v/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Bezpiecznik i przewód 12/24 V: kalkulator","url":"https://mypowersetup.com/pl/kalkulatory/bezpiecznik-12v/","inLanguage":"pl-PL","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/pl/"},{"@type":"ListItem","position":2,"name":"Kalkulatory","item":"https://mypowersetup.com/pl/kalkulatory/"},{"@type":"ListItem","position":3,"name":"Propozycja zabezpieczenia","item":"https://mypowersetup.com/pl/kalkulatory/bezpiecznik-12v/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Czy margines 125% jest obowiązkowy?","acceptedAnswer":{"@type":"Answer","text":"Nie. To konfigurowalne założenie projektowe, a nie uniwersalny wymóg dla wszystkich obwodów DC."}},{"@type":"Question","name":"Czy obliczenie spadku napięcia wystarczy?","acceptedAnswer":{"@type":"Answer","text":"Nie. Obciążalność cieplną przewodu trzeba osobno sprawdzić dla konkretnej instalacji."}}]}]}</script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/pl/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/pl/kalkulatory/">Kalkulatory</a><a class="header-link" href="/pl/poradnik/przewody-i-bezpieczniki-12-v/">Przewody i bezpieczniki w praktyce</a></nav></header>
+  <main class="calculator-page">
+    <nav class="calculator-breadcrumbs"><a href="/pl/">Start</a> / <a href="/pl/kalkulatory/">Kalkulatory</a> / Propozycja zabezpieczenia</nav>
+    <section class="calculator-hero"><p><strong>Bezpieczny projekt instalacji 12/24 V</strong></p><h1>Jaki bezpiecznik i przekrój przewodu wybrać?</h1><p>Oddziel obliczenie przekroju ze spadku napięcia od doboru bezpiecznika na podstawie prądu projektowego, sprawdzonej obciążalności przewodu i limitów producenta urządzenia.</p></section>
+    <section class="calculator-grid" data-phase2-calculator data-calculator-intent="dc-protection" data-calculator-locale="pl">
+      <div class="calculator-card"><h2>Podaj parametry obwodu DC</h2><form class="calculator-form" data-calculator-form>
+        <div class="calculator-field"><label for="continuousCurrentA">Stały prąd obwodu (A)</label><input id="continuousCurrentA" name="continuousCurrentA" type="number" inputmode="decimal" min="1" max="400" step="1" value="30" required></div>
+        <div class="calculator-field"><label for="systemVoltage">Napięcie systemu</label><select id="systemVoltage" name="systemVoltage"><option value="12">12 V</option><option value="24">24 V</option></select></div>
+        <div class="calculator-field"><label for="oneWayLengthM">Długość przewodu w jedną stronę (m)</label><input id="oneWayLengthM" name="oneWayLengthM" type="number" inputmode="decimal" min="0.5" max="30" step="0.5" value="5" required></div>
+        <div class="calculator-field"><label for="maxDropPercent">Dopuszczalny spadek napięcia (%)</label><input id="maxDropPercent" name="maxDropPercent" type="number" inputmode="decimal" min="1" max="10" step="0.5" value="3" required></div>
+        <div class="calculator-field"><label for="planningMarginPercent">Margines projektowy prądu (%)</label><input id="planningMarginPercent" name="planningMarginPercent" type="number" inputmode="decimal" min="100" max="160" step="5" value="125" required></div>
+<div class="calculator-field"><label for="cableAmpacityA">Zweryfikowana obciążalność przewodu (A)</label><input id="cableAmpacityA" name="cableAmpacityA" type="number" inputmode="decimal" min="1" max="500" step="1" required></div>
+        <div class="calculator-field"><label for="equipmentMaxFuseA">Maksymalne zabezpieczenie urządzenia (A, opcjonalnie)</label><input id="equipmentMaxFuseA" name="equipmentMaxFuseA" type="number" inputmode="decimal" min="1" max="500" step="1"></div>
+        <button class="calculator-button" type="submit">Oblicz bezpiecznik i przewód</button>
+      </form><p class="calculator-error" data-calculator-error role="alert" hidden></p><p class="calculator-help" data-calculator-stale role="status" hidden>Zmieniono dane. Przelicz wynik przed jego użyciem.</p></div>
+      <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Wynik</strong></p><h2>Propozycja zabezpieczenia</h2><div class="calculator-metrics">
+        <div class="calculator-metric"><span>Prąd projektowy</span><strong data-result-design-current>—</strong></div>
+        <div class="calculator-metric"><span>Bezpiecznik</span><strong data-result-fuse>—</strong></div>
+        <div class="calculator-metric"><span>Przekrój ze spadku napięcia</span><strong data-result-cable-mm2>—</strong></div>
+        <div class="calculator-metric"><span>Obliczony spadek</span><strong data-result-drop-percent>—</strong></div>
+        <div class="calculator-metric"><span>Górny limit</span><strong data-result-ceiling>—</strong></div>
+        <div class="calculator-metric"><span>Bezpiecznik dostępny?</span><strong data-result-feasible>—</strong></div>
+      </div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/pl/#kalkulator">Zaprojektuj cały system</a><a class="calculator-cta calculator-cta-secondary" href="/pl/poradnik/przewody-i-bezpieczniki-12-v/">Przewody i bezpieczniki w praktyce</a></div></div>
+    </section>
+    <section class="calculator-section calculator-content-card"><h2>Dlaczego potrzebne są dwa obliczenia?</h2><p>Przekrój wynikający ze spadku napięcia nie potwierdza obciążalności cieplnej przewodu. Sprawdź ją osobno dla jego typu, izolacji, temperatury, wiązki i sposobu ułożenia. Bezpiecznik musi chronić przewód oraz spełniać ograniczenia urządzenia, zdolność wyłączania i parametry napięcia DC. Montaż zweryfikuj z elektrykiem.</p><p><a href="/pl/kalkulatory/przekroj-przewodu-12v/">Kalkulator przekroju przewodu</a> · <a href="/pl/kalkulatory/ladowarka-dc-dc/">Kalkulator ładowarki DC/DC</a></p></section>
+    <section class="calculator-section"><h2>Częste pytania</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Czy margines 125% jest obowiązkowy?</h3><p>Nie. To konfigurowalne założenie projektowe, a nie uniwersalny wymóg dla wszystkich obwodów DC.</p></article><article class="calculator-content-card"><h3>Czy obliczenie spadku napięcia wystarczy?</h3><p>Nie. Obciążalność cieplną przewodu trzeba osobno sprawdzić dla konkretnej instalacji.</p></article></div></section>
+  </main>
+  <script type="module" src="/src/protection-localized-landing-browser.js?v=20261115-protection-locales1"></script>
+</body>
+</html>

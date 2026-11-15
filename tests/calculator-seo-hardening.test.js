@@ -50,6 +50,11 @@ const LOCALIZED_EQUIVALENTS = Object.freeze({
     pl: "/pl/kalkulatory/ladowarka-dc-dc/",
     hu: "/hu/kalkulatorok/dc-dc-tolto/",
   }),
+  "jisteni-12v": Object.freeze({
+    sk: "/sk/kalkulacky/istenie-12v/",
+    pl: "/pl/kalkulatory/bezpiecznik-12v/",
+    hu: "/hu/kalkulatorok/biztositek-12v/",
+  }),
   "12v-nebo-24v": Object.freeze({
     sk: "/sk/kalkulacky/12v-alebo-24v/",
     pl: "/pl/kalkulatory/12v-czy-24v/",

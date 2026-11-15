@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poistka a kábel 12/24 V: kalkulačka istenia | MyPowerSetup</title>
+  <meta name="description" content="Zvoľte poistku a prierez 12/24 V kábla podľa návrhového prúdu, úbytku napätia, overenej prúdovej zaťažiteľnosti a limitu zariadenia.">
+  <link rel="canonical" href="https://mypowersetup.com/sk/kalkulacky/istenie-12v/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/jisteni-12v/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/istenie-12v/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/bezpiecznik-12v/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/biztositek-12v/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/jisteni-12v/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Poistka a kábel 12/24 V: kalkulačka istenia","url":"https://mypowersetup.com/sk/kalkulacky/istenie-12v/","inLanguage":"sk-SK","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/sk/"},{"@type":"ListItem","position":2,"name":"Kalkulačky","item":"https://mypowersetup.com/sk/kalkulacky/"},{"@type":"ListItem","position":3,"name":"Návrh istenia","item":"https://mypowersetup.com/sk/kalkulacky/istenie-12v/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Je rezerva 125 % povinná?","acceptedAnswer":{"@type":"Answer","text":"Nie. Je to iba nastaviteľný plánovací predpoklad, nie všeobecne platné pravidlo pre všetky DC obvody."}},{"@type":"Question","name":"Stačí prierez podľa úbytku napätia?","acceptedAnswer":{"@type":"Answer","text":"Nie. Tepelná prúdová zaťažiteľnosť musí byť overená osobitne pre daný vodič a podmienky montáže."}}]}]}</script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/sk/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/sk/kalkulacky/">Kalkulačky</a><a class="header-link" href="/sk/sprievodca/kable-a-poistky-12-v/">Káble a poistky v praxi</a></nav></header>
+  <main class="calculator-page">
+    <nav class="calculator-breadcrumbs"><a href="/sk/">Domov</a> / <a href="/sk/kalkulacky/">Kalkulačky</a> / Návrh istenia</nav>
+    <section class="calculator-hero"><p><strong>Bezpečný návrh 12/24 V obvodu</strong></p><h1>Akú poistku a prierez kábla zvoliť?</h1><p>Samostatne vypočítajte prierez podľa úbytku napätia a vhodnú bežnú poistku podľa návrhového prúdu, overenej prúdovej zaťažiteľnosti vodiča a maximálneho istenia zariadenia.</p></section>
+    <section class="calculator-grid" data-phase2-calculator data-calculator-intent="dc-protection" data-calculator-locale="sk">
+      <div class="calculator-card"><h2>Zadajte parametre DC obvodu</h2><form class="calculator-form" data-calculator-form>
+        <div class="calculator-field"><label for="continuousCurrentA">Trvalý prúd obvodu (A)</label><input id="continuousCurrentA" name="continuousCurrentA" type="number" inputmode="decimal" min="1" max="400" step="1" value="30" required></div>
+        <div class="calculator-field"><label for="systemVoltage">Napätie systému</label><select id="systemVoltage" name="systemVoltage"><option value="12">12 V</option><option value="24">24 V</option></select></div>
+        <div class="calculator-field"><label for="oneWayLengthM">Dĺžka vodiča jedným smerom (m)</label><input id="oneWayLengthM" name="oneWayLengthM" type="number" inputmode="decimal" min="0.5" max="30" step="0.5" value="5" required></div>
+        <div class="calculator-field"><label for="maxDropPercent">Najvyšší úbytok napätia (%)</label><input id="maxDropPercent" name="maxDropPercent" type="number" inputmode="decimal" min="1" max="10" step="0.5" value="3" required></div>
+        <div class="calculator-field"><label for="planningMarginPercent">Plánovacia rezerva prúdu (%)</label><input id="planningMarginPercent" name="planningMarginPercent" type="number" inputmode="decimal" min="100" max="160" step="5" value="125" required></div>
+<div class="calculator-field"><label for="cableAmpacityA">Overená prúdová zaťažiteľnosť kábla (A)</label><input id="cableAmpacityA" name="cableAmpacityA" type="number" inputmode="decimal" min="1" max="500" step="1" required></div>
+        <div class="calculator-field"><label for="equipmentMaxFuseA">Najvyššie istenie zariadenia (A, voliteľné)</label><input id="equipmentMaxFuseA" name="equipmentMaxFuseA" type="number" inputmode="decimal" min="1" max="500" step="1"></div>
+        <button class="calculator-button" type="submit">Vypočítať poistku a vodič</button>
+      </form><p class="calculator-error" data-calculator-error role="alert" hidden></p><p class="calculator-help" data-calculator-stale role="status" hidden>Zmenili ste zadanie. Pred použitím výsledku spustite výpočet znova.</p></div>
+      <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Výsledok</strong></p><h2>Návrh istenia</h2><div class="calculator-metrics">
+        <div class="calculator-metric"><span>Návrhový prúd</span><strong data-result-design-current>—</strong></div>
+        <div class="calculator-metric"><span>Bežná poistka</span><strong data-result-fuse>—</strong></div>
+        <div class="calculator-metric"><span>Prierez podľa úbytku</span><strong data-result-cable-mm2>—</strong></div>
+        <div class="calculator-metric"><span>Skutočný úbytok</span><strong data-result-drop-percent>—</strong></div>
+        <div class="calculator-metric"><span>Strop istenia</span><strong data-result-ceiling>—</strong></div>
+        <div class="calculator-metric"><span>Poistka dostupná?</span><strong data-result-feasible>—</strong></div>
+      </div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/sk/#kalkulator">Navrhnúť celý systém</a><a class="calculator-cta calculator-cta-secondary" href="/sk/sprievodca/kable-a-poistky-12-v/">Káble a poistky v praxi</a></div></div>
+    </section>
+    <section class="calculator-section calculator-content-card"><h2>Prečo sú potrebné dve kontroly?</h2><p>Prierez z úbytku napätia nedokazuje tepelnú prúdovú zaťažiteľnosť. Tú treba osobitne overiť pre typ vodiča, izoláciu, teplotu, zväzok a spôsob uloženia. Poistka musí chrániť vodič a rešpektovať aj limit zariadenia, vypínaciu schopnosť a napäťové hodnotenie pre DC. Montáž nechajte overiť odborníkom.</p><p><a href="/sk/kalkulacky/prierez-kabla-12v/">Kalkulačka prierezu kábla</a> · <a href="/sk/kalkulacky/dc-dc-nabijacka/">Kalkulačka DC/DC nabíjania</a></p></section>
+    <section class="calculator-section"><h2>Časté otázky</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Je rezerva 125 % povinná?</h3><p>Nie. Je to iba nastaviteľný plánovací predpoklad, nie všeobecne platné pravidlo pre všetky DC obvody.</p></article><article class="calculator-content-card"><h3>Stačí prierez podľa úbytku napätia?</h3><p>Nie. Tepelná prúdová zaťažiteľnosť musí byť overená osobitne pre daný vodič a podmienky montáže.</p></article></div></section>
+  </main>
+  <script type="module" src="/src/protection-localized-landing-browser.js?v=20261115-protection-locales1"></script>
+</body>
+</html>
