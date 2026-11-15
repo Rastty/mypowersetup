@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>12 V alebo 24 V v karavane? Kalkulačka systému | MyPowerSetup</title>
+  <meta name="description" content="Vypočítajte, či pre váš nový karavan dáva zmysel 12 V alebo 24 V. Zadajte dennú spotrebu, najväčší 230 V spotrebič a rozbehovú špičku.">
+  <link rel="canonical" href="https://mypowersetup.com/sk/kalkulacky/12v-alebo-24v/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/12v-nebo-24v/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/12v-alebo-24v/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/12v-czy-24v/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/12v-vagy-24v/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/12v-nebo-24v/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"12 V alebo 24 V – kalkulačka pre karavan","url":"https://mypowersetup.com/sk/kalkulacky/12v-alebo-24v/","inLanguage":"sk-SK","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/sk/"},{"@type":"ListItem","position":2,"name":"Kalkulačky","item":"https://mypowersetup.com/sk/kalkulacky/"},{"@type":"ListItem","position":3,"name":"12 V alebo 24 V","item":"https://mypowersetup.com/sk/kalkulacky/12v-alebo-24v/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Kedy zvoliť 24 V namiesto 12 V?","acceptedAnswer":{"@type":"Answer","text":"Pri väčšom akumulátorovom systéme alebo výkonnom 230 V meniči môže 24 V výrazne znížiť prúd na DC strane. Je však nevyhnutné preveriť kompatibilitu celého systému."}},{"@type":"Question","name":"Môžem existujúci 12 V karavan prestavať na 24 V?","acceptedAnswer":{"@type":"Answer","text":"Nie iba výmenou batérie. Treba skontrolovať menič, nabíjačky, MPPT, DC/DC, 12 V spotrebiče, kabeláž a istenie. Úpravu má navrhnúť kvalifikovaný odborník."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/sk/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/sk/kalkulacky/">Kalkulačky</a><a class="header-link" href="/sk/sprievodca/">Sprievodca</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/sk/">Domov</a> / <a href="/sk/kalkulacky/">Kalkulačky</a> / 12 V alebo 24 V</nav>
+  <section class="calculator-hero"><p><strong>Napätie vyberte podľa zostavy, nie podľa zvyku</strong></p><h1>Je pre váš karavan lepších 12 V alebo 24 V?</h1><p>Pri plánovaní novej elektrickej zostavy rozhoduje denná spotreba aj najväčší 230 V spotrebič. Zadajte tieto hodnoty a získajte orientačné odporúčanie rovnakým výpočtom, ktorý používa MyPowerSetup Builder.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="voltage-system" data-calculator-locale="sk">
+    <div class="calculator-card"><h2>Zadajte spotrebu a zaťaženie</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="dailyWh">Denná spotreba energie (Wh/deň)</label><input id="dailyWh" name="dailyWh" type="number" inputmode="decimal" min="50" max="20000" step="10" value="1800" required></div>
+      <div class="calculator-field"><label for="maxAcLoadWatts">Najväčší spotrebič 230 V (W)</label><input id="maxAcLoadWatts" name="maxAcLoadWatts" type="number" inputmode="decimal" min="10" max="5000" step="10" value="800" required></div>
+      <div class="calculator-field"><label for="surgeMultiplier">Rozbehová špička spotrebiča</label><select id="surgeMultiplier" name="surgeMultiplier"><option value="1" selected>Bežná záťaž (1×)</option><option value="1.5">Menšia špička (1,5×)</option><option value="2">Motor alebo kompresor (2×)</option><option value="3">Vysoká špička (3×)</option></select></div>
+      <button class="calculator-button" type="submit">Odporučiť napätie systému</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Výsledok</strong></p><h2>Odporúčané napätie pre novú zostavu</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Napätie</span><strong data-result-voltage-decision>—</strong></div>
+      <div class="calculator-metric"><span>Veľkosť batérie</span><strong data-result-battery-wh>—</strong></div>
+      <div class="calculator-metric"><span>Výkon meniča</span><strong data-result-inverter-watts>—</strong></div>
+      <div class="calculator-metric"><span>Denná energia</span><strong data-result-daily-wh>—</strong></div>
+    </div><p data-result-summary></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/sk/#kalkulator">Navrhnúť kompletnú zostavu</a><a class="calculator-cta calculator-cta-secondary" href="/sk/sprievodca/12-v-alebo-24-v-karavan/">Porovnanie 12 V a 24 V</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Prečo napätie ovplyvňuje prúd batérie?</h2><p>Pri približne 90 % účinnosti meniča vyžaduje 1 000 W na 12 V približne 93 A z batérie, kým pri 24 V približne 46 A. Pri 2 000 W je to približne 185 A oproti 93 A. Nižší prúd môže zjednodušiť časť DC kabeláže, nevyrieši však automaticky kompatibilitu komponentov ani istenie.</p></section>
+  <section class="calculator-section calculator-content-card"><h2>Ak je karavan už postavený</h2><p><strong>Výsledok nie je pokyn na prestavbu existujúceho 12 V systému.</strong> Všetky batérie, BMS, menič, solárny regulátor, alternátorové nabíjanie, 12 V rozvody a prípadné DC/DC meniče musia byť správne navrhnuté pre zvolené napätie. Zmenu a ochrany nechajte posúdiť kvalifikovaným elektrikárom.</p><p>Ak zatiaľ poznáte len výkon konkrétneho spotrebiča, využite aj <a href="/sk/kalkulacky/vykon-menica/">kalkulačku výkonu meniča</a> alebo <a href="/sk/kalkulacky/kapacita-baterie/">kalkulačku kapacity batérie</a>.</p></section>
+</main>
+<script type="module" src="/src/calculator-landing-browser.js?v=20261115-placement-events1"></script>
+</body>
+</html>

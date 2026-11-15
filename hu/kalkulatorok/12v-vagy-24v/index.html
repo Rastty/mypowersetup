@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>12 V vagy 24 V lakóautóba? Rendszerkalkulátor | MyPowerSetup</title>
+  <meta name="description" content="Számolja ki, hogy új lakóautó-rendszeréhez 12 V vagy 24 V ajánlott. A kalkulátor a napi Wh-fogyasztást, a 230 V-os terhelést és az indítási csúcsot veszi figyelembe.">
+  <link rel="canonical" href="https://mypowersetup.com/hu/kalkulatorok/12v-vagy-24v/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/12v-nebo-24v/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/12v-alebo-24v/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/12v-czy-24v/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/12v-vagy-24v/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/12v-nebo-24v/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20260914-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"12 V vagy 24 V – lakóautó-kalkulátor","url":"https://mypowersetup.com/hu/kalkulatorok/12v-vagy-24v/","inLanguage":"hu-HU","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/hu/"},{"@type":"ListItem","position":2,"name":"Kalkulátorok","item":"https://mypowersetup.com/hu/kalkulatorok/"},{"@type":"ListItem","position":3,"name":"12 V vagy 24 V","item":"https://mypowersetup.com/hu/kalkulatorok/12v-vagy-24v/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Mikor jobb a 24 V a 12 V-nál lakóautóban?","acceptedAnswer":{"@type":"Answer","text":"Nagyobb akkumulátorkapacitás vagy erős 230 V-os inverter esetén a 24 V csökkentheti a DC-oldali áramot. Az egész rendszer valamennyi komponensének kompatibilisnek kell lennie."}},{"@type":"Question","name":"Átalakítható-e a meglévő 12 V-os lakóautó 24 V-osra?","acceptedAnswer":{"@type":"Answer","text":"Nem pusztán az akkumulátor cseréjével. Ellenőrizni kell az invertert, töltőket, MPPT-t, a 12 V-os fogyasztókat, a DC/DC-átalakítókat, a vezetékeket és a védelmeket; szakember szükséges."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/hu/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/hu/kalkulatorok/">Kalkulátorok</a><a class="header-link" href="/hu/utmutatok/">Útmutatók</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/hu/">Kezdőlap</a> / <a href="/hu/kalkulatorok/">Kalkulátorok</a> / 12 V vagy 24 V</nav>
+  <section class="calculator-hero"><p><strong>Az új rendszer mérete alapján döntsön</strong></p><h1>12 V vagy 24 V a jobb választás lakóautóhoz?</h1><p>A napi energiaigény, a legnagyobb 230 V-os készülék és az indítási terhelés együtt határozza meg az ajánlott rendszerfeszültséget. A kalkulátor ugyanazt a számítási modellt használja, mint a MyPowerSetup Builder.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="voltage-system" data-calculator-locale="hu">
+    <div class="calculator-card"><h2>Adja meg a rendszer energiaigényét</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="dailyWh">Napi energiafogyasztás (Wh/nap)</label><input id="dailyWh" name="dailyWh" type="number" inputmode="decimal" min="50" max="20000" step="10" value="1800" required></div>
+      <div class="calculator-field"><label for="maxAcLoadWatts">Legnagyobb 230 V-os készülék (W)</label><input id="maxAcLoadWatts" name="maxAcLoadWatts" type="number" inputmode="decimal" min="10" max="5000" step="10" value="800" required></div>
+      <div class="calculator-field"><label for="surgeMultiplier">Indítási teljesítménycsúcs</label><select id="surgeMultiplier" name="surgeMultiplier"><option value="1" selected>Általános terhelés (1×)</option><option value="1.5">Kisebb csúcs (1,5×)</option><option value="2">Motor vagy kompresszor (2×)</option><option value="3">Nagy indítási csúcs (3×)</option></select></div>
+      <button class="calculator-button" type="submit">Rendszerfeszültség kiszámítása</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Eredmény</strong></p><h2>Új rendszerhez javasolt feszültség</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Ajánlás</span><strong data-result-voltage-decision>—</strong></div>
+      <div class="calculator-metric"><span>Akkumulátor</span><strong data-result-battery-wh>—</strong></div>
+      <div class="calculator-metric"><span>Inverter</span><strong data-result-inverter-watts>—</strong></div>
+      <div class="calculator-metric"><span>Napi fogyasztás</span><strong data-result-daily-wh>—</strong></div>
+    </div><p data-result-summary></p><ul data-result-warnings hidden></ul><div class="calculator-actions"><a class="calculator-cta" href="/hu/#kalkulator">Teljes rendszer tervezése</a><a class="calculator-cta calculator-cta-secondary" href="/hu/utmutatok/12-v-vagy-24-v-lakoauto/">12 V és 24 V útmutató</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Ugyanaz a teljesítmény, eltérő akkumulátoráram</h2><p>Körülbelül 90%-os inverterhatásfokkal számolva 1 000 W AC-terhelés 12 V-on közel 93 A-t, 24 V-on közel 46 A-t igényel. 2 000 W-nál ez 185 A, illetve 93 A. A kisebb áram segíthet a DC-vezetékek méretezésében, de önmagában nem garantálja az egész rendszer biztonságát.</p></section>
+  <section class="calculator-section calculator-content-card"><h2>Meglévő lakóautó esetén különösen fontos</h2><p>Ez az eredmény <strong>új rendszer előzetes tervezését</strong> segíti. A már beépített 12 V-os rendszer nem alakítható át pusztán az akkumulátor cseréjével. Ellenőrizni kell a BMS-t, invertert, MPPT-t, töltőket, a 12 V-os fogyasztókat, DC/DC-átalakítókat, kábeleket és biztosítékokat. A konkrét átalakítást képesített szakemberrel terveztessék meg.</p><p>Részletesebb becsléshez használja az <a href="/hu/kalkulatorok/inverter-teljesitmeny/">inverterteljesítmény-kalkulátort</a> vagy az <a href="/hu/kalkulatorok/akkumulator-kapacitas/">akkumulátorkapacitás-kalkulátort</a>.</p></section>
+</main>
+<script type="module" src="/src/calculator-landing-browser.js?v=20261115-placement-events1"></script>
+</body>
+</html>
