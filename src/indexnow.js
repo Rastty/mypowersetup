@@ -22,14 +22,17 @@ const CALCULATOR_LANDING_ROUTES = Object.freeze([
   "/sk/kalkulacky/kapacita-baterie/",
   "/sk/kalkulacky/solarne-panely/",
   "/sk/kalkulacky/mppt-regulator/",
+  "/sk/kalkulacky/vykon-menica/",
   "/pl/kalkulatory/",
   "/pl/kalkulatory/pojemnosc-akumulatora/",
   "/pl/kalkulatory/panele-solarne/",
   "/pl/kalkulatory/regulator-mppt/",
+  "/pl/kalkulatory/moc-przetwornicy/",
   "/hu/kalkulatorok/",
   "/hu/kalkulatorok/akkumulator-kapacitas/",
   "/hu/kalkulatorok/napelem-teljesitmeny/",
   "/hu/kalkulatorok/mppt-szabalyozo/",
+  "/hu/kalkulatorok/inverter-teljesitmeny/",
 ]);
 const INDEXNOW_INFRASTRUCTURE_FILES = new Set([
   "robots.txt",

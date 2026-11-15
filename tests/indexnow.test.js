@@ -23,6 +23,7 @@ const publicHomes = [
 const calculatorUrls = [
   `${origin}/hu/kalkulatorok/`,
   `${origin}/hu/kalkulatorok/akkumulator-kapacitas/`,
+  `${origin}/hu/kalkulatorok/inverter-teljesitmeny/`,
   `${origin}/hu/kalkulatorok/mppt-szabalyozo/`,
   `${origin}/hu/kalkulatorok/napelem-teljesitmeny/`,
   `${origin}/kalkulacky/`,
@@ -36,6 +37,7 @@ const calculatorUrls = [
   `${origin}/kalkulacky/vydrz-baterie/`,
   `${origin}/kalkulacky/vykon-menice/`,
   `${origin}/pl/kalkulatory/`,
+  `${origin}/pl/kalkulatory/moc-przetwornicy/`,
   `${origin}/pl/kalkulatory/panele-solarne/`,
   `${origin}/pl/kalkulatory/pojemnosc-akumulatora/`,
   `${origin}/pl/kalkulatory/regulator-mppt/`,
@@ -43,6 +45,7 @@ const calculatorUrls = [
   `${origin}/sk/kalkulacky/kapacita-baterie/`,
   `${origin}/sk/kalkulacky/mppt-regulator/`,
   `${origin}/sk/kalkulacky/solarne-panely/`,
+  `${origin}/sk/kalkulacky/vykon-menica/`,
 ];
 const scenarioUrls = [
   `${origin}/pruvodce/modelove-sestavy/`,

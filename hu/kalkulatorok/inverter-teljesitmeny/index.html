@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inverter teljesítmény kalkulátor lakóautóhoz 12/24 V | MyPowerSetup</title>
+  <meta name="description" content="Számítsd ki a lakóautó 12/24 V–230 V inverter szükséges teljesítményét a fogyasztók, az egyidejű terhelés és az indítási csúcs alapján.">
+  <link rel="canonical" href="https://mypowersetup.com/hu/kalkulatorok/inverter-teljesitmeny/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/vykon-menice/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/vykon-menica/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/moc-przetwornicy/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/inverter-teljesitmeny/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/vykon-menice/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20261109-inverter-reference1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Lakóautó inverterteljesítmény-kalkulátor","url":"https://mypowersetup.com/hu/kalkulatorok/inverter-teljesitmeny/","inLanguage":"hu-HU","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/hu/"},{"@type":"ListItem","position":2,"name":"Kalkulátorok","item":"https://mypowersetup.com/hu/kalkulatorok/"},{"@type":"ListItem","position":3,"name":"Inverterteljesítmény","item":"https://mypowersetup.com/hu/kalkulatorok/inverter-teljesitmeny/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Elég egy 1000 W-os inverter egy 1000 W-os fogyasztóhoz?","acceptedAnswer":{"@type":"Answer","text":"Nem feltétlenül. Figyelembe kell venni az egyidejű terhelést, a tartalékot és az esetleges indítási csúcsot. Az akkumulátor és a BMS áramkorlátja is fontos."}},{"@type":"Question","name":"Mikor előnyös a 24 V a 12 V-hoz képest?","acceptedAnswer":{"@type":"Answer","text":"Nagyobb teljesítménynél a 24 V kisebb DC oldali áramot eredményezhet. A meglévő rendszer feszültségét azonban nem szabad az összes alkatrész ellenőrzése nélkül megváltoztatni."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/hu/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/hu/kalkulatorok/">Kalkulátorok</a><a class="header-link" href="/hu/utmutatok/">Útmutatók</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/hu/">Kezdőlap</a> / <a href="/hu/kalkulatorok/">Kalkulátorok</a> / Inverterteljesítmény</nav>
+  <section class="calculator-hero"><p><strong>230 V-os fogyasztókhoz méretezett inverter</strong></p><h1>Mekkora teljesítményű inverter kell a lakóautóhoz?</h1><p>Add meg a legnagyobb 230 V-os fogyasztót, a többi egyidejű terhelést és a várható indítási csúcsot. A kalkulátor az állandó terhelést és a megadott legnagyobb indulási teljesítményt is figyelembe veszi.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="inverter-sizing" data-calculator-locale="hu">
+    <div class="calculator-card"><h2>230 V-os berendezések</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="largestLoadWatts">Legnagyobb fogyasztó (W)</label><input id="largestLoadWatts" name="largestLoadWatts" type="number" inputmode="decimal" min="10" max="5000" step="10" value="1200" required></div>
+      <div class="calculator-field"><label for="otherLoadWatts">További egyidejű terhelés (W)</label><input id="otherLoadWatts" name="otherLoadWatts" type="number" inputmode="decimal" min="0" max="5000" step="10" value="300"></div>
+      <div class="calculator-field"><label for="surgeMultiplier">Fő fogyasztó indítási csúcsa</label><select id="surgeMultiplier" name="surgeMultiplier"><option value="1">Nincs jelentős csúcs (1×)</option><option value="1.5" selected>Kisebb csúcs (1,5×)</option><option value="2">Motor / kompresszor (2×)</option><option value="3">Nagy indítási csúcs (3×)</option></select></div>
+      <div class="calculator-field"><label for="systemVoltage">Akkumulátorrendszer feszültsége</label><select id="systemVoltage" name="systemVoltage"><option value="auto">Automatikus 12/24 V javaslat</option><option value="12">12 V</option><option value="24">24 V</option></select></div>
+      <button class="calculator-button" type="submit">Inverterteljesítmény kiszámítása</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Számított eredmény</strong></p><h2>Javasolt minimális teljesítmény</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Inverter</span><strong data-result-inverter-watts>—</strong></div>
+      <div class="calculator-metric"><span>Indítási csúcs</span><strong data-result-surge-watts>—</strong></div>
+      <div class="calculator-metric"><span>Becsült egyidejű terhelés</span><strong data-result-concurrent-watts>—</strong></div>
+      <div class="calculator-metric"><span>Rendszer</span><strong data-result-voltage>—</strong></div>
+    </div><p data-result-summary></p><ul data-result-warnings hidden></ul>
+    <div class="calculator-actions"><a class="calculator-cta" href="/hu/#kalkulator">Teljes rendszer tervezése</a><a class="calculator-cta calculator-cta-secondary" href="/hu/utmutatok/lakoauto-inverter-kivalasztasa/">Inverterválasztási útmutató</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Három gyakorlati terhelési példa</h2><ul><li><strong>100 W-os laptop és 30 W töltő, indítási csúcs nélkül:</strong> a modell szerinti minimális osztály 200 W.</li><li><strong>1200 W-os kávéfőző és 100 W elektronika, indítási csúcs nélkül:</strong> a becsült egyidejű terhelés alapján körülbelül 1600 W.</li><li><strong>1500 W-os fogyasztó 2× indítási csúccsal:</strong> a becsült csúcsteljesítmény 3000 W lehet. Nézd meg, mennyi ideig képes ezt leadni az inverter.</li></ul><p>Ezek modellezett példák, nem konkrét készülékek garantált műszaki jellemzői. A valós indítási áramot a fogyasztó adatlapjából ellenőrizd.</p></section>
+  <section class="calculator-section calculator-content-card"><h2>Mire figyelj az inverter vásárlása előtt?</h2><p>Különböztesd meg a <strong>folyamatos teljesítményt és az időben korlátozott csúcsteljesítményt</strong>. Ellenőrizd a tiszta szinuszhullámot, a hatásfokot és a 12/24 V-os DC bemeneti feszültséget. Az akkumulátor oldalán lényeges a <strong>BMS áramkorlátja</strong>, a kábelek keresztmetszete, a biztosíték és a hűtés. Az automatikus 24 V javaslat nem jogosít fel egy meglévő rendszer feszültségének ellenőrzés nélküli módosítására. A számítás nem helyettesíti a villamos tervet.</p><p>Olvasd el a <a href="/hu/utmutatok/lakoauto-inverter-kivalasztasa/">magyar inverterválasztási útmutatót</a> is.</p></section>
+  <section class="calculator-section"><h2>Gyakori kérdések</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Elég egy 1000 W-os inverter egy 1000 W-os készülékhez?</h3><p>Nem mindig: tartalékot kell hagyni, és motoros berendezésnél az indítási csúcsot is kezelni kell.</p></article><article class="calculator-content-card"><h3>Miért fontos a tiszta szinusz?</h3><p>Sokféle elektronikához és motoros berendezéshez kedvezőbb kiindulópont, de a szükséges teljesítményt és a védelmeket külön kell meghatározni.</p></article></div></section>
+</main><script type="module" src="/src/calculator-landing-browser.js?v=20261115-placement-events1"></script>
+</body></html>

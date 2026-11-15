@@ -14,12 +14,15 @@ const LANDINGS = Object.freeze({
   "/sk/kalkulacky/kapacita-baterie/": Object.freeze({ intent: "battery-capacity", locale: "sk" }),
   "/sk/kalkulacky/solarne-panely/": Object.freeze({ intent: "solar-sizing", locale: "sk" }),
   "/sk/kalkulacky/mppt-regulator/": Object.freeze({ intent: "mppt-sizing", locale: "sk" }),
+  "/sk/kalkulacky/vykon-menica/": Object.freeze({ intent: "inverter-sizing", locale: "sk" }),
   "/pl/kalkulatory/pojemnosc-akumulatora/": Object.freeze({ intent: "battery-capacity", locale: "pl" }),
   "/pl/kalkulatory/panele-solarne/": Object.freeze({ intent: "solar-sizing", locale: "pl" }),
   "/pl/kalkulatory/regulator-mppt/": Object.freeze({ intent: "mppt-sizing", locale: "pl" }),
+  "/pl/kalkulatory/moc-przetwornicy/": Object.freeze({ intent: "inverter-sizing", locale: "pl" }),
   "/hu/kalkulatorok/akkumulator-kapacitas/": Object.freeze({ intent: "battery-capacity", locale: "hu" }),
   "/hu/kalkulatorok/napelem-teljesitmeny/": Object.freeze({ intent: "solar-sizing", locale: "hu" }),
   "/hu/kalkulatorok/mppt-szabalyozo/": Object.freeze({ intent: "mppt-sizing", locale: "hu" }),
+  "/hu/kalkulatorok/inverter-teljesitmeny/": Object.freeze({ intent: "inverter-sizing", locale: "hu" }),
 });
 
 function normalizeLocale(locale) {
