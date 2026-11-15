@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MPPT kalkulátor: hány amper kell 12/24 V-hoz? | MyPowerSetup</title>
+  <meta name="description" content="Számold ki az MPPT töltésvezérlő áramerősségét a napelem Wp értéke, a 12/24 V rendszer és az akkumulátor alapján. 25% tartalék, Voc és Isc ellenőrzés.">
+  <link rel="canonical" href="https://mypowersetup.com/hu/kalkulatorok/mppt-szabalyozo/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/mppt-regulator/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/mppt-regulator/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/regulator-mppt/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/mppt-szabalyozo/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/mppt-regulator/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20261109-mppt-buyer1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"MPPT töltésvezérlő kalkulátor lakóautóhoz","url":"https://mypowersetup.com/hu/kalkulatorok/mppt-szabalyozo/","inLanguage":"hu-HU","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/hu/"},{"@type":"ListItem","position":2,"name":"Kalkulátorok","item":"https://mypowersetup.com/hu/kalkulatorok/"},{"@type":"ListItem","position":3,"name":"MPPT szabályozó","item":"https://mypowersetup.com/hu/kalkulatorok/mppt-szabalyozo/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Hány amperes MPPT kell 400 Wp napelemhez?","acceptedAnswer":{"@type":"Answer","text":"400 Wp napelemhez 12 V LiFePO4 akkumulátor mellett a számítás 40 A-es, 24 V mellett 20 A-es osztályt ad. A Voc, Isc és megengedett PV-teljesítmény korlátját is ellenőrizni kell."}},{"@type":"Question","name":"Elég csak a töltőáramot ellenőrizni?","acceptedAnswer":{"@type":"Answer","text":"Nem. A hidegben várható maximális Voc, a rövidzárási áram Isc, a megengedett PV-teljesítmény és a töltési profil is számít."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/hu/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/hu/kalkulatorok/">Kalkulátorok</a><a class="header-link" href="/hu/utmutatok/">Útmutatók</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/hu/">Kezdőlap</a> / <a href="/hu/kalkulatorok/">Kalkulátorok</a> / MPPT szabályozó</nav>
+  <section class="calculator-hero"><p><strong>MPPT méretezés a napelem és az akkumulátor alapján</strong></p><h1>Hány amperes MPPT töltésvezérlő kell?</h1><p>Add meg a napelemek összteljesítményét, az akkumulátor feszültségét és típusát. A kalkulátor 25% tartalékkal számolja a minimális töltőáram-osztályt, és megmutatja a további ellenőrzendő határértékeket.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="mppt-sizing" data-calculator-locale="hu">
+    <div class="calculator-card"><h2>A rendszer adatai</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="panelWatts">Napelemek összteljesítménye (Wp)</label><input id="panelWatts" name="panelWatts" type="number" inputmode="decimal" min="50" max="5000" step="10" value="400" required></div>
+      <div class="calculator-field"><label for="systemVoltage">Akkumulátorrendszer feszültsége</label><select id="systemVoltage" name="systemVoltage"><option value="12">12 V</option><option value="24">24 V</option></select></div>
+      <div class="calculator-field"><label for="batteryType">Akkumulátor típusa</label><select id="batteryType" name="batteryType"><option value="lifepo4">LiFePO₄</option><option value="lead">AGM / ólom-savas</option></select></div>
+      <button class="calculator-button" type="submit">MPPT áram kiszámítása</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Számított eredmény</strong></p><h2>Javasolt minimális áram-osztály</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>MPPT töltőáram</span><strong data-result-controller-amps>—</strong></div>
+      <div class="calculator-metric"><span>Napelemek</span><strong data-result-panel-watts>—</strong></div>
+      <div class="calculator-metric"><span>Rendszer</span><strong data-result-voltage>—</strong></div>
+      <div class="calculator-metric"><span>Számítási töltőfeszültség</span><strong data-result-charge-voltage>—</strong></div>
+    </div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul>
+    <div class="calculator-actions"><a class="calculator-cta" href="/hu/#kalkulator">Teljes rendszer tervezése</a><a class="calculator-cta calculator-cta-secondary" href="/hu/utmutatok/mppt-szabalyozo-kivalasztasa/">MPPT választási útmutató</a><a class="calculator-cta calculator-cta-secondary" href="/hu/kalkulatorok/napelem-teljesitmeny/">Szükséges napelem Wp</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Példa: 400 Wp napelem 12 és 24 V esetén</h2><p>12 V-os LiFePO₄ akkumulátornál a számítás 400 ÷ 14,6 × 1,25 ≈ 34,2 A, ezért a következő gyakorlati osztály <strong>40 A</strong>. 24 V-os akkumulátornál a 29,2 V töltőfeszültséggel számított osztály <strong>20 A</strong>. Ez az <strong>akkumulátor felé folyó töltőáram</strong>, nem a napelemág bemeneti árama.</p></section>
+  <section class="calculator-section calculator-content-card"><h2>Négy ellenőrzés vásárlás előtt</h2><ol><li><strong>Voc hideg időben:</strong> soros kapcsolásnál a feszültségek összeadódnak, hidegben az üresjárati feszültség nő.</li><li><strong>Isc rövidzárási áram:</strong> párhuzamos ágaknál az áramok összeadódnak.</li><li><strong>Megengedett PV-teljesítmény:</strong> ugyanannál a szabályozónál eltérhet 12 és 24 V mellett.</li><li><strong>Töltési profil:</strong> egyezzen az akkumulátor és a BMS előírásaival.</li></ol><p>Az eredmény első méretezési szűrő, nem teljes villamos kompatibilitás-igazolás vagy szerelési terv. Lásd az <a href="/hu/utmutatok/mppt-szabalyozo-kivalasztasa/">MPPT kiválasztási útmutatót</a>.</p></section>
+  <section class="calculator-section"><h2>Gyakori kérdések</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Elég a 30 A 400 Wp napelemhez?</h3><p>12 V LiFePO₄ mellett a 25% tartalékot használó számítás 40 A-es osztályt ad. A gyártói PV-teljesítmény és bemeneti korlátokat is nézd meg.</p></article><article class="calculator-content-card"><h3>Összeköthetek két panelt sorosan?</h3><p>Ehhez ismerni kell mindkét panel Voc értékét, hőmérsékleti együtthatóját és az MPPT maximális PV bemeneti feszültségét. A Wp önmagában nem elég.</p></article></div></section>
+</main><script type="module" src="/src/calculator-landing-browser.js?v=20261115-placement-events1"></script>
+</body></html>

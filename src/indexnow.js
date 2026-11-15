@@ -10,6 +10,7 @@ const EXPANSION_HOME_ROUTES = Object.freeze(["/pt/", "/si/", "/ro/"]);
 const CALCULATOR_LANDING_ROUTES = Object.freeze([
   "/kalkulacky/",
   "/kalkulacky/kapacita-baterie/",
+  "/kalkulacky/vydrz-baterie/",
   "/kalkulacky/solarni-panely/",
   "/kalkulacky/mppt-regulator/",
   "/kalkulacky/dc-dc-nabijecka/",
@@ -20,12 +21,15 @@ const CALCULATOR_LANDING_ROUTES = Object.freeze([
   "/sk/kalkulacky/",
   "/sk/kalkulacky/kapacita-baterie/",
   "/sk/kalkulacky/solarne-panely/",
+  "/sk/kalkulacky/mppt-regulator/",
   "/pl/kalkulatory/",
   "/pl/kalkulatory/pojemnosc-akumulatora/",
   "/pl/kalkulatory/panele-solarne/",
+  "/pl/kalkulatory/regulator-mppt/",
   "/hu/kalkulatorok/",
   "/hu/kalkulatorok/akkumulator-kapacitas/",
   "/hu/kalkulatorok/napelem-teljesitmeny/",
+  "/hu/kalkulatorok/mppt-szabalyozo/",
 ]);
 const INDEXNOW_INFRASTRUCTURE_FILES = new Set([
   "robots.txt",

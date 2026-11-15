@@ -30,6 +30,7 @@ const COPY = Object.freeze({
     staleResult: "Zmenili ste vstupné údaje. Pre aktuálny návrh spustite výpočet znova.",
     prefillNote: "Spotreba, napätie a typ batérie sú prevzaté z predchádzajúcej kalkulačky. Skontrolujte ich a spustite nový výpočet.",
     nextSolar: "Pokračovať výpočtom soláru →",
+    nextMppt: "Použiť vypočítané Wp pre návrh MPPT →",
     batterySummary: ({ n, result }) => `Pri dennej spotrebe ${n(result.dailyWh)} Wh a autonómii ${result.autonomyDays} dni vychádza minimálna odporúčaná kapacita ${n(result.batteryWh)} Wh, približne ${n(result.batteryAh)} Ah pri ${result.systemVoltage} V.`,
     batteryReserve: ({ result }) => `Výpočet zahŕňa ${result.assumptions.batteryMarginPercent} % rezervu a počíta s využiteľnou hĺbkou vybitia ${result.assumptions.usableDepthPercent} %.`,
     solarSummary: ({ n, result }) => `Pri spotrebe ${n(result.dailyWh)} Wh/deň vychádza orientačné minimum ${n(result.solarWatts)} Wp panelov a regulátor aspoň ${n(result.controllerAmps)} A pre ${result.systemVoltage} V systém.`,
@@ -50,6 +51,7 @@ const COPY = Object.freeze({
     staleResult: "Zmieniono dane wejściowe. Oblicz ponownie, aby zobaczyć aktualny wynik.",
     prefillNote: "Przeniesiono zużycie, napięcie i typ akumulatora z poprzedniego kalkulatora. Sprawdź dane i oblicz ponownie.",
     nextSolar: "Kontynuuj obliczanie paneli słonecznych →",
+    nextMppt: "Przenieś obliczone Wp do kalkulatora MPPT →",
     batterySummary: ({ n, result }) => `Dla zużycia ${n(result.dailyWh)} Wh dziennie i autonomii ${result.autonomyDays} dni minimalna zalecana pojemność wynosi ${n(result.batteryWh)} Wh, czyli około ${n(result.batteryAh)} Ah przy ${result.systemVoltage} V.`,
     batteryReserve: ({ result }) => `Obliczenie uwzględnia ${result.assumptions.batteryMarginPercent} % zapasu i ${result.assumptions.usableDepthPercent} % użytecznej głębokości rozładowania.`,
     solarSummary: ({ n, result }) => `Dla zużycia ${n(result.dailyWh)} Wh/dzień orientacyjne minimum to ${n(result.solarWatts)} Wp paneli i regulator co najmniej ${n(result.controllerAmps)} A dla systemu ${result.systemVoltage} V.`,
@@ -70,6 +72,7 @@ const COPY = Object.freeze({
     staleResult: "Megváltoztattad az adatokat. Az aktuális eredményhez indítsd újra a számítást.",
     prefillNote: "Az energiafogyasztást, a feszültséget és az akkumulátortípust átvettük az előző kalkulátorból. Ellenőrizd az adatokat, majd számolj újra.",
     nextSolar: "Folytatás a napelem-méretezéssel →",
+    nextMppt: "Számított Wp átvitele az MPPT kalkulátorba →",
     batterySummary: ({ n, result }) => `Napi ${n(result.dailyWh)} Wh fogyasztás és ${result.autonomyDays} nap autonómia mellett a javasolt minimális kapacitás ${n(result.batteryWh)} Wh, vagyis körülbelül ${n(result.batteryAh)} Ah ${result.systemVoltage} V-on.`,
     batteryReserve: ({ result }) => `A számítás ${result.assumptions.batteryMarginPercent} % tartalékkal és ${result.assumptions.usableDepthPercent} % hasznosítható kisütési mélységgel számol.`,
     solarSummary: ({ n, result }) => `Napi ${n(result.dailyWh)} Wh fogyasztáshoz az irányadó minimum ${n(result.solarWatts)} Wp napelem és legalább ${n(result.controllerAmps)} A-es szabályozó ${result.systemVoltage} V-os rendszerhez.`,
@@ -111,9 +114,9 @@ export function classifyCalculatorContinuation(pathname, hash, locale = "cs") {
   // a distinct analytics destination type. Never treat unrelated routes as a calculator.
   const calculatorTargets = {
     cs: ["/kalkulacky/kapacita-baterie/", "/kalkulacky/solarni-panely/", "/kalkulacky/mppt-regulator/"],
-    sk: ["/sk/kalkulacky/solarne-panely/"],
-    pl: ["/pl/kalkulatory/panele-solarne/"],
-    hu: ["/hu/kalkulatorok/napelem-teljesitmeny/"],
+    sk: ["/sk/kalkulacky/solarne-panely/", "/sk/kalkulacky/mppt-regulator/"],
+    pl: ["/pl/kalkulatory/panele-solarne/", "/pl/kalkulatory/regulator-mppt/"],
+    hu: ["/hu/kalkulatorok/napelem-teljesitmeny/", "/hu/kalkulatorok/mppt-szabalyozo/"],
   };
   if (!hash && calculatorTargets[locale]?.includes(pathname)) return "calculator";
   return guidePrefix && pathname.startsWith(guidePrefix) ? "guide" : null;

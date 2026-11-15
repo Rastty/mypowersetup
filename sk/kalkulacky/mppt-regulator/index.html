@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MPPT kalkulačka: koľko A pre 12/24 V karavan? | MyPowerSetup</title>
+  <meta name="description" content="Vypočítajte potrebný prúd MPPT regulátora podľa výkonu panelov, 12/24 V batérie a typu batérie. Rezerva 25 %, kontrola Voc, Isc a FV limitov.">
+  <link rel="canonical" href="https://mypowersetup.com/sk/kalkulacky/mppt-regulator/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/mppt-regulator/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/mppt-regulator/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/regulator-mppt/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/mppt-szabalyozo/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/mppt-regulator/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20261109-mppt-buyer1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"MPPT kalkulačka pre karavan","url":"https://mypowersetup.com/sk/kalkulacky/mppt-regulator/","inLanguage":"sk-SK","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/sk/"},{"@type":"ListItem","position":2,"name":"Kalkulačky","item":"https://mypowersetup.com/sk/kalkulacky/"},{"@type":"ListItem","position":3,"name":"MPPT regulátor","item":"https://mypowersetup.com/sk/kalkulacky/mppt-regulator/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Koľko ampérov má mať MPPT regulátor na 400 Wp?","acceptedAnswer":{"@type":"Answer","text":"Pre 400 Wp a 12 V LiFePO4 batériu kalkulačka vypočíta minimálnu prúdovú triedu 40 A. Pri 24 V vychádza 20 A. Treba ešte skontrolovať Voc, Isc a povolený FV výkon regulátora."}},{"@type":"Question","name":"Stačí na výber MPPT len nabíjací prúd?","acceptedAnswer":{"@type":"Answer","text":"Nie. Overte maximálne vstupné Voc pri chlade, prúd Isc, povolený FV výkon pre napätie batérie a nastavenie nabíjacieho profilu."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/sk/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/sk/kalkulacky/">Kalkulačky</a><a class="header-link" href="/sk/sprievodca/">Sprievodca</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/sk/">Domov</a> / <a href="/sk/kalkulacky/">Kalkulačky</a> / MPPT regulátor</nav>
+  <section class="calculator-hero"><p><strong>Správny nabíjací prúd pre váš solár</strong></p><h1>Koľko A potrebuje MPPT regulátor?</h1><p>Zadajte súčet výkonov solárnych panelov a napätie batérie. Získate minimálnu prúdovú triedu regulátora s 25 % rezervou a jasný zoznam parametrov, ktoré treba pred výberom modelu overiť.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="mppt-sizing" data-calculator-locale="sk">
+    <div class="calculator-card"><h2>Parametre zostavy</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="panelWatts">Celkový výkon panelov (Wp)</label><input id="panelWatts" name="panelWatts" type="number" inputmode="decimal" min="50" max="5000" step="10" value="400" required></div>
+      <div class="calculator-field"><label for="systemVoltage">Napätie batériového systému</label><select id="systemVoltage" name="systemVoltage"><option value="12">12 V</option><option value="24">24 V</option></select></div>
+      <div class="calculator-field"><label for="batteryType">Typ batérie</label><select id="batteryType" name="batteryType"><option value="lifepo4">LiFePO₄</option><option value="lead">AGM / olovo</option></select></div>
+      <button class="calculator-button" type="submit">Vypočítať MPPT prúd</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Výsledok výpočtu</strong></p><h2>Odporúčaná minimálna trieda</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Výstupný prúd MPPT</span><strong data-result-controller-amps>—</strong></div>
+      <div class="calculator-metric"><span>Výkon panelov</span><strong data-result-panel-watts>—</strong></div>
+      <div class="calculator-metric"><span>Systém</span><strong data-result-voltage>—</strong></div>
+      <div class="calculator-metric"><span>Výpočtové nabíjacie napätie</span><strong data-result-charge-voltage>—</strong></div>
+    </div><p data-result-summary></p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul>
+    <div class="calculator-actions"><a class="calculator-cta" href="/sk/#kalkulator">Navrhnúť celú zostavu</a><a class="calculator-cta calculator-cta-secondary" href="/sk/sprievodca/ako-vybrat-mppt-regulator/">Postup výberu MPPT</a><a class="calculator-cta calculator-cta-secondary" href="/sk/kalkulacky/solarne-panely/">Vypočítať potrebné Wp</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Príklad: 400 Wp na 12 V a 24 V</h2><p>Pri LiFePO₄ batérii a 400 Wp paneloch kalkulačka používa 14,6 V na 12 V systéme: 400 ÷ 14,6 × 1,25 ≈ 34,2 A, teda praktickú triedu <strong>40 A</strong>. Pri 24 V systéme sa počíta s 29,2 V, čo vychádza na triedu <strong>20 A</strong>. Ide o <strong>nabíjací prúd do batérie</strong>, nie o prúd na FV vstupe.</p></section>
+  <section class="calculator-section calculator-content-card"><h2>Pred nákupom overte štyri veci</h2><ol><li><strong>Voc panelov pri najnižšej teplote:</strong> pri sériovom zapojení sa napätia sčítajú a za chladu rastú.</li><li><strong>Isc panelov:</strong> pri paralelnom zapojení sa prúdy vetiev sčítajú.</li><li><strong>Maximálny dovolený výkon FV:</strong> závisí aj od 12/24 V napätia batérie.</li><li><strong>Nabíjací profil:</strong> musí zodpovedať konkrétnej batérii a jej BMS.</li></ol><p>Výsledok je prvý filter, nie potvrdenie elektrickej kompatibility ani inštalačný projekt. Viac príkladov nájdete v <a href="/sk/sprievodca/ako-vybrat-mppt-regulator/">návode na výber MPPT</a>.</p></section>
+  <section class="calculator-section"><h2>Časté otázky</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Stačí 30 A na 400 Wp?</h3><p>Pri 12 V LiFePO₄ zvolené výpočtové predpoklady dávajú minimálnu triedu 40 A. Konkrétny regulátor môže mať aj obmedzenie FV výkonu, preto si vždy overte jeho datasheet.</p></article><article class="calculator-content-card"><h3>Môžem spojiť dva panely do série?</h3><p>Závisí od Voc každého panela, jeho teplotného koeficientu a povoleného vstupného napätia MPPT. Len celkový výkon vo Wp na túto otázku nestačí.</p></article></div></section>
+</main><script type="module" src="/src/calculator-landing-browser.js?v=20261115-placement-events1"></script>
+</body></html>
