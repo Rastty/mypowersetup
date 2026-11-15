@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulator mocy przetwornicy do kampera 12/24 V | MyPowerSetup</title>
+  <meta name="description" content="Oblicz wymaganą moc przetwornicy 12/24 V na 230 V dla kampera. Uwzględnij główny odbiornik, pozostałe obciążenia i prąd rozruchowy.">
+  <link rel="canonical" href="https://mypowersetup.com/pl/kalkulatory/moc-przetwornicy/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/vykon-menice/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/vykon-menica/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/moc-przetwornicy/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/inverter-teljesitmeny/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/vykon-menice/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20261109-inverter-reference1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Kalkulator mocy przetwornicy do kampera","url":"https://mypowersetup.com/pl/kalkulatory/moc-przetwornicy/","inLanguage":"pl-PL","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/pl/"},{"@type":"ListItem","position":2,"name":"Kalkulatory","item":"https://mypowersetup.com/pl/kalkulatory/"},{"@type":"ListItem","position":3,"name":"Moc przetwornicy","item":"https://mypowersetup.com/pl/kalkulatory/moc-przetwornicy/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Czy przetwornica 1000 W wystarczy do urządzenia 1000 W?","acceptedAnswer":{"@type":"Answer","text":"Niekoniecznie. Należy uwzględnić jednocześnie działające urządzenia, zapas mocy i ewentualny wyższy pobór przy starcie. Znaczenie ma też limit prądu akumulatora i BMS."}},{"@type":"Question","name":"Kiedy wybrać instalację 24 V zamiast 12 V?","acceptedAnswer":{"@type":"Answer","text":"Przy większej mocy instalacja 24 V może ograniczyć prąd po stronie DC. W istniejącej instalacji nie wolno jednak zmieniać napięcia bez sprawdzenia zgodności wszystkich elementów."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/pl/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/pl/kalkulatory/">Kalkulatory</a><a class="header-link" href="/pl/poradnik/">Poradniki</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/pl/">Start</a> / <a href="/pl/kalkulatory/">Kalkulatory</a> / Moc przetwornicy</nav>
+  <section class="calculator-hero"><p><strong>Dobierz moc do rzeczywistych odbiorników 230 V</strong></p><h1>Jaką moc przetwornicy potrzebujesz w kamperze?</h1><p>Podaj główny odbiornik, pozostałe jednoczesne obciążenie i mnożnik prądu rozruchowego. Kalkulator oszacuje minimalną moc przetwornicy 12/24 V na 230 V z uwzględnieniem pracy ciągłej i największego zadanego rozruchu.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="inverter-sizing" data-calculator-locale="pl">
+    <div class="calculator-card"><h2>Urządzenia zasilane z 230 V</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="largestLoadWatts">Największe urządzenie (W)</label><input id="largestLoadWatts" name="largestLoadWatts" type="number" inputmode="decimal" min="10" max="5000" step="10" value="1200" required></div>
+      <div class="calculator-field"><label for="otherLoadWatts">Pozostałe jednoczesne obciążenie (W)</label><input id="otherLoadWatts" name="otherLoadWatts" type="number" inputmode="decimal" min="0" max="5000" step="10" value="300"></div>
+      <div class="calculator-field"><label for="surgeMultiplier">Skok mocy przy rozruchu głównego urządzenia</label><select id="surgeMultiplier" name="surgeMultiplier"><option value="1">Bez dużego skoku (1×)</option><option value="1.5" selected>Niewielki skok (1,5×)</option><option value="2">Silnik / sprężarka (2×)</option><option value="3">Wysoki skok (3×)</option></select></div>
+      <div class="calculator-field"><label for="systemVoltage">Napięcie akumulatora</label><select id="systemVoltage" name="systemVoltage"><option value="auto">Dobierz automatycznie 12/24 V</option><option value="12">12 V</option><option value="24">24 V</option></select></div>
+      <button class="calculator-button" type="submit">Oblicz moc przetwornicy</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Wynik obliczenia</strong></p><h2>Zalecana minimalna moc</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Przetwornica</span><strong data-result-inverter-watts>—</strong></div>
+      <div class="calculator-metric"><span>Moc rozruchowa</span><strong data-result-surge-watts>—</strong></div>
+      <div class="calculator-metric"><span>Oszacowane obciążenie jednoczesne</span><strong data-result-concurrent-watts>—</strong></div>
+      <div class="calculator-metric"><span>System</span><strong data-result-voltage>—</strong></div>
+    </div><p data-result-summary></p><ul data-result-warnings hidden></ul>
+    <div class="calculator-actions"><a class="calculator-cta" href="/pl/#kalkulator">Zaprojektuj cały zestaw</a><a class="calculator-cta calculator-cta-secondary" href="/pl/poradnik/jak-dobrac-przetwornice-do-kampera/">Jak dobrać przetwornicę</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Przykładowe wymagania mocy</h2><ul><li><strong>Laptop 100 W i ładowarki 30 W bez skoku:</strong> orientacyjna klasa minimalna 200 W.</li><li><strong>Ekspres 1200 W i elektronika 100 W bez skoku:</strong> w modelu jednoczesnej pracy około 1600 W.</li><li><strong>Urządzenie 1500 W z rozruchem 2×:</strong> największy zadany skok mocy może wynosić 3000 W. Sprawdź, jak długo dany model znosi takie obciążenie.</li></ul><p>To scenariusze poglądowe. Rzeczywisty prąd rozruchowy sprawdź w instrukcji i na tabliczce urządzenia, nie przypisuj kategorii uniwersalnego mnożnika.</p></section>
+  <section class="calculator-section calculator-content-card"><h2>Co sprawdzić oprócz mocy w W?</h2><p>Ważne są <strong>moc ciągła i dopuszczalna moc szczytowa</strong> wraz z czasem jej utrzymania, czysta sinusoida, zgodność napięcia wejściowego 12/24 V oraz sprawność. Po stronie akumulatora skontroluj <strong>ograniczenie prądu BMS</strong>, przekrój przewodów, bezpieczniki i chłodzenie. Automatyczna propozycja 24 V nie oznacza, że wolno bez kontroli zmieniać napięcie istniejącej instalacji. Kalkulator nie zastępuje projektu elektrycznego.</p><p>Przeczytaj również <a href="/pl/poradnik/jak-dobrac-przetwornice-do-kampera/">polski poradnik doboru przetwornicy</a>.</p></section>
+  <section class="calculator-section"><h2>Częste pytania</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Czy 1000 W mocy ciągłej wystarczy do urządzenia 1000 W?</h3><p>Niekoniecznie: potrzebny jest zapas i często dodatkowa zdolność obsługi rozruchu silnika lub sprężarki.</p></article><article class="calculator-content-card"><h3>Dlaczego zalecana jest czysta sinusoida?</h3><p>To bardziej uniwersalne zasilanie dla elektroniki i części urządzeń z silnikiem, ale pozostałe parametry trzeba dobrać osobno.</p></article></div></section>
+</main><script type="module" src="/src/calculator-landing-browser.js?v=20261115-placement-events1"></script>
+</body></html>

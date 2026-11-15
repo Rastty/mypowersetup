@@ -56,10 +56,16 @@ test("all currently published calculator landing families can persist attributio
     ["/kalkulacky/jisteni-12v/", "dc-protection", "cs"],
     ["/sk/kalkulacky/kapacita-baterie/", "battery-capacity", "sk"],
     ["/sk/kalkulacky/solarne-panely/", "solar-sizing", "sk"],
+    ["/sk/kalkulacky/mppt-regulator/", "mppt-sizing", "sk"],
+    ["/sk/kalkulacky/vykon-menica/", "inverter-sizing", "sk"],
     ["/pl/kalkulatory/pojemnosc-akumulatora/", "battery-capacity", "pl"],
     ["/pl/kalkulatory/panele-solarne/", "solar-sizing", "pl"],
+    ["/pl/kalkulatory/regulator-mppt/", "mppt-sizing", "pl"],
+    ["/pl/kalkulatory/moc-przetwornicy/", "inverter-sizing", "pl"],
     ["/hu/kalkulatorok/akkumulator-kapacitas/", "battery-capacity", "hu"],
     ["/hu/kalkulatorok/napelem-teljesitmeny/", "solar-sizing", "hu"],
+    ["/hu/kalkulatorok/mppt-szabalyozo/", "mppt-sizing", "hu"],
+    ["/hu/kalkulatorok/inverter-teljesitmeny/", "inverter-sizing", "hu"],
   ];
 
   for (const [sourcePath, intent, locale] of cases) {

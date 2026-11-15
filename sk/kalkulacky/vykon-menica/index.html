@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulačka výkonu meniča 12/24 V na 230 V | MyPowerSetup</title>
+  <meta name="description" content="Vypočítajte potrebný trvalý výkon meniča do karavanu. Zadajte hlavný 230 V spotrebič, súbežnú záťaž, rozbehovú špičku a napätie batérie.">
+  <link rel="canonical" href="https://mypowersetup.com/sk/kalkulacky/vykon-menica/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/vykon-menice/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/vykon-menica/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/moc-przetwornicy/">
+  <link rel="alternate" hreflang="hu-HU" href="https://mypowersetup.com/hu/kalkulatorok/inverter-teljesitmeny/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/vykon-menice/">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20261109-inverter-reference1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Kalkulačka výkonu meniča pre karavan","url":"https://mypowersetup.com/sk/kalkulacky/vykon-menica/","inLanguage":"sk-SK","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/sk/"},{"@type":"ListItem","position":2,"name":"Kalkulačky","item":"https://mypowersetup.com/sk/kalkulacky/"},{"@type":"ListItem","position":3,"name":"Výkon meniča","item":"https://mypowersetup.com/sk/kalkulacky/vykon-menica/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Stačí 1000 W menič na 1000 W spotrebič?","acceptedAnswer":{"@type":"Answer","text":"Nie nevyhnutne. Menič musí zvládnuť súbežnú prevádzku, rezervu a prípadnú krátkodobú rozbehovú špičku. Rozhoduje aj maximálny prúd batérie a BMS."}},{"@type":"Question","name":"Kedy zvoliť 24 V namiesto 12 V?","acceptedAnswer":{"@type":"Answer","text":"Pri vyššom prenášanom výkone môže mať 24 V systém nižšie prúdy na strane batérie. Napätie existujúcej zostavy však nemožno zmeniť bez kontroly všetkých komponentov."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/sk/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/sk/kalkulacky/">Kalkulačky</a><a class="header-link" href="/sk/sprievodca/">Sprievodca</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/sk/">Domov</a> / <a href="/sk/kalkulacky/">Kalkulačky</a> / Výkon meniča</nav>
+  <section class="calculator-hero"><p><strong>Od príkonu spotrebičov k správnej triede meniča</strong></p><h1>Aký výkonný menič potrebujete do karavanu?</h1><p>Zistite orientačný minimálny výkon meniča 12/24 V na 230 V podľa súbežných spotrebičov a ich rozbehového prúdu. Výpočet hodnotí trvalú záťaž aj najväčšiu zadanú štartovaciu špičku.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="inverter-sizing" data-calculator-locale="sk">
+    <div class="calculator-card"><h2>Zadajte 230 V spotrebiče</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="largestLoadWatts">Najvýkonnejší spotrebič (W)</label><input id="largestLoadWatts" name="largestLoadWatts" type="number" inputmode="decimal" min="10" max="5000" step="10" value="1200" required></div>
+      <div class="calculator-field"><label for="otherLoadWatts">Ďalšia súčasná záťaž (W)</label><input id="otherLoadWatts" name="otherLoadWatts" type="number" inputmode="decimal" min="0" max="5000" step="10" value="300"></div>
+      <div class="calculator-field"><label for="surgeMultiplier">Rozbehová špička hlavného spotrebiča</label><select id="surgeMultiplier" name="surgeMultiplier"><option value="1">Bez výraznej špičky (1×)</option><option value="1.5" selected>Menšia špička (1,5×)</option><option value="2">Motor / kompresor (2×)</option><option value="3">Vysoká špička (3×)</option></select></div>
+      <div class="calculator-field"><label for="systemVoltage">Napätie batériového systému</label><select id="systemVoltage" name="systemVoltage"><option value="auto">Automaticky odporučiť 12/24 V</option><option value="12">12 V</option><option value="24">24 V</option></select></div>
+      <button class="calculator-button" type="submit">Vypočítať výkon meniča</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><p><strong>Výsledok výpočtu</strong></p><h2>Odporúčaný minimálny výkon</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Menič</span><strong data-result-inverter-watts>—</strong></div>
+      <div class="calculator-metric"><span>Rozbehová špička</span><strong data-result-surge-watts>—</strong></div>
+      <div class="calculator-metric"><span>Odhad súbežnej záťaže</span><strong data-result-concurrent-watts>—</strong></div>
+      <div class="calculator-metric"><span>Systém</span><strong data-result-voltage>—</strong></div>
+    </div><p data-result-summary></p><ul data-result-warnings hidden></ul>
+    <div class="calculator-actions"><a class="calculator-cta" href="/sk/#kalkulator">Navrhnúť celý systém</a><a class="calculator-cta calculator-cta-secondary" href="/sk/sprievodca/aky-velky-menic-do-karavanu/">Ako vybrať menič</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Tri príklady z bežného používania</h2><ul><li><strong>Notebook 100 W a ďalšie nabíjačky 30 W bez špičky:</strong> model počíta s približnou požiadavkou triedy 200 W.</li><li><strong>Kávovar 1200 W, elektronika 100 W, bez výraznej špičky:</strong> podľa modelového súbehu vychádza trieda približne 1600 W.</li><li><strong>Spotrebič 1500 W s rozbehom 2×:</strong> štartovacia požiadavka môže dosiahnuť 3000 W. Skontrolujte, ako dlho vie konkrétny menič tento výkon dodať.</li></ul><p>Ide o modelové záťaže, nie zaručené parametre konkrétnych spotrebičov. Ak neviete hodnotu rozbehu, pozrite si štítok a dokumentáciu spotrebiča.</p></section>
+  <section class="calculator-section calculator-content-card"><h2>Čo skontrolovať pred nákupom a montážou</h2><p>Rozlišujte <strong>trvalý výkon</strong> od krátkodobej špičky, overte čistý sínus, účinnosť a zodpovedajúce vstupné napätie 12/24 V. Na strane batérie je zásadný <strong>prúdový limit BMS</strong>, kapacita kabeláže, správne istenie a chladenie. Automatický návrh 24 V neznamená, že môžete zmeniť napätie existujúcej inštalácie bez kontroly komponentov. Výsledok je prvý návrh, nie elektroprojekt.</p><p>Podrobnosti nájdete v <a href="/sk/sprievodca/aky-velky-menic-do-karavanu/">slovenskom sprievodcovi výberom meniča</a>.</p></section>
+  <section class="calculator-section"><h2>Časté otázky</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Je 1000 W menič vhodný pre 1000 W spotrebič?</h3><p>Samotná zhoda menovitých wattov nestačí. Potrebujete rezervu a podľa typu spotrebiča aj zvládnutie rozbehu.</p></article><article class="calculator-content-card"><h3>Prečo sa oplatí čistý sínus?</h3><p>Je vhodnejší pre citlivejšiu elektroniku a zariadenia s motormi. Výkon, kabeláž a ochrany však treba posúdiť samostatne.</p></article></div></section>
+</main><script type="module" src="/src/calculator-landing-browser.js?v=20261115-placement-events1"></script>
+</body></html>
