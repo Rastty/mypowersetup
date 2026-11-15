@@ -3,10 +3,11 @@
 // A successful Pages deployment is not proof the CDN serves the updated
 // HTML and versioned JS. This audit does not submit forms or click offers.
 import { readFile } from "node:fs/promises";
-import { acceptCalculatorOffersSnapshot, acceptDcdcGuideSnapshot, acceptInverterCalculatorSnapshot, acceptSolarCalculatorSnapshot } from "../src/verified-offer-catalog-fetch.js";
+import { acceptCalculatorOffersSnapshot, acceptDcdcGuideSnapshot, acceptInverterCalculatorSnapshot, acceptSolarCalculatorSnapshot, acceptSkSolarCalculatorSnapshot } from "../src/verified-offer-catalog-fetch.js";
 import { selectGuideOffers } from "../src/guide-verified-offers.js";
 import { selectInverterCalculatorOffers } from "../src/inverter-calculator-offers.js";
 import { selectSolarCalculatorOffers } from "../src/solar-calculator-offers.js";
+import { selectSkSolarCalculatorOffers } from "../src/sk-solar-calculator-offers.js";
 
 const PRODUCTION_ORIGIN = "https://mypowersetup.com";
 export const PAGES = Object.freeze([
@@ -18,6 +19,7 @@ export const PAGES = Object.freeze([
   Object.freeze({ path: "/kalkulacky/mppt-regulator/", kind: "mppt_calculator" }),
   Object.freeze({ path: "/kalkulacky/vykon-menice/", kind: "inverter_calculator" }),
   Object.freeze({ path: "/kalkulacky/solarni-panely/", kind: "solar_calculator" }),
+  Object.freeze({ path: "/sk/kalkulacky/solarne-panely/", kind: "sk_solar_calculator" }),
   Object.freeze({ path: "/pruvodce/kapacita-baterie-do-karavanu/", kind: "battery_offers_guide" }),
   Object.freeze({ path: "/pruvodce/lifepo4-100ah-nebo-200ah-karavan/", kind: "battery_offers_comparison" }),
   Object.freeze({ path: "/pruvodce/jak-vybrat-mppt-regulator/", kind: "mppt_offers_guide" }),
@@ -39,6 +41,7 @@ export const ASSETS = Object.freeze([
   "src/inverter-calculator-offers.js",
   "src/solar-calculator-offers-browser.js",
   "src/solar-calculator-offers.js",
+  "src/sk-solar-calculator-offers.js",
   "src/guide-offer-impressions.js",
   "src/guide-verified-offers.js",
   "src/calculator-offer-catalog.js",
@@ -93,11 +96,11 @@ export function checkPublicHtml(html, local, { path, kind }) {
     fail("PUBLIC_BATTERY_GUIDE_LINK_MISSING");
   if (kind === "mppt_guide" && !html.includes('href="/kalkulacky/mppt-regulator/"'))
     fail("PUBLIC_MPPT_GUIDE_LINK_MISSING");
-  if (kind === "battery_runtime" || kind === "mppt_calculator" || kind === "battery_capacity" || kind === "inverter_calculator" || kind === "solar_calculator") {
+  if (kind === "battery_runtime" || kind === "mppt_calculator" || kind === "battery_capacity" || kind === "inverter_calculator" || kind === "solar_calculator" || kind === "sk_solar_calculator") {
     const intent = kind === "battery_runtime" ? "battery-autonomy"
       : kind === "battery_capacity" ? "battery-capacity"
       : kind === "inverter_calculator" ? "inverter-sizing"
-        : kind === "solar_calculator" ? "solar-sizing" : "mppt-sizing";
+        : kind === "solar_calculator" || kind === "sk_solar_calculator" ? "solar-sizing" : "mppt-sizing";
     if (!html.includes('data-calculator-intent="' + intent + '"') ||
         !html.includes("data-calculator-result") || !html.includes("data-calculator-form"))
       fail("PUBLIC_CALCULATOR_MISSING:" + path);
@@ -117,6 +120,11 @@ export function checkPublicHtml(html, local, { path, kind }) {
         (!html.includes('data-solar-buyers') || !html.includes('data-solar-offer-list')
          || !html.includes("Samotný součet Wp nedokazuje kompatibilitu sestavy.")))
       fail("PUBLIC_SOLAR_BUYER_GUARD_MISSING");
+    if (kind === "sk_solar_calculator" &&
+        (!html.includes('data-calculator-locale="sk"') || !html.includes('data-solar-buyers')
+         || !html.includes('data-solar-offer-list')
+         || !html.includes("Samotný súčet Wp nezaručuje kompatibilitu celej zostavy.")))
+      fail("PUBLIC_SK_SOLAR_BUYER_GUARD_MISSING");
     if (kind === "battery_runtime" &&
         (!html.includes('name="dailyWh"') || !html.includes('name="batteryCapacityAh"') ||
          !html.includes('name="systemVoltage"') || !html.includes('name="batteryType"')))
@@ -225,6 +233,22 @@ export function checkPublicSolarCatalog(served, local, now = Date.now()) {
   });
 }
 
+export function checkPublicSkSolarCatalog(served, local, now = Date.now()) {
+  if (Buffer.byteLength(served, "utf8") > 2500) fail("PUBLIC_SK_SOLAR_CATALOG_TOO_LARGE");
+  if (normalText(served) !== normalText(local)) fail("PUBLIC_SK_SOLAR_CATALOG_SOURCE_DRIFT");
+  let payload;
+  try { payload = JSON.parse(served); } catch { fail("PUBLIC_SK_SOLAR_CATALOG_INVALID_JSON"); }
+  if (!acceptSkSolarCalculatorSnapshot(payload)) fail("PUBLIC_SK_SOLAR_CATALOG_INVALID_SCHEMA");
+  return Object.freeze({
+    path: "/data/solar-calculator-offers-sk.json", bytes: Buffer.byteLength(served),
+    reviewedProducts: payload.products.length,
+    eligible12v450wp: selectSkSolarCalculatorOffers(payload, { solarWatts: 450, systemVoltage: 12 }, now).length,
+    eligible24v450wp: selectSkSolarCalculatorOffers(payload, { solarWatts: 450, systemVoltage: 24 }, now).length,
+    generatedAt: payload.generatedAt, sourceStatus: payload.sources.padabo_sk.status,
+    outboundClickVerified: false, commissionVerified: false,
+  });
+}
+
 async function fetchPage(fetchImpl, url, contentType, sleep, onRetry) {
   let response;
   for (let attempt = 0; attempt < 3; attempt++) {
@@ -274,7 +298,7 @@ export async function verifyBuyerPathsLive({
   }
   if (!browserVersions.has("battery_runtime") || !browserVersions.has("battery_capacity") ||
       !browserVersions.has("mppt_calculator") || !browserVersions.has("inverter_calculator") ||
-      !browserVersions.has("solar_calculator"))
+      !browserVersions.has("solar_calculator") || !browserVersions.has("sk_solar_calculator"))
     fail("PUBLIC_CALCULATOR_COVERAGE_INCOMPLETE");
 
   const checkedAssets = [];
@@ -341,6 +365,11 @@ export async function verifyBuyerPathsLive({
     await fetchPage(fetchImpl, new URL(solarPath, base), "json", sleep, () => retries++),
     await readLocal(solarPath.slice(1)), now()
   );
+  const skSolarPath = "/data/solar-calculator-offers-sk.json";
+  const skSolarCatalog = checkPublicSkSolarCatalog(
+    await fetchPage(fetchImpl, new URL(skSolarPath, base), "json", sleep, () => retries++),
+    await readLocal(skSolarPath.slice(1)), now()
+  );
   return Object.freeze({
     status: "PUBLIC_BUYER_HTML_JS_AND_CATALOG_VERIFIED",
     origin: base.origin, pages: checkedPages, assets: checkedAssets,
@@ -349,6 +378,7 @@ export async function verifyBuyerPathsLive({
     dcdcCatalog,
     inverterCatalog,
     solarCatalog,
+    skSolarCatalog,
     transientRetries: retries,
     browserInteractionsVerified: false,
     seoUpliftMeasured: false,

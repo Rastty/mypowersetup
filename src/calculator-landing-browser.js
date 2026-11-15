@@ -7,7 +7,7 @@ import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHan
 import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261113-cz-affiliate-subid1";
 import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261113-cz-affiliate-subid1";
 import { mountInverterCalculatorBuyers } from "./inverter-calculator-offers-browser.js?v=20261113-inverter-buyers1";
-import { mountSolarCalculatorBuyers } from "./solar-calculator-offers-browser.js?v=20261115-solar-buyers1";
+import { mountSolarCalculatorBuyers } from "./solar-calculator-offers-browser.js?v=20261115-sk-solar-buyers1";
 
 const root = document.querySelector("[data-calculator-landing]");
 
@@ -35,7 +35,7 @@ if (root) {
     ? mountBatteryCalculatorBuyers(root) : null;
   const inverterBuyers = intent === "inverter-sizing" && locale === "cs"
     ? mountInverterCalculatorBuyers(root) : null;
-  const solarBuyers = intent === "solar-sizing" && locale === "cs"
+  const solarBuyers = intent === "solar-sizing" && ["cs", "sk"].includes(locale)
     ? mountSolarCalculatorBuyers(root) : null;
   if (!landingParameters) throw new Error(`CALCULATOR_LANDING_ATTRIBUTION_MISMATCH:${landingPath}:${intent}:${locale}`);
 
@@ -262,6 +262,7 @@ if (root) {
     mpptBuyers?.invalidate();
     batteryBuyers?.invalidate();
     inverterBuyers?.invalidate();
+    solarBuyers?.invalidate();
   };
   form.addEventListener("input", invalidateResult);
   form.addEventListener("change", invalidateResult);

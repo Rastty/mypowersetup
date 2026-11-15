@@ -5,6 +5,7 @@ import {
   PAGES, ASSETS, checkPublicHtml, checkServedAsset, checkPublicCompactCatalog,
   checkPublicDcdcGuideCatalog, verifyBuyerPathsLive,
   checkPublicInverterCatalog, checkPublicSolarCatalog,
+  checkPublicSkSolarCatalog,
 } from "./verify-buyer-paths-live.mjs";
 
 const origin = "https://mypowersetup.com";
@@ -40,19 +41,19 @@ function mockResponse(url, body, type = "text/html", status = 200) {
   };
 }
 
-test("thirteen buyer pages, exact versioned JS and deployed compact catalogs are public-evidence verified", async () => {
+test("fourteen CZ and SK buyer pages, exact versioned JS and deployed compact catalogs are public-evidence verified", async () => {
   const fetchImpl = mockFetch();
   const result = await verifyBuyerPathsLive({ fetchImpl });
   assert.equal(result.status, "PUBLIC_BUYER_HTML_JS_AND_CATALOG_VERIFIED");
   assert.equal(result.pages.length, PAGES.length);
-  assert.equal(result.pages.length, 13);
+  assert.equal(result.pages.length, 14);
   assert.equal(result.assets.length, ASSETS.length + 3, "four distinct browser cache keys: autonomy, shared CZ buyer, inverter and solar");
   assert.equal(result.productionActions, 0);
   assert.equal(result.browserInteractionsVerified, false);
   assert.equal(result.seoUpliftMeasured, false);
   assert.equal(result.transientRetries, 0);
   const dcdcPublished = await dcdcReady();
-  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 6 + Number(dcdcPublished));
+  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 7 + Number(dcdcPublished));
   assert.equal(result.dcdcCatalog.status, dcdcPublished
     ? "PUBLIC_DCDC_CATALOG_VERIFIED" : "LEGACY_FULL_CATALOG_UNTIL_FIRST_SYNC");
   if (dcdcPublished) {
@@ -69,6 +70,7 @@ test("thirteen buyer pages, exact versioned JS and deployed compact catalogs are
   assert.equal(fetchImpl.calls.filter(url => url.includes("/data/calculator-offers-cz.json")).length, 1);
   assert.equal(fetchImpl.calls.filter(url => url.includes("/data/inverter-calculator-offers-cz.json")).length, 1);
   assert.equal(fetchImpl.calls.filter(url => url.includes("/data/solar-calculator-offers-cz.json")).length, 1);
+  assert.equal(fetchImpl.calls.filter(url => url.includes("/data/solar-calculator-offers-sk.json")).length, 1);
   assert.equal(result.inverterCatalog.reviewedProducts, 13);
   assert.equal(result.inverterCatalog.outboundClickVerified, false);
   assert.equal(result.inverterCatalog.commissionVerified, false);
@@ -76,11 +78,16 @@ test("thirteen buyer pages, exact versioned JS and deployed compact catalogs are
   assert.equal(result.solarCatalog.eligible12v450wp, 3);
   assert.equal(result.solarCatalog.eligible24v450wp, 0);
   assert.equal(result.solarCatalog.commissionVerified, false);
+  assert.ok(result.skSolarCatalog.reviewedProducts <= 2);
+  assert.ok(result.skSolarCatalog.eligible12v450wp <= 2);
+  assert.equal(result.skSolarCatalog.eligible24v450wp, 0);
+  assert.equal(result.skSolarCatalog.commissionVerified, false);
   assert.ok(result.browserVersions.battery_runtime.includes("fridge-community1"));
   assert.ok(result.browserVersions.mppt_calculator.includes("cz-affiliate-subid1"));
   assert.ok(result.browserVersions.battery_capacity.includes("cz-affiliate-subid1"));
   assert.ok(result.browserVersions.inverter_calculator.includes("inverter-buyers1"));
-  assert.ok(result.browserVersions.solar_calculator.includes("solar-buyers1"));
+  assert.ok(result.browserVersions.solar_calculator.includes("sk-solar-buyers1"));
+  assert.ok(result.browserVersions.sk_solar_calculator.includes("sk-solar-buyers1"));
   assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
     row.servedPath.includes("?v=20261113-cz-affiliate-subid1")));
   assert.ok(result.assets.some(row => row.asset === "src/mppt-calculator-offers-browser.js" &&
@@ -88,7 +95,7 @@ test("thirteen buyer pages, exact versioned JS and deployed compact catalogs are
   assert.ok(result.assets.some(row => row.asset === "src/inverter-calculator-offers-browser.js" &&
     row.servedPath.includes("?v=20261113-inverter-buyers1")));
   assert.ok(result.assets.some(row => row.asset === "src/solar-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261115-solar-buyers1")));
+    row.servedPath.includes("?v=20261115-sk-solar-buyers1")));
   assert.ok(result.assets.some(row => row.asset === "src/calculator-offer-catalog.js" &&
     row.servedPath.includes("?v=20261109-lightweight-cz1")));
   for (const row of result.pages) assert.equal(row.http, 200);
@@ -163,7 +170,7 @@ test("bounded 503 retries recover once, while permanent 502 fails closed", async
   const success = await verifyBuyerPathsLive({ fetchImpl: transient, sleep: async ms => { delays.push(ms); } });
   assert.equal(success.transientRetries, 1);
   assert.deepEqual(delays, [250]);
-  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 7 + Number(await dcdcReady()));
+  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 8 + Number(await dcdcReady()));
   let calls = 0;
   await assert.rejects(verifyBuyerPathsLive({ sleep: async () => {}, fetchImpl: async input => {
     calls++;
@@ -272,6 +279,26 @@ test("public solar calculator and exact small panel catalog reject stale release
     if (url.pathname !== "/data/solar-calculator-offers-cz.json") return null;
     return mockResponse(url.href, expected.replace('"projection":"solar_panel"', '"projection":"wrong"'), "application/json");
   } }) }), /PUBLIC_SOLAR_CATALOG_SOURCE_DRIFT/);
+});
+
+test("SK solar page and compact Padabo feed must match the exact deployed release", async () => {
+  const file = "data/solar-calculator-offers-sk.json";
+  const expected = await local(file);
+  const report = checkPublicSkSolarCatalog(expected, expected, Date.parse(JSON.parse(expected).generatedAt) + 60_000);
+  assert.ok(report.reviewedProducts <= 2);
+  assert.equal(report.eligible24v450wp, 0);
+  assert.equal(report.commissionVerified, false);
+  assert.throws(() => checkPublicSkSolarCatalog(expected.replace('"market":"sk-SK"', '"market":"cz-CZ"'), expected),
+    /PUBLIC_SK_SOLAR_CATALOG_SOURCE_DRIFT/);
+  await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url, file: source }) => {
+    if (source !== file) return null;
+    return mockResponse(url.href, expected.replace('"projection":"solar_panel"', '"projection":"untrusted"'), "application/json");
+  } }) }), /PUBLIC_SK_SOLAR_CATALOG_SOURCE_DRIFT/);
+  await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url, file: source }) => {
+    if (source !== "sk/kalkulacky/solarne-panely/index.html") return null;
+    return mockResponse(url.href, (await local(source)).replace(
+      "Samotný súčet Wp nezaručuje kompatibilitu celej zostavy.", "Kompatibilita je zaručená."));
+  } }) }), /PUBLIC_SK_SOLAR_BUYER_GUARD_MISSING/);
 });
 
 test("public inverter view, buyer marker and outbound evidence fail on production drift", async () => {
