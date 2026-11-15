@@ -44,6 +44,23 @@ function routeFile(route) {
 const TECHNICAL_ONLY_CTA = new Map([
   ["/pruvodce/kabely-a-pojistky-12-v/", "Výsledek je podklad ke kontrole, nikoli instalační pokyn."],
   ["/pruvodce/jak-vybrat-dc-dc-nabijecku/", "Konkrétní modely automaticky neschvaluje"],
+  // Native SK/PL/HU calculators return a transparent technical calculation;
+  // unlike the full builder, they must not promise matched merchant products.
+  ["/sk/sprievodca/ako-vybrat-dc-dc-nabijacku/", "výsledok overte podľa alternátora"],
+  ["/pl/poradnik/jak-dobrac-ladowarke-dc-dc/", "Wynik sprawdź z parametrami alternatora"],
+  ["/hu/utmutatok/dc-dc-tolto-kivalasztasa/", "eredményt ellenőrizd az alternátor"],
+  ["/sk/sprievodca/kable-a-poistky-12-v/", "overení skutočnej prúdovej zaťažiteľnosti"],
+  ["/pl/poradnik/przewody-i-bezpieczniki-12-v/", "potwierdzeniu obciążalności przewodu"],
+  ["/hu/utmutatok/12-v-vezetekek-es-biztositekok/", "igazolt áramterhelhetőség"],
+  ["/sk/sprievodca/ako-vybrat-mppt-regulator/", "Voc v mraze, Isc"],
+  ["/pl/poradnik/jak-dobrac-regulator-mppt/", "Voc przy mrozie, Isc"],
+  ["/hu/utmutatok/mppt-szabalyozo-kivalasztasa/", "hideg Voc, az Isc"],
+  ["/sk/sprievodca/aky-velky-menic-do-karavanu/", "finálne limity potvrdí výrobca"],
+  ["/pl/poradnik/jak-dobrac-przetwornice-do-kampera/", "wynik zweryfikuj z dokumentacją"],
+  ["/hu/utmutatok/lakoauto-inverter-kivalasztasa/", "indítási csúcsot és az akkumulátorterhelést"],
+  ["/sk/sprievodca/12-v-alebo-24-v-karavan/", "Porovnajte obe napätia"],
+  ["/pl/poradnik/12-v-czy-24-v-kamper/", "Przelicz prąd, moc przetwornicy"],
+  ["/hu/utmutatok/12-v-vagy-24-v-lakoauto/", "Hasonlítsd össze az áramerősséget"],
 ]);
 
 test("mature-market guide CTAs stay truthful and point to recognized calculator destinations", async () => {

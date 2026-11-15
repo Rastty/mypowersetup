@@ -39,7 +39,7 @@ function normalizePath(pathname) {
 }
 
 function guidePosition(link) {
-  if (link.closest?.("[data-guide-top-cta]")) return "early";
+  if (link.closest?.("[data-guide-top-cta], .calculator-jump")) return "early";
   const cta = link.closest?.(".cta");
   if (cta?.querySelector?.("[data-guide-conversion-cta]")) return "late";
   return "inline";
@@ -91,6 +91,9 @@ export function enhanceGuideConversion({
 
   lateLink.setAttribute?.("data-guide-conversion-cta", "");
   bindGuideAttribution(article, pathname, root);
+  // Hand-authored guide-to-tool jumps are already shown after the answer;
+  // do not clone the footer CTA over them.
+  if (article.querySelector?.(".calculator-jump")) return false;
   if (article.querySelector?.("[data-guide-top-cta]")) return false;
 
   const earlyCta = lateCta.cloneNode(true);
