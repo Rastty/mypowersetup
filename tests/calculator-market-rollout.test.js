@@ -40,6 +40,12 @@ const families = Object.freeze({
     pl: "/pl/kalkulatory/12v-czy-24v/",
     hu: "/hu/kalkulatorok/12v-vagy-24v/",
   }),
+  cable: Object.freeze({
+    cs: "/kalkulacky/prurez-kabelu-12v/",
+    sk: "/sk/kalkulacky/prierez-kabla-12v/",
+    pl: "/pl/kalkulatory/przekroj-przewodu-12v/",
+    hu: "/hu/kalkulatorok/vezetek-keresztmetszet-12v/",
+  }),
 });
 
 const czPublishedRoutes = Object.freeze([
@@ -81,7 +87,7 @@ function expectedAlternates(family) {
 }
 
 test("published calculator families have reciprocal core-market hreflang", async () => {
-  for (const key of ["hub", "battery", "solar", "mppt", "inverter", "voltage"]) {
+  for (const key of ["hub", "battery", "solar", "mppt", "inverter", "voltage", "cable"]) {
     const family = families[key];
     const expected = expectedAlternates(family);
     for (const route of Object.values(family)) {
@@ -95,7 +101,7 @@ test("published calculator families have reciprocal core-market hreflang", async
 test("SK PL HU calculator pages are native market handoffs, not cross-market clones", async () => {
   for (const [locale, meta] of Object.entries(localeMeta)) {
     const foreignLocales = Object.keys(localeMeta).filter((candidate) => candidate !== locale);
-    for (const key of ["battery", "solar", "mppt", "inverter", "voltage"]) {
+    for (const key of ["battery", "solar", "mppt", "inverter", "voltage", "cable"]) {
       const route = families[key][locale];
       const html = await readFile(fileFor(route), "utf8");
       assert.ok(html.includes(`rel="canonical" href="${ORIGIN}${route}"`), `${route} must self-canonicalize`);
@@ -118,9 +124,10 @@ test("localized calculator hubs expose MPPT and inverter with a linked solar nex
     assert.ok(html.includes(`href="${families.mppt[locale]}"`));
     assert.ok(html.includes(`href="${families.inverter[locale]}"`));
     assert.ok(html.includes(`href="${families.voltage[locale]}"`));
+    assert.ok(html.includes(`href="${families.cable[locale]}"`));
     const solar = await readFile(fileFor(families.solar[locale]), "utf8");
     assert.ok(solar.includes(`href="${families.mppt[locale]}"`), `${families.solar[locale]} must link next-step MPPT`);
-    assert.doesNotMatch(html, /prurez-kabelu|jisteni-12v/i, `${hubRoute} should not link unimplemented intents`);
+    assert.doesNotMatch(html, /href="\/[^\"]*jisteni-12v\//i, `${hubRoute} should not link unimplemented protection calculator`);
   }
 });
 
@@ -173,6 +180,29 @@ test("localized 12 V vs 24 V pages use the canonical voltage engine and disclose
   }
 });
 
+test("localized cable sizing pages render the shared voltage-drop calculator with a clear safety boundary", async () => {
+  const safetyTerms = Object.freeze({ sk: /prúdovej zaťažiteľnosti|prúdovú zaťažiteľnosť/, pl: /obciążalność prądową/, hu: /áramterhelhetőségét/ });
+  for (const [locale, meta] of Object.entries(localeMeta)) {
+    const route = families.cable[locale];
+    const html = await readFile(fileFor(route), "utf8");
+    assert.match(html, /data-calculator-landing\s+data-calculator-intent="cable-voltage-drop"/);
+    for (const field of ["loadWatts", "oneWayLengthM", "systemVoltage", "maxDropPercent"]) {
+      assert.ok(html.includes(`name="${field}"`), `${route} must include ${field}`);
+    }
+    for (const metric of ["cable-mm2", "current-amps", "drop-percent", "drop-volts", "summary", "reserve", "warnings"]) {
+      assert.match(html, new RegExp(`data-result-${metric}`), `${route} needs result marker ${metric}`);
+    }
+    assert.ok(html.includes(`href="${meta.builder}"`), `${route} needs localized builder`);
+    assert.ok(html.includes(`href="${meta.guidePrefix}`), `${route} needs localized cable safety guide`);
+    assert.match(html, safetyTerms[locale], `${route} must distinguish voltage drop from ampacity`);
+    assert.match(html, /BMS/, `${route} must mention BMS and fuse coordination`);
+    assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=/);
+    const schema = JSON.parse([...html.matchAll(/<script type="application\/ld\+json">([^<]+)<\/script>/g)][0][1]);
+    assert.deepEqual(schema["@graph"].map(({ "@type": type }) => type), ["WebApplication", "BreadcrumbList", "FAQPage"]);
+    assert.equal(schema["@graph"][0].inLanguage, `${locale}-${locale.toUpperCase()}`);
+  }
+});
+
 test("calculator sitemap publishes the complete CZ plus SK PL HU calculator surface exactly once", async () => {
   const xml = await readFile("sitemap-calculators.xml", "utf8");
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
@@ -183,7 +213,7 @@ test("calculator sitemap publishes the complete CZ plus SK PL HU calculator surf
   assert.equal(
     urls.length,
     czPublishedRoutes.length + localized.length,
-    "calculator sitemap should contain 10 CZ URLs plus 18 localized URLs",
+    "calculator sitemap should contain 10 CZ URLs plus 21 localized URLs",
   );
   assert.ok(!urls.some((url) => /\/(?:pt|ro|si)\/.*(?:kalk|calc)/i.test(url)), "PT/RO/SI calculator rollout must stay blocked");
 });
