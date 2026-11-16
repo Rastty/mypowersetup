@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-15T19:47:42.623Z",
+  "generatedAt": "2026-11-16T11:33:45.560Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12494,
+      "parsedProducts": 12493,
       "relevantProducts": 161
     },
     "ampul_hu": {
       "status": "ok",
-      "parsedProducts": 7731,
+      "parsedProducts": 7732,
       "relevantProducts": 13
     },
     "allpowers_eu": {
@@ -6561,7 +6561,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 288.99,
+      "priceCzk": 259.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-group-24-smart-lifepo4-battery-with-bluetooth",
@@ -6596,7 +6596,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 298.99,
+      "priceCzk": 259.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-12v-100ah-190h-smart-motorhome-battery",
@@ -6772,7 +6772,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 308.99,
+      "priceCzk": 269.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-self-heating-lifepo4-battery",

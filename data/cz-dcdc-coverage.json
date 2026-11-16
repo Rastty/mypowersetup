@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-15T19:45:39.323Z",
+  "generatedAt": "2026-11-16T11:33:21.118Z",
   "market": "cs-CZ",
   "status": "ready",
   "requirement": {
@@ -79,13 +79,13 @@
       "score": 62
     },
     {
-      "id": "solarimport:E8945",
-      "merchant": "solarimport",
+      "id": "batterycz:E8945",
+      "merchant": "batterycz",
       "name": "Victron Energy XS 70 DC-DC nabíječka Orion XS 12/12-70A",
       "currentA": 70,
       "priceCzk": 10285,
       "priceCurrency": "CZK",
-      "productUrl": "https://www.solar-import.cz/nabijecky-baterii/victron-energy-nabijecka-dc-dc-orion-xs-12-12-70a--1000w-neizolovana/",
+      "productUrl": "https://www.battery.cz/victron-energy-nabijecka-dc-dc-orion-xs-12-12-70a--1000w-neizolovana/",
       "verifiedAt": null,
       "score": 50
     }
