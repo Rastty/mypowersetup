@@ -16,9 +16,9 @@ test("every mature market measures recommendation role on package and product-ca
 
 test("every mature market explains recommended and alternative product roles visibly", async () => {
   const localizedLabels = {
-    "app.js": ["Nejlepší shoda", "Kompatibilní alternativa"],
-    "app-sk.js": ["Najlepšia zhoda", "Kompatibilná alternatíva"],
-    "app-pl.js": ["Najlepsze dopasowanie", "Zgodna alternatywa"],
+    "app.js": ["Doporučená volba", "Kompatibilní alternativa"],
+    "app-sk.js": ["Odporúčaná voľba", "Kompatibilná alternatíva"],
+    "app-pl.js": ["Polecany wybór", "Zgodna alternatywa"],
     "app-hu-browser.js": ["HU_UI_COPY.products.roles.recommended", "HU_UI_COPY.products.roles.alternative"],
   };
 

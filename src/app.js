@@ -9,6 +9,7 @@ import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
 import { buildProductPackages } from "./packages.js?v=20261117-solar-value1";
+import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20260828-1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { czechProductRequirement, czechProductDecisionFacts, czechPackageFitSummary } from "./product-decision-facts.js?v=20261014-1";
@@ -524,9 +525,8 @@ function renderProductRecommendations(result) {
   const intro = document.querySelector("#product-intro");
   const groups = document.querySelector("#recommendation-groups");
   const rankedRecommendations = recommendProducts(productCatalog, result, 24, productCatalogSources);
-  const recommendations = Object.fromEntries(
-    Object.entries(rankedRecommendations).map(([category, items]) => [category, items.slice(0, 3)])
-  );
+  const packages = buildProductPackages(rankedRecommendations, result);
+  const recommendations = visibleRecommendationsForPackages(rankedRecommendations, packages);
   const categoryLabels = {
     battery: "Baterie",
     solar_panel: "Solární panely",
@@ -538,7 +538,6 @@ function renderProductRecommendations(result) {
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
   const coverage = assessRecommendationCoverage(recommendations, result, "cs");
-  const packages = buildProductPackages(rankedRecommendations, result);
   const hasRecommendedPackage = packages.some(({ id }) => id === "recommended");
   trackEvent("product_coverage_calculated", {
     locale: "cs",
@@ -638,6 +637,11 @@ function packageCategoryLabel(category) {
 
 function productCard(product, reason, checks, verify, recommendationRole, setup) {
   const decisionFacts = czechProductDecisionFacts(product, setup);
+  const { quantity, unitPrice, totalPrice } = productCardPriceDetails(product);
+  const priceLabel = quantity > 1
+    ? `${quantity} ks · ${totalPrice === null ? "Cena v obchodě" : `${formatPrice(totalPrice, product.priceCurrency)} celkem`}`
+    : formatPrice(product.priceCzk, product.priceCurrency);
+  const unitPriceLabel = quantity > 1 && unitPrice !== null ? `${formatPrice(unitPrice, product.priceCurrency)} za kus · ` : "";
   const factsHtml = decisionFacts.length ? `<dl class="product-decision-facts">${decisionFacts.map(({ label, value }) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("")}</dl>` : "";
   const sourceIsStale = productCatalogSources[product.merchant]?.status === "stale";
   const sourceNote = sourceIsStale
@@ -647,7 +651,7 @@ function productCard(product, reason, checks, verify, recommendationRole, setup)
     <article class="product-card">
       ${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : ""}
       <div class="product-card-copy">
-        <span class="product-recommendation-role is-${escapeHtml(recommendationRole)}">${recommendationRole === "recommended" ? "Nejlepší shoda" : "Kompatibilní alternativa"}</span>
+        <span class="product-recommendation-role is-${escapeHtml(recommendationRole)}">${recommendationRole === "recommended" ? "Doporučená volba" : "Kompatibilní alternativa"}</span>
         <span>${escapeHtml(product.brand || merchantLabel(product.merchant))} · ${escapeHtml(merchantLabel(product.merchant))}</span>
         <h6>${escapeHtml(product.name)}</h6>
         <p class="product-reason"><strong>Proč sedí:</strong> ${escapeHtml(reason)}</p>
@@ -656,7 +660,7 @@ function productCard(product, reason, checks, verify, recommendationRole, setup)
         <p class="product-verify"><strong>Před nákupem:</strong> ${escapeHtml(verify)}</p>
         ${sourceNote}
         <div class="product-card-action">
-          <span class="product-price"><strong>${formatPrice(product.priceCzk, product.priceCurrency)}</strong><small>${sourceIsStale ? "Cena z posledního úspěšného feedu" : "Cena z produktového feedu"}</small></span>
+          <span class="product-price"><strong>${priceLabel}</strong><small>${unitPriceLabel}${sourceIsStale ? "Cena z posledního úspěšného feedu" : "Cena z produktového feedu"}</small></span>
           <a href="${escapeHtml(attributedAwinUrl(product, product.category, recommendationRole, "product-card"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-recommendation-role="${escapeHtml(recommendationRole)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a>
         </div>
       </div>

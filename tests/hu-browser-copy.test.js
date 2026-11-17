@@ -5,7 +5,7 @@ import { HU_UI_COPY } from "../src/ui-copy-hu.js";
 
 test("Hungarian browser renders localized result and product labels from shared copy", async () => {
   const browser = await readFile("src/app-hu-browser.js", "utf8");
-  assert.match(browser, /import \{ HU_UI_COPY \} from "\.\/ui-copy-hu\.js"/);
+  assert.match(browser, /import \{ HU_UI_COPY \} from "\.\/ui-copy-hu\.js\?v=20261117-consistent-products1"/);
   assert.match(browser, /HU_UI_COPY\.result\.controller/);
   assert.match(browser, /HU_UI_COPY\.products\.categories/);
   assert.doesNotMatch(browser, /MPPT szabályozó/);
