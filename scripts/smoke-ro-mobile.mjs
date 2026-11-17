@@ -50,6 +50,9 @@ try {
   assert(componentLinks.length === 4, `component guides=${componentLinks.length}`); assert(componentLinks.every((href) => href.startsWith("/ro/ghiduri/")), `wrong component guide=${componentLinks.join(",")}`);
   const result = await evaluate(cdp, `(() => { const link=document.querySelector('[data-affiliate-product]'); if(!link)return {cards:0,scrollWidth:document.documentElement.scrollWidth,width:innerWidth}; const url=new URL(link.href); return {cards:document.querySelectorAll('[data-affiliate-product]').length,href:link.href,rel:link.rel,merchant:link.dataset.merchant,awinmid:url.searchParams.get('awinmid'),awinaffid:url.searchParams.get('awinaffid'),ued:url.searchParams.get('ued'),scrollWidth:document.documentElement.scrollWidth,width:innerWidth}; })()`);
   assert(result.cards > 0, "no verified RO recommendation");
+  const productPhotos = await evaluate(cdp, `[...document.querySelectorAll(".expansion-product-media img")].map(img => ({host:new URL(img.src).hostname,loading:img.loading,alt:img.alt}))`);
+  assert(productPhotos.length > 0, "RO recommendation photos missing");
+  assert(productPhotos.every(img => ["cdn.shopify.com", "www.oxe.cz"].includes(img.host) && img.loading === "lazy" && img.alt === ""), "RO product photo attribution or lazy-loading invalid");
   const merchantConfig = VERIFIED_BATTERY_MERCHANTS[result.merchant];
   assert(Boolean(merchantConfig), `merchant=${result.merchant}`);
   assert(result.href?.includes("awin1.com"), `wrong affiliate host ${result.href}`);

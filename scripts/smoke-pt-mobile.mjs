@@ -48,6 +48,9 @@ try {
   assert(componentLinks.length === 4, `component guides=${componentLinks.length}`); assert(componentLinks.every((href) => href.startsWith("/pt/guias/")), `wrong component guide=${componentLinks.join(",")}`);
   const result = await evaluate(cdp, `(() => { const links=[...document.querySelectorAll('[data-affiliate-product]')]; return {cards:links.length,links:links.map((link)=>({href:link.href,rel:link.rel,merchant:link.dataset.merchant})),merchants:[...new Set(links.map((link)=>link.dataset.merchant).filter(Boolean))],scrollWidth:document.documentElement.scrollWidth,width:innerWidth}; })()`);
   assert(result.cards > 0, "no verified PT recommendation");
+  const productPhotos = await evaluate(cdp, `[...document.querySelectorAll(".expansion-product-media img")].map(img => ({host:new URL(img.src).hostname,loading:img.loading,alt:img.alt}))`);
+  assert(productPhotos.length > 0, "PT recommendation photos missing");
+  assert(productPhotos.every(img => ["cdn.shopify.com", "www.oxe.cz"].includes(img.host) && img.loading === "lazy" && img.alt === ""), "PT product photo attribution or lazy-loading invalid");
   for (const link of result.links) {
     const merchant = VERIFIED_AWIN_MERCHANTS[link.merchant];
     assert(Boolean(merchant), `merchant=${link.merchant}`);
