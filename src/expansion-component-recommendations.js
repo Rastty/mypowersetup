@@ -1,4 +1,4 @@
-import { hasCurrentRecommendationSource, recommendProducts } from "./products.js?v=20261117-bms-load1";
+import { hasCurrentRecommendationSource, recommendProducts } from "./products.js?v=20261117-pq-region1";
 
 export const EXPANSION_COMPONENT_CATEGORIES = Object.freeze([
   "battery", "controller", "inverter", "dc_charger", "shore_charger",

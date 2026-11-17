@@ -1,14 +1,14 @@
 import { calculatePowerStationProfile } from "./power-station.js";
-import { hasCurrentRecommendationSource } from "./products.js";
+import { hasCurrentRecommendationSource } from "./products.js?v=20261117-pq-region1";
 import { validateOxeDognetDeeplink, validateOxeProductUrl } from "./oxe-affiliate.js";
-import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js";
+import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js?v=20261117-pq-region1";
 import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affiliate-xdatou.js";
 import { isAmpulExpansionProduct, validateAmpulExpansionProduct } from "./affiliate-ampul-expansion.js";
 import { isBluettiElite300Product, validateBluettiElite300Product } from "./affiliate-bluetti-eu.js";
 import { isSolarisExpansionProduct, validateSolarisExpansionProduct } from "./affiliate-solaris.js";
 import { isButlerExpansionProduct, validateButlerExpansionProduct } from "./affiliate-butler.js";
-import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js?v=20261117-bms-load1";
-export { hasExpansionSourceGaps } from "./expansion-component-recommendations.js?v=20261117-bms-load1";
+import { buildExpansionComponentRecommendations } from "./expansion-component-recommendations.js?v=20261117-pq-region1";
+export { hasExpansionSourceGaps } from "./expansion-component-recommendations.js?v=20261117-pq-region1";
 
 export const RO_CATALOG_URL = "/data/products-ro.json";
 const AWIN_MERCHANT_ID = "38934";

@@ -1,5 +1,6 @@
 import { parseShopifyProducts } from "../../src/shopify.js";
 import { disableStaleProducts } from "./stale-products.mjs";
+import { isPowerQueenRegionRestrictedOffer } from "../../src/powerqueen-expansion.js";
 
 const endpoint = "https://www.ipowerqueen.de/en/products.json?limit=250";
 const origin = "https://www.ipowerqueen.de/en/";
@@ -95,14 +96,17 @@ export async function fetchPowerQueenPayload(fetchImpl = globalThis.fetch, {
 }
 
 export async function syncPowerQueenEu(previousCatalog = { products: [] }, { fetchImpl = globalThis.fetch } = {}) {
-  const preserved = (previousCatalog.products || []).filter((product) => product.merchant === "powerqueen_eu");
+  const preserved = (previousCatalog.products || []).filter((product) =>
+    product.merchant === "powerqueen_eu" && !isPowerQueenRegionRestrictedOffer(product));
   try {
     const parsed = parseShopifyProducts(await fetchPowerQueenPayload(fetchImpl), "powerqueen_eu", {
       origin,
       verifiedProducts: VERIFIED_EXACT_PRODUCTS,
       productPathPrefix: "/en/products/",
     });
-    const eligible = (product) => product.available !== false && !/(?:0%\s*vat|tax[- ]?(?:free|exemption)|【ua】|trolling motor|electric motor)/i.test(product.name);
+    const eligible = (product) => product.available !== false
+      && !isPowerQueenRegionRestrictedOffer(product)
+      && !/(?:0%\s*vat|tax[- ]?(?:free|exemption)|【ua】|trolling motor|electric motor)/i.test(product.name);
     const batteries = parsed.filter((product) =>
       product.category === "battery" && eligible(product)
       && [12, 24].includes(product.specs.voltageV)

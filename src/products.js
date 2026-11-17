@@ -1,5 +1,6 @@
 import { calculatePowerStationProfile } from "./power-station.js";
 import { batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
+import { isPowerQueenRegionRestrictedOffer } from "./powerqueen-expansion.js?v=20261117-pq-region1";
 
 const MERCHANTS = {
   reslshop: {
@@ -405,7 +406,8 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
 // Existing integrations that do not provide source metadata remain compatible;
 // any explicitly reported non-OK source must fail closed.
 export function hasCurrentRecommendationSource(product, sources = null) {
-  if (!product || product.staleSource === true || isConfirmedDiscontinuedProduct(product)) return false;
+  if (!product || product.staleSource === true || isConfirmedDiscontinuedProduct(product)
+    || isPowerQueenRegionRestrictedOffer(product)) return false;
   const source = sources && typeof sources === "object" && product.merchant
     ? sources[product.merchant] : null;
   return !source || source.status === "ok";
