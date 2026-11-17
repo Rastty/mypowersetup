@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
 import { projectCalculatorOffers, projectDcdcGuideOffers, projectInverterCalculatorOffers, projectSolarCalculatorOffers } from "../src/calculator-offer-catalog.js";
+import { assertCzBuyerFeedContinuity } from "../src/cz-buyer-feed-continuity.js";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 
 const feeds = [
@@ -115,8 +116,12 @@ const catalogProducts = relevant.map((product) => ({
 if (products.length === 0) {
   throw new Error("Nepodařilo se načíst žádný produktový feed.");
 }
-await mkdir("data", { recursive: true });
 const fullCatalog = { generatedAt: new Date().toISOString(), sources, products: catalogProducts };
+// A successful-but-truncated feed is not evidence that reviewed stock vanished.
+// Check BEFORE touching any committed artifact, so an unsafe refresh cannot
+// replace a still-time-bounded buyer snapshot with empty recommendations.
+assertCzBuyerFeedContinuity(previousCatalog, fullCatalog);
+await mkdir("data", { recursive: true });
 await writeFile(
   "data/products.json",
   `${JSON.stringify(fullCatalog)}\n`
