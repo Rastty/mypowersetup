@@ -52,3 +52,15 @@ test("expansion desktop nav gets the same spaced flex layout as core nav and col
   assert.match(browserSmoke, /smokeExpansionNavigation\(cdp\)/);
   assert.match(browserSmoke, /desktop guide\/method\/about links touch/);
 });
+
+test("PT, RO and SI homepage heroes fill the available width instead of reserving an empty visual column", async () => {
+  const css = await readFile(new URL("../styles.css", import.meta.url), "utf8");
+  assert.match(css, /\.hero:has\(> \.hero-copy:only-child\) \{[\s\S]*?grid-template-columns: minmax\(0, 1fr\);/);
+  assert.match(css, /\.hero:has\(> \.hero-copy:only-child\) \.hero-copy \{ max-width: 980px; \}/);
+  for (const market of ["pt", "ro", "si"]) {
+    const html = await readFile(new URL(`../${market}/index.html`, import.meta.url), "utf8");
+    const hero = html.match(/<section class="hero"[\s\S]*?<\/section>/)?.[0] || "";
+    assert.match(hero, /<div class="hero-copy">/);
+    assert.doesNotMatch(hero, /class="hero-visual"/, `${market}: visual column requires a real illustration`);
+  }
+});
