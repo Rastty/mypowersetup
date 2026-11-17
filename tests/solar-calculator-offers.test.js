@@ -20,7 +20,8 @@ const calc = (systemVoltage, solarWatts) => ({ systemVoltage, solarWatts });
 
 test("solar snapshot is a same-source, exact-SKU, bounded view of the feed", () => {
   assert.deepEqual(compact, projectSolarCalculatorOffers(full, Date.parse(full.generatedAt)));
-  assert.equal(compact.products.length, 3);
+  assert.equal(compact.products.length, 2);
+  assert.equal(compact.products.some(p => p.id === "solarimport:E7366"), false);
   assert.equal(acceptSolarCalculatorSnapshot(compact), true);
   assert.ok(JSON.stringify(compact).length < 2700);
   assert.ok(JSON.stringify(compact).length * 50 < JSON.stringify(full).length);
@@ -41,7 +42,7 @@ test("solar buyers only match nominal 12V panel quantities of at most four", () 
   assert.equal(result.solarWatts, 450);
   const offers = selectSolarCalculatorOffers(compact, result, now);
   assert.deepEqual(offers.map(p => [p.id, p.recommendedQuantity]), [
-    ["solarimport:E8934", 3], ["solarimport:E7366", 3], ["solarimport:E8722", 4],
+    ["solarimport:E8934", 3], ["solarimport:E8722", 4],
   ]);
   assert.equal(offers[0].recommendedQuantity * offers[0].specs.powerW >= result.solarWatts, true);
   assert.equal(selectSolarCalculatorOffers(compact, calc(24, 450), now).length, 0);
@@ -152,7 +153,7 @@ test("solar buyer uses a real submitted result, tracks consented product exposur
   assert.equal(h.fetchCount, 0);
   await h.buyer.update(calc(12, 450));
   assert.equal(h.fetchCount, 1);
-  assert.equal(h.list.childElementCount, 3);
+  assert.equal(h.list.childElementCount, 2);
   const link = h.list.children[0].children.find(p => p.tag === "a");
   const url = new URL(link.href);
   assert.equal(url.searchParams.get("a_aid"), "f34c86c8");

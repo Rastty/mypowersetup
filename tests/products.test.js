@@ -2,7 +2,19 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { parseProductFeed } from "../src/feed.js";
-import { buildAffiliateUrl, classifyProduct, configureMerchantAffiliate, extractSpecs, normalizeProduct, recommendProducts, refreshCatalogProduct } from "../src/products.js";
+import { buildAffiliateUrl, classifyProduct, configureMerchantAffiliate, extractSpecs, hasCurrentRecommendationSource, normalizeProduct, recommendProducts, refreshCatalogProduct } from "../src/products.js";
+
+test("discontinued E7366 cannot re-enter recommendations via a fresh or stored feed", () => {
+  const product = normalizeProduct({
+    id: "E7366", name: "Victron Energy 12V Fotovoltaický panel 175Wp",
+    url: "https://www.solar-import.cz/ramove-male/victron-energy-solarni-panel-175w-12v--polykrystalicky/",
+    category: "Solární panely", price: "2518", available: true,
+  }, "solarimport");
+  assert.equal(product.available, false);
+  const legacy = { ...product, available: true };
+  assert.equal(refreshCatalogProduct(legacy).available, false);
+  assert.equal(hasCurrentRecommendationSource(legacy, { solarimport: { status: "ok" } }), false);
+});
 
 test("affiliate deeplink keeps the exact product destination", () => {
   const destination = "https://www.reslshop.cz/markyza-pro-obytne-dodavky-charly-charlyne/";

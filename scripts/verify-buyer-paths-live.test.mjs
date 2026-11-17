@@ -81,8 +81,8 @@ test("seventeen CZ, SK, PL and HU buyer pages, exact JS and compact catalogs are
   assert.equal(result.inverterCatalog.reviewedProducts, 13);
   assert.equal(result.inverterCatalog.outboundClickVerified, false);
   assert.equal(result.inverterCatalog.commissionVerified, false);
-  assert.equal(result.solarCatalog.reviewedProducts, 3);
-  assert.equal(result.solarCatalog.eligible12v450wp, 3);
+  assert.equal(result.solarCatalog.reviewedProducts, 2);
+  assert.equal(result.solarCatalog.eligible12v450wp, 2);
   assert.equal(result.solarCatalog.eligible24v450wp, 0);
   assert.equal(result.solarCatalog.commissionVerified, false);
   assert.ok(result.skSolarCatalog.reviewedProducts <= 2);
@@ -276,8 +276,8 @@ test("new public DC-DC view has exact source parity and never asserts recorded b
 test("public solar calculator and exact small panel catalog reject stale release bytes", async () => {
   const expected = await local("data/solar-calculator-offers-cz.json");
   const inspected = checkPublicSolarCatalog(expected, expected, Date.parse(JSON.parse(expected).generatedAt));
-  assert.equal(inspected.reviewedProducts, 3);
-  assert.equal(inspected.eligible12v450wp, 3);
+  assert.equal(inspected.reviewedProducts, 2);
+  assert.equal(inspected.eligible12v450wp, 2);
   assert.equal(inspected.eligible24v450wp, 0);
   assert.equal(inspected.outboundClickVerified, false);
   assert.throws(() => checkPublicSolarCatalog("x".repeat(2702), "x".repeat(2702)),
