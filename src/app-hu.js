@@ -10,7 +10,7 @@ import { calculateRoofFit } from "./roof.js";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261117-solar-value1";
 import { visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
-import { assessRecommendationCoverage } from "./recommendation-coverage.js";
+import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { calculatePowerStationProfile } from "./power-station.js";
 import { buildPlainLanguageVerdict } from "./verdict.js";
 import { HU_UI_COPY } from "./ui-copy-hu.js?v=20261117-consistent-products1";

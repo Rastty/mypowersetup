@@ -11,7 +11,7 @@ import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261117-solar-value1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
-import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20260828-1";
+import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
@@ -552,7 +552,7 @@ function renderProductRecommendations(result) {
 
   heading.textContent = "Komponenty zgodne z obliczeniem";
   intro.textContent = `Najpierw sprawdzamy zgodność techniczną. Przy dużej różnicy cen wariant polecany uwzględnia także porównywalne oferty w tej samej walucie.${freshness}`;
-  renderProductPackages(packages);
+  renderProductPackages(packages, coverage);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Czego katalog jeszcze nie obejmuje:</strong> ${coverage.message}</p>`;
   const productGroups = Object.entries(recommendations)
     .filter(([, items]) => items.length)
@@ -568,7 +568,7 @@ function renderProductRecommendations(result) {
   trackVisibleProductChoices();
 }
 
-function renderProductPackages(variants) {
+function renderProductPackages(variants, coverage) {
   const target = document.querySelector("#package-variants");
   const copy = {
     economy: ["Oszczędny", "Najniższa znana cena wśród zgodnych opcji."],
@@ -582,7 +582,10 @@ function renderProductPackages(variants) {
   const stalePriceNote = Object.values(productCatalogSources).some((source) => source?.status === "stale")
     ? '<p class="catalog-source-note is-stale"><strong>Aktualizacja cen:</strong> Dla jednego sklepu używamy ostatniego poprawnie pobranego katalogu. Aktualną cenę i dostępność sprawdź na stronie produktu.</p>'
     : "";
-  target.innerHTML = `<div class="package-intro"><strong>Zacznij od wariantu polecanego</strong><p>Wariant polecany pokazujemy jako pierwszy: uwzględnia dopasowanie parametrów, dostępne dane i cenę. Jeśli dostępne są inne, różniące się zestawy, porównaj ich ceny i zapas techniczny. Nie powielamy identycznych list zakupowych. Wszystkie pokazane warianty spełniają wynik obliczeń; to nie jest kompletny materiał instalacyjny ani kosztorys wykonania.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
+  const manualChargingNote = coverage?.manualDesignMessage
+    ? `<p class="recommendation-coverage-note is-manual-design"><strong>Indywidualny projekt ładowania:</strong> ${escapeHtml(coverage.manualDesignMessage)}</p>`
+    : "";
+  target.innerHTML = `<div class="package-intro"><strong>Zacznij od wariantu polecanego</strong><p>Wariant polecany pokazujemy jako pierwszy: uwzględnia dopasowanie parametrów, dostępne dane i cenę. Jeśli dostępne są inne, różniące się zestawy, porównaj ich ceny i zapas techniczny. Nie powielamy identycznych list zakupowych. Wszystkie pokazane warianty spełniają wynik obliczeń; to nie jest kompletny materiał instalacyjny ani kosztorys wykonania.</p>${manualChargingNote}${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
     return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Pokrycie obliczenia: ${variant.items.length}/${variant.requiredCategoryCount} kategorii</small><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena w sklepie" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientacyjna suma produktów; bez dostawy i montażu.</small></article>`;
   }).join("")}</div>`;

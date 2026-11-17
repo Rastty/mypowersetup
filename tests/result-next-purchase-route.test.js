@@ -24,12 +24,12 @@ test("CZ SK and PL derive the result-next route from the same package engine use
     const source = await readFile(new URL(`../src/${application}`, import.meta.url), "utf8");
     assert.match(source, /const packages = buildProductPackages\(rankedRecommendations, result\)/, application);
     assert.match(source, /const hasRecommendedPackage = packages\.some\(\(\{ id \}\) => id === "recommended"\)/, application);
-    assert.match(source, /renderProductPackages\(packages\)/, application);
+    assert.match(source, /renderProductPackages\(packages, coverage\)/, application);
   }
 });
 
 test("Hungarian result-next route uses the already validated application packages", async () => {
   const source = await readFile(new URL("../src/app-hu-browser.js", import.meta.url), "utf8");
   assert.match(source, /output\.packages\?\.some\(\(\{ id \}\) => id === "recommended"\)/);
-  assert.match(source, /renderHungarianProductPackages\(total \? output\.packages : \[\]\)/);
+  assert.match(source, /renderHungarianProductPackages\(total \? output\.packages : \[\], coverage\)/);
 });
