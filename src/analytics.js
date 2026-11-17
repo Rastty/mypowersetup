@@ -7,7 +7,7 @@ import { rememberGuideAttribution, resolveGuideAttribution } from "./guide-attri
 import { enhanceHomepageLanguageSwitch } from "./language-switch.js";
 import { enhanceGuideConversion } from "./guide-conversion.js";
 import { enhanceHomepageMoneyRouting } from "./homepage-money-routing.js";
-import { enhanceCoreResultGuides } from "./core-result-guides.js";
+import { enhanceCoreResultGuides } from "./core-result-guides.js?v=20261117-cz-offers-first";
 
 const MEASUREMENT_ID = "G-TDNRBM2V2J";
 const CONSENT_KEY = "mypowersetup_analytics_consent";

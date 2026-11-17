@@ -344,7 +344,7 @@ test("GA4 is available site-wide only after an explicit localized choice", async
   assert.match(analytics, /Povoliť analytiku/);
   assert.match(analytics, /Zezwól na analitykę/);
   for (const source of [app, appSk, appPl]) assert.match(source, /MyPowerSetupAnalytics\?\.track/);
-  for (const html of htmlFiles) assert.match(html, /\/src\/analytics\.js\?v=202608(?:24-1|27-(?:pltrust1|plguides1)|28-(?:plcharging1|plpower1|plfinal1))/);
+  for (const html of htmlFiles) assert.match(html, /\/src\/analytics\.js\?v=(?:20261117-cz-offers-first|202608(?:24-1|27-(?:pltrust1|plguides1)|28-(?:plcharging1|plpower1|plfinal1)))/);
   for (const privacy of [czechPrivacy, slovakPrivacy, polishPrivacy]) {
     assert.ok(privacy.includes("data-analytics-settings"));
     assert.ok(privacy.includes("https://policies.google.com/privacy"));
