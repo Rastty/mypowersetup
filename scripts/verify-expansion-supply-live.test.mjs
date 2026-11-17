@@ -53,13 +53,13 @@ test("every public expansion calculator and both modules pass exact served-versi
   assert.equal(proof.sourceParity, true);
   assert.equal(proof.ga4EventsObserved, false);
   assert.equal(proof.purchaseOrCommissionVerified, false);
-  assert.match(proof.browserScript, /20261117-portable-specs1/);
+  assert.match(proof.browserScript, /20261117-pv-check1/);
   assert.match(proof.supplyScript, /20261113-explicit-intent1/);
   assert.match(proof.priceScript, /20261111-solar-subtotal1/);
-  assert.match(proof.specsScript, /20261117-portable-specs1/);
+  assert.match(proof.specsScript, /20261117-pv-check1/);
   assert.match(proof.rolesScript, /20261113-complete-price1/);
   assert.equal(proof.marketModules.length, 3);
-  assert.ok(proof.marketModules.filter(row => row.market === "pt").every(row => row.script.includes("20261117-portable-specs1")));
+  assert.ok(proof.marketModules.filter(row => row.market === "pt").every(row => row.script.includes("20261117-pv-check1")));
   assert.ok(proof.marketModules.filter(row => row.market !== "pt").every(row => row.script.includes("20261111-source-health1")));
   assert.match(proof.componentScript, /20261111-source-health1/);
   assert.deepEqual(mock.requests.map(r => r.path), [
@@ -73,7 +73,7 @@ test("every public expansion calculator and both modules pass exact served-versi
 
 test("a stale public market HTML version fails rather than trusting Pages deploy status", async () => {
   const mock = server({ transform: ({ path, text }) => path === "ro/index.html"
-    ? { text: text.replace("20261117-portable-specs1", "20261113-stale") } : null });
+    ? { text: text.replace("20261117-pv-check1", "20261113-stale") } : null });
   await assert.rejects(
     verifyExpansionSupplyLive({ fetchImpl: mock.fetchImpl, sleep: async () => {} }),
     /EXPANSION_PUBLIC_SCRIPT_VERSION_DRIFT_ro/,

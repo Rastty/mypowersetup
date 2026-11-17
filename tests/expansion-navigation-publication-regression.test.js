@@ -22,7 +22,7 @@ for (const [market, seed, headerLinks, footerOnlyLinks] of CASES) {
     for (const href of headerLinks) assert.match(header, new RegExp(`href="${href.replaceAll("/", "\\/")}"`));
     for (const href of [...headerLinks, ...footerOnlyLinks]) assert.match(footer, new RegExp(`href="${href.replaceAll("/", "\\/")}"`));
     assert.equal(footer.includes("</a><a"), false, "footer links need a wrapping opportunity on narrow screens");
-    assert.match(html, /expansion-calculator-browser\.js\?v=20261117-portable-specs1/);
+    assert.match(html, /expansion-calculator-browser\.js\?v=20261117-pv-check1/);
   });
 }
 

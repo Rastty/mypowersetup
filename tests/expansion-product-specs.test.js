@@ -30,6 +30,6 @@ test("partial portable DTO never invents optional PV or 12 V outputs", () => {
 
 test("expansion browser renders portable cards with the guarded spec formatter", () => {
   const browser = readFileSync(new URL("../src/expansion-calculator-browser.js", import.meta.url), "utf8");
-  assert.match(browser, /import \{ expansionPowerStationSpecs \} from "\.\/expansion-product-specs\.js\?v=20261117-portable-specs1";/);
+  assert.match(browser, /import \{ expansionPowerStationSpecs \} from "\.\/expansion-product-specs\.js\?v=20261117-pv-check1";/);
   assert.match(browser, /if \(item\.category === "power_station"\) return expansionPowerStationSpecs\(item\)/);
 });
