@@ -9,7 +9,7 @@ import { calculateChargingPlan } from "./charging.js?v=20261117-charging-reason1
 import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
-import { buildProductPackages } from "./packages.js?v=20261117-solar-value1";
+import { buildProductPackages } from "./packages.js?v=20261117-multi-currency1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
@@ -586,7 +586,16 @@ function renderProductPackages(variants, coverage) {
     : "";
   target.innerHTML = `<div class="package-intro"><strong>Začnite odporúčanou variantou</strong><p>Odporúčanú zostavu zobrazujeme ako prvú: zohľadňuje vhodnosť parametrov, podklady aj cenu. Ak sú dostupné ďalšie odlišné varianty, porovnajte ich podľa ceny a technickej rezervy. Rovnaké nákupné zoznamy nezobrazujeme opakovane. Všetky zobrazené varianty spĺňajú vypočítanú požiadavku; nejde o kompletný inštalačný materiál ani realizačný rozpočet.</p>${manualChargingNote}${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
-    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Pokrytie výpočtu: ${variant.items.length}/${variant.requiredCategoryCount} kategórií</small><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena podľa obchodu" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientačný súčet produktov; doprava a montáž nie sú zahrnuté.</small></article>`;
+    const subtotals = variant.priceSubtotals || [];
+    const hasUnpricedItems = (variant.unpricedItemCount || 0) > 0;
+    const priceLabel = variant.totalPriceCzk !== null ? formatPrice(variant.totalPriceCzk, variant.totalCurrency)
+      : subtotals.length ? `${hasUnpricedItems ? "Len známe ceny" : "Ceny podľa meny"}: ${subtotals.map(({ amount, currency }) => formatPrice(amount, currency)).join(" + ")}` : "Cena podľa obchodu";
+    const priceNote = hasUnpricedItems && subtotals.length
+      ? "Nie všetky ceny sú dostupné; nejde o cenu celej zostavy. Doprava a montáž nie sú zahrnuté."
+      : subtotals.length > 1
+        ? "Orientačné súčty podľa mien bez prepočtu; doprava a montáž nie sú zahrnuté."
+        : "Orientačný súčet produktov; doprava a montáž nie sú zahrnuté.";
+    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Pokrytie výpočtu: ${variant.items.length}/${variant.requiredCategoryCount} kategórií</small><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${priceLabel}</b><small class="package-price-note">${priceNote}</small></article>`;
   }).join("")}</div>`;
 }
 

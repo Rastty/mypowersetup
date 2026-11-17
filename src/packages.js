@@ -90,16 +90,33 @@ function buildVariant(id, categories, recommendations, selector) {
   });
   const priced = items.map(effectivePrice);
   const currencies = new Set(items.map(({ product }) => product.priceCurrency).filter(Boolean));
+  // The feed's `priceCzk` field contains LOCAL currency amounts on foreign
+  // markets. Retain separately priced subtotals; never add PLN, EUR and CZK.
+  const currencyTotals = new Map();
+  let unpricedItemCount = 0;
+  for (const candidate of items) {
+    const price = effectivePrice(candidate);
+    const currency = candidate.product.priceCurrency;
+    if (price === null || typeof currency !== "string" || !/^[A-Z]{3}$/.test(currency)) {
+      unpricedItemCount += 1;
+      continue;
+    }
+    currencyTotals.set(currency, (currencyTotals.get(currency) || 0) + price);
+  }
+  const completeSingleCurrency = currencies.size === 0
+    || (currencies.size === 1 && items.every(({ product }) => product.priceCurrency === [...currencies][0]));
   return {
     id,
     items,
     ...packageQuality(items),
     purchaseSequence: items.map(({ category }) => category),
     requiredCategoryCount: categories.length,
-    totalPriceCzk: priced.every((price) => price !== null) && currencies.size <= 1
+    totalPriceCzk: priced.every((price) => price !== null) && completeSingleCurrency
       ? priced.reduce((total, price) => total + price, 0)
       : null,
     totalCurrency: currencies.size === 1 ? [...currencies][0] : null,
+    priceSubtotals: [...currencyTotals].map(([currency, amount]) => ({ currency, amount })),
+    unpricedItemCount,
   };
 }
 

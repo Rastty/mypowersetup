@@ -9,7 +9,7 @@ import { calculateChargingPlan } from "./charging.js?v=20261117-charging-reason1
 import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
-import { buildProductPackages } from "./packages.js?v=20261117-solar-value1";
+import { buildProductPackages } from "./packages.js?v=20261117-multi-currency1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
@@ -587,7 +587,16 @@ function renderProductPackages(variants, coverage) {
     : "";
   target.innerHTML = `<div class="package-intro"><strong>Zacznij od wariantu polecanego</strong><p>Wariant polecany pokazujemy jako pierwszy: uwzględnia dopasowanie parametrów, dostępne dane i cenę. Jeśli dostępne są inne, różniące się zestawy, porównaj ich ceny i zapas techniczny. Nie powielamy identycznych list zakupowych. Wszystkie pokazane warianty spełniają wynik obliczeń; to nie jest kompletny materiał instalacyjny ani kosztorys wykonania.</p>${manualChargingNote}${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
-    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Pokrycie obliczenia: ${variant.items.length}/${variant.requiredCategoryCount} kategorii</small><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena w sklepie" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientacyjna suma produktów; bez dostawy i montażu.</small></article>`;
+    const subtotals = variant.priceSubtotals || [];
+    const hasUnpricedItems = (variant.unpricedItemCount || 0) > 0;
+    const priceLabel = variant.totalPriceCzk !== null ? formatPrice(variant.totalPriceCzk, variant.totalCurrency)
+      : subtotals.length ? `${hasUnpricedItems ? "Tylko znane ceny" : "Ceny według waluty"}: ${subtotals.map(({ amount, currency }) => formatPrice(amount, currency)).join(" + ")}` : "Cena w sklepie";
+    const priceNote = hasUnpricedItems && subtotals.length
+      ? "Nie wszystkie ceny są dostępne; to nie jest cena całego zestawu. Bez dostawy i montażu."
+      : subtotals.length > 1
+        ? "Orientacyjne sumy według waluty, bez przeliczania; bez dostawy i montażu."
+        : "Orientacyjna suma produktów; bez dostawy i montażu.";
+    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Pokrycie obliczenia: ${variant.items.length}/${variant.requiredCategoryCount} kategorii</small><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${priceLabel}</b><small class="package-price-note">${priceNote}</small></article>`;
   }).join("")}</div>`;
 }
 
