@@ -17,6 +17,10 @@ const CONFIG = Object.freeze({
 });
 
 const EXPANSION_ARTICLE_DATES = Object.freeze({ datePublished: "2026-08-30", dateModified: "2026-09-07" });
+const EXPANSION_ARTICLE_MODIFIED_OVERRIDES = Object.freeze({
+  "/pt/guias/capacidade-bateria-autocaravana/": "2026-11-17",
+  "/si/vodici/kapaciteta-baterije-avtodom/": "2026-11-17",
+});
 const EXPANSION_ARTICLE_COPY = Object.freeze({
   pt: Object.freeze({ about: "/pt/sobre-o-projeto/", byline: "Publicado em 30 de agosto de 2026 · Autor:" }),
   ro: Object.freeze({ about: "/ro/despre-proiect/", byline: "Publicat la 30 august 2026 · Autor:" }),
@@ -205,7 +209,7 @@ function enhanceExpansionArticleAuthority(html, market, route) {
     foundArticle = true;
     for (const article of articles) {
       article.datePublished ||= EXPANSION_ARTICLE_DATES.datePublished;
-      article.dateModified ||= EXPANSION_ARTICLE_DATES.dateModified;
+      article.dateModified = [article.dateModified, EXPANSION_ARTICLE_MODIFIED_OVERRIDES[route] || EXPANSION_ARTICLE_DATES.dateModified].filter(Boolean).sort().at(-1);
       article.author = { ...author, ...(article.author || {}) };
       article.publisher = { ...publisher, ...(article.publisher || {}) };
     }
