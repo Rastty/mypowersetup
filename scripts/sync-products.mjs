@@ -4,6 +4,7 @@ import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
 import { projectCalculatorOffers, projectDcdcGuideOffers, projectInverterCalculatorOffers, projectSolarCalculatorOffers } from "../src/calculator-offer-catalog.js";
 import { assertCzBuyerFeedContinuity } from "../src/cz-buyer-feed-continuity.js";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
+import { loadSolarImportGoogleFallback, solarImportNeedsFallback } from "./lib/sync-solarimport-google.mjs";
 
 const feeds = [
   ["reslshop", process.env.RESLSHOP_FEED_URL, true],
@@ -60,30 +61,50 @@ for (const [merchant, url] of feeds) {
         throw new Error("VSelektro feed URL nevyhovuje schválenému bezpečnostnímu formátu");
       }
     }
-    const response = await fetch(url, {
-      redirect: merchant === "vselektro" ? "manual" : "follow",
-      headers: {
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36",
-        "accept": "application/xml,text/xml,application/rss+xml,text/plain;q=0.9,*/*;q=0.8",
-        "accept-language": "cs-CZ,cs;q=0.9,en;q=0.7",
-        "cache-control": "no-cache",
-        "referer": new URL(url).origin + "/"
-      }
-    });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    let parsed = [];
+    let primaryFailed = false;
+    try {
+      const response = await fetch(url, {
+        redirect: merchant === "vselektro" ? "manual" : "follow",
+        headers: {
+          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36",
+          "accept": "application/xml,text/xml,application/rss+xml,text/plain;q=0.9,*/*;q=0.8",
+          "accept-language": "cs-CZ,cs;q=0.9,en;q=0.7",
+          "cache-control": "no-cache",
+          "referer": new URL(url).origin + "/"
+        }
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-    const xml = await response.text();
-    const parsed = merchant === "vselektro"
-      ? parseVselektroVerifiedFeed(xml).map((product) => ({
-          ...product,
-          // A successful live merchant fetch observes price/stock now; it does
-          // NOT renew the independent 2026-10-13 technical specification review.
-          offerObservedAt: new Date().toISOString()
-        }))
-      : parseProductFeed(xml, merchant);
-    if (parsed.length === 0) throw new Error("feed neobsahuje použitelné produkty");
+      const xml = await response.text();
+      parsed = merchant === "vselektro"
+        ? parseVselektroVerifiedFeed(xml).map((product) => ({
+            ...product,
+            // A successful live merchant fetch observes price/stock now; it does
+            // NOT renew the independent 2026-10-13 technical specification review.
+            offerObservedAt: new Date().toISOString()
+          }))
+        : parseProductFeed(xml, merchant);
+      if (parsed.length === 0) throw new Error("feed neobsahuje použitelné produkty");
+    } catch (error) {
+      if (merchant !== "solarimport") throw error;
+      // A genuinely unavailable primary export can also be recovered from the
+      // credential-free merchant source; never log the keyed primary URL.
+      primaryFailed = true;
+    }
+    let feedSource = "primary";
+    if (merchant === "solarimport" && (primaryFailed || solarImportNeedsFallback(parsed))) {
+      // The primary feed can be syntactically valid yet omit entire reviewed
+      // inverter/panel categories. Only a sufficiently complete independent
+      // export from the same approved merchant can refresh those buyer paths.
+      // A failed fallback is treated as a failed merchant sync, not success.
+      const fallback = await loadSolarImportGoogleFallback();
+      parsed = fallback.products;
+      feedSource = "public_google";
+      console.log(`solarimport: primární export je neúplný nebo nedostupný; bezpečný veřejný export má ${fallback.reviewedInverters} měničů a ${fallback.reviewedPanels} panely.`);
+    }
     products.push(...parsed);
-    sources[merchant] = { status: "ok", parsedProducts: parsed.length };
+    sources[merchant] = { status: "ok", parsedProducts: parsed.length, ...(merchant === "solarimport" ? { feedSource } : {}) };
     console.log(`${merchant}: načteno ${parsed.length} produktů.`);
   } catch (error) {
     // A feed URL may carry a bearer key. Never put that URL or a raw fetch
