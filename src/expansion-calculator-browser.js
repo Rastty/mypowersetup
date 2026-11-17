@@ -7,7 +7,7 @@ import { expansionComponentPlan } from "./expansion-component-plan.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { expansionPurchaseRoutePriority } from "./expansion-purchase-route-priority.js";
 import { classifyExpansionSupplyOutcome, expansionSupplyEventName, isDeliberateExpansionCalculation } from "./expansion-supply-evidence.js?v=20261113-explicit-intent1";
-import { bindAffiliateImpressionTracking, trackAffiliateClick, trackVisibleAffiliateImpressions } from "./affiliate-analytics.js?v=20260902-product-impressions1";
+import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js?v=20261113-complete-price1";
 import { expansionLinePrice } from "./expansion-line-price.js?v=20261111-solar-subtotal1";
 import { groupExpansionProductsForDisclosure } from "./expansion-product-disclosure.js";
@@ -22,7 +22,7 @@ const steps = [...root.querySelectorAll("[data-form-step]")];
 const stepButtons = [...root.querySelectorAll("[data-step-target]")];
 const error = root.querySelector("[data-calculator-error]");
 const result = root.querySelector("[data-result]");
-bindAffiliateImpressionTracking(root, track);
+const scanVisibleProductChoices = bindAffiliateImpressionTracking(root, track);
 
 const labels = {
   ro: {
@@ -442,7 +442,13 @@ function renderCatalogUnavailable() { return `<p class="result-products-empty" d
 function renderNoVerifiedProducts() { return `<p class="result-products-empty" data-recommendation-empty>${escapeHtml(labels.noProducts)}</p>`; }
 function renderPartialSourceNotice() { return `<p class="result-products-empty" data-recommendation-partial-source>${escapeHtml(labels.partialSourceUnavailable)}</p>`; }
 function renderProductLoading() { return `<p class="result-products-loading" data-recommendation-loading>${escapeHtml(labels.loadingProducts)}</p>`; }
-function trackRenderedProductChoices(target) { return trackVisibleAffiliateImpressions(target, track); }
+// Register freshly rendered offers with the viewport observer. A product choice
+// is not an impression until at least half of its link is actually visible;
+// recording every inserted card would inflate the conversion denominator.
+function trackRenderedProductChoices(target) {
+  if (!target?.isConnected) return false;
+  return scanVisibleProductChoices();
+}
 function renderResultGuides() { const config = expansionResultGuides(locale); return `<aside class="related result-guides" data-result-guides><h4>${escapeHtml(config.title)}</h4><p>${escapeHtml(config.intro)}</p><ul>${config.links.map((item) => `<li><a data-result-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`).join("")}</ul></aside>`; }
 function renderComponentPlan(value) { const plan = expansionComponentPlan(locale, value); return `<section class="result-products component-plan" data-component-plan><h4>${escapeHtml(plan.title)}</h4><p>${escapeHtml(plan.intro)}</p><div class="result-grid">${plan.items.map((item) => `<article class="result-card" data-component-item="${escapeHtml(item.topic)}" data-required="${item.required}"><span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.spec)}</strong><a data-component-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.guideLabel)}</a></article>`).join("")}</div><p><small>${escapeHtml(plan.notice)}</small></p></section>`; }
 function renderProductSection(id, products, gap = "", routePriority = {}, sourceGap = false) {

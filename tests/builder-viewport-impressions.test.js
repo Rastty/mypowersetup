@@ -163,3 +163,15 @@ test("all four core Builders wire the observer-aware binder and versioned JavaSc
     assert.ok(page.includes("20261108-click-evidence-builder4"),locale);
   }
 });
+
+test("PT/RO/SI result offers are observed, not counted merely because cards were rendered",async()=>{
+  const source=await readFile("src/expansion-calculator-browser.js","utf8");
+  assert.match(source,/const scanVisibleProductChoices = bindAffiliateImpressionTracking\(root, track\)/);
+  assert.match(source,/function trackRenderedProductChoices\(target\)\s*\{[\s\S]*?scanVisibleProductChoices\(\)/);
+  assert.doesNotMatch(source,/trackVisibleAffiliateImpressions/);
+  assert.match(source,/affiliate-analytics\.js\?v=20261108-viewport1/);
+  for (const market of ["pt","ro","si"]) {
+    const page=await readFile(`${market}/index.html`,"utf8");
+    assert.match(page,/expansion-calculator-browser\.js\?v=20261117-viewport1/);
+  }
+});

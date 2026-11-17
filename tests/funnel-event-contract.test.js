@@ -31,7 +31,7 @@ test("core Builders use the viewport impression version; controlled expansion ke
   }
   const expansion = await readFile(expansionBrowserFile, "utf8");
   assert.match(expansion, /bindAffiliateImpressionTracking\(/);
-  assert.match(expansion, /affiliate-analytics\.js\?v=20260902-product-impressions1/);
+  assert.match(expansion, /affiliate-analytics\.js\?v=20261108-viewport1/);
 });
 
 test("all markets use one shared calculator-to-guide event", async () => {
