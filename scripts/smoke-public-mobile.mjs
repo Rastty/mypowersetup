@@ -222,6 +222,8 @@ async function smokeExpansionNavigation(client) {
         const visibleLinks = links.filter(link => getComputedStyle(link).display !== 'none');
         const linkRects = visibleLinks.map(link => link.getBoundingClientRect());
         const gaps = linkRects.slice(1).map((rect, index) => rect.left - linkRects[index].right);
+        const hero = document.querySelector('.hero');
+        const heroHeading = hero.querySelector('h1').getBoundingClientRect();
         return {
           viewport: innerWidth,
           scrollWidth: document.documentElement.scrollWidth,
@@ -230,6 +232,9 @@ async function smokeExpansionNavigation(client) {
           minLinkGap: gaps.length ? Math.min(...gaps) : null,
           brandToNavGap: navRect.left - brand.right,
           languageVisible: nav.querySelector('.language-select').getBoundingClientRect().width > 0,
+          heroHeight: hero.getBoundingClientRect().height,
+          heroColumns: getComputedStyle(hero).gridTemplateColumns.trim().split(/\s+/).length,
+          heroHeadingWidth: heroHeading.width,
         };
       })()`);
       assert(actual.viewport === width, `${market}: header viewport mismatch`);
@@ -239,10 +244,16 @@ async function smokeExpansionNavigation(client) {
       if (width === 1280) {
         assert(actual.visibleLinks === 3 && actual.minLinkGap >= 18,
           `${market}: desktop guide/method/about links touch (${actual.minLinkGap}px gap)`);
+        assert(actual.heroColumns === 1, `${market}: unused second hero grid column takes space`);
+        assert(actual.heroHeadingWidth >= 740,
+          `${market}: hero headline remains squeezed into ${actual.heroHeadingWidth}px`);
+        assert(actual.heroHeight <= 700,
+          `${market}: hero keeps calculator below the fold (${actual.heroHeight}px)`);
       } else {
         assert(actual.visibleLinks === 0, `${market}: mobile header should prioritize language selector`);
+        assert(actual.heroColumns === 1, `${market}: mobile hero uses multiple columns`);
       }
-      reports.push({ market, width, spacedNavigation: true });
+      reports.push({ market, width, spacedNavigation: true, heroHeight: actual.heroHeight });
     }
   }
   return reports;
