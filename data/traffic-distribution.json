@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-16",
+  "updatedAt": "2026-11-17",
   "policy": {
     "defaultPostingRule": "answer_first_no_link_drop",
     "allowedStatuses": ["ready_for_manual_reply", "monitor", "research_only", "replied", "closed"],
@@ -194,12 +194,13 @@
         "/pl/poradnik/agm-czy-lifepo4/",
         "/pl/poradnik/schemat-instalacji-elektrycznej-kampera/"
       ],
-      "lastKnownActivity": "2026-08-11",
+      "lastKnownActivity": "2026-10-23",
       "priority": "high",
       "fit": "direct_camper_technical_current",
-      "status": "monitor",
+      "status": "ready_for_manual_reply",
       "postingRule": "answer_first_no_link_drop",
-      "notes": "The diagnostic thread reached a concrete repair and test state. On 2026-08-11 the author thanked participants and said he would report back after the trip. Do not add another reply now; wait for a new author update or a fresh unresolved question."
+      "replyDraftPath": "docs/community/pl-ford-transit-dcdc-followup-20261117.md",
+      "notes": "Verified 2026-11-17 using the indexed print view of page 3. The author returned on 2026-10-23: after the wiring changes alternator charging is still unreliable; he added 2 × 220 W PV and an MPPT 40 A as a summer workaround but remains worried about winter. An unresolved diagnostic issue remains. A short, technically useful reply may ask for charger-input voltage under load, output current, D+/engine-detection state, BMS/temperature and alarms. Do not claim to have diagnosed his specific vehicle; no link in first reply. Recheck the live latest posts before posting and revert to monitor if answered or stale."
     },
     {
       "id": "pl-camperteam-lifepo4-use-202606",
