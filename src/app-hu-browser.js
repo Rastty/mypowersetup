@@ -1,5 +1,5 @@
 import { APPLIANCES } from "./catalog-hu.js";
-import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-charging-reason1";
+import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-installation-safety1";
 import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { HU_UI_COPY } from "./ui-copy-hu.js?v=20261117-consistent-products1";
 import { productCardPriceDetails } from "./recommendation-display.js?v=20261117-consistent-products1";
