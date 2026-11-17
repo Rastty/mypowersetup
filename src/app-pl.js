@@ -553,7 +553,7 @@ function renderProductRecommendations(result) {
   }
 
   heading.textContent = "Komponenty zgodne z obliczeniem";
-  intro.textContent = `Najpierw sprawdzamy zgodność techniczną. Kolejność uwzględnia następnie dopasowanie parametrów, dostępność i kompletność danych.${freshness}`;
+  intro.textContent = `Najpierw sprawdzamy zgodność techniczną. Przy dużej różnicy cen wariant polecany uwzględnia także porównywalne oferty w tej samej walucie.${freshness}`;
   renderProductPackages(packages);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Czego katalog jeszcze nie obejmuje:</strong> ${coverage.message}</p>`;
   const productGroups = Object.entries(recommendations)
@@ -584,7 +584,7 @@ function renderProductPackages(variants) {
   const stalePriceNote = Object.values(productCatalogSources).some((source) => source?.status === "stale")
     ? '<p class="catalog-source-note is-stale"><strong>Aktualizacja cen:</strong> Dla jednego sklepu używamy ostatniego poprawnie pobranego katalogu. Aktualną cenę i dostępność sprawdź na stronie produktu.</p>'
     : "";
-  target.innerHTML = `<div class="package-intro"><strong>Zacznij od wariantu polecanego</strong><p>Wariant polecany pokazujemy jako pierwszy: ma najlepsze dopasowanie parametrów i kompletności danych. Wariant oszczędny lub z większym zapasem traktuj jako alternatywę zależnie od ceny i oczekiwanego zapasu. Wszystkie pokazane warianty spełniają wynik obliczeń; to nie jest kompletny materiał instalacyjny ani kosztorys wykonania.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
+  target.innerHTML = `<div class="package-intro"><strong>Zacznij od wariantu polecanego</strong><p>Wariant polecany pokazujemy jako pierwszy: uwzględnia dopasowanie parametrów, dostępne dane i cenę. Jeśli dostępne są inne, różniące się zestawy, porównaj ich ceny i zapas techniczny. Nie powielamy identycznych list zakupowych. Wszystkie pokazane warianty spełniają wynik obliczeń; to nie jest kompletny materiał instalacyjny ani kosztorys wykonania.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
     return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Pokrycie obliczenia: ${variant.items.length}/${variant.requiredCategoryCount} kategorii</small><p>${description}</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Cena w sklepie" : formatPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Orientacyjna suma produktów; bez dostawy i montażu.</small></article>`;
   }).join("")}</div>`;
