@@ -5,7 +5,8 @@ import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20261023-safe-loads1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
 import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
-import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts1";
+import { calculateChargingPlan } from "./charging.js?v=20261117-charging-reason1";
+import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
 import { buildProductPackages } from "./packages.js?v=20261117-solar-value1";
@@ -476,7 +477,7 @@ function renderChargingPlan(plan, systemVoltage) {
     return;
   }
   const inputEstimate = plan.dcDc.enabled && plan.dcDc.estimatedInputCurrentAmps
-    ? ` Orientačný odber z ${plan.starterVoltage}V štartovacej sústavy pri výkone navrhnutej nabíjačky je až približne ${plan.dcDc.estimatedInputCurrentAmps} A.`
+    ? ` Orientačný odber z ${plan.starterVoltage}V štartovacej sústavy pri uvažovanom výstupnom prúde je približne ${plan.dcDc.estimatedInputCurrentAmps} A; pri individuálnom návrhu ho treba overiť.`
     : "";
   const dcDcVoltageCheck = systemVoltage === 24
     ? " Pre 24V nadstavbovú batériu musí nabíjačka výslovne podporovať prevod zo štartovacej sústavy na 24 V."
@@ -495,9 +496,7 @@ function renderChargingPlan(plan, systemVoltage) {
 function chargingCard(label, option, check) {
   if (!option.enabled) return `<article class="charging-card is-disabled"><span>${label}</span><strong>Vypnuté</strong><p>Pre tento zdroj ste nastavili 0 hodín.</p></article>`;
   const value = option.suggestedCurrentAmps ? `najmenej ${option.suggestedCurrentAmps} A` : "individuálny návrh";
-  const reason = option.suggestedCurrentAmps
-    ? `Na doplnenie dennej spotreby za ${formatNumber(option.hours)} h vychádza najmenej ${option.requiredCurrentAmps} A pri započítaní 90% účinnosti.`
-    : `Potrebných ${option.requiredCurrentAmps} A prekračuje konzervatívny plánovací limit ${option.planningCeilingAmps} A pre túto batériu.`;
+  const reason = chargingDecisionExplanation(option, "sk", formatNumber(option.hours));
   return `<article class="charging-card ${option.needsIndividualDesign ? "is-warning" : ""}"><span>${label}</span><strong>${value}</strong><p>${reason}</p><small>${check}</small></article>`;
 }
 
