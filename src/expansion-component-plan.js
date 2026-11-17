@@ -14,10 +14,10 @@ const CONFIG = Object.freeze({
       battery: (value) => `${value.batteryAh} Ah / ${value.batteryWh} Wh · ${value.batteryLabel} · sistema ${value.systemVoltage} V`,
       solar: (value) => `${value.solarWatts} Wp no total`,
       mppt: (value) => `pelo menos ${value.controllerAmps} A para um sistema de ${value.systemVoltage} V`,
-      inverter: (value) => `pelo menos ${value.inverterWatts} W de potência calculada`,
+      inverter: (value) => `pelo menos ${value.inverterWatts} W de potência AC contínua · entrada DC ${value.systemVoltage} V · onda sinusoidal pura; confirmar o pico de arranque`,
       inverterNone: "Não é necessário um inversor separado para as cargas DC selecionadas.",
     }),
-    notice: "Dimensiona cabos e fusíveis apenas depois de conhecer o comprimento do percurso, o método de instalação e os limites do fabricante.",
+    notice: "Confirma separadamente se precisas de carregamento DC–DC ou de 230 V. Dimensiona cabos e fusíveis apenas depois de conhecer o comprimento do percurso, o método de instalação e os limites do fabricante.",
   }),
   ro: Object.freeze({
     title: "Lista de cumpărături calculată",
@@ -34,10 +34,10 @@ const CONFIG = Object.freeze({
       battery: (value) => `${value.batteryAh} Ah / ${value.batteryWh} Wh · ${value.batteryLabel} · sistem ${value.systemVoltage} V`,
       solar: (value) => `${value.solarWatts} Wp în total`,
       mppt: (value) => `cel puțin ${value.controllerAmps} A pentru un sistem de ${value.systemVoltage} V`,
-      inverter: (value) => `cel puțin ${value.inverterWatts} W putere calculată`,
+      inverter: (value) => `cel puțin ${value.inverterWatts} W putere AC continuă · intrare DC ${value.systemVoltage} V · undă sinusoidală pură; verifică vârful de pornire`,
       inverterNone: "Nu este necesar un invertor separat pentru consumatorii DC selectați.",
     }),
-    notice: "Dimensionează cablurile și siguranțele numai după ce cunoști lungimea traseului, metoda de instalare și limitele producătorului.",
+    notice: "Verifică separat dacă ai nevoie de încărcare DC–DC sau de la 230 V. Dimensionează cablurile și siguranțele numai după ce cunoști lungimea traseului, metoda de instalare și limitele producătorului.",
   }),
   si: Object.freeze({
     title: "Izračunani nakupovalni seznam",
@@ -54,10 +54,10 @@ const CONFIG = Object.freeze({
       battery: (value) => `${value.batteryAh} Ah / ${value.batteryWh} Wh · ${value.batteryLabel} · sistem ${value.systemVoltage} V`,
       solar: (value) => `skupaj ${value.solarWatts} Wp`,
       mppt: (value) => `najmanj ${value.controllerAmps} A za sistem ${value.systemVoltage} V`,
-      inverter: (value) => `najmanj ${value.inverterWatts} W izračunane moči`,
+      inverter: (value) => `najmanj ${value.inverterWatts} W trajne AC moči · DC vhod ${value.systemVoltage} V · čisti sinus; preveri zagonsko konico`,
       inverterNone: "Za izbrane DC porabnike ločen inverter ni potreben.",
     }),
-    notice: "Kable in varovalke dimenzioniraj šele, ko poznaš dolžino trase, način namestitve in omejitve proizvajalca.",
+    notice: "Ločeno preveri, ali potrebuješ DC–DC polnjenje ali polnjenje iz 230 V. Kable in varovalke dimenzioniraj šele, ko poznaš dolžino trase, način namestitve in omejitve proizvajalca.",
   }),
 });
 

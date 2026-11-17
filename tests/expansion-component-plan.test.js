@@ -33,7 +33,10 @@ for (const { market, prefix } of markets) {
     assert.match(plan.items.find((item) => item.topic === "battery").spec, /180 Ah.*2304 Wh.*LiFePO₄.*12 V/);
     assert.match(plan.items.find((item) => item.topic === "solar").spec, /420 Wp/);
     assert.match(plan.items.find((item) => item.topic === "mppt").spec, /40 A.*12 V/);
-    assert.match(plan.items.find((item) => item.topic === "inverter").spec, /1200 W/);
+    assert.match(plan.items.find((item) => item.topic === "inverter").spec, /1200 W.*12 V/);
+    assert.match(plan.items.find((item) => item.topic === "inverter").spec, /AC/);
+    assert.match(plan.notice, /DC–DC/);
+    assert.match(plan.notice, /230 V/);
 
     for (const item of plan.items) {
       const html = await readFile(new URL(`..${item.href}index.html`, import.meta.url), "utf8");
