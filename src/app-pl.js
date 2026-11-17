@@ -5,7 +5,8 @@ import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20261023-safe-loads1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
 import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
-import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts1";
+import { calculateChargingPlan } from "./charging.js?v=20261117-charging-reason1";
+import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
 import { buildProductPackages } from "./packages.js?v=20261117-solar-value1";
@@ -476,7 +477,7 @@ function renderChargingPlan(plan, systemVoltage) {
     return;
   }
   const inputEstimate = plan.dcDc.enabled && plan.dcDc.estimatedInputCurrentAmps
-    ? ` Orientacyjny pobór z instalacji rozruchowej ${plan.starterVoltage} V przy dobranej ładowarce wynosi do około ${plan.dcDc.estimatedInputCurrentAmps} A.`
+    ? ` Orientacyjny pobór z instalacji rozruchowej ${plan.starterVoltage} V przy przyjętym prądzie wyjściowym wynosi około ${plan.dcDc.estimatedInputCurrentAmps} A; przy projekcie indywidualnym wymaga weryfikacji.`
     : "";
   const dcDcVoltageCheck = systemVoltage === 24
     ? " Dla akumulatora pokładowego 24 V ładowarka musi wyraźnie obsługiwać podnoszenie napięcia instalacji rozruchowej do 24 V."
@@ -495,9 +496,7 @@ function renderChargingPlan(plan, systemVoltage) {
 function chargingCard(label, option, check) {
   if (!option.enabled) return `<article class="charging-card is-disabled"><span>${label}</span><strong>Wyłączone</strong><p>Dla tego źródła ustawiono 0 godzin.</p></article>`;
   const value = option.suggestedCurrentAmps ? `co najmniej ${option.suggestedCurrentAmps} A` : "projekt indywidualny";
-  const reason = option.suggestedCurrentAmps
-    ? `Aby uzupełnić dzienne zużycie w ${formatNumber(option.hours)} h, potrzeba co najmniej ${option.requiredCurrentAmps} A przy sprawności 90%.`
-    : `Wymagane ${option.requiredCurrentAmps} A przekracza konserwatywny limit projektowy ${option.planningCeilingAmps} A dla tego akumulatora.`;
+  const reason = chargingDecisionExplanation(option, "pl", formatNumber(option.hours));
   return `<article class="charging-card ${option.needsIndividualDesign ? "is-warning" : ""}"><span>${label}</span><strong>${value}</strong><p>${reason}</p><small>${check}</small></article>`;
 }
 

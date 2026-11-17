@@ -1,5 +1,6 @@
 import { APPLIANCES } from "./catalog-hu.js";
-import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-consistent-products1";
+import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-charging-reason1";
+import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { HU_UI_COPY } from "./ui-copy-hu.js?v=20261117-consistent-products1";
 import { productCardPriceDetails } from "./recommendation-display.js?v=20261117-consistent-products1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
@@ -146,7 +147,7 @@ function renderResult(output) {
 }
 
 function renderCharging(result) {
-  document.querySelector("#charging-options").innerHTML = [["DC–DC töltés",result.charging.dcDc],["230 V-os töltés",result.charging.shore]].map(([label,item]) => `<article class="charging-card"><span>${label}</span><strong>${item.enabled ? (item.suggestedCurrentAmps ? `legalább ${item.suggestedCurrentAmps} A` : "egyedi tervezés") : "Kikapcsolva"}</strong><p>${item.enabled ? `${item.hours} óra alatt pótolja a napi fogyasztást.` : "Ehhez a forráshoz 0 óra van beállítva."}</p></article>`).join("");
+  document.querySelector("#charging-options").innerHTML = [["DC–DC töltés",result.charging.dcDc],["230 V-os töltés",result.charging.shore]].map(([label,item]) => `<article class="charging-card ${item.needsIndividualDesign ? "is-warning" : ""}"><span>${label}</span><strong>${item.enabled ? (item.suggestedCurrentAmps ? `legalább ${item.suggestedCurrentAmps} A` : "egyedi tervezés") : "Kikapcsolva"}</strong><p>${item.enabled ? chargingDecisionExplanation(item, "hu") : "Ehhez a forráshoz 0 óra van beállítva."}</p></article>`).join("");
 }
 function renderRoof(roof) { document.querySelector("#roof-fit").innerHTML = roof?.checked ? `<article class="roof-fit-card ${roof.fits ? "is-fit" : "is-warning"}"><strong>${roof.fits ? "A referencia-elrendezés geometriailag elfér" : "A referencia-elrendezés nem fér el"}</strong><p>${roof.requiredQuantity} × ${roof.referencePanelWatts} Wp</p></article>` : '<article class="roof-fit-card is-unchecked"><strong>Az ellenőrzés nincs bekapcsolva</strong><p>Add meg a tető szabad téglalapjának mindkét méretét.</p></article>'; }
 function renderPowerStation(profile) { document.querySelector("#power-station-profile").innerHTML = `<article class="charging-card"><span>Minimális névleges kapacitás</span><strong>${profile.capacityWh} Wh</strong></article><article class="charging-card"><span>Folyamatos AC teljesítmény</span><strong>${profile.acOutputWatts ? `${profile.acOutputWatts} W` : "Nem szükséges"}</strong></article><article class="charging-card"><span>Napelemes bemenet</span><strong>${profile.solarInputWatts} W</strong></article>`; }

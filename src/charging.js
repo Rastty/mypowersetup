@@ -25,6 +25,7 @@ function buildOption({ dailyWh, batteryAh, batteryType, systemVoltage, hours }) 
     hours,
     requiredCurrentAmps: Math.ceil(requiredCurrentAmps),
     suggestedCurrentAmps: needsIndividualDesign ? null : suggestedCurrentAmps,
+    candidateCurrentAmps: suggestedCurrentAmps,
     planningCeilingAmps: Math.floor(planningCeilingAmps),
     needsIndividualDesign,
   };
