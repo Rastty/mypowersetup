@@ -10,6 +10,7 @@ const PT_GROWTH_CONTENT = Object.freeze({
 
   <h2>Exemplo: 830 Wh por dia e dois dias de autonomia</h2>
   <p>Imagina 450 Wh/dia para frigorífico, 260 Wh para portátil, 90 Wh para iluminação e 30 Wh para bomba de água. Total: <strong>830 Wh/dia</strong>. Para dois dias, a energia de consumo é 1 660 Wh.</p>
+  <p>Os 450 Wh do frigorífico são um exemplo, não um valor garantido. Antes de comprar bateria, confirma o consumo real com o <a href="/pt/guias/consumo-frigorifico-compressor-autocaravana/">guia de consumo do frigorífico de compressor</a>: a temperatura e o ciclo de funcionamento podem alterar bastante os Wh por dia.</p>
   <ul>
     <li><strong>LiFePO₄:</strong> 830 × 2 × 1,15 ÷ 0,80 ≈ 2 386 Wh nominais; a calculadora arredonda conservadoramente para 2 400 Wh.</li>
     <li><strong>AGM/chumbo:</strong> 830 × 2 × 1,15 ÷ 0,50 ≈ 3 818 Wh nominais; a calculadora arredonda para 3 900 Wh.</li>

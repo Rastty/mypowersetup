@@ -9,6 +9,7 @@ const SI_GROWTH_CONTENT = Object.freeze({
   <p>MyPowerSetup za dimenzioniranje uporablja približek <strong>nazivna energija baterije ≈ dnevna poraba × dnevi avtonomije × 1,15 ÷ uporabni delež</strong>. V modelu je uporabni delež 80 % za LiFePO₄ in 50 % za AGM/svinčeno baterijo. Končne omejitve vedno določa podatkovni list konkretne baterije in BMS.</p>
   <h2>Primer: 830 Wh/dan in dva dneva avtonomije</h2>
   <p>Hladilnik 450 Wh, prenosnik 260 Wh, luči 90 Wh in črpalka 30 Wh skupaj pomenijo 830 Wh/dan.</p>
+  <p>Vrednost 450 Wh za hladilnik je le primer. Pred izbiro baterije preveri <a href="/si/vodici/poraba-kompresorski-hladilnik-avtodom/">dejansko dnevno porabo kompresorskega hladilnika</a>: temperatura okolice in delovni cikel lahko bistveno spremenita Wh/dan.</p>
   <ul><li><strong>LiFePO₄:</strong> 830 × 2 × 1,15 ÷ 0,80 ≈ 2.386 Wh, zato kalkulator zaokroži približno na 2.400 Wh.</li><li><strong>AGM:</strong> 830 × 2 × 1,15 ÷ 0,50 ≈ 3.818 Wh, zato kalkulator zaokroži približno na 3.900 Wh.</li></ul>
   <p>Pri 12 V je 2.400 Wh približno 200 Ah, pri 24 V pa približno 100 Ah. Zato Ah vedno primerjaj skupaj z napetostjo.</p>
   <h2>Kdaj razmišljati o 24 V</h2>
