@@ -8,7 +8,7 @@ import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
 import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts1";
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
-import { buildProductPackages } from "./packages.js?v=20260823-packages2";
+import { buildProductPackages } from "./packages.js?v=20261117-solar-value1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20260828-1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { czechProductRequirement, czechProductDecisionFacts, czechPackageFitSummary } from "./product-decision-facts.js?v=20261014-1";
@@ -593,7 +593,7 @@ function renderProductPackages(variants) {
   const target = document.querySelector("#package-variants");
   const copy = {
     economy: ["Úsporná", "Nejnižší známá cena mezi kompatibilními volbami."],
-    recommended: ["Doporučená", "Nejlepší shoda parametrů a úplnosti dat."],
+    recommended: ["Doporučená", "Vyvážená volba parametrů, dostupných údajů a ceny."],
     reserve: ["S větší rezervou", "Mírně vyšší technická rezerva, kde ji katalog nabízí."],
   };
   if (!variants.length) {

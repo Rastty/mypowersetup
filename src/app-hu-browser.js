@@ -1,5 +1,5 @@
 import { APPLIANCES } from "./catalog-hu.js";
-import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261107-source-gate1";
+import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-solar-value1";
 import { HU_UI_COPY } from "./ui-copy-hu.js";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { copyText } from "./share.js";
@@ -181,7 +181,7 @@ function renderHungarianProductPackages(variants) {
   const target = document.querySelector("#package-variants");
   const copy = {
     economy: ["Takarékos", "A legalacsonyabb ismert ár a kompatibilis lehetőségek között."],
-    recommended: ["Ajánlott", "A paraméterek és az adatminőség legjobb egyensúlya."],
+    recommended: ["Ajánlott", "A paraméterek, a rendelkezésre álló adatok és az ár kiegyensúlyozott választása."],
     reserve: ["Nagyobb tartalékkal", "Nagyobb műszaki tartalék, ahol a katalógus ezt lehetővé teszi."],
   };
   if (!variants?.length) {

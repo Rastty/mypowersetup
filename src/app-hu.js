@@ -8,7 +8,7 @@ import { buildSystemDiagram } from "./system-diagram.js";
 import { calculateChargingPlan } from "./charging.js";
 import { calculateRoofFit } from "./roof.js";
 import { buildInstallationPlan } from "./installation.js";
-import { buildProductPackages } from "./packages.js";
+import { buildProductPackages } from "./packages.js?v=20261117-solar-value1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js";
 import { calculatePowerStationProfile } from "./power-station.js";
 import { buildPlainLanguageVerdict } from "./verdict.js";
