@@ -81,6 +81,6 @@ test("CZ Builder renders the explanation in package and comparison but preserves
   assert.match(css,/\.product-decision-facts/);
   assert.match(css,/\.product-requirement/);
   assert.match(css,/\.package-product-decision/);
-  assert.match(html,/styles\.css\?v=20261023-comparison-handoff1/);
-  assert.match(html,/app\.js\?v=20261117-economy-currency1/);
+  assert.match(html,/styles\.css\?v=20261117-cz-featured-offers1/);
+  assert.match(html,/app\.js\?v=20261117-cz-featured-offers1/);
 });

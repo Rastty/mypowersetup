@@ -400,7 +400,7 @@ test("manufacturer spec citations and companion styles are present",async()=>{
 test("calculator result connects three distinct sourced purchase comparisons without new affiliate routes", async () => {
  const html=await readFile("index.html","utf8");
  const css=await readFile("styles.css","utf8");
- const section=html.split('<section class="next-step-card" id="product-recommendations">')[1]?.split('</section>')[0];
+ const section=html.split('<section class="next-step-card" id="product-recommendations" aria-labelledby="product-heading">')[1]?.split('</section>')[0];
  assert.ok(section, "calculator purchase result missing");
  assert.match(section, /aria-label="Porovnat komponenty před nákupem"/);
  for(const [slug] of pages){

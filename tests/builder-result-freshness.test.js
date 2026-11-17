@@ -108,7 +108,8 @@ test("all four core Builder pages serve the refreshed JS version, without changi
     ["pl/index.html", "app-pl.js"], ["hu/index.html", "app-hu-browser.js"],
   ]) {
     const html = await readFile(new URL("../" + path, import.meta.url), "utf8");
-    assert.ok(html.includes(`src="/src/${app}?v=20261117-economy-currency1"`), path);
+    const version = app === "app.js" ? "20261117-cz-featured-offers1" : "20261117-economy-currency1";
+    assert.ok(html.includes(`src="/src/${app}?v=${version}"`), path);
     assert.match(html, /class="form-step[^"]*" data-step="3"/, path);
     assert.match(html, /id="product-recommendations"/, path);
   }

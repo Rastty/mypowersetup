@@ -3,6 +3,7 @@
 const RESULT_SELECTORS = Object.freeze([
   "#result-grid",
   "#package-variants",
+  "#featured-recommendations",
   "#recommendation-groups",
   "#result-reasons",
   "#consumption-breakdown",

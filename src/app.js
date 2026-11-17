@@ -11,6 +11,7 @@ import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261117-economy-currency1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
+import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261117-1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { czechProductRequirement, czechProductDecisionFacts, czechPackageFitSummary } from "./product-decision-facts.js?v=20261014-1";
@@ -526,6 +527,7 @@ function renderProductRecommendations(result) {
   const rankedRecommendations = recommendProducts(productCatalog, result, 24, productCatalogSources);
   const packages = buildProductPackages(rankedRecommendations, result);
   const recommendations = visibleRecommendationsForPackages(rankedRecommendations, packages);
+  const featured = featuredCzechProducts(recommendations, packages);
   const categoryLabels = {
     battery: "Baterie",
     solar_panel: "Solární panely",
@@ -558,6 +560,9 @@ function renderProductRecommendations(result) {
   const freshness = productCatalogUpdatedAt
     ? ` Produktová data byla načtena ${new Date(productCatalogUpdatedAt).toLocaleDateString("cs-CZ")}.`
     : "";
+  document.querySelector("#featured-recommendations").innerHTML = featured.length
+    ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Rovnou k ověřeným nabídkám</span><h5 id="featured-picks-title">Co doporučujeme k vašemu výpočtu</h5></div><span class="featured-picks-count">${featured.length} ${featured.length === 1 ? "produkt" : "produkty"}</span></div><div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Doporučení vycházejí z technického párování. Cena se na českém webu ukazuje jen tehdy, když ji obchod poskytuje přímo v Kč. Parametry, sklad a dopravu vždy ověřte u prodejce.</p></section>`
+    : "";
 
   if (total === 0) {
     document.querySelector("#package-variants").innerHTML = "";
@@ -569,7 +574,8 @@ function renderProductRecommendations(result) {
   }
 
   heading.textContent = "Komponenty odpovídající vašemu výpočtu";
-  intro.textContent = `Nejdříve ověřujeme technickou kompatibilitu. Doporučená sestava pak při výrazném cenovém rozdílu zohledňuje i srovnatelné nabídky ve stejné měně.${freshness}`;
+  intro.textContent = `Konkrétní produkty a odkazy na prodejce najdete hned níže. Nejprve ověřujeme technickou kompatibilitu, potom porovnáváme dostupné možnosti.${freshness}`;
+  trackEvent("featured_recommendations_rendered", { locale: "cs", product_count: featured.length });
   renderProductPackages(packages, coverage);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Co katalog zatím nepokrývá:</strong> ${coverage.message}</p>`;
   const productGroups = Object.entries(recommendations)
@@ -607,34 +613,27 @@ function renderProductPackages(variants, coverage) {
   target.innerHTML = `<div class="package-intro"><strong>Začněte doporučenou variantou</strong><p>Doporučený nákupní seznam je otevřený rovnou. Pokud katalog nabízí další odlišné sestavy, můžete je rozbalit a porovnat. Totožné nákupní seznamy nezobrazujeme dvakrát. Všechny zobrazené varianty splňují vypočtený požadavek na komponenty. Každý odkaz vede na konkrétní produkt u prodejce, nejde o společný nákupní košík. Výpočet neobsahuje veškerý instalační materiál ani montáž.</p>${manualChargingNote}${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
     const isRecommended = variant.id === "recommended";
-    const pricesKnown = variant.totalPriceCzk !== null;
-    const subtotals = variant.priceSubtotals || [];
-    const multiCurrencyLabel = subtotals.map(({ amount, currency }) => formatPrice(amount, currency)).join(" + ");
-    const hasUnpricedItems = (variant.unpricedItemCount || 0) > 0;
-    const priceLabel = pricesKnown ? formatPrice(variant.totalPriceCzk, variant.totalCurrency)
-      : subtotals.length ? `${hasUnpricedItems ? "Jen známé ceny" : "Ceny po měnách"}: ${multiCurrencyLabel}` : "Cena podle obchodu";
-    const priceNote = hasUnpricedItems && subtotals.length
-      ? "Ne všechny ceny jsou dostupné; nejde o cenu celé sestavy. Doprava a montáž nejsou zahrnuté."
-      : subtotals.length > 1
-        ? "Orientační součty po měnách bez přepočtu; doprava a montáž nejsou zahrnuté."
-        : "Orientační součet produktů; doprava a montáž nejsou zahrnuté.";
+    const priceCzk = czechPackagePrice(variant);
+    const pricesKnown = priceCzk !== null;
+    const priceLabel = pricesKnown ? formatPrice(priceCzk, "CZK") : "Cenu sestavy ověřte u prodejců";
+    const priceNote = pricesKnown
+      ? "Orientační součet cen v Kč; doprava a montáž nejsou zahrnuté."
+      : "Část cen není v Kč nebo není ověřena; celkovou cenu nezobrazujeme.";
     return `<article class="package-card ${isRecommended ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Pokrytí výpočtu: ${variant.items.length}/${variant.requiredCategoryCount} kategorií</small><p>${description}</p><b>${priceLabel}</b><small class="package-price-note">${priceNote}</small><details class="package-purchase-steps" data-package-disclosure="${escapeHtml(variant.id)}" data-item-count="${variant.items.length}" data-price-known="${pricesKnown}" ${isRecommended ? "open" : ""}><summary>Nákupní seznam · ${variant.items.length} ${variant.items.length === 1 ? "produkt" : variant.items.length < 5 ? "produkty" : "produktů"}</summary><p class="package-purchase-guidance">Postupujte podle pořadí položek; před objednáním ověřte dostupnost a parametry u prodejce.</p><ul>${variant.items.map(({ category, product }) => packageProductLink(category, product, variant.id)).join("")}</ul></details></article>`;
   }).join("")}</div>`;
   trackEvent("package_variants_rendered", {
     source: "result_packages",
     variant_count: variants.length,
     recommended_item_count: variants.find(({ id }) => id === "recommended")?.items.length || 0,
-    priced_variant_count: variants.filter(({ totalPriceCzk }) => totalPriceCzk !== null).length,
+    priced_variant_count: variants.filter((variant) => czechPackagePrice(variant) !== null).length,
   });
 }
 
 function packageProductLink(category, product, packageId) {
   const quantity = product.recommendedQuantity || 1;
   const quantityLabel = quantity > 1 ? `${quantity} ks · ` : "";
-  const hasFeedPrice = product.priceCzk !== null && product.priceCzk !== undefined && product.priceCzk !== "";
-  const unitPrice = hasFeedPrice ? Number(product.priceCzk) : NaN;
-  const itemPrice = Number.isFinite(unitPrice) && unitPrice >= 0 ? formatPrice(unitPrice * quantity, product.priceCurrency) : "";
-  const itemPriceLabel = itemPrice ? `${itemPrice}${quantity > 1 ? " celkem" : ""} · ` : "";
+  const itemPrice = czechProductPrice(product, quantity);
+  const itemPriceLabel = itemPrice === null ? "" : `${formatPrice(itemPrice, "CZK")}${quantity > 1 ? " celkem" : ""} · `;
   const fitSummary = product.merchant === "vselektro" ? czechPackageFitSummary(product, latestResult) : null;
   return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(itemPriceLabel)}${escapeHtml(merchantLabel(product.merchant))}</span>${fitSummary ? `<span class="package-product-decision">${escapeHtml(fitSummary)}</span>` : ""}<a class="package-product-link" href="${escapeHtml(attributedAwinUrl(product, category, packageId === "economy" ? "budget" : packageId, "package"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a></li>`;
 }
@@ -649,11 +648,13 @@ function packageCategoryLabel(category) {
 
 function productCard(product, reason, checks, verify, recommendationRole, setup) {
   const decisionFacts = czechProductDecisionFacts(product, setup);
-  const { quantity, unitPrice, totalPrice } = productCardPriceDetails(product);
+  const { quantity } = productCardPriceDetails(product);
+  const unitPrice = czechProductPrice(product);
+  const totalPrice = czechProductPrice(product, quantity);
   const priceLabel = quantity > 1
-    ? `${quantity} ks · ${totalPrice === null ? "Cena v obchodě" : `${formatPrice(totalPrice, product.priceCurrency)} celkem`}`
-    : formatPrice(product.priceCzk, product.priceCurrency);
-  const unitPriceLabel = quantity > 1 && unitPrice !== null ? `${formatPrice(unitPrice, product.priceCurrency)} za kus · ` : "";
+    ? `${quantity} ks · ${totalPrice === null ? "Cena u prodejce" : `${formatPrice(totalPrice, "CZK")} celkem`}`
+    : unitPrice === null ? "Cena u prodejce" : formatPrice(unitPrice, "CZK");
+  const unitPriceLabel = quantity > 1 && unitPrice !== null ? `${formatPrice(unitPrice, "CZK")} za kus · ` : "";
   const factsHtml = decisionFacts.length ? `<dl class="product-decision-facts">${decisionFacts.map(({ label, value }) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("")}</dl>` : "";
   const sourceIsStale = productCatalogSources[product.merchant]?.status === "stale";
   const sourceNote = sourceIsStale
@@ -672,12 +673,23 @@ function productCard(product, reason, checks, verify, recommendationRole, setup)
         <p class="product-verify"><strong>Před nákupem:</strong> ${escapeHtml(verify)}</p>
         ${sourceNote}
         <div class="product-card-action">
-          <span class="product-price"><strong>${priceLabel}</strong><small>${unitPriceLabel}${sourceIsStale ? "Cena z posledního úspěšného feedu" : "Cena z produktového feedu"}</small></span>
+          <span class="product-price"><strong>${priceLabel}</strong><small>${unitPrice === null ? "Aktuální cenu ověřte u prodejce" : `${unitPriceLabel}${sourceIsStale ? "Cena z posledního úspěšného feedu" : "Cena z produktového feedu"}`}</small></span>
           <a href="${escapeHtml(attributedAwinUrl(product, product.category, recommendationRole, "product-card"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-recommendation-role="${escapeHtml(recommendationRole)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a>
         </div>
       </div>
     </article>
   `;
+}
+
+function featuredProductCard({ product, category, reason }) {
+  const quantity = product.recommendedQuantity || 1;
+  const price = czechProductPrice(product, quantity);
+  const merchant = merchantLabel(product.merchant);
+  return `<article class="featured-pick-card" data-featured-category="${escapeHtml(category)}">
+    ${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : '<span class="featured-pick-placeholder" aria-hidden="true">✓</span>'}
+    <div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(packageCategoryLabel(category))} · doporučená volba</span><h6>${escapeHtml(product.name)}</h6><p>${escapeHtml(reason || "Ověřená shoda s parametry vašeho výpočtu.")}</p><small>${escapeHtml(merchant)}${quantity > 1 ? ` · ${quantity} ks` : ""}</small></div>
+    <div class="featured-pick-action"><strong>${price === null ? "Cena u prodejce" : formatPrice(price, "CZK")}</strong><a href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "result-featured"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="result-featured" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("cs", merchant))}</a></div>
+  </article>`;
 }
 
 document.addEventListener("click", (event) => {
@@ -691,9 +703,9 @@ function trackEvent(event, parameters = {}) {
 }
 
 function formatPrice(price, currency = "CZK") {
-  return Number.isFinite(price)
-    ? new Intl.NumberFormat("cs-CZ", { style: "currency", currency: currency || "CZK", maximumFractionDigits: currency === "CZK" ? 0 : 2 }).format(price)
-    : "Cena v obchodě";
+  return currency === "CZK" && Number.isFinite(price) && price > 0
+    ? new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 }).format(price)
+    : "Cena u prodejce";
 }
 
 function merchantLabel(merchant) {
