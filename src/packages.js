@@ -27,7 +27,13 @@ function cheapest(candidates) {
 // cheapest feed row. Keep it within a conservative score band of the strongest
 // match so a large price saving cannot silently trade away too much fit/data quality.
 function bestValue(candidates) {
-  const priced = candidates.filter((candidate) => effectivePrice(candidate) !== null);
+  // Feed prices are the native merchant amount (EUR/PLN/CZK/HUF), despite
+  // `priceCzk`'s legacy name. Compare economy options only against the best
+  // technical match's own currency; a numerically lower foreign-currency
+  // amount is not evidence of a cheaper basket without a verified FX rate.
+  const referenceCurrency = candidates[0]?.product?.priceCurrency || null;
+  const priced = candidates.filter((candidate) =>
+    (candidate.product.priceCurrency || null) === referenceCurrency && effectivePrice(candidate) !== null);
   if (!priced.length) return candidates[0];
 
   const finiteScores = priced.map(({ score }) => Number(score)).filter(Number.isFinite);
