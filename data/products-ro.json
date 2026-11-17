@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T15:49:54.293Z",
+  "generatedAt": "2026-11-17T18:26:46.976Z",
   "market": "ro-RO",
   "currency": "EUR",
   "private": false,
@@ -135,6 +135,7 @@
         "ampul-eu-dcdc-12v-30a": [],
         "ampul-eu-inverter-24v-2000w": []
       },
+      "inverterContinuousRating": null,
       "exactProducts": 0,
       "affiliateApprovalConfirmed": true
     },

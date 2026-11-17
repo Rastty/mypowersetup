@@ -1,18 +1,18 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-11-17T15:49:55.909Z",
+  "generatedAt": "2026-11-17T18:26:48.831Z",
   "policy": "verification_only_fail_closed_no_publication",
   "actionCount": 2,
   "topAction": {
-    "actionKey": "ampul_eu:verify_pt_ro_si_checkout_and_24v_variant_stock",
+    "actionKey": "ampul_eu:verify_continuous_power_then_pt_ro_si_checkout_and_24v_variant_stock",
     "owner": "system",
     "merchant": "ampul_eu",
-    "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock",
+    "nextAction": "verify_continuous_power_then_pt_ro_si_checkout_and_24v_variant_stock",
     "candidateIds": [
       "ampul-eu-inverter-24v-2000w"
     ],
     "productNames": [
-      "AMPUL 24V DC to 230V AC 2000W pure-sine inverter"
+      "AMPUL 24V DC to 230V AC pure-sine inverter (2000W advertised maximum)"
     ],
     "categories": [
       "inverter"
@@ -23,13 +23,13 @@
       "sl-SI"
     ],
     "blockers": [
-      "market_shipping_checkout_unverified"
+      "continuous_power_unverified"
     ],
     "secondaryBlockers": [
-      "variant_stock_unverified"
+      "variant_stock_and_market_checkout_unverified"
     ],
     "statuses": [
-      "blocked_market_stock_verification"
+      "blocked_technical_spec_verification"
     ],
     "affiliateNetworks": [
       "ehub"
@@ -39,12 +39,13 @@
     "verificationEvidence": [
       {
         "candidateId": "ampul-eu-inverter-24v-2000w",
-        "checkedAt": "2026-09-16",
+        "checkedAt": "2026-11-17",
         "evidenceType": "public_catalog_partial",
-        "productUrl": "https://ampul.eu/en/voltage-converters/5577-7391-voltage-converter-from-dc-to-230v-ac-50hz-2000w",
+        "productUrl": "https://ampul.eu/en/inverters-and-ac-dc-converters/5577-7391-voltage-converter-from-dc-to-230v-ac-50hz-2000w",
         "catalogSpecs": {
           "outputVoltageV": 230,
-          "powerW": 2000,
+          "maxAdvertisedPowerW": 2000,
+          "continuousPowerW": null,
           "pureSine": true,
           "listedInputVoltagesV": [
             12,
@@ -62,12 +63,13 @@
           "targetMarketsVerified": []
         },
         "verifiedChecks": [
-          "product_family_2000w_pure_sine",
+          "product_family_2000w_maximum_pure_sine",
           "24v_variant_listed",
           "product_family_stock_at_supplier",
           "generic_eu_shipping_claim"
         ],
         "unresolvedChecks": [
+          "rated_continuous_power_w",
           "exact_24v_variant_stock",
           "pt-PT_checkout",
           "ro-RO_checkout",
@@ -116,7 +118,7 @@
       {
         "candidateId": "ampul-eu-inverter-24v-2000w",
         "sourceProductId": "ampul_cz:5577-7392",
-        "generatedAt": "2026-11-17T15:48:05.505Z",
+        "generatedAt": "2026-11-17T18:25:07.068Z",
         "sourceHealthy": true,
         "found": true,
         "available": null,
@@ -128,7 +130,7 @@
       }
     ],
     "publishEligible": false,
-    "verificationPolicy": "fail_closed_until_market_and_stock_evidence",
+    "verificationPolicy": "fail_closed_until_technical_market_and_stock_evidence",
     "bestPriority": "P0",
     "activeCandidateIds": [
       "ampul-eu-inverter-24v-2000w"
@@ -173,15 +175,15 @@
   },
   "actions": [
     {
-      "actionKey": "ampul_eu:verify_pt_ro_si_checkout_and_24v_variant_stock",
+      "actionKey": "ampul_eu:verify_continuous_power_then_pt_ro_si_checkout_and_24v_variant_stock",
       "owner": "system",
       "merchant": "ampul_eu",
-      "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock",
+      "nextAction": "verify_continuous_power_then_pt_ro_si_checkout_and_24v_variant_stock",
       "candidateIds": [
         "ampul-eu-inverter-24v-2000w"
       ],
       "productNames": [
-        "AMPUL 24V DC to 230V AC 2000W pure-sine inverter"
+        "AMPUL 24V DC to 230V AC pure-sine inverter (2000W advertised maximum)"
       ],
       "categories": [
         "inverter"
@@ -192,13 +194,13 @@
         "sl-SI"
       ],
       "blockers": [
-        "market_shipping_checkout_unverified"
+        "continuous_power_unverified"
       ],
       "secondaryBlockers": [
-        "variant_stock_unverified"
+        "variant_stock_and_market_checkout_unverified"
       ],
       "statuses": [
-        "blocked_market_stock_verification"
+        "blocked_technical_spec_verification"
       ],
       "affiliateNetworks": [
         "ehub"
@@ -208,12 +210,13 @@
       "verificationEvidence": [
         {
           "candidateId": "ampul-eu-inverter-24v-2000w",
-          "checkedAt": "2026-09-16",
+          "checkedAt": "2026-11-17",
           "evidenceType": "public_catalog_partial",
-          "productUrl": "https://ampul.eu/en/voltage-converters/5577-7391-voltage-converter-from-dc-to-230v-ac-50hz-2000w",
+          "productUrl": "https://ampul.eu/en/inverters-and-ac-dc-converters/5577-7391-voltage-converter-from-dc-to-230v-ac-50hz-2000w",
           "catalogSpecs": {
             "outputVoltageV": 230,
-            "powerW": 2000,
+            "maxAdvertisedPowerW": 2000,
+            "continuousPowerW": null,
             "pureSine": true,
             "listedInputVoltagesV": [
               12,
@@ -231,12 +234,13 @@
             "targetMarketsVerified": []
           },
           "verifiedChecks": [
-            "product_family_2000w_pure_sine",
+            "product_family_2000w_maximum_pure_sine",
             "24v_variant_listed",
             "product_family_stock_at_supplier",
             "generic_eu_shipping_claim"
           ],
           "unresolvedChecks": [
+            "rated_continuous_power_w",
             "exact_24v_variant_stock",
             "pt-PT_checkout",
             "ro-RO_checkout",
@@ -285,7 +289,7 @@
         {
           "candidateId": "ampul-eu-inverter-24v-2000w",
           "sourceProductId": "ampul_cz:5577-7392",
-          "generatedAt": "2026-11-17T15:48:05.505Z",
+          "generatedAt": "2026-11-17T18:25:07.068Z",
           "sourceHealthy": true,
           "found": true,
           "available": null,
@@ -297,7 +301,7 @@
         }
       ],
       "publishEligible": false,
-      "verificationPolicy": "fail_closed_until_market_and_stock_evidence",
+      "verificationPolicy": "fail_closed_until_technical_market_and_stock_evidence",
       "bestPriority": "P0",
       "activeCandidateIds": [
         "ampul-eu-inverter-24v-2000w"
@@ -349,7 +353,7 @@
         "ampul-eu-dcdc-12v-30a"
       ],
       "productNames": [
-        "AMPUL DC/DC LiFePO4 charger 14.6V 30A 400W IP68"
+        "AMPUL DC/DC LiFePO4 charger 14.6V 30A 400W (IP rating unverified)"
       ],
       "categories": [
         "dc_charger"
@@ -374,9 +378,9 @@
       "verificationEvidence": [
         {
           "candidateId": "ampul-eu-dcdc-12v-30a",
-          "checkedAt": "2026-09-16",
+          "checkedAt": "2026-11-17",
           "evidenceType": "public_catalog_partial",
-          "productUrl": "https://ampul.eu/en/chargers/6195-battery-charger-dc-dc-with-lifepo4-146v-30a-400w-ip68",
+          "productUrl": "https://ampul.eu/en/battery-chargers/6195-dc-dc-lifepo4-battery-charger-146v-30a-400w-ip68",
           "localizedProductEvidence": {
             "ro": "https://ampul.eu/ro/incarcatoare/6195-incarcator-baterie-dc-dc-lifepo4-146v-30a-400w-ip68"
           },
@@ -385,7 +389,7 @@
             "outputVoltageV": 14.6,
             "chargingCurrentA": 30,
             "powerW": 400,
-            "ipRating": "IP68"
+            "ipRating": "unverified_conflict_title_ip68_specs_ip65"
           },
           "publicStockScope": "exact_product",
           "publicStockStatus": "in_stock_at_supplier",
@@ -396,12 +400,13 @@
           },
           "verifiedChecks": [
             "exact_product_listed",
-            "exact_product_specs_match",
+            "exact_product_electrical_specs_match",
             "exact_product_stock_at_supplier",
             "romanian_localized_product_page_live",
             "generic_eu_shipping_claim"
           ],
           "unresolvedChecks": [
+            "ip_rating_conflict_ip68_title_ip65_specs",
             "pt-PT_checkout",
             "ro-RO_checkout",
             "sl-SI_checkout"
@@ -449,7 +454,7 @@
         {
           "candidateId": "ampul-eu-dcdc-12v-30a",
           "sourceProductId": "ampul_cz:6195",
-          "generatedAt": "2026-11-17T15:48:05.505Z",
+          "generatedAt": "2026-11-17T18:25:07.068Z",
           "sourceHealthy": true,
           "found": true,
           "available": true,
@@ -461,7 +466,7 @@
         }
       ],
       "publishEligible": false,
-      "verificationPolicy": "fail_closed_until_market_and_stock_evidence",
+      "verificationPolicy": "fail_closed_until_technical_market_and_stock_evidence",
       "bestPriority": "P1",
       "activeCandidateIds": [
         "ampul-eu-dcdc-12v-30a"
