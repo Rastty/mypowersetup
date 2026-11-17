@@ -4,6 +4,7 @@ import { buildExpansionSetupUrl, decodeExpansionSetupQuery } from "./expansion-s
 import { buildResultShareText, copyText } from "./share.js";
 import { expansionResultGuides } from "./expansion-result-guides.js";
 import { expansionComponentPlan } from "./expansion-component-plan.js";
+import { expansionInverterGapAction } from "./expansion-inverter-gap.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { expansionPurchaseRoutePriority } from "./expansion-purchase-route-priority.js";
 import { classifyExpansionSupplyOutcome, expansionSupplyEventName, isDeliberateExpansionCalculation } from "./expansion-supply-evidence.js?v=20261113-explicit-intent1";
@@ -348,9 +349,9 @@ async function renderPortugalProducts(calculation, revision, recordIntent) {
     const products = orderedExpansionProducts(recommendations);
     const routePriority = trackProductCoverage(recommendations, calculation, sourceGap, recordIntent);
     if (recordIntent) track("product_recommendations_rendered", { market: "pt", solar_panel_covered: coverage.solarPanel, power_station_covered: coverage.powerStation, product_count: products.length });
-    if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
+    if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : `${renderNoVerifiedProducts()}${renderInverterGapGuide(routePriority, calculation, sourceGap)}`; trackRenderedProductChoices(target); return; }
     const portableGap = coverage.powerStation ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
-    target.innerHTML = renderProductSection("pt-products-title", products, portableGap, routePriority, sourceGap);
+    target.innerHTML = renderProductSection("pt-products-title", products, portableGap, routePriority, sourceGap, calculation);
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
@@ -371,9 +372,9 @@ async function renderSloveniaProducts(calculation, revision, recordIntent) {
     const products = orderedExpansionProducts(recommendations);
     const routePriority = trackProductCoverage(recommendations, calculation, sourceGap, recordIntent);
     if (recordIntent) track("product_recommendations_rendered", { market: "si", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
-    if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
+    if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : `${renderNoVerifiedProducts()}${renderInverterGapGuide(routePriority, calculation, sourceGap)}`; trackRenderedProductChoices(target); return; }
     const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
-    target.innerHTML = renderProductSection("si-products-title", products, portableGap, routePriority, sourceGap);
+    target.innerHTML = renderProductSection("si-products-title", products, portableGap, routePriority, sourceGap, calculation);
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
@@ -394,9 +395,9 @@ async function renderRomaniaProducts(calculation, revision, recordIntent) {
     const products = orderedExpansionProducts(recommendations);
     const routePriority = trackProductCoverage(recommendations, calculation, sourceGap, recordIntent);
     if (recordIntent) track("product_recommendations_rendered", { market: "ro", solar_panel_covered: recommendations.solar_panel.length > 0, power_station_covered: recommendations.power_station.length > 0, product_count: products.length });
-    if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : renderNoVerifiedProducts(); trackRenderedProductChoices(target); return; }
+    if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : `${renderNoVerifiedProducts()}${renderInverterGapGuide(routePriority, calculation, sourceGap)}`; trackRenderedProductChoices(target); return; }
     const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
-    target.innerHTML = renderProductSection("ro-products-title", products, portableGap, routePriority, sourceGap);
+    target.innerHTML = renderProductSection("ro-products-title", products, portableGap, routePriority, sourceGap, calculation);
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
@@ -451,7 +452,12 @@ function trackRenderedProductChoices(target) {
 }
 function renderResultGuides() { const config = expansionResultGuides(locale); return `<aside class="related result-guides" data-result-guides><h4>${escapeHtml(config.title)}</h4><p>${escapeHtml(config.intro)}</p><ul>${config.links.map((item) => `<li><a data-result-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`).join("")}</ul></aside>`; }
 function renderComponentPlan(value) { const plan = expansionComponentPlan(locale, value); return `<section class="result-products component-plan" data-component-plan><h4>${escapeHtml(plan.title)}</h4><p>${escapeHtml(plan.intro)}</p><div class="result-grid">${plan.items.map((item) => `<article class="result-card" data-component-item="${escapeHtml(item.topic)}" data-required="${item.required}"><span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.spec)}</strong><a data-component-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.guideLabel)}</a></article>`).join("")}</div><p><small>${escapeHtml(plan.notice)}</small></p></section>`; }
-function renderProductSection(id, products, gap = "", routePriority = {}, sourceGap = false) {
+function renderInverterGapGuide(routePriority, calculation, sourceGap) {
+  const action = expansionInverterGapAction(locale, routePriority.coverage?.missing, calculation, sourceGap);
+  if (!action) return "";
+  return `<aside class="inverter-gap-guide" data-inverter-gap-guide><p>${escapeHtml(action.text)}</p><a data-gap-inverter-guide href="${escapeHtml(action.href)}">${escapeHtml(action.label)}</a></aside>`;
+}
+function renderProductSection(id, products, gap = "", routePriority = {}, sourceGap = false, calculation = null) {
   const components = products.filter((item) => item.category !== "power_station");
   const portable = products.filter((item) => item.category === "power_station");
   const preferPortable = routePriority.preferPortable === true && portable.length > 0;
@@ -476,7 +482,7 @@ function renderProductSection(id, products, gap = "", routePriority = {}, source
     : "";
   const routes = preferPortable ? `${portableRoute}${componentRoute}` : `${componentRoute}${portableRoute}`;
   const sourceNote = sourceGap ? renderPartialSourceNotice() : "";
-  return `<section class="result-products" aria-labelledby="${id}"><h4 id="${id}">${labels.products}</h4><p>${labels.productsIntro}</p>${priorityNote}${sourceNote}${componentGapNote}${routes}<p><small>${labels.affiliate}</small></p></section>`;
+  return `<section class="result-products" aria-labelledby="${id}"><h4 id="${id}">${labels.products}</h4><p>${labels.productsIntro}</p>${priorityNote}${sourceNote}${componentGapNote}${renderInverterGapGuide(routePriority, calculation, sourceGap)}${routes}<p><small>${labels.affiliate}</small></p></section>`;
 }
 
 function renderExpansionProductCollection(products, routePriority) {

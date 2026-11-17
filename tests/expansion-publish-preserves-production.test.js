@@ -31,7 +31,7 @@ test("republication reproduces every committed PT/RO/SI page without stripping p
       const committed = await readFile(new URL(item.path, root), "utf8");
       assert.equal(rendered, committed, `${item.route}: regeneration would change committed public markup`);
       if (item.source === "home") {
-        assert.match(rendered, /expansion-calculator-browser\.js\?v=20261117-viewport1/);
+        assert.match(rendered, /expansion-calculator-browser\.js\?v=20261117-inverter-gap1/);
         assert.ok(rendered.includes('class="guide-preview-grid"'), `${market}: public money-guide discovery missing`);
         assert.ok(rendered.includes(`href="${chemistry}"`), `${market}: chemistry decision guide missing`);
         assert.equal((rendered.match(/data-money-guide/g) || []).length, 4, `${market}: 4 specialist cards missing`);
