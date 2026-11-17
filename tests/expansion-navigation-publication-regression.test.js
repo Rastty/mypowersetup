@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { renderPrivateMarketSeedPage } from "../src/private-market-page.js";
 import { PT_MARKET_SEED } from "../src/market-seed-pt.js";
 import { RO_MARKET_SEED } from "../src/market-seed-ro.js";
@@ -39,4 +40,15 @@ test("alternate injection ignores matching hreflang attributes outside head", ()
   const output = addExpansionHomeAlternate(html, "si");
   const head = output.match(/<head>([\s\S]*?)<\/head>/)?.[1] || "";
   assert.match(head, /hreflang="sl-SI" href="https:\/\/mypowersetup.com\/si\/"/);
+});
+
+test("expansion desktop nav gets the same spaced flex layout as core nav and collapses on mobile", async () => {
+  const [css, browserSmoke] = await Promise.all([
+    readFile(new URL("../styles.css", import.meta.url), "utf8"),
+    readFile(new URL("../scripts/smoke-public-mobile.mjs", import.meta.url), "utf8"),
+  ]);
+  assert.match(css, /\.header-nav, \.expansion-nav \{ display: flex; align-items: center; gap: 24px; \}/);
+  assert.match(css, /\.header-nav, \.expansion-nav \{ gap: 0; \}/);
+  assert.match(browserSmoke, /smokeExpansionNavigation\(cdp\)/);
+  assert.match(browserSmoke, /desktop guide\/method\/about links touch/);
 });
