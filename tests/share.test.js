@@ -5,6 +5,7 @@ import { buildResultShareText, copyText } from "../src/share.js";
 const result = {
   dailyWh: 1250,
   batteryAh: 220,
+  batteryWh: 2640,
   systemVoltage: 12,
   batteryLabel: "LiFePO4",
   solarWatts: 480,
@@ -103,9 +104,31 @@ for (const [language, title, route] of [
     assert.ok(text.includes(resultUrl));
     assert.match(text, /220 Ah/);
     assert.match(text, /480 Wp/);
-    assert.ok(!text.includes("□ "));
+    assert.equal((text.match(/□ /g) || []).length, 4);
+    assert.match(text, /1200 W.*12 V/);
+    assert.match(text, /DC–DC/);
+    assert.match(text, /230 V/);
+    assert.ok(!text.includes("undefined"));
   });
 }
+
+test("expansion share keeps the non-required inverter out of the shopping checkboxes", () => {
+  for (const language of ["pt", "ro", "si"]) {
+    const text = buildResultShareText({ ...result, inverterWatts: 0 }, language);
+    assert.equal((text.match(/□ /g) || []).length, 3, language);
+    assert.match(text, /— (?:Inversor|Invertor|Inverter): /);
+    assert.doesNotMatch(text, /0 W de potência AC|0 W putere AC|0 W trajne AC/);
+  }
+});
+
+test("expansion share remains backward compatible with partial results", () => {
+  const { batteryWh, ...legacyResult } = result;
+  for (const language of ["pt", "ro", "si"]) {
+    const text = buildResultShareText(legacyResult, language);
+    assert.match(text, /220 Ah/);
+    assert.doesNotMatch(text, /□ /);
+  }
+});
 
 test("copyText prefers the Clipboard API", async () => {
   let copied = "";

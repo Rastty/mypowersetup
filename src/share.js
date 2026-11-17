@@ -1,4 +1,5 @@
 import { buildInstallationPlan } from "./installation.js";
+import { expansionComponentPlan } from "./expansion-component-plan.js";
 
 const COPY = {
   cs: {
@@ -61,6 +62,7 @@ const COPY = {
     inverter: "Invertor",
     noInverter: "nu este necesar",
     controller: "Regulator MPPT",
+    installationChecklist: "Cerințe de verificat înainte de cumpărare",
     warning: "Rezultat orientativ — verifică parametrii, protecțiile și cablarea înainte de instalare.",
     locale: "ro-RO",
     url: "https://mypowersetup.com/ro/",
@@ -73,6 +75,7 @@ const COPY = {
     inverter: "Inversor",
     noInverter: "não é necessário",
     controller: "Controlador MPPT",
+    installationChecklist: "Requisitos a verificar antes de comprar",
     warning: "Resultado indicativo — confirma parâmetros, proteções e cablagem antes da instalação.",
     locale: "pt-PT",
     url: "https://mypowersetup.com/pt/",
@@ -85,6 +88,7 @@ const COPY = {
     inverter: "Inverter",
     noInverter: "ni potreben",
     controller: "MPPT regulator",
+    installationChecklist: "Zahteve za preverjanje pred nakupom",
     warning: "Informativni rezultat — pred izvedbo preveri parametre, zaščito in ožičenje.",
     locale: "sl-SI",
     url: "https://mypowersetup.com/si/",
@@ -92,6 +96,24 @@ const COPY = {
 };
 
 const INSTALLATION_CHECKLIST_LANGUAGES = new Set(["cs", "sk", "pl", "hu"]);
+const EXPANSION_CHECKLIST_LANGUAGES = new Set(["pt", "ro", "si"]);
+
+function expansionShoppingLines(result, language, copy) {
+  if (!EXPANSION_CHECKLIST_LANGUAGES.has(language)) return [];
+  // Older / partial result objects may still be shared without a purchase
+  // checklist. The calculator itself only calls this with a complete result.
+  if (!["batteryAh", "batteryWh", "solarWatts", "controllerAmps", "systemVoltage"]
+    .every((key) => Number.isFinite(result?.[key]) && result[key] > 0)
+    || !Number.isFinite(result?.inverterWatts) || result.inverterWatts < 0
+    || !result.batteryLabel) return [];
+  const plan = expansionComponentPlan(language, result);
+  return [
+    "",
+    copy.installationChecklist,
+    ...plan.items.map(({ required, label, spec }) => `${required ? "□" : "—"} ${label}: ${spec}`),
+    plan.notice,
+  ];
+}
 
 export function buildResultShareText(result, language = "cs", resultUrl) {
   const copy = COPY[language] || COPY.cs;
@@ -105,6 +127,7 @@ export function buildResultShareText(result, language = "cs", resultUrl) {
   const installationLines = installationPlan.length
     ? ["", copy.installationChecklist, ...installationPlan.map(({ label, detail }) => `□ ${label}: ${detail}`)]
     : [];
+  const expansionLines = expansionShoppingLines(result, language, copy);
 
   return [
     copy.title,
@@ -114,6 +137,7 @@ export function buildResultShareText(result, language = "cs", resultUrl) {
     `${copy.inverter}: ${inverter}`,
     `${copy.controller}: ${result.controllerAmps} A`,
     ...installationLines,
+    ...expansionLines,
     "",
     copy.warning,
     resultUrl || copy.url,
