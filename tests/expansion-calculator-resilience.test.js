@@ -11,7 +11,7 @@ test("expansion calculator core does not statically depend on recommendation mod
 
 test("market recommendations are lazy-loaded after calculation", () => {
   for (const market of ["pt", "si", "ro"]) {
-    const version = market === "pt" ? "20261117-pv-check1" : "20261111-source-health1";
+    const version = "20261117-bms-load1";
     assert.ok(source.includes(`await import("./${market}-recommendations.js?v=${version}")`),
       market + " must be lazily loaded with the current source health contract");
   }

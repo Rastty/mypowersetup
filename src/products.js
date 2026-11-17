@@ -1,4 +1,5 @@
 import { calculatePowerStationProfile } from "./power-station.js";
+import { batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
 
 const MERCHANTS = {
   reslshop: {
@@ -487,6 +488,10 @@ function scoreProduct(product, setup) {
     if (specs.voltageV !== setup.systemVoltage) return null;
     if (!specs.capacityAh || specs.capacityAh < setup.batteryAh) return null;
     if (!specs.batteryType || specs.batteryType !== setup.batteryType) return null;
+    // An explicit 100 A BMS rating cannot support a 130 A continuous inverter
+    // draw. Missing evidence must be disclosed, never replaced by an assumed
+    // BMS value inferred from the battery's Ah capacity.
+    if (!batteryBmsLoadWithinAdvertisedLimit(product, setup)) return null;
     // VSelektro feed products currently come from a strict, two-SKU shortlist.
     // Do not recommend a battery against an inverter load above its verified
     // continuous BMS rating. This is a conservative screening rule, not an
