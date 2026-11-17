@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { trafficDistributionSummary } from "../src/traffic-distribution.js";
+import { currentTrafficDistributionDate, trafficDistributionSummary } from "../src/traffic-distribution.js";
 
 const registry = JSON.parse(readFileSync(new URL("../data/traffic-distribution.json", import.meta.url), "utf8"));
 const args = process.argv.slice(2);
@@ -8,10 +8,10 @@ const argValue = (name) => {
   return index >= 0 ? args[index + 1] : null;
 };
 
-const asOf = argValue("--as-of") || registry.updatedAt;
+const asOf = argValue("--as-of") || currentTrafficDistributionDate();
 const market = argValue("--market");
 const json = args.includes("--json");
-const summary = trafficDistributionSummary(registry.opportunities, { asOf, market });
+const summary = trafficDistributionSummary(registry.opportunities, { asOf, market, lastReviewedAt: registry.updatedAt });
 
 if (json) {
   console.log(JSON.stringify(summary, null, 2));
@@ -19,6 +19,9 @@ if (json) {
 }
 
 console.log(`Traffic distribution as of ${summary.asOf} | market=${summary.market} | candidates=${summary.total} | actionable=${summary.actionable}`);
+if (summary.needsFreshResearch) {
+  console.log(`RESEARCH STALE: last editorial review ${summary.lastReviewedAt} (${summary.registryAgeDays} days ago). Re-check actual threads for a new unanswered question before engaging.`);
+}
 for (const [index, item] of summary.top.entries()) {
   const action = item.actionable
     ? "REPLY"

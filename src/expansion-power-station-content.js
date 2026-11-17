@@ -189,3 +189,32 @@ export function enhanceExpansionPowerStationContent(html, market, route) {
 }
 
 export const EXPANSION_POWER_STATION_ROUTES = Object.freeze(Object.fromEntries(Object.entries(CONTENT).map(([market, entry]) => [market, entry.route])));
+
+// Link readers who are planning an entire installed system to the earlier
+// portable-versus-fixed decision. These are intentionally only the underlinked
+// PT/SI routes; RO already has broad internal discovery of its decision guide.
+const SYSTEM_DECISION_ENTRY = Object.freeze({
+  pt: Object.freeze({
+    from: "/pt/guias/sistema-eletrico-completo-autocaravana/",
+    to: EXPANSION_POWER_STATION_ROUTES.pt,
+    intro: "Antes de comprares os componentes, verifica se precisas mesmo de uma instalação fixa.",
+    label: "Compara uma power station portátil com uma instalação fixa",
+    outro: "Confirma os limites da saída 12 V, as opções de carregamento e expansão.",
+  }),
+  si: Object.freeze({
+    from: "/si/vodici/elektricni-sistem-avtodom/",
+    to: EXPANSION_POWER_STATION_ROUTES.si,
+    intro: "Pred nakupom komponent preveri, ali sploh potrebuješ fiksno instalacijo.",
+    label: "Primerjaj prenosno elektrarno s fiksnim sistemom",
+    outro: "Preveri omejitve 12 V izhoda, načine polnjenja in možnost razširitve.",
+  }),
+});
+
+export function addExpansionPowerStationDecisionDiscovery(html, market, route) {
+  const entry = SYSTEM_DECISION_ENTRY[market];
+  if (!entry || entry.from !== route || typeof html !== "string" || html.includes("data-power-station-decision")) return html;
+  const header = /(<main class="article"><header class="article-header">[\s\S]*?<\/header>)/;
+  if (!header.test(html)) return html;
+  const nextStep = `<p class="article-decision-link" data-power-station-decision>${entry.intro} <a href="${entry.to}">${entry.label}</a>. ${entry.outro}</p>`;
+  return html.replace(header, `$1${nextStep}`);
+}

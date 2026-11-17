@@ -37,7 +37,11 @@ test("publicizer supplies one localized Article schema only when an expansion gu
     assert.equal((once.match(/data-expansion-article-fallback/g) || []).length, 1, route);
     assert.match(once, new RegExp(`"inLanguage":"${locale}"`));
     assert.match(once, /"datePublished":"2026-08-30"/);
-    assert.match(once, /"dateModified":"2026-09-07"/);
+    const updatedSystemGuide = [
+      "/pt/guias/sistema-eletrico-completo-autocaravana/",
+      "/si/vodici/elektricni-sistem-avtodom/",
+    ].includes(route);
+    assert.match(once, new RegExp(`"dateModified":"${updatedSystemGuide ? "2026-11-17" : "2026-09-07"}"`));
     assert.match(once, /"name":"Petr Gálík"/);
     assert.equal(twice, once, route);
   }

@@ -5,7 +5,7 @@ import { createNativeReviewChecklist } from "./native-review-packs.js";
 import { enhanceExpansionSearchContent } from "./expansion-search-content.js";
 import { enhanceRomaniaSearchContent } from "./expansion-search-content-ro.js";
 import { enhanceSloveniaSearchContent } from "./expansion-search-content-si.js";
-import { enhanceExpansionPowerStationContent, EXPANSION_POWER_STATION_ROUTES } from "./expansion-power-station-content.js";
+import { addExpansionPowerStationDecisionDiscovery, enhanceExpansionPowerStationContent, EXPANSION_POWER_STATION_ROUTES } from "./expansion-power-station-content.js";
 import { addContextualGrowthLinks } from "./contextual-growth-links.js";
 import { coreMoneyLinks } from "./homepage-money-routing.js";
 import { syncHomepageMoneyLinksHtml, renderHomepageMoneyCard } from "./homepage-money-html.js";
@@ -23,6 +23,8 @@ const EXPANSION_ARTICLE_DATES = Object.freeze({ datePublished: "2026-08-30", dat
 const EXPANSION_ARTICLE_MODIFIED_OVERRIDES = Object.freeze({
   "/pt/guias/capacidade-bateria-autocaravana/": "2026-11-17",
   "/si/vodici/kapaciteta-baterije-avtodom/": "2026-11-17",
+  "/pt/guias/sistema-eletrico-completo-autocaravana/": "2026-11-17",
+  "/si/vodici/elektricni-sistem-avtodom/": "2026-11-17",
 });
 const EXPANSION_ARTICLE_COPY = Object.freeze({
   pt: Object.freeze({ about: "/pt/sobre-o-projeto/", byline: "Publicado em 30 de agosto de 2026 · Autor:" }),
@@ -310,6 +312,7 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
   output = enhanceRomaniaSearchContent(output, market, route);
   output = enhanceSloveniaSearchContent(output, market, route);
   output = enhanceExpansionPowerStationContent(output, market, route);
+  output = addExpansionPowerStationDecisionDiscovery(output, market, route);
   output = addContextualGrowthLinks(output, market, route);
   output = addExpansionVoltageGuideDiscovery(output, market, route);
   output = addExpansionGuideHubSchema(output, market, route);

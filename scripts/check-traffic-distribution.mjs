@@ -1,11 +1,14 @@
 import { readFileSync } from "node:fs";
 import {
   MAX_ACTIONABLE_AGE_DAYS,
+  ageInDays,
+  currentTrafficDistributionDate,
   rankTrafficOpportunities,
 } from "../src/traffic-distribution.js";
 
 const registry = JSON.parse(readFileSync(new URL("../data/traffic-distribution.json", import.meta.url), "utf8"));
-const ranked = rankTrafficOpportunities(registry.opportunities, { asOf: registry.updatedAt });
+const asOf = currentTrafficDistributionDate();
+const ranked = rankTrafficOpportunities(registry.opportunities, { asOf });
 const actionable = ranked.filter((item) => item.actionable);
 
 if (!ranked.length) throw new Error("TRAFFIC_DISTRIBUTION_EMPTY");
@@ -16,5 +19,6 @@ if (actionable.some((item) => item.ageDays > MAX_ACTIONABLE_AGE_DAYS || item.fit
   throw new Error("TRAFFIC_DISTRIBUTION_ACTIONABLE_POLICY_BROKEN");
 }
 
+const registryAgeDays = ageInDays(registry.updatedAt, asOf);
 const queueState = actionable.length ? "reply queue available" : "no reply is currently warranted";
-console.log(`Traffic distribution guard OK: ${ranked.length} candidates, ${actionable.length} actionable; ${queueState}; top=${ranked[0].id} score=${ranked[0].score}`);
+console.log(`Traffic distribution guard OK: ${ranked.length} candidates, ${actionable.length} actionable; ${queueState}; top=${ranked[0].id} score=${ranked[0].score}; last_review_age=${registryAgeDays}d`);

@@ -1,5 +1,6 @@
 const DAY_MS = 24 * 60 * 60 * 1000;
 export const MAX_ACTIONABLE_AGE_DAYS = 30;
+export const MAX_REGISTRY_REVIEW_AGE_DAYS = 30;
 
 const PRIORITY_SCORE = Object.freeze({ high: 25, medium: 12, low: 4 });
 const STATUS_SCORE = Object.freeze({
@@ -25,6 +26,16 @@ export function ageInDays(lastKnownActivity, asOf) {
   const end = parseUtcDate(asOf, "asOf");
   if (start > end) throw new Error("TRAFFIC_DISTRIBUTION_ACTIVITY_IN_FUTURE");
   return Math.floor((end - start) / DAY_MS);
+}
+
+// Activity dates belong to the source registry, but the report's evaluation
+// date must advance with the clock. Never treat the last editorial review as
+// today's date: that would keep old forum threads artificially "fresh".
+export function currentTrafficDistributionDate(now = new Date()) {
+  if (!(now instanceof Date) || Number.isNaN(now.getTime())) {
+    throw new Error("TRAFFIC_DISTRIBUTION_CLOCK_INVALID");
+  }
+  return now.toISOString().slice(0, 10);
 }
 
 function freshnessScore(days) {
@@ -74,6 +85,8 @@ export function rankTrafficOpportunities(opportunities, { asOf, market = null, i
 
 export function trafficDistributionSummary(opportunities, options = {}) {
   const ranked = rankTrafficOpportunities(opportunities, options);
+  const lastReviewedAt = options.lastReviewedAt || null;
+  const registryAgeDays = lastReviewedAt ? ageInDays(lastReviewedAt, options.asOf) : null;
   const byMarket = Object.create(null);
   for (const item of ranked) {
     byMarket[item.market] ||= [];
@@ -81,6 +94,9 @@ export function trafficDistributionSummary(opportunities, options = {}) {
   }
   return Object.freeze({
     asOf: options.asOf,
+    lastReviewedAt,
+    registryAgeDays,
+    needsFreshResearch: registryAgeDays === null || registryAgeDays > MAX_REGISTRY_REVIEW_AGE_DAYS,
     market: options.market || "all",
     total: ranked.length,
     actionable: ranked.filter((item) => item.actionable).length,
