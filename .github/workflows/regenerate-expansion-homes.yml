@@ -47,6 +47,10 @@ jobs:
           node scripts/publish-expansion.mjs --market pt
           node scripts/publish-expansion.mjs --market ro
           node scripts/publish-expansion.mjs --market si
+      - name: Stop destructive publication before committing
+        run: |
+          node --test tests/expansion-publish-preserves-production.test.js tests/expansion-money-guide-seo.test.js tests/builder-viewport-impressions.test.js
+          node scripts/sync-expansion-money-guide-seo.mjs --check
       - name: Commit generated public-page drift
         shell: bash
         run: |
