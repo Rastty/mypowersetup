@@ -11,7 +11,7 @@ import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261117-solar-value1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
-import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20260828-1";
+import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { czechProductRequirement, czechProductDecisionFacts, czechPackageFitSummary } from "./product-decision-facts.js?v=20261014-1";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
@@ -570,7 +570,7 @@ function renderProductRecommendations(result) {
 
   heading.textContent = "Komponenty odpovídající vašemu výpočtu";
   intro.textContent = `Nejdříve ověřujeme technickou kompatibilitu. Doporučená sestava pak při výrazném cenovém rozdílu zohledňuje i srovnatelné nabídky ve stejné měně.${freshness}`;
-  renderProductPackages(packages);
+  renderProductPackages(packages, coverage);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Co katalog zatím nepokrývá:</strong> ${coverage.message}</p>`;
   const productGroups = Object.entries(recommendations)
     .filter(([, items]) => items.length)
@@ -587,7 +587,7 @@ function renderProductRecommendations(result) {
   trackVisibleProductChoices();
 }
 
-function renderProductPackages(variants) {
+function renderProductPackages(variants, coverage) {
   const target = document.querySelector("#package-variants");
   const copy = {
     economy: ["Úsporná", "Nejnižší známá cena mezi kompatibilními volbami."],
@@ -601,7 +601,10 @@ function renderProductPackages(variants) {
   const stalePriceNote = Object.values(productCatalogSources).some((source) => source?.status === "stale")
     ? '<p class="catalog-source-note is-stale"><strong>Aktualizace cen:</strong> U jednoho obchodu používáme poslední úspěšně načtený feed. Aktuální cenu a dostupnost vždy potvrďte na stránce produktu.</p>'
     : "";
-  target.innerHTML = `<div class="package-intro"><strong>Začněte doporučenou variantou</strong><p>Doporučený nákupní seznam je otevřený rovnou. Pokud katalog nabízí další odlišné sestavy, můžete je rozbalit a porovnat. Totožné nákupní seznamy nezobrazujeme dvakrát. Všechny zobrazené varianty splňují vypočtený požadavek na komponenty. Každý odkaz vede na konkrétní produkt u prodejce, nejde o společný nákupní košík. Výpočet neobsahuje veškerý instalační materiál ani montáž.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
+  const manualChargingNote = coverage?.manualDesignMessage
+    ? `<p class="recommendation-coverage-note is-manual-design"><strong>Individuální návrh nabíjení:</strong> ${escapeHtml(coverage.manualDesignMessage)}</p>`
+    : "";
+  target.innerHTML = `<div class="package-intro"><strong>Začněte doporučenou variantou</strong><p>Doporučený nákupní seznam je otevřený rovnou. Pokud katalog nabízí další odlišné sestavy, můžete je rozbalit a porovnat. Totožné nákupní seznamy nezobrazujeme dvakrát. Všechny zobrazené varianty splňují vypočtený požadavek na komponenty. Každý odkaz vede na konkrétní produkt u prodejce, nejde o společný nákupní košík. Výpočet neobsahuje veškerý instalační materiál ani montáž.</p>${manualChargingNote}${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
     const isRecommended = variant.id === "recommended";
     const pricesKnown = variant.totalPriceCzk !== null;
