@@ -1,5 +1,5 @@
 import { APPLIANCES } from "./catalog-hu.js";
-import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-package-charge1";
+import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-multi-currency1";
 import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { HU_UI_COPY } from "./ui-copy-hu.js?v=20261117-consistent-products1";
 import { productCardPriceDetails } from "./recommendation-display.js?v=20261117-consistent-products1";
@@ -202,7 +202,16 @@ function renderHungarianProductPackages(variants, coverage) {
     : "";
   target.innerHTML = `<div class="package-intro"><strong>Kezdd az ajánlott változattal</strong><p>Az ajánlott összeállítást mutatjuk elsőként: figyelembe veszi a műszaki illeszkedést, az adatokat és az árat. Ha további, eltérő összeállítások is elérhetők, hasonlítsd össze az árukat és a műszaki tartalékukat. Az azonos bevásárlólistákat nem ismételjük meg. Minden megjelenített változat teljesíti a számított igényt, de nem teljes szerelési anyaglista.</p>${manualChargingNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
-    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Számítási lefedettség: ${variant.items.length}/${variant.requiredCategoryCount} kategória</small><p>${description}</p><ul>${variant.items.map(({ category, product }) => hungarianPackageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Ár a webáruházban" : formatHungarianPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Tájékoztató termékösszeg; szállítás és szerelés nélkül.</small></article>`;
+    const subtotals = variant.priceSubtotals || [];
+    const hasUnpricedItems = (variant.unpricedItemCount || 0) > 0;
+    const priceLabel = variant.totalPriceCzk !== null ? formatHungarianPrice(variant.totalPriceCzk, variant.totalCurrency)
+      : subtotals.length ? `${hasUnpricedItems ? "Csak az ismert árak" : "Árak pénznemenként"}: ${subtotals.map(({ amount, currency }) => formatHungarianPrice(amount, currency)).join(" + ")}` : "Ár a webáruházban";
+    const priceNote = hasUnpricedItems && subtotals.length
+      ? "Nem minden ár érhető el; ez nem a teljes összeállítás ára. Szállítás és szerelés nélkül."
+      : subtotals.length > 1
+        ? "Tájékoztató részösszegek pénznemenként, átváltás nélkül; szállítás és szerelés nélkül."
+        : "Tájékoztató termékösszeg; szállítás és szerelés nélkül.";
+    return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Számítási lefedettség: ${variant.items.length}/${variant.requiredCategoryCount} kategória</small><p>${description}</p><ul>${variant.items.map(({ category, product }) => hungarianPackageProductLink(category, product, variant.id)).join("")}</ul><b>${priceLabel}</b><small class="package-price-note">${priceNote}</small></article>`;
   }).join("")}</div>`;
 }
 

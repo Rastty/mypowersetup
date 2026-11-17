@@ -184,4 +184,47 @@ test("does not add prices expressed in different currencies", () => {
 
   assert.equal(variant.totalPriceCzk, null);
   assert.equal(variant.totalCurrency, null);
+  assert.deepEqual(variant.priceSubtotals, [
+    { currency: "PLN", amount: 1300 },
+    { currency: "EUR", amount: 250 },
+  ]);
+  assert.equal(variant.unpricedItemCount, 0);
+});
+
+test("currency-grouped subtotals use complete multi-unit line prices", () => {
+  const battery = item("battery-eur", 409.99, 95, 1.05);
+  battery.product.priceCurrency = "EUR";
+  const panels = item("two-panels-czk", 1947, 94, 1.04, 2);
+  panels.product.priceCurrency = "CZK";
+  const controller = item("controller-czk", 2404, 93, 1.08);
+  controller.product.priceCurrency = "CZK";
+  const [variant] = buildProductPackages({ battery: [battery], solar_panel: [panels], controller: [controller] }, { inverterWatts: 0 });
+  assert.equal(variant.totalPriceCzk, null);
+  assert.deepEqual(variant.priceSubtotals, [
+    { currency: "EUR", amount: 409.99 },
+    { currency: "CZK", amount: 6298 },
+  ]);
+  assert.equal(variant.unpricedItemCount, 0);
+});
+
+test("partial package reports known subtotals without disguising unknown or missing currency", () => {
+  const battery = item("battery", 400, 95, 1.05);
+  battery.product.priceCurrency = "EUR";
+  const panels = item("panels", 2000, 94, 1.04, 2);
+  panels.product.priceCurrency = "CZK";
+  const controller = item("controller", null, 93, 1.08);
+  controller.product.priceCurrency = "CZK";
+  const [variant] = buildProductPackages({ battery: [battery], solar_panel: [panels], controller: [controller] }, { inverterWatts: 0 });
+  assert.equal(variant.totalPriceCzk, null);
+  assert.deepEqual(variant.priceSubtotals, [
+    { currency: "EUR", amount: 400 },
+    { currency: "CZK", amount: 4000 },
+  ]);
+  assert.equal(variant.unpricedItemCount, 1);
+
+  const unknownCurrency = item("unknown-currency-panel", 2500, 94, 1.04);
+  const [mixed] = buildProductPackages({ battery: [battery], solar_panel: [unknownCurrency], controller: [controller] }, { inverterWatts: 0 });
+  assert.equal(mixed.totalPriceCzk, null, "a missing currency must not be added to the EUR price");
+  assert.deepEqual(mixed.priceSubtotals, [{ currency: "EUR", amount: 400 }]);
+  assert.equal(mixed.unpricedItemCount, 2);
 });
