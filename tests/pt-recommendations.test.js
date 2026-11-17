@@ -86,6 +86,8 @@ test("Portugal power stations require verified limits and must fit the calculate
   ]), setup);
   assert.equal(recommendations.power_station.length, 1);
   assert.equal(recommendations.power_station[0].name, "Estação de energia R1500");
+  assert.equal(recommendations.power_station[0].solarInputW, 650);
+  assert.equal(recommendations.power_station[0].dcOutputA, 10);
 });
 
 test("Portugal recommendations fail closed when the catalog is empty", () => {

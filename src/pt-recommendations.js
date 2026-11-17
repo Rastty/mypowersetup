@@ -81,6 +81,8 @@ function recommendationView(product, { quantity = 1 } = {}) {
     quantity,
     powerW: product.specs?.powerW || null,
     capacityWh: product.specs?.capacityWh || null,
+    solarInputW: product.specs?.solarInputW || null,
+    dcOutputA: product.specs?.dcOutputA || null,
     verifiedAt: product.verifiedAt || null,
   });
 }
