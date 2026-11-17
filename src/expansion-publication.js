@@ -7,6 +7,9 @@ import { enhanceRomaniaSearchContent } from "./expansion-search-content-ro.js";
 import { enhanceSloveniaSearchContent } from "./expansion-search-content-si.js";
 import { enhanceExpansionPowerStationContent, EXPANSION_POWER_STATION_ROUTES } from "./expansion-power-station-content.js";
 import { addContextualGrowthLinks } from "./contextual-growth-links.js";
+import { coreMoneyLinks } from "./homepage-money-routing.js";
+import { syncHomepageMoneyLinksHtml, renderHomepageMoneyCard } from "./homepage-money-html.js";
+import { enhanceExpansionMoneyGuideSeo, expansionMoneyGuideRoutes } from "./expansion-money-guide-seo.js";
 import { addExpansionVoltageGuideDiscovery, expansionVoltageGuide, expansionVoltageGuideManifest } from "./expansion-voltage-guides.js";
 import { PUBLIC_HREFLANG_GROUPS, buildHreflangTags } from "./public-hreflang-map.js";
 
@@ -26,6 +29,26 @@ const EXPANSION_ARTICLE_COPY = Object.freeze({
   ro: Object.freeze({ about: "/ro/despre-proiect/", byline: "Publicat la 30 august 2026 · Autor:" }),
   si: Object.freeze({ about: "/si/o-projektu/", byline: "Objavljeno 30. avgusta 2026 · Avtor:" }),
 });
+
+const EXPANSION_HOME_GUIDE_PREVIEW = Object.freeze({
+  pt: Object.freeze({ lang: "pt", eyebrow: "Guias práticos", title: "Compreende primeiro. Compra depois.", intro: "Cálculos, exemplos e regras de decisão para escolher cada componente do sistema com base nas necessidades reais da tua autocaravana.", action: "Ver todos os guias", hub: "/pt/guias/", chemistry: "/pt/guias/lifepo4-vs-agm-autocaravana/", chemistryLabel: "Decisão", chemistryTitle: "LiFePO₄ ou AGM?", chemistryDescription: "Energia útil, peso, frio, carregamento e custo total da mudança." }),
+  ro: Object.freeze({ lang: "ro", eyebrow: "Ghiduri practice", title: "Înțelege mai întâi. Cumpără apoi.", intro: "Calcule, exemple și reguli clare de alegere pentru fiecare componentă a sistemului electric al autorulotei.", action: "Vezi toate ghidurile", hub: "/ro/ghiduri/", chemistry: "/ro/ghiduri/lifepo4-sau-agm-autorulota/", chemistryLabel: "Alegere", chemistryTitle: "LiFePO₄ sau AGM?", chemistryDescription: "Energie utilă, greutate, frig, încărcare și costul total al schimbării." }),
+  si: Object.freeze({ lang: "sl", eyebrow: "Praktični vodniki", title: "Najprej razumi. Nato kupi.", intro: "Izračuni, primeri in jasna pravila za izbiro vsakega dela električnega sistema avtodoma.", action: "Poglej vse vodnike", hub: "/si/vodici/", chemistry: "/si/vodici/lifepo4-ali-agm-avtodom/", chemistryLabel: "Odločitev", chemistryTitle: "LiFePO₄ ali AGM?", chemistryDescription: "Uporabna energija, masa, mraz, polnjenje in skupni strošek zamenjave." }),
+});
+
+const EXPANSION_MONEY_GUIDE_SET = new Set(expansionMoneyGuideRoutes());
+
+function addPublishedHomeGuidePreview(html, market) {
+  const copy = EXPANSION_HOME_GUIDE_PREVIEW[market];
+  if (!copy || !html.includes("</main>")) return html;
+  if (html.includes('class="guide-preview"')) return syncHomepageMoneyLinksHtml(html, { lang: copy.lang });
+  const [battery, solar] = coreMoneyLinks(copy.lang);
+  if (!battery || !solar) throw new Error(`EXPANSION_HOME_MONEY_CARDS_MISSING:${market}`);
+  const chemistry = `<a href="${copy.chemistry}"><span>${copy.chemistryLabel}</span><h3>${copy.chemistryTitle}</h3><p>${copy.chemistryDescription}</p></a>`;
+  const cards = [battery, chemistry, solar].map((item) => typeof item === "string" ? item : renderHomepageMoneyCard(item).replace(" data-money-guide", "")).join("\n");
+  const preview = `<section class="guide-preview" aria-labelledby="${market}-guide-preview-title"><div class="section-heading"><p class="eyebrow">${copy.eyebrow}</p><h2 id="${market}-guide-preview-title">${copy.title}</h2><p>${copy.intro}</p></div><div class="guide-preview-grid">${cards}</div><p class="guide-preview-action"><a class="button button-secondary" href="${copy.hub}">${copy.action} →</a></p></section>`;
+  return syncHomepageMoneyLinksHtml(html.replace("</main>", `${preview}</main>`), { lang: copy.lang });
+}
 
 const EXPANSION_BREADCRUMB_COPY = Object.freeze({
   pt: Object.freeze({ home: "Início", hub: "Guias", aria: "Navegação estrutural" }),
@@ -318,6 +341,10 @@ export function publicizeExpansionHtml(html, market, route, { home = false } = {
     }
   }
   if (additions.length) output = output.replace("</head>", `  ${additions.join("\n  ")}\n</head>`);
+  if (home) output = addPublishedHomeGuidePreview(output, market);
+  if (EXPANSION_MONEY_GUIDE_SET.has(route) && output.includes('"@type":"FAQPage"')) {
+    output = enhanceExpansionMoneyGuideSeo(output, route);
+  }
   return output;
 }
 
