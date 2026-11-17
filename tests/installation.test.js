@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { buildInstallationPlan } from "../src/installation.js";
+import { calculateChargingPlan } from "../src/charging.js";
 
 const COMPLETE_SETUP = {
   systemVoltage: 12,
@@ -124,4 +125,44 @@ test("Hungarian installation plan keeps every safety check", () => {
 test("refuses an incomplete setup", () => {
   assert.deepEqual(buildInstallationPlan(null), []);
   assert.deepEqual(buildInstallationPlan({ systemVoltage: "unknown" }), []);
+});
+
+test("individual charging design cannot be mistaken for an approved charger in installation instructions", () => {
+  const charging = calculateChargingPlan({
+    dailyWh: 550,
+    batteryAh: 140,
+    batteryType: "lifepo4",
+    systemVoltage: 12,
+    driveHoursPerDay: 2,
+    shoreChargeHours: 2,
+  });
+  assert.equal(charging.dcDc.requiredCurrentAmps, 26);
+  assert.equal(charging.dcDc.candidateCurrentAmps, 30);
+  assert.equal(charging.dcDc.planningCeilingAmps, 28);
+  assert.equal(charging.dcDc.needsIndividualDesign, true);
+  assert.equal(charging.shore.needsIndividualDesign, true);
+  charging.dcDc.inputWiring = {
+    designCurrentAmps: charging.dcDc.estimatedInputCurrentAmps,
+    oneWayLengthMeters: 4,
+    recommendedCrossSectionMm2: 16,
+    maxVoltageDropPercent: 3,
+  };
+
+  const warnings = {
+    cs: /individuální návrh/,
+    sk: /individuálny návrh/,
+    pl: /indywidualnego projektu/,
+    hu: /egyedi méretezést/,
+  };
+  for (const [locale, warning] of Object.entries(warnings)) {
+    const circuits = buildInstallationPlan({ systemVoltage: 12, charging }, locale);
+    for (const id of ["starter-dcdc", "dcdc-battery", "charger-battery"]) {
+      const detail = circuits.find((circuit) => circuit.id === id)?.detail;
+      assert.ok(detail, `${locale}: missing ${id}`);
+      assert.match(detail, warning, `${locale}: ${id}`);
+      assert.match(detail, /26 A/, `${locale}: ${id}`);
+      assert.doesNotMatch(detail, /(?:DC–DC 26 A:|Výstup DC–DC alespoň 26 A|Ładowarka sieciowa: co najmniej 26 A)/, locale);
+    }
+    assert.match(circuits.find(({ id }) => id === "starter-dcdc").detail, /16 mm²/);
+  }
 });
