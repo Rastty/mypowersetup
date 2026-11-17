@@ -127,6 +127,7 @@ try {
   const mpptBuyerMatches = await smokeMpptBuyerMatches(cdp);
   const batteryBuyerMatches = await smokeBatteryBuyerMatches(cdp);
   const expansionEditorial = await smokeExpansionEditorial(cdp);
+  const expansionNavigation = await smokeExpansionNavigation(cdp);
 
   console.log(JSON.stringify({
     ok: true,
@@ -138,6 +139,7 @@ try {
     mpptBuyerMatches,
     batteryBuyerMatches,
     expansionEditorial,
+    expansionNavigation,
   }, null, 2));
 } finally {
   if (cdp) await cdp.send("Browser.close").catch(() => {});
@@ -195,6 +197,52 @@ async function smokeExpansionEditorial(client) {
           `${example.market}: early portable-vs-fixed decision link not visible`);
       }
       reports.push({ market: example.market, width, readable: true, overflow: false });
+    }
+  }
+  return reports;
+}
+
+async function smokeExpansionNavigation(client) {
+  const reports = [];
+  for (const width of [390, 1280]) {
+    await client.send("Emulation.setDeviceMetricsOverride", {
+      width, height: 844, deviceScaleFactor: width === 390 ? 3 : 1,
+      mobile: width === 390, screenWidth: width, screenHeight: 844,
+    });
+    for (const market of ["pt", "ro", "si"]) {
+      await client.send("Page.navigate", { url: `${origin}/${market}/` });
+      await waitFor(async () => await evaluate(client,
+        `document.readyState === "complete" && Boolean(document.querySelector('.expansion-nav .language-select'))`));
+      const actual = await evaluate(client, `(() => {
+        const nav = document.querySelector('.expansion-nav');
+        const header = document.querySelector('header.site-header');
+        const brand = header.querySelector('.brand').getBoundingClientRect();
+        const navRect = nav.getBoundingClientRect();
+        const links = [...nav.querySelectorAll('a.header-link:not(.language-switch)')];
+        const visibleLinks = links.filter(link => getComputedStyle(link).display !== 'none');
+        const linkRects = visibleLinks.map(link => link.getBoundingClientRect());
+        const gaps = linkRects.slice(1).map((rect, index) => rect.left - linkRects[index].right);
+        return {
+          viewport: innerWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+          layout: getComputedStyle(nav).display,
+          visibleLinks: visibleLinks.length,
+          minLinkGap: gaps.length ? Math.min(...gaps) : null,
+          brandToNavGap: navRect.left - brand.right,
+          languageVisible: nav.querySelector('.language-select').getBoundingClientRect().width > 0,
+        };
+      })()`);
+      assert(actual.viewport === width, `${market}: header viewport mismatch`);
+      assert(actual.scrollWidth <= width + 2, `${market}: header horizontal overflow`);
+      assert(actual.layout === "flex", `${market}: expansion header links are inline with no spacing`);
+      assert(actual.languageVisible && actual.brandToNavGap >= 8, `${market}: language selector overlaps brand`);
+      if (width === 1280) {
+        assert(actual.visibleLinks === 3 && actual.minLinkGap >= 18,
+          `${market}: desktop guide/method/about links touch (${actual.minLinkGap}px gap)`);
+      } else {
+        assert(actual.visibleLinks === 0, `${market}: mobile header should prioritize language selector`);
+      }
+      reports.push({ market, width, spacedNavigation: true });
     }
   }
   return reports;

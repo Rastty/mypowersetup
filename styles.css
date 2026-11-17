@@ -452,7 +452,7 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .product-card-action a { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: 10px 14px; border-radius: 9px; color: white; background: var(--forest); font-size: 12px; font-weight: 800; text-align: center; }
 
 .method-section { padding: 100px 24px; color: white; background: var(--forest-deep); }
-.header-nav { display: flex; align-items: center; gap: 24px; }
+.header-nav, .expansion-nav { display: flex; align-items: center; gap: 24px; }
 .guide-preview { padding: 90px 24px; background: #f7f8f4; }
 .guide-preview-grid, .quick-calculator-grid { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .guide-preview-grid a, .quick-calculator-grid a { padding: 26px; border: 1px solid var(--line); border-radius: var(--radius-md); color: var(--ink); background: white; text-decoration: none; transition: transform .18s ease, border-color .18s ease; }
@@ -492,7 +492,7 @@ footer small { font-size: 12px; }
   .site-header { width: calc(100% - 32px); padding-top: 18px; }
   .header-link { display: none; }
   .header-link.language-switch { display: inline-flex; }
-  .header-nav { gap: 0; }
+  .header-nav, .expansion-nav { gap: 0; }
   .hero { gap: 30px; padding: 105px 20px 50px; }
   h1 { font-size: clamp(40px, 13vw, 58px); }
   .hero-lead { font-size: 17px; }
