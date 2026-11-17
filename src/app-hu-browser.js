@@ -1,5 +1,5 @@
 import { APPLIANCES } from "./catalog-hu.js";
-import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-installation-safety1";
+import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-package-charge1";
 import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { HU_UI_COPY } from "./ui-copy-hu.js?v=20261117-consistent-products1";
 import { productCardPriceDetails } from "./recommendation-display.js?v=20261117-consistent-products1";
@@ -177,7 +177,7 @@ function renderProducts(output) {
   resultProductsLink.textContent = hasRecommendedPackage ? "Ajánlott összeállítás megjelenítése ↓" : "Ajánlott termékek megjelenítése ↓";
   resultProductsLink.dataset.resultNextVariant = hasRecommendedPackage ? "complete_package" : "product_matches";
   document.querySelector("#product-heading").textContent = total ? HU_UI_COPY.products.heading : HU_UI_COPY.products.preparing;
-  renderHungarianProductPackages(total ? output.packages : []);
+  renderHungarianProductPackages(total ? output.packages : [], coverage);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>A katalógusból még hiányzik:</strong> ${escapeHtml(coverage.message)}</p>`;
   const productGroups = entries.map(([category,items]) => `<section class="product-group" data-product-category="${category}"><h5>${labels[category]}</h5><div class="product-grid">${items.map(({product,reason,checks,verify}, index) => `<article class="product-card"><div class="product-card-copy"><span class="product-recommendation-role is-${index === 0 ? "recommended" : "alternative"}">${index === 0 ? HU_UI_COPY.products.roles.recommended : HU_UI_COPY.products.roles.alternative}</span><span>${hungarianMerchantLabel(product.merchant)}</span><h6>${escapeHtml(product.name)}</h6><p><strong>Miért megfelelő:</strong> ${escapeHtml(reason)}</p><ul>${checks.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul><p><strong>Vásárlás előtt:</strong> ${escapeHtml(verify)}</p><div class="product-card-action"><span class="product-price"><strong>${hungarianCardPrice(product)}</strong></span><a href="${escapeHtml(attributedAwinUrl(product, category, index === 0 ? "recommended" : "alternative", "product-card"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-recommendation-role="${index === 0 ? "recommended" : "alternative"}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("hu", hungarianMerchantLabel(product.merchant)))}</a></div></div></article>`).join("")}</div></section>`).join("");
   document.querySelector("#recommendation-groups").innerHTML = total
@@ -186,7 +186,7 @@ function renderProducts(output) {
   trackVisibleProductChoices();
 }
 
-function renderHungarianProductPackages(variants) {
+function renderHungarianProductPackages(variants, coverage) {
   const target = document.querySelector("#package-variants");
   const copy = {
     economy: ["Takarékos", "A legalacsonyabb ismert ár a kompatibilis lehetőségek között."],
@@ -197,7 +197,10 @@ function renderHungarianProductPackages(variants) {
     target.innerHTML = "";
     return;
   }
-  target.innerHTML = `<div class="package-intro"><strong>Kezdd az ajánlott változattal</strong><p>Az ajánlott összeállítást mutatjuk elsőként: figyelembe veszi a műszaki illeszkedést, az adatokat és az árat. Ha további, eltérő összeállítások is elérhetők, hasonlítsd össze az árukat és a műszaki tartalékukat. Az azonos bevásárlólistákat nem ismételjük meg. Minden megjelenített változat teljesíti a számított igényt, de nem teljes szerelési anyaglista.</p></div><div class="package-grid">${variants.map((variant) => {
+  const manualChargingNote = coverage?.manualDesignMessage
+    ? `<p class="recommendation-coverage-note is-manual-design"><strong>Egyedi töltési terv szükséges:</strong> ${escapeHtml(coverage.manualDesignMessage)}</p>`
+    : "";
+  target.innerHTML = `<div class="package-intro"><strong>Kezdd az ajánlott változattal</strong><p>Az ajánlott összeállítást mutatjuk elsőként: figyelembe veszi a műszaki illeszkedést, az adatokat és az árat. Ha további, eltérő összeállítások is elérhetők, hasonlítsd össze az árukat és a műszaki tartalékukat. Az azonos bevásárlólistákat nem ismételjük meg. Minden megjelenített változat teljesíti a számított igényt, de nem teljes szerelési anyaglista.</p>${manualChargingNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
     return `<article class="package-card ${variant.id === "recommended" ? "is-recommended" : ""}"><span>${label}</span><small class="package-coverage">Számítási lefedettség: ${variant.items.length}/${variant.requiredCategoryCount} kategória</small><p>${description}</p><ul>${variant.items.map(({ category, product }) => hungarianPackageProductLink(category, product, variant.id)).join("")}</ul><b>${variant.totalPriceCzk === null ? "Ár a webáruházban" : formatHungarianPrice(variant.totalPriceCzk, variant.totalCurrency)}</b><small class="package-price-note">Tájékoztató termékösszeg; szállítás és szerelés nélkül.</small></article>`;
   }).join("")}</div>`;
