@@ -17,6 +17,7 @@ const ROLES_ASSET = "src/expansion-recommendation-roles.js";
 const COMPONENT_ASSET = "src/expansion-component-recommendations.js";
 const BATTERY_SAFETY_ASSET = "src/battery-discharge-safety.js";
 const PRODUCTS_ASSET = "src/products.js";
+const POWERQUEEN_ASSET = "src/powerqueen-expansion.js";
 const SCRIPT_PATTERN = /<script\b[^>]*\bsrc=["'](\/src\/expansion-calculator-browser\.js\?v=[^"']+)["'][^>]*>/gi;
 const MODULE_PATTERN = /from ["']\.\/expansion-supply-evidence\.js\?v=([^"']+)["']/g;
 const TEMPORARY = new Set([429, 502, 503, 504]);
@@ -235,8 +236,18 @@ export async function verifyExpansionSupplyLive({
   if (normalize(servedProducts) !== normalize(localProducts)) fail("BATTERY_PRODUCTS_JS_SOURCE_DRIFT");
   if (!servedProducts.includes("batteryBmsLoadWithinAdvertisedLimit(product, setup)"))
     fail("BATTERY_PRODUCTS_BMS_GUARD_MISSING");
+  if (!servedProducts.includes("isPowerQueenRegionRestrictedOffer(product)"))
+    fail("POWERQUEEN_MARKET_GUARD_MISSING");
   if (expectedVersionedImport(servedProducts, "battery-discharge-safety.js") !== batterySafetyUrl)
     fail("BATTERY_BMS_SHARED_VERSION_DRIFT");
+  const powerQueenGuardUrl = expectedVersionedImport(servedProducts, "powerqueen-expansion.js");
+  const [localPowerQueenGuard, servedPowerQueenGuard] = await Promise.all([
+    readLocal(POWERQUEEN_ASSET),
+    fetchProof(new URL(powerQueenGuardUrl, base), "js", fetchImpl, sleep),
+  ]);
+  if (normalize(servedPowerQueenGuard) !== normalize(localPowerQueenGuard)) fail("POWERQUEEN_MARKET_JS_SOURCE_DRIFT");
+  if (!servedPowerQueenGuard.includes("export function isPowerQueenRegionRestrictedOffer(product)"))
+    fail("POWERQUEEN_MARKET_GUARD_MISSING");
   return Object.freeze({
     status: "verified_served_assets",
     pages,
@@ -247,6 +258,7 @@ export async function verifyExpansionSupplyLive({
     rolesScript: rolesUrl,
     batterySafetyScript: batterySafetyUrl,
     productsScript: productsUrl,
+    powerQueenGuardScript: powerQueenGuardUrl,
     marketModules: Object.freeze(marketModules),
     componentScript: componentUrl,
     sourceParity: true,

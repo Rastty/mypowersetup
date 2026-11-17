@@ -17,6 +17,7 @@ const rolesPath = "src/expansion-recommendation-roles.js";
 const componentPath = "src/expansion-component-recommendations.js";
 const batterySafetyPath = "src/battery-discharge-safety.js";
 const productsPath = "src/products.js";
+const powerQueenPath = "src/powerqueen-expansion.js";
 const marketPaths = ["src/pt-recommendations.js", "src/ro-recommendations.js", "src/si-recommendations.js"];
 
 function server({ transform = () => null, statusAt = () => null } = {}) {
@@ -55,20 +56,21 @@ test("every public expansion calculator and both modules pass exact served-versi
   assert.equal(proof.sourceParity, true);
   assert.equal(proof.ga4EventsObserved, false);
   assert.equal(proof.purchaseOrCommissionVerified, false);
-  assert.match(proof.browserScript, /20261117-bms-load1/);
+  assert.match(proof.browserScript, /20261117-pq-region1/);
   assert.match(proof.supplyScript, /20261113-explicit-intent1/);
   assert.match(proof.priceScript, /20261111-solar-subtotal1/);
   assert.match(proof.specsScript, /20261117-pv-check1/);
   assert.match(proof.rolesScript, /20261113-complete-price1/);
   assert.match(proof.batterySafetyScript, /20261117-bms-load1/);
-  assert.match(proof.productsScript, /20261117-bms-load1/);
+  assert.match(proof.productsScript, /20261117-pq-region1/);
+  assert.match(proof.powerQueenGuardScript, /20261117-pq-region1/);
   assert.equal(proof.marketModules.length, 3);
-  assert.ok(proof.marketModules.every(row => row.script.includes("20261117-bms-load1")));
-  assert.match(proof.componentScript, /20261117-bms-load1/);
+  assert.ok(proof.marketModules.every(row => row.script.includes("20261117-pq-region1")));
+  assert.match(proof.componentScript, /20261117-pq-region1/);
   assert.deepEqual(mock.requests.map(r => r.path), [
     "pt/index.html", "ro/index.html", "si/index.html",
     browserPath, supplyPath, pricePath, specsPath, rolesPath, batterySafetyPath,
-    ...marketPaths, componentPath, productsPath,
+    ...marketPaths, componentPath, productsPath, powerQueenPath,
   ]);
   assert.ok(mock.requests.every(r => r.options.cache === "no-store"));
   assert.ok(mock.requests.every(r => r.options.redirect === "follow"));
@@ -76,7 +78,7 @@ test("every public expansion calculator and both modules pass exact served-versi
 
 test("a stale public market HTML version fails rather than trusting Pages deploy status", async () => {
   const mock = server({ transform: ({ path, text }) => path === "ro/index.html"
-    ? { text: text.replace("20261117-bms-load1", "20261113-stale") } : null });
+    ? { text: text.replace("20261117-pq-region1", "20261113-stale") } : null });
   await assert.rejects(
     verifyExpansionSupplyLive({ fetchImpl: mock.fetchImpl, sleep: async () => {} }),
     /EXPANSION_PUBLIC_SCRIPT_VERSION_DRIFT_ro/,
@@ -115,7 +117,7 @@ test("a temporary HTTP 503 retries; persistent failed responses fail closed", as
   const retry = server({ statusAt: (url, count) => count === 1 ? 503 : null });
   const result = await verifyExpansionSupplyLive({ fetchImpl: retry.fetchImpl, sleep: async () => {} });
   assert.equal(result.status, "verified_served_assets");
-  assert.equal(retry.requests.length, 15);
+  assert.equal(retry.requests.length, 16);
   const blocked = server({ statusAt: url => url.endsWith("/pt/") ? 503 : null });
   await assert.rejects(verifyExpansionSupplyLive({ fetchImpl: blocked.fetchImpl, sleep: async () => {} }),
     /EXPANSION_PUBLIC_HTTP_503/);

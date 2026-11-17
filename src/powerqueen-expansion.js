@@ -10,8 +10,20 @@ export function isPowerQueenExpansionProduct(product) {
   return product?.merchant === MERCHANT;
 }
 
+// Merchant-wide EU shipping evidence does not override a destination-specific
+// SKU. Power Queen also publishes a Ukraine-only tax-free offer under an
+// otherwise ordinary battery title; its title alone is not a safe filter.
+export function isPowerQueenRegionRestrictedOffer(product) {
+  if (!isPowerQueenExpansionProduct(product)) return false;
+  const path = String(product.productUrl || "").toLowerCase();
+  const brand = String(product.brand || "").toLowerCase();
+  return /(?:shipping|delivery)[-_](?:to[-_])?ukraine(?:[-/?#]|$)/.test(path)
+    || /\bpq[-_ ]ua[-_ ]tax[-_ ]free\b/.test(brand);
+}
+
 export function validatePowerQueenExpansionProduct(product) {
   if (!isPowerQueenExpansionProduct(product)) throw new Error("POWERQUEEN_MERCHANT_INVALID");
+  if (isPowerQueenRegionRestrictedOffer(product)) throw new Error("POWERQUEEN_REGION_RESTRICTED_OFFER");
   if (product.marketEligible !== true || product.available === false) throw new Error("POWERQUEEN_MARKET_EVIDENCE_INVALID");
   if (!COMPONENT_CATEGORIES.has(product.category)) throw new Error("POWERQUEEN_CATEGORY_INVALID");
   if (product.priceCurrency !== "EUR" || !(Number(product.priceCzk) > 0)) throw new Error("POWERQUEEN_PRICE_INVALID");

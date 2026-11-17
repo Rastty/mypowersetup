@@ -27,6 +27,7 @@ function payload({ inverterAvailable = true, charger10Available = true, charger2
       shopifyProduct(6, "power-queen-14-6v-20a-lifepo4-battery-charger-2-stage-automatic-intelligent-lifepo4-lithium-battery-charger-suitable-for-12v-12-8v-lithium-battery", "Power Queen 14.6V 20A LiFePO4 charger for 12V LiFePO4 battery", "Accessories", undefined, { price: "85.99", available: charger20Available }),
       shopifyProduct(7, "power-queen-14-6v-40a-lifepo4-charger-without-handle", "Power Queen 14.6V 40A LiFePO4 charger with handle for 12V battery", "Accessories", undefined, { price: "169.99" }),
       shopifyProduct(8, "power-queen-29-2v-20-amp-lithium-lifepo4-battery-charger", "Power Queen 29.2V 20A LiFePO4 charger for 24V LiFePO4 battery", "Accessories", undefined, { price: "102.99" }),
+      shopifyProduct(9, "power-queen-24v-125ah-smart-lifepo4-battery-shipping-ukraine", "Power Queen 24V 125Ah Smart LiFePO4 Battery", "Batteries", "24V 125Ah LiFePO4 with built-in BMS"),
     ],
   };
 }
@@ -45,6 +46,7 @@ test("Power Queen sync admits only live exact verified inverter and shore charge
   const result = await withFetchPayload(payload(), () => syncPowerQueenEu());
   assert.equal(result.source.status, "ok");
   assert.equal(result.source.batteries, 2);
+  assert.equal(result.products.some((product) => product.productUrl.includes("shipping-ukraine")), false);
   assert.equal(result.source.controllers, 1);
   assert.equal(result.source.inverters, 1);
   assert.equal(result.source.shoreChargers, 4);

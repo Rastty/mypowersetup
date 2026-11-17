@@ -1,5 +1,5 @@
 import { buildAllpowersPtDeeplink, parseAllpowersPtDeeplink } from "./affiliate-allpowers-pt.js";
-import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js";
+import { isPowerQueenExpansionProduct, validatePowerQueenExpansionProduct } from "./powerqueen-expansion.js?v=20261117-pq-region1";
 import { isXdatouExpansionProduct, validateXdatouExpansionProduct } from "./affiliate-xdatou.js";
 import { isAmpulExpansionProduct, validateAmpulExpansionProduct } from "./affiliate-ampul-expansion.js";
 import { isBluettiElite300Product, validateBluettiElite300Product } from "./affiliate-bluetti-eu.js";

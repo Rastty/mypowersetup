@@ -343,7 +343,7 @@ function renderResult(value) {
 async function renderPortugalProducts(calculation, revision, recordIntent) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
-    const { buildPortugalRecommendations, loadPortugalProductCatalog, portugalRecommendationCoverage , hasExpansionSourceGaps } = await import("./pt-recommendations.js?v=20261117-bms-load1");
+    const { buildPortugalRecommendations, loadPortugalProductCatalog, portugalRecommendationCoverage , hasExpansionSourceGaps } = await import("./pt-recommendations.js?v=20261117-pq-region1");
     const catalog = await loadPortugalProductCatalog();
     if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildPortugalRecommendations(catalog, calculation, 3);
@@ -367,7 +367,7 @@ async function renderPortugalProducts(calculation, revision, recordIntent) {
 async function renderSloveniaProducts(calculation, revision, recordIntent) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
-    const { buildSloveniaRecommendations, loadSloveniaProductCatalog , hasExpansionSourceGaps } = await import("./si-recommendations.js?v=20261117-bms-load1");
+    const { buildSloveniaRecommendations, loadSloveniaProductCatalog , hasExpansionSourceGaps } = await import("./si-recommendations.js?v=20261117-pq-region1");
     const catalog = await loadSloveniaProductCatalog();
     if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildSloveniaRecommendations(catalog, calculation, 3);
@@ -390,7 +390,7 @@ async function renderSloveniaProducts(calculation, revision, recordIntent) {
 async function renderRomaniaProducts(calculation, revision, recordIntent) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
-    const { buildRomaniaRecommendations, loadRomaniaProductCatalog , hasExpansionSourceGaps } = await import("./ro-recommendations.js?v=20261117-bms-load1");
+    const { buildRomaniaRecommendations, loadRomaniaProductCatalog , hasExpansionSourceGaps } = await import("./ro-recommendations.js?v=20261117-pq-region1");
     const catalog = await loadRomaniaProductCatalog();
     if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildRomaniaRecommendations(catalog, calculation, 3);
