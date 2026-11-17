@@ -38,6 +38,7 @@ const verification = {
       },
     },
     [INVERTER_ID]: {
+      continuousRating: { continuousPowerW: 1500, evidenceUrl: "https://evidence.example/inverter-continuous", verifiedAt: "2026-09-16" },
       markets: {
         pt: { verified: false, evidenceUrl: null, verifiedAt: null },
         ro: { verified: true, evidenceUrl: "https://evidence.example/inverter-ro", verifiedAt: "2026-09-16" },

@@ -4,6 +4,7 @@ const STATUS_RANK = Object.freeze({
   ready_for_ingest: 0,
   pending_affiliate_approval: 1,
   blocked_affiliate_verification: 2,
+  blocked_technical_spec_verification: 3,
   blocked_market_verification: 3,
   blocked_market_stock_verification: 4,
   blocked_crossborder_shipping: 5,

@@ -93,7 +93,7 @@ function validateSloveniaProduct(product, sources = {}) {
     return;
   }
   if (isAmpulExpansionProduct(product)) {
-    validateAmpulExpansionProduct(product, { market: "si", verifiedProductMarkets: sources?.ampul_eu?.verifiedProductMarkets || {} });
+    validateAmpulExpansionProduct(product, { market: "si", verifiedProductMarkets: sources?.ampul_eu?.verifiedProductMarkets || {}, inverterContinuousRating: sources?.ampul_eu?.inverterContinuousRating });
     return;
   }
   if (isSolarisExpansionProduct(product)) {

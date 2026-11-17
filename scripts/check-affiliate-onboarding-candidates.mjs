@@ -28,7 +28,7 @@ const merchantPolicies = new Map([
   ["offgridtec", new Set(["skipped_by_owner"])],
   ["xdatou", new Set(["blocked_affiliate_verification"])],
   ["solaris_store", new Set(["blocked_affiliate_verification"])],
-  ["ampul_eu", new Set(["blocked_market_verification", "blocked_market_stock_verification"])],
+  ["ampul_eu", new Set(["blocked_market_verification", "blocked_market_stock_verification", "blocked_technical_spec_verification"])],
   ["padabo_sk", new Set(["blocked_crossborder_not_supported"])],
   ["renogy_eu", new Set(["blocked_stock"])],
   ["bluetti_eu", new Set(["blocked_stock", "blocked_affiliate_verification"])],
@@ -234,7 +234,7 @@ assert(sourcingPadabo?.standaloneUnlockWeight === 5 && sourcingPadabo?.affectedW
 assert(sourcingPadabo?.nextActionOwner === null && sourcingPadabo?.nextAction === "none", "Padabo closed sourcing route kept a next action");
 
 for (const [candidate, expectedStatus, expectedCategory] of [
-  [ampulInverter24, "blocked_market_stock_verification", "inverter"],
+  [ampulInverter24, "blocked_technical_spec_verification", "inverter"],
   [ampulDcDc30, "blocked_market_verification", "dc_charger"],
 ]) {
   assert(candidate.merchant === "ampul_eu", `${candidate.id}: Ampul merchant invalid`);
@@ -260,13 +260,14 @@ for (const [candidate, expectedStatus, expectedCategory] of [
 
   const sourcing = listCommercialSourcingCandidates({ category: expectedCategory }).find(({ id }) => id === candidate.id);
   assert(sourcing?.status === candidate.status, `${candidate.id}: Ampul onboarding and sourcing statuses diverge`);
-  assert(sourcing?.blocker === "market_shipping_checkout_unverified", `${candidate.id}: Ampul market blocker missing`);
+  assert(sourcing?.blocker === (candidate.id === ampulInverter24.id
+    ? "continuous_power_unverified" : "market_shipping_checkout_unverified"), `${candidate.id}: Ampul blocker mismatch`);
   assert(sourcing?.affiliateApprovalConfirmed === true, `${candidate.id}: Ampul approved state missing from sourcing queue`);
   assert(sourcing?.nextActionOwner === "system", `${candidate.id}: Ampul sourcing action owner invalid`);
 }
 
 assert(ampulInverter24.stockStatus === "variant_unverified", "Ampul 24V inverter variant stock must remain unverified");
-assert(ampulInverter24.specs?.systemVoltage === 24 && ampulInverter24.specs?.continuousPowerW === 2000 && ampulInverter24.specs?.waveform === "pure_sine", "Ampul 24V inverter evidence invalid");
+assert(ampulInverter24.specs?.systemVoltage === 24 && ampulInverter24.specs?.maxAdvertisedPowerW === 2000 && ampulInverter24.specs?.continuousPowerW === null && ampulInverter24.specs?.waveform === "pure_sine", "Ampul 24V inverter maximum cannot certify continuous power");
 assert(ampulInverter24.targetScenarioIds?.includes("coffee-offgrid"), "Ampul inverter target scenario missing");
 assert(ampulDcDc30.stockStatus === "in_stock" && ampulDcDc30.stockEvidenceVerifiedAt === "2026-09-07", "Ampul DC-DC current stock evidence missing");
 assert(ampulDcDc30.specs?.currentA === 30 && ampulDcDc30.specs?.outputVoltage === 14.6 && ampulDcDc30.specs?.batteryTypes?.includes("lifepo4"), "Ampul DC-DC technical evidence invalid");

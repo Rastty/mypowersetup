@@ -23,6 +23,11 @@
       }
     },
     "ampul-eu-inverter-24v-2000w": {
+      "continuousRating": {
+        "continuousPowerW": null,
+        "evidenceUrl": null,
+        "verifiedAt": null
+      },
       "markets": {
         "pt": {
           "verified": false,

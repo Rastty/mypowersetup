@@ -96,7 +96,7 @@ function validateRomaniaProduct(product, sources = {}, { bluettiActivation } = {
     return;
   }
   if (isAmpulExpansionProduct(product)) {
-    validateAmpulExpansionProduct(product, { market: "ro", verifiedProductMarkets: sources?.ampul_eu?.verifiedProductMarkets || {} });
+    validateAmpulExpansionProduct(product, { market: "ro", verifiedProductMarkets: sources?.ampul_eu?.verifiedProductMarkets || {}, inverterContinuousRating: sources?.ampul_eu?.inverterContinuousRating });
     return;
   }
   if (isBluettiElite300Product(product)) {
