@@ -18,7 +18,10 @@ const COMPONENT_ASSET = "src/expansion-component-recommendations.js";
 const BATTERY_SAFETY_ASSET = "src/battery-discharge-safety.js";
 const PRODUCTS_ASSET = "src/products.js";
 const POWERQUEEN_ASSET = "src/powerqueen-expansion.js";
+const MEDIA_ASSET = "src/expansion-product-media.js";
+const STYLES_ASSET = "styles.css";
 const SCRIPT_PATTERN = /<script\b[^>]*\bsrc=["'](\/src\/expansion-calculator-browser\.js\?v=[^"']+)["'][^>]*>/gi;
+const STYLES_PATTERN = /<link\b[^>]*\brel=["']stylesheet["'][^>]*\bhref=["'](\/styles\.css\?v=[0-9]{8}-[a-z0-9-]+)["'][^>]*>/gi;
 const MODULE_PATTERN = /from ["']\.\/expansion-supply-evidence\.js\?v=([^"']+)["']/g;
 const TEMPORARY = new Set([429, 502, 503, 504]);
 
@@ -28,6 +31,11 @@ function expectedScript(html, market) {
   const scripts = [...html.matchAll(SCRIPT_PATTERN)].map(row => row[1]);
   if (scripts.length !== 1) fail("SCRIPT_COUNT_" + market);
   return scripts[0];
+}
+function expectedStylesheet(html, market) {
+  const paths = [...html.matchAll(STYLES_PATTERN)].map(row => row[1]);
+  if (paths.length !== 1) fail("STYLESHEET_COUNT_" + market);
+  return paths[0];
 }
 function expectedSupplyImport(source) {
   const matches = [...source.matchAll(MODULE_PATTERN)].map(row => row[1]);
@@ -83,6 +91,8 @@ export function verifyExpansionHtml(served, local, market) {
     fail("CANONICAL_DRIFT_" + market);
   const script = expectedScript(local, market);
   if (expectedScript(served, market) !== script) fail("SCRIPT_VERSION_DRIFT_" + market);
+  if (expectedStylesheet(served, market) !== expectedStylesheet(local, market))
+    fail("STYLESHEET_VERSION_DRIFT_" + market);
   return script;
 }
 
@@ -141,7 +151,7 @@ async function fetchProof(url, type, fetchImpl, sleep) {
     response = await fetchImpl(url, {
       redirect: "follow", cache: "no-store",
       signal: AbortSignal.timeout(20000),
-      headers: { accept: type === "html" ? "text/html" : "text/javascript,application/javascript,*/*",
+      headers: { accept: type === "html" ? "text/html" : type === "css" ? "text/css,*/*" : "text/javascript,application/javascript,*/*",
         "user-agent": "MyPowerSetup-expansion-supply-proof/1.0" },
     });
     if (!TEMPORARY.has(response.status) || attempt === 2) break;
@@ -151,8 +161,8 @@ async function fetchProof(url, type, fetchImpl, sleep) {
   const actual = new URL(response.url || "");
   if (actual.href !== url.href) fail("REDIRECT_DRIFT");
   const mime = response.headers?.get("content-type") || "";
-  if (type === "html" ? !mime.includes("text/html") :
-    !/(?:java|ecma)script|text\/plain/.test(mime)) fail("MIME_DRIFT");
+  if (type === "html" ? !mime.includes("text/html") : type === "css"
+    ? !/text\/css|text\/plain/.test(mime) : !/(?:java|ecma)script|text\/plain/.test(mime)) fail("MIME_DRIFT");
   return response.text();
 }
 
@@ -167,6 +177,7 @@ export async function verifyExpansionSupplyLive({
     fail("ORIGIN_INVALID");
   const pages = [];
   let browserScript = null;
+  let stylesheetUrl = null;
   for (const route of ROUTES) {
     const market = route.split("/")[1];
     const htmlPath = market + "/index.html";
@@ -175,10 +186,19 @@ export async function verifyExpansionSupplyLive({
       fetchProof(new URL(route, base), "html", fetchImpl, sleep),
     ]);
     const script = verifyExpansionHtml(served, local, market);
+    const stylesheet = expectedStylesheet(served, market);
     if (browserScript && browserScript !== script) fail("CROSS_MARKET_VERSION_DRIFT");
+    if (stylesheetUrl && stylesheetUrl !== stylesheet) fail("CROSS_MARKET_STYLESHEET_DRIFT");
     browserScript = script;
+    stylesheetUrl = stylesheet;
     pages.push(Object.freeze({ market, path: route, script, checked: true }));
   }
+  const [localStyles, servedStyles] = await Promise.all([
+    readLocal(STYLES_ASSET),
+    fetchProof(new URL(stylesheetUrl, base), "css", fetchImpl, sleep),
+  ]);
+  if (normalize(servedStyles) !== normalize(localStyles)) fail("PRODUCT_MEDIA_CSS_SOURCE_DRIFT");
+  if (!servedStyles.includes(".expansion-product-media img")) fail("PRODUCT_MEDIA_CSS_MISSING");
   const localBrowser = await readLocal(BROWSER_ASSET);
   const servedBrowser = await fetchProof(new URL(browserScript, base), "js", fetchImpl, sleep);
   const importUrl = verifyExpansionJavascript(servedBrowser, localBrowser);
@@ -186,6 +206,7 @@ export async function verifyExpansionSupplyLive({
   const specsUrl = expectedVersionedImport(servedBrowser, "expansion-product-specs.js");
   const rolesUrl = expectedVersionedImport(servedBrowser, "expansion-recommendation-roles.js");
   const batterySafetyUrl = expectedVersionedImport(servedBrowser, "battery-discharge-safety.js");
+  const mediaUrl = expectedVersionedImport(servedBrowser, "expansion-product-media.js");
   const localSupply = await readLocal(SUPPLY_ASSET);
   const servedSupply = await fetchProof(new URL(importUrl, base), "js", fetchImpl, sleep);
   verifyExpansionSupplyJavascript(servedSupply, localSupply);
@@ -206,6 +227,12 @@ export async function verifyExpansionSupplyLive({
   if (normalize(servedBatterySafety) !== normalize(localBatterySafety)) fail("BATTERY_BMS_JS_SOURCE_DRIFT");
   if (!servedBatterySafety.includes("export function batteryBmsLoadWithinAdvertisedLimit(product, setup)"))
     fail("BATTERY_BMS_MATCHER_MISSING");
+  const [localMedia, servedMedia] = await Promise.all([
+    readLocal(MEDIA_ASSET),
+    fetchProof(new URL(mediaUrl, base), "js", fetchImpl, sleep),
+  ]);
+  if (normalize(servedMedia) !== normalize(localMedia)) fail("PRODUCT_MEDIA_JS_SOURCE_DRIFT");
+  if (!servedMedia.includes("export function renderExpansionProductMedia(product)")) fail("PRODUCT_MEDIA_RENDER_MISSING");
   // Validate the actual *served* merchant-specific recommendation modules, not
   // just the entrypoint: the live catalog must not expose stale-source offers.
   const marketModules = [];
@@ -252,6 +279,8 @@ export async function verifyExpansionSupplyLive({
     status: "verified_served_assets",
     pages,
     browserScript,
+    stylesheet: stylesheetUrl,
+    productMediaScript: mediaUrl,
     supplyScript: importUrl,
     priceScript: priceUrl,
     specsScript: specsUrl,

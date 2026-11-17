@@ -59,6 +59,9 @@ try {
     };
   })()`);
   assert(result.cards > 0, "no verified SI recommendation");
+  const productPhotos = await evaluate(cdp, `[...document.querySelectorAll(".expansion-product-media img")].map(img => ({host:new URL(img.src).hostname,loading:img.loading,alt:img.alt}))`);
+  assert(productPhotos.length > 0, "SI recommendation photos missing");
+  assert(productPhotos.every(img => ["cdn.shopify.com", "www.oxe.cz"].includes(img.host) && img.loading === "lazy" && img.alt === ""), "SI product photo attribution or lazy-loading invalid");
   assert(result.invalidPanel === false, "OXE SP100W panel was recommended as a power station");
   assert(result.merchants.every((merchant) => Object.hasOwn(VERIFIED_AWIN_MERCHANTS, merchant) || merchant === "oxe_si"), `unexpected merchants=${result.merchants.join(",")}`);
   for (const link of result.links) {
