@@ -63,6 +63,29 @@ test("recommended solar guard preserves technical fit, price evidence and local 
   assert.equal(selected(modestSaving), "single-200w");
 });
 
+test("economy never compares nominal prices across currencies within one category", () => {
+  const highFit = item("battery-eur-high-fit", 400, 96, 1.05);
+  highFit.product.priceCurrency = "EUR";
+  const euroSaving = item("battery-eur-value", 380, 90, 1.12);
+  euroSaving.product.priceCurrency = "EUR";
+  const misleadingCzk = item("battery-czk-numeric-cheap", 200, 93, 1.12);
+  misleadingCzk.product.priceCurrency = "CZK";
+  const panel = item("panel", 120, 94, 1.08);
+  panel.product.priceCurrency = "EUR";
+  const mppt = item("mppt", 60, 94, 1.1);
+  mppt.product.priceCurrency = "EUR";
+
+  const variants = buildProductPackages({
+    battery: [highFit, misleadingCzk, euroSaving],
+    solar_panel: [panel],
+    controller: [mppt],
+  }, { inverterWatts: 0 });
+  assert.equal(variants.find(({ id }) => id === "recommended").items[0].product.id, "battery-eur-high-fit");
+  assert.equal(variants.find(({ id }) => id === "economy").items[0].product.id, "battery-eur-value");
+  assert.equal(variants.find(({ id }) => id === "economy").totalCurrency, "EUR");
+  assert.equal(variants.find(({ id }) => id === "economy").totalPriceCzk, 560);
+});
+
 test("omits inverter for a DC-only setup and removes duplicate variants", () => {
   const one = item("only", 1000, 90, 1.1);
   const packages = buildProductPackages({ battery: [one], solar_panel: [one], controller: [one], inverter: [one] }, { inverterWatts: 0 });

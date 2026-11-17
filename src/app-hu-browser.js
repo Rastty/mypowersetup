@@ -1,5 +1,5 @@
 import { APPLIANCES } from "./catalog-hu.js";
-import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-multi-currency1";
+import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-economy-currency1";
 import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { HU_UI_COPY } from "./ui-copy-hu.js?v=20261117-consistent-products1";
 import { productCardPriceDetails } from "./recommendation-display.js?v=20261117-consistent-products1";
@@ -189,7 +189,7 @@ function renderProducts(output) {
 function renderHungarianProductPackages(variants, coverage) {
   const target = document.querySelector("#package-variants");
   const copy = {
-    economy: ["Takarékos", "A legalacsonyabb ismert ár a kompatibilis lehetőségek között."],
+    economy: ["Takarékos", "Kedvezőbb árú megfelelő lehetőség; az árakat csak azonos pénznemben hasonlítjuk össze."],
     recommended: ["Ajánlott", "A paraméterek, a rendelkezésre álló adatok és az ár kiegyensúlyozott választása."],
     reserve: ["Nagyobb tartalékkal", "Nagyobb műszaki tartalék, ahol a katalógus ezt lehetővé teszi."],
   };

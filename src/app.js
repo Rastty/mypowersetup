@@ -9,7 +9,7 @@ import { calculateChargingPlan } from "./charging.js?v=20261117-charging-reason1
 import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
-import { buildProductPackages } from "./packages.js?v=20261117-multi-currency1";
+import { buildProductPackages } from "./packages.js?v=20261117-economy-currency1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
@@ -590,7 +590,7 @@ function renderProductRecommendations(result) {
 function renderProductPackages(variants, coverage) {
   const target = document.querySelector("#package-variants");
   const copy = {
-    economy: ["Úsporná", "Nejnižší známá cena mezi kompatibilními volbami."],
+    economy: ["Úsporná", "Cenově úspornější kompatibilní volba; ceny porovnáváme jen ve stejné měně."],
     recommended: ["Doporučená", "Vyvážená volba parametrů, dostupných údajů a ceny."],
     reserve: ["S větší rezervou", "Mírně vyšší technická rezerva, kde ji katalog nabízí."],
   };
