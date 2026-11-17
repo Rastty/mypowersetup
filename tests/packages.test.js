@@ -21,6 +21,48 @@ test("builds distinct economy, recommended and reserve packages from compatible 
   assert.deepEqual(packages[2].items.map(({ product }) => product.id), ["battery-reserve", "panel-reserve", "mppt-reserve"]);
 });
 
+test("recommended solar basket avoids a 4x-priced exact-fit folding panel when a sound fixed array exists", () => {
+  const expensiveFolding = item("folding-200w", 16229, 88, 1, 1);
+  expensiveFolding.product.priceCurrency = "CZK";
+  const fixedArray = item("fixed-130w", 1947, 74, 1.3, 2);
+  fixedArray.product.priceCurrency = "CZK";
+  const packages = buildProductPackages({
+    battery: [item("battery", 12000, 95, 1.05)],
+    solar_panel: [expensiveFolding, fixedArray],
+    controller: [item("mppt", 2404, 95, 1.1)],
+  }, { inverterWatts: 0 });
+
+  assert.equal(packages[0].id, "recommended");
+  assert.equal(packages[0].items.find(({ category }) => category === "solar_panel").product.id, "fixed-130w");
+  assert.equal(packages[0].items.find(({ category }) => category === "solar_panel").product.recommendedQuantity, 2);
+  assert.equal(packages.filter(({ id }) => id === "economy").length, 0, "do not repeat the same basket under a second label");
+});
+
+test("recommended solar guard preserves technical fit, price evidence and local currency", () => {
+  const strong = item("single-200w", 12000, 93, 1);
+  strong.product.priceCurrency = "CZK";
+  const base = {
+    battery: [item("battery", 12000, 95, 1.05)],
+    controller: [item("mppt", 2404, 95, 1.1)],
+  };
+  const selected = (other) => buildProductPackages({
+    ...base, solar_panel: [strong, other],
+  }, { inverterWatts: 0 })[0].items.find(({ category }) => category === "solar_panel").product.id;
+
+  const betterPrice = item("two-fixed", 1500, 80, 1.3, 2);
+  betterPrice.product.priceCurrency = "CZK";
+  assert.equal(selected(betterPrice), "two-fixed");
+
+  const wrongCurrency = { ...betterPrice, product: { ...betterPrice.product, priceCurrency: "EUR" } };
+  assert.equal(selected(wrongCurrency), "single-200w");
+  const unknownPrice = { ...betterPrice, product: { ...betterPrice.product, priceCzk: null } };
+  assert.equal(selected(unknownPrice), "single-200w");
+  assert.equal(selected({ ...betterPrice, score: 65 }), "single-200w");
+  assert.equal(selected({ ...betterPrice, fit: 1.9 }), "single-200w");
+  const modestSaving = { ...betterPrice, product: { ...betterPrice.product, priceCzk: 3500 } };
+  assert.equal(selected(modestSaving), "single-200w");
+});
+
 test("omits inverter for a DC-only setup and removes duplicate variants", () => {
   const one = item("only", 1000, 90, 1.1);
   const packages = buildProductPackages({ battery: [one], solar_panel: [one], controller: [one], inverter: [one] }, { inverterWatts: 0 });

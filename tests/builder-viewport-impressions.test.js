@@ -160,7 +160,7 @@ test("all four core Builders wire the observer-aware binder and versioned JavaSc
     assert.match(source,/bindAffiliateImpressionTracking\(document\.querySelector\("#product-recommendations"\),/);
     assert.match(source,/affiliate-analytics\.js\?v=20261108-viewport1/);
     assert.match(source,/trackVisibleProductChoices\(\);/);
-    assert.ok(page.includes("20261108-click-evidence-builder4"),locale);
+    assert.ok(page.includes("20261117-solar-value1"),locale);
   }
 });
 

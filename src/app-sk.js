@@ -8,7 +8,7 @@ import { buildSystemDiagram } from "./system-diagram.js?v=20260822-diagram1";
 import { calculateChargingPlan } from "./charging.js?v=20260822-chargingproducts1";
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20260822-installation1";
-import { buildProductPackages } from "./packages.js?v=20260823-packages2";
+import { buildProductPackages } from "./packages.js?v=20261117-solar-value1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20260828-1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
@@ -573,7 +573,7 @@ function renderProductPackages(variants) {
   const target = document.querySelector("#package-variants");
   const copy = {
     economy: ["Úsporná", "Najnižšia známa cena medzi kompatibilnými voľbami."],
-    recommended: ["Odporúčaná", "Najlepšia zhoda parametrov a úplnosti údajov."],
+    recommended: ["Odporúčaná", "Vyvážená voľba parametrov, dostupných údajov a ceny."],
     reserve: ["S väčšou rezervou", "Mierne vyššia technická rezerva, kde ju katalóg ponúka."],
   };
   if (!variants.length) {

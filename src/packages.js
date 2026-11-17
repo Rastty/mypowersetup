@@ -5,6 +5,7 @@ import { isRecommendationEligible, requiredRecommendationCategories } from "./re
 const PACKAGE_CATEGORIES = ["battery", "solar_panel", "controller", "inverter", "dc_charger", "shore_charger"];
 const VALUE_SCORE_GAP = 15;
 const MIN_VALUE_SCORE = 70;
+const SOLAR_DEFAULT_MAX_PRICE_MULTIPLE = 2.5;
 
 function effectivePrice(candidate) {
   const rawPrice = candidate?.product?.priceCzk;
@@ -38,6 +39,27 @@ function bestValue(candidates) {
   return cheapest(safeBand.length ? safeBand : priced);
 }
 
+// A one-piece panel can win on exact Wp fit and quantity while costing several
+// times more than a technically eligible multi-panel option. For the default
+// rooftop shopping path, prefer comparable fit/data quality when the saving is
+// substantial. Compare only known prices in the SAME explicit currency; the
+// feed field `priceCzk` holds the original local amount in non-CZ markets.
+function recommendedChoice(candidates, category) {
+  const strongest = candidates[0];
+  if (category !== "solar_panel" || !strongest) return strongest;
+  const strongestPrice = effectivePrice(strongest);
+  const currency = strongest.product.priceCurrency;
+  if (strongestPrice === null || !currency) return strongest;
+
+  const comparable = candidates.filter(({ product }) => product.priceCurrency === currency);
+  const value = bestValue(comparable);
+  const valuePrice = effectivePrice(value);
+  if (valuePrice === null || valuePrice * SOLAR_DEFAULT_MAX_PRICE_MULTIPLE > strongestPrice
+    || !Number.isFinite(value.score) || value.score < Math.max(MIN_VALUE_SCORE, strongest.score - VALUE_SCORE_GAP)
+    || !Number.isFinite(value.fit) || value.fit < 1 || value.fit > 1.6) return strongest;
+  return value;
+}
+
 function withReserve(candidates) {
   const preferred = candidates
     .filter((candidate) => Number.isFinite(candidate.fit) && candidate.fit >= 1.08 && candidate.fit <= 1.6)
@@ -63,7 +85,7 @@ function packageQuality(items) {
 function buildVariant(id, categories, recommendations, selector) {
   const items = categories.flatMap((category) => {
     const candidates = eligibleCandidates(recommendations, category);
-    const selected = candidates.length ? selector(candidates) : null;
+    const selected = candidates.length ? selector(candidates, category) : null;
     return selected ? [{ category, ...selected }] : [];
   });
   const priced = items.map(effectivePrice);
@@ -94,7 +116,7 @@ export function buildProductPackages(recommendations, setup) {
   const candidates = [
     // Put the strongest fit first so the default decision path is obvious.
     // Economy and reserve remain safe alternatives, not competing defaults.
-    buildVariant("recommended", categories, recommendations, (items) => items[0]),
+    buildVariant("recommended", categories, recommendations, recommendedChoice),
     buildVariant("economy", categories, recommendations, bestValue),
     buildVariant("reserve", categories, recommendations, withReserve),
   ];
