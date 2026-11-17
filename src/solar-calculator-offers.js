@@ -1,15 +1,12 @@
-// Independently reviewed exact Solar-Import 12 V nominal Victron panel SKUs.
+import { isConfirmedDiscontinuedProduct } from "./products.js";
+
+// Independently reviewed, still-purchasable Solar-Import 12 V nominal Victron panel SKUs.
 // Wp alone does not establish array wiring, roof fit, Voc/Isc or MPPT suitability.
 const REVIEWED = new Map([
   ["solarimport:E8722", {
     watts: 130,
     name: "Victron Energy 12V Fotovoltaický panel 130Wp SPP041301200",
     path: "/ramove-male/victron-energy-solarni-panel-130wp-12v--mono/",
-  }],
-  ["solarimport:E7366", {
-    watts: 175,
-    name: "Victron Energy 12V Fotovoltaický panel 175Wp",
-    path: "/ramove-male/victron-energy-solarni-panel-175w-12v--polykrystalicky/",
   }],
   ["solarimport:E8934", {
     watts: 190,
@@ -33,7 +30,8 @@ export function solarCatalogFresh(payload, now = Date.now()) {
 
 export function eligibleSolarPanel(product) {
   const reviewed = REVIEWED.get(product?.id);
-  if (!reviewed || product.merchant !== "solarimport" || product.category !== "solar_panel"
+  if (!reviewed || isConfirmedDiscontinuedProduct(product)
+      || product.merchant !== "solarimport" || product.category !== "solar_panel"
       || product.available !== true || product.staleSource === true
       || product.name !== reviewed.name || product.specs?.powerW !== reviewed.watts
       || product.specs?.voltageV !== 12 || product.priceCurrency !== "CZK"

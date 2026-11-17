@@ -67,7 +67,7 @@ export function acceptSolarCalculatorSnapshot(payload) {
     && Array.isArray(payload.products) && payload.products.length <= 3
     && payload.products.every(p => p?.category === "solar_panel"
       && p.merchant === "solarimport"
-      && ["solarimport:E8722", "solarimport:E7366", "solarimport:E8934"].includes(p.id)
+      && ["solarimport:E8722", "solarimport:E8934"].includes(p.id)
       && typeof p.name === "string" && typeof p.productUrl === "string"
       && typeof p.affiliateUrl === "string");
 }

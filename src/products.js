@@ -132,6 +132,17 @@ const AMPUL_VERIFIED_INVERTER_VARIANTS = {
   "5577-7397": 84
 };
 
+// Solar-import E7366: its exact merchant page showed "Prodej ukončen" on
+// 2026-11-17 (https://www.solar-import.cz/ramove-male/victron-energy-solarni-panel-175w-12v--polykrystalicky/).
+// A previously downloaded feed can still say available. Exclude this precise
+// SKU until fresh merchant evidence proves it is for sale again.
+const DISCONTINUED_SKUS = new Set(["solarimport:E7366"]);
+
+export function isConfirmedDiscontinuedProduct(product) {
+  return !!product && DISCONTINUED_SKUS.has(product.id)
+    && product.merchant === "solarimport";
+}
+
 const PRODUCT_TEXT = {
   cs: {
     batteryReason: (setup) => `Kapacita splňuje požadovaných ${setup.batteryAh} Ah`,
@@ -267,8 +278,9 @@ export function normalizeProduct(raw, merchantKey) {
     specs.currentA = extractControllerCurrent(name, description);
   }
 
+  const productId = `${merchantKey}:${String(raw.id || productUrl.pathname).trim()}`;
   return {
-    id: `${merchantKey}:${String(raw.id || productUrl.pathname).trim()}`,
+    id: productId,
     merchant: merchantKey,
     name,
     description,
@@ -277,7 +289,8 @@ export function normalizeProduct(raw, merchantKey) {
     brand: cleanText(raw.brand),
     priceCzk: parsePrice(raw.price),
     priceCurrency: parseCurrency(raw.price) || merchant.currency || null,
-    available: normalizeAvailability(raw.available),
+    available: normalizeAvailability(raw.available)
+      && !isConfirmedDiscontinuedProduct({ id: productId, merchant: merchantKey }),
     productUrl: productUrl.toString(),
     affiliateUrl: buildAffiliateUrl(merchantKey, productUrl.toString()),
     imageUrl: normalizeImageUrl(raw.imageUrl),
@@ -391,7 +404,7 @@ export function classifyProduct({ name = "", categoryPath = "", specs = {} } = {
 // Existing integrations that do not provide source metadata remain compatible;
 // any explicitly reported non-OK source must fail closed.
 export function hasCurrentRecommendationSource(product, sources = null) {
-  if (!product || product.staleSource === true) return false;
+  if (!product || product.staleSource === true || isConfirmedDiscontinuedProduct(product)) return false;
   const source = sources && typeof sources === "object" && product.merchant
     ? sources[product.merchant] : null;
   return !source || source.status === "ok";
@@ -456,6 +469,7 @@ export function refreshCatalogProduct(product) {
   }
   return {
     ...product,
+    available: isConfirmedDiscontinuedProduct(product) ? false : product.available,
     specs,
     category: product.verifiedAt && product.category && product.category !== "other"
       ? product.category
