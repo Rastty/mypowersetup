@@ -74,6 +74,6 @@ test("CZ purchase journey shows one immediately actionable recommended basket, n
   assert.match(app, /data-affiliate-click data-source="product-card"/);
   assert.match(styles, /\.package-purchase-steps > summary:focus-visible/);
   assert.match(styles, /\.package-purchase-steps\[open\]/);
-  assert.match(html, /app\.js\?v=20261117-solar-value1/);
+  assert.match(html, /app\.js\?v=20261117-solar-copy2/);
   assert.match(html, /styles\.css\?v=20261023-comparison-handoff1/);
 });

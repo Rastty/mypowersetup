@@ -571,7 +571,7 @@ function renderProductRecommendations(result) {
   }
 
   heading.textContent = "Komponenty odpovídající vašemu výpočtu";
-  intro.textContent = `Nejdříve ověřujeme technickou kompatibilitu. Pořadí následně zohledňuje shodu parametrů, dostupnost a úplnost produktových dat.${freshness}`;
+  intro.textContent = `Nejdříve ověřujeme technickou kompatibilitu. Doporučená sestava pak při výrazném cenovém rozdílu zohledňuje i srovnatelné nabídky ve stejné měně.${freshness}`;
   renderProductPackages(packages);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Co katalog zatím nepokrývá:</strong> ${coverage.message}</p>`;
   const productGroups = Object.entries(recommendations)
@@ -603,7 +603,7 @@ function renderProductPackages(variants) {
   const stalePriceNote = Object.values(productCatalogSources).some((source) => source?.status === "stale")
     ? '<p class="catalog-source-note is-stale"><strong>Aktualizace cen:</strong> U jednoho obchodu používáme poslední úspěšně načtený feed. Aktuální cenu a dostupnost vždy potvrďte na stránce produktu.</p>'
     : "";
-  target.innerHTML = `<div class="package-intro"><strong>Začněte doporučenou variantou</strong><p>Doporučený nákupní seznam je otevřený rovnou. Úspornou a rezervní sestavu rozbalte jen tehdy, když je chcete porovnat. Všechny zobrazené varianty splňují vypočtený požadavek na komponenty. Každý odkaz vede na konkrétní produkt u prodejce, nejde o společný nákupní košík. Výpočet neobsahuje veškerý instalační materiál ani montáž.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
+  target.innerHTML = `<div class="package-intro"><strong>Začněte doporučenou variantou</strong><p>Doporučený nákupní seznam je otevřený rovnou. Pokud katalog nabízí další odlišné sestavy, můžete je rozbalit a porovnat. Totožné nákupní seznamy nezobrazujeme dvakrát. Všechny zobrazené varianty splňují vypočtený požadavek na komponenty. Každý odkaz vede na konkrétní produkt u prodejce, nejde o společný nákupní košík. Výpočet neobsahuje veškerý instalační materiál ani montáž.</p>${stalePriceNote}</div><div class="package-grid">${variants.map((variant) => {
     const [label, description] = copy[variant.id];
     const isRecommended = variant.id === "recommended";
     const pricesKnown = variant.totalPriceCzk !== null;
