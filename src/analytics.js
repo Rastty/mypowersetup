@@ -123,6 +123,7 @@ function conversionMarket(market) {
   return market === "cz" ? "cs" : market;
 }
 function calculatorGuideClickZone(link) {
+  if (link.hasAttribute("data-gap-inverter-guide")) return "result_supply_gap";
   if (link.hasAttribute("data-component-guide")) return "result_component";
   if (link.hasAttribute("data-result-guide")) return "result_related";
   if (link.closest(".guide-preview")) return "homepage_guide_preview";
