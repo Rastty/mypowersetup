@@ -6,6 +6,7 @@ import { expansionResultGuides } from "./expansion-result-guides.js";
 import { expansionComponentPlan } from "./expansion-component-plan.js";
 import { expansionInverterGapAction } from "./expansion-inverter-gap.js";
 import { expansionPvPairingNotice } from "./expansion-pv-pairing.js?v=20261117-pv-check1";
+import { expansionBatteryDischargeNotice } from "./battery-discharge-safety.js?v=20261117-bms-load1";
 import { expansionPowerStationSpecs } from "./expansion-product-specs.js?v=20261117-pv-check1";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { expansionPurchaseRoutePriority } from "./expansion-purchase-route-priority.js";
@@ -342,7 +343,7 @@ function renderResult(value) {
 async function renderPortugalProducts(calculation, revision, recordIntent) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
-    const { buildPortugalRecommendations, loadPortugalProductCatalog, portugalRecommendationCoverage , hasExpansionSourceGaps } = await import("./pt-recommendations.js?v=20261117-pv-check1");
+    const { buildPortugalRecommendations, loadPortugalProductCatalog, portugalRecommendationCoverage , hasExpansionSourceGaps } = await import("./pt-recommendations.js?v=20261117-bms-load1");
     const catalog = await loadPortugalProductCatalog();
     if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildPortugalRecommendations(catalog, calculation, 3);
@@ -366,7 +367,7 @@ async function renderPortugalProducts(calculation, revision, recordIntent) {
 async function renderSloveniaProducts(calculation, revision, recordIntent) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
-    const { buildSloveniaRecommendations, loadSloveniaProductCatalog , hasExpansionSourceGaps } = await import("./si-recommendations.js?v=20261111-source-health1");
+    const { buildSloveniaRecommendations, loadSloveniaProductCatalog , hasExpansionSourceGaps } = await import("./si-recommendations.js?v=20261117-bms-load1");
     const catalog = await loadSloveniaProductCatalog();
     if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildSloveniaRecommendations(catalog, calculation, 3);
@@ -389,7 +390,7 @@ async function renderSloveniaProducts(calculation, revision, recordIntent) {
 async function renderRomaniaProducts(calculation, revision, recordIntent) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
-    const { buildRomaniaRecommendations, loadRomaniaProductCatalog , hasExpansionSourceGaps } = await import("./ro-recommendations.js?v=20261111-source-health1");
+    const { buildRomaniaRecommendations, loadRomaniaProductCatalog , hasExpansionSourceGaps } = await import("./ro-recommendations.js?v=20261117-bms-load1");
     const catalog = await loadRomaniaProductCatalog();
     if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildRomaniaRecommendations(catalog, calculation, 3);
@@ -467,7 +468,7 @@ function renderProductSection(id, products, gap = "", routePriority = {}, source
   const portablePriority = preferPortable ? "primary" : "secondary";
 
   const componentRoute = components.length
-    ? `<section class="expansion-purchase-route${preferPortable ? " is-secondary" : ""}" data-purchase-route="components" data-purchase-route-priority="${componentPriority}"><h5>${escapeHtml(labels.componentRoute)}</h5><p>${escapeHtml(labels.componentRouteIntro)}</p>${renderExpansionProductCollection(components, componentPriority)}${renderPvPairingNotice(components)}</section>`
+    ? `<section class="expansion-purchase-route${preferPortable ? " is-secondary" : ""}" data-purchase-route="components" data-purchase-route-priority="${componentPriority}"><h5>${escapeHtml(labels.componentRoute)}</h5><p>${escapeHtml(labels.componentRouteIntro)}</p>${renderExpansionProductCollection(components, componentPriority)}${renderPvPairingNotice(components)}${renderBatteryDischargeNotice(components, calculation)}</section>`
     : "";
   const portableRoute = portable.length
     ? `<section class="expansion-purchase-route is-portable${preferPortable ? " is-priority" : ""}" data-purchase-route="portable" data-purchase-route-priority="${portablePriority}"><h5>${escapeHtml(labels.portableRoute)}</h5><p>${escapeHtml(labels.portableRouteIntro)}</p>${renderExpansionProductCollection(portable, portablePriority)}</section>`
@@ -491,6 +492,12 @@ function renderPvPairingNotice(components) {
   const notice = expansionPvPairingNotice(locale, components);
   if (!notice) return "";
   return `<aside class="pv-pairing-notice" data-pv-pairing-notice><p>${escapeHtml(notice.message)}</p><a data-pv-pairing-guide href="${escapeHtml(notice.href)}">${escapeHtml(notice.label)}</a></aside>`;
+}
+
+function renderBatteryDischargeNotice(components, calculation) {
+  const notice = expansionBatteryDischargeNotice(locale, components, calculation);
+  if (!notice) return "";
+  return `<aside class="battery-discharge-notice" data-battery-discharge-notice data-required-discharge-amps="${notice.requiredAmps}"><strong>${escapeHtml(notice.title)}</strong><p>${escapeHtml(notice.message)}</p><a data-battery-discharge-guide href="${escapeHtml(notice.href)}">${escapeHtml(notice.label)}</a></aside>`;
 }
 
 function renderExpansionProductCollection(products, routePriority) {

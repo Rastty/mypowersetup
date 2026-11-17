@@ -15,6 +15,8 @@ const PRICE_ASSET = "src/expansion-line-price.js";
 const SPECS_ASSET = "src/expansion-product-specs.js";
 const ROLES_ASSET = "src/expansion-recommendation-roles.js";
 const COMPONENT_ASSET = "src/expansion-component-recommendations.js";
+const BATTERY_SAFETY_ASSET = "src/battery-discharge-safety.js";
+const PRODUCTS_ASSET = "src/products.js";
 const SCRIPT_PATTERN = /<script\b[^>]*\bsrc=["'](\/src\/expansion-calculator-browser\.js\?v=[^"']+)["'][^>]*>/gi;
 const MODULE_PATTERN = /from ["']\.\/expansion-supply-evidence\.js\?v=([^"']+)["']/g;
 const TEMPORARY = new Set([429, 502, 503, 504]);
@@ -182,6 +184,7 @@ export async function verifyExpansionSupplyLive({
   const priceUrl = expectedVersionedImport(servedBrowser, "expansion-line-price.js");
   const specsUrl = expectedVersionedImport(servedBrowser, "expansion-product-specs.js");
   const rolesUrl = expectedVersionedImport(servedBrowser, "expansion-recommendation-roles.js");
+  const batterySafetyUrl = expectedVersionedImport(servedBrowser, "battery-discharge-safety.js");
   const localSupply = await readLocal(SUPPLY_ASSET);
   const servedSupply = await fetchProof(new URL(importUrl, base), "js", fetchImpl, sleep);
   verifyExpansionSupplyJavascript(servedSupply, localSupply);
@@ -195,6 +198,13 @@ export async function verifyExpansionSupplyLive({
   const localRoles = await readLocal(ROLES_ASSET);
   const servedRoles = await fetchProof(new URL(rolesUrl, base), "js", fetchImpl, sleep);
   verifyExpansionPriceJavascript(servedRoles, localRoles, "roles");
+  const [localBatterySafety, servedBatterySafety] = await Promise.all([
+    readLocal(BATTERY_SAFETY_ASSET),
+    fetchProof(new URL(batterySafetyUrl, base), "js", fetchImpl, sleep),
+  ]);
+  if (normalize(servedBatterySafety) !== normalize(localBatterySafety)) fail("BATTERY_BMS_JS_SOURCE_DRIFT");
+  if (!servedBatterySafety.includes("export function batteryBmsLoadWithinAdvertisedLimit(product, setup)"))
+    fail("BATTERY_BMS_MATCHER_MISSING");
   // Validate the actual *served* merchant-specific recommendation modules, not
   // just the entrypoint: the live catalog must not expose stale-source offers.
   const marketModules = [];
@@ -217,6 +227,16 @@ export async function verifyExpansionSupplyLive({
     fetchProof(new URL(componentUrl, base), "js", fetchImpl, sleep),
   ]);
   verifyExpansionSourceJavascript(servedComponent, localComponent, "component");
+  const productsUrl = expectedVersionedImport(servedComponent, "products.js");
+  const [localProducts, servedProducts] = await Promise.all([
+    readLocal(PRODUCTS_ASSET),
+    fetchProof(new URL(productsUrl, base), "js", fetchImpl, sleep),
+  ]);
+  if (normalize(servedProducts) !== normalize(localProducts)) fail("BATTERY_PRODUCTS_JS_SOURCE_DRIFT");
+  if (!servedProducts.includes("batteryBmsLoadWithinAdvertisedLimit(product, setup)"))
+    fail("BATTERY_PRODUCTS_BMS_GUARD_MISSING");
+  if (expectedVersionedImport(servedProducts, "battery-discharge-safety.js") !== batterySafetyUrl)
+    fail("BATTERY_BMS_SHARED_VERSION_DRIFT");
   return Object.freeze({
     status: "verified_served_assets",
     pages,
@@ -225,6 +245,8 @@ export async function verifyExpansionSupplyLive({
     priceScript: priceUrl,
     specsScript: specsUrl,
     rolesScript: rolesUrl,
+    batterySafetyScript: batterySafetyUrl,
+    productsScript: productsUrl,
     marketModules: Object.freeze(marketModules),
     componentScript: componentUrl,
     sourceParity: true,
