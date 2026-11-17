@@ -62,3 +62,37 @@ test("stale or unavailable rows cannot make result coverage look complete", () =
   assert.equal(report.complete, false);
   assert.deepEqual(report.missing, ["battery", "controller"]);
 });
+
+
+test("rejected charging paths remain outside the product ratio but are disclosed in every market", () => {
+  const blocked = {
+    ...setup,
+    charging: {
+      dcDc: { enabled: true, suggestedCurrentAmps: null, needsIndividualDesign: true },
+      shore: { enabled: true, suggestedCurrentAmps: 15, needsIndividualDesign: false },
+    },
+  };
+  const recommendations = { battery: [{}], solar_panel: [{}], controller: [{}], inverter: [{}], shore_charger: [{}] };
+  for (const language of ["cs", "sk", "pl", "hu"]) {
+    const report = assessRecommendationCoverage(recommendations, { ...blocked, locale: language }, language);
+    assert.equal(report.complete, true, language);
+    assert.equal(report.required.length, 5, language);
+    assert.deepEqual(report.manualDesignCharging, ["dc_charger"], language);
+    assert.match(report.manualDesignMessage, /DC–DC/, language);
+  }
+  const bothBlocked = assessRecommendationCoverage(recommendations, {
+    ...blocked,
+    charging: {
+      dcDc: { enabled: true, suggestedCurrentAmps: null, needsIndividualDesign: true },
+      shore: { enabled: true, suggestedCurrentAmps: null, needsIndividualDesign: true },
+    },
+  }, "cs");
+  assert.deepEqual(bothBlocked.manualDesignCharging, ["dc_charger", "shore_charger"]);
+  assert.match(bothBlocked.manualDesignMessage, /230 V/);
+  const inactive = assessRecommendationCoverage(recommendations, {
+    ...blocked,
+    charging: { dcDc: { enabled: false, needsIndividualDesign: true }, shore: { enabled: true, suggestedCurrentAmps: 15 } },
+  }, "cs");
+  assert.deepEqual(inactive.manualDesignCharging, []);
+  assert.equal(inactive.manualDesignMessage, null);
+});
