@@ -223,13 +223,14 @@ test("Ampul approved fallback stays behind market verification and never outrank
     const inverterCandidates = listCommercialSourcingCandidates({ market, category: "inverter" });
     const ampul = inverterCandidates.find(({ id }) => id === "ampul-eu-inverter-24v-2000w");
     assert.ok(ampul, `${market}: Ampul inverter candidate missing`);
-    assert.equal(ampul.status, "blocked_market_stock_verification");
-    assert.equal(ampul.blocker, "market_shipping_checkout_unverified");
-    assert.equal(ampul.secondaryBlocker, "variant_stock_unverified");
+    assert.equal(ampul.status, "blocked_technical_spec_verification");
+    assert.equal(ampul.blocker, "continuous_power_unverified");
+    assert.equal(ampul.secondaryBlocker, "variant_stock_and_market_checkout_unverified");
     assert.equal(ampul.affiliateApprovalConfirmed, true);
     assert.equal(ampul.nextActionOwner, "system");
     assert.equal(ampul.specs.systemVoltagesV[0], 24);
-    assert.equal(ampul.specs.powerW, 2000);
+    assert.equal(ampul.specs.maxAdvertisedPowerW, 2000);
+    assert.equal(ampul.specs.continuousPowerW, null);
     assert.equal(ampul.specs.pureSine, true);
     assert.equal(ampul.affectedWeight, 5);
     assert.equal(ampul.standaloneUnlockWeight, 0);

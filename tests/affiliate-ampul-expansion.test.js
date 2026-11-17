@@ -9,6 +9,7 @@ import {
   createAmpulExpansionCandidate,
   isExactAmpulSourceDestination,
   validateAmpulEhubUrl,
+  verifiedAmpulInverterContinuousRating,
 } from "../src/affiliate-ampul-expansion.js";
 
 const inverterDestination = "https://ampul.eu/cs/menice-napeti/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w";
@@ -50,7 +51,7 @@ test("current and reviewed legacy AMPUL routes retain exact SKU identity", () =>
   assert.equal(isExactAmpulSourceDestination("https://ampul.eu/cs/other/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68", AMPUL_12V_30A_DCDC), false);
 });
 
-test("Ampul 24V 2000W inverter remains blocked until both stock and market are verified", () => {
+test("Ampul 24V inverter requires rated continuous power as well as stock and market", () => {
   const candidate = createAmpulExpansionCandidate(AMPUL_24V_2000W_INVERTER, {
     destination: inverterDestination,
     available: undefined,
@@ -73,11 +74,20 @@ test("Ampul 24V 2000W inverter remains blocked until both stock and market are v
     available: true,
     verifiedMarkets: ["ro", "si"],
   });
-  assert.equal(ready.recommendationEligible, true);
+  assert.equal(ready.recommendationEligible, false);
   assert.deepEqual(ready.verifiedMarkets, ["ro", "si"]);
   assert.equal(ready.systemVoltageV, 24);
-  assert.equal(ready.continuousPowerW, 2000);
+  assert.equal(ready.maxAdvertisedPowerW, 2000);
+  assert.equal(ready.continuousPowerW, null);
   assert.equal(ready.pureSine, true);
+
+  const rating = { continuousPowerW: 1500, evidenceUrl: "https://ampul.eu/datasheet.pdf", verifiedAt: "2026-09-07" };
+  assert.deepEqual(verifiedAmpulInverterContinuousRating(rating), rating);
+  const proven = createAmpulExpansionCandidate(AMPUL_24V_2000W_INVERTER, {
+    destination: inverterDestination, available: true, verifiedMarkets: ["ro"], inverterContinuousRating: rating,
+  });
+  assert.equal(proven.recommendationEligible, true);
+  assert.equal(proven.continuousPowerW, 1500);
 });
 
 test("Ampul 30A DC-DC exact product is technically ready but market-gated", () => {

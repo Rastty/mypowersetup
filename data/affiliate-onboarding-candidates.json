@@ -622,7 +622,7 @@
       "network": "ehub",
       "programId": null,
       "campaignId": "ddb5edae",
-      "status": "blocked_market_stock_verification",
+      "status": "blocked_technical_spec_verification",
       "category": "inverter",
       "productUrl": null,
       "affiliateUrl": null,
@@ -647,7 +647,8 @@
       },
       "specs": {
         "systemVoltage": 24,
-        "continuousPowerW": 2000,
+        "maxAdvertisedPowerW": 2000,
+        "continuousPowerW": null,
         "waveform": "pure_sine",
         "outputVoltageV": 230
       },
@@ -656,7 +657,7 @@
         "high-power-tools"
       ],
       "nextActionOwner": "system",
-      "nextAction": "verify_pt_ro_si_checkout_and_24v_variant_stock"
+      "nextAction": "verify_continuous_power_then_pt_ro_si_checkout_and_24v_variant_stock"
     },
     {
       "id": "ampul-eu-dcdc-12v-30a",

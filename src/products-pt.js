@@ -128,7 +128,7 @@ export function validatePtCatalog(payload, { bluettiActivation } = {}) {
       continue;
     }
     if (isAmpulExpansionProduct(product)) {
-      validateAmpulExpansionProduct(product, { market: "pt", verifiedProductMarkets: payload.sources?.ampul_eu?.verifiedProductMarkets || {} });
+      validateAmpulExpansionProduct(product, { market: "pt", verifiedProductMarkets: payload.sources?.ampul_eu?.verifiedProductMarkets || {}, inverterContinuousRating: payload.sources?.ampul_eu?.inverterContinuousRating });
       continue;
     }
     if (isBluettiElite300Product(product)) {

@@ -30,7 +30,7 @@ test("system verification queue surfaces AMPUL P0 inverter verification ahead of
   const actions = buildCurrentCommercialSystemVerificationQueue(report.markets, options);
 
   assert.deepEqual(actions.map(({ nextAction }) => nextAction), [
-    "verify_pt_ro_si_checkout_and_24v_variant_stock",
+    "verify_continuous_power_then_pt_ro_si_checkout_and_24v_variant_stock",
     "verify_pt_ro_si_checkout",
   ]);
 
@@ -39,8 +39,8 @@ test("system verification queue surfaces AMPUL P0 inverter verification ahead of
   assert.equal(best.bestPriority, "P0");
   assert.deepEqual(best.candidateIds, ["ampul-eu-inverter-24v-2000w"]);
   assert.deepEqual(best.activeMarkets, ["pt-PT", "ro-RO", "sl-SI"]);
-  assert.deepEqual(best.blockers, ["market_shipping_checkout_unverified"]);
-  assert.deepEqual(best.secondaryBlockers, ["variant_stock_unverified"]);
+  assert.deepEqual(best.blockers, ["continuous_power_unverified"]);
+  assert.deepEqual(best.secondaryBlockers, ["variant_stock_and_market_checkout_unverified"]);
   assert.equal(best.affiliateApprovalConfirmed, true);
   assert.equal(best.trackingVerified, true);
   assert.equal(best.currentOpportunityScore, 39);
@@ -71,7 +71,7 @@ test("exact AMPUL feed stock distinguishes unknown inverter stock from available
     priceCurrency: "CZK",
   });
   assert.equal(inverter.publishEligible, false);
-  assert.deepEqual(inverter.secondaryBlockers, ["variant_stock_unverified"]);
+  assert.deepEqual(inverter.secondaryBlockers, ["variant_stock_and_market_checkout_unverified"]);
 
   const dcdc = actions.find(({ candidateIds }) => candidateIds.includes("ampul-eu-dcdc-12v-30a"));
   assert.equal(dcdc.sourceStock.length, 1);
@@ -134,7 +134,7 @@ test("available exact stock does not bypass unresolved PT RO SI checkout", async
   assert.deepEqual(best.marketVerification[0].verifiedMarkets, []);
   assert.deepEqual(best.marketVerification[0].unverifiedMarkets, ["pt-PT", "ro-RO", "sl-SI"]);
   assert.equal(best.publishEligible, false);
-  assert.deepEqual(best.blockers, ["market_shipping_checkout_unverified"]);
+  assert.deepEqual(best.blockers, ["continuous_power_unverified"]);
 });
 
 test("authoritative AMPUL market state exposes all current PT RO SI checkouts as unresolved", async () => {
@@ -169,7 +169,7 @@ test("one country can become verified without authorizing the whole AMPUL action
   assert.equal(marketState.markets[0].evidenceUrl, "https://evidence.example/inverter-pt");
   assert.equal(marketState.markets[0].verifiedAt, "2026-09-16");
   assert.equal(best.publishEligible, false);
-  assert.deepEqual(best.secondaryBlockers, ["variant_stock_unverified"]);
+  assert.deepEqual(best.secondaryBlockers, ["variant_stock_and_market_checkout_unverified"]);
 });
 
 test("verified=true without complete evidence remains fail-closed", async () => {
@@ -199,9 +199,10 @@ test("partial public evidence reduces ambiguity without clearing market or exact
   assert.equal(best.verificationEvidence.length, 1);
   const evidence = best.verificationEvidence[0];
   assert.equal(evidence.candidateId, "ampul-eu-inverter-24v-2000w");
-  assert.equal(evidence.checkedAt, "2026-09-16");
+  assert.equal(evidence.checkedAt, "2026-11-17");
   assert.equal(evidence.evidenceType, "public_catalog_partial");
-  assert.equal(evidence.catalogSpecs.powerW, 2000);
+  assert.equal(evidence.catalogSpecs.maxAdvertisedPowerW, 2000);
+  assert.equal(evidence.catalogSpecs.continuousPowerW, null);
   assert.equal(evidence.catalogSpecs.pureSine, true);
   assert.ok(evidence.catalogSpecs.listedInputVoltagesV.includes(24));
   assert.equal(evidence.publicStockScope, "product_family");
@@ -209,12 +210,13 @@ test("partial public evidence reduces ambiguity without clearing market or exact
   assert.deepEqual(evidence.genericShippingEvidence.targetMarketsVerified, []);
   assert.ok(evidence.verifiedChecks.includes("24v_variant_listed"));
   assert.ok(evidence.unresolvedChecks.includes("exact_24v_variant_stock"));
+  assert.ok(evidence.unresolvedChecks.includes("rated_continuous_power_w"));
   assert.ok(evidence.unresolvedChecks.includes("pt-PT_checkout"));
   assert.ok(evidence.unresolvedChecks.includes("ro-RO_checkout"));
   assert.ok(evidence.unresolvedChecks.includes("sl-SI_checkout"));
   assert.equal(best.publishEligible, false);
-  assert.deepEqual(best.blockers, ["market_shipping_checkout_unverified"]);
-  assert.deepEqual(best.secondaryBlockers, ["variant_stock_unverified"]);
+  assert.deepEqual(best.blockers, ["continuous_power_unverified"]);
+  assert.deepEqual(best.secondaryBlockers, ["variant_stock_and_market_checkout_unverified"]);
 });
 
 test("exact AMPUL DC-DC public stock evidence does not clear destination checkout blockers", async () => {
@@ -226,16 +228,16 @@ test("exact AMPUL DC-DC public stock evidence does not clear destination checkou
   assert.equal(dcdc.verificationEvidence.length, 1);
   const evidence = dcdc.verificationEvidence[0];
   assert.equal(evidence.candidateId, "ampul-eu-dcdc-12v-30a");
-  assert.equal(evidence.checkedAt, "2026-09-16");
+  assert.equal(evidence.checkedAt, "2026-11-17");
   assert.equal(evidence.evidenceType, "public_catalog_partial");
   assert.equal(evidence.publicStockScope, "exact_product");
   assert.equal(evidence.publicStockStatus, "in_stock_at_supplier");
   assert.equal(evidence.catalogSpecs.chargingCurrentA, 30);
   assert.equal(evidence.catalogSpecs.powerW, 400);
-  assert.equal(evidence.catalogSpecs.ipRating, "IP68");
+  assert.equal(evidence.catalogSpecs.ipRating, "unverified_conflict_title_ip68_specs_ip65");
   assert.ok(evidence.verifiedChecks.includes("exact_product_stock_at_supplier"));
   assert.deepEqual(evidence.genericShippingEvidence.targetMarketsVerified, []);
-  assert.deepEqual(evidence.unresolvedChecks, ["pt-PT_checkout", "ro-RO_checkout", "sl-SI_checkout"]);
+  assert.deepEqual(evidence.unresolvedChecks, ["ip_rating_conflict_ip68_title_ip65_specs", "pt-PT_checkout", "ro-RO_checkout", "sl-SI_checkout"]);
   assert.deepEqual(dcdc.marketVerification[0].verifiedMarkets, []);
   assert.deepEqual(dcdc.marketVerification[0].unverifiedMarkets, ["pt-PT", "ro-RO", "sl-SI"]);
   assert.equal(dcdc.publishEligible, false);
@@ -248,7 +250,7 @@ test("system verification work is fail-closed and never mixes user-owned approva
   assert.ok(actions.length > 0);
   assert.ok(actions.every((action) => action.owner === "system"));
   assert.ok(actions.every((action) => action.publishEligible === false));
-  assert.ok(actions.every((action) => action.verificationPolicy === "fail_closed_until_market_and_stock_evidence"));
+  assert.ok(actions.every((action) => action.verificationPolicy === "fail_closed_until_technical_market_and_stock_evidence"));
   assert.equal(actions.some(({ merchant }) => merchant === "solaris_store"), false);
   assert.equal(actions.some(({ merchant }) => merchant === "xdatou"), false);
   assert.equal(actions.some(({ merchant }) => merchant === "butler_technik"), false);
@@ -269,7 +271,7 @@ test("system queue follows current opportunities and drops resolved categories",
   assert.equal(actions[0].currentOpportunityScore, 4);
   assert.equal(actions[0].verificationEvidence.length, 1);
   assert.equal(actions[0].verificationEvidence[0].candidateId, "ampul-eu-dcdc-12v-30a");
-  assert.deepEqual(actions[0].verificationEvidence[0].unresolvedChecks, ["pt-PT_checkout", "ro-RO_checkout", "sl-SI_checkout"]);
+  assert.deepEqual(actions[0].verificationEvidence[0].unresolvedChecks, ["ip_rating_conflict_ip68_title_ip65_specs", "pt-PT_checkout", "ro-RO_checkout", "sl-SI_checkout"]);
   assert.deepEqual(actions[0].marketVerification[0].unverifiedMarkets, ["pt-PT", "ro-RO", "sl-SI"]);
   assert.equal(actions[0].sourceStock[0].state, "available");
   assert.equal(actions[0].publishEligible, false);

@@ -142,7 +142,7 @@ export function buildCurrentCommercialSystemVerificationQueue(backlogs = [], {
         marketVerification: Object.freeze(marketVerification),
         sourceStock: Object.freeze(sourceStock),
         publishEligible: false,
-        verificationPolicy: "fail_closed_until_market_and_stock_evidence",
+        verificationPolicy: "fail_closed_until_technical_market_and_stock_evidence",
         bestPriority,
         activeCandidateIds: Object.freeze([...group.activeCandidateIds].sort()),
         activeCategories: Object.freeze([...group.activeCategories].sort()),

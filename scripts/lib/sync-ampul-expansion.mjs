@@ -5,6 +5,7 @@ import {
   buildAmpulEhubUrl,
   isExactAmpulSourceDestination,
   validateAmpulExpansionProduct,
+  verifiedAmpulInverterContinuousRating,
 } from "../../src/affiliate-ampul-expansion.js";
 
 const MARKET_CODES = Object.freeze({ "pt-PT": "pt", "ro-RO": "ro", "sl-SI": "si" });
@@ -45,14 +46,19 @@ export function syncAmpulExpansion(sourceCatalog, targetMarket, verification, {
   const verifiedProductMarkets = verifiedAmpulProductMarketsMap(verification);
   const markets = verifiedAmpulMarkets(verification);
   const marketHasAnyVerifiedProduct = Object.values(verifiedProductMarkets).some((productMarkets) => productMarkets.includes(market));
-  if (!marketHasAnyVerifiedProduct) {
+  const inverterContinuousRating = verifiedAmpulInverterContinuousRating(
+    verification?.products?.[AMPUL_24V_2000W_INVERTER.id]?.continuousRating, { now });
+  const technicalReadyForMarket = verifiedProductMarkets[AMPUL_12V_30A_DCDC.id].includes(market)
+    || (verifiedProductMarkets[AMPUL_24V_2000W_INVERTER.id].includes(market) && Boolean(inverterContinuousRating));
+  if (!marketHasAnyVerifiedProduct || !technicalReadyForMarket) {
     return {
       products: [],
       source: {
         status: "blocked",
-        blocker: "product_market_shipping_checkout_unverified",
+        blocker: marketHasAnyVerifiedProduct ? "inverter_continuous_power_unverified" : "product_market_shipping_checkout_unverified",
         verifiedMarkets: markets,
         verifiedProductMarkets,
+        inverterContinuousRating,
         exactProducts: 0,
       },
     };
@@ -91,7 +97,7 @@ export function syncAmpulExpansion(sourceCatalog, targetMarket, verification, {
     && isExactAmpulSourceDestination(product.productUrl, AMPUL_24V_2000W_INVERTER)
   );
   if (inverter?.available === true && verifiedProductMarkets[AMPUL_24V_2000W_INVERTER.id].includes(market)) {
-    normalized.push(normalizeInverter(inverter, market, verifiedProductMarkets));
+    if (inverterContinuousRating) normalized.push(normalizeInverter(inverter, market, verifiedProductMarkets, inverterContinuousRating));
   }
 
   return {
@@ -102,6 +108,7 @@ export function syncAmpulExpansion(sourceCatalog, targetMarket, verification, {
       campaignId: "ddb5edae",
       verifiedMarkets: markets,
       verifiedProductMarkets,
+      inverterContinuousRating,
       exactProducts: normalized.length,
       sourceGeneratedAt: sourceCatalog.generatedAt,
     },
@@ -149,14 +156,15 @@ function normalizeDcDc(source, market, verifiedProductMarkets) {
   return validateAmpulExpansionProduct(normalized, { market, verifiedProductMarkets });
 }
 
-function normalizeInverter(source, market, verifiedProductMarkets) {
+function normalizeInverter(source, market, verifiedProductMarkets, inverterContinuousRating) {
   const normalized = {
     ...baseProduct(source, AMPUL_24V_2000W_INVERTER, market),
     specs: {
       voltageV: 24,
-      powerW: 2000,
+      powerW: inverterContinuousRating.continuousPowerW,
+      continuousPowerW: inverterContinuousRating.continuousPowerW,
       pureSine: true,
     },
   };
-  return validateAmpulExpansionProduct(normalized, { market, verifiedProductMarkets });
+  return validateAmpulExpansionProduct(normalized, { market, verifiedProductMarkets, inverterContinuousRating });
 }

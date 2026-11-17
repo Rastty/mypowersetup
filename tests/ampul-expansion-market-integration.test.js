@@ -104,6 +104,49 @@ test("exact AMPUL DC-DC passes PT RO SI runtime only when that exact product-mar
   }
 });
 
+test("PT RO SI reject an AMPUL inverter without valid continuous-rating proof even when checkout and stock are verified", () => {
+  const inverter = {
+    id: "ampul_cz:5577-7392",
+    merchant: "ampul_cz",
+    name: "24 V to 230 V AC inverter, advertised maximum 2000 W",
+    category: "inverter",
+    categoryPath: "Měniče napětí",
+    priceCzk: 8398,
+    priceCurrency: "CZK",
+    available: true,
+    productUrl: "https://ampul.eu/cs/menice-napeti/5577-7392-menic-napeti-z-dc-na-230v-ac-50hz-2000w",
+    specs: { voltageV: 24, powerW: 2000, pureSine: true },
+  };
+  const source = { ...sourceCatalog, products: [...sourceCatalog.products, inverter] };
+  const cases = [
+    ["pt-PT", "pt", validatePtCatalog],
+    ["ro-RO", "ro", validateRomaniaCatalog],
+    ["sl-SI", "si", validateSloveniaCatalog],
+  ];
+
+  for (const [market, code, validate] of cases) {
+    const evidence = verification(INVERTER_ID, code);
+    evidence.products[INVERTER_ID].continuousRating = {
+      continuousPowerW: 1500,
+      verifiedAt: "2026-09-07",
+      evidenceUrl: "https://evidence.example/manufacturer-continuous-24v.pdf",
+    };
+    const sync = syncAmpulExpansion(source, market, evidence, { now });
+    assert.equal(sync.products.length, 1, market);
+    assert.equal(sync.products[0].specs.powerW, 1500);
+    const catalog = catalogFor(market, sync);
+    assert.equal(validate(catalog).products[0].id, INVERTER_ID, market);
+
+    const missingProof = structuredClone(catalog);
+    missingProof.sources.ampul_eu.inverterContinuousRating = null;
+    assert.throws(() => validate(missingProof), /AMPUL_EXPANSION_INVERTER_SPECS_INVALID/, `${market}: source proof lost`);
+
+    const forgedPeak = structuredClone(catalog);
+    forgedPeak.products[0].specs.powerW = 2000;
+    assert.throws(() => validate(forgedPeak), /AMPUL_EXPANSION_INVERTER_SPECS_INVALID/, `${market}: peak power substituted`);
+  }
+});
+
 test("runtime rejects AMPUL product when source loses verification for that exact product", () => {
   const sync = syncAmpulExpansion(sourceCatalog, "ro-RO", verification(DCDC_ID, "ro"), { now });
   const catalog = catalogFor("ro-RO", sync);

@@ -20,7 +20,7 @@ function marketRecord(verified = false, suffix = "") {
   };
 }
 
-function verification({ dcdc = [], inverter = [] } = {}) {
+function verification({ dcdc = [], inverter = [], continuousRating = null } = {}) {
   return {
     schemaVersion: 2,
     products: {
@@ -32,6 +32,7 @@ function verification({ dcdc = [], inverter = [] } = {}) {
         },
       },
       [INVERTER_ID]: {
+        continuousRating,
         markets: {
           pt: marketRecord(inverter.includes("pt"), "inverter-pt"),
           ro: marketRecord(inverter.includes("ro"), "inverter-ro"),
@@ -127,10 +128,11 @@ test("verified Romania DC-DC keeps its exact technical and affiliate evidence", 
 });
 
 test("inverter appears only when that exact inverter-market pair is independently verified", () => {
+  const rated = { continuousPowerW: 1500, evidenceUrl: "https://ampul.eu/en/downloads/24v-inverter-rating.pdf", verifiedAt: "2026-09-07" };
   const result = syncAmpulExpansion(
     sourceCatalog({ inverterAvailable: true }),
     "ro-RO",
-    verification({ inverter: ["ro"] }),
+    verification({ inverter: ["ro"], continuousRating: rated }),
     { now }
   );
   assert.equal(result.products.length, 1);
@@ -138,10 +140,39 @@ test("inverter appears only when that exact inverter-market pair is independentl
   assert.equal(inverter.id, INVERTER_ID);
   assert.equal(inverter.category, "inverter");
   assert.equal(inverter.specs.voltageV, 24);
-  assert.equal(inverter.specs.powerW, 2000);
+  assert.equal(inverter.specs.powerW, 1500);
+  assert.equal(inverter.specs.continuousPowerW, 1500);
+  assert.deepEqual(result.source.inverterContinuousRating, rated);
   assert.equal(inverter.specs.pureSine, true);
   assert.deepEqual(result.source.verifiedProductMarkets[INVERTER_ID], ["ro"]);
   assert.deepEqual(result.source.verifiedProductMarkets[DCDC_ID], []);
+});
+
+test("maximum advertised power alone never unlocks a continuously rated inverter", () => {
+  const result = syncAmpulExpansion(
+    sourceCatalog({ inverterAvailable: true }), "ro-RO",
+    verification({ inverter: ["ro"] }), { now });
+  assert.deepEqual(result.products, []);
+  assert.equal(result.source.status, "blocked");
+  assert.equal(result.source.blocker, "inverter_continuous_power_unverified");
+  assert.equal(result.source.inverterContinuousRating, null);
+});
+
+test("impossible, future, missing or over-maximum continuous rating evidence fails closed", () => {
+  const invalid = [
+    { continuousPowerW: 2001, evidenceUrl: "https://ampul.eu/evidence.pdf", verifiedAt: "2026-09-07" },
+    { continuousPowerW: 2000, evidenceUrl: "http://ampul.eu/evidence.pdf", verifiedAt: "2026-09-07" },
+    { continuousPowerW: 2000, evidenceUrl: "https://ampul.eu/evidence.pdf", verifiedAt: "2026-02-30" },
+    { continuousPowerW: 2000, evidenceUrl: "https://ampul.eu/evidence.pdf", verifiedAt: "2027-01-01" },
+    { continuousPowerW: 2000, evidenceUrl: null, verifiedAt: "2026-09-07" },
+    { continuousPowerW: "2000", evidenceUrl: "https://ampul.eu/evidence.pdf", verifiedAt: "2026-09-07" },
+  ];
+  for (const continuousRating of invalid) {
+    const result = syncAmpulExpansion(sourceCatalog({ inverterAvailable: true }), "ro-RO",
+      verification({ inverter: ["ro"], continuousRating }), { now });
+    assert.deepEqual(result.products, [], JSON.stringify(continuousRating));
+    assert.equal(result.source.blocker, "inverter_continuous_power_unverified");
+  }
 });
 
 test("stale or unhealthy AMPUL source catalog fails closed after product-market verification", () => {
