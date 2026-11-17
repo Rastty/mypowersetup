@@ -34,7 +34,13 @@ test("result guide enhancer inserts one measurable component-guide block", () =>
   let enhanced = false;
   const resultGrid = {
     insertAdjacentElement(position, node) {
-      inserted = { position, node };
+      inserted = { position, node, anchor: "result-grid" };
+      enhanced = true;
+    },
+  };
+  const productRecommendations = {
+    insertAdjacentElement(position, node) {
+      inserted = { position, node, anchor: "product-recommendations" };
       enhanced = true;
     },
   };
@@ -43,6 +49,7 @@ test("result guide enhancer inserts one measurable component-guide block", () =>
     querySelector(selector) {
       if (selector === "[data-core-result-guides]") return enhanced ? inserted?.node : null;
       if (selector === "#result-grid") return resultGrid;
+      if (selector === "#product-recommendations") return productRecommendations;
       return null;
     },
     createElement(tag) {
@@ -59,6 +66,7 @@ test("result guide enhancer inserts one measurable component-guide block", () =>
 
   assert.equal(enhanceCoreResultGuides({ root, lang: "cs" }), true);
   assert.equal(inserted.position, "afterend");
+  assert.equal(inserted.anchor, "product-recommendations", "buyer offers must precede guides in CZ");
   assert.equal(inserted.node.dataset.coreResultGuides, "");
   assert.equal(inserted.node.attributes.get("aria-labelledby"), "core-result-guides-title");
   assert.equal((inserted.node.innerHTML.match(/data-component-guide/g) || []).length, 6);
@@ -69,6 +77,20 @@ test("result guide enhancer inserts one measurable component-guide block", () =>
   assert.equal(enhanceCoreResultGuides({ root, lang: "cs" }), false);
 });
 
+test("result guides retain fallback placement without a product section", () => {
+  let position;
+  const root = {
+    documentElement: { lang: "cs" },
+    querySelector(selector) {
+      if (selector === "#result-grid") return { insertAdjacentElement(p) { position = p; } };
+      return null;
+    },
+    createElement() { return { dataset: {}, setAttribute() {}, innerHTML: "" }; },
+  };
+  assert.equal(enhanceCoreResultGuides({ root }), true);
+  assert.equal(position, "afterend");
+});
+
 test("result guide enhancer fails closed outside core calculators", () => {
   const root = {
     documentElement: { lang: "pt" },
@@ -76,4 +98,11 @@ test("result guide enhancer fails closed outside core calculators", () => {
     createElement() { throw new Error("must not create markup"); },
   };
   assert.equal(enhanceCoreResultGuides({ root, lang: "pt" }), false);
+});
+
+test("Czech buyers receive fresh placement code after deployment", async () => {
+  const index = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const analytics = await readFile(new URL("../src/analytics.js", import.meta.url), "utf8");
+  assert.match(index, /src="\/src\/analytics\.js\?v=20261117-cz-offers-first"/);
+  assert.match(analytics, /core-result-guides\.js\?v=20261117-cz-offers-first/);
 });

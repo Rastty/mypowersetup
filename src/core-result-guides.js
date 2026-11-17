@@ -41,16 +41,23 @@ export function enhanceCoreResultGuides({
   const resultGrid = root.querySelector?.("#result-grid");
   if (!copy || !items.length || !resultGrid) return false;
 
+  // In the Czech purchase-first flow, verified offers must follow sizing
+  // immediately. The educational guides remain available after the offers.
+  // Other markets retain their existing layout until their funnels are reviewed.
+  const insertionAnchor = locale === "cs"
+    ? (root.querySelector?.("#product-recommendations") || resultGrid)
+    : resultGrid;
+
   const section = root.createElement("section");
   section.className = "result-component-guides";
   section.dataset.coreResultGuides = "";
   section.setAttribute?.("aria-labelledby", "core-result-guides-title");
   section.innerHTML = `<div><span class="step-kicker">${escapeHtml(copy.kicker)}</span><h4 id="core-result-guides-title">${escapeHtml(copy.title)}</h4><p>${escapeHtml(copy.intro)}</p></div><div class="result-grid">${items.map((item) => `<article class="result-card" data-result-guide-topic="${escapeHtml(item.topic)}"><span>${escapeHtml(item.label)}</span><strong><a data-component-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.title)}</a></strong><small>${escapeHtml(item.description)}</small></article>`).join("")}</div>`;
 
-  if (typeof resultGrid.insertAdjacentElement === "function") {
-    resultGrid.insertAdjacentElement("afterend", section);
-  } else if (resultGrid.parentNode?.insertBefore) {
-    resultGrid.parentNode.insertBefore(section, resultGrid.nextSibling || null);
+  if (typeof insertionAnchor.insertAdjacentElement === "function") {
+    insertionAnchor.insertAdjacentElement("afterend", section);
+  } else if (insertionAnchor.parentNode?.insertBefore) {
+    insertionAnchor.parentNode.insertBefore(section, insertionAnchor.nextSibling || null);
   } else {
     return false;
   }
