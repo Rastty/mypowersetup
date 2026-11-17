@@ -4,7 +4,7 @@ const EHUB_PATH = "/system/scripts/click.php";
 const SAFE_VALUE = /^[a-z0-9_-]{1,64}$/;
 const ROLE_VALUES = new Set(["recommended", "budget", "reserve", "alternative"]);
 const PRIORITY_VALUES = new Set(["primary", "secondary"]);
-const SOURCE_VALUES = new Set(["package", "product-card"]);
+const SOURCE_VALUES = new Set(["package", "product-card", "result-featured"]);
 
 export function decorateAwinAffiliateUrl(input, {
   market,

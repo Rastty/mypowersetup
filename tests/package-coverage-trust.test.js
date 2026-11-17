@@ -30,9 +30,8 @@ test("coverage badge has a stronger treatment on the recommended package", async
   assert.match(styles, /\.package-card\.is-recommended \.package-coverage/);
 });
 
-test("all four mature markets display currency-grouped and explicitly incomplete basket prices", async () => {
+test("SK PL HU display currency-grouped and explicitly incomplete basket prices", async () => {
   const labels = [
-    ["app.js", "Ceny po měnách", "Jen známé ceny"],
     ["app-sk.js", "Ceny podľa meny", "Len známe ceny"],
     ["app-pl.js", "Ceny według waluty", "Tylko znane ceny"],
     ["app-hu-browser.js", "Árak pénznemenként", "Csak az ismert árak"],
@@ -45,4 +44,11 @@ test("all four mature markets display currency-grouped and explicitly incomplete
     assert.match(source, /variant\.unpricedItemCount/, file);
     assert.match(source, /join\(" \+ "\)/, file);
   }
+});
+
+test("CZ never presents a foreign-currency basket subtotal as a shopping price", async () => {
+  const source = await readFile(new URL("../src/app.js", import.meta.url), "utf8");
+  assert.match(source, /const priceCzk = czechPackagePrice\(variant\)/);
+  assert.match(source, /Cenu sestavy ověřte u prodejců/);
+  assert.doesNotMatch(source, /Ceny po měnách|Jen známé ceny/);
 });
