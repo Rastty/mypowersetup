@@ -12,6 +12,7 @@ const DEFAULT_ORIGIN = "https://mypowersetup.com";
 const BROWSER_ASSET = "src/expansion-calculator-browser.js";
 const SUPPLY_ASSET = "src/expansion-supply-evidence.js";
 const PRICE_ASSET = "src/expansion-line-price.js";
+const SPECS_ASSET = "src/expansion-product-specs.js";
 const ROLES_ASSET = "src/expansion-recommendation-roles.js";
 const COMPONENT_ASSET = "src/expansion-component-recommendations.js";
 const SCRIPT_PATTERN = /<script\b[^>]*\bsrc=["'](\/src\/expansion-calculator-browser\.js\?v=[^"']+)["'][^>]*>/gi;
@@ -179,6 +180,7 @@ export async function verifyExpansionSupplyLive({
   const servedBrowser = await fetchProof(new URL(browserScript, base), "js", fetchImpl, sleep);
   const importUrl = verifyExpansionJavascript(servedBrowser, localBrowser);
   const priceUrl = expectedVersionedImport(servedBrowser, "expansion-line-price.js");
+  const specsUrl = expectedVersionedImport(servedBrowser, "expansion-product-specs.js");
   const rolesUrl = expectedVersionedImport(servedBrowser, "expansion-recommendation-roles.js");
   const localSupply = await readLocal(SUPPLY_ASSET);
   const servedSupply = await fetchProof(new URL(importUrl, base), "js", fetchImpl, sleep);
@@ -186,6 +188,10 @@ export async function verifyExpansionSupplyLive({
   const localPrice = await readLocal(PRICE_ASSET);
   const servedPrice = await fetchProof(new URL(priceUrl, base), "js", fetchImpl, sleep);
   verifyExpansionPriceJavascript(servedPrice, localPrice, "line");
+  const localSpecs = await readLocal(SPECS_ASSET);
+  const servedSpecs = await fetchProof(new URL(specsUrl, base), "js", fetchImpl, sleep);
+  if (normalize(servedSpecs) !== normalize(localSpecs)) fail("PRODUCT_SPECS_JS_SOURCE_DRIFT");
+  if (!servedSpecs.includes("export function expansionPowerStationSpecs(item)")) fail("PRODUCT_SPECS_GUARD_MISSING");
   const localRoles = await readLocal(ROLES_ASSET);
   const servedRoles = await fetchProof(new URL(rolesUrl, base), "js", fetchImpl, sleep);
   verifyExpansionPriceJavascript(servedRoles, localRoles, "roles");
@@ -217,6 +223,7 @@ export async function verifyExpansionSupplyLive({
     browserScript,
     supplyScript: importUrl,
     priceScript: priceUrl,
+    specsScript: specsUrl,
     rolesScript: rolesUrl,
     marketModules: Object.freeze(marketModules),
     componentScript: componentUrl,
