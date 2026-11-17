@@ -126,6 +126,7 @@ try {
   const fridgeGuide = await smokeFridgeGuideHandoff(cdp);
   const mpptBuyerMatches = await smokeMpptBuyerMatches(cdp);
   const batteryBuyerMatches = await smokeBatteryBuyerMatches(cdp);
+  const expansionEditorial = await smokeExpansionEditorial(cdp);
 
   console.log(JSON.stringify({
     ok: true,
@@ -136,6 +137,7 @@ try {
     fridgeGuide,
     mpptBuyerMatches,
     batteryBuyerMatches,
+    expansionEditorial,
   }, null, 2));
 } finally {
   if (cdp) await cdp.send("Browser.close").catch(() => {});
@@ -144,6 +146,58 @@ try {
   if (chrome && chrome.exitCode === null && chrome.signalCode === null) chrome.kill("SIGTERM");
   await Promise.allSettled([waitForExit(server), chrome ? waitForExit(chrome) : Promise.resolve()]);
   if (profileDir) await cleanupProfile(profileDir);
+}
+
+async function smokeExpansionEditorial(client) {
+  const examples = [
+    { market: "pt", route: "/pt/guias/sistema-eletrico-completo-autocaravana/", type: "article", decision: "/pt/guias/power-station-ou-instalacao-fixa-autocaravana/" },
+    { market: "si", route: "/si/vodici/elektricni-sistem-avtodom/", type: "article", decision: "/si/vodici/prenosna-elektrarna-ali-fiksna-instalacija-avtodom/" },
+    { market: "ro", route: "/ro/ghiduri/sistem-electric-complet-autorulota/", type: "content-page", decision: null },
+  ];
+  const reports = [];
+  for (const width of [390, 1280]) {
+    await client.send("Emulation.setDeviceMetricsOverride", {
+      width, height: 844, deviceScaleFactor: width === 390 ? 3 : 1,
+      mobile: width === 390, screenWidth: width, screenHeight: 844,
+    });
+    for (const example of examples) {
+      await client.send("Page.navigate", { url: origin + example.route });
+      await waitFor(async () => await evaluate(client,
+        `document.readyState === "complete" && Boolean(document.querySelector("main.${example.type} h1"))`));
+      const actual = await evaluate(client, `(() => {
+        const main = document.querySelector('main.${example.type}');
+        const header = document.querySelector('body > header.site-header');
+        const footer = document.querySelector('body > footer');
+        const decision = document.querySelector('[data-power-station-decision] a');
+        return {
+          viewport: innerWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+          mainWidth: main.getBoundingClientRect().width,
+          mainBackground: getComputedStyle(main).backgroundColor,
+          mainPadding: parseFloat(getComputedStyle(main).paddingLeft),
+          headerPosition: getComputedStyle(header).position,
+          headerColor: getComputedStyle(header).color,
+          footerBackground: getComputedStyle(footer).backgroundColor,
+          decisionHref: decision?.getAttribute('href') || null,
+          decisionVisible: Boolean(decision && decision.getBoundingClientRect().width > 0),
+        };
+      })()`);
+      assert(actual.viewport === width, `${example.market}: editorial viewport ${actual.viewport} != ${width}`);
+      assert(actual.scrollWidth <= width + 2, `${example.market}: editorial ${width}px horizontal overflow ${actual.scrollWidth}`);
+      assert(actual.mainWidth <= Math.min(width, 922), `${example.market}: editorial unbounded text width ${actual.mainWidth}`);
+      assert(actual.mainPadding >= 17, `${example.market}: editorial missing reading-column padding`);
+      assert(actual.mainBackground === "rgb(255, 255, 255)", `${example.market}: editorial reading background missing`);
+      assert(actual.headerPosition === "relative" && actual.headerColor !== "rgb(255, 255, 255)",
+        `${example.market}: old absolute white header on light background`);
+      assert(actual.footerBackground === "rgb(13, 43, 35)", `${example.market}: editorial footer lacks contrast`);
+      if (example.decision) {
+        assert(actual.decisionHref === example.decision && actual.decisionVisible,
+          `${example.market}: early portable-vs-fixed decision link not visible`);
+      }
+      reports.push({ market: example.market, width, readable: true, overflow: false });
+    }
+  }
+  return reports;
 }
 
 async function smokeMarket(client, market) {
