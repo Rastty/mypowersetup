@@ -73,6 +73,8 @@ test("ready opportunities are current direct technical fits with a concrete acti
     );
     assert.doesNotMatch(item.sourceUrl, /viewforum\.php/i, `ready item must target a concrete thread, not a discovery index: ${item.id}`);
     assert.equal(scoreTrafficOpportunity(item, { asOf: registry.updatedAt }).actionable, true);
+    assert.ok(item.replyDraftPath, `missing evidence-backed reply draft for ${item.id}`);
+    assert.ok(existsSync(resolve(item.replyDraftPath)), `reply draft missing for ${item.id}: ${item.replyDraftPath}`);
   }
 });
 

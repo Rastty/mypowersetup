@@ -27,10 +27,12 @@ test("the published CamperTeam LiFePO4 reply is retained for attribution but exc
   );
 });
 
-test("a fresh thread awaiting author follow-up is not treated as a reply opportunity", () => {
+test("the author's October follow-up exposes an unresolved DC/DC diagnostic thread", () => {
   const item = registry.opportunities.find((entry) => entry.id === "pl-camperteam-ford-dcdc-202608");
   assert.ok(item);
   const scored = scoreTrafficOpportunity(item, { asOf: registry.updatedAt });
-  assert.equal(item.status, "monitor");
-  assert.equal(scored.actionable, false);
+  assert.equal(item.lastKnownActivity, "2026-10-23");
+  assert.equal(item.status, "ready_for_manual_reply");
+  assert.equal(scored.actionable, true);
+  assert.equal(scoreTrafficOpportunity(item, { asOf: "2026-12-01" }).actionable, false);
 });
