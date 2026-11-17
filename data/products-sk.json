@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-16T11:33:29.489Z",
+  "generatedAt": "2026-11-17T07:56:11.496Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16442,
+      "parsedProducts": 16459,
       "relevantProducts": 243
     },
     "allpowers_eu": {
@@ -10093,7 +10093,7 @@
     {
       "id": "ampul_sk:6653",
       "merchant": "ampul_sk",
-      "name": "Napájací zdroj zásuvkový 36V, 2A, 5.5x2.1mm, nabíjačka olovených batérií",
+      "name": "Napájací zdroj zásuvkový 43.2V, 2A, 5.5x2.1mm, nabíjačka 36V olovených batérií",
       "description": "Inteligentná sieťová nabíjačka určená pre 36V olovené akumulátory s koncovým nabíjacím napätím 43,2 V . Využíva automatický CC/CV nabíjací režim, LED indikáciu stavu a kompletnú sadu ochranných prvkov. Vďaka širokému vstupnému rozsahu 100–240 V AC je vhodná na univerzálne použitie v Európe i ďalších regiónoch. Technické špecifikácie Vstupné napätie: 100–240 V AC, 50/60 Hz Výstupné napätie: 36 V DC (nabíjacie napätie 43,2 V) Výstupný prúd: 2 A Maximálny výkon: 84 W Konektor: XLR 3-pin (polarita: ",
       "categoryPath": "Napájacie zdroje a batérie > Nabíjačky > Nabíjačky akumulátorov",
       "category": "shore_charger",
@@ -10129,7 +10129,7 @@
     {
       "id": "ampul_sk:6692",
       "merchant": "ampul_sk",
-      "name": "Napájací zdroj zásuvkový 24V, 5A, 5.5x2.1mm, nabíjačka olovených batérií",
+      "name": "Napájací zdroj zásuvkový 28.8V, 5A, 5.5x2.1mm, nabíjačka 24V olovených batérií",
       "description": "Inteligentná nabíjačka pre 24V olovené akumulátory určená pre spoľahlivé a bezpečné nabíjanie batériových zostáv s koncovým napätím 28,8 V. Vhodná pre elektrické vozíky, skútre, priemyselné aplikácie, záložné systémy a ďalšie zariadenia využívajúce olovené akumulátory. Nabíjačka využíva automatický režim CC/CV a je vybavená svetelnou signalizáciou stavu nabíjania. Technické špecifikácie Vstupné napätie: 100–240 V AC, 50/60 Hz Výstupné napätie: 24 V DC (nabíjacie napätie 28,8 V) Výstupný prúd: 5 ",
       "categoryPath": "Napájacie zdroje a batérie > Nabíjačky > Nabíjačky akumulátorov",
       "category": "shore_charger",

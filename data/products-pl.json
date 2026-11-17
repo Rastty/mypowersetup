@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-16T11:33:37.888Z",
+  "generatedAt": "2026-11-17T07:56:21.871Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16455,
+      "parsedProducts": 16471,
       "relevantProducts": 201
     },
     "powerqueen_eu": {
@@ -8832,7 +8832,7 @@
     {
       "id": "ampul_pl:6653",
       "merchant": "ampul_pl",
-      "name": "Gniazdo zasilania 36V, 2A, 5,5x2,1mm, ładowarka akumulatora kwasowo-ołowiowego",
+      "name": "Gniazdo zasilania 43,2V, 2A, 5,5x2,1mm, ładowarka akumulatora kwasowo-ołowiowego 36V",
       "description": "Inteligentna ładowarka sieciowa przeznaczona do akumulatorów kwasowo-ołowiowych 36 V o końcowym napięciu ładowania 43,2 V. Wyposażona jest w automatyczny tryb ładowania CC/CV, wskaźnik stanu LED oraz kompletny zestaw zabezpieczeń. Dzięki szerokiemu zakresowi napięcia wejściowego 100–240 V AC, nadaje się do uniwersalnego zastosowania w Europie i innych regionach. Dane techniczne Napięcie wejściowe: 100-240 V AC, 50/60 Hz Napięcie wyjściowe: 36 V DC (napięcie ładowania 43,2 V) Prąd wyjściowy: 2 A ",
       "categoryPath": "Zasilacze i baterie > Ładowarki > Ładowarki akumulatorów",
       "category": "shore_charger",
@@ -8868,7 +8868,7 @@
     {
       "id": "ampul_pl:6692",
       "merchant": "ampul_pl",
-      "name": "Gniazdo zasilania 24V, 5A, 5,5x2,1mm, ładowarka akumulatora kwasowo-ołowiowego",
+      "name": "Gniazdo zasilania 28,8V, 5A, 5,5x2,1mm, ładowarka akumulatora kwasowo-ołowiowego 24V",
       "description": "Inteligentna ładowarka do akumulatorów kwasowo-ołowiowych 24 V, zaprojektowana do niezawodnego i bezpiecznego ładowania akumulatorów o napięciu końcowym 28,8 V. Nadaje się do wózków elektrycznych, skuterów, zastosowań przemysłowych, systemów zapasowych i innych urządzeń wykorzystujących akumulatory kwasowo-ołowiowe. Ładowarka wykorzystuje automatyczny tryb CC/CV i jest wyposażona w kontrolkę świetlną informującą o stanie ładowania. Dane techniczne Napięcie wejściowe: 100-240 V AC, 50/60 Hz Napię",
       "categoryPath": "Zasilacze i baterie > Ładowarki > Ładowarki akumulatorów",
       "category": "shore_charger",
