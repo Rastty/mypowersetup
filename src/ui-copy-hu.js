@@ -98,7 +98,7 @@ export const HU_UI_COPY = Object.freeze({
       priceNote: "A termékek tájékoztató összege; szállítás és szerelés nélkül.",
     },
     roles: {
-      recommended: "Legjobb találat",
+      recommended: "Ajánlott választás",
       alternative: "Kompatibilis alternatíva",
     },
     affiliate: "Egyes hivatkozások partnerlinkek lehetnek. A jutalék nem módosítja a műszaki feltételeket vagy a találatok sorrendjét.",

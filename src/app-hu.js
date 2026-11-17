@@ -9,10 +9,11 @@ import { calculateChargingPlan } from "./charging.js";
 import { calculateRoofFit } from "./roof.js";
 import { buildInstallationPlan } from "./installation.js";
 import { buildProductPackages } from "./packages.js?v=20261117-solar-value1";
+import { visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js";
 import { calculatePowerStationProfile } from "./power-station.js";
 import { buildPlainLanguageVerdict } from "./verdict.js";
-import { HU_UI_COPY } from "./ui-copy-hu.js";
+import { HU_UI_COPY } from "./ui-copy-hu.js?v=20261117-consistent-products1";
 import { HU_TRUST_COPY } from "./trust-copy-hu.js";
 
 export function isHungarianPublishedRuntime(runtime = globalThis) {
@@ -105,8 +106,9 @@ export function buildHungarianApplicationResult(config, catalog = { products: []
   }, HU_MARKET.locale, origin);
 
   const rankedRecommendations = recommendProducts(catalog.products || [], result, 24, catalog.sources);
+  const packages = buildProductPackages(rankedRecommendations, result);
   const recommendations = Object.freeze(Object.fromEntries(
-    Object.entries(rankedRecommendations).map(([category, items]) => [category, Object.freeze(items.slice(0, 3))])
+    Object.entries(visibleRecommendationsForPackages(rankedRecommendations, packages)).map(([category, items]) => [category, Object.freeze(items)])
   ));
   const recommendationCoverage = assessRecommendationCoverage(recommendations, result, HU_MARKET.locale);
 
@@ -118,7 +120,7 @@ export function buildHungarianApplicationResult(config, catalog = { products: []
     powerStationProfile: Object.freeze(calculatePowerStationProfile(result)),
     recommendations,
     recommendationCoverage,
-    packages: Object.freeze(buildProductPackages(rankedRecommendations, result)),
+    packages: Object.freeze(packages),
     shareUrl,
     shareText: buildResultShareText(result, HU_MARKET.locale, shareUrl),
     catalogGeneratedAt: catalog.generatedAt || null,

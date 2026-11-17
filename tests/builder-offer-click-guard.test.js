@@ -160,6 +160,6 @@ test("all four core Builders load market-specific evidence, install capture gate
     assert.match(source,/getEvidence: \(\) => productOfferEvidence/,application);
     assert.match(source,/documentRoot: document/,application);
     assert.match(source,/reload: \(\) => window\.location\.reload\(\)/,application);
-    assert.ok(page.includes("20261117-solar-copy2"),html);
+    assert.ok(page.includes("20261117-consistent-products1"),html);
   }
 });

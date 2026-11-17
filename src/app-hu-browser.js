@@ -1,6 +1,7 @@
 import { APPLIANCES } from "./catalog-hu.js";
-import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-solar-value1";
-import { HU_UI_COPY } from "./ui-copy-hu.js";
+import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261117-consistent-products1";
+import { HU_UI_COPY } from "./ui-copy-hu.js?v=20261117-consistent-products1";
+import { productCardPriceDetails } from "./recommendation-display.js?v=20261117-consistent-products1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { copyText } from "./share.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
@@ -149,6 +150,13 @@ function renderCharging(result) {
 }
 function renderRoof(roof) { document.querySelector("#roof-fit").innerHTML = roof?.checked ? `<article class="roof-fit-card ${roof.fits ? "is-fit" : "is-warning"}"><strong>${roof.fits ? "A referencia-elrendezés geometriailag elfér" : "A referencia-elrendezés nem fér el"}</strong><p>${roof.requiredQuantity} × ${roof.referencePanelWatts} Wp</p></article>` : '<article class="roof-fit-card is-unchecked"><strong>Az ellenőrzés nincs bekapcsolva</strong><p>Add meg a tető szabad téglalapjának mindkét méretét.</p></article>'; }
 function renderPowerStation(profile) { document.querySelector("#power-station-profile").innerHTML = `<article class="charging-card"><span>Minimális névleges kapacitás</span><strong>${profile.capacityWh} Wh</strong></article><article class="charging-card"><span>Folyamatos AC teljesítmény</span><strong>${profile.acOutputWatts ? `${profile.acOutputWatts} W` : "Nem szükséges"}</strong></article><article class="charging-card"><span>Napelemes bemenet</span><strong>${profile.solarInputWatts} W</strong></article>`; }
+function hungarianCardPrice(product) {
+  const { quantity, unitPrice, totalPrice } = productCardPriceDetails(product);
+  if (quantity === 1) return formatHungarianPrice(product.priceCzk, product.priceCurrency);
+  const price = totalPrice === null ? "Ár a webáruházban" : `${formatHungarianPrice(totalPrice, product.priceCurrency)} összesen`;
+  const perPiece = unitPrice === null ? "" : ` (${formatHungarianPrice(unitPrice, product.priceCurrency)} / db)`;
+  return `${quantity} db · ${price}${perPiece}`;
+}
 function renderProducts(output) {
   const categories = HU_UI_COPY.products.categories;
   const labels = { battery:categories.battery,solar_panel:categories.solarPanel,inverter:categories.inverter,controller:categories.controller,dc_charger:categories.dcCharger,shore_charger:categories.shoreCharger,power_station:categories.powerStation };
@@ -170,7 +178,7 @@ function renderProducts(output) {
   document.querySelector("#product-heading").textContent = total ? HU_UI_COPY.products.heading : HU_UI_COPY.products.preparing;
   renderHungarianProductPackages(total ? output.packages : []);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>A katalógusból még hiányzik:</strong> ${escapeHtml(coverage.message)}</p>`;
-  const productGroups = entries.map(([category,items]) => `<section class="product-group" data-product-category="${category}"><h5>${labels[category]}</h5><div class="product-grid">${items.map(({product,reason,checks,verify}, index) => `<article class="product-card"><div class="product-card-copy"><span class="product-recommendation-role is-${index === 0 ? "recommended" : "alternative"}">${index === 0 ? HU_UI_COPY.products.roles.recommended : HU_UI_COPY.products.roles.alternative}</span><span>${hungarianMerchantLabel(product.merchant)}</span><h6>${escapeHtml(product.name)}</h6><p><strong>Miért megfelelő:</strong> ${escapeHtml(reason)}</p><ul>${checks.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul><p><strong>Vásárlás előtt:</strong> ${escapeHtml(verify)}</p><div class="product-card-action"><span class="product-price"><strong>${formatHungarianPrice(product.priceCzk,product.priceCurrency)}</strong></span><a href="${escapeHtml(attributedAwinUrl(product, category, index === 0 ? "recommended" : "alternative", "product-card"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-recommendation-role="${index === 0 ? "recommended" : "alternative"}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("hu", hungarianMerchantLabel(product.merchant)))}</a></div></div></article>`).join("")}</div></section>`).join("");
+  const productGroups = entries.map(([category,items]) => `<section class="product-group" data-product-category="${category}"><h5>${labels[category]}</h5><div class="product-grid">${items.map(({product,reason,checks,verify}, index) => `<article class="product-card"><div class="product-card-copy"><span class="product-recommendation-role is-${index === 0 ? "recommended" : "alternative"}">${index === 0 ? HU_UI_COPY.products.roles.recommended : HU_UI_COPY.products.roles.alternative}</span><span>${hungarianMerchantLabel(product.merchant)}</span><h6>${escapeHtml(product.name)}</h6><p><strong>Miért megfelelő:</strong> ${escapeHtml(reason)}</p><ul>${checks.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul><p><strong>Vásárlás előtt:</strong> ${escapeHtml(verify)}</p><div class="product-card-action"><span class="product-price"><strong>${hungarianCardPrice(product)}</strong></span><a href="${escapeHtml(attributedAwinUrl(product, category, index === 0 ? "recommended" : "alternative", "product-card"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-recommendation-role="${index === 0 ? "recommended" : "alternative"}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("hu", hungarianMerchantLabel(product.merchant)))}</a></div></div></article>`).join("")}</div></section>`).join("");
   document.querySelector("#recommendation-groups").innerHTML = total
     ? `${coverageNotice}<details class="product-comparison-details"><summary><span>Egyedi termékek összehasonlítása</span><small>${total} ellenőrzött találat ${entries.length} kategóriában</small></summary><div class="product-comparison-groups">${productGroups}</div></details>`
     : coverageNotice;
