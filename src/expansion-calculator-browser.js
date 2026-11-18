@@ -10,12 +10,13 @@ import { expansionBatteryDischargeNotice } from "./battery-discharge-safety.js?v
 import { expansionPowerStationSpecs } from "./expansion-product-specs.js?v=20261117-pv-check1";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { expansionPurchaseRoutePriority } from "./expansion-purchase-route-priority.js";
+import { selectExpansionFeaturedOffers } from "./expansion-featured-offers.js";
 import { classifyExpansionSupplyOutcome, expansionSupplyEventName, isDeliberateExpansionCalculation } from "./expansion-supply-evidence.js?v=20261113-explicit-intent1";
 import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js?v=20261113-complete-price1";
 import { expansionLinePrice } from "./expansion-line-price.js?v=20261111-solar-subtotal1";
 import { groupExpansionProductsForDisclosure } from "./expansion-product-disclosure.js";
-import { renderExpansionProductMedia } from "./expansion-product-media.js?v=20261117-product-media1";
+import { renderExpansionProductMedia, safeExpansionProductImageUrl } from "./expansion-product-media.js?v=20261117-product-media1";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 
 const root = document.querySelector("[data-expansion-calculator]");
@@ -57,6 +58,33 @@ const labels = {
 }[locale];
 
 if (!labels) throw new Error(`EXPANSION_CALCULATOR_LOCALE_UNSUPPORTED:${locale || "missing"}`);
+
+const featuredCopy = {
+  pt: {
+    title: "Opções de compra verificadas para o teu cálculo",
+    components: "Componentes compatíveis — há correspondência para todas as categorias necessárias.",
+    portable: "Alternativa portátil — os limites verificados cobrem o perfil calculado.",
+    more: (count) => count === 1 ? "Mais 1 componente necessário e alternativas na lista completa abaixo." : `Mais ${count} componentes necessários e alternativas na lista completa abaixo.`,
+    all: "Ver todos os produtos e verificações ↓",
+    note: "Algumas ligações são de afiliado. Confirma preço, stock e entrega no vendedor; estes produtos não são um projeto de instalação.",
+  },
+  ro: {
+    title: "Oferte verificate pentru calculul tău",
+    components: "Componente compatibile — fiecare categorie necesară are o potrivire verificată.",
+    portable: "Alternativă portabilă — limitele verificate acoperă profilul calculat.",
+    more: (count) => count === 1 ? "Încă o componentă necesară și alternative în lista completă de mai jos." : `Încă ${count} componente necesare și alternative în lista completă de mai jos.`,
+    all: "Vezi toate produsele și verificările ↓",
+    note: "Unele linkuri sunt afiliate. Verifică prețul, stocul și livrarea la vânzător; produsele nu reprezintă un proiect de instalație.",
+  },
+  si: {
+    title: "Preverjene ponudbe za tvoj izračun",
+    components: "Združljive komponente — za vsako zahtevano kategorijo obstaja preverjena izbira.",
+    portable: "Prenosna alternativa — preverjene omejitve pokrivajo izračunani profil.",
+    more: (count) => count === 1 ? "Še ena potrebna komponenta in alternative v celotnem seznamu spodaj." : `Še ${count} potrebnih komponent in alternative v celotnem seznamu spodaj.`,
+    all: "Poglej vse izdelke in preverjanja ↓",
+    note: "Nekatere povezave so partnerske. Pri prodajalcu preveri ceno, zalogo in dostavo; izdelki ne pomenijo načrta montaže.",
+  },
+}[locale];
 
 enhanceApplianceUi();
 const applianceGrid = form.querySelector(".appliance-grid");
@@ -338,9 +366,9 @@ function setChecked(name, value) {
 function renderResult(value) {
   const warnings = value.warnings.length ? `<ul>${value.warnings.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : "";
   const verdict = buildPlainLanguageVerdict(value, locale);
-  // Show verified offers directly after the calculated requirements and warnings;
-  // detailed guides remain below, with incomplete purchase routes clearly marked.
-  result.innerHTML = `<p class="result-summary">${escapeHtml(verdict)}</p><div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div>${warnings}<div data-product-recommendations aria-live="polite">${renderProductLoading()}</div>${renderResultGuides()}${renderComponentPlan(value)}<div class="step-actions"><button class="button button-primary" type="button" data-share-result>${labels.share}</button><button class="button button-secondary" type="button" data-edit>${labels.again}</button></div>`;
+  // Only a commercially complete purchase route may be elevated above the six
+  // electrical result cards; warnings remain immediately below the verdict.
+  result.innerHTML = `<p class="result-summary">${escapeHtml(verdict)}</p>${warnings}<div data-featured-products hidden></div><div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div><div data-product-recommendations aria-live="polite" id="expansion-product-recommendations">${renderProductLoading()}</div>${renderResultGuides()}${renderComponentPlan(value)}<div class="step-actions"><button class="button button-primary" type="button" data-share-result>${labels.share}</button><button class="button button-secondary" type="button" data-edit>${labels.again}</button></div>`;
 }
 
 async function renderPortugalProducts(calculation, revision, recordIntent) {
@@ -358,6 +386,7 @@ async function renderPortugalProducts(calculation, revision, recordIntent) {
     if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : `${renderNoVerifiedProducts()}${renderInverterGapGuide(routePriority, calculation, sourceGap)}`; trackRenderedProductChoices(target); return; }
     const portableGap = coverage.powerStation ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
     target.innerHTML = renderProductSection("pt-products-title", products, portableGap, routePriority, sourceGap, calculation);
+    renderFeaturedProducts(products, routePriority, sourceGap);
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
@@ -381,6 +410,7 @@ async function renderSloveniaProducts(calculation, revision, recordIntent) {
     if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : `${renderNoVerifiedProducts()}${renderInverterGapGuide(routePriority, calculation, sourceGap)}`; trackRenderedProductChoices(target); return; }
     const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
     target.innerHTML = renderProductSection("si-products-title", products, portableGap, routePriority, sourceGap, calculation);
+    renderFeaturedProducts(products, routePriority, sourceGap);
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
@@ -404,6 +434,7 @@ async function renderRomaniaProducts(calculation, revision, recordIntent) {
     if (!products.length) { target.innerHTML = sourceGap ? renderPartialSourceNotice() : `${renderNoVerifiedProducts()}${renderInverterGapGuide(routePriority, calculation, sourceGap)}`; trackRenderedProductChoices(target); return; }
     const portableGap = recommendations.power_station.length ? "" : `<p class="result-products-empty">${escapeHtml(labels.noPortableFit)}</p>`;
     target.innerHTML = renderProductSection("ro-products-title", products, portableGap, routePriority, sourceGap, calculation);
+    renderFeaturedProducts(products, routePriority, sourceGap);
     trackRenderedProductChoices(target);
   } catch {
     if (revision !== resultRevision || !target.isConnected) return;
@@ -458,6 +489,34 @@ function trackRenderedProductChoices(target) {
 }
 function renderResultGuides() { const config = expansionResultGuides(locale); return `<aside class="related result-guides" data-result-guides><h4>${escapeHtml(config.title)}</h4><p>${escapeHtml(config.intro)}</p><ul>${config.links.map((item) => `<li><a data-result-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`).join("")}</ul></aside>`; }
 function renderComponentPlan(value) { const plan = expansionComponentPlan(locale, value); return `<section class="result-products component-plan" data-component-plan><h4>${escapeHtml(plan.title)}</h4><p>${escapeHtml(plan.intro)}</p><div class="result-grid">${plan.items.map((item) => `<article class="result-card" data-component-item="${escapeHtml(item.topic)}" data-required="${item.required}"><span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.spec)}</strong><a data-component-guide data-topic="${escapeHtml(item.topic)}" href="${escapeHtml(item.href)}">${escapeHtml(item.guideLabel)}</a></article>`).join("")}</div><p><small>${escapeHtml(plan.notice)}</small></p></section>`; }
+function renderFeaturedProducts(products, routePriority, sourceGap) {
+  const target = result.querySelector("[data-featured-products]");
+  if (!target) return;
+  const featured = selectExpansionFeaturedOffers(products, routePriority, { sourceGap });
+  if (!featured.items.length) return;
+  const portable = featured.kind === "portable";
+  const cards = featured.items.map((item) => {
+    const merchant = expansionMerchantLabel(item.merchant);
+    const solar = item.category === "solar_panel";
+    const imageUrl = safeExpansionProductImageUrl(item.imageUrl);
+    const image = imageUrl
+      ? `<img src="${escapeHtml(imageUrl)}" width="112" height="112" loading="lazy" decoding="async" alt="" referrerpolicy="no-referrer">`
+      : `<span class="featured-pick-placeholder" aria-hidden="true">✓</span>`;
+    const line = expansionLinePrice(item);
+    const localeTag = { pt: "pt-PT", ro: "ro-RO", si: "sl-SI" }[locale];
+    const price = line?.currency ? new Intl.NumberFormat(localeTag, { style: "currency", currency: line.currency }).format(line.totalPrice) : "";
+    const fit = solar ? labels.solarFit(item.quantity, item.powerW) : portable ? labels.powerStationFit : labels.componentFit;
+    const category = portable ? labels.powerStation : expansionCategoryLabel(item.category);
+    const affiliateUrl = decorateAwinAffiliateUrl(item.affiliateUrl, {
+      market: locale, category: item.category, recommendationRole: "recommended", source: "result-featured",
+    });
+    return `<article class="featured-pick-card" data-featured-category="${escapeHtml(item.category)}">${image}<div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(category)}</span><h6>${escapeHtml(item.name)}</h6><p>${escapeHtml(fit)}</p><small>${escapeHtml(merchant)}${solar && item.quantity > 1 ? ` · ${item.quantity} ×` : ""}</small></div><div class="featured-pick-action">${price ? `<strong data-price-basis="${solar ? "solar-subtotal" : "single-unit"}">${escapeHtml(price)}</strong>` : ""}<a href="${escapeHtml(affiliateUrl)}" target="_blank" rel="sponsored nofollow noopener" data-affiliate-product data-source="result-featured" data-route-priority="primary" data-recommendation-role="recommended" data-cta-variant="${portable ? "portable-primary" : "standard"}" data-product-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-merchant="${escapeHtml(item.merchant)}">${escapeHtml(portable ? labels.portableViewAt(merchant) : labels.viewAt(merchant))}</a></div></article>`;
+  }).join("");
+  const additional = featured.remainingCount ? `<p class="expansion-featured-more">${escapeHtml(featuredCopy.more(featured.remainingCount))}</p>` : "";
+  target.innerHTML = `<section class="featured-picks expansion-featured-picks" aria-labelledby="expansion-featured-heading"><div class="featured-picks-heading"><div><h4 id="expansion-featured-heading">${escapeHtml(featuredCopy.title)}</h4><p>${escapeHtml(portable ? featuredCopy.portable : featuredCopy.components)}</p></div><span class="featured-picks-count">${featured.items.length}</span></div><div class="featured-picks-grid">${cards}</div>${additional}<a class="expansion-featured-all" href="#expansion-product-recommendations">${escapeHtml(featuredCopy.all)}</a><p class="featured-picks-note">${escapeHtml(featuredCopy.note)}</p></section>`;
+  target.hidden = false;
+  trackRenderedProductChoices(target);
+}
 function renderInverterGapGuide(routePriority, calculation, sourceGap) {
   const action = expansionInverterGapAction(locale, routePriority.coverage?.missing, calculation, sourceGap);
   if (!action) return "";

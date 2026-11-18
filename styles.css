@@ -404,6 +404,7 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .next-step-card h4 { margin: 7px 0 8px; }
 .next-step-card p { max-width: 620px; margin: 0; color: var(--ink-soft); line-height: 1.5; }
 #featured-recommendations:not(:empty) { margin: 14px 0 18px; }
+[data-featured-products]:not([hidden]) { margin: 14px 0 18px; }
 .featured-picks { padding: 18px; border: 2px solid #96b67b; border-radius: 14px; background: #f8fce9; }
 .featured-picks-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
 .featured-picks-heading h5 { margin: 5px 0 0; color: var(--forest-deep); font: 800 20px/1.25 "Manrope", sans-serif; }
@@ -423,6 +424,11 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .featured-pick-action a:hover { background: var(--forest-deep); }
 .featured-pick-action a:focus-visible { outline: 3px solid #8cb236; outline-offset: 3px; }
 .featured-picks-note { max-width: none !important; margin-top: 12px !important; font-size: 11px; line-height: 1.5; }
+.expansion-featured-picks .featured-picks-heading h4 { margin: 0 0 6px; color: var(--forest-deep); font: 800 20px/1.25 "Manrope", sans-serif; }
+.expansion-featured-picks .featured-picks-heading p { margin: 0; color: var(--ink-soft); font-size: 12px; line-height: 1.5; }
+.expansion-featured-more { margin: 12px 0 3px; color: var(--ink-soft); font-size: 12px; font-weight: 800; }
+.expansion-featured-all { display: inline-flex; align-items: center; min-height: 44px; margin: 5px 0 0; color: var(--forest-deep); font-size: 12px; font-weight: 850; text-underline-offset: 3px; }
+.expansion-featured-all:focus-visible { outline: 3px solid #8cb236; outline-offset: 2px; }
 .package-intro { margin-top: 2px; padding-top: 18px; border-top: 1px solid var(--line); }
 .package-intro > strong { color: var(--forest); font: 800 18px/1.3 "Manrope", sans-serif; }
 .package-intro > p { margin-top: 6px; font-size: 12px; }
@@ -605,7 +611,7 @@ footer small { font-size: 12px; }
   html, body { min-width: 0; background: white; }
   body > header, main > section:not(.calculator-section), footer,
   .calculator-section > .section-heading, .steps, .calculator-error,
-  .form-step:not(.result-step), .result-share-card, .result-next-card, .existing-setup-check, .next-step-card, #featured-recommendations,
+  .form-step:not(.result-step), .result-share-card, .result-next-card, .existing-setup-check, .next-step-card, #featured-recommendations, [data-featured-products],
   .step-actions, .method-link { display: none !important; }
 
   .calculator-section { padding: 0; }
