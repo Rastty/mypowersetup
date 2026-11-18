@@ -43,6 +43,8 @@ try {
   await evaluate(cdp, `document.querySelector("#setup-form").requestSubmit()`);
   await waitFor(async () => evaluate(cdp, `document.querySelector('[data-form-step="3"]').hidden === false`));
   await waitFor(async () => evaluate(cdp, `document.querySelectorAll("[data-affiliate-product]").length > 0`));
+  const featured = await evaluate(cdp, `(() => { const top=document.querySelector('[data-featured-products]'); const verdict=document.querySelector('.result-summary'); const metrics=document.querySelector('[data-result] > .result-grid'); const links=[...top.querySelectorAll('a[data-affiliate-product]')]; return {count:links.length,visible:!top.hidden && top.getBoundingClientRect().height>0,order:verdict.getBoundingClientRect().bottom<=top.getBoundingClientRect().top && top.getBoundingClientRect().bottom<=metrics.getBoundingClientRect().top,allSponsored:links.every(link=>link.rel.includes('sponsored') && link.dataset.source==='result-featured' && link.href.startsWith('https:'))}; })()`);
+  assert(featured.count === 3 && featured.visible && featured.order && featured.allSponsored, `featured offers above metrics=${JSON.stringify(featured)}`);
   const guideLinks = await evaluate(cdp, `[...document.querySelectorAll("[data-result-guide]")].map((link) => link.getAttribute("href"))`);
   assert(guideLinks.length === 3, `result guides=${guideLinks.length}`); assert(guideLinks.every((href) => href.startsWith("/si/vodici/")), `wrong result guide=${guideLinks.join(",")}`);
   const componentLinks = await evaluate(cdp, `[...document.querySelectorAll("[data-component-guide]")].map((link) => link.getAttribute("href"))`);
@@ -79,7 +81,7 @@ try {
   }
   assert(result.scrollWidth <= result.width + 2, `result overflow=${result.scrollWidth}`);
   for (const route of ["/si/vodici/","/si/metodologija/","/si/zasebnost/","/si/affiliate/"]) { const response = await fetch(`http://127.0.0.1:${port}${route}`); assert(response.ok, `${route}:${response.status}`); const html = await response.text(); assert(/noindex/.test(html), `${route}:noindex missing`); }
-  console.log(JSON.stringify({ ok:true, market:"si", viewport:"390x844", affiliateCards:result.cards, merchants:result.merchants, invalidPanel:false, horizontalOverflow:false }, null, 2));
+  console.log(JSON.stringify({ ok:true, market:"si", viewport:"390x844", featuredOffers:featured.count, affiliateCards:result.cards, merchants:result.merchants, invalidPanel:false, horizontalOverflow:false }, null, 2));
 } finally {
   if (cdp) await cdp.send("Browser.close").catch(() => {}); await cdp?.close().catch(() => {}); preview.kill("SIGTERM"); if (chrome.exitCode === null) chrome.kill("SIGTERM"); await rm(profileDir, { recursive:true, force:true }).catch(() => {});
 }
