@@ -13,23 +13,6 @@ export function czechPackagePrice(variant) {
   return priced.every((price) => price !== null) ? priced.reduce((sum, price) => sum + price, 0) : null;
 }
 
-// Prefer the engine's actual recommended basket; for incomplete baskets, show
-// the best verified fit in each available category. Never invent extra offers.
-export function featuredCzechProducts(recommendations, packages = [], limit = 3) {
-  const selected = [];
-  const seen = new Set();
-  const seenCategories = new Set();
-  const append = (candidate, category) => {
-    if (!candidate?.product?.id || seen.has(candidate.product.id) || seenCategories.has(category) || selected.length >= limit) return;
-    seen.add(candidate.product.id);
-    seenCategories.add(category);
-    selected.push({ ...candidate, category, product: candidate.product });
-  };
-  for (const candidate of packages.find(({ id }) => id === "recommended")?.items || []) {
-    append(candidate, candidate.category);
-  }
-  for (const [category, candidates] of Object.entries(recommendations || {})) {
-    append(candidates?.[0], category);
-  }
-  return selected;
-}
+// Czech callers keep their original API; the verified selection is now
+// shared with SK, PL and HU without changing the eligibility engine.
+export { selectFeaturedOffers as featuredCzechProducts } from "./featured-core-offers.js";

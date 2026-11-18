@@ -3,6 +3,7 @@ import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchan
 import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { HU_UI_COPY } from "./ui-copy-hu.js?v=20261117-consistent-products1";
 import { productCardPriceDetails } from "./recommendation-display.js?v=20261117-consistent-products1";
+import { selectFeaturedOffers } from "./featured-core-offers.js";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { copyText } from "./share.js";
 import { mountUsageProfiles } from "./usage-profiles.js";
@@ -162,6 +163,7 @@ function renderProducts(output) {
   const categories = HU_UI_COPY.products.categories;
   const labels = { battery:categories.battery,solar_panel:categories.solarPanel,inverter:categories.inverter,controller:categories.controller,dc_charger:categories.dcCharger,shore_charger:categories.shoreCharger,power_station:categories.powerStation };
   const entries = Object.entries(output.recommendations).filter(([,items]) => items.length);
+  const featured = selectFeaturedOffers(output.recommendations, output.packages);
   const total = entries.reduce((sum,[,items]) => sum + items.length,0);
   const coverage = output.recommendationCoverage;
   const hasRecommendedPackage = output.packages?.some(({ id }) => id === "recommended") === true;
@@ -177,6 +179,13 @@ function renderProducts(output) {
   resultProductsLink.textContent = hasRecommendedPackage ? "Ajánlott összeállítás megjelenítése ↓" : "Ajánlott termékek megjelenítése ↓";
   resultProductsLink.dataset.resultNextVariant = hasRecommendedPackage ? "complete_package" : "product_matches";
   document.querySelector("#product-heading").textContent = total ? HU_UI_COPY.products.heading : HU_UI_COPY.products.preparing;
+  document.querySelector("#featured-recommendations").innerHTML = featured.length
+    ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Közvetlenül az ellenőrzött ajánlatokhoz</span><h5 id="featured-picks-title">Ezeket ajánljuk a számításodhoz</h5></div><span class="featured-picks-count">${featured.length} ellenőrzött termék</span></div><div class="featured-picks-grid">${featured.map(({product,category,reason}) => {
+      const merchant = hungarianMerchantLabel(product.merchant);
+      const quantity = product.recommendedQuantity || 1;
+      return `<article class="featured-pick-card" data-featured-category="${escapeHtml(category)}">${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : '<span class="featured-pick-placeholder" aria-hidden="true">✓</span>'}<div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(labels[category] || category)} · ajánlott választás</span><h6>${escapeHtml(product.name)}</h6><p>${escapeHtml(reason || "Ellenőrzött műszaki egyezés a számításoddal.")}</p><small>${escapeHtml(merchant)}${quantity > 1 ? ` · ${quantity} db` : ""}</small></div><div class="featured-pick-action"><strong>${escapeHtml(hungarianCardPrice(product))}</strong><a href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "result-featured"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="result-featured" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("hu", merchant))}</a></div></article>`;
+    }).join("")}</div><p class="featured-picks-note">Csak a kiszámított igényekhez illeszkedő termékeket mutatjuk. Vásárlás előtt ellenőrizd a jelenlegi árat, készletet és szállítást; ez nem teljes kivitelezési költségvetés.</p></section>`
+    : "";
   renderHungarianProductPackages(total ? output.packages : [], coverage);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>A katalógusból még hiányzik:</strong> ${escapeHtml(coverage.message)}</p>`;
   const productGroups = entries.map(([category,items]) => `<section class="product-group" data-product-category="${category}"><h5>${labels[category]}</h5><div class="product-grid">${items.map(({product,reason,checks,verify}, index) => `<article class="product-card"><div class="product-card-copy"><span class="product-recommendation-role is-${index === 0 ? "recommended" : "alternative"}">${index === 0 ? HU_UI_COPY.products.roles.recommended : HU_UI_COPY.products.roles.alternative}</span><span>${hungarianMerchantLabel(product.merchant)}</span><h6>${escapeHtml(product.name)}</h6><p><strong>Miért megfelelő:</strong> ${escapeHtml(reason)}</p><ul>${checks.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul><p><strong>Vásárlás előtt:</strong> ${escapeHtml(verify)}</p><div class="product-card-action"><span class="product-price"><strong>${hungarianCardPrice(product)}</strong></span><a href="${escapeHtml(attributedAwinUrl(product, category, index === 0 ? "recommended" : "alternative", "product-card"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-recommendation-role="${index === 0 ? "recommended" : "alternative"}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("hu", hungarianMerchantLabel(product.merchant)))}</a></div></div></article>`).join("")}</div></section>`).join("");

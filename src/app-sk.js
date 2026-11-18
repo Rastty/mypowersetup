@@ -11,6 +11,7 @@ import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261117-economy-currency1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
+import { selectFeaturedOffers } from "./featured-core-offers.js";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
@@ -507,6 +508,7 @@ function renderProductRecommendations(result) {
   const rankedRecommendations = recommendProducts(productCatalog, result, 24, productCatalogSources);
   const packages = buildProductPackages(rankedRecommendations, result);
   const recommendations = visibleRecommendationsForPackages(rankedRecommendations, packages);
+  const featured = selectFeaturedOffers(recommendations, packages);
   const categoryLabels = {
     battery: "Batérie",
     solar_panel: "Solárne panely",
@@ -538,6 +540,9 @@ function renderProductRecommendations(result) {
   resultProductsLink.dataset.resultNextVariant = hasRecommendedPackage ? "complete_package" : "product_matches";
   const freshness = productCatalogUpdatedAt
     ? ` Produktové údaje boli načítané ${new Date(productCatalogUpdatedAt).toLocaleDateString("sk-SK")}.`
+    : "";
+  document.querySelector("#featured-recommendations").innerHTML = featured.length
+    ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Priamo k overeným ponukám</span><h5 id="featured-picks-title">Čo odporúčame k vášmu výpočtu</h5></div><span class="featured-picks-count">${featured.length} overené produkty</span></div><div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Len technicky zhodné produkty z dostupného katalógu. Aktuálnu cenu, sklad a dopravu overte u predajcu; nejde o kompletný montážny rozpočet.</p></section>`
     : "";
 
   if (total === 0) {
@@ -615,6 +620,17 @@ function attributedAwinUrl(product, category, recommendationRole, source) {
 
 function packageCategoryLabel(category) {
   return ({ battery: "Batéria", solar_panel: "Solár", inverter: "Menič", controller: "MPPT", dc_charger: "DC–DC nabíjačka", shore_charger: "Nabíjačka 230 V" })[category] || category;
+}
+
+function featuredProductCard({ product, category, reason }) {
+  const { quantity, totalPrice } = productCardPriceDetails(product);
+  const price = totalPrice === null ? "Cena v obchode" : formatPrice(totalPrice, product.priceCurrency);
+  const merchant = merchantLabel(product.merchant);
+  return `<article class="featured-pick-card" data-featured-category="${escapeHtml(category)}">
+    ${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : '<span class="featured-pick-placeholder" aria-hidden="true">✓</span>'}
+    <div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(packageCategoryLabel(category))} · odporúčaná voľba</span><h6>${escapeHtml(product.name)}</h6><p>${escapeHtml(reason || "Overená zhoda s parametrami vášho výpočtu.")}</p><small>${escapeHtml(merchant)}${quantity > 1 ? ` · ${quantity} ks` : ""}</small></div>
+    <div class="featured-pick-action"><strong>${price}</strong><a href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "result-featured"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="result-featured" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("sk", merchant))}</a></div>
+  </article>`;
 }
 
 function productCard(product, reason, checks, verify, recommendationRole) {
