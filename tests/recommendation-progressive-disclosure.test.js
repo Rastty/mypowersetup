@@ -28,6 +28,7 @@ test("expansion markets keep one primary product per category and disclose alter
   assert.match(source, /<details class="expansion-product-alternatives" data-product-alternatives/);
   assert.match(source, /group\.alternatives\.map\(\(item\) => renderExpansionProduct/);
   assert.match(source, /product_alternatives_opened/);
+  assert.match(source, /function expansionCategoryLabel\(category\).*power_station: labels\.powerStation/, "portable alternative disclosure must use the localized category label");
 
   for (const label of [
     "Comparar alternativas",

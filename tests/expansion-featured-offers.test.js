@@ -56,6 +56,6 @@ test("PT, RO and SI render featured purchase links above the six result cards wi
   for (const market of ["pt", "ro", "si"]) {
     const page = await readFile(new URL(`../${market}/index.html`, import.meta.url), "utf8");
     assert.match(page, /styles\.css\?v=20261118-expansion-featured1/);
-    assert.match(page, /expansion-calculator-browser\.js\?v=20261118-expansion-featured1/);
+    assert.match(page, /expansion-calculator-browser\.js\?v=20261118-expansion-labels2/);
   }
 });
