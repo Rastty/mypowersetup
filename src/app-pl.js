@@ -11,6 +11,7 @@ import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261117-economy-currency1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
+import { selectFeaturedOffers } from "./featured-core-offers.js";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
@@ -507,6 +508,7 @@ function renderProductRecommendations(result) {
   const rankedRecommendations = recommendProducts(productCatalog, result, 24, productCatalogSources);
   const packages = buildProductPackages(rankedRecommendations, result);
   const recommendations = visibleRecommendationsForPackages(rankedRecommendations, packages);
+  const featured = selectFeaturedOffers(recommendations, packages);
   const categoryLabels = {
     battery: "Akumulatory",
     solar_panel: "Panele fotowoltaiczne",
@@ -539,6 +541,9 @@ function renderProductRecommendations(result) {
   resultProductsLink.dataset.resultNextVariant = hasRecommendedPackage ? "complete_package" : "product_matches";
   const freshness = productCatalogUpdatedAt
     ? ` Dane produktowe pobrano ${new Date(productCatalogUpdatedAt).toLocaleDateString("pl-PL")}.`
+    : "";
+  document.querySelector("#featured-recommendations").innerHTML = featured.length
+    ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Od razu do zweryfikowanych ofert</span><h5 id="featured-picks-title">Co polecamy do Twojego wyniku</h5></div><span class="featured-picks-count">${featured.length} sprawdzone produkty</span></div><div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Tylko produkty zgodne technicznie z obliczeniem. Aktualną cenę, dostępność i dostawę sprawdź u sprzedawcy; nie jest to pełny kosztorys instalacji.</p></section>`
     : "";
 
   if (total === 0) {
@@ -616,6 +621,17 @@ function attributedAwinUrl(product, category, recommendationRole, source) {
 
 function packageCategoryLabel(category) {
   return ({ battery: "Akumulator", solar_panel: "Panel PV", inverter: "Przetwornica", controller: "MPPT", dc_charger: "Ładowarka DC–DC", shore_charger: "Ładowarka 230 V" })[category] || category;
+}
+
+function featuredProductCard({ product, category, reason }) {
+  const { quantity, totalPrice } = productCardPriceDetails(product);
+  const price = totalPrice === null ? "Cena w sklepie" : formatPrice(totalPrice, product.priceCurrency);
+  const merchant = merchantLabel(product.merchant);
+  return `<article class="featured-pick-card" data-featured-category="${escapeHtml(category)}">
+    ${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : '<span class="featured-pick-placeholder" aria-hidden="true">✓</span>'}
+    <div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(packageCategoryLabel(category))} · polecany wybór</span><h6>${escapeHtml(product.name)}</h6><p>${escapeHtml(reason || "Zweryfikowana zgodność z parametrami obliczenia.")}</p><small>${escapeHtml(merchant)}${quantity > 1 ? ` · ${quantity} szt.` : ""}</small></div>
+    <div class="featured-pick-action"><strong>${price}</strong><a href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "result-featured"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="result-featured" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("pl", merchant))}</a></div>
+  </article>`;
 }
 
 function productCard(product, reason, checks, verify, recommendationRole) {

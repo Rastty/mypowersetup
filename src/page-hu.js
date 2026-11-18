@@ -79,7 +79,7 @@ export function renderHungarianPrivatePage() {
             <div class="result-heading"><span class="result-check">✓</span><div><span class="step-kicker">${copy.result.kicker}</span><h3>${copy.result.title}</h3><p id="result-intro"></p></div></div>
             <p class="result-verdict" id="result-verdict"></p><div class="result-grid" id="result-grid"></div>
             <section class="result-next-card" id="result-next" hidden><div><span class="step-kicker">${copy.result.next}</span><h4>${copy.result.compatibleComponents}</h4><p id="result-product-count"></p></div><a class="button button-primary" id="result-products-link" href="#product-recommendations">${copy.result.showProducts}</a></section>
-            <section class="next-step-card" id="product-recommendations"><div><span class="step-kicker">${copy.products.verifiedMatch}</span><h4 id="product-heading">${copy.products.preparing}</h4><p id="product-intro">${copy.products.intro}</p></div><div id="package-variants"></div><div id="recommendation-groups"></div><p class="affiliate-note">${copy.products.affiliate}</p></section>
+            <section class="next-step-card" id="product-recommendations"><div><span class="step-kicker">${copy.products.verifiedMatch}</span><h4 id="product-heading">${copy.products.preparing}</h4><p id="product-intro">${copy.products.intro}</p></div><div id="featured-recommendations"></div><div id="package-variants"></div><div id="recommendation-groups"></div><p class="affiliate-note">${copy.products.affiliate}</p></section>
             <section class="existing-setup-check" id="existing-setup-check" aria-label="Meglévő rendszer ellenőrzése"></section>
             <section class="result-share-card"><div><span class="step-kicker">${copy.result.save}</span><h4>${copy.result.shareTitle}</h4></div><div class="result-share-actions"><button class="button button-primary" type="button" id="result-share">${copy.result.share}</button><button class="button button-secondary" type="button" id="result-copy">${copy.result.copy}</button><button class="button button-secondary" type="button" id="result-print">${copy.result.print}</button></div><p id="result-share-status" role="status" aria-live="polite"></p></section>
             <details class="decision-panel"><summary><span class="step-kicker">Átlátható számítás</span><h4>${copy.result.why}</h4></summary><div class="decision-grid" id="result-reasons"></div></details>
@@ -119,7 +119,7 @@ export function renderHungarianPrivatePage() {
     <section class="safety-note"><strong>${copy.safety.title}</strong><p>${copy.safety.text}</p></section>
   </main>
   <footer><a class="brand brand-footer" href="#top">ϟ MyPowerSetup</a><nav class="footer-links"><a href="/hu/utmutatok/">${copy.navigation.guides}</a><a href="/hu/a-projektrol/">${copy.footer.about}</a><a href="/hu/modszertan/">${copy.footer.methodology}</a><a href="/hu/partnerkapcsolatok/">${copy.footer.affiliate}</a><a href="/hu/adatvedelem/">${copy.footer.privacy}</a></nav><small>© <span id="year"></span> MyPowerSetup</small></footer>
-  <script type="module" src="/src/app-hu-browser.js?v=20260902-merchant-cta1"></script>
+  <script type="module" src="/src/app-hu-browser.js?v=20261118-featured-offers1"></script>
   <script type="module" src="/src/analytics.js"></script>
 </body>
 </html>`;
