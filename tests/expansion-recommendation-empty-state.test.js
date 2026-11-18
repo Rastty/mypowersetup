@@ -24,6 +24,13 @@ test("PT, RO and SI show an accessible loading state while recommendation module
   assert.match(source, /Preverjamo združljive izdelke/);
 });
 
+test("empty states direct visitors to the technical guides beneath the recommendations", () => {
+  assert.match(source, /Usa os guias abaixo/);
+  assert.match(source, /Folosește ghidurile de mai jos/);
+  assert.match(source, /Uporabi spodnje vodnike/);
+  assert.doesNotMatch(source, /Usa os guias acima|Folosește ghidurile de mai sus|Uporabi zgornje vodnike/);
+});
+
 test("Portugal distinguishes component matches from a missing full portable-system match", () => {
   assert.match(source, /noPortableFit/);
   assert.match(source, /coverage\.powerStation \? ""/);
