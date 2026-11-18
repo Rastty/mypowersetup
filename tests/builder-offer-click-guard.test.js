@@ -85,7 +85,7 @@ function syntheticGuard(record, at) {
   const listeners=new Map();
   const root={ contains: (value)=>value===record };
   const documentRoot={
-    querySelector:(selector)=>selector==="#product-recommendations" ? root : null,
+    querySelector:(selector)=>selector===".form-step.result-step" ? root : null,
     addEventListener:(type,callback,capture)=>{
       assert.equal(capture,true);
       listeners.set(type,callback);
@@ -146,6 +146,22 @@ test("expired warning is localized, DOM safe, one-time and offers explicit reloa
   assert.equal(root.added.children[0].text,"Starý katalog ");
 });
 
+test("expired early featured purchase links receive the warning beside the CTA",()=>{
+  const nodes=[];
+  const featured={querySelector:()=>null,prepend:(node)=>nodes.push(node)};
+  const documentRoot={
+    querySelector:()=>{throw new Error("must not fall back to lower offers")},
+    createTextNode:(value)=>({text:value}),
+    createElement:(name)=>({name,children:[],setAttribute(){},append(child){this.children.push(child)},addEventListener(){}}),
+  };
+  assert.equal(showExpiredBuilderOfferNotice({
+    documentRoot,sourceLink:{closest:(selector)=>selector==="#featured-recommendations"?featured:null},
+    message:"Expirado",refreshLabel:"Reload",reload:()=>{},
+  }),true);
+  assert.equal(nodes.length,1);
+  assert.equal(nodes[0].children[0].text,"Expirado ");
+});
+
 test("all four core Builders load market-specific evidence, install capture gate and expose refreshed scripts",async()=>{
   const paths=[
     ["src/app.js","index.html"],
@@ -156,6 +172,7 @@ test("all four core Builders load market-specific evidence, install capture gate
   for(const [application,html] of paths){
     const source=await readFile(application,"utf8"),page=await readFile(html,"utf8");
     assert.match(source,/buildBuilderOfferEvidence\(/,application);
+    assert.match(source,/builder-offer-click-guard\.js\?v=20261118-hero-guard1/,application);
     assert.match(source,/bindBuilderOfferClickGuard\(/,application);
     assert.match(source,/getEvidence: \(\) => productOfferEvidence/,application);
     assert.match(source,/documentRoot: document/,application);

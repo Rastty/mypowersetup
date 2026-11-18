@@ -49,6 +49,8 @@ test("Czech result places immediately visible offers before secondary analysis a
   const style = await readFile(new URL("../styles.css", import.meta.url), "utf8");
   const freshness = await readFile(new URL("../src/builder-result-freshness.js", import.meta.url), "utf8");
   const resultStep = html.slice(html.indexOf('class="form-step result-step"'), html.indexOf('class="decision-panel"'));
+  assert.ok(resultStep.indexOf('id="result-verdict"') < resultStep.indexOf('id="featured-recommendations"'));
+  assert.ok(resultStep.indexOf('id="featured-recommendations"') < resultStep.indexOf('id="result-grid"'));
   assert.ok(resultStep.indexOf('id="result-grid"') < resultStep.indexOf('id="product-recommendations"'));
   assert.ok(resultStep.indexOf('id="product-recommendations"') < resultStep.indexOf('id="existing-setup-check"'));
   assert.ok(resultStep.indexOf('id="featured-recommendations"') < resultStep.indexOf('id="package-variants"'));
@@ -56,6 +58,9 @@ test("Czech result places immediately visible offers before secondary analysis a
   assert.match(app, /featuredCzechProducts\(recommendations, packages\)/);
   assert.match(app, /data-affiliate-click data-source="result-featured"/);
   assert.match(style, /\.featured-picks-grid \{ display: grid/);
+  assert.match(style, /\.next-step-card, #featured-recommendations,/);
+  assert.match(html, /styles\.css\?v=[^"\s]*top1/);
+  assert.match(html, /app\.js\?v=[^"\s]*top1/);
   assert.match(freshness, /"#featured-recommendations"/);
 });
 

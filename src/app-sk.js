@@ -21,7 +21,7 @@ import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { bindBuilderResultInvalidation } from "./builder-result-freshness.js";
-import { buildBuilderOfferEvidence, bindBuilderOfferClickGuard, showExpiredBuilderOfferNotice } from "./builder-offer-click-guard.js";
+import { buildBuilderOfferEvidence, bindBuilderOfferClickGuard, showExpiredBuilderOfferNotice } from "./builder-offer-click-guard.js?v=20261118-hero-guard1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -49,12 +49,13 @@ const invalidateStaleResult = bindBuilderResultInvalidation({
     document.querySelector('.step[data-step-target="3"]').disabled = true;
   },
 });
-const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector("#product-recommendations"), trackEvent);
+const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector(".form-step.result-step"), trackEvent);
 bindBuilderOfferClickGuard({
   documentRoot: document,
   getEvidence: () => productOfferEvidence,
-  onBlocked: () => showExpiredBuilderOfferNotice({
+  onBlocked: (sourceLink) => showExpiredBuilderOfferNotice({
     documentRoot: document,
+    sourceLink,
     message: "Ponuka už nemá aktuálne produktové podklady. Pred otvorením obchodu načítajte čerstvý katalóg.",
     refreshLabel: "Načítať aktuálne ponuky",
     reload: () => window.location.reload(),
@@ -542,7 +543,7 @@ function renderProductRecommendations(result) {
     ? ` Produktové údaje boli načítané ${new Date(productCatalogUpdatedAt).toLocaleDateString("sk-SK")}.`
     : "";
   document.querySelector("#featured-recommendations").innerHTML = featured.length
-    ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Priamo k overeným ponukám</span><h5 id="featured-picks-title">Čo odporúčame k vášmu výpočtu</h5></div><span class="featured-picks-count">${featured.length} overené produkty</span></div><div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Len technicky zhodné produkty z dostupného katalógu. Aktuálnu cenu, sklad a dopravu overte u predajcu; nejde o kompletný montážny rozpočet.</p></section>`
+    ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Priamo k overeným ponukám</span><h5 id="featured-picks-title">Čo odporúčame k vášmu výpočtu</h5></div><span class="featured-picks-count">${featured.length} overené produkty</span></div><div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Len technicky zhodné produkty. Niektoré odkazy sú partnerské; provízia nemení výber. Aktuálnu cenu, sklad a dopravu overte u predajcu; nejde o úplný rozpočet montáže.</p></section>`
     : "";
 
   if (total === 0) {

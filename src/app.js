@@ -22,7 +22,7 @@ import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { bindBuilderResultInvalidation } from "./builder-result-freshness.js";
-import { buildBuilderOfferEvidence, bindBuilderOfferClickGuard, showExpiredBuilderOfferNotice } from "./builder-offer-click-guard.js";
+import { buildBuilderOfferEvidence, bindBuilderOfferClickGuard, showExpiredBuilderOfferNotice } from "./builder-offer-click-guard.js?v=20261118-hero-guard1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -50,12 +50,13 @@ const invalidateStaleResult = bindBuilderResultInvalidation({
     document.querySelector('.step[data-step-target="3"]').disabled = true;
   },
 });
-const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector("#product-recommendations"), trackEvent);
+const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector(".form-step.result-step"), trackEvent);
 bindBuilderOfferClickGuard({
   documentRoot: document,
   getEvidence: () => productOfferEvidence,
-  onBlocked: () => showExpiredBuilderOfferNotice({
+  onBlocked: (sourceLink) => showExpiredBuilderOfferNotice({
     documentRoot: document,
+    sourceLink,
     message: "Nabídka už nemá aktuální produktové podklady. Před otevřením obchodu načtěte čerstvý katalog.",
     refreshLabel: "Načíst aktuální nabídky",
     reload: () => window.location.reload(),
@@ -561,7 +562,7 @@ function renderProductRecommendations(result) {
     ? ` Produktová data byla načtena ${new Date(productCatalogUpdatedAt).toLocaleDateString("cs-CZ")}.`
     : "";
   document.querySelector("#featured-recommendations").innerHTML = featured.length
-    ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Rovnou k ověřeným nabídkám</span><h5 id="featured-picks-title">Co doporučujeme k vašemu výpočtu</h5></div><span class="featured-picks-count">${featured.length} ${featured.length === 1 ? "produkt" : "produkty"}</span></div><div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Doporučení vycházejí z technického párování. Cena se na českém webu ukazuje jen tehdy, když ji obchod poskytuje přímo v Kč. Parametry, sklad a dopravu vždy ověřte u prodejce.</p></section>`
+    ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Rovnou k ověřeným nabídkám</span><h5 id="featured-picks-title">Co doporučujeme k vašemu výpočtu</h5></div><span class="featured-picks-count">${featured.length} ${featured.length === 1 ? "produkt" : "produkty"}</span></div><div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Některé odkazy jsou partnerské a při nákupu můžeme získat provizi; technický výběr to nemění. Cenu v Kč uvádíme jen u nabídky v této měně. Parametry, sklad a dopravu vždy ověřte u prodejce.</p></section>`
     : "";
 
   if (total === 0) {

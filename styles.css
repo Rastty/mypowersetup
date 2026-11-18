@@ -403,6 +403,7 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .next-step-card { display: grid; gap: 24px; margin-top: 16px; padding: 26px; border-radius: var(--radius-md); background: #eef3ed; }
 .next-step-card h4 { margin: 7px 0 8px; }
 .next-step-card p { max-width: 620px; margin: 0; color: var(--ink-soft); line-height: 1.5; }
+#featured-recommendations:not(:empty) { margin: 14px 0 18px; }
 .featured-picks { padding: 18px; border: 2px solid #96b67b; border-radius: 14px; background: #f8fce9; }
 .featured-picks-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
 .featured-picks-heading h5 { margin: 5px 0 0; color: var(--forest-deep); font: 800 20px/1.25 "Manrope", sans-serif; }
@@ -604,7 +605,7 @@ footer small { font-size: 12px; }
   html, body { min-width: 0; background: white; }
   body > header, main > section:not(.calculator-section), footer,
   .calculator-section > .section-heading, .steps, .calculator-error,
-  .form-step:not(.result-step), .result-share-card, .result-next-card, .existing-setup-check, .next-step-card,
+  .form-step:not(.result-step), .result-share-card, .result-next-card, .existing-setup-check, .next-step-card, #featured-recommendations,
   .step-actions, .method-link { display: none !important; }
 
   .calculator-section { padding: 0; }

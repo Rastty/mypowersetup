@@ -21,7 +21,7 @@ import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { bindBuilderResultInvalidation } from "./builder-result-freshness.js";
-import { buildBuilderOfferEvidence, bindBuilderOfferClickGuard, showExpiredBuilderOfferNotice } from "./builder-offer-click-guard.js";
+import { buildBuilderOfferEvidence, bindBuilderOfferClickGuard, showExpiredBuilderOfferNotice } from "./builder-offer-click-guard.js?v=20261118-hero-guard1";
 
 const form = document.querySelector("#setup-form");
 const applianceGrid = document.querySelector("#appliance-grid");
@@ -49,12 +49,13 @@ const invalidateStaleResult = bindBuilderResultInvalidation({
     document.querySelector('.step[data-step-target="3"]').disabled = true;
   },
 });
-const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector("#product-recommendations"), trackEvent);
+const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector(".form-step.result-step"), trackEvent);
 bindBuilderOfferClickGuard({
   documentRoot: document,
   getEvidence: () => productOfferEvidence,
-  onBlocked: () => showExpiredBuilderOfferNotice({
+  onBlocked: (sourceLink) => showExpiredBuilderOfferNotice({
     documentRoot: document,
+    sourceLink,
     message: "Dane oferty nie są już aktualne. Przed przejściem do sklepu odśwież katalog produktów.",
     refreshLabel: "Odśwież oferty",
     reload: () => window.location.reload(),
@@ -543,7 +544,7 @@ function renderProductRecommendations(result) {
     ? ` Dane produktowe pobrano ${new Date(productCatalogUpdatedAt).toLocaleDateString("pl-PL")}.`
     : "";
   document.querySelector("#featured-recommendations").innerHTML = featured.length
-    ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Od razu do zweryfikowanych ofert</span><h5 id="featured-picks-title">Co polecamy do Twojego wyniku</h5></div><span class="featured-picks-count">${featured.length} sprawdzone produkty</span></div><div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Tylko produkty zgodne technicznie z obliczeniem. Aktualną cenę, dostępność i dostawę sprawdź u sprzedawcy; nie jest to pełny kosztorys instalacji.</p></section>`
+    ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Od razu do zweryfikowanych ofert</span><h5 id="featured-picks-title">Co polecamy do Twojego wyniku</h5></div><span class="featured-picks-count">${featured.length} sprawdzone produkty</span></div><div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Tylko produkty zgodne technicznie. Niektóre linki są partnerskie; prowizja nie zmienia doboru. Aktualną cenę, dostępność i dostawę sprawdź u sprzedawcy; to nie jest pełny kosztorys.</p></section>`
     : "";
 
   if (total === 0) {

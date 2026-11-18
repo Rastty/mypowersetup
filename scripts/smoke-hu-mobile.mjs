@@ -147,6 +147,9 @@ try {
   await waitFor(async () => await evaluate(cdp, `document.querySelectorAll("#recommendation-groups .product-card").length > 0`));
 
   const result = await evaluate(cdp, `(() => ({
+    featuredLinks: document.querySelectorAll("#featured-recommendations [data-affiliate-click]").length,
+    featuredBeforeMetrics: document.querySelector("#featured-recommendations").getBoundingClientRect().bottom <= document.querySelector("#result-grid").getBoundingClientRect().top,
+    featuredAfterVerdict: document.querySelector("#featured-recommendations").getBoundingClientRect().top >= document.querySelector("#result-verdict").getBoundingClientRect().bottom,
     labels: Array.from(document.querySelectorAll("#result-grid .result-card > span")).map((node) => node.textContent.trim()),
     productCards: document.querySelectorAll("#recommendation-groups .product-card").length,
     productGroups: document.querySelectorAll("#recommendation-groups .product-group").length,
@@ -157,6 +160,8 @@ try {
     scrollWidth: document.documentElement.scrollWidth,
     width: window.innerWidth
   }))()`);
+  assert(result.featuredLinks > 0 && result.featuredBeforeMetrics && result.featuredAfterVerdict,
+    "HU verified purchase CTA must be immediately below the verdict, above technical result cards");
   assert(result.labels.includes("MPPT töltésvezérlő"), `Rendered HU result uses wrong MPPT label: ${result.labels.join(" | ")}`);
   assert(result.productCards > 0 && result.productGroups > 0, "HU result did not render verified product recommendations");
   assert(result.firstAffiliateHref?.startsWith("https://"), "HU recommendation has no concrete HTTPS destination");

@@ -313,6 +313,9 @@ async function smokeMarket(client, market) {
   await waitFor(async () => await evaluate(client, `document.querySelectorAll("#recommendation-groups .product-card").length > 0`), 120);
 
   const result = await evaluate(client, `(() => ({
+    featuredLinks: document.querySelectorAll("#featured-recommendations [data-affiliate-click]").length,
+    featuredBeforeMetrics: document.querySelector("#featured-recommendations").getBoundingClientRect().bottom <= document.querySelector("#result-grid").getBoundingClientRect().top,
+    featuredAfterVerdict: document.querySelector("#featured-recommendations").getBoundingClientRect().top >= document.querySelector("#result-verdict").getBoundingClientRect().bottom,
     productCards: document.querySelectorAll("#recommendation-groups .product-card").length,
     productGroups: document.querySelectorAll("#recommendation-groups .product-group").length,
     firstAffiliateHref: document.querySelector("#recommendation-groups [data-affiliate-click]")?.href || null,
@@ -321,6 +324,8 @@ async function smokeMarket(client, market) {
     scrollWidth: document.documentElement.scrollWidth,
     width: window.innerWidth
   }))()`);
+  assert(result.featuredLinks > 0 && result.featuredBeforeMetrics && result.featuredAfterVerdict,
+    `${market.locale}: verified purchase CTA must be immediately below the verdict, above technical result cards`);
   assert(result.productCards > 0 && result.productGroups > 0, `${market.locale}: no verified product recommendations rendered`);
   assert(result.firstAffiliateHref?.startsWith("https://"), `${market.locale}: recommendation has no HTTPS affiliate destination`);
   assert(result.firstAffiliateRel?.includes("sponsored"), `${market.locale}: affiliate link is missing rel=sponsored`);
