@@ -50,12 +50,19 @@ test("PT, RO and SI render featured purchase links above the six result cards wi
   assert.match(source, /data-affiliate-product data-source="result-featured"/);
   assert.match(source, /source: "result-featured"/);
   assert.match(source, /trackRenderedProductChoices\(target\)/);
+  for (const copy of [
+    "confirma a compatibilidade elétrica entre produtos",
+    "confirmă separat compatibilitatea electrică între produse",
+    "preveri električno združljivost med izdelki",
+  ]) {
+    assert.ok(source.includes(copy), `missing explicit individual-fit disclaimer: ${copy}`);
+  }
   const style = await readFile(new URL("../styles.css", import.meta.url), "utf8");
   assert.match(style, /\[data-featured-products\]:not\(\[hidden\]\)/);
   assert.match(style, /\[data-featured-products\],/);
   for (const market of ["pt", "ro", "si"]) {
     const page = await readFile(new URL(`../${market}/index.html`, import.meta.url), "utf8");
     assert.match(page, /styles\.css\?v=20261118-expansion-featured1/);
-    assert.match(page, /expansion-calculator-browser\.js\?v=20261118-expansion-labels2/);
+    assert.match(page, /expansion-calculator-browser\.js\?v=20261118-expansion-fit-scope3/);
   }
 });

@@ -62,7 +62,7 @@ if (!labels) throw new Error(`EXPANSION_CALCULATOR_LOCALE_UNSUPPORTED:${locale |
 const featuredCopy = {
   pt: {
     title: "Opções de compra verificadas para o teu cálculo",
-    components: "Componentes compatíveis — há correspondência para todas as categorias necessárias.",
+    components: "Cada categoria necessária tem uma opção com parâmetros verificados; confirma a compatibilidade elétrica entre produtos antes de os combinar.",
     portable: "Alternativa portátil — os limites verificados cobrem o perfil calculado.",
     more: (count) => count === 1 ? "Mais 1 componente necessário e alternativas na lista completa abaixo." : `Mais ${count} componentes necessários e alternativas na lista completa abaixo.`,
     all: "Ver todos os produtos e verificações ↓",
@@ -70,7 +70,7 @@ const featuredCopy = {
   },
   ro: {
     title: "Oferte verificate pentru calculul tău",
-    components: "Componente compatibile — fiecare categorie necesară are o potrivire verificată.",
+    components: "Fiecare categorie necesară are o ofertă cu parametri verificați; confirmă separat compatibilitatea electrică între produse.",
     portable: "Alternativă portabilă — limitele verificate acoperă profilul calculat.",
     more: (count) => count === 1 ? "Încă o componentă necesară și alternative în lista completă de mai jos." : `Încă ${count} componente necesare și alternative în lista completă de mai jos.`,
     all: "Vezi toate produsele și verificările ↓",
@@ -78,7 +78,7 @@ const featuredCopy = {
   },
   si: {
     title: "Preverjene ponudbe za tvoj izračun",
-    components: "Združljive komponente — za vsako zahtevano kategorijo obstaja preverjena izbira.",
+    components: "Za vsako potrebno kategorijo je preverjen ustrezen izdelek; pred povezovanjem preveri električno združljivost med izdelki.",
     portable: "Prenosna alternativa — preverjene omejitve pokrivajo izračunani profil.",
     more: (count) => count === 1 ? "Še ena potrebna komponenta in alternative v celotnem seznamu spodaj." : `Še ${count} potrebnih komponent in alternative v celotnem seznamu spodaj.`,
     all: "Poglej vse izdelke in preverjanja ↓",
