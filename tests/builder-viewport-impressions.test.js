@@ -157,7 +157,7 @@ test("all four core Builders wire the observer-aware binder and versioned JavaSc
   ]) {
     const source=await readFile(file,"utf8");
     const page=await readFile(html,"utf8");
-    assert.match(source,/bindAffiliateImpressionTracking\(document\.querySelector\("#product-recommendations"\),/);
+    assert.match(source,/bindAffiliateImpressionTracking\(document\.querySelector\("\.form-step\.result-step"\),/);
     assert.match(source,/affiliate-analytics\.js\?v=20261108-viewport1/);
     assert.match(source,/trackVisibleProductChoices\(\);/);
     assert.ok(page.includes(locale === "cs" ? "20261117-cz-featured-offers1" : "20261118-featured-offers1"),locale);

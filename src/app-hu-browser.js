@@ -11,15 +11,16 @@ import { mountExistingSetupCheck } from "./existing-setup.js";
 import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
 import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { bindBuilderResultInvalidation } from "./builder-result-freshness.js";
-import { buildBuilderOfferEvidence, bindBuilderOfferClickGuard, showExpiredBuilderOfferNotice } from "./builder-offer-click-guard.js";
+import { buildBuilderOfferEvidence, bindBuilderOfferClickGuard, showExpiredBuilderOfferNotice } from "./builder-offer-click-guard.js?v=20261118-hero-guard1";
 
 const form = document.querySelector("#setup-form");
-const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector("#product-recommendations"), track);
+const trackVisibleProductChoices = bindAffiliateImpressionTracking(document.querySelector(".form-step.result-step"), track);
 bindBuilderOfferClickGuard({
   documentRoot: document,
   getEvidence: () => productOfferEvidence,
-  onBlocked: () => showExpiredBuilderOfferNotice({
+  onBlocked: (sourceLink) => showExpiredBuilderOfferNotice({
     documentRoot: document,
+    sourceLink,
     message: "A termékajánlat adatai elavultak. Az áruház megnyitása előtt frissítsd a termékkatalógust.",
     refreshLabel: "Ajánlatok frissítése",
     reload: () => window.location.reload(),
@@ -184,7 +185,7 @@ function renderProducts(output) {
       const merchant = hungarianMerchantLabel(product.merchant);
       const quantity = product.recommendedQuantity || 1;
       return `<article class="featured-pick-card" data-featured-category="${escapeHtml(category)}">${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : '<span class="featured-pick-placeholder" aria-hidden="true">✓</span>'}<div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(labels[category] || category)} · ajánlott választás</span><h6>${escapeHtml(product.name)}</h6><p>${escapeHtml(reason || "Ellenőrzött műszaki egyezés a számításoddal.")}</p><small>${escapeHtml(merchant)}${quantity > 1 ? ` · ${quantity} db` : ""}</small></div><div class="featured-pick-action"><strong>${escapeHtml(hungarianCardPrice(product))}</strong><a href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "result-featured"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="result-featured" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("hu", merchant))}</a></div></article>`;
-    }).join("")}</div><p class="featured-picks-note">Csak a kiszámított igényekhez illeszkedő termékeket mutatjuk. Vásárlás előtt ellenőrizd a jelenlegi árat, készletet és szállítást; ez nem teljes kivitelezési költségvetés.</p></section>`
+    }).join("")}</div><p class="featured-picks-note">Csak műszakilag megfelelő termékeket mutatunk. Egyes linkek partnerlinkek; a jutalék nem befolyásolja az ajánlást. Vásárlás előtt ellenőrizd az árat, készletet és szállítást; ez nem teljes telepítési költségvetés.</p></section>`
     : "";
   renderHungarianProductPackages(total ? output.packages : [], coverage);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>A katalógusból még hiányzik:</strong> ${escapeHtml(coverage.message)}</p>`;

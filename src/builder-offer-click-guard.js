@@ -81,7 +81,10 @@ export function isCurrentBuilderOffer(link, evidence, now = Date.now()) {
 export function bindBuilderOfferClickGuard({
   documentRoot, getEvidence, now = Date.now, onBlocked = () => {},
 } = {}) {
-  const root = documentRoot?.querySelector?.("#product-recommendations");
+  // Featured links sit next to the verdict, above the calculation cards.
+  // Guard the whole result step so early purchase links cannot evade the
+  // stale-stock and exact-affiliate-destination capture gate.
+  const root = documentRoot?.querySelector?.(".form-step.result-step");
   if (!root || typeof documentRoot?.addEventListener !== "function") return () => false;
   const guard = (event) => {
     if (event.defaultPrevented) return false;
@@ -106,9 +109,12 @@ export function bindBuilderOfferClickGuard({
 // deliberate reload to fetch the latest catalog. The calculation share query
 // is preserved and can be restored by each existing Builder.
 export function showExpiredBuilderOfferNotice({
-  documentRoot, message, refreshLabel, reload,
+  documentRoot, message, refreshLabel, reload, sourceLink,
 } = {}) {
-  const root = documentRoot?.querySelector?.("#product-recommendations");
+  // Put the warning beside the blocked purchase CTA. An early featured link
+  // must not send the visitor searching below the technical result for it.
+  const root = sourceLink?.closest?.("#featured-recommendations")
+    || documentRoot?.querySelector?.("#product-recommendations");
   if (!root || typeof documentRoot?.createElement !== "function"
     || typeof message !== "string" || typeof refreshLabel !== "string") return false;
   if (root.querySelector?.("[data-builder-offer-expired]")) return true;

@@ -32,14 +32,18 @@ test("featured choices use only vetted recommendations and prefer the recommende
 });
 
 for (const market of ["sk", "pl", "hu"]) {
-  test(`${market.toUpperCase()} exposes featured verified offers before baskets and collapsed comparisons`, () => {
+  test(`${market.toUpperCase()} exposes purchase-ready offers immediately after verdict, before technical cards`, () => {
     const html = source(`${market}/index.html`);
+    const verdict = html.indexOf('id="result-verdict"');
+    const resultGrid = html.indexOf('id="result-grid"');
     const products = html.indexOf('id="product-recommendations"');
     const featured = html.indexOf('id="featured-recommendations"');
     const baskets = html.indexOf('id="package-variants"');
     const comparisons = html.indexOf('id="recommendation-groups"');
-    assert.ok(products >= 0 && products < featured && featured < baskets && baskets < comparisons);
+    assert.ok(verdict >= 0 && verdict < featured && featured < resultGrid && resultGrid < products && products < baskets && baskets < comparisons);
     assert.equal(html.match(/id="featured-recommendations"/g)?.length, 1);
+    assert.match(html, /styles\.css\?v=[^"\s]*top1/);
+    assert.match(html, /app-(?:sk|pl|hu-browser)\.js\?v=[^"\s]*top1/);
     assert.match(html, new RegExp(`app-${market === "hu" ? "hu-browser" : market}\\.js\\?v=20261118-featured-offers1`));
 
     const app = source(`src/app-${market === "hu" ? "hu-browser" : market}.js`);
@@ -53,6 +57,8 @@ for (const market of ["sk", "pl", "hu"]) {
 
 test("Hungarian generated page retains the same featured offers placement", () => {
   const generator = source("src/page-hu.js");
-  assert.ok(generator.indexOf('id="featured-recommendations"') < generator.indexOf('id="package-variants"'));
+  assert.ok(generator.indexOf('id="result-verdict"') < generator.indexOf('id="featured-recommendations"'));
+  assert.ok(generator.indexOf('id="featured-recommendations"') < generator.indexOf('id="result-grid"'));
+  assert.ok(generator.indexOf('id="result-grid"') < generator.indexOf('id="package-variants"'));
   assert.match(generator, /app-hu-browser\.js\?v=20261118-featured-offers1/);
 });
