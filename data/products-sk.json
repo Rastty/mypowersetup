@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-17T18:25:15.741Z",
+  "generatedAt": "2026-11-18T11:51:30.904Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16450,
+      "parsedProducts": 16462,
       "relevantProducts": 242
     },
     "allpowers_eu": {
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7732,
+      "parsedProducts": 7736,
       "relevantProducts": 15
     }
   },
@@ -8026,7 +8026,7 @@
       "available": true,
       "productUrl": "https://iallpowers.eu/products/allpowers-r1500-lite-portable-power-station",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r1500-lite-portable-power-station",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R1500-LITE-Portable-Power-Station-1600W-1056Wh-ALLPOWERS-123505459.webp?v=1783440328",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R1500-LITE-Portable-Power-Station-1600W-1056Wh-ALLPOWERS-105261974.jpg?v=1762504857",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
