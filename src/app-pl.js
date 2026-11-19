@@ -1,4 +1,5 @@
 import { APPLIANCES } from "./catalog-pl.js?v=20260823-custom1";
+import { renderDcLoadVoltageNotice } from "./dc-voltage-help.js";
 import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
 import { recommendProducts } from "./products.js?v=20261107-source-gate1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
@@ -543,8 +544,7 @@ function renderProductRecommendations(result) {
   const freshness = productCatalogUpdatedAt
     ? ` Dane produktowe pobrano ${new Date(productCatalogUpdatedAt).toLocaleDateString("pl-PL")}.`
     : "";
-  const voltageNotice = result.dcLoadVoltageWarning
-    ? `<p class="dc-voltage-warning" role="note">${escapeHtml(result.dcLoadVoltageWarning)}</p>` : "";
+  const voltageNotice = renderDcLoadVoltageNotice(result.dcLoadVoltageWarning, "pl");
   document.querySelector("#featured-recommendations").innerHTML = voltageNotice + (featured.length
     ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Od razu do zweryfikowanych ofert</span><h5 id="featured-picks-title">Co polecamy do Twojego wyniku</h5></div><span class="featured-picks-count">${featured.length} sprawdzone produkty</span></div><div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Tylko produkty zgodne technicznie. Niektóre linki są partnerskie; prowizja nie zmienia doboru. Aktualną cenę, dostępność i dostawę sprawdź u sprzedawcy; to nie jest pełny kosztorys.</p></section>`
     : "");

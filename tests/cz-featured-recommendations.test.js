@@ -60,7 +60,7 @@ test("Czech result places immediately visible offers before secondary analysis a
   assert.match(style, /\.featured-picks-grid \{ display: grid/);
   assert.match(style, /\.next-step-card, #featured-recommendations,/);
   assert.match(html, /styles\.css\?v=20261119-voltage-dc-load1/);
-  assert.match(html, /app\.js\?v=20261119-diagram-dc-ac2/);
+  assert.match(html, /app\.js\?v=20261119-voltage-guide1/);
   assert.match(freshness, /"#featured-recommendations"/);
 });
 

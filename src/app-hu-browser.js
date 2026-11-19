@@ -1,4 +1,5 @@
 import { APPLIANCES } from "./catalog-hu.js";
+import { renderDcLoadVoltageNotice } from "./dc-voltage-help.js";
 import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchantLabel, loadHungarianProductCatalog } from "./app-hu.js?v=20261119-diagram-dc-ac2";
 import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { HU_UI_COPY } from "./ui-copy-hu.js?v=20261117-consistent-products1";
@@ -181,8 +182,7 @@ function renderProducts(output) {
   resultProductsLink.textContent = hasRecommendedPackage ? "Ajánlott összeállítás megjelenítése ↓" : "Ajánlott termékek megjelenítése ↓";
   resultProductsLink.dataset.resultNextVariant = hasRecommendedPackage ? "complete_package" : "product_matches";
   document.querySelector("#product-heading").textContent = total ? HU_UI_COPY.products.heading : HU_UI_COPY.products.preparing;
-  const voltageNotice = result.dcLoadVoltageWarning
-    ? `<p class="dc-voltage-warning" role="note">${escapeHtml(result.dcLoadVoltageWarning)}</p>` : "";
+  const voltageNotice = renderDcLoadVoltageNotice(result.dcLoadVoltageWarning, "hu");
   document.querySelector("#featured-recommendations").innerHTML = voltageNotice + (featured.length
     ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Közvetlenül az ellenőrzött ajánlatokhoz</span><h5 id="featured-picks-title">Ezeket ajánljuk a számításodhoz</h5></div><span class="featured-picks-count">${featured.length} ellenőrzött termék</span></div><div class="featured-picks-grid">${featured.map(({product,category,reason}) => {
       const merchant = hungarianMerchantLabel(product.merchant);
