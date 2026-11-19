@@ -160,7 +160,7 @@ test("all four core Builders wire the observer-aware binder and versioned JavaSc
     assert.match(source,/bindAffiliateImpressionTracking\(document\.querySelector\("\.form-step\.result-step"\),/);
     assert.match(source,/affiliate-analytics\.js\?v=20261108-viewport1/);
     assert.match(source,/trackVisibleProductChoices\(\);/);
-    assert.ok(page.includes("20261119-featured-safe4-top1"),locale);
+    assert.ok(page.includes("20261119-voltage-dc-load1"),locale);
   }
 });
 
@@ -172,6 +172,6 @@ test("PT/RO/SI result offers are observed, not counted merely because cards were
   assert.match(source,/affiliate-analytics\.js\?v=20261108-viewport1/);
   for (const market of ["pt","ro","si"]) {
     const page=await readFile(`${market}/index.html`,"utf8");
-    assert.match(page,/expansion-calculator-browser\.js\?v=20261119-expansion-featured4/);
+    assert.match(page,/expansion-calculator-browser\.js\?v=20261119-voltage-dc-load1/);
   }
 });

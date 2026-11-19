@@ -1,5 +1,5 @@
 import { APPLIANCES } from "./catalog-hu.js";
-import { calculateSetup } from "./engine.js";
+import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
 import { recommendProducts } from "./products.js?v=20261107-source-gate1";
 import { buildResultShareText } from "./share.js";
 import { buildSetupUrl } from "./setup-url.js";

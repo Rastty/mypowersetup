@@ -55,6 +55,23 @@ test("automatically switches a high-power setup to 24 V", () => {
   assert.equal(result.systemVoltage, 24);
   assert.ok(result.inverterWatts >= 2200);
   assert.ok(result.batteryWh >= 4100);
+  assert.match(result.dcLoadVoltageWarning, /24→12 V/);
+  assert.ok(result.warnings.includes(result.dcLoadVoltageWarning));
+});
+
+test("24 V DC loads require a localized load-voltage notice, never an implied converter in the basket", () => {
+  const fixture = {
+    appliances: [{ selected: true, name: "12/24 V DC load", watts: 80, hours: 4, quantity: 1, ac: false }],
+    autonomyDays: 2, season: "summer", batteryType: "lifepo4", systemVoltage: "24",
+  };
+  for (const locale of ["cs", "sk", "pl", "hu", "pt", "ro", "si"]) {
+    const result = calculateSetup({ ...fixture, locale });
+    assert.match(result.dcLoadVoltageWarning, /24→12 V/, `${locale}: no explicit 24-to-12 load converter warning`);
+    assert.ok(result.warnings.includes(result.dcLoadVoltageWarning));
+    assert.ok(!result.dcLoadVoltageWarning.includes("http"), "a warning must not introduce an unverified purchase link");
+  }
+  assert.equal(calculateSetup({ ...fixture, systemVoltage: "12" }).dcLoadVoltageWarning, null);
+  assert.equal(calculateSetup({ ...fixture, appliances: [{ ...fixture.appliances[0], ac: true }] }).dcLoadVoltageWarning, null);
 });
 
 test("custom AC appliance contributes its name, energy and declared start surge", () => {

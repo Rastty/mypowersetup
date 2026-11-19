@@ -55,7 +55,7 @@ export function renderPrivateMarketSeedPage(seed) {
   <meta name="robots" content="${escapeHtml(seed.robots)}">
   <meta name="description" content="${escapeHtml(copy.description)}">
   ${buildMarketHomeSearchSurface(seed)}
-  <link rel="stylesheet" href="/styles.css?v=20261118-expansion-featured1">
+  <link rel="stylesheet" href="/styles.css?v=20261119-voltage-dc-load1">
   <title>${escapeHtml(copy.title)}</title>
 </head>
 <body>
@@ -77,7 +77,7 @@ export function renderPrivateMarketSeedPage(seed) {
   </main>
   ${footerHtml}
   <script type="module" src="/src/analytics.js"></script>
-  <script type="module" src="/src/expansion-calculator-browser.js?v=20261119-expansion-featured4"></script>
+  <script type="module" src="/src/expansion-calculator-browser.js?v=20261119-voltage-dc-load1"></script>
 </body>
 </html>`;
 }

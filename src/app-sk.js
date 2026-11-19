@@ -1,5 +1,5 @@
 import { APPLIANCES } from "./catalog-sk.js?v=20260823-custom1";
-import { calculateSetup } from "./engine.js?v=20260821-sk1";
+import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
 import { recommendProducts } from "./products.js?v=20261107-source-gate1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20261023-safe-loads1";
@@ -542,9 +542,11 @@ function renderProductRecommendations(result) {
   const freshness = productCatalogUpdatedAt
     ? ` Produktové údaje boli načítané ${new Date(productCatalogUpdatedAt).toLocaleDateString("sk-SK")}.`
     : "";
-  document.querySelector("#featured-recommendations").innerHTML = featured.length
+  const voltageNotice = result.dcLoadVoltageWarning
+    ? `<p class="dc-voltage-warning" role="note">${escapeHtml(result.dcLoadVoltageWarning)}</p>` : "";
+  document.querySelector("#featured-recommendations").innerHTML = voltageNotice + (featured.length
     ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Priamo k overeným ponukám</span><h5 id="featured-picks-title">Čo odporúčame k vášmu výpočtu</h5></div><span class="featured-picks-count">${featured.length} overené produkty</span></div><div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Len technicky zhodné produkty. Niektoré odkazy sú partnerské; provízia nemení výber. Aktuálnu cenu, sklad a dopravu overte u predajcu; nejde o úplný rozpočet montáže.</p></section>`
-    : "";
+    : "");
 
   if (total === 0) {
     document.querySelector("#package-variants").innerHTML = "";
