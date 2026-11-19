@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-19T11:48:06.402Z",
+  "generatedAt": "2026-11-19T17:42:04.565Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16488,
+      "parsedProducts": 16493,
       "relevantProducts": 197
     },
     "powerqueen_eu": {
