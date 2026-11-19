@@ -11,7 +11,7 @@ import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261117-economy-currency1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
-import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261117-1";
+import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261119-featured-safe4";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { czechProductRequirement, czechProductDecisionFacts, czechPackageFitSummary } from "./product-decision-facts.js?v=20261014-1";

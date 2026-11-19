@@ -3,7 +3,7 @@ import { buildHungarianApplicationResult, formatHungarianPrice, hungarianMerchan
 import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { HU_UI_COPY } from "./ui-copy-hu.js?v=20261117-consistent-products1";
 import { productCardPriceDetails } from "./recommendation-display.js?v=20261117-consistent-products1";
-import { selectFeaturedOffers } from "./featured-core-offers.js";
+import { selectFeaturedOffers } from "./featured-core-offers.js?v=20261119-featured-safe4";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { copyText } from "./share.js";
 import { mountUsageProfiles } from "./usage-profiles.js";

@@ -21,7 +21,7 @@ test("featured choices use only vetted recommendations and prefer the recommende
     { ...match("battery-fit"), category: "battery" },
   ] }];
   const chosen = selectFeaturedOffers(recommendations, packages);
-  assert.deepEqual(chosen.map(({ product }) => product.id), ["inverter-fit", "battery-fit", "solar-fit"]);
+  assert.deepEqual(chosen.map(({ product }) => product.id), ["inverter-fit", "battery-fit", "solar-fit", "controller-fit"]);
   assert.deepEqual(new Set(chosen.map(({ category }) => category)).size, chosen.length);
   assert.deepEqual(selectFeaturedOffers(recommendations, [], 2).map(({ product }) => product.id),
     ["battery-fit", "solar-fit"]);
@@ -29,6 +29,35 @@ test("featured choices use only vetted recommendations and prefer the recommende
   assert.deepEqual(selectFeaturedOffers({}, []), []);
   assert.deepEqual(selectFeaturedOffers({}, null), []);
   assert.deepEqual(featuredCzechProducts(recommendations, packages), chosen);
+});
+
+test("featured shopping choices skip stale and unavailable offers, including recommended basket rows", () => {
+  const product = (id, overrides = {}) => ({ product: { id, ...overrides } });
+  const recommendations = {
+    battery: [product("old-battery", { staleSource: true }), product("ready-battery")],
+    solar_panel: [product("sold-out-panel", { available: false }), product("ready-panel")],
+    controller: [product("ready-battery"), product("ready-mppt")],
+    inverter: [product("ready-inverter")],
+  };
+  const packages = [{ id: "recommended", items: [
+    { category: "battery", ...product("old-battery", { staleSource: true }) },
+    { category: "solar_panel", ...product("sold-out-panel", { available: false }) },
+  ] }];
+  assert.deepEqual(selectFeaturedOffers(recommendations, packages).map(({ product }) => product.id), [
+    "ready-battery", "ready-panel", "ready-mppt", "ready-inverter",
+  ]);
+});
+
+test("default featured shelf shows all four essential verified categories while retaining a compact cap", () => {
+  const offer = (id) => ({ product: { id } });
+  const recommendations = Object.fromEntries(
+    ["battery", "solar_panel", "controller", "inverter", "dc_charger", "shore_charger"]
+      .map((category) => [category, [offer(category)]]),
+  );
+  assert.deepEqual(selectFeaturedOffers(recommendations).map(({ category }) => category), [
+    "battery", "solar_panel", "controller", "inverter",
+  ]);
+  assert.equal(selectFeaturedOffers(recommendations, [], 2).length, 2);
 });
 
 for (const market of ["sk", "pl", "hu"]) {
@@ -44,7 +73,7 @@ for (const market of ["sk", "pl", "hu"]) {
     assert.equal(html.match(/id="featured-recommendations"/g)?.length, 1);
     assert.match(html, /styles\.css\?v=[^"\s]*top1/);
     assert.match(html, /app-(?:sk|pl|hu-browser)\.js\?v=[^"\s]*top1/);
-    assert.match(html, new RegExp(`app-${market === "hu" ? "hu-browser" : market}\\.js\\?v=20261118-featured-offers1`));
+    assert.match(html, new RegExp(`app-${market === "hu" ? "hu-browser" : market}\\.js\\?v=20261119-featured-safe4`));
 
     const app = source(`src/app-${market === "hu" ? "hu-browser" : market}.js`);
     assert.match(app, /selectFeaturedOffers\(/);
@@ -60,5 +89,5 @@ test("Hungarian generated page retains the same featured offers placement", () =
   assert.ok(generator.indexOf('id="result-verdict"') < generator.indexOf('id="featured-recommendations"'));
   assert.ok(generator.indexOf('id="featured-recommendations"') < generator.indexOf('id="result-grid"'));
   assert.ok(generator.indexOf('id="result-grid"') < generator.indexOf('id="package-variants"'));
-  assert.match(generator, /app-hu-browser\.js\?v=20261118-featured-offers1/);
+  assert.match(generator, /app-hu-browser\.js\?v=20261119-featured-safe4/);
 });
