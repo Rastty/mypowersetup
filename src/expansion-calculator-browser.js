@@ -11,7 +11,7 @@ import { expansionBatteryDischargeNotice } from "./battery-discharge-safety.js?v
 import { expansionPowerStationSpecs } from "./expansion-product-specs.js?v=20261117-pv-check1";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { expansionPurchaseRoutePriority } from "./expansion-purchase-route-priority.js";
-import { selectExpansionFeaturedOffers } from "./expansion-featured-offers.js?v=20261119-featured4";
+import { selectExpansionFeaturedOffers } from "./expansion-featured-offers.js?v=20261119-existing-merchants1";
 import { classifyExpansionSupplyOutcome, expansionSupplyEventName, isDeliberateExpansionCalculation } from "./expansion-supply-evidence.js?v=20261113-explicit-intent1";
 import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js?v=20261113-complete-price1";
@@ -65,6 +65,7 @@ const featuredCopy = {
     title: "Opções de compra verificadas para o teu cálculo",
     components: "Cada categoria necessária tem uma opção com parâmetros verificados; confirma a compatibilidade elétrica entre produtos antes de os combinar.",
     portable: "Alternativa portátil — os limites verificados cobrem o perfil calculado.",
+    comparePortable: (count) => `Comparar mais ${count} ${count === 1 ? "estação verificada" : "estações verificadas"} para o mesmo perfil`,
     more: (count) => count === 1 ? "Mais 1 componente necessário e alternativas na lista completa abaixo." : `Mais ${count} componentes necessários e alternativas na lista completa abaixo.`,
     all: "Ver todos os produtos e verificações ↓",
     note: "Algumas ligações são de afiliado. Confirma preço, stock e entrega no vendedor; estes produtos não são um projeto de instalação.",
@@ -73,6 +74,7 @@ const featuredCopy = {
     title: "Oferte verificate pentru calculul tău",
     components: "Fiecare categorie necesară are o ofertă cu parametri verificați; confirmă separat compatibilitatea electrică între produse.",
     portable: "Alternativă portabilă — limitele verificate acoperă profilul calculat.",
+    comparePortable: (count) => `Compară încă ${count} ${count === 1 ? "stație verificată" : "stații verificate"} pentru același profil`,
     more: (count) => count === 1 ? "Încă o componentă necesară și alternative în lista completă de mai jos." : `Încă ${count} componente necesare și alternative în lista completă de mai jos.`,
     all: "Vezi toate produsele și verificările ↓",
     note: "Unele linkuri sunt afiliate. Verifică prețul, stocul și livrarea la vânzător; produsele nu reprezintă un proiect de instalație.",
@@ -81,6 +83,7 @@ const featuredCopy = {
     title: "Preverjene ponudbe za tvoj izračun",
     components: "Za vsako potrebno kategorijo je preverjen ustrezen izdelek; pred povezovanjem preveri električno združljivost med izdelki.",
     portable: "Prenosna alternativa — preverjene omejitve pokrivajo izračunani profil.",
+    comparePortable: (count) => `Primerjaj še ${count} ${count === 1 ? "preverjeno postajo" : "preverjeni postaji"} za isti profil`,
     more: (count) => count === 1 ? "Še ena potrebna komponenta in alternative v celotnem seznamu spodaj." : `Še ${count} potrebnih komponent in alternative v celotnem seznamu spodaj.`,
     all: "Poglej vse izdelke in preverjanja ↓",
     note: "Nekatere povezave so partnerske. Pri prodajalcu preveri ceno, zalogo in dostavo; izdelki ne pomenijo načrta montaže.",
@@ -498,7 +501,7 @@ function renderFeaturedProducts(products, routePriority, sourceGap) {
   const featured = selectExpansionFeaturedOffers(products, routePriority, { sourceGap });
   if (!featured.items.length) return;
   const portable = featured.kind === "portable";
-  const cards = featured.items.map((item) => {
+  const renderCard = (item, recommendationRole = "recommended") => {
     const merchant = expansionMerchantLabel(item.merchant);
     const solar = item.category === "solar_panel";
     const imageUrl = safeExpansionProductImageUrl(item.imageUrl);
@@ -511,12 +514,17 @@ function renderFeaturedProducts(products, routePriority, sourceGap) {
     const fit = solar ? labels.solarFit(item.quantity, item.powerW) : portable ? labels.powerStationFit : labels.componentFit;
     const category = portable ? labels.powerStation : expansionCategoryLabel(item.category);
     const affiliateUrl = decorateAwinAffiliateUrl(item.affiliateUrl, {
-      market: locale, category: item.category, recommendationRole: "recommended", source: "result-featured",
+      market: locale, category: item.category, recommendationRole, source: "result-featured",
     });
-    return `<article class="featured-pick-card" data-featured-category="${escapeHtml(item.category)}">${image}<div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(category)}</span><h6>${escapeHtml(item.name)}</h6><p>${escapeHtml(fit)}</p><small>${escapeHtml(merchant)}${solar && item.quantity > 1 ? ` · ${item.quantity} ×` : ""}</small></div><div class="featured-pick-action">${price ? `<strong data-price-basis="${solar ? "solar-subtotal" : "single-unit"}">${escapeHtml(price)}</strong>` : ""}<a href="${escapeHtml(affiliateUrl)}" target="_blank" rel="sponsored nofollow noopener" data-affiliate-product data-source="result-featured" data-route-priority="primary" data-recommendation-role="recommended" data-cta-variant="${portable ? "portable-primary" : "standard"}" data-product-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-merchant="${escapeHtml(item.merchant)}">${escapeHtml(portable ? labels.portableViewAt(merchant) : labels.viewAt(merchant))}</a></div></article>`;
-  }).join("");
+    const variant = portable ? (recommendationRole === "recommended" ? "portable-primary" : "portable-alternative") : "standard";
+    return `<article class="featured-pick-card" data-featured-category="${escapeHtml(item.category)}">${image}<div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(category)}${recommendationRole === "alternative" ? ` · ${escapeHtml(labels.recommendationBadges.alternative)}` : ""}</span><h6>${escapeHtml(item.name)}</h6><p>${escapeHtml(fit)}</p><small>${escapeHtml(merchant)}${solar && item.quantity > 1 ? ` · ${item.quantity} ×` : ""}</small></div><div class="featured-pick-action">${price ? `<strong data-price-basis="${solar ? "solar-subtotal" : "single-unit"}">${escapeHtml(price)}</strong>` : ""}<a href="${escapeHtml(affiliateUrl)}" target="_blank" rel="sponsored nofollow noopener" data-affiliate-product data-source="result-featured" data-route-priority="primary" data-recommendation-role="${recommendationRole}" data-cta-variant="${variant}" data-product-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-merchant="${escapeHtml(item.merchant)}">${escapeHtml(portable ? labels.portableViewAt(merchant) : labels.viewAt(merchant))}</a></div></article>`;
+  };
+  const cards = featured.items.map((item) => renderCard(item)).join("");
+  const portableAlternatives = portable && featured.alternatives.length
+    ? `<details class="expansion-product-alternatives" data-featured-portable-alternatives><summary><span>${escapeHtml(labels.powerStation)}</span><strong>${escapeHtml(featuredCopy.comparePortable(featured.alternatives.length))}</strong></summary><div class="result-grid featured-picks-grid">${featured.alternatives.map((item) => renderCard(item, "alternative")).join("")}</div></details>`
+    : "";
   const additional = featured.remainingCount ? `<p class="expansion-featured-more">${escapeHtml(featuredCopy.more(featured.remainingCount))}</p>` : "";
-  target.innerHTML = `<section class="featured-picks expansion-featured-picks" aria-labelledby="expansion-featured-heading"><div class="featured-picks-heading"><div><h4 id="expansion-featured-heading">${escapeHtml(featuredCopy.title)}</h4><p>${escapeHtml(portable ? featuredCopy.portable : featuredCopy.components)}</p></div><span class="featured-picks-count">${featured.items.length}</span></div><div class="featured-picks-grid">${cards}</div>${additional}<a class="expansion-featured-all" href="#expansion-product-recommendations">${escapeHtml(featuredCopy.all)}</a><p class="featured-picks-note">${escapeHtml(featuredCopy.note)}</p></section>`;
+  target.innerHTML = `<section class="featured-picks expansion-featured-picks" aria-labelledby="expansion-featured-heading"><div class="featured-picks-heading"><div><h4 id="expansion-featured-heading">${escapeHtml(featuredCopy.title)}</h4><p>${escapeHtml(portable ? featuredCopy.portable : featuredCopy.components)}</p></div><span class="featured-picks-count">${featured.items.length}</span></div><div class="featured-picks-grid">${cards}</div>${portableAlternatives}${additional}<a class="expansion-featured-all" href="#expansion-product-recommendations">${escapeHtml(featuredCopy.all)}</a><p class="featured-picks-note">${escapeHtml(featuredCopy.note)}</p></section>`;
   target.hidden = false;
   trackRenderedProductChoices(target);
 }

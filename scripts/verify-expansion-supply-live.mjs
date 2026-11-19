@@ -19,6 +19,7 @@ const BATTERY_SAFETY_ASSET = "src/battery-discharge-safety.js";
 const PRODUCTS_ASSET = "src/products.js";
 const POWERQUEEN_ASSET = "src/powerqueen-expansion.js";
 const MEDIA_ASSET = "src/expansion-product-media.js";
+const FEATURED_ASSET = "src/expansion-featured-offers.js";
 const STYLES_ASSET = "styles.css";
 const SCRIPT_PATTERN = /<script\b[^>]*\bsrc=["'](\/src\/expansion-calculator-browser\.js\?v=[^"']+)["'][^>]*>/gi;
 const STYLES_PATTERN = /<link\b[^>]*\brel=["']stylesheet["'][^>]*\bhref=["'](\/styles\.css\?v=[0-9]{8}-[a-z0-9-]+)["'][^>]*>/gi;
@@ -207,6 +208,7 @@ export async function verifyExpansionSupplyLive({
   const rolesUrl = expectedVersionedImport(servedBrowser, "expansion-recommendation-roles.js");
   const batterySafetyUrl = expectedVersionedImport(servedBrowser, "battery-discharge-safety.js");
   const mediaUrl = expectedVersionedImport(servedBrowser, "expansion-product-media.js");
+  const featuredUrl = expectedVersionedImport(servedBrowser, "expansion-featured-offers.js");
   const localSupply = await readLocal(SUPPLY_ASSET);
   const servedSupply = await fetchProof(new URL(importUrl, base), "js", fetchImpl, sleep);
   verifyExpansionSupplyJavascript(servedSupply, localSupply);
@@ -233,6 +235,16 @@ export async function verifyExpansionSupplyLive({
   ]);
   if (normalize(servedMedia) !== normalize(localMedia)) fail("PRODUCT_MEDIA_JS_SOURCE_DRIFT");
   if (!servedMedia.includes("export function renderExpansionProductMedia(product)")) fail("PRODUCT_MEDIA_RENDER_MISSING");
+  // Above-the-fold purchase choices must use the exact fail-closed selector
+  // deployed alongside the calculator, including the approved-only comparison.
+  const [localFeatured, servedFeatured] = await Promise.all([
+    readLocal(FEATURED_ASSET),
+    fetchProof(new URL(featuredUrl, base), "js", fetchImpl, sleep),
+  ]);
+  if (normalize(servedFeatured) !== normalize(localFeatured)) fail("FEATURED_JS_SOURCE_DRIFT");
+  if (!servedFeatured.includes("isRecommendationEligible(item)") ||
+      !servedFeatured.includes("if (sourceGap") ||
+      !servedFeatured.includes("alternatives.slice(0, limit - 1)")) fail("FEATURED_ELIGIBILITY_GUARD_MISSING");
   // Validate the actual *served* merchant-specific recommendation modules, not
   // just the entrypoint: the live catalog must not expose stale-source offers.
   const marketModules = [];
@@ -281,6 +293,7 @@ export async function verifyExpansionSupplyLive({
     browserScript,
     stylesheet: stylesheetUrl,
     productMediaScript: mediaUrl,
+    featuredScript: featuredUrl,
     supplyScript: importUrl,
     priceScript: priceUrl,
     specsScript: specsUrl,
