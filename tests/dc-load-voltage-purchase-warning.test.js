@@ -10,6 +10,8 @@ test("core-market 24V DC-load caution appears before affiliate cards, even witho
     assert.match(source, /class="dc-voltage-warning" role="note"/);
     assert.match(source, /escapeHtml\(result\.dcLoadVoltageWarning\)/);
   }
+  const hungarianBrowser = await readFile(new URL("../src/app-hu-browser.js", import.meta.url), "utf8");
+  assert.match(hungarianBrowser, /function renderProducts\(output\) \{\s*const result = output\.result;/);
 });
 
 test("PT/RO/SI render engine warning immediately after verdict and before featured purchase links", async () => {

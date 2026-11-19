@@ -161,6 +161,7 @@ function hungarianCardPrice(product) {
   return `${quantity} db · ${price}${perPiece}`;
 }
 function renderProducts(output) {
+  const result = output.result;
   const categories = HU_UI_COPY.products.categories;
   const labels = { battery:categories.battery,solar_panel:categories.solarPanel,inverter:categories.inverter,controller:categories.controller,dc_charger:categories.dcCharger,shore_charger:categories.shoreCharger,power_station:categories.powerStation };
   const entries = Object.entries(output.recommendations).filter(([,items]) => items.length);
