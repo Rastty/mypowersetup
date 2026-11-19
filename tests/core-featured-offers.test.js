@@ -71,9 +71,9 @@ for (const market of ["sk", "pl", "hu"]) {
     const comparisons = html.indexOf('id="recommendation-groups"');
     assert.ok(verdict >= 0 && verdict < featured && featured < resultGrid && resultGrid < products && products < baskets && baskets < comparisons);
     assert.equal(html.match(/id="featured-recommendations"/g)?.length, 1);
-    assert.match(html, /styles\.css\?v=[^"\s]*top1/);
-    assert.match(html, /app-(?:sk|pl|hu-browser)\.js\?v=[^"\s]*top1/);
-    assert.match(html, new RegExp(`app-${market === "hu" ? "hu-browser" : market}\\.js\\?v=20261119-featured-safe4`));
+    assert.match(html, /styles\.css\?v=20261119-voltage-dc-load1/);
+    assert.match(html, /app-(?:sk|pl|hu-browser)\.js\?v=20261119-voltage-dc-load1/);
+    assert.match(html, new RegExp(`app-${market === "hu" ? "hu-browser" : market}\\.js\\?v=20261119-voltage-dc-load1`));
 
     const app = source(`src/app-${market === "hu" ? "hu-browser" : market}.js`);
     assert.match(app, /selectFeaturedOffers\(/);
@@ -89,5 +89,5 @@ test("Hungarian generated page retains the same featured offers placement", () =
   assert.ok(generator.indexOf('id="result-verdict"') < generator.indexOf('id="featured-recommendations"'));
   assert.ok(generator.indexOf('id="featured-recommendations"') < generator.indexOf('id="result-grid"'));
   assert.ok(generator.indexOf('id="result-grid"') < generator.indexOf('id="package-variants"'));
-  assert.match(generator, /app-hu-browser\.js\?v=20261119-featured-safe4/);
+  assert.match(generator, /app-hu-browser\.js\?v=20261119-voltage-dc-load1/);
 });

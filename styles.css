@@ -404,6 +404,7 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .next-step-card h4 { margin: 7px 0 8px; }
 .next-step-card p { max-width: 620px; margin: 0; color: var(--ink-soft); line-height: 1.5; }
 #featured-recommendations:not(:empty) { margin: 14px 0 18px; }
+.dc-voltage-warning { max-width: none !important; padding: 13px 16px; margin: 0 0 13px; border: 2px solid #b57731; border-radius: 10px; background: #fff2dd; color: #52381e; font-size: 13px; font-weight: 650; line-height: 1.55; }
 [data-featured-products]:not([hidden]) { margin: 14px 0 18px; }
 .featured-picks { padding: 18px; border: 2px solid #96b67b; border-radius: 14px; background: #f8fce9; }
 .featured-picks-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }

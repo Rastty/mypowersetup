@@ -1,4 +1,4 @@
-import { calculateSetup } from "./engine.js";
+import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
 import { buildPlainLanguageVerdict } from "./verdict.js";
 import { buildExpansionSetupUrl, decodeExpansionSetupQuery } from "./expansion-setup-url.js";
 import { buildResultShareText, copyText } from "./share.js";
@@ -364,11 +364,14 @@ function setChecked(name, value) {
 }
 
 function renderResult(value) {
-  const warnings = value.warnings.length ? `<ul>${value.warnings.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : "";
+  const remainingWarnings = value.warnings.filter((item) => item !== value.dcLoadVoltageWarning);
+  const warnings = remainingWarnings.length ? `<ul>${remainingWarnings.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : "";
+  const voltageNotice = value.dcLoadVoltageWarning
+    ? `<p class="dc-voltage-warning" role="note">${escapeHtml(value.dcLoadVoltageWarning)}</p>` : "";
   const verdict = buildPlainLanguageVerdict(value, locale);
   // Only a commercially complete purchase route may be elevated above the six
   // electrical result cards; warnings remain immediately below the verdict.
-  result.innerHTML = `<p class="result-summary">${escapeHtml(verdict)}</p>${warnings}<div data-featured-products hidden></div><div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div><div data-product-recommendations aria-live="polite" id="expansion-product-recommendations">${renderProductLoading()}</div>${renderResultGuides()}${renderComponentPlan(value)}<div class="step-actions"><button class="button button-primary" type="button" data-share-result>${labels.share}</button><button class="button button-secondary" type="button" data-edit>${labels.again}</button></div>`;
+  result.innerHTML = `<p class="result-summary">${escapeHtml(verdict)}</p>${voltageNotice}${warnings}<div data-featured-products hidden></div><div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div><div data-product-recommendations aria-live="polite" id="expansion-product-recommendations">${renderProductLoading()}</div>${renderResultGuides()}${renderComponentPlan(value)}<div class="step-actions"><button class="button button-primary" type="button" data-share-result>${labels.share}</button><button class="button button-secondary" type="button" data-edit>${labels.again}</button></div>`;
 }
 
 async function renderPortugalProducts(calculation, revision, recordIntent) {

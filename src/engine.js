@@ -16,6 +16,7 @@ const ENGINE_TEXT = {
     batteries: { lifepo4: "LiFePO₄", lead: "AGM / olovo" },
     winterWarning: "V zimě počítejte s velkými výkyvy výroby a záložním způsobem dobíjení.",
     surgeWarning: "Motorové spotřebiče mohou mít krátkou rozběhovou špičku; ověřte ji v dokumentaci výrobce.",
+    dcLoadVoltageWarning: "Pozor na 24V rozvod: ověřte napětí každého DC spotřebiče. Pro zařízení určená jen pro 12 V je nutný vhodně dimenzovaný regulovaný měnič 24→12 V a samostatně navržené jištění; tento měnič není v nákupním seznamu. Nezaměňujte jej s DC–DC nabíječkou baterie.",
     voltageWarning: (voltage) => `Pro tuto velikost sestavy bychom standardně doporučili ${voltage}V systém.`,
     missingSelection: "Vyberte alespoň jeden spotřebič."
   },
@@ -24,6 +25,7 @@ const ENGINE_TEXT = {
     batteries: { lifepo4: "LiFePO₄", lead: "AGM / olovo" },
     winterWarning: "V zime počítajte s veľkými výkyvmi výroby a záložným spôsobom dobíjania.",
     surgeWarning: "Motorové spotrebiče môžu mať krátku rozbehovú špičku; overte ju v dokumentácii výrobcu.",
+    dcLoadVoltageWarning: "Pozor na 24V rozvod: overte napätie každého DC spotrebiča. Pre zariadenia určené iba na 12 V potrebujete vhodne dimenzovaný regulovaný menič 24→12 V a samostatne navrhnuté istenie; tento menič nie je v nákupnom zozname. Nezamieňajte ho s DC–DC nabíjačkou batérie.",
     voltageWarning: (voltage) => `Pre túto veľkosť zostavy by sme štandardne odporučili ${voltage}V systém.`,
     missingSelection: "Vyberte aspoň jeden spotrebič."
   },
@@ -32,6 +34,7 @@ const ENGINE_TEXT = {
     batteries: { lifepo4: "LiFePO₄", lead: "AGM / kwasowo-ołowiowy" },
     winterWarning: "Zimą należy liczyć się z dużymi wahaniami produkcji i zapewnić zapasowy sposób ładowania.",
     surgeWarning: "Urządzenia z silnikiem mogą mieć krótkotrwały prąd rozruchowy; sprawdź go w dokumentacji producenta.",
+    dcLoadVoltageWarning: "Uwaga na instalację 24 V: sprawdź napięcie znamionowe każdego odbiornika DC. Urządzenia działające tylko na 12 V wymagają odpowiednio dobranej, stabilizowanej przetwornicy 24→12 V i osobno zaprojektowanych zabezpieczeń; przetwornica nie jest ujęta na liście zakupowej. Nie myl jej z ładowarką akumulatora DC–DC.",
     voltageWarning: (voltage) => `Dla zestawu tej wielkości standardowo zalecamy system ${voltage} V.`,
     missingSelection: "Wybierz co najmniej jedno urządzenie."
   },
@@ -40,6 +43,7 @@ const ENGINE_TEXT = {
     batteries: { lifepo4: "LiFePO₄", lead: "AGM / ólom-savas" },
     winterWarning: "Télen nagy termelési ingadozásokkal és tartalék töltési lehetőséggel kell számolni.",
     surgeWarning: "A motoros fogyasztók rövid indítási teljesítménycsúcsot igényelhetnek; ellenőrizd a gyártói dokumentációt.",
+    dcLoadVoltageWarning: "Figyelem a 24 V-os rendszerre: ellenőrizd minden egyenáramú fogyasztó névleges feszültségét. A csak 12 V-os készülékekhez megfelelően méretezett, szabályozott 24→12 V-os DC–DC feszültségátalakító és külön tervezett védelem kell; ez nincs a bevásárlólistán. Nem azonos az akkumulátor DC–DC töltőjével.",
     voltageWarning: (voltage) => `Ehhez a méretű rendszerhez alapértelmezetten ${voltage} V-os feszültséget ajánlunk.`,
     missingSelection: "Válassz legalább egy fogyasztót."
   },
@@ -48,6 +52,7 @@ const ENGINE_TEXT = {
     batteries: { lifepo4: "LiFePO₄", lead: "AGM / plumb-acid" },
     winterWarning: "Iarna, producția solară poate varia mult; planifică și o sursă de încărcare de rezervă.",
     surgeWarning: "Consumatorii cu motor pot avea un vârf scurt de putere la pornire; verifică documentația producătorului.",
+    dcLoadVoltageWarning: "Atenție la sistemul de 24 V: verifică tensiunea nominală a fiecărui consumator DC. Dispozitivele numai pentru 12 V necesită un convertor stabilizat 24→12 V dimensionat corect și protecții proiectate separat; convertorul nu este inclus în lista de cumpărături. Nu îl confunda cu încărcătorul DC–DC al bateriei.",
     voltageWarning: (voltage) => `Pentru un sistem de această dimensiune recomandăm în mod normal ${voltage} V.`,
     missingSelection: "Selectează cel puțin un consumator."
   },
@@ -56,6 +61,7 @@ const ENGINE_TEXT = {
     batteries: { lifepo4: "LiFePO₄", lead: "AGM / chumbo-ácido" },
     winterWarning: "No inverno, a produção solar pode variar bastante; prevê também uma forma alternativa de carregamento.",
     surgeWarning: "Os equipamentos com motor podem ter um pico curto de potência no arranque; confirma-o na documentação do fabricante.",
+    dcLoadVoltageWarning: "Atenção ao sistema de 24 V: confirma a tensão nominal de cada equipamento DC. Os aparelhos apenas de 12 V precisam de um conversor regulado 24→12 V bem dimensionado e proteção elétrica projetada à parte; esse conversor não consta da lista de compras. Não o confundas com o carregador DC–DC da bateria.",
     voltageWarning: (voltage) => `Para um sistema desta dimensão recomendamos normalmente ${voltage} V.`,
     missingSelection: "Seleciona pelo menos um equipamento."
   },
@@ -64,6 +70,7 @@ const ENGINE_TEXT = {
     batteries: { lifepo4: "LiFePO₄", lead: "AGM / svinčeno-kislinski" },
     winterWarning: "Pozimi lahko sončna proizvodnja močno niha, zato predvidi tudi rezervni način polnjenja.",
     surgeWarning: "Porabniki z motorjem imajo lahko kratek zagonski sunek moči; preveri podatke proizvajalca.",
+    dcLoadVoltageWarning: "Pozor pri 24 V sistemu: preveri nazivno napetost vsakega enosmernega porabnika. Naprave samo za 12 V potrebujejo ustrezno dimenzioniran, reguliran pretvornik 24→12 V in posebej načrtovano zaščito; pretvornik ni v nakupovalnem seznamu. Ne zamenjuj ga z DC–DC polnilnikom baterije.",
     voltageWarning: (voltage) => `Za sistem te velikosti običajno priporočamo ${voltage} V.`,
     missingSelection: "Izberi vsaj en porabnik."
   }
@@ -197,6 +204,13 @@ export function calculateSetup(input) {
   if (input.systemVoltage !== "auto" && Number(input.systemVoltage) !== automaticVoltage) {
     warnings.push(text.voltageWarning(automaticVoltage));
   }
+  // A DC load is only known to be 12/24 V in the input model. When the
+  // selected bus is 24 V, never imply that every connected load supports it.
+  // A 24->12 V regulated converter is a load supply, not a battery charger;
+  // no unverified converter SKU is added to the purchase-ready basket.
+  const dcLoadVoltageWarning = systemVoltage === 24 && applianceRows.some((item) => !item.ac)
+    ? text.dcLoadVoltageWarning : null;
+  if (dcLoadVoltageWarning) warnings.push(dcLoadVoltageWarning);
 
   return {
     locale,
@@ -213,6 +227,7 @@ export function calculateSetup(input) {
     seasonLabel: text.seasons[input.season] || text.seasons.summer,
     applianceRows,
     warnings,
+    dcLoadVoltageWarning,
     calculation: {
       dailyWhRaw,
       requiredBatteryWhRaw,

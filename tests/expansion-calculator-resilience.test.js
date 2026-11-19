@@ -5,7 +5,7 @@ import { readFile } from "node:fs/promises";
 const source = await readFile(new URL("../src/expansion-calculator-browser.js", import.meta.url), "utf8");
 
 test("expansion calculator core does not statically depend on recommendation modules", () => {
-  assert.match(source, /^import \{ calculateSetup \} from "\.\/engine\.js";/m);
+  assert.match(source, /^import \{ calculateSetup \} from "\.\/engine\.js\?v=20261119-voltage-dc-load1";/m);
   assert.doesNotMatch(source, /^import .*recommendations\.js";/m);
 });
 

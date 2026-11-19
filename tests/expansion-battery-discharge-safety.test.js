@@ -81,7 +81,7 @@ test("BMS notice stays in component route; deployed modules are cache-busted tog
   for (const market of ["pt", "ro", "si"]) {
     const html = await readFile(new URL(`../${market}/index.html`, import.meta.url), "utf8");
     const recommendations = await readFile(new URL(`../src/${market}-recommendations.js`, import.meta.url), "utf8");
-    assert.match(html, /expansion-calculator-browser\.js\?v=20261119-expansion-featured4/);
+    assert.match(html, /expansion-calculator-browser\.js\?v=20261119-voltage-dc-load1/);
     assert.match(browser, new RegExp(`${market}-recommendations\\.js\\?v=20261117-pq-region1`));
     assert.match(recommendations, /expansion-component-recommendations\.js\?v=20261117-pq-region1/);
   }
