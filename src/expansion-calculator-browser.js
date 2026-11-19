@@ -10,7 +10,7 @@ import { expansionBatteryDischargeNotice } from "./battery-discharge-safety.js?v
 import { expansionPowerStationSpecs } from "./expansion-product-specs.js?v=20261117-pv-check1";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { expansionPurchaseRoutePriority } from "./expansion-purchase-route-priority.js";
-import { selectExpansionFeaturedOffers } from "./expansion-featured-offers.js";
+import { selectExpansionFeaturedOffers } from "./expansion-featured-offers.js?v=20261119-featured4";
 import { classifyExpansionSupplyOutcome, expansionSupplyEventName, isDeliberateExpansionCalculation } from "./expansion-supply-evidence.js?v=20261113-explicit-intent1";
 import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js?v=20261113-complete-price1";
