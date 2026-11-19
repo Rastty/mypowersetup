@@ -4,7 +4,7 @@ import { recommendProducts } from "./products.js?v=20261107-source-gate1";
 import { buildResultShareText } from "./share.js";
 import { buildSetupUrl } from "./setup-url.js";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js";
-import { buildSystemDiagram } from "./system-diagram.js";
+import { buildSystemDiagram } from "./system-diagram.js?v=20261119-diagram-dc-ac2";
 import { calculateChargingPlan } from "./charging.js?v=20261117-charging-reason1";
 import { calculateRoofFit } from "./roof.js";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";

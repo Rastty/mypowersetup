@@ -448,7 +448,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20261119-voltage-dc-load1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20261119-diagram-dc-ac2"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20261119-voltage-dc-load1"'));
   assert.ok(app.includes('from "./products.js?v=20261107-source-gate1"'));
@@ -545,7 +545,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20261119-voltage-dc-load1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20261119-diagram-dc-ac2"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency = "EUR"'));
@@ -581,7 +581,7 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
   assert.ok(html.includes('"@id": "https://mypowersetup.com/pl/o-projekcie/#petr-galik"'));
   assert.ok(html.includes('"url": "https://mypowersetup.com/pl/o-projekcie/"'));
   assert.doesNotMatch(html, /placeholder="napr\./);
-  assert.ok(html.includes('src="/src/app-pl.js?v=20261119-voltage-dc-load1"'));
+  assert.ok(html.includes('src="/src/app-pl.js?v=20261119-diagram-dc-ac2"'));
   assert.ok(app.includes('products.js?v=20261107-source-gate1'));
   assert.match(html, /Jakiego akumulatora i paneli naprawdę potrzebujesz/);
   assert.match(html, /Zanim zaczniesz kupować/);
