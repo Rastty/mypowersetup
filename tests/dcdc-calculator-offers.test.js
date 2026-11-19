@@ -85,8 +85,16 @@ test("real current limits, rounded ceilings and zero standard feasible current f
 test("expired merchant evidence, duplicate SKUs, unchecked URLs and unavailable stock never appear", () => {
   const latest = feed.products.find(x => x.id.includes("12-12-18"));
   const expiry = dcdcCalculatorOfferExpiresAt(feed, latest);
-  assert.deepEqual(selectDcdcCalculatorOffers(feed, base, expiry + 1), []);
+  // Each SKU gets its own observation timestamp during a real feed refresh.
+  // A different valid SKU can remain eligible milliseconds after this one's
+  // deadline; expiring the earliest product must not invalidate all offers.
+  assert.equal(selectDcdcCalculatorOffers(feed, base, expiry + 1)
+    .some((offer) => offer.id === latest.id), false);
   assert.equal(isDcdcOfferStillEligible(feed, base, latest, expiry + 1), false);
+  const allExpiredAt = Math.max(...feed.products
+    .map((offer) => dcdcCalculatorOfferExpiresAt(feed, offer))
+    .filter(Number.isFinite));
+  assert.deepEqual(selectDcdcCalculatorOffers(feed, base, allExpiredAt + 1), []);
   assert.deepEqual(selectDcdcCalculatorOffers({ ...capture(), sources: { vselektro: { status: "stale" } } }, base, now), []);
   const duplicate = capture();
   duplicate.products.push({ ...duplicate.products[0] });
