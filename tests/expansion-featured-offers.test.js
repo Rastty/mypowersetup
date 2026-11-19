@@ -2,6 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { selectExpansionFeaturedOffers } from "../src/expansion-featured-offers.js";
+import { COMMERCIAL_SCENARIOS, buildScenarioSetup } from "../src/commercial-scenarios.js";
+import { buildPortugalRecommendations } from "../src/pt-recommendations.js";
+import { buildSloveniaRecommendations } from "../src/si-recommendations.js";
+import { expansionPurchaseRoutePriority } from "../src/expansion-purchase-route-priority.js";
+import { decorateExpansionRecommendations } from "../src/expansion-recommendation-roles.js";
 
 const item = (category, id, more = {}) => ({ category, id, available: true, ...more });
 const products = [
@@ -38,6 +43,43 @@ test("portable solution appears alone when components are incomplete and a porta
   const featured = selectExpansionFeaturedOffers(products, { coverage: coverage(false), portableReady: true, preferPortable: true });
   assert.equal(featured.kind, "portable");
   assert.deepEqual(featured.items.map(({ id }) => id), ["portable-primary"]);
+  assert.deepEqual(featured.alternatives, []);
+});
+
+test("other fitting power stations from existing approved catalogs can be compared without replacing the main offer", () => {
+  const multi = [
+    ...products,
+    item("power_station", "portable-more-capacity", { price: 1299, currency: "EUR" }),
+    item("power_station", "portable-outdated", { staleSource: true }),
+    item("power_station", "portable-unavailable", { available: false }),
+    item("power_station", "portable-bigger", { price: 1699, currency: "EUR" }),
+    item("power_station", "portable-bigger", { price: 1699, currency: "EUR" }),
+  ];
+  const route = { coverage: coverage(false), portableReady: true, preferPortable: true };
+  const selected = selectExpansionFeaturedOffers(multi, route);
+  assert.deepEqual(selected.items.map(({ id }) => id), ["portable-primary"]);
+  assert.deepEqual(selected.alternatives.map(({ id }) => id), ["portable-more-capacity", "portable-bigger"]);
+  assert.ok(Object.isFrozen(selected.alternatives));
+  assert.deepEqual(selectExpansionFeaturedOffers(multi, route, { limit: 1 }).alternatives, []);
+  assert.equal(selectExpansionFeaturedOffers(multi, route, { sourceGap: true }).kind, "none");
+});
+
+test("live approved-merchant PT and SI inventories provide multiple electrically fitting portable choices", async () => {
+  for (const [market, file, build, scenarioId] of [
+    ["pt", "products-pt.json", buildPortugalRecommendations, "remote-work"],
+    ["sl", "products-si.json", buildSloveniaRecommendations, "winter-basic"],
+  ]) {
+    const catalog = JSON.parse(await readFile(new URL(`../data/${file}`, import.meta.url), "utf8"));
+    const scenario = COMMERCIAL_SCENARIOS.find(({ id }) => id === scenarioId);
+    const setup = buildScenarioSetup(scenario, market);
+    const recommendations = build(catalog, setup, 3);
+    const products = decorateExpansionRecommendations(recommendations);
+    const route = expansionPurchaseRoutePriority(recommendations, setup, market);
+    const featured = selectExpansionFeaturedOffers(products, route);
+    assert.equal(featured.kind, "portable", market);
+    assert.ok(featured.alternatives.length > 0, `${market}: no fitting alternatives from approved sources`);
+    assert.ok(featured.alternatives.every((product) => product.category === "power_station" && product.affiliateUrl.startsWith("https://")));
+  }
 });
 
 test("no complete route or stale product may masquerade as a purchase-ready recommendation", () => {
@@ -62,11 +104,14 @@ test("PT, RO and SI render featured purchase links above the six result cards wi
   assert.ok(html.indexOf('data-featured-products hidden') < html.indexOf('<div class="result-grid">'));
   assert.ok(html.indexOf('<div class="result-grid">') < html.indexOf('data-product-recommendations aria-live'));
   assert.match(source, /selectExpansionFeaturedOffers\(products, routePriority, \{ sourceGap \}\)/);
-  assert.match(source, /expansion-featured-offers\.js\?v=20261119-featured4/);
+  assert.match(source, /expansion-featured-offers\.js\?v=20261119-existing-merchants1/);
   assert.equal((source.match(/renderFeaturedProducts\(products, routePriority, sourceGap\);/g) || []).length, 3);
   assert.match(source, /data-affiliate-product data-source="result-featured"/);
   assert.match(source, /source: "result-featured"/);
   assert.match(source, /trackRenderedProductChoices\(target\)/);
+  assert.match(source, /data-featured-portable-alternatives/);
+  assert.match(source, /data-cta-variant="\$\{variant\}"/);
+  assert.match(source, /renderCard\(item, "alternative"\)/);
   for (const copy of [
     "confirma a compatibilidade elétrica entre produtos",
     "confirmă separat compatibilitatea electrică între produse",
@@ -80,6 +125,6 @@ test("PT, RO and SI render featured purchase links above the six result cards wi
   for (const market of ["pt", "ro", "si"]) {
     const page = await readFile(new URL(`../${market}/index.html`, import.meta.url), "utf8");
     assert.match(page, /styles\.css\?v=20261119-voltage-dc-load1/);
-    assert.match(page, /expansion-calculator-browser\.js\?v=20261119-voltage-guide1/);
+    assert.match(page, /expansion-calculator-browser\.js\?v=20261119-existing-merchants1/);
   }
 });

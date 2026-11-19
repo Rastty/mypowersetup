@@ -19,6 +19,7 @@ const batterySafetyPath = "src/battery-discharge-safety.js";
 const productsPath = "src/products.js";
 const powerQueenPath = "src/powerqueen-expansion.js";
 const mediaPath = "src/expansion-product-media.js";
+const featuredPath = "src/expansion-featured-offers.js";
 const stylesPath = "styles.css";
 const marketPaths = ["src/pt-recommendations.js", "src/ro-recommendations.js", "src/si-recommendations.js"];
 
@@ -58,9 +59,10 @@ test("every public expansion calculator and both modules pass exact served-versi
   assert.equal(proof.sourceParity, true);
   assert.equal(proof.ga4EventsObserved, false);
   assert.equal(proof.purchaseOrCommissionVerified, false);
-  assert.match(proof.browserScript, /20261119-voltage-guide1/);
+  assert.match(proof.browserScript, /20261119-existing-merchants1/);
   assert.match(proof.stylesheet, /styles\.css\?v=20261119-voltage-dc-load1/);
   assert.match(proof.productMediaScript, /expansion-product-media\.js\?v=20261117-product-media1/);
+  assert.match(proof.featuredScript, /expansion-featured-offers\.js\?v=20261119-existing-merchants1/);
   assert.match(proof.supplyScript, /20261113-explicit-intent1/);
   assert.match(proof.priceScript, /20261111-solar-subtotal1/);
   assert.match(proof.specsScript, /20261117-pv-check1/);
@@ -73,7 +75,7 @@ test("every public expansion calculator and both modules pass exact served-versi
   assert.match(proof.componentScript, /20261117-pq-region1/);
   assert.deepEqual(mock.requests.map(r => r.path), [
     "pt/index.html", "ro/index.html", "si/index.html",
-    stylesPath, browserPath, supplyPath, pricePath, specsPath, rolesPath, batterySafetyPath, mediaPath,
+    stylesPath, browserPath, supplyPath, pricePath, specsPath, rolesPath, batterySafetyPath, mediaPath, featuredPath,
     ...marketPaths, componentPath, productsPath, powerQueenPath,
   ]);
   assert.ok(mock.requests.every(r => r.options.cache === "no-store"));
@@ -82,7 +84,7 @@ test("every public expansion calculator and both modules pass exact served-versi
 
 test("a stale public market HTML version fails rather than trusting Pages deploy status", async () => {
   const mock = server({ transform: ({ path, text }) => path === "ro/index.html"
-    ? { text: text.replace("expansion-calculator-browser.js?v=20261119-voltage-guide1", "expansion-calculator-browser.js?v=20261113-stale") } : null });
+    ? { text: text.replace("expansion-calculator-browser.js?v=20261119-existing-merchants1", "expansion-calculator-browser.js?v=20261113-stale") } : null });
   await assert.rejects(
     verifyExpansionSupplyLive({ fetchImpl: mock.fetchImpl, sleep: async () => {} }),
     /EXPANSION_PUBLIC_SCRIPT_VERSION_DRIFT_ro/,
@@ -121,7 +123,7 @@ test("a temporary HTTP 503 retries; persistent failed responses fail closed", as
   const retry = server({ statusAt: (url, count) => count === 1 ? 503 : null });
   const result = await verifyExpansionSupplyLive({ fetchImpl: retry.fetchImpl, sleep: async () => {} });
   assert.equal(result.status, "verified_served_assets");
-  assert.equal(retry.requests.length, 18);
+  assert.equal(retry.requests.length, 19);
   const blocked = server({ statusAt: url => url.endsWith("/pt/") ? 503 : null });
   await assert.rejects(verifyExpansionSupplyLive({ fetchImpl: blocked.fetchImpl, sleep: async () => {} }),
     /EXPANSION_PUBLIC_HTTP_503/);
@@ -158,6 +160,16 @@ test("product photographs and their layout must both be on the actual served rel
     ? { text: text.replace("styles.css?v=20261119-voltage-dc-load1", "styles.css?v=old") } : null });
   await assert.rejects(verifyExpansionSupplyLive({ fetchImpl: wrongStyleKey.fetchImpl, sleep: async () => {} }),
     /EXPANSION_PUBLIC_STYLESHEET_COUNT_si/);
+});
+
+test("the deployed comparison selector must preserve approved merchant and stale-source guards", async () => {
+  const stale = server({ transform: ({ path, text }) => path === featuredPath
+    ? { text: text.replace("isRecommendationEligible(item)", "true") } : null });
+  await assert.rejects(verifyExpansionSupplyLive({ fetchImpl: stale.fetchImpl, sleep: async () => {} }),
+    /EXPANSION_PUBLIC_FEATURED_JS_SOURCE_DRIFT/);
+  const source = await local(featuredPath);
+  assert.match(source, /alternatives\.slice\(0, limit - 1\)/);
+  assert.match(source, /sourceGap/);
 });
 
 test("new BMS safety and product matcher dependencies must be actually served, not just referenced", async () => {
