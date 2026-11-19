@@ -177,6 +177,6 @@ test("all four core Builders load market-specific evidence, install capture gate
     assert.match(source,/getEvidence: \(\) => productOfferEvidence/,application);
     assert.match(source,/documentRoot: document/,application);
     assert.match(source,/reload: \(\) => window\.location\.reload\(\)/,application);
-    assert.ok(page.includes(html === "index.html" ? "20261117-cz-featured-offers1" : "20261118-featured-offers1"),html);
+    assert.ok(page.includes("20261119-featured-safe4-top1"),html);
   }
 });
