@@ -1,4 +1,5 @@
 import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
+import { renderDcLoadVoltageNotice } from "./dc-voltage-help.js";
 import { buildPlainLanguageVerdict } from "./verdict.js";
 import { buildExpansionSetupUrl, decodeExpansionSetupQuery } from "./expansion-setup-url.js";
 import { buildResultShareText, copyText } from "./share.js";
@@ -366,8 +367,7 @@ function setChecked(name, value) {
 function renderResult(value) {
   const remainingWarnings = value.warnings.filter((item) => item !== value.dcLoadVoltageWarning);
   const warnings = remainingWarnings.length ? `<ul>${remainingWarnings.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : "";
-  const voltageNotice = value.dcLoadVoltageWarning
-    ? `<p class="dc-voltage-warning" role="note">${escapeHtml(value.dcLoadVoltageWarning)}</p>` : "";
+  const voltageNotice = renderDcLoadVoltageNotice(value.dcLoadVoltageWarning, locale);
   const verdict = buildPlainLanguageVerdict(value, locale);
   // Only a commercially complete purchase route may be elevated above the six
   // electrical result cards; warnings remain immediately below the verdict.
