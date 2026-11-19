@@ -3,7 +3,7 @@ import { isRecommendationEligible } from "./recommendation-coverage.js";
 // Keep the fast purchase path honest: a handful of verified components is not
 // a complete system. Only a complete component route or a fully fitting
 // portable alternative may be promoted above the electrical result cards.
-export function selectExpansionFeaturedOffers(products, routePriority, { sourceGap = false, limit = 3 } = {}) {
+export function selectExpansionFeaturedOffers(products, routePriority, { sourceGap = false, limit = 4 } = {}) {
   const empty = Object.freeze({ kind: "none", items: Object.freeze([]), remainingCount: 0 });
   if (sourceGap || !Array.isArray(products) || !Number.isSafeInteger(limit) || limit < 1) return empty;
 

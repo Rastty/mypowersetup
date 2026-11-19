@@ -7,15 +7,31 @@ const item = (category, id, more = {}) => ({ category, id, available: true, ...m
 const products = [
   item("battery", "battery-primary"), item("battery", "battery-alternative"),
   item("solar_panel", "solar-primary"), item("controller", "mppt-primary"),
-  item("inverter", "inverter-primary"), item("power_station", "portable-primary"),
+  item("inverter", "inverter-primary"), item("dc_charger", "dcdc-primary"),
+  item("power_station", "portable-primary"),
 ];
 const coverage = (complete, required = ["battery", "solar_panel", "controller", "inverter"]) => ({ complete, required });
 
 test("complete component route promotes only first compatible product in each required category", () => {
   const featured = selectExpansionFeaturedOffers(products, { coverage: coverage(true), preferPortable: false });
   assert.equal(featured.kind, "components");
-  assert.deepEqual(featured.items.map(({ id }) => id), ["battery-primary", "solar-primary", "mppt-primary"]);
-  assert.equal(featured.remainingCount, 1, "fourth required item remains clearly below the preview");
+  assert.deepEqual(featured.items.map(({ id }) => id), ["battery-primary", "solar-primary", "mppt-primary", "inverter-primary"]);
+  assert.equal(featured.remainingCount, 0, "all four verified core components are visible above technical results");
+});
+
+test("fifth optional component remains in detailed comparison without hiding a core inverter", () => {
+  const featured = selectExpansionFeaturedOffers(products, {
+    coverage: coverage(true, ["battery", "solar_panel", "controller", "inverter", "dc_charger"]),
+  });
+  assert.deepEqual(featured.items.map(({ category }) => category), ["battery", "solar_panel", "controller", "inverter"]);
+  assert.equal(featured.remainingCount, 1);
+});
+
+test("featured component uses a verified alternate when the first candidate becomes stale", () => {
+  const catalog = products.map((product) => product.id === "battery-primary" ? { ...product, staleSource: true } : product);
+  const featured = selectExpansionFeaturedOffers(catalog, { coverage: coverage(true) });
+  assert.equal(featured.kind, "components");
+  assert.equal(featured.items[0].id, "battery-alternative");
 });
 
 test("portable solution appears alone when components are incomplete and a portable fully fits", () => {
@@ -46,6 +62,7 @@ test("PT, RO and SI render featured purchase links above the six result cards wi
   assert.ok(html.indexOf('data-featured-products hidden') < html.indexOf('<div class="result-grid">'));
   assert.ok(html.indexOf('<div class="result-grid">') < html.indexOf('data-product-recommendations aria-live'));
   assert.match(source, /selectExpansionFeaturedOffers\(products, routePriority, \{ sourceGap \}\)/);
+  assert.match(source, /expansion-featured-offers\.js\?v=20261119-featured4/);
   assert.equal((source.match(/renderFeaturedProducts\(products, routePriority, sourceGap\);/g) || []).length, 3);
   assert.match(source, /data-affiliate-product data-source="result-featured"/);
   assert.match(source, /source: "result-featured"/);
@@ -63,6 +80,6 @@ test("PT, RO and SI render featured purchase links above the six result cards wi
   for (const market of ["pt", "ro", "si"]) {
     const page = await readFile(new URL(`../${market}/index.html`, import.meta.url), "utf8");
     assert.match(page, /styles\.css\?v=20261118-expansion-featured1/);
-    assert.match(page, /expansion-calculator-browser\.js\?v=20261118-expansion-fit-scope3/);
+    assert.match(page, /expansion-calculator-browser\.js\?v=20261119-expansion-featured4/);
   }
 });
