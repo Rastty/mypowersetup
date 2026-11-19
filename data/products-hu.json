@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-18T16:35:41.693Z",
+  "generatedAt": "2026-11-19T11:48:14.534Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12509,
-      "relevantProducts": 161
+      "parsedProducts": 12517,
+      "relevantProducts": 159
     },
     "ampul_hu": {
       "status": "ok",
-      "parsedProducts": 7736,
+      "parsedProducts": 7740,
       "relevantProducts": 13
     },
     "allpowers_eu": {
@@ -42,37 +42,6 @@
     }
   },
   "products": [
-    {
-      "id": "padabo_hu:16597_17414",
-      "merchant": "padabo_hu",
-      "name": "EXIDE Dual AGM akkumulátor kapacitás 240 Ah opció EP 2100",
-      "description": "Tartós akkumulátor bármilyen szabadidőjárműhöz A leggyakoribb lakóautókhoz és lakókocsikhoz készült akkumulátor. Felépítése nagy rugalmasságot biztosít a beszerelés során. A kalciumötvözetet tartalmazó AGM (Absorbent Glass Mat) technológia és a VRLA szellőzés 450 és 2100 Wh közötti teljesítménytartományt fed le, így széles választékot kínál bármilyen típusú szabadidős járműhöz. Az EXIDE Dual AGM akkumulátor legfontosabb jellemzői: Teljesen karbantartásmentes, ami megkönnyíti a hosszú távú haszná",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 332185,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/exide-dual-agm-akkumulator_z16597/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fexide-dual-agm-akkumulator_z16597%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/154566_102.jpg?1704380087_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 240,
-        "capacityWh": 2100,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
     {
       "id": "padabo_hu:24087_26040",
       "merchant": "padabo_hu",
@@ -939,35 +908,6 @@
           "lead"
         ],
         "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:104338_30525",
-      "merchant": "padabo_hu",
-      "name": "Napelem Dometic Büttner MT Power Black Line napelem Dometic Büttner MT Power Black Line névleges teljesítmény (wp) 75",
-      "description": "Nagy hatékonyságú napelemmodulokA Dometic Büttner MT Power Black Line napelemes panelje új mércét állít fel az iparágban. Az innovatív üvegfelülettel és 80 nagy teljesítményű cellával a Dometic Büttner Power Black Line modulok jelentősen magasabb napenergia-hozamot érnek el, még diffúz fényben vagy ágak, parabolaantenna vagy nyitott tetőablak által részben árnyékolt esetben is. Az új típusú kábelezésnek köszönhetően ezek az új, csúcskategóriás napelemmodulok optimális feltételeket teremtenek az ",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
-      "category": "solar_panel",
-      "brand": "Dometic",
-      "priceCzk": 216030,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/napelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fnapelem-dometic-buttner-mt-power-black-line-napelem-dometic-buttner-mt-power-black-line_z104338%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180291_102.jpg?1741272539_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": 300,
-        "powerW": 75,
-        "currentA": 3.5,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
@@ -2020,39 +1960,6 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 3200,
-        "currentA": null,
-        "chargingVoltagesV": [
-          24
-        ],
-        "chargingInputVoltagesV": [
-          24
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:19287_21292",
-      "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
-      "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
-      "category": "inverter",
-      "brand": "Dometic",
-      "priceCzk": 763040,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/183588_102.jpg?1746377752_1",
-      "specs": {
-        "voltageV": 24,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 4000,
         "currentA": null,
         "chargingVoltagesV": [
           24
@@ -5084,6 +4991,39 @@
       }
     },
     {
+      "id": "padabo_hu:19287_21292",
+      "merchant": "padabo_hu",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
+      "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Dometic",
+      "priceCzk": 763040,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/183588_102.jpg?1746377752_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 4000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          24
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "ampul_hu:5479",
       "merchant": "ampul_hu",
       "name": "Akkumulátortöltő 12V-tól 29,2V-ig, 20A, 584W, IP65, vékony",
@@ -6086,7 +6026,7 @@
       "brand": "ALLPOWERS",
       "priceCzk": 2299,
       "priceCurrency": "EUR",
-      "available": true,
+      "available": false,
       "productUrl": "https://iallpowers.eu/products/allpowers-r3500-home-backup-power-station-3500w-3168wh",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r3500-home-backup-power-station-3500w-3168wh",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R3500-V2-Home-Backup-Power-Station-3500W-2880Wh-ALLPOWERS-30183866.jpg?v=1775664354",
@@ -6354,7 +6294,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 349.99,
+      "priceCzk": 297.49,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-dual-purpose-group-24-lifepo4-aussenbordmotor-batterie",
@@ -6389,7 +6329,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 339.99,
+      "priceCzk": 284.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
@@ -6424,7 +6364,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 649.99,
+      "priceCzk": 592.22,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-320ah-dense-smart-lifepo4-batterie-fur-wohnmobil-untersitz",
@@ -6460,7 +6400,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 629.99,
+      "priceCzk": 559.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-125ah-smart-lifepo4-bootsbatterie-mit-selbstheizung",
@@ -6495,7 +6435,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 409.99,
+      "priceCzk": 319.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-140ah-190h-smart-wohnmobil-lithium-batterie-mit-bluetooth",
@@ -6530,7 +6470,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 259.99,
+      "priceCzk": 245.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-group-24-smart-lifepo4-battery-with-bluetooth",
@@ -6565,7 +6505,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 259.99,
+      "priceCzk": 227.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-12v-100ah-190h-smart-motorhome-battery",
@@ -6600,7 +6540,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 525.99,
+      "priceCzk": 466.66,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-smart-solar-battery-with-bluetooth",
@@ -6635,7 +6575,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 519.99,
+      "priceCzk": 489.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-300ah-lifepo4-battery-integrated-200a-bms",
@@ -6706,7 +6646,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 999.99,
+      "priceCzk": 949.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-400ah-lifepo4-battery-built-in-250a-bms",
@@ -6776,7 +6716,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 1059.99,
+      "priceCzk": 1022.22,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-200ah-lifepo4-solar-battery-with-200a-bms",
@@ -6847,7 +6787,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 508.99,
+      "priceCzk": 429.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-plus-lifepo4-solar-battery",
@@ -6882,7 +6822,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 488.99,
+      "priceCzk": 415.64,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-lifepo4-solar-battery",

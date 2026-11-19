@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-18T16:35:24.998Z",
+  "generatedAt": "2026-11-19T11:47:56.754Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16477,
-      "relevantProducts": 243
+      "parsedProducts": 16475,
+      "relevantProducts": 240
     },
     "allpowers_eu": {
       "status": "ok",
@@ -37,7 +37,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7736,
+      "parsedProducts": 7740,
       "relevantProducts": 15
     }
   },
@@ -318,37 +318,6 @@
         "capacityWh": null,
         "powerW": null,
         "currentA": 200,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:16597_17414",
-      "merchant": "padabo_sk",
-      "name": "EXIDE Duálna batéria AGM kapacita 240 Ah variant EP 2100",
-      "description": "Odolná batéria pre akýkoľvek druh rekreačného vozidlaBatérie pre najbežnejšie obytné vozidlá a karavany. Ich konštrukcia ponúka vysokú flexibilitu pri inštalácii. Technológia AGM (Absorbent Glass Mat) so zliatinou vápnika a ventiláciou VRLA pokrýva výkonový rozsah od 450 do 2100 Wh, čím ponúka široký výber pre akýkoľvek druh rekreačného vozidla. Kľúčové vlastnosti batérie EXIDE Dual AGM: Je úplne bezúdržbový, čo uľahčuje jeho dlhodobé používanie. Ponúka vysokú flexibilitu inštalácie, pretože nem",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
-      "category": "battery",
-      "brand": "EXIDE",
-      "priceCzk": 787.88,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/exide-dualna-bateria-agm_z16597/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fexide-dualna-bateria-agm_z16597%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/154566_102.jpg?1704380087_1",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": 240,
-        "capacityWh": 2100,
-        "powerW": null,
-        "currentA": null,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [
@@ -5302,35 +5271,6 @@
       }
     },
     {
-      "id": "padabo_sk:104338_30525",
-      "merchant": "padabo_sk",
-      "name": "Solárny panel Dometic Büttner MT Power Black Line nominálny výkon (wp) 75",
-      "description": "Vysoko účinné solárne modulySolárny panel Dometic Büttner MT Power Black Line stanovuje nové štandardy v tomto odvetví. Vďaka inovatívnemu sklenenému povrchu a 80 vysoko výkonným článkom dosahujú moduly Dometic Büttner Power Black Line výrazne vyššie výnosy solárnej energie, a to aj pri rozptýlenom svetle alebo pri čiastočnom zatienení konármi, satelitnou anténou alebo otvoreným strešným oknom. Vďaka novému typu zapojenia vytvárajú tieto nové špičkové solárne moduly optimálne podmienky pre regul",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Solárne panely a príslušenstvo | Fotovoltaické panely",
-      "category": "solar_panel",
-      "brand": "Dometic",
-      "priceCzk": 512.37,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/solarny-panel-dometic-buttner-mt-power-black-line_z104338/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-dometic-buttner-mt-power-black-line_z104338%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/180291_102.jpg?1741272539_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": 300,
-        "powerW": 75,
-        "currentA": 3.5,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_sk:104338_30527",
       "merchant": "padabo_sk",
       "name": "Solárny panel Dometic Büttner MT Power Black Line nominálny výkon (wp) 130",
@@ -6404,41 +6344,6 @@
         "capacityWh": null,
         "powerW": 750,
         "currentA": 60,
-        "chargingVoltagesV": [
-          12
-        ],
-        "chargingInputVoltagesV": [
-          12
-        ],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:107308",
-      "merchant": "padabo_sk",
-      "name": "Nabíjačka Renogy DC-DC 12V/40 A",
-      "description": "Smart, robustná a kompaktná nabíjačka Pomocou nabíjačky Renogy DC-DC 12V/40A môžete efektívne nabíjať akumulátory počas chodu motora. Nabíjačka batérií DC-DC je kompatibilná s mnohými typmi alternátorov a umožňuje správne nabíjať batérie AGM, trakčné, gélové a dokonca aj lítiové batérie s hlbokým cyklom. Vďaka 3-stupňovej nabíjačke akumulátorov a viacerým elektronickým ochranám budete mať istotu, že sa vaše akumulátory nabíjajú optimálne a automaticky. Pre zvýšenie bezpečnosti izoluje vstup od v",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Nabíjačky a boostery | Nabíjačky",
-      "category": "dc_charger",
-      "brand": "Renogy",
-      "priceCzk": 161.77,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/nabijacka-renogy-dc-dc-12v-40-a_z107308/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fnabijacka-renogy-dc-dc-12v-40-a_z107308%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/190963_102.jpg?1772370977_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 500,
-        "currentA": 40,
         "chargingVoltagesV": [
           12
         ],
@@ -8294,7 +8199,7 @@
       "brand": "ALLPOWERS",
       "priceCzk": 2299,
       "priceCurrency": "EUR",
-      "available": true,
+      "available": false,
       "productUrl": "https://iallpowers.eu/products/allpowers-r3500-home-backup-power-station-3500w-3168wh",
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r3500-home-backup-power-station-3500w-3168wh",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R3500-V2-Home-Backup-Power-Station-3500W-2880Wh-ALLPOWERS-30183866.jpg?v=1775664354",
@@ -8562,7 +8467,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 349.99,
+      "priceCzk": 297.49,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-dual-purpose-group-24-lifepo4-aussenbordmotor-batterie",
@@ -8597,7 +8502,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 339.99,
+      "priceCzk": 284.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-125ah-group-27-smart-lifepo4-versorgungsbatterie",
@@ -8632,7 +8537,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 649.99,
+      "priceCzk": 592.22,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-320ah-dense-smart-lifepo4-batterie-fur-wohnmobil-untersitz",
@@ -8668,7 +8573,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 629.99,
+      "priceCzk": 559.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-125ah-smart-lifepo4-bootsbatterie-mit-selbstheizung",
@@ -8703,7 +8608,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 409.99,
+      "priceCzk": 319.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-140ah-190h-smart-wohnmobil-lithium-batterie-mit-bluetooth",
@@ -8738,7 +8643,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 259.99,
+      "priceCzk": 245.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-100ah-group-24-smart-lifepo4-battery-with-bluetooth",
@@ -8773,7 +8678,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 259.99,
+      "priceCzk": 227.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-12v-100ah-190h-smart-motorhome-battery",
@@ -8808,7 +8713,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 525.99,
+      "priceCzk": 466.66,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-smart-solar-battery-with-bluetooth",
@@ -8843,7 +8748,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 519.99,
+      "priceCzk": 489.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-300ah-lifepo4-battery-integrated-200a-bms",
@@ -8914,7 +8819,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 999.99,
+      "priceCzk": 949.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-400ah-lifepo4-battery-built-in-250a-bms",
@@ -8984,7 +8889,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 1059.99,
+      "priceCzk": 1022.22,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-24v-200ah-lifepo4-solar-battery-with-200a-bms",
@@ -9055,7 +8960,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 508.99,
+      "priceCzk": 429.99,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-plus-lifepo4-solar-battery",
@@ -9090,7 +8995,7 @@
       "categoryPath": "Batteries",
       "category": "battery",
       "brand": "PQ-DE",
-      "priceCzk": 488.99,
+      "priceCzk": 415.64,
       "priceCurrency": "EUR",
       "available": true,
       "productUrl": "https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-lifepo4-solar-battery",
