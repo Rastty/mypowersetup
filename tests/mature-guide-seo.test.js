@@ -81,8 +81,8 @@ test("regenerator keeps the original 52-guide baseline and accepts indexed compa
   const { readFile } = await import("node:fs/promises");
   const xml = await readFile("sitemap.xml", "utf8");
   const routes = matureGuideRoutesFromSitemap(xml);
-  assert.equal(routes.length, 57);
-  assert.equal(new Set(routes).size, 57);
+  assert.equal(routes.length, 58);
+  assert.equal(new Set(routes).size, 58);
   for (const slug of [
     "lifepo4-100ah-nebo-200ah-karavan",
     "victron-mppt-100-20-vs-100-30-vs-100-50",
@@ -92,6 +92,7 @@ test("regenerator keeps the original 52-guide baseline and accepts indexed compa
   ]) {
     assert.ok(routes.includes("/pruvodce/" + slug + "/"));
   }
+  assert.ok(routes.includes("/pl/poradnik/oxe-s400-czy-zestaw-sp100w-kamper/"));
   const source = await readFile("scripts/sync-mature-guide-seo.mjs", "utf8");
   assert.match(source, /routes.length < 52/);
   assert.match(source, /new Set\(routes\)\.size !== routes\.length/);
