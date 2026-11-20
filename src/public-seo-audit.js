@@ -84,9 +84,10 @@ function guideHubSchemaIsValid(nodes, html, market, route) {
     || !/^\d{4}-\d{2}-\d{2}$/.test(page.dateModified || "")) return false;
 
   const links = guideHubLinks(html, market);
-  // Czech hub adds three original purchase-intent comparisons to the 12 core guides.
+  // Czech hub adds three reviewed purchase comparisons and one distinct
+  // cold-weather battery decision guide to its 12 core guides.
   // Other markets retain their 12 canonical core guide routes.
-  if (links.length !== (market.key === "cs" ? 15 : 12)) return false;
+  if (links.length !== (market.key === "cs" ? 16 : 12)) return false;
   const items = Array.isArray(itemLists[0].itemListElement) ? itemLists[0].itemListElement : [];
   if (itemLists[0].numberOfItems !== links.length || items.length !== links.length) return false;
   if (!items.every((item, index) =>

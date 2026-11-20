@@ -34,7 +34,7 @@ test("buyer-intent guides lead to suitable calculators without claiming complete
 test("changed Czech guide URLs have matching semantic and sitemap modification dates", async () => {
   const sitemap = await read("sitemap.xml");
   for (const [path, modified] of [
-    ["pruvodce/", "2026-11-15"],
+    ["pruvodce/", "2026-11-20"],
     ["pruvodce/schema-elektroinstalace-karavanu/", "2026-11-17"],
     ["pruvodce/power-station-nebo-pevna-instalace-karavan/", "2026-11-15"],
   ]) {
