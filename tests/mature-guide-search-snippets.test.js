@@ -12,7 +12,7 @@ function directGuideRoutes(sitemap, prefix) {
     const remainder = route.slice(prefix.length);
     // Specialist purchase comparisons and winter battery advice have dedicated
     // original-content tests; keep the mature *core* guides at 12/market.
-    const comparisonRoutes = ["/pruvodce/lifepo4-100ah-nebo-200ah-karavan/","/pruvodce/victron-mppt-100-20-vs-100-30-vs-100-50/","/pruvodce/dc-dc-nabijecka-18a-vs-30a-vs-50a-karavan/","/pruvodce/lifepo4-baterie-zima-karavan/"];
+    const comparisonRoutes = ["/pruvodce/lifepo4-100ah-nebo-200ah-karavan/","/pruvodce/victron-mppt-100-20-vs-100-30-vs-100-50/","/pruvodce/dc-dc-nabijecka-18a-vs-30a-vs-50a-karavan/","/pruvodce/lifepo4-baterie-zima-karavan/","/pruvodce/solarni-panely-seriove-nebo-paralelne-karavan/"];
     return remainder.endsWith("/") && !remainder.slice(0, -1).includes("/")
       && !["/pruvodce/modelove-sestavy/", "/pl/poradnik/zasilanie-kampera-na-weekend/"].includes(route)
       && !comparisonRoutes.includes(route);
