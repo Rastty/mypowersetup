@@ -1,5 +1,6 @@
 import { getOxeMarket } from "../../src/oxe-affiliate.js";
 import { isOxeTechnicallyCompletePowerStation, parseOxeGoogleFeed } from "../../src/oxe-feed.js";
+import { parseOxeRomaniaLiveOffer } from "../../src/oxe-ro-live-product.js";
 import { disableStaleProducts } from "./stale-products.mjs";
 
 const LIVE_SUPPLEMENTS = Object.freeze({
@@ -28,7 +29,11 @@ export async function syncOxeMarket(market, previousCatalog = { products: [] }, 
     if (!feedProducts.length) throw new Error("OXE_FEED_HAS_NO_RELEVANT_PRODUCTS");
 
     const supplements = await loadLiveSupplements(market, feedProducts, fetchImpl);
-    const products = dedupeByProductUrl([...feedProducts, ...supplements]);
+    const feedBackedProducts = dedupeByProductUrl([...feedProducts, ...supplements]);
+    const liveResults = market === "ro"
+      ? await Promise.all(feedBackedProducts.map((product) => verifyOxeRomaniaProduct(product, fetchImpl)))
+      : feedBackedProducts.map((product) => ({ product, checked: false, verified: false, redirected: false }));
+    const products = liveResults.map((result) => result.product);
     return {
       products,
       source: {
@@ -39,6 +44,9 @@ export async function syncOxeMarket(market, previousCatalog = { products: [] }, 
         parsedProducts: parsed.length,
         relevantProducts: products.length,
         liveSupplements: supplements.length,
+        liveOfferChecks: liveResults.filter((result) => result.checked).length,
+        liveOfferVerified: liveResults.filter((result) => result.verified).length,
+        liveOfferRedirects: liveResults.filter((result) => result.redirected).length,
         powerStations: products.filter((product) => product.category === "power_station").length,
         technicallyVerifiedPowerStations: products.filter(isOxeTechnicallyCompletePowerStation).length,
         solarPanels: products.filter((product) => product.category === "solar_panel").length,
@@ -58,6 +66,34 @@ export async function syncOxeMarket(market, previousCatalog = { products: [] }, 
         preservedProducts: preserved.length,
       },
     };
+  }
+}
+
+async function verifyOxeRomaniaProduct(product, fetchImpl) {
+  if (!isOxeTechnicallyCompletePowerStation(product)) return { product, checked: false, verified: false, redirected: false };
+  try {
+    const response = await fetchImpl(product.productUrl, requestOptions(product.productUrl, "ro"));
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    // A 200 response at the merchant's homepage is not a live product offer.
+    const requested = new URL(product.productUrl);
+    const served = new URL(response.url);
+    const redirected = requested.origin !== served.origin || requested.pathname !== served.pathname;
+    if (redirected) return { product: { ...product, available: false, priceCzk: null }, checked: true, verified: false, redirected: true };
+    const live = parseOxeRomaniaLiveOffer(await response.text());
+    return {
+      product: {
+        ...product,
+        available: product.available === true && live.available === true && live.price !== null,
+        priceCzk: live.price,
+      },
+      checked: true,
+      verified: live.evidence === "live_in_stock" || live.evidence === "live_out_of_stock",
+      redirected: false,
+    };
+  } catch {
+    // Merchant page not observable: preserve the reviewed technical identity,
+    // but never send a buyer to an unverified purchase route.
+    return { product: { ...product, available: false, priceCzk: null }, checked: true, verified: false, redirected: false };
   }
 }
 
