@@ -17,6 +17,7 @@ function response(body, status = 200) {
   return {
     ok: status >= 200 && status < 300,
     status,
+    url: "https://www.oxepower.si/oxe-powerstation-newsmy-s2400-vecnamenski-polnilni-napajalnik-2400w20475wh/",
     async text() { return body; },
   };
 }
@@ -33,12 +34,14 @@ test("Slovenia sync adds S2400 only after its exact live page confirms stock", a
   const catalog = await syncOxeMarket("si", { products: [] }, fakeFetch(`
     <html><body>
       <h1>OXE Powerstation Newsmy S2400 - večnamenski polnilni napajalnik 2400W/2047,5Wh</h1>
-      <div>Na zalogi</div>
+      <table class="cislaTab"><tr><td><span>Na zalogi</span></td></tr>
+      <tr class="cena"><td>1 245,96 €</td></tr></table>
     </body></html>
   `));
   const s2400 = catalog.products.find((product) => /S2400/.test(product.name));
   assert.ok(s2400);
   assert.equal(s2400.available, true);
+  assert.equal(s2400.priceCzk, 1245.96);
   assert.equal(s2400.merchant, "oxe_si");
   assert.equal(s2400.specs.capacityWh, 2047.5);
   assert.equal(s2400.specs.powerW, 2400);
