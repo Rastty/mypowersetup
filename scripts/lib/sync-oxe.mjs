@@ -1,6 +1,6 @@
 import { getOxeMarket } from "../../src/oxe-affiliate.js";
 import { isOxeTechnicallyCompletePowerStation, parseOxeGoogleFeed } from "../../src/oxe-feed.js";
-import { parseOxeRomaniaLiveOffer } from "../../src/oxe-ro-live-product.js";
+import { parseOxeLiveOffer } from "../../src/oxe-live-product.js";
 import { disableStaleProducts } from "./stale-products.mjs";
 
 const LIVE_SUPPLEMENTS = Object.freeze({
@@ -30,9 +30,9 @@ export async function syncOxeMarket(market, previousCatalog = { products: [] }, 
 
     const supplements = await loadLiveSupplements(market, feedProducts, fetchImpl);
     const feedBackedProducts = dedupeByProductUrl([...feedProducts, ...supplements]);
-    const liveResults = market === "ro"
-      ? await Promise.all(feedBackedProducts.map((product) => verifyOxeRomaniaProduct(product, fetchImpl)))
-      : feedBackedProducts.map((product) => ({ product, checked: false, verified: false, redirected: false }));
+    // Limit simultaneous storefront requests; one feed must not fan out into a
+    // burst of dozens of buyer-page hits or rate-limit its own verification.
+    const liveResults = await mapBounded(feedBackedProducts, 6, (product) => verifyOxeMarketProduct(product, market, fetchImpl));
     const products = liveResults.map((result) => result.product);
     return {
       products,
@@ -69,11 +69,13 @@ export async function syncOxeMarket(market, previousCatalog = { products: [] }, 
   }
 }
 
-async function verifyOxeRomaniaProduct(product, fetchImpl) {
-  if (!isOxeTechnicallyCompletePowerStation(product)) return { product, checked: false, verified: false, redirected: false };
+async function verifyOxeMarketProduct(product, market, fetchImpl) {
+  // Check every station, not just technically eligible calculator matches:
+  // a feed-only unavailable SKU must not reappear in another surface later.
+  if (product.category !== "power_station") return { product, checked: false, verified: false, redirected: false };
   try {
     const response = await fetchImpl(product.productUrl, {
-      ...requestOptions(product.productUrl, "ro"),
+      ...requestOptions(product.productUrl, market),
       signal: AbortSignal.timeout(12_000),
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -82,7 +84,7 @@ async function verifyOxeRomaniaProduct(product, fetchImpl) {
     const served = new URL(response.url);
     const redirected = requested.origin !== served.origin || requested.pathname !== served.pathname;
     if (redirected) return { product: { ...product, available: false, priceCzk: null }, checked: true, verified: false, redirected: true };
-    const live = parseOxeRomaniaLiveOffer(await response.text());
+    const live = parseOxeLiveOffer(await response.text(), market);
     return {
       product: {
         ...product,
@@ -98,6 +100,18 @@ async function verifyOxeRomaniaProduct(product, fetchImpl) {
     // but never send a buyer to an unverified purchase route.
     return { product: { ...product, available: false, priceCzk: null }, checked: true, verified: false, redirected: false };
   }
+}
+
+async function mapBounded(items, concurrency, project) {
+  const results = new Array(items.length);
+  let next = 0;
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, async () => {
+    while (next < items.length) {
+      const index = next++;
+      results[index] = await project(items[index]);
+    }
+  }));
+  return results;
 }
 
 async function loadLiveSupplements(market, feedProducts, fetchImpl) {
