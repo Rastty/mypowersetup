@@ -58,6 +58,40 @@ const panelMentioningStationsSiXml = `<?xml version="1.0" encoding="UTF-8"?>
   <g:availability>in_stock</g:availability>
 </item></channel></rss>`;
 
+const romanianPriceXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:g="http://base.google.com/ns/1.0"><channel>
+  <item>
+    <g:id>OXE8817</g:id>
+    <g:title>OXE Powerstation S400 400W/386Wh</g:title>
+    <g:link>https://www.oxe.ro/oxe-powerstation-s400-generator-de-incarcare-multifunctional/</g:link>
+    <g:price><![CDATA[1984.82 RON]]></g:price>
+    <g:brand>OXE</g:brand>
+    <g:availability><![CDATA[in stock]]></g:availability>
+  </item>
+  <item>
+    <g:id>OXE8816</g:id>
+    <g:title>OXE Powerstation S200 200W/193Wh</g:title>
+    <g:link>https://www.oxe.ro/oxe-powerstation-s200-generator-de-incarcare-multifunctional-200w-193wh/</g:link>
+    <g:price>1686.80</g:price>
+    <g:brand>OXE</g:brand>
+    <g:availability>out of stock</g:availability>
+  </item>
+</channel></rss>`;
+
+test("Romanian OXE prices stay in RON, including a feed price with no currency suffix", () => {
+  const products = parseOxeGoogleFeed(romanianPriceXml, "ro");
+  assert.equal(products.length, 2);
+  const s400 = products.find((product) => product.id === "oxe_ro:OXE8817");
+  const s200 = products.find((product) => product.id === "oxe_ro:OXE8816");
+  assert.equal(s400.priceCzk, 1984.82);
+  assert.equal(s400.priceCurrency, "RON");
+  assert.equal(s400.available, true);
+  assert.equal(validateOxeDognetDeeplink("ro", s400.affiliateUrl).destination, s400.productUrl);
+  assert.equal(s200.priceCzk, 1686.8);
+  assert.equal(s200.priceCurrency, "RON");
+  assert.equal(s200.available, false);
+});
+
 test("OXE Google feed keeps local products but classifies only relevant power products", () => {
   const products = parseOxeGoogleFeed(xml, "pl");
   assert.equal(products.length, 3);

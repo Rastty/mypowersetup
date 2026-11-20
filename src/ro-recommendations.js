@@ -121,6 +121,9 @@ function validateRomaniaProduct(product, sources = {}, { bluettiActivation } = {
     const parsedAffiliate = parseRomaniaAffiliateUrl(product.affiliateUrl);
     if (parsedAffiliate.destination !== productUrl) throw new Error("RO_AFFILIATE_DESTINATION_MISMATCH");
   } else if (product.merchant === "oxe_ro") {
+    // OXE's Romanian product feed lists lei. Reject wrongly labelled euro
+    // amounts instead of showing a misleading purchase price.
+    if (Number.isFinite(product.priceCzk) && product.priceCurrency !== "RON") throw new Error("RO_OXE_PRICE_CURRENCY_INVALID");
     productUrl = validateOxeProductUrl("ro", product.productUrl);
     const parsedAffiliate = validateOxeDognetDeeplink("ro", product.affiliateUrl);
     if (parsedAffiliate.destination !== productUrl) throw new Error("RO_AFFILIATE_DESTINATION_MISMATCH");

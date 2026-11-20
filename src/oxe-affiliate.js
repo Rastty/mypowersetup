@@ -29,7 +29,7 @@ export const OXE_MARKETS = Object.freeze({
     market: "ro-RO",
     merchant: "oxe_ro",
     hostname: "oxe.ro",
-    currency: "EUR",
+    currency: "RON",
     chid: "2mRVFbhJ",
     feedUrl: "https://www.oxe.ro/export/google-dognet-ro.xml",
   }),

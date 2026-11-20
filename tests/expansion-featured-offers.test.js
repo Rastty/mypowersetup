@@ -160,7 +160,7 @@ test("PT, RO and SI render featured purchase links above the six result cards wi
   assert.ok(html.indexOf('data-featured-products hidden') < html.indexOf('<div class="result-grid">'));
   assert.ok(html.indexOf('<div class="result-grid">') < html.indexOf('data-product-recommendations aria-live'));
   assert.match(source, /selectExpansionFeaturedOffers\(products, routePriority, \{ sourceGap \}\)/);
-  assert.match(source, /expansion-featured-offers\.js\?v=20261120-partial-component1/);
+  assert.match(source, /expansion-featured-offers\.js\?v=20261120-oxe-ron1/);
   assert.equal((source.match(/renderFeaturedProducts\(products, routePriority, sourceGap\);/g) || []).length, 3);
   assert.match(source, /data-affiliate-product data-source="\$\{sourceType\}"/);
   assert.match(source, /source: sourceType/);
@@ -184,6 +184,6 @@ test("PT, RO and SI render featured purchase links above the six result cards wi
   for (const market of ["pt", "ro", "si"]) {
     const page = await readFile(new URL(`../${market}/index.html`, import.meta.url), "utf8");
     assert.match(page, /styles\.css\?v=20261119-voltage-dc-load1/);
-    assert.match(page, /expansion-calculator-browser\.js\?v=20261120-partial-component1/);
+    assert.match(page, /expansion-calculator-browser\.js\?v=20261120-oxe-ron1/);
   }
 });

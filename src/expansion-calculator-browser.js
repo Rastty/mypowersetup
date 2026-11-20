@@ -11,14 +11,14 @@ import { expansionBatteryDischargeNotice } from "./battery-discharge-safety.js?v
 import { expansionPowerStationSpecs } from "./expansion-product-specs.js?v=20261117-pv-check1";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { expansionPurchaseRoutePriority } from "./expansion-purchase-route-priority.js";
-import { selectExpansionFeaturedOffers, selectExpansionPartialOffers } from "./expansion-featured-offers.js?v=20261120-partial-component1";
+import { selectExpansionFeaturedOffers, selectExpansionPartialOffers } from "./expansion-featured-offers.js?v=20261120-oxe-ron1";
 import { classifyExpansionSupplyOutcome, expansionSupplyEventName, isDeliberateExpansionCalculation } from "./expansion-supply-evidence.js?v=20261113-explicit-intent1";
 import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js?v=20261113-complete-price1";
 import { expansionLinePrice } from "./expansion-line-price.js?v=20261111-solar-subtotal1";
 import { groupExpansionProductsForDisclosure } from "./expansion-product-disclosure.js";
 import { renderExpansionProductMedia, safeExpansionProductImageUrl } from "./expansion-product-media.js?v=20261117-product-media1";
-import { decorateAwinAffiliateUrl } from "./awin-attribution.js?v=20261120-partial-component1";
+import { decorateAwinAffiliateUrl } from "./awin-attribution.js?v=20261120-oxe-ron1";
 
 const root = document.querySelector("[data-expansion-calculator]");
 if (!root) throw new Error("EXPANSION_CALCULATOR_ROOT_MISSING");
@@ -435,7 +435,7 @@ async function renderSloveniaProducts(calculation, revision, recordIntent) {
 async function renderRomaniaProducts(calculation, revision, recordIntent) {
   const target = result.querySelector("[data-product-recommendations]"); if (!target) return;
   try {
-    const { buildRomaniaRecommendations, loadRomaniaProductCatalog , hasExpansionSourceGaps } = await import("./ro-recommendations.js?v=20261117-pq-region1");
+    const { buildRomaniaRecommendations, loadRomaniaProductCatalog , hasExpansionSourceGaps } = await import("./ro-recommendations.js?v=20261120-oxe-ron1");
     const catalog = await loadRomaniaProductCatalog();
     if (revision !== resultRevision || !target.isConnected) return;
     const recommendations = buildRomaniaRecommendations(catalog, calculation, 3);

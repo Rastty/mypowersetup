@@ -15,6 +15,7 @@ test("OXE config uses the five approved market feeds and exact Dognet channels",
   assert.equal(getOxeMarket("pl").feedUrl, "https://www.oxepower.pl/export/google-dognet-pl.xml");
   assert.equal(getOxeMarket("si").feedUrl, "https://www.oxepower.si/export/google-dognet-si.xml");
   assert.equal(getOxeMarket("ro").feedUrl, "https://www.oxe.ro/export/google-dognet-ro.xml");
+  assert.equal(getOxeMarket("ro").currency, "RON");
   assert.equal(getOxeMarket("hu").feedUrl, "https://www.oxe.hu/export/google-dognet-hu.xml");
   assert.equal(getOxeMarket("sk").feedUrl, "https://www.oxepower.sk/export/google-dognet-sk.xml");
   assert.equal(getOxeMarket("hu").chid, "v9mcMMKw");
