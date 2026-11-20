@@ -59,10 +59,10 @@ test("every public expansion calculator and both modules pass exact served-versi
   assert.equal(proof.sourceParity, true);
   assert.equal(proof.ga4EventsObserved, false);
   assert.equal(proof.purchaseOrCommissionVerified, false);
-  assert.match(proof.browserScript, /20261120-partial-component1/);
+  assert.match(proof.browserScript, /20261120-oxe-ron1/);
   assert.match(proof.stylesheet, /styles\.css\?v=20261119-voltage-dc-load1/);
   assert.match(proof.productMediaScript, /expansion-product-media\.js\?v=20261117-product-media1/);
-  assert.match(proof.featuredScript, /expansion-featured-offers\.js\?v=20261120-partial-component1/);
+  assert.match(proof.featuredScript, /expansion-featured-offers\.js\?v=20261120-oxe-ron1/);
   assert.match(proof.supplyScript, /20261113-explicit-intent1/);
   assert.match(proof.priceScript, /20261111-solar-subtotal1/);
   assert.match(proof.specsScript, /20261117-pv-check1/);
@@ -71,7 +71,7 @@ test("every public expansion calculator and both modules pass exact served-versi
   assert.match(proof.productsScript, /20261117-pq-region1/);
   assert.match(proof.powerQueenGuardScript, /20261117-pq-region1/);
   assert.equal(proof.marketModules.length, 3);
-  assert.ok(proof.marketModules.every(row => row.script.includes("20261117-pq-region1")));
+  assert.ok(proof.marketModules.every(row => row.script.includes(row.market === "ro" ? "20261120-oxe-ron1" : "20261117-pq-region1")));
   assert.match(proof.componentScript, /20261117-pq-region1/);
   assert.deepEqual(mock.requests.map(r => r.path), [
     "pt/index.html", "ro/index.html", "si/index.html",
@@ -84,7 +84,7 @@ test("every public expansion calculator and both modules pass exact served-versi
 
 test("a stale public market HTML version fails rather than trusting Pages deploy status", async () => {
   const mock = server({ transform: ({ path, text }) => path === "ro/index.html"
-    ? { text: text.replace("expansion-calculator-browser.js?v=20261120-partial-component1", "expansion-calculator-browser.js?v=20261113-stale") } : null });
+    ? { text: text.replace("expansion-calculator-browser.js?v=20261120-oxe-ron1", "expansion-calculator-browser.js?v=20261113-stale") } : null });
   await assert.rejects(
     verifyExpansionSupplyLive({ fetchImpl: mock.fetchImpl, sleep: async () => {} }),
     /EXPANSION_PUBLIC_SCRIPT_VERSION_DRIFT_ro/,

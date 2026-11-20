@@ -153,7 +153,7 @@ function parsePrice(value) {
 }
 
 function parseCurrency(value) {
-  return String(value || "").toUpperCase().match(/\b(EUR|PLN|HUF)\b/)?.[1] || null;
+  return String(value || "").toUpperCase().match(/\b(EUR|PLN|HUF|RON)\b/)?.[1] || null;
 }
 
 function parseAvailability(value) {
