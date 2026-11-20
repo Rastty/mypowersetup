@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T16:24:40.266Z",
+  "generatedAt": "2026-11-20T18:23:23.491Z",
   "market": "ro-RO",
   "currency": "EUR",
   "private": false,
@@ -147,6 +147,9 @@
       "parsedProducts": 210,
       "relevantProducts": 21,
       "liveSupplements": 0,
+      "liveOfferChecks": 8,
+      "liveOfferVerified": 6,
+      "liveOfferRedirects": 2,
       "powerStations": 15,
       "technicallyVerifiedPowerStations": 8,
       "solarPanels": 6,
