@@ -381,7 +381,7 @@ test("three distinct high-intent original pages have canonical, full static answ
   assert.ok(parent.includes('href="/pruvodce/'+slug+'/">'));
  }
  assert.equal(routes.size,3);
- assert.ok(guideHub.includes('"numberOfItems":15'));
+ assert.ok(guideHub.includes('"numberOfItems":16'));
 });
 test("manufacturer spec citations and companion styles are present",async()=>{
  const mppt=await readFile("pruvodce/victron-mppt-100-20-vs-100-30-vs-100-50/index.html","utf8");
