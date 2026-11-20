@@ -77,7 +77,7 @@ export function renderPrivateMarketSeedPage(seed) {
   </main>
   ${footerHtml}
   <script type="module" src="/src/analytics.js"></script>
-  <script type="module" src="/src/expansion-calculator-browser.js?v=20261119-existing-merchants1"></script>
+  <script type="module" src="/src/expansion-calculator-browser.js?v=20261120-partial-component1"></script>
 </body>
 </html>
 `;

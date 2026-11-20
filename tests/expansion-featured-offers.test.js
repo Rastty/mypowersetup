@@ -1,12 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { selectExpansionFeaturedOffers } from "../src/expansion-featured-offers.js";
+import { selectExpansionFeaturedOffers, selectExpansionPartialOffers } from "../src/expansion-featured-offers.js";
 import { COMMERCIAL_SCENARIOS, buildScenarioSetup } from "../src/commercial-scenarios.js";
 import { buildPortugalRecommendations } from "../src/pt-recommendations.js";
+import { buildRomaniaRecommendations } from "../src/ro-recommendations.js";
 import { buildSloveniaRecommendations } from "../src/si-recommendations.js";
 import { expansionPurchaseRoutePriority } from "../src/expansion-purchase-route-priority.js";
 import { decorateExpansionRecommendations } from "../src/expansion-recommendation-roles.js";
+import { decorateAwinAffiliateUrl } from "../src/awin-attribution.js";
 
 const item = (category, id, more = {}) => ({ category, id, available: true, ...more });
 const products = [
@@ -92,6 +94,60 @@ test("no complete route or stale product may masquerade as a purchase-ready reco
   assert.equal(selectExpansionFeaturedOffers(unavailablePortable, { coverage: coverage(false), portableReady: true, preferPortable: true }).kind, "none");
 });
 
+test("incomplete component route surfaces only approved individual offers and names all missing categories", () => {
+  const candidates = [
+    item("battery", "stale", { affiliateUrl: "https://approved.test/battery", staleSource: true }),
+    item("battery", "battery-ok", { affiliateUrl: "https://approved.test/battery" }),
+    item("solar_panel", "solar-untracked"),
+    item("solar_panel", "solar-ok", { affiliateUrl: "https://approved.test/solar" }),
+    item("controller", "mppt-ok", { affiliateUrl: "https://approved.test/mppt" }),
+    item("inverter", "unneeded", { affiliateUrl: "https://approved.test/inverter" }),
+    item("power_station", "portable-unmatched", { affiliateUrl: "https://approved.test/portable" }),
+  ];
+  const route = {
+    coverage: { complete: false, required: ["battery", "solar_panel", "controller", "inverter", "dc_charger"], missing: ["inverter", "dc_charger"] },
+    portableReady: false, preferPortable: false,
+  };
+  const selected = selectExpansionPartialOffers(candidates, route);
+  assert.equal(selected.kind, "partial");
+  assert.deepEqual(selected.items.map(({ id }) => id), ["battery-ok", "solar-ok", "mppt-ok"]);
+  assert.deepEqual(selected.missing, ["inverter", "dc_charger"]);
+  assert.ok(Object.isFrozen(selected.items) && Object.isFrozen(selected.missing));
+  assert.deepEqual(selectExpansionPartialOffers(candidates, route, { limit: 1 }).items.map(({ id }) => id), ["battery-ok"]);
+  assert.equal(selectExpansionPartialOffers(candidates, route, { sourceGap: true }).kind, "none");
+  assert.equal(selectExpansionPartialOffers(candidates, { ...route, preferPortable: true }).kind, "none");
+  assert.equal(selectExpansionPartialOffers(candidates, { coverage: { ...route.coverage, complete: true } }).kind, "none");
+  assert.equal(selectExpansionPartialOffers([candidates[0], candidates[2]], route).kind, "none");
+});
+
+test("family touring in all three expansion markets has real separate offers, never a complete checkout claim", async () => {
+  const scenario = COMMERCIAL_SCENARIOS.find(({ id }) => id === "family-touring");
+  for (const [market, file, build] of [
+    ["pt", "products-pt.json", buildPortugalRecommendations],
+    ["ro", "products-ro.json", buildRomaniaRecommendations],
+    ["sl", "products-si.json", buildSloveniaRecommendations],
+  ]) {
+    const catalog = JSON.parse(await readFile(new URL(`../data/${file}`, import.meta.url), "utf8"));
+    const setup = buildScenarioSetup(scenario, market);
+    const recommendations = build(catalog, setup, 3);
+    const route = expansionPurchaseRoutePriority(recommendations, setup, market);
+    assert.equal(route.coverage.complete, false, market);
+    assert.equal(route.preferPortable, false, market);
+    const featured = selectExpansionPartialOffers(decorateExpansionRecommendations(recommendations), route);
+    assert.equal(featured.kind, "partial", market);
+    assert.ok(featured.items.length > 0, market);
+    assert.ok(featured.items.every((product) => product.affiliateUrl.startsWith("https://")), market);
+    assert.ok(featured.missing.includes("inverter"), market);
+  }
+});
+
+test("partial Awin click keeps network attribution distinct from the complete route", () => {
+  const url = decorateAwinAffiliateUrl("https://www.awin1.com/cread.php?awinmid=1&awinaffid=2", {
+    market: "pt", category: "battery", recommendationRole: "recommended", source: "result-partial",
+  });
+  assert.equal(new URL(url).searchParams.get("clickref3"), "source_result-partial");
+});
+
 test("only relevant categories are featured in a DC-only result", () => {
   const featured = selectExpansionFeaturedOffers(products, { coverage: coverage(true, ["battery", "solar_panel", "controller"]) });
   assert.deepEqual(featured.items.map(({ category }) => category), ["battery", "solar_panel", "controller"]);
@@ -104,10 +160,13 @@ test("PT, RO and SI render featured purchase links above the six result cards wi
   assert.ok(html.indexOf('data-featured-products hidden') < html.indexOf('<div class="result-grid">'));
   assert.ok(html.indexOf('<div class="result-grid">') < html.indexOf('data-product-recommendations aria-live'));
   assert.match(source, /selectExpansionFeaturedOffers\(products, routePriority, \{ sourceGap \}\)/);
-  assert.match(source, /expansion-featured-offers\.js\?v=20261119-existing-merchants1/);
+  assert.match(source, /expansion-featured-offers\.js\?v=20261120-partial-component1/);
   assert.equal((source.match(/renderFeaturedProducts\(products, routePriority, sourceGap\);/g) || []).length, 3);
-  assert.match(source, /data-affiliate-product data-source="result-featured"/);
-  assert.match(source, /source: "result-featured"/);
+  assert.match(source, /data-affiliate-product data-source="\$\{sourceType\}"/);
+  assert.match(source, /source: sourceType/);
+  assert.match(source, /selectExpansionPartialOffers\(products, routePriority, \{ sourceGap \}\)/);
+  assert.match(source, /data-partial-featured-warning/);
+  assert.match(source, /data-offer-scope="\$\{partial \? "partial" : "complete"\}"/);
   assert.match(source, /trackRenderedProductChoices\(target\)/);
   assert.match(source, /data-featured-portable-alternatives/);
   assert.match(source, /data-cta-variant="\$\{variant\}"/);
@@ -125,6 +184,6 @@ test("PT, RO and SI render featured purchase links above the six result cards wi
   for (const market of ["pt", "ro", "si"]) {
     const page = await readFile(new URL(`../${market}/index.html`, import.meta.url), "utf8");
     assert.match(page, /styles\.css\?v=20261119-voltage-dc-load1/);
-    assert.match(page, /expansion-calculator-browser\.js\?v=20261119-existing-merchants1/);
+    assert.match(page, /expansion-calculator-browser\.js\?v=20261120-partial-component1/);
   }
 });

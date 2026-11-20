@@ -35,3 +35,27 @@ export function selectExpansionFeaturedOffers(products, routePriority, { sourceG
     remainingCount: Math.max(0, matched.length - limit),
   });
 }
+
+// An incomplete system is never advertised as a complete basket. However,
+// separately compatible, currently eligible components can still be useful
+// purchases. Keep this shortlist distinct from the purchase-ready selector so
+// the UI must explicitly disclose what is missing before displaying its links.
+export function selectExpansionPartialOffers(products, routePriority, { sourceGap = false, limit = 3 } = {}) {
+  const empty = Object.freeze({ kind: "none", items: Object.freeze([]), missing: Object.freeze([]) });
+  const coverage = routePriority?.coverage;
+  if (sourceGap || coverage?.complete !== false || routePriority?.preferPortable === true ||
+      !Array.isArray(products) || !Number.isSafeInteger(limit) || limit < 1 ||
+      !Array.isArray(coverage.required) || !Array.isArray(coverage.missing) ||
+      coverage.missing.length === 0) return empty;
+
+  const needed = coverage.required.filter((category) => category !== "power_station" && !coverage.missing.includes(category));
+  const items = needed.map((category) => products.find((item) =>
+    item.category === category && item.affiliateUrl?.startsWith("https://") && isRecommendationEligible(item)))
+    .filter(Boolean).slice(0, limit);
+  if (!items.length) return empty;
+  return Object.freeze({
+    kind: "partial",
+    items: Object.freeze(items),
+    missing: Object.freeze([...coverage.missing]),
+  });
+}

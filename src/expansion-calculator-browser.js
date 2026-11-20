@@ -11,14 +11,14 @@ import { expansionBatteryDischargeNotice } from "./battery-discharge-safety.js?v
 import { expansionPowerStationSpecs } from "./expansion-product-specs.js?v=20261117-pv-check1";
 import { mountUsageProfiles } from "./usage-profiles.js";
 import { expansionPurchaseRoutePriority } from "./expansion-purchase-route-priority.js";
-import { selectExpansionFeaturedOffers } from "./expansion-featured-offers.js?v=20261119-existing-merchants1";
+import { selectExpansionFeaturedOffers, selectExpansionPartialOffers } from "./expansion-featured-offers.js?v=20261120-partial-component1";
 import { classifyExpansionSupplyOutcome, expansionSupplyEventName, isDeliberateExpansionCalculation } from "./expansion-supply-evidence.js?v=20261113-explicit-intent1";
 import { bindAffiliateImpressionTracking, trackAffiliateClick } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { decorateExpansionRecommendations } from "./expansion-recommendation-roles.js?v=20261113-complete-price1";
 import { expansionLinePrice } from "./expansion-line-price.js?v=20261111-solar-subtotal1";
 import { groupExpansionProductsForDisclosure } from "./expansion-product-disclosure.js";
 import { renderExpansionProductMedia, safeExpansionProductImageUrl } from "./expansion-product-media.js?v=20261117-product-media1";
-import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
+import { decorateAwinAffiliateUrl } from "./awin-attribution.js?v=20261120-partial-component1";
 
 const root = document.querySelector("[data-expansion-calculator]");
 if (!root) throw new Error("EXPANSION_CALCULATOR_ROOT_MISSING");
@@ -69,6 +69,8 @@ const featuredCopy = {
     more: (count) => count === 1 ? "Mais 1 componente necessário e alternativas na lista completa abaixo." : `Mais ${count} componentes necessários e alternativas na lista completa abaixo.`,
     all: "Ver todos os produtos e verificações ↓",
     note: "Algumas ligações são de afiliado. Confirma preço, stock e entrega no vendedor; estes produtos não são um projeto de instalação.",
+    partialTitle: "Componentes verificados disponíveis separadamente",
+    partialWarning: (missing) => `Ainda não é um sistema completo: faltam opções verificadas para ${missing}. Os produtos abaixo correspondem apenas às categorias indicadas; não os compres como um conjunto sem validar o projeto completo.`,
   },
   ro: {
     title: "Oferte verificate pentru calculul tău",
@@ -78,6 +80,8 @@ const featuredCopy = {
     more: (count) => count === 1 ? "Încă o componentă necesară și alternative în lista completă de mai jos." : `Încă ${count} componente necesare și alternative în lista completă de mai jos.`,
     all: "Vezi toate produsele și verificările ↓",
     note: "Unele linkuri sunt afiliate. Verifică prețul, stocul și livrarea la vânzător; produsele nu reprezintă un proiect de instalație.",
+    partialTitle: "Componente verificate disponibile separat",
+    partialWarning: (missing) => `Acesta nu este un sistem complet: lipsesc opțiuni verificate pentru ${missing}. Produsele de mai jos corespund doar categoriilor afișate; nu le cumpăra ca set fără verificarea întregului proiect.`,
   },
   si: {
     title: "Preverjene ponudbe za tvoj izračun",
@@ -87,6 +91,8 @@ const featuredCopy = {
     more: (count) => count === 1 ? "Še ena potrebna komponenta in alternative v celotnem seznamu spodaj." : `Še ${count} potrebnih komponent in alternative v celotnem seznamu spodaj.`,
     all: "Poglej vse izdelke in preverjanja ↓",
     note: "Nekatere povezave so partnerske. Pri prodajalcu preveri ceno, zalogo in dostavo; izdelki ne pomenijo načrta montaže.",
+    partialTitle: "Posamezne preverjene komponente",
+    partialWarning: (missing) => `To ni celoten sistem: manjkajo preverjene možnosti za ${missing}. Spodnji izdelki ustrezajo samo navedenim kategorijam; ne kupuj jih kot kompleta brez preverjanja celotne zasnove.`,
   },
 }[locale];
 
@@ -372,8 +378,8 @@ function renderResult(value) {
   const warnings = remainingWarnings.length ? `<ul>${remainingWarnings.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : "";
   const voltageNotice = renderDcLoadVoltageNotice(value.dcLoadVoltageWarning, locale);
   const verdict = buildPlainLanguageVerdict(value, locale);
-  // Only a commercially complete purchase route may be elevated above the six
-  // electrical result cards; warnings remain immediately below the verdict.
+  // The electrical verdict and warnings always precede any purchase route;
+  // incomplete routes must disclose their missing categories before offers.
   result.innerHTML = `<p class="result-summary">${escapeHtml(verdict)}</p>${voltageNotice}${warnings}<div data-featured-products hidden></div><div class="result-grid"><article class="result-card"><span>${labels.daily}</span><strong>${value.dailyWh} Wh</strong></article><article class="result-card"><span>${labels.battery}</span><strong>${value.batteryAh} Ah / ${value.batteryWh} Wh</strong><small>${escapeHtml(value.batteryLabel)}</small></article><article class="result-card"><span>${labels.solar}</span><strong>${value.solarWatts} Wp</strong></article><article class="result-card"><span>${labels.inverter}</span><strong>${value.inverterWatts} W</strong></article><article class="result-card"><span>${labels.mppt}</span><strong>${value.controllerAmps} A</strong></article><article class="result-card"><span>${labels.voltage}</span><strong>${value.systemVoltage} V</strong></article></div><div data-product-recommendations aria-live="polite" id="expansion-product-recommendations">${renderProductLoading()}</div>${renderResultGuides()}${renderComponentPlan(value)}<div class="step-actions"><button class="button button-primary" type="button" data-share-result>${labels.share}</button><button class="button button-secondary" type="button" data-edit>${labels.again}</button></div>`;
 }
 
@@ -498,9 +504,14 @@ function renderComponentPlan(value) { const plan = expansionComponentPlan(locale
 function renderFeaturedProducts(products, routePriority, sourceGap) {
   const target = result.querySelector("[data-featured-products]");
   if (!target) return;
-  const featured = selectExpansionFeaturedOffers(products, routePriority, { sourceGap });
+  const complete = selectExpansionFeaturedOffers(products, routePriority, { sourceGap });
+  const featured = complete.kind === "none"
+    ? selectExpansionPartialOffers(products, routePriority, { sourceGap })
+    : complete;
   if (!featured.items.length) return;
   const portable = featured.kind === "portable";
+  const partial = featured.kind === "partial";
+  const sourceType = partial ? "result-partial" : "result-featured";
   const renderCard = (item, recommendationRole = "recommended") => {
     const merchant = expansionMerchantLabel(item.merchant);
     const solar = item.category === "solar_panel";
@@ -514,17 +525,20 @@ function renderFeaturedProducts(products, routePriority, sourceGap) {
     const fit = solar ? labels.solarFit(item.quantity, item.powerW) : portable ? labels.powerStationFit : labels.componentFit;
     const category = portable ? labels.powerStation : expansionCategoryLabel(item.category);
     const affiliateUrl = decorateAwinAffiliateUrl(item.affiliateUrl, {
-      market: locale, category: item.category, recommendationRole, source: "result-featured",
+      market: locale, category: item.category, recommendationRole, source: sourceType,
     });
     const variant = portable ? (recommendationRole === "recommended" ? "portable-primary" : "portable-alternative") : "standard";
-    return `<article class="featured-pick-card" data-featured-category="${escapeHtml(item.category)}">${image}<div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(category)}${recommendationRole === "alternative" ? ` · ${escapeHtml(labels.recommendationBadges.alternative)}` : ""}</span><h6>${escapeHtml(item.name)}</h6><p>${escapeHtml(fit)}</p><small>${escapeHtml(merchant)}${solar && item.quantity > 1 ? ` · ${item.quantity} ×` : ""}</small></div><div class="featured-pick-action">${price ? `<strong data-price-basis="${solar ? "solar-subtotal" : "single-unit"}">${escapeHtml(price)}</strong>` : ""}<a href="${escapeHtml(affiliateUrl)}" target="_blank" rel="sponsored nofollow noopener" data-affiliate-product data-source="result-featured" data-route-priority="primary" data-recommendation-role="${recommendationRole}" data-cta-variant="${variant}" data-product-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-merchant="${escapeHtml(item.merchant)}">${escapeHtml(portable ? labels.portableViewAt(merchant) : labels.viewAt(merchant))}</a></div></article>`;
+    return `<article class="featured-pick-card" data-featured-category="${escapeHtml(item.category)}">${image}<div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(category)}${recommendationRole === "alternative" ? ` · ${escapeHtml(labels.recommendationBadges.alternative)}` : ""}</span><h6>${escapeHtml(item.name)}</h6><p>${escapeHtml(fit)}</p><small>${escapeHtml(merchant)}${solar && item.quantity > 1 ? ` · ${item.quantity} ×` : ""}</small></div><div class="featured-pick-action">${price ? `<strong data-price-basis="${solar ? "solar-subtotal" : "single-unit"}">${escapeHtml(price)}</strong>` : ""}<a href="${escapeHtml(affiliateUrl)}" target="_blank" rel="sponsored nofollow noopener" data-affiliate-product data-source="${sourceType}" data-route-priority="${partial ? "secondary" : "primary"}" data-recommendation-role="${recommendationRole}" data-cta-variant="${variant}" data-product-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-merchant="${escapeHtml(item.merchant)}">${escapeHtml(portable ? labels.portableViewAt(merchant) : labels.viewAt(merchant))}</a></div></article>`;
   };
   const cards = featured.items.map((item) => renderCard(item)).join("");
   const portableAlternatives = portable && featured.alternatives.length
     ? `<details class="expansion-product-alternatives" data-featured-portable-alternatives><summary><span>${escapeHtml(labels.powerStation)}</span><strong>${escapeHtml(featuredCopy.comparePortable(featured.alternatives.length))}</strong></summary><div class="result-grid featured-picks-grid">${featured.alternatives.map((item) => renderCard(item, "alternative")).join("")}</div></details>`
     : "";
   const additional = featured.remainingCount ? `<p class="expansion-featured-more">${escapeHtml(featuredCopy.more(featured.remainingCount))}</p>` : "";
-  target.innerHTML = `<section class="featured-picks expansion-featured-picks" aria-labelledby="expansion-featured-heading"><div class="featured-picks-heading"><div><h4 id="expansion-featured-heading">${escapeHtml(featuredCopy.title)}</h4><p>${escapeHtml(portable ? featuredCopy.portable : featuredCopy.components)}</p></div><span class="featured-picks-count">${featured.items.length}</span></div><div class="featured-picks-grid">${cards}</div>${portableAlternatives}${additional}<a class="expansion-featured-all" href="#expansion-product-recommendations">${escapeHtml(featuredCopy.all)}</a><p class="featured-picks-note">${escapeHtml(featuredCopy.note)}</p></section>`;
+  const partialWarning = partial
+    ? `<p class="purchase-route-priority-note" data-partial-featured-warning>${escapeHtml(featuredCopy.partialWarning(featured.missing.map(expansionCategoryLabel).join(", ")))}</p>`
+    : "";
+  target.innerHTML = `<section class="featured-picks expansion-featured-picks" aria-labelledby="expansion-featured-heading" data-offer-scope="${partial ? "partial" : "complete"}"><div class="featured-picks-heading"><div><h4 id="expansion-featured-heading">${escapeHtml(partial ? featuredCopy.partialTitle : featuredCopy.title)}</h4><p>${escapeHtml(portable ? featuredCopy.portable : partial ? labels.componentRouteIntro : featuredCopy.components)}</p></div><span class="featured-picks-count">${featured.items.length}</span></div>${partialWarning}<div class="featured-picks-grid">${cards}</div>${portableAlternatives}${additional}<a class="expansion-featured-all" href="#expansion-product-recommendations">${escapeHtml(featuredCopy.all)}</a><p class="featured-picks-note">${escapeHtml(featuredCopy.note)}</p></section>`;
   target.hidden = false;
   trackRenderedProductChoices(target);
 }
