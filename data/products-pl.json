@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T16:23:16.144Z",
+  "generatedAt": "2026-11-20T18:24:23.933Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
@@ -25,6 +25,9 @@
       "parsedProducts": 168,
       "relevantProducts": 17,
       "liveSupplements": 0,
+      "liveOfferChecks": 0,
+      "liveOfferVerified": 0,
+      "liveOfferRedirects": 0,
       "powerStations": 11,
       "technicallyVerifiedPowerStations": 6,
       "solarPanels": 6

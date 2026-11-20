@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T16:23:23.961Z",
+  "generatedAt": "2026-11-20T18:24:32.128Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
@@ -36,6 +36,9 @@
       "parsedProducts": 283,
       "relevantProducts": 26,
       "liveSupplements": 0,
+      "liveOfferChecks": 0,
+      "liveOfferVerified": 0,
+      "liveOfferRedirects": 0,
       "powerStations": 18,
       "technicallyVerifiedPowerStations": 10,
       "solarPanels": 8

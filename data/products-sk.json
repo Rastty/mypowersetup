@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T16:23:06.202Z",
+  "generatedAt": "2026-11-20T18:24:14.219Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
@@ -31,6 +31,9 @@
       "parsedProducts": 157,
       "relevantProducts": 15,
       "liveSupplements": 0,
+      "liveOfferChecks": 0,
+      "liveOfferVerified": 0,
+      "liveOfferRedirects": 0,
       "powerStations": 12,
       "technicallyVerifiedPowerStations": 6,
       "solarPanels": 3
