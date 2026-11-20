@@ -72,7 +72,10 @@ export async function syncOxeMarket(market, previousCatalog = { products: [] }, 
 async function verifyOxeRomaniaProduct(product, fetchImpl) {
   if (!isOxeTechnicallyCompletePowerStation(product)) return { product, checked: false, verified: false, redirected: false };
   try {
-    const response = await fetchImpl(product.productUrl, requestOptions(product.productUrl, "ro"));
+    const response = await fetchImpl(product.productUrl, {
+      ...requestOptions(product.productUrl, "ro"),
+      signal: AbortSignal.timeout(12_000),
+    });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     // A 200 response at the merchant's homepage is not a live product offer.
     const requested = new URL(product.productUrl);
