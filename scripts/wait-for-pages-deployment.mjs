@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Read-only release barrier: don't audit source-vs-live parity until GitHub Pages
-// has successfully deployed the exact source commit under inspection.
+// has deployed the source commit, or a proven newer descendant on main.
 // The built-in Pages workflow does not consistently emit workflow_run triggers.
 import { pathToFileURL } from "node:url";
 
@@ -24,6 +24,15 @@ export function assessPagesDeployment(runs, sha) {
   return Object.freeze({ status: "waiting", reason: "PAGES_OUTCOME_PENDING", runId: run.id });
 }
 
+export function successfulDescendantCandidates(runs, sha, afterRunId = 0) {
+  return (Array.isArray(runs) ? runs : [])
+    .filter(run => run?.head_sha !== sha && /^[a-f0-9]{40}$/.test(run?.head_sha || "") &&
+      run?.head_branch === "main" && run?.name === WORKFLOW_NAME &&
+      run?.path === WORKFLOW_PATH && run?.status === "completed" &&
+      run?.conclusion === "success" && Number(run?.id) > Number(afterRunId))
+    .sort((a, b) => Number(b.id) - Number(a.id));
+}
+
 export async function waitForPagesDeployment({
   repo = process.env.GITHUB_REPOSITORY,
   sha = process.env.GITHUB_SHA,
@@ -35,25 +44,43 @@ export async function waitForPagesDeployment({
 } = {}) {
   if (repo !== REPO || !/^[a-f0-9]{40}$/.test(sha || "") || typeof token !== "string" || !token)
     throw new Error("PAGES_AUDIT_INVALID_REPOSITORY_SHA_OR_TOKEN");
-  const url = `https://api.github.com/repos/${REPO}/actions/runs?head_sha=${sha}&per_page=50`;
-  let latest = { status: "waiting", reason: "PAGES_RUN_NOT_YET_VISIBLE" };
-  for (let poll = 0; poll < maxPolls; poll++) {
-    const response = await fetchImpl(url, {
-      headers: {
-        accept: "application/vnd.github+json",
-        authorization: "Bearer " + token,
-        "x-github-api-version": "2022-11-28",
-      },
-      redirect: "error",
-      signal: AbortSignal.timeout(15_000),
+  // A newer SEO-regeneration push may supersede the original Pages job. List
+  // main deployments, then prove that the succeeding SHA descends from ours.
+  const url = `https://api.github.com/repos/${REPO}/actions/runs?branch=main&per_page=100`;
+  const headers = {
+    accept: "application/vnd.github+json",
+    authorization: "Bearer " + token,
+    "x-github-api-version": "2022-11-28",
+  };
+  const rejectedCandidates = new Set();
+  async function getJson(endpoint) {
+    const response = await fetchImpl(endpoint, {
+      headers, redirect: "error", signal: AbortSignal.timeout(15_000),
     });
     if (!response.ok) throw new Error("PAGES_AUDIT_GITHUB_HTTP_" + response.status);
-    const body = await response.json();
+    return response.json();
+  }
+  let latest = { status: "waiting", reason: "PAGES_RUN_NOT_YET_VISIBLE" };
+  for (let poll = 0; poll < maxPolls; poll++) {
+    const body = await getJson(url);
     latest = assessPagesDeployment(body?.workflow_runs, sha);
     if (latest.status === "verified") return Object.freeze({
       status: "PAGES_EXACT_SHA_DEPLOYED", sha, runId: latest.runId, polls: poll + 1,
     });
-    if (latest.status === "failed") throw new Error(latest.reason + ":" + latest.runId);
+    if (latest.status === "failed" && latest.reason !== "PAGES_DEPLOY_CANCELLED")
+      throw new Error(latest.reason + ":" + latest.runId);
+    for (const run of successfulDescendantCandidates(body?.workflow_runs, sha, latest.runId)) {
+      if (rejectedCandidates.has(run.head_sha)) continue;
+      const comparison = await getJson(`https://api.github.com/repos/${REPO}/compare/${sha}...${run.head_sha}`);
+      if (comparison?.status === "ahead" && comparison?.merge_base_commit?.sha === sha &&
+        Number(comparison.ahead_by) > 0 && Number(comparison.behind_by) === 0) {
+        return Object.freeze({
+          status: "PAGES_DESCENDANT_SHA_DEPLOYED", sha, deployedSha: run.head_sha,
+          runId: run.id, polls: poll + 1,
+        });
+      }
+      rejectedCandidates.add(run.head_sha);
+    }
     if (poll + 1 < maxPolls) await sleep(intervalMs);
   }
   throw new Error("PAGES_AUDIT_WAIT_TIMEOUT:" + latest.reason);

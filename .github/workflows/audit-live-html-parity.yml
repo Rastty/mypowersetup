@@ -18,8 +18,8 @@ on:
   schedule:
     - cron: "43 7 * * *"
   # The built-in GitHub Pages dynamic workflow has not emitted workflow_run
-  # events for this repository. A bounded exact-SHA deployment barrier makes
-  # a targeted main push a reliable postdeploy audit trigger instead.
+  # events for this repository. A bounded deployment ancestry barrier makes a
+  # targeted main push a postdeploy audit trigger, including SEO auto-commits.
   push:
     branches: [main, audit/live-html-parity-20261013]
     paths:
@@ -78,7 +78,7 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
-      - name: Wait for the exact GitHub Pages commit to finish deploying
+      - name: Wait for exact Pages commit or proven deployed descendant
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -89,7 +89,7 @@ jobs:
         run: node --test scripts/verify-phase2-stale-live.test.mjs
       - name: Verify both live electrical calculator HTML pages and served JS
         # PRs intentionally contain a future script version absent from live
-        # Pages. Enforce the live check only after the exact main SHA deploys
+        # Pages. Enforce the live check only after main or a descendant deploys
         # (or in independent scheduled/dispatch/workflow_run audits).
         if: github.event_name != 'pull_request'
         run: node scripts/verify-phase2-stale-live.mjs
@@ -97,8 +97,8 @@ jobs:
         run: node --test scripts/verify-buyer-paths-live.test.mjs
       - name: Verify public buyer HTML, JS and reviewed compact catalog after deployment
         # PR code may intentionally differ from currently deployed production.
-        # Exact source parity is asserted on targeted main pushes ONLY after
-        # the matching Pages deployment is successful; schedule/dispatch also
+        # Source parity is asserted on targeted main pushes ONLY after the
+        # matching or verified descendant Pages deployment; schedule/dispatch also
         # perform independent checks and workflow_run remains a fallback.
         if: github.event_name != 'pull_request'
         run: node scripts/verify-buyer-paths-live.mjs
