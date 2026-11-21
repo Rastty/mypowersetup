@@ -82,5 +82,5 @@ test("CZ Builder renders the explanation in package and comparison but preserves
   assert.match(css,/\.product-requirement/);
   assert.match(css,/\.package-product-decision/);
   assert.match(html,/styles\.css\?v=20261119-voltage-dc-load1/);
-  assert.match(html,/app\.js\?v=20261121-caravan-plan1/);
+  assert.match(html,/app\.js\?v=20261121-quantity1/);
 });

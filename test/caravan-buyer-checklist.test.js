@@ -15,6 +15,7 @@ test("complete caravan shopping plan uses vetted package products in required or
   const plan = buildCaravanBuyerChecklist({ coverage, packages, recommendations });
   assert.equal(plan.status,"complete");
   assert.equal(plan.readyCount,3);
+  assert.deepEqual(plan.rows.map(row => row.quantity), [1,1,1]);
   assert.deepEqual(plan.rows.map(({ category,product })=>[category,product.id]),[
     ["battery","b"],["solar_panel","p"],["controller","c"]
   ]);
@@ -53,4 +54,14 @@ test("Czech result renders buying plan before system metrics, preserving tracked
   assert.match(app,/data-affiliate-click data-source="caravan-plan"/);
   assert.match(app,/attributedAwinUrl\(product, category, "recommended", "caravan-plan"\)/);
   assert.match(html,/caravan-buyer-checklist\.css\?v=20261121-2/);
+});
+
+test("required multi-piece solar quantity follows vetted product rather than assuming one panel", () => {
+  const coverage={required:["solar_panel"],manualDesignCharging:[]};
+  const product={id:"solar-two",name:"200 W panel",available:true,recommendedQuantity:2};
+  const plan=buildCaravanBuyerChecklist({
+    coverage, recommendations:{solar_panel:[{product,available:true}]}
+  });
+  assert.equal(plan.rows[0].quantity,2);
+  assert.equal(plan.rows[0].product.id,"solar-two");
 });
