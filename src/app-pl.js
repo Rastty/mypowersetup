@@ -558,7 +558,7 @@ function renderProductRecommendations(result) {
       ? `Do zakupu zweryfikowano ${readyToBuy} z ${buyerPlan.requiredCount} wymaganych kategorii. Brakujące elementy znajdziesz na liście zakupów.`
       : "Dla tego obliczenia nie mamy na razie potwierdzonej oferty dostępnej w magazynie. Lista zakupów pokazuje wymagane parametry brakujących elementów.";
   const resultProductsLink = document.querySelector("#result-products-link");
-  resultProductsLink.hidden = false;
+  resultProductsLink.hidden = total === 0;
   resultProductsLink.href = "#caravan-buyer-checklist";
   resultProductsLink.textContent = hasRecommendedPackage ? "Pokaż polecany zestaw ↓"
     : readyToBuy ? `Otwórz listę zakupów (${readyToBuy}/${buyerPlan.requiredCount}) ↓`
