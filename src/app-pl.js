@@ -13,8 +13,8 @@ import { buildInstallationPlan } from "./installation.js?v=20261117-installation
 import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1";
 import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-stock1";
 import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261121-stock1";
-import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
-import { selectFeaturedOffers } from "./featured-core-offers.js?v=20261119-featured-safe4";
+import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261121-stock-aligned1";
+import { selectFeaturedOffers } from "./featured-core-offers.js?v=20261121-stock-aligned1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
@@ -511,8 +511,14 @@ function renderProductRecommendations(result) {
   const groups = document.querySelector("#recommendation-groups");
   const rankedRecommendations = recommendProducts(productCatalog, result, 24, productCatalogSources);
   const packages = buildProductPackages(rankedRecommendations, result);
-  const recommendations = visibleRecommendationsForPackages(rankedRecommendations, packages);
-  const featured = selectFeaturedOffers(recommendations, packages);
+  const coverage = assessRecommendationCoverage(rankedRecommendations, result, "pl");
+  const buyerPlan = buildCaravanBuyerChecklist({
+    coverage, packages, recommendations: rankedRecommendations, setup: result, locale: "pl",
+  });
+  // Keep the immediately visible products synchronized with actual buyable,
+  // confirmed-stock basket items; technical rankings remain unchanged.
+  const recommendations = visibleRecommendationsForPackages(rankedRecommendations, packages, 3, buyerPlan);
+  const featured = selectFeaturedOffers(recommendations, packages, 4, buyerPlan);
   const categoryLabels = {
     battery: "Akumulatory",
     solar_panel: "Panele fotowoltaiczne",
@@ -524,17 +530,16 @@ function renderProductRecommendations(result) {
   };
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
-  const coverage = assessRecommendationCoverage(recommendations, result, "pl");
   renderLocalizedCaravanBuyerPlan({
     target: document.querySelector("#caravan-buyer-checklist"),
-    plan: buildCaravanBuyerChecklist({ coverage, packages, recommendations: rankedRecommendations, setup: result, locale: "pl" }),
+    plan: buyerPlan,
     locale: "pl",
     purchaseUrl: (product, category) => attributedAwinUrl(product, category, "recommended", "caravan-plan"),
     purchaseCta: merchantPurchaseCta,
     merchantLabel,
     trackEvent,
   });
-  const hasRecommendedPackage = packages.some(({ id }) => id === "recommended");
+  const hasRecommendedPackage = buyerPlan.complete && packages.some(({ id }) => id === "recommended");
   trackEvent("product_coverage_calculated", {
     locale: "pl",
     required_categories: coverage.required.length,
