@@ -32,9 +32,15 @@ const round=(number)=>Math.round(number*10)/10;
 export function reviewCaravanPvString(panelRow, controllerProduct, systemVoltage) {
   const panel=panelRow?.product||panelRow;
   const spec=panel?.specs;
-  const model=MODELS[spec?.pvModel];
-  if (!model || Object.entries(model).some(([key,value])=>
-    key!=="manufacturerName" && spec[key]!==value)) return null;
+  const model=Object.hasOwn(MODELS,spec?.pvModel) ? MODELS[spec.pvModel] : null;
+  const approvedPanelIds=spec?.pvModel==="EF-SG-M175-01"
+    ? ["svetkaravanu:105298","padabo_sk:105298","padabo_pl:105298"]
+    : spec?.pvModel==="SPM041903903"
+      ? ["svetkaravanu:109069","padabo_sk:109069","padabo_pl:109069"]
+      : [];
+  if (!model || !approvedPanelIds.includes(panel?.id)
+    || Object.entries(model).some(([key,value])=>
+      key!=="manufacturerName" && spec[key]!==value)) return null;
   const quantity=panelRow?.quantity??panel?.recommendedQuantity??1;
   const actualWp=selectedSolarArrayWatts(panelRow);
   const manual=(reason)=>Object.freeze({
@@ -43,7 +49,7 @@ export function reviewCaravanPvString(panelRow, controllerProduct, systemVoltage
   });
   if (!Number.isSafeInteger(quantity)||quantity<1||quantity>4||actualWp!==model.powerW*quantity
     || ![12,24].includes(Number(systemVoltage))) return manual("unknown_array");
-  const modelCurrent=CONTROLLERS[controllerProduct?.id];
+  const modelCurrent=Object.hasOwn(CONTROLLERS,controllerProduct?.id) ? CONTROLLERS[controllerProduct.id] : null;
   const mppt=controllerProduct?.specs||{};
   const nominalWp=mppt.maxPvWattsBySystemVoltage?.[systemVoltage];
   const expectNominal=modelCurrent===30?systemVoltage===12?440:880:modelCurrent===50?systemVoltage===12?700:1400:null;
