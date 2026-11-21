@@ -90,3 +90,24 @@ test("Hungarian generated page retains the same featured offers placement", () =
   assert.ok(generator.indexOf('id="result-grid"') < generator.indexOf('id="package-variants"'));
   assert.match(generator, /app-hu-browser\.js\?v=20261119-voltage-guide1/);
 });
+
+test("featured shop shelf only contains confirmed-stock buyer choices when a plan is provided", () => {
+ const offer=(id)=>({score:90,product:{id,name:id,merchant:"vselektro",available:true,affiliateUrl:"https://ehub.cz/x/"+id}});
+ const recommendations={
+   battery:[offer("chosen-battery"),offer("unconfirmed-battery")],
+   solar_panel:[offer("not-buyable-panel")],
+   controller:[offer("confirmed-controller")],
+ };
+ const packages=[{id:"recommended",items:[
+   {category:"battery",...offer("unconfirmed-battery")},
+   {category:"solar_panel",...offer("not-buyable-panel")},
+ ]}];
+ const buyerPlan={rows:[
+   {category:"battery",ready:true,product:recommendations.battery[0].product},
+   {category:"solar_panel",ready:false,product:null},
+   {category:"controller",ready:true,product:recommendations.controller[0].product},
+ ]};
+ const picks=selectFeaturedOffers(recommendations,packages,4,buyerPlan);
+ assert.deepEqual(picks.map(x=>x.product.id),["chosen-battery","confirmed-controller"]);
+ assert.deepEqual(featuredCzechProducts(recommendations,packages,4,buyerPlan),picks);
+});
