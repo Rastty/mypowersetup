@@ -53,7 +53,7 @@ test("Czech result renders buying plan before system metrics, preserving tracked
   assert.match(app,/renderCaravanBuyerChecklist\(buildCaravanBuyerChecklist\(/);
   assert.match(app,/data-affiliate-click data-source="caravan-plan"/);
   assert.match(app,/attributedAwinUrl\(product, category, "recommended", "caravan-plan"\)/);
-  assert.match(html,/caravan-buyer-checklist\.css\?v=20261121-2/);
+  assert.match(html,/caravan-buyer-checklist\.css\?v=20261121-basket1/);
 });
 
 test("required multi-piece solar quantity follows vetted product rather than assuming one panel", () => {
