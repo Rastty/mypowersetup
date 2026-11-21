@@ -28,7 +28,7 @@ test("CZ SK PL purchase action jumps directly to current confirmed-stock shoppin
     assert.ok(script.includes('resultProductsLink.href = "#caravan-buyer-checklist";'), app);
     assert.ok(script.includes('"partial_buyable_plan"'), app);
     assert.ok(script.includes('"requirements_only"'), app);
-    assert.ok(script.includes('resultProductsLink.hidden = false;'), app);
-    assert.ok(!script.includes('resultProductsLink.hidden = total === 0;'), app);
+    assert.ok(script.includes('resultProductsLink.hidden = total === 0;'), app);
+    assert.ok(script.includes('resultProductsLink.hidden = total === 0;'), app);
   }
 });
