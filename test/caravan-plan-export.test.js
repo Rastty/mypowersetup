@@ -57,7 +57,7 @@ test("save link refuses missing loads, duplicated sizing parameters, other local
 });
 test("save and copy CTA mount on the existing buyer plan, no secondary calculator", () => {
  const script=readFileSync(new URL("../src/caravan-plan-export.js",import.meta.url),"utf8");
- assert.match(script,/data\.caravanSaveSetup/);
+ assert.match(script,/dataset\.caravanSaveSetup/);
  assert.match(script,/new MutationObserver\(refresh\)/);
  assert.match(script,/currentPlanData\(section\)/);
  assert.doesNotMatch(script,/localStorage|sessionStorage/);
