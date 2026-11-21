@@ -52,3 +52,23 @@ test("manual charging design keeps otherwise covered SK basket partial",() => {
  assert.match(html,/data-buying-plan-state="partial"/);
  assert.match(html,/individuálny návrh/);
 });
+
+test("manufacturer LiFePO4 evidence is shown only for an eligible exact-SKU product", () => {
+  const plan={requiredCount:1,rows:[{
+    category:"dc_charger", ready:true, quantity:1,
+    product:{id:"padabo_pl:101357", name:"Orion XS 12/12-50 A",merchant:"padabo_pl",
+      affiliateUrl:"https://affiliate.example/offer",specs:{
+        chargingProfileEvidenceUrl:"https://www.victronenergy.com/media/pg/Orion_XS_12-12-50A_DC-DC_battery_charger/en/general.html"
+      }}
+  }],manualDesign:false};
+  const html=render("pl",plan).html;
+  assert.match(html,/data-manufacturer-charging-proof/);
+  assert.match(html,/Sprawdź profil ładowania LiFePO4/);
+  assert.match(html,/www\.victronenergy\.com/);
+  assert.match(html,/rel="noopener noreferrer"/);
+
+  plan.rows[0].product.specs.chargingProfileEvidenceUrl="https://untrusted.example/fake-manufacturer";
+  assert.doesNotMatch(render("pl",plan).html,/data-manufacturer-charging-proof/);
+  plan.rows[0].ready=false;
+  assert.doesNotMatch(render("pl",plan).html,/data-manufacturer-charging-proof/);
+});
