@@ -128,7 +128,7 @@ test("stock/source safety still applies to exact BlueSolar and market assets sta
  for(const [page,script] of [["index.html","app.js"],["sk/index.html","app-sk.js"],["pl/index.html","app-pl.js"]]){
    const html=await readFile(new URL("../"+page,import.meta.url),"utf8");
    const app=await readFile(new URL("../src/"+script,import.meta.url),"utf8");
-   assert.match(html,/20261121-bms-proof2/);
+   assert.ok(html.includes(page === "index.html" ? "20261121-bms-proof2" : "20261121-superpack-ng1"));
    assert.match(app,/products\.js\?v=20261121-bms-proof2/);
    assert.match(app,/caravan-buyer-checklist\.js\?v=20261121-bluesolar-pv1/);
  }
