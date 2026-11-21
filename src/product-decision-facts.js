@@ -45,7 +45,7 @@ export function czechProductDecisionFacts(product = {}, setup = {}) {
     if (have) facts.push(fact("Kapacita výrobku", amount(have) + " Ah"));
     if (have && need && have >= need) facts.push(fact("Rezerva proti výpočtu", "+" + amount(have - need) + " Ah"));
     if (documentedBatteryContinuousBmsAmps(product))
-      facts.push(fact("Trvalý proud BMS (ověřený výrobce)", amount(documentedBatteryContinuousBmsAmps(product)) + " A"));
+      facts.push(fact("Doporučený trvalý vybíjecí proud (výrobce)", amount(documentedBatteryContinuousBmsAmps(product)) + " A"));
     if (specs.formFactor === "under_seat")
       facts.push(fact("Provedení", "Nízké pod sedadlo; rozměry ověřte"));
   }

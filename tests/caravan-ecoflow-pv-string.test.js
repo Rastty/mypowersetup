@@ -170,8 +170,8 @@ test("Czech/Slovak/Polish buyer UI exposes PV wiring review and manufacturer sou
  for(const [html,app] of [["index.html","app.js"],["sk/index.html","app-sk.js"],["pl/index.html","app-pl.js"]]){
    const page=await readFile(new URL("../"+html,import.meta.url),"utf8");
    const source=await readFile(new URL("../src/"+app,import.meta.url),"utf8");
-   assert.match(page,/20261121-bms-proof2/,html);
-   assert.match(source,/products\.js\?v=20261121-bms-proof2/,app);
+   assert.ok(page.includes(html === "index.html" ? "20261121-bms-proof2" : "20261121-superpack-ng1"),html);
+   assert.ok(source.includes("products.js?v=" + (html === "index.html" ? "20261121-bms-proof2" : "20261121-superpack-ng1")),app);
    assert.match(source,/caravan-buyer-checklist\.js\?v=20261121-bluesolar-pv1/,app);
  }
 });
