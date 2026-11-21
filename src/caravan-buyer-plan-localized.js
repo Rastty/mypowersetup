@@ -1,3 +1,4 @@
+import { caravanBasketPriceMarkup } from "./caravan-basket-pricing.js?v=20261121-1";
 // Shared, translated purchase-plan UI for the existing SK and PL Builders.
 // Catalog eligibility and affiliate-link click guards remain with each Builder.
 const COPY = Object.freeze({
@@ -73,6 +74,7 @@ export function renderLocalizedCaravanBuyerPlan({
     <p class="caravan-buying-plan-note">${complete ? t.fullNote : t.partialNote}</p>
     <ol class="caravan-buying-plan-rows">${rows}</ol>
     ${plan.manualDesign ? `<p class="caravan-buying-plan-manual">${t.manual}</p>` : ""}
+    ${caravanBasketPriceMarkup(plan, locale)}
     <p class="caravan-buying-plan-disclosure">${t.disclaimer}</p></section>`;
   trackEvent?.("caravan_buying_plan_rendered", {
     locale, state: complete ? "complete" : readyCount ? "partial" : "unavailable",
