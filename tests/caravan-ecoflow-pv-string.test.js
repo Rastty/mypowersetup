@@ -104,7 +104,7 @@ test("conservative -20C cold Voc / +85C Isc permits actual 2S2P on 4 EcoFlow pan
  assert.equal(review.quantity,4);
  assert.equal(review.actualWp,700);
  assert.ok(review.coldVocV>56&&review.coldVocV<57);
- assert.ok(review.hotIscA>17&&review.hotIscA<18);
+ assert.equal(review.hotIscA,17);
  assert.equal(review.manufacturerUrl,manufacturerPdf);
  assert.equal(review.coldAmbientC,-20);
  assert.equal(review.hotCellC,85);
