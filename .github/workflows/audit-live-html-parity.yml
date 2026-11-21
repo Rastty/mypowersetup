@@ -61,6 +61,7 @@ on:
       - sk/kalkulacky/solarne-panely/index.html
       - data/products.json
       - data/products-pl.json
+      - data/pl-s400-offers.json
       - src/pl-s400-guide-offers.js
       - pl/poradnik/**
       - pruvodce/**

@@ -15,6 +15,7 @@ const SKUS = Object.freeze([
     path: "/oxe-powerstation-s400-i-panel-sloneczny-sp100w-torba/",
   }),
 ]);
+export const PL_S400_COMPACT_CATALOG_PATH = "/data/pl-s400-offers.json";
 const MAX_AGE_MS = 48 * 60 * 60 * 1000;
 const PL_PRICE = new Intl.NumberFormat("pl-PL", { style: "currency", currency: "PLN" });
 
@@ -78,6 +79,47 @@ export function selectPlS400Comparison(catalog, now = Date.now()) {
   return result;
 }
 
+// Same reviewed SKU selector for the full Builder source, the published tiny
+// editorial view, display and click guards. Never refresh upstream evidence.
+export function projectPlS400Offers(fullCatalog, now = Date.now()) {
+  const source = fullCatalog?.sources?.oxe_pl;
+  const eligible = selectPlS400Comparison(fullCatalog, now);
+  return {
+    schemaVersion: 1, projection: "pl_s400", market: "pl-PL",
+    generatedAt: typeof fullCatalog?.generatedAt === "string" ? fullCatalog.generatedAt : null,
+    sources: { oxe_pl: {
+      status: source?.status === "ok" ? "ok" : "stale",
+      merchant: source?.merchant ?? null,
+      dognetChannel: source?.dognetChannel ?? null,
+      feedUrl: source?.feedUrl ?? null,
+      liveOfferChecks: source?.liveOfferChecks ?? null,
+      liveOfferVerified: source?.liveOfferVerified ?? null,
+    } },
+    products: eligible.length === 2 ? eligible.map(({ product }) => ({
+      id: product.id, name: product.name, brand: product.brand,
+      merchant: product.merchant, category: product.category,
+      available: product.available, staleSource: product.staleSource === true,
+      priceCzk: product.priceCzk, priceCurrency: product.priceCurrency,
+      productUrl: product.productUrl, affiliateUrl: product.affiliateUrl,
+      specs: {
+        capacityWh: product.specs.capacityWh, powerW: product.specs.powerW,
+        solarInputW: product.specs.solarInputW, dcOutputA: product.specs.dcOutputA,
+        pureSine: product.specs.pureSine,
+      },
+    })) : [],
+  };
+}
+
+// An empty, explicit fail-closed view is valid. A nonempty published view must
+// pass the *same* two exact-SKU and 48h checks as the original full catalog.
+export function acceptPlS400OffersSnapshot(snapshot, now = Date.now()) {
+  if (snapshot?.schemaVersion !== 1 || snapshot.projection !== "pl_s400"
+    || snapshot.market !== "pl-PL" || !Array.isArray(snapshot.products)
+    || ![0, 2].includes(snapshot.products.length)
+    || !snapshot.sources?.oxe_pl) return false;
+  return snapshot.products.length === 0 || selectPlS400Comparison(snapshot, now).length === 2;
+}
+
 function addText(parent, tag, value, className) {
   const element = document.createElement(tag);
   element.textContent = value;
@@ -134,11 +176,12 @@ export async function refreshPlS400Comparison(root, fetchImpl = fetch, now = Dat
   const clock = () => typeof now === "function" ? now() : now;
   mountPlS400Comparison(root, null, clock());
   try {
-    const response = await fetchImpl("/data/products-pl.json", {
+    const response = await fetchImpl(PL_S400_COMPACT_CATALOG_PATH, {
       cache: "no-store", redirect: "error", signal: AbortSignal.timeout(12_000),
     });
     if (!response?.ok || !/^application\/json\b/i.test(response.headers?.get?.("content-type") || "")) return null;
     const catalog = await response.json();
+    if (!acceptPlS400OffersSnapshot(catalog, clock())) return null;
     mountPlS400Comparison(root, catalog, clock());
     return selectPlS400Comparison(catalog, clock()).length === 2 ? catalog : null;
   } catch { return null; }

@@ -26,6 +26,8 @@ on:
       - "src/pl-hu-solar-calculator-offers.js"
       - "scripts/sync-products-ampul-cz.mjs"
       - "scripts/sync-products-pl.mjs"
+      - "src/pl-s400-guide-offers.js"
+      - "scripts/check-pl-s400-offers.mjs"
       - "scripts/sync-products-sk.mjs"
       - "scripts/sync-products-hu.mjs"
       - "scripts/sync-products-pt.mjs"
@@ -128,6 +130,8 @@ jobs:
         env:
           PADABO_PL_FEED_URL: ${{ secrets.PADABO_PL_FEED_URL }}
           AMPUL_PL_FEED_URL: ${{ secrets.AMPUL_PL_FEED_URL }}
+      - name: Verify exact-source PL S400 buyer offer view
+        run: node scripts/check-pl-s400-offers.mjs
       - run: node scripts/sync-products-hu.mjs
         env:
           PADABO_HU_FEED_URL: ${{ secrets.PADABO_HU_FEED_URL }}
@@ -149,7 +153,7 @@ jobs:
       - run: npm run check:commercial:opportunities
       - name: Commit refreshed catalog
         run: |
-          FILES="data/products.json data/calculator-offers-cz.json data/dcdc-guide-offers-cz.json data/inverter-calculator-offers-cz.json data/solar-calculator-offers-cz.json data/products-ampul-cz.json data/products-sk.json data/solar-calculator-offers-sk.json data/products-pl.json data/solar-calculator-offers-pl.json data/products-hu.json data/solar-calculator-offers-hu.json data/products-pt.json data/cz-dcdc-coverage.json data/commercial-opportunity-report.json data/owner-action-queue.json"
+          FILES="data/products.json data/calculator-offers-cz.json data/dcdc-guide-offers-cz.json data/inverter-calculator-offers-cz.json data/solar-calculator-offers-cz.json data/products-ampul-cz.json data/products-sk.json data/solar-calculator-offers-sk.json data/products-pl.json data/pl-s400-offers.json data/solar-calculator-offers-pl.json data/products-hu.json data/solar-calculator-offers-hu.json data/products-pt.json data/cz-dcdc-coverage.json data/commercial-opportunity-report.json data/owner-action-queue.json"
           if [[ -z "$(git status --porcelain -- $FILES)" ]]; then exit 0; fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"

@@ -6,6 +6,7 @@ import { syncPadaboMarket } from "./lib/sync-padabo.mjs";
 import { syncOxeMarket } from "./lib/sync-oxe.mjs";
 import { disableStaleProducts } from "./lib/stale-products.mjs";
 import { projectMarketSolarCalculatorOffers } from "../src/pl-hu-solar-calculator-offers.js";
+import { projectPlS400Offers } from "../src/pl-s400-guide-offers.js";
 
 const endpoint = "https://allpowers.com.pl/products.json?limit=250";
 const outputPath = "data/products-pl.json";
@@ -112,4 +113,6 @@ const nextCatalog = {
   products: products.map((product) => ({ ...product, description: product.description.slice(0, 500) }))
 };
 await writeFile(outputPath, `${JSON.stringify(nextCatalog, null, 2)}\n`);
+await writeFile("data/pl-s400-offers.json",
+  JSON.stringify(projectPlS400Offers(nextCatalog, Date.parse(nextCatalog.generatedAt))) + "\n");
 await writeFile("data/solar-calculator-offers-pl.json", JSON.stringify(projectMarketSolarCalculatorOffers("pl", nextCatalog)) + "\n");

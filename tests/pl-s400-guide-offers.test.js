@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 import {
   plS400CatalogFresh, eligiblePlS400, selectPlS400Comparison,
   mountPlS400Comparison, refreshPlS400Comparison, trackPlS400Click,
+  projectPlS400Offers, acceptPlS400OffersSnapshot, PL_S400_COMPACT_CATALOG_PATH,
 } from "../src/pl-s400-guide-offers.js";
 
 const NOW = Date.parse("2026-11-20T19:00:00Z");
@@ -94,6 +95,50 @@ test("reject substituted specifications, wrong currency, manipulated URLs and du
   assert.equal(eligiblePlS400(swapped), false);
 });
 
+test("compact S400 view reuses the full source's approved pair and suppresses invalid offers", () => {
+  const full = catalog();
+  const tiny = projectPlS400Offers(full, NOW);
+  assert.equal(tiny.schemaVersion, 1);
+  assert.equal(tiny.projection, "pl_s400");
+  assert.equal(tiny.market, "pl-PL");
+  assert.equal(tiny.generatedAt, full.generatedAt);
+  assert.deepEqual(tiny.products.map(p => p.id), ["oxe_pl:OXE8817", "oxe_pl:OXE8821"]);
+  assert.equal(tiny.sources.oxe_pl.dognetChannel, "2mRVFbhJ");
+  assert.equal(acceptPlS400OffersSnapshot(tiny, NOW), true);
+  assert.equal(selectPlS400Comparison(tiny, NOW).length, 2);
+  assert.deepEqual(tiny.products.map(p => p.affiliateUrl), full.products.map(p => p.affiliateUrl));
+  assert.ok(Buffer.byteLength(JSON.stringify(tiny), "utf8") < 4000);
+  assert.equal(tiny.products[0].description, undefined);
+  assert.equal(acceptPlS400OffersSnapshot({ ...tiny, projection: "other" }, NOW), false);
+  assert.equal(acceptPlS400OffersSnapshot({ ...tiny, products: [tiny.products[0]] }, NOW), false);
+  assert.equal(acceptPlS400OffersSnapshot({ ...tiny, market: "hu-HU" }, NOW), false);
+
+  for (const mutated of [
+    catalog([offer(0)]),
+    catalog([offer(0), { ...offer(1), available: false }]),
+    catalog([offer(0), { ...offer(1), affiliateUrl: "https://evil.example/" }]),
+    { ...catalog(), sources: { oxe_pl: { ...full.sources.oxe_pl, status: "stale" } } },
+    { ...catalog(), generatedAt: "2026-11-17T00:00:00.000Z" },
+  ]) {
+    const projected = projectPlS400Offers(mutated, NOW);
+    assert.equal(projected.products.length, 0);
+    assert.equal(acceptPlS400OffersSnapshot(projected, NOW), true);
+    assert.equal(selectPlS400Comparison(projected, NOW).length, 0);
+  }
+});
+
+test("committed 4KB S400 view equals full source projection without renewing generatedAt", async () => {
+  const full = JSON.parse(await readFile("data/products-pl.json", "utf8"));
+  const text = await readFile("data/pl-s400-offers.json", "utf8");
+  const tiny = JSON.parse(text);
+  const when = Date.parse(full.generatedAt);
+  assert.ok(Buffer.byteLength(text) < 4000);
+  assert.equal(tiny.generatedAt, full.generatedAt);
+  assert.deepEqual(tiny, projectPlS400Offers(full, when));
+  assert.equal(acceptPlS400OffersSnapshot(tiny, when), true);
+  assert.equal(selectPlS400Comparison(tiny, when).length, 2);
+});
+
 class FakeElement {
   constructor(tag) { this.tagName = tag; this.children = []; this.dataset = {}; this.listeners = {}; this.hidden = false; }
   append(child) { child.parent = this; this.children.push(child); }
@@ -160,10 +205,10 @@ test("failed, non-JSON and stale network refreshes hide previously rendered buye
     assert.equal(bad, null);
     assert.equal(root.dataset.liveOffers, "0");
     const good = await refreshPlS400Comparison(root, async (url, options) => {
-      assert.equal(url, "/data/products-pl.json");
+      assert.equal(url, PL_S400_COMPACT_CATALOG_PATH);
       assert.equal(options.cache, "no-store");
       assert.equal(options.redirect, "error");
-      return { ok: true, headers: { get: () => "application/json" }, json: async () => catalog() };
+      return { ok: true, headers: { get: () => "application/json" }, json: async () => projectPlS400Offers(catalog(), NOW) };
     }, NOW);
     assert.ok(good);
     assert.equal(root.dataset.liveOffers, "2");
