@@ -32,8 +32,8 @@ test("SK and PL show honestly partial component baskets with locally tracked mer
     assert.equal((html.match(/data-affiliate-click/g)||[]).length,2);
     assert.match(html, /data-source="caravan-plan"/);
     assert.match(html,/rel="sponsored noopener"/);
-    assert.match(html,/data-buying-category="controller" class="is-missing"/);
-    assert.match(html,/data-buying-category="inverter" class="is-missing"/);
+    assert.match(html,/data-buying-category="controller" data-shopping-quantity="0" class="is-missing"/);
+    assert.match(html,/data-buying-category="inverter" data-shopping-quantity="0" class="is-missing"/);
     assert.ok(event && event.props.locale===locale && event.props.verified_categories===2);
     assert.match(html,locale==="sk"?/Toto NIE JE kompletná zostava/:/To NIE JEST kompletny zestaw/);
   }
