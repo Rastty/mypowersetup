@@ -2,6 +2,7 @@ import { calculatePowerStationProfile } from "./power-station.js";
 import { batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
 import { isPowerQueenRegionRestrictedOffer } from "./powerqueen-expansion.js?v=20261117-pq-region1";
 import { addVerifiedVictronChargingProfiles } from "./victron-orion-charging-profiles.js?v=20261121-1";
+import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-charging-profiles.js?v=20261121-1";
 
 const MERCHANTS = {
   reslshop: {
@@ -492,7 +493,7 @@ export function refreshCatalogProduct(product) {
   return {
     ...product,
     available: isConfirmedDiscontinuedProduct(product) ? false : product.available,
-    specs: addVerifiedVictronChargingProfiles(product, specs),
+    specs: addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, specs)),
     category: product.verifiedAt && product.category && product.category !== "other"
       ? product.category
       : classifyProduct({ name: product.name, categoryPath: product.categoryPath, specs })
@@ -541,6 +542,10 @@ function scoreProduct(product, setup) {
   if (product.category === "controller") {
     if (!/\bmppt\b/i.test(product.name)) return null;
     if (!specs.currentA || specs.currentA < setup.controllerAmps) return null;
+    // An explicitly lead-only charge controller must not be recommended for
+    // a LiFePO4 battery. Unknown chemistry remains an unverified specification.
+    if (specs.chargingBatteryTypes?.length > 0
+      && !specs.chargingBatteryTypes.includes(setup.batteryType)) return null;
     if (Array.isArray(specs.systemVoltagesV)
       && specs.systemVoltagesV.length > 0
       && !specs.systemVoltagesV.includes(setup.systemVoltage)) return null;
