@@ -1,3 +1,4 @@
+import { documentedBatteryContinuousBmsAmps } from "./caravan-bms-buyer-evidence.js?v=20261121-bms-proof2";
 /**
  * Buyer-facing facts computed only from published product specifications and
  * calculator output. Passing initial matching does not verify installation.
@@ -43,8 +44,8 @@ export function czechProductDecisionFacts(product = {}, setup = {}) {
     const have = positive(specs.capacityAh), need = positive(setup.batteryAh);
     if (have) facts.push(fact("Kapacita výrobku", amount(have) + " Ah"));
     if (have && need && have >= need) facts.push(fact("Rezerva proti výpočtu", "+" + amount(have - need) + " Ah"));
-    if (positive(specs.bmsContinuousCurrentA))
-      facts.push(fact("Trvalý proud BMS", amount(specs.bmsContinuousCurrentA) + " A"));
+    if (documentedBatteryContinuousBmsAmps(product))
+      facts.push(fact("Trvalý proud BMS (ověřený výrobce)", amount(documentedBatteryContinuousBmsAmps(product)) + " A"));
     if (specs.formFactor === "under_seat")
       facts.push(fact("Provedení", "Nízké pod sedadlo; rozměry ověřte"));
   }
@@ -82,7 +83,7 @@ export function czechPackageFitSummary(product = {}, setup = {}) {
   const specs = product.specs || {};
   if (product.merchant !== "vselektro") return null;
   if (product.category === "battery" && positive(specs.capacityAh)) {
-    const bms = positive(specs.bmsContinuousCurrentA);
+    const bms = documentedBatteryContinuousBmsAmps(product);
     return amount(specs.capacityAh) + " Ah" + (bms ? " · BMS " + amount(bms) + " A" : "")
       + (specs.formFactor === "under_seat" ? " · nízké pod sedadlo" : "");
   }

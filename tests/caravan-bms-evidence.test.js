@@ -36,27 +36,27 @@ test("known continuous BMS data, title-only BMS marketing and unknown evidence a
   const named = battery("named", { name: "LiFePO4 12V 200Ah battery built-in 200A BMS" });
   const unknown = battery("unknown", { specs: { voltageV:12,capacityAh:200,batteryType:"lifepo4",currentA:2000 } });
   assert.equal(minimumBatteryDischargeAmps(setup),128);
-  assert.equal(documentedBatteryContinuousBmsAmps(documented),200);
+  assert.equal(documentedBatteryContinuousBmsAmps(documented),null);
   assert.equal(documentedBatteryContinuousBmsAmps({ ...documented, verifiedAt:null }),null);
   assert.equal(documentedBatteryContinuousBmsAmps({ ...documented, specs: { ...documented.specs,bmsContinuousCurrentA:"200" } }),null);
-  assert.equal(batteryDischargeEvidenceTier(documented,setup),2);
+  assert.equal(batteryDischargeEvidenceTier(documented,setup),0);
   assert.equal(batteryDischargeEvidenceTier(named,setup),1);
   assert.equal(batteryDischargeEvidenceTier(unknown,setup),0);
-  assert.match(batteryDischargeBuyerCheck(documented,setup,"cs"),/trvalý limit BMS 200 A/);
+  assert.match(batteryDischargeBuyerCheck(documented,setup,"cs"),/není doložen/);
   assert.match(batteryDischargeBuyerCheck(named,setup,"sk"),/trvalé vybíjanie nie je doložené/);
   assert.match(batteryDischargeBuyerCheck(unknown,setup,"pl"),/Brak potwierdzonego/);
   assert.equal(batteryDischargeBuyerCheck(documented,{...setup,inverterWatts:0},"cs"),null);
 });
 
-test("all reviewed exact-matching continuous BMS batteries rank before title-only and unknown, without new merchant approval", () => {
+test("unreviewed numeric feed ratings cannot outrank title-only BMS evidence", () => {
   const documented = battery("documented", { specs: { voltageV:12,capacityAh:200,batteryType:"lifepo4",bmsContinuousCurrentA:200 } });
   const named = battery("named", { name: "LiFePO4 12V 200Ah battery built-in 200A BMS" });
   const unknown = battery("unknown");
   const source={solarimport:{status:"ok"}};
   const selected=recommendProducts([unknown,named,documented],setup,3,source).battery;
-  assert.deepEqual(selected.map(item=>item.product.id),[documented.id,named.id,unknown.id]);
+  assert.equal(selected[0].product.id,named.id);
   assert.ok(selected[0].checks.some(check=>/BMS/.test(check)));
-  assert.ok(selected[1].checks.some(check=>/trvalý výboj není doložen/.test(check)));
+  assert.ok(selected[1].checks.some(check=>/není doložen/.test(check)));
   assert.ok(selected[2].checks.some(check=>/není doložen/.test(check)));
   assert.deepEqual(recommendProducts([unknown],setup,3,{solarimport:{status:"stale"}}).battery,[]);
 });
@@ -70,6 +70,8 @@ test("under-rated advertised and explicit continuous discharge are rejected inde
   assert.equal(batteryContinuousLimitNotBelowRequirement(tooSmallSpec,setup),false);
   assert.deepEqual(recommendProducts([tooSmallName,tooSmallSpec],setup,10,{solarimport:{status:"ok"}}).battery,[]);
   assert.equal(batteryDischargeEvidenceTier(inflatedGeneric,setup),0);
+  assert.equal(documentedBatteryContinuousBmsAmps({...tooSmallSpec,verifiedAt:"2026-11-21"}),null);
+  assert.equal(documentedBatteryContinuousBmsAmps({...tooSmallSpec,id:"__proto__"}),null);
   assert.equal(batteryBmsLoadWithinAdvertisedLimit(inflatedGeneric,setup),true);
   assert.equal(batteryBmsLoadWithinAdvertisedLimit(tooSmallName,{...setup,inverterWatts:0}),true);
 });
@@ -96,8 +98,8 @@ test("CZ SK PL buying plans expose real continuous BMS current requirement befor
   for(const [html,entry] of [["index.html","app.js"],["sk/index.html","app-sk.js"],["pl/index.html","app-pl.js"]]) {
     const page=await readFile(new URL("../"+html,import.meta.url),"utf8");
     const app=await readFile(new URL("../src/"+entry,import.meta.url),"utf8");
-    assert.match(page,/20261121-bluesolar-pv1/,html);
+    assert.match(page,/20261121-bms-proof2/,html);
     assert.match(app,/caravan-buyer-checklist\.js\?v=20261121-bluesolar-pv1/,entry);
-    assert.match(app,/products\.js\?v=20261121-bluesolar-pv1/,entry);
+    assert.match(app,/products\.js\?v=20261121-bms-proof2/,entry);
   }
 });

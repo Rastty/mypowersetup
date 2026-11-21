@@ -18,16 +18,15 @@ const charger=(amps,isolated)=>({merchant:"vselektro",category:"dc_charger",spec
   currentA:amps,chargingVoltagesV:[12],chargingInputVoltagesV:[12],isolated,
 }});
 
-test("battery displays capacity vs calculated Ah and BMS, not fabricated usable energy",()=>{
+test("battery displays Ah but suppresses unreviewed feed BMS as manufacturer evidence",()=>{
   const facts=czechProductDecisionFacts(battery(200,{formFactor:"under_seat"}),setup);
   assert.deepEqual(facts,[
     {label:"Kapacita výrobku",value:"200 Ah"},
     {label:"Rezerva proti výpočtu",value:"+60 Ah"},
-    {label:"Trvalý proud BMS",value:"200 A"},
     {label:"Provedení",value:"Nízké pod sedadlo; rozměry ověřte"},
   ]);
   assert.match(czechProductRequirement("battery",setup),/140 Ah při 12 V/);
-  assert.match(czechPackageFitSummary(battery(200,{formFactor:"under_seat"}),setup),/BMS 200 A/);
+  assert.doesNotMatch(czechPackageFitSummary(battery(200,{formFactor:"under_seat"}),setup),/BMS 200 A/);
 });
 
 test("MPPT distinguishes current from battery-specific PV rating and requires cold-weather Voc check",()=>{
@@ -82,5 +81,5 @@ test("CZ Builder renders the explanation in package and comparison but preserves
   assert.match(css,/\.product-requirement/);
   assert.match(css,/\.package-product-decision/);
   assert.match(html,/styles\.css\?v=20261119-voltage-dc-load1/);
-  assert.match(html,/app\.js\?v=20261121-bluesolar-pv1/);
+  assert.match(html,/app\.js\?v=20261121-bms-proof2/);
 });
