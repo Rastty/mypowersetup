@@ -413,6 +413,24 @@ export function hasCurrentRecommendationSource(product, sources = null) {
   return !source || source.status === "ok";
 }
 
+// Prices in product.priceCzk are merchant-local amounts (CZK/EUR/PLN/HUF).
+// Never break equal technical-score ties by subtracting amounts in different
+// currencies: e.g. 90 EUR must not be treated as cheaper than 300 PLN.
+// Same-currency positive prices can still disambiguate equally suitable SKUs.
+export function compareRecommendationCandidates(a, b) {
+  const byTechnicalFit = Number(b.score) - Number(a.score);
+  if (byTechnicalFit) return byTechnicalFit;
+  const left = a.product || {};
+  const right = b.product || {};
+  if (!left.priceCurrency || left.priceCurrency !== right.priceCurrency) return 0;
+  const leftPrice = Number(left.priceCzk);
+  const rightPrice = Number(right.priceCzk);
+  if (!(leftPrice > 0 && rightPrice > 0 && Number.isFinite(leftPrice) && Number.isFinite(rightPrice))) return 0;
+  const leftQty = Number.isSafeInteger(left.recommendedQuantity) && left.recommendedQuantity > 0 ? left.recommendedQuantity : 1;
+  const rightQty = Number.isSafeInteger(right.recommendedQuantity) && right.recommendedQuantity > 0 ? right.recommendedQuantity : 1;
+  return leftPrice * leftQty - rightPrice * rightQty;
+}
+
 export function recommendProducts(products, setup, limitPerCategory = 3, sources = null) {
   const candidates = products
     .filter((product) => hasCurrentRecommendationSource(product, sources))
@@ -424,7 +442,7 @@ export function recommendProducts(products, setup, limitPerCategory = 3, sources
   return ["battery", "solar_panel", "inverter", "controller", "dc_charger", "shore_charger", "power_station"].reduce((result, category) => {
     const ranked = candidates
       .filter((candidate) => candidate.product.category === category)
-      .sort((a, b) => b.score - a.score || a.product.priceCzk - b.product.priceCzk);
+      .sort(compareRecommendationCandidates);
     result[category] = uniqueProductPages(ranked).slice(0, limitPerCategory);
     return result;
   }, {});
