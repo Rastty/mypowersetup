@@ -582,7 +582,7 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
   assert.ok(html.includes('"url": "https://mypowersetup.com/pl/o-projekcie/"'));
   assert.doesNotMatch(html, /placeholder="napr\./);
   assert.ok(html.includes('src="/src/app-pl.js?v=20261121-orion-sku1"'));
-  assert.ok(app.includes('products.js?v=20261107-source-gate1'));
+  assert.ok(app.includes('products.js?v=20261121-orion-sku1'));
   assert.match(html, /Jakiego akumulatora i paneli naprawdę potrzebujesz/);
   assert.match(html, /Zanim zaczniesz kupować/);
   assert.doesNotMatch(html, /sprievodca|sukromie|Vypočítať|Koľko batérie|slovenské návody/);
