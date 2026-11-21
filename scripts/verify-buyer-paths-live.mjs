@@ -97,7 +97,7 @@ export function checkPublicHtml(html, local, { path, kind }) {
       fail("PUBLIC_EDITORIAL_CATEGORY_DRIFT:" + path);
   }
   if (kind === "pl_s400_guide") {
-    const paths = source => [...source.matchAll(/<script\\b[^>]*\\bsrc=["'](\\/src\\/pl-s400-guide-offers\\.js\\?v=[^"']+)["'][^>]*>/gi)].map(match => match[1]);
+    const paths = source => [...source.matchAll(/<script[^>]* src=["']([^"']+)["'][^>]*>/gi)].map(match => match[1]).filter(value => value.startsWith("/src/pl-s400-guide-offers.js?v="));
     const expected = paths(local), observed = paths(html);
     if (expected.length !== 1 || observed.length !== 1 || observed[0] !== expected[0]
       || !html.includes("data-pl-s400-offers")
