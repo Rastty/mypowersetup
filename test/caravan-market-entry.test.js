@@ -10,7 +10,7 @@ for (const locale of ["sk", "pl"]) {
     assert.deepEqual(ids, getUsageProfiles(locale).map(({ id }) => id));
     assert.match(html, /caravan-entry\.css\?v=20261121-2/);
     assert.match(html, /caravan-entry\.js\?v=20261121-2/);
-    assert.match(html, new RegExp(`/src/app-${locale}\\.js\\?v=20261121-caravan-plan1`));
+    assert.match(html, new RegExp(`/src/app-${locale}\\.js\\?v=20261121-quantity1`));
     assert.ok(html.indexOf(`/src/app-${locale}.js`) < html.indexOf("/src/caravan-entry.js"),
       "canonical buyer flow must mount before hero shortcuts");
   });
