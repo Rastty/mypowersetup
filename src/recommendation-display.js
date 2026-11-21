@@ -1,13 +1,23 @@
 // Product cards should agree with the default shopping package. Keep the
 // technical ranking intact for package selection; only change what is shown
 // first in the optional, per-product comparison.
-export function visibleRecommendationsForPackages(rankedRecommendations, packages, limit = 3) {
+export function visibleRecommendationsForPackages(rankedRecommendations, packages, limit = 3, buyerPlan = null) {
   const recommendedPackage = packages?.find(({ id }) => id === "recommended");
   const selectedIds = new Map(
     (recommendedPackage?.items || [])
       .filter(({ category, product }) => category && product?.id)
       .map(({ category, product }) => [category, product.id])
   );
+  // If the buyer has an actually confirmed-stock checkout choice, that SKU
+  // takes precedence over a technically compatible but unbuyable package item.
+  // The comparison must show the same linked product the shopping plan sells.
+  for (const row of buyerPlan?.rows || []) {
+    if (row.ready && row.category && row.product?.id) {
+      selectedIds.set(row.category, row.product.id);
+    } else if (buyerPlan) {
+      selectedIds.delete(row.category);
+    }
+  }
 
   return Object.fromEntries(Object.entries(rankedRecommendations || {}).map(([category, candidates]) => {
     const items = Array.isArray(candidates) ? candidates : [];
