@@ -1,6 +1,7 @@
 import { isRecommendationEligible } from "./recommendation-coverage.js";
 import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1";
 import { caravanComponentRequirement } from "./caravan-component-requirements.js?v=20261121-bms-evidence1";
+import { caravanPvNominalReview, controllerNominalPvWatts } from "./caravan-pv-array-review.js?v=20261121-actual-pv1";
 
 // A technically compatible model is not a purchase-ready SKU without its
 // actual approved product click URL. Keep the technical result, but mark the
@@ -51,11 +52,38 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
       requirement: caravanComponentRequirement(setup, category, locale),
     };
   });
+  // Check the actual 1–4 panel quantity selected for the basket, not just
+  // the calculator target Wp. A rated MPPT below installed Wp requires
+  // manual manufacturer overpaneling review; it is not purchase-ready as a
+  // complete automatically selected package.
+  const panelRow = rows.find((row) => row.category === "solar_panel" && row.ready);
+  const controllerIndex = rows.findIndex((row) => row.category === "controller" && row.ready);
+  if (panelRow && controllerIndex >= 0 && setup?.systemVoltage) {
+    const selectedController = rows[controllerIndex];
+    const review = caravanPvNominalReview(panelRow, selectedController.product, setup.systemVoltage);
+    if (review.needsManualReview) {
+      const alternatives = (recommendations.controller || []).filter((candidate) =>
+        isRecommendationEligible(candidate) && candidate.product?.available === true
+        && hasBuyableProductLink(candidate.product)
+        && !caravanPvNominalReview(panelRow, candidate.product, setup.systemVoltage).needsManualReview);
+      // Prefer a manufacturer-rated match; an undocumented PV power rating
+      // remains a component candidate but never gains proof it does not have.
+      const known = alternatives.filter(({ product }) =>
+        controllerNominalPvWatts(product, setup.systemVoltage) !== null);
+      const replacement = selectRecommendedCategoryCandidate({controller: known.length ? known : alternatives}, "controller");
+      rows[controllerIndex] = replacement
+        ? {...selectedController, product: replacement.product, ready: true, missingReason: null}
+        : {...selectedController, product: null, ready: false, quantity: 1,
+          missingReason: "pv_nominal_review", installedPvWp: review.actualWp, nominalPvWp: review.nominalWp};
+    }
+  }
+
   const available = rows.filter((row) => row.ready).length;
   const manualDesign = Boolean(coverage.manualDesignCharging?.length);
   const complete = rows.length > 0 && available === rows.length && !manualDesign;
   return {
     rows,
+    systemVoltage: setup?.systemVoltage ?? null,
     readyCount: available,
     requiredCount: rows.length,
     complete,
