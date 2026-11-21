@@ -2,7 +2,7 @@ import { calculatePowerStationProfile } from "./power-station.js";
 import { batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
 import { isPowerQueenRegionRestrictedOffer } from "./powerqueen-expansion.js?v=20261117-pq-region1";
 import { addVerifiedVictronChargingProfiles } from "./victron-orion-charging-profiles.js?v=20261121-1";
-import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-charging-profiles.js?v=20261121-1";
+import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-charging-profiles.js?v=20261121-padabo1";
 
 const MERCHANTS = {
   reslshop: {
