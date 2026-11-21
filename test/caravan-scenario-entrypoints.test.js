@@ -14,10 +14,12 @@ test("CZ caravan hero shortcuts map one-to-one to supported editable usage profi
 });
 
 test("hero shortcut goes through editable profile selection, not direct calculation", () => {
-  const app = readFileSync(new URL("../src/app.js", import.meta.url), "utf8");
-  const handler = app.slice(app.indexOf("function bindCaravanEntry()"), app.indexOf("function bindNavigation()"));
-  assert.match(handler, /showStep\(2\)/);
-  assert.match(handler, /preset\.click\(\)/);
+  const handler = readFileSync(new URL("../src/caravan-entry.js", import.meta.url), "utf8");
+  assert.match(handler, /next\.click\(\)/);
+  assert.match(handler, /profile\.click\(\)/);
   assert.doesNotMatch(handler, /calculateSetup|renderProductRecommendations|handleSubmit/);
-  assert.match(app, /bindCaravanEntry\(\)/);
+  assert.match(handler, /reset\.click\(\)/);
+  const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+  assert.match(html, /caravan-entry\.js\?v=20261121-1/);
+  assert.match(html, /caravan-entry\.css\?v=20261121-1/);
 });
