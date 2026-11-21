@@ -55,3 +55,5 @@
 .caravan-store-groups > small { display: block; }
 
 .caravan-store-groups li .caravan-store-parts { flex-basis: 100%; color: #536b59; line-height: 1.4; }
+
+.caravan-item-requirement { display: block; margin-top: 6px; color: #315b48; font-size: 12px; font-weight: 700; line-height: 1.45; }
