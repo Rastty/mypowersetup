@@ -51,7 +51,7 @@ export async function auditCaravanEntryReadback({ localHtml, liveHtml, readLocal
   if (JSON.stringify(localIds) !== JSON.stringify(expectedIds)) failures.push("CZ_CARAVAN_LOCAL_SCENARIOS_INVALID");
   if (JSON.stringify(liveIds) !== JSON.stringify(localIds)) failures.push("CZ_CARAVAN_SCENARIOS_DRIFT");
   const assets = [
-    "/src/caravan-entry.js?v=20261121-1",
+    "/src/caravan-entry.js?v=20261121-2",
     "/caravan-entry.css?v=20261121-2",
   ];
   for (const route of assets) {
