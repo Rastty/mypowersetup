@@ -527,7 +527,7 @@ function renderProductRecommendations(result) {
   const coverage = assessRecommendationCoverage(recommendations, result, "pl");
   renderLocalizedCaravanBuyerPlan({
     target: document.querySelector("#caravan-buyer-checklist"),
-    plan: buildCaravanBuyerChecklist({ coverage, packages, recommendations, setup: result, locale: "pl" }),
+    plan: buildCaravanBuyerChecklist({ coverage, packages, recommendations: rankedRecommendations, setup: result, locale: "pl" }),
     locale: "pl",
     purchaseUrl: (product, category) => attributedAwinUrl(product, category, "recommended", "caravan-plan"),
     purchaseCta: merchantPurchaseCta,
