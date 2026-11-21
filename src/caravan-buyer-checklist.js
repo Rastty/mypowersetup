@@ -1,6 +1,19 @@
 import { isRecommendationEligible } from "./recommendation-coverage.js";
 import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1";
 
+// A technically compatible model is not a purchase-ready SKU without its
+// actual approved product click URL. Keep the technical result, but mark the
+// buying-plan category missing rather than render a dead checkout action.
+function hasBuyableProductLink(product) {
+  if (!product?.id || !product?.merchant || typeof product.affiliateUrl !== "string") return false;
+  try {
+    const uri = new URL(product.affiliateUrl);
+    return uri.protocol === "https:" && Boolean(uri.hostname) && uri.pathname !== "/";
+  } catch {
+    return false;
+  }
+}
+
 // The real buyer checklist is based only on existing technically vetted and
 // currently eligible recommendations. It never invents a missing product.
 export function buildCaravanBuyerChecklist({ coverage, packages = [], recommendations = {} } = {}) {
@@ -11,14 +24,15 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
     .map(({ category, product }) => [category, product]));
   const rows = coverage.required.map((category) => {
     const packageProduct = packageByCategory.get(category);
-    // Match the canonical recommended package selection even if one required
-    // category has no eligible SKU and full-package generation returns [].
-    // Existing vetted package choice wins only if it is still eligible;
-    // otherwise recalculate a safe category-specific fallback.
-    const candidate = selectRecommendedCategoryCandidate(recommendations, category);
-    const packageStillEligible = packageProduct && (recommendations[category] || []).some((item) =>
-      item?.product?.id === packageProduct.id && isRecommendationEligible(item));
-    const product = packageStillEligible ? packageProduct : candidate?.product || null;
+    const availableOffers = (recommendations[category] || []).filter((item) =>
+      isRecommendationEligible(item) && hasBuyableProductLink(item.product));
+    // Reuse the canonical best-value choice but only among actual purchasable
+    // links; an unlinked technical recommendation must not block a valid SKU.
+    const packageMatch = availableOffers.find((item) =>
+      item.product.id === packageProduct?.id);
+    const candidate = packageMatch || selectRecommendedCategoryCandidate(
+      { [category]: availableOffers }, category);
+    const product = candidate?.product || null;
     const quantity = product && Number.isSafeInteger(product.recommendedQuantity) && product.recommendedQuantity > 0
       ? product.recommendedQuantity : 1;
     return { category, product, ready: Boolean(product), quantity };
