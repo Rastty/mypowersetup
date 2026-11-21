@@ -1,4 +1,5 @@
 import { caravanPvNominalReview } from "./caravan-pv-array-review.js?v=20261121-actual-pv1";
+import { reviewCaravanPvString } from "./caravan-pv-string-review.js?v=20261121-ecoflow-pv1";
 
 // The main buyer checklist is the source of truth for a purchasable caravan.
 // The three package alternatives must not reintroduce unknown-stock products
@@ -38,6 +39,12 @@ export function purchaseReadyCaravanPackages(packages, buyerPlan) {
     if (panels && controller && caravanPvNominalReview(
       panels, controller.product, buyerPlan.systemVoltage
     ).needsManualReview) return false;
+    // A valid manufacturer-reviewed panel paired with unknown/inadequate
+    // Victron electrical limits is NOT a complete alternative package.
+    if (panels && controller) {
+      const electrical = reviewCaravanPvString(panels, controller.product, buyerPlan.systemVoltage);
+      if (electrical && electrical.status !== "within_reviewed_limits") return false;
+    }
     return categories.size === required.size;
   });
 }
