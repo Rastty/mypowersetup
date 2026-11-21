@@ -1,3 +1,5 @@
+import { mergeExactPvManufacturerSpecs } from "./approved-pv-manufacturer-proof.js?v=20261121-bluesolar-pv1";
+
 // Manufacturer document: EcoFlow 175 W rigid TOPCon EF-SG-M175-01.
 // This is electrical model evidence ONLY, not availability, checkout,
 // rooftop mounting, wiring, cable sizing, or final installation approval.
@@ -32,29 +34,6 @@ const SPECS = Object.freeze({
   pvElectricalEvidenceUrl:MANUFACTURER_PDF,
 });
 
-function exactAffiliateProduct(product, match) {
-  if (!match || product?.merchant !== match.merchant
-    || product?.category !== "solar_panel"
-    || product.name !== match.name
-    || product.priceCurrency !== match.currency
-    || product.productUrl !== match.url) return false;
-  try {
-    const url=new URL(product.affiliateUrl);
-    return url.origin==="https://ehub.cz"
-      && url.pathname==="/system/scripts/click.php"
-      && !url.username && !url.password && !url.hash
-      && url.searchParams.size===3
-      && ["a_aid","a_bid","desturl"].every(key=>url.searchParams.getAll(key).length===1)
-      && url.searchParams.get("a_aid")==="f34c86c8"
-      && url.searchParams.get("a_bid")===match.bid
-      && url.searchParams.get("desturl")===match.url;
-  } catch { return false; }
-}
-
 export function addVerifiedEcoFlowRigid175PvSpecs(product, specs) {
-  const match=VERIFIED[product?.id];
-  if (!exactAffiliateProduct(product,match) || !specs || specs.powerW!==175
-    || Object.entries(SPECS).some(([key, expected]) =>
-      specs[key] != null && specs[key]!==expected)) return specs;
-  return {...specs,...SPECS};
+  return mergeExactPvManufacturerSpecs(product,specs,VERIFIED[product?.id],SPECS);
 }
