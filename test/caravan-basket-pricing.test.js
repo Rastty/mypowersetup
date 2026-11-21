@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { caravanBasketPriceSummary, caravanLinePrice, caravanBasketPriceMarkup } from "../src/caravan-basket-pricing.js";
+import { caravanBasketPriceSummary, caravanLinePrice, caravanBasketPriceMarkup, caravanMerchantGroups } from "../src/caravan-basket-pricing.js";
 
 const row=(currency,price,quantity=1)=>({
  category:"solar_panel",ready:true,quantity,
@@ -29,4 +29,23 @@ test("invalid or absent prices are unpriced, never free; stale or missing rows e
  assert.equal(caravanLinePrice(row("EUR",19,2),"cs"),null);
  assert.equal(caravanLinePrice({...row("CZK",300),ready:false},"cs"),null);
  assert.equal(caravanLinePrice({...row("CZK",300),product:{id:"x",priceCzk:300,priceCurrency:"CZK"}},"cs"),null);
+});
+
+test("same merchant products share checkout group, separate merchants never become one cart", () => {
+  const a=row("PLN",190,2);a.product.merchant="padabo_pl";
+  const b=row("PLN",320,1);b.product.merchant="padabo_pl";
+  const c=row("EUR",65,1);c.product.merchant="powerqueen_eu";
+  const missing={category:"controller",ready:false};
+  const plan={rows:[a,b,c,missing],manualDesign:false};
+  const groups=caravanMerchantGroups(plan,"pl");
+  assert.equal(groups.length,2);
+  assert.equal(groups[0].merchant,"padabo_pl");
+  assert.equal(groups[0].count,2);
+  assert.deepEqual(groups[0].subtotals,[{currency:"PLN",amount:700}]);
+  assert.deepEqual(groups[1].subtotals,[{currency:"EUR",amount:65}]);
+  const markup=caravanBasketPriceMarkup(plan,"pl",(merchant)=>merchant==="padabo_pl"?"Padabo Poland":"Power Queen");
+  assert.match(markup,/Podział według sklepów \(2\)/);
+  assert.match(markup,/Padabo Poland/);
+  assert.match(markup,/Power Queen/);
+  assert.equal((markup.match(/data-store-group=/g)||[]).length,2);
 });
