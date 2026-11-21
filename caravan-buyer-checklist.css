@@ -43,3 +43,15 @@
 .caravan-price-summary small { color: #657267; font-size: 11px; line-height: 1.5; }
 .caravan-line-amount { grid-column: 2 / -1; font-size: 12px; font-weight: 700; color: #375846; }
 @media(max-width:650px) { .caravan-line-amount { grid-column: 2; } }
+
+/* One store means one separate partner checkout; no invented combined cart. */
+.caravan-store-groups { margin-top: 14px; padding-top: 14px; border-top: 1px solid #d7e3d9; }
+.caravan-store-groups > strong { display: block; font-size: 13px; margin-bottom: 10px; }
+.caravan-store-groups ul { list-style: none; padding: 0; display: grid; gap: 8px; margin: 0 0 8px; }
+.caravan-store-groups li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; padding: 10px 12px; background: #f7faf7; border-radius: 8px; font-size: 12px; }
+.caravan-store-groups li strong { color: #244936; }
+.caravan-store-groups li .caravan-store-amount { margin-left: auto; font-weight: 800; font-variant-numeric: tabular-nums; }
+.caravan-store-groups li small { flex-basis: 100%; }
+.caravan-store-groups > small { display: block; }
+
+.caravan-store-groups li .caravan-store-parts { flex-basis: 100%; color: #536b59; line-height: 1.4; }
