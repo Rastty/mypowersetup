@@ -1,0 +1,6 @@
+/* Product-native comparison shortcut inside the three-market caravan BOM. */
+.caravan-alternatives-link { grid-column: 2 / -1; justify-self: start; border: 0; border-radius: 8px; padding: 9px 4px; min-height: 44px; color: #185b42; background: transparent; font: inherit; font-size: 12px; font-weight: 750; text-align: left; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.caravan-alternatives-link:hover { color: #083f2a; }
+.caravan-alternatives-link:focus-visible { outline: 2px solid #286c4e; outline-offset: 3px; }
+.product-group:focus { outline: none; }
+@media (max-width: 650px) { .caravan-alternatives-link { grid-column: 2; } }
