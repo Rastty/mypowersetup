@@ -70,10 +70,10 @@ test("required multi-piece solar quantity follows vetted product rather than ass
 test("partial buyer chooses the same affordable vetted solar option as a complete recommended package", () => {
   const recommendations = {
     solar_panel: [
-      { score: 96, fit: 1, product: {id:"expensive-one",name:"Expensive 1x",available:true,affiliateUrl:"https://example.test/a",priceCzk:12000,priceCurrency:"CZK",recommendedQuantity:1} },
-      { score: 89, fit: 1.2, product: {id:"value-two",name:"Value 2x",available:true,affiliateUrl:"https://example.test/b",priceCzk:1700,priceCurrency:"CZK",recommendedQuantity:2} },
+      { score: 96, fit: 1, product: {id:"expensive-one",merchant:"vselektro",name:"Expensive 1x",available:true,affiliateUrl:"https://example.test/a",priceCzk:12000,priceCurrency:"CZK",recommendedQuantity:1} },
+      { score: 89, fit: 1.2, product: {id:"value-two",merchant:"vselektro",name:"Value 2x",available:true,affiliateUrl:"https://example.test/b",priceCzk:1700,priceCurrency:"CZK",recommendedQuantity:2} },
     ],
-    battery: [{score:96,fit:1,product:{id:"battery",name:"Battery",available:true,affiliateUrl:"https://example.test/c",priceCzk:5000,priceCurrency:"CZK"}}],
+    battery: [{score:96,fit:1,product:{id:"battery",name:"Battery",merchant:"vselektro",available:true,affiliateUrl:"https://example.test/c",priceCzk:5000,priceCurrency:"CZK"}}],
     controller: [],
   };
   const partial = buildCaravanBuyerChecklist({
@@ -92,7 +92,7 @@ test("stale package choice never hides a still-eligible category alternative", (
     packages:[{id:"recommended",items:[{category:"solar_panel",product:{id:"stale",name:"old"}}]}],
     recommendations:{solar_panel:[
       {score:94,fit:1,product:{id:"stale",name:"old",available:false},available:false},
-      {score:88,fit:1.15,product:{id:"new",name:"new",available:true,affiliateUrl:"https://example.test/new",priceCzk:1200,priceCurrency:"CZK",recommendedQuantity:2}},
+      {score:88,fit:1.15,product:{id:"new",name:"new",merchant:"vselektro",available:true,affiliateUrl:"https://example.test/new",priceCzk:1200,priceCurrency:"CZK",recommendedQuantity:2}},
     ]},
   });
   assert.equal(plan.rows[0].product.id,"new");
