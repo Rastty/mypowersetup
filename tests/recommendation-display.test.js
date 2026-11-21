@@ -43,3 +43,15 @@ test("product-card totals reflect required quantity without treating missing pri
   assert.deepEqual(productCardPriceDetails({ priceCzk: 0, recommendedQuantity: 2 }), { quantity: 2, unitPrice: null, totalPrice: null });
   assert.deepEqual(productCardPriceDetails({ priceCzk: 250, recommendedQuantity: 0 }), { quantity: 1, unitPrice: 250, totalPrice: 250 });
 });
+
+test("buyer-confirmed stock SKU beyond first three leads comparison, not unconfirmed package item", () => {
+  const ranked = { battery: [
+    candidate("unconfirmed",99),candidate("unknown2",96),candidate("unknown3",91),
+    candidate("confirmed",86),candidate("other",80)
+  ] };
+  const packages = [{id:"recommended",items:[{category:"battery",product:ranked.battery[0].product}]}];
+  const buyerPlan = {rows:[{category:"battery",ready:true,product:ranked.battery[3].product}]};
+  const shown=visibleRecommendationsForPackages(ranked,packages,3,buyerPlan);
+  assert.deepEqual(shown.battery.map(({product})=>product.id),["confirmed","unconfirmed","unknown2"]);
+  assert.equal(ranked.battery[0].product.id,"unconfirmed","original engineering ranking preserved");
+});
