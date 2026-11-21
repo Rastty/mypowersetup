@@ -13,6 +13,7 @@ const COPY = Object.freeze({
     partialNote: "Toto NIE JE kompletná zostava. Overené produkty môžete vyberať jednotlivo. Chýbajúce súčasti nekupujte naslepo; kabeláž, istenie a montáž treba samostatne navrhnúť.",
     missing: "Chýba overený vhodný produkt — pred nákupom overiť individuálne",
     unconfirmed: "Vhodný produkt existuje, ale skladová dostupnosť nie je potvrdená — zatiaľ nenakupovať",
+    pvNominal: (actual, nominal) => `Vybrané panely ${actual} Wp presahujú menovitý FV výkon regulátora ${nominal} Wp. Povolené predimenzovanie a vstupné limity musí potvrdiť výrobca.`,
     manual: "Pozor: niektorý spôsob nabíjania vyžaduje individuálny návrh a nie je súčasťou kompletnej zostavy.",
     disclaimer: "Niektoré odkazy sú partnerské. Aktuálnu dostupnosť, parametre, menu a dopravu si potvrďte u predajcu.",
     labels: {battery:"Batéria",solar_panel:"Solárny panel",controller:"Regulátor MPPT",inverter:"Menič 230 V",dc_charger:"DC–DC nabíjačka",shore_charger:"Nabíjačka 230 V"},
@@ -28,6 +29,7 @@ const COPY = Object.freeze({
     partialNote: "To NIE JEST kompletny zestaw. Możesz osobno wybrać jedynie zweryfikowane produkty. Brakujących elementów nie kupuj w ciemno; przewody, zabezpieczenia i montaż wymagają osobnego projektu.",
     missing: "Brak zweryfikowanego odpowiedniego produktu — sprawdź indywidualnie przed zakupem",
     unconfirmed: "Odpowiedni produkt istnieje, lecz dostępność nie jest potwierdzona — na razie nie kupuj",
+    pvNominal: (actual, nominal) => `Wybrane panele ${actual} Wp przekraczają nominalną moc PV regulatora ${nominal} Wp. Dopuszczalne przewymiarowanie i parametry wejścia potwierdź u producenta.`,
     manual: "Uwaga: co najmniej jeden sposób ładowania wymaga indywidualnego projektu i nie należy do kompletnego zestawu.",
     disclaimer: "Niektóre odnośniki są partnerskie. Aktualną dostępność, parametry, walutę i dostawę potwierdź w sklepie.",
     labels: {battery:"Akumulator",solar_panel:"Panel słoneczny",controller:"Regulator MPPT",inverter:"Przetwornica 230 V",dc_charger:"Ładowarka DC–DC",shore_charger:"Ładowarka 230 V"},
@@ -52,7 +54,7 @@ export function renderLocalizedCaravanBuyerPlan({
   if (!target || !plan || !COPY[locale]) return;
   const t = COPY[locale];
   const title = plan.complete ? t.complete : plan.status === "partial" ? t.partial : t.unavailable;
-  const rows = plan.rows.map(({ category, product, ready, quantity = 1, requirement, missingReason }) => {
+  const rows = plan.rows.map(({ category, product, ready, quantity = 1, requirement, missingReason, installedPvWp, nominalPvWp }) => {
     // Do not print a buy action when product identity or exact affiliate URI
     // is missing, even if its technical category is otherwise covered.
     const url = ready && product?.id && product?.affiliateUrl ? purchaseUrl(product, category) : "";
@@ -62,7 +64,7 @@ export function renderLocalizedCaravanBuyerPlan({
     return `<li data-buying-category="${escape(category)}" data-shopping-quantity="${buyable ? quantity : 0}" class="${buyable ? "is-ready" : "is-missing"}">
       <span class="caravan-buying-plan-mark" aria-hidden="true">${buyable ? "✓" : "!"}</span>
       <div class="caravan-buying-plan-item"><strong>${escape(t.labels[category] || category)}</strong>
-      <span>${buyable ? `${quantity} ${locale === "pl" ? "szt." : "ks"} · ${escape(product.name)}` : missingReason === "stock_unconfirmed" ? t.unconfirmed : t.missing}</span>
+      <span>${buyable ? `${quantity} ${locale === "pl" ? "szt." : "ks"} · ${escape(product.name)}` : missingReason === "stock_unconfirmed" ? t.unconfirmed : missingReason === "pv_nominal_review" ? t.pvNominal(installedPvWp, nominalPvWp) : t.missing}</span>
       ${requirement ? `<small class="caravan-item-requirement">${escape(requirement)}</small>` : ""}</div>
       ${buyable ? `<a class="caravan-buying-plan-link" href="${escape(url)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escape(product.id)}" data-merchant="${escape(product.merchant)}" data-category="${escape(category)}">${escape(purchaseCta(locale, merchantLabel(product.merchant)))}</a>` : ""}
       ${linePrice ? `<span class="caravan-line-amount">${escape(formatCaravanPrice(linePrice.amount, linePrice.currency, locale))} / ${quantity} ${locale === "pl" ? "szt." : "ks"}</span>` : ""}
