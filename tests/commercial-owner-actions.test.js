@@ -6,7 +6,8 @@ import {
   bestCommercialOwnerAction,
   bestCurrentCommercialOwnerAction,
   buildCommercialOwnerActionQueue,
-  buildCurrentCommercialOwnerActionQueue,
+  buildCurrentCommercialOwnerActionQueue, buildActiveCommercialOwnerActionQueue,
+  ACTIVE_MERCHANT_OWNER_SCOPE,
   isFreshCommercialStockEvidence, OWNER_STOCK_EVIDENCE_DAYS,
 } from "../src/commercial-owner-actions.js";
 
@@ -117,7 +118,11 @@ test("current owner queue follows live commercial gaps instead of stale candidat
   ]);
   assert.equal(actions.some(({ merchant }) => merchant === "bluetti_eu"), false);
 
-  const best = bestCurrentCommercialOwnerAction(report.markets);
+  // The unrestricted research ranking may still explain why Solaris looks
+  // economically attractive. The *active* owner queue must not request an
+  // unapproved programme signup after the owner's existing-partners-only rule.
+  const best = actions[0];
+  assert.equal(bestCurrentCommercialOwnerAction(report.markets), null);
   assert.equal(best.merchant, "solaris_store");
   assert.equal(best.nextAction, "submit_ambassador_application");
   assert.equal(best.currentStandaloneUnlockWeight, 15);
@@ -158,13 +163,41 @@ test("current owner queue follows live commercial gaps instead of stale candidat
   assert.deepEqual(butler.activationFieldsNeeded, ["approvalConfirmed", "approvalSource", "trackingVerifiedAt"]);
 });
 
-test("committed owner-action artifact is dynamic schema v2 and points at the current top action", async () => {
+test("committed owner queue suppresses unapproved merchant applications, without erasing sourcing research", async () => {
+  const report = JSON.parse(await readFile(new URL("../data/commercial-opportunity-report.json", import.meta.url), "utf8"));
   const payload = JSON.parse(await readFile(new URL("../data/owner-action-queue.json", import.meta.url), "utf8"));
+  const research = buildCurrentCommercialOwnerActionQueue(report.markets, { asOf: report.generatedAt });
+  const active = buildActiveCommercialOwnerActionQueue(report.markets, { asOf: report.generatedAt });
   assert.equal(payload.schemaVersion, 2);
-  assert.equal(payload.actionCount, 3);
-  assert.equal(payload.topAction.merchant, "solaris_store");
-  assert.deepEqual(payload.actions.map(({ merchant }) => merchant), ["solaris_store", "xdatou", "butler_technik"]);
-  assert.ok(payload.actions.every((action) => action.currentOpportunityScore > 0));
+  assert.equal(payload.generatedAt, report.generatedAt);
+  assert.equal(payload.ownerScope, "existing_approved_merchants_only");
+  assert.deepEqual(payload.excludedMerchants, ["solaris_store"]);
+  assert.equal(research.length, 3);
+  assert.equal(payload.deferredResearchActionCount, research.length - active.length);
+  assert.deepEqual(payload.actions, active);
+  assert.equal(payload.actionCount, 0);
+  assert.equal(payload.topAction, null);
+  assert.equal(bestCurrentCommercialOwnerAction(report.markets), null);
+});
+
+test("approved merchant owner work can still surface, even when Solaris has a higher speculative gap", () => {
+  assert.equal(ACTIVE_MERCHANT_OWNER_SCOPE.mode, "existing_approved_merchants_only");
+  const hypothetical = [
+    { market: "pt-PT", opportunities: [
+      { category: "power_station", score: 7, standaloneUnlockWeight: 5, affectedWeight: 5 },
+      { category: "inverter", score: 100, standaloneUnlockWeight: 5, affectedWeight: 5 },
+      { category: "controller", score: 100, standaloneUnlockWeight: 5, affectedWeight: 5 },
+    ] },
+    { market: "ro-RO", opportunities: [
+      { category: "power_station", score: 7, standaloneUnlockWeight: 5, affectedWeight: 5 },
+    ] },
+  ];
+  const research = buildCurrentCommercialOwnerActionQueue(hypothetical, { asOf: "2026-11-21T00:00:00Z" });
+  assert.ok(research.some(({ merchant }) => merchant === "solaris_store"));
+  const active = buildActiveCommercialOwnerActionQueue(hypothetical, { asOf: "2026-11-21T00:00:00Z" });
+  assert.deepEqual(active.map(({ merchant }) => merchant), ["bluetti_eu"]);
+  assert.equal(active[0].nextAction, "provide_exact_cj_elite300_deeplink");
+  assert.equal(bestCurrentCommercialOwnerAction(hypothetical).merchant, "bluetti_eu");
 });
 
 test("commercial stock proof is a real UTC date, not an old or malformed availability claim", () => {
@@ -202,9 +235,10 @@ test("owner stock queue distinguishes historical claims from genuinely recent su
 test("committed owner queue stock evidence is anchored to the same opportunity snapshot", async () => {
   const report = JSON.parse(await readFile(new URL("../data/commercial-opportunity-report.json", import.meta.url), "utf8"));
   const artifact = JSON.parse(await readFile(new URL("../data/owner-action-queue.json", import.meta.url), "utf8"));
-  const expected = buildCurrentCommercialOwnerActionQueue(report.markets, { asOf: report.generatedAt });
+  const expected = buildActiveCommercialOwnerActionQueue(report.markets, { asOf: report.generatedAt });
   assert.deepEqual(artifact.actions, expected);
-  assert.equal(artifact.topAction.stockEvidenceAsOf, report.generatedAt);
-  assert.equal(artifact.topAction.listedAvailableCandidates, 3);
-  assert.equal(artifact.topAction.inStockCandidates, 0);
+  assert.equal(artifact.generatedAt, report.generatedAt);
+  assert.equal(artifact.topAction, null);
+  assert.equal(artifact.actionCount, 0);
+  assert.equal(artifact.deferredResearchActionCount, 3);
 });
