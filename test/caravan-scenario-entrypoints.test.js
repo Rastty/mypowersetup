@@ -21,5 +21,5 @@ test("hero shortcut goes through editable profile selection, not direct calculat
   assert.match(handler, /reset\.click\(\)/);
   const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
   assert.match(html, /caravan-entry\.js\?v=20261121-1/);
-  assert.match(html, /caravan-entry\.css\?v=20261121-1/);
+  assert.match(html, /caravan-entry\.css\?v=20261121-2/);
 });
