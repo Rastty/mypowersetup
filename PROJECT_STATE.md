@@ -76,6 +76,12 @@ Updated: 2026-11-21. Truth: GitHub `main`, Actions/Pages and direct `https://myp
 - **Production still unverified**: no independent postmerge Pages build/HTTP asset browser readback confirmed in this execution. Do not call deployed.
 - **Next product priority**: use documented exact merchant SKUs and correct technical parameter evidence to close other genuine missing LiFePO4 charger/MPPT/battery categories in CZ/SK/PL; do not assume chemistry compatibility or broad merchant approvals. Keep build-first.
 
+## Approved Padabo SK/PL LiFePO4 buyer proof — 2026-11-21
+- [PR #665](https://github.com/Rastty/mypowersetup/pull/665) **merged** as `2170d262`: the purchase plan on SK and PL shows a distinct localized **manufacturer charging-profile verification link** next to the tracked CTA for the exact purchasable Orion DC–DC chargers unlocked by #664. The link must come from the SKU's guarded `chargingProfileEvidenceUrl` and use HTTPS `www.victronenergy.com`; neither unavailable products nor unrelated seller pages receive a manufacturer approval badge. It is a data-sheet link, **not** a claim of whole-system installation safety. Shared responsive BOM CSS; only SK/PL frontend versions updated.
+- [PR CI #44890075413](https://github.com/Rastty/mypowersetup/actions/runs/44890075413) **SUCCESS** 91/91 steps, including existing mobile smoke and a focused verified/unverified evidence-link guard.
+- **Status:** #664/#665 merged and PR CI green; exact postmerge production Pages release, live affiliate click and paid conversion impact not independently verified. No fake new prices/stock.
+- **Next build:** prioritize vetted charger/MPPT products covering actual missing CZ/SK/PL camper setup configurations, especially with primary-manufacturer exact-SKU evidence and valid locally approved merchant URLs. Continue Core reuse rather than new verticals.
+
 ## Completed and publicly verified
 - [PR #637](https://github.com/Rastty/mypowersetup/pull/637) (`50bcb948`): PT/RO/SI incomplete-calculator results now show individually verified components early, clearly marked partial with named missing system categories; primary complete-purchase routing unchanged. `result-partial` source attribution added, with stale/unavailable/unapproved offers excluded.
 - [PR #638](https://github.com/Rastty/mypowersetup/pull/638) (`31ee3de3`): corrected all 8 Romanian OXE price units from false EUR to merchant-feed RON, with source-level parsing, catalog guard, regression and browser cache-busting.
