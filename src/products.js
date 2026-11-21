@@ -1,6 +1,6 @@
 import { calculatePowerStationProfile } from "./power-station.js";
 import { batteryBmsLoadWithinAdvertisedLimit, minimumBatteryDischargeAmps } from "./battery-discharge-safety.js?v=20261117-bms-load1";
-import { batteryContinuousLimitNotBelowRequirement, batteryDischargeBuyerCheck, batteryDischargeEvidenceTier } from "./caravan-bms-buyer-evidence.js?v=20261121-bms-proof2";
+import { batteryContinuousLimitNotBelowRequirement, batteryDischargeBuyerCheck, batteryDischargeEvidenceTier } from "./caravan-bms-buyer-evidence.js?v=20261121-superpack-ng1";
 import { isPowerQueenRegionRestrictedOffer } from "./powerqueen-expansion.js?v=20261117-pq-region1";
 import { addVerifiedVictronChargingProfiles } from "./victron-orion-charging-profiles.js?v=20261121-1";
 import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-charging-profiles.js?v=20261121-padabo1";
