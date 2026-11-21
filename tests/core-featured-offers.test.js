@@ -72,7 +72,7 @@ for (const market of ["sk", "pl", "hu"]) {
     assert.ok(verdict >= 0 && verdict < featured && featured < resultGrid && resultGrid < products && products < baskets && baskets < comparisons);
     assert.equal(html.match(/id="featured-recommendations"/g)?.length, 1);
     assert.match(html, /styles\.css\?v=20261119-voltage-dc-load1/);
-    assert.match(html, new RegExp(`app-${market === "hu" ? "hu-browser" : market}\\.js\\?v=${market === "hu" ? "20261119-voltage-guide1" : "20261121-padabo-smartsolar1"}`));
+    assert.match(html, new RegExp(`app-${market === "hu" ? "hu-browser" : market}\\.js\\?v=${market === "hu" ? "20261119-voltage-guide1" : "20261121-bms-evidence1"}`));
 
     const app = source(`src/app-${market === "hu" ? "hu-browser" : market}.js`);
     assert.match(app, /selectFeaturedOffers\(/);
