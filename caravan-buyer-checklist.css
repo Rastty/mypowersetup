@@ -53,3 +53,5 @@
 .caravan-store-groups li .caravan-store-amount { margin-left: auto; font-weight: 800; font-variant-numeric: tabular-nums; }
 .caravan-store-groups li small { flex-basis: 100%; }
 .caravan-store-groups > small { display: block; }
+
+.caravan-store-groups li .caravan-store-parts { flex-basis: 100%; color: #536b59; line-height: 1.4; }
