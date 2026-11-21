@@ -818,18 +818,32 @@ function extractChargingBatteryTypes(primaryText, fallbackText) {
 }
 
 function extractControllerCurrent(name, description) {
+  // An explicit charge-current rating in A is preferable to model parsing.
   const explicitInName = matchNumber(name, /(\d+(?:[.,]\d+)?)\s*a\b/i);
   if (explicitInName) return explicitInName;
 
-  const model = name.match(/(?:mppt|smartsolar|bluesolar)[^\n]{0,80}?\b\d{2,3}\s*[\/-]\s*(\d{1,3})\b(?!\s*v\b)/i);
-  if (model) return parseLocalizedNumber(model[1]);
+  // Victron MPPT nomenclature uses PV open-circuit voltage / charge current:
+  // 75/10 = 75 V max input and 10 A output. Some SK merchant titles contain
+  // a misleading range first ("MPPT 75-100 W variant 75/10"). Parsing the
+  // first hyphenated pair as current wrongly rated 10/15/20 A SKUs at 100 A.
+  // Prefer the SKU's slash pair, not an earlier range or model-family text.
+  if (/(?:mppt|smartsolar|bluesolar)/i.test(name)) {
+    const slashModels = [...name.matchAll(/\b(\d{2,3})\s*\/\s*(\d{1,3})\b(?!\s*[va]\b)/gi)]
+      .filter((match) => Number(match[1]) >= 50 && Number(match[2]) >= 1 && Number(match[2]) <= 100);
+    if (slashModels.length) return Number(slashModels.at(-1)[2]);
+    // Older merchant names use an MPPT model with a hyphen, without "V/W".
+    // Never mistake a voltage/power *range* with a unit suffix for amperes.
+    const hyphenModel = name.match(/\b(?:mppt|smartsolar|bluesolar)\s*(\d{2,3})-(\d{1,3})\b(?!\s*[vw]\b)/i);
+    if (hyphenModel && Number(hyphenModel[1]) >= 50 && Number(hyphenModel[2]) <= 100) {
+      return Number(hyphenModel[2]);
+    }
+  }
 
   return matchNumber(
     description,
     /(?:nabíjecí|výstupní|max(?:imální)?\.?|töltőáram|kimeneti|maximális)[^\d]{0,24}(\d+(?:[.,]\d+)?)\s*a\b/i
   );
 }
-
 function isControllerCategory(categoryPath) {
   return /solární regulátory|solárne regulátory|regulatory (?:solarne|ładowania)|kontrolery solarne|napelemes töltésszabályozók|töltésszabályozók|töltésvezérlők|battery charge controllers/i.test(categoryPath);
 }
