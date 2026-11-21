@@ -549,15 +549,21 @@ function renderProductRecommendations(result) {
   });
   const resultNext = document.querySelector("#result-next");
   resultNext.hidden = false;
-  document.querySelector("#result-product-count").textContent = total
-    ? hasRecommendedPackage
-      ? `Mamy polecany wariant zakupowy dla wszystkich wymaganych kategorii oraz ${total} zweryfikowanych dopasowań w ${categoryCount} kategoriach.`
-      : `Znaleźliśmy ${total} zweryfikowanych dopasowań w ${categoryCount} kategoriach. Pokrycie zestawu produktami: ${coverage.covered.length} z ${coverage.required.length} wymaganych kategorii.`
-    : "Dla tej konfiguracji nie mamy jeszcze dostatecznie zweryfikowanego dopasowania produktów. Wynik techniczny możesz wykorzystać jako podstawę wyboru.";
+  // Purchase CTA reflects confirmed-stock, checkout-ready BOM rows, not
+  // the number of technical catalog matches (which may be unavailable).
+  const readyToBuy = buyerPlan?.readyCount || 0;
+  document.querySelector("#result-product-count").textContent = hasRecommendedPackage
+    ? "Wszystkie wymagane kategorie mają potwierdzoną ofertę dostępną w magazynie. Przed zakupem sprawdź parametry, stan i dostawę u sprzedawcy."
+    : readyToBuy
+      ? `Do zakupu zweryfikowano ${readyToBuy} z ${buyerPlan.requiredCount} wymaganych kategorii. Brakujące elementy znajdziesz na liście zakupów.`
+      : "Dla tego obliczenia nie mamy na razie potwierdzonej oferty dostępnej w magazynie. Lista zakupów pokazuje wymagane parametry brakujących elementów.";
   const resultProductsLink = document.querySelector("#result-products-link");
-  resultProductsLink.hidden = total === 0;
-  resultProductsLink.textContent = hasRecommendedPackage ? "Pokaż polecany zestaw ↓" : "Pokaż polecane produkty ↓";
-  resultProductsLink.dataset.resultNextVariant = hasRecommendedPackage ? "complete_package" : "product_matches";
+  resultProductsLink.hidden = false;
+  resultProductsLink.href = "#caravan-buyer-checklist";
+  resultProductsLink.textContent = hasRecommendedPackage ? "Pokaż polecany zestaw ↓"
+    : readyToBuy ? `Otwórz listę zakupów (${readyToBuy}/${buyerPlan.requiredCount}) ↓`
+    : "Sprawdź brakujące elementy ↓";
+  resultProductsLink.dataset.resultNextVariant = hasRecommendedPackage ? "complete_package" : readyToBuy ? "partial_buyable_plan" : "requirements_only";
   const freshness = productCatalogUpdatedAt
     ? ` Dane produktowe pobrano ${new Date(productCatalogUpdatedAt).toLocaleDateString("pl-PL")}.`
     : "";
