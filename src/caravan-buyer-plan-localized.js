@@ -50,7 +50,7 @@ export function renderLocalizedCaravanBuyerPlan({
   if (!target || !plan || !COPY[locale]) return;
   const t = COPY[locale];
   const title = plan.complete ? t.complete : plan.status === "partial" ? t.partial : t.unavailable;
-  const rows = plan.rows.map(({ category, product, ready, quantity = 1 }) => {
+  const rows = plan.rows.map(({ category, product, ready, quantity = 1, requirement }) => {
     // Do not print a buy action when product identity or exact affiliate URI
     // is missing, even if its technical category is otherwise covered.
     const url = ready && product?.id && product?.affiliateUrl ? purchaseUrl(product, category) : "";
@@ -60,7 +60,8 @@ export function renderLocalizedCaravanBuyerPlan({
     return `<li data-buying-category="${escape(category)}" data-shopping-quantity="${buyable ? quantity : 0}" class="${buyable ? "is-ready" : "is-missing"}">
       <span class="caravan-buying-plan-mark" aria-hidden="true">${buyable ? "✓" : "!"}</span>
       <div class="caravan-buying-plan-item"><strong>${escape(t.labels[category] || category)}</strong>
-      <span>${buyable ? `${quantity} ${locale === "pl" ? "szt." : "ks"} · ${escape(product.name)}` : t.missing}</span></div>
+      <span>${buyable ? `${quantity} ${locale === "pl" ? "szt." : "ks"} · ${escape(product.name)}` : t.missing}</span>
+      ${requirement ? `<small class="caravan-item-requirement">${escape(requirement)}</small>` : ""}</div>
       ${buyable ? `<a class="caravan-buying-plan-link" href="${escape(url)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escape(product.id)}" data-merchant="${escape(product.merchant)}" data-category="${escape(category)}">${escape(purchaseCta(locale, merchantLabel(product.merchant)))}</a>` : ""}
       ${linePrice ? `<span class="caravan-line-amount">${escape(formatCaravanPrice(linePrice.amount, linePrice.currency, locale))} / ${quantity} ${locale === "pl" ? "szt." : "ks"}</span>` : ""}
       ${proof ? `<a class="caravan-manufacturer-proof" href="${escape(proof)}" target="_blank" rel="noopener noreferrer" data-manufacturer-charging-proof>${escape(t.manufacturerEvidence)}</a>` : ""}
