@@ -543,7 +543,7 @@ function renderProductRecommendations(result) {
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
   const coverage = assessRecommendationCoverage(recommendations, result, "cs");
-  renderCaravanBuyerChecklist(buildCaravanBuyerChecklist({ coverage, packages, recommendations, setup: result, locale: "cs" }));
+  renderCaravanBuyerChecklist(buildCaravanBuyerChecklist({ coverage, packages, recommendations: rankedRecommendations, setup: result, locale: "cs" }));
   const hasRecommendedPackage = packages.some(({ id }) => id === "recommended");
   trackEvent("product_coverage_calculated", {
     locale: "cs",
