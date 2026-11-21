@@ -88,6 +88,12 @@ Updated: 2026-11-21. Truth: GitHub `main`, Actions/Pages and direct `https://myp
 - **Evidence limit:** PR merged and CI green; new public Pages HTTP/asset verification and any change in clicks, conversions and commissions remain unverified. Do not call deployed.
 - **Next commercial priority:** finish actual approved exact-SKU component coverage and a genuinely usable purchase/return path in CZ, then SK/PL, without reintroducing guessed prices or mixing currencies.
 
+## Caravan checkout planning by merchant — 2026-11-21
+- [PR #667](https://github.com/Rastty/mypowersetup/pull/667) **merged** as `827fb627`: the existing CZ/SK/PL buyer basket now groups real vetted product SKUs **by merchant** to expose the likely split into separate partner checkouts, with actual categories, required unit quantities, same-currency priced subtotals and counts of unpriced items per seller. A buyer can see which components belong to each merchant and is warned that each store has separate shipping/checkout. All original tracked affiliate product links remain in the BOM; no guessed cart integration, cross-currency conversion or fake delivery quote. One shared JS/CSS component reused for all 3 locales.
+- [CI #44891136273](https://github.com/Rastty/mypowersetup/actions/runs/44891136273) **SUCCESS** 91/91 steps including routine mobile smoke and focused merchant-split/quantity regression; no new audit framework built.
+- **Evidence boundary:** source merged to main, but new public Pages readback, live merchant redirects and paid commissions were not independently verified in this execution. Do not claim deployed.
+- **Next high-value product build:** real exact-SKU affiliate depth for missing caravan electrical component categories, especially CZ complete battery/MPPT/charging sets; make checkout path shorter, not wider. Follow existing approved partner programs.
+
 ## Completed and publicly verified
 - [PR #637](https://github.com/Rastty/mypowersetup/pull/637) (`50bcb948`): PT/RO/SI incomplete-calculator results now show individually verified components early, clearly marked partial with named missing system categories; primary complete-purchase routing unchanged. `result-partial` source attribution added, with stale/unavailable/unapproved offers excluded.
 - [PR #638](https://github.com/Rastty/mypowersetup/pull/638) (`31ee3de3`): corrected all 8 Romanian OXE price units from false EUR to merchant-feed RON, with source-level parsing, catalog guard, regression and browser cache-busting.
