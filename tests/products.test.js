@@ -684,11 +684,12 @@ test("matcher rejects incompatible voltage and ranks a fitting battery", () => {
   });
   assert.equal(recommendations.battery.length, 1);
   assert.equal(recommendations.battery[0].product.id, "reslshop:12v");
-  assert.deepEqual(recommendations.battery[0].checks, [
+  assert.deepEqual(recommendations.battery[0].checks.slice(0, 3), [
     "200 Ah ≥ 180 Ah",
     "12 V = napětí sestavy",
     "LiFePO₄"
   ]);
+  assert.match(recommendations.battery[0].checks[3], /Trvalý vybíjecí proud BMS není doložen/);
   assert.match(recommendations.battery[0].verify, /BMS/);
 });
 
