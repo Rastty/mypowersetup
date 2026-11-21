@@ -22,70 +22,13 @@ export function advertisedBatteryBmsAmps(product) {
   return Number.isFinite(amps) && amps > 0 ? amps : null;
 }
 
-// Unlike an '100 A BMS' marketing label, this field is explicitly a
-// continuous-discharge rating. Treat it as evidence only for reviewed rows,
-// and never infer it from battery Ah, a generic currentA, or battery chemistry.
-export function documentedBatteryContinuousBmsAmps(product) {
-  if (product?.category !== "battery" || !product.verifiedAt) return null;
-  const raw = product.specs?.bmsContinuousCurrentA;
-  const amps = typeof raw === "number" ? raw : null;
-  return amps !== null && Number.isFinite(amps) && amps > 0 ? amps : null;
-}
-
 export function batteryBmsLoadWithinAdvertisedLimit(product, setup) {
   const minimum = minimumBatteryDischargeAmps(setup);
   if (minimum === null) return true;
   const advertised = advertisedBatteryBmsAmps(product);
-  const specified = product?.category === "battery" ? product.specs?.bmsContinuousCurrentA : null;
-  // Even an unreviewed explicitly named continuous rating BELOW the needed
-  // current is adverse evidence. But do not count an unreviewed rating as
-  // affirmative proof when ranking otherwise eligible battery offers.
-  if (typeof specified === "number" && Number.isFinite(specified)
-    && specified > 0 && specified < minimum) return false;
-  // Missing ratings remain usable as technical candidates, but never gain
-  // the evidence priority of reviewed specifications or named BMS values.
+  // A missing rating is *not* proof of compatibility. The UI explains the
+  // remaining manual check; do not invent a BMS number from the Ah capacity.
   return advertised === null || advertised >= minimum;
-}
-
-// When the user actually needs AC inverter power, put batteries with an
-// explicit, adequate discharge rating before otherwise similar unknown-BMS
-// products. '100 A BMS' in a title is weaker evidence than a reviewed
-// continuous-discharge specification and NEVER proves continuous capability.
-export function batteryDischargeEvidenceTier(product, setup) {
-  const minimum = minimumBatteryDischargeAmps(setup);
-  if (minimum === null || !batteryBmsLoadWithinAdvertisedLimit(product, setup)) return 0;
-  const documented = documentedBatteryContinuousBmsAmps(product);
-  if (documented !== null && documented >= minimum) return 2;
-  const advertised = advertisedBatteryBmsAmps(product);
-  return advertised !== null && advertised >= minimum ? 1 : 0;
-}
-
-const BUYER_COPY = Object.freeze({
-  cs: {
-    documented: (a, required) => `Specifikace uvádí trvalý limit BMS ${a} A (potřeba ≥ ${required} A). Potvrďte v datasheetu.`,
-    advertised: (a, required) => `Název uvádí BMS ${a} A, ale trvalý výboj není doložen. Ověřte nejméně ${required} A.`,
-    unknown: (required) => `Trvalý vybíjecí proud BMS není doložen. Ověřte nejméně ${required} A v datasheetu.`,
-  },
-  sk: {
-    documented: (a, required) => `Špecifikácia uvádza trvalý limit BMS ${a} A (potreba ≥ ${required} A). Potvrďte v dokumentácii.`,
-    advertised: (a, required) => `Názov uvádza BMS ${a} A, no trvalé vybíjanie nie je doložené. Overte aspoň ${required} A.`,
-    unknown: (required) => `Trvalý vybíjací prúd BMS nie je doložený. Overte aspoň ${required} A v dokumentácii.`,
-  },
-  pl: {
-    documented: (a, required) => `Specyfikacja podaje prąd ciągły BMS ${a} A (wymagane ≥ ${required} A). Potwierdź w karcie producenta.`,
-    advertised: (a, required) => `Nazwa podaje BMS ${a} A, lecz prąd ciągły nie jest potwierdzony. Sprawdź co najmniej ${required} A.`,
-    unknown: (required) => `Brak potwierdzonego prądu ciągłego BMS. Sprawdź co najmniej ${required} A w karcie producenta.`,
-  },
-});
-
-export function batteryDischargeBuyerCheck(product, setup, locale = setup?.locale || "cs") {
-  const minimum = minimumBatteryDischargeAmps(setup);
-  if (minimum === null) return null;
-  const t = BUYER_COPY[locale] || BUYER_COPY.cs;
-  const continuous = documentedBatteryContinuousBmsAmps(product);
-  if (continuous !== null) return t.documented(continuous, minimum);
-  const named = advertisedBatteryBmsAmps(product);
-  return named !== null ? t.advertised(named, minimum) : t.unknown(minimum);
 }
 
 const EXPANSION_COPY = Object.freeze({
