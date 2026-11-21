@@ -55,7 +55,7 @@ test("Czech result places immediately visible offers before secondary analysis a
   assert.ok(resultStep.indexOf('id="product-recommendations"') < resultStep.indexOf('id="existing-setup-check"'));
   assert.ok(resultStep.indexOf('id="featured-recommendations"') < resultStep.indexOf('id="package-variants"'));
   assert.ok(resultStep.indexOf('id="product-recommendations"') < resultStep.indexOf('id="result-share"'));
-  assert.match(app, /featuredCzechProducts\(recommendations, packages\)/);
+  assert.match(app, /featuredCzechProducts\(recommendations, packages, 4, buyerPlan\)/);
   assert.match(app, /data-affiliate-click data-source="result-featured"/);
   assert.match(style, /\.featured-picks-grid \{ display: grid/);
   assert.match(style, /\.next-step-card, #featured-recommendations,/);
