@@ -557,7 +557,7 @@ function renderProductRecommendations(result) {
       ? `Na nákup máme overených ${readyToBuy} z ${buyerPlan.requiredCount} potrebných kategórií. Chýbajúce položky nájdete v nákupnom pláne.`
       : "Pre tento výpočet zatiaľ nemáme skladovo potvrdenú nákupnú ponuku. Nákupný plán ukazuje požadované parametre chýbajúcich súčastí.";
   const resultProductsLink = document.querySelector("#result-products-link");
-  resultProductsLink.hidden = false;
+  resultProductsLink.hidden = total === 0;
   resultProductsLink.href = "#caravan-buyer-checklist";
   resultProductsLink.textContent = hasRecommendedPackage ? "Zobraziť odporúčanú zostavu ↓"
     : readyToBuy ? `Otvoriť nákupný plán (${readyToBuy}/${buyerPlan.requiredCount}) ↓`
