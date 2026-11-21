@@ -94,6 +94,6 @@ test("SK/PL buyer plan uses existing source-backed manufacturer link only with a
   }
   const sk=await readFile(new URL("../sk/index.html",import.meta.url),"utf8");
   const pl=await readFile(new URL("../pl/index.html",import.meta.url),"utf8");
-  assert.match(sk,/app-sk\.js\?v=20261121-padabo-smartsolar1/);
-  assert.match(pl,/app-pl\.js\?v=20261121-padabo-smartsolar1/);
+  assert.match(sk,/app-sk\.js\?v=20261121-bms-evidence1/);
+  assert.match(pl,/app-pl\.js\?v=20261121-bms-evidence1/);
 });

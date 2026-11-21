@@ -1,5 +1,6 @@
 import { calculatePowerStationProfile } from "./power-station.js";
-import { batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
+import { batteryBmsLoadWithinAdvertisedLimit, minimumBatteryDischargeAmps } from "./battery-discharge-safety.js?v=20261117-bms-load1";
+import { batteryContinuousLimitNotBelowRequirement, batteryDischargeBuyerCheck, batteryDischargeEvidenceTier } from "./caravan-bms-buyer-evidence.js?v=20261121-bms-evidence1";
 import { isPowerQueenRegionRestrictedOffer } from "./powerqueen-expansion.js?v=20261117-pq-region1";
 import { addVerifiedVictronChargingProfiles } from "./victron-orion-charging-profiles.js?v=20261121-1";
 import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-charging-profiles.js?v=20261121-padabo1";
@@ -444,7 +445,10 @@ export function recommendProducts(products, setup, limitPerCategory = 3, sources
   return ["battery", "solar_panel", "inverter", "controller", "dc_charger", "shore_charger", "power_station"].reduce((result, category) => {
     const ranked = candidates
       .filter((candidate) => candidate.product.category === category)
-      .sort(compareRecommendationCandidates);
+      .sort((a, b) => category === "battery" && minimumBatteryDischargeAmps(setup) !== null
+        ? batteryDischargeEvidenceTier(b.product, setup) - batteryDischargeEvidenceTier(a.product, setup)
+          || compareRecommendationCandidates(a, b)
+        : compareRecommendationCandidates(a, b));
     result[category] = uniqueProductPages(ranked).slice(0, limitPerCategory);
     return result;
   }, {});
@@ -514,6 +518,7 @@ function scoreProduct(product, setup) {
     // draw. Missing evidence must be disclosed, never replaced by an assumed
     // BMS value inferred from the battery's Ah capacity.
     if (!batteryBmsLoadWithinAdvertisedLimit(product, setup)) return null;
+    if (!batteryContinuousLimitNotBelowRequirement(product, setup)) return null;
     // VSelektro feed products currently come from a strict, two-SKU shortlist.
     // Do not recommend a battery against an inverter load above its verified
     // continuous BMS rating. This is a conservative screening rule, not an
@@ -657,7 +662,11 @@ function recommendationChecks(product, setup) {
   if (product.category === "battery") return [
     `${product.specs.capacityAh} Ah ≥ ${setup.batteryAh} Ah`,
     `${product.specs.voltageV} V = ${text.systemVoltage}`,
-    product.specs.batteryType === "lifepo4" ? "LiFePO₄" : text.batteryLead
+    product.specs.batteryType === "lifepo4" ? "LiFePO₄" : text.batteryLead,
+    ...(() => {
+      const note = batteryDischargeBuyerCheck(product, setup, setup.locale);
+      return note ? [note] : [];
+    })()
   ];
   if (product.category === "solar_panel") return [
     `${product.recommendedQuantity} × ${product.specs.powerW} Wp = ${product.recommendedQuantity * product.specs.powerW} Wp`,

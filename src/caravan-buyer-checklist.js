@@ -1,6 +1,6 @@
 import { isRecommendationEligible } from "./recommendation-coverage.js";
 import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1";
-import { caravanComponentRequirement } from "./caravan-component-requirements.js?v=20261121-1";
+import { caravanComponentRequirement } from "./caravan-component-requirements.js?v=20261121-bms-evidence1";
 
 // A technically compatible model is not a purchase-ready SKU without its
 // actual approved product click URL. Keep the technical result, but mark the
