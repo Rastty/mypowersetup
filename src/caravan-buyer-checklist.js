@@ -17,7 +17,9 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
           item?.product?.id === packageProduct.id && isRecommendationEligible(item))
           ? packageProduct : null)
       : candidate?.product || null;
-    return { category, product, ready: Boolean(product) };
+    const quantity = product && Number.isSafeInteger(product.recommendedQuantity) && product.recommendedQuantity > 0
+      ? product.recommendedQuantity : 1;
+    return { category, product, ready: Boolean(product), quantity };
   });
   const available = rows.filter((row) => row.ready).length;
   const manualDesign = Boolean(coverage.manualDesignCharging?.length);
