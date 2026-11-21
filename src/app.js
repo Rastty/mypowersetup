@@ -13,8 +13,8 @@ import { buildInstallationPlan } from "./installation.js?v=20261117-installation
 import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1";
 import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-stock1";
 import { caravanBasketPriceMarkup, caravanLinePrice, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-merchant1";
-import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
-import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261119-featured-safe4";
+import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261121-stock-aligned1";
+import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261121-stock-aligned1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
 import { czechProductRequirement, czechProductDecisionFacts, czechPackageFitSummary } from "./product-decision-facts.js?v=20261014-1";
@@ -530,8 +530,14 @@ function renderProductRecommendations(result) {
   const groups = document.querySelector("#recommendation-groups");
   const rankedRecommendations = recommendProducts(productCatalog, result, 24, productCatalogSources);
   const packages = buildProductPackages(rankedRecommendations, result);
-  const recommendations = visibleRecommendationsForPackages(rankedRecommendations, packages);
-  const featured = featuredCzechProducts(recommendations, packages);
+  const coverage = assessRecommendationCoverage(rankedRecommendations, result, "cs");
+  const buyerPlan = buildCaravanBuyerChecklist({
+    coverage, packages, recommendations: rankedRecommendations, setup: result, locale: "cs",
+  });
+  // Keep the immediately visible products synchronized with actual buyable,
+  // confirmed-stock basket items; technical rankings remain unchanged.
+  const recommendations = visibleRecommendationsForPackages(rankedRecommendations, packages, 3, buyerPlan);
+  const featured = featuredCzechProducts(recommendations, packages, 4, buyerPlan);
   const categoryLabels = {
     battery: "Baterie",
     solar_panel: "Solární panely",
@@ -542,9 +548,8 @@ function renderProductRecommendations(result) {
   };
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
-  const coverage = assessRecommendationCoverage(recommendations, result, "cs");
-  renderCaravanBuyerChecklist(buildCaravanBuyerChecklist({ coverage, packages, recommendations: rankedRecommendations, setup: result, locale: "cs" }));
-  const hasRecommendedPackage = packages.some(({ id }) => id === "recommended");
+  renderCaravanBuyerChecklist(buyerPlan);
+  const hasRecommendedPackage = buyerPlan.complete && packages.some(({ id }) => id === "recommended");
   trackEvent("product_coverage_calculated", {
     locale: "cs",
     required_categories: coverage.required.length,

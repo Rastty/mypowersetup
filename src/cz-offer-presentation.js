@@ -15,4 +15,4 @@ export function czechPackagePrice(variant) {
 
 // Czech callers keep their original API; the verified selection is now
 // shared with SK, PL and HU without changing the eligibility engine.
-export { selectFeaturedOffers as featuredCzechProducts } from "./featured-core-offers.js?v=20261119-featured-safe4";
+export { selectFeaturedOffers as featuredCzechProducts } from "./featured-core-offers.js?v=20261121-stock-aligned1";

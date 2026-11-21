@@ -50,7 +50,8 @@ test("Czech result renders buying plan before system metrics, preserving tracked
   const app = readFileSync(new URL("../src/app.js",import.meta.url),"utf8");
   assert.ok(html.indexOf('id="caravan-buyer-checklist"') > html.indexOf('id="featured-recommendations"'));
   assert.ok(html.indexOf('id="caravan-buyer-checklist"') < html.indexOf('id="result-grid"'));
-  assert.match(app,/renderCaravanBuyerChecklist\(buildCaravanBuyerChecklist\(/);
+  assert.match(app,/const buyerPlan = buildCaravanBuyerChecklist\(/);
+  assert.match(app,/renderCaravanBuyerChecklist\(buyerPlan\)/);
   assert.match(app,/data-affiliate-click data-source="caravan-plan"/);
   assert.match(app,/attributedAwinUrl\(product, category, "recommended", "caravan-plan"\)/);
   assert.match(html,/caravan-buyer-checklist\.css\?v=20261121-requirements1/);
