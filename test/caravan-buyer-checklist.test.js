@@ -127,3 +127,30 @@ test("stale recommended package with dead link reselects actually buyable candid
  assert.equal(plan.rows[0].product.id,"valid");
  assert.equal(plan.complete,true);
 });
+
+test("confirmed in-stock fallback beats higher scored unknown-stock SKU", () => {
+  const unconfirmed={...product("unknown"),available:null};
+  const instock={...product("confirmed"),available:true};
+  const plan=buildCaravanBuyerChecklist({
+    coverage:{required:["battery"],manualDesignCharging:[]},
+    recommendations:{battery:[
+      {score:99,fit:1,product:unconfirmed},
+      {score:91,fit:1.15,product:instock},
+    ]},
+  });
+  assert.equal(plan.complete,true);
+  assert.equal(plan.rows[0].product.id,"confirmed");
+});
+
+test("no explicit stock evidence means no purchase-ready row or fake completeness", () => {
+  const maybe={...product("not-confirmed"),available:null};
+  const plan=buildCaravanBuyerChecklist({
+    coverage:{required:["battery","controller"],manualDesignCharging:[]},
+    recommendations:{battery:[{score:95,product:maybe}],controller:[]},
+  });
+  assert.equal(plan.readyCount,0);
+  assert.equal(plan.complete,false);
+  assert.equal(plan.status,"unavailable");
+  assert.equal(plan.rows[0].missingReason,"stock_unconfirmed");
+  assert.equal(plan.rows[1].missingReason,"no_buyable_offer");
+});
