@@ -1,7 +1,7 @@
 import { APPLIANCES } from "./catalog-sk.js?v=20260823-custom1";
 import { renderDcLoadVoltageNotice } from "./dc-voltage-help.js";
 import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
-import { recommendProducts } from "./products.js?v=20261121-ecoflow-pv1";
+import { recommendProducts } from "./products.js?v=20261121-bluesolar-pv1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20261023-safe-loads1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -11,9 +11,9 @@ import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1";
-import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-ecoflow-pv1";
-import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261121-ecoflow-pv1";
-import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261121-ecoflow-pv1";
+import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-bluesolar-pv1";
+import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261121-bluesolar-pv1";
+import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261121-bluesolar-pv1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261121-stock-aligned1";
 import { selectFeaturedOffers } from "./featured-core-offers.js?v=20261121-stock-aligned1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
