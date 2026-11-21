@@ -104,7 +104,7 @@ test("CZ/SK/PL browser uses one versioned shared PV review module and source-tes
  for(const [page,app] of [["index.html","app.js"],["sk/index.html","app-sk.js"],["pl/index.html","app-pl.js"]]){
    const html=await readFile(new URL("../"+page,import.meta.url),"utf8");
    const src=await readFile(new URL("../src/"+app,import.meta.url),"utf8");
-   assert.match(html,/20261121-bluesolar-pv1/);
+   assert.match(html,/20261121-bms-proof2/);
    assert.match(src,/caravan-buyer-checklist\.js\?v=20261121-bluesolar-pv1/);
    assert.match(src,/caravan-package-readiness\.js\?v=20261121-bluesolar-pv1/);
  }
