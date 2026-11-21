@@ -177,6 +177,6 @@ test("all four core Builders load market-specific evidence, install capture gate
     assert.match(source,/getEvidence: \(\) => productOfferEvidence/,application);
     assert.match(source,/documentRoot: document/,application);
     assert.match(source,/reload: \(\) => window\.location\.reload\(\)/,application);
-    assert.ok(page.includes(["sk/index.html", "pl/index.html"].includes(html) ? "20261121-orion-sku1" : html === "index.html" ? "20261121-quantity1" : "20261119-voltage-guide1"),html);
+    assert.ok(page.includes(["sk/index.html", "pl/index.html"].includes(html) ? "20261121-orion-proof1" : html === "index.html" ? "20261121-quantity1" : "20261119-voltage-guide1"),html);
   }
 });
