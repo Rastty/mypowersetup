@@ -38,6 +38,31 @@ export function caravanBasketPriceSummary(plan, locale) {
   };
 }
 
+// Turn the same vetted BOM into a realistic checkout plan across stores.
+// One merchant may provide several components; never imply one combined
+// checkout across different merchants or invent shipping costs.
+export function caravanMerchantGroups(plan, locale) {
+  if (!DISPLAY_CURRENCIES[locale] || !Array.isArray(plan?.rows)) return [];
+  const byMerchant = new Map();
+  for (const row of plan.rows) {
+    const product = row?.product;
+    if (!row.ready || !product?.id || !product?.affiliateUrl || !product?.merchant) continue;
+    const merchant = product.merchant;
+    if (!byMerchant.has(merchant)) byMerchant.set(merchant, {
+      merchant, count: 0, products: [], subtotals: new Map(), unpriced: 0,
+    });
+    const group = byMerchant.get(merchant);
+    group.count++;
+    group.products.push({ category: row.category, quantity: row.quantity || 1 });
+    const priced = caravanLinePrice(row, locale);
+    if (priced) group.subtotals.set(priced.currency, (group.subtotals.get(priced.currency) || 0) + priced.amount);
+    else group.unpriced++;
+  }
+  return [...byMerchant.values()].map(({ subtotals, ...group }) => ({
+    ...group, subtotals: [...subtotals].map(([currency,amount])=>({currency,amount})),
+  }));
+}
+
 export function formatCaravanPrice(amount, currency, locale) {
   if (!DISPLAY_CURRENCIES[locale]?.has(currency) || !Number.isFinite(amount) || amount <= 0) return "";
   return new Intl.NumberFormat(DISPLAY_LOCALES[locale], {
@@ -48,6 +73,7 @@ export function formatCaravanPrice(amount, currency, locale) {
 const COPY = Object.freeze({
   cs: {
     title: "Cena dostupných položek",
+    shops: "Rozdělení podle obchodů", shopsNote: "Každý obchod má vlastní objednávku a dopravu; položky kupujte samostatně přes odkazy výše.", items: "položek", storeUnknown: "část bez ceny",
     partial: "Mezisoučet vybraných položek, ne cena kompletní sestavy.",
     complete: "Součet cen ověřených položek; kabeláž, jištění a montáž nejsou zahrnuté.",
     missing: "chybějících kategorií",
@@ -56,6 +82,7 @@ const COPY = Object.freeze({
   },
   sk: {
     title: "Cena dostupných položiek",
+    shops: "Rozdelenie podľa obchodov", shopsNote: "Každý obchod má vlastnú objednávku a dopravu; produkty nakupujte cez odkazy vyššie.", items: "položiek", storeUnknown: "časť bez ceny",
     partial: "Medzisúčet vybraných položiek, nie cena kompletnej zostavy.",
     complete: "Súčet cien overených položiek; kabeláž, istenie a montáž nie sú zahrnuté.",
     missing: "chýbajúcich kategórií",
@@ -64,6 +91,7 @@ const COPY = Object.freeze({
   },
   pl: {
     title: "Koszt dostępnych produktów",
+    shops: "Podział według sklepów", shopsNote: "Każdy sklep to osobne zamówienie i dostawa; produkty kupuj przez linki powyżej.", items: "produktów", storeUnknown: "część bez ceny",
     partial: "Sumy częściowe wybranych produktów, nie cena kompletnego zestawu.",
     complete: "Suma cen zweryfikowanych produktów; przewody, zabezpieczenia i montaż nie są uwzględnione.",
     missing: "brakujących kategorii",
@@ -72,11 +100,19 @@ const COPY = Object.freeze({
   },
 });
 
-export function caravanBasketPriceMarkup(plan, locale) {
+export function caravanBasketPriceMarkup(plan, locale, merchantLabel = (id) => id) {
   const totals = caravanBasketPriceSummary(plan, locale);
   if (!totals) return "";
   const copy = COPY[locale];
   const esc = (s) => String(s).replace(/[&<>"']/g,(c)=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const stores = caravanMerchantGroups(plan, locale);
+  const storeRows = stores.map((store) => {
+    const label = esc(merchantLabel(store.merchant) || store.merchant);
+    const amounts = store.subtotals.map(({currency,amount})=>esc(formatCaravanPrice(amount,currency,locale))).join(" + ");
+    return `<li data-store-group="${esc(store.merchant)}"><strong>${label}</strong> <span>${store.count} ${copy.items}</span>
+      ${amounts ? `<span class="caravan-store-amount">${amounts}</span>` : ""}
+      ${store.unpriced ? `<small>${store.unpriced} ${copy.storeUnknown}</small>` : ""}</li>`;
+  }).join("");
   const values = totals.subtotals.map(({currency,amount}) =>
     `<strong class="caravan-price-amount" data-basket-currency="${currency}">${esc(formatCaravanPrice(amount, currency, locale))}</strong>`).join("");
   return `<div class="caravan-price-summary" data-price-completeness="${totals.complete ? "complete" : "partial"}">
@@ -85,6 +121,7 @@ export function caravanBasketPriceMarkup(plan, locale) {
     <p>${totals.complete ? copy.complete : copy.partial}</p>
     ${totals.unavailable ? `<p>${totals.unavailable} ${copy.missing}</p>` : ""}
     ${totals.unpriced ? `<p>${totals.unpriced} ${copy.unknown}</p>` : ""}
+    ${stores.length ? `<div class="caravan-store-groups"><strong>${copy.shops} (${stores.length})</strong><ul>${storeRows}</ul><small>${copy.shopsNote}</small></div>` : ""}
     <small>${copy.refresh}</small>
   </div>`;
 }
