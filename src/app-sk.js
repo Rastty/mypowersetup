@@ -12,6 +12,7 @@ import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1";
 import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-stock1";
+import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261121-1";
 import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261121-stock1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261121-stock-aligned1";
 import { selectFeaturedOffers } from "./featured-core-offers.js?v=20261121-stock-aligned1";
@@ -538,7 +539,7 @@ function renderProductRecommendations(result) {
     merchantLabel,
     trackEvent,
   });
-  const hasRecommendedPackage = buyerPlan.complete && packages.some(({ id }) => id === "recommended");
+  const hasRecommendedPackage = purchaseReadyCaravanPackages(packages, buyerPlan).some(({ id }) => id === "recommended");
   trackEvent("product_coverage_calculated", {
     locale: "sk",
     required_categories: coverage.required.length,
@@ -575,7 +576,7 @@ function renderProductRecommendations(result) {
 
   heading.textContent = "Komponenty zodpovedajúce vášmu výpočtu";
   intro.textContent = `Najprv overujeme technickú kompatibilitu. Odporúčaná zostava pri výraznom cenovom rozdiele zohľadňuje aj porovnateľné ponuky v rovnakej mene.${freshness}`;
-  renderProductPackages(packages, coverage);
+  renderProductPackages(purchaseReadyCaravanPackages(packages, buyerPlan), coverage);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Čo katalóg zatiaľ nepokrýva:</strong> ${coverage.message}</p>`;
   const productGroups = Object.entries(recommendations)
     .filter(([, items]) => items.length)
