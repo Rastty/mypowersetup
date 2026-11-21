@@ -12,6 +12,7 @@ import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261117-economy-currency1";
 import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-quantity1";
+import { caravanBasketPriceMarkup } from "./caravan-basket-pricing.js?v=20261121-1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
 import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261119-featured-safe4";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
@@ -631,6 +632,7 @@ function renderCaravanBuyerChecklist(plan) {
       ${ready ? `<a class="caravan-buying-plan-link" href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "caravan-plan"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a>` : ""}
     </li>`).join("")}</ol>
     ${plan.manualDesign ? '<p class="caravan-buying-plan-manual">Pozor: alespoň jeden způsob nabíjení potřebuje individuální návrh a není součástí potvrzené nákupní sestavy.</p>' : ""}
+    ${caravanBasketPriceMarkup(plan, "cs")}
     <p class="caravan-buying-plan-disclosure">Některé odkazy jsou partnerské. Ceny, dostupnost, konečnou kompatibilitu a dopravu zkontrolujte přímo u prodejce.</p>
   </section>`;
   trackEvent("caravan_buying_plan_rendered", {
