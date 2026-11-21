@@ -60,6 +60,9 @@ on:
       - data/solar-calculator-offers-sk.json
       - sk/kalkulacky/solarne-panely/index.html
       - data/products.json
+      - data/products-pl.json
+      - src/pl-s400-guide-offers.js
+      - pl/poradnik/**
       - pruvodce/**
       - kalkulacky/**
 permissions:
