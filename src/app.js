@@ -11,6 +11,7 @@ import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261117-economy-currency1";
+import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
 import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261119-featured-safe4";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
@@ -541,6 +542,7 @@ function renderProductRecommendations(result) {
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
   const coverage = assessRecommendationCoverage(recommendations, result, "cs");
+  renderCaravanBuyerChecklist(buildCaravanBuyerChecklist({ coverage, packages, recommendations }));
   const hasRecommendedPackage = packages.some(({ id }) => id === "recommended");
   trackEvent("product_coverage_calculated", {
     locale: "cs",
@@ -594,6 +596,49 @@ function renderProductRecommendations(result) {
     `).join("");
   groups.innerHTML = `${coverageNotice}<details class="product-comparison-details"><summary><span>Porovnat jednotlivé produkty</span><small>${total} ověřených shod v ${categoryCount} kategoriích</small></summary><div class="product-comparison-groups">${productGroups}</div></details>`;
   trackVisibleProductChoices();
+}
+
+function renderCaravanBuyerChecklist(plan) {
+  const target = document.querySelector("#caravan-buyer-checklist");
+  if (!target || !plan) return;
+  const stateTitle = plan.complete
+    ? "Váš nákupní plán: všechny produktové kategorie pokryté"
+    : plan.status === "partial"
+      ? "Váš nákupní plán: ověřené součásti a co ještě chybí"
+      : "Nákupní plán: zatím bez ověřené produktové shody";
+  const stateNote = plan.complete
+    ? "Máme produktové shody pro každou vypočtenou kategorii. Jde o samostatné nákupy; kabeláž, jištění, montáž a konečnou kompatibilitu vždy ověřte s odborníkem."
+    : "Toto není kompletní sestava. Nakoupit můžete jen ověřené položky níže; chybějící kategorie neobjednávejte naslepo. Kabeláž, jištění a montáž vyžadují samostatnou kontrolu.";
+  const labels = {
+    battery: "Baterie",
+    solar_panel: "Solární panel",
+    controller: "MPPT regulátor",
+    inverter: "Měnič 230 V",
+    dc_charger: "DC–DC nabíječka",
+    shore_charger: "Nabíječka 230 V",
+  };
+  target.innerHTML = `<section class="caravan-buying-plan" data-buying-plan-state="${plan.status}" aria-labelledby="caravan-buying-plan-title">
+    <div class="caravan-buying-plan-heading">
+      <div><span class="step-kicker">Nákup podle skutečného výpočtu</span><h4 id="caravan-buying-plan-title">${stateTitle}</h4></div>
+      <strong class="caravan-buying-plan-count">${plan.readyCount} z ${plan.requiredCount} ověřených kategorií</strong>
+    </div>
+    <p class="caravan-buying-plan-note">${stateNote}</p>
+    <ol class="caravan-buying-plan-rows">${plan.rows.map(({ category, product, ready }) => `<li data-buying-category="${escapeHtml(category)}" class="${ready ? "is-ready" : "is-missing"}">
+      <span class="caravan-buying-plan-mark" aria-hidden="true">${ready ? "✓" : "!"}</span>
+      <div class="caravan-buying-plan-item"><strong>${escapeHtml(labels[category] || category)}</strong>
+        <span>${ready ? escapeHtml(product.name) : "Chybí ověřený vhodný produkt — individuálně ověřte před nákupem"}</span>
+      </div>
+      ${ready ? `<a class="caravan-buying-plan-link" href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "caravan-plan"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a>` : ""}
+    </li>`).join("")}</ol>
+    ${plan.manualDesign ? '<p class="caravan-buying-plan-manual">Pozor: alespoň jeden způsob nabíjení potřebuje individuální návrh a není součástí potvrzené nákupní sestavy.</p>' : ""}
+    <p class="caravan-buying-plan-disclosure">Některé odkazy jsou partnerské. Ceny, dostupnost, konečnou kompatibilitu a dopravu zkontrolujte přímo u prodejce.</p>
+  </section>`;
+  trackEvent("caravan_buying_plan_rendered", {
+    locale: "cs",
+    state: plan.status,
+    verified_categories: plan.readyCount,
+    required_categories: plan.requiredCount,
+  });
 }
 
 function renderProductPackages(variants, coverage) {
