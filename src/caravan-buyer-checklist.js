@@ -1,4 +1,5 @@
 import { isRecommendationEligible } from "./recommendation-coverage.js";
+import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1";
 
 // The real buyer checklist is based only on existing technically vetted and
 // currently eligible recommendations. It never invents a missing product.
@@ -10,13 +11,14 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
     .map(({ category, product }) => [category, product]));
   const rows = coverage.required.map((category) => {
     const packageProduct = packageByCategory.get(category);
-    const candidate = (recommendations[category] || []).find(isRecommendationEligible);
-    // A package takes precedence only where it exists and remains eligible.
-    const product = packageProduct
-      ? ((recommendations[category] || []).some((item) =>
-          item?.product?.id === packageProduct.id && isRecommendationEligible(item))
-          ? packageProduct : null)
-      : candidate?.product || null;
+    // Match the canonical recommended package selection even if one required
+    // category has no eligible SKU and full-package generation returns [].
+    // Existing vetted package choice wins only if it is still eligible;
+    // otherwise recalculate a safe category-specific fallback.
+    const candidate = selectRecommendedCategoryCandidate(recommendations, category);
+    const packageStillEligible = packageProduct && (recommendations[category] || []).some((item) =>
+      item?.product?.id === packageProduct.id && isRecommendationEligible(item));
+    const product = packageStillEligible ? packageProduct : candidate?.product || null;
     const quantity = product && Number.isSafeInteger(product.recommendedQuantity) && product.recommendedQuantity > 0
       ? product.recommendedQuantity : 1;
     return { category, product, ready: Boolean(product), quantity };
