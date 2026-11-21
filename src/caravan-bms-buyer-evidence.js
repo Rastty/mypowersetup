@@ -38,17 +38,17 @@ export function batteryDischargeEvidenceTier(product, setup) {
 
 const BUYER_COPY = Object.freeze({
   cs: {
-    documented: (a, required) => `Specifikace uvádí trvalý limit BMS ${a} A (potřeba ≥ ${required} A). Potvrďte v datasheetu.`,
+    documented: (a, required) => `Výrobce doporučuje pro trvalý provoz ${a} A (potřeba ≥ ${required} A). Vyšší krátkodobé maximum není pro dlouhý odběr.`,
     advertised: (a, required) => `Název uvádí BMS ${a} A, ale trvalý výboj není doložen. Ověřte nejméně ${required} A.`,
     unknown: (required) => `Trvalý vybíjecí proud BMS není doložen. Ověřte nejméně ${required} A v datasheetu.`,
   },
   sk: {
-    documented: (a, required) => `Špecifikácia uvádza trvalý limit BMS ${a} A (potreba ≥ ${required} A). Potvrďte v dokumentácii.`,
+    documented: (a, required) => `Výrobca odporúča na trvalú prevádzku ${a} A (potreba ≥ ${required} A). Vyššie krátkodobé maximum neplatí pre dlhý odber.`,
     advertised: (a, required) => `Názov uvádza BMS ${a} A, no trvalé vybíjanie nie je doložené. Overte aspoň ${required} A.`,
     unknown: (required) => `Trvalý vybíjací prúd BMS nie je doložený. Overte aspoň ${required} A v dokumentácii.`,
   },
   pl: {
-    documented: (a, required) => `Specyfikacja podaje prąd ciągły BMS ${a} A (wymagane ≥ ${required} A). Potwierdź w karcie producenta.`,
+    documented: (a, required) => `Producent zaleca do pracy ciągłej ${a} A (wymagane ≥ ${required} A). Wyższy krótkotrwały limit nie dotyczy długiego obciążenia.`,
     advertised: (a, required) => `Nazwa podaje BMS ${a} A, lecz prąd ciągły nie jest potwierdzony. Sprawdź co najmniej ${required} A.`,
     unknown: (required) => `Brak potwierdzonego prądu ciągłego BMS. Sprawdź co najmniej ${required} A w karcie producenta.`,
   },
