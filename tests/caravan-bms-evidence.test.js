@@ -100,6 +100,6 @@ test("CZ SK PL buying plans expose real continuous BMS current requirement befor
     const app=await readFile(new URL("../src/"+entry,import.meta.url),"utf8");
     assert.ok(page.includes(html === "index.html" ? "20261121-bms-proof2" : "20261121-superpack-ng1"),html);
     assert.match(app,/caravan-buyer-checklist\.js\?v=20261121-bluesolar-pv1/,entry);
-    assert.match(app,/products\.js\?v=20261121-bms-proof2/,entry);
+    assert.ok(app.includes("products.js?v=" + (html === "index.html" ? "20261121-bms-proof2" : "20261121-superpack-ng1")),entry);
   }
 });
