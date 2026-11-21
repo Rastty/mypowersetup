@@ -1,5 +1,6 @@
 import { isRecommendationEligible } from "./recommendation-coverage.js";
 import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1";
+import { caravanComponentRequirement } from "./caravan-component-requirements.js?v=20261121-1";
 
 // A technically compatible model is not a purchase-ready SKU without its
 // actual approved product click URL. Keep the technical result, but mark the
@@ -16,7 +17,7 @@ function hasBuyableProductLink(product) {
 
 // The real buyer checklist is based only on existing technically vetted and
 // currently eligible recommendations. It never invents a missing product.
-export function buildCaravanBuyerChecklist({ coverage, packages = [], recommendations = {} } = {}) {
+export function buildCaravanBuyerChecklist({ coverage, packages = [], recommendations = {}, setup = null, locale = setup?.locale || "cs" } = {}) {
   if (!coverage || !Array.isArray(coverage.required)) return null;
   const recommended = packages.find((variant) => variant?.id === "recommended");
   const packageByCategory = new Map((recommended?.items || [])
@@ -35,7 +36,7 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
     const product = candidate?.product || null;
     const quantity = product && Number.isSafeInteger(product.recommendedQuantity) && product.recommendedQuantity > 0
       ? product.recommendedQuantity : 1;
-    return { category, product, ready: Boolean(product), quantity };
+    return { category, product, ready: Boolean(product), quantity, requirement: caravanComponentRequirement(setup, category, locale) };
   });
   const available = rows.filter((row) => row.ready).length;
   const manualDesign = Boolean(coverage.manualDesignCharging?.length);
