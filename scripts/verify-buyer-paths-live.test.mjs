@@ -68,9 +68,9 @@ test("eighteen CZ, SK, PL and HU buyer pages, exact JS and catalogs are public-e
   assert.equal(result.compactCatalog.outboundClickVerified, false);
   assert.equal(result.compactCatalog.commissionVerified, false);
   assert.equal(fetchImpl.calls.filter(url => url.includes("/data/calculator-offers-cz.json")).length, 1);
-  assert.equal(fetchImpl.calls.filter(url => url.includes("/data/products-pl.json")).length, 1);
+  assert.equal(fetchImpl.calls.filter(url => url.includes("/data/pl-s400-offers.json")).length, 1);
   assert.equal(result.plS400Catalog.source, "exact");
-  assert.equal(result.plS400Catalog.path, "/data/products-pl.json");
+  assert.equal(result.plS400Catalog.path, "/data/pl-s400-offers.json");
   assert.equal(result.plS400Catalog.outboundClickVerified, false);
   assert.equal(result.plS400Catalog.commissionVerified, false);
   assert.equal(fetchImpl.calls.filter(url => url.includes("/data/inverter-calculator-offers-cz.json")).length, 1);
@@ -95,7 +95,7 @@ test("eighteen CZ, SK, PL and HU buyer pages, exact JS and catalogs are public-e
   assert.equal(result.skSolarCatalog.eligible24v450wp, 0);
   assert.equal(result.skSolarCatalog.commissionVerified, false);
   assert.ok(result.browserVersions.battery_runtime.includes("fridge-community1"));
-  assert.ok(result.browserVersions.pl_s400_guide.includes("20261120-s400-editorial1"));
+  assert.ok(result.browserVersions.pl_s400_guide.includes("20261121-s400-compact1"));
   for (const kind of ["mppt_calculator", "battery_capacity", "inverter_calculator", "solar_calculator", "sk_solar_calculator", "dcdc_calculator"])
     assert.ok(result.browserVersions[kind].includes("20261115-placement-events1"), kind);
   for (const kind of ["pl_solar_calculator", "hu_solar_calculator"])
@@ -117,7 +117,7 @@ test("eighteen CZ, SK, PL and HU buyer pages, exact JS and catalogs are public-e
   assert.ok(result.assets.some(row => row.asset === "src/guide-offer-impressions.js" &&
     row.servedPath.includes("?v=20261115-placement-events1")));
   assert.ok(result.assets.some(row => row.asset === "src/pl-s400-guide-offers.js" &&
-    row.servedPath.includes("?v=20261120-s400-editorial1")));
+    row.servedPath.includes("?v=20261121-s400-compact1")));
   assert.ok(result.assets.some(row => row.asset === "src/calculator-offer-catalog.js" &&
     row.servedPath.includes("?v=20261109-lightweight-cz1")));
   for (const row of result.pages) assert.equal(row.http, 200);
@@ -374,38 +374,39 @@ test("public inverter view, buyer marker and outbound evidence fail on productio
 });
 
 test("PL S400 exact public catalog proves reviewed SKUs but never fabricates clicks or stale offers", async () => {
-  const source = await local("data/products-pl.json");
+  const source = await local("data/pl-s400-offers.json");
   const generatedAt = Date.parse(JSON.parse(source).generatedAt);
   const verified = checkPublicPlS400Catalog(source, source, generatedAt + 60_000);
   assert.equal(verified.source, "exact");
   assert.equal(verified.eligibleComparisonOffers, 2);
+  assert.ok(verified.bytes < 4000);
   assert.equal(verified.sourceStatus, "ok");
   assert.equal(verified.outboundClickVerified, false);
   assert.equal(verified.commissionVerified, false);
   assert.equal(checkPublicPlS400Catalog(source, source, generatedAt + 72 * 3600_000).eligibleComparisonOffers, 0);
   assert.throws(() => checkPublicPlS400Catalog(source + "x", source, generatedAt), /PUBLIC_PL_S400_CATALOG_SOURCE_DRIFT/);
   assert.throws(() => checkPublicPlS400Catalog("{broken", "{broken", generatedAt), /PUBLIC_PL_S400_CATALOG_INVALID_JSON/);
-  assert.throws(() => checkPublicPlS400Catalog("x".repeat(1_000_001), "x".repeat(1_000_001), generatedAt), /PUBLIC_PL_S400_CATALOG_TOO_LARGE/);
+  assert.throws(() => checkPublicPlS400Catalog("x".repeat(4001), "x".repeat(4001), generatedAt), /PUBLIC_PL_S400_CATALOG_TOO_LARGE/);
   const swapped = { ...JSON.parse(source), market: "hu-HU" };
   assert.throws(() => checkPublicPlS400Catalog(JSON.stringify(swapped), JSON.stringify(swapped), generatedAt), /PUBLIC_PL_S400_CATALOG_INVALID_SCHEMA/);
   const invalid = JSON.parse(source);
   const offer = invalid.products.find(p => p.id === "oxe_pl:OXE8817");
   offer.available = false;
-  assert.equal(checkPublicPlS400Catalog(JSON.stringify(invalid), JSON.stringify(invalid), generatedAt).eligibleComparisonOffers, 0);
+  assert.throws(() => checkPublicPlS400Catalog(JSON.stringify(invalid), JSON.stringify(invalid), generatedAt), /PUBLIC_PL_S400_CATALOG_INVALID_SCHEMA/);
 });
 
 test("PL S400 page script, served browser JS and catalog must all match the published source", async () => {
   const page = "/pl/poradnik/oxe-s400-czy-zestaw-sp100w-kamper/";
   await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url, file }) => {
     if (url.pathname !== page) return null;
-    return mockResponse(url.href, (await local(file)).replace("20261120-s400-editorial1", "old-cached-version"));
+    return mockResponse(url.href, (await local(file)).replace("20261121-s400-compact1", "old-cached-version"));
   } }) }), /PUBLIC_PL_S400_GUIDE_DRIFT/);
   await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url }) => {
     if (url.pathname !== "/src/pl-s400-guide-offers.js") return null;
     return mockResponse(url.href, "stale served script", "text/javascript");
   } }) }), (error) => String(error?.message).includes("PUBLIC_ASSET_SOURCE_DRIFT:src/pl-s400-guide-offers.js"));
   await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url }) => {
-    if (url.pathname !== "/data/products-pl.json") return null;
+    if (url.pathname !== "/data/pl-s400-offers.json") return null;
     return mockResponse(url.href, "{}", "application/json");
   } }) }), /PUBLIC_PL_S400_CATALOG_SOURCE_DRIFT/);
 });
