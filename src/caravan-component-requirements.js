@@ -1,4 +1,4 @@
-import { minimumBatteryDischargeAmps } from "./battery-discharge-safety.js?v=20261121-bms-evidence1";
+import { minimumBatteryDischargeAmps } from "./battery-discharge-safety.js?v=20261117-bms-load1";
 
 // Exact per-category minimums from the same calculator result used to
 // generate the vetted product choices. Only finite positive values appear.
