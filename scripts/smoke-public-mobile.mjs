@@ -407,16 +407,23 @@ async function smokeCaravanScenarioEntries(client) {
     await evaluate(client, 'document.querySelector("#setup-form").requestSubmit()');
     await waitFor(async () => await evaluate(client,
       'document.querySelector(\'[data-step="3"]\').hidden === false'));
+    // Wait for the dedicated CZ result-focus next-paint callback: the result
+    // headline and its first offer region must replace the form in the viewport.
+    await waitFor(async () => await evaluate(client,
+      '(() => { const heading=document.querySelector(".result-heading"); const top=heading?.getBoundingClientRect().top; return Number.isFinite(top) && top >= -6 && top <= 80; })()'));
     const result = await evaluate(client, `(() => ({
       hasSizing: document.querySelector("#result-grid").children.length >= 4,
       featuredFirst: document.querySelector("#featured-recommendations").getBoundingClientRect().top <
         document.querySelector("#result-grid").getBoundingClientRect().top,
       hasProductSection: Boolean(document.querySelector("#product-recommendations")),
       hasShare: Boolean(document.querySelector("#result-share")),
+      offersVisibleIfPresent: !document.querySelector("#featured-recommendations .featured-picks") ||
+        document.querySelector("#featured-recommendations .featured-picks").getBoundingClientRect().top < window.innerHeight,
       width: window.innerWidth, scrollWidth: document.documentElement.scrollWidth
     }))()`);
     assert(result.hasSizing && result.featuredFirst && result.hasProductSection && result.hasShare,
       `CZ ${sample.id}: result, early offers or share flow missing`);
+    assert(result.offersVisibleIfPresent, `CZ ${sample.id}: verified product offers remain below mobile viewport`);
     assert(result.scrollWidth <= result.width + 2, `CZ ${sample.id}: result overflow`);
     reports.push({ scenario: sample.id, applianceCount: prepared.selected,
       autonomyDays: sample.days, season: sample.season, resultReady: true, overflow: false });

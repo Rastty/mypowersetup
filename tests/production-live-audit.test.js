@@ -14,7 +14,7 @@ test("module asset extraction is safe for missing markup", () => {
 
 const hero = (ids = ["weekend", "family", "work", "comfort"]) =>
   ids.map(id => `<a data-caravan-profile="${id}" href="#kalkulator"></a>`).join("") +
-  '<script type="module" src="/src/caravan-entry.js?v=20261121-1"></script>' +
+  '<script type="module" src="/src/caravan-entry.js?v=20261121-2"></script>' +
   '<link rel="stylesheet" href="/caravan-entry.css?v=20261121-2">';
 
 test("production caravan audit proves all four cards and byte-identical served scripts and CSS", async () => {
