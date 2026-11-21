@@ -1,0 +1,25 @@
+/* CZ buyer-first bill of materials; all links come from the vetted engine. */
+.caravan-buying-plan { margin: 18px 0 24px; padding: clamp(16px,3vw,24px); border: 1px solid #a7c9ac; border-radius: 16px; background: #f4faf5; }
+.caravan-buying-plan[data-buying-plan-state="partial"], .caravan-buying-plan[data-buying-plan-state="unavailable"] { border-color: #d7bb84; background: #fffaf0; }
+.caravan-buying-plan-heading { display: flex; align-items: start; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.caravan-buying-plan-heading h4 { margin: 5px 0 0; font: 800 21px/1.3 "Manrope",sans-serif; }
+.caravan-buying-plan-count { padding: 8px 12px; border-radius: 20px; color: #163c30; background: #e3f1e8; font-size: 12px; }
+.caravan-buying-plan-note { color: #425a4f; line-height: 1.55; font-size: 13px; }
+.caravan-buying-plan-rows { display: grid; gap: 8px; padding: 0; margin: 16px 0; list-style: none; }
+.caravan-buying-plan-rows > li { display: grid; grid-template-columns: 24px minmax(0,1fr) auto; align-items: center; gap: 10px; min-width: 0; padding: 12px; border: 1px solid #d7e4d9; border-radius: 11px; background: white; }
+.caravan-buying-plan-rows > li.is-missing { border-color: #ead9b8; background: #fff8ee; }
+.caravan-buying-plan-mark { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #dbede0; font-size: 13px; font-weight: 900; }
+.is-missing .caravan-buying-plan-mark { background: #f5e1be; }
+.caravan-buying-plan-item { min-width: 0; }
+.caravan-buying-plan-item strong, .caravan-buying-plan-item span { display: block; overflow-wrap: anywhere; }
+.caravan-buying-plan-item strong { font-size: 13px; }
+.caravan-buying-plan-item span { margin-top: 3px; color: #53685c; font-size: 12px; }
+.caravan-buying-plan-link { display: grid; place-items: center; min-height: 44px; max-width: 230px; padding: 9px 13px; border-radius: 9px; color: white; background: #153c30; font-size: 12px; font-weight: 800; text-align: center; text-decoration: none; }
+.caravan-buying-plan-link:hover { background: #0d2b23; }
+.caravan-buying-plan-link:focus-visible { outline: 3px solid #779846; outline-offset: 2px; }
+.caravan-buying-plan-manual { padding: 10px 14px; background: #fff0d3; border-radius: 8px; font-size: 13px; }
+.caravan-buying-plan-disclosure { margin: 12px 0 0; color: #51665a; font-size: 11px; }
+@media(max-width: 650px) {
+  .caravan-buying-plan-rows > li { grid-template-columns: 24px minmax(0,1fr); }
+  .caravan-buying-plan-link { grid-column: 2; justify-self: stretch; max-width: none; }
+}
