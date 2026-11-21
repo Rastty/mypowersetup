@@ -12,6 +12,7 @@ import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1";
 import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-stock1";
+import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261121-1";
 import { caravanBasketPriceMarkup, caravanLinePrice, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-merchant1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261121-stock-aligned1";
 import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261121-stock-aligned1";
@@ -549,7 +550,7 @@ function renderProductRecommendations(result) {
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
   renderCaravanBuyerChecklist(buyerPlan);
-  const hasRecommendedPackage = buyerPlan.complete && packages.some(({ id }) => id === "recommended");
+  const hasRecommendedPackage = purchaseReadyCaravanPackages(packages, buyerPlan).some(({ id }) => id === "recommended");
   trackEvent("product_coverage_calculated", {
     locale: "cs",
     required_categories: coverage.required.length,
@@ -587,7 +588,7 @@ function renderProductRecommendations(result) {
   heading.textContent = "Komponenty odpovídající vašemu výpočtu";
   intro.textContent = `Konkrétní produkty a odkazy na prodejce najdete hned níže. Nejprve ověřujeme technickou kompatibilitu, potom porovnáváme dostupné možnosti.${freshness}`;
   trackEvent("featured_recommendations_rendered", { locale: "cs", product_count: featured.length });
-  renderProductPackages(packages, coverage);
+  renderProductPackages(purchaseReadyCaravanPackages(packages, buyerPlan), coverage);
   const coverageNotice = coverage.complete ? "" : `<p class="recommendation-coverage-note"><strong>Co katalog zatím nepokrývá:</strong> ${coverage.message}</p>`;
   const productGroups = Object.entries(recommendations)
     .filter(([, items]) => items.length)
