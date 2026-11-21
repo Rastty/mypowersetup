@@ -1236,3 +1236,23 @@ test("localized Padabo controller categories still reject PWM and accessories", 
     assert.equal(product.category, "other");
   }
 });
+
+
+test("Slovak Victron MPPT 75-100 range never masquerades as 100 A charger", () => {
+  const names = [
+    ["Solárny regulátor nabíjania Victron Energy SmartSolar MPPT 75-100 W variant 75/10", 10],
+    ["Solárny regulátor nabíjania Victron Energy SmartSolar MPPT 75-100 W variant 75/15", 15],
+    ["Solárny regulátor nabíjania Victron Energy SmartSolar MPPT 75-100 W variant 100/15", 15],
+    ["Solárny regulátor nabíjania Victron Energy SmartSolar MPPT 75-100 W variant 100/20", 20],
+    ["Solárny regulátor MPPT Victron Energy SmartSolar 100/30", 30],
+    ["Solárny regulátor nabíjania Victron Energy SmartSolar MPPT VE.Can model MPPT 150/85-Tr", 85]
+  ];
+  for (const [name, expected] of names) {
+    const refreshed = refreshCatalogProduct({
+      id: "padabo_sk:sample", merchant: "padabo_sk", name,
+      categoryPath: "Solárne regulátory", category: "controller",
+      description: "", available: true, specs: {currentA:100}
+    });
+    assert.equal(refreshed.specs.currentA, expected, name);
+  }
+});
