@@ -122,6 +122,7 @@ try {
 
   const reports = [];
   for (const market of markets) reports.push(await smokeMarket(cdp, market));
+  const caravanScenarios = await smokeCaravanScenarioEntries(cdp);
   const batteryUpgrade = await smokeBatteryUpgrade(cdp);
   const fridgeGuide = await smokeFridgeGuideHandoff(cdp);
   const mpptBuyerMatches = await smokeMpptBuyerMatches(cdp);
@@ -135,6 +136,7 @@ try {
     viewport: "390x844",
     markets: reports,
     batteryUpgrade,
+    caravanScenarios,
     fridgeGuide,
     mpptBuyerMatches,
     batteryBuyerMatches,
@@ -347,6 +349,68 @@ async function smokeMarket(client, market) {
   };
 }
 
+
+// Browser exercises the actual top-of-page customer path, not only static HTML
+// or the already-existing manual calculator. All four shortcuts must delegate
+// to canonical editable usage profiles and render a fresh purchase-safe result.
+async function smokeCaravanScenarioEntries(client) {
+  const cases = [
+    { id: "weekend", selected: 4, days: "2", season: "summer" },
+    { id: "family", selected: 5, days: "2", season: "summer" },
+    { id: "work", selected: 5, days: "2", season: "shoulder" },
+    { id: "comfort", selected: 7, days: "3", season: "shoulder" },
+  ];
+  const reports = [];
+  for (const sample of cases) {
+    await client.send("Page.navigate", { url: origin + "/" });
+    await waitFor(async () => await evaluate(client,
+      'document.readyState === "complete" && document.querySelectorAll("[data-usage-profile]").length === 4'));
+    const start = await evaluate(client, `(() => ({
+      scenarioCount: document.querySelectorAll("[data-caravan-profile]").length,
+      width: window.innerWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+      hasEntryScript: !!document.querySelector('script[src*="caravan-entry.js"]'),
+      hasEntryCss: !!document.querySelector('link[href*="caravan-entry.css"]')
+    }))()`);
+    assert(start.scenarioCount === 4, "CZ caravan scenario count must be four");
+    assert(start.hasEntryScript && start.hasEntryCss, "CZ caravan entry assets are missing");
+    assert(start.scrollWidth <= start.width + 2, "CZ caravan hero overflows mobile screen");
+
+    await evaluate(client, `document.querySelector('[data-caravan-profile="${sample.id}"]').click()`);
+    await waitFor(async () => await evaluate(client,
+      `document.querySelector('[data-step="2"]').hidden === false && document.querySelector('[data-usage-profile="${sample.id}"]').getAttribute("aria-pressed") === "true"`));
+    const prepared = await evaluate(client, `(() => ({
+      selected: Number(document.querySelector("#selected-count").textContent),
+      dailyText: document.querySelector("#live-consumption").textContent,
+      autonomy: document.querySelector('input[name="autonomyDays"]:checked')?.value,
+      season: document.querySelector('input[name="season"]:checked')?.value,
+      width: window.innerWidth, scrollWidth: document.documentElement.scrollWidth
+    }))()`);
+    assert(prepared.selected === sample.selected, `CZ ${sample.id}: selected appliance count ${prepared.selected}`);
+    assert(prepared.autonomy === sample.days, `CZ ${sample.id}: autonomy mismatch`);
+    assert(prepared.season === sample.season, `CZ ${sample.id}: season mismatch`);
+    assert(prepared.dailyText && !/^0(?:\\D|$)/.test(prepared.dailyText), `CZ ${sample.id}: no consumption`);
+    assert(prepared.scrollWidth <= prepared.width + 2, `CZ ${sample.id}: step 2 overflow`);
+
+    await evaluate(client, 'document.querySelector("#setup-form").requestSubmit()');
+    await waitFor(async () => await evaluate(client,
+      'document.querySelector(\'[data-step="3"]\').hidden === false'));
+    const result = await evaluate(client, `(() => ({
+      hasSizing: document.querySelector("#result-grid").children.length >= 4,
+      featuredFirst: document.querySelector("#featured-recommendations").getBoundingClientRect().top <
+        document.querySelector("#result-grid").getBoundingClientRect().top,
+      hasProductSection: Boolean(document.querySelector("#product-recommendations")),
+      hasShare: Boolean(document.querySelector("#result-share")),
+      width: window.innerWidth, scrollWidth: document.documentElement.scrollWidth
+    }))()`);
+    assert(result.hasSizing && result.featuredFirst && result.hasProductSection && result.hasShare,
+      `CZ ${sample.id}: result, early offers or share flow missing`);
+    assert(result.scrollWidth <= result.width + 2, `CZ ${sample.id}: result overflow`);
+    reports.push({ scenario: sample.id, applianceCount: prepared.selected,
+      autonomyDays: sample.days, season: sample.season, resultReady: true, overflow: false });
+  }
+  return reports;
+}
 
 async function smokeBatteryUpgrade(client) {
   // Browser-prove the measurable next step: invalidation, exact input transfer,
