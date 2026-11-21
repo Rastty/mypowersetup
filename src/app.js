@@ -11,7 +11,7 @@ import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1";
-import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-buyable1";
+import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-requirements1";
 import { caravanBasketPriceMarkup, caravanLinePrice, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-merchant1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
 import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261119-featured-safe4";
@@ -543,7 +543,7 @@ function renderProductRecommendations(result) {
   const total = Object.values(recommendations).reduce((sum, items) => sum + items.length, 0);
   const categoryCount = Object.values(recommendations).filter((items) => items.length).length;
   const coverage = assessRecommendationCoverage(recommendations, result, "cs");
-  renderCaravanBuyerChecklist(buildCaravanBuyerChecklist({ coverage, packages, recommendations }));
+  renderCaravanBuyerChecklist(buildCaravanBuyerChecklist({ coverage, packages, recommendations, setup: result, locale: "cs" }));
   const hasRecommendedPackage = packages.some(({ id }) => id === "recommended");
   trackEvent("product_coverage_calculated", {
     locale: "cs",
