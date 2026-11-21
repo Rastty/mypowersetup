@@ -1,5 +1,5 @@
 import { caravanPvNominalReview } from "./caravan-pv-array-review.js?v=20261121-actual-pv1";
-import { reviewCaravanPvString } from "./caravan-pv-string-review.js?v=20261121-ecoflow-pv1";
+import { reviewCaravanPvString } from "./caravan-pv-string-review.js?v=20261121-bluesolar-pv1";
 
 // The main buyer checklist is the source of truth for a purchasable caravan.
 // The three package alternatives must not reintroduce unknown-stock products
