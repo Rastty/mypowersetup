@@ -24,7 +24,7 @@ test("CZ SK and PL derive the result-next route from the same package engine use
     const source = await readFile(new URL(`../src/${application}`, import.meta.url), "utf8");
     assert.match(source, /const packages = buildProductPackages\(rankedRecommendations, result\)/, application);
     assert.match(source, /const hasRecommendedPackage = purchaseReadyCaravanPackages\(packages, buyerPlan\)\.some\(\(\{ id \}\) => id === "recommended"\)/, application);
-    assert.match(source, /renderProductPackages\(packages, coverage\)/, application);
+    assert.match(source, /renderProductPackages\(purchaseReadyCaravanPackages\(packages, buyerPlan\), coverage\)/, application);
   }
 });
 
