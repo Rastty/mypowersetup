@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T07:49:45.431Z",
+  "generatedAt": "2026-11-21T09:22:29.798Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
@@ -37,7 +37,7 @@
       "relevantProducts": 26,
       "liveSupplements": 0,
       "liveOfferChecks": 18,
-      "liveOfferVerified": 11,
+      "liveOfferVerified": 12,
       "liveOfferRedirects": 6,
       "powerStations": 18,
       "technicallyVerifiedPowerStations": 10,
@@ -7296,9 +7296,9 @@
       "categoryPath": "",
       "category": "power_station",
       "brand": "OXE",
-      "priceCzk": null,
+      "priceCzk": 255441,
       "priceCurrency": "HUF",
-      "available": false,
+      "available": true,
       "productUrl": "https://www.oxe.hu/oxe-powerstation-s400-es-napelem-sp100w-taska/",
       "affiliateUrl": "https://go.dognet.com/?chid=v9mcMMKw&url=https%3A%2F%2Fwww.oxe.hu%2Foxe-powerstation-s400-es-napelem-sp100w-taska%2F",
       "imageUrl": "https://www.oxe.cz/galeria/produkty/big/2022/01/26/oxe-powerstation-s400-a-solarni-panel-sp100w-8821-1643193819.jpg",
