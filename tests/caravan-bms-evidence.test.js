@@ -96,8 +96,8 @@ test("CZ SK PL buying plans expose real continuous BMS current requirement befor
   for(const [html,entry] of [["index.html","app.js"],["sk/index.html","app-sk.js"],["pl/index.html","app-pl.js"]]) {
     const page=await readFile(new URL("../"+html,import.meta.url),"utf8");
     const app=await readFile(new URL("../src/"+entry,import.meta.url),"utf8");
-    assert.match(page,/20261121-bms-evidence1/,html);
-    assert.match(app,/caravan-buyer-checklist\.js\?v=20261121-bms-evidence1/,entry);
+    assert.match(page,/20261121-pv-actual1/,html);
+    assert.match(app,/caravan-buyer-checklist\.js\?v=20261121-pv-actual1/,entry);
     assert.match(app,/products\.js\?v=20261121-bms-evidence1/,entry);
   }
 });

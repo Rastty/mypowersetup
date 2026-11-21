@@ -1,3 +1,5 @@
+import { caravanPvNominalReview } from "./caravan-pv-array-review.js?v=20261121-actual-pv1";
+
 // The main buyer checklist is the source of truth for a purchasable caravan.
 // The three package alternatives must not reintroduce unknown-stock products
 // or imply complete charging design from technically matched catalog rows.
@@ -28,6 +30,14 @@ export function purchaseReadyCaravanPackages(packages, buyerPlan) {
       // verified ready-to-buy plan; otherwise only that plan is recommended.
       if (variant.id === "recommended" && item.product.id !== selected.get(item.category)) return false;
     }
+    // Economy/reserve variants must not re-introduce a controller whose
+    // nominal 12/24 V PV rating is below their own rounded panel count.
+    // This is a manual-sizing hold, not a claim the hardware will be damaged.
+    const panels = variant.items.find(({category}) => category === "solar_panel");
+    const controller = variant.items.find(({category}) => category === "controller");
+    if (panels && controller && caravanPvNominalReview(
+      panels, controller.product, buyerPlan.systemVoltage
+    ).needsManualReview) return false;
     return categories.size === required.size;
   });
 }
