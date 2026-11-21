@@ -2,6 +2,7 @@ import { isRecommendationEligible } from "./recommendation-coverage.js";
 import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1";
 import { caravanComponentRequirement } from "./caravan-component-requirements.js?v=20261121-bms-evidence1";
 import { caravanPvNominalReview, controllerNominalPvWatts } from "./caravan-pv-array-review.js?v=20261121-actual-pv1";
+import { reviewCaravanPvString } from "./caravan-pv-string-review.js?v=20261121-ecoflow-pv1";
 
 // A technically compatible model is not a purchase-ready SKU without its
 // actual approved product click URL. Keep the technical result, but mark the
@@ -75,6 +76,34 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
         ? {...selectedController, product: replacement.product, ready: true, missingReason: null}
         : {...selectedController, product: null, ready: false, quantity: 1,
           missingReason: "pv_nominal_review", installedPvWp: review.actualWp, nominalPvWp: review.nominalWp};
+    }
+  }
+
+  // When both the exact EcoFlow panel and a verified Victron MPPT model
+  // have electrical source evidence, try an actual series/parallel layout.
+  // A missing controller limit must NEVER be represented as proof of a
+  // cold-weather-safe PV string. Preserve other purchasable rows if manual
+  // review is needed for the regulator.
+  const purchasedPanel = rows.find((row) => row.category === "solar_panel" && row.ready);
+  const mpptIndex = rows.findIndex((row) => row.category === "controller" && row.ready);
+  if (purchasedPanel && mpptIndex >= 0) {
+    const selected = rows[mpptIndex];
+    const electrical = reviewCaravanPvString(purchasedPanel, selected.product, setup?.systemVoltage);
+    if (electrical?.status === "within_reviewed_limits") {
+      rows[mpptIndex] = {...selected, pvWiringReview: electrical};
+    } else if (electrical?.status === "manual_review") {
+      const other = (recommendations.controller || []).filter((item) =>
+        isRecommendationEligible(item) && item.product?.available === true
+        && hasBuyableProductLink(item.product));
+      const replacement = other.find((item) =>
+        reviewCaravanPvString(purchasedPanel, item.product, setup?.systemVoltage)?.status
+          === "within_reviewed_limits");
+      rows[mpptIndex] = replacement
+        ? {...selected, product: replacement.product,
+          pvWiringReview: reviewCaravanPvString(purchasedPanel, replacement.product, setup?.systemVoltage)}
+        : {...selected, product: null, ready: false, quantity: 1,
+          missingReason: "pv_electrical_review", installedPvWp: electrical.actualWp,
+          pvElectricalIssue: electrical.reason};
     }
   }
 
