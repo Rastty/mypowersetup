@@ -38,6 +38,8 @@ export function formatCaravanShoppingList({ locale = "cs", rows = [], complete =
     if (!label) continue;
     const name = row?.ready ? String(row?.name || "").trim() : "";
     lines.push(`${index+1}. ${label}: ${name ? `${l.verified} — ${name}` : l.missing}`);
+    const requirement = String(row?.requirement || "").trim();
+    if (requirement) lines.push(`   ${requirement}`);
   }
   if (manualDesign) lines.push("", l.manual);
   if (setupUrl) lines.push("", locale === "sk" ? "Otvoriť aktuálne prepočítanú zostavu:" : locale === "pl" ? "Otwórz zestaw z aktualnymi produktami:" : "Otevřít sestavu s aktuálními produkty:", setupUrl);
@@ -50,6 +52,7 @@ function currentPlanData(section) {
     category: item.getAttribute("data-buying-category"),
     label: item.querySelector(".caravan-buying-plan-item strong")?.textContent,
     name: item.querySelector(".caravan-buying-plan-item span")?.textContent,
+    requirement: item.querySelector(".caravan-item-requirement")?.textContent,
     ready: item.classList.contains("is-ready") && Boolean(item.querySelector("a[data-affiliate-click]")),
   }));
   return {

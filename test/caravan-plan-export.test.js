@@ -26,7 +26,7 @@ test("copy plan is natively localized for three existing markets",()=>{
 test("all three caravan homepage documents use one shared copy-only module",()=>{
  for(const path of ["index.html","sk/index.html","pl/index.html"]){
   const html=readFileSync(new URL("../"+path,import.meta.url),"utf8");
-  assert.match(html,/src\/caravan-plan-export\.js\?v=20261121-2/);
+  assert.match(html,/src\/caravan-plan-export\.js\?v=20261121-technical1/);
   assert.match(html,/id="caravan-buyer-checklist"/);
  }
  const script=readFileSync(new URL("../src/caravan-plan-export.js",import.meta.url),"utf8");
@@ -61,4 +61,16 @@ test("save and copy CTA mount on the existing buyer plan, no secondary calculato
  assert.match(script,/new MutationObserver\(refresh\)/);
  assert.match(script,/currentPlanData\(section\)/);
  assert.doesNotMatch(script,/localStorage|sessionStorage/);
+});
+
+test("copied technical list includes precise requirements even for still-missing products", () => {
+ const text=formatCaravanShoppingList({locale:"cs",complete:false,rows:[
+   {label:"Solární panel",ready:true,name:"2 ks · Panel 220 Wp",requirement:"Požadavek výpočtu: alespoň 420 Wp"},
+   {label:"MPPT regulátor",ready:false,requirement:"Požadavek výpočtu: nabíjecí proud alespoň 35 A při 12 V"}
+ ]});
+ assert.match(text,/2 ks · Panel 220 Wp/);
+ assert.match(text,/420 Wp/);
+ assert.match(text,/Chybí ověřený produkt/);
+ assert.match(text,/35 A při 12 V/);
+ assert.doesNotMatch(text,/affiliate|ehub|priceCzk|utm_/);
 });
