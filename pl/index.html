@@ -33,6 +33,7 @@
 <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/styles.css?v=20261119-voltage-dc-load1" />
+    <link rel="stylesheet" href="/caravan-entry.css?v=20261121-2" />
     <title>Kalkulator akumulatora i fotowoltaiki do kampera | MyPowerSetup</title>
     <script type="application/ld+json">
       {
@@ -109,7 +110,17 @@
             <span><b>✓</b> Przejrzyste obliczenia</span>
             <span><b>✓</b> Bezpłatnie</span>
           </div>
-          <a class="button button-primary hero-button" href="#kalkulator">Oblicz mój zestaw</a>
+          <div class="caravan-entry" aria-labelledby="caravan-entry-title">
+            <h2 id="caravan-entry-title">Jak korzystasz z kampera?</h2>
+            <p>Wybierz najbliższy scenariusz. Urządzenia i czas pracy możesz później zmienić.</p>
+            <div class="caravan-entry-grid">
+              <a href="#kalkulator" data-caravan-profile="weekend"><strong>Weekend</strong><small>Podstawowe urządzenia</small></a>
+              <a href="#kalkulator" data-caravan-profile="family"><strong>Rodzinny wyjazd</strong><small>Codzienny komfort</small></a>
+              <a href="#kalkulator" data-caravan-profile="work"><strong>Praca z kampera</strong><small>Laptop przez cały dzień</small></a>
+              <a href="#kalkulator" data-caravan-profile="comfort"><strong>Większy komfort</strong><small>Trzy dni zapasu</small></a>
+            </div>
+          </div>
+          <a class="button button-primary hero-button" href="#kalkulator">Wolę ustawić wszystko ręcznie</a>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
@@ -516,5 +527,6 @@
     </footer>
 
   <script type="module" src="/src/app-pl.js?v=20261119-voltage-guide1"></script>
+  <script type="module" src="/src/caravan-entry.js?v=20261121-2"></script>
   <script type="module" src="/src/analytics.js?v=20260827-pltrust1"></script></body>
 </html>

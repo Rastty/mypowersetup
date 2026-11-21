@@ -33,6 +33,7 @@
 <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/styles.css?v=20261119-voltage-dc-load1" />
+    <link rel="stylesheet" href="/caravan-entry.css?v=20261121-2" />
     <title>Kalkulačka batérie a soláru do karavanu | MyPowerSetup</title>
     <script type="application/ld+json">
       {
@@ -109,7 +110,17 @@
             <span><b>✓</b> Transparentný výpočet</span>
             <span><b>✓</b> Zdarma</span>
           </div>
-          <a class="button button-primary hero-button" href="#kalkulator">Vypočítať moju zostavu</a>
+          <div class="caravan-entry" aria-labelledby="caravan-entry-title">
+            <h2 id="caravan-entry-title">Ako využívate karavan?</h2>
+            <p>Vyberte najbližšiu situáciu. Spotrebiče aj čas používania môžete potom upraviť.</p>
+            <div class="caravan-entry-grid">
+              <a href="#kalkulator" data-caravan-profile="weekend"><strong>Víkend</strong><small>Základné spotrebiče</small></a>
+              <a href="#kalkulator" data-caravan-profile="family"><strong>Rodinná dovolenka</strong><small>Bežný komfort</small></a>
+              <a href="#kalkulator" data-caravan-profile="work"><strong>Práca z karavanu</strong><small>Notebook celý deň</small></a>
+              <a href="#kalkulator" data-caravan-profile="comfort"><strong>Vyšší komfort</strong><small>Viac energie na tri dni</small></a>
+            </div>
+          </div>
+          <a class="button button-primary hero-button" href="#kalkulator">Chcem nastaviť všetko ručne</a>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
@@ -516,5 +527,6 @@
     </footer>
 
   <script type="module" src="/src/app-sk.js?v=20261119-voltage-guide1"></script>
+  <script type="module" src="/src/caravan-entry.js?v=20261121-2"></script>
   <script type="module" src="/src/analytics.js?v=20260824-1"></script></body>
 </html>
