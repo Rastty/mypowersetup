@@ -47,5 +47,7 @@ test("same merchant products share checkout group, separate merchants never beco
   assert.match(markup,/Podział według sklepów \(2\)/);
   assert.match(markup,/Padabo Poland/);
   assert.match(markup,/Power Queen/);
+  assert.match(markup,/2× panele słoneczne/);
+  assert.match(markup,/1× panele słoneczne/);
   assert.equal((markup.match(/data-store-group=/g)||[]).length,2);
 });
