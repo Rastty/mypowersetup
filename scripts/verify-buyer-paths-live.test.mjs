@@ -403,7 +403,7 @@ test("PL S400 page script, served browser JS and catalog must all match the publ
   await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url }) => {
     if (url.pathname !== "/src/pl-s400-guide-offers.js") return null;
     return mockResponse(url.href, "stale served script", "text/javascript");
-  } }) }), /PUBLIC_ASSET_SOURCE_DRIFT:src\\/pl-s400-guide-offers\\.js/);
+  } }) }), (error) => String(error?.message).includes("PUBLIC_ASSET_SOURCE_DRIFT:src/pl-s400-guide-offers.js"));
   await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url }) => {
     if (url.pathname !== "/data/products-pl.json") return null;
     return mockResponse(url.href, "{}", "application/json");
