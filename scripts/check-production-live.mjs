@@ -9,6 +9,7 @@ const report = await auditProductionLive({
   siteUrl: process.env.MPS_PRODUCTION_URL || "https://mypowersetup.com",
   localSitemapXml,
   readLocalHome: ({ home }) => readFile(resolve(root, home === "/" ? "index.html" : `${home.slice(1)}index.html`), "utf8"),
+  readLocalAsset: (path) => readFile(resolve(root, path.replace(/^\//, "")), "utf8"),
 });
 
 console.log(JSON.stringify(report, null, 2));
