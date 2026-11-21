@@ -33,3 +33,13 @@
 .caravan-manufacturer-proof { grid-column: 2 / -1; display: inline-block; max-width: max-content; padding: 8px 0; color: #15573f; font-size: 12px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .caravan-manufacturer-proof:focus-visible { outline: 2px solid #15573f; outline-offset: 3px; }
 @media(max-width:650px) { .caravan-manufacturer-proof { grid-column: 2; } }
+
+/* Quantity-aware basket subtotal; never merges different merchant currencies. */
+.caravan-price-summary { margin: 16px 0 12px; padding: 15px; border-radius: 12px; border: 1px solid #c4d9cb; background: #fff; }
+.caravan-price-heading { display: block; margin-bottom: 8px; font-size: 14px; color: #244a37; }
+.caravan-price-subtotals { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.caravan-price-amount { font-size: clamp(20px,3.8vw,26px); font-weight: 800; color: #153d2c; font-variant-numeric: tabular-nums; }
+.caravan-price-summary p { margin: 6px 0; font-size: 12px; line-height: 1.45; }
+.caravan-price-summary small { color: #657267; font-size: 11px; line-height: 1.5; }
+.caravan-line-amount { grid-column: 2 / -1; font-size: 12px; font-weight: 700; color: #375846; }
+@media(max-width:650px) { .caravan-line-amount { grid-column: 2; } }
