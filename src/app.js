@@ -85,7 +85,6 @@ const existingSetupCheck = mountExistingSetupCheck({
   onAssessed: (assessment) => trackEvent("existing_setup_assessed", { bottleneck: assessment.primaryBottleneck || "none" })
 });
 bindChoiceCards();
-bindCaravanEntry();
 bindNavigation();
 bindResultSharing();
 loadProductCatalog().then(restoreSetupFromUrl);
@@ -160,21 +159,6 @@ function bindChoiceCards() {
       document.querySelectorAll(`input[name="${input.name}"]`).forEach((peer) => {
         peer.closest(".choice-card").classList.toggle("is-selected", peer.checked);
       });
-    });
-  });
-}
-
-function bindCaravanEntry() {
-  // Reuse the exact, already tested consumption presets. The hero shortcuts
-  // must not bypass the editable appliance step or the purchase-safety gates.
-  document.querySelectorAll("[data-caravan-profile]").forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const id = link.dataset.caravanProfile;
-      const preset = document.querySelector(`#usage-profiles [data-usage-profile="${id}"]`);
-      if (!preset) return; // keep the plain calculator anchor as safe fallback
-      event.preventDefault();
-      showStep(2);
-      preset.click(); // applies appliance + season + autonomy inputs and tracking
     });
   });
 }
