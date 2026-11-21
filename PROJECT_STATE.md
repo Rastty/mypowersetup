@@ -55,7 +55,7 @@ Updated: 2026-11-21. Truth: GitHub `main`, Actions/Pages and direct `https://myp
 
 ## Build-first customer help — 2026-11-21
 - [PR #659](https://github.com/Rastty/mypowersetup/pull/659): developed a localized CZ/SK/PL **how-to-buy missing caravan components** feature directly inside the existing partial shopping checklist. Missing battery, solar panel, MPPT, inverter, DC-DC or shore-charger rows reveal actionable checks for electrical compatibility (voltage, continuous/peak power, MPPT cold Voc, BMS current/charging temperatures, correct charging profile, alternator limits, wiring/fuses), instead of a dead-end empty product. One shared script and stylesheet; reuses existing real calculation and fail-closed affiliate product eligibility. Does **not** fake SKU, price, availability or required numeric thresholds.
-- **Delivery evidence:** source files and PR authored. Treat as `PR OPEN / NOT MERGED / NOT DEPLOYED` until GitHub branch checks and merge actually succeed. No revenue claim.
+- **Delivery evidence:** PR #659 **merged to `main`** as `efe3a537` with new components and homepage asset links; explicit branch CI success and postmerge Pages/public readback were **not independently confirmed** in this execution. Do not call deployed or claim measured revenue.
 - **Next builder priority:** feed-based exact SKU coverage for the missing approved-market categories (CZ/SK/PL); prioritize real purchasable offers over more verification scaffolding. No new merchant approvals assumed.
 
 ## Completed and publicly verified
