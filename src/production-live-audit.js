@@ -40,11 +40,45 @@ export function moduleScriptSources(html) {
     .map(({ src }) => src));
 }
 
+// Focused shipping proof for the Czech scenario entry. Identical assets and
+// selection IDs matter more than HTTP 200 alone (which can serve stale Pages).
+export async function auditCaravanEntryReadback({ localHtml, liveHtml, readLocalAsset, fetchLiveAsset }) {
+  const failures = [];
+  const expectedIds = ["weekend", "family", "work", "comfort"];
+  const ids = (html) => [...String(html).matchAll(/data-caravan-profile=["']([^"']+)["']/g)].map((match) => match[1]);
+  const localIds = ids(localHtml);
+  const liveIds = ids(liveHtml);
+  if (JSON.stringify(localIds) !== JSON.stringify(expectedIds)) failures.push("CZ_CARAVAN_LOCAL_SCENARIOS_INVALID");
+  if (JSON.stringify(liveIds) !== JSON.stringify(localIds)) failures.push("CZ_CARAVAN_SCENARIOS_DRIFT");
+  const assets = [
+    "/src/caravan-entry.js?v=20261121-1",
+    "/caravan-entry.css?v=20261121-1",
+  ];
+  for (const route of assets) {
+    if (!String(localHtml).includes(route)) failures.push(`CZ_CARAVAN_LOCAL_ASSET_MISSING:${route}`);
+    if (!String(liveHtml).includes(route)) failures.push(`CZ_CARAVAN_LIVE_ASSET_MISSING:${route}`);
+    if (typeof readLocalAsset !== "function" || typeof fetchLiveAsset !== "function") {
+      failures.push(`CZ_CARAVAN_ASSET_READER_MISSING:${route}`);
+      continue;
+    }
+    try {
+      const [local, live] = await Promise.all([readLocalAsset(route.split("?")[0]), fetchLiveAsset(route)]);
+      if (typeof local !== "string" || typeof live !== "string" || live !== local) {
+        failures.push(`CZ_CARAVAN_ASSET_DRIFT:${route}`);
+      }
+    } catch {
+      failures.push(`CZ_CARAVAN_ASSET_FETCH_FAILED:${route}`);
+    }
+  }
+  return Object.freeze({ ready: failures.length === 0, scenarios: Object.freeze(liveIds), checkedAssets: assets.length, failures: Object.freeze(failures) });
+}
+
 export async function auditProductionLive({
   fetcher = globalThis.fetch,
   siteUrl = DEFAULT_SITE_URL,
   localSitemapXml,
   readLocalHome,
+  readLocalAsset,
 } = {}) {
   if (typeof fetcher !== "function") throw new TypeError("PRODUCTION_FETCHER_REQUIRED");
   if (typeof localSitemapXml !== "string") throw new TypeError("PRODUCTION_LOCAL_SITEMAP_REQUIRED");
@@ -86,6 +120,13 @@ export async function auditProductionLive({
       const localAssets = moduleScriptSources(localHtml);
       if (JSON.stringify(liveAssets) !== JSON.stringify(localAssets)) failures.push(`${market.home}:MODULE_ASSET_DRIFT`);
       for (const asset of liveAssets) if (asset.startsWith("/")) assetRoutes.add(asset);
+      if (market.key === "cs") {
+        const caravan = await auditCaravanEntryReadback({
+          localHtml, liveHtml, readLocalAsset,
+          fetchLiveAsset: (asset) => fetchLive(fetcher, origin, asset, asset.endsWith(".css?v=20261121-1") ? "text/css" : "text/javascript"),
+        });
+        failures.push(...caravan.failures);
+      }
     } catch (error) {
       failures.push(error.message);
     }
