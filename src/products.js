@@ -4,7 +4,8 @@ import { batteryContinuousLimitNotBelowRequirement, batteryDischargeBuyerCheck, 
 import { isPowerQueenRegionRestrictedOffer } from "./powerqueen-expansion.js?v=20261117-pq-region1";
 import { addVerifiedVictronChargingProfiles } from "./victron-orion-charging-profiles.js?v=20261121-1";
 import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-charging-profiles.js?v=20261121-padabo1";
-import { addVerifiedEcoFlowRigid175PvSpecs } from "./ecoflow-rigid-pv-profiles.js?v=20261121-ecoflow-pv1";
+import { addVerifiedEcoFlowRigid175PvSpecs } from "./ecoflow-rigid-pv-profiles.js?v=20261121-bluesolar-pv1";
+import { addVerifiedVictronBlueSolar190PvSpecs } from "./victron-bluesolar-pv-profiles.js?v=20261121-bluesolar-pv1";
 
 const MERCHANTS = {
   reslshop: {
@@ -498,7 +499,7 @@ export function refreshCatalogProduct(product) {
   return {
     ...product,
     available: isConfirmedDiscontinuedProduct(product) ? false : product.available,
-    specs: addVerifiedEcoFlowRigid175PvSpecs(product, addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, specs))),
+    specs: addVerifiedVictronBlueSolar190PvSpecs(product, addVerifiedEcoFlowRigid175PvSpecs(product, addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, specs)))),
     category: product.verifiedAt && product.category && product.category !== "other"
       ? product.category
       : classifyProduct({ name: product.name, categoryPath: product.categoryPath, specs })
