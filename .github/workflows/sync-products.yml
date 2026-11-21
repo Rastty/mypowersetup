@@ -120,7 +120,7 @@ jobs:
         run: |
           # The CZ generator may have written some projections before failing.
           # Restore ALL CZ data paths from the checked-out reviewed commit;
-          # never push fresh timestamps for a failed stock/merchant source.
+          # never push fresh timestamps for a failed core CZ stock/merchant source.
           git restore -- data/products.json data/calculator-offers-cz.json data/dcdc-guide-offers-cz.json data/inverter-calculator-offers-cz.json data/solar-calculator-offers-cz.json
           echo "::warning::Guarded CZ refresh failed; keeping original CZ catalog and proceeding with independently validated approved markets."
       - name: Validate small, same-source CZ buyer catalog
@@ -207,5 +207,5 @@ jobs:
       - name: Report quarantined CZ merchant outage (without losing other markets)
         if: steps.cz_refresh.outcome == 'failure'
         run: |
-          echo "::error::CZ guarded catalog refresh failed; no CZ catalog or reviewed offer snapshot was published. Check the CZ merchant feed and continuity guard. Independent approved markets have completed their normal safety gates."
+          echo "::error::CZ guarded catalog refresh failed; no core CZ catalog or reviewed inverter/solar offer snapshot was published. Independently reviewed AMPUL CZ offers may still refresh. Check the failed CZ merchant feed and continuity guard. Independent approved markets have completed their normal safety gates."
           exit 1
