@@ -4,9 +4,9 @@ import { readFile } from "node:fs/promises";
 
 const read = path => readFile(new URL("../" + path, import.meta.url), "utf8");
 const markets = [
-  { hub: "sk/sprievodca/", marker: "rychly-vypocet", battery: "/sk/kalkulacky/kapacita-baterie/", solar: "/sk/kalkulacky/solarne-panely/", main: "/sk/#kalkulator" },
-  { hub: "pl/poradnik/", marker: "szybkie-obliczenia", battery: "/pl/kalkulatory/pojemnosc-akumulatora/", solar: "/pl/kalkulatory/panele-solarne/", main: "/pl/#kalkulator" },
-  { hub: "hu/utmutatok/", marker: "gyors-szamitas", battery: "/hu/kalkulatorok/akkumulator-kapacitas/", solar: "/hu/kalkulatorok/napelem-teljesitmeny/", main: "/hu/#kalkulator" },
+  { hub: "sk/sprievodca/", modified: "2026-11-15", marker: "rychly-vypocet", battery: "/sk/kalkulacky/kapacita-baterie/", solar: "/sk/kalkulacky/solarne-panely/", main: "/sk/#kalkulator" },
+  { hub: "pl/poradnik/", modified: "2026-11-20", marker: "szybkie-obliczenia", battery: "/pl/kalkulatory/pojemnosc-akumulatora/", solar: "/pl/kalkulatory/panele-solarne/", main: "/pl/#kalkulator" },
+  { hub: "hu/utmutatok/", modified: "2026-11-15", marker: "gyors-szamitas", battery: "/hu/kalkulatorok/akkumulator-kapacitas/", solar: "/hu/kalkulatorok/napelem-teljesitmeny/", main: "/hu/#kalkulator" },
 ];
 
 test("SK/PL/HU guide hubs offer immediate localized battery, solar and full-system calculations", async () => {
@@ -29,9 +29,9 @@ test("SK/PL/HU guide hubs offer immediate localized battery, solar and full-syst
 
 test("localized guide hub content changes are dated consistently in JSON-LD and sitemap", async () => {
   const sitemap = await read("sitemap.xml");
-  for (const { hub } of markets) {
+  for (const { hub, modified } of markets) {
     const html = await read(hub + "index.html");
-    assert.match(html, /"dateModified":"2026-11-15"/, hub);
-    assert.ok(sitemap.includes(`<loc>https://mypowersetup.com/${hub}</loc><lastmod>2026-11-15</lastmod>`), hub);
+    assert.match(html, new RegExp(`"dateModified":"${modified}"`), hub);
+    assert.ok(sitemap.includes(`<loc>https://mypowersetup.com/${hub}</loc><lastmod>${modified}</lastmod>`), hub);
   }
 });
