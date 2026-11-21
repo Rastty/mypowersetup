@@ -1,0 +1,8 @@
+/* Purchase checklist: practical buying guidance only for unavailable categories. */
+.caravan-buying-plan-rows > li:has(.caravan-missing-guidance) { align-items: start; }
+.caravan-missing-guidance { grid-column: 2 / -1; width: 100%; min-width: 0; margin-top: 5px; border-top: 1px solid #ead9b8; padding-top: 9px; color: #394b40; }
+.caravan-missing-guidance summary { cursor: pointer; font-size: 13px; font-weight: 750; color: #254f3d; padding: 6px 0; }
+.caravan-missing-guidance summary:focus-visible { outline: 2px solid #466c44; outline-offset: 3px; }
+.caravan-missing-guidance p { margin: 5px 0 8px; font-size: 12px; line-height: 1.5; }
+.caravan-missing-guidance ul { margin: 7px 0 4px; padding-left: 19px; }
+.caravan-missing-guidance li { font-size: 12px; line-height: 1.5; margin: 6px 0; }
