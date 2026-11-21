@@ -370,11 +370,23 @@ async function smokeCaravanScenarioEntries(client) {
       width: window.innerWidth,
       scrollWidth: document.documentElement.scrollWidth,
       hasEntryScript: !!document.querySelector('script[src*="caravan-entry.js"]'),
-      hasEntryCss: !!document.querySelector('link[href*="caravan-entry.css"]')
+      hasEntryCss: !!document.querySelector('link[href*="caravan-entry.css"]'),
+      cards: [...document.querySelectorAll("[data-caravan-profile]")].map((card) => {
+        const box = card.getBoundingClientRect();
+        return { x: box.x, y: box.y, width: box.width, height: box.height };
+      })
     }))()`);
     assert(start.scenarioCount === 4, "CZ caravan scenario count must be four");
     assert(start.hasEntryScript && start.hasEntryCss, "CZ caravan entry assets are missing");
     assert(start.scrollWidth <= start.width + 2, "CZ caravan hero overflows mobile screen");
+    // At the real 390px mobile viewport these must be two rows, not four
+    // vertically stacked choices that bury the calculator entry.
+    assert(start.cards.length === 4 &&
+      Math.abs(start.cards[0].y - start.cards[1].y) < 2 &&
+      Math.abs(start.cards[2].y - start.cards[3].y) < 2 &&
+      start.cards[2].y > start.cards[0].y &&
+      start.cards.every(card => card.width >= 120 && card.height >= 44),
+      "CZ caravan hero must present accessible, compact 2×2 mobile choices");
 
     await evaluate(client, `document.querySelector('[data-caravan-profile="${sample.id}"]').click()`);
     await waitFor(async () => await evaluate(client,
