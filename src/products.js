@@ -1,6 +1,7 @@
 import { calculatePowerStationProfile } from "./power-station.js";
 import { batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
 import { isPowerQueenRegionRestrictedOffer } from "./powerqueen-expansion.js?v=20261117-pq-region1";
+import { addVerifiedVictronChargingProfiles } from "./victron-orion-charging-profiles.js?v=20261121-1";
 
 const MERCHANTS = {
   reslshop: {
@@ -491,7 +492,7 @@ export function refreshCatalogProduct(product) {
   return {
     ...product,
     available: isConfirmedDiscontinuedProduct(product) ? false : product.available,
-    specs,
+    specs: addVerifiedVictronChargingProfiles(product, specs),
     category: product.verifiedAt && product.category && product.category !== "other"
       ? product.category
       : classifyProduct({ name: product.name, categoryPath: product.categoryPath, specs })
