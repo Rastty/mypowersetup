@@ -93,7 +93,7 @@ test("all core markets serve the updated mixed-load diagram rather than cached m
     const htmlPath = market === "cs" ? "../index.html" : `../${market}/index.html`;
     const html = await readFile(new URL(htmlPath, import.meta.url), "utf8");
     const entry = market === "cs" ? "app.js" : market === "hu" ? "app-hu-browser.js" : `app-${market}.js`;
-    assert.ok(html.includes(`/src/${entry}?v=20261121-caravan-entry1`), market);
+    assert.ok(html.includes(`/src/${entry}?v=20261119-voltage-guide1`), market);
   }
   const huBrowser = await readFile(new URL("../src/app-hu-browser.js", import.meta.url), "utf8");
   assert.match(huBrowser, /app-hu\.js\?v=20261119-diagram-dc-ac2/);
