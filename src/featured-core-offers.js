@@ -5,7 +5,7 @@ import { isRecommendationEligible } from "./recommendation-coverage.js";
 // Show the four core components (battery, solar, MPPT and AC inverter when
 // required) without forcing buyers to open the detailed comparison first.
 // Presentation only: never introduce an unavailable or stale product.
-export function selectFeaturedOffers(recommendations, packages = [], limit = 4) {
+export function selectFeaturedOffers(recommendations, packages = [], limit = 4, buyerPlan = null) {
   const selected = [];
   const seenProducts = new Set();
   const seenCategories = new Set();
@@ -17,6 +17,18 @@ export function selectFeaturedOffers(recommendations, packages = [], limit = 4) 
     seenCategories.add(category);
     selected.push({ ...candidate, category, product: candidate.product });
   };
+  if (buyerPlan && Array.isArray(buyerPlan.rows)) {
+    // Featured cards are purchasable suggestions, not just technical matches.
+    // A category with unknown merchant stock must not surface a false checkout.
+    for (const row of buyerPlan.rows) {
+      if (!row.ready || !row.product?.id) continue;
+      const match = (recommendations?.[row.category] || []).find(
+        ({ product }) => product?.id === row.product.id
+      );
+      if (match) append(match, row.category);
+    }
+    return selected;
+  }
   const recommendedPackage = Array.isArray(packages)
     ? packages.find(({ id }) => id === "recommended") : null;
   for (const candidate of recommendedPackage?.items || []) {
