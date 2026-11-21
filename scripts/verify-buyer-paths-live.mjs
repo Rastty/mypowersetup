@@ -426,7 +426,7 @@ export async function verifyBuyerPathsLive({
     if (dependency && !imported) fail("PUBLIC_VERSIONED_IMPORT_MISSING:" + asset);
     const paths = asset === "src/calculator-landing-browser.js"
       ? [...new Set([...browserVersions.entries()]
-        .filter(([kind]) => kind !== "dcdc_calculator").map(([, path]) => path))]
+        .filter(([kind]) => kind !== "dcdc_calculator" && kind !== "pl_s400_guide").map(([, path]) => path))]
       : asset === "src/phase2-calculator-browser.js" ? [browserVersions.get("dcdc_calculator")]
       : asset === "src/pl-s400-guide-offers.js" ? [browserVersions.get("pl_s400_guide")]
       : [dependency ? "/src/" + imported : "/" + asset];
