@@ -36,15 +36,15 @@ export function renderLocalizedCaravanBuyerPlan({
   if (!target || !plan || !COPY[locale]) return;
   const t = COPY[locale];
   const title = plan.complete ? t.complete : plan.status === "partial" ? t.partial : t.unavailable;
-  const rows = plan.rows.map(({ category, product, ready }) => {
+  const rows = plan.rows.map(({ category, product, ready, quantity = 1 }) => {
     // Do not print a buy action when product identity or exact affiliate URI
     // is missing, even if its technical category is otherwise covered.
     const url = ready && product?.id && product?.affiliateUrl ? purchaseUrl(product, category) : "";
     const buyable = Boolean(url && /^https:\/\//i.test(url));
-    return `<li data-buying-category="${escape(category)}" class="${buyable ? "is-ready" : "is-missing"}">
+    return `<li data-buying-category="${escape(category)}" data-shopping-quantity="${buyable ? quantity : 0}" class="${buyable ? "is-ready" : "is-missing"}">
       <span class="caravan-buying-plan-mark" aria-hidden="true">${buyable ? "✓" : "!"}</span>
       <div class="caravan-buying-plan-item"><strong>${escape(t.labels[category] || category)}</strong>
-      <span>${buyable ? escape(product.name) : t.missing}</span></div>
+      <span>${buyable ? `${quantity > 1 ? `${quantity} ${locale === "pl" ? "szt." : "ks"} · ` : ""}${escape(product.name)}` : t.missing}</span></div>
       ${buyable ? `<a class="caravan-buying-plan-link" href="${escape(url)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escape(product.id)}" data-merchant="${escape(product.merchant)}" data-category="${escape(category)}">${escape(purchaseCta(locale, merchantLabel(product.merchant)))}</a>` : ""}
     </li>`;
   }).join("");
