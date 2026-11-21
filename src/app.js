@@ -568,7 +568,7 @@ function renderProductRecommendations(result) {
       ? `K nákupu máme ověřeno ${readyToBuy} z ${buyerPlan.requiredCount} potřebných kategorií. Chybějící položky jsou označené v nákupním plánu.`
       : "Pro tento výpočet zatím nemáme skladově potvrzenou nákupní nabídku. Nákupní plán ukazuje požadované parametry chybějících součástí.";
   const resultProductsLink = document.querySelector("#result-products-link");
-  resultProductsLink.hidden = false;
+  resultProductsLink.hidden = total === 0;
   resultProductsLink.href = "#caravan-buyer-checklist";
   resultProductsLink.textContent = hasRecommendedPackage ? "Zobrazit doporučenou sestavu ↓"
     : readyToBuy ? `Otevřít nákupní plán (${readyToBuy}/${buyerPlan.requiredCount}) ↓`
