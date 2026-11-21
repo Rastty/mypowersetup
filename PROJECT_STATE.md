@@ -18,6 +18,11 @@ Build the **best trustworthy caravan/campervan electrical buying advisor** in ex
 - Most panel offers still lack manufacturer-grade Voc/Vmp/Isc data; many batteries lack reviewed continuous BMS discharge; don't infer from Ah, generic voltage/current or seller copy. Proven PV wiring is a bounded review only: real panel temperatures, hot Vmp, cable/connectors, fuses, mounting, start/surge loads, winter charging and final installation need qualified review. Keep missing categories/overpaneling/manual charging honest.
 - No verified real user CTR uplift, order, approved commission, paid commission or profit attributed to this release. Missing economic evidence remains **unknown**, never claimed zero or invented revenue.
 
+## TURBO verification follow-up (2026-11-21 evening)
+- Current `main` at audit: `ee407fc63c18914c56cda0c98173211c4e71d213`; no open PR. Scheduled `Production HTML content parity` run [#44920207421](https://github.com/Rastty/mypowersetup/actions/runs/44920207421) succeeded for that exact SHA (not a real-user checkout or revenue proof). Direct CZ/SK/PL HTTPS readback from this agent environment failed, so production browser parity is not independently verified here.
+- **New verified battery evidence gap:** `src/caravan-bms-buyer-evidence.js` promotes a numeric `specs.bmsContinuousCurrentA` with `verifiedAt` to documented tier 2 without exact-SKU manufacturer-proof allowlisting. Created [issue #684](https://github.com/Rastty/mypowersetup/issues/684) for a source-backed fix and cross-market tests. This is open work, **not implemented, committed or deployed**.
+- No production code change in this follow-up; do not repeat already completed PRs #679–#683. Preserve no-Solaris/no-new-merchant and fail-visible unknown evidence.
+
 ## Next three priorities by expected effect
 1. Enrich the **highest-value already-approved CZ/SK/PL battery/solar SKUs** with *exact manufacturer* BMS continuous-current and panel Voc/Isc/Vmp evidence to grow truly usable and locally purchasable caravan baskets.
 2. Close remaining buyer-path completeness gaps for common 12V/24V caravan scenarios: verified MPPT/battery charge limits, DC–DC and shore paths, local stock/checkout; partial results stay visible but not misrepresented as complete engineered kits.
