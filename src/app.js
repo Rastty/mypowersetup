@@ -648,10 +648,10 @@ function renderCaravanBuyerChecklist(plan) {
       <strong class="caravan-buying-plan-count">${plan.readyCount} z ${plan.requiredCount} ověřených kategorií</strong>
     </div>
     <p class="caravan-buying-plan-note">${stateNote}</p>
-    <ol class="caravan-buying-plan-rows">${plan.rows.map(({ category, product, ready, quantity, requirement, missingReason }) => `<li data-buying-category="${escapeHtml(category)}" data-shopping-quantity="${ready ? quantity : 0}" class="${ready ? "is-ready" : "is-missing"}">
+    <ol class="caravan-buying-plan-rows">${plan.rows.map(({ category, product, ready, quantity, requirement, missingReason, installedPvWp, nominalPvWp }) => `<li data-buying-category="${escapeHtml(category)}" data-shopping-quantity="${ready ? quantity : 0}" class="${ready ? "is-ready" : "is-missing"}">
       <span class="caravan-buying-plan-mark" aria-hidden="true">${ready ? "✓" : "!"}</span>
       <div class="caravan-buying-plan-item"><strong>${escapeHtml(labels[category] || category)}</strong>
-        <span>${ready ? `${quantity} ks · ${escapeHtml(product.name)}` : missingReason === "stock_unconfirmed" ? "Vhodný produkt existuje, ale skladovost není potvrzená — zatím nelze doporučit nákup" : "Chybí ověřený vhodný produkt — individuálně ověřte před nákupem"}</span>
+        <span>${ready ? `${quantity} ks · ${escapeHtml(product.name)}` : missingReason === "stock_unconfirmed" ? "Vhodný produkt existuje, ale skladovost není potvrzená — zatím nelze doporučit nákup" : missingReason === "pv_nominal_review" ? "Vybraných " + installedPvWp + " Wp panelů přesahuje jmenovitý FV výkon dostupného MPPT (" + nominalPvWp + " Wp). Ověřte s výrobcem možné předimenzování a vstupní limity." : "Chybí ověřený vhodný produkt — individuálně ověřte před nákupem"}</span>
         ${requirement ? `<small class="caravan-item-requirement">${escapeHtml(requirement)}</small>` : ""}
       </div>
       ${ready ? `<a class="caravan-buying-plan-link" href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "caravan-plan"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a>` : ""}
