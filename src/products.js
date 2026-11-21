@@ -1,5 +1,7 @@
 import { calculatePowerStationProfile } from "./power-station.js";
-import { batteryBmsLoadWithinAdvertisedLimit, batteryDischargeBuyerCheck, batteryDischargeEvidenceTier, minimumBatteryDischargeAmps } from "./battery-discharge-safety.js?v=20261121-bms-evidence1";
+import { batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
+import { batteryContinuousLimitNotBelowRequirement, batteryDischargeBuyerCheck, batteryDischargeEvidenceTier } from "./caravan-bms-buyer-evidence.js?v=20261121-bms-evidence1";
+import { minimumBatteryDischargeAmps } from "./battery-discharge-safety.js?v=20261117-bms-load1";
 import { isPowerQueenRegionRestrictedOffer } from "./powerqueen-expansion.js?v=20261117-pq-region1";
 import { addVerifiedVictronChargingProfiles } from "./victron-orion-charging-profiles.js?v=20261121-1";
 import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-charging-profiles.js?v=20261121-padabo1";
@@ -517,6 +519,7 @@ function scoreProduct(product, setup) {
     // draw. Missing evidence must be disclosed, never replaced by an assumed
     // BMS value inferred from the battery's Ah capacity.
     if (!batteryBmsLoadWithinAdvertisedLimit(product, setup)) return null;
+    if (!batteryContinuousLimitNotBelowRequirement(product, setup)) return null;
     // VSelektro feed products currently come from a strict, two-SKU shortlist.
     // Do not recommend a battery against an inverter load above its verified
     // continuous BMS rating. This is a conservative screening rule, not an
