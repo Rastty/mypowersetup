@@ -160,7 +160,7 @@ test("all four core Builders wire the observer-aware binder and versioned JavaSc
     assert.match(source,/bindAffiliateImpressionTracking\(document\.querySelector\("\.form-step\.result-step"\),/);
     assert.match(source,/affiliate-analytics\.js\?v=20261108-viewport1/);
     assert.match(source,/trackVisibleProductChoices\(\);/);
-    assert.ok(page.includes(["sk", "pl"].includes(locale) ? "20261121-orion-proof1" : locale === "cs" ? "20261121-quantity1" : "20261119-voltage-guide1"),locale);
+    assert.ok(page.includes(["sk", "pl"].includes(locale) ? "20261121-basket1" : locale === "cs" ? "20261121-basket1" : "20261119-voltage-guide1"),locale);
   }
 });
 
