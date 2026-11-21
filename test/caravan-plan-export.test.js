@@ -26,7 +26,7 @@ test("copy plan is natively localized for three existing markets",()=>{
 test("all three caravan homepage documents use one shared copy-only module",()=>{
  for(const path of ["index.html","sk/index.html","pl/index.html"]){
   const html=readFileSync(new URL("../"+path,import.meta.url),"utf8");
-  assert.match(html,/src\/caravan-plan-export\.js\?v=20261121-technical1/);
+  assert.match(html,/src\/caravan-plan-export\.js\?v=20261121-pv-handoff1/);
   assert.match(html,/id="caravan-buyer-checklist"/);
  }
  const script=readFileSync(new URL("../src/caravan-plan-export.js",import.meta.url),"utf8");

@@ -1,9 +1,9 @@
 // Portable, privacy-safe shopping-list handoff for existing caravan plans.
 // Never copy affiliate URLs, prices, stock promises or identifiers.
 const LABELS = {
-  cs: { title:"Můj plán elektrické sestavy do karavanu", verified:"Ověřený návrh produktu", missing:"Chybí ověřený produkt", complete:"Pokrytí produktových kategorií: úplné", partial:"Pokrytí produktových kategorií: neúplné", manual:"Nabíjení vyžaduje individuální návrh.", caution:"Ověřte skutečné parametry, jištění, kabeláž, montáž a aktuální dostupnost. Jde o podklad, nikoli elektroprojekt.", button:"Kopírovat nákupní seznam", save:"Uložit odkaz na sestavu", saved:"Odkaz na sestavu zkopírován", copied:"Seznam zkopírován", failed:"Zkopírování se nepodařilo" },
-  sk: { title:"Môj nákupný plán elektrickej zostavy do karavanu", verified:"Overený návrh produktu", missing:"Chýba overený produkt", complete:"Pokrytie produktových kategórií: úplné", partial:"Pokrytie produktových kategórií: neúplné", manual:"Nabíjanie vyžaduje individuálny návrh.", caution:"Overte skutočné parametre, istenie, kabeláž, montáž a aktuálnu dostupnosť. Toto nie je elektroprojekt.", button:"Kopírovať nákupný zoznam", save:"Uložiť odkaz na zostavu", saved:"Odkaz na zostavu skopírovaný", copied:"Zoznam skopírovaný", failed:"Kopírovanie zlyhalo" },
-  pl: { title:"Moja lista zakupów do instalacji elektrycznej kampera", verified:"Zweryfikowany produkt", missing:"Brak zweryfikowanego produktu", complete:"Pokrycie kategorii: kompletne", partial:"Pokrycie kategorii: niekompletne", manual:"Ładowanie wymaga indywidualnego projektu.", caution:"Sprawdź parametry, zabezpieczenia, przewody, montaż i aktualną dostępność. To nie jest projekt elektryczny.", button:"Kopiuj listę zakupów", save:"Zapisz link do zestawu", saved:"Link do zestawu skopiowany", copied:"Lista skopiowana", failed:"Nie udało się skopiować" },
+  cs: { title:"Můj plán elektrické sestavy do karavanu", verified:"Ověřený návrh produktu", missing:"Chybí ověřený produkt", complete:"Pokrytí produktových kategorií: úplné", partial:"Pokrytí produktových kategorií: neúplné", manual:"Nabíjení vyžaduje individuální návrh.", wiring:"Ověřené limity zapojení panelů", evidence:"Výrobní podklady", missingDetail:"Proč nákup není potvrzen", caution:"Ověřte skutečné parametry, jištění, kabeláž, montáž a aktuální dostupnost. Jde o podklad, nikoli elektroprojekt.", button:"Kopírovat nákupní seznam", save:"Uložit odkaz na sestavu", saved:"Odkaz na sestavu zkopírován", copied:"Seznam zkopírován", failed:"Zkopírování se nepodařilo" },
+  sk: { title:"Môj nákupný plán elektrickej zostavy do karavanu", verified:"Overený návrh produktu", missing:"Chýba overený produkt", complete:"Pokrytie produktových kategórií: úplné", partial:"Pokrytie produktových kategórií: neúplné", manual:"Nabíjanie vyžaduje individuálny návrh.", wiring:"Overené limity zapojenia panelov", evidence:"Podklady výrobcu", missingDetail:"Prečo nákup nie je potvrdený", caution:"Overte skutočné parametre, istenie, kabeláž, montáž a aktuálnu dostupnosť. Toto nie je elektroprojekt.", button:"Kopírovať nákupný zoznam", save:"Uložiť odkaz na zostavu", saved:"Odkaz na zostavu skopírovaný", copied:"Zoznam skopírovaný", failed:"Kopírovanie zlyhalo" },
+  pl: { title:"Moja lista zakupów do instalacji elektrycznej kampera", verified:"Zweryfikowany produkt", missing:"Brak zweryfikowanego produktu", complete:"Pokrycie kategorii: kompletne", partial:"Pokrycie kategorii: niekompletne", manual:"Ładowanie wymaga indywidualnego projektu.", wiring:"Zweryfikowane granice połączenia paneli", evidence:"Dokumentacja producenta", missingDetail:"Dlaczego zakup nie został potwierdzony", caution:"Sprawdź parametry, zabezpieczenia, przewody, montaż i aktualną dostępność. To nie jest projekt elektryczny.", button:"Kopiuj listę zakupów", save:"Zapisz link do zestawu", saved:"Link do zestawu skopiowany", copied:"Lista skopiowana", failed:"Nie udało się skopiować" },
 };
 
 // Only refer to the existing calculator's validated, load-bearing share query.
@@ -30,6 +30,21 @@ export function currentCaravanSetupLink(locationLike, locale = "cs") {
   return `${url.origin}${path}?${params.toString()}#kalkulator`;
 }
 
+// Only public manufacturer datasheets, never affiliate tracking/click URLs,
+// can travel with the copied wiring review to the customer's installer.
+function approvedPublicPvEvidenceUrl(value) {
+  if (!value || typeof value !== "string") return null;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && !url.username && !url.password
+      && !url.search && !url.hash && url.pathname.toLowerCase().endsWith(".pdf")
+      && ["www.victronenergy.com", "websiteoss.ecoflow.com"].includes(url.hostname)
+      ? url.href : null;
+  } catch { return null; }
+}
+
+const singleLine = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
+
 export function formatCaravanShoppingList({ locale = "cs", rows = [], complete = false, manualDesign = false, setupUrl = null } = {}) {
   const l = LABELS[locale] || LABELS.cs;
   const lines = [l.title, complete ? l.complete : l.partial, ""];
@@ -38,8 +53,21 @@ export function formatCaravanShoppingList({ locale = "cs", rows = [], complete =
     if (!label) continue;
     const name = row?.ready ? String(row?.name || "").trim() : "";
     lines.push(`${index+1}. ${label}: ${name ? `${l.verified} — ${name}` : l.missing}`);
-    const requirement = String(row?.requirement || "").trim();
+    const requirement = singleLine(row?.requirement);
     if (requirement) lines.push(`   ${requirement}`);
+    // A copied "missing product" with no reason is useless when a source-
+    // reviewed MPPT was withheld because of Voc/Isc/series-parallel limits.
+    if (!name) {
+      const missing = singleLine(row?.missingDetail);
+      if (missing) lines.push(`   ${l.missingDetail}: ${missing}`);
+    } else {
+      const wiring = singleLine(row?.pvWiringReview);
+      if (wiring) {
+        lines.push(`   ${l.wiring}: ${wiring}`);
+        const manufacturerUrl = approvedPublicPvEvidenceUrl(row?.manufacturerUrl);
+        if (manufacturerUrl) lines.push(`   ${l.evidence}: ${manufacturerUrl}`);
+      }
+    }
   }
   if (manualDesign) lines.push("", l.manual);
   if (setupUrl) lines.push("", locale === "sk" ? "Otvoriť aktuálne prepočítanú zostavu:" : locale === "pl" ? "Otwórz zestaw z aktualnymi produktami:" : "Otevřít sestavu s aktuálními produkty:", setupUrl);
@@ -48,13 +76,20 @@ export function formatCaravanShoppingList({ locale = "cs", rows = [], complete =
 }
 
 function currentPlanData(section) {
-  const rows = [...section.querySelectorAll(".caravan-buying-plan-rows > li[data-buying-category]")].map(item => ({
-    category: item.getAttribute("data-buying-category"),
-    label: item.querySelector(".caravan-buying-plan-item strong")?.textContent,
-    name: item.querySelector(".caravan-buying-plan-item span")?.textContent,
-    requirement: item.querySelector(".caravan-item-requirement")?.textContent,
-    ready: item.classList.contains("is-ready") && Boolean(item.querySelector("a[data-affiliate-click]")),
-  }));
+  const rows = [...section.querySelectorAll(".caravan-buying-plan-rows > li[data-buying-category]")].map(item => {
+    const ready = item.classList.contains("is-ready") && Boolean(item.querySelector("a[data-affiliate-click]"));
+    const visibleDetail = item.querySelector(".caravan-buying-plan-item span")?.textContent;
+    return {
+      category: item.getAttribute("data-buying-category"),
+      label: item.querySelector(".caravan-buying-plan-item strong")?.textContent,
+      name: ready ? visibleDetail : "",
+      requirement: item.querySelector(".caravan-item-requirement")?.textContent,
+      missingDetail: ready ? null : visibleDetail,
+      pvWiringReview: ready ? item.querySelector("[data-pv-wiring-review]")?.firstChild?.textContent : null,
+      manufacturerUrl: ready ? item.querySelector("[data-manufacturer-pv-proof]")?.href : null,
+      ready,
+    };
+  });
   return {
     rows,
     complete: section.dataset.buyingPlanState === "complete",
