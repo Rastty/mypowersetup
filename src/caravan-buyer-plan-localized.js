@@ -1,3 +1,4 @@
+import { caravanBasketPriceMarkup, caravanLinePrice, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-1";
 // Shared, translated purchase-plan UI for the existing SK and PL Builders.
 // Catalog eligibility and affiliate-link click guards remain with each Builder.
 const COPY = Object.freeze({
@@ -55,11 +56,13 @@ export function renderLocalizedCaravanBuyerPlan({
     const url = ready && product?.id && product?.affiliateUrl ? purchaseUrl(product, category) : "";
     const buyable = Boolean(url && /^https:\/\//i.test(url));
     const proof = buyable ? manufacturerProofUrl(product) : null;
+    const linePrice = buyable ? caravanLinePrice({ ready: true, product, quantity }, locale) : null;
     return `<li data-buying-category="${escape(category)}" data-shopping-quantity="${buyable ? quantity : 0}" class="${buyable ? "is-ready" : "is-missing"}">
       <span class="caravan-buying-plan-mark" aria-hidden="true">${buyable ? "✓" : "!"}</span>
       <div class="caravan-buying-plan-item"><strong>${escape(t.labels[category] || category)}</strong>
       <span>${buyable ? `${quantity} ${locale === "pl" ? "szt." : "ks"} · ${escape(product.name)}` : t.missing}</span></div>
       ${buyable ? `<a class="caravan-buying-plan-link" href="${escape(url)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escape(product.id)}" data-merchant="${escape(product.merchant)}" data-category="${escape(category)}">${escape(purchaseCta(locale, merchantLabel(product.merchant)))}</a>` : ""}
+      ${linePrice ? `<span class="caravan-line-amount">${escape(formatCaravanPrice(linePrice.amount, linePrice.currency, locale))} / ${quantity} ${locale === "pl" ? "szt." : "ks"}</span>` : ""}
       ${proof ? `<a class="caravan-manufacturer-proof" href="${escape(proof)}" target="_blank" rel="noopener noreferrer" data-manufacturer-charging-proof>${escape(t.manufacturerEvidence)}</a>` : ""}
     </li>`;
   }).join("");
@@ -73,6 +76,7 @@ export function renderLocalizedCaravanBuyerPlan({
     <p class="caravan-buying-plan-note">${complete ? t.fullNote : t.partialNote}</p>
     <ol class="caravan-buying-plan-rows">${rows}</ol>
     ${plan.manualDesign ? `<p class="caravan-buying-plan-manual">${t.manual}</p>` : ""}
+    ${caravanBasketPriceMarkup(plan, locale)}
     <p class="caravan-buying-plan-disclosure">${t.disclaimer}</p></section>`;
   trackEvent?.("caravan_buying_plan_rendered", {
     locale, state: complete ? "complete" : readyCount ? "partial" : "unavailable",
