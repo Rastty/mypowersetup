@@ -3,15 +3,13 @@
 // module URLs. Source provenance and battery Ah must never stand in for a
 // reviewed BMS continuous-discharge rating.
 import { minimumBatteryDischargeAmps, advertisedBatteryBmsAmps, batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
+import { verifiedBatteryContinuousDischargeAmps } from "./caravan-bms-manufacturer-proof.js?v=20261121-bms-proof2";
 
-// Unlike an '100 A BMS' marketing label, this field is explicitly a
-// continuous-discharge rating. Treat it as evidence only for reviewed rows,
-// and never infer it from battery Ah, a generic currentA, or battery chemistry.
+// Manufacturer facts must be reviewed for the exact already-approved product
+// identity. A merchant feed's verifiedAt or numeric specs field is not proof.
+// Unreviewed values remain available only as conservative incompatibility gates.
 export function documentedBatteryContinuousBmsAmps(product) {
-  if (product?.category !== "battery" || !product.verifiedAt) return null;
-  const raw = product.specs?.bmsContinuousCurrentA;
-  const amps = typeof raw === "number" ? raw : null;
-  return amps !== null && Number.isFinite(amps) && amps > 0 ? amps : null;
+  return verifiedBatteryContinuousDischargeAmps(product);
 }
 
 // An explicitly labeled continuous discharge limit below the estimated
