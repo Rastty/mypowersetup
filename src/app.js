@@ -628,7 +628,7 @@ function renderCaravanBuyerChecklist(plan) {
       <div class="caravan-buying-plan-item"><strong>${escapeHtml(labels[category] || category)}</strong>
         <span>${ready ? escapeHtml(product.name) : "Chybí ověřený vhodný produkt — individuálně ověřte před nákupem"}</span>
       </div>
-      ${ready ? `<div class="caravan-buying-plan-action">${packageProductLink(category, product, "recommended")}</div>` : ""}
+      ${ready ? `<a class="caravan-buying-plan-link" href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "caravan-plan"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a>` : ""}
     </li>`).join("")}</ol>
     ${plan.manualDesign ? '<p class="caravan-buying-plan-manual">Pozor: alespoň jeden způsob nabíjení potřebuje individuální návrh a není součástí potvrzené nákupní sestavy.</p>' : ""}
     <p class="caravan-buying-plan-disclosure">Některé odkazy jsou partnerské. Ceny, dostupnost, konečnou kompatibilitu a dopravu zkontrolujte přímo u prodejce.</p>
