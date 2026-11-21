@@ -2,10 +2,12 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import {
-  minimumBatteryDischargeAmps, documentedBatteryContinuousBmsAmps,
-  batteryBmsLoadWithinAdvertisedLimit, batteryDischargeEvidenceTier,
-  batteryDischargeBuyerCheck
+  minimumBatteryDischargeAmps, batteryBmsLoadWithinAdvertisedLimit
 } from "../src/battery-discharge-safety.js";
+import {
+  documentedBatteryContinuousBmsAmps, batteryContinuousLimitNotBelowRequirement,
+  batteryDischargeEvidenceTier, batteryDischargeBuyerCheck
+} from "../src/caravan-bms-buyer-evidence.js";
 import { recommendProducts } from "../src/products.js";
 import { caravanComponentRequirement } from "../src/caravan-component-requirements.js";
 import { buildCaravanBuyerChecklist } from "../src/caravan-buyer-checklist.js";
@@ -63,7 +65,9 @@ test("under-rated advertised and explicit continuous discharge are rejected inde
   const tooSmallName=battery("weak", {name:"LiFePO4 12V 200Ah battery with 100A BMS"});
   const tooSmallSpec=battery("weak-spec", {specs:{voltageV:12,capacityAh:200,batteryType:"lifepo4",bmsContinuousCurrentA:100}});
   const inflatedGeneric=battery("generic",{specs:{voltageV:12,capacityAh:200,batteryType:"lifepo4",currentA:1000}});
-  for(const p of [tooSmallName,tooSmallSpec]) assert.equal(batteryBmsLoadWithinAdvertisedLimit(p,setup),false,p.id);
+  assert.equal(batteryBmsLoadWithinAdvertisedLimit(tooSmallName,setup),false);
+  assert.equal(batteryBmsLoadWithinAdvertisedLimit(tooSmallSpec,setup),true);
+  assert.equal(batteryContinuousLimitNotBelowRequirement(tooSmallSpec,setup),false);
   assert.deepEqual(recommendProducts([tooSmallName,tooSmallSpec],setup,10,{solarimport:{status:"ok"}}).battery,[]);
   assert.equal(batteryDischargeEvidenceTier(inflatedGeneric,setup),0);
   assert.equal(batteryBmsLoadWithinAdvertisedLimit(inflatedGeneric,setup),true);
