@@ -11,8 +11,8 @@ import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1";
-import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-buyable1";
-import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261121-merchant1";
+import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-requirements1";
+import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261121-requirements1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261117-consistent-products1";
 import { selectFeaturedOffers } from "./featured-core-offers.js?v=20261119-featured-safe4";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
@@ -527,7 +527,7 @@ function renderProductRecommendations(result) {
   const coverage = assessRecommendationCoverage(recommendations, result, "pl");
   renderLocalizedCaravanBuyerPlan({
     target: document.querySelector("#caravan-buyer-checklist"),
-    plan: buildCaravanBuyerChecklist({ coverage, packages, recommendations }),
+    plan: buildCaravanBuyerChecklist({ coverage, packages, recommendations, setup: result, locale: "pl" }),
     locale: "pl",
     purchaseUrl: (product, category) => attributedAwinUrl(product, category, "recommended", "caravan-plan"),
     purchaseCta: merchantPurchaseCta,
