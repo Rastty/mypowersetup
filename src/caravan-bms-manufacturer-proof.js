@@ -58,7 +58,10 @@ function exactReviewedSku(product) {
 // This is a conservative purchase-screening figure, not proof of total installation.
 export function addReviewedBatteryContinuousSpecs(product,specs) {
   const item=exactReviewedSku(product);
-  if (!item || specs?.voltageV!==item.voltageV
+  if (!item || (product.specs?.voltageV!=null && product.specs.voltageV!==item.voltageV)
+    || (product.specs?.capacityAh!=null && product.specs.capacityAh!==item.capacityAh)
+    || (product.specs?.batteryType!=null && product.specs.batteryType!=="lifepo4")
+    || specs?.voltageV!==item.voltageV
     || specs.capacityAh!==item.capacityAh || specs.batteryType!=="lifepo4"
     || (specs.bmsContinuousCurrentA!=null
       && specs.bmsContinuousCurrentA!==item.continuousDischargeA)) return specs;
