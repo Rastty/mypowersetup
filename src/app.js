@@ -1,7 +1,7 @@
 import { APPLIANCES } from "./catalog.js?v=20260823-custom1";
 import { renderDcLoadVoltageNotice } from "./dc-voltage-help.js";
 import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
-import { recommendProducts } from "./products.js?v=20261121-ecoflow-pv1";
+import { recommendProducts } from "./products.js?v=20261121-bluesolar-pv1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20261023-safe-loads1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -11,8 +11,8 @@ import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1";
-import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-ecoflow-pv1";
-import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261121-ecoflow-pv1";
+import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261121-bluesolar-pv1";
+import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261121-bluesolar-pv1";
 import { caravanBasketPriceMarkup, caravanLinePrice, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-merchant1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261121-stock-aligned1";
 import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261121-stock-aligned1";
@@ -653,7 +653,7 @@ function renderCaravanBuyerChecklist(plan) {
       <div class="caravan-buying-plan-item"><strong>${escapeHtml(labels[category] || category)}</strong>
         <span>${ready ? `${quantity} ks · ${escapeHtml(product.name)}` : missingReason === "stock_unconfirmed" ? "Vhodný produkt existuje, ale skladovost není potvrzená — zatím nelze doporučit nákup" : missingReason === "pv_nominal_review" ? "Vybraných " + installedPvWp + " Wp panelů přesahuje jmenovitý FV výkon dostupného MPPT (" + nominalPvWp + " Wp). Ověřte s výrobcem možné předimenzování a vstupní limity." : missingReason === "pv_electrical_review" ? "Pro tyto panely chybí potvrzené zapojení k dostupnému MPPT: zkontrolujte napětí Voc za mrazu, zkratový proud Isc, zapojení a rozběhové napětí." : "Chybí ověřený vhodný produkt — individuálně ověřte před nákupem"}</span>
         ${requirement ? `<small class="caravan-item-requirement">${escapeHtml(requirement)}</small>` : ""}
-        ${pvWiringReview ? `<small class="caravan-item-requirement" data-pv-wiring-review>Kontrola výrobních limitů: ${pvWiringReview.series} panel(ů) v sérii × ${pvWiringReview.parallel} paralelní větev; Voc za ${pvWiringReview.coldAmbientC} °C přibližně ${pvWiringReview.coldVocV} V, Isc při ${pvWiringReview.hotCellC} °C přibližně ${pvWiringReview.hotIscA} A. Návrh neověřuje kabeláž, montáž ani skutečné teploty. <a href="${escapeHtml(pvWiringReview.manufacturerUrl)}" target="_blank" rel="noopener noreferrer" data-manufacturer-pv-proof>Specifikace EcoFlow</a></small>` : ""}
+        ${pvWiringReview ? `<small class="caravan-item-requirement" data-pv-wiring-review>Kontrola výrobních limitů: ${pvWiringReview.series} panel(ů) v sérii × ${pvWiringReview.parallel} paralelní větev; Voc za ${pvWiringReview.coldAmbientC} °C přibližně ${pvWiringReview.coldVocV} V, Isc při ${pvWiringReview.hotCellC} °C přibližně ${pvWiringReview.hotIscA} A. Návrh neověřuje kabeláž, montáž ani skutečné teploty. <a href="${escapeHtml(pvWiringReview.manufacturerUrl)}" target="_blank" rel="noopener noreferrer" data-manufacturer-pv-proof>Specifikace ${escapeHtml(pvWiringReview.manufacturerName)}</a></small>` : ""}
       </div>
       ${ready ? `<a class="caravan-buying-plan-link" href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "caravan-plan"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a>` : ""}
       ${ready && category === "controller" ? verifiedSmartSolarManualLink(product) : ""}

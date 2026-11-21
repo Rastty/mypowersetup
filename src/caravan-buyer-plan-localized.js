@@ -16,7 +16,7 @@ const COPY = Object.freeze({
     pvNominal: (actual, nominal) => `Vybrané panely ${actual} Wp presahujú menovitý FV výkon regulátora ${nominal} Wp. Povolené predimenzovanie a vstupné limity musí potvrdiť výrobca.`,
     pvElectrical: "Pre vybrané panely nemáme potvrdené bezpečné zapojenie k dostupnému MPPT. Overte zimné Voc, Isc, počet panelov v sérii/paralelne a štartovacie napätie.",
     pvWire: (r) => `Kontrola limitov: ${r.series} v sérii × ${r.parallel} paralelná vetva; pri ${r.coldAmbientC} °C Voc ≈ ${r.coldVocV} V, pri ${r.hotCellC} °C Isc ≈ ${r.hotIscA} A. Montáž, kabeláž, konektory a skutočné teploty musí posúdiť odborník.`,
-    pvProof: "Technické údaje panelu EcoFlow",
+    pvProof: (name) => `Technické údaje panelu ${name}`,
     manual: "Pozor: niektorý spôsob nabíjania vyžaduje individuálny návrh a nie je súčasťou kompletnej zostavy.",
     disclaimer: "Niektoré odkazy sú partnerské. Aktuálnu dostupnosť, parametre, menu a dopravu si potvrďte u predajcu.",
     labels: {battery:"Batéria",solar_panel:"Solárny panel",controller:"Regulátor MPPT",inverter:"Menič 230 V",dc_charger:"DC–DC nabíjačka",shore_charger:"Nabíjačka 230 V"},
@@ -35,7 +35,7 @@ const COPY = Object.freeze({
     pvNominal: (actual, nominal) => `Wybrane panele ${actual} Wp przekraczają nominalną moc PV regulatora ${nominal} Wp. Dopuszczalne przewymiarowanie i parametry wejścia potwierdź u producenta.`,
     pvElectrical: "Dla tych paneli nie ma potwierdzonego bezpiecznego połączenia z dostępnym MPPT. Sprawdź zimowe Voc, Isc, liczbę modułów w szeregu/równolegle i napięcie startowe.",
     pvWire: (r) => `Kontrola limitów: ${r.series} szeregowo × ${r.parallel} równolegle; Voc przy ${r.coldAmbientC} °C ≈ ${r.coldVocV} V, Isc przy ${r.hotCellC} °C ≈ ${r.hotIscA} A. Montaż, okablowanie, złącza i rzeczywiste temperatury musi ocenić specjalista.`,
-    pvProof: "Dokumentacja panelu EcoFlow",
+    pvProof: (name) => `Dokumentacja panelu ${name}`,
     manual: "Uwaga: co najmniej jeden sposób ładowania wymaga indywidualnego projektu i nie należy do kompletnego zestawu.",
     disclaimer: "Niektóre odnośniki są partnerskie. Aktualną dostępność, parametry, walutę i dostawę potwierdź w sklepie.",
     labels: {battery:"Akumulator",solar_panel:"Panel słoneczny",controller:"Regulator MPPT",inverter:"Przetwornica 230 V",dc_charger:"Ładowarka DC–DC",shore_charger:"Ładowarka 230 V"},
@@ -72,7 +72,7 @@ export function renderLocalizedCaravanBuyerPlan({
       <div class="caravan-buying-plan-item"><strong>${escape(t.labels[category] || category)}</strong>
       <span>${buyable ? `${quantity} ${locale === "pl" ? "szt." : "ks"} · ${escape(product.name)}` : missingReason === "stock_unconfirmed" ? t.unconfirmed : missingReason === "pv_nominal_review" ? t.pvNominal(installedPvWp, nominalPvWp) : missingReason === "pv_electrical_review" ? t.pvElectrical : t.missing}</span>
       ${requirement ? `<small class="caravan-item-requirement">${escape(requirement)}</small>` : ""}
-      ${pvWiringReview ? `<small class="caravan-item-requirement" data-pv-wiring-review>${escape(t.pvWire(pvWiringReview))} <a href="${escape(pvWiringReview.manufacturerUrl)}" target="_blank" rel="noopener noreferrer" data-manufacturer-pv-proof>${escape(t.pvProof)}</a></small>` : ""}</div>
+      ${pvWiringReview ? `<small class="caravan-item-requirement" data-pv-wiring-review>${escape(t.pvWire(pvWiringReview))} <a href="${escape(pvWiringReview.manufacturerUrl)}" target="_blank" rel="noopener noreferrer" data-manufacturer-pv-proof>${escape(t.pvProof(pvWiringReview.manufacturerName))}</a></small>` : ""}</div>
       ${buyable ? `<a class="caravan-buying-plan-link" href="${escape(url)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escape(product.id)}" data-merchant="${escape(product.merchant)}" data-category="${escape(category)}">${escape(purchaseCta(locale, merchantLabel(product.merchant)))}</a>` : ""}
       ${linePrice ? `<span class="caravan-line-amount">${escape(formatCaravanPrice(linePrice.amount, linePrice.currency, locale))} / ${quantity} ${locale === "pl" ? "szt." : "ks"}</span>` : ""}
       ${proof ? `<a class="caravan-manufacturer-proof" href="${escape(proof)}" target="_blank" rel="noopener noreferrer" data-manufacturer-charging-proof>${escape(t.manufacturerEvidence)}</a>` : ""}
