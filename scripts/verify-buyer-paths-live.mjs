@@ -5,6 +5,7 @@
 import { readFile } from "node:fs/promises";
 import { acceptCalculatorOffersSnapshot, acceptDcdcGuideSnapshot, acceptInverterCalculatorSnapshot, acceptSolarCalculatorSnapshot, acceptSkSolarCalculatorSnapshot, acceptMarketSolarCalculatorSnapshot } from "../src/verified-offer-catalog-fetch.js";
 import { selectGuideOffers } from "../src/guide-verified-offers.js";
+import { selectPlS400Comparison } from "../src/pl-s400-guide-offers.js";
 import { selectInverterCalculatorOffers } from "../src/inverter-calculator-offers.js";
 import { selectSolarCalculatorOffers } from "../src/solar-calculator-offers.js";
 import { selectSkSolarCalculatorOffers } from "../src/sk-solar-calculator-offers.js";
@@ -22,6 +23,7 @@ export const PAGES = Object.freeze([
   Object.freeze({ path: "/kalkulacky/solarni-panely/", kind: "solar_calculator" }),
   Object.freeze({ path: "/sk/kalkulacky/solarne-panely/", kind: "sk_solar_calculator" }),
   Object.freeze({ path: "/pl/kalkulatory/panele-solarne/", kind: "pl_solar_calculator" }),
+  Object.freeze({ path: "/pl/poradnik/oxe-s400-czy-zestaw-sp100w-kamper/", kind: "pl_s400_guide" }),
   Object.freeze({ path: "/hu/kalkulatorok/napelem-teljesitmeny/", kind: "hu_solar_calculator" }),
   Object.freeze({ path: "/kalkulacky/dc-dc-nabijecka/", kind: "dcdc_calculator" }),
   Object.freeze({ path: "/pruvodce/kapacita-baterie-do-karavanu/", kind: "battery_offers_guide" }),
@@ -52,6 +54,7 @@ export const ASSETS = Object.freeze([
   "src/sk-solar-calculator-offers.js",
   "src/pl-hu-solar-calculator-offers.js",
   "src/guide-offer-impressions.js",
+  "src/pl-s400-guide-offers.js",
   "src/guide-verified-offers.js",
   "src/calculator-offer-catalog.js",
   "src/verified-offer-catalog-fetch.js",
@@ -92,6 +95,16 @@ export function checkPublicHtml(html, local, { path, kind }) {
     const actualCategories = [...html.matchAll(/data-guide-category=["']([^"']+)["']/g)].map(match => match[1]);
     if (actualCategories.length !== 1 || actualCategories[0] !== category)
       fail("PUBLIC_EDITORIAL_CATEGORY_DRIFT:" + path);
+  }
+  if (kind === "pl_s400_guide") {
+    const paths = source => [...source.matchAll(/<script\\b[^>]*\\bsrc=["'](\\/src\\/pl-s400-guide-offers\\.js\\?v=[^"']+)["'][^>]*>/gi)].map(match => match[1]);
+    const expected = paths(local), observed = paths(html);
+    if (expected.length !== 1 || observed.length !== 1 || observed[0] !== expected[0]
+      || !html.includes("data-pl-s400-offers")
+      || !html.includes("guide-offer-fallback")
+      || !html.includes('href="/pl/#kalkulator"'))
+      fail("PUBLIC_PL_S400_GUIDE_DRIFT:" + path);
+    return observed[0];
   }
   if (kind === "fridge_guide") {
     for (const wh of GUIDE_WH) {
@@ -210,6 +223,25 @@ export function checkPublicCompactCatalog(served, local, now = Date.now()) {
 // This artifact intentionally appears only after the first merchant feed sync.
 // Until then DC–DC guides keep their previously verified legacy full-catalog
 // fallback. If committed, a stale/malformed public DC–DC view MUST fail audit.
+export function checkPublicPlS400Catalog(served, local, now = Date.now()) {
+  const bytes = Buffer.byteLength(served, "utf8");
+  if (bytes > 1_000_000) fail("PUBLIC_PL_S400_CATALOG_TOO_LARGE");
+  if (normalText(served) !== normalText(local)) fail("PUBLIC_PL_S400_CATALOG_SOURCE_DRIFT");
+  let payload;
+  try { payload = JSON.parse(served); } catch { fail("PUBLIC_PL_S400_CATALOG_INVALID_JSON"); }
+  if (payload?.market !== "pl-PL" || !Array.isArray(payload.products))
+    fail("PUBLIC_PL_S400_CATALOG_INVALID_SCHEMA");
+  const eligible = selectPlS400Comparison(payload, now);
+  return Object.freeze({
+    path: "/data/products-pl.json", bytes,
+    generatedAt: payload.generatedAt,
+    sourceStatus: payload.sources?.oxe_pl?.status ?? "unknown",
+    eligibleComparisonOffers: eligible.length,
+    source: "exact",
+    outboundClickVerified: false, commissionVerified: false,
+  });
+}
+
 export function checkPublicDcdcGuideCatalog(served, local, now = Date.now()) {
   if (Buffer.byteLength(served, "utf8") > 6000) fail("PUBLIC_DCDC_CATALOG_TOO_LARGE");
   if (normalText(served) !== normalText(local)) fail("PUBLIC_DCDC_CATALOG_SOURCE_DRIFT");
@@ -345,7 +377,7 @@ export async function verifyBuyerPathsLive({
       !browserVersions.has("mppt_calculator") || !browserVersions.has("inverter_calculator") ||
       !browserVersions.has("solar_calculator") || !browserVersions.has("sk_solar_calculator") ||
       !browserVersions.has("pl_solar_calculator") || !browserVersions.has("hu_solar_calculator") ||
-      !browserVersions.has("dcdc_calculator"))
+      !browserVersions.has("dcdc_calculator") || !browserVersions.has("pl_s400_guide"))
     fail("PUBLIC_CALCULATOR_COVERAGE_INCOMPLETE");
 
   const checkedAssets = [];
@@ -396,6 +428,7 @@ export async function verifyBuyerPathsLive({
       ? [...new Set([...browserVersions.entries()]
         .filter(([kind]) => kind !== "dcdc_calculator").map(([, path]) => path))]
       : asset === "src/phase2-calculator-browser.js" ? [browserVersions.get("dcdc_calculator")]
+      : asset === "src/pl-s400-guide-offers.js" ? [browserVersions.get("pl_s400_guide")]
       : [dependency ? "/src/" + imported : "/" + asset];
     for (const path of paths) {
       const served = await fetchPage(fetchImpl, new URL(path, base), "js", sleep, () => retries++);
@@ -447,6 +480,11 @@ export async function verifyBuyerPathsLive({
       await fetchPage(fetchImpl, new URL(path, base), "json", sleep, () => retries++),
       await readLocal(path.slice(1)), now());
   }
+  const plS400Path = "/data/products-pl.json";
+  const plS400Catalog = checkPublicPlS400Catalog(
+    await fetchPage(fetchImpl, new URL(plS400Path, base), "json", sleep, () => retries++),
+    await readLocal(plS400Path.slice(1)), now()
+  );
   return Object.freeze({
     status: "PUBLIC_BUYER_HTML_JS_AND_CATALOG_VERIFIED",
     origin: base.origin, pages: checkedPages, assets: checkedAssets,
@@ -457,6 +495,7 @@ export async function verifyBuyerPathsLive({
     solarCatalog,
     skSolarCatalog,
     marketSolarCatalogs,
+    plS400Catalog,
     transientRetries: retries,
     browserInteractionsVerified: false,
     seoUpliftMeasured: false,
