@@ -246,8 +246,32 @@ export function buildCurrentCommercialOwnerActionQueue(backlogs = [], { asOf = D
   return Object.freeze(actions);
 }
 
+// Site owner scope, 2026-11-19: work only with already approved merchants.
+// Solaris is explicitly deferred, regardless of hypothetical future approvals.
+// The wider research backlog above stays intact for evidence, but it is NOT an
+// authorized task queue. Missing programme approval can never be inferred from
+// product availability, shipping claims or opportunity weights.
+export const ACTIVE_MERCHANT_OWNER_SCOPE = Object.freeze({
+  mode: "existing_approved_merchants_only",
+  excludedMerchants: Object.freeze(["solaris_store"]),
+});
+
+export function buildActiveCommercialOwnerActionQueue(backlogs = [], { asOf = Date.now() } = {}) {
+  const excluded = new Set(ACTIVE_MERCHANT_OWNER_SCOPE.excludedMerchants);
+  const approvedActionKeys = new Set(listCommercialSourcingCandidates()
+    .filter((candidate) => candidate.nextActionOwner === "user"
+      && candidate.nextAction
+      && candidate.affiliateApprovalConfirmed === true
+      && typeof candidate.affiliateApprovalSource === "string"
+      && candidate.affiliateApprovalSource.length > 0
+      && !excluded.has(candidate.merchant))
+    .map((candidate) => `${candidate.merchant}:${candidate.nextAction}`));
+  return Object.freeze(buildCurrentCommercialOwnerActionQueue(backlogs, { asOf })
+    .filter((action) => approvedActionKeys.has(action.actionKey)));
+}
+
 export function bestCurrentCommercialOwnerAction(backlogs = []) {
-  return buildCurrentCommercialOwnerActionQueue(backlogs)[0] || null;
+  return buildActiveCommercialOwnerActionQueue(backlogs)[0] || null;
 }
 
 export function bestCommercialOwnerAction() {
