@@ -1,7 +1,7 @@
 import { APPLIANCES } from "./catalog.js?v=20260823-custom1";
 import { renderDcLoadVoltageNotice } from "./dc-voltage-help.js";
 import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
-import { recommendProducts } from "./products.js?v=20261107-source-gate1";
+import { recommendProducts } from "./products.js?v=20261121-smartsolar-cz1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20261023-safe-loads1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -611,6 +611,18 @@ function renderProductRecommendations(result) {
   trackVisibleProductChoices();
 }
 
+function verifiedSmartSolarManualLink(product) {
+  if (product?.merchant !== "vselektro" || !product?.verifiedAt) return "";
+  const url = product?.specs?.chargingProfileEvidenceUrl;
+  if (typeof url !== "string") return "";
+  try {
+    const manual = new URL(url);
+    if (manual.protocol !== "https:" || manual.hostname !== "www.victronenergy.com"
+      || !manual.pathname.startsWith("/media/pg/Manual_SmartSolar_MPPT_")) return "";
+    return `<a class="caravan-manufacturer-proof" href="${escapeHtml(manual.href)}" target="_blank" rel="noopener noreferrer" data-manufacturer-charging-proof>Ověřit LiFePO₄ profil u výrobce</a>`;
+  } catch { return ""; }
+}
+
 function renderCaravanBuyerChecklist(plan) {
   const target = document.querySelector("#caravan-buyer-checklist");
   if (!target || !plan) return;
@@ -643,7 +655,8 @@ function renderCaravanBuyerChecklist(plan) {
         ${requirement ? `<small class="caravan-item-requirement">${escapeHtml(requirement)}</small>` : ""}
       </div>
       ${ready ? `<a class="caravan-buying-plan-link" href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "caravan-plan"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a>` : ""}
-      ${ready && caravanLinePrice({ready,product,quantity}, "cs") ? `<span class="caravan-line-amount">${escapeHtml(formatCaravanPrice(caravanLinePrice({ready,product,quantity}, "cs").amount, "CZK", "cs"))} za ${quantity} ks</span>` : ""}
+      ${ready && category === "controller" ? verifiedSmartSolarManualLink(product) : ""}
+       ${ready && caravanLinePrice({ready,product,quantity}, "cs") ? `<span class="caravan-line-amount">${escapeHtml(formatCaravanPrice(caravanLinePrice({ready,product,quantity}, "cs").amount, "CZK", "cs"))} za ${quantity} ks</span>` : ""}
     </li>`).join("")}</ol>
     ${plan.manualDesign ? '<p class="caravan-buying-plan-manual">Pozor: alespoň jeden způsob nabíjení potřebuje individuální návrh a není součástí potvrzené nákupní sestavy.</p>' : ""}
     ${caravanBasketPriceMarkup(plan, "cs", merchantLabel)}
