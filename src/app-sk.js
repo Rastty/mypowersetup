@@ -548,15 +548,21 @@ function renderProductRecommendations(result) {
   });
   const resultNext = document.querySelector("#result-next");
   resultNext.hidden = false;
-  document.querySelector("#result-product-count").textContent = total
-    ? hasRecommendedPackage
-      ? `Máme odporúčanú nákupnú variantu pre všetky potrebné kategórie a spolu ${total} overených zhôd v ${categoryCount} kategóriách.`
-      : `Našli sme ${total} overených zhôd v ${categoryCount} kategóriách. Produktové pokrytie zostavy: ${coverage.covered.length} z ${coverage.required.length} potrebných kategórií.`
-    : "Pre túto konfiguráciu zatiaľ nemáme dostatočne overenú produktovú zhodu. Technický výsledok môžete ďalej použiť ako podklad pre výber.";
+  // Purchase CTA reflects confirmed-stock, checkout-ready BOM rows, not
+  // the number of technical catalog matches (which may be unavailable).
+  const readyToBuy = buyerPlan?.readyCount || 0;
+  document.querySelector("#result-product-count").textContent = hasRecommendedPackage
+    ? "Pre všetky potrebné kategórie máme skladovo potvrdenú nákupnú možnosť. Pred objednávkou overte parametre, sklad a dopravu u predajcu."
+    : readyToBuy
+      ? `Na nákup máme overených ${readyToBuy} z ${buyerPlan.requiredCount} potrebných kategórií. Chýbajúce položky nájdete v nákupnom pláne.`
+      : "Pre tento výpočet zatiaľ nemáme skladovo potvrdenú nákupnú ponuku. Nákupný plán ukazuje požadované parametre chýbajúcich súčastí.";
   const resultProductsLink = document.querySelector("#result-products-link");
   resultProductsLink.hidden = total === 0;
-  resultProductsLink.textContent = hasRecommendedPackage ? "Zobraziť odporúčanú zostavu ↓" : "Zobraziť odporúčané produkty ↓";
-  resultProductsLink.dataset.resultNextVariant = hasRecommendedPackage ? "complete_package" : "product_matches";
+  resultProductsLink.href = "#caravan-buyer-checklist";
+  resultProductsLink.textContent = hasRecommendedPackage ? "Zobraziť odporúčanú zostavu ↓"
+    : readyToBuy ? `Otvoriť nákupný plán (${readyToBuy}/${buyerPlan.requiredCount}) ↓`
+    : "Skontrolovať chýbajúce súčasti ↓";
+  resultProductsLink.dataset.resultNextVariant = hasRecommendedPackage ? "complete_package" : readyToBuy ? "partial_buyable_plan" : "requirements_only";
   const freshness = productCatalogUpdatedAt
     ? ` Produktové údaje boli načítané ${new Date(productCatalogUpdatedAt).toLocaleDateString("sk-SK")}.`
     : "";
