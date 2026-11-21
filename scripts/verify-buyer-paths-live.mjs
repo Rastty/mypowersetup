@@ -5,7 +5,7 @@
 import { readFile } from "node:fs/promises";
 import { acceptCalculatorOffersSnapshot, acceptDcdcGuideSnapshot, acceptInverterCalculatorSnapshot, acceptSolarCalculatorSnapshot, acceptSkSolarCalculatorSnapshot, acceptMarketSolarCalculatorSnapshot } from "../src/verified-offer-catalog-fetch.js";
 import { selectGuideOffers } from "../src/guide-verified-offers.js";
-import { selectPlS400Comparison } from "../src/pl-s400-guide-offers.js";
+import { selectPlS400Comparison, acceptPlS400OffersSnapshot, PL_S400_COMPACT_CATALOG_PATH } from "../src/pl-s400-guide-offers.js";
 import { selectInverterCalculatorOffers } from "../src/inverter-calculator-offers.js";
 import { selectSolarCalculatorOffers } from "../src/solar-calculator-offers.js";
 import { selectSkSolarCalculatorOffers } from "../src/sk-solar-calculator-offers.js";
@@ -225,15 +225,15 @@ export function checkPublicCompactCatalog(served, local, now = Date.now()) {
 // fallback. If committed, a stale/malformed public DC–DC view MUST fail audit.
 export function checkPublicPlS400Catalog(served, local, now = Date.now()) {
   const bytes = Buffer.byteLength(served, "utf8");
-  if (bytes > 1_000_000) fail("PUBLIC_PL_S400_CATALOG_TOO_LARGE");
+  if (bytes > 4000) fail("PUBLIC_PL_S400_CATALOG_TOO_LARGE");
   if (normalText(served) !== normalText(local)) fail("PUBLIC_PL_S400_CATALOG_SOURCE_DRIFT");
   let payload;
   try { payload = JSON.parse(served); } catch { fail("PUBLIC_PL_S400_CATALOG_INVALID_JSON"); }
-  if (payload?.market !== "pl-PL" || !Array.isArray(payload.products))
+  if (!acceptPlS400OffersSnapshot(payload, Date.parse(payload?.generatedAt)))
     fail("PUBLIC_PL_S400_CATALOG_INVALID_SCHEMA");
   const eligible = selectPlS400Comparison(payload, now);
   return Object.freeze({
-    path: "/data/products-pl.json", bytes,
+    path: PL_S400_COMPACT_CATALOG_PATH, bytes,
     generatedAt: payload.generatedAt,
     sourceStatus: payload.sources?.oxe_pl?.status ?? "unknown",
     eligibleComparisonOffers: eligible.length,
@@ -480,7 +480,7 @@ export async function verifyBuyerPathsLive({
       await fetchPage(fetchImpl, new URL(path, base), "json", sleep, () => retries++),
       await readLocal(path.slice(1)), now());
   }
-  const plS400Path = "/data/products-pl.json";
+  const plS400Path = PL_S400_COMPACT_CATALOG_PATH;
   const plS400Catalog = checkPublicPlS400Catalog(
     await fetchPage(fetchImpl, new URL(plS400Path, base), "json", sleep, () => retries++),
     await readLocal(plS400Path.slice(1)), now()
