@@ -73,6 +73,7 @@ export function formatCaravanPrice(amount, currency, locale) {
 const COPY = Object.freeze({
   cs: {
     title: "Cena dostupných položek",
+    categories: {battery:"baterie",solar_panel:"solární panely",controller:"MPPT",inverter:"měnič",dc_charger:"DC–DC nabíječka",shore_charger:"nabíječka 230 V"},
     shops: "Rozdělení podle obchodů", shopsNote: "Každý obchod má vlastní objednávku a dopravu; položky kupujte samostatně přes odkazy výše.", items: "položek", storeUnknown: "část bez ceny",
     partial: "Mezisoučet vybraných položek, ne cena kompletní sestavy.",
     complete: "Součet cen ověřených položek; kabeláž, jištění a montáž nejsou zahrnuté.",
@@ -82,6 +83,7 @@ const COPY = Object.freeze({
   },
   sk: {
     title: "Cena dostupných položiek",
+    categories: {battery:"batérie",solar_panel:"solárne panely",controller:"MPPT",inverter:"menič",dc_charger:"DC–DC nabíjačka",shore_charger:"nabíjačka 230 V"},
     shops: "Rozdelenie podľa obchodov", shopsNote: "Každý obchod má vlastnú objednávku a dopravu; produkty nakupujte cez odkazy vyššie.", items: "položiek", storeUnknown: "časť bez ceny",
     partial: "Medzisúčet vybraných položiek, nie cena kompletnej zostavy.",
     complete: "Súčet cien overených položiek; kabeláž, istenie a montáž nie sú zahrnuté.",
@@ -91,6 +93,7 @@ const COPY = Object.freeze({
   },
   pl: {
     title: "Koszt dostępnych produktów",
+    categories: {battery:"akumulator",solar_panel:"panele słoneczne",controller:"MPPT",inverter:"przetwornica",dc_charger:"ładowarka DC–DC",shore_charger:"ładowarka 230 V"},
     shops: "Podział według sklepów", shopsNote: "Każdy sklep to osobne zamówienie i dostawa; produkty kupuj przez linki powyżej.", items: "produktów", storeUnknown: "część bez ceny",
     partial: "Sumy częściowe wybranych produktów, nie cena kompletnego zestawu.",
     complete: "Suma cen zweryfikowanych produktów; przewody, zabezpieczenia i montaż nie są uwzględnione.",
@@ -109,8 +112,10 @@ export function caravanBasketPriceMarkup(plan, locale, merchantLabel = (id) => i
   const storeRows = stores.map((store) => {
     const label = esc(merchantLabel(store.merchant) || store.merchant);
     const amounts = store.subtotals.map(({currency,amount})=>esc(formatCaravanPrice(amount,currency,locale))).join(" + ");
+    const parts = store.products.map(({category,quantity}) => `${Number(quantity) || 1}× ${esc(copy.categories[category] || category)}`).join(", ");
     return `<li data-store-group="${esc(store.merchant)}"><strong>${label}</strong> <span>${store.count} ${copy.items}</span>
       ${amounts ? `<span class="caravan-store-amount">${amounts}</span>` : ""}
+      ${parts ? `<span class="caravan-store-parts">${parts}</span>` : ""}
       ${store.unpriced ? `<small>${store.unpriced} ${copy.storeUnknown}</small>` : ""}</li>`;
   }).join("");
   const values = totals.subtotals.map(({currency,amount}) =>
