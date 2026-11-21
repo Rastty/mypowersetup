@@ -25,8 +25,14 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
     .map(({ category, product }) => [category, product]));
   const rows = coverage.required.map((category) => {
     const packageProduct = packageByCategory.get(category);
-    const availableOffers = (recommendations[category] || []).filter((item) =>
-      isRecommendationEligible(item) && hasBuyableProductLink(item.product));
+    const candidates = recommendations[category] || [];
+    // Only explicit, currently confirmed product stock may create a purchase-
+    // ready basket row. An unknown feed stock flag is NOT evidence of stock.
+    // Prefer a confirmed-in-stock vetted alternative even if a higher ranked
+    // candidate has missing stock evidence.
+    const availableOffers = candidates.filter((item) =>
+      isRecommendationEligible(item) && item.product?.available === true
+      && hasBuyableProductLink(item.product));
     // Reuse the canonical best-value choice but only among actual purchasable
     // links; an unlinked technical recommendation must not block a valid SKU.
     const packageMatch = availableOffers.find((item) =>
@@ -36,7 +42,14 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
     const product = candidate?.product || null;
     const quantity = product && Number.isSafeInteger(product.recommendedQuantity) && product.recommendedQuantity > 0
       ? product.recommendedQuantity : 1;
-    return { category, product, ready: Boolean(product), quantity, requirement: caravanComponentRequirement(setup, category, locale) };
+    const uncertainStock = !product && candidates.some((item) =>
+      isRecommendationEligible(item) && item.product?.available == null
+      && hasBuyableProductLink(item.product));
+    return {
+      category, product, ready: Boolean(product), quantity,
+      missingReason: !product && uncertainStock ? "stock_unconfirmed" : !product ? "no_buyable_offer" : null,
+      requirement: caravanComponentRequirement(setup, category, locale),
+    };
   });
   const available = rows.filter((row) => row.ready).length;
   const manualDesign = Boolean(coverage.manualDesignCharging?.length);
