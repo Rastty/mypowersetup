@@ -62,3 +62,15 @@ test("save and copy CTA mount on the existing buyer plan, no secondary calculato
  assert.match(script,/currentPlanData\(section\)/);
  assert.doesNotMatch(script,/localStorage|sessionStorage/);
 });
+
+test("copied technical list includes precise requirements even for still-missing products", () => {
+ const text=formatCaravanShoppingList({locale:"cs",complete:false,rows:[
+   {label:"Solární panel",ready:true,name:"2 ks · Panel 220 Wp",requirement:"Požadavek výpočtu: alespoň 420 Wp"},
+   {label:"MPPT regulátor",ready:false,requirement:"Požadavek výpočtu: nabíjecí proud alespoň 35 A při 12 V"}
+ ]});
+ assert.match(text,/2 ks · Panel 220 Wp/);
+ assert.match(text,/420 Wp/);
+ assert.match(text,/Chybí ověřený produkt/);
+ assert.match(text,/35 A při 12 V/);
+ assert.doesNotMatch(text,/affiliate|ehub|priceCzk|utm_/);
+});
