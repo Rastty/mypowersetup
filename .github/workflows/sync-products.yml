@@ -101,7 +101,13 @@ jobs:
       # post-sync fail-closed commercial gates below validate the refreshed catalog.
       - name: Test committed application and catalog contracts
         run: node --test
-      - run: node scripts/sync-products.mjs
+      # A CZ merchant outage (for example an HTTP 403 followed by missing
+      # reviewed Solar-import offers) must never erase the last guarded CZ
+      # buyer snapshot, but must not prevent safe SK/PL/HU refresh either.
+      - name: Refresh guarded CZ catalog
+        id: cz_refresh
+        continue-on-error: true
+        run: node scripts/sync-products.mjs
         env:
           RESLSHOP_FEED_URL: ${{ secrets.RESLSHOP_FEED_URL }}
           SVETKARAVANU_FEED_URL: ${{ secrets.SVETKARAVANU_FEED_URL }}
@@ -109,13 +115,25 @@ jobs:
           SOLAR_IMPORT_FEED_URL: ${{ secrets.SOLAR_IMPORT_FEED_URL }}
           BATTERY_CZ_FEED_URL: ${{ secrets.BATTERY_CZ_FEED_URL }}
           VSELEKTRO_FEED_URL: ${{ secrets.VSELEKTRO_FEED_URL }}
+      - name: Discard only CZ refresh outputs after a failed guard
+        if: steps.cz_refresh.outcome == 'failure'
+        run: |
+          # The CZ generator may have written some projections before failing.
+          # Restore ALL CZ data paths from the checked-out reviewed commit;
+          # never push fresh timestamps for a failed stock/merchant source.
+          git restore -- data/products.json data/calculator-offers-cz.json data/dcdc-guide-offers-cz.json data/inverter-calculator-offers-cz.json data/solar-calculator-offers-cz.json
+          echo "::warning::Guarded CZ refresh failed; keeping original CZ catalog and proceeding with independently validated approved markets."
       - name: Validate small, same-source CZ buyer catalog
+        if: steps.cz_refresh.outcome == 'success'
         run: node scripts/check-calculator-offers-cz.mjs
       - name: Validate small, same-source CZ DC-DC editorial offers
+        if: steps.cz_refresh.outcome == 'success'
         run: node scripts/check-dcdc-guide-offers-cz.mjs
       - name: Validate exact-SKU CZ inverter calculator offers
+        if: steps.cz_refresh.outcome == 'success'
         run: node scripts/check-inverter-calculator-offers-cz.mjs
       - name: Validate exact-SKU CZ solar calculator offers
+        if: steps.cz_refresh.outcome == 'success'
         run: node scripts/check-solar-calculator-offers-cz.mjs
       - run: node scripts/sync-products-ampul-cz.mjs
         env:
@@ -186,3 +204,8 @@ jobs:
           export GITHUB_SHA="$(git rev-parse HEAD)"
           node scripts/wait-for-pages-deployment.mjs
           node scripts/verify-buyer-paths-live.mjs
+      - name: Report quarantined CZ merchant outage (without losing other markets)
+        if: steps.cz_refresh.outcome == 'failure'
+        run: |
+          echo "::error::CZ guarded catalog refresh failed; no CZ catalog or reviewed offer snapshot was published. Check the CZ merchant feed and continuity guard. Independent approved markets have completed their normal safety gates."
+          exit 1
