@@ -77,6 +77,13 @@ function eligibleCandidates(recommendations, category) {
   return (recommendations[category] || []).filter(isRecommendationEligible);
 }
 
+// One canonical buying choice for both a full package and a partially
+// purchasable plan. Never promote an unavailable or stale merchant item.
+export function selectRecommendedCategoryCandidate(recommendations, category) {
+  const eligible = eligibleCandidates(recommendations, category);
+  return eligible.length ? recommendedChoice(eligible, category) : null;
+}
+
 function packageQuality(items) {
   const scores = items.map(({ score }) => Number(score)).filter(Number.isFinite);
   if (!scores.length) return { matchScore: null, minimumItemScore: null };
