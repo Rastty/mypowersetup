@@ -56,5 +56,5 @@ test("Czech purchase plan links only source-backed SmartSolar manual and version
   assert.match(app,/function verifiedSmartSolarManualLink\(product\)/);
   assert.match(app,/product\?\.merchant !== "vselektro"/);
   assert.match(app,/category === "controller" \? verifiedSmartSolarManualLink\(product\)/);
-  assert.match(html,/\/src\/app\.js\?v=20261121-bms-evidence1/);
+  assert.match(html,/\/src\/app\.js\?v=20261121-pv-actual1/);
 });
