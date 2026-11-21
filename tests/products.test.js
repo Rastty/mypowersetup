@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { parseProductFeed } from "../src/feed.js";
-import { buildAffiliateUrl, classifyProduct, configureMerchantAffiliate, extractSpecs, hasCurrentRecommendationSource, normalizeProduct, recommendProducts, refreshCatalogProduct } from "../src/products.js";
+import { buildAffiliateUrl, compareRecommendationCandidates, classifyProduct, configureMerchantAffiliate, extractSpecs, hasCurrentRecommendationSource, normalizeProduct, recommendProducts, refreshCatalogProduct } from "../src/products.js";
 
 test("discontinued E7366 cannot re-enter recommendations via a fresh or stored feed", () => {
   const product = normalizeProduct({
@@ -1255,4 +1255,18 @@ test("Slovak Victron MPPT 75-100 range never masquerades as 100 A charger", () =
     });
     assert.equal(refreshed.specs.currentA, expected, name);
   }
+});
+
+test("PLN and EUR are never compared as if the amounts shared a currency", () => {
+  const pln = { score: 92, product: { id: "pln", priceCzk: 300, priceCurrency: "PLN" } };
+  const euro = { score: 92, product: { id: "euro", priceCzk: 90, priceCurrency: "EUR" } };
+  assert.equal(compareRecommendationCandidates(pln, euro), 0);
+  assert.equal(compareRecommendationCandidates(euro, pln), 0);
+  assert.equal(compareRecommendationCandidates({ ...pln, score: 93 }, euro) < 0, true);
+});
+test("same-currency purchase quantities determine actual cheaper eligible panel option", () => {
+  const one = { score: 90, product: { id: "one", priceCzk: 145, priceCurrency: "EUR", recommendedQuantity: 1 } };
+  const two = { score: 90, product: { id: "two", priceCzk: 90, priceCurrency: "EUR", recommendedQuantity: 2 } };
+  assert.equal(compareRecommendationCandidates(one,two)<0,true);
+  assert.equal(compareRecommendationCandidates(two,one)>0,true);
 });
