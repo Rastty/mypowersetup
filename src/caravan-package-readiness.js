@@ -1,3 +1,5 @@
+import { batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
+import { batteryContinuousLimitNotBelowRequirement } from "./caravan-bms-buyer-evidence.js?v=20261121-superpack-ng1";
 import { caravanPvNominalReview } from "./caravan-pv-array-review.js?v=20261121-actual-pv1";
 import { reviewCaravanPvString } from "./caravan-pv-string-review.js?v=20261121-bluesolar-pv1";
 
@@ -34,6 +36,18 @@ export function purchaseReadyCaravanPackages(packages, buyerPlan) {
     // Economy/reserve variants must not re-introduce a controller whose
     // nominal 12/24 V PV rating is below their own rounded panel count.
     // This is a manual-sizing hold, not a claim the hardware will be damaged.
+    // Technical matching of the main recommendation must not be bypassed by
+    // economy/reserve variants. Screen each alternative battery against the
+    // ACTUAL requested inverter wattage, never the inverter SKU's higher rating.
+    // A missing BMS rating remains unknown (not manufacturer proof), while a
+    // known under-rated sustained limit or advertised BMS current fails closed.
+    const battery = variant.items.find(({category}) => category === "battery");
+    const inverterLoad = Number(buyerPlan.inverterWatts);
+    if (battery && Number.isFinite(inverterLoad) && inverterLoad > 0) {
+      const batterySetup = { systemVoltage: buyerPlan.systemVoltage, inverterWatts: inverterLoad };
+      if (!batteryBmsLoadWithinAdvertisedLimit(battery.product,batterySetup)
+        || !batteryContinuousLimitNotBelowRequirement(battery.product,batterySetup)) return false;
+    }
     const panels = variant.items.find(({category}) => category === "solar_panel");
     const controller = variant.items.find(({category}) => category === "controller");
     if (panels && controller && caravanPvNominalReview(
