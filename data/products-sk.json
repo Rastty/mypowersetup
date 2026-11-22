@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-22T10:34:20.337Z",
+  "generatedAt": "2026-11-22T11:35:31.380Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16453,
-      "relevantProducts": 240
+      "parsedProducts": 16432,
+      "relevantProducts": 239
     },
     "allpowers_eu": {
       "status": "ok",
@@ -465,7 +465,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
+      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -1701,38 +1701,6 @@
           "lead"
         ],
         "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:25052_26736",
-      "merchant": "padabo_sk",
-      "name": "Lítiová batéria PowerBoozt kapacita 100 Ah",
-      "description": "Maximálny výkon a životnosť s batériou PowerBooztLítiová batéria PowerBoozt je vhodná na kempovanie alebo na použitie na lodi s integrovaným systémom BMS. Batérie LiFePO4 sú bezúdržbové a bezpečné. Majú extrémne dlhú životnosť s možnosťou hlbšieho vybitia pri zachovaní výkonu. Kľúčové vlastnosti lítiovej batérie PowerBoozt: Batéria si počas celej svojej životnosti nevyžaduje žiadnu údržbu. V porovnaní s tradičnými olovenými akumulátormimá výrazne nižšiu hmotnosť. Nabíja sa rýchlo a bezpečne, čím",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
-      "category": "battery",
-      "brand": "PowerBoozt",
-      "priceCzk": 893.67,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/litiova-bateria-powerboozt_z25052/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-powerboozt_z25052%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/7/158817_102.jpg?1704380236_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 100,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4",
-          "lead"
-        ],
-        "batteryType": "lifepo4",
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
