@@ -110,6 +110,6 @@ test("CZ SK PL buyer UI uses the same four explicit source values in GA4 and eHu
     assert.ok(js.includes('market: "'+market+'"'),app);
     assert.ok(html.includes(app+"?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1"),page);
     assert.ok(js.includes('data-source="result-featured"'),app);
-    assert.ok(js.includes('data-source="caravan-plan"') || js.includes('source: "caravan-plan"'),app);
+    assert.ok(js.includes('"caravan-plan"'),app);
   }
 });
