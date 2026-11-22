@@ -25,6 +25,14 @@ function setup(market,voltage,Ah,current,chem="lifepo4"){
 test("nine exact stocked Dometic shore chargers gain manufacturer LiFePO4 and 230V input evidence",async()=>{
  for(const market of markets){
   const data=await catalog(market);
+  if(data.sources[merchant(market)]?.status==="stale"){
+    for(const [sku,,voltage,amp,min] of models){
+      const held=data.products.find(p=>p.id===merchant(market)+":"+sku);
+      assert.ok(held);assert.equal(held.available,false);assert.equal(held.staleSource,true);
+      assert.deepEqual(recommendProducts([held],setup(market,voltage,min,amp),3,data.sources).shore_charger,[]);
+    }
+    continue;
+  }
   assert.equal(data.sources[merchant(market)]?.status,"ok");
   for(const [sku,model,voltage,amp,min,max] of models){
    const raw=data.products.find(p=>p.id===merchant(market)+":"+sku);
