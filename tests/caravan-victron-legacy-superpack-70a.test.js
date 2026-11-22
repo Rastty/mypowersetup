@@ -146,6 +146,6 @@ test("market frontend versions load 70A proof for source checks, decision facts 
     const [js,html]=await Promise.all([read("src/"+app),read(page)]);
     assert.ok(js.includes("products.js?v=20261122-legacy70a"),app);
     assert.ok(js.includes("caravan-package-readiness.js?v=20261122-legacy70a"),app);
-    assert.ok(html.includes(app+"?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a"),page);
+    assert.ok(html.includes(app+"?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1"),page);
   }
 });
