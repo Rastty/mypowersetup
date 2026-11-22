@@ -24,6 +24,15 @@ test("six exact CZ SK PL SuperPack NG 100 Ah local offers receive conservative 5
     const catalog=await marketFile(path);
     const original=catalog.products.find(p=>p.id===id);
     assert.ok(original,market+" "+id);
+    if(catalog.sources[original.merchant]?.status==="stale") {
+      assert.equal(original.available,false);assert.equal(original.staleSource,true);
+      assert.equal(documentedBatteryContinuousBmsAmps(refreshCatalogProduct(original)),null,id);
+      assert.deepEqual(recommendProducts([original],{
+        locale:market,systemVoltage:voltage,batteryAh:100,batteryType:"lifepo4",
+        inverterWatts:Math.floor(voltage*0.85*40)
+      },3,catalog.sources).battery,[],id);
+      continue;
+    }
     assert.equal(original.available,true);
     assert.equal(catalog.sources[original.merchant]?.status,"ok");
     const p=refreshCatalogProduct(original);
