@@ -71,10 +71,10 @@ test("result-first budget UI is present only in CZ SK PL and versioned in both m
     ["app.js","index.html","cs"],["app-sk.js","sk/index.html","sk"],["app-pl.js","pl/index.html","pl"]]){
     const read=path=>readFile(new URL("../"+path,import.meta.url),"utf8");
     const [script,html]=await Promise.all([read("src/"+app),read(htmlPath)]);
-    assert.ok(script.includes('featuredCaravanBasketBudgetMarkup(buyerPlan, "'+locale+'")'),app);
-    assert.ok(script.includes('caravan-featured-basket-budget.js?v=20261122-budget-shops1-unpriced1'),app);
-    assert.ok(html.includes('caravan-featured-basket-budget.css?v=20261122-budget-preview1'),htmlPath);
-    assert.ok(html.includes(app+'?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1'),htmlPath);
+    assert.ok(script.includes('featuredCaravanBasketBudgetMarkup(buyerPlan, "'+locale+'", merchantLabel)'),app);
+    assert.ok(script.includes('caravan-featured-basket-budget.js?v=20261122-merchant-preview1'),app);
+    assert.ok(html.includes('caravan-featured-basket-budget.css?v=20261122-merchant-preview1'),htmlPath);
+    assert.ok(html.includes(app+'?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1'),htmlPath);
   }
 });
 
@@ -141,4 +141,46 @@ test("unpriced fallback keeps partial/missing distinction and rejects rows witho
   for (const row of broken.rows) row.product.affiliateUrl="";
   assert.equal(featuredCaravanBasketBudgetMarkup(broken,"cs"),"");
   assert.equal(featuredCaravanBasketBudgetMarkup(broken,"invalid"),"");
+});
+
+test("result-first multi-merchant checkout preview reuses verified store subtotals and never mixes currencies", () => {
+  const plan=build("PLN",100);
+  plan.rows[0].product.merchant="verified-a";
+  plan.rows[1].product.merchant="verified-a";
+  plan.rows[1].quantity=2;
+  plan.rows[2].product.merchant="verified-b";
+  plan.rows[2].product.priceCurrency="EUR";
+  plan.rows[2].product.priceCzk=80;
+  plan.rows[3].product.merchant="verified-b";
+  plan.rows[3].product.priceCzk=null;
+  const labels=(id)=>({"verified-a":"Sklep A","verified-b":"Sklep B"})[id]||id;
+  const html=featuredCaravanBasketBudgetMarkup(plan,"pl",labels);
+  assert.match(html,/featured-basket-merchants/);
+  assert.match(html,/Sklep A/);
+  assert.match(html,/Sklep B/);
+  assert.match(html,/2 produkty/);
+  assert.match(html,/zł/);
+  assert.match(html,/EUR|€/);
+  assert.match(html,/1 bez ceny/);
+  assert.ok(!html.includes("verified-a") && !html.includes("verified-b"));
+  assert.ok(!html.includes("NaN") && !html.includes("USD"));
+  assert.equal((html.match(/role="listitem"/g)||[]).length,2);
+  assert.equal(caravanBasketPriceSummary(plan,"pl").subtotals.length,2);
+});
+
+test("one-store offer remains concise, unknown store IDs are masked, and translated labels escape HTML", () => {
+  const single=build("CZK",1000);
+  assert.doesNotMatch(featuredCaravanBasketBudgetMarkup(single,"cs"),/featured-basket-merchants/);
+  const plan=build("EUR",null);
+  plan.rows[0].product.merchant="unknown-shop";
+  const html=featuredCaravanBasketBudgetMarkup(plan,"sk",(id)=>id);
+  assert.match(html,/Obchod 1/);
+  assert.match(html,/2 obchody/);
+  assert.doesNotMatch(html,/unknown-shop/);
+  assert.match(html,/cena u predajcu/);
+  assert.ok(!html.includes("0,00"));
+  const named=featuredCaravanBasketBudgetMarkup(plan,"sk",
+    (id)=>id==="unknown-shop" ? '<img src=x onerror=alert(1)>' : "Overený obchod");
+  assert.ok(named.includes("&lt;img"));
+  assert.ok(!named.includes("<img"));
 });
