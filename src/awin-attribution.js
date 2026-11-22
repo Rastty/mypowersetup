@@ -4,7 +4,10 @@ const EHUB_PATH = "/system/scripts/click.php";
 const SAFE_VALUE = /^[a-z0-9_-]{1,64}$/;
 const ROLE_VALUES = new Set(["recommended", "budget", "reserve", "alternative"]);
 const PRIORITY_VALUES = new Set(["primary", "secondary"]);
-const SOURCE_VALUES = new Set(["package", "product-card", "result-featured", "result-partial"]);
+const SOURCE_VALUES = new Set(["package", "product-card", "result-featured", "result-partial", "caravan-plan"]);
+// Mature caravan Builder: only these 3 market storefronts currently have a
+// consented GA4 funnel that names the same source in every buyer CTA.
+const BUILDER_SOURCE_MARKETS = new Set(["cz", "sk", "pl"]);
 
 export function decorateAwinAffiliateUrl(input, {
   market,
@@ -30,7 +33,7 @@ export function decorateAwinAffiliateUrl(input, {
   }
 
   if (EHUB_HOSTS.has(url.hostname) && url.pathname === EHUB_PATH) {
-    decorateEhubUrl(url, { market, category, placement, scenarioCampaign });
+    decorateEhubUrl(url, { market, category, placement, source, scenarioCampaign });
     return url.toString();
   }
 
@@ -70,7 +73,7 @@ function decorateAwinUrl(url, {
   }
 }
 
-function decorateEhubUrl(url, { market, category, placement, scenarioCampaign }) {
+function decorateEhubUrl(url, { market, category, placement, source, scenarioCampaign }) {
   if (!url.searchParams.get("a_aid") || !url.searchParams.get("a_bid")) return;
 
   const normalizedMarket = safeToken(market);
@@ -85,7 +88,14 @@ function decorateEhubUrl(url, { market, category, placement, scenarioCampaign })
     url.searchParams.set("data2", scenarioRef);
   } else if (!scenarioRef && !url.searchParams.has("data2")) {
     const placementRef = normalizedMarket && normalizedCategory ? buildPlacementRef(placement, 64) : null;
-    if (placementRef) url.searchParams.set("data2", placementRef);
+    // Existing approved merchant sub-ID, explicit scenario and verified
+    // calculator placement always win. A malformed explicit placement must
+    // fail closed; it must NOT silently degrade to a different attribution.
+    // Only fixed Builder UI routes may add static data2; no user/session ID.
+    const builderSourceRef = placement == null && BUILDER_SOURCE_MARKETS.has(normalizedMarket)
+      && normalizedCategory && SOURCE_VALUES.has(source)
+      ? `source_${source}` : null;
+    if (placementRef || builderSourceRef) url.searchParams.set("data2", placementRef || builderSourceRef);
   }
 }
 
