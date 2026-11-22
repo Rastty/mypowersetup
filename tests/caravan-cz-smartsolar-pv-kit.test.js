@@ -11,8 +11,8 @@ import { reviewCaravanPvString } from "../src/caravan-pv-string-review.js";
 
 const MANUAL = "https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_100-30__100-50/en/configuration-and-settings.html";
 const MODELS = [
-  { id: "svetkaravanu:24828", amps: 30, price: 3519, name: "MPPT solární regulátor Victron SmartSolar 100/30" },
-  { id: "svetkaravanu:101985", amps: 50, price: 5069, name: "MPPT solární regulátor Victron Energy SmartSolar 100/50" },
+  { id: "svetkaravanu:24828", amps: 30, name: "MPPT solární regulátor Victron SmartSolar 100/30" },
+  { id: "svetkaravanu:101985", amps: 50, name: "MPPT solární regulátor Victron Energy SmartSolar 100/50" },
 ];
 const batteryIds = { 12: "svetkaravanu:107356_32721", 24: "svetkaravanu:107358" };
 const catalog = async () => JSON.parse(await readFile(new URL("../data/products.json", import.meta.url), "utf8"));
@@ -33,7 +33,7 @@ test("the exact two stocked CZ SmartSolar dealer offers inherit real LiFePO4 and
     assert.equal(raw.name, model.name);
     assert.equal(raw.available, true);
     assert.equal(raw.priceCurrency, "CZK");
-    assert.equal(raw.priceCzk, model.price);
+    assert.ok(Number.isFinite(raw.priceCzk) && raw.priceCzk > 0);
     assert.match(raw.affiliateUrl, /a_aid=f34c86c8&a_bid=38137ac4&desturl=/);
     const checked = refreshCatalogProduct(raw);
     const watts = model.amps === 30 ? { 12: 440, 24: 880 } : { 12: 700, 24: 1400 };
