@@ -1,4 +1,4 @@
-// Exact approved Padabo SK/PL shore-power battery charger variants. The
+// Exact approved CZ SvětKaravanů and Padabo SK/PL shore-power variants. The
 // manufacturer (not merchant feed labels) documents selectable LiFePO4
 // profiles and battery Ah ranges. This is product screening, not installation
 // or BMS charging approval.
@@ -11,6 +11,17 @@ const MODELS=Object.freeze({
   "24088_26048":{model:"MCA 2440",system:24,current:40,minAh:80,maxAh:320},
 });
 const LOCAL=Object.freeze({
+  // CZ variant identities are independently present in the approved
+  // SvětKaravanů feed. The three variants share their parent product URL,
+  // so the exact feed SKU AND full variant-specific name must both agree.
+  cs:Object.freeze({
+    merchant:"svetkaravanu",currency:"CZK",bid:"38137ac4",
+    offers:{
+      "24087_26040":{name:"Nabíječka baterií PerfectCharge 12 V nabíjecí proud 15 A model MCA 1215",url:"https://www.svetkaravanu.cz/nabijecka-baterii-perfectcharge-12-v_z24087/"},
+      "24087_26042":{name:"Nabíječka baterií PerfectCharge 12 V nabíjecí proud 35 A model MCA 1235",url:"https://www.svetkaravanu.cz/nabijecka-baterii-perfectcharge-12-v_z24087/"},
+      "24088_26048":{name:"Nabíječka Dometic PerfectCharge 24 V nabíjecí proud 40 A model MCA 2440",url:"https://www.svetkaravanu.cz/nabijecka-dometic-perfectcharge-24-v_z24088/"},
+    },
+  }),
   sk:Object.freeze({
     merchant:"padabo_sk",currency:"EUR",bid:"7aed5c13",
     offers:{
@@ -31,7 +42,7 @@ const LOCAL=Object.freeze({
 
 function exactApprovedOffer(product) {
   const [market,sku]=String(product?.id||"").split(":");
-  const locale=market==="padabo_sk"?"sk":market==="padabo_pl"?"pl":null;
+  const locale=market==="svetkaravanu"?"cs":market==="padabo_sk"?"sk":market==="padabo_pl"?"pl":null;
   const local=LOCAL[locale];
   const model=MODELS[sku];
   const offer=local?.offers[sku];
