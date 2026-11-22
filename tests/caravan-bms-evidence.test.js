@@ -100,6 +100,6 @@ test("CZ SK PL buying plans expose real continuous BMS current requirement befor
     const app=await readFile(new URL("../src/"+entry,import.meta.url),"utf8");
     assert.ok(page.includes(html === "index.html" ? "20261122-shore-mca1" : "20261122-shore-mca1"),html);
     assert.match(app,/caravan-buyer-checklist\.js\?v=20261122-bms-alternatives1/,entry);
-    assert.ok(app.includes("products.js?v=" + (html === "index.html" ? "20261122-shore-mca1" : "20261122-shore-mca1")),entry);
+    assert.ok(app.includes("products.js?v=" + (html === "index.html" ? "20261122-shore-mca-cz1" : "20261122-shore-mca-cz1")),entry);
   }
 });
