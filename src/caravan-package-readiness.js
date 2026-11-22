@@ -1,7 +1,7 @@
 import { batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
 import { batteryContinuousLimitNotBelowRequirement } from "./caravan-bms-buyer-evidence.js?v=20261121-superpack-ng1";
 import { caravanPvNominalReview } from "./caravan-pv-array-review.js?v=20261121-actual-pv1";
-import { reviewCaravanPvString } from "./caravan-pv-string-review.js?v=20261121-bluesolar-pv1";
+import { reviewCaravanPvString } from "./caravan-pv-string-review.js?v=20261122-mppt-cz1";
 
 // The main buyer checklist is the source of truth for a purchasable caravan.
 // The three package alternatives must not reintroduce unknown-stock products
