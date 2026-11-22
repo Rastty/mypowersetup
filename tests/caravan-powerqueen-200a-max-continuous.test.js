@@ -113,8 +113,18 @@ test("real approved SK/PL 1000W 12V caravan builds have six buyable categories w
   for (const locale of ["sk","pl"]) {
     const cat=await catalog(locale),merchant="padabo_"+locale;
     const offers=[merchantProduct(cat),...ids.map(sku=>cat.products.find(p=>p.id===merchant+":"+sku))];
+    const input=setup(locale);
+    if(cat.sources[merchant].status==="stale") {
+      assert.ok(offers.slice(1).every(p=>p?.available===false&&p.staleSource===true),locale+" stale Padabo");
+      const held=recommendProducts(offers,input,3,cat.sources);
+      assert.equal(held.battery[0]?.product.id,ID,locale+" manufacturer Power Queen still approved");
+      for(const category of ["solar_panel","controller","inverter","dc_charger","shore_charger"])
+        assert.equal(held[category].length,0,locale+" "+category+" withheld");
+      continue;
+    }
+    assert.equal(cat.sources[merchant].status,"ok");
     assert.ok(offers.every(p=>p?.available===true&&p.priceCzk>0),locale+" exact shopping SKUs");
-    const input=setup(locale),rec=recommendProducts(offers,input,3,cat.sources);
+    const rec=recommendProducts(offers,input,3,cat.sources);
     for (const category of required) assert.equal(rec[category].length,1,locale+" "+category);
     assert.equal(rec.inverter[0].product.specs.powerW,1000,locale);
     assert.equal(documentedBatteryContinuousBmsAmps(rec.battery[0].product),200,locale);
