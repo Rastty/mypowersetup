@@ -58,7 +58,7 @@ test("PL prices in PLN and EUR stay separated; USD or no price never becomes a f
   assert.equal(totals.unpriced,1);
   assert.equal(totals.complete,false);
   assert.match(html,/data-budget-completeness="partial"/);
-  assert.match(html,/PLN/);
+  assert.match(html,/zł/);
   assert.match(html,/EUR|€/);
   assert.match(html,/bez sprawdzonej ceny/);
   assert.ok(!html.includes("USD"));
