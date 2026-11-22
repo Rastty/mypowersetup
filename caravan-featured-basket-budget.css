@@ -5,3 +5,10 @@
 .featured-basket-budget-main strong { color: var(--forest-deep); font: 850 20px/1.3 "Manrope", sans-serif; }
 .featured-basket-budget small { flex-basis: 100%; color: var(--ink-soft); font-size: 11px; line-height: 1.5; }
 @media (max-width: 440px) { .featured-basket-budget { padding: 11px; } .featured-basket-budget-main strong { font-size: 17px; } }
+
+/* Compact, directly visible store split; each store is a separate checkout. */
+.featured-basket-merchants { flex-basis: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 205px), 1fr)); gap: 7px; margin: 6px 0 3px; }
+.featured-basket-merchant { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; padding: 8px 10px; border-radius: 7px; border: 1px solid #e4e9e1; background: #f8fbf5; font-size: 12px; }
+.featured-basket-merchant strong { flex-basis: 100%; color: var(--forest-deep); overflow-wrap: anywhere; }
+.featured-basket-merchant span { color: var(--ink-soft); }
+.featured-basket-merchant span:last-child { font-weight: 700; color: var(--forest-deep); }

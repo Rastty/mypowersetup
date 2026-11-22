@@ -12,7 +12,7 @@ import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1";
-import { featuredCaravanBasketBudgetMarkup } from "./caravan-featured-basket-budget.js?v=20261122-budget-shops1-unpriced1";
+import { featuredCaravanBasketBudgetMarkup } from "./caravan-featured-basket-budget.js?v=20261122-merchant-preview1";
 import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261122-mppt-cz1";
 import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261122-legacy70a";
 import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261121-bluesolar-pv1";
@@ -570,7 +570,7 @@ function renderProductRecommendations(result) {
     : "";
   const voltageNotice = renderDcLoadVoltageNotice(result.dcLoadVoltageWarning, "sk");
   document.querySelector("#featured-recommendations").innerHTML = voltageNotice + (featured.length
-    ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Priamo k overeným ponukám</span><h5 id="featured-picks-title">Čo odporúčame k vášmu výpočtu</h5></div><span class="featured-picks-count">${featured.length} overené produkty</span></div>${featuredCaravanBasketBudgetMarkup(buyerPlan, "sk")}<div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Len technicky zhodné produkty. Niektoré odkazy sú partnerské; provízia nemení výber. Aktuálnu cenu, sklad a dopravu overte u predajcu; nejde o úplný rozpočet montáže.</p></section>`
+    ? `<section class="featured-picks" aria-labelledby="featured-picks-title"><div class="featured-picks-heading"><div><span class="step-kicker">Priamo k overeným ponukám</span><h5 id="featured-picks-title">Čo odporúčame k vášmu výpočtu</h5></div><span class="featured-picks-count">${featured.length} overené produkty</span></div>${featuredCaravanBasketBudgetMarkup(buyerPlan, "sk", merchantLabel)}<div class="featured-picks-grid">${featured.map((item) => featuredProductCard(item)).join("")}</div><p class="featured-picks-note">Len technicky zhodné produkty. Niektoré odkazy sú partnerské; provízia nemení výber. Aktuálnu cenu, sklad a dopravu overte u predajcu; nejde o úplný rozpočet montáže.</p></section>`
     : "");
 
   if (total === 0) {
