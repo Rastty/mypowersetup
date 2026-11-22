@@ -138,6 +138,6 @@ test("served CZ SK PL imports cache-bust the MPPT proof and PV wiring review cha
     assert.ok(html.includes(appName+"?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1"),locale);
     assert.ok(app.includes("products.js?v=20261122-legacy70a"),locale);
     assert.ok(app.includes("caravan-buyer-checklist.js?v=20261122-mppt-cz1"),locale);
-    assert.ok(app.includes("caravan-package-readiness.js?v=20261122-legacy70a"),locale);
+    assert.ok(app.includes(locale==="cs" ? "caravan-package-readiness.js?v=20261122-legacy70a" : "caravan-package-readiness.js?v=20261122-pq200a1"),locale);
   }
 });

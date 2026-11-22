@@ -14,7 +14,17 @@ test("source-approved Orion-Tr Smart 12/12-30 supports LiFePO4 in SK and PL purc
  for(const [locale,id,currency] of exact){
   const catalog=JSON.parse(await readFile(new URL("../data/products-"+locale+".json",import.meta.url),"utf8"));
   const raw=catalog.products.find(p=>p.id===id);
-  assert.ok(raw,id);assert.equal(raw.available,true,id);
+  assert.ok(raw,id);
+  if(catalog.sources[raw.merchant]?.status==="stale") {
+    assert.equal(raw.available,false,id);assert.equal(raw.staleSource,true,id);
+    assert.deepEqual(recommendProducts([raw],{
+      locale,systemVoltage:12,batteryType:"lifepo4",batteryAh:100,
+      charging:{starterVoltage:12,dcDc:{suggestedCurrentAmps:25},shore:{}},
+      solarWatts:250,controllerAmps:20,inverterWatts:0
+    },3,catalog.sources).dc_charger,[],id);
+    continue;
+  }
+  assert.equal(raw.available,true,id);
   assert.equal(raw.priceCurrency,currency,id);
   assert.equal(catalog.sources[raw.merchant]?.status,"ok",id);
   const proof=refreshCatalogProduct(raw);

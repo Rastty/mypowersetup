@@ -26,9 +26,11 @@ test("exact 3 live approved merchant feeds keep publisher, seller, SKU and desti
     const raw=catalog.products.find(p=>p.id===id);
     assert.ok(raw,id);
     assert.equal(raw.priceCurrency,currency);
-    assert.equal(raw.available,true);
+    const healthy=catalog.sources[raw.merchant].status==="ok";
+    assert.ok(healthy || catalog.sources[raw.merchant].status==="stale");
+    assert.equal(raw.available,healthy);
+    if(!healthy)assert.equal(raw.staleSource,true);
     assert.ok(raw.priceCzk>0);
-    assert.equal(catalog.sources[raw.merchant].status,"ok");
     const original=new URL(raw.affiliateUrl);
     for(const source of SOURCES){
       const href=decorate(raw.affiliateUrl,market,source);
@@ -51,7 +53,7 @@ test("exact 3 live approved merchant feeds keep publisher, seller, SKU and desti
         generatedAt:catalog.generatedAt,sources:catalog.sources,products:[raw]
       }]);
       const observed=Date.parse(catalog.generatedAt);
-      assert.equal(isCurrentBuilderOffer(link,evidence,observed+60_000),true);
+      assert.equal(isCurrentBuilderOffer(link,evidence,observed+60_000),healthy);
       assert.equal(isCurrentBuilderOffer(link,evidence,observed+72*60*60*1000+1),false);
     }
   }

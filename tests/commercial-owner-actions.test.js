@@ -148,7 +148,7 @@ test("current owner queue follows live commercial gaps instead of stale candidat
   // The live report can gain a new country/category opportunity (e.g. HU
   // controller on 2026-10-28). Verify actual report-derived impacts rather
   // than freezing an older 3-market weight of 6 in the test suite.
-  const eligibleMarkets = new Set(["hu-HU", "pt-PT", "ro-RO", "sl-SI"]);
+  const eligibleMarkets = new Set(["sk-SK", "pl-PL", "hu-HU", "pt-PT", "ro-RO", "sl-SI"]);
   const expectedController = report.markets
     .filter(({ market }) => eligibleMarkets.has(market))
     .map(({ opportunities }) => opportunities.find(({ category }) => category === "controller"))
