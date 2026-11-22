@@ -719,7 +719,7 @@ function packageProductLink(category, product, packageId) {
 }
 
 function attributedAwinUrl(product, category, recommendationRole, source) {
-  return decorateAwinAffiliateUrl(product?.affiliateUrl, { market: "cz", category, recommendationRole, source });
+  return decorateAwinAffiliateUrl(product?.affiliateUrl, { market: "cz", category, recommendationRole, source, buyerFlow: "caravan-builder" });
 }
 
 function packageCategoryLabel(category) {
