@@ -3,6 +3,7 @@ import { batteryBmsLoadWithinAdvertisedLimit, minimumBatteryDischargeAmps } from
 import { batteryContinuousLimitNotBelowRequirement, batteryDischargeBuyerCheck, batteryDischargeEvidenceTier } from "./caravan-bms-buyer-evidence.js?v=20261122-sunstone200a1";
 import { isPowerQueenRegionRestrictedOffer } from "./powerqueen-expansion.js?v=20261117-pq-region1";
 import { addVerifiedVictronChargingProfiles } from "./victron-orion-charging-profiles.js?v=20261122-orion-24v1";
+import { addVerifiedDometicMcaShoreProfile } from "./dometic-mca-shore-profiles.js?v=20261122-shore-mca1";
 import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-charging-profiles.js?v=20261121-padabo1";
 import { addVerifiedEcoFlowRigid175PvSpecs } from "./ecoflow-rigid-pv-profiles.js?v=20261121-bluesolar-pv1";
 import { addVerifiedVictronBlueSolar190PvSpecs } from "./victron-bluesolar-pv-profiles.js?v=20261121-bluesolar-pv1";
@@ -500,7 +501,7 @@ export function refreshCatalogProduct(product) {
   return {
     ...product,
     available: isConfirmedDiscontinuedProduct(product) ? false : product.available,
-    specs: addReviewedBatteryContinuousSpecs(product, addVerifiedVictronBlueSolar190PvSpecs(product, addVerifiedEcoFlowRigid175PvSpecs(product, addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, specs))))),
+    specs: addReviewedBatteryContinuousSpecs(product, addVerifiedVictronBlueSolar190PvSpecs(product, addVerifiedEcoFlowRigid175PvSpecs(product, addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, addVerifiedDometicMcaShoreProfile(product, specs)))))),
     category: product.verifiedAt && product.category && product.category !== "other"
       ? product.category
       : classifyProduct({ name: product.name, categoryPath: product.categoryPath, specs })
@@ -568,6 +569,14 @@ function scoreProduct(product, setup) {
     if (product.category === "dc_charger" && !specs.chargingInputVoltagesV?.includes(setup.charging.starterVoltage)) return null;
     if (!specs.chargingBatteryTypes?.includes(setup.batteryType)) return null;
     if (!specs.currentA || specs.currentA < option.suggestedCurrentAmps) return null;
+    // For a manufacturer-reviewed shore charger, stay inside its explicitly
+    // specified LiFePO4 battery capacity range. Unknown charger ranges do not
+    // become proof of capacity compatibility.
+    if(product.category==="shore_charger" && setup.batteryType==="lifepo4"
+      && specs.chargingCapacityRangeChemistry==="lifepo4"
+      && (!Number.isFinite(setup.batteryAh)
+        || setup.batteryAh<specs.chargingCapacityMinAh
+        || setup.batteryAh>specs.chargingCapacityMaxAh))return null;
     fit = specs.currentA / option.suggestedCurrentAmps;
   }
   if (product.category === "power_station") {

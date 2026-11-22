@@ -104,7 +104,7 @@ test("CZ/SK/PL browser uses one versioned shared PV review module and source-tes
  for(const [page,app] of [["index.html","app.js"],["sk/index.html","app-sk.js"],["pl/index.html","app-pl.js"]]){
    const html=await readFile(new URL("../"+page,import.meta.url),"utf8");
    const src=await readFile(new URL("../src/"+app,import.meta.url),"utf8");
-   assert.ok(html.includes(page === "index.html" ? "20261122-sunstone200a1" : "20261122-orion-24v1"));
+   assert.ok(html.includes(page === "index.html" ? "20261122-shore-mca1" : "20261122-shore-mca1"));
    assert.match(src,/caravan-buyer-checklist\.js\?v=20261122-bms-alternatives1/);
    assert.match(src,/caravan-package-readiness\.js\?v=20261122-bms-alternatives1/);
  }
