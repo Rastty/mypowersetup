@@ -2,7 +2,7 @@ import { calculatePowerStationProfile } from "./power-station.js";
 import { batteryBmsLoadWithinAdvertisedLimit, minimumBatteryDischargeAmps } from "./battery-discharge-safety.js?v=20261117-bms-load1";
 import { batteryContinuousLimitNotBelowRequirement, batteryDischargeBuyerCheck, batteryDischargeEvidenceTier } from "./caravan-bms-buyer-evidence.js?v=20261122-superpack-cz1";
 import { isPowerQueenRegionRestrictedOffer } from "./powerqueen-expansion.js?v=20261117-pq-region1";
-import { addVerifiedVictronChargingProfiles } from "./victron-orion-charging-profiles.js?v=20261122-orion-24v1";
+import { addVerifiedVictronChargingProfiles } from "./victron-orion-charging-profiles.js?v=20261122-orion-cz1";
 import { addVerifiedDometicMcaShoreProfile } from "./dometic-mca-shore-profiles.js?v=20261122-shore-mca-cz1";
 import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-charging-profiles.js?v=20261121-padabo1";
 import { addVerifiedEcoFlowRigid175PvSpecs } from "./ecoflow-rigid-pv-profiles.js?v=20261121-bluesolar-pv1";
