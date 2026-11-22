@@ -20,6 +20,7 @@ const MODELS=Object.freeze({
 });
 const CONTROLLER_DOC = "https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_100-30__100-50/en/configuration-and-settings.html";
 const CONTROLLERS = Object.freeze({
+  "svetkaravanu:24828":30, "svetkaravanu:101985":50,
   "vselektro:victron-smartsolar-100-30":30,
   "vselektro:victron-smartsolar-100-50":50,
   "padabo_sk:24828":30, "padabo_sk:101985":50,
