@@ -8,6 +8,7 @@ import { assessRecommendationCoverage } from "../src/recommendation-coverage.js"
 import { buildProductPackages } from "../src/packages.js";
 import { buildCaravanBuyerChecklist } from "../src/caravan-buyer-checklist.js";
 import { purchaseReadyCaravanPackages } from "../src/caravan-package-readiness.js";
+import { czechProductDecisionFacts } from "../src/product-decision-facts.js";
 
 const PDF="https://www.victronenergy.com/upload/documents/Datasheet-12%2C8V-%26-25%2C6-Lithium-SuperPack-EN.pdf";
 const variants=[
@@ -146,6 +147,27 @@ test("market frontend versions load 70A proof for source checks, decision facts 
     const [js,html]=await Promise.all([read("src/"+app),read(page)]);
     assert.ok(js.includes("products.js?v=20261122-legacy70a"),app);
     assert.ok(js.includes("caravan-package-readiness.js?v=20261122-legacy70a"),app);
-    assert.ok(html.includes(app+"?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1"),page);
+    assert.ok(html.includes(app+"?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1"),page);
   }
+});
+
+test("CZ detail labels manufacturer 70A maximum separately from 50A NG recommended sustained, with no spoofed fact",async()=>{
+  const c=await catalog("data/products.json");
+  const legacyRaw=c.products.find(p=>p.id==="svetkaravanu:26965_28369");
+  const ngRaw=c.products.find(p=>p.id==="svetkaravanu:107356_32721");
+  assert.ok(legacyRaw?.available&&ngRaw?.available);
+  const legacy=refreshCatalogProduct(legacyRaw);
+  const ng=refreshCatalogProduct(ngRaw);
+  const max=czechProductDecisionFacts(legacy,{systemVoltage:12,batteryAh:200});
+  const sustained=czechProductDecisionFacts(ng,{systemVoltage:12,batteryAh:100});
+  assert.deepEqual(max.find(x=>/trvalý vybíjecí proud/.test(x.label)),{
+    label:"Maximální trvalý vybíjecí proud (výrobce)",value:"70 A"
+  });
+  assert.deepEqual(sustained.find(x=>/trvalý vybíjecí proud/.test(x.label)),{
+    label:"Doporučený trvalý vybíjecí proud (výrobce)",value:"50 A"
+  });
+  const changed={...legacy,specs:{...legacy.specs,bmsEvidenceKind:"manufacturer_recommended_sustained"}};
+  assert.equal(czechProductDecisionFacts(changed,{}).some(x=>/trvalý vybíjecí proud/.test(x.label)),false);
+  const noProof={...legacy,specs:{...legacy.specs,bmsManufacturerEvidenceUrl:"https://fake.example/manufacturer.pdf"}};
+  assert.equal(czechProductDecisionFacts(noProof,{}).some(x=>/trvalý vybíjecí proud/.test(x.label)),false);
 });
