@@ -49,8 +49,9 @@ function exactApprovedDpsi(product, model, seller) {
 }
 
 export function addReviewedDometicDpsiInverterSpecs(product, specs) {
-  const [merchant,parent,variant]=String(product?.id||"").split(/[:_]/);
-  if(parent!=="104292" || !Object.hasOwn(MODELS,variant) || !Object.hasOwn(SELLERS,merchant))return specs;
+  const key=/^(padabo_sk|padabo_pl):104292_(\\d+)$/.exec(String(product?.id||""));
+  if(!key || !Object.hasOwn(MODELS,key[2]))return specs;
+  const merchant=key[1],variant=key[2];
   const model=MODELS[variant],seller=SELLERS[merchant];
   // This known SKU must not fall back to a feed-provided peak rating on any
   // mismatched, stale, unpriced or unattributed variant. Fail closed.
