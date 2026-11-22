@@ -7,6 +7,19 @@
 // https://www.victronenergy.com/media/pg/Lithium_SuperPack_NG/en/operation.html
 const MANUFACTURER_EVIDENCE = "https://www.victronenergy.com/media/pg/Lithium_SuperPack_NG/en/technical-data.html";
 const REVIEWED = Object.freeze({
+  // Sunstone's dedicated 200A SLPO12-200N variant and manufacturer product
+  // specification state "Constant current discharge: 200A" (distinct from
+  // the separate peak field). Do NOT transfer this to plain 200N or 200M.
+  // https://www.sunstonepower.com/downloads/157.html
+  // https://www.sunstonepower.com/LiFePO4_Battery/137.html
+  "vselektro:sunstone-slpo12-200n": {
+    merchant:"vselektro", currency:"CZK", bid:"f897865f",
+    name:"LiFePO4 Baterie 12V/200Ah, SLPO12-200N HC200A Sunstone Power",
+    url:"https://www.vselektro.eu/lifepo4-baterie-12v-200ah-slpo12-200n-hc200a-sunstone-power/",
+    model:"SLPO12-200N(200A) HC200A",voltageV:12,capacityAh:200,continuousDischargeA:200,
+    evidenceUrl:"https://www.sunstonepower.com/LiFePO4_Battery/137.html",
+  },
+
   "padabo_sk:107356_32721": {
     merchant:"padabo_sk",currency:"EUR",bid:"7aed5c13",
     name:"Batéria Victron Energy LiFePO Lithium SuperPack 12,8V NG kapacita 100 Ah",
@@ -70,7 +83,7 @@ export function addReviewedBatteryContinuousSpecs(product,specs) {
     bmsContinuousCurrentA:item.continuousDischargeA,
     bmsEvidenceKind:"manufacturer_recommended_sustained",
     bmsManufacturerModel:item.model,
-    bmsManufacturerEvidenceUrl:MANUFACTURER_EVIDENCE,
+    bmsManufacturerEvidenceUrl:item.evidenceUrl || MANUFACTURER_EVIDENCE,
   };
 }
 
@@ -82,6 +95,6 @@ export function verifiedBatteryContinuousDischargeAmps(product) {
     || product.specs?.bmsContinuousCurrentA!==item.continuousDischargeA
     || product.specs?.bmsEvidenceKind!=="manufacturer_recommended_sustained"
     || product.specs?.bmsManufacturerModel!==item.model
-    || product.specs?.bmsManufacturerEvidenceUrl!==MANUFACTURER_EVIDENCE) return null;
+    || product.specs?.bmsManufacturerEvidenceUrl!==(item.evidenceUrl || MANUFACTURER_EVIDENCE)) return null;
   return item.continuousDischargeA;
 }
