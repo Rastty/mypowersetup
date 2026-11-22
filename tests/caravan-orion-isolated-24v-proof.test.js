@@ -72,10 +72,10 @@ test("published SK and PL versioning retains core CZ Sunstone proof",async()=>{
   const html=await readFile(new URL("../"+market+"/index.html",import.meta.url),"utf8");
   const app=await readFile(new URL("../src/app-"+market+".js",import.meta.url),"utf8");
   assert.ok(html.includes("app-"+market+".js?v=20261122-shore-mca1"));
-  assert.ok(app.includes("products.js?v=20261122-superpack-cz1"));
+  assert.ok(app.includes("products.js?v=20261122-orion-cz1"));
  }
  const products=await readFile(new URL("../src/products.js",import.meta.url),"utf8");
- assert.ok(products.includes("victron-orion-charging-profiles.js?v=20261122-orion-24v1"));
+ assert.ok(products.includes("victron-orion-charging-profiles.js?v=20261122-orion-cz1"));
  const cz=await readFile(new URL("../index.html",import.meta.url),"utf8");
  assert.ok(cz.includes("app.js?v=20261122-shore-mca1"));
 });
