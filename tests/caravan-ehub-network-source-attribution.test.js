@@ -17,7 +17,7 @@ async function load(path){
   return catalogs.get(path);
 }
 const decorate=(input,market,source,extras={})=>decorateAwinAffiliateUrl(input,{
-  market,category:"battery",recommendationRole:"recommended",source,...extras
+  market,category:"battery",recommendationRole:"recommended",source,buyerFlow:"caravan-builder",...extras
 });
 
 test("exact 3 live approved merchant feeds keep publisher, seller, SKU and destination while assigning fixed result-origin subIDs",async()=>{
@@ -82,6 +82,9 @@ test("unknown/untrusted sources and non-priority countries cannot create network
     const u=new URL(decorate(base,market,"result-featured"));
     assert.equal(u.searchParams.has("data2"),false,market);
   }
+  const editorial=decorate(base,"cz","product-card",{buyerFlow:undefined});
+  assert.equal(new URL(editorial).searchParams.has("data2"),false,
+    "same static source on an editorial guide is NOT a Builder checkout");
   const invalid="https://ehub.cz/system/scripts/click.php?a_aid=a&desturl="+encodeURIComponent("https://shop.example");
   const empty=new URL(decorate(invalid,"cz","result-featured"));
   assert.equal(empty.searchParams.has("data2"),false);
@@ -108,6 +111,7 @@ test("CZ SK PL buyer UI uses the same four explicit source values in GA4 and eHu
     assert.ok(js.includes('"package"'),app);
     assert.ok(js.includes('"product-card"'),app);
     assert.ok(js.includes('market: "'+market+'"'),app);
+    assert.ok(js.includes('buyerFlow: "caravan-builder"'),app);
     assert.ok(html.includes(app+"?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1"),page);
     assert.ok(js.includes('data-source="result-featured"'),app);
     assert.ok(js.includes('"caravan-plan"'),app);
