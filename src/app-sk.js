@@ -24,7 +24,7 @@ import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
 import { mountExistingSetupCheck } from "./existing-setup.js?v=20260827-2";
-import { decorateAwinAffiliateUrl } from "./awin-attribution.js";
+import { decorateAwinAffiliateUrl } from "./awin-attribution.js?v=20261122-builder-source1";
 import { bindAffiliateImpressionTracking, trackAffiliateClick, trackAffiliateImpressions } from "./affiliate-analytics.js?v=20261108-viewport1";
 import { bindBuilderResultInvalidation } from "./builder-result-freshness.js";
 import { buildBuilderOfferEvidence, bindBuilderOfferClickGuard, showExpiredBuilderOfferNotice } from "./builder-offer-click-guard.js?v=20261118-hero-guard1";
@@ -643,7 +643,7 @@ function packageProductLink(category, product, packageId) {
 }
 
 function attributedAwinUrl(product, category, recommendationRole, source) {
-  return decorateAwinAffiliateUrl(product?.affiliateUrl, { market: "sk", category, recommendationRole, source });
+  return decorateAwinAffiliateUrl(product?.affiliateUrl, { market: "sk", category, recommendationRole, source, buyerFlow: "caravan-builder" });
 }
 
 function packageCategoryLabel(category) {
