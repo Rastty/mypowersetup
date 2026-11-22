@@ -1,6 +1,6 @@
 {
   "schemaVersion": 6,
-  "generatedAt": "2026-11-22T19:09:20.420Z",
+  "generatedAt": "2026-11-22T19:20:13.155Z",
   "focusMarkets": [
     "cs-CZ",
     "sk-SK",
@@ -14,44 +14,8 @@
     {
       "category": "inverter",
       "label": "inverter",
-      "score": 47,
+      "score": 39,
       "markets": [
-        {
-          "market": "sk-SK",
-          "priority": "P0",
-          "score": 8,
-          "maxPurchaseReadyGain": 0.2631578947368421,
-          "standalonePurchaseReadyGain": 0.2631578947368421,
-          "primaryRequirements": [
-            {
-              "requirement": {
-                "category": "inverter",
-                "systemVoltage": 12,
-                "waveform": "pure_sine",
-                "minContinuousPowerW": 100,
-                "maxContinuousPowerW": 300
-              },
-              "weight": 5,
-              "scenarioIds": [
-                "family-touring"
-              ]
-            },
-            {
-              "requirement": {
-                "category": "inverter",
-                "systemVoltage": 24,
-                "waveform": "pure_sine",
-                "minContinuousPowerW": 100,
-                "maxContinuousPowerW": 300
-              },
-              "weight": 3,
-              "scenarioIds": [
-                "remote-work"
-              ]
-            }
-          ],
-          "secondaryRequirements": []
-        },
         {
           "market": "pt-PT",
           "priority": "P0",
@@ -239,8 +203,8 @@
           "secondaryRequirements": []
         }
       ],
-      "maxPurchaseReadyGain": 1.0526315789473684,
-      "standalonePurchaseReadyGain": 1.0526315789473684
+      "maxPurchaseReadyGain": 0.7894736842105263,
+      "standalonePurchaseReadyGain": 0.7894736842105263
     },
     {
       "category": "dc_charger",
@@ -371,32 +335,8 @@
     {
       "category": "controller",
       "label": "MPPT controller",
-      "score": 8,
+      "score": 6,
       "markets": [
-        {
-          "market": "sk-SK",
-          "priority": "P2",
-          "score": 2,
-          "maxPurchaseReadyGain": 0,
-          "standalonePurchaseReadyGain": 0,
-          "primaryRequirements": [
-            {
-              "requirement": {
-                "category": "controller",
-                "technology": "mppt",
-                "minCurrentA": 50,
-                "maxCurrentA": 150,
-                "systemVoltage": 12,
-                "minArrayWatts": 550
-              },
-              "weight": 2,
-              "scenarioIds": [
-                "winter-basic"
-              ]
-            }
-          ],
-          "secondaryRequirements": []
-        },
         {
           "market": "pt-PT",
           "priority": "P2",
@@ -478,44 +418,8 @@
     {
       "category": "inverter",
       "label": "inverter",
-      "score": 47,
+      "score": 39,
       "markets": [
-        {
-          "market": "sk-SK",
-          "priority": "P0",
-          "score": 8,
-          "maxPurchaseReadyGain": 0.2631578947368421,
-          "standalonePurchaseReadyGain": 0.2631578947368421,
-          "primaryRequirements": [
-            {
-              "requirement": {
-                "category": "inverter",
-                "systemVoltage": 12,
-                "waveform": "pure_sine",
-                "minContinuousPowerW": 100,
-                "maxContinuousPowerW": 300
-              },
-              "weight": 5,
-              "scenarioIds": [
-                "family-touring"
-              ]
-            },
-            {
-              "requirement": {
-                "category": "inverter",
-                "systemVoltage": 24,
-                "waveform": "pure_sine",
-                "minContinuousPowerW": 100,
-                "maxContinuousPowerW": 300
-              },
-              "weight": 3,
-              "scenarioIds": [
-                "remote-work"
-              ]
-            }
-          ],
-          "secondaryRequirements": []
-        },
         {
           "market": "pt-PT",
           "priority": "P0",
@@ -703,8 +607,8 @@
           "secondaryRequirements": []
         }
       ],
-      "maxPurchaseReadyGain": 1.0526315789473684,
-      "standalonePurchaseReadyGain": 1.0526315789473684
+      "maxPurchaseReadyGain": 0.7894736842105263,
+      "standalonePurchaseReadyGain": 0.7894736842105263
     },
     {
       "category": "dc_charger",
@@ -835,32 +739,8 @@
     {
       "category": "controller",
       "label": "MPPT controller",
-      "score": 8,
+      "score": 6,
       "markets": [
-        {
-          "market": "sk-SK",
-          "priority": "P2",
-          "score": 2,
-          "maxPurchaseReadyGain": 0,
-          "standalonePurchaseReadyGain": 0,
-          "primaryRequirements": [
-            {
-              "requirement": {
-                "category": "controller",
-                "technology": "mppt",
-                "minCurrentA": 50,
-                "maxCurrentA": 150,
-                "systemVoltage": 12,
-                "minArrayWatts": 550
-              },
-              "weight": 2,
-              "scenarioIds": [
-                "winter-basic"
-              ]
-            }
-          ],
-          "secondaryRequirements": []
-        },
         {
           "market": "pt-PT",
           "priority": "P2",
@@ -941,7 +821,7 @@
   "markets": [
     {
       "market": "cs-CZ",
-      "generatedAt": "2026-11-22T19:08:35.930Z",
+      "generatedAt": "2026-11-22T19:19:40.199Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0,
@@ -953,206 +833,13 @@
     },
     {
       "market": "sk-SK",
-      "generatedAt": "2026-11-22T19:08:55.010Z",
-      "purchaseReadyRatio": 0.7368421052631579,
-      "componentReadyRatio": 0.47368421052631576,
+      "generatedAt": "2026-11-22T19:19:50.440Z",
+      "purchaseReadyRatio": 1,
+      "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
-      "weightedCoverage": 0.8596491228070177,
-      "topOpportunity": {
-        "category": "inverter",
-        "label": "inverter",
-        "priority": "P0",
-        "score": 8,
-        "maxPurchaseReadyGain": 0.2631578947368421,
-        "standalonePurchaseReadyGain": 0.2631578947368421,
-        "affectedWeight": 8,
-        "unlockWeight": 5,
-        "standaloneUnlockWeight": 5,
-        "primaryScenarioIds": [
-          "family-touring",
-          "remote-work"
-        ],
-        "unlockScenarioIds": [
-          "family-touring"
-        ],
-        "standaloneUnlockScenarioIds": [
-          "family-touring"
-        ],
-        "secondaryScenarioIds": [],
-        "primaryRequirements": [
-          {
-            "weight": 5,
-            "scenarioIds": [
-              "family-touring"
-            ],
-            "requirement": {
-              "category": "inverter",
-              "systemVoltage": 12,
-              "waveform": "pure_sine",
-              "minContinuousPowerW": 100,
-              "maxContinuousPowerW": 300
-            }
-          },
-          {
-            "weight": 3,
-            "scenarioIds": [
-              "remote-work"
-            ],
-            "requirement": {
-              "category": "inverter",
-              "systemVoltage": 24,
-              "waveform": "pure_sine",
-              "minContinuousPowerW": 100,
-              "maxContinuousPowerW": 300
-            }
-          }
-        ],
-        "secondaryRequirements": [],
-        "bestSourcingRoute": {
-          "id": "eza-12v-300w-pure-sine",
-          "category": "inverter",
-          "merchant": "eza",
-          "productName": "EZA Pure Sine Inverter 12V 300W",
-          "status": "blocked_affiliate_verification",
-          "blocker": "affiliate_and_market_eligibility_not_verified",
-          "secondaryBlocker": null,
-          "standaloneUnlockWeight": 0,
-          "affectedWeight": 0,
-          "shippingVerified": false,
-          "stockStatus": null,
-          "nextActionOwner": null,
-          "nextAction": null,
-          "applicationUrl": null,
-          "applicationPacketPath": null,
-          "activationFieldsNeeded": null,
-          "checkoutStatus": null
-        }
-      },
-      "opportunities": [
-        {
-          "category": "inverter",
-          "label": "inverter",
-          "priority": "P0",
-          "score": 8,
-          "maxPurchaseReadyGain": 0.2631578947368421,
-          "standalonePurchaseReadyGain": 0.2631578947368421,
-          "affectedWeight": 8,
-          "unlockWeight": 5,
-          "standaloneUnlockWeight": 5,
-          "primaryScenarioIds": [
-            "family-touring",
-            "remote-work"
-          ],
-          "unlockScenarioIds": [
-            "family-touring"
-          ],
-          "standaloneUnlockScenarioIds": [
-            "family-touring"
-          ],
-          "secondaryScenarioIds": [],
-          "primaryRequirements": [
-            {
-              "weight": 5,
-              "scenarioIds": [
-                "family-touring"
-              ],
-              "requirement": {
-                "category": "inverter",
-                "systemVoltage": 12,
-                "waveform": "pure_sine",
-                "minContinuousPowerW": 100,
-                "maxContinuousPowerW": 300
-              }
-            },
-            {
-              "weight": 3,
-              "scenarioIds": [
-                "remote-work"
-              ],
-              "requirement": {
-                "category": "inverter",
-                "systemVoltage": 24,
-                "waveform": "pure_sine",
-                "minContinuousPowerW": 100,
-                "maxContinuousPowerW": 300
-              }
-            }
-          ],
-          "secondaryRequirements": [],
-          "bestSourcingRoute": {
-            "id": "eza-12v-300w-pure-sine",
-            "category": "inverter",
-            "merchant": "eza",
-            "productName": "EZA Pure Sine Inverter 12V 300W",
-            "status": "blocked_affiliate_verification",
-            "blocker": "affiliate_and_market_eligibility_not_verified",
-            "secondaryBlocker": null,
-            "standaloneUnlockWeight": 0,
-            "affectedWeight": 0,
-            "shippingVerified": false,
-            "stockStatus": null,
-            "nextActionOwner": null,
-            "nextAction": null,
-            "applicationUrl": null,
-            "applicationPacketPath": null,
-            "activationFieldsNeeded": null,
-            "checkoutStatus": null
-          }
-        },
-        {
-          "category": "controller",
-          "label": "MPPT controller",
-          "priority": "P2",
-          "score": 2,
-          "maxPurchaseReadyGain": 0,
-          "standalonePurchaseReadyGain": 0,
-          "affectedWeight": 2,
-          "unlockWeight": 0,
-          "standaloneUnlockWeight": 0,
-          "primaryScenarioIds": [
-            "winter-basic"
-          ],
-          "unlockScenarioIds": [],
-          "standaloneUnlockScenarioIds": [],
-          "secondaryScenarioIds": [],
-          "primaryRequirements": [
-            {
-              "weight": 2,
-              "scenarioIds": [
-                "winter-basic"
-              ],
-              "requirement": {
-                "category": "controller",
-                "technology": "mppt",
-                "minCurrentA": 50,
-                "maxCurrentA": 150,
-                "systemVoltage": 12,
-                "minArrayWatts": 550
-              }
-            }
-          ],
-          "secondaryRequirements": [],
-          "bestSourcingRoute": {
-            "id": "butler-victron-scc125060321",
-            "category": "controller",
-            "merchant": "butler_technik",
-            "productName": "Victron SmartSolar MPPT 250/60-MC4",
-            "status": "pending_affiliate_approval",
-            "blocker": "awin_program_approval",
-            "secondaryBlocker": null,
-            "standaloneUnlockWeight": 0,
-            "affectedWeight": 5,
-            "shippingVerified": true,
-            "stockStatus": "in_stock",
-            "nextActionOwner": "user",
-            "nextAction": "join_awin_program_31291",
-            "applicationUrl": "https://ui.awin.com/merchant-profile/31291",
-            "applicationPacketPath": "docs/affiliate/butler-awin-application.md",
-            "activationFieldsNeeded": null,
-            "checkoutStatus": null
-          }
-        }
-      ],
+      "weightedCoverage": 1,
+      "topOpportunity": null,
+      "opportunities": [],
       "topSourcingRoute": {
         "id": "butler-victron-scc125060321",
         "category": "controller",
@@ -1196,7 +883,7 @@
     },
     {
       "market": "pl-PL",
-      "generatedAt": "2026-11-22T19:09:07.778Z",
+      "generatedAt": "2026-11-22T19:20:01.580Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.21052631578947367,
@@ -1246,7 +933,7 @@
     },
     {
       "market": "hu-HU",
-      "generatedAt": "2026-11-22T19:09:19.437Z",
+      "generatedAt": "2026-11-22T19:20:11.971Z",
       "purchaseReadyRatio": 1,
       "componentReadyRatio": 1,
       "portableFitRatio": 0.7368421052631579,
@@ -1296,7 +983,7 @@
     },
     {
       "market": "pt-PT",
-      "generatedAt": "2026-11-22T19:09:20.420Z",
+      "generatedAt": "2026-11-22T19:20:13.155Z",
       "purchaseReadyRatio": 0.7368421052631579,
       "componentReadyRatio": 0.21052631578947367,
       "portableFitRatio": 0.7368421052631579,
