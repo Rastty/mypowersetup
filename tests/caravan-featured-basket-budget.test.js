@@ -84,6 +84,8 @@ test("upfront checkout transparency counts only eligible merchant groups without
   plan.rows[0].product.merchant="shop-a";
   plan.rows[1].product.merchant="shop-a";
   plan.rows[2].product.merchant="shop-b";
+  plan.rows[4].product.merchant="shop-a";
+  plan.rows[5].product.merchant="shop-a";
   plan.rows[3].ready=false;
   plan.rows[3].product=null;
   plan.complete=false;
