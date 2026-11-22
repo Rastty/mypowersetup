@@ -1,4 +1,4 @@
-import { documentedBatteryContinuousBmsAmps } from "./caravan-bms-buyer-evidence.js?v=20261122-superpack-cz1";
+import { documentedBatteryContinuousBmsAmps } from "./caravan-bms-buyer-evidence.js?v=20261122-legacy70a";
 /**
  * Buyer-facing facts computed only from published product specifications and
  * calculator output. Passing initial matching does not verify installation.
