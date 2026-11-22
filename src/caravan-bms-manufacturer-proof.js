@@ -92,6 +92,59 @@ const REVIEWED = Object.freeze({
   },
 });
 
+// Manufacturer's exact EU product page lists 200A MAXIMUM CONTINUOUS
+// discharge for the *Plus* 12V 200Ah SKU (not its separate 100A sibling).
+// https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-plus-lifepo4-solar-battery
+// The approved SK/PL catalog imports the exact same AWIN EU destination,
+// so validate the separate AWIN attribution boundary without weakening the
+// existing eHub merchant allowlist. Seller pricing/stock are feed snapshots,
+// not a promise of a final checkout price or a completed electrical design.
+const POWERQUEEN_200A = Object.freeze({
+  id:"powerqueen_eu:7752838578396",
+  merchant:"powerqueen_eu",
+  name:"Power Queen 12V 200Ah Plus LiFePO4 Battery, Built-in 200A BMS",
+  url:"https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-plus-lifepo4-solar-battery",
+  currency:"EUR",
+  voltageV:12,capacityAh:200,
+  continuousDischargeA:200,
+  dischargeKind:"manufacturer_max_continuous",
+  model:"Power Queen 12V 200Ah Plus",
+  evidenceUrl:"https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-plus-lifepo4-solar-battery",
+});
+function exactReviewedPowerQueenSku(product) {
+  const record=POWERQUEEN_200A;
+  if (product?.id!==record.id || product?.merchant!==record.merchant
+    || product.category!=="battery" || product.name!==record.name
+    || product.productUrl!==record.url || product.priceCurrency!==record.currency
+    || product.available!==true || product.staleSource===true
+    || product.marketEligible===false
+    || !Number.isFinite(product.priceCzk) || product.priceCzk<=0
+    || product.specs?.voltageV!==record.voltageV
+    || product.specs?.capacityAh!==record.capacityAh
+    || product.specs?.batteryType!=="lifepo4"
+    || product.specs?.currentA!==200
+    || product.specs?.powerW!==2560
+    // Merchant must still explicitly attest CONTINUOUS current, not merely
+    // put 200A in the title or refer to surge/charge current.
+    || !/maximum continuous discharge current of 200A/i.test(String(product.description||""))) return null;
+  try {
+    const affiliate=new URL(product.affiliateUrl);
+    if (affiliate.origin!=="https://www.awin1.com"
+      || affiliate.pathname!=="/cread.php"
+      || affiliate.username || affiliate.password || affiliate.hash
+      || affiliate.searchParams.size!==3
+      || ["awinmid","awinaffid","ued"].some(k=>affiliate.searchParams.getAll(k).length!==1)
+      || affiliate.searchParams.get("awinmid")!=="97025"
+      || affiliate.searchParams.get("awinaffid")!=="3044971"
+      || affiliate.searchParams.get("ued")!==record.url) return null;
+  } catch {return null;}
+  return record;
+}
+
+function exactBatteryEvidence(product) {
+  return exactReviewedSku(product) || exactReviewedPowerQueenSku(product);
+}
+
 function exactReviewedSku(product) {
   if (product?.category !== "battery" || product.available !== true
     || !Object.hasOwn(REVIEWED,product?.id)) return null;
@@ -117,7 +170,7 @@ function exactReviewedSku(product) {
 // maximum. Require exact known product identity AND technical voltage/chemistry.
 // This is a conservative purchase-screening figure, not proof of total installation.
 export function addReviewedBatteryContinuousSpecs(product,specs) {
-  const item=exactReviewedSku(product);
+  const item=exactBatteryEvidence(product);
   if (!item || (product.specs?.voltageV!=null && product.specs.voltageV!==item.voltageV)
     || (product.specs?.capacityAh!=null && product.specs.capacityAh!==item.capacityAh)
     || (product.specs?.batteryType!=null && product.specs.batteryType!=="lifepo4")
@@ -139,7 +192,7 @@ export function addReviewedBatteryContinuousSpecs(product,specs) {
 }
 
 export function verifiedBatteryContinuousDischargeAmps(product) {
-  const item=exactReviewedSku(product);
+  const item=exactBatteryEvidence(product);
   if (!item || product.specs?.voltageV!==item.voltageV
     || product.specs?.capacityAh!==item.capacityAh
     || product.specs?.batteryType!=="lifepo4"
