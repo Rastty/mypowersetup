@@ -1,20 +1,55 @@
 {
-  "generatedAt": "2026-11-21T18:59:57.805Z",
+  "generatedAt": "2026-11-22T08:17:26.578Z",
   "market": "cs-CZ",
   "currency": "CZK",
   "sources": {
     "ampul_cz": {
       "status": "ok",
-      "parsedProducts": 7752,
-      "relevantProducts": 15
+      "parsedProducts": 7754,
+      "relevantProducts": 16
     }
   },
   "products": [
     {
+      "id": "ampul_cz:5276",
+      "merchant": "ampul_cz",
+      "name": "Napájecí zdroj zásuvkový 13,8V, 1A, 5,5x2,1mm, nabíječka olověných baterií 12V",
+      "description": "Spolehlivý napájecí zdroj zásuvkový 13,8V, 1A, 5,5x2,1mm, nabíječka olověných baterií 12V zajišťuje bezpečné nabíjení. Nabízí vstup 100-240V AC, celkový výkon 13,8W, kabel o délce 100 cm a stupeň krytí IP22 pro stabilní provoz elektroniky.",
+      "categoryPath": "Napájecí zdroje a baterie > Nabíječky > Nabíječky akumulátorů",
+      "category": "shore_charger",
+      "brand": "",
+      "priceCzk": 168,
+      "priceCurrency": "CZK",
+      "available": true,
+      "productUrl": "https://ampul.eu/cs/nabijecky-akumulatoru/5276-napajeci-zdroj-zasuvkovy-138v-1a-55x21mm-nabijecka-olovenych-baterii-12v",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fnabijecky-akumulatoru%2F5276-napajeci-zdroj-zasuvkovy-138v-1a-55x21mm-nabijecka-olovenych-baterii-12v",
+      "imageUrl": "https://ampul.eu/20562-large_default/napajeci-zdroj-zasuvkovy-138v-1a-55x21mm-nabijecka-olovenych-baterii-12v.jpg",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 13.8,
+        "currentA": 1,
+        "chargingVoltagesV": [
+          12
+        ],
+        "chargingInputVoltagesV": [
+          12
+        ],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "ampul_cz:5479",
       "merchant": "ampul_cz",
-      "name": "Nabíječka baterií z 12V na 29.2V, 20A, 584W, IP65, slim",
-      "description": "Nabíječka baterií z 12V na 29.2V, 20A, 584W, IP65, slim je ideální pro bezpečné nabíjení LiFePO4 a LiMn2O4 akumulátorů. Nabízí vysokou účinnost 95,5 %, integrované automatické ochrany proti zkratu či přepětí a elegantní slim provedení.",
+      "name": "Nabíječka baterií z 12V na 29,2V, 20A, 584W, IP65, slim",
+      "description": "Nabíječka baterií z 12V na 29,2V, 20A, 584W, IP65, slim je ideální pro bezpečné nabíjení LiFePO4 a LiMn2O4 akumulátorů. Nabízí vysokou účinnost 95,5 %, integrované automatické ochrany proti zkratu či přepětí a elegantní slim provedení.",
       "categoryPath": "Napájecí zdroje a baterie > Nabíječky > Nabíječky akumulátorů",
       "category": "dc_charger",
       "brand": "",
@@ -48,8 +83,8 @@
     {
       "id": "ampul_cz:5522",
       "merchant": "ampul_cz",
-      "name": "Nabíječka baterií z 12V na 43.8V, 13A, 569W, IP65, slim",
-      "description": "Nabíječka baterií z 12V na 43.8V 13A 569W slim představuje špičkový DC/DC měnič pro LiFePO4 a LiMn2O4 akumulátory. Vyniká vysokou účinností 94,4 %, robustním hliníkovým tělem s krytím IP65 a komplexní soustavou automatických pojistek.",
+      "name": "Nabíječka baterií z 12V na 43,8V, 13A, 569W, IP65, slim",
+      "description": "Nabíječka baterií z 12V na 43,8V 13A 569W slim představuje špičkový DC/DC měnič pro LiFePO4 a LiMn2O4 akumulátory. Vyniká vysokou účinností 94,4 %, robustním hliníkovým tělem s krytím IP65 a komplexní soustavou automatických pojistek.",
       "categoryPath": "Napájecí zdroje a baterie > Nabíječky > Nabíječky akumulátorů",
       "category": "dc_charger",
       "brand": "",
@@ -83,8 +118,8 @@
     {
       "id": "ampul_cz:5523",
       "merchant": "ampul_cz",
-      "name": "Nabíječka baterií z 12V/24V na 58.4V, 10A, 584W, IP65, slim",
-      "description": "Nabíječka baterií z 12V/24V na 58.4V 10A 584W slim je profesionální měnič pro 48V LiFePO4 a LiMn2O4 články. Poskytuje vynikající účinnost 94,5 %, certifikaci IP65, integrované tepelné a přepěťové jištění v odolném hliníkovém pouzdře.",
+      "name": "Nabíječka baterií z 12V/24V na 58,4V, 10A, 584W, IP65, slim",
+      "description": "Nabíječka baterií z 12V/24V na 58,4V 10A 584W slim je profesionální měnič pro 48V LiFePO4 a LiMn2O4 články. Poskytuje vynikající účinnost 94,5 %, certifikaci IP65, integrované tepelné a přepěťové jištění v odolném hliníkovém pouzdře.",
       "categoryPath": "Napájecí zdroje a baterie > Nabíječky > Nabíječky akumulátorů",
       "category": "dc_charger",
       "brand": "",
@@ -338,17 +373,17 @@
     {
       "id": "ampul_cz:6195",
       "merchant": "ampul_cz",
-      "name": "DC/DC nabíječka LiFePO4 baterií 14.6V, 30A, 400W, IP68",
-      "description": "Profesionální DC/DC nabíječka LiFePO4 baterií 14.6V 30A s výkonem 400W a vstupem 10-36V DC. Díky pokročilé PWM technologii, hliníkovému pouzdru a krytí IP68 je perfektní pro solární systémy, karavany a námořní instalace.",
+      "name": "DC/DC nabíječka LiFePO4 baterií 14,6V, 30A, 400W, IP65",
+      "description": "Profesionální DC/DC nabíječka LiFePO4 baterií 14,6V 30A s výkonem 400W a vstupem 10-36V DC. Díky pokročilé PWM technologii, hliníkovému pouzdru a krytí IP65 je perfektní pro solární systémy, karavany a námořní instalace.",
       "categoryPath": "Napájecí zdroje a baterie > Nabíječky > Nabíječky akumulátorů",
       "category": "dc_charger",
       "brand": "",
       "priceCzk": 6800,
       "priceCurrency": "CZK",
       "available": true,
-      "productUrl": "https://ampul.eu/cs/nabijecky-akumulatoru/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fnabijecky-akumulatoru%2F6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
-      "imageUrl": "https://ampul.eu/25626-large_default/dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68.jpg",
+      "productUrl": "https://ampul.eu/cs/nabijecky-akumulatoru/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip65",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=ddb5edae&desturl=https%3A%2F%2Fampul.eu%2Fcs%2Fnabijecky-akumulatoru%2F6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip65",
+      "imageUrl": "https://ampul.eu/25626-large_default/dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip65.jpg",
       "specs": {
         "voltageV": 12,
         "capacityAh": null,
@@ -375,8 +410,8 @@
     {
       "id": "ampul_cz:6653",
       "merchant": "ampul_cz",
-      "name": "Napájecí zdroj zásuvkový 43.2V, 2A, 5.5x2.1mm, nabíječka 36V olověných baterií",
-      "description": "Napájecí zdroj zásuvkový 43.2V, 2A, 5.5x2.1mm funguje jako inteligentní nabíječka 36V olověných baterií. Využívá automatický CC/CV režim a LED indikaci. Vstupní napětí 100-240 V, nabíjecí napětí 43,2 V DC, maximální výkon 72 W, krytí IP22.",
+      "name": "Napájecí zdroj zásuvkový 43,2V, 2A, 5,5x2,1mm, nabíječka 36V olověných baterií",
+      "description": "Napájecí zdroj zásuvkový 43,2V, 2A, 5,5x2,1mm funguje jako inteligentní nabíječka 36V olověných baterií. Využívá automatický CC/CV režim a LED indikaci. Vstupní napětí 100-240 V, nabíjecí napětí 43,2 V DC, maximální výkon 72 W, krytí IP22.",
       "categoryPath": "Napájecí zdroje a baterie > Nabíječky > Nabíječky akumulátorů",
       "category": "shore_charger",
       "brand": "",
@@ -410,8 +445,8 @@
     {
       "id": "ampul_cz:6692",
       "merchant": "ampul_cz",
-      "name": "Napájecí zdroj zásuvkový 28.8V, 5A, 5.5x2.1mm, nabíječka 24V olověných baterií",
-      "description": "Spolehlivý napájecí zdroj zásuvkový 28.8V, 5A, 5.5x2.1mm je inteligentní nabíječka 24V olověných baterií s automatickým režimem CC/CV. Nabízí maximální výkon 150 W a zajišťuje stabilní nabíjení pro vozíky, skútry i záložní systémy.",
+      "name": "Napájecí zdroj zásuvkový 28,8V, 5A, 5,5x2,1mm, nabíječka 24V olověných baterií",
+      "description": "Spolehlivý napájecí zdroj zásuvkový 28,8V, 5A, 5,5x2,1mm je inteligentní nabíječka 24V olověných baterií s automatickým režimem CC/CV. Nabízí maximální výkon 150 W a zajišťuje stabilní nabíjení pro vozíky, skútry i záložní systémy.",
       "categoryPath": "Napájecí zdroje a baterie > Nabíječky > Nabíječky akumulátorů",
       "category": "shore_charger",
       "brand": "",

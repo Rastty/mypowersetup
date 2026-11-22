@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-21T18:59:57.805Z",
+  "generatedAt": "2026-11-22T08:17:26.578Z",
   "market": "cs-CZ",
   "status": "ready",
   "requirement": {
@@ -37,11 +37,11 @@
     {
       "id": "ampul_cz:6195",
       "merchant": "ampul_cz",
-      "name": "DC/DC nabíječka LiFePO4 baterií 14.6V, 30A, 400W, IP68",
+      "name": "DC/DC nabíječka LiFePO4 baterií 14,6V, 30A, 400W, IP65",
       "currentA": 30,
       "priceCzk": 6800,
       "priceCurrency": "CZK",
-      "productUrl": "https://ampul.eu/cs/nabijecky-akumulatoru/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
+      "productUrl": "https://ampul.eu/cs/nabijecky-akumulatoru/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip65",
       "verifiedAt": "2026-08-30",
       "score": 97
     },
