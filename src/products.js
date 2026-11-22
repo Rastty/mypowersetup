@@ -3,7 +3,7 @@ import { batteryBmsLoadWithinAdvertisedLimit, minimumBatteryDischargeAmps } from
 import { batteryContinuousLimitNotBelowRequirement, batteryDischargeBuyerCheck, batteryDischargeEvidenceTier } from "./caravan-bms-buyer-evidence.js?v=20261122-sunstone200a1";
 import { isPowerQueenRegionRestrictedOffer } from "./powerqueen-expansion.js?v=20261117-pq-region1";
 import { addVerifiedVictronChargingProfiles } from "./victron-orion-charging-profiles.js?v=20261122-orion-24v1";
-import { addVerifiedDometicMcaShoreProfile } from "./dometic-mca-shore-profiles.js?v=20261122-shore-mca1";
+import { addVerifiedDometicMcaShoreProfile } from "./dometic-mca-shore-profiles.js?v=20261122-shore-mca-cz1";
 import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-charging-profiles.js?v=20261121-padabo1";
 import { addVerifiedEcoFlowRigid175PvSpecs } from "./ecoflow-rigid-pv-profiles.js?v=20261121-bluesolar-pv1";
 import { addVerifiedVictronBlueSolar190PvSpecs } from "./victron-bluesolar-pv-profiles.js?v=20261121-bluesolar-pv1";

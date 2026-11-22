@@ -129,7 +129,7 @@ test("stock/source safety still applies to exact BlueSolar and market assets sta
    const html=await readFile(new URL("../"+page,import.meta.url),"utf8");
    const app=await readFile(new URL("../src/"+script,import.meta.url),"utf8");
    assert.ok(html.includes(page === "index.html" ? "20261122-shore-mca1" : "20261122-shore-mca1"));
-   assert.ok(app.includes("products.js?v=" + (page === "index.html" ? "20261122-shore-mca1" : "20261122-shore-mca1")));
+   assert.ok(app.includes("products.js?v=" + (page === "index.html" ? "20261122-shore-mca-cz1" : "20261122-shore-mca-cz1")));
    assert.match(app,/caravan-buyer-checklist\.js\?v=20261122-bms-alternatives1/);
  }
 });

@@ -10,9 +10,10 @@ const models=[
   ["24087_26042","MCA 1235",12,35,70,280],
   ["24088_26048","MCA 2440",24,40,80,320],
 ];
-const markets=["sk","pl"];
+const markets=["cs","sk","pl"];
+const merchant=(market)=>market==="cs"?"svetkaravanu":"padabo_"+market;
 async function catalog(market){
- return JSON.parse(await readFile(new URL("../data/products-"+market+".json",import.meta.url),"utf8"));
+ return JSON.parse(await readFile(new URL("../data/"+(market==="cs"?"products.json":"products-"+market+".json"),import.meta.url),"utf8"));
 }
 function setup(market,voltage,Ah,current,chem="lifepo4"){
  return {
@@ -21,16 +22,16 @@ function setup(market,voltage,Ah,current,chem="lifepo4"){
   charging:{shore:{suggestedCurrentAmps:current},dcDc:{}},
  };
 }
-test("six exact stocked Dometic shore chargers gain manufacturer LiFePO4 and 230V input evidence",async()=>{
+test("nine exact stocked Dometic shore chargers gain manufacturer LiFePO4 and 230V input evidence",async()=>{
  for(const market of markets){
   const data=await catalog(market);
-  assert.equal(data.sources["padabo_"+market]?.status,"ok");
+  assert.equal(data.sources[merchant(market)]?.status,"ok");
   for(const [sku,model,voltage,amp,min,max] of models){
-   const raw=data.products.find(p=>p.id==="padabo_"+market+":"+sku);
+   const raw=data.products.find(p=>p.id===merchant(market)+":"+sku);
    assert.ok(raw,market+":"+sku);
    assert.equal(raw.category,"shore_charger");
    assert.equal(raw.available,true);
-   assert.equal(raw.priceCurrency,market==="sk"?"EUR":"PLN");
+   assert.equal(raw.priceCurrency,market==="cs"?"CZK":market==="sk"?"EUR":"PLN");
    const result=refreshCatalogProduct(raw);
    assert.equal(result.specs.chargingManufacturerModel,model);
    assert.equal(result.specs.chargingProfileEvidenceUrl,pdf);
@@ -53,7 +54,7 @@ test("exact shore manufacturer profile fails closed on wrong variant, URL, campa
  for(const market of markets){
   const data=await catalog(market);
   for(const [sku,,voltage,amp] of models){
-   const raw=data.products.find(p=>p.id==="padabo_"+market+":"+sku);
+   const raw=data.products.find(p=>p.id===merchant(market)+":"+sku);
    const bad=[
     {...raw,id:raw.id+"-unknown"},
     {...raw,name:raw.name+" EX"},
@@ -91,13 +92,35 @@ test("the existing lead-only interpretation is not silently widened for unreview
 
 test("SK PL and CZ served entrypoints use new source-backed charger importer",async()=>{
  const products=await readFile(new URL("../src/products.js",import.meta.url),"utf8");
- assert.ok(products.includes("dometic-mca-shore-profiles.js?v=20261122-shore-mca1"));
+ assert.ok(products.includes("dometic-mca-shore-profiles.js?v=20261122-shore-mca-cz1"));
  for(const locale of ["cs","sk","pl"]){
   const p=locale==="cs"?"index.html":locale+"/index.html";
   const a=locale==="cs"?"src/app.js":"src/app-"+locale+".js";
   const html=await readFile(new URL("../"+p,import.meta.url),"utf8");
   const app=await readFile(new URL("../"+a,import.meta.url),"utf8");
-  assert.ok(html.includes((locale==="cs"?"app.js":"app-"+locale+".js")+"?v=20261122-shore-mca1"));
-  assert.ok(app.includes("products.js?v=20261122-shore-mca1"));
+  assert.ok(html.includes((locale==="cs"?"app.js":"app-"+locale+".js")+"?v=20261122-shore-mca1-result-scroll1-cz-mca1"));
+  assert.ok(app.includes("products.js?v=20261122-shore-mca-cz1"));
+ }
+});
+
+test("Czech MCA source proof is variant-specific despite shared parent product URLs",async()=>{
+ const data=await catalog("cs");
+ for(const [sku,model,voltage,amp,min,max] of models){
+  const raw=data.products.find(p=>p.id==="svetkaravanu:"+sku);
+  assert.ok(raw,"Missing real CZ feed variant "+sku);
+  assert.ok(raw.productUrl.startsWith("https://www.svetkaravanu.cz/"));
+  assert.ok(raw.affiliateUrl.includes("a_bid=38137ac4"));
+  assert.ok(raw.affiliateUrl.includes("a_aid=f34c86c8"));
+  const verified=refreshCatalogProduct(raw);
+  assert.equal(verified.specs.chargingManufacturerModel,model);
+  assert.equal(verified.specs.currentA,amp);
+  assert.deepEqual(verified.specs.chargingInputVoltagesV,[230]);
+  assert.deepEqual(verified.specs.chargingBatteryTypes,["lifepo4","lead"]);
+  assert.equal(verified.specs.chargingCapacityMinAh,min);
+  assert.equal(verified.specs.chargingCapacityMaxAh,max);
+  const other=models.find(([id])=>id!==sku);
+  assert.ok(other);
+  const impostor={...raw,name:data.products.find(p=>p.id==="svetkaravanu:"+other[0]).name};
+  assert.equal(addVerifiedDometicMcaShoreProfile(impostor,impostor.specs).chargingManufacturerModel,undefined);
  }
 });
