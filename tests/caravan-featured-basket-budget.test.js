@@ -42,7 +42,7 @@ test("incomplete CZ list never presents a partial amount as a full basket",()=>{
   const html=featuredCaravanBasketBudgetMarkup(plan,"cs");
   assert.match(html,/data-budget-completeness="partial"/);
   assert.match(html,/Součet známých cen dostupných položek/);
-  assert.match(html,/5\/6 kategorií/);
+  assert.ok(html.includes("5/6 kategorií"));
   assert.match(html,/1 chybí/);
   assert.match(html,/1 bez ověřitelné ceny/);
   assert.ok(!html.includes("Orientační součet vybraných produktů"));
