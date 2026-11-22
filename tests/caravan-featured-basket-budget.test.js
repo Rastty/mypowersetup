@@ -72,8 +72,34 @@ test("result-first budget UI is present only in CZ SK PL and versioned in both m
     const read=path=>readFile(new URL("../"+path,import.meta.url),"utf8");
     const [script,html]=await Promise.all([read("src/"+app),read(htmlPath)]);
     assert.ok(script.includes('featuredCaravanBasketBudgetMarkup(buyerPlan, "'+locale+'")'),app);
-    assert.ok(script.includes('caravan-featured-basket-budget.js?v=20261122-budget-preview1'),app);
+    assert.ok(script.includes('caravan-featured-basket-budget.js?v=20261122-budget-shops1'),app);
     assert.ok(html.includes('caravan-featured-basket-budget.css?v=20261122-budget-preview1'),htmlPath);
-    assert.ok(html.includes(app+'?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1'),htmlPath);
+    assert.ok(html.includes(app+'?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1'),htmlPath);
   }
+});
+
+
+test("upfront checkout transparency counts only eligible merchant groups without altering price or stock truth", () => {
+  const plan=build("CZK",500);
+  plan.rows[0].product.merchant="shop-a";
+  plan.rows[1].product.merchant="shop-a";
+  plan.rows[2].product.merchant="shop-b";
+  plan.rows[3].ready=false;
+  plan.rows[3].product=null;
+  plan.complete=false;
+  const total=caravanBasketPriceSummary(plan,"cs");
+  assert.equal(total.unavailable,1);
+  assert.equal(total.subtotals[0].amount,3000);
+  const html=featuredCaravanBasketBudgetMarkup(plan,"cs");
+  assert.match(html,/2 obchody pro vybrané položky/);
+  assert.match(html,/samostatné nákupy/);
+  assert.match(html,/5\\/6 kategorií/);
+  assert.match(html,/data-budget-completeness="partial"/);
+  assert.ok(!html.includes("shop-a") && !html.includes("shop-b"),"no raw merchant tracking IDs appear in preview");
+  const sk=build("EUR",100);
+  sk.rows[0].product.merchant="shop-b";
+  assert.match(featuredCaravanBasketBudgetMarkup(sk,"sk"),/2 obchody pre vybrané položky/);
+  const pl=build("PLN",100);
+  pl.rows[0].product.merchant="shop-b";
+  assert.match(featuredCaravanBasketBudgetMarkup(pl,"pl"),/2 sklepy z wybranymi produktami/);
 });
