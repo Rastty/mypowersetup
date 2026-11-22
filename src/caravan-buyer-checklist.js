@@ -113,6 +113,8 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
   return {
     rows,
     systemVoltage: setup?.systemVoltage ?? null,
+    // Pass the actual requested inverter load to economy/reserve basket safety.
+    inverterWatts: setup?.inverterWatts ?? null,
     readyCount: available,
     requiredCount: rows.length,
     complete,
