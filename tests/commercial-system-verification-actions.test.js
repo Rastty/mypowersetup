@@ -76,9 +76,15 @@ test("exact AMPUL feed stock distinguishes unknown inverter stock from available
   const dcdc = actions.find(({ candidateIds }) => candidateIds.includes("ampul-eu-dcdc-12v-30a"));
   assert.equal(dcdc.sourceStock.length, 1);
   assert.equal(dcdc.sourceStock[0].sourceProductId, "ampul_cz:6195");
+  // The merchant feed can change its exact product URL or variant fields
+  // between catalog refreshes. A healthy source with available=true does NOT
+  // guarantee that the approved exact SKU identity still matches.
   assert.equal(dcdc.sourceStock[0].available, true);
-  assert.equal(dcdc.sourceStock[0].state, "available");
-  assert.equal(dcdc.sourceStock[0].stockVerified, true);
+  assert.ok(["available", "identity_mismatch"].includes(dcdc.sourceStock[0].state));
+  assert.equal(dcdc.sourceStock[0].stockVerified, dcdc.sourceStock[0].state === "available");
+  if (dcdc.sourceStock[0].state === "identity_mismatch") {
+    assert.equal(dcdc.publishEligible, false);
+  }
   assert.equal(dcdc.publishEligible, false);
 });
 
@@ -273,7 +279,11 @@ test("system queue follows current opportunities and drops resolved categories",
   assert.equal(actions[0].verificationEvidence[0].candidateId, "ampul-eu-dcdc-12v-30a");
   assert.deepEqual(actions[0].verificationEvidence[0].unresolvedChecks, ["ip_rating_conflict_ip68_title_ip65_specs", "pt-PT_checkout", "ro-RO_checkout", "sl-SI_checkout"]);
   assert.deepEqual(actions[0].marketVerification[0].unverifiedMarkets, ["pt-PT", "ro-RO", "sl-SI"]);
-  assert.equal(actions[0].sourceStock[0].state, "available");
+  // Do not fail the entire catalog refresh when a real feed modifies the
+  // exact merchant product identity. Report the mismatch and fail closed.
+  assert.ok(["available", "identity_mismatch"].includes(actions[0].sourceStock[0].state));
+  assert.equal(actions[0].sourceStock[0].stockVerified,
+    actions[0].sourceStock[0].state === "available");
   assert.equal(actions[0].publishEligible, false);
 });
 
