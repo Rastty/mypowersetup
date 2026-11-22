@@ -2,7 +2,7 @@ import { scrollToCaravanStep } from "./caravan-result-scroll.js?v=20261122-resul
 import { APPLIANCES } from "./catalog-sk.js?v=20260823-custom1";
 import { renderDcLoadVoltageNotice } from "./dc-voltage-help.js";
 import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
-import { recommendProducts } from "./products.js?v=20261122-legacy70a";
+import { recommendProducts } from "./products.js?v=20261122-legacy70a-dpsi1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20261023-safe-loads1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -15,7 +15,7 @@ import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1";
 import { featuredCaravanBasketBudgetMarkup } from "./caravan-featured-basket-budget.js?v=20261122-merchant-preview1";
 import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261122-mppt-cz1";
 import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261122-legacy70a";
-import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261121-bluesolar-pv1";
+import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261122-dpsi-variant1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261121-stock-aligned1";
 import { selectFeaturedOffers } from "./featured-core-offers.js?v=20261121-stock-aligned1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
@@ -654,10 +654,12 @@ function featuredProductCard({ product, category, reason }) {
   const { quantity, totalPrice } = productCardPriceDetails(product);
   const price = totalPrice === null ? "Cena v obchode" : formatPrice(totalPrice, product.priceCurrency);
   const merchant = merchantLabel(product.merchant);
+  const variantNote = product.specs?.inverterVariantMustBeSelected
+    ? `Pred objednaním v obchode vyberte presne variant ${escapeHtml(product.specs.inverterManufacturerModel)} · ${product.specs.powerW} W · ${product.specs.voltageV} V.` : "";
   return `<article class="featured-pick-card" data-featured-category="${escapeHtml(category)}">
     ${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : '<span class="featured-pick-placeholder" aria-hidden="true">✓</span>'}
     <div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(packageCategoryLabel(category))} · odporúčaná voľba</span><h6>${escapeHtml(product.name)}</h6><p>${escapeHtml(reason || "Overená zhoda s parametrami vášho výpočtu.")}</p><small>${escapeHtml(merchant)}${quantity > 1 ? ` · ${quantity} ks` : ""}</small></div>
-    <div class="featured-pick-action"><strong>${price}</strong><a href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "result-featured"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="result-featured" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("sk", merchant))}</a></div>
+    <div class="featured-pick-action"><strong>${price}</strong><a href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "result-featured"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="result-featured" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("sk", merchant))}</a>${variantNote ? `<small class="featured-pick-variant-note" data-inverter-variant-selection>${variantNote}</small>` : ""}</div>
   </article>`;
 }
 
