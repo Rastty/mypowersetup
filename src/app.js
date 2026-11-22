@@ -1,3 +1,4 @@
+import { scrollToCaravanStep } from "./caravan-result-scroll.js?v=20261122-result-scroll1";
 import { APPLIANCES } from "./catalog.js?v=20260823-custom1";
 import { renderDcLoadVoltageNotice } from "./dc-voltage-help.js";
 import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
@@ -843,7 +844,7 @@ function showStep(step) {
   if (currentStep > 1) {
     document.querySelector(`.step[data-step-target="${currentStep}"]`).disabled = false;
   }
-  document.querySelector("#kalkulator").scrollIntoView({ behavior: "smooth", block: "start" });
+  scrollToCaravanStep(currentStep);
 }
 
 function resetForm() {
