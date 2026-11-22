@@ -20,10 +20,23 @@ const VERIFIED = Object.freeze({
 });
 
 
-// The approved Padabo SK/PL feed carries exact 100/30 and 100/50 product
+// The approved CZ/SK/PL merchant feeds carry exact 100/30 and 100/50 product
 // landing pages, unlike its shared 75/10–100/20 variant landing. Preserve the
 // strict SKU/merchant/URL and eHub attribution boundary before adding specs.
-const PADABO = Object.freeze({
+const APPROVED_DEALER = Object.freeze({
+  // Exact approved SvětKaravanů CZK affiliate listings already present in
+  // the live seller feed. Unlike the shared 75/10–100/20 variant page,
+  // 100/30 and 100/50 have distinct item-specific landing pages.
+  "svetkaravanu:24828": {
+    merchant: "svetkaravanu", currency: "CZK", bid: "38137ac4", current: 30,
+    name: "MPPT solární regulátor Victron SmartSolar 100/30",
+    url: "https://www.svetkaravanu.cz/mppt-solarni-regulator-victron-smartsolar-100-30_z24828/",
+  },
+  "svetkaravanu:101985": {
+    merchant: "svetkaravanu", currency: "CZK", bid: "38137ac4", current: 50,
+    name: "MPPT solární regulátor Victron Energy SmartSolar 100/50",
+    url: "https://www.svetkaravanu.cz/mppt-solarni-regulator-victron-energy-smartsolar-100-50_z101985/",
+  },
   "padabo_sk:24828": {
     merchant: "padabo_sk", currency: "EUR", bid: "7aed5c13", current: 30,
     name: "Solárny regulátor MPPT Victron Energy SmartSolar 100/30",
@@ -46,10 +59,15 @@ const PADABO = Object.freeze({
   },
 });
 
-function validPadaboSmartSolar(product, specs, record) {
+function validApprovedSmartSolar(product, specs, record) {
   if (!record || product?.merchant !== record.merchant || product?.category !== "controller"
     || product.name !== record.name || product.priceCurrency !== record.currency
-    || product.productUrl !== record.url || Number(specs?.currentA) !== record.current) return false;
+    || product.productUrl !== record.url || Number(specs?.currentA) !== record.current
+    // Never attach manufacturer proof to an out-of-stock or stale CZ SKU.
+    // SK/PL legacy profiles retain their original validation contract.
+    || (record.merchant === "svetkaravanu" && (product.available !== true
+      || product.staleSource === true || !Number.isFinite(product.priceCzk)
+      || product.priceCzk <= 0))) return false;
   const power = record.current === 30 ? { 12: 440, 24: 880 } : { 12: 700, 24: 1400 };
   const isc = record.current === 30 ? 35 : 60;
   if (specs.maxPvVocV != null && specs.maxPvVocV !== 100
@@ -73,13 +91,13 @@ function validPadaboSmartSolar(product, specs, record) {
 }
 
 export function addVerifiedSmartSolarChargingProfiles(product, specs) {
-  const padabo = PADABO[product?.id];
-  if (validPadaboSmartSolar(product, specs, padabo)) {
-    const watts = padabo.current === 30 ? { 12: 440, 24: 880 } : { 12: 700, 24: 1400 };
+  const dealer = APPROVED_DEALER[product?.id];
+  if (validApprovedSmartSolar(product, specs, dealer)) {
+    const watts = dealer.current === 30 ? { 12: 440, 24: 880 } : { 12: 700, 24: 1400 };
     return {
       ...specs,
       maxPvVocV: 100,
-      maxPvIscA: padabo.current === 30 ? 35 : 60,
+      maxPvIscA: dealer.current === 30 ? 35 : 60,
       systemVoltagesV: [12, 24],
       maxPvWattsBySystemVoltage: watts,
       chargingBatteryTypes: ["lifepo4", "lead"],
