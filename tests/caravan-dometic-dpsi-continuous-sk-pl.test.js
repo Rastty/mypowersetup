@@ -38,10 +38,17 @@ test("SL/PL continuous/peak parsing never treats 1200/2000 W peak as continuous"
 test("eight current stocked SK/PL Dometic variants have exact manufacturer continuous W and buyer variant selection",async()=>{
  for(const locale of ["sk","pl"]){
   const c=await catalog(locale),merchant="padabo_"+locale,currency=locale==="sk"?"EUR":"PLN";
-  assert.equal(c.sources[merchant].status,"ok");
+  const sourceHealthy=c.sources[merchant].status==="ok";
+  assert.ok(sourceHealthy || c.sources[merchant].status==="stale");
   for(const [suffix,voltage,continuous,peak,model] of variants){
    const id=merchant+":104292_"+suffix,raw=c.products.find(p=>p.id===id);
-   assert.ok(raw,id);assert.equal(raw.category,"inverter");assert.equal(raw.available,true);
+   assert.ok(raw,id);assert.equal(raw.category,"inverter");
+   if(!sourceHealthy){
+     assert.equal(raw.available,false,id);assert.equal(raw.staleSource,true,id);
+     assert.equal(recommendProducts([raw],setup(locale,voltage,continuous),3,c.sources).inverter.length,0,id+" stale blocked");
+     continue;
+   }
+   assert.equal(raw.available,true);
    assert.equal(raw.priceCurrency,currency);assert.ok(raw.priceCzk>0);
    const a=new URL(raw.affiliateUrl);
    assert.equal(a.searchParams.get("a_aid"),"f34c86c8");
@@ -100,6 +107,12 @@ test("real SK and PL 12/24V caravan baskets can buy six reviewed electrical cate
       voltage===12?"24087_26042":"24088_26048",
     ];
     const source=ids.map(suffix=>c.products.find(p=>p.id===merchant+":"+suffix));
+    if(c.sources[merchant].status==="stale"){
+      assert.ok(source.every(p=>p?.available===false&&p.staleSource===true),locale+" stale diagnostics");
+      const held=recommendProducts(source,setup(locale,voltage,600),3,c.sources);
+      assert.equal(Object.values(held).flat().length,0,locale+" no stale buyer");
+      continue;
+    }
     assert.ok(source.every(p=>p?.available===true&&p.priceCzk>0),locale+" "+voltage+" missing seller SKU");
     const proposed=setup(locale,voltage,600);
     const rec=recommendProducts(source,proposed,3,c.sources);
