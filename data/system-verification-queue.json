@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-11-22T08:16:41.606Z",
+  "generatedAt": "2026-11-22T11:41:28.117Z",
   "policy": "verification_only_fail_closed_no_publication",
   "actionCount": 2,
   "topAction": {
@@ -118,7 +118,7 @@
       {
         "candidateId": "ampul-eu-inverter-24v-2000w",
         "sourceProductId": "ampul_cz:5577-7392",
-        "generatedAt": "2026-11-21T18:59:57.805Z",
+        "generatedAt": "2026-11-22T11:34:18.086Z",
         "sourceHealthy": true,
         "found": true,
         "available": null,
@@ -289,7 +289,7 @@
         {
           "candidateId": "ampul-eu-inverter-24v-2000w",
           "sourceProductId": "ampul_cz:5577-7392",
-          "generatedAt": "2026-11-21T18:59:57.805Z",
+          "generatedAt": "2026-11-22T11:34:18.086Z",
           "sourceHealthy": true,
           "found": true,
           "available": null,
@@ -454,13 +454,13 @@
         {
           "candidateId": "ampul-eu-dcdc-12v-30a",
           "sourceProductId": "ampul_cz:6195",
-          "generatedAt": "2026-11-21T18:59:57.805Z",
+          "generatedAt": "2026-11-22T11:34:18.086Z",
           "sourceHealthy": true,
           "found": true,
           "available": true,
-          "state": "available",
-          "stockVerified": true,
-          "productUrl": "https://ampul.eu/cs/nabijecky-akumulatoru/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip68",
+          "state": "identity_mismatch",
+          "stockVerified": false,
+          "productUrl": "https://ampul.eu/cs/nabijecky-akumulatoru/6195-dc-dc-nabijecka-lifepo4-baterii-146v-30a-400w-ip65",
           "priceCzk": 6800,
           "priceCurrency": "CZK"
         }
