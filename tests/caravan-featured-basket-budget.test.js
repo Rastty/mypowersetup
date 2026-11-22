@@ -72,9 +72,9 @@ test("result-first budget UI is present only in CZ SK PL and versioned in both m
     const read=path=>readFile(new URL("../"+path,import.meta.url),"utf8");
     const [script,html]=await Promise.all([read("src/"+app),read(htmlPath)]);
     assert.ok(script.includes('featuredCaravanBasketBudgetMarkup(buyerPlan, "'+locale+'")'),app);
-    assert.ok(script.includes('caravan-featured-basket-budget.js?v=20261122-budget-shops1'),app);
+    assert.ok(script.includes('caravan-featured-basket-budget.js?v=20261122-budget-shops1-unpriced1'),app);
     assert.ok(html.includes('caravan-featured-basket-budget.css?v=20261122-budget-preview1'),htmlPath);
-    assert.ok(html.includes(app+'?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1'),htmlPath);
+    assert.ok(html.includes(app+'?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1'),htmlPath);
   }
 });
 
@@ -104,4 +104,41 @@ test("upfront checkout transparency counts only eligible merchant groups without
   const pl=build("PLN",100);
   pl.rows[0].product.merchant="shop-b";
   assert.match(featuredCaravanBasketBudgetMarkup(pl,"pl"),/2 sklepy z wybranymi produktami/);
+});
+
+test("buyers see a purchase-ready fallback when all local prices are unknown, never a fake subtotal", () => {
+  for (const [locale,currency,copy] of [
+    ["cs","CZK","Ceny ověřte v obchodech"],
+    ["sk","EUR","Ceny overte v obchodoch"],
+    ["pl","PLN","Sprawdź ceny w sklepach"],
+  ]) {
+    const plan=build(currency,null);
+    plan.rows[0].product.merchant="shop-a";
+    const html=featuredCaravanBasketBudgetMarkup(plan,locale);
+    assert.match(html,/data-budget-completeness="unpriced"/);
+    assert.ok(html.includes(copy),locale);
+    assert.ok(html.includes("6/6"),locale);
+    assert.ok(!html.includes("NaN"),locale);
+    assert.ok(!html.includes("0,00"),locale);
+    assert.ok(!html.includes("selected-products"),locale);
+    assert.ok(!html.includes("Součet známých cen"),locale);
+    assert.ok(html.includes(locale==="pl"?"2 sklepy":locale==="sk"?"2 obchody":"2 obchody"),locale);
+  }
+});
+
+test("unpriced fallback keeps partial/missing distinction and rejects rows without checkout routes", () => {
+  const plan=build("PLN",null);
+  plan.rows[2]={category:"controller",ready:false,product:null};
+  plan.rows[3].product.priceCurrency="USD";
+  plan.complete=false;
+  const html=featuredCaravanBasketBudgetMarkup(plan,"pl");
+  assert.match(html,/data-budget-completeness="unpriced"/);
+  assert.match(html,/5\/6 kategorii/);
+  assert.match(html,/1 brakujących/);
+  assert.match(html,/5 bez sprawdzonej ceny/);
+  assert.ok(!html.includes("USD") && !html.includes("0,00 zł"));
+  const broken=build("CZK",null);
+  for (const row of broken.rows) row.product.affiliateUrl="";
+  assert.equal(featuredCaravanBasketBudgetMarkup(broken,"cs"),"");
+  assert.equal(featuredCaravanBasketBudgetMarkup(broken,"invalid"),"");
 });

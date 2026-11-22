@@ -52,7 +52,7 @@ test("every core market ships the new buyer-result navigation module with a fres
   ]) {
     const html = await readFile(new URL("../" + htmlPath, import.meta.url), "utf8");
     const app = await readFile(new URL("../" + appPath, import.meta.url), "utf8");
-    assert.ok(html.includes("/src/" + appName + "?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1"), htmlPath);
+    assert.ok(html.includes("/src/" + appName + "?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1"), htmlPath);
     assert.ok(app.includes('import { scrollToCaravanStep } from "./caravan-result-scroll.js?v=20261122-result-scroll1"'), appPath);
     assert.ok(app.includes("  scrollToCaravanStep(currentStep);"), appPath);
     assert.ok(!app.includes('document.querySelector("#kalkulator").scrollIntoView({ behavior: "smooth", block: "start" });'), appPath);
