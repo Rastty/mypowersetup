@@ -16,7 +16,7 @@ function setup({input, output, current}) {
   return {
     locale: "cs", systemVoltage: output, batteryType: "lifepo4", batteryAh: 100,
     solarWatts: 250, controllerAmps: 20, inverterWatts: 0,
-    charging: {starterVoltage: input, dcDc: {suggestedCurrentAmps: Math.min(current, 8)}, shore: {}},
+    charging: {starterVoltage: input, dcDc: {suggestedCurrentAmps: current === 30 ? 15 : 8}, shore: {}},
   };
 }
 
