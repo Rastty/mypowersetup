@@ -6,7 +6,7 @@ const VERIFIED = Object.freeze({
   // CZ exact approved SvětKaravanů merchant variants, same documented Victron
   // charging models as SK/PL. Generic source parser omits 24V nominal on the
   // two isolated 24V-output products: repair only after exact identity checks.
-  "svetkaravanu:26963_28360": { model: /\bOrion[\s\-–]*Tr\s+Smart\b.*\b12\s*\/\s*12\s*V\b.*\b30\s*A\b/i, input: 12, output: 12, current: 30, source: "https://www.victronenergy.com/dc-dc-converters/orion-tr-smart-non-isolated" },
+  "svetkaravanu:26963_28360": { model: /\bOrion[\s\-–]*Tr\s+Smart\b.*\b12\s*\/\s*12\s*V\b.*\b30\s*A\b/i, input: 12, output: 12, current: 30, nominalVoltageV: 12, source: "https://www.victronenergy.com/dc-dc-converters/orion-tr-smart-non-isolated" },
   "svetkaravanu:107361": { model: /\bOrion[\s\-–]*Tr\s+Smart\b.*\b12\s*\/\s*24\s*[-–]\s*10\s*A\b/i, input: 12, output: 24, current: 10, correctNominalVoltageV: true, source: "https://www.victronenergy.com/dc-dc-converters/orion-tr-smart" },
   "svetkaravanu:107371": { model: /\bOrion[\s\-–]*Tr\s+Smart\b.*\b24\s*\/\s*24\s*[-–]\s*12\s*A\b/i, input: 24, output: 24, current: 12, correctNominalVoltageV: true, source: "https://www.victronenergy.com/dc-dc-converters/orion-tr-smart" },
   "padabo_sk:101357": { model: /\bOrion\s+XS\s+12\s*\/\s*12\s*[-–]\s*50\s*A\b/i, input: 12, output: 12, current: 50, source: "https://www.victronenergy.com/media/pg/Orion_XS_12-12-50A_DC-DC_battery_charger/en/operation%2C-configuration-and-monitoring.html" },
@@ -73,7 +73,8 @@ const ORION_TR_LOCAL_OFFERS = Object.freeze({
 });
 function reviewedOrionTrLocalOffer(product) {
   if (!Object.hasOwn(ORION_TR_LOCAL_OFFERS,product?.id) || product.available !== true
-    || product.staleSource === true || !Number.isFinite(product.priceCzk) || product.priceCzk <= 0) return false;
+    || product.staleSource === true
+    || (product.merchant === "svetkaravanu" && (!Number.isFinite(product.priceCzk) || product.priceCzk <= 0))) return false;
   const known=ORION_TR_LOCAL_OFFERS[product.id];
   if (product.merchant !== known.merchant || product.priceCurrency !== known.currency
     || product.name !== known.name || product.productUrl !== known.url) return false;
@@ -102,6 +103,7 @@ export function addVerifiedVictronChargingProfiles(product, specs) {
     || Number(specs.currentA) !== evidence.current
     || !equalsKnownSingleVoltage(specs.chargingInputVoltagesV, evidence.input)
     || !equalsKnownSingleVoltage(specs.chargingVoltagesV, evidence.output)
+    || (evidence.nominalVoltageV && specs.voltageV != null && specs.voltageV !== evidence.nominalVoltageV)
     || (evidence.feedNominalVoltageV && specs.voltageV !== evidence.feedNominalVoltageV)
     || (evidence.correctNominalVoltageV && specs.voltageV != null && specs.voltageV !== evidence.output)) return specs;
 
