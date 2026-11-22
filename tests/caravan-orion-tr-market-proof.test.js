@@ -57,11 +57,11 @@ test("SK PL published entry uses fresh importer and manufacturer review module w
  for(const market of ["sk","pl"]){
   const page=await readFile(new URL("../"+market+"/index.html",import.meta.url),"utf8");
   const app=await readFile(new URL("../src/app-"+market+".js",import.meta.url),"utf8");
-  assert.match(page,new RegExp("app-"+market+"\\\\.js\\\\?v=20261122-orion-tr1"));
-  assert.match(app,/products\\.js\\?v=20261122-orion-tr1/);
+  assert.ok(page.includes("app-"+market+".js?v=20261122-orion-tr1"),market);
+  assert.ok(app.includes("products.js?v=20261122-orion-tr1"),market);
  }
  const products=await readFile(new URL("../src/products.js",import.meta.url),"utf8");
- assert.match(products,/victron-orion-charging-profiles\\.js\\?v=20261122-orion-tr1/);
+ assert.ok(products.includes("victron-orion-charging-profiles.js?v=20261122-orion-tr1"));
  const cz=await readFile(new URL("../index.html",import.meta.url),"utf8");
- assert.match(cz,/app\\.js\\?v=20261122-bms-alternatives1/);
+ assert.ok(cz.includes("app.js?v=20261122-bms-alternatives1"));
 });
