@@ -53,7 +53,7 @@ test("a wrong merchant, affiliate destination, market, variant, price currency o
  }
 });
 
-test("SK PL published entry uses fresh importer and manufacturer review module while CZ is unchanged",async()=>{
+test("SK PL published Orion importer persists after CZ source-backed battery release",async()=>{
  for(const market of ["sk","pl"]){
   const page=await readFile(new URL("../"+market+"/index.html",import.meta.url),"utf8");
   const app=await readFile(new URL("../src/app-"+market+".js",import.meta.url),"utf8");
@@ -63,5 +63,5 @@ test("SK PL published entry uses fresh importer and manufacturer review module w
  const products=await readFile(new URL("../src/products.js",import.meta.url),"utf8");
  assert.ok(products.includes("victron-orion-charging-profiles.js?v=20261122-orion-tr1"));
  const cz=await readFile(new URL("../index.html",import.meta.url),"utf8");
- assert.ok(cz.includes("app.js?v=20261122-bms-alternatives1"));
+ assert.ok(cz.includes("app.js?v=20261122-sunstone200a1"));
 });
