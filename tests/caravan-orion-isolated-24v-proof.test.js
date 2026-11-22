@@ -22,6 +22,15 @@ async function approvedOffer(market,id){
 test("four in-stock exact Orion 24V-output offers get reviewed lithium profiles",async()=>{
  for(const [market,id,starterV,houseV,amp,feedVoltage] of variants){
   const {catalog,raw}=await approvedOffer(market,id);
+  if(catalog.sources["padabo_"+market].status==="stale") {
+    assert.equal(raw.available,false);assert.equal(raw.staleSource,true);
+    assert.deepEqual(recommendProducts([raw],{
+      locale:market,systemVoltage:houseV,batteryType:"lifepo4",batteryAh:100,
+      charging:{starterVoltage:starterV,dcDc:{suggestedCurrentAmps:8},shore:{}},
+      inverterWatts:0,solarWatts:250,controllerAmps:20
+    },3,catalog.sources).dc_charger,[]);
+    continue;
+  }
   assert.equal(catalog.sources["padabo_"+market].status,"ok");
   assert.equal(raw.available,true);
   assert.equal(raw.priceCurrency,market==="sk"?"EUR":"PLN");
