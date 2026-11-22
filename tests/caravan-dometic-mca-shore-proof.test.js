@@ -98,8 +98,8 @@ test("SK PL and CZ served entrypoints use new source-backed charger importer",as
   const a=locale==="cs"?"src/app.js":"src/app-"+locale+".js";
   const html=await readFile(new URL("../"+p,import.meta.url),"utf8");
   const app=await readFile(new URL("../"+a,import.meta.url),"utf8");
-  assert.ok(html.includes((locale==="cs"?"app.js":"app-"+locale+".js")+"?v=20261122-shore-mca1-result-scroll1-cz-mca1"));
-  assert.ok(app.includes("products.js?v=20261122-shore-mca-cz1"));
+  assert.ok(html.includes((locale==="cs"?"app.js":"app-"+locale+".js")+"?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1"));
+  assert.ok(app.includes("products.js?v=20261122-superpack-cz1"));
  }
 });
 

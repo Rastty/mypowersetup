@@ -3,7 +3,7 @@
 // module URLs. Source provenance and battery Ah must never stand in for a
 // reviewed BMS continuous-discharge rating.
 import { minimumBatteryDischargeAmps, advertisedBatteryBmsAmps, batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
-import { verifiedBatteryContinuousDischargeAmps } from "./caravan-bms-manufacturer-proof.js?v=20261122-sunstone200a1";
+import { verifiedBatteryContinuousDischargeAmps } from "./caravan-bms-manufacturer-proof.js?v=20261122-superpack-cz1";
 
 // Manufacturer facts must be reviewed for the exact already-approved product
 // identity. A merchant feed's verifiedAt or numeric specs field is not proof.

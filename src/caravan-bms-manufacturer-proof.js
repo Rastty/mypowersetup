@@ -1,6 +1,6 @@
 // Reviewed manufacturer-backed continuous operating evidence, never inferred from Ah,
 // merchant copy, generic currentA or a BMS marketing label. Restricted to the
-// exact approved Padabo local SKU/variant, source campaign and country currency.
+// exact approved CZ/SK/PL local SKU/variant, source campaign and country currency.
 // Victron SuperPack NG technical data recommends 0.5C for continuous use;
 // its higher 2C maximum can be thermal/SoC limited and is NOT used for sizing.
 // https://www.victronenergy.com/media/pg/Lithium_SuperPack_NG/en/technical-data.html
@@ -20,6 +20,21 @@ const REVIEWED = Object.freeze({
     evidenceUrl:"https://www.sunstonepower.com/LiFePO4_Battery/137.html",
   },
 
+  // Approved CZ SvětKaravanů live feed contains these same exact two
+  // manufacturer-part-number SuperPack NG 100Ah models as Padabo SK/PL.
+  // Use Victron's 50A recommended sustained 0.5C, not the 2C 10min maximum.
+  "svetkaravanu:107356_32721": {
+    merchant:"svetkaravanu",currency:"CZK",bid:"38137ac4",
+    name:"Baterie Victron Energy LiFePO Lithium SuperPack 12,8 V NG kapacita 100 Ah",
+    url:"https://www.svetkaravanu.cz/baterie-victron-energy-lifepo-lithium-superpack-12-8-v-ng_z107356/",
+    model:"BAT512110740",voltageV:12,capacityAh:100,continuousDischargeA:50,
+  },
+  "svetkaravanu:107358": {
+    merchant:"svetkaravanu",currency:"CZK",bid:"38137ac4",
+    name:"Baterie Victron Energy LiFePO Lithium SuperPack 25,6V/100Ah NG",
+    url:"https://www.svetkaravanu.cz/baterie-victron-energy-lifepo-lithium-superpack-25-6v-100ah-ng_z107358/",
+    model:"BAT524110740",voltageV:24,capacityAh:100,continuousDischargeA:50,
+  },
   "padabo_sk:107356_32721": {
     merchant:"padabo_sk",currency:"EUR",bid:"7aed5c13",
     name:"Batéria Victron Energy LiFePO Lithium SuperPack 12,8V NG kapacita 100 Ah",
