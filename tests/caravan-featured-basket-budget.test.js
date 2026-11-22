@@ -74,7 +74,7 @@ test("result-first budget UI is present only in CZ SK PL and versioned in both m
     assert.ok(script.includes('featuredCaravanBasketBudgetMarkup(buyerPlan, "'+locale+'")'),app);
     assert.ok(script.includes('caravan-featured-basket-budget.js?v=20261122-budget-shops1-unpriced1'),app);
     assert.ok(html.includes('caravan-featured-basket-budget.css?v=20261122-budget-preview1'),htmlPath);
-    assert.ok(html.includes(app+'?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1'),htmlPath);
+    assert.ok(html.includes(app+'?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1'),htmlPath);
   }
 });
 

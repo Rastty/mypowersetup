@@ -44,8 +44,17 @@ export function czechProductDecisionFacts(product = {}, setup = {}) {
     const have = positive(specs.capacityAh), need = positive(setup.batteryAh);
     if (have) facts.push(fact("Kapacita výrobku", amount(have) + " Ah"));
     if (have && need && have >= need) facts.push(fact("Rezerva proti výpočtu", "+" + amount(have - need) + " Ah"));
-    if (documentedBatteryContinuousBmsAmps(product))
-      facts.push(fact("Doporučený trvalý vybíjecí proud (výrobce)", amount(documentedBatteryContinuousBmsAmps(product)) + " A"));
+    const provenCurrent = documentedBatteryContinuousBmsAmps(product);
+    if (provenCurrent !== null) {
+      // The legacy SuperPack 200Ah datasheet gives a MAX continuous 70A,
+      // unlike the NG 100Ah recommended sustained 50A. The label must
+      // preserve that manufacturer distinction and never infer it from Ah.
+      const kind = specs.bmsEvidenceKind;
+      const label = kind === "manufacturer_max_continuous"
+        ? "Maximální trvalý vybíjecí proud (výrobce)"
+        : "Doporučený trvalý vybíjecí proud (výrobce)";
+      facts.push(fact(label, amount(provenCurrent) + " A"));
+    }
     if (specs.formFactor === "under_seat")
       facts.push(fact("Provedení", "Nízké pod sedadlo; rozměry ověřte"));
   }
