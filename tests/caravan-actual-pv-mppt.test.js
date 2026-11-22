@@ -106,6 +106,6 @@ test("CZ/SK/PL browser uses one versioned shared PV review module and source-tes
    const src=await readFile(new URL("../src/"+app,import.meta.url),"utf8");
    assert.ok(html.includes(page === "index.html" ? "20261122-shore-mca1" : "20261122-shore-mca1"));
    assert.match(src,/caravan-buyer-checklist\.js\?v=20261122-mppt-cz1/);
-   assert.match(src,/caravan-package-readiness\.js\?v=20261122-mppt-cz1/);
+   assert.match(src,/caravan-package-readiness\.js\?v=20261122-legacy70a/);
  }
 });
