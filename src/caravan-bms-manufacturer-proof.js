@@ -6,7 +6,38 @@
 // https://www.victronenergy.com/media/pg/Lithium_SuperPack_NG/en/technical-data.html
 // https://www.victronenergy.com/media/pg/Lithium_SuperPack_NG/en/operation.html
 const MANUFACTURER_EVIDENCE = "https://www.victronenergy.com/media/pg/Lithium_SuperPack_NG/en/technical-data.html";
+const LEGACY_MANUFACTURER_EVIDENCE = "https://www.victronenergy.com/upload/documents/Datasheet-12%2C8V-%26-25%2C6-Lithium-SuperPack-EN.pdf";
 const REVIEWED = Object.freeze({
+  // OLDER (non-NG) 12.8V/200Ah SuperPack, BAT512120705, from Victron's
+  // legacy manufacturer datasheet. 70A is the MAX CONTINUOUS discharge,
+  // NOT 200A based on Ah and NOT the 100A (10-second) peak.
+  // Source dealer families each explicitly list the 200Ah variant; unlike
+  // their shared 100Ah pages, this variant maps to the 12.8V/200Ah model.
+  // The shared seller description says "100A" for the *100Ah high-current*
+  // sibling: it must never be inherited by this 200Ah offer.
+  // The manufacturer warns that capacitive inverter inrush can disconnect
+  // the BMS even when the nominal continuous sizing is below 70A.
+  "svetkaravanu:26965_28369": {
+    merchant:"svetkaravanu",currency:"CZK",bid:"38137ac4",requirePrice:true,
+    name:"Baterie Victron Energy LiFePO Lithium SuperPack 12,8 V kapacita 200 Ah",
+    url:"https://www.svetkaravanu.cz/baterie-victron-energy-lifepo-lithium-superpack-12-8-v_z26965/",
+    model:"BAT512120705",voltageV:12,capacityAh:200,continuousDischargeA:70,
+    dischargeKind:"manufacturer_max_continuous",evidenceUrl:LEGACY_MANUFACTURER_EVIDENCE,
+  },
+  "padabo_sk:26965_28369": {
+    merchant:"padabo_sk",currency:"EUR",bid:"7aed5c13",requirePrice:true,
+    name:"Batéria Victron Energy LiFePO Lithium SuperPack 12,8 V kapacita 200 Ah",
+    url:"https://www.padabo.sk/bateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965/",
+    model:"BAT512120705",voltageV:12,capacityAh:200,continuousDischargeA:70,
+    dischargeKind:"manufacturer_max_continuous",evidenceUrl:LEGACY_MANUFACTURER_EVIDENCE,
+  },
+  "padabo_pl:26965_28369": {
+    merchant:"padabo_pl",currency:"PLN",bid:"95d61abf",requirePrice:true,
+    name:"Bateria Victron Energy LiFePO Lithium SuperPack 12,8 V pojemność 200 Ah",
+    url:"https://www.padabo.pl/bateria-victron-energy-lifepo-lithium-superpack-12-8-v_z26965/",
+    model:"BAT512120705",voltageV:12,capacityAh:200,continuousDischargeA:70,
+    dischargeKind:"manufacturer_max_continuous",evidenceUrl:LEGACY_MANUFACTURER_EVIDENCE,
+  },
   // Sunstone's dedicated 200A SLPO12-200N variant and manufacturer product
   // specification state "Constant current discharge: 200A" (distinct from
   // the separate peak field). Do NOT transfer this to plain 200N or 200M.
@@ -66,7 +97,8 @@ function exactReviewedSku(product) {
     || !Object.hasOwn(REVIEWED,product?.id)) return null;
   const item=REVIEWED[product.id];
   if (product.merchant!==item.merchant || product.name!==item.name
-    || product.productUrl!==item.url || product.priceCurrency!==item.currency) return null;
+    || product.productUrl!==item.url || product.priceCurrency!==item.currency
+    || (item.requirePrice && !(Number.isFinite(product.priceCzk) && product.priceCzk>0))) return null;
   try {
     const affiliate=new URL(product.affiliateUrl);
     if (affiliate.origin!=="https://ehub.cz"
@@ -96,7 +128,7 @@ export function addReviewedBatteryContinuousSpecs(product,specs) {
   return {
     ...specs,
     bmsContinuousCurrentA:item.continuousDischargeA,
-    bmsEvidenceKind:"manufacturer_recommended_sustained",
+    bmsEvidenceKind:item.dischargeKind || "manufacturer_recommended_sustained",
     bmsManufacturerModel:item.model,
     bmsManufacturerEvidenceUrl:item.evidenceUrl || MANUFACTURER_EVIDENCE,
   };
@@ -108,7 +140,7 @@ export function verifiedBatteryContinuousDischargeAmps(product) {
     || product.specs?.capacityAh!==item.capacityAh
     || product.specs?.batteryType!=="lifepo4"
     || product.specs?.bmsContinuousCurrentA!==item.continuousDischargeA
-    || product.specs?.bmsEvidenceKind!=="manufacturer_recommended_sustained"
+    || product.specs?.bmsEvidenceKind!==(item.dischargeKind || "manufacturer_recommended_sustained")
     || product.specs?.bmsManufacturerModel!==item.model
     || product.specs?.bmsManufacturerEvidenceUrl!==(item.evidenceUrl || MANUFACTURER_EVIDENCE)) return null;
   return item.continuousDischargeA;
