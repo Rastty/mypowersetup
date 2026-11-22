@@ -40,10 +40,10 @@ test("six exact stocked Dometic shore chargers gain manufacturer LiFePO4 and 230
    assert.equal(result.specs.chargingCapacityMinAh,min);
    assert.equal(result.specs.chargingCapacityMaxAh,max);
    assert.equal(result.specs.currentA,amp);
-   const customer=setup(market,voltage,Math.max(min,100),Math.min(amp,10));
+   const customer=setup(market,voltage,Math.max(min,100),amp);
    assert.equal(recommendProducts([raw],customer,3,data.sources).shore_charger?.[0]?.product.id,raw.id);
-   assert.deepEqual(recommendProducts([raw],setup(market,voltage,min-1,10),3,data.sources).shore_charger,[]);
-   assert.deepEqual(recommendProducts([raw],setup(market,voltage,max+1,10),3,data.sources).shore_charger,[]);
+   assert.deepEqual(recommendProducts([raw],setup(market,voltage,min-1,amp),3,data.sources).shore_charger,[]);
+   assert.deepEqual(recommendProducts([raw],setup(market,voltage,max+1,amp),3,data.sources).shore_charger,[]);
    assert.deepEqual(recommendProducts([raw],customer,3,{[raw.merchant]:{status:"stale"}}).shore_charger,[]);
   }
  }
