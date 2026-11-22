@@ -36,9 +36,15 @@ const setup=(locale,watts)=>({
 test("legacy CZ SK PL Victron 12.8V/200Ah is 70A max CONTINUOUS, not 200Ah=200A or the sibling 100Ah's 100A",async()=>{
   for(const [locale,path,id,merchant,currency,bid,name,url] of variants){
     const c=await catalog(path);
-    assert.equal(c.sources[merchant]?.status,"ok",id);
     const raw=c.products.find(p=>p.id===id);
     assert.ok(raw,id);
+    if(c.sources[merchant]?.status==="stale") {
+      assert.equal(raw.available,false);assert.equal(raw.staleSource,true);
+      assert.equal(documentedBatteryContinuousBmsAmps(refreshCatalogProduct(raw)),null,id);
+      assert.deepEqual(recommendProducts([raw],setup(locale,600),3,c.sources).battery,[],id);
+      continue;
+    }
+    assert.equal(c.sources[merchant]?.status,"ok",id);
     assert.equal(raw.merchant,merchant);
     assert.equal(raw.category,"battery");
     assert.equal(raw.name,name);
@@ -138,15 +144,15 @@ test("market frontend versions load 70A proof for source checks, decision facts 
     read("src/products.js"),read("src/caravan-bms-buyer-evidence.js"),
     read("src/product-decision-facts.js"),read("src/caravan-package-readiness.js")
   ]);
-  assert.ok(products.includes("caravan-bms-manufacturer-proof.js?v=20261122-legacy70a"));
-  assert.ok(products.includes("caravan-bms-buyer-evidence.js?v=20261122-legacy70a"));
-  assert.ok(evidence.includes("caravan-bms-manufacturer-proof.js?v=20261122-legacy70a"));
+  assert.ok(products.includes("caravan-bms-manufacturer-proof.js?v=20261122-pq200a1"));
+  assert.ok(products.includes("caravan-bms-buyer-evidence.js?v=20261122-pq200a1"));
+  assert.ok(evidence.includes("caravan-bms-manufacturer-proof.js?v=20261122-pq200a1"));
   assert.ok(facts.includes("caravan-bms-buyer-evidence.js?v=20261122-legacy70a"));
-  assert.ok(readiness.includes("caravan-bms-buyer-evidence.js?v=20261122-legacy70a"));
+  assert.ok(readiness.includes("caravan-bms-buyer-evidence.js?v=20261122-pq200a1"));
   for(const [app,page]of [["app.js","index.html"],["app-sk.js","sk/index.html"],["app-pl.js","pl/index.html"]]){
     const [js,html]=await Promise.all([read("src/"+app),read(page)]);
     assert.ok(js.includes("products.js?v=20261122-legacy70a"),app);
-    assert.ok(js.includes("caravan-package-readiness.js?v=20261122-legacy70a"),app);
+    assert.ok(js.includes(app==="app.js" ? "caravan-package-readiness.js?v=20261122-legacy70a" : "caravan-package-readiness.js?v=20261122-pq200a1"),app);
     assert.ok(html.includes(app+"?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1"),page);
   }
 });
