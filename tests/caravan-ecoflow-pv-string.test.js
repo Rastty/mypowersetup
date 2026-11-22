@@ -172,6 +172,6 @@ test("Czech/Slovak/Polish buyer UI exposes PV wiring review and manufacturer sou
    const source=await readFile(new URL("../src/"+app,import.meta.url),"utf8");
    assert.ok(page.includes(html === "index.html" ? "20261122-shore-mca1" : "20261122-shore-mca1"),html);
    assert.ok(source.includes("products.js?v=" + (html === "index.html" ? "20261122-mppt-cz1" : "20261122-mppt-cz1")),app);
-   assert.match(source,/caravan-buyer-checklist\.js\?v=20261122-bms-alternatives1/,app);
+   assert.match(source,/caravan-buyer-checklist\.js\?v=20261122-mppt-cz1/,app);
  }
 });
