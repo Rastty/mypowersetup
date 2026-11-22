@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-22T09:27:07.012Z",
+  "generatedAt": "2026-11-22T09:36:11.369Z",
   "market": "cs-CZ",
   "status": "ready",
   "requirement": {
@@ -10,7 +10,7 @@
     "batteryType": "lifepo4",
     "minimumCurrentA": 30
   },
-  "matchCount": 6,
+  "matchCount": 7,
   "matches": [
     {
       "id": "vselektro:victron-orion-tr-12-12-30-nonisolated",
@@ -21,6 +21,17 @@
       "priceCurrency": "CZK",
       "productUrl": "https://www.vselektro.eu/nabijecka-dc-dc-orion-tr-smart-12-12-30a-neizolovana/",
       "verifiedAt": "2026-10-13",
+      "score": 97
+    },
+    {
+      "id": "svetkaravanu:26963_28360",
+      "merchant": "svetkaravanu",
+      "name": "Nabíječka Victron Energy Orion–Tr Smart DC–DC neizolovaná varianta 12/12 V, 30 A",
+      "currentA": 30,
+      "priceCzk": 5909,
+      "priceCurrency": "CZK",
+      "productUrl": "https://www.svetkaravanu.cz/nabijecka-victron-energy-orion-tr-smart-dc-dc-neizolovana_z26963/",
+      "verifiedAt": null,
       "score": 97
     },
     {
