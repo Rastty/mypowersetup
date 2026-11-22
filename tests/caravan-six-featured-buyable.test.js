@@ -55,6 +55,6 @@ test("CZ SK PL calculators display all six when required and cache-bust only the
     const html=await readFile(new URL("../"+page,import.meta.url),"utf8");
     assert.ok(js.includes(call),app);
     assert.ok(html.includes("/src/"+app+"?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6"),page);
-    assert.ok(js.includes("data-source=\\"result-featured\\""),app);
+    assert.ok(js.includes('data-source="result-featured"'),app);
   }
 });
