@@ -520,7 +520,7 @@ function renderProductRecommendations(result) {
   // Keep the immediately visible products synchronized with actual buyable,
   // confirmed-stock basket items; technical rankings remain unchanged.
   const recommendations = visibleRecommendationsForPackages(rankedRecommendations, packages, 3, buyerPlan);
-  const featured = selectFeaturedOffers(recommendations, packages, 4, buyerPlan);
+  const featured = selectFeaturedOffers(recommendations, packages, 6, buyerPlan);
   const categoryLabels = {
     battery: "Akumulatory",
     solar_panel: "Panele fotowoltaiczne",
