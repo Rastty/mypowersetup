@@ -5,6 +5,7 @@ const COPY = Object.freeze({
   sk: {
     kicker: "Nákup podľa vášho výpočtu",
     manufacturerEvidence: "Overiť nabíjací profil LiFePO4 u výrobcu",
+    inverterVariant: (model, w, v) => `Pri nákupe vyberte presne variant ${model}: trvalý výkon ${w} W, vstup ${v} V. Spoločná stránka obchodu nevyberá variant automaticky.`,
     complete: "Nákupný plán: všetky produktové kategórie pokryté",
     partial: "Nákupný plán: čo môžete kúpiť a čo ešte chýba",
     unavailable: "Nákupný plán: zatiaľ bez overených produktov",
@@ -24,6 +25,7 @@ const COPY = Object.freeze({
   pl: {
     kicker: "Zakupy według Twoich obliczeń",
     manufacturerEvidence: "Sprawdź profil ładowania LiFePO4 u producenta",
+    inverterVariant: (model, w, v) => `W sklepie wybierz dokładnie wariant ${model}: moc ciągła ${w} W, wejście ${v} V. Wspólna strona produktu nie wybiera wariantu automatycznie.`,
     complete: "Lista zakupów: wszystkie kategorie produktów dostępne",
     partial: "Lista zakupów: co można kupić, a czego jeszcze brakuje",
     unavailable: "Lista zakupów: brak zweryfikowanych produktów",
@@ -67,11 +69,14 @@ export function renderLocalizedCaravanBuyerPlan({
     const buyable = Boolean(url && /^https:\/\//i.test(url));
     const proof = buyable ? manufacturerProofUrl(product) : null;
     const linePrice = buyable ? caravanLinePrice({ ready: true, product, quantity }, locale) : null;
+    const inverterVariant = buyable && category === "inverter" && product.specs?.inverterVariantMustBeSelected
+      ? t.inverterVariant(product.specs.inverterManufacturerModel, product.specs.powerW, product.specs.voltageV) : null;
     return `<li data-buying-category="${escape(category)}" data-shopping-quantity="${buyable ? quantity : 0}" class="${buyable ? "is-ready" : "is-missing"}">
       <span class="caravan-buying-plan-mark" aria-hidden="true">${buyable ? "✓" : "!"}</span>
       <div class="caravan-buying-plan-item"><strong>${escape(t.labels[category] || category)}</strong>
       <span>${buyable ? `${quantity} ${locale === "pl" ? "szt." : "ks"} · ${escape(product.name)}` : missingReason === "stock_unconfirmed" ? t.unconfirmed : missingReason === "pv_nominal_review" ? t.pvNominal(installedPvWp, nominalPvWp) : missingReason === "pv_electrical_review" ? t.pvElectrical : t.missing}</span>
       ${requirement ? `<small class="caravan-item-requirement">${escape(requirement)}</small>` : ""}
+      ${inverterVariant ? `<small class="caravan-item-requirement" data-inverter-variant-selection>${escape(inverterVariant)}</small>` : ""}
       ${pvWiringReview ? `<small class="caravan-item-requirement" data-pv-wiring-review>${escape(t.pvWire(pvWiringReview))} <a href="${escape(pvWiringReview.manufacturerUrl)}" target="_blank" rel="noopener noreferrer" data-manufacturer-pv-proof>${escape(t.pvProof(pvWiringReview.manufacturerName))}</a></small>` : ""}</div>
       ${buyable ? `<a class="caravan-buying-plan-link" href="${escape(url)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escape(product.id)}" data-merchant="${escape(product.merchant)}" data-category="${escape(category)}">${escape(purchaseCta(locale, merchantLabel(product.merchant)))}</a>` : ""}
       ${linePrice ? `<span class="caravan-line-amount">${escape(formatCaravanPrice(linePrice.amount, linePrice.currency, locale))} / ${quantity} ${locale === "pl" ? "szt." : "ks"}</span>` : ""}

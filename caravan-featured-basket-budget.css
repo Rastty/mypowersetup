@@ -12,3 +12,6 @@
 .featured-basket-merchant strong { flex-basis: 100%; color: var(--forest-deep); overflow-wrap: anywhere; }
 .featured-basket-merchant span { color: var(--ink-soft); }
 .featured-basket-merchant span:last-child { font-weight: 700; color: var(--forest-deep); }
+
+/* Shared-landing merchant pages require users to select the exact inverter variant. */
+.featured-pick-variant-note { flex-basis: 100%; font-size: 11px; line-height: 1.5; color: #72501f; overflow-wrap: anywhere; }

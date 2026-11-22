@@ -8,6 +8,7 @@ import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-char
 import { addVerifiedEcoFlowRigid175PvSpecs } from "./ecoflow-rigid-pv-profiles.js?v=20261121-bluesolar-pv1";
 import { addVerifiedVictronBlueSolar190PvSpecs } from "./victron-bluesolar-pv-profiles.js?v=20261121-bluesolar-pv1";
 import { addReviewedBatteryContinuousSpecs } from "./caravan-bms-manufacturer-proof.js?v=20261122-legacy70a";
+import { addReviewedDometicDpsiInverterSpecs } from "./dometic-dpsi-inverter-profiles.js?v=20261122-dpsi-continuous1";
 
 const MERCHANTS = {
   reslshop: {
@@ -501,7 +502,7 @@ export function refreshCatalogProduct(product) {
   return {
     ...product,
     available: isConfirmedDiscontinuedProduct(product) ? false : product.available,
-    specs: addReviewedBatteryContinuousSpecs(product, addVerifiedVictronBlueSolar190PvSpecs(product, addVerifiedEcoFlowRigid175PvSpecs(product, addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, addVerifiedDometicMcaShoreProfile(product, specs)))))),
+    specs: addReviewedDometicDpsiInverterSpecs(product, addReviewedBatteryContinuousSpecs(product, addVerifiedVictronBlueSolar190PvSpecs(product, addVerifiedEcoFlowRigid175PvSpecs(product, addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, addVerifiedDometicMcaShoreProfile(product, specs))))))),
     category: product.verifiedAt && product.category && product.category !== "other"
       ? product.category
       : classifyProduct({ name: product.name, categoryPath: product.categoryPath, specs })
@@ -775,7 +776,10 @@ function matchNumber(text, pattern) {
 }
 
 function extractContinuousPower(text) {
-  const continuousAndPeak = text.match(/(?:stálý|trvalý|jmenovitý)[^\d]{0,30}\b(\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?)\s*\/\s*\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?\s*w\b/i);
+  // Merchant titles explicitly say "continuous/peak". Parse the FIRST
+  // wattage on SK/PL as well as CZ; the last figure is only surge/peak.
+  // Never silently treat e.g. Polish 600/1200 W as continuous 1200 W.
+  const continuousAndPeak = text.match(/(?:stálý|stály|trvalý|jmenovitý|stała|stały|moc\s+ciągła)[^\d]{0,55}\b(\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?)\s*(?:w\s*)?\/\s*(\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?)\s*w\b/i);
   if (continuousAndPeak) return parseLocalizedNumber(continuousAndPeak[1]);
   return matchNumber(text, /\b(\d+(?:[ \u00a0]\d{3})*(?:[.,]\d+)?)\s*(?:w|wp)\b/i)
     ?? matchNumber(text, /\bwp\)?\s*(\d+(?:[.,]\d+)?)/i);
