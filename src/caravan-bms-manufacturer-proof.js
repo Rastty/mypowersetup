@@ -121,6 +121,10 @@ export function addReviewedBatteryContinuousSpecs(product,specs) {
   if (!item || (product.specs?.voltageV!=null && product.specs.voltageV!==item.voltageV)
     || (product.specs?.capacityAh!=null && product.specs.capacityAh!==item.capacityAh)
     || (product.specs?.batteryType!=null && product.specs.batteryType!=="lifepo4")
+    // Explicit contradictory raw merchant metadata must NOT be silently
+    // dropped by refreshCatalogProduct's parser and upgraded to proof.
+    || (product.specs?.bmsContinuousCurrentA!=null
+      && product.specs.bmsContinuousCurrentA!==item.continuousDischargeA)
     || specs?.voltageV!==item.voltageV
     || specs.capacityAh!==item.capacityAh || specs.batteryType!=="lifepo4"
     || (specs.bmsContinuousCurrentA!=null
