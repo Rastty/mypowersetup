@@ -410,11 +410,6 @@ legend { margin-bottom: 14px; font-weight: 800; }
 .featured-picks-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
 .featured-picks-heading h5 { margin: 5px 0 0; color: var(--forest-deep); font: 800 20px/1.25 "Manrope", sans-serif; }
 .featured-picks-count { padding: 5px 10px; border-radius: 999px; color: var(--forest-deep); background: var(--lime); font-size: 11px; font-weight: 800; }
-.featured-basket-budget { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 6px 18px; padding: 12px 14px; margin: 0 0 14px; border: 1px solid #d2e2ca; border-radius: 10px; background: #fff; }
-.featured-basket-budget-main { display: flex; align-items: baseline; gap: 8px 18px; flex-wrap: wrap; }
-.featured-basket-budget-main span { color: var(--forest-deep); font-size: 12px; font-weight: 750; }
-.featured-basket-budget-main strong { color: var(--forest-deep); font: 850 20px/1.3 "Manrope", sans-serif; }
-.featured-basket-budget small { flex-basis: 100%; color: var(--ink-soft); font-size: 11px; line-height: 1.5; }
 .featured-picks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 12px; }
 .featured-pick-card { display: grid; grid-template-columns: 112px minmax(0, 1fr); grid-template-rows: 1fr auto; gap: 12px; min-width: 0; padding: 15px; border: 1px solid #c5d8bc; border-radius: 11px; background: white; }
 .featured-pick-card > img, .featured-pick-placeholder { display: block; width: 112px; height: 112px; object-fit: contain; padding: 4px; border-radius: 9px; background: #f7f9f5; }
