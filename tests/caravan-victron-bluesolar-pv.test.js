@@ -128,8 +128,8 @@ test("stock/source safety still applies to exact BlueSolar and market assets sta
  for(const [page,script] of [["index.html","app.js"],["sk/index.html","app-sk.js"],["pl/index.html","app-pl.js"]]){
    const html=await readFile(new URL("../"+page,import.meta.url),"utf8");
    const app=await readFile(new URL("../src/"+script,import.meta.url),"utf8");
-   assert.ok(html.includes(page === "index.html" ? "20261122-sunstone200a1" : "20261122-orion-tr1"));
-   assert.ok(app.includes("products.js?v=" + (page === "index.html" ? "20261122-sunstone200a1" : "20261122-orion-tr1")));
+   assert.ok(html.includes(page === "index.html" ? "20261122-sunstone200a1" : "20261122-orion-24v1"));
+   assert.ok(app.includes("products.js?v=" + (page === "index.html" ? "20261122-sunstone200a1" : "20261122-orion-24v1")));
    assert.match(app,/caravan-buyer-checklist\.js\?v=20261122-bms-alternatives1/);
  }
 });
