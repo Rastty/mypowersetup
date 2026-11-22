@@ -501,7 +501,7 @@ export function refreshCatalogProduct(product) {
   return {
     ...product,
     available: isConfirmedDiscontinuedProduct(product) ? false : product.available,
-    specs: addReviewedBatteryContinuousSpecs(product, addVerifiedVictronBlueSolar190PvSpecs(product, addVerifiedEcoFlowRigid175PvSpecs(product, addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, addVerifiedDometicMcaShoreProfile(product, specs))))))),
+    specs: addReviewedBatteryContinuousSpecs(product, addVerifiedVictronBlueSolar190PvSpecs(product, addVerifiedEcoFlowRigid175PvSpecs(product, addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, addVerifiedDometicMcaShoreProfile(product, specs)))))),
     category: product.verifiedAt && product.category && product.category !== "other"
       ? product.category
       : classifyProduct({ name: product.name, categoryPath: product.categoryPath, specs })
