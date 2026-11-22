@@ -16,6 +16,7 @@ export function decorateAwinAffiliateUrl(input, {
   recommendationRole,
   routePriority,
   source,
+  buyerFlow,
   scenarioCampaign,
 } = {}) {
   let url;
@@ -33,7 +34,7 @@ export function decorateAwinAffiliateUrl(input, {
   }
 
   if (EHUB_HOSTS.has(url.hostname) && url.pathname === EHUB_PATH) {
-    decorateEhubUrl(url, { market, category, placement, source, scenarioCampaign });
+    decorateEhubUrl(url, { market, category, placement, source, buyerFlow, scenarioCampaign });
     return url.toString();
   }
 
@@ -73,7 +74,7 @@ function decorateAwinUrl(url, {
   }
 }
 
-function decorateEhubUrl(url, { market, category, placement, source, scenarioCampaign }) {
+function decorateEhubUrl(url, { market, category, placement, source, buyerFlow, scenarioCampaign }) {
   if (!url.searchParams.get("a_aid") || !url.searchParams.get("a_bid")) return;
 
   const normalizedMarket = safeToken(market);
@@ -92,7 +93,8 @@ function decorateEhubUrl(url, { market, category, placement, source, scenarioCam
     // calculator placement always win. A malformed explicit placement must
     // fail closed; it must NOT silently degrade to a different attribution.
     // Only fixed Builder UI routes may add static data2; no user/session ID.
-    const builderSourceRef = placement == null && BUILDER_SOURCE_MARKETS.has(normalizedMarket)
+    const builderSourceRef = buyerFlow === "caravan-builder" && placement == null
+      && BUILDER_SOURCE_MARKETS.has(normalizedMarket)
       && normalizedCategory && SOURCE_VALUES.has(source)
       ? `source_${source}` : null;
     if (placementRef || builderSourceRef) url.searchParams.set("data2", placementRef || builderSourceRef);
