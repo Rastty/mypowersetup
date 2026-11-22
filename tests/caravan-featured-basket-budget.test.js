@@ -153,6 +153,8 @@ test("result-first multi-merchant checkout preview reuses verified store subtota
   plan.rows[2].product.priceCzk=80;
   plan.rows[3].product.merchant="verified-b";
   plan.rows[3].product.priceCzk=null;
+  plan.rows[4].product.merchant="verified-b";
+  plan.rows[5].product.merchant="verified-b";
   const labels=(id)=>({"verified-a":"Sklep A","verified-b":"Sklep B"})[id]||id;
   const html=featuredCaravanBasketBudgetMarkup(plan,"pl",labels);
   assert.match(html,/featured-basket-merchants/);
