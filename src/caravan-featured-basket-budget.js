@@ -1,4 +1,4 @@
-import { caravanBasketPriceSummary, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-merchant1";
+import { caravanBasketPriceSummary, caravanMerchantGroups, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-merchant1";
 
 // Result-first preview of the EXACT buyer plan, not a second pricing engine.
 // A mixed PLN/EUR basket is displayed as separate subtotals; missing products
@@ -8,6 +8,8 @@ const COPY = Object.freeze({
     complete: "Orientační součet vybraných produktů",
     partial: "Součet známých cen dostupných položek",
     category: (ready, all) => `${ready}/${all} kategorií s nákupní možností`,
+    shops: (n) => `${n} ${n === 1 ? "obchod" : n >= 2 && n <= 4 ? "obchody" : "obchodů"} pro vybrané položky`,
+    shopsNote: "Jde o samostatné nákupy; každý obchod účtuje vlastní dopravu.",
     missing: (n) => `${n} chybí`,
     unpriced: (n) => `${n} bez ověřitelné ceny`,
     note: "Bez dopravy, kabeláže, jištění a montáže. Aktuální ceny a sklad ověřte u obchodů.",
@@ -16,6 +18,8 @@ const COPY = Object.freeze({
     complete: "Orientačný súčet vybraných produktov",
     partial: "Súčet známych cien dostupných položiek",
     category: (ready, all) => `${ready}/${all} kategórií s nákupnou možnosťou`,
+    shops: (n) => `${n} ${n === 1 ? "obchod" : n >= 2 && n <= 4 ? "obchody" : "obchodov"} pre vybrané položky`,
+    shopsNote: "Ide o samostatné nákupy; každý obchod účtuje vlastnú dopravu.",
     missing: (n) => `${n} chýba`,
     unpriced: (n) => `${n} bez overiteľnej ceny`,
     note: "Bez dopravy, kabeláže, istenia a montáže. Aktuálne ceny a sklad overte v obchodoch.",
@@ -24,6 +28,8 @@ const COPY = Object.freeze({
     complete: "Orientacyjna suma cen wybranych produktów",
     partial: "Suma znanych cen dostępnych produktów",
     category: (ready, all) => `${ready}/${all} kategorii z ofertą zakupową`,
+    shops: (n) => `${n} ${n === 1 ? "sklep" : n >= 2 && n <= 4 ? "sklepy" : "sklepów"} z wybranymi produktami`,
+    shopsNote: "To osobne zamówienia; każdy sklep nalicza własny koszt dostawy.",
     missing: (n) => `${n} brakujących`,
     unpriced: (n) => `${n} bez sprawdzonej ceny`,
     note: "Bez dostawy, przewodów, zabezpieczeń i montażu. Sprawdź ceny i dostępność w sklepach.",
@@ -35,6 +41,9 @@ export function featuredCaravanBasketBudgetMarkup(plan, locale) {
   const budget = caravanBasketPriceSummary(plan, locale);
   if (!t || !budget?.subtotals?.length || budget.priced === 0
     || !Array.isArray(plan?.rows) || !plan.rows.length) return "";
+  // Read the same vetted merchant groups as the full buyer plan; never
+  // infer a checkout from an unavailable row or combine separate shops.
+  const merchants = caravanMerchantGroups(plan, locale);
   const all = plan.rows.length;
   const ready = plan.rows.filter(row => row?.ready === true).length;
   // This is a complete *product-selection subtotal*, not an electrical
@@ -45,11 +54,12 @@ export function featuredCaravanBasketBudgetMarkup(plan, locale) {
   if (!prices.length) return "";
   const warnings = [
     t.category(ready, all),
+    ...(merchants.length ? [t.shops(merchants.length)] : []),
     ...(budget.unavailable ? [t.missing(budget.unavailable)] : []),
     ...(budget.unpriced ? [t.unpriced(budget.unpriced)] : []),
   ];
   return `<div class="featured-basket-budget" data-budget-completeness="${complete ? "selected-products" : "partial"}">
     <div class="featured-basket-budget-main"><span>${complete ? t.complete : t.partial}</span><strong>${prices.join(" + ")}</strong></div>
-    <small>${warnings.join(" · ")}. ${t.note}</small>
+    <small>${warnings.join(" · ")}. ${merchants.length > 1 ? `${t.shopsNote} ` : ""}${t.note}</small>
   </div>`;
 }
