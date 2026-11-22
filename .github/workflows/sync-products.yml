@@ -72,6 +72,7 @@ on:
       - "tests/current-catalog-safety.test.js"
       - "tests/vselektro-live-feed.test.js"
       - "tests/cz-dcdc-coverage.test.js"
+      - "tests/commercial-system-verification-actions.test.js"
       - ".github/workflows/sync-products.yml"
   schedule:
     - cron: "17 3 * * *"
