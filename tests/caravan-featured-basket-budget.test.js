@@ -93,7 +93,7 @@ test("upfront checkout transparency counts only eligible merchant groups without
   const html=featuredCaravanBasketBudgetMarkup(plan,"cs");
   assert.match(html,/2 obchody pro vybrané položky/);
   assert.match(html,/samostatné nákupy/);
-  assert.match(html,/5\\/6 kategorií/);
+  assert.ok(html.includes("5/6 kategorií"));
   assert.match(html,/data-budget-completeness="partial"/);
   assert.ok(!html.includes("shop-a") && !html.includes("shop-b"),"no raw merchant tracking IDs appear in preview");
   const sk=build("EUR",100);
