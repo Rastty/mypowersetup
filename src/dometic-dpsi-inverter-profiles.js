@@ -49,7 +49,7 @@ function exactApprovedDpsi(product, model, seller) {
 }
 
 export function addReviewedDometicDpsiInverterSpecs(product, specs) {
-  const key=/^(padabo_sk|padabo_pl):104292_(\\d+)$/.exec(String(product?.id||""));
+  const key=/^(padabo_sk|padabo_pl):104292_(\d+)$/.exec(String(product?.id||""));
   if(!key || !Object.hasOwn(MODELS,key[2]))return specs;
   const merchant=key[1],variant=key[2];
   const model=MODELS[variant],seller=SELLERS[merchant];
