@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-22T19:20:01.580Z",
+  "generatedAt": "2026-11-23T12:59:19.819Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16442,
-      "relevantProducts": 196
+      "parsedProducts": 16443,
+      "relevantProducts": 197
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -40,7 +40,7 @@
     },
     "ampul_pl": {
       "status": "ok",
-      "parsedProducts": 7754,
+      "parsedProducts": 7753,
       "relevantProducts": 15
     }
   },
@@ -5139,6 +5139,35 @@
           "lead"
         ],
         "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:107312_33733",
+      "merchant": "padabo_pl",
+      "name": "Panel słoneczny Renogy ShadowFlux moc nominalna (wp) 120",
+      "description": "Panele słoneczne działające nawet w cieniu Panel słoneczny Renogy ShadowFlux to niezawodne i ekonomiczne źródło energii dla kamperów i przyczep kempingowych. Dzięki kompaktowej konstrukcji, zaawansowanej technologii i odporności na niekorzystne warunki pogodowe, panel ten jest idealny do zastosowań poza siecią, w których chcesz być niezależny od zewnętrznego zasilania Kluczowe cechy paneli słonecznych Renogy ShadowFlux: Panel słoneczny zapewnia wystarczającą moc do zasilania niezbędnych urządzeń",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Panele słoneczne i akcesoria | Panele fotowoltaiczne",
+      "category": "solar_panel",
+      "brand": "Renogy",
+      "priceCzk": 715.13,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/panel-sloneczny-renogy-shadowflux_z107312/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fpanel-sloneczny-renogy-shadowflux_z107312%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/190976_102.jpg?1772443593_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 120,
+        "currentA": 4.57,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
         "pureSine": null,
         "solarInputW": null,
         "dcOutputA": null
