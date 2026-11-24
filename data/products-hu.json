@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-23T12:59:30.365Z",
+  "generatedAt": "2026-11-24T13:53:48.655Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12450,
-      "relevantProducts": 159
+      "parsedProducts": 12464,
+      "relevantProducts": 161
     },
     "ampul_hu": {
       "status": "ok",
-      "parsedProducts": 7753,
+      "parsedProducts": 7756,
       "relevantProducts": 13
     },
     "allpowers_eu": {
@@ -1978,39 +1978,6 @@
       }
     },
     {
-      "id": "padabo_hu:19287_21292",
-      "merchant": "padabo_hu",
-      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító állandó/csúcsteljesítmény 2300 / 4000 W feszültség 24 V",
-      "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
-      "category": "inverter",
-      "brand": "Dometic",
-      "priceCzk": 763040,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/183588_102.jpg?1746377752_1",
-      "specs": {
-        "voltageV": 24,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 4000,
-        "currentA": null,
-        "chargingVoltagesV": [
-          24
-        ],
-        "chargingInputVoltagesV": [
-          24
-        ],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": true,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
       "id": "padabo_hu:19296_21309",
       "merchant": "padabo_hu",
       "name": "Kábelkészlet a Dometic SinePower DSP szinuszos feszültségátalakítókhoz a oldalon. 1500 I 1800 W",
@@ -2917,6 +2884,35 @@
       }
     },
     {
+      "id": "padabo_hu:107312_33733",
+      "merchant": "padabo_hu",
+      "name": "Renogy ShadowFlux napelem névleges teljesítmény (wp) 120",
+      "description": "Árnyékban is működő napelem A Renogy ShadowFlux napelem megbízható és gazdaságos energiaforrás lakóautók és lakókocsik számára. Kompakt kialakításával, fejlett technológiájával és a kedvezőtlen időjárási körülményekkel szembeni ellenálló képességével ez a panel ideális a hálózaton kívüli alkalmazásokhoz, ahol függetleníteni szeretné magát a külső energiától. A Renogy ShadowFlux napelem legfontosabb jellemzői: A napelem elegendő energiát biztosít a lakóautó vagy lakókocsi alapvető eszközeinek műk",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Napelemek és kiegészítők | Fotovoltaikus panelek",
+      "category": "solar_panel",
+      "brand": "Renogy",
+      "priceCzk": 69960,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/renogy-shadowflux-napelem_z107312/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Frenogy-shadowflux-napelem_z107312%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/190976_102.jpg?1772443593_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 120,
+        "currentA": 4.57,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_hu:105599",
       "merchant": "padabo_hu",
       "name": "LiFePO4 Leuchtwert lítium akkumulátor",
@@ -3061,6 +3057,64 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 500,
+        "currentA": 0.6,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:108740_33863",
+      "merchant": "padabo_hu",
+      "name": "Carbest PowerWave szinuszos feszültségátalakító, 12/230 V teljesítmény 3000 W",
+      "description": "A legújabb generációs szinuszos kimenetű átalakító hálózati tápellátás-prioritás kapcsolóval A Carbest PowerWave egy szinuszos kimenettel rendelkező, legújabb generációs hálózati tápellátás-prioritáskapcsolóval ellátott áramátalakító. A beépített 230 V-os hálózati tápellátás-prioritás kapcsoló leállítja a működését, amint a lakóautót vagy lakókocsit 230 V-os hálózati tápellátáshoz csatlakoztatják (például egy kempingben). Az inverter működése a külső tápellátásról való leválasztás után újraindul",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Carbest",
+      "priceCzk": 322915,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/195963_102.jpg?1783252526_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 3000,
+        "currentA": 0.6,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:108740_33864",
+      "merchant": "padabo_hu",
+      "name": "Carbest PowerWave szinuszos feszültségátalakító, 12/230 V teljesítmény 2000 W",
+      "description": "A legújabb generációs szinuszos kimenetű átalakító hálózati tápellátás-prioritás kapcsolóval A Carbest PowerWave egy szinuszos kimenettel rendelkező, legújabb generációs hálózati tápellátás-prioritáskapcsolóval ellátott áramátalakító. A beépített 230 V-os hálózati tápellátás-prioritás kapcsoló leállítja a működését, amint a lakóautót vagy lakókocsit 230 V-os hálózati tápellátáshoz csatlakoztatják (például egy kempingben). Az inverter működése a külső tápellátásról való leválasztás után újraindul",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Carbest",
+      "priceCzk": 262035,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/carbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fcarbest-powerwave-szinuszos-feszultsegatalakito-12-230-v_z108740%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/195961_102.jpg?1783252443_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
         "currentA": 0.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
@@ -3927,37 +3981,6 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 70,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_hu:25062_26762",
-      "merchant": "padabo_hu",
-      "name": "PowerBoozt AGM kettős rendeltetésű akkumulátor kapacitás 95 Ah",
-      "description": "Nyugalom és megbízhatóság a PowerBootz akkumulátorral A PowerBoozt AGM Dual Purpose akkumulátort nyugodtan használhatja az élelmiszer- és gyógyszeriparban. Nem bocsát ki korrozív gőzöket. Az AGM típusú akkumulátor abszorbens üvegszálas szövetet tartalmaz, amelynek köszönhetően ellenáll az elektrolit kifolyásának, és a ferde helyzetben való működés sem jelent számára problémát. A PoweBoozt AGM Dual Purpose akkumulátor legfontosabb jellemzői: Az akkumulátor alkalmas az élelmiszer- és gyógyszeripar",
-      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
-      "category": "battery",
-      "brand": "PowerBoozt",
-      "priceCzk": 115440,
-      "priceCurrency": "HUF",
-      "available": true,
-      "productUrl": "https://www.padabo.hu/powerboozt-agm-kettos-rendeltetesu-akkumulator_z25062/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fpowerboozt-agm-kettos-rendeltetesu-akkumulator_z25062%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/158826_102.jpg?1704380237_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 95,
         "capacityWh": null,
         "powerW": null,
         "currentA": null,
@@ -5022,6 +5045,39 @@
         ],
         "batteryType": "lead",
         "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_hu:19287_21292",
+      "merchant": "padabo_hu",
+      "name": "Dometic SinePower DSP-T szinuszos feszültségátalakító feszültség 24 V állandó/csúcsteljesítmény 2300 / 4000 W",
+      "description": "Áram átalakítása 12 V-ról 230 V-ra Dometic szinuszos feszültségátalakítóval A Dometic SinePower DSP-T szinuszos feszültségátalakítót úgy tervezték, hogy a 12 V-os akkumulátorból származó áramot 230 V-os váltakozó feszültségűre alakítsa. Ez biztosítja az akár 1200 wattos elektromos készülékek megbízható működését, ha a jármű akkumulátoráról kapják az áramot. Az intelligens hálózati prioritású áramkör biztosítja a zökkenőmentes átkapcsolást az akkumulátorról a hálózati áramra, amint a járművet a h",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Feszültségátalakítók",
+      "category": "inverter",
+      "brand": "Dometic",
+      "priceCzk": 763040,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/dometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fdometic-sinepower-dsp-t-szinuszos-feszultsegatalakito_z19287%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/8/183588_102.jpg?1746377752_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 4000,
+        "currentA": null,
+        "chargingVoltagesV": [
+          24
+        ],
+        "chargingInputVoltagesV": [
+          24
+        ],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
         "solarInputW": null,
         "dcOutputA": null
       }

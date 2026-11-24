@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-23T12:59:08.398Z",
+  "generatedAt": "2026-11-24T13:53:21.143Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16413,
-      "relevantProducts": 239
+      "parsedProducts": 16422,
+      "relevantProducts": 244
     },
     "allpowers_eu": {
       "status": "ok",
@@ -40,7 +40,7 @@
     },
     "ampul_sk": {
       "status": "ok",
-      "parsedProducts": 7753,
+      "parsedProducts": 7756,
       "relevantProducts": 15
     }
   },
@@ -465,7 +465,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
+      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
@@ -972,6 +972,37 @@
         "capacityWh": null,
         "powerW": null,
         "currentA": 20,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:23822_25452",
+      "merchant": "padabo_sk",
+      "name": "Lítiové batérie RKB Smart kapacita 200 Ah",
+      "description": "Batérie RKB pre všetkých cestujúcichBatérie RKB Smart LiFePO4 boli vyvinuté ako náhrada za kyslé batérie a vo všetkých ohľadoch spĺňajú vysoké nároky kladené na najmodernejšie batérie na súčasnom trhu. Batérie RKB Smart sú výkonné, ľahké a robustné, vďaka čomu sú ideálne pre obytné automobily a energeticky nezávislé cestovanie. Batérie používajú cyklicky odolné a bezpečné články LiFePO4. Okrem toho sú vybavené integrovaným systémom riadenia batérií(BMS), ktorý ich chráni pred nadprúdom, prebíjan",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
+      "category": "battery",
+      "brand": "Rkb Electronic",
+      "priceCzk": 2764.09,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/litiove-baterie-rkb-smart_z23822/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiove-baterie-rkb-smart_z23822%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/158381_102.jpg?1704380221_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 200,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [
@@ -1723,37 +1754,6 @@
       "specs": {
         "voltageV": 12,
         "capacityAh": 70,
-        "capacityWh": null,
-        "powerW": null,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lead"
-        ],
-        "batteryType": "lead",
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      }
-    },
-    {
-      "id": "padabo_sk:25062_26762",
-      "merchant": "padabo_sk",
-      "name": "Dvojúčelová batéria AGM PowerBoozt kapacita 95 Ah",
-      "description": "Pokoj a spoľahlivosť s batériou PowerBootzDvojúčelovú batériu AGM PowerBoozt možno bezpečne používať v potravinárskom a farmaceutickom priemysle. Neprodukuje žiadne korozívne výpary. Batéria typu AGM obsahuje absorpčné sklenené rúno, vďaka ktorému je odolná voči úniku elektrolytu a práca v náklone nie je problém. Kľúčové vlastnosti dvojúčelovej batérie PoweBoozt AGM: Batéria je vhodná na použitie v potravinárskom a farmaceutickom priemysle. Batéria AGM obsahuje sklenené rúno, ktoré zabraňuje úni",
-      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
-      "category": "battery",
-      "brand": "PowerBoozt",
-      "priceCzk": 243.92,
-      "priceCurrency": "EUR",
-      "available": true,
-      "productUrl": "https://www.padabo.sk/dvojucelova-bateria-agm-powerboozt_z25062/",
-      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fdvojucelova-bateria-agm-powerboozt_z25062%2F",
-      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/158826_102.jpg?1704380237_1",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": 95,
         "capacityWh": null,
         "powerW": null,
         "currentA": null,
@@ -6331,6 +6331,35 @@
       }
     },
     {
+      "id": "padabo_sk:107312_33733",
+      "merchant": "padabo_sk",
+      "name": "Solárny panel Renogy ShadowFlux nominálny výkon (wp) 120",
+      "description": "Solárne panely, ktoré fungujú aj v tieni Solárny panel Renogy ShadowFlux je spoľahlivý a úsporný zdroj energie pre obytné automobily a karavany. Vďaka kompaktnému dizajnu, pokročilej technológii a odolnosti voči nepriaznivým poveternostným podmienkam je tento panel ideálny pre off-grid aplikácie, kde chcete byť nezávislí od externého napájania. Kľúčové vlastnosti solárnych panelov Renogy ShadowFlux: Solárny panel poskytuje dostatok energie na napájanie základných zariadení v karavane - od LED os",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Solárne panely a príslušenstvo | Fotovoltaické panely",
+      "category": "solar_panel",
+      "brand": "Renogy",
+      "priceCzk": 165.93,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/solarny-panel-renogy-shadowflux_z107312/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsolarny-panel-renogy-shadowflux_z107312%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/6/190976_102.jpg?1772443593_1",
+      "specs": {
+        "voltageV": 24,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 120,
+        "currentA": 4.57,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_sk:107353",
       "merchant": "padabo_sk",
       "name": "Batéria Victron Energy LiFePO4 12,8V/300Ah NG",
@@ -6930,6 +6959,70 @@
       }
     },
     {
+      "id": "padabo_sk:107519",
+      "merchant": "padabo_sk",
+      "name": "Lítiová batéria Büttner Dometic Tempra TLB540, 540 Ah",
+      "description": "Lítiová batéria so špičkovým výkonom do 400 A Büttner Dometic Tempra TLB540 L3 je lítiová batéria s kapacitou 540 Ah s trvalým prúdom 300 A a špičkovým prúdom až 400 A. Vďaka moderným článkom HDP (High Density Power) ponúka vysokú hustotu energie v kompaktnom prevedení. Inteligentný systém riadenia batérie zabezpečuje optimálne nabíjanie a umožňuje pripojenie batérie k akejkoľvek nabíjačke - vrátane olovenej. Kompaktná batéria sa zmestí pod sedadlo Fiatu Ducato. Optimalizovaný systém riadenia ba",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
+      "category": "battery",
+      "brand": "Büttner Elektronik",
+      "priceCzk": 3879.37,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/litiova-bateria-buttner-dometic-tempra-tlb540-540-ah_z107519/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-buttner-dometic-tempra-tlb540-540-ah_z107519%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/191710_102.jpg?1774293707_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 540,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 400,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:107520",
+      "merchant": "padabo_sk",
+      "name": "Lítiová batéria Büttner Dometic Tempra TLB540F, 540 Ah",
+      "description": "Lítiová batéria so špičkovým prúdom do 400 A a zabudovaným ohrevom Büttner Dometic Tempra TLB540F L3 je lítiová batéria s kapacitou 540 Ah s trvalým prúdom 300 A a špičkovým prúdom až 400 A. Vďaka moderným článkom HDP (High Density Power) ponúka vysokú energetickú hustotu v kompaktnom prevedení. Inteligentný systém riadenia batérie zabezpečuje optimálne nabíjanie a umožňuje pripojenie batérie k akejkoľvek nabíjačke - vrátane olovenej. Kompaktná batéria sa zmestí pod sedadlo Fiatu Ducato. Optimal",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie LiFePO4",
+      "category": "battery",
+      "brand": "Büttner Elektronik",
+      "priceCzk": 4034.95,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/litiova-bateria-buttner-dometic-tempra-tlb540f-540-ah_z107520/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Flitiova-bateria-buttner-dometic-tempra-tlb540f-540-ah_z107520%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/0/191720_102.jpg?1774295438_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": 540,
+        "capacityWh": null,
+        "powerW": null,
+        "currentA": 400,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lifepo4",
+          "lead"
+        ],
+        "batteryType": "lifepo4",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_sk:107522_32861",
       "merchant": "padabo_sk",
       "name": "Štartovacia lítiová batéria BullTron kapacita 55 Ah",
@@ -7371,6 +7464,64 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 500,
+        "currentA": 0.6,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:108740_33863",
+      "merchant": "padabo_sk",
+      "name": "Sinusový menič napätia Carbest PowerWave, 12/230 V výkon 3000 W",
+      "description": "Menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie Carbest PowerWave je menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie. Integrovaný prepínač priority sieťového napájania 230 V preruší prevádzku hneď, ako je obytný automobil alebo karavan pripojený k napájaniu 230 V (napríklad v kempingu). Prevádzka meniča sa obnoví po odpojení od externého napájania. Prevodník tak mení napätie 12 V na 230 V s čistou sínusovou vlnou. ",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
+      "category": "inverter",
+      "brand": "Carbest",
+      "priceCzk": 765.88,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/195963_102.jpg?1783252526_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 3000,
+        "currentA": 0.6,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [],
+        "batteryType": null,
+        "pureSine": true,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_sk:108740_33864",
+      "merchant": "padabo_sk",
+      "name": "Sinusový menič napätia Carbest PowerWave, 12/230 V výkon 2000 W",
+      "description": "Menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie Carbest PowerWave je menič s sinusovým výstupom a prepínačom priority sieťového napájania najnovšej generácie. Integrovaný prepínač priority sieťového napájania 230 V preruší prevádzku hneď, ako je obytný automobil alebo karavan pripojený k napájaniu 230 V (napríklad v kempingu). Prevádzka meniča sa obnoví po odpojení od externého napájania. Prevodník tak mení napätie 12 V na 230 V s čistou sínusovou vlnou. ",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
+      "category": "inverter",
+      "brand": "Carbest",
+      "priceCzk": 621.49,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/sinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fsinusovy-menic-napatia-carbest-powerwave-12-230-v_z108740%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/1/195961_102.jpg?1783252443_1",
+      "specs": {
+        "voltageV": 12,
+        "capacityAh": null,
+        "capacityWh": null,
+        "powerW": 2000,
         "currentA": 0.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
