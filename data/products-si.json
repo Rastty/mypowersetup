@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T13:12:44.995Z",
+  "generatedAt": "2026-11-26T03:30:40.975Z",
   "market": "sl-SI",
   "currency": "EUR",
   "private": false,
@@ -22,7 +22,7 @@
       "status": "ok",
       "awinMerchantId": 38934,
       "affiliateId": 3044971,
-      "exactProducts": 28
+      "exactProducts": 27
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -178,7 +178,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:10257573445939",
@@ -242,7 +242,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:8205919715635",
@@ -273,7 +273,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:10143263129907",
@@ -304,7 +304,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:10143246418227",
@@ -335,7 +335,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:9948837937459",
@@ -366,7 +366,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:9875554074931",
@@ -397,7 +397,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:9855868961075",
@@ -428,7 +428,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:9802731815219",
@@ -459,7 +459,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:9801383051571",
@@ -490,7 +490,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:9763001073971",
@@ -554,7 +554,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:9598354719027",
@@ -585,7 +585,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:9598338564403",
@@ -616,7 +616,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:8630287532339",
@@ -680,7 +680,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:8431037645107",
@@ -711,7 +711,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:8300246663475",
@@ -742,40 +742,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
-    },
-    {
-      "id": "allpowers_eu:8336481124659",
-      "merchant": "allpowers_eu",
-      "name": "ALLPOWERS R3500 V2 Home Backup Power Station 3500W 2880Wh",
-      "description": "Capacity 2880 Wh. Continuous AC output 3500 W with pure sine wave. Solar input up to 1300 W. Regulated 12 V DC output up to 10 A. LiFePO4 battery.",
-      "categoryPath": "Portable Power Station",
-      "category": "power_station",
-      "brand": "ALLPOWERS",
-      "priceCzk": 2299,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://iallpowers.eu/products/allpowers-r3500-home-backup-power-station-3500w-3168wh",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-r3500-home-backup-power-station-3500w-3168wh",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R3500-V2-Home-Backup-Power-Station-3500W-2880Wh-ALLPOWERS-30183866.jpg?v=1775664354",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": 2880,
-        "powerW": 3500,
-        "currentA": 10,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": true,
-        "solarInputW": 1300,
-        "dcOutputA": 10
-      },
-      "verifiedAt": "2026-09-02",
-      "marketEligible": true
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:8205920469299",
@@ -806,7 +773,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:8205916733747",
@@ -837,7 +804,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:8205905887539",
@@ -868,7 +835,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:8205901234483",
@@ -899,7 +866,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:8205897105715",
@@ -930,7 +897,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:8205889012019",
@@ -961,7 +928,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-25"
+      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:8205880623411",
