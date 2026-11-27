@@ -1,4 +1,4 @@
-import { reviewConcurrentCharging } from "./caravan-concurrent-charge-review.js?v=20261127-chargesum1";
+import { reviewConcurrentCharging } from "./caravan-concurrent-charge-review.js?v=20261127-chargesum2";
 import { reviewShoreBatteryCapacity, replaceReviewedShoreMismatch } from "./caravan-shore-capacity-review.js?v=20261127-shorepair1";
 import { isRecommendationEligible } from "./recommendation-coverage.js";
 import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1-stockvalue1-shorepair1";
