@@ -285,14 +285,14 @@ test("localized DC protection pages require verified ampacity and use the canoni
 test("calculator sitemap publishes the complete CZ plus SK PL HU calculator surface exactly once", async () => {
   const xml = await readFile("sitemap-calculators.xml", "utf8");
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  const localized = Object.values(families).flatMap((family) => [family.sk, family.pl, family.hu]);
+  const localized = [...Object.values(families).flatMap((family) => [family.sk, family.pl, family.hu]), "/sk/kalkulacky/vydrz-baterie/", "/pl/kalkulatory/czas-pracy-akumulatora/"];
   for (const route of [...czPublishedRoutes, ...localized]) {
     assert.equal(urls.filter((url) => url === `${ORIGIN}${route}`).length, 1, `${route} must appear once in calculator sitemap`);
   }
   assert.equal(
     urls.length,
     czPublishedRoutes.length + localized.length,
-    "calculator sitemap should contain 10 CZ URLs plus 27 localized URLs",
+    "calculator sitemap should contain 10 CZ URLs plus 29 localized URLs",
   );
   assert.ok(!urls.some((url) => /\/(?:pt|ro|si)\/.*(?:kalk|calc)/i.test(url)), "PT/RO/SI calculator rollout must stay blocked");
 });

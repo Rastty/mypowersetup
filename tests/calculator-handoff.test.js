@@ -95,7 +95,7 @@ test("autonomy-to-capacity handoff refuses invalid values and tampered source qu
   }
   assert.equal(buildCalculatorHandoffUrl({ ...source, inputs: { batteryType: "unknown" } }), null);
   assert.equal(buildCalculatorHandoffUrl({ ...source, result: { ...source.result, systemVoltage: 48 } }), null);
-  for (const locale of ["sk", "pl", "hu", "pt"]) {
+  for (const locale of ["hu", "pt"]) {
     assert.equal(calculatorHandoffTarget("battery-autonomy", locale), null);
   }
   const qs = "?mps_from=battery-autonomy&dailyWh=600&systemVoltage=12&batteryType=lifepo4";

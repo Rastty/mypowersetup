@@ -124,6 +124,7 @@ try {
   for (const market of markets) reports.push(await smokeMarket(cdp, market));
   const caravanScenarios = await smokeCaravanScenarioEntries(cdp);
   const batteryUpgrade = await smokeBatteryUpgrade(cdp);
+  for (const [source, target, label] of [["/sk/kalkulacky/vydrz-baterie/","/sk/kalkulacky/kapacita-baterie/","2 dni"],["/pl/kalkulatory/czas-pracy-akumulatora/","/pl/kalkulatory/pojemnosc-akumulatora/","2 dni"]]) await smokeBatteryUpgrade(cdp, source, target, label);
   const fridgeGuide = await smokeFridgeGuideHandoff(cdp);
   const mpptBuyerMatches = await smokeMpptBuyerMatches(cdp);
   const batteryBuyerMatches = await smokeBatteryBuyerMatches(cdp);
@@ -431,10 +432,10 @@ async function smokeCaravanScenarioEntries(client) {
   return reports;
 }
 
-async function smokeBatteryUpgrade(client) {
+async function smokeBatteryUpgrade(client, source = "/kalkulacky/vydrz-baterie/", target = "/kalkulacky/kapacita-baterie/", daysLabel = "2 dny") {
   // Browser-prove the measurable next step: invalidation, exact input transfer,
   // mobile navigation, and a visibly editable two-day receiving assumption.
-  await client.send("Page.navigate", { url: origin + "/kalkulacky/vydrz-baterie/" });
+  await client.send("Page.navigate", { url: origin + source });
   await waitFor(async () => await evaluate(client,
     'document.readyState === "complete" && Boolean(document.querySelector("[data-calculator-handoff]"))'));
 
@@ -450,17 +451,17 @@ async function smokeBatteryUpgrade(client) {
   const outgoing = await evaluate(client,
     '(function(){ const link=document.querySelector("[data-calculator-handoff]"); return {href:link.getAttribute("href"),label:link.textContent.trim(),width:window.innerWidth,scrollWidth:document.documentElement.scrollWidth}; })()');
   const destination = new URL(outgoing.href, origin);
-  assert(destination.origin === origin && destination.pathname === "/kalkulacky/kapacita-baterie/",
+  assert(destination.origin === origin && destination.pathname === target,
     "battery upgrade has wrong destination");
   for (const [key,value] of Object.entries({
     mps_from:"battery-autonomy",dailyWh:"1200",systemVoltage:"24",batteryType:"lead"
   })) assert(destination.searchParams.get(key) === value, "battery handoff lost "+key);
-  assert(outgoing.label.includes("2 dny"), "battery upgrade hides editable two-day target");
+  assert(outgoing.label.includes(daysLabel), "battery upgrade hides editable two-day target");
   assert(outgoing.scrollWidth <= outgoing.width + 2, "battery autonomy overflows mobile screen");
 
   await evaluate(client, 'document.querySelector("[data-calculator-handoff]").click()');
   await waitFor(async () => await evaluate(client,
-    '(function(){ const form=document.querySelector("[data-calculator-form]"); return location.pathname === "/kalkulacky/kapacita-baterie/" && Boolean(form) && form.elements.namedItem("dailyWh").value === "1200" && form.elements.namedItem("systemVoltage").value === "24" && form.elements.namedItem("batteryType").value === "lead"; })()'));
+    '(function(){ const form=document.querySelector("[data-calculator-form]"); return location.pathname === ' + JSON.stringify(target) + ' && Boolean(form) && form.elements.namedItem("dailyWh").value === "1200" && form.elements.namedItem("systemVoltage").value === "24" && form.elements.namedItem("batteryType").value === "lead"; })()'));
 
   const incoming = await evaluate(client,
     '(function(){ const form=document.querySelector("[data-calculator-form]"); return {days:form.elements.namedItem("autonomyDays").value,resultVisible:!document.querySelector("[data-calculator-result]").hidden,width:window.innerWidth,scrollWidth:document.documentElement.scrollWidth}; })()');
@@ -468,7 +469,7 @@ async function smokeBatteryUpgrade(client) {
   assert(incoming.resultVisible, "receiving battery sizing result did not render");
   assert(incoming.scrollWidth <= incoming.width + 2, "receiving capacity form overflows mobile screen");
   return {
-    source: "/kalkulacky/vydrz-baterie/",
+    source,
     destination: destination.pathname,
     preserved: ["dailyWh", "systemVoltage", "batteryType"],
     editableAutonomyDays: Number(incoming.days),

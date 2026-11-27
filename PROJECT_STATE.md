@@ -97,6 +97,10 @@
 
 [Read-only capture PASS](https://github.com/Rastty/prometheus-growth-os/actions/runs/45958671689), job capture 140371091334, exact property `sc-domain:mypowersetup.com`. Finalizované období 28.10.–24.11.2026 (28 dní) vs. 30.9.–27.10.2026: 10 aktuálních řádků URL vs. 37 v předchozím období; jediný měřený money guide, 1 impression/0 clicks u money guides, žádný měřený kalkulátor. Z 13 vybraných URL Inspection 11 PASS / 2 NEUTRAL: `/kalkulacky/vydrz-baterie/`, `/kalkulacky/mppt-regulator/` mají coverageState "Discovered - currently not indexed", nikoli tvrdý noindex. Sitemap.xml načtena 25.11., 0 chyb/varování. Výběrová kontrola, nikoli stav všech URL. GSC nezastupuje GA4 ani objednávky. Obchodní priorita přesunuta na získávání relevantní návštěvnosti a prokazatelné využití už vybudovaných kalkulaček CZ/SK/PL, nikoli další trhy, mechanické úpravy title nebo přepis hotových stránek.
 
+## TURBO cyklus #6 — Výdrž baterie SK/PL, organické vstupy
+
+Připraveno pro CI: dvě nové nativně lokalizované kalkulačky výdrže existující baterie SK/PL. Sdílený engine 12/24V, LiFePO₄/AGM, 15% rezerva, statické modelové výsledky 100/150/200Ah, obousměrné hreflang CZ/SK/PL, sitemap/IndexNow, kontextové odkazy z hubu, kapacity a průvodce; lokální Builder a předání Wh/napětí/chemie do kapacity (editovatelné 2 dny). Consent-only analytická identita. Žádné nové vertikály, inzerenti ani tvrzení o nové návštěvnosti. Stav CI/merge/Pages zatím neověřen.
+
 ## BLOKACE / nezaměňovat za tržby
 
 - **GA4 návštěvnost, consented impressions/prokliky, skutečné objednávky, schválené a vyplacené provize a zisk: NEOVĚŘENO, nikoli nula.** Organická viditelnost GSC je samostatně doložena výše. Není zde validovaný výpis GA4 a affiliate financí pro MyPowerSetup.

@@ -43,6 +43,7 @@ const calculatorUrls = [
   `${origin}/pl/kalkulatory/`,
   `${origin}/pl/kalkulatory/12v-czy-24v/`,
   `${origin}/pl/kalkulatory/bezpiecznik-12v/`,
+  `${origin}/pl/kalkulatory/czas-pracy-akumulatora/`,
   `${origin}/pl/kalkulatory/ladowarka-dc-dc/`,
   `${origin}/pl/kalkulatory/moc-przetwornicy/`,
   `${origin}/pl/kalkulatory/panele-solarne/`,
@@ -57,6 +58,7 @@ const calculatorUrls = [
   `${origin}/sk/kalkulacky/mppt-regulator/`,
   `${origin}/sk/kalkulacky/prierez-kabla-12v/`,
   `${origin}/sk/kalkulacky/solarne-panely/`,
+  `${origin}/sk/kalkulacky/vydrz-baterie/`,
   `${origin}/sk/kalkulacky/vykon-menica/`,
 ];
 const scenarioUrls = [
