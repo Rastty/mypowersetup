@@ -41,19 +41,19 @@ function mockResponse(url, body, type = "text/html", status = 200) {
   };
 }
 
-test("eighteen CZ, SK, PL and HU buyer pages, exact JS and catalogs are public-evidence verified", async () => {
+test("twenty CZ, SK, PL and HU buyer pages, exact JS and catalogs are public-evidence verified", async () => {
   const fetchImpl = mockFetch();
   const result = await verifyBuyerPathsLive({ fetchImpl });
   assert.equal(result.status, "PUBLIC_BUYER_HTML_JS_AND_CATALOG_VERIFIED");
   assert.equal(result.pages.length, PAGES.length);
-  assert.equal(result.pages.length, 18);
-  assert.equal(result.assets.length, ASSETS.length + 2, "three landing browser versions: older autonomy, CZ/SK, PL/HU");
+  assert.equal(result.pages.length, 20);
+  assert.equal(result.assets.length, ASSETS.length + 3, "four landing browser versions including local battery");
   assert.equal(result.productionActions, 0);
   assert.equal(result.browserInteractionsVerified, false);
   assert.equal(result.seoUpliftMeasured, false);
   assert.equal(result.transientRetries, 0);
   const dcdcPublished = await dcdcReady();
-  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 9 + Number(dcdcPublished));
+  assert.equal(fetchImpl.calls.length, PAGES.length + ASSETS.length + 12 + Number(dcdcPublished));
   assert.equal(result.dcdcCatalog.status, dcdcPublished
     ? "PUBLIC_DCDC_CATALOG_VERIFIED" : "LEGACY_FULL_CATALOG_UNTIL_FIRST_SYNC");
   if (dcdcPublished) {
@@ -105,7 +105,7 @@ test("eighteen CZ, SK, PL and HU buyer pages, exact JS and catalogs are public-e
   for (const kind of ["pl_solar_calculator", "hu_solar_calculator"])
     assert.ok(result.browserVersions[kind].includes("20261115-plhu-solar1"), kind);
   assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261115-placement-events1")));
+    row.servedPath.includes("?v=20261127-market-battery1")));
   assert.ok(result.assets.some(row => row.asset === "src/mppt-calculator-offers-browser.js" &&
     row.servedPath.includes("?v=20261115-placement-events1")));
   assert.ok(result.assets.some(row => row.asset === "src/inverter-calculator-offers-browser.js" &&

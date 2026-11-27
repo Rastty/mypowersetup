@@ -11,6 +11,8 @@ import { selectSolarCalculatorOffers } from "../src/solar-calculator-offers.js";
 import { selectSkSolarCalculatorOffers } from "../src/sk-solar-calculator-offers.js";
 import { selectMarketSolarCalculatorOffers } from "../src/pl-hu-solar-calculator-offers.js";
 
+import { acceptMarketBatterySnapshot,reviewedMarketBatteryOffers } from "../src/market-battery-calculator-offers.js";
+
 const PRODUCTION_ORIGIN = "https://mypowersetup.com";
 export const PAGES = Object.freeze([
   Object.freeze({ path: "/pruvodce/spotreba-kompresorove-lednice/", kind: "fridge_guide" }),
@@ -18,6 +20,8 @@ export const PAGES = Object.freeze([
   Object.freeze({ path: "/pruvodce/victron-mppt-100-20-vs-100-30-vs-100-50/", kind: "mppt_guide" }),
   Object.freeze({ path: "/kalkulacky/vydrz-baterie/", kind: "battery_runtime" }),
   Object.freeze({ path: "/kalkulacky/kapacita-baterie/", kind: "battery_capacity" }),
+  Object.freeze({ path: "/sk/kalkulacky/kapacita-baterie/", kind: "sk_battery_capacity" }),
+  Object.freeze({ path: "/pl/kalkulatory/pojemnosc-akumulatora/", kind: "pl_battery_capacity" }),
   Object.freeze({ path: "/kalkulacky/mppt-regulator/", kind: "mppt_calculator" }),
   Object.freeze({ path: "/kalkulacky/vykon-menice/", kind: "inverter_calculator" }),
   Object.freeze({ path: "/kalkulacky/solarni-panely/", kind: "solar_calculator" }),
@@ -42,6 +46,8 @@ export const ASSETS = Object.freeze([
   "src/community-navigation.js",
   "src/battery-calculator-offers-browser.js",
   "src/battery-calculator-offers.js",
+  "src/market-battery-calculator-offers.js",
+  "src/caravan-bms-manufacturer-proof.js",
   "src/mppt-calculator-offers-browser.js",
   "src/mppt-calculator-offers.js",
   "src/inverter-calculator-offers-browser.js",
@@ -129,9 +135,9 @@ export function checkPublicHtml(html, local, { path, kind }) {
     if (!localScript || liveScript !== localScript) fail("PUBLIC_DCDC_VERSION_DRIFT:" + path);
     return localScript;
   }
-  if (["battery_runtime", "mppt_calculator", "battery_capacity", "inverter_calculator", "solar_calculator", "sk_solar_calculator", "pl_solar_calculator", "hu_solar_calculator"].includes(kind)) {
+  if (["battery_runtime", "mppt_calculator", "battery_capacity", "sk_battery_capacity", "pl_battery_capacity", "inverter_calculator", "solar_calculator", "sk_solar_calculator", "pl_solar_calculator", "hu_solar_calculator"].includes(kind)) {
     const intent = kind === "battery_runtime" ? "battery-autonomy"
-      : kind === "battery_capacity" ? "battery-capacity"
+      : ["battery_capacity","sk_battery_capacity","pl_battery_capacity"].includes(kind) ? "battery-capacity"
       : kind === "inverter_calculator" ? "inverter-sizing"
         : ["solar_calculator", "sk_solar_calculator", "pl_solar_calculator", "hu_solar_calculator"].includes(kind) ? "solar-sizing" : "mppt-sizing";
     if (!html.includes('data-calculator-intent="' + intent + '"') ||
@@ -145,6 +151,7 @@ export function checkPublicHtml(html, local, { path, kind }) {
         (!html.includes('data-battery-buyers') || !html.includes('data-battery-offer-list') ||
          !html.includes("Nejde o automatické potvrzení kompatibility")))
       fail("PUBLIC_BATTERY_BUYER_GUARD_MISSING");
+    if (["sk_battery_capacity","pl_battery_capacity"].includes(kind) && (!html.includes('data-calculator-locale="'+kind.slice(0,2)+'"') || !html.includes("data-battery-buyers") || !html.includes("data-battery-offer-list"))) fail("PUBLIC_LOCAL_BATTERY_BUYER_GUARD_MISSING:"+path);
     if (kind === "inverter_calculator" &&
         (!html.includes('data-inverter-buyers') || !html.includes('data-inverter-offer-list')
          || !html.includes("není potvrzení úplné kompatibility")))
@@ -374,7 +381,7 @@ export async function verifyBuyerPathsLive({
     checkedPages.push({ path: page.path, http: 200, canonical: "exact", content: "verified" });
   }
   if (!browserVersions.has("battery_runtime") || !browserVersions.has("battery_capacity") ||
-      !browserVersions.has("mppt_calculator") || !browserVersions.has("inverter_calculator") ||
+      !browserVersions.has("sk_battery_capacity") || !browserVersions.has("pl_battery_capacity") || !browserVersions.has("mppt_calculator") || !browserVersions.has("inverter_calculator") ||
       !browserVersions.has("solar_calculator") || !browserVersions.has("sk_solar_calculator") ||
       !browserVersions.has("pl_solar_calculator") || !browserVersions.has("hu_solar_calculator") ||
       !browserVersions.has("dcdc_calculator") || !browserVersions.has("pl_s400_guide"))
@@ -385,6 +392,7 @@ export async function verifyBuyerPathsLive({
   const phase2Browser = await readLocal("src/phase2-calculator-browser.js");
   const mpptBuyer = await readLocal("src/mppt-calculator-offers-browser.js");
   const batteryBuyer = await readLocal("src/battery-calculator-offers-browser.js");
+  const marketBattery = await readLocal("src/market-battery-calculator-offers.js");
   const buyerModules = await Promise.all([
     "battery", "mppt", "inverter", "solar", "dcdc",
   ].map(name => readLocal(`src/${name}-calculator-offers-browser.js`)));
@@ -394,6 +402,8 @@ export async function verifyBuyerPathsLive({
     // browser. Checking an unversioned dependency could miss stale CDN bytes.
     const dependency = ["src/calculator-handoff.js", "src/calculator-copy.js",
       "src/battery-calculator-offers-browser.js",
+      "src/market-battery-calculator-offers.js",
+      "src/caravan-bms-manufacturer-proof.js",
       "src/mppt-calculator-offers-browser.js",
       "src/inverter-calculator-offers-browser.js",
       "src/solar-calculator-offers-browser.js",
@@ -402,7 +412,8 @@ export async function verifyBuyerPathsLive({
       "src/guide-offer-impressions.js",
       "src/awin-attribution.js",
       "src/calculator-offer-catalog.js"].includes(asset);
-    const importer = asset === "src/calculator-offer-catalog.js" ? batteryBuyer
+    const importer = asset === "src/caravan-bms-manufacturer-proof.js" ? marketBattery
+      : ["src/calculator-offer-catalog.js","src/market-battery-calculator-offers.js"].includes(asset) ? batteryBuyer
       : asset === "src/dcdc-calculator-offers-browser.js" ? phase2Browser
       : asset === "src/awin-attribution.js" || asset === "src/affiliate-analytics.js"
         || asset === "src/guide-offer-impressions.js"
@@ -480,6 +491,16 @@ export async function verifyBuyerPathsLive({
       await fetchPage(fetchImpl, new URL(path, base), "json", sleep, () => retries++),
       await readLocal(path.slice(1)), now());
   }
+  const marketBatteryCatalogs={};
+  for(const market of ["sk","pl"]){
+   const path=`/data/battery-calculator-offers-${market}.json`;
+   const served=await fetchPage(fetchImpl,new URL(path,base),"json",sleep,()=>retries++);
+   const local=await readLocal(path.slice(1));
+   if(normalText(served)!==normalText(local))fail("PUBLIC_MARKET_BATTERY_CATALOG_DRIFT:"+market);
+   const payload=JSON.parse(served);
+   if(!acceptMarketBatterySnapshot(market,payload)||reviewedMarketBatteryOffers(market,payload,Date.parse(payload.generatedAt)).length!==payload.products.length)fail("PUBLIC_MARKET_BATTERY_CATALOG_INVALID:"+market);
+   marketBatteryCatalogs[market]={source:"exact",reviewedProducts:reviewedMarketBatteryOffers(market,payload,now()).length,outboundClickVerified:false,commissionVerified:false};
+  }
   const plS400Path = PL_S400_COMPACT_CATALOG_PATH;
   const plS400Catalog = checkPublicPlS400Catalog(
     await fetchPage(fetchImpl, new URL(plS400Path, base), "json", sleep, () => retries++),
@@ -495,6 +516,7 @@ export async function verifyBuyerPathsLive({
     solarCatalog,
     skSolarCatalog,
     marketSolarCatalogs,
+    marketBatteryCatalogs,
     plS400Catalog,
     transientRetries: retries,
     browserInteractionsVerified: false,

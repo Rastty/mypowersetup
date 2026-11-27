@@ -129,6 +129,7 @@ try {
   const fridgeEstimator = await smokeFridgeEstimator(cdp);
   const mpptBuyerMatches = await smokeMpptBuyerMatches(cdp);
   const batteryBuyerMatches = await smokeBatteryBuyerMatches(cdp);
+  const marketBatteryBuyerMatches = await smokeMarketBatteryBuyers(cdp);
   const expansionEditorial = await smokeExpansionEditorial(cdp);
   const expansionNavigation = await smokeExpansionNavigation(cdp);
 
@@ -143,6 +144,7 @@ try {
     fridgeEstimator,
     mpptBuyerMatches,
     batteryBuyerMatches,
+    marketBatteryBuyerMatches,
     expansionEditorial,
     expansionNavigation,
   }, null, 2));
@@ -616,6 +618,33 @@ async function smokeMpptBuyerMatches(client) {
 
 
 
+async function smokeMarketBatteryBuyers(client) {
+ const fixtures=JSON.parse(await readFile("tests/fixtures/market-battery-calculator-offers.json","utf8"));
+ const reports=[];
+ for(const [market,path,currency] of [["sk","/sk/kalkulacky/kapacita-baterie/","EUR"],["pl","/pl/kalkulatory/pojemnosc-akumulatora/","PLN"]]){
+  await client.send("Page.addScriptToEvaluateOnNewDocument",{source:`(() => {const prior=window.fetch.bind(window);window.__mpsBatteryFixtureMode="fresh";window.fetch=(input,options)=>{if(String(input)!=="/data/battery-calculator-offers-${market}.json")return prior(input,options);const payload=${JSON.stringify(fixtures[market])};payload.generatedAt=window.__mpsBatteryFixtureMode==="fresh"?new Date().toISOString():"2020-01-01T00:00:00Z";return Promise.resolve({ok:true,json:async()=>payload});};})()`});
+  await client.send("Page.navigate",{url:origin+path});
+  await waitFor(async()=>await evaluate(client,'document.readyState==="complete" && Boolean(document.querySelector("[data-battery-buyers]"))'));
+  assert(await evaluate(client,'document.querySelector("[data-battery-buyers]").hidden && !document.querySelector("[data-battery-buyers] a")'),"no preview links");
+  for(const voltage of ["12","24"]){
+   await evaluate(client,'(() => {const f=document.querySelector("[data-calculator-form]");f.elements.namedItem("dailyWh").value="300";f.elements.namedItem("autonomyDays").value="2";f.elements.namedItem("systemVoltage").value="'+voltage+'";f.elements.namedItem("batteryType").value="lifepo4";f.dispatchEvent(new Event("input",{bubbles:true}));f.requestSubmit();})()');
+   await waitFor(async()=>await evaluate(client,'document.querySelector("[data-battery-buyers]").dataset.buyerFetchState==="shown" && !document.querySelector("[data-battery-offer-list]").hidden'));
+   const found=await evaluate(client,'(() => {const p=document.querySelector("[data-battery-buyers]");return {links:[...p.querySelectorAll("a[data-affiliate-click]")].map(a=>({id:a.dataset.productId,merchant:a.dataset.merchant,source:a.dataset.source,href:a.href,text:a.parentElement.textContent})),overflow:document.documentElement.scrollWidth>innerWidth+2};})()');
+   assert(found.links.length>=1&&found.links.length<=3&&!found.overflow,"market battery offers "+market+" "+voltage);
+   const matching=new Set(fixtures[market].products.filter(p=>p.specs.voltageV===Number(voltage)&&p.priceCurrency===currency).map(p=>p.id));
+   assert(found.links.every(p=>matching.has(p.id)&&p.source==="battery-calculator-match"&&p.href.includes("mps_"+market+"_battery")),"wrong market/voltage/placement");
+   assert(found.links.every(p=>p.text.includes(voltage+" V LiFePO₄")&&(market==="sk"?p.text.includes("€"):p.text.includes("zł"))),"wrong display currency");
+  }
+  await evaluate(client,'(() => {const f=document.querySelector("[data-calculator-form]");f.elements.namedItem("batteryType").value="lead";f.dispatchEvent(new Event("input",{bubbles:true}));f.requestSubmit();})()');
+  await waitFor(async()=>await evaluate(client,'!document.querySelector("[data-battery-offer-fallback]").hidden && !document.querySelector("[data-battery-buyers] a")'));
+  await evaluate(client,'(() => {const f=document.querySelector("[data-calculator-form]");f.elements.namedItem("batteryType").value="lifepo4";window.__mpsBatteryFixtureMode="stale";f.dispatchEvent(new Event("input",{bubbles:true}));f.requestSubmit();})()');
+  await waitFor(async()=>await evaluate(client,'!document.querySelector("[data-battery-offer-fallback]").hidden && !document.querySelector("[data-battery-buyers] a")'));
+  await evaluate(client,'(() => {const f=document.querySelector("[data-calculator-form]");f.dispatchEvent(new Event("input",{bubbles:true}));})()');
+  assert(await evaluate(client,'document.querySelector("[data-battery-buyers]").hidden && !document.querySelector("[data-battery-buyers] a")'),"stale link after edit");
+  reports.push({market,voltages:[12,24],currency,agmBlocked:true,staleBlocked:true});
+ }
+ return reports;
+}
 async function smokeBatteryBuyerMatches(client) {
   const path = "/kalkulacky/kapacita-baterie/";
   const fixture = [
