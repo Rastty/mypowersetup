@@ -142,7 +142,7 @@ test("Wave 19 records fresh evidence and promotes the final two indexing gaps fr
   assert.match(homepage, /href="\/kalkulacky\/kapacita-baterie\/"/);
   assert.match(homepage, /href="\/kalkulacky\/solarni-panely\/"/);
   assert.ok(
-    sitemap.includes("<loc>https://mypowersetup.com/</loc><lastmod>2026-10-13</lastmod>"),
+    sitemap.includes("<loc>https://mypowersetup.com/</loc><lastmod>2026-11-27</lastmod>"),
   );
 });
 

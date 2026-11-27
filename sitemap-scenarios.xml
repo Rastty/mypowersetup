@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mypowersetup.com/pruvodce/modelove-sestavy/</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -56,6 +56,42 @@
   </url>
   <url>
     <loc>https://mypowersetup.com/pl/poradnik/praca-z-kampera-zasilanie-laptopa/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mypowersetup.com/pruvodce/modelove-sestavy/vyssi-komfort-karavan/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mypowersetup.com/pruvodce/modelove-sestavy/zimni-karavan-spotreba/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mypowersetup.com/sk/sprievodca/vyssi-komfort-karavan/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mypowersetup.com/sk/sprievodca/zimny-karavan-spotreba/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mypowersetup.com/pl/poradnik/zasilanie-kampera-wiekszy-komfort/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mypowersetup.com/pl/poradnik/zasilanie-kampera-zima/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

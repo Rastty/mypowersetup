@@ -188,10 +188,10 @@ export async function auditPublicSeo({ sitemapXml, readPage }) {
         || !/^\d{4}-\d{2}-\d{2}$/.test(collection.dateModified || "")) {
         failures.push(`${route}:SCENARIO_COLLECTION_INVALID`);
       }
-      const expectedScenarios = ["vikend-v-karavanu", "rodinna-dovolena", "prace-z-karavanu"]
+      const expectedScenarios = ["vikend-v-karavanu", "rodinna-dovolena", "prace-z-karavanu", "vyssi-komfort-karavan", "zimni-karavan-spotreba"]
         .map((slug) => `${SITE_URL}${route}${slug}/`);
       const targets = list?.itemListElement?.map((item) => item.url || item.item) || [];
-      if (list?.numberOfItems !== 3 || targets.length !== 3 || expectedScenarios.some((url) => !targets.includes(url))) {
+      if (list?.numberOfItems !== 5 || targets.length !== 5 || expectedScenarios.some((url) => !targets.includes(url))) {
         failures.push(`${route}:SCENARIO_COLLECTION_LIST_INVALID`);
       }
       if (breadcrumbs.length !== 1 || !breadcrumbNodeIsValid(breadcrumbs[0], market, route)) {
