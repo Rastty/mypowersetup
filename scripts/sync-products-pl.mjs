@@ -1,3 +1,4 @@
+import { projectMarketBatteryCalculatorOffers } from "../src/market-battery-calculator-offers.js";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { parseShopifyProducts } from "../src/shopify.js";
@@ -116,3 +117,5 @@ await writeFile(outputPath, `${JSON.stringify(nextCatalog, null, 2)}\n`);
 await writeFile("data/pl-s400-offers.json",
   JSON.stringify(projectPlS400Offers(nextCatalog, Date.parse(nextCatalog.generatedAt))) + "\n");
 await writeFile("data/solar-calculator-offers-pl.json", JSON.stringify(projectMarketSolarCalculatorOffers("pl", nextCatalog)) + "\n");
+
+await writeFile("data/battery-calculator-offers-pl.json", JSON.stringify(projectMarketBatteryCalculatorOffers("pl", nextCatalog, Date.parse(nextCatalog.generatedAt))) + "\n");
