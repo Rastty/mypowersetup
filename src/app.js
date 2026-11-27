@@ -2,7 +2,7 @@ import { scrollToCaravanStep } from "./caravan-result-scroll.js?v=20261122-resul
 import { APPLIANCES } from "./catalog.js?v=20260823-custom1";
 import { renderDcLoadVoltageNotice } from "./dc-voltage-help.js";
 import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
-import { recommendProducts } from "./products.js?v=20261122-legacy70a";
+import { recommendProducts } from "./products.js?v=20261122-legacy70a-dpsi1-pq200a1-24vhigh1-pq100a1-cz1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20261023-safe-loads1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -14,13 +14,13 @@ import { buildInstallationPlan } from "./installation.js?v=20261117-installation
 import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1";
 import { featuredCaravanBasketBudgetMarkup } from "./caravan-featured-basket-budget.js?v=20261122-merchant-preview1";
 import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261122-mppt-cz1";
-import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261122-legacy70a";
+import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261122-legacy70a-24vhigh1-pq100a1-cz1";
 import { caravanBasketPriceMarkup, caravanLinePrice, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-merchant1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261121-stock-aligned1";
 import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261121-stock-aligned1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
 import { merchantPurchaseCta } from "./purchase-cta.js";
-import { czechProductRequirement, czechProductDecisionFacts, czechPackageFitSummary } from "./product-decision-facts.js?v=20261122-legacy70a-bmslabels1";
+import { czechProductRequirement, czechProductDecisionFacts, czechPackageFitSummary, czechInverterVariantNote } from "./product-decision-facts.js?v=20261122-legacy70a-bmslabels1-24vhigh1-pq100a1-cz1";
 import { calculatePowerStationProfile } from "./power-station.js?v=20260825-1";
 import { mountUsageProfiles } from "./usage-profiles.js?v=20260827-1";
 import { buildPlainLanguageVerdict } from "./verdict.js?v=20260827-1";
@@ -625,6 +625,12 @@ function verifiedSmartSolarManualLink(product) {
   } catch { return ""; }
 }
 
+// The same verified model-specific warning accompanies every purchase CTA.
+function czechInverterVariantMarkup(product) {
+  const note = czechInverterVariantNote(product);
+  return note ? `<small class="caravan-item-requirement" data-inverter-variant-selection>${escapeHtml(note)}</small>` : "";
+}
+
 function renderCaravanBuyerChecklist(plan) {
   const target = document.querySelector("#caravan-buyer-checklist");
   if (!target || !plan) return;
@@ -655,6 +661,7 @@ function renderCaravanBuyerChecklist(plan) {
       <div class="caravan-buying-plan-item"><strong>${escapeHtml(labels[category] || category)}</strong>
         <span>${ready ? `${quantity} ks · ${escapeHtml(product.name)}` : missingReason === "stock_unconfirmed" ? "Vhodný produkt existuje, ale skladovost není potvrzená — zatím nelze doporučit nákup" : missingReason === "pv_nominal_review" ? "Vybraných " + installedPvWp + " Wp panelů přesahuje jmenovitý FV výkon dostupného MPPT (" + nominalPvWp + " Wp). Ověřte s výrobcem možné předimenzování a vstupní limity." : missingReason === "pv_electrical_review" ? "Pro tyto panely chybí potvrzené zapojení k dostupnému MPPT: zkontrolujte napětí Voc za mrazu, zkratový proud Isc, zapojení a rozběhové napětí." : "Chybí ověřený vhodný produkt — individuálně ověřte před nákupem"}</span>
         ${requirement ? `<small class="caravan-item-requirement">${escapeHtml(requirement)}</small>` : ""}
+        ${ready ? czechInverterVariantMarkup(product) : ""}
         ${pvWiringReview ? `<small class="caravan-item-requirement" data-pv-wiring-review>Kontrola výrobních limitů: ${pvWiringReview.series} panel(ů) v sérii × ${pvWiringReview.parallel} paralelní větev; Voc za ${pvWiringReview.coldAmbientC} °C přibližně ${pvWiringReview.coldVocV} V, Isc při ${pvWiringReview.hotCellC} °C přibližně ${pvWiringReview.hotIscA} A. Návrh neověřuje kabeláž, montáž ani skutečné teploty. <a href="${escapeHtml(pvWiringReview.manufacturerUrl)}" target="_blank" rel="noopener noreferrer" data-manufacturer-pv-proof>Specifikace ${escapeHtml(pvWiringReview.manufacturerName)}</a></small>` : ""}
       </div>
       ${ready ? `<a class="caravan-buying-plan-link" href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "caravan-plan"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a>` : ""}
@@ -715,7 +722,7 @@ function packageProductLink(category, product, packageId) {
   const itemPrice = czechProductPrice(product, quantity);
   const itemPriceLabel = itemPrice === null ? "" : `${formatPrice(itemPrice, "CZK")}${quantity > 1 ? " celkem" : ""} · `;
   const fitSummary = product.merchant === "vselektro" ? czechPackageFitSummary(product, latestResult) : null;
-  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(itemPriceLabel)}${escapeHtml(merchantLabel(product.merchant))}</span>${fitSummary ? `<span class="package-product-decision">${escapeHtml(fitSummary)}</span>` : ""}<a class="package-product-link" href="${escapeHtml(attributedAwinUrl(product, category, packageId === "economy" ? "budget" : packageId, "package"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a></li>`;
+  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(itemPriceLabel)}${escapeHtml(merchantLabel(product.merchant))}</span>${fitSummary ? `<span class="package-product-decision">${escapeHtml(fitSummary)}</span>` : ""}${czechInverterVariantMarkup(product)}<a class="package-product-link" href="${escapeHtml(attributedAwinUrl(product, category, packageId === "economy" ? "budget" : packageId, "package"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a></li>`;
 }
 
 function attributedAwinUrl(product, category, recommendationRole, source) {
@@ -752,6 +759,7 @@ function productCard(product, reason, checks, verify, recommendationRole, setup)
         <ul class="product-checks">${checks.map((check) => `<li>${escapeHtml(check)}</li>`).join("")}</ul>
         <p class="product-verify"><strong>Před nákupem:</strong> ${escapeHtml(verify)}</p>
         ${sourceNote}
+        ${czechInverterVariantMarkup(product)}
         <div class="product-card-action">
           <span class="product-price"><strong>${priceLabel}</strong><small>${unitPrice === null ? "Aktuální cenu ověřte u prodejce" : `${unitPriceLabel}${sourceIsStale ? "Cena z posledního úspěšného feedu" : "Cena z produktového feedu"}`}</small></span>
           <a href="${escapeHtml(attributedAwinUrl(product, product.category, recommendationRole, "product-card"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-recommendation-role="${escapeHtml(recommendationRole)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a>
@@ -768,7 +776,7 @@ function featuredProductCard({ product, category, reason }) {
   return `<article class="featured-pick-card" data-featured-category="${escapeHtml(category)}">
     ${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : '<span class="featured-pick-placeholder" aria-hidden="true">✓</span>'}
     <div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(packageCategoryLabel(category))} · doporučená volba</span><h6>${escapeHtml(product.name)}</h6><p>${escapeHtml(reason || "Ověřená shoda s parametry vašeho výpočtu.")}</p><small>${escapeHtml(merchant)}${quantity > 1 ? ` · ${quantity} ks` : ""}</small></div>
-    <div class="featured-pick-action"><strong>${price === null ? "Cena u prodejce" : formatPrice(price, "CZK")}</strong><a href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "result-featured"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="result-featured" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("cs", merchant))}</a></div>
+    <div class="featured-pick-action"><strong>${price === null ? "Cena u prodejce" : formatPrice(price, "CZK")}</strong><a href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "result-featured"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="result-featured" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("cs", merchant))}</a>${czechInverterVariantMarkup(product)}</div>
   </article>`;
 }
 

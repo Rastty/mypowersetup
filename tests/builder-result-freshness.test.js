@@ -108,7 +108,7 @@ test("all four core Builder pages serve the refreshed JS version, without changi
     ["pl/index.html", "app-pl.js"], ["hu/index.html", "app-hu-browser.js"],
   ]) {
     const html = await readFile(new URL("../" + path, import.meta.url), "utf8");
-    const version = ["sk/index.html", "pl/index.html"].includes(path) ? "20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1-dpsi1-pq200a1-24vhigh1-pq100a1" : path === "index.html" ? "20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1" : "20261119-voltage-guide1";
+    const version = ["sk/index.html", "pl/index.html"].includes(path) ? "20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1-dpsi1-pq200a1-24vhigh1-pq100a1" : path === "index.html" ? "20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1-dpsi1-pq200a1-24vhigh1-pq100a1-cz1" : "20261119-voltage-guide1";
     assert.ok(html.includes(`src="/src/${app}?v=${version}"`), path);
     assert.match(html, /class="form-step[^"]*" data-step="3"/, path);
     assert.match(html, /id="product-recommendations"/, path);

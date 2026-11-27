@@ -19,6 +19,10 @@ const MODELS = Object.freeze({
   "30475": { voltage:24, continuous:2000, peak:4000, model:"DPSI 2024", evidence:"https://www.dometic.com/en/product/dometic-sinepower-dpsi-2024-9620017424" },
 });
 const SELLERS = Object.freeze({
+  svetkaravanu: { currency:"CZK", bid:"38137ac4",
+    url:"https://www.svetkaravanu.cz/menic-napeti-dometic-sinepower-dpsi-12-v-nebo-24-v_z104292/",
+    name: (model) => `Měnič napětí Dometic SinePower DPSI 12 V nebo 24 V stálý / špičkový výkon ${model.continuous}/${model.peak} W napětí ${model.voltage} V`,
+  },
   padabo_sk: { currency:"EUR", bid:"7aed5c13",
     url:"https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
     name: (model) => `Menič napätia Dometic SinePower DPSI 12 V alebo 24 V stály / špičkový výkon ${model.continuous}${model.continuous===1000?"":" W"} / ${model.peak} W napätie ${model.voltage} V`,
@@ -51,7 +55,7 @@ function exactApprovedDpsi(product, model, seller) {
 }
 
 export function addReviewedDometicDpsiInverterSpecs(product, specs) {
-  const key=/^(padabo_sk|padabo_pl):104292_(\d+)$/.exec(String(product?.id||""));
+  const key=/^(svetkaravanu|padabo_sk|padabo_pl):104292_(\d+)$/.exec(String(product?.id||""));
   if(!key || !Object.hasOwn(MODELS,key[2]))return specs;
   const merchant=key[1],variant=key[2];
   const model=MODELS[variant],seller=SELLERS[merchant];
