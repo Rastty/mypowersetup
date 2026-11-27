@@ -1,8 +1,9 @@
+import { shoreVariantNote } from "./carbest-shore-profiles.js?v=20261127-carbest1";
 import { scrollToCaravanStep } from "./caravan-result-scroll.js?v=20261122-result-scroll1";
 import { APPLIANCES } from "./catalog-pl.js?v=20260823-custom1";
 import { renderDcLoadVoltageNotice } from "./dc-voltage-help.js";
 import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
-import { recommendProducts } from "./products.js?v=20261122-legacy70a-dpsi1-pq200a1-24vhigh1-pq100a1";
+import { recommendProducts } from "./products.js?v=20261122-legacy70a-dpsi1-pq200a1-24vhigh1-pq100a1-carbest1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20261023-safe-loads1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -15,7 +16,7 @@ import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1-st
 import { featuredCaravanBasketBudgetMarkup } from "./caravan-featured-basket-budget.js?v=20261122-merchant-preview1";
 import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261122-mppt-cz1-stockvalue1";
 import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261122-pq200a1-24vhigh1-pq100a1";
-import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261122-dpsi-variant1";
+import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261122-dpsi-variant1-carbest1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261121-stock-aligned1";
 import { selectFeaturedOffers } from "./featured-core-offers.js?v=20261121-stock-aligned1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
@@ -633,6 +634,11 @@ function renderProductPackages(variants, coverage) {
   }).join("")}</div>`;
 }
 
+function shoreVariantMarkup(product) {
+  const note=shoreVariantNote(product,"pl");
+  return note ? `<small class="caravan-item-requirement" data-shore-variant-selection>${escapeHtml(note)}</small>` : "";
+}
+
 function packageProductLink(category, product, packageId) {
   const quantity = product.recommendedQuantity || 1;
   const quantityLabel = quantity > 1 ? `${quantity} szt. · ` : "";
@@ -640,7 +646,7 @@ function packageProductLink(category, product, packageId) {
   const unitPrice = hasFeedPrice ? Number(product.priceCzk) : NaN;
   const itemPrice = Number.isFinite(unitPrice) && unitPrice >= 0 ? formatPrice(unitPrice * quantity, product.priceCurrency) : "";
   const itemPriceLabel = itemPrice ? `${itemPrice}${quantity > 1 ? " łącznie" : ""} · ` : "";
-  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(itemPriceLabel)}${escapeHtml(merchantLabel(product.merchant))}</span><a class="package-product-link" href="${escapeHtml(attributedAwinUrl(product, category, packageId === "economy" ? "budget" : packageId, "package"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("pl", merchantLabel(product.merchant)))}</a></li>`;
+  return `<li><small>${packageCategoryLabel(category)}</small><strong>${escapeHtml(product.name)}</strong><span class="package-product-meta">${quantityLabel}${escapeHtml(itemPriceLabel)}${escapeHtml(merchantLabel(product.merchant))}</span>${shoreVariantMarkup(product)}<a class="package-product-link" href="${escapeHtml(attributedAwinUrl(product, category, packageId === "economy" ? "budget" : packageId, "package"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="package" data-package-id="${escapeHtml(packageId)}" data-recommendation-role="${escapeHtml(packageId === "economy" ? "budget" : packageId)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("pl", merchantLabel(product.merchant)))}</a></li>`;
 }
 
 function attributedAwinUrl(product, category, recommendationRole, source) {
@@ -660,7 +666,7 @@ function featuredProductCard({ product, category, reason }) {
   return `<article class="featured-pick-card" data-featured-category="${escapeHtml(category)}">
     ${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="" loading="lazy" />` : '<span class="featured-pick-placeholder" aria-hidden="true">✓</span>'}
     <div class="featured-pick-copy"><span class="featured-pick-category">${escapeHtml(packageCategoryLabel(category))} · polecany wybór</span><h6>${escapeHtml(product.name)}</h6><p>${escapeHtml(reason || "Zweryfikowana zgodność z parametrami obliczenia.")}</p><small>${escapeHtml(merchant)}${quantity > 1 ? ` · ${quantity} szt.` : ""}</small></div>
-    <div class="featured-pick-action"><strong>${price}</strong><a href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "result-featured"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="result-featured" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("pl", merchant))}</a>${variantNote ? `<small class="featured-pick-variant-note" data-inverter-variant-selection>${variantNote}</small>` : ""}</div>
+    <div class="featured-pick-action"><strong>${price}</strong><a href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "result-featured"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="result-featured" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("pl", merchant))}</a>${variantNote ? `<small class="featured-pick-variant-note" data-inverter-variant-selection>${variantNote}</small>` : ""}${shoreVariantMarkup(product)}</div>
   </article>`;
 }
 
@@ -685,6 +691,7 @@ function productCard(product, reason, checks, verify, recommendationRole) {
         <ul class="product-checks">${checks.map((check) => `<li>${escapeHtml(check)}</li>`).join("")}</ul>
         <p class="product-verify"><strong>Przed zakupem:</strong> ${escapeHtml(verify)}</p>
         ${sourceNote}
+        ${shoreVariantMarkup(product)}
         <div class="product-card-action">
           <span class="product-price"><strong>${priceLabel}</strong><small>${unitPriceLabel}${sourceIsStale ? "Cena z ostatniego poprawnego importu" : "Cena z katalogu produktowego"}</small></span>
           <a href="${escapeHtml(attributedAwinUrl(product, product.category, recommendationRole, "product-card"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="product-card" data-recommendation-role="${escapeHtml(recommendationRole)}" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(product.category)}">${escapeHtml(merchantPurchaseCta("pl", merchantLabel(product.merchant)))}</a>
