@@ -1,3 +1,4 @@
+import { concurrentChargeReviewMarkup } from "./caravan-concurrent-charge-review.js?v=20261127-chargesum1";
 import { dcdcValueNote } from "./reviewed-dcdc-value-profiles.js?v=20261127-dcdcvalue1";
 import { shoreVariantNote } from "./carbest-shore-profiles.js?v=20261127-carbest1";
 import { scrollToCaravanStep } from "./caravan-result-scroll.js?v=20261122-result-scroll1";
@@ -15,8 +16,8 @@ import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
 import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1-stockvalue1-shorepair1";
 import { featuredCaravanBasketBudgetMarkup } from "./caravan-featured-basket-budget.js?v=20261122-merchant-preview1";
-import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261122-mppt-cz1-stockvalue1-shorepair1";
-import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261122-legacy70a-24vhigh1-pq100a1-cz1-shorepair1";
+import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261122-mppt-cz1-stockvalue1-shorepair1-chargesum1";
+import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261122-legacy70a-24vhigh1-pq100a1-cz1-shorepair1-chargesum1";
 import { caravanBasketPriceMarkup, caravanLinePrice, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-merchant1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261121-stock-aligned1";
 import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261121-stock-aligned1";
@@ -658,6 +659,7 @@ function renderCaravanBuyerChecklist(plan) {
       <strong class="caravan-buying-plan-count">${plan.readyCount} z ${plan.requiredCount} ověřených kategorií</strong>
     </div>
     <p class="caravan-buying-plan-note">${stateNote}</p>
+    ${concurrentChargeReviewMarkup(plan.concurrentChargeReview,"cs")}
     <ol class="caravan-buying-plan-rows">${plan.rows.map(({ category, product, ready, quantity, requirement, missingReason, installedPvWp, nominalPvWp, pvWiringReview, shoreCapacityReview }) => `<li data-buying-category="${escapeHtml(category)}" data-shopping-quantity="${ready ? quantity : 0}" class="${ready ? "is-ready" : "is-missing"}">
       <span class="caravan-buying-plan-mark" aria-hidden="true">${ready ? "✓" : "!"}</span>
       <div class="caravan-buying-plan-item"><strong>${escapeHtml(labels[category] || category)}</strong>

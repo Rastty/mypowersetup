@@ -1,3 +1,4 @@
+import { reviewConcurrentCharging } from "./caravan-concurrent-charge-review.js?v=20261127-chargesum1";
 import { reviewShoreBatteryCapacity, replaceReviewedShoreMismatch } from "./caravan-shore-capacity-review.js?v=20261127-shorepair1";
 import { isRecommendationEligible } from "./recommendation-coverage.js";
 import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1-stockvalue1-shorepair1";
@@ -126,7 +127,8 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
     }else if(review)rows[shoreIndex]={...selected,shoreCapacityReview:review};
   }
   const available = rows.filter((row) => row.ready).length;
-  const manualDesign = Boolean(coverage.manualDesignCharging?.length);
+  const concurrentChargeReview = ["cs","sk","pl"].includes(locale) ? reviewConcurrentCharging(rows) : null;
+  const manualDesign = Boolean(coverage.manualDesignCharging?.length) || concurrentChargeReview?.status==="over_max";
   const complete = rows.length > 0 && available === rows.length && !manualDesign;
   return {
     rows,
@@ -137,6 +139,7 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
     requiredCount: rows.length,
     complete,
     manualDesign,
+    concurrentChargeReview,
     status: complete ? "complete" : available ? "partial" : "unavailable",
   };
 }

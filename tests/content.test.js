@@ -448,7 +448,7 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1-dpsi1-pq200a1-24vhigh1-pq100a1-cz1-value1-stockvalue1-carbest1-shorepair1-dcdcvalue1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1-dpsi1-pq200a1-24vhigh1-pq100a1-cz1-value1-stockvalue1-carbest1-shorepair1-dcdcvalue1-chargesum1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20261119-voltage-dc-load1"'));
   assert.ok(app.includes('from "./products.js?v=20261122-legacy70a-dpsi1-pq200a1-24vhigh1-pq100a1-cz1-value1-carbest1-dcdcvalue1"'));
@@ -545,7 +545,7 @@ test("Slovak calculator is localized, indexable and isolated from Czech products
   assert.ok(html.includes('hreflang="cs-CZ"'));
   assert.ok(html.includes('hreflang="sk-SK"'));
   assert.doesNotMatch(html, /\\n/);
-  assert.ok(html.includes('src="/src/app-sk.js?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1-dpsi1-pq200a1-24vhigh1-pq100a1-stockvalue1-carbest1-shorepair1-dcdcvalue1"'));
+  assert.ok(html.includes('src="/src/app-sk.js?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1-dpsi1-pq200a1-24vhigh1-pq100a1-stockvalue1-carbest1-shorepair1-dcdcvalue1-chargesum1"'));
   assert.ok(app.includes('fetch("/data/products-sk.json"'));
   assert.ok(app.includes('locale: "sk"'));
   assert.ok(app.includes('currency = "EUR"'));
@@ -581,7 +581,7 @@ test("Polish calculator is localized, indexable and isolated to its verified cat
   assert.ok(html.includes('"@id": "https://mypowersetup.com/pl/o-projekcie/#petr-galik"'));
   assert.ok(html.includes('"url": "https://mypowersetup.com/pl/o-projekcie/"'));
   assert.doesNotMatch(html, /placeholder="napr\./);
-  assert.ok(html.includes('src="/src/app-pl.js?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1-dpsi1-pq200a1-24vhigh1-pq100a1-stockvalue1-carbest1-shorepair1-dcdcvalue1"'));
+  assert.ok(html.includes('src="/src/app-pl.js?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1-dpsi1-pq200a1-24vhigh1-pq100a1-stockvalue1-carbest1-shorepair1-dcdcvalue1-chargesum1"'));
   assert.ok(app.includes('products.js?v=20261122-legacy70a'));
   assert.match(html, /Jakiego akumulatora i paneli naprawdę potrzebujesz/);
   assert.match(html, /Zanim zaczniesz kupować/);
