@@ -196,7 +196,7 @@ test("bounded 503 retries recover once, while permanent 502 fails closed", async
   const success = await verifyBuyerPathsLive({ fetchImpl: transient, sleep: async ms => { delays.push(ms); } });
   assert.equal(success.transientRetries, 1);
   assert.deepEqual(delays, [250]);
-  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 10 + Number(await dcdcReady()));
+  assert.equal(transient.calls.length, PAGES.length + ASSETS.length + 13 + Number(await dcdcReady()));
   let calls = 0;
   await assert.rejects(verifyBuyerPathsLive({ sleep: async () => {}, fetchImpl: async input => {
     calls++;

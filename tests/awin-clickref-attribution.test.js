@@ -211,7 +211,7 @@ test("all three CZ calculator product links carry the commission category withou
     const source = await readFile(new URL("../src/" + file, import.meta.url), "utf8");
     assert.match(source, /import \{ decorateAwinAffiliateUrl \} from "\.\/awin-attribution\.js\?v=20261115-placement-subids1";/, file);
     assert.match(source, /link\.href = decorateAwinAffiliateUrl\(offer\.affiliateUrl, \{/, file);
-    assert.ok(source.includes(`market: "cz", category: "${category}"`), file);
+    assert.ok(source.includes(file === "battery-calculator-offers-browser.js" ? 'market: market ? locale : "cz", category: "battery"' : `market: "cz", category: "${category}"`), file);
     const decorated = new URL(decorateAwinAffiliateUrl(exactUrl, {
       market: "cz", category, source: "product-card", scenarioCampaign: "cz_size_result",
     }));
