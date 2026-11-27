@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T03:30:40.975Z",
+  "generatedAt": "2026-11-27T03:30:59.674Z",
   "market": "sl-SI",
   "currency": "EUR",
   "private": false,
@@ -22,7 +22,7 @@
       "status": "ok",
       "awinMerchantId": 38934,
       "affiliateId": 3044971,
-      "exactProducts": 27
+      "exactProducts": 20
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -150,74 +150,10 @@
   },
   "products": [
     {
-      "id": "allpowers_eu:8205921124659",
-      "merchant": "allpowers_eu",
-      "name": "ALLPOWERS SP034 Portable Solar Panel 120W",
-      "description": "",
-      "categoryPath": "Solar Panel",
-      "category": "solar_panel",
-      "brand": "ALLPOWERS",
-      "priceCzk": 139,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://iallpowers.eu/products/allpowers-sp034-portable-solar-panel-120w",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-sp034-portable-solar-panel-120w",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/products/ALLPOWERS-SP034-Portable-Solar-Panel-120W-ALLPOWERS-30163570.jpg?v=1755061816",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 120,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "marketEligible": true,
-      "verifiedAt": "2026-11-26"
-    },
-    {
-      "id": "allpowers_eu:10257573445939",
-      "merchant": "allpowers_eu",
-      "name": "ALLPOWERS R2500 PLUS Portable Power Station 2500W 2016Wh",
-      "description": "Capacity 2016 Wh. Continuous AC output 2500 W with pure sine wave. Solar input up to 1000 W. Regulated 12 V DC output up to 10 A. LiFePO4 battery.",
-      "categoryPath": "Portable Power Station",
-      "category": "power_station",
-      "brand": "ALLPOWERS",
-      "priceCzk": 1044,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://iallpowers.eu/products/r2500-plus",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fr2500-plus",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-R2500-V2-Portable-Power-Station-2500W-1920Wh-LiFeP04-Battery-ALLPOWERS-123497789.webp?v=1783440291",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": 2016,
-        "powerW": 2500,
-        "currentA": 10,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [
-          "lifepo4"
-        ],
-        "batteryType": "lifepo4",
-        "pureSine": true,
-        "solarInputW": 1000,
-        "dcOutputA": 10
-      },
-      "verifiedAt": "2026-08-30",
-      "marketEligible": true
-    },
-    {
       "id": "allpowers_eu:8205926072627",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS SP035 Foldable Solar Panel 200W",
-      "description": "About this item: 【HIGHER CONVERSION RATE】ALLPOWERS 200W foldable monocrystalline solar panel has high conversion efficiency, which is up to 24%. 200W foldable solar panel generates more energy and perform better than conventional solar panels in any weather. 【ETFE MARITIAL】Made with advanced laminated technology and long-lasting ETFE material on the surface, ALLPOWERS 200W foldable solar charger is more durable and scratch-resistant. It is IP67 water resistant that will protect from high pressure water jets from any direction. 【LIGHTWEIGHT AND PORTABLE】ALLPOWERS 200W portable solar panel is lightweight , portable, foldable and flexible( folded Size: 20.67*21.06 inch, net weight: only 11.02lb). Adjustable kickstands make it easy to install and adjust its angle for better sunlight absorption. The handle makes it easy to carry outdoor for camping or RV. 【COMPATIBLE AND WIDELY USED】ALLPOWERS 200W monocrystalline solar panel with MC-4 Output(25A max) is compatible with most solar generator/portable power station on the market. The portable solar panel includes different size of connectors( MC-4 to Anderson, MC-4 to DC cable) for ALLPOWERS portable generator,such as 606wh and 1500wh. 【WHAT YOU GET】ALLPOWERS 200W foldable monocrystalline solar panel, MC-4 to Anderson cable, MC-4 to DC cable, 5 laptop connectors, User Manual, 18 months warrantee and friendly customer service.",
+      "description": "ALLPOWERS SP035 200W Foldable Portable Solar Panel Enjoy reliable solar charging wherever your adventures take you with the ALLPOWERS SP035 200W Foldable Solar Panel. Featuring high-efficiency monocrystalline solar cells with up to 25% conversion efficiency, this portable panel helps you make the most of available sunlight. Its foldable design, durable ETFE coating and IP67-rated protection make it a convenient solar charging solution for camping, RV travel, outdoor activities and off-grid power needs. Key Features 200W Solar Charging Power Delivering up to 200W of rated solar power, the SP035 helps recharge compatible portable power stations with clean, renewable energy. It's a practical choice for outdoor trips and off-grid charging. Up to 25% Conversion Efficiency Equipped with high-efficiency monocrystalline solar cells, the SP035 offers up to 25% solar conversion efficiency to make better use of available sunlight. Durable ETFE Surface The long-lasting ETFE coating helps protect the solar panel surface while supporting reliable outdoor use. Foldable and Portable Design The compact folding design makes the SP035 easier to carry, transport and store. Take it along for camping, road trips, RV adventures or use it in a suitable outdoor space. IP67 Protection Designed with IP67-rated protection to help guard against dust and water ingress under specified testing conditions, making it suitable for a range of outdoor environments. Adjustable Stand for Better Sunlight Exposure The integrated adjustable bracket helps position the panel toward the sun. Adjust its angle to improve sunlight exposure throughout the day. Compatible with Portable Power Stations The SP035 is designed for use with compatible portable power stations. Before connecting, check that the power station supports the panel's voltage, current and connector requirements. Technical Specifications Brand: ALLPOWERS Model: SP035 Rated Power: 200W Solar Cell Type: Monocrystalline Solar Conversion Efficiency: Up to 25% Surface Coating: ETFE Voltage at Maximum Power (Vmp): 40V Current at Maximum Power (Imp): 5A Open Circuit Voltage (Voc): 50.6V Short Circuit Current (Isc): 5.9A Protection Rating: IP67 Operating Temperature: -10°C to 60°C Folded Dimensions: 52.5 × 53.49 cm Unfolded Dimensions: 52.5 × 223.01 cm Net Weight: 5 kg Ideal for Camping and outdoor adventures RV and campervan trips Off-grid solar charging Portable power station charging Road trips and outdoor travel Emergency power preparation What's Included 1 × ALLPOWERS SP035 200W Solar Panel 1 × Solar Cable to XT60 Cable 1 × Solar Cable 5 × Connection Adapters 1 × User Manual Important Compatibility Notice Please check your portable power station's maximum solar input voltage, current and power limits before connecting the SP035. Actual charging performance depends on sunlight intensity, panel angle, weather conditions and the power station's input specifications. The panel's rated 200W output does not guarantee 200W charging at all times. Warranty: 2-Year Warranty Returns: 30-Day Money-Back Guarantee",
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
@@ -228,11 +164,11 @@
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-sp035-foldable-solar-panel-200w",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-SP035-Foldable-Solar-Panel-200W-ALLPOWERS-124322117.webp?v=1784123680",
       "specs": {
-        "voltageV": null,
+        "voltageV": 36,
         "capacityAh": null,
-        "capacityWh": 606,
+        "capacityWh": null,
         "powerW": 200,
-        "currentA": 25,
+        "currentA": 5,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -242,7 +178,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:8205919715635",
@@ -273,13 +209,13 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:10143263129907",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS 4PCS SF100 Flexible Solar Panel 100W",
-      "description": "About this item 【Light Weight &amp; Extremely Flexible】Single SF100 solar panel only 5.29 lbs, 0.11 inch thin, less than conventional solar panels, easy to carry. Thanks to the advanced polymer material, it can be bent into a U-shape, which can fit curved planes, such as the front of the RV and the roof. 【Easy to Install】MC-4 output ports can be transferred to any power station or home solar system. The accompanying 6 straps and curved surfaces allow it to be installed in RVs, roofs, campers, trailers, boats, cabins, sheds, tents, and yachts. 【High Conversion Efficiency】SF100 uses advanced Monocrystalline material inside, whose conversion rate can reach 23%-25%. Honeycomb ETFE is used on the surface, and the unevenness forms refraction to collect sunlight from different angles. Coupled with the MC-4 port with minimal loss, you can get more power at the same time. 【Durable Material for All Weather】ALLPOWERS flexible solar panel surface is made of IP68 waterproof ETFE material, which can resist extreme weather such as high temperatures, freezing, sandstorms, and rainstorms. And the component contains a bypass diode and uses input over current protection and reverse protection design.",
+      "description": "ALLPOWERS 4PCS SF100 Flexible Solar Panel 400W Kit Expand your off-grid solar setup with the ALLPOWERS 4PCS SF100 Flexible Solar Panel Kit. Featuring four ALLPOWERS SF100 100W flexible solar panels, this kit delivers a combined rated output of up to 400W. Equipped with high-efficiency monocrystalline solar cells, the panels offer up to 25% solar conversion efficiency to help you make better use of available sunlight. With a lightweight and flexible construction, each SF100 panel weighs only 2.39kg and is suitable for selected curved and flat installation surfaces. Whether you're powering an RV, campervan, boat, caravan or off-grid cabin, this 4-panel kit provides a versatile way to harness renewable solar energy. Key Features 400W Combined Solar Power The kit includes four 100W SF100 flexible solar panels, providing a combined rated output of 400W. Capture more sunlight to support your off-grid energy needs and compatible solar charging systems. Up to 25% Solar Conversion Efficiency Each panel features high-efficiency monocrystalline silicon solar cells with up to 25% conversion efficiency, helping convert available sunlight into usable electricity. Flexible and Lightweight Design The flexible construction allows each panel to fit selected curved and uneven surfaces. At approximately 2.39kg per panel, the SF100 is easy to handle and suitable for mobile solar installations. Durable Multi-Layer Construction The SF100 features a multi-layer laminated construction designed for durability and outdoor performance. Its lightweight profile makes it a practical alternative to traditional rigid solar panels in suitable installations. IP68-Rated Junction Box Each panel features an IP68-rated junction box designed to help protect electrical connections against dust and water ingress under specified testing conditions. Versatile Off-Grid Applications The four-panel configuration offers flexible installation possibilities for: RV and campervan roofs Boats and yachts Caravans and trailers Cabins and sheds Off-grid solar installations Remote outdoor power systems Flexible Solar System Configuration The four panels can be incorporated into a compatible solar charging system. Series and parallel connections produce different voltage and current values, so always check the limits of your solar charge controller or portable power station before installation. Technical Specifications Product Kit Brand: ALLPOWERS Model: SF100 Quantity: 4 Panels Rated Power per Panel: 100W ±5% Combined Rated Power: 400W Solar Cell Type: Monocrystalline Silicon Solar Conversion Efficiency: 22%–25% Specifications per Panel Maximum Power (Pmax): 100W ±5% Open Circuit Voltage (Voc): 30.6V ±5% Voltage at Maximum Power (Vmp): 25.5V ±5% Short Circuit Current (Isc): 4.58A ±5% Current at Maximum Power (Imp): 4.17A ±5% Junction Box Protection: IP68 Operating Temperature: -20°C to 85°C Dimensions: 100.78 × 57.98 × 0.27 cm Weight: 2.39 kg Combined Weight: Approximately 9.56kg for four panels, excluding cables and packaging. Ideal for RV and campervan solar systems Boat and yacht solar installations Caravan and trailer power setups Cabin and shed solar applications Off-grid energy systems Compatible portable power station charging What's Included 4 × ALLPOWERS SF100 100W Flexible Solar Panels Solar connection cables and adapters as supplied with the kit User documentation Important Compatibility Notice The four SF100 panels provide a combined rated power of 400W. Before connecting them to a portable power station or solar charge controller, check the equipment's maximum solar input voltage, current and power limits. Series and parallel connections produce different voltage and current values. Make sure the selected configuration is supported by your equipment. Actual solar output depends on sunlight intensity, installation angle, temperature and environmental conditions. Warranty: 2-Year Warranty Returns: 30-Day Money-Back Guarantee",
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
@@ -290,11 +226,11 @@
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-4pcs-sf100-flexible-solar-panel-100w",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-4PCS-SF100-Flexible-Solar-Panel-100W-ALLPOWERS-120473913.jpg?v=1775745984",
       "specs": {
-        "voltageV": null,
+        "voltageV": 24,
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 100,
-        "currentA": null,
+        "currentA": 4.58,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -304,13 +240,13 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:10143246418227",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS 2PCS SF200 Flexible Solar Panel 200W",
-      "description": "High Conversion Efficiency; Light Weight &amp; Extremely Flexible IP68 waterproof ETFE Material Compatible With Most Solar Generators with MC4 Connectors",
+      "description": "ALLPOWERS 2PCS SF200 Flexible Solar Panel 400W Kit Get more solar power for your off-grid adventures with the ALLPOWERS 2PCS SF200 Flexible Solar Panel Kit. Featuring two 200W flexible solar panels, this kit delivers a combined rated output of up to 400W. Built with high-efficiency monocrystalline solar cells and durable honeycomb ETFE surfaces, the panels offer up to 25% solar conversion efficiency. With their lightweight and flexible construction, the SF200 panels are suitable for a variety of installations, including RV roofs, caravans, boats, cabins and other off-grid applications. Whether you're expanding your solar setup or charging a compatible portable power station, this 2-panel kit gives you more flexibility to harness solar energy. Key Features 400W Combined Solar Power The kit includes two ALLPOWERS SF200 200W flexible solar panels, providing a combined rated output of 400W. Capture more sunlight to support your off-grid energy needs and recharge compatible power stations. Up to 25% Solar Conversion Efficiency Each panel features high-efficiency monocrystalline solar cells with up to 25% conversion efficiency, helping convert available sunlight into usable electricity. Flexible and Lightweight Design The flexible construction makes the SF200 suitable for selected curved and uneven installation surfaces. At approximately 4.1kg per panel, each unit is easier to handle and install than many traditional rigid solar panels. Durable Honeycomb ETFE Surface Each panel features a honeycomb-textured ETFE surface designed to capture sunlight from different angles while providing a protective layer for outdoor use. IP68 Protection With an IP68-rated design, the panels offer protection against dust and water ingress under specified testing conditions, making them suitable for a range of outdoor solar applications. Ideal for RVs, Boats and Off-Grid Systems The flexible design makes this kit suitable for selected RV roofs, caravans, boats, yachts, cabins, trailers and other off-grid installations. Flexible Solar Charging Setup Use the two panels as part of a compatible solar charging system. Before connecting them in series or parallel, check the voltage and current limits of your charge controller or portable power station. Technical Specifications Product Kit Brand: ALLPOWERS Model: SF200 Quantity: 2 Panels Rated Power per Panel: 200W ±5% Combined Rated Power: 400W Solar Cell Type: Monocrystalline Silicon Surface Material: Honeycomb ETFE Solar Conversion Efficiency: 22%–25% Protection Rating: IP68 Specifications per Panel Maximum Power (Pmax): 200W ±5% Open Circuit Voltage (Voc): 38.4V ±5% Short Circuit Current (Isc): 6.87A ±5% Voltage at Maximum Power (Vmp): 32V ±5% Current at Maximum Power (Imp): 6.25A ±5% Maximum System Voltage: 120V Dimensions: 137.5 × 78 × 0.3 cm Weight: 4.1 kg Combined Weight: Approximately 8.2 kg for two panels, excluding cables and packaging. Ideal for RV and campervan solar installations Caravan and trailer solar systems Boat and yacht solar charging Cabin and shed solar setups Off-grid energy systems Compatible portable power station charging What's Included 2 × ALLPOWERS SF200 200W Flexible Solar Panels Solar connection cables and adapters as supplied with the kit User documentation Important Compatibility Notice The two SF200 panels provide a combined rated power of 400W. Before connecting them to a portable power station or solar charge controller, check the maximum solar input voltage, current and power limits of your equipment. Series and parallel connections produce different voltage and current values. Make sure the selected connection method is supported by your equipment. Actual solar output depends on sunlight intensity, installation angle, temperature and environmental conditions. Warranty: 2-Year Warranty Returns: 30-Day Money-Back Guarantee",
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
@@ -321,11 +257,11 @@
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-2pcs-sf200-flexible-solar-panel-200w",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-2PCS-SF200-Flexible-Solar-Panel-200W-ALLPOWERS-120472746.jpg?v=1775745106",
       "specs": {
-        "voltageV": null,
+        "voltageV": 36,
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 200,
-        "currentA": null,
+        "currentA": 6.87,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -335,13 +271,13 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:9948837937459",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS SE200 Solar Panel 200W",
-      "description": "ALLPOWERS SE200 boasts an industry-leading 25% photovoltaic conversion efficiency. Monocrystalline silicon modules further enhance the efficiency of solar panels. With just one solar panel and sunlight, you can easily generate electricity.",
+      "description": "ALLPOWERS SE200 Portable Solar Panel 200W Harness the power of the sun wherever you go with the ALLPOWERS SE200 200W Foldable Solar Panel. Featuring high-efficiency monocrystalline solar cells and a durable ETFE surface, the SE200 delivers up to 200W of solar power with a conversion efficiency of up to 25%. Designed for portable power and outdoor adventures, the SE200 features a foldable design and adjustable kickstand, making it easy to transport, set up and position toward the sun. Whether you're camping, travelling in an RV, boating or preparing for off-grid power needs, the SE200 provides a convenient way to recharge compatible portable power stations with renewable energy. Key Features 200W High-Output Solar Charging With a rated power of 200W, the SE200 helps recharge compatible portable power stations using clean solar energy. Enjoy a practical solar charging solution for outdoor activities, road trips and off-grid applications. Up to 25% Solar Conversion Efficiency Equipped with high-efficiency monocrystalline solar cells, the SE200 achieves up to 23%–25% solar conversion efficiency, helping maximize energy generation from available sunlight. Foldable and Portable Design The foldable construction makes the SE200 easy to transport and store. Take it camping, on road trips or along with your portable power station for convenient outdoor solar charging. Adjustable Kickstand for Better Sunlight Exposure The integrated adjustable rear stand allows you to adjust the panel angle according to sunlight conditions, helping improve solar exposure and charging performance. Durable ETFE Surface The SE200 features monocrystalline solar cells with ETFE encapsulation, designed to provide a durable protective surface for outdoor solar charging applications. IP68 Protection Designed with IP68-rated protection to help guard against dust and water ingress under specified testing conditions, making the SE200 suitable for outdoor solar applications. Wide Compatibility The SE200 is compatible with selected ALLPOWERS portable power stations, including S700, S1500 Plus, R600, R1500, R1500 LITE, R2500, R3500, R4000, S2000, S2000 Pro and P1800. It can also work with other compatible portable power stations when their solar input voltage, current, power and connector requirements match. Technical Specifications Brand: ALLPOWERS Model: SE200 Rated Maximum Power: 200W Solar Cell Type: Monocrystalline Silicon Surface Material: ETFE Solar Conversion Efficiency: 23%–25% Open Circuit Voltage (Voc): 48.96V Voltage at Maximum Power (Vmp): 41.6V Short Circuit Current (Isc): 5.33A Current at Maximum Power (Imp): 4.8A Protection Rating: IP68 Operating Temperature: -20°C to 60°C Unfolded Dimensions: 205.6 × 58.7 × 0.3 cm Folded Dimensions: 55.9 × 58.7 × 2 cm Weight: 7.16 kg Ideal for Camping and outdoor adventures RV and campervan trips Boat and marine applications Off-grid solar charging Portable power station charging Emergency backup power preparation What's Included 1 × ALLPOWERS SE200 200W Foldable Solar Panel Solar Connection Cable and Adapters as supplied with the product 1 × User Manual Important Compatibility Notice Before connecting the SE200 to a portable power station or solar charge controller, check the equipment's maximum solar input voltage, current and power limits. Actual charging performance depends on sunlight intensity, panel angle, weather conditions and the connected device's input specifications. The rated 200W output is a peak specification and may vary under real-world conditions. Warranty: 2-Year Warranty Returns: 30-Day Money-Back Guarantee",
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
@@ -352,11 +288,11 @@
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fsolax-se200",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-SOLAX-SE200-Solar-Panel-200W-ALLPOWERS-105106471.jpg?v=1778257524",
       "specs": {
-        "voltageV": null,
+        "voltageV": 48,
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 200,
-        "currentA": null,
+        "currentA": 5.33,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -366,13 +302,13 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:9875554074931",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS SE100 Solar Panel 100W",
-      "description": "ALLPOWERS SE100 boasts an industry-leading 25% photovoltaic conversion efficiency. Monocrystalline silicon modules further enhance the efficiency of solar panels. With just one solar panel and sunlight, you can easily generate electricity.",
+      "description": "ALLPOWERS SE100 Portable Solar Panel 100W Enjoy convenient solar charging wherever you go with the ALLPOWERS SE100 100W Foldable Solar Panel. Featuring high-efficiency monocrystalline solar cells and a durable ETFE surface, the SE100 delivers up to 100W of solar power with a conversion efficiency of up to 25%. Designed for portability and outdoor use, this lightweight foldable solar panel features an integrated adjustable kickstand, allowing you to position it toward the sun for better solar exposure. Whether you're camping, travelling in an RV, boating or preparing for off-grid power needs, the SE100 provides a practical way to recharge compatible portable power stations using clean solar energy. Key Features 100W Portable Solar Power With a rated output of 100W ±5%, the SE100 helps recharge compatible portable power stations, solar generators and 12V battery systems using renewable solar energy. Up to 25% Solar Conversion Efficiency Built with high-efficiency monocrystalline silicon solar cells, the SE100 offers up to 23%–25% solar conversion efficiency, helping capture more energy from available sunlight. Durable ETFE Surface The ETFE laminated surface provides a durable protective layer designed for outdoor solar charging applications. Foldable and Easy to Carry The compact foldable design makes the SE100 easy to transport and store. Take it camping, on road trips or along with your portable power station for convenient outdoor charging. Adjustable Integrated Kickstand The built-in adjustable stand allows you to change the panel angle according to sunlight conditions, helping improve solar exposure throughout the day. IP68 Water and Dust Protection Designed with IP68-rated protection to help guard against dust and water ingress under specified testing conditions, making the SE100 suitable for outdoor environments. Wide Compatibility The SE100 is compatible with selected ALLPOWERS portable power stations, including S300 Plus, S700, S1500 Plus, R600, R1500, R1500 LITE, R2500, R3500, R4000, S2000 Pro and P1800. It can also work with other compatible power stations when their solar input voltage, current, power and connector requirements match. Technical Specifications Brand: ALLPOWERS Model: SE100 Rated Maximum Power: 100W ±5% Solar Cell Type: Monocrystalline Silicon Surface Material: ETFE Solar Conversion Efficiency: 23%–25% Open Circuit Voltage (Voc): 24.48V Voltage at Maximum Power (Vmp): 20.8V Short Circuit Current (Isc): 5.33A Current at Maximum Power (Imp): 4.8A Protection Rating: IP68 Operating Temperature: -20°C to 60°C Unfolded Dimensions: 105 × 58.7 × 0.3 cm Folded Dimensions: 58.7 × 58.7 × 0.55 cm Weight: 3.8 kg Ideal for Camping and outdoor adventures RV and campervan trips Boat and marine applications Off-grid solar charging Portable power station charging Emergency backup power preparation What's Included 1 × ALLPOWERS SE100 100W Foldable Solar Panel 1 × Solar Connection Cable 1 × User Manual Important Compatibility Notice Before connecting the SE100 to a portable power station or solar charge controller, check the equipment's maximum solar input voltage, current and power limits. Actual charging performance depends on sunlight intensity, panel angle, weather conditions and the connected device's input specifications. The rated 100W output is a peak specification and may vary under real-world conditions. Warranty: 2-Year Warranty Returns: 30-Day Money-Back Guarantee",
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
@@ -383,11 +319,11 @@
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fsolax-se100",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-SOLAX-SE100-Solar-Panel-100W-ALLPOWERS-120480567.jpg?v=1776411699",
       "specs": {
-        "voltageV": null,
+        "voltageV": 12,
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 100,
-        "currentA": null,
+        "currentA": 5.33,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -397,69 +333,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
-    },
-    {
-      "id": "allpowers_eu:9855868961075",
-      "merchant": "allpowers_eu",
-      "name": "ALLPOWERS P100 DC Solar Generator + SP027 100W Solar Panel",
-      "description": "",
-      "categoryPath": "Portable Power Station",
-      "category": "solar_panel",
-      "brand": "ALLPOWERS",
-      "priceCzk": 189,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://iallpowers.eu/products/allpowers-solax-p100-sp027",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-solax-p100-sp027",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-SOLAX-P100-DC-Solar-Generator-_-SP027-100W-Solar-Panel-ALLPOWERS-78706589.jpg?v=1762932636",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 100,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "marketEligible": true,
-      "verifiedAt": "2026-11-26"
-    },
-    {
-      "id": "allpowers_eu:9802731815219",
-      "merchant": "allpowers_eu",
-      "name": "ALLPOWERS SP039 600W Monocrystalline Portable Solar Panel（Refurbished）",
-      "description": "[600W RV Solar Panel] With MC-4 Output ports, ALLPOWERS 600W solar panel provides 44V huge power for your solar generators, such as ALLPOWRS S2000/S2000 Pro/R4000 and other large generators on the market. Great for RV travel, cause it's easy to fixed on the top of RV. [Lighter Than 400W Solar Panels] ALLPOWERS SP039 has 6 foldable panels. Folded size only 23.6*35.7*1.9 inch, 27.5 lbs! Generally, the weight of 400W panels on the market is more than 30 pounds, but ALLPOWERS 600W solar panel is much lighter than that! [Monocrystalline Solar Cells] Equipped with advanced monocrystalline solar modules and can convert up to 23% of sunlight into usable electricity. High efficiency saves more space and shortens charging time, make you enjoy the sunshine energy as soon as possible. And even a cloudy day, you can receive solar power. [IP67 Waterproof and Durable Coating] ALLPOWERS 600W solar panel also withstands extreme weather like frozen or heat. Consists of multiple layers of flexible EVA and robust glass fibers for greater durability and mobility. It is also IP67 protecting from scratches, dust, water splashes or soaked in water for a short time. [What You Get] ALLPOWERS SP039 600W Solar Panel, MC-4 to XT60 Cable, 1.5m MC4 Extension Cable, User Guide, 24-month warranty and friendly 24*7 customer service.",
-      "categoryPath": "Solar Panel",
-      "category": "solar_panel",
-      "brand": "ALLPOWERS",
-      "priceCzk": 499,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://iallpowers.eu/products/allpowers-sp039-600w-monocrystalline-portable-solar-panel-refurbished",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-sp039-600w-monocrystalline-portable-solar-panel-refurbished",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-SP039-600W-Monocrystalline-Portable-Solar-Panel_Refurbished_-ALLPOWERS-30303313.jpg?v=1775288940",
-      "specs": {
-        "voltageV": 48,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 600,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:9801383051571",
@@ -490,7 +364,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:9763001073971",
@@ -524,99 +398,6 @@
       },
       "verifiedAt": "2026-08-28",
       "marketEligible": true
-    },
-    {
-      "id": "allpowers_eu:9598359404851",
-      "merchant": "allpowers_eu",
-      "name": "ALLPOWERS SP029 Portable Solar Panel 140W (Refurbished)",
-      "description": "MC-4 USB + DC Output MC-4 Output can deliver 25A(max)current while the DC port only carries 10A, Dual USB port(5V/2.4A per port) for charging your 5V powered gadgets, and 18V DC output(18V/3A) for charging your laptop or 12V car battery and portable generator, the junction box parallel connecting port for connecting multiple foldable solar panels. Wide Compatibility Equipped with the MC4 connector and DC controller, ALLPOWERS140W solar panel is highly compatible with most solar generators on the market.",
-      "categoryPath": "Solar Panel",
-      "category": "solar_panel",
-      "brand": "ALLPOWERS",
-      "priceCzk": 139,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://iallpowers.eu/products/allpowers-sp029-portable-polycrystalline-solar-panel-140w-refurbished",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-sp029-portable-polycrystalline-solar-panel-140w-refurbished",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/products/ALLPOWERS-SP029-Portable-Solar-Panel-140W-_Refurbished_-ALLPOWERS-30293712.jpg?v=1763717638",
-      "specs": {
-        "voltageV": 12,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 140,
-        "currentA": 25,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "marketEligible": true,
-      "verifiedAt": "2026-11-26"
-    },
-    {
-      "id": "allpowers_eu:9598354719027",
-      "merchant": "allpowers_eu",
-      "name": "ALLPOWERS SP033 Portable Solar Panel 200W (Refurbished)",
-      "description": "The Most Cost-effective Solar Panel In Your Budget Made for Solar Generator ALLPOWERS 200W foldable solar panel is compatible with most solar generator/portable power station on the market. The portable solar panel kit Includes different sizes of connectors for portable generator.",
-      "categoryPath": "Solar Panel",
-      "category": "solar_panel",
-      "brand": "ALLPOWERS",
-      "priceCzk": 159,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://iallpowers.eu/products/allpowers-sp033-portable-polycrystalline-solar-panel-200w-refurbished",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-sp033-portable-polycrystalline-solar-panel-200w-refurbished",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-SP033-Portable-Solar-Panel-200W-_Refurbished_-ALLPOWERS-30292551.webp?v=1765165692",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": null,
-        "capacityWh": null,
-        "powerW": 200,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "marketEligible": true,
-      "verifiedAt": "2026-11-26"
-    },
-    {
-      "id": "allpowers_eu:9598338564403",
-      "merchant": "allpowers_eu",
-      "name": "ALLPOWERS SP027 Portable Foldable Solar Panel 100W (Refurbished)",
-      "description": "Wide Compatibility Equipped with the MC4 connector, ALLPOWERS100W solar panel ( (Polycrystalline cells) is highly compatible with most solar generators on the market. ALLPOWERS Solar Generator 200W ALLPOWERS Solar Generator 300W ALLPOWERS Solar Generator 700W Rated Power 200W 300W 700W Peak Power 240W 500W 1400W Battery Capacity 154Wh 288Wh 606Wh Size and Weight 7.87*6.7*1.96 inch, 3 lb 8.1x6.5x4.3inch, 7.5lb 10.4x5.5x7inch, 11.68 lb Output AC, USB-A, USB-C, Wireless Charging AC, USB-A, USB-C, DC, Car Outlet， Wireless Charging AC,USB-A,USB-C,DC,Car Outlet Charge devices Simultaneously 5 Devices 10 Devices 9 Devices Input AC, USB-C, Solar Input AC, USB-C, Car, Solar Input AC,USB-C,Car,Solar Input Solar Panel 100W to Recharge 1.5-2.5 Hours 5-6 Hours 9-10 Hours How To Get More Powerful? By connecting multiple solar panels in parallel or in series, you can get higher power and voltage.",
-      "categoryPath": "Solar Panel",
-      "category": "solar_panel",
-      "brand": "ALLPOWERS",
-      "priceCzk": 89,
-      "priceCurrency": "EUR",
-      "available": false,
-      "productUrl": "https://iallpowers.eu/products/allpowers-sp027-polycrystalline-solar-panel-100w-refurbished",
-      "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-sp027-polycrystalline-solar-panel-100w-refurbished",
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/products/ALLPOWERS-SP027-Portable-Foldable-Solar-Panel-100W-_Refurbished_-ALLPOWERS-30291660.jpg?v=1755844196",
-      "specs": {
-        "voltageV": null,
-        "capacityAh": null,
-        "capacityWh": 154,
-        "powerW": 100,
-        "currentA": null,
-        "chargingVoltagesV": [],
-        "chargingInputVoltagesV": [],
-        "chargingBatteryTypes": [],
-        "batteryType": null,
-        "pureSine": null,
-        "solarInputW": null,
-        "dcOutputA": null
-      },
-      "marketEligible": true,
-      "verifiedAt": "2026-11-26"
     },
     {
       "id": "allpowers_eu:8630287532339",
@@ -655,7 +436,7 @@
       "id": "allpowers_eu:8493564100915",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS SF200 Flexible Solar Panel 200W",
-      "description": "High Conversion Efficiency; Light Weight &amp; Extremely Flexible IP68 waterproof ETFE Material Compatible With Most Solar Generators with MC4 Connectors",
+      "description": "ALLPOWERS SF200 Flexible Solar Panel 200W Harness clean solar energy wherever your adventures take you with the ALLPOWERS SF200 200W Flexible Solar Panel. Featuring high-efficiency monocrystalline solar cells and a durable ETFE surface, this lightweight flexible panel delivers up to 200W of solar power with a conversion efficiency of up to 25%. Its flexible construction makes it suitable for a variety of installation surfaces, including RV roofs, boats, caravans, cabins and other off-grid applications. Key Features 200W High-Efficiency Solar Power With a rated output of 200W, the SF200 helps convert sunlight into usable electricity for compatible portable power stations and off-grid energy systems. Up to 25% Solar Conversion Efficiency Built with high-efficiency monocrystalline solar cells, the SF200 achieves up to 25% conversion efficiency, helping capture more solar energy from available sunlight. Flexible and Lightweight Design Unlike traditional rigid solar panels, the SF200 features a flexible construction that makes it suitable for installation on selected curved or uneven surfaces. Weighing approximately 4.1kg, it is easier to handle and install in a range of mobile and off-grid applications. Durable Honeycomb ETFE Surface The honeycomb-textured ETFE surface is designed to capture sunlight from different angles while providing a durable protective layer for outdoor use. IP68 Water Protection Designed with an IP68-rated protective surface to help resist dust and water ingress under specified testing conditions, making the SF200 suitable for demanding outdoor applications. Wide Range of Applications The flexible design makes the SF200 a practical solar solution for RVs, caravans, boats, yachts, cabins, sheds, trailers and selected off-grid installations. Compatible with Portable Power Stations The SF200 features a solar connector output and can work with compatible ALLPOWERS portable power stations, including selected R600, R1500, R2500, R3500, R4000 and S2000 series models. Always check the voltage, current and maximum solar input requirements before connecting. Technical Specifications Brand: ALLPOWERS Model: SF200 Rated Maximum Power: 200W ±5% Solar Cell Type: Monocrystalline Silicon Surface Material: Honeycomb ETFE Solar Conversion Efficiency: 22%–25% Open Circuit Voltage (Voc): 38.4V ±5% Short Circuit Current (Isc): 6.87A ±5% Voltage at Maximum Power (Vmp): 32V ±5% Current at Maximum Power (Imp): 6.25A ±5% Maximum System Voltage: 120V Protection Rating: IP68 Dimensions: 137.5 × 78 × 0.3 cm Weight: 4.1 kg Ideal for RV and campervan solar installations Caravans and trailers Boat and yacht solar systems Cabin and shed solar setups Off-grid power applications Compatible portable power station charging What's Included 1 × ALLPOWERS SF200 200W Flexible Solar Panel 1 × Solar Cable to XT60 Cable 1 × User Manual Important Compatibility Notice Before connecting the SF200 to a portable power station or solar system, check the maximum solar input voltage, current and power specifications of your equipment. Actual solar output depends on sunlight intensity, installation angle, temperature and environmental conditions. The rated 200W output is a peak specification and may vary during real-world operation. Warranty: 2-Year Warranty Returns: 30-Day Money-Back Guarantee",
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
@@ -666,11 +447,11 @@
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-sf200-flexible-solar-panel-200w",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-SF200-Flexible-Solar-Panel-200W-ALLPOWERS-115579446.jpg?v=1778256696",
       "specs": {
-        "voltageV": null,
+        "voltageV": 36,
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 200,
-        "currentA": null,
+        "currentA": 200,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -680,13 +461,13 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:8431037645107",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS SF100 Flexible Solar Panel 100W",
-      "description": "About this item 【Light Weight &amp; Extremely Flexible】Single SF100 solar panel only 5.29 lbs, 0.11 inch thin, less than conventional solar panels, easy to carry. Thanks to the advanced polymer material, it can be bent into a U-shape, which can fit curved planes, such as the front of the RV and the roof. 【Easy to Install】MC-4 output ports can be transferred to any power station or home solar system. The accompanying 6 straps and curved surfaces allow it to be installed in RVs, roofs, campers, trailers, boats, cabins, sheds, tents, and yachts. 【High Conversion Efficiency】SF100 uses advanced Monocrystalline material inside, whose conversion rate can reach 23%-25%. Honeycomb ETFE is used on the surface, and the unevenness forms refraction to collect sunlight from different angles. Coupled with the MC-4 port with minimal loss, you can get more power at the same time. 【Durable Material for All Weather】ALLPOWERS flexible solar panel surface is made of IP68 waterproof ETFE material, which can resist extreme weather such as high temperatures, freezing, sandstorms, and rainstorms. And the component contains a bypass diode and uses input over current protection and reverse protection design.",
+      "description": "ALLPOWERS SF100 Flexible Solar Panel 100W Harness solar energy wherever you go with the ALLPOWERS SF100 100W Flexible Solar Panel. Featuring high-efficiency monocrystalline solar cells with a conversion efficiency of up to 25%, this lightweight and flexible solar panel provides a convenient charging solution for off-grid applications. Designed for versatile installation, the SF100 is suitable for selected curved and flat surfaces, making it a practical choice for RVs, campervans, boats, caravans, cabins and outdoor solar setups. Weighing just 2.39kg, it offers a convenient way to add solar power without the bulk of traditional rigid panels. Key Features 100W Portable Solar Power With a rated output of 100W, the SF100 helps convert sunlight into usable electricity for compatible portable power stations and off-grid solar systems. Up to 25% Solar Conversion Efficiency Built with premium monocrystalline silicon solar cells, the SF100 delivers up to 22%–25% solar conversion efficiency, helping you make better use of available sunlight. Flexible and Lightweight Design The flexible construction allows the panel to fit selected curved and uneven surfaces. Weighing only 2.39kg, it is easy to handle and suitable for mobile solar installations. Multi-Layer Protective Construction The panel features a laminated multi-layer construction designed for durability and reliable outdoor performance. Its textured surface helps collect sunlight from different angles. IP68-Rated Junction Box The SF100 features an IP68-rated junction box with a sealed connection design to help protect the electrical connection against dust and water ingress under specified testing conditions. Designed for Multiple Applications The flexible, low-profile design makes the SF100 suitable for a variety of applications, including: RV and campervan roofs Boats and yachts Caravans and trailers Cabins and sheds Off-grid solar installations Outdoor solar charging setups Compatible with Portable Power Stations The SF100 features a solar connector output and can work with compatible ALLPOWERS portable power stations, including selected S300 Plus, R600, R1500, R2500, R3500, R4000 and S2000 series models. Always check your power station's maximum solar input voltage, current and power requirements before connecting. Technical Specifications Brand: ALLPOWERS Model: SF100 Rated Maximum Power: 100W ±5% Solar Cell Type: Monocrystalline Silicon Solar Conversion Efficiency: 22%–25% Open Circuit Voltage (Voc): 30.6V ±5% Voltage at Maximum Power (Vmp): 25.5V ±5% Short Circuit Current (Isc): 4.58A ±5% Current at Maximum Power (Imp): 4.17A ±5% Junction Box Protection: IP68 Operating Temperature: -20°C to 85°C Dimensions: 100.78 × 57.98 × 0.27 cm Weight: 2.39 kg What's Included 1 × ALLPOWERS SF100 100W Flexible Solar Panel 1 × Solar Cable to XT60 Cable 1 × User Manual Important Compatibility Notice Before connecting the SF100 to a portable power station or solar charge controller, check the equipment's maximum solar input voltage, current and power limits. Actual charging performance depends on sunlight intensity, installation angle, temperature and environmental conditions. The rated 100W output is a peak specification and may vary during real-world operation. Warranty: 2-Year Warranty Returns: 30-Day Money-Back Guarantee",
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
@@ -697,11 +478,11 @@
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-sf100-flexible-solar-panel-100w",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-SF100-Flexible-Solar-Panel-100W-ALLPOWERS-30185590.jpg?v=1778256426",
       "specs": {
-        "voltageV": null,
+        "voltageV": 24,
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 100,
-        "currentA": null,
+        "currentA": 4.58,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -711,13 +492,13 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:8300246663475",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS SP039 600W Monocrystalline Portable Solar Panel",
-      "description": "[600W RV Solar Panel] With MC-4 Output ports, ALLPOWERS 600W solar panel provides 44V huge power for your solar generators, such as ALLPOWRS S2000/S2000 Pro/R4000 and other large generators on the market. Great for RV travel, cause it's easy to fixed on the top of RV. [Lighter Than 400W Solar Panels] ALLPOWERS SP039 has 6 foldable panels. Folded size only 23.6*35.7*1.9 inch, 27.5 lbs! Generally, the weight of 400W panels on the market is more than 30 pounds, but ALLPOWERS 600W solar panel is much lighter than that! [Monocrystalline Solar Cells] Equipped with advanced monocrystalline solar modules and can convert up to 23% of sunlight into usable electricity. High efficiency saves more space and shortens charging time, make you enjoy the sunshine energy as soon as possible. And even a cloudy day, you can receive solar power. [IP67 Waterproof and Durable Coating] ALLPOWERS 600W solar panel also withstands extreme weather like frozen or heat. Consists of multiple layers of flexible EVA and robust glass fibers for greater durability and mobility. It is also IP67 protecting from scratches, dust, water splashes or soaked in water for a short time. [What You Get] ALLPOWERS SP039 600W Solar Panel, MC-4 to XT60 Cable, 1.5m MC4 Extension Cable, User Guide, 24-month warranty and friendly 24*7 customer service.",
+      "description": "ALLPOWERS SP039 600W Foldable Monocrystalline Portable Solar Panel Harness the power of the sun wherever your adventures take you with the ALLPOWERS SP039 600W Portable Solar Panel . Featuring high-efficiency monocrystalline solar cells, a powerful 600W rated output and a convenient six-fold design, the SP039 provides a portable solar charging solution for RV trips, camping, outdoor activities and off-grid power systems. With approximately 23% solar conversion efficiency, the SP039 helps convert sunlight into usable electricity for compatible portable power stations and solar generators. Its foldable design, included mounting accessories and durable IP67-rated construction make it a practical choice for outdoor energy needs. Key Features 600W High-Power Solar Output With a rated power of up to 600W, the SP039 provides substantial solar charging capacity for compatible high-capacity portable power stations, helping you collect more solar energy during outdoor adventures and off-grid activities. High-Efficiency Monocrystalline Solar Cells Equipped with monocrystalline solar cells and approximately 23% conversion efficiency, the SP039 efficiently converts available sunlight into electricity while maintaining a portable design. Six-Fold Portable Design The six-fold structure makes the large 600W solar panel easier to fold, transport and store. Unfold it when you need solar power and fold it away when your outdoor activities are over. IP67 Protection for Outdoor Use Designed with an IP67-rated protective construction, the SP039 offers resistance to dust and water ingress under specified testing conditions, making it suitable for various outdoor environments. Easy Setup with Mounting Accessories The included six carabiner hooks and six buckle ropes help secure the panel in suitable locations. Position it toward the sun to improve solar exposure and charging performance. Wide Compatibility The SP039 is designed to work with compatible ALLPOWERS portable power stations, including the S2000 Pro, R1500, R2500 and R4000 series, as well as compatible power stations from other brands. Always check the power station's maximum PV voltage, input current, connector type and solar input power before connecting. Ideal Applications RV and Motorhome Travel: Generate solar electricity while travelling and staying at campsites. Camping: Collect renewable energy to recharge compatible portable power stations. Off-Grid Living: Provide additional solar charging capacity for suitable independent power systems. Outdoor Activities: Access portable solar energy when away from traditional power outlets. Home Backup Preparation: Recharge compatible portable power stations using sunlight when needed. Technical Specifications ALLPOWERS SP039 600W Solar Panel Model: SP039 Rated Power: 600W Solar Cell Type: Monocrystalline Silicon Solar Conversion Efficiency: Approximately 23% Open Circuit Voltage (Voc): 52.8V Short Circuit Current (Isc): 14.99A Maximum Power Voltage (Vmp): 44V Maximum Power Current (Imp): 13.63A Operating Temperature: -10°C to 60°C Protection Rating: IP67 Foldable Design: Six-Fold Unfolded Dimensions: 272.5 × 118.5 × 1cm Folded Dimensions: 90.5 × 59.5 × 4cm Weight: Approximately 12.47kg What's Included 1 × ALLPOWERS SP039 600W Foldable Solar Panel 1 × Solar Connector to XT60 Cable 1 × Solar Panel Extension Cable (1.5m) 6 × Carabiner Hooks 6 × Buckle Ropes 1 × User Manual Important Notes The SP039 is a solar panel and does not include a portable power station or battery. A compatible portable power station is required to store the electricity generated by the panel. Actual solar output varies depending on sunlight intensity, weather, temperature, shading and panel orientation. The 600W rating represents peak rated power under specified test conditions. Before connecting the SP039 to a power station, check that its solar input voltage and current limits are compatible with the panel's electrical specifications. Some power stations may limit the actual charging power because of their maximum solar input current or wattage. The IP67 rating refers to protection under specified test conditions. Keep connectors properly connected and follow the product manual for outdoor use. Warranty &amp; Returns 2-Year Warranty 30-Day Money-Back Guarantee",
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
@@ -732,7 +513,7 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 600,
-        "currentA": null,
+        "currentA": 14.99,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -742,13 +523,13 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:8205920469299",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS SP029 Portable Solar Panel 140W",
-      "description": "MC-4 USB + DC Output MC-4 Output can deliver 25A(max)current while the DC port only carries 10A, Dual USB port(5V/2.4A per port) for charging your 5V powered gadgets, and 18V DC output(18V/3A) for charging your laptop or 12V car battery and portable generator, the junction box parallel connecting port for connecting multiple foldable solar panels. Wide Compatibility Equipped with the MC4 connector and DC controller, ALLPOWERS140W solar panel is highly compatible with most solar generators on the market.",
+      "description": "ALLPOWERS SP029 Portable Solar Panel 140W Enjoy convenient solar charging wherever you go with the ALLPOWERS SP029 140W Foldable Solar Panel. Featuring upgraded monocrystalline solar cells, this portable panel delivers up to 140W of solar power to help recharge compatible portable power stations and outdoor devices. Its foldable design, dual output options and built-in USB charging ports make it a versatile choice for camping, RV trips, road travel and off-grid adventures. Key Features 140W Portable Solar Power With up to 140W of rated solar output, the SP029 provides a convenient way to harness solar energy and recharge compatible portable power stations when you're away from the grid. Upgraded Monocrystalline Solar Cells Updated in May 2025 with monocrystalline solar cells, the SP029 is designed to convert sunlight into usable electricity for reliable portable solar charging. Foldable and Easy to Carry The foldable design makes the SP029 convenient to transport and store. Take it camping, on road trips or along with your portable power station for outdoor charging. Dual Output for Flexible Charging The SP029 features a solar connector output and a DC output, offering flexible connection options for compatible portable power stations and electronic devices. Built-in USB Charging Two USB output ports provide 5V/2.4A charging per port, allowing you to charge compatible phones and other USB-powered devices directly from the solar panel. Durable Outdoor Design Designed for outdoor use, the SP029 features a durable, splash-resistant construction to support solar charging during your outdoor activities. Wide Compatibility Equipped with solar and DC connection options, the SP029 works with many portable power stations. Always check the input voltage, current and connector requirements of your power station before connecting. Technical Specifications Brand: ALLPOWERS Model: SP029 Rated Peak Power: 140W Solar Cell Type: Monocrystalline Open Circuit Voltage (Voc): 23.5V Short Circuit Current (Isc): 6.7A Voltage at Maximum Power (Vmp): 19.5V Current at Maximum Power (Imp): 6.2A Solar Connector Output: Up to 25A DC Output: Up to 10A USB Output: 2 × 5V/2.4A Additional DC Output: 18V/3A Unfolded Dimensions: 2230 × 650 mm Folded Dimensions: 650 × 515 mm Weight: 6.3 kg Ideal for Camping and outdoor adventures RV and campervan trips Off-grid solar charging Portable power station charging Road trips and outdoor travel Charging compatible USB devices What's Included 1 × ALLPOWERS SP029 140W Solar Panel 1 × Solar Cable to XT60 Cable 1 × Solar Cable to DC 5521 Cable 5 × Connection Adapters 1 × User Manual Important Compatibility Notice Before connecting the SP029 to a portable power station, check the station's maximum solar input voltage, current and connector requirements. Actual charging performance depends on sunlight intensity, panel angle, weather conditions and the connected device's input limits. The rated 140W output is a peak specification and may vary under real-world conditions. Warranty: 2-Year Warranty Returns: 30-Day Money-Back Guarantee",
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
@@ -759,11 +540,11 @@
       "affiliateUrl": "https://www.awin1.com/cread.php?awinmid=38934&awinaffid=3044971&ued=https%3A%2F%2Fiallpowers.eu%2Fproducts%2Fallpowers-sp029-portable-solar-panel-140w-polycrystalline-cells",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0747/3135/6467/files/ALLPOWERS-SP029-Portable-Solar-Panel-140W-ALLPOWERS-111695777.jpg?v=1764382824",
       "specs": {
-        "voltageV": 12,
+        "voltageV": 24,
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 140,
-        "currentA": 25,
+        "currentA": 2.4,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -773,7 +554,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:8205916733747",
@@ -804,13 +585,13 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:8205905887539",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS SP012 Solar Panel 100W",
-      "description": "Foldable &amp; Portable When folded, the portable and frame design is suitable for outdoor, indoor, travel, camping, and RV use and takes up no space. Eyeholes make it simple to attach a portable solar panel to a backpack while traveling. Wide Compatibility Equipped with the Dual USB Output, the 100W solar panel is highly compatible with phones, pads and other devices. You also could connect the ALLPOWERS S200/S300/S700 poratble power station.",
+      "description": "ALLPOWERS SP012 100W Foldable Portable Solar Panel Harness the power of the sun wherever your adventure takes you with the ALLPOWERS SP012 100W Foldable Portable Solar Panel. Designed for camping, RV trips, outdoor adventures and off-grid charging, this portable solar panel delivers reliable solar energy in a compact, easy-to-carry design. Featuring 23.5% solar conversion efficiency, dual USB outputs and a DC output, the SP012 offers versatile charging options for smartphones, tablets and compatible portable power stations. Its foldable design makes it easy to store, transport and set up whenever you need solar power. Key Features 100W Solar Power: Generate solar energy to recharge compatible portable power stations and devices during outdoor adventures. 23.5% Solar Conversion Efficiency: High-efficiency solar cells help capture sunlight and convert it into usable electricity. Dual USB Outputs: Charge compatible smartphones, tablets and USB-powered devices directly using the integrated USB ports. DC Output for Portable Power Stations: Connect to compatible portable power stations using the DC output and suitable cables. Foldable &amp; Portable Design: Compact when folded, making it convenient for camping, RV travel, hiking and off-grid activities. Durable &amp; Splash-Resistant Design: Built for outdoor use, helping you enjoy solar charging in a variety of outdoor environments. Technical Specifications Specification Details Model ALLPOWERS SP012 Peak Power 100W Solar Conversion Efficiency 23.5% USB Output 2 × 5V/2.4A (Max) DC Output 18V/5A (Max) Output Ports USB &amp; DC5525 Unfolded Size 94 × 94 × 1 cm Folded Size 32 × 19 × 8 cm Net Weight 2.15 kg Ideal for Camping and outdoor adventures RV and campervan trips Off-grid solar charging Portable power station charging Emergency power preparation Outdoor travel and recreational activities What's Included 1 × ALLPOWERS SP012 100W Solar Panel 1 × DC5525 to DC5521 Cable 5 × Connection Adapters 4 × Climbing Hooks 1 × User Manual Compatibility The ALLPOWERS SP012 is designed to charge compatible portable power stations and USB devices. It can be used with selected ALLPOWERS portable power stations, including the S200, S300 and S700, subject to voltage, connector and charging input compatibility. Please check the solar input specifications of your power station before connecting. Solar output varies depending on sunlight intensity, weather conditions, panel positioning and operating temperature.",
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
@@ -825,7 +606,7 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 100,
-        "currentA": null,
+        "currentA": 2.4,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -835,7 +616,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:8205901234483",
@@ -866,13 +647,13 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:8205897105715",
       "merchant": "allpowers_eu",
       "name": "ALLPOWERS SP037 Portable Solar Panel 400W",
-      "description": "400W Huge Power Solar Panel With MC-4 Output ports, ALLPOWERS 400W solar panel provides 37.4V huge power for your solar generators, such as ALLPOWRS S1500/S2000/S2000 Pro and other large generators on the market. Effectively shorten charging time, make you enjoy the sunshine energy as soon as possible.",
+      "description": "ALLPOWERS SP037 400W Foldable Portable Solar Panel Harness the power of the sun wherever you go with the ALLPOWERS SP037 400W Portable Solar Panel. Designed for portable power stations, this high-output foldable solar panel features upgraded monocrystalline solar cells and an ETFE surface, delivering up to 22% solar conversion efficiency. With adjustable kickstands, an easy-to-carry foldable design and IP67 protection, the SP037 is a practical solar charging solution for camping, RV trips, outdoor adventures and backup power at home. Key Features 400W High Solar Output With up to 400W of rated solar power, the SP037 helps recharge compatible portable power stations using clean solar energy. Its 37.4V operating voltage makes it suitable for selected high-capacity power stations. Up to 22% Solar Conversion Efficiency Built with upgraded monocrystalline solar cells and durable ETFE lamination, the SP037 converts sunlight into usable electricity with up to 22% efficiency, helping you make the most of available sunlight. Foldable and Portable Design The foldable design makes the solar panel easier to transport and store. Set it up at your campsite, beside your RV or in a suitable outdoor space to collect solar energy. Adjustable Kickstands for Easy Setup Integrated adjustable kickstands allow you to position the panel at a better angle toward the sun. Adjust the panel to suit changing sunlight conditions and improve solar exposure. IP67 Protection Designed with an IP67-rated construction to help protect the panel against dust and water exposure. Suitable for outdoor use in changing conditions. Compatible with Selected Portable Power Stations The SP037 can work with compatible ALLPOWERS power stations, including selected R1500, R2500, R3500, R4000 and S2000 series models. It may also work with other brands when the solar panel's voltage, current and power specifications match the power station's solar input requirements. Technical Specifications Brand: ALLPOWERS Model: SP037 Rated Power: 400W Solar Cell Type: Monocrystalline Cell Lamination: ETFE Solar Conversion Efficiency: Up to 22% Voltage at Maximum Power (Vmp): 37.4V Open Circuit Voltage (Voc): 45.3V Current at Maximum Power (Imp): 10.6A Short Circuit Current (Isc): 11.45A Protection Rating: IP67 Product Dimensions (Folded): 93.5 × 60 × 6 cm Product Weight: 13.8 kg Ideal for Multiple Applications Camping and outdoor adventures RV and campervan trips Off-grid solar charging Balcony and patio solar setups Portable power station charging Emergency and backup power preparation What's Included 1 × ALLPOWERS SP037 400W Solar Panel 1 × Solar Cable to XT60 Cable 1 × Solar Cable to DC 5525 + DC 8020 Cable Adapter 1 × User Manual Important Compatibility Notice Before connecting the SP037 to a portable power station, check the station's maximum solar input voltage, current and power limits. Actual charging power depends on sunlight conditions, panel orientation, temperature and the power station's input specifications. The panel's rated 400W output does not guarantee 400W charging on every power station. Warranty: 2-Year Warranty Returns: 30-Day Money-Back Guarantee",
       "categoryPath": "Solar Panel",
       "category": "solar_panel",
       "brand": "ALLPOWERS",
@@ -887,7 +668,7 @@
         "capacityAh": null,
         "capacityWh": null,
         "powerW": 400,
-        "currentA": null,
+        "currentA": 10.6,
         "chargingVoltagesV": [],
         "chargingInputVoltagesV": [],
         "chargingBatteryTypes": [],
@@ -897,7 +678,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:8205889012019",
@@ -928,7 +709,7 @@
         "dcOutputA": null
       },
       "marketEligible": true,
-      "verifiedAt": "2026-11-26"
+      "verifiedAt": "2026-11-27"
     },
     {
       "id": "allpowers_eu:8205880623411",
