@@ -12,6 +12,7 @@ import { caravanBasketPriceSummary } from "../src/caravan-basket-pricing.js";
 const ID="powerqueen_eu:7752840380636", LARGE="powerqueen_eu:7881294676188";
 const setup=(locale,watts=1500,ah=100)=>({
   locale,systemVoltage:24,batteryType:"lifepo4",batteryAh:ah,
+  dailyWh:1500,autonomyDays:1,applianceRows:[{ac:true,watts:1000,quantity:1}],
   inverterWatts:watts,solarWatts:380,controllerAmps:30,
   charging:{starterVoltage:12,dcDc:{enabled:true,suggestedCurrentAmps:10},shore:{enabled:true,suggestedCurrentAmps:40}},
 });
