@@ -55,6 +55,11 @@ const COPY={
  sk:{labels:{controller:"MPPT",dc_charger:"DC–DC",shore_charger:"sieť"},title:"Kontrola súbežného nabíjania",known:"Súčet menovitých výstupných prúdov",partial:"Známa časť súčtu",unknown:"Nedoložený prúd",limit:"Výrobca batérie: odporúčané",max:"max. trvalo",over:"Súčet prekračuje maximálny trvalý nabíjací prúd. Kompletný balík nie je potvrdený, kým odborník nenavrhne koordinované obmedzenie zdrojov.",advice:"Súčet prekračuje odporúčaný nabíjací prúd. Overte nastavenie všetkých zdrojov.",ok:"Súčet neprekračuje doložený limit; nejde o overenie nastavenia ani montáže.",missing:"Pre túto batériu nemáme doložený nabíjací limit alebo niektorý prúd zdroja. Overte súbeh u výrobcu a odborníka.",proof:"Špecifikácia batérie"},
  pl:{labels:{controller:"MPPT",dc_charger:"DC–DC",shore_charger:"sieć"},title:"Kontrola jednoczesnego ładowania",known:"Suma znamionowych prądów wyjściowych",partial:"Znana część sumy",unknown:"Niepotwierdzony prąd",limit:"Producent akumulatora: zalecane",max:"maks. ciągły",over:"Suma przekracza maksymalny ciągły prąd ładowania. Kompletny zestaw nie jest potwierdzony, dopóki specjalista nie zaprojektuje skoordynowanego ograniczenia źródeł.",advice:"Suma przekracza zalecany prąd ładowania. Sprawdź ustawienia wszystkich źródeł.",ok:"Suma nie przekracza udokumentowanego limitu; nie jest to potwierdzenie ustawień ani montażu.",missing:"Brak udokumentowanego limitu ładowania akumulatora lub prądu źródła. Sprawdź jednoczesne ładowanie u producenta i specjalisty.",proof:"Specyfikacja akumulatora"}
 };
+const REPLACEMENT_COPY={
+ cs:(from,to,max)=>`Původní baterie (${from}) měla limit ${max} A. Nákupní plán používá jiný doložený model (${to}); zkontrolujte jeho kapacitu, rozměry a cenu. Nastavení souběžného nabíjení ověřte s odborníkem.`,
+ sk:(from,to,max)=>`Pôvodná batéria (${from}) mala limit ${max} A. Nákupný plán používa iný doložený model (${to}); skontrolujte jeho kapacitu, rozmery a cenu. Nastavenie súbežného nabíjania overte s odborníkom.`,
+ pl:(from,to,max)=>`Pierwotny akumulator (${from}) miał limit ${max} A. Lista zakupów używa innego udokumentowanego modelu (${to}); sprawdź jego pojemność, wymiary i cenę. Ustawienia jednoczesnego ładowania skonsultuj ze specjalistą.`
+};
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 export function concurrentChargeReviewMarkup(review,locale){
  const t=COPY[locale];if(!review||!t)return "";
@@ -63,5 +68,7 @@ export function concurrentChargeReviewMarkup(review,locale){
  const summary=(review.allKnown?t.known:t.partial)+": "+f(review.sumA)+" A";
  const message=review.status==="over_max"?t.over:review.status==="over_recommended"?t.advice:review.status==="within_nameplate_limit"?t.ok:t.missing;
  const limit=review.limit;
- return `<div class="caravan-buying-plan-note" data-concurrent-charge-review="${esc(review.status)}"><strong>${esc(t.title)}</strong><p>${esc(summary)} · ${esc(parts)}</p>${limit?`<p>${esc(t.limit)} ${f(limit.recommendedA)} A; ${esc(t.max)} ${f(limit.maxA)} A. <a href="${esc(limit.evidenceUrl)}" target="_blank" rel="noopener noreferrer">${esc(t.proof)}</a></p>`:""}<p>${esc(message)}${!review.allKnown&&review.status!=="unknown"?" "+esc(t.missing):""}</p></div>`;
+ const substitution=review.replacement;
+ const replacementMarkup=substitution?`<p data-charge-compatible-replacement="true">${esc(REPLACEMENT_COPY[locale](substitution.from,substitution.to,f(substitution.previousMaxA)))}</p>`:"";
+ return `<div class="caravan-buying-plan-note" data-concurrent-charge-review="${esc(review.status)}"><strong>${esc(t.title)}</strong>${replacementMarkup}<p>${esc(summary)} · ${esc(parts)}</p>${limit?`<p>${esc(t.limit)} ${f(limit.recommendedA)} A; ${esc(t.max)} ${f(limit.maxA)} A. <a href="${esc(limit.evidenceUrl)}" target="_blank" rel="noopener noreferrer">${esc(t.proof)}</a></p>`:""}<p>${esc(message)}${!review.allKnown&&review.status!=="unknown"?" "+esc(t.missing):""}</p></div>`;
 }

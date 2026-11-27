@@ -1,4 +1,4 @@
-import { concurrentChargeReviewMarkup } from "./caravan-concurrent-charge-review.js?v=20261127-chargesum2";
+import { concurrentChargeReviewMarkup } from "./caravan-concurrent-charge-review.js?v=20261127-chargesum3";
 import { dcdcValueNote } from "./reviewed-dcdc-value-profiles.js?v=20261127-dcdcvalue1";
 import { shoreVariantNote } from "./carbest-shore-profiles.js?v=20261127-carbest1";
 import { caravanBasketPriceMarkup, caravanLinePrice, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-merchant1";

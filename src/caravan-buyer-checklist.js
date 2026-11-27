@@ -1,5 +1,6 @@
-import { reviewConcurrentCharging } from "./caravan-concurrent-charge-review.js?v=20261127-chargesum2";
+import { reviewConcurrentCharging, reviewedBatteryChargingLimit } from "./caravan-concurrent-charge-review.js?v=20261127-chargesum3";
 import { reviewShoreBatteryCapacity, replaceReviewedShoreMismatch } from "./caravan-shore-capacity-review.js?v=20261127-shorepair1";
+import { batteryDischargeEvidenceTier } from "./caravan-bms-buyer-evidence.js?v=20261122-pq200a1-24vhigh1-pq100a1";
 import { isRecommendationEligible } from "./recommendation-coverage.js";
 import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1-stockvalue1-shorepair1";
 import { caravanComponentRequirement } from "./caravan-component-requirements.js?v=20261121-bms-evidence1";
@@ -17,6 +18,46 @@ function hasBuyableProductLink(product) {
   } catch {
     return false;
   }
+}
+
+// Recover a complete buyer path only from a manufacturer-reviewed battery
+// already eligible for the same calculation. Do not silently drop capacity,
+// substitute an unreviewed BMS, change currency or infer multi-pack topology.
+// When capacity increases, a present shore charger must positively cover it.
+function chargeCompatibleBattery(rows, recommendations, setup, initialReview) {
+  if(initialReview?.status!=="over_max"||!initialReview.allKnown
+    ||!rows.every(row=>row.ready)||setup?.batteryType!=="lifepo4")return null;
+  const index=rows.findIndex(row=>row.category==="battery");
+  if(index<0)return null;
+  const original=rows[index].product,capacity=original?.specs?.capacityAh;
+  if(!Number.isFinite(capacity)||capacity<=0||!Number.isFinite(setup?.batteryAh)||setup.batteryAh<=0
+    ||![12,24].includes(setup.systemVoltage)||original.specs.voltageV!==setup.systemVoltage
+    ||!Number.isFinite(original.priceCzk)||original.priceCzk<=0
+    ||!["CZK","EUR","PLN"].includes(original.priceCurrency))return null;
+  const shoreIndex=rows.findIndex(row=>row.category==="shore_charger");
+  const acRequired=rows.some(row=>row.category==="inverter")||Number(setup.inverterWatts)>0;
+  const candidates=(recommendations.battery||[]).filter(candidate=>{
+    const p=candidate.product,limit=reviewedBatteryChargingLimit(p),ah=p?.specs?.capacityAh;
+    if(!isRecommendationEligible(candidate)||!p||p.id===original.id||p.available!==true
+      ||!hasBuyableProductLink(p)||!limit||limit.maxA<initialReview.sumA
+      ||limit.voltageV!==setup.systemVoltage||p.specs.batteryType!=="lifepo4"
+      ||!Number.isFinite(ah)||ah<Math.max(capacity,setup.batteryAh)
+      ||p.priceCurrency!==original.priceCurrency||!Number.isFinite(p.priceCzk)||p.priceCzk<=0
+      ||(acRequired&&batteryDischargeEvidenceTier(p,setup)!==2))return false;
+    if(shoreIndex>=0){
+      const shore=reviewShoreBatteryCapacity(p,rows[shoreIndex].product);
+      if(shore?.status==="manual_review"||(ah!==capacity&&shore?.status!=="within_reviewed_range"))return false;
+    }
+    return true;
+  }).sort((a,b)=>a.product.specs.capacityAh-b.product.specs.capacityAh
+    ||a.product.priceCzk-b.product.priceCzk||(b.score||0)-(a.score||0));
+  const next=candidates[0]?.product;
+  if(!next)return null;
+  const updated=rows.map((row,i)=>i===index?{...row,product:next,quantity:1}:i===shoreIndex
+    ?{...row,shoreCapacityReview:reviewShoreBatteryCapacity(next,row.product)}:row);
+  const review=reviewConcurrentCharging(updated);
+  if(!review?.allKnown||!["within_nameplate_limit","over_recommended"].includes(review.status))return null;
+  return {rows:updated,review:{...review,replacement:{from:original.name,to:next.name,previousMaxA:initialReview.limit.maxA}}};
 }
 
 // The real buyer checklist is based only on existing technically vetted and
@@ -126,8 +167,15 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
         : {...selected,product:null,ready:false,quantity:1,missingReason:"shore_capacity_review",shoreCapacityReview:review};
     }else if(review)rows[shoreIndex]={...selected,shoreCapacityReview:review};
   }
+  let concurrentChargeReview = ["cs","sk","pl"].includes(locale) ? reviewConcurrentCharging(rows) : null;
+  if(!coverage.manualDesignCharging?.length){
+    const alternative=chargeCompatibleBattery(rows,recommendations,setup,concurrentChargeReview);
+    if(alternative){
+      rows.splice(0,rows.length,...alternative.rows);
+      concurrentChargeReview=alternative.review;
+    }
+  }
   const available = rows.filter((row) => row.ready).length;
-  const concurrentChargeReview = ["cs","sk","pl"].includes(locale) ? reviewConcurrentCharging(rows) : null;
   const manualDesign = Boolean(coverage.manualDesignCharging?.length) || concurrentChargeReview?.status==="over_max";
   const complete = rows.length > 0 && available === rows.length && !manualDesign;
   return {
