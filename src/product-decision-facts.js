@@ -1,4 +1,4 @@
-import { documentedBatteryContinuousBmsAmps } from "./caravan-bms-buyer-evidence.js?v=20261122-legacy70a";
+import { documentedBatteryContinuousBmsAmps } from "./caravan-bms-buyer-evidence.js?v=20261122-legacy70a-24vhigh1-pq100a1-cz1";
 /**
  * Buyer-facing facts computed only from published product specifications and
  * calculator output. Passing initial matching does not verify installation.
@@ -85,6 +85,15 @@ export function czechProductDecisionFacts(product = {}, setup = {}) {
   if (product.category === "inverter" && positive(specs.powerW))
     facts.push(fact("Trvalý výkon", amount(specs.powerW) + " W"));
   return facts;
+}
+
+// A shared parent URL cannot guarantee which model the merchant selected.
+export function czechInverterVariantNote(product = {}) {
+  const specs = product.specs || {};
+  if (product.category !== "inverter" || specs.inverterVariantMustBeSelected !== true
+    || !specs.inverterManufacturerModel || !positive(specs.powerW)
+    || ![12, 24].includes(specs.voltageV)) return null;
+  return `Před objednáním v obchodě zvolte přesně variantu ${specs.inverterManufacturerModel} · ${specs.powerW} W trvale · ${specs.voltageV} V.`;
 }
 
 /** Compact choice rationale displayed before opening the per-product comparison. */
