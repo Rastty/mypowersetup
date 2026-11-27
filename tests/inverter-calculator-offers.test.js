@@ -19,9 +19,12 @@ const now = Date.parse(full.generatedAt) + 60_000;
 const fixture = () => structuredClone(compact);
 const calc = (voltage, watts) => ({ systemVoltage: voltage, inverterWatts: watts });
 
-test("snapshot contains only 13 unambiguous live 12/24V model SKUs and preserves the original feed", () => {
+test("snapshot keeps only currently eligible reviewed 12/24V model SKUs and preserves the source feed", () => {
   assert.deepEqual(compact, projectInverterCalculatorOffers(full, Date.parse(full.generatedAt)));
-  assert.equal(compact.products.length, 13);
+  // Merchant inventory can legitimately shrink: never require an unavailable
+  // SKU to reappear just to make a daily source refresh pass CI.
+  assert.ok(compact.products.length <= 13);
+  assert.equal(new Set(compact.products.map(p => p.id)).size, compact.products.length);
   assert.ok(acceptInverterCalculatorSnapshot(compact));
   assert.ok(JSON.stringify(compact).length < 8500);
   assert.ok(JSON.stringify(compact).length * 20 < JSON.stringify(full).length);
