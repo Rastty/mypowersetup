@@ -10,10 +10,11 @@ import {
 import { parseProductFeed } from "../src/feed.js";
 
 const now = Date.parse("2026-11-17T08:00:00Z");
-const saved = JSON.parse(readFileSync(new URL("../data/products.json", import.meta.url), "utf8"));
-const reviewed = saved.products.filter(p => p.merchant === "solarimport" && (
-  /^solarimport:E79(?:2[5-9]|3[0-7])$/.test(p.id)
-  || ["solarimport:E8722", "solarimport:E8934"].includes(p.id)
+// This immutable, deliberately historical approved-SKU fixture tests parser
+// and fail-closed fallback behavior independently of mutable merchant stock.
+// Never publish these prices or quantities as current live availability.
+const reviewed = JSON.parse(readFileSync(
+  new URL("./fixtures/solarimport-approved-products.fixture.json", import.meta.url), "utf8"
 ));
 
 function response({ status = 200, contentType = "text/xml;charset=UTF-8", length, url = SOLARIMPORT_GOOGLE_FEED_URL } = {}) {
@@ -26,8 +27,8 @@ function response({ status = 200, contentType = "text/xml;charset=UTF-8", length
   };
 }
 
-test("Solar-import fallback is only needed when reviewed live buying paths are incomplete", () => {
-  assert.deepEqual(solarImportReviewedCounts(reviewed, now), { inverters: 13, panels: 2 });
+test("Solar-import fallback threshold stays independently tested as merchant inventory changes", () => {
+  assert.deepEqual(solarImportReviewedCounts(reviewed, now), { inverters: 12, panels: 2 });
   assert.equal(solarImportNeedsFallback(reviewed, now), false);
   assert.equal(solarImportNeedsFallback(reviewed.filter(p => p.category === "battery"), now), true);
   assert.equal(solarImportNeedsFallback(reviewed.filter(p => p.category === "inverter"), now), true);
@@ -53,9 +54,9 @@ test("A complete public Google export restores the two reviewed buyer paths with
   assert.equal(fetched.options.redirect, "error");
   assert.equal(fetched.options.credentials, "omit");
   assert.equal(fetched.options.headers.referer, undefined);
-  assert.equal(result.reviewedInverters, 13);
+  assert.equal(result.reviewedInverters, 12);
   assert.equal(result.reviewedPanels, 2);
-  assert.equal(result.products.length, 15);
+  assert.equal(result.products.length, 14);
 });
 
 test("Malformed, redirected and oversized alternative exports are rejected", async () => {
