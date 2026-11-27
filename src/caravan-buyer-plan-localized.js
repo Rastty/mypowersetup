@@ -1,3 +1,4 @@
+import { concurrentChargeReviewMarkup } from "./caravan-concurrent-charge-review.js?v=20261127-chargesum1";
 import { dcdcValueNote } from "./reviewed-dcdc-value-profiles.js?v=20261127-dcdcvalue1";
 import { shoreVariantNote } from "./carbest-shore-profiles.js?v=20261127-carbest1";
 import { caravanBasketPriceMarkup, caravanLinePrice, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-merchant1";
@@ -102,6 +103,7 @@ export function renderLocalizedCaravanBuyerPlan({
     <div class="caravan-buying-plan-heading"><div><span class="step-kicker">${t.kicker}</span><h4 id="caravan-buying-plan-title">${displayedTitle}</h4></div>
     <strong class="caravan-buying-plan-count">${t.count(readyCount, plan.requiredCount)}</strong></div>
     <p class="caravan-buying-plan-note">${complete ? t.fullNote : t.partialNote}</p>
+    ${concurrentChargeReviewMarkup(plan.concurrentChargeReview,locale)}
     <ol class="caravan-buying-plan-rows">${rows}</ol>
     ${plan.manualDesign ? `<p class="caravan-buying-plan-manual">${t.manual}</p>` : ""}
     ${caravanBasketPriceMarkup(plan, locale, merchantLabel)}
