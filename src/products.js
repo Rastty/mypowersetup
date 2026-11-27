@@ -8,6 +8,7 @@ import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-char
 import { addVerifiedEcoFlowRigid175PvSpecs } from "./ecoflow-rigid-pv-profiles.js?v=20261121-bluesolar-pv1";
 import { addVerifiedVictronBlueSolar190PvSpecs } from "./victron-bluesolar-pv-profiles.js?v=20261121-bluesolar-pv1";
 import { addReviewedBatteryContinuousSpecs } from "./caravan-bms-manufacturer-proof.js?v=20261122-pq200a1-24vhigh1-pq100a1";
+import { addReviewedDcdcValueProfile, dcdcValueNote } from "./reviewed-dcdc-value-profiles.js?v=20261127-dcdcvalue1";
 import { addVerifiedCarbestShoreProfile } from "./carbest-shore-profiles.js?v=20261127-carbest1";
 import { addCzechReviewedPowerSpecs } from "./cz-reviewed-power-profiles.js?v=20261127-cz-value1";
 import { addReviewedDometicDpsiInverterSpecs } from "./dometic-dpsi-inverter-profiles.js?v=20261122-dpsi-continuous1-24vhigh1-cz1";
@@ -504,7 +505,7 @@ export function refreshCatalogProduct(product) {
   return {
     ...product,
     available: isConfirmedDiscontinuedProduct(product) ? false : product.available,
-    specs: addVerifiedCarbestShoreProfile(product, addCzechReviewedPowerSpecs(product, addReviewedDometicDpsiInverterSpecs(product, addReviewedBatteryContinuousSpecs(product, addVerifiedVictronBlueSolar190PvSpecs(product, addVerifiedEcoFlowRigid175PvSpecs(product, addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, addVerifiedDometicMcaShoreProfile(product, specs))))))))),
+    specs: addReviewedDcdcValueProfile(product, addVerifiedCarbestShoreProfile(product, addCzechReviewedPowerSpecs(product, addReviewedDometicDpsiInverterSpecs(product, addReviewedBatteryContinuousSpecs(product, addVerifiedVictronBlueSolar190PvSpecs(product, addVerifiedEcoFlowRigid175PvSpecs(product, addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, addVerifiedDometicMcaShoreProfile(product, specs)))))))))),
     category: product.verifiedAt && product.category && product.category !== "other"
       ? product.category
       : classifyProduct({ name: product.name, categoryPath: product.categoryPath, specs })
@@ -706,7 +707,8 @@ function recommendationChecks(product, setup) {
       `${product.specs.currentA} A ≥ ${required} A`,
       `${setup.systemVoltage} V = ${text.systemVoltage}`,
       ...(product.category === "dc_charger" ? [`${text.chargerInput} ${setup.charging.starterVoltage} V`] : []),
-      setup.batteryType === "lifepo4" ? text.lifepo4Profile : text.batteryLead
+      setup.batteryType === "lifepo4" ? text.lifepo4Profile : text.batteryLead,
+      ...(dcdcValueNote(product,setup.locale) ? [dcdcValueNote(product,setup.locale)] : [])
     ];
   }
   if (product.category === "power_station") {

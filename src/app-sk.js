@@ -1,9 +1,10 @@
+import { dcdcValueNote } from "./reviewed-dcdc-value-profiles.js?v=20261127-dcdcvalue1";
 import { shoreVariantNote } from "./carbest-shore-profiles.js?v=20261127-carbest1";
 import { scrollToCaravanStep } from "./caravan-result-scroll.js?v=20261122-result-scroll1";
 import { APPLIANCES } from "./catalog-sk.js?v=20260823-custom1";
 import { renderDcLoadVoltageNotice } from "./dc-voltage-help.js";
 import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
-import { recommendProducts } from "./products.js?v=20261122-legacy70a-dpsi1-pq200a1-24vhigh1-pq100a1-carbest1";
+import { recommendProducts } from "./products.js?v=20261122-legacy70a-dpsi1-pq200a1-24vhigh1-pq100a1-carbest1-dcdcvalue1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20261023-safe-loads1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
@@ -16,7 +17,7 @@ import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1-st
 import { featuredCaravanBasketBudgetMarkup } from "./caravan-featured-basket-budget.js?v=20261122-merchant-preview1";
 import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261122-mppt-cz1-stockvalue1-shorepair1";
 import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261122-pq200a1-24vhigh1-pq100a1-shorepair1";
-import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261122-dpsi-variant1-carbest1-shorepair1";
+import { renderLocalizedCaravanBuyerPlan } from "./caravan-buyer-plan-localized.js?v=20261122-dpsi-variant1-carbest1-shorepair1-dcdcvalue1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261121-stock-aligned1";
 import { selectFeaturedOffers } from "./featured-core-offers.js?v=20261121-stock-aligned1";
 import { assessRecommendationCoverage } from "./recommendation-coverage.js?v=20261117-manual-charge1";
@@ -634,8 +635,8 @@ function renderProductPackages(variants, coverage) {
 }
 
 function shoreVariantMarkup(product) {
-  const note=shoreVariantNote(product,"sk");
-  return note ? `<small class="caravan-item-requirement" data-shore-variant-selection>${escapeHtml(note)}</small>` : "";
+  const note=shoreVariantNote(product,"sk") || dcdcValueNote(product,"sk");
+  return note ? `<small class="caravan-item-requirement" ${product.category==="dc_charger" ? "data-dcdc-reviewed-note" : "data-shore-variant-selection"}>${escapeHtml(note)}</small>` : "";
 }
 
 function packageProductLink(category, product, packageId) {
