@@ -1,3 +1,4 @@
+import { replaceReviewedShoreMismatch } from "./caravan-shore-capacity-review.js?v=20261127-shorepair1";
 import { isRecommendationEligible, requiredRecommendationCategories } from "./recommendation-coverage.js";
 import { batteryDischargeEvidenceTier } from "./caravan-bms-buyer-evidence.js?v=20261122-pq200a1-24vhigh1-pq100a1";
 
@@ -124,11 +125,18 @@ function packageSelectionPool(candidates,category,setup) {
 }
 
 function buildVariant(id, categories, recommendations, selector, setup) {
-  const items = categories.flatMap((category) => {
+  const items = [];
+  for(const category of categories) {
     const candidates = packageSelectionPool(eligibleCandidates(recommendations, category),category,setup);
-    const selected = candidates.length ? selector(candidates, category) : null;
-    return selected ? [{ category, ...selected }] : [];
-  });
+    let selected = candidates.length ? selector(candidates, category) : null;
+    if(category==="shore_charger"&&["cs","sk","pl"].includes(setup?.locale)){
+      const battery=items.find(item=>item.category==="battery")?.product;
+      // Preserve a technical-only candidate for buyer-plan diagnostics if no
+      // proven replacement is available; readiness still blocks checkout.
+      selected=replaceReviewedShoreMismatch(candidates,selected,battery,eligible=>selector(eligible,category))||selected;
+    }
+    if(selected)items.push({category,...selected});
+  }
   const priced = items.map(effectivePrice);
   const currencies = new Set(items.map(({ product }) => product.priceCurrency).filter(Boolean));
   // The feed's `priceCzk` field contains LOCAL currency amounts on foreign

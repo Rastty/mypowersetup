@@ -12,10 +12,10 @@ import { calculateChargingPlan } from "./charging.js?v=20261117-charging-reason1
 import { chargingDecisionExplanation } from "./charging-decision-copy.js?v=20261117-charging-reason1";
 import { calculateRoofFit } from "./roof.js?v=20260822-roof1";
 import { buildInstallationPlan } from "./installation.js?v=20261117-installation-safety1";
-import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1-stockvalue1";
+import { buildProductPackages } from "./packages.js?v=20261121-partial-buyer1-stockvalue1-shorepair1";
 import { featuredCaravanBasketBudgetMarkup } from "./caravan-featured-basket-budget.js?v=20261122-merchant-preview1";
-import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261122-mppt-cz1-stockvalue1";
-import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261122-legacy70a-24vhigh1-pq100a1-cz1";
+import { buildCaravanBuyerChecklist } from "./caravan-buyer-checklist.js?v=20261122-mppt-cz1-stockvalue1-shorepair1";
+import { purchaseReadyCaravanPackages } from "./caravan-package-readiness.js?v=20261122-legacy70a-24vhigh1-pq100a1-cz1-shorepair1";
 import { caravanBasketPriceMarkup, caravanLinePrice, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-merchant1";
 import { productCardPriceDetails, visibleRecommendationsForPackages } from "./recommendation-display.js?v=20261121-stock-aligned1";
 import { czechProductPrice, czechPackagePrice, featuredCzechProducts } from "./cz-offer-presentation.js?v=20261121-stock-aligned1";
@@ -657,12 +657,13 @@ function renderCaravanBuyerChecklist(plan) {
       <strong class="caravan-buying-plan-count">${plan.readyCount} z ${plan.requiredCount} ověřených kategorií</strong>
     </div>
     <p class="caravan-buying-plan-note">${stateNote}</p>
-    <ol class="caravan-buying-plan-rows">${plan.rows.map(({ category, product, ready, quantity, requirement, missingReason, installedPvWp, nominalPvWp, pvWiringReview }) => `<li data-buying-category="${escapeHtml(category)}" data-shopping-quantity="${ready ? quantity : 0}" class="${ready ? "is-ready" : "is-missing"}">
+    <ol class="caravan-buying-plan-rows">${plan.rows.map(({ category, product, ready, quantity, requirement, missingReason, installedPvWp, nominalPvWp, pvWiringReview, shoreCapacityReview }) => `<li data-buying-category="${escapeHtml(category)}" data-shopping-quantity="${ready ? quantity : 0}" class="${ready ? "is-ready" : "is-missing"}">
       <span class="caravan-buying-plan-mark" aria-hidden="true">${ready ? "✓" : "!"}</span>
       <div class="caravan-buying-plan-item"><strong>${escapeHtml(labels[category] || category)}</strong>
-        <span>${ready ? `${quantity} ks · ${escapeHtml(product.name)}` : missingReason === "stock_unconfirmed" ? "Vhodný produkt existuje, ale skladovost není potvrzená — zatím nelze doporučit nákup" : missingReason === "pv_nominal_review" ? "Vybraných " + installedPvWp + " Wp panelů přesahuje jmenovitý FV výkon dostupného MPPT (" + nominalPvWp + " Wp). Ověřte s výrobcem možné předimenzování a vstupní limity." : missingReason === "pv_electrical_review" ? "Pro tyto panely chybí potvrzené zapojení k dostupnému MPPT: zkontrolujte napětí Voc za mrazu, zkratový proud Isc, zapojení a rozběhové napětí." : "Chybí ověřený vhodný produkt — individuálně ověřte před nákupem"}</span>
+        <span>${ready ? `${quantity} ks · ${escapeHtml(product.name)}` : missingReason === "stock_unconfirmed" ? "Vhodný produkt existuje, ale skladovost není potvrzená — zatím nelze doporučit nákup" : missingReason === "shore_capacity_review" ? "Nabíječka nemá potvrzenou vhodnost pro skutečnou kapacitu vybrané baterie; zvolte jinou nabíječku nebo ověřte s odborníkem." : missingReason === "pv_nominal_review" ? "Vybraných " + installedPvWp + " Wp panelů přesahuje jmenovitý FV výkon dostupného MPPT (" + nominalPvWp + " Wp). Ověřte s výrobcem možné předimenzování a vstupní limity." : missingReason === "pv_electrical_review" ? "Pro tyto panely chybí potvrzené zapojení k dostupnému MPPT: zkontrolujte napětí Voc za mrazu, zkratový proud Isc, zapojení a rozběhové napětí." : "Chybí ověřený vhodný produkt — individuálně ověřte před nákupem"}</span>
         ${requirement ? `<small class="caravan-item-requirement">${escapeHtml(requirement)}</small>` : ""}
         ${ready ? czechInverterVariantMarkup(product) : ""}
+        ${shoreCapacityReview?.status==="within_reviewed_range" ? `<small class="caravan-item-requirement" data-shore-capacity-review>Vybraná baterie ${shoreCapacityReview.actualAh} Ah je v doporučeném rozsahu nabíječky ${shoreCapacityReview.minAh}–${shoreCapacityReview.maxAh} Ah. Ověřte nabíjecí profil a BMS.</small>` : ""}
         ${pvWiringReview ? `<small class="caravan-item-requirement" data-pv-wiring-review>Kontrola výrobních limitů: ${pvWiringReview.series} panel(ů) v sérii × ${pvWiringReview.parallel} paralelní větev; Voc za ${pvWiringReview.coldAmbientC} °C přibližně ${pvWiringReview.coldVocV} V, Isc při ${pvWiringReview.hotCellC} °C přibližně ${pvWiringReview.hotIscA} A. Návrh neověřuje kabeláž, montáž ani skutečné teploty. <a href="${escapeHtml(pvWiringReview.manufacturerUrl)}" target="_blank" rel="noopener noreferrer" data-manufacturer-pv-proof>Specifikace ${escapeHtml(pvWiringReview.manufacturerName)}</a></small>` : ""}
       </div>
       ${ready ? `<a class="caravan-buying-plan-link" href="${escapeHtml(attributedAwinUrl(product, category, "recommended", "caravan-plan"))}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escapeHtml(product.id)}" data-merchant="${escapeHtml(product.merchant)}" data-category="${escapeHtml(category)}">${escapeHtml(merchantPurchaseCta("cs", merchantLabel(product.merchant)))}</a>` : ""}
