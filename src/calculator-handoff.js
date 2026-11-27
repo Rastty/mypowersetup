@@ -5,8 +5,8 @@ import { readCommunityAttribution } from "./community-attribution.js";
 // No synthetic appliance loads or hidden inverter assumptions are invented.
 const ROUTES = Object.freeze({
   cs: Object.freeze({ "battery-autonomy": "/kalkulacky/vydrz-baterie/", "battery-capacity": "/kalkulacky/kapacita-baterie/", "solar-sizing": "/kalkulacky/solarni-panely/", "mppt-sizing": "/kalkulacky/mppt-regulator/" }),
-  sk: Object.freeze({ "battery-capacity": "/sk/kalkulacky/kapacita-baterie/", "solar-sizing": "/sk/kalkulacky/solarne-panely/", "mppt-sizing": "/sk/kalkulacky/mppt-regulator/" }),
-  pl: Object.freeze({ "battery-capacity": "/pl/kalkulatory/pojemnosc-akumulatora/", "solar-sizing": "/pl/kalkulatory/panele-solarne/", "mppt-sizing": "/pl/kalkulatory/regulator-mppt/" }),
+  sk: Object.freeze({ "battery-autonomy": "/sk/kalkulacky/vydrz-baterie/", "battery-capacity": "/sk/kalkulacky/kapacita-baterie/", "solar-sizing": "/sk/kalkulacky/solarne-panely/", "mppt-sizing": "/sk/kalkulacky/mppt-regulator/" }),
+  pl: Object.freeze({ "battery-autonomy": "/pl/kalkulatory/czas-pracy-akumulatora/", "battery-capacity": "/pl/kalkulatory/pojemnosc-akumulatora/", "solar-sizing": "/pl/kalkulatory/panele-solarne/", "mppt-sizing": "/pl/kalkulatory/regulator-mppt/" }),
   hu: Object.freeze({ "battery-capacity": "/hu/kalkulatorok/akkumulator-kapacitas/", "solar-sizing": "/hu/kalkulatorok/napelem-teljesitmeny/", "mppt-sizing": "/hu/kalkulatorok/mppt-szabalyozo/" }),
 });
 const NEXT_INTENT = Object.freeze({ "battery-autonomy": "battery-capacity", "battery-capacity": "solar-sizing", "solar-sizing": "mppt-sizing" });

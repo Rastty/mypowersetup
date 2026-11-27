@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ako dlho vydrží batéria v karavane? Kalkulačka výdrže | MyPowerSetup</title>
+  <meta name="description" content="Vypočítajte výdrž 100, 150 alebo 200 Ah batérie v karavane podľa napätia 12/24 V, dennej spotreby a typu LiFePO₄ alebo AGM.">
+  <link rel="canonical" href="https://mypowersetup.com/sk/kalkulacky/vydrz-baterie/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/vydrz-baterie/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/vydrz-baterie/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/czas-pracy-akumulatora/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/vydrz-baterie/">
+  <meta property="og:title" content="Ako dlho vydrží batéria v karavane? Kalkulačka výdrže">
+  <meta property="og:description" content="Vypočítajte výdrž 100, 150 alebo 200 Ah batérie v karavane podľa napätia 12/24 V, dennej spotreby a typu LiFePO₄ alebo AGM.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mypowersetup.com/sk/kalkulacky/vydrz-baterie/">
+  <meta property="og:site_name" content="MyPowerSetup">
+  <meta property="og:locale" content="sk_SK">
+  <meta property="og:image" content="https://mypowersetup.com/social-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20261108-mppt-reference1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Kalkulačka výdrže batérie","url":"https://mypowersetup.com/sk/kalkulacky/vydrz-baterie/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true,"inLanguage":"sk-SK"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/sk/"},{"@type":"ListItem","position":2,"name":"Kalkulačky","item":"https://mypowersetup.com/sk/kalkulacky/"},{"@type":"ListItem","position":3,"name":"Kalkulačka výdrže batérie","item":"https://mypowersetup.com/sk/kalkulacky/vydrz-baterie/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Koľko hodín vydrží 100 Ah LiFePO₄?","acceptedAnswer":{"@type":"Answer","text":"Pri 12 V a 600 Wh/deň bez dobíjania vychádza približne 33 hodín, s 80 % využiteľnou kapacitou a 15 % návrhovou rezervou."}},{"@type":"Question","name":"Čo ak nepoznám dennú spotrebu?","acceptedAnswer":{"@type":"Answer","text":"V hlavnom Builderi vyberte chladničku, svetlá, čerpadlo a ďalšie spotrebiče podľa času používania."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/sk/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/sk/kalkulacky/">Kalkulačky</a><a class="header-link" href="/sk/sprievodca/">Návody</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/sk/">MyPowerSetup</a> / <a href="/sk/kalkulacky/">Kalkulačky</a> / Výdrž batérie</nav>
+  <section class="calculator-hero"><h1>Ako dlho vydrží batéria v karavane?</h1><p>Zadajte kapacitu existujúcej batérie, napätie a celkovú dennú spotrebu. Získate odhad hodín a dní bez dobíjania s rovnakou rezervou ako v hlavnom návrhu MyPowerSetup.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="battery-autonomy" data-calculator-locale="sk">
+    <div class="calculator-card"><h2>Zadajte batériu a spotrebu</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="batteryCapacityAh">Kapacita batérie (Ah)</label><input id="batteryCapacityAh" name="batteryCapacityAh" type="number" inputmode="decimal" min="10" max="2000" step="1" value="100" required></div>
+      <div class="calculator-field"><label for="systemVoltage">Napätie batérie</label><select id="systemVoltage" name="systemVoltage"><option value="12">12 V</option><option value="24">24 V</option></select></div>
+      <div class="calculator-field"><label for="batteryType">Typ batérie</label><select id="batteryType" name="batteryType"><option value="lifepo4">LiFePO₄</option><option value="lead">AGM / olovo</option></select></div>
+      <div class="calculator-field"><label for="dailyWh">Denná spotreba (Wh/deň)</label><input id="dailyWh" name="dailyWh" type="number" inputmode="decimal" min="50" max="20000" step="10" value="600" required></div>
+      <button class="calculator-button" type="submit">Vypočítať výdrž</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><h2>Odhad výdrže bez dobíjania</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Dni</span><strong data-result-autonomy-days>—</strong></div>
+      <div class="calculator-metric"><span>Hodiny</span><strong data-result-autonomy-hours>—</strong></div>
+      <div class="calculator-metric"><span>Využiteľná energia</span><strong data-result-usable-wh>—</strong></div>
+      <div class="calculator-metric"><span>Energia na plánovanie</span><strong data-result-planning-wh>—</strong></div>
+    </div><p data-result-summary>Vyplňte údaje a spustite výpočet.</p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul>
+    <div class="calculator-actions"><a class="calculator-cta" href="/sk/#kalkulator">Navrhnúť celú zostavu</a><a class="calculator-cta calculator-cta-secondary" href="/sk/kalkulacky/kapacita-baterie/">Vypočítať potrebnú batériu na 2 dni →</a><a class="calculator-cta calculator-cta-secondary" href="/sk/sprievodca/kapacita-baterie-do-karavanu/">Ako vybrať batériu</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Ako sa výdrž počíta</h2><p><strong>Výdrž v dňoch = Ah × V × využiteľný podiel ÷ 1,15 ÷ denná spotreba vo Wh.</strong></p><p>Model počíta s 80 % využiteľnou hĺbkou vybitia LiFePO₄, 50 % pri AGM a 15 % návrhovou rezervou. Ak batéria nestačí, pokračujte výpočtom potrebných Ah; denná spotreba, napätie a typ batérie sa prenesú. Počet dní zostáva nastaviteľný.</p></section>
+  <section class="calculator-section calculator-content-card" data-calculator-continuation-section="battery_autonomy_reference"><h2>Výdrž batérií 100, 150 a 200 Ah</h2><p>Orientačné hodnoty pre 12 V a 600 Wh/deň bez dobíjania. Pri 24 V je pri rovnakej kapacite v Ah nominálna energia dvojnásobná.</p>
+    <div class="calculator-table-scroll"><table class="calculator-reference-table" aria-label="Výdrž batérií 100, 150 a 200 Ah"><caption>12 V · 600 Wh</caption><thead><tr><th scope="col">Kapacita</th><th scope="col">Typ</th><th scope="col">Dni</th><th scope="col">Hodiny</th></tr></thead><tbody>
+<tr data-autonomy-example data-battery-ah="100" data-battery-type="lifepo4" data-daily-wh="600"><th scope="row">100 Ah</th><td>LiFePO₄</td><td data-autonomy-days="1.4">1,4</td><td data-autonomy-hours="33">33 h</td></tr>
+<tr data-autonomy-example data-battery-ah="100" data-battery-type="lead" data-daily-wh="600"><th scope="row">100 Ah</th><td>AGM / olovo</td><td data-autonomy-days="0.9">0,9</td><td data-autonomy-hours="21">21 h</td></tr>
+<tr data-autonomy-example data-battery-ah="150" data-battery-type="lifepo4" data-daily-wh="600"><th scope="row">150 Ah</th><td>LiFePO₄</td><td data-autonomy-days="2.1">2,1</td><td data-autonomy-hours="50">50 h</td></tr>
+<tr data-autonomy-example data-battery-ah="150" data-battery-type="lead" data-daily-wh="600"><th scope="row">150 Ah</th><td>AGM / olovo</td><td data-autonomy-days="1.3">1,3</td><td data-autonomy-hours="31">31 h</td></tr>
+<tr data-autonomy-example data-battery-ah="200" data-battery-type="lifepo4" data-daily-wh="600"><th scope="row">200 Ah</th><td>LiFePO₄</td><td data-autonomy-days="2.8">2,8</td><td data-autonomy-hours="67">67 h</td></tr>
+<tr data-autonomy-example data-battery-ah="200" data-battery-type="lead" data-daily-wh="600"><th scope="row">200 Ah</th><td>AGM / olovo</td><td data-autonomy-days="1.7">1,7</td><td data-autonomy-hours="42">42 h</td></tr>
+    </tbody></table></div><p>Skutočný čas ovplyvňujú teplota, starnutie batérie, vlastná spotreba meniča a BMS. Výpočet neoveruje špičkový prúd ani vhodnosť konkrétnej elektroinštalácie. Zahrňte straty meniča do dennej spotreby.</p><div class="calculator-actions"><a class="calculator-cta" href="/sk/#kalkulator">Navrhnúť celú zostavu</a><a class="calculator-cta calculator-cta-secondary" href="/sk/kalkulacky/kapacita-baterie/">Vypočítať potrebnú batériu na 2 dni →</a></div>
+  </section>
+  <section class="calculator-section"><h2>Časté otázky</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Koľko hodín vydrží 100 Ah LiFePO₄?</h3><p>Pri 12 V a 600 Wh/deň bez dobíjania vychádza približne 33 hodín, s 80 % využiteľnou kapacitou a 15 % návrhovou rezervou.</p></article><article class="calculator-content-card"><h3>Čo ak nepoznám dennú spotrebu?</h3><p>V hlavnom Builderi vyberte chladničku, svetlá, čerpadlo a ďalšie spotrebiče podľa času používania.</p></article></div></section>
+</main>
+<script type="module" src="/src/calculator-landing-browser.js?v=20261127-autonomy-locales1"></script>
+</body>
+</html>

@@ -25,6 +25,10 @@ const COPY = Object.freeze({
     cableReserve: ({ n, result }) => `Počítáme měděný vodič a celou cestu tam i zpět. Skutečný úbytek se zvoleným průřezem vychází ${result.actualDropPercent == null ? "mimo tabulku" : `${n(result.actualDropPercent)} %`}.`,
   }),
   sk: Object.freeze({
+    nextBattery: "Vypočítať potrebnú batériu na 2 dni →",
+    autonomyDayUnit: "dňa",
+    autonomySummary: ({ n, result }) => `Batéria ${n(result.batteryCapacityAh)} Ah pri ${result.systemVoltage} V a spotrebe ${n(result.dailyWh)} Wh/deň vydrží odhadom ${n(result.autonomyDays)} dňa, približne ${n(result.autonomyHours)} hodín bez dobíjania.`,
+    autonomyReserve: ({ n, result }) => `Z ${n(result.nominalWh)} Wh počítame s využiteľnou hĺbkou vybitia ${result.usableDepthPercent} % a rezervou ${result.batteryMarginPercent} %. Na plánovanie zostáva približne ${n(result.planningWh)} Wh.`,
     numberLocale: "sk-SK",
     failed: "Výpočet sa nepodarilo dokončiť.",
     staleResult: "Zmenili ste vstupné údaje. Pre aktuálny návrh spustite výpočet znova.",
@@ -46,6 +50,10 @@ const COPY = Object.freeze({
     cableReserve: ({ n, result }) => `Počítame medený vodič a celú cestu tam aj späť. Skutočný úbytok so zvoleným prierezom je ${result.actualDropPercent == null ? "mimo tabuľky" : `${n(result.actualDropPercent)} %`}.`,
   }),
   pl: Object.freeze({
+    nextBattery: "Oblicz potrzebny akumulator na 2 dni →",
+    autonomyDayUnit: "dnia",
+    autonomySummary: ({ n, result }) => `Akumulator ${n(result.batteryCapacityAh)} Ah przy ${result.systemVoltage} V i zużyciu ${n(result.dailyWh)} Wh/dzień wystarczy na około ${n(result.autonomyDays)} dnia, czyli ${n(result.autonomyHours)} godzin bez ładowania.`,
+    autonomyReserve: ({ n, result }) => `Z ${n(result.nominalWh)} Wh uwzględniamy ${result.usableDepthPercent}% użytecznej głębokości rozładowania oraz ${result.batteryMarginPercent}% zapasu. Do planowania pozostaje około ${n(result.planningWh)} Wh.`,
     numberLocale: "pl-PL",
     failed: "Nie udało się wykonać obliczenia.",
     staleResult: "Zmieniono dane wejściowe. Oblicz ponownie, aby zobaczyć aktualny wynik.",
@@ -114,8 +122,8 @@ export function classifyCalculatorContinuation(pathname, hash, locale = "cs") {
   // a distinct analytics destination type. Never treat unrelated routes as a calculator.
   const calculatorTargets = {
     cs: ["/kalkulacky/kapacita-baterie/", "/kalkulacky/solarni-panely/", "/kalkulacky/mppt-regulator/"],
-    sk: ["/sk/kalkulacky/solarne-panely/", "/sk/kalkulacky/mppt-regulator/"],
-    pl: ["/pl/kalkulatory/panele-solarne/", "/pl/kalkulatory/regulator-mppt/"],
+    sk: ["/sk/kalkulacky/kapacita-baterie/", "/sk/kalkulacky/vydrz-baterie/", "/sk/kalkulacky/solarne-panely/", "/sk/kalkulacky/mppt-regulator/"],
+    pl: ["/pl/kalkulatory/pojemnosc-akumulatora/", "/pl/kalkulatory/czas-pracy-akumulatora/", "/pl/kalkulatory/panele-solarne/", "/pl/kalkulatory/regulator-mppt/"],
     hu: ["/hu/kalkulatorok/napelem-teljesitmeny/", "/hu/kalkulatorok/mppt-szabalyozo/"],
   };
   if (!hash && calculatorTargets[locale]?.includes(pathname)) return "calculator";

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Na ile wystarczy akumulator w kamperze? Kalkulator czasu pracy | MyPowerSetup</title>
+  <meta name="description" content="Oblicz czas pracy akumulatora 100, 150 lub 200 Ah w kamperze przy 12/24 V, dobowym zużyciu energii oraz chemii LiFePO₄ lub AGM.">
+  <link rel="canonical" href="https://mypowersetup.com/pl/kalkulatory/czas-pracy-akumulatora/">
+  <link rel="alternate" hreflang="cs-CZ" href="https://mypowersetup.com/kalkulacky/vydrz-baterie/">
+  <link rel="alternate" hreflang="sk-SK" href="https://mypowersetup.com/sk/kalkulacky/vydrz-baterie/">
+  <link rel="alternate" hreflang="pl-PL" href="https://mypowersetup.com/pl/kalkulatory/czas-pracy-akumulatora/">
+  <link rel="alternate" hreflang="x-default" href="https://mypowersetup.com/kalkulacky/vydrz-baterie/">
+  <meta property="og:title" content="Na ile wystarczy akumulator w kamperze? Kalkulator czasu pracy">
+  <meta property="og:description" content="Oblicz czas pracy akumulatora 100, 150 lub 200 Ah w kamperze przy 12/24 V, dobowym zużyciu energii oraz chemii LiFePO₄ lub AGM.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mypowersetup.com/pl/kalkulatory/czas-pracy-akumulatora/">
+  <meta property="og:site_name" content="MyPowerSetup">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:image" content="https://mypowersetup.com/social-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/styles.css?v=20260902-product-roles1">
+  <link rel="stylesheet" href="/kalkulacky/calculator.css?v=20261108-mppt-reference1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Kalkulator czasu pracy akumulatora","url":"https://mypowersetup.com/pl/kalkulatory/czas-pracy-akumulatora/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","isAccessibleForFree":true,"inLanguage":"pl-PL"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MyPowerSetup","item":"https://mypowersetup.com/pl/"},{"@type":"ListItem","position":2,"name":"Kalkulatory","item":"https://mypowersetup.com/pl/kalkulatory/"},{"@type":"ListItem","position":3,"name":"Kalkulator czasu pracy akumulatora","item":"https://mypowersetup.com/pl/kalkulatory/czas-pracy-akumulatora/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ile godzin pracuje akumulator 100 Ah LiFePO₄?","acceptedAnswer":{"@type":"Answer","text":"Przy 12 V i 600 Wh/dzień bez ładowania wynik to około 33 godziny, z 80% użytecznej pojemności i 15% zapasu projektowego."}},{"@type":"Question","name":"Co jeśli nie znam dobowego zużycia?","acceptedAnswer":{"@type":"Answer","text":"W pełnym Builderze wybierz lodówkę, oświetlenie, pompę i pozostałe urządzenia wraz z czasem pracy."}}]}]}</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/pl/">MyPowerSetup</a><nav class="header-nav"><a class="header-link" href="/pl/kalkulatory/">Kalkulatory</a><a class="header-link" href="/pl/poradnik/">Poradniki</a></nav></header>
+<main class="calculator-page">
+  <nav class="calculator-breadcrumbs"><a href="/pl/">MyPowerSetup</a> / <a href="/pl/kalkulatory/">Kalkulatory</a> / Czas pracy akumulatora</nav>
+  <section class="calculator-hero"><h1>Na ile wystarczy akumulator w kamperze?</h1><p>Podaj pojemność posiadanego akumulatora, napięcie i całkowite dobowe zużycie energii. Otrzymasz orientacyjny czas pracy w godzinach i dniach bez ładowania, z tym samym zapasem co w MyPowerSetup Builder.</p></section>
+  <section class="calculator-grid" data-calculator-landing data-calculator-intent="battery-autonomy" data-calculator-locale="pl">
+    <div class="calculator-card"><h2>Podaj parametry akumulatora</h2><form class="calculator-form" data-calculator-form>
+      <div class="calculator-field"><label for="batteryCapacityAh">Pojemność akumulatora (Ah)</label><input id="batteryCapacityAh" name="batteryCapacityAh" type="number" inputmode="decimal" min="10" max="2000" step="1" value="100" required></div>
+      <div class="calculator-field"><label for="systemVoltage">Napięcie akumulatora</label><select id="systemVoltage" name="systemVoltage"><option value="12">12 V</option><option value="24">24 V</option></select></div>
+      <div class="calculator-field"><label for="batteryType">Typ akumulatora</label><select id="batteryType" name="batteryType"><option value="lifepo4">LiFePO₄</option><option value="lead">AGM / kwasowo-ołowiowy</option></select></div>
+      <div class="calculator-field"><label for="dailyWh">Dobowe zużycie (Wh/dzień)</label><input id="dailyWh" name="dailyWh" type="number" inputmode="decimal" min="50" max="20000" step="10" value="600" required></div>
+      <button class="calculator-button" type="submit">Oblicz czas pracy</button>
+    </form><p class="calculator-error" data-calculator-error role="alert" hidden></p></div>
+    <div class="calculator-result" data-calculator-result tabindex="-1" aria-live="polite"><h2>Szacowany czas bez ładowania</h2><div class="calculator-metrics">
+      <div class="calculator-metric"><span>Dni</span><strong data-result-autonomy-days>—</strong></div>
+      <div class="calculator-metric"><span>Godziny</span><strong data-result-autonomy-hours>—</strong></div>
+      <div class="calculator-metric"><span>Energia użyteczna</span><strong data-result-usable-wh>—</strong></div>
+      <div class="calculator-metric"><span>Energia do planowania</span><strong data-result-planning-wh>—</strong></div>
+    </div><p data-result-summary>Wprowadź dane i oblicz czas pracy.</p><p class="calculator-help" data-result-reserve></p><ul data-result-warnings hidden></ul>
+    <div class="calculator-actions"><a class="calculator-cta" href="/pl/#kalkulator">Dobierz cały zestaw</a><a class="calculator-cta calculator-cta-secondary" href="/pl/kalkulatory/pojemnosc-akumulatora/">Oblicz potrzebny akumulator na 2 dni →</a><a class="calculator-cta calculator-cta-secondary" href="/pl/poradnik/pojemnosc-akumulatora-do-kampera/">Jak dobrać akumulator</a></div></div>
+  </section>
+  <section class="calculator-section calculator-content-card"><h2>Jak obliczamy czas pracy</h2><p><strong>Czas w dniach = Ah × V × użyteczna część pojemności ÷ 1,15 ÷ dobowe zużycie w Wh.</strong></p><p>Model przyjmuje 80% użytecznej głębokości rozładowania LiFePO₄, 50% dla AGM oraz 15% zapasu projektowego. Jeśli akumulator nie wystarcza, przejdź do kalkulatora pojemności: zużycie, napięcie i typ zostaną przeniesione, a liczbę dni można zmienić.</p></section>
+  <section class="calculator-section calculator-content-card" data-calculator-continuation-section="battery_autonomy_reference"><h2>Na ile wystarczy 100, 150 lub 200 Ah?</h2><p>Wartości orientacyjne dla 12 V i 600 Wh/dzień bez ładowania. Przy 24 V taka sama pojemność w Ah oznacza dwukrotnie większą energię nominalną.</p>
+    <div class="calculator-table-scroll"><table class="calculator-reference-table" aria-label="Na ile wystarczy 100, 150 lub 200 Ah?"><caption>12 V · 600 Wh</caption><thead><tr><th scope="col">Pojemność</th><th scope="col">Typ</th><th scope="col">Dni</th><th scope="col">Godziny</th></tr></thead><tbody>
+<tr data-autonomy-example data-battery-ah="100" data-battery-type="lifepo4" data-daily-wh="600"><th scope="row">100 Ah</th><td>LiFePO₄</td><td data-autonomy-days="1.4">1,4</td><td data-autonomy-hours="33">33 h</td></tr>
+<tr data-autonomy-example data-battery-ah="100" data-battery-type="lead" data-daily-wh="600"><th scope="row">100 Ah</th><td>AGM / kwasowo-ołowiowy</td><td data-autonomy-days="0.9">0,9</td><td data-autonomy-hours="21">21 h</td></tr>
+<tr data-autonomy-example data-battery-ah="150" data-battery-type="lifepo4" data-daily-wh="600"><th scope="row">150 Ah</th><td>LiFePO₄</td><td data-autonomy-days="2.1">2,1</td><td data-autonomy-hours="50">50 h</td></tr>
+<tr data-autonomy-example data-battery-ah="150" data-battery-type="lead" data-daily-wh="600"><th scope="row">150 Ah</th><td>AGM / kwasowo-ołowiowy</td><td data-autonomy-days="1.3">1,3</td><td data-autonomy-hours="31">31 h</td></tr>
+<tr data-autonomy-example data-battery-ah="200" data-battery-type="lifepo4" data-daily-wh="600"><th scope="row">200 Ah</th><td>LiFePO₄</td><td data-autonomy-days="2.8">2,8</td><td data-autonomy-hours="67">67 h</td></tr>
+<tr data-autonomy-example data-battery-ah="200" data-battery-type="lead" data-daily-wh="600"><th scope="row">200 Ah</th><td>AGM / kwasowo-ołowiowy</td><td data-autonomy-days="1.7">1,7</td><td data-autonomy-hours="42">42 h</td></tr>
+    </tbody></table></div><p>Rzeczywisty czas zależy od temperatury, zużycia akumulatora, poboru własnego przetwornicy i limitów BMS. Wynik nie potwierdza dopuszczalnego prądu szczytowego ani bezpieczeństwa instalacji. Uwzględnij straty przetwornicy w zużyciu dobowym.</p><div class="calculator-actions"><a class="calculator-cta" href="/pl/#kalkulator">Dobierz cały zestaw</a><a class="calculator-cta calculator-cta-secondary" href="/pl/kalkulatory/pojemnosc-akumulatora/">Oblicz potrzebny akumulator na 2 dni →</a></div>
+  </section>
+  <section class="calculator-section"><h2>Najczęstsze pytania</h2><div class="calculator-card-grid"><article class="calculator-content-card"><h3>Ile godzin pracuje akumulator 100 Ah LiFePO₄?</h3><p>Przy 12 V i 600 Wh/dzień bez ładowania wynik to około 33 godziny, z 80% użytecznej pojemności i 15% zapasu projektowego.</p></article><article class="calculator-content-card"><h3>Co jeśli nie znam dobowego zużycia?</h3><p>W pełnym Builderze wybierz lodówkę, oświetlenie, pompę i pozostałe urządzenia wraz z czasem pracy.</p></article></div></section>
+</main>
+<script type="module" src="/src/calculator-landing-browser.js?v=20261127-autonomy-locales1"></script>
+</body>
+</html>
