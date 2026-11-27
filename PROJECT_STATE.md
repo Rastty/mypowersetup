@@ -23,6 +23,14 @@
 - Nový [Sync affiliate products PASS](https://github.com/Rastty/mypowersetup/actions/runs/46016805466), včetně předběžných i finálních bezpečnostních bran a **přesného readbacku publikovaného kupního katalogu**. Automaticky vytvořil datový commit [`cb1219af16764e1fcfc94d1610282b8d3e28d740`](https://github.com/Rastty/mypowersetup/commit/cb1219af16764e1fcfc94d1610282b8d3e28d740). Jeho [Pages build+deploy+report PASS](https://github.com/Rastty/mypowersetup/actions/runs/46016997960).
 - Čerstvá data: CZ Solar-import `status=ok`, snímek **2026-11-27 14:32:44 UTC**, **12 měničů** a **2 FV panely**; SK Padabo `status=ok`, **14:32:58 UTC**, **2 FV panely**. CZ DC–DC scénář 12V/30A má ve zdrojovém reportu `status=ready`, **7 identifikovaných shod**. To nejsou reálné prodeje ani garantované budoucí ceny/sklad.
 
+## TURBO cyklus #1b — Navazující ochrana SK/HU katalogu, 2026-11-27
+
+**Odhalený následný blocker:** první obnovení katalogů odstranilo neplatné CZ SKU, ale nová `main Test` kontrola zároveň odhalila další historický pevný limit: test Allpowers požadoval alespoň 22 FV produktů, zatímco čerstvý schválený evropský zdroj obsahoval **16 panelových položek + 4 power stations** (SK/HU zdroj `status=ok`, po 20 shodných Allpowers EU položkách). Chybějící produkty nebyly uměle doplněny.
+
+**Doručeno:** [PR #709](https://github.com/Rastty/mypowersetup/pull/709), merge `50a8bad9ff43152e9af9cbcd2a82668b7ddfaf53`. Test namísto historického počtu ověřuje jedinečné SKU, schválené AWIN identifikátory, EUR, přesné kategorie, technické parametry ověřených stanic, nulovou nákupní způsobilost při chybě zdroje a shodu přesného katalogu SK/HU. Produkční doporučovací engine ani pravidla pro způsobilost SKU se neměnila.
+
+**Ověřeno:** [PR Test PASS](https://github.com/Rastty/mypowersetup/actions/runs/46017632754), [main Test PASS](https://github.com/Rastty/mypowersetup/actions/runs/46017753563), [Pages PASS pro merge SHA](https://github.com/Rastty/mypowersetup/actions/runs/46017753615). Následný [Sync affiliate products PASS](https://github.com/Rastty/mypowersetup/actions/runs/46017753457) včetně bezpečnostních kontrol a **exact published buyer catalog readback** vytvořil datový commit [`fb923ae581e5a797228e645818e96dc6bcfbbcfa`](https://github.com/Rastty/mypowersetup/commit/fb923ae581e5a797228e645818e96dc6bcfbbcfa), jehož [Pages build+deploy+report PASS](https://github.com/Rastty/mypowersetup/actions/runs/46017934951). `main` nemá otevřená PR.
+
 ## BLOKACE / nezaměňovat za tržby
 
 - **Návštěvnost, consented impressions/prokliky, skutečné objednávky, schválené a vyplacené provize a zisk: NEOVĚŘENO, nikoli nula.** Není zde validovaný výpis GA4 a affiliate financí pro MyPowerSetup.
