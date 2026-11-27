@@ -19,6 +19,16 @@ const INPUT_KEYS = Object.freeze({ "battery-capacity": "dailyWh", "solar-sizing"
 const FRIDGE_GUIDE_SOURCE = "fridge-guide";
 const FRIDGE_GUIDE_WH = Object.freeze([270, 560]);
 const FRIDGE_BATTERY_PATH = ROUTES.cs["battery-autonomy"];
+const FRIDGE_ESTIMATE_SOURCE = "fridge-estimate";
+
+// A calculated estimate is separate from the two fixed measured manufacturer cases.
+// Accept only a local, explicit Wh estimate; never transfer battery voltage, capacity or chemistry.
+export function buildFridgeEstimateAutonomyUrl(dailyWh, locale) {
+  const route = ["cs", "sk", "pl"].includes(locale) && ROUTES[locale]["battery-autonomy"];
+  const wh = validSizingNumber(dailyWh, 50, 20000);
+  if (!route || wh === null) return null;
+  return route + "?" + new URLSearchParams({ mps_from: FRIDGE_ESTIMATE_SOURCE, dailyWh: String(wh) });
+}
 
 export function buildFridgeGuideAutonomyUrl(dailyWh) {
   const wh = validSizingNumber(dailyWh, 50, 20000);
@@ -28,8 +38,11 @@ export function buildFridgeGuideAutonomyUrl(dailyWh) {
 }
 
 function applyFridgeGuidePrefill({ form, intent, locale, pathname, params }) {
-  if (intent !== "battery-autonomy" || locale !== "cs" || pathname !== FRIDGE_BATTERY_PATH)
-    return null;
+  const source = params.get("mps_from");
+  const estimate = source === FRIDGE_ESTIMATE_SOURCE;
+  const route = estimate && ["cs", "sk", "pl"].includes(locale)
+    ? ROUTES[locale]["battery-autonomy"] : (!estimate && locale === "cs" ? FRIDGE_BATTERY_PATH : null);
+  if (intent !== "battery-autonomy" || !route || pathname !== route) return null;
   if (params.getAll("mps_from").length !== 1 || params.getAll("dailyWh").length !== 1)
     return null;
   // The shared guide click tracker can carry an existing, validated community
@@ -43,11 +56,11 @@ function applyFridgeGuidePrefill({ form, intent, locale, pathname, params }) {
         !readCommunityAttribution(params.toString())) return null;
   }
   const wh = validSizingNumber(params.get("dailyWh"), 50, 20000);
-  if (wh === null || !FRIDGE_GUIDE_WH.includes(wh)) return null;
+  if (wh === null || (!estimate && !FRIDGE_GUIDE_WH.includes(wh))) return null;
   const field = form?.elements?.namedItem?.("dailyWh");
   if (!field || typeof field.value !== "string") return null;
   field.value = String(wh);
-  return Object.freeze({ from: FRIDGE_GUIDE_SOURCE, values: Object.freeze({ dailyWh: String(wh) }) });
+  return Object.freeze({ from: source, values: Object.freeze({ dailyWh: String(wh) }) });
 }
 
 
@@ -98,7 +111,7 @@ export function applyCalculatorHandoffPrefill({ form, intent, locale, pathname, 
   try { params = new URLSearchParams(String(search || "").replace(/^\?/, "")); } catch { return null; }
   const sourceIntent = params.get("mps_from");
   if (!sourceIntent || params.getAll("mps_from").length !== 1) return null;
-  if (sourceIntent === FRIDGE_GUIDE_SOURCE)
+  if (sourceIntent === FRIDGE_GUIDE_SOURCE || sourceIntent === FRIDGE_ESTIMATE_SOURCE)
     return applyFridgeGuidePrefill({ form, intent, locale, pathname, params });
   const expected = calculatorHandoffTarget(sourceIntent, locale);
   if (!expected || expected.intent !== intent || expected.path !== pathname) return null;

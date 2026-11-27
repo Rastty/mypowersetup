@@ -126,6 +126,7 @@ try {
   const batteryUpgrade = await smokeBatteryUpgrade(cdp);
   for (const [source, target, label] of [["/sk/kalkulacky/vydrz-baterie/","/sk/kalkulacky/kapacita-baterie/","2 dni"],["/pl/kalkulatory/czas-pracy-akumulatora/","/pl/kalkulatory/pojemnosc-akumulatora/","2 dni"]]) await smokeBatteryUpgrade(cdp, source, target, label);
   const fridgeGuide = await smokeFridgeGuideHandoff(cdp);
+  const fridgeEstimator = await smokeFridgeEstimator(cdp);
   const mpptBuyerMatches = await smokeMpptBuyerMatches(cdp);
   const batteryBuyerMatches = await smokeBatteryBuyerMatches(cdp);
   const expansionEditorial = await smokeExpansionEditorial(cdp);
@@ -139,6 +140,7 @@ try {
     batteryUpgrade,
     caravanScenarios,
     fridgeGuide,
+    fridgeEstimator,
     mpptBuyerMatches,
     batteryBuyerMatches,
     expansionEditorial,
@@ -428,6 +430,26 @@ async function smokeCaravanScenarioEntries(client) {
     assert(result.scrollWidth <= result.width + 2, `CZ ${sample.id}: result overflow`);
     reports.push({ scenario: sample.id, applianceCount: prepared.selected,
       autonomyDays: sample.days, season: sample.season, resultReady: true, overflow: false });
+  }
+  return reports;
+}
+
+async function smokeFridgeEstimator(client) {
+  const reports = [];
+  for (const [guide,target] of [["/pruvodce/spotreba-kompresorove-lednice/","/kalkulacky/vydrz-baterie/"],["/sk/sprievodca/spotreba-kompresorovej-chladnicky/","/sk/kalkulacky/vydrz-baterie/"],["/pl/poradnik/zuzycie-lodowki-kompresorowej/","/pl/kalkulatory/czas-pracy-akumulatora/"]]) {
+    await client.send("Page.navigate", { url: origin + guide });
+    await waitFor(async () => await evaluate(client, 'document.readyState === "complete" && !document.querySelector("[data-fridge-form]")?.hidden'));
+    await evaluate(client, 'document.querySelector("[data-fridge-form]").requestSubmit()');
+    const result = await evaluate(client, '(() => {const a=document.querySelector("[data-fridge-handoff]");return {href:a.getAttribute("href"),visible:!a.hidden,overflow:document.documentElement.scrollWidth>innerWidth+2};})()');
+    assert(result.visible && result.href === target+"?mps_from=fridge-estimate&dailyWh=680" && !result.overflow,"fridge estimate handoff "+guide);
+    await evaluate(client, '(() => {const f=document.querySelector("[data-fridge-form]");f.elements.namedItem("otherWh").value="200";f.dispatchEvent(new Event("input",{bubbles:true}));})()');
+    assert(await evaluate(client,'document.querySelector("[data-fridge-result]").hidden && !document.querySelector("[data-fridge-handoff]").hasAttribute("href")'),"fridge estimate stale link");
+    await evaluate(client, 'document.querySelector("[data-fridge-form]").requestSubmit()');
+    await evaluate(client, 'document.querySelector("[data-fridge-handoff]").click()');
+    await waitFor(async () => await evaluate(client,'location.pathname === '+JSON.stringify(target)+' && document.querySelector("[data-calculator-form]")?.elements.namedItem("dailyWh").value === "780" && !document.querySelector("[data-calculator-result]").hidden'));
+    const result2 = await evaluate(client,'(() => {const f=document.querySelector("[data-calculator-form]");return {battery:f.elements.namedItem("batteryCapacityAh").value,voltage:f.elements.namedItem("systemVoltage").value,chemistry:f.elements.namedItem("batteryType").value,overflow:document.documentElement.scrollWidth>innerWidth+2};})()');
+    assert(result2.battery==="100" && result2.voltage==="12" && result2.chemistry==="lifepo4" && !result2.overflow,"fridge estimate changed battery defaults");
+    reports.push({guide,target,dailyWh:780,staleCleared:true});
   }
   return reports;
 }

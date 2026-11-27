@@ -47,8 +47,10 @@ test("battery sizing examples link to matching market fridge evidence before pur
     assert.ok(buyerHtml.includes(`<a href="${fridge}">${anchor}</a>`), `${locale}: contextual fridge source link missing`);
     assert.ok(fridgeHtml.includes(`href="${buyer}"`), `${locale}: fridge guide must lead back to battery sizing`);
     assert.ok(buyerHtml.indexOf(`<a href="${fridge}">${anchor}</a>`) < buyerHtml.indexOf("<aside"), `${locale}: link must be in useful main article content`);
-    assert.equal((buyerHtml.match(/"dateModified":"2026-11-17"/g) || []).length, 1, `${locale}: structured article date`);
-    assert.ok(sitemap.includes(`<loc>https://mypowersetup.com${buyer}</loc><lastmod>2026-11-17</lastmod>`), `${locale}: updated sitemap`);
+    const dates = [...buyerHtml.matchAll(/"dateModified":"(\d{4}-\d{2}-\d{2})"/g)].map(m=>m[1]);
+    assert.equal(dates.length, 1, `${locale}: one structured article date`);
+    assert.ok(dates[0] >= "2026-11-17", `${locale}: modified date must not regress`);
+    assert.equal(sitemap.split(`<loc>https://mypowersetup.com${buyer}</loc><lastmod>${dates[0]}</lastmod>`).length - 1, 1, `${locale}: exact matching sitemap date`);
     assert.ok(!buyerHtml.includes(`href="${cases.find((item) => item.locale !== locale).fridge}"`), `${locale}: no cross-market fridge link`);
   }
 });

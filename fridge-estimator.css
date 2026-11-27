@@ -1,0 +1,11 @@
+.article .fridge-estimator h2{margin:0 0 12px;font-size:26px}
+.fridge-estimator-fields,.fridge-estimator-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.fridge-estimator-fields label{display:grid;gap:4px;align-content:start;font-weight:650;font-size:15px;min-width:0}
+.fridge-estimator input,.fridge-estimator select{width:100%;min-height:44px;border:1px solid #aebfb4;border-radius:8px;padding:8px;font:inherit;color:var(--ink);background:white}
+.fridge-estimator button{margin:16px 0 0;min-height:44px;padding:10px 18px;font:inherit;font-weight:750;border:0;border-radius:8px;background:var(--forest);color:white;cursor:pointer}
+.fridge-estimator-metrics div{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#eef4e9}
+.fridge-estimator-metrics dt{font-size:14px}
+.fridge-estimator-metrics dd{margin:0;font-size:22px;font-weight:800;overflow-wrap:anywhere}
+.fridge-estimator [hidden]{display:none!important}
+.fridge-estimator :focus-visible{outline:3px solid #176b4c;outline-offset:3px}
+@media(max-width:480px){.fridge-estimator-fields{grid-template-columns:minmax(0,1fr)}.fridge-estimator-metrics dd{font-size:20px}}
