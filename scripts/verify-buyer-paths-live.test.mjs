@@ -83,7 +83,11 @@ test("eighteen CZ, SK, PL and HU buyer pages, exact JS and catalogs are public-e
     assert.equal(result.marketSolarCatalogs[market].eligible24v450wp, 0);
     assert.equal(result.marketSolarCatalogs[market].commissionVerified, false);
   }
-  assert.equal(result.inverterCatalog.reviewedProducts, 13);
+  const inverterSnapshot = JSON.parse(await local("data/inverter-calculator-offers-cz.json"));
+  // The exact served catalog is already compared byte-for-byte to this local
+  // source; reviewed inventory counts must follow its validated availability.
+  assert.equal(result.inverterCatalog.reviewedProducts, inverterSnapshot.products.length);
+  assert.ok(inverterSnapshot.products.length <= 13);
   assert.equal(result.inverterCatalog.outboundClickVerified, false);
   assert.equal(result.inverterCatalog.commissionVerified, false);
   assert.equal(result.solarCatalog.reviewedProducts, 2);
@@ -356,7 +360,8 @@ test("PL and HU solar public HTML, tiny Padabo feeds and buyer JS must match rel
 test("public inverter view, buyer marker and outbound evidence fail on production drift", async () => {
   const expected = await local("data/inverter-calculator-offers-cz.json");
   const inspected = checkPublicInverterCatalog(expected, expected, Date.parse(JSON.parse(expected).generatedAt));
-  assert.equal(inspected.reviewedProducts, 13);
+  assert.equal(inspected.reviewedProducts, JSON.parse(expected).products.length);
+  assert.ok(inspected.reviewedProducts <= 13);
   assert.equal(inspected.eligible12v400w, 3);
   assert.equal(inspected.eligible24v1300w, 3);
   assert.equal(inspected.outboundClickVerified, false);
