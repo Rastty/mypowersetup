@@ -1,4 +1,4 @@
-import { reviewConcurrentCharging } from "./caravan-concurrent-charge-review.js?v=20261127-chargesum1";
+import { reviewConcurrentCharging } from "./caravan-concurrent-charge-review.js?v=20261127-chargesum2";
 import { reviewShoreBatteryCapacity } from "./caravan-shore-capacity-review.js?v=20261127-shorepair1";
 import { batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
 import { batteryContinuousLimitNotBelowRequirement } from "./caravan-bms-buyer-evidence.js?v=20261122-pq200a1-24vhigh1-pq100a1";

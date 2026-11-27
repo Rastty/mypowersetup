@@ -7,14 +7,23 @@ const EVIDENCE="https://www.victronenergy.com/media/pg/Lithium_SuperPack_NG/en/t
 const CHARGING=Object.freeze({
  BAT512110740:{recommendedA:30,maxA:100,voltageV:12},
  BAT524110740:{recommendedA:30,maxA:100,voltageV:24},
+ // Exact reviewed EU Power Queen product records; independently specified
+ // charge values, not inferred from discharge current or capacity.
+ "Power Queen 12V 200Ah Plus":{recommendedA:40,maxA:200,voltageV:12,capacityAh:200,dischargeA:200,evidenceUrl:"https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-plus-lifepo4-solar-battery"},
+ "Power Queen 24V 200Ah":{recommendedA:40,maxA:200,voltageV:24,capacityAh:200,dischargeA:200,evidenceUrl:"https://www.ipowerqueen.de/en/products/power-queen-24v-200ah-lifepo4-solar-battery-with-200a-bms"},
+ "Power Queen 24V 100Ah Deep Cycle":{recommendedA:20,maxA:100,voltageV:24,capacityAh:100,dischargeA:100,evidenceUrl:"https://www.ipowerqueen.de/products/power-queen-lifepo4-24v-100ah-deep-cycle-solarbatterie"},
 });
 const CATEGORIES=["controller","dc_charger","shore_charger"];
 export function reviewedBatteryChargingLimit(battery){
  if(!battery||battery.staleSource===true||battery.marketEligible===false
-   ||(battery.recommendedQuantity??1)!==1||verifiedBatteryContinuousDischargeAmps(battery)!==50)return null;
- const s=battery.specs,m=CHARGING[s.bmsManufacturerModel];
- if(!m||s.bmsManufacturerEvidenceUrl!==EVIDENCE||s.capacityAh!==100||s.voltageV!==m.voltageV)return null;
- return {...m,model:s.bmsManufacturerModel,evidenceUrl:EVIDENCE};
+   ||(battery.recommendedQuantity??1)!==1)return null;
+ const discharge=verifiedBatteryContinuousDischargeAmps(battery);
+ const s=battery.specs;
+ if(discharge===null||!s||!Object.hasOwn(CHARGING,s.bmsManufacturerModel))return null;
+ const m=CHARGING[s.bmsManufacturerModel],evidenceUrl=m.evidenceUrl??EVIDENCE;
+ if(discharge!==(m.dischargeA??50)||s.bmsManufacturerEvidenceUrl!==evidenceUrl
+   ||s.capacityAh!==(m.capacityAh??100)||s.voltageV!==m.voltageV)return null;
+ return {recommendedA:m.recommendedA,maxA:m.maxA,voltageV:m.voltageV,model:s.bmsManufacturerModel,evidenceUrl};
 }
 // This is a conservative SUM OF NAMEPLATE output-current ratings, not a
 // prediction of simultaneous delivered current or configured charge settings.

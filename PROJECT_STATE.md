@@ -85,6 +85,10 @@
 
 **Ověřeno:** [PR CI PASS](https://github.com/Rastty/mypowersetup/actions/runs/46044315370), [main CI PASS](https://github.com/Rastty/mypowersetup/actions/runs/46044468246), [Pages PASS](https://github.com/Rastty/mypowersetup/actions/runs/46044467023). Přímý veřejný Builder není dostupný přes aktuální webové rozhraní; lokální mobilní smoke a Pages nasazení jsou ověřené, interakce se živým formulářem ne.
 
+## TURBO cyklus #5c — Power Queen nabíjecí limity CZ/SK/PL (2026-11-27)
+
+Připraveno pro CI: rozšíření již existující kontroly souběžných jmenovitých proudů o tři přesné schválené EU SKU — 12V/200Ah Plus (dop. 40A / max. trvale 200A), 24V/200Ah (40/200A), 24V/100Ah Deep Cycle (20/100A). Nezávisle doloženo ve specifikacích výrobce, ne odvozeno z Ah ani vybíjení. Stejné kontroly přesného SKU, ceny, dostupnosti, affiliate identity, důkazního modelu, napětí a jedné baterie; všechny tři trhy. Nové regresní testy pokrývají hranice, neznámé údaje a odmítnutí poškozené identity. Stav CI/merge/Pages zatím neověřen.
+
 ## BLOKACE / nezaměňovat za tržby
 
 - **Návštěvnost, consented impressions/prokliky, skutečné objednávky, schválené a vyplacené provize a zisk: NEOVĚŘENO, nikoli nula.** Není zde validovaný výpis GA4 a affiliate financí pro MyPowerSetup.

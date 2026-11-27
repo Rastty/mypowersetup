@@ -75,7 +75,7 @@ test("CZ 24V 100/200Ah high-load six-category baskets preserve foreign price sup
 test("CZ Builder publishes refreshed evidence chain and warning beside every purchase surface",async()=>{
   const read=p=>readFile(new URL("../"+p,import.meta.url),"utf8");
   const [app,html,products,facts]=await Promise.all(["src/app.js","index.html","src/products.js","src/product-decision-facts.js"].map(read));
-  assert.match(html,/app\.js\?v=[^"]*24vhigh1-pq100a1-cz1-value1-stockvalue1-carbest1-shorepair1-dcdcvalue1-chargesum1"/);
+  assert.match(html,/app\.js\?v=[^"]*24vhigh1-pq100a1-cz1-value1-stockvalue1-carbest1-shorepair1-dcdcvalue1-chargesum2"/);
   assert.match(app,/products\.js\?v=[^"]*24vhigh1-pq100a1-cz1-value1-carbest1-dcdcvalue1"/);
   assert.match(products,/dometic-dpsi-inverter-profiles\.js\?v=[^"]*cz1"/);
   assert.match(facts,/caravan-bms-buyer-evidence\.js\?v=[^"]*pq100a1-cz1"/);

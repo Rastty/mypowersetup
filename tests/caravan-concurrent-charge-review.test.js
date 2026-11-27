@@ -55,3 +55,34 @@ test("actual nameplate sum differentiates recommended, maximum and unknown; ever
   assert.deepEqual(purchaseReadyCaravanPackages(variants,held),[]);
  }
 });
+
+test("three exact Power Queen charge specifications on CZ/SK/PL catalogs",async()=>{
+ const models=[
+  ["7752838578396",12,40,200],
+  ["7881294676188",24,40,200],
+  ["7752840380636",24,20,100],
+ ];
+ for(const l of ["cs","sk","pl"]){
+  const c=await cat(l);
+  for(const [id,v,recommended,max] of models){
+   const raw=c.products.find(p=>p.id==="powerqueen_eu:"+id);
+   assert.ok(raw,l+":"+id);
+   if(c.sources.powerqueen_eu.status!=="ok"||!raw.available)continue;
+   const b=refreshCatalogProduct(raw),limit=reviewedBatteryChargingLimit(b);
+   assert.equal(limit?.recommendedA,recommended,l+":"+id);
+   assert.equal(limit?.maxA,max);
+   assert.equal(limit?.voltageV,v);
+   assert.equal(reviewedBatteryChargingLimit({...b,affiliateUrl:"https://example.test/wrong"}),null);
+   assert.equal(reviewedBatteryChargingLimit({...b,recommendedQuantity:2}),null);
+   assert.equal(reviewedBatteryChargingLimit({...b,staleSource:true}),null);
+   assert.equal(reviewedBatteryChargingLimit({...b,marketEligible:false}),null);
+   assert.equal(reviewedBatteryChargingLimit({...b,specs:{...b.specs,bmsManufacturerEvidenceUrl:"https://example.test/unreviewed"}}),null);
+   const make=(a,d,s)=>[item("battery",b),item("controller",product("mppt","controller",a)),item("dc_charger",product("dcdc","dc_charger",d)),item("shore_charger",product("shore","shore_charger",s))];
+   for(const [amps,status] of [[[recommended-2,1,1],"within_nameplate_limit"],[[max-2,1,1],"over_recommended"],[[max,1,1],"over_max"],[[1,null,1],"unknown"]]){
+    const review=reviewConcurrentCharging(make(...amps));
+    assert.equal(review.status,status,l+":"+id);
+    assert.match(concurrentChargeReviewMarkup(review,l),new RegExp('data-concurrent-charge-review="'+status+'"'));
+   }
+  }
+ }
+});
