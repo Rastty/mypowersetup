@@ -2,7 +2,7 @@ import { scrollToCaravanStep } from "./caravan-result-scroll.js?v=20261122-resul
 import { APPLIANCES } from "./catalog.js?v=20260823-custom1";
 import { renderDcLoadVoltageNotice } from "./dc-voltage-help.js";
 import { calculateSetup } from "./engine.js?v=20261119-voltage-dc-load1";
-import { recommendProducts } from "./products.js?v=20261122-legacy70a-dpsi1-pq200a1-24vhigh1-pq100a1-cz1";
+import { recommendProducts } from "./products.js?v=20261122-legacy70a-dpsi1-pq200a1-24vhigh1-pq100a1-cz1-value1";
 import { buildResultShareText, copyText } from "./share.js?v=20260822-url1";
 import { buildSetupUrl, decodeSetupQuery } from "./setup-url.js?v=20261023-safe-loads1";
 import { calculateBatteryCablePlan, calculateDcCablePlan } from "./wiring.js?v=20260824-dcdccable1";
