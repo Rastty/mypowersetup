@@ -144,12 +144,12 @@ test("guide prefill notice and versioned browser are truthful without auto-submi
     read("src/calculator-landing-browser.js"), read("kalkulacky/vydrz-baterie/index.html"),
   ]);
   const copy = getCalculatorCopy("cs");
-  assert.match(browser, /prefill\.from === "fridge-guide" \? copy\.guidePrefillNote : copy\.prefillNote/);
+  assert.match(browser, /prefill\.from === "fridge-guide" \? copy\.guidePrefillNote : prefill\.from === "fridge-estimate" \? copy\.estimatePrefillNote : copy\.prefillNote/);
   assert.ok(copy.guidePrefillNote.includes("lednice"));
   assert.ok(copy.guidePrefillNote.includes("kapacitu"));
-  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261109-fridge-community1"/);
-  assert.match(browser, /calculator-handoff\.js\?v=20261127-autonomy-locales1/);
-  assert.match(browser, /calculator-copy\.js\?v=20261127-autonomy-locales1/);
+  assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261127-fridge-estimate1"/);
+  assert.match(browser, /calculator-handoff\.js\?v=20261127-fridge-estimate1/);
+  assert.match(browser, /calculator-copy\.js\?v=20261127-fridge-estimate1/);
   assert.match(html, /<link rel="canonical" href="https:\/\/mypowersetup\.com\/kalkulacky\/vydrz-baterie\/">/);
   assert.match(browser, /form\.addEventListener\("submit"/);
 });

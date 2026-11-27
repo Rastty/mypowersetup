@@ -98,7 +98,7 @@ test("eighteen CZ, SK, PL and HU buyer pages, exact JS and catalogs are public-e
   assert.ok(result.skSolarCatalog.eligible12v450wp <= 2);
   assert.equal(result.skSolarCatalog.eligible24v450wp, 0);
   assert.equal(result.skSolarCatalog.commissionVerified, false);
-  assert.ok(result.browserVersions.battery_runtime.includes("fridge-community1"));
+  assert.ok(result.browserVersions.battery_runtime.includes("fridge-estimate1"));
   assert.ok(result.browserVersions.pl_s400_guide.includes("20261121-s400-compact1"));
   for (const kind of ["mppt_calculator", "battery_capacity", "inverter_calculator", "solar_calculator", "sk_solar_calculator", "dcdc_calculator"])
     assert.ok(result.browserVersions[kind].includes("20261115-placement-events1"), kind);
@@ -149,7 +149,7 @@ test("missing precise fridge links and wrong calculator script cache key both fa
   } }) }), /PUBLIC_FRIDGE_SCENARIO_MISSING:560/);
   await assert.rejects(verifyBuyerPathsLive({ fetchImpl: mockFetch({ mutate: async ({ url, file }) => {
     if (url.pathname !== "/kalkulacky/vydrz-baterie/") return null;
-    const body = (await local(file)).replace("20261109-fridge-community1", "old-version");
+    const body = (await local(file)).replace("20261127-fridge-estimate1", "old-version");
     return mockResponse(url.href, body);
   } }) }), /PUBLIC_CALCULATOR_VERSION_DRIFT/);
 });

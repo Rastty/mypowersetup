@@ -1,9 +1,9 @@
 import "./analytics.js";
-import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution } from "./calculator-attribution.js?v=20261127-autonomy-locales1";
+import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution } from "./calculator-attribution.js?v=20261127-fridge-estimate1";
 import { calculateLanding } from "./calculator-landing.js";
-import { classifyCalculatorContinuation, classifyCalculatorSpecialistHandoff, getCalculatorCopy } from "./calculator-copy.js?v=20261127-autonomy-locales1";
+import { classifyCalculatorContinuation, classifyCalculatorSpecialistHandoff, getCalculatorCopy } from "./calculator-copy.js?v=20261127-fridge-estimate1";
 import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
-import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261127-autonomy-locales1";
+import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261127-fridge-estimate1";
 import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261115-placement-events1";
 import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261115-placement-events1";
 import { mountInverterCalculatorBuyers } from "./inverter-calculator-offers-browser.js?v=20261115-placement-events1";
@@ -53,7 +53,7 @@ if (root) {
     const notice = document.createElement("p");
     notice.className = "calculator-help";
     notice.setAttribute("role", "status");
-    notice.textContent = prefill.from === "fridge-guide" ? copy.guidePrefillNote : copy.prefillNote;
+    notice.textContent = prefill.from === "fridge-guide" ? copy.guidePrefillNote : prefill.from === "fridge-estimate" ? copy.estimatePrefillNote : copy.prefillNote;
     form.insertAdjacentElement("afterbegin", notice);
   }
 

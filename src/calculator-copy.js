@@ -1,5 +1,6 @@
 const COPY = Object.freeze({
   cs: Object.freeze({
+    estimatePrefillNote: "Převzali jsme odhad celkové denní spotřeby z kalkulačky lednice, zaokrouhlený nahoru po 10 Wh. Zkontrolujte kapacitu, napětí a typ vlastní baterie.",
     numberLocale: "cs-CZ",
     failed: "Výpočet se nepodařilo dokončit.",
     staleResult: "Změnili jste zadání. Pro aktuální návrh spusťte výpočet znovu.",
@@ -25,6 +26,7 @@ const COPY = Object.freeze({
     cableReserve: ({ n, result }) => `Počítáme měděný vodič a celou cestu tam i zpět. Skutečný úbytek se zvoleným průřezem vychází ${result.actualDropPercent == null ? "mimo tabulku" : `${n(result.actualDropPercent)} %`}.`,
   }),
   sk: Object.freeze({
+    estimatePrefillNote: "Prevzali sme odhad celkovej dennej spotreby z kalkulačky chladničky, zaokrúhlený nahor na 10 Wh. Skontrolujte kapacitu, napätie a typ vlastnej batérie.",
     nextBattery: "Vypočítať potrebnú batériu na 2 dni →",
     autonomyDayUnit: "dňa",
     autonomySummary: ({ n, result }) => `Batéria ${n(result.batteryCapacityAh)} Ah pri ${result.systemVoltage} V a spotrebe ${n(result.dailyWh)} Wh/deň vydrží odhadom ${n(result.autonomyDays)} dňa, približne ${n(result.autonomyHours)} hodín bez dobíjania.`,
@@ -50,6 +52,7 @@ const COPY = Object.freeze({
     cableReserve: ({ n, result }) => `Počítame medený vodič a celú cestu tam aj späť. Skutočný úbytok so zvoleným prierezom je ${result.actualDropPercent == null ? "mimo tabuľky" : `${n(result.actualDropPercent)} %`}.`,
   }),
   pl: Object.freeze({
+    estimatePrefillNote: "Przeniesiono szacunkowe całkowite dobowe zużycie z kalkulatora lodówki, zaokrąglone w górę do 10 Wh. Sprawdź pojemność, napięcie i typ własnego akumulatora.",
     nextBattery: "Oblicz potrzebny akumulator na 2 dni →",
     autonomyDayUnit: "dnia",
     autonomySummary: ({ n, result }) => `Akumulator ${n(result.batteryCapacityAh)} Ah przy ${result.systemVoltage} V i zużyciu ${n(result.dailyWh)} Wh/dzień wystarczy na około ${n(result.autonomyDays)} dnia, czyli ${n(result.autonomyHours)} godzin bez ładowania.`,
