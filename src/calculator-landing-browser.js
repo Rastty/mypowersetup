@@ -5,7 +5,7 @@ import { classifyCalculatorContinuation, classifyCalculatorSpecialistHandoff, ge
 import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
 import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261127-fridge-estimate1";
 import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261115-placement-events1";
-import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261115-placement-events1";
+import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261127-market-battery1";
 import { mountInverterCalculatorBuyers } from "./inverter-calculator-offers-browser.js?v=20261115-placement-events1";
 import { mountSolarCalculatorBuyers } from "./solar-calculator-offers-browser.js?v=20261115-plhu-solar1";
 
@@ -31,7 +31,7 @@ if (root) {
   const landingParameters = buildCalculatorLandingAnalyticsParameters({ sourcePath: landingPath, intent, locale });
   const mpptBuyers = intent === "mppt-sizing" && locale === "cs"
     ? mountMpptCalculatorBuyers(root) : null;
-  const batteryBuyers = intent === "battery-capacity" && locale === "cs"
+  const batteryBuyers = intent === "battery-capacity" && ["cs","sk","pl"].includes(locale)
     ? mountBatteryCalculatorBuyers(root) : null;
   const inverterBuyers = intent === "inverter-sizing" && locale === "cs"
     ? mountInverterCalculatorBuyers(root) : null;

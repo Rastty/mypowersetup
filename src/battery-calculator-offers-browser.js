@@ -5,6 +5,11 @@ import { createVerifiedGuideImpressionTracker } from "./guide-offer-impressions.
 import {
   batteryOfferExpiresAt, isBatteryOfferStillEligible, selectBatteryCalculatorOffers,
 } from "./battery-calculator-offers.js";
+import { loadMarketBatteryCalculatorOffers,selectMarketBatteryCalculatorOffers,marketBatteryOfferExpiresAt,isMarketBatteryOfferStillEligible } from "./market-battery-calculator-offers.js?v=20261127-market-battery1";
+const MARKET_COPY={
+ sk:{currency:"EUR",numberLocale:"sk-SK",merchants:["padabo_sk","powerqueen_eu"],loading:"Overujeme aktuálne ponuky konkrétnych batérií…",empty:"Pre túto kapacitu, napätie a chémiu teraz nemáme čerstvú overenú samostatnú batériu. Pokračujte do Buildera; viac batérií automaticky nespájame.",expired:"Platnosť ponúk vypršala. Spustite nový výpočet.",price:" · cena z posledného feedu",link:"Overiť cenu a technické parametre →",current:" A podľa výrobcu (overte skutočné zaťaženie)"},
+ pl:{currency:"PLN",numberLocale:"pl-PL",merchants:["padabo_pl"],loading:"Sprawdzamy aktualne oferty konkretnych akumulatorów…",empty:"Dla tej pojemności, napięcia i chemii nie mamy aktualnego zweryfikowanego pojedynczego akumulatora. Przejdź do Buildera; nie łączymy automatycznie kilku akumulatorów.",expired:"Dane ofert straciły ważność. Uruchom obliczenie ponownie.",price:" · cena z ostatniego feedu",link:"Sprawdź cenę i parametry techniczne →",current:" A według producenta (sprawdź rzeczywiste obciążenie)"}
+};
 
 function addText(parent, tag, value, className) {
   const node = parent.ownerDocument.createElement(tag);
@@ -14,7 +19,7 @@ function addText(parent, tag, value, className) {
   return node;
 }
 
-// Consent-gated direct product discovery for the Czech sizing calculator only.
+// Direct product discovery for CZ/SK/PL; analytics remains consent-gated.
 // This is an initial Ah/voltage/chemistry filter, never an installation signoff.
 export function mountBatteryCalculatorBuyers(root, {
   fetchImpl = globalThis.fetch,
@@ -22,8 +27,10 @@ export function mountBatteryCalculatorBuyers(root, {
   windowRoot = globalThis.window,
 } = {}) {
   const section = root?.querySelector?.("[data-battery-buyers]");
+  const locale=root?.dataset?.calculatorLocale;
+  const market=Object.hasOwn(MARKET_COPY,locale)?MARKET_COPY[locale]:null;
   if (!section || root.dataset.calculatorIntent !== "battery-capacity" ||
-      root.dataset.calculatorLocale !== "cs" || typeof fetchImpl !== "function") return null;
+      (locale !== "cs" && !market) || typeof fetchImpl !== "function") return null;
   const list = section.querySelector("[data-battery-offer-list]");
   const fallback = section.querySelector("[data-battery-offer-fallback]");
   if (!list || !fallback) return null;
@@ -32,7 +39,7 @@ export function mountBatteryCalculatorBuyers(root, {
     documentRoot, sections: [section],
     getAnalytics: () => windowRoot?.MyPowerSetupAnalytics,
     Observer: windowRoot?.IntersectionObserver, now,
-    allowedSources: ["battery-calculator-match"],
+    allowedSources: ["battery-calculator-match"], allowedMerchants: market?.merchants || ["vselektro"],
   });
   let version = 0;
   let active = null;
@@ -63,39 +70,39 @@ export function mountBatteryCalculatorBuyers(root, {
   function render(payload, result, expectedVersion) {
     if (!active || expectedVersion !== version) return;
     const current = now();
-    const offers = selectBatteryCalculatorOffers(payload, result, current);
+    const offers = market ? selectMarketBatteryCalculatorOffers(locale,payload,result,current) : selectBatteryCalculatorOffers(payload, result, current);
     clear();
     if (!offers.length) {
-      noOffers(result.systemVoltage !== 12 || result.batteryType !== "lifepo4"
+      noOffers(market ? market.empty : result.systemVoltage !== 12 || result.batteryType !== "lifepo4"
         ? "Ověřené samostatné baterie zde máme pouze pro 12 V LiFePO₄. U 24 V nebo AGM nebudeme nabízet nesprávnou variantu. Proveďte výběr v kompletním Builderu."
         : "Pro tuto potřebnou kapacitu nyní nemáme jedinou čerstvou ověřenou baterii. Nepředpokládáme automaticky bezpečné paralelní zapojení více kusů.");
       return;
     }
     let earliest = Infinity;
     for (const offer of offers) {
-      const expiresAt = batteryOfferExpiresAt(payload, offer);
+      const expiresAt = market ? marketBatteryOfferExpiresAt(payload) : batteryOfferExpiresAt(payload, offer);
       if (!Number.isFinite(expiresAt) || expiresAt <= current) continue;
       earliest = Math.min(earliest, expiresAt);
       const item = documentRoot.createElement("li");
       addText(item, "strong", offer.name);
       addText(item, "span",
-        offer.specs.capacityAh + " Ah · 12 V LiFePO₄ · BMS " +
+        market ? offer.specs.capacityAh + " Ah · " + offer.specs.voltageV + " V LiFePO₄ · " + offer.specs.bmsContinuousCurrentA + market.current : offer.specs.capacityAh + " Ah · 12 V LiFePO₄ · BMS " +
         offer.specs.bmsContinuousCurrentA + " A (ověřte skutečné zatížení)",
         "calculator-mppt-offer-facts");
-      addText(item, "span", new Intl.NumberFormat("cs-CZ", {
-        style: "currency", currency: "CZK", maximumFractionDigits: 0,
-      }).format(offer.priceCzk) + " · naposledy ověřená cena",
+      addText(item, "span", new Intl.NumberFormat(market?.numberLocale || "cs-CZ", {
+        style: "currency", currency: market?.currency || "CZK", maximumFractionDigits: market ? 2 : 0,
+      }).format(offer.priceCzk) + (market?.price || " · naposledy ověřená cena"),
       "calculator-mppt-offer-facts");
-      const link = addText(item, "a", "Ověřit cenu a technické parametry →", "calculator-mppt-offer-link");
+      const link = addText(item, "a", market?.link || "Ověřit cenu a technické parametry →", "calculator-mppt-offer-link");
       link.href = decorateAwinAffiliateUrl(offer.affiliateUrl, {
-        market: "cz", category: "battery", source: "product-card", placement: "battery_calculator",
+        market: market ? locale : "cz", category: "battery", source: "product-card", placement: "battery_calculator",
       });
       link.target = "_blank";
       link.rel = "sponsored noopener noreferrer";
       link.dataset.affiliateClick = "";
       link.dataset.productId = offer.id;
       link.dataset.category = "battery";
-      link.dataset.merchant = "vselektro";
+      link.dataset.merchant = market ? offer.merchant : "vselektro";
       link.dataset.source = "battery-calculator-match";
       link.dataset.offerExpiresAt = String(expiresAt);
       const click = event => {
@@ -104,10 +111,10 @@ export function mountBatteryCalculatorBuyers(root, {
         // A link is never a valid conversion event after form input changes,
         // source expiry, or while a newer fetch has superseded this result.
         if (expectedVersion !== version || !active || section.hidden ||
-            !isBatteryOfferStillEligible(payload, active, offer, now())) {
+            !(market ? isMarketBatteryOfferStillEligible(locale,payload,active,offer,now()) : isBatteryOfferStillEligible(payload, active, offer, now()))) {
           event.preventDefault();
           event.stopPropagation();
-          noOffers("Tato nabídka už není aktuálně ověřena. Znovu spusťte výpočet.");
+          noOffers(market?.expired || "Tato nabídka už není aktuálně ověřena. Znovu spusťte výpočet.");
           return;
         }
         windowRoot?.MyPowerSetupAnalytics?.track?.("affiliate_click", buildAttributedAffiliateParameters(link));
@@ -117,7 +124,7 @@ export function mountBatteryCalculatorBuyers(root, {
       list.append(item);
     }
     if (!list.childElementCount) {
-      noOffers("Čerstvé nabídky vypršely. Pokračujte do průvodce nebo celého Builderu.");
+      noOffers(market?.expired || "Čerstvé nabídky vypršely. Pokračujte do průvodce nebo celého Builderu.");
       return;
     }
     list.hidden = false;
@@ -129,7 +136,7 @@ export function mountBatteryCalculatorBuyers(root, {
     if (Number.isFinite(earliest) && windowRoot?.setTimeout) {
       timer = windowRoot.setTimeout(() => {
         if (expectedVersion === version) noOffers(
-          "Nabídky vypršely. Pro ověření cen a dostupnosti znovu spusťte výpočet.");
+          market?.expired || "Nabídky vypršely. Pro ověření cen a dostupnosti znovu spusťte výpočet.");
       }, Math.max(1, earliest - now() + 1));
     }
   }
@@ -145,11 +152,11 @@ export function mountBatteryCalculatorBuyers(root, {
     const token = version;
     section.hidden = false;
     section.dataset.buyerFetchState = "loading";
-    fallback.textContent = "Ověřujeme aktuální nabídky konkrétních baterií…";
+    fallback.textContent = market?.loading || "Ověřujeme aktuální nabídky konkrétních baterií…";
     fallback.hidden = false;
     let payload = null;
     try {
-      payload = await loadCalculatorOffers(fetchImpl);
+      payload = market ? await loadMarketBatteryCalculatorOffers(locale,fetchImpl) : await loadCalculatorOffers(fetchImpl);
     } catch {
       // No trustworthy live feed: no prices and no affiliate purchase links.
     }

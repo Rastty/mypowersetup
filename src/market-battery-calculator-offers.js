@@ -82,7 +82,7 @@ function reviewedProduct(locale,p,payload){
    ||payload.sources?.[p.merchant]?.status!=="ok"||p.available!==true||p.staleSource===true||p.marketEligible===false
    ||p.priceCurrency!==cfg.currency||!Number.isFinite(p.priceCzk)||p.priceCzk<=0
    ||p.specs?.batteryType!=="lifepo4"||![12,24].includes(p.specs?.voltageV)||!Number.isSafeInteger(p.specs?.capacityAh))return null;
- if(p.merchant===`padabo_${locale}`&&Object.hasOwn(CARBEST,p.id))return exactCarbest(p,cfg);
+ if(p.merchant===`padabo_${locale}`&&p.id.startsWith(`padabo_${locale}:`)&&Object.hasOwn(CARBEST,p.id))return exactCarbest(p,cfg);
  // Shared variant parents excluded: clickout must land on exact capacity.
  if(p.id!==`padabo_${locale}:107358`&&!(locale==="sk"&&PQ.has(p.id)))return null;
  const reviewed={...p,specs:addReviewedBatteryContinuousSpecs(p,p.specs)};
