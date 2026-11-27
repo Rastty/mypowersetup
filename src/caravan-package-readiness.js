@@ -1,3 +1,4 @@
+import { reviewShoreBatteryCapacity } from "./caravan-shore-capacity-review.js?v=20261127-shorepair1";
 import { batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
 import { batteryContinuousLimitNotBelowRequirement } from "./caravan-bms-buyer-evidence.js?v=20261122-pq200a1-24vhigh1-pq100a1";
 import { caravanPvNominalReview } from "./caravan-pv-array-review.js?v=20261121-actual-pv1";
@@ -48,6 +49,8 @@ export function purchaseReadyCaravanPackages(packages, buyerPlan) {
       if (!batteryBmsLoadWithinAdvertisedLimit(battery.product,batterySetup)
         || !batteryContinuousLimitNotBelowRequirement(battery.product,batterySetup)) return false;
     }
+    const shore=variant.items.find(({category})=>category==="shore_charger");
+    if(battery&&shore&&reviewShoreBatteryCapacity(battery.product,shore.product)?.status==="manual_review")return false;
     const panels = variant.items.find(({category}) => category === "solar_panel");
     const controller = variant.items.find(({category}) => category === "controller");
     if (panels && controller && caravanPvNominalReview(

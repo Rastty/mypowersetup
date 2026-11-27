@@ -1,5 +1,6 @@
+import { reviewShoreBatteryCapacity, replaceReviewedShoreMismatch } from "./caravan-shore-capacity-review.js?v=20261127-shorepair1";
 import { isRecommendationEligible } from "./recommendation-coverage.js";
-import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1-stockvalue1";
+import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1-stockvalue1-shorepair1";
 import { caravanComponentRequirement } from "./caravan-component-requirements.js?v=20261121-bms-evidence1";
 import { caravanPvNominalReview, controllerNominalPvWatts } from "./caravan-pv-array-review.js?v=20261121-actual-pv1";
 import { reviewCaravanPvString } from "./caravan-pv-string-review.js?v=20261122-mppt-cz1";
@@ -107,6 +108,23 @@ export function buildCaravanBuyerChecklist({ coverage, packages = [], recommenda
     }
   }
 
+  // Re-check the actual battery, including when a partial plan has no
+  // recommended package or stock fallback changes the chosen battery.
+  const actualBattery=rows.find(row=>row.category==="battery"&&row.ready)?.product;
+  const shoreIndex=rows.findIndex(row=>row.category==="shore_charger"&&row.ready);
+  if(actualBattery&&shoreIndex>=0&&["cs","sk","pl"].includes(locale)){
+    const selected=rows[shoreIndex];
+    const review=reviewShoreBatteryCapacity(actualBattery,selected.product);
+    if(review?.status==="manual_review"){
+      const alternatives=(recommendations.shore_charger||[]).filter(item=>
+        isRecommendationEligible(item)&&item.product?.available===true&&hasBuyableProductLink(item.product));
+      const replacement=replaceReviewedShoreMismatch(alternatives,{product:selected.product},actualBattery,
+        eligible=>selectRecommendedCategoryCandidate({shore_charger:eligible},"shore_charger"));
+      rows[shoreIndex]=replacement
+        ? {...selected,product:replacement.product,shoreCapacityReview:reviewShoreBatteryCapacity(actualBattery,replacement.product)}
+        : {...selected,product:null,ready:false,quantity:1,missingReason:"shore_capacity_review",shoreCapacityReview:review};
+    }else if(review)rows[shoreIndex]={...selected,shoreCapacityReview:review};
+  }
   const available = rows.filter((row) => row.ready).length;
   const manualDesign = Boolean(coverage.manualDesignCharging?.length);
   const complete = rows.length > 0 && available === rows.length && !manualDesign;

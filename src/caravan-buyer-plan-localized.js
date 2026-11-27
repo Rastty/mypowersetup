@@ -15,6 +15,8 @@ const COPY = Object.freeze({
     partialNote: "Toto NIE JE kompletná zostava. Overené produkty môžete vyberať jednotlivo. Chýbajúce súčasti nekupujte naslepo; kabeláž, istenie a montáž treba samostatne navrhnúť.",
     missing: "Chýba overený vhodný produkt — pred nákupom overiť individuálne",
     unconfirmed: "Vhodný produkt existuje, ale skladová dostupnosť nie je potvrdená — zatiaľ nenakupovať",
+    shoreCapacityMissing: "Nabíjačka nemá potvrdenú vhodnosť pre skutočnú kapacitu vybranej batérie; overte inú nabíjačku s odborníkom.",
+    shoreCapacityFit: r => `Vybraná batéria ${r.actualAh} Ah je v odporúčanom rozsahu nabíjačky ${r.minAh}–${r.maxAh} Ah. Overte profil a BMS.`,
     pvNominal: (actual, nominal) => `Vybrané panely ${actual} Wp presahujú menovitý FV výkon regulátora ${nominal} Wp. Povolené predimenzovanie a vstupné limity musí potvrdiť výrobca.`,
     pvElectrical: "Pre vybrané panely nemáme potvrdené bezpečné zapojenie k dostupnému MPPT. Overte zimné Voc, Isc, počet panelov v sérii/paralelne a štartovacie napätie.",
     pvWire: (r) => `Kontrola limitov: ${r.series} v sérii × ${r.parallel} paralelná vetva; pri ${r.coldAmbientC} °C Voc ≈ ${r.coldVocV} V, pri ${r.hotCellC} °C Isc ≈ ${r.hotIscA} A. Montáž, kabeláž, konektory a skutočné teploty musí posúdiť odborník.`,
@@ -35,6 +37,8 @@ const COPY = Object.freeze({
     partialNote: "To NIE JEST kompletny zestaw. Możesz osobno wybrać jedynie zweryfikowane produkty. Brakujących elementów nie kupuj w ciemno; przewody, zabezpieczenia i montaż wymagają osobnego projektu.",
     missing: "Brak zweryfikowanego odpowiedniego produktu — sprawdź indywidualnie przed zakupem",
     unconfirmed: "Odpowiedni produkt istnieje, lecz dostępność nie jest potwierdzona — na razie nie kupuj",
+    shoreCapacityMissing: "Brak potwierdzonego dopasowania ładowarki do rzeczywistej pojemności wybranego akumulatora; sprawdź inny model ze specjalistą.",
+    shoreCapacityFit: r => `Wybrany akumulator ${r.actualAh} Ah mieści się w zalecanym zakresie ładowarki ${r.minAh}–${r.maxAh} Ah. Sprawdź profil i BMS.`,
     pvNominal: (actual, nominal) => `Wybrane panele ${actual} Wp przekraczają nominalną moc PV regulatora ${nominal} Wp. Dopuszczalne przewymiarowanie i parametry wejścia potwierdź u producenta.`,
     pvElectrical: "Dla tych paneli nie ma potwierdzonego bezpiecznego połączenia z dostępnym MPPT. Sprawdź zimowe Voc, Isc, liczbę modułów w szeregu/równolegle i napięcie startowe.",
     pvWire: (r) => `Kontrola limitów: ${r.series} szeregowo × ${r.parallel} równolegle; Voc przy ${r.coldAmbientC} °C ≈ ${r.coldVocV} V, Isc przy ${r.hotCellC} °C ≈ ${r.hotIscA} A. Montaż, okablowanie, złącza i rzeczywiste temperatury musi ocenić specjalista.`,
@@ -63,7 +67,7 @@ export function renderLocalizedCaravanBuyerPlan({
   if (!target || !plan || !COPY[locale]) return;
   const t = COPY[locale];
   const title = plan.complete ? t.complete : plan.status === "partial" ? t.partial : t.unavailable;
-  const rows = plan.rows.map(({ category, product, ready, quantity = 1, requirement, missingReason, installedPvWp, nominalPvWp, pvWiringReview }) => {
+  const rows = plan.rows.map(({ category, product, ready, quantity = 1, requirement, missingReason, installedPvWp, nominalPvWp, pvWiringReview, shoreCapacityReview }) => {
     // Do not print a buy action when product identity or exact affiliate URI
     // is missing, even if its technical category is otherwise covered.
     const url = ready && product?.id && product?.affiliateUrl ? purchaseUrl(product, category) : "";
@@ -76,10 +80,11 @@ export function renderLocalizedCaravanBuyerPlan({
     return `<li data-buying-category="${escape(category)}" data-shopping-quantity="${buyable ? quantity : 0}" class="${buyable ? "is-ready" : "is-missing"}">
       <span class="caravan-buying-plan-mark" aria-hidden="true">${buyable ? "✓" : "!"}</span>
       <div class="caravan-buying-plan-item"><strong>${escape(t.labels[category] || category)}</strong>
-      <span>${buyable ? `${quantity} ${locale === "pl" ? "szt." : "ks"} · ${escape(product.name)}` : missingReason === "stock_unconfirmed" ? t.unconfirmed : missingReason === "pv_nominal_review" ? t.pvNominal(installedPvWp, nominalPvWp) : missingReason === "pv_electrical_review" ? t.pvElectrical : t.missing}</span>
+      <span>${buyable ? `${quantity} ${locale === "pl" ? "szt." : "ks"} · ${escape(product.name)}` : missingReason === "stock_unconfirmed" ? t.unconfirmed : missingReason === "shore_capacity_review" ? t.shoreCapacityMissing : missingReason === "pv_nominal_review" ? t.pvNominal(installedPvWp, nominalPvWp) : missingReason === "pv_electrical_review" ? t.pvElectrical : t.missing}</span>
       ${requirement ? `<small class="caravan-item-requirement">${escape(requirement)}</small>` : ""}
       ${inverterVariant ? `<small class="caravan-item-requirement" data-inverter-variant-selection>${escape(inverterVariant)}</small>` : ""}
       ${shoreVariant ? `<small class="caravan-item-requirement" data-shore-variant-selection>${escape(shoreVariant)}</small>` : ""}
+      ${shoreCapacityReview?.status==="within_reviewed_range" ? `<small class="caravan-item-requirement" data-shore-capacity-review>${escape(t.shoreCapacityFit(shoreCapacityReview))}</small>` : ""}
       ${pvWiringReview ? `<small class="caravan-item-requirement" data-pv-wiring-review>${escape(t.pvWire(pvWiringReview))} <a href="${escape(pvWiringReview.manufacturerUrl)}" target="_blank" rel="noopener noreferrer" data-manufacturer-pv-proof>${escape(t.pvProof(pvWiringReview.manufacturerName))}</a></small>` : ""}</div>
       ${buyable ? `<a class="caravan-buying-plan-link" href="${escape(url)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escape(product.id)}" data-merchant="${escape(product.merchant)}" data-category="${escape(category)}">${escape(purchaseCta(locale, merchantLabel(product.merchant)))}</a>` : ""}
       ${linePrice ? `<span class="caravan-line-amount">${escape(formatCaravanPrice(linePrice.amount, linePrice.currency, locale))} / ${quantity} ${locale === "pl" ? "szt." : "ks"}</span>` : ""}
