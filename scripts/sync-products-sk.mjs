@@ -1,3 +1,4 @@
+import { projectMarketBatteryCalculatorOffers } from "../src/market-battery-calculator-offers.js";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { syncAllpowersEu } from "./lib/sync-allpowers-eu.mjs";
@@ -81,3 +82,5 @@ await writeFile(outputPath, `${JSON.stringify(catalog, null, 2)}\n`);
 await writeFile("data/solar-calculator-offers-sk.json", JSON.stringify(projectSkSolarCalculatorOffers(catalog)) + "\n");
 
 console.log(`SK: katalog obsahuje ${products.length} relevantních produktů.`);
+
+await writeFile("data/battery-calculator-offers-sk.json", JSON.stringify(projectMarketBatteryCalculatorOffers("sk", catalog, Date.parse(catalog.generatedAt))) + "\n");
