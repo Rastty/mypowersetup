@@ -1,4 +1,5 @@
 import { isRecommendationEligible, requiredRecommendationCategories } from "./recommendation-coverage.js";
+import { batteryDischargeEvidenceTier } from "./caravan-bms-buyer-evidence.js?v=20261122-pq200a1-24vhigh1-pq100a1";
 
 // Keep the shopping list in a practical build/order sequence: storage and generation
 // first, then regulation/conversion, then optional charging sources.
@@ -95,9 +96,36 @@ function packageQuality(items) {
   };
 }
 
-function buildVariant(id, categories, recommendations, selector) {
+// For the mature caravan buying flows, choose from actual checkout-ready
+// candidates BEFORE selecting value, default and reserve. A higher-scored
+// unknown-stock or unlinked product must not hide a purchasable package.
+// Keep the original technical-only fallback if there is no buyable candidate;
+// the buyer plan still withholds checkout for that missing category.
+function confirmedCheckout(candidate) {
+  const product=candidate?.product;
+  if (!product?.id || !product?.merchant || product.available!==true
+    || !isRecommendationEligible(candidate) || typeof product.affiliateUrl!=="string") return false;
+  try {
+    const url=new URL(product.affiliateUrl);
+    return url.protocol==="https:"&&Boolean(url.hostname)&&url.pathname!=="/";
+  } catch {return false;}
+}
+function packageSelectionPool(candidates,category,setup) {
+  if(!["cs","sk","pl"].includes(setup?.locale))return candidates;
+  const buyable=candidates.filter(confirmedCheckout);
+  if(!buyable.length)return candidates;
+  // Do not let a cheap or oversized unknown-BMS alternative silently
+  // downgrade a manufacturer-documented, adequate discharge rating.
+  if(category==="battery"&&Number(setup.inverterWatts)>0){
+    const proven=buyable.filter(({product})=>batteryDischargeEvidenceTier(product,setup)===2);
+    if(proven.length)return proven;
+  }
+  return buyable;
+}
+
+function buildVariant(id, categories, recommendations, selector, setup) {
   const items = categories.flatMap((category) => {
-    const candidates = eligibleCandidates(recommendations, category);
+    const candidates = packageSelectionPool(eligibleCandidates(recommendations, category),category,setup);
     const selected = candidates.length ? selector(candidates, category) : null;
     return selected ? [{ category, ...selected }] : [];
   });
@@ -146,9 +174,9 @@ export function buildProductPackages(recommendations, setup) {
   const candidates = [
     // Put the strongest fit first so the default decision path is obvious.
     // Economy and reserve remain safe alternatives, not competing defaults.
-    buildVariant("recommended", categories, recommendations, recommendedChoice),
-    buildVariant("economy", categories, recommendations, bestValue),
-    buildVariant("reserve", categories, recommendations, withReserve),
+    buildVariant("recommended", categories, recommendations, recommendedChoice, setup),
+    buildVariant("economy", categories, recommendations, bestValue, setup),
+    buildVariant("reserve", categories, recommendations, withReserve, setup),
   ];
   const recommendedSignature = signature(candidates.find(({ id }) => id === "recommended"));
   const seen = new Set();
