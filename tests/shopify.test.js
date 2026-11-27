@@ -172,17 +172,44 @@ test("committed Polish catalog offers panels and only fully verified power stati
   );
 });
 
-test("committed SK and HU catalogs share only verified EU panels and power stations", async () => {
+test("committed SK and HU EU offers stay source-backed and aligned as live inventory changes", async () => {
+  const marketSignatures = [];
   for (const path of ["data/products-sk.json", "data/products-hu.json"]) {
     const catalog = JSON.parse(await readFile(path, "utf8"));
     const eu = catalog.products.filter(({ merchant }) => merchant === "allpowers_eu");
-    assert.ok(eu.filter(({ category }) => category === "solar_panel").length >= 22);
-    assert.ok(eu.filter(({ category }) => category === "power_station").length >= 3);
-    assert.ok(eu.every(({ affiliateUrl }) => affiliateUrl.includes("awinmid=38934") && affiliateUrl.includes("awinaffid=3044971")));
-    assert.ok(eu.filter(({ category }) => category === "power_station").every(({ verifiedAt, specs }) =>
+    const fresh = catalog.sources?.allpowers_eu?.status === "ok";
+    // The approved merchant can discontinue panels at any time. A fixed
+    // minimum of 22 blocked the next daily refresh when just 16 remained.
+    // Preserve category, identity, attribution and fail-closed stock checks.
+    assert.equal(new Set(eu.map(({ id }) => id)).size, eu.length);
+    assert.ok(eu.every(({ category }) => ["solar_panel", "power_station"].includes(category)));
+    assert.ok(eu.every(({ affiliateUrl, productUrl, priceCurrency }) =>
+      priceCurrency === "EUR"
+      && affiliateUrl.includes("awinmid=38934")
+      && affiliateUrl.includes("awinaffid=3044971")
+      && /^https:\/\//.test(productUrl)
+    ));
+    const stations = eu.filter(({ category }) => category === "power_station");
+    assert.ok(stations.every(({ verifiedAt, specs }) =>
       verifiedAt && specs.capacityWh && specs.powerW && specs.pureSine === true && specs.solarInputW && specs.dcOutputA
     ));
+    if (fresh) {
+      assert.ok(eu.some(({ category, available }) => category === "solar_panel" && available === true));
+      assert.ok(stations.some(({ available }) => available === true));
+    } else {
+      assert.ok(eu.every(({ available }) => available === false),
+        "stale/failed merchant data must not expose a buyable offer");
+    }
+    marketSignatures.push({
+      fresh,
+      items: eu.map(({ id, category, available, productUrl, affiliateUrl, priceCurrency }) =>
+        ({ id, category, available, productUrl, affiliateUrl, priceCurrency }))
+        .sort((a, b) => a.id.localeCompare(b.id)),
+    });
   }
+  // SK/HU share the identical reviewed Allpowers EU source in this pipeline.
+  // Never silently let one market publish a different attributed SKU subset.
+  assert.deepEqual(marketSignatures[0], marketSignatures[1]);
 });
 
 test("committed European catalogs contain eligible Power Queen batteries and one verified MPPT", async () => {
