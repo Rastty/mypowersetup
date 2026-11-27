@@ -6,13 +6,13 @@
   <url><loc>https://mypowersetup.com/pruvodce/victron-mppt-100-20-vs-100-30-vs-100-50/</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://mypowersetup.com/pruvodce/dc-dc-nabijecka-18a-vs-30a-vs-50a-karavan/</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://mypowersetup.com/</loc><lastmod>2026-10-13</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://mypowersetup.com/sk/</loc><lastmod>2026-09-07</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://mypowersetup.com/pl/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mypowersetup.com/sk/</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mypowersetup.com/pl/</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pl/o-projekcie/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://mypowersetup.com/pl/metodologia/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://mypowersetup.com/pl/afiliacja/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://mypowersetup.com/pl/prywatnosc/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://mypowersetup.com/pl/poradnik/</loc><lastmod>2026-11-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mypowersetup.com/pl/poradnik/</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pl/poradnik/schemat-instalacji-elektrycznej-kampera/</loc><lastmod>2026-11-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pl/poradnik/12-v-czy-24-v-kamper/</loc><lastmod>2026-11-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pl/poradnik/power-station-czy-stala-instalacja-kamper/</loc><lastmod>2026-09-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -26,7 +26,7 @@
   <url><loc>https://mypowersetup.com/pl/poradnik/jak-dobrac-przetwornice-do-kampera/</loc><lastmod>2026-11-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pl/poradnik/przewody-i-bezpieczniki-12-v/</loc><lastmod>2026-11-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/pl/poradnik/zuzycie-lodowki-kompresorowej/</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://mypowersetup.com/sk/sprievodca/</loc><lastmod>2026-11-15</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mypowersetup.com/sk/sprievodca/</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/sk/sprievodca/power-station-alebo-pevna-instalacia-karavan/</loc><lastmod>2026-09-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/sk/sprievodca/schema-elektroinstalacie-karavanu/</loc><lastmod>2026-11-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mypowersetup.com/sk/sprievodca/12-v-alebo-24-v-karavan/</loc><lastmod>2026-11-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -172,9 +172,14 @@
   <url><loc>https://mypowersetup.com/hu/kalkulatorok/vezetek-keresztmetszet-12v/</loc><lastmod>2026-11-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mypowersetup.com/hu/kalkulatorok/dc-dc-tolto/</loc><lastmod>2026-11-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mypowersetup.com/hu/kalkulatorok/biztositek-12v/</loc><lastmod>2026-11-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mypowersetup.com/pruvodce/modelove-sestavy/vikend-v-karavanu/</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mypowersetup.com/pruvodce/modelove-sestavy/rodinna-dovolena/</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mypowersetup.com/pruvodce/modelove-sestavy/prace-z-karavanu/</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mypowersetup.com/pruvodce/modelove-sestavy/vikend-v-karavanu/</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mypowersetup.com/pruvodce/modelove-sestavy/rodinna-dovolena/</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mypowersetup.com/pruvodce/modelove-sestavy/prace-z-karavanu/</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mypowersetup.com/pruvodce/modelove-sestavy/</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://mypowersetup.com/pl/poradnik/zasilanie-kampera-na-weekend/</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mypowersetup.com/pl/poradnik/zasilanie-kampera-na-weekend/</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://mypowersetup.com/sk/sprievodca/elektrina-v-karavane-na-vikend/</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://mypowersetup.com/sk/sprievodca/elektrina-rodinna-dovolenka-karavan/</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://mypowersetup.com/pl/poradnik/zasilanie-kampera-rodzinny-urlop/</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://mypowersetup.com/sk/sprievodca/praca-z-karavanu-elektrina/</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://mypowersetup.com/pl/poradnik/praca-z-kampera-zasilanie-laptopa/</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
