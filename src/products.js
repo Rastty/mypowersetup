@@ -8,6 +8,7 @@ import { addVerifiedSmartSolarChargingProfiles } from "./victron-smartsolar-char
 import { addVerifiedEcoFlowRigid175PvSpecs } from "./ecoflow-rigid-pv-profiles.js?v=20261121-bluesolar-pv1";
 import { addVerifiedVictronBlueSolar190PvSpecs } from "./victron-bluesolar-pv-profiles.js?v=20261121-bluesolar-pv1";
 import { addReviewedBatteryContinuousSpecs } from "./caravan-bms-manufacturer-proof.js?v=20261122-pq200a1-24vhigh1-pq100a1";
+import { addCzechReviewedPowerSpecs } from "./cz-reviewed-power-profiles.js?v=20261127-cz-value1";
 import { addReviewedDometicDpsiInverterSpecs } from "./dometic-dpsi-inverter-profiles.js?v=20261122-dpsi-continuous1-24vhigh1-cz1";
 
 const MERCHANTS = {
@@ -502,7 +503,7 @@ export function refreshCatalogProduct(product) {
   return {
     ...product,
     available: isConfirmedDiscontinuedProduct(product) ? false : product.available,
-    specs: addReviewedDometicDpsiInverterSpecs(product, addReviewedBatteryContinuousSpecs(product, addVerifiedVictronBlueSolar190PvSpecs(product, addVerifiedEcoFlowRigid175PvSpecs(product, addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, addVerifiedDometicMcaShoreProfile(product, specs))))))),
+    specs: addCzechReviewedPowerSpecs(product, addReviewedDometicDpsiInverterSpecs(product, addReviewedBatteryContinuousSpecs(product, addVerifiedVictronBlueSolar190PvSpecs(product, addVerifiedEcoFlowRigid175PvSpecs(product, addVerifiedSmartSolarChargingProfiles(product, addVerifiedVictronChargingProfiles(product, addVerifiedDometicMcaShoreProfile(product, specs)))))))),
     category: product.verifiedAt && product.category && product.category !== "other"
       ? product.category
       : classifyProduct({ name: product.name, categoryPath: product.categoryPath, specs })
@@ -510,6 +511,13 @@ export function refreshCatalogProduct(product) {
 }
 
 function scoreProduct(product, setup) {
+  // Select a reviewed voltage-specific output rating BEFORE scoring or
+  // rendering checks. Do not copy the headline 12V current to a 24V result.
+  if(product.category==="shore_charger" && product.specs?.chargingCurrentABySystemVoltage){
+    const currentA=product.specs.chargingCurrentABySystemVoltage[setup.systemVoltage];
+    if(!Number.isFinite(currentA)||currentA<=0)return null;
+    product={...product,specs:{...product.specs,currentA}};
+  }
   const { specs } = product;
   if (!product.category || product.category === "other") return null;
 

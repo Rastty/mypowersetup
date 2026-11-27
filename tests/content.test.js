@@ -448,10 +448,10 @@ test("calculator assets are cache-busted and submit errors are visible", async (
     readFile("src/app.js", "utf8"),
     readFile("src/engine.js", "utf8"),
   ]);
-  assert.ok(html.includes('src="/src/app.js?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1-dpsi1-pq200a1-24vhigh1-pq100a1-cz1"'));
+  assert.ok(html.includes('src="/src/app.js?v=20261122-shore-mca1-result-scroll1-cz-mca1-superpack-cz1-orion-cz1-mppt-cz1-featured6-budget-preview1-legacy70a-ehubsrc1-merchant-count1-unpriced1-bmslabels1-shopbreakdown1-dpsi1-pq200a1-24vhigh1-pq100a1-cz1-value1"'));
   assert.ok(html.includes('id="calculator-error"'));
   assert.ok(app.includes('from "./engine.js?v=20261119-voltage-dc-load1"'));
-  assert.ok(app.includes('from "./products.js?v=20261122-legacy70a-dpsi1-pq200a1-24vhigh1-pq100a1-cz1"'));
+  assert.ok(app.includes('from "./products.js?v=20261122-legacy70a-dpsi1-pq200a1-24vhigh1-pq100a1-cz1-value1"'));
   assert.ok(app.includes("calculatorError.hidden = false"));
   assert.ok(engine.includes('from "./catalog.js?v=20260821-1"'));
 });
