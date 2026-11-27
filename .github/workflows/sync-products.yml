@@ -70,6 +70,12 @@ on:
       - "tests/commercial-coverage.test.js"
       - "tests/commercial-scenarios.test.js"
       - "tests/current-catalog-safety.test.js"
+      # Changes to source-independent feed safety fixtures must exercise the
+      # full guarded synchronization immediately, not wait for tomorrow.
+      - "tests/inverter-calculator-offers.test.js"
+      - "tests/solarimport-google-fallback.test.js"
+      - "scripts/verify-buyer-paths-live.test.mjs"
+      - "tests/fixtures/solarimport-approved-products.fixture.json"
       - "tests/vselektro-live-feed.test.js"
       - "tests/cz-dcdc-coverage.test.js"
       - "tests/commercial-system-verification-actions.test.js"
