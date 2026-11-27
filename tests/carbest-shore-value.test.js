@@ -8,7 +8,7 @@ import { buildCaravanBuyerChecklist } from "../src/caravan-buyer-checklist.js";
 import { assessRecommendationCoverage } from "../src/recommendation-coverage.js";
 import { purchaseReadyCaravanPackages } from "../src/caravan-package-readiness.js";
 const setup=(locale,ah,amps)=>({locale,systemVoltage:12,batteryType:"lifepo4",batteryAh:ah,
- inverterWatts:600,solarWatts:190,controllerAmps:20,dailyWh:600,autonomyDays:1,
+ inverterWatts:400,solarWatts:190,controllerAmps:20,dailyWh:600,autonomyDays:1,
  applianceRows:[{ac:true,watts:400,quantity:1}],
  charging:{starterVoltage:12,dcDc:{enabled:true,suggestedCurrentAmps:30},shore:{enabled:true,suggestedCurrentAmps:amps}}});
 const merchant=l=>l==="cs"?"svetkaravanu":"padabo_"+l;
@@ -38,7 +38,6 @@ test("Carbest exact nine local variants use independently verified 12V max amps 
 test("15A Carbest beats same-voltage same-currency Dometic cost with real six-category local baskets",async()=>{
  for(const locale of ["cs","sk","pl"]){
   const c=await catalog(locale),m=merchant(locale),raw=c.products.find(p=>p.id===m+":25869_27325"),premium=c.products.find(p=>p.id===m+":24087_26040");
-  const battery=c.products.find(p=>p.id==="powerqueen_eu:7752840380636"); // 24V deliberately excluded from 12V; use exact 12V NG.
   const ids=["107357","109069","24828","104292_30466","26963_28360"];
   const others=ids.map(id=>c.products.find(p=>p.id===m+":"+id));
   // 107357 is not the 12V NG in all feeds; resolve only exact known 12V/100Ah SuperPack NG model if needed.
