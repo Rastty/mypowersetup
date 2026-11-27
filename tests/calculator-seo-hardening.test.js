@@ -25,6 +25,10 @@ const LOCALIZED_EQUIVALENTS = Object.freeze({
     pl: "/pl/kalkulatory/pojemnosc-akumulatora/",
     hu: "/hu/kalkulatorok/akkumulator-kapacitas/",
   }),
+  "vydrz-baterie": Object.freeze({
+    sk: "/sk/kalkulacky/vydrz-baterie/",
+    pl: "/pl/kalkulatory/czas-pracy-akumulatora/",
+  }),
   "solarni-panely": Object.freeze({
     sk: "/sk/kalkulacky/solarne-panely/",
     pl: "/pl/kalkulatory/panele-solarne/",
@@ -101,7 +105,7 @@ function expectedAlternates(slug) {
     ["cs-CZ", `${ORIGIN}${route}`],
     ["sk-SK", `${ORIGIN}${localized.sk}`],
     ["pl-PL", `${ORIGIN}${localized.pl}`],
-    ["hu-HU", `${ORIGIN}${localized.hu}`],
+    ...(localized.hu ? [["hu-HU", `${ORIGIN}${localized.hu}`]] : []),
     ["x-default", `${ORIGIN}${route}`],
   ];
 }
