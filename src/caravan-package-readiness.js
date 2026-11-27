@@ -1,5 +1,5 @@
 import { batteryBmsLoadWithinAdvertisedLimit } from "./battery-discharge-safety.js?v=20261117-bms-load1";
-import { batteryContinuousLimitNotBelowRequirement } from "./caravan-bms-buyer-evidence.js?v=20261122-pq200a1";
+import { batteryContinuousLimitNotBelowRequirement } from "./caravan-bms-buyer-evidence.js?v=20261122-pq200a1-24vhigh1";
 import { caravanPvNominalReview } from "./caravan-pv-array-review.js?v=20261121-actual-pv1";
 import { reviewCaravanPvString } from "./caravan-pv-string-review.js?v=20261122-mppt-cz1";
 
