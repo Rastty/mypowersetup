@@ -15,11 +15,13 @@ const MODELS = Object.freeze({
   "30467": { voltage:12, continuous:1000, peak:2000, model:"DPSI 1012", evidence:"https://www.dometic.com/cs-cz/product/dometic-sinepower-dpsi-1012-9620017419" },
   "30472": { voltage:24, continuous:600, peak:1200, model:"DPSI 624", evidence:"https://www.dometic.com/en/product/dometic-sinepower-dpsi-624-9620017418" },
   "30473": { voltage:24, continuous:1000, peak:2000, model:"DPSI 1024", evidence:"https://www.dometic.com/en/product/dometic-sinepower-dpsi-1024-9620017420" },
+  "30474": { voltage:24, continuous:1500, peak:3000, model:"DPSI 1524", evidence:"https://www.dometic.com/en-de/product/dometic-sinepower-dpsi-1524-9620017422" },
+  "30475": { voltage:24, continuous:2000, peak:4000, model:"DPSI 2024", evidence:"https://www.dometic.com/en/product/dometic-sinepower-dpsi-2024-9620017424" },
 });
 const SELLERS = Object.freeze({
   padabo_sk: { currency:"EUR", bid:"7aed5c13",
     url:"https://www.padabo.sk/menic-napatia-dometic-sinepower-dpsi-12-v-alebo-24-v_z104292/",
-    name: (model) => `Menič napätia Dometic SinePower DPSI 12 V alebo 24 V stály / špičkový výkon ${model.continuous}${model.continuous===600?" W":""} / ${model.peak} W napätie ${model.voltage} V`,
+    name: (model) => `Menič napätia Dometic SinePower DPSI 12 V alebo 24 V stály / špičkový výkon ${model.continuous}${model.continuous===1000?"":" W"} / ${model.peak} W napätie ${model.voltage} V`,
   },
   padabo_pl: { currency:"PLN", bid:"95d61abf",
     url:"https://www.padabo.pl/przetwornica-napiecia-dometic-sinepower-dpsi-12-v-lub-24-v_z104292/",

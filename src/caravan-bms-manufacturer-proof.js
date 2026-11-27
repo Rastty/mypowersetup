@@ -111,8 +111,24 @@ const POWERQUEEN_200A = Object.freeze({
   model:"Power Queen 12V 200Ah Plus",
   evidenceUrl:"https://www.ipowerqueen.de/en/products/power-queen-12v-200ah-plus-lifepo4-solar-battery",
 });
+// Exact approved 25.6V/200Ah model: the manufacturer's specification gives
+// 200A max continuous DISCHARGE, 5120W continuous output, 400A for 5 seconds.
+// Neither 400A surge nor 200Ah capacity is a continuous-discharge rating.
+// https://www.ipowerqueen.de/en/products/power-queen-24v-200ah-lifepo4-solar-battery-with-200a-bms
+const POWERQUEEN_24V_200A = Object.freeze({
+  id:"powerqueen_eu:7881294676188",
+  merchant:"powerqueen_eu",
+  name:"Power Queen 24V 200Ah LiFePO4 Battery, Built-in 200A BMS",
+  url:"https://www.ipowerqueen.de/en/products/power-queen-24v-200ah-lifepo4-solar-battery-with-200a-bms",
+  currency:"EUR",
+  voltageV:24,capacityAh:200,
+  continuousDischargeA:200,
+  dischargeKind:"manufacturer_max_continuous",
+  model:"Power Queen 24V 200Ah",
+  evidenceUrl:"https://www.ipowerqueen.de/en/products/power-queen-24v-200ah-lifepo4-solar-battery-with-200a-bms",
+});
 function exactReviewedPowerQueenSku(product) {
-  const record=POWERQUEEN_200A;
+  const record=product?.id===POWERQUEEN_24V_200A.id ? POWERQUEEN_24V_200A : POWERQUEEN_200A;
   if (product?.id!==record.id || product?.merchant!==record.merchant
     || product.category!=="battery" || product.name!==record.name
     || product.productUrl!==record.url || product.priceCurrency!==record.currency
@@ -123,10 +139,14 @@ function exactReviewedPowerQueenSku(product) {
     || product.specs?.capacityAh!==record.capacityAh
     || product.specs?.batteryType!=="lifepo4"
     || product.specs?.currentA!==200
-    || product.specs?.powerW!==2560
-    // Merchant must still explicitly attest CONTINUOUS current, not merely
-    // put 200A in the title or refer to surge/charge current.
-    || !/maximum continuous discharge current of 200A/i.test(String(product.description||""))) return null;
+    || product.specs?.powerW!==(record.voltageV===24?5120:2560)
+    // The independently reviewed manufacturer source specifies exact maximum
+    // continuous discharge amps. Also require matching live merchant copy:
+    // 12V Plus explicitly states discharge amps; 24V states continuous watts.
+    // Generic 200A BMS/title, charge-only or peak-only text cannot qualify.
+    || !(record.voltageV===24
+      ? /continuous power output of 5120 W\b/i.test(String(product.description||""))
+      : /maximum continuous discharge current of 200A/i.test(String(product.description||"")))) return null;
   try {
     const affiliate=new URL(product.affiliateUrl);
     if (affiliate.origin!=="https://www.awin1.com"
