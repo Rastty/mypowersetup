@@ -1,9 +1,9 @@
 import "./analytics.js";
-import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution } from "./calculator-attribution.js";
+import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution } from "./calculator-attribution.js?v=20261127-autonomy-locales1";
 import { calculateLanding } from "./calculator-landing.js";
-import { classifyCalculatorContinuation, classifyCalculatorSpecialistHandoff, getCalculatorCopy } from "./calculator-copy.js?v=20261110-mppt-specialist1";
+import { classifyCalculatorContinuation, classifyCalculatorSpecialistHandoff, getCalculatorCopy } from "./calculator-copy.js?v=20261127-autonomy-locales1";
 import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
-import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261109-fridge-community1";
+import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261127-autonomy-locales1";
 import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261115-placement-events1";
 import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261115-placement-events1";
 import { mountInverterCalculatorBuyers } from "./inverter-calculator-offers-browser.js?v=20261115-placement-events1";
@@ -150,7 +150,7 @@ if (root) {
   }
 
   function renderBatteryAutonomy(result) {
-    setText("[data-result-autonomy-days]", `${n(result.autonomyDays)} dne`);
+    setText("[data-result-autonomy-days]", `${n(result.autonomyDays)} ${copy.autonomyDayUnit || "dne"}`);
     setText("[data-result-autonomy-hours]", `${n(result.autonomyHours)} h`);
     setText("[data-result-usable-wh]", `${n(result.usableWh)} Wh`);
     setText("[data-result-planning-wh]", `${n(result.planningWh)} Wh`);
