@@ -127,8 +127,31 @@ const POWERQUEEN_24V_200A = Object.freeze({
   model:"Power Queen 24V 200Ah",
   evidenceUrl:"https://www.ipowerqueen.de/en/products/power-queen-24v-200ah-lifepo4-solar-battery-with-200a-bms",
 });
+// Separate exact 25.6V/100Ah Deep Cycle model: manufacturer specifications
+// list 100A MAX continuous discharge, 2560W max continuous DC output and
+// 280A for five seconds. This is a distinct, lower-capacity SKU, never the
+// 200Ah version, tax-exempt offer or Bluetooth model.
+// https://www.ipowerqueen.de/products/power-queen-lifepo4-24v-100ah-deep-cycle-solarbatterie
+const POWERQUEEN_24V_100A = Object.freeze({
+  id:"powerqueen_eu:7752840380636",
+  merchant:"powerqueen_eu",
+  name:"Power Queen 24V 100Ah LiFePO4 Battery, Built-in 100A BMS",
+  url:"https://www.ipowerqueen.de/en/products/power-queen-lifepo4-24v-100ah-deep-cycle-solar-battery",
+  currency:"EUR",
+  voltageV:24,capacityAh:100,
+  continuousDischargeA:100,
+  dischargeKind:"manufacturer_max_continuous",
+  model:"Power Queen 24V 100Ah Deep Cycle",
+  evidenceUrl:"https://www.ipowerqueen.de/products/power-queen-lifepo4-24v-100ah-deep-cycle-solarbatterie",
+});
+const POWERQUEEN_REVIEWED = Object.freeze({
+  [POWERQUEEN_200A.id]:POWERQUEEN_200A,
+  [POWERQUEEN_24V_200A.id]:POWERQUEEN_24V_200A,
+  [POWERQUEEN_24V_100A.id]:POWERQUEEN_24V_100A,
+});
 function exactReviewedPowerQueenSku(product) {
-  const record=product?.id===POWERQUEEN_24V_200A.id ? POWERQUEEN_24V_200A : POWERQUEEN_200A;
+  if(!Object.hasOwn(POWERQUEEN_REVIEWED,product?.id))return null;
+  const record=POWERQUEEN_REVIEWED[product.id];
   if (product?.id!==record.id || product?.merchant!==record.merchant
     || product.category!=="battery" || product.name!==record.name
     || product.productUrl!==record.url || product.priceCurrency!==record.currency
@@ -138,15 +161,21 @@ function exactReviewedPowerQueenSku(product) {
     || product.specs?.voltageV!==record.voltageV
     || product.specs?.capacityAh!==record.capacityAh
     || product.specs?.batteryType!=="lifepo4"
-    || product.specs?.currentA!==200
-    || product.specs?.powerW!==(record.voltageV===24?5120:2560)
-    // The independently reviewed manufacturer source specifies exact maximum
-    // continuous discharge amps. Also require matching live merchant copy:
-    // 12V Plus explicitly states discharge amps; 24V states continuous watts.
-    // Generic 200A BMS/title, charge-only or peak-only text cannot qualify.
+    || product.specs?.currentA!==record.continuousDischargeA) return null;
+  const description=String(product.description||"");
+  // For the 200Ah products require the existing corroborating live text.
+  // The exact 100Ah Deep Cycle feed lacks an output-W field; its independent
+  // manufacturer specification supplies the continuous limit. A missing
+  // parsed W is allowed ONLY for this reviewed SKU, never a conflicting W.
+  if(record===POWERQUEEN_24V_100A){
+    if(product.specs?.powerW!=null && product.specs.powerW!==2560)return null;
+    // Do not accept a replacement row if merchant identity text disappears
+    // or is contradicted by a different product configuration.
+    if(!/4P2S configurations, max\. 20480Wh energy expansion/i.test(description))return null;
+  } else if(product.specs?.powerW!==(record.voltageV===24?5120:2560)
     || !(record.voltageV===24
-      ? /continuous power output of 5120 W\b/i.test(String(product.description||""))
-      : /maximum continuous discharge current of 200A/i.test(String(product.description||"")))) return null;
+      ? /continuous power output of 5120 W\b/i.test(description)
+      : /maximum continuous discharge current of 200A/i.test(description)))return null;
   try {
     const affiliate=new URL(product.affiliateUrl);
     if (affiliate.origin!=="https://www.awin1.com"
