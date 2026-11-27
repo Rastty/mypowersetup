@@ -86,3 +86,42 @@ test("three exact Power Queen charge specifications on CZ/SK/PL catalogs",async(
   }
  }
 });
+
+test("known charge overload recovers only an exact compatible and priced battery, preserving all other rows",async()=>{
+ for(const locale of ["cs","sk","pl"]){
+  const c=await cat(locale);
+  const raw=c.products.find(p=>p.id==="powerqueen_eu:7752840380636");
+  const largeRaw=c.products.find(p=>p.id==="powerqueen_eu:7881294676188");
+  assert.ok(raw&&largeRaw,locale);
+  if(c.sources.powerqueen_eu.status!=="ok"||!raw.available||!largeRaw.available)continue;
+  const b=refreshCatalogProduct(raw),large=refreshCatalogProduct(largeRaw);
+  const mppt=product("mppt","controller",60),dc=product("dcdc","dc_charger",20);
+  const shore=product("shore","shore_charger",40);
+  shore.specs={...shore.specs,chargingCapacityRangeChemistry:"lifepo4",chargingCapacityMinAh:50,chargingCapacityMaxAh:200};
+  const make=(alternative,shoreProduct=shore,changes={},manual=[])=>buildCaravanBuyerChecklist({
+   coverage:{required:["battery","controller","dc_charger","shore_charger"],manualDesignCharging:manual},
+   recommendations:{battery:[item("battery",b),...(alternative?[item("battery",alternative)]:[])],controller:[item("controller",mppt)],dc_charger:[item("dc_charger",dc)],shore_charger:[item("shore_charger",shoreProduct)]},
+   setup:{...setup(locale),systemVoltage:24,...changes},locale
+  });
+  const result=make(large);
+  assert.equal(result.complete,true,locale);
+  assert.equal(result.concurrentChargeReview.status,"over_recommended");
+  assert.equal(result.concurrentChargeReview.sumA,120);
+  assert.equal(result.concurrentChargeReview.limit.maxA,200);
+  assert.equal(result.concurrentChargeReview.replacement.previousMaxA,100);
+  assert.equal(result.rows.find(row=>row.category==="battery").product.id,large.id);
+  assert.equal(result.rows.find(row=>row.category==="shore_charger").shoreCapacityReview.status,"within_reviewed_range");
+  assert.deepEqual(result.rows.slice(1).map(row=>row.product.id),["mppt","dcdc","shore"]);
+  assert.match(concurrentChargeReviewMarkup(result.concurrentChargeReview,locale),/data-charge-compatible-replacement="true"/);
+  for(const candidate of [null,{...large,available:false},{...large,staleSource:true},{...large,priceCurrency:"USD"},{...large,priceCzk:null},{...large,affiliateUrl:"https://example.test/invalid"},{...large,recommendedQuantity:2}]){
+   const held=make(candidate);
+   assert.equal(held.complete,false,locale);
+   assert.equal(held.concurrentChargeReview.status,"over_max");
+   assert.equal(held.rows[0].product.id,b.id);
+  }
+  assert.equal(make(large,{...shore,specs:{...shore.specs,chargingCapacityMaxAh:100}}).complete,false);
+  assert.equal(make(large,{...shore,specs:{currentA:40}}).complete,false,"larger battery requires known shore range");
+  assert.equal(make(large,shore,{inverterWatts:6000}).complete,false,"never replace with under-rated BMS");
+  assert.equal(make(large,shore,{},["dc_charger"]).complete,false,"manual design cannot be resolved by a battery substitution");
+ }
+});
