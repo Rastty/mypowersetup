@@ -73,6 +73,6 @@ test("all three Builder package and buyer-plan import chains use the same releas
     assert.match(a,/packages\.js\?v=20261121-partial-buyer1-stockvalue1-shorepair1/);
     assert.match(a,/caravan-buyer-checklist\.js\?v=20261122-mppt-cz1-stockvalue1-shorepair1/);
     assert.match(b,/packages\.js\?v=20261121-partial-buyer1-stockvalue1-shorepair1/);
-    assert.match(h,/app(?:-sk|-pl)?\.js\?v=[^"]*stockvalue1-carbest1-shorepair1"/);
+    assert.match(h,/app(?:-sk|-pl)?\.js\?v=[^"]*stockvalue1-carbest1-shorepair1-dcdcvalue1"/);
   }
 });

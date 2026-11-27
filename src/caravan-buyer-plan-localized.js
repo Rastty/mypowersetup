@@ -1,3 +1,4 @@
+import { dcdcValueNote } from "./reviewed-dcdc-value-profiles.js?v=20261127-dcdcvalue1";
 import { shoreVariantNote } from "./carbest-shore-profiles.js?v=20261127-carbest1";
 import { caravanBasketPriceMarkup, caravanLinePrice, formatCaravanPrice } from "./caravan-basket-pricing.js?v=20261121-merchant1";
 // Shared, translated purchase-plan UI for the existing SK and PL Builders.
@@ -77,6 +78,7 @@ export function renderLocalizedCaravanBuyerPlan({
     const inverterVariant = buyable && category === "inverter" && product.specs?.inverterVariantMustBeSelected
       ? t.inverterVariant(product.specs.inverterManufacturerModel, product.specs.powerW, product.specs.voltageV) : null;
     const shoreVariant=buyable?shoreVariantNote(product,locale):null;
+    const dcNote=buyable?dcdcValueNote(product,locale):null;
     return `<li data-buying-category="${escape(category)}" data-shopping-quantity="${buyable ? quantity : 0}" class="${buyable ? "is-ready" : "is-missing"}">
       <span class="caravan-buying-plan-mark" aria-hidden="true">${buyable ? "✓" : "!"}</span>
       <div class="caravan-buying-plan-item"><strong>${escape(t.labels[category] || category)}</strong>
@@ -84,6 +86,7 @@ export function renderLocalizedCaravanBuyerPlan({
       ${requirement ? `<small class="caravan-item-requirement">${escape(requirement)}</small>` : ""}
       ${inverterVariant ? `<small class="caravan-item-requirement" data-inverter-variant-selection>${escape(inverterVariant)}</small>` : ""}
       ${shoreVariant ? `<small class="caravan-item-requirement" data-shore-variant-selection>${escape(shoreVariant)}</small>` : ""}
+      ${dcNote ? `<small class="caravan-item-requirement" data-dcdc-reviewed-note>${escape(dcNote)}</small>` : ""}
       ${shoreCapacityReview?.status==="within_reviewed_range" ? `<small class="caravan-item-requirement" data-shore-capacity-review>${escape(t.shoreCapacityFit(shoreCapacityReview))}</small>` : ""}
       ${pvWiringReview ? `<small class="caravan-item-requirement" data-pv-wiring-review>${escape(t.pvWire(pvWiringReview))} <a href="${escape(pvWiringReview.manufacturerUrl)}" target="_blank" rel="noopener noreferrer" data-manufacturer-pv-proof>${escape(t.pvProof(pvWiringReview.manufacturerName))}</a></small>` : ""}</div>
       ${buyable ? `<a class="caravan-buying-plan-link" href="${escape(url)}" target="_blank" rel="sponsored noopener" data-affiliate-click data-source="caravan-plan" data-recommendation-role="recommended" data-product-id="${escape(product.id)}" data-merchant="${escape(product.merchant)}" data-category="${escape(category)}">${escape(purchaseCta(locale, merchantLabel(product.merchant)))}</a>` : ""}
