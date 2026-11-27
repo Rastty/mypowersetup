@@ -72,7 +72,7 @@ test("PL weekend scenario is linked from the Polish guide hub and scenario sitem
   const path = new URL(CANONICAL).pathname;
   assert.ok(guideHub.includes(`href="${path}"`), "Polish guide hub must link to the weekend scenario");
   assert.ok(sitemap.includes(`<loc>${CANONICAL}</loc>`), "PL weekend scenario must be in the declared scenario sitemap");
-  assert.match(sitemap, /<loc>https:\/\/mypowersetup\.com\/pl\/poradnik\/zasilanie-kampera-na-weekend\/<\/loc>\s*<lastmod>2026-09-11<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/mypowersetup\.com\/pl\/poradnik\/zasilanie-kampera-na-weekend\/<\/loc>\s*<lastmod>2026-11-27<\/lastmod>/);
 });
 
 test("PL high-intent guides route readers into the weekend scenario", () => {
