@@ -1,5 +1,5 @@
 import { isRecommendationEligible } from "./recommendation-coverage.js";
-import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1";
+import { selectRecommendedCategoryCandidate } from "./packages.js?v=20261121-partial-buyer1-stockvalue1";
 import { caravanComponentRequirement } from "./caravan-component-requirements.js?v=20261121-bms-evidence1";
 import { caravanPvNominalReview, controllerNominalPvWatts } from "./caravan-pv-array-review.js?v=20261121-actual-pv1";
 import { reviewCaravanPvString } from "./caravan-pv-string-review.js?v=20261122-mppt-cz1";
