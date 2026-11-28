@@ -1,3 +1,4 @@
+import { projectMarketDcdcOffers } from "../src/market-dcdc-calculator-offers.js";
 import { projectMarketMpptOffers } from "../src/market-mppt-calculator-offers.js";
 import { projectMarketInverterOffers } from "../src/market-inverter-calculator-offers.js";
 import { projectMarketBatteryCalculatorOffers } from "../src/market-battery-calculator-offers.js";
@@ -125,3 +126,5 @@ await writeFile("data/battery-calculator-offers-pl.json", JSON.stringify(project
 await writeFile("data/inverter-calculator-offers-pl.json", JSON.stringify(projectMarketInverterOffers("pl", nextCatalog)) + "\n");
 
 await writeFile("data/mppt-calculator-offers-pl.json", JSON.stringify(projectMarketMpptOffers("pl", nextCatalog)) + "\n");
+
+await writeFile("data/dcdc-calculator-offers-pl.json", JSON.stringify(projectMarketDcdcOffers("pl", nextCatalog)) + "\n");
