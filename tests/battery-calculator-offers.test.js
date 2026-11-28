@@ -105,9 +105,9 @@ test("Czech battery calculator has an after-submit-only buyer area and no hardco
   assert.match(page, /data-battery-offer-list[^>]*hidden/);
   assert.match(page, /Nejde o automatické potvrzení kompatibility/);
   assert.match(page, /Nesčítáme automaticky více baterií/);
-  assert.match(page, /\/src\/calculator-landing-browser\.js\?v=20261128-voltage1/);
+  assert.match(page, /\/src\/calculator-landing-browser\.js\?v=20261128-battery-card1/);
   assert.match(page, /\/kalkulacky\/calculator\.css\?v=20261109-battery-buyer1/);
-  assert.match(page, /"dateModified": "2026-11-09"/);
+  assert.match(page, /"dateModified": "2026-11-28"/);
   assert.match(browser, /mountBatteryCalculatorBuyers/);
   assert.match(browser, /if \(batteryBuyers\) void batteryBuyers\.update\(result\)/);
   assert.match(browser, /batteryBuyers\?\.invalidate\(\)/);
@@ -118,6 +118,6 @@ test("Czech battery calculator has an after-submit-only buyer area and no hardco
   assert.match(css, /\.calculator-mppt-offer-list/);
   assert.doesNotMatch(page, /href="https:\/\/ehub\.cz\/system\/scripts\/click\.php/);
   for (const xml of [sitemap,calcSitemap]) {
-    assert.ok(xml.includes("<loc>https://mypowersetup.com/kalkulacky/kapacita-baterie/</loc><lastmod>2026-11-09</lastmod>"));
+    assert.ok(xml.includes("<loc>https://mypowersetup.com/kalkulacky/kapacita-baterie/</loc><lastmod>2026-11-28</lastmod>"));
   }
 });
