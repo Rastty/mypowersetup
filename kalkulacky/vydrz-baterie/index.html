@@ -122,7 +122,8 @@
             <span class="calculator-help" id="dailyWhHelp">Pokud spotřebu neznáte, otevřete plný Builder a vyberte konkrétní spotřebiče.</span>
           </div>
 
-          <button class="calculator-button" type="submit">Spočítat výdrž baterie</button>
+          <div class="calculator-field" data-runtime-scenario-field hidden><label for="runtimeScenario">Nevíte denní spotřebu? Vyberte modelový provoz</label><select id="runtimeScenario" data-runtime-scenario aria-describedby="runtimeScenarioHelp"><option value="">Vlastní spotřeba</option><option value="550">Víkend v karavanu · 550 Wh</option><option value="880">Rodinná dovolená · 880 Wh</option><option value="1050">Práce z karavanu / Zimní provoz · 1050 Wh</option><option value="1400">Vyšší komfort · 1400 Wh</option></select><span class="calculator-help" id="runtimeScenarioHelp">Předvyplní pouze Wh za den (nahoru na 10 Wh). Kapacitu, napětí a typ baterie nemění. Před výpočtem hodnotu upravte podle sebe.</span></div>
+      <button class="calculator-button" type="submit">Spočítat výdrž baterie</button>
         </form>
         <p class="calculator-error" data-calculator-error role="alert" hidden></p>
       </div>
@@ -210,8 +211,15 @@
         </article>
       </div>
     </section>
-  </main>
+  <section class="calculator-section calculator-content-card" aria-labelledby="runtime-scenarios-heading">
+<h2 id="runtime-scenarios-heading">Jak dlouho vydrží baterie při různých způsobech cestování?</h2><p>Orientační výdrž bez dobíjení pro 12V LiFePO₄ s 80% využitím a 15% návrhovou rezervou. Spotřeby vycházejí z našich modelových sestav; rodinný a komfortní model jsou pro formulář zaokrouhlené nahoru.</p><div class="calculator-table-scroll"><table class="calculator-reference-table"><thead><tr><th scope="col">Modelová sestava</th><th scope="col">Wh/den</th><th scope="col">100 Ah</th><th scope="col">200 Ah</th></tr></thead><tbody><tr><th scope="row"><a href="/pruvodce/modelove-sestavy/vikend-v-karavanu/">Víkend v karavanu</a></th><td>550</td><td>36 h</td><td>73 h</td></tr>
+<tr><th scope="row"><a href="/pruvodce/modelove-sestavy/rodinna-dovolena/">Rodinná dovolená</a></th><td>880</td><td>23 h</td><td>46 h</td></tr>
+<tr><th scope="row"><a href="/pruvodce/modelove-sestavy/prace-z-karavanu/">Práce z karavanu</a></th><td>1050</td><td>19 h</td><td>38 h</td></tr>
+<tr><th scope="row"><a href="/pruvodce/modelove-sestavy/zimni-karavan-spotreba/">Zimní provoz</a></th><td>1050</td><td>19 h</td><td>38 h</td></tr>
+<tr><th scope="row"><a href="/pruvodce/modelove-sestavy/vyssi-komfort-karavan/">Vyšší komfort</a></th><td>1400</td><td>14 h</td><td>29 h</td></tr></tbody></table></div><p>Zimní model zahrnuje elektrický odběr palivového topení, nikoli elektrické vytápění. Chlad a proudové limity BMS mohou výdrž omezit.</p><p><a href="/pruvodce/spotreba-kompresorove-lednice/">Máte kompresorovou lednici? Spočítejte její vlastní spotřebu.</a></p></section>
+</main>
 
   <script type="module" src="/src/calculator-landing-browser.js?v=20261127-fridge-estimate1"></script>
+<script type="module" src="/src/battery-runtime-scenarios.js?v=20261128-1"></script>
 </body>
 </html>
