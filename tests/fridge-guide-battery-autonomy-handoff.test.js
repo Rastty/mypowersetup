@@ -148,7 +148,7 @@ test("guide prefill notice and versioned browser are truthful without auto-submi
   assert.ok(copy.guidePrefillNote.includes("lednice"));
   assert.ok(copy.guidePrefillNote.includes("kapacitu"));
   assert.match(html, /src="\/src\/calculator-landing-browser\.js\?v=20261127-fridge-estimate1"/);
-  assert.match(browser, /calculator-handoff\.js\?v=20261127-fridge-estimate1/);
+  assert.match(browser, /calculator-handoff\.js\?v=20261128-voltage1/);
   assert.match(browser, /calculator-copy\.js\?v=20261127-fridge-estimate1/);
   assert.match(html, /<link rel="canonical" href="https:\/\/mypowersetup\.com\/kalkulacky\/vydrz-baterie\/">/);
   assert.match(browser, /form\.addEventListener\("submit"/);
