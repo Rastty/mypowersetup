@@ -267,7 +267,8 @@ test("Polish charging guides preserve the shared bounded charging model", async 
     for (const value of ["90%", "0,2 C", "0,1 C"]) assert.ok(html.includes(value));
     assert.ok(html.includes('href="/pl/#kalkulator"'));
   }
-  for (const value of ["27,8 A", "30 A", "34 A", "67 A"]) assert.ok(dcDc.includes(value));
+  for (const value of ["25 A", "30 A", "34 A", "67 A", "maksymalnego prądu ładowania akumulatora/BMS", "Nie zakłada uniwersalnego limitu"]) assert.ok(dcDc.includes(value));
+  assert.ok(dcDc.includes('href="/pl/kalkulatory/ladowarka-dc-dc/"'));
   for (const value of ["6,9 A", "10 A", "400 W", "1380 W"]) assert.ok(shore.includes(value));
 });
 
@@ -970,7 +971,7 @@ test("Czech and Slovak MPPT guides share bounded checks and reciprocal language 
   assert.ok(slovak.includes('hreflang="cs-CZ" href="https://mypowersetup.com/pruvodce/jak-vybrat-mppt-regulator/"'));
 });
 
-test("Czech dedicated and Slovak Builder DC-DC guides describe their distinct models and reciprocal links", async () => {
+test("Czech and Slovak dedicated DC-DC guides describe output current and preserve reciprocal links", async () => {
   const [czech, slovak, dedicated, builder] = await Promise.all([
     readFile("pruvodce/jak-vybrat-dc-dc-nabijecku/index.html", "utf8"),
     readFile("sk/sprievodca/ako-vybrat-dc-dc-nabijacku/index.html", "utf8"),
@@ -982,9 +983,11 @@ test("Czech dedicated and Slovak Builder DC-DC guides describe their distinct mo
   assert.match(czech, /600 ÷ 2 ÷ 12 = <strong>25 A výstupního proudu<\/strong>/);
   assert.match(czech, /Sama nepředpokládá univerzální strop 0,2 C/);
   assert.match(dedicated, /requiredOutputCurrentA = energyToReplaceWh \/ \(batteryVoltage \* targetDriveHours\)/);
-  // SK still points to the original all-in-one Builder, whose separate
-  // conservative charging-planning model uses 90% and C-rate ceilings.
-  assert.match(slovak, /600 ÷ 2 ÷ 12 ÷ 0,90 ≈ 27,8 A/);
+  // SK now links first to the dedicated calculator with the same model.
+  // The separate all-in-one Builder retains its conservative planning assumptions.
+  assert.match(slovak, /600 ÷ 2 ÷ 12 = 25 A/);
+  assert.match(slovak, /Nepredpokladá univerzálny strop 0,2 C/);
+  assert.ok(slovak.includes('href="/sk/kalkulacky/dc-dc-nabijacka/"'));
   assert.match(slovak, /0,2 C/);
   assert.match(slovak, /0,1 C/);
   assert.ok(builder.includes("const CHARGING_EFFICIENCY = 0.9"));
