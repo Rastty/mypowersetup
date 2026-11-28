@@ -36,7 +36,7 @@ for (const page of pages) {
     assert.match(title, page.title);
     assert.match(html, page.decision);
     assert.match(html, new RegExp(`id=["']${page.section}["']`));
-    assert.ok(html.includes('"dateModified":"2026-09-12"'), 'Article dateModified must be current');
+    assert.ok(html.includes(`"dateModified":"${page.market === 'HU' ? '2026-09-12' : '2026-11-28'}"`), 'Article dateModified must be current');
 
     for (const token of page.mustContain) {
       assert.ok(html.toLocaleLowerCase().includes(token.toLocaleLowerCase()), `missing required token: ${token}`);
