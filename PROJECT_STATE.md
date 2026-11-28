@@ -207,7 +207,7 @@ Připraveno: 3 lokalizované responzivní formuláře s příklady, skutečnou d
 
 ## TURBO cyklus #33 — Nákupní karty baterií CZ/SK/PL (2026-11-28)
 
-Připraveno: skutečné responzivní produktové karty po výpočtu (cena, prodejce, kapacitní rezerva v Ah, doložený nešpičkový proud, modelová autonomie, nejnižší cena pouze mezi zobrazenými, výrazné CTA, označení affiliate a podsedadlových modelů). 11 přesných foto URL z existujících schválených SK/PL feedů, včetně 4 sdílených identit Padabo a 3 Power Queen; chybějící či nefunkční obrázek neblokuje produkt. CZ zatím bez ověřené fotografie; žádné zástupné obrázky. Snapshot 3/7/4 záznamů, nezměněný výběr, freshness, expirační a click guard, lokální měna. Automatický posun na výsledek po submit, nikoli při vstupu, vstupní příklady, aktualizace sitemapy a CZ WebApplication dateModified. Žádné nové partnery ani URL. Nasazení #33 zatím neověřeno.
+Připraveno: skutečné responzivní produktové karty po výpočtu (cena, prodejce, kapacitní rezerva v Ah, doložený nešpičkový proud, modelová autonomie, nejnižší cena pouze mezi zobrazenými, výrazné CTA, označení affiliate a podsedadlových modelů). 14 přesně přiřazených foto URL z existujících schválených CZ/SK/PL feedů (3 Sunstone, 7 SK, 4 PL); 10 unikátních adres. České fotografie potvrzeny z plného Git blobu fb20de3d5b8b985576cdc8f5502a8fc33bbc11fa. Chybějící či nefunkční obrázek neblokuje produkt; žádné zástupné obrázky. Snapshot 3/7/4 záznamů, nezměněný výběr, freshness, expirační a click guard, lokální měna. Automatický posun na výsledek po submit, nikoli při vstupu, vstupní příklady, aktualizace sitemapy a CZ WebApplication dateModified. Žádné nové partnery ani URL. Nasazení #33 zatím neověřeno.
 
 ## BLOKACE / nezaměňovat za tržby
 

@@ -18,8 +18,10 @@ const CARD_COPY={
 };
 // Exact photos observed in the corresponding approved full merchant feed
 // on 2026-11-28. Never use an arbitrary feed URL or a similar-model photo.
-// CZ photos were not established in the compact projection; omit them.
 const BATTERY_PHOTOS=Object.freeze({
+ "vselektro:sunstone-slpo12-100n":"https://vselektro.eu/lifepo4-baterie-12v-100ah-sunstone-power-slpo12-100n-322222--0-wm0.jpg",
+ "vselektro:sunstone-slpo12-200n":"https://vselektro.eu/lifepo4-baterie-12v-200ah-slpo12-200n-hc200a-sunstone-power-512347--0-wm0.jpg",
+ "vselektro:sunstone-slpo12-200m-hc200a":"https://vselektro.eu/lifepo4-baterie-12v-200ah-slpo12-200m-hc200a-lifepo4-baterie-12v-200ah-slpo12-200n-hc200a-sunstone-power-559771--0-wm0.jpg",
  "padabo_sk:26753":"https://data.svetkaravanu.cz/data/tmp/102/8/152518_102.jpg?1704379090_1",
  "padabo_sk:26754":"https://data.svetkaravanu.cz/data/tmp/102/0/152520_102.jpg?1704379091_1",
  "padabo_sk:26755":"https://data.svetkaravanu.cz/data/tmp/102/2/152522_102.jpg?1704379091_1",
