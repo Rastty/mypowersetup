@@ -49,9 +49,9 @@ test("solar series and parallel guide protects the exact electrical-fit and purc
 test("Czech guide hub ItemList includes solar wiring route once in the same visible order", () => {
   const raw = hub.match(/<script type="application\/ld\+json" data-guide-hub-schema>([\s\S]*?)<\/script>/)?.[1];
   const list = JSON.parse(raw)["@graph"].find(x => x["@type"] === "ItemList");
-  assert.equal(list.numberOfItems, 17);
-  assert.equal(list.itemListElement.length, 17);
-  assert.deepEqual(list.itemListElement.map(x => x.position), Array.from({length:17},(_,i)=>i+1));
+  assert.equal(list.numberOfItems, 18);
+  assert.equal(list.itemListElement.length, 18);
+  assert.deepEqual(list.itemListElement.map(x => x.position), Array.from({length:18},(_,i)=>i+1));
   assert.equal(list.itemListElement.filter(x => x.item.endsWith(route)).length, 1);
   const visible = [];
   for (const match of hub.matchAll(/<a\b[^>]*\bhref="([^"]+)"[^>]*>/g)) {
@@ -59,6 +59,6 @@ test("Czech guide hub ItemList includes solar wiring route once in the same visi
     if (match[1].startsWith("/pruvodce/") && match[1] !== "/pruvodce/" && !visible.includes(match[1])) visible.push(match[1]);
   }
   assert.deepEqual(list.itemListElement.map(x => x.item),visible.map(x => `https://mypowersetup.com${x}`));
-  assert.ok(sitemap.includes("<loc>https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/</loc><lastmod>2026-11-20</lastmod>"));
-  assert.ok(neighbor.includes('"dateModified":"2026-11-20"'));
+  assert.ok(sitemap.includes("<loc>https://mypowersetup.com/pruvodce/kolik-w-solarnich-panelu/</loc><lastmod>2026-11-28</lastmod>"));
+  assert.ok(neighbor.includes('"dateModified":"2026-11-28"'));
 });

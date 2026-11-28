@@ -30,7 +30,7 @@ function directGuideRoutes(sitemap, prefix) {
     const remainder = route.slice(prefix.length);
     // Distinct purchase comparisons and the winter battery decision guide
     // have dedicated tests; keep mature *core* coverage at 12/market.
-    const comparisonRoutes = ["/pruvodce/lifepo4-100ah-nebo-200ah-karavan/","/pruvodce/victron-mppt-100-20-vs-100-30-vs-100-50/","/pruvodce/dc-dc-nabijecka-18a-vs-30a-vs-50a-karavan/","/pruvodce/lifepo4-baterie-zima-karavan/","/pruvodce/solarni-panely-seriove-nebo-paralelne-karavan/","/pl/poradnik/oxe-s400-czy-zestaw-sp100w-kamper/"];
+    const comparisonRoutes = ["/pruvodce/jak-dlouho-solarni-panel-nabiji-baterii/","/pruvodce/lifepo4-100ah-nebo-200ah-karavan/","/pruvodce/victron-mppt-100-20-vs-100-30-vs-100-50/","/pruvodce/dc-dc-nabijecka-18a-vs-30a-vs-50a-karavan/","/pruvodce/lifepo4-baterie-zima-karavan/","/pruvodce/solarni-panely-seriove-nebo-paralelne-karavan/","/pl/poradnik/oxe-s400-czy-zestaw-sp100w-kamper/"];
     return remainder.endsWith("/") && !remainder.slice(0, -1).includes("/")
       && !["/pruvodce/modelove-sestavy/", "/pl/poradnik/zasilanie-kampera-na-weekend/","/sk/sprievodca/elektrina-v-karavane-na-vikend/","/sk/sprievodca/elektrina-rodinna-dovolenka-karavan/","/sk/sprievodca/praca-z-karavanu-elektrina/","/pl/poradnik/zasilanie-kampera-rodzinny-urlop/","/pl/poradnik/praca-z-kampera-zasilanie-laptopa/","/sk/sprievodca/vyssi-komfort-karavan/","/sk/sprievodca/zimny-karavan-spotreba/","/pl/poradnik/zasilanie-kampera-wiekszy-komfort/","/pl/poradnik/zasilanie-kampera-zima/"].includes(route)
       && !comparisonRoutes.includes(route);
