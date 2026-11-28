@@ -63,6 +63,12 @@ const TECHNICAL_ONLY_CTA = new Map([
   ["/hu/utmutatok/12-v-vagy-24-v-lakoauto/", "Hasonlítsd össze az áramerősséget"],
 ]);
 
+const CAPACITY_ONLY_CTA = new Map([
+  ["/pruvodce/kapacita-baterie-do-karavanu/", "při čerstvých údajích se zobrazí odpovídající nabídky kapacity. Výsledek nepotvrzuje celou instalaci."],
+  ["/sk/sprievodca/kapacita-baterie-do-karavanu/", "pri aktuálnych údajoch sa zobrazia ponuky zodpovedajúce kapacite. Výsledok nepotvrdzuje celú inštaláciu."],
+  ["/pl/poradnik/pojemnosc-akumulatora-do-kampera/", "przy aktualnych danych zobaczysz oferty odpowiadające pojemności. Wynik nie zatwierdza całej instalacji."],
+]);
+
 test("mature-market guide CTAs stay truthful and point to recognized calculator destinations", async () => {
   const sitemap = await readFile("sitemap.xml", "utf8");
 
@@ -78,6 +84,9 @@ test("mature-market guide CTAs stay truthful and point to recognized calculator 
       if (technicalOnlyCopy) {
         assert.ok(cta.includes(technicalOnlyCopy), `${file} is missing the technical-only safety promise`);
         assert.ok(!cta.includes(market.promise), `${file} must not promise product matching from a technical-only calculator`);
+      } else if (CAPACITY_ONLY_CTA.has(route)) {
+        assert.ok(cta.includes(CAPACITY_ONLY_CTA.get(route)), `${file} must qualify offer matching and installation approval`);
+        assert.ok(!cta.includes(market.promise), `${file} must not promise unconditional product matching`);
       } else {
         assert.ok(cta.includes(market.promise), `${file} is missing the conversion promise`);
       }
