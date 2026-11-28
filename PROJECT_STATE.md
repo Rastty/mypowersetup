@@ -117,6 +117,10 @@
 
 Připraveno: šest nových praktických modelových sestav. Vyšší komfort 1395 Wh/den, tři dny bez nabíjení, 6100 Wh jmenovitě, 510 Ah při 12 V / 260 Ah při 24 V, 750 Wp. Zimní provoz 1050 Wh/den, dva dny bez nabíjení, 3100 Wh, 260/130 Ah, 1100 Wp při modelových 1,5 h; zahrnutý editovatelný DC odběr palivového topení 30 W × 16 h, nikoli topení elektřinou. Zimní model nepředstírá garantovanou výrobu, teplotní kompatibilitu ani rozběhový odběr konkrétního topení. Použity existující presety, žádná změna jádra, nové stránky propojené z CZ/SK/PL homepage, rozcestníků a navzájem, obě sitemapy; návaznost na baterie, panely, měnič a nabíječky. Ověření nasazení zatím neprovedeno.
 
+## TURBO cyklus #11 — Výběr spotřeby pro výdrž baterie CZ/SK/PL (2026-11-28)
+
+Připraveno v tomto PR: ve všech třech kalkulačkách výdrže baterie je přímo ve formuláři volba modelové denní spotřeby (550 / 880 / 1050 / 1400 Wh). Vychází z již publikovaných modelů #724–725; 875 a 1395 Wh zaokrouhleno nahoru podle kroku formuláře. Nemění kapacitu, napětí ani chemii a automaticky neodesílá výpočet. Změna vyvolá existující invalidaci zastaralého výsledku. Dále pět modelových řádků s porovnáním výdrže 100/200 Ah LiFePO₄ 12 V a lokálními odkazy na podrobnou sestavu i kalkulaci spotřeby lednice. Žádné nové kampaně, změny doporučovacího enginu či analytické události. CI a nasazení zatím neověřeny.
+
 ## BLOKACE / nezaměňovat za tržby
 
 - **GA4 návštěvnost, consented impressions/prokliky, skutečné objednávky, schválené a vyplacené provize a zisk: NEOVĚŘENO, nikoli nula.** Organická viditelnost GSC je samostatně doložena výše. Není zde validovaný výpis GA4 a affiliate financí pro MyPowerSetup.
