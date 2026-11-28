@@ -1,3 +1,4 @@
+import { projectMarketMpptOffers } from "../src/market-mppt-calculator-offers.js";
 import { projectMarketInverterOffers } from "../src/market-inverter-calculator-offers.js";
 import { projectMarketBatteryCalculatorOffers } from "../src/market-battery-calculator-offers.js";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -87,3 +88,5 @@ console.log(`SK: katalog obsahuje ${products.length} relevantních produktů.`);
 await writeFile("data/battery-calculator-offers-sk.json", JSON.stringify(projectMarketBatteryCalculatorOffers("sk", catalog, Date.parse(catalog.generatedAt))) + "\n");
 
 await writeFile("data/inverter-calculator-offers-sk.json", JSON.stringify(projectMarketInverterOffers("sk", catalog)) + "\n");
+
+await writeFile("data/mppt-calculator-offers-sk.json", JSON.stringify(projectMarketMpptOffers("sk", catalog)) + "\n");

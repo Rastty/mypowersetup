@@ -107,7 +107,7 @@ test("twenty CZ, SK, PL and HU buyer pages, exact JS and catalogs are public-evi
   assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
     row.servedPath.includes("?v=20261127-market-battery1")));
   assert.ok(result.assets.some(row => row.asset === "src/mppt-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261115-placement-events1")));
+    row.servedPath.includes("?v=20261128-market-mppt1")));
   assert.ok(result.assets.some(row => row.asset === "src/inverter-calculator-offers-browser.js" &&
     row.servedPath.includes("?v=20261128-market-inverter1")));
   assert.ok(result.assets.some(row => row.asset === "src/solar-calculator-offers-browser.js" &&

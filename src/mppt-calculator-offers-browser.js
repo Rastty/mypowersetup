@@ -6,6 +6,37 @@ import {
   isMpptOfferStillEligible, mpptOfferExpiresAt, selectMpptCalculatorOffers,
 } from "./mppt-calculator-offers.js";
 
+import { loadMarketMpptOffers,selectMarketMpptOffers,isMarketMpptStillEligible,marketMpptExpiresAt } from "./market-mppt-calculator-offers.js?v=20261128-market-mppt1";
+const LOCAL=Object.freeze({
+  "sk": {
+    "merchant": "padabo_sk",
+    "currency": "EUR",
+    "numberLocale": "sk-SK",
+    "loading": "Overujeme dostupné modely MPPT…",
+    "empty": "Pre tieto parametre teraz nemáme čerstvý overený model. Pokračujte do Buildera.",
+    "expired": "Platnosť ponúk vypršala. Spustite nový výpočet.",
+    "nominal": " A · menovitý FV výkon ",
+    "at": " Wp pri ",
+    "pv": " V · max. Voc ",
+    "isc": " V / Isc ",
+    "price": " · cena z posledného feedu",
+    "link": "Overiť cenu a parametre →"
+  },
+  "pl": {
+    "merchant": "padabo_pl",
+    "currency": "PLN",
+    "numberLocale": "pl-PL",
+    "loading": "Sprawdzamy dostępne modele MPPT…",
+    "empty": "Dla tych parametrów nie mamy aktualnego zweryfikowanego modelu. Przejdź do Buildera.",
+    "expired": "Dane ofert straciły ważność. Uruchom obliczenie ponownie.",
+    "nominal": " A · znamionowa moc PV ",
+    "at": " Wp przy ",
+    "pv": " V · maks. Voc ",
+    "isc": " V / Isc ",
+    "price": " · cena z ostatniego feedu",
+    "link": "Sprawdź cenę i parametry →"
+  }
+});
 function addText(parent, tag, content, className) {
   const element = parent.ownerDocument.createElement(tag);
   if (className) element.className = className;
@@ -14,7 +45,7 @@ function addText(parent, tag, content, className) {
   return element;
 }
 
-// Mounted only on the Czech MPPT landing. Reuses the approved, exact-SKU,
+// Mounted on the Czech, Slovak and Polish MPPT landings. Reuses the approved, exact-SKU,
 // live-feed gate without promising total electrical compatibility from Wp/A
 // alone. It never inserts a purchase link for an unverified or expired offer.
 export function mountMpptCalculatorBuyers(root, {
@@ -23,8 +54,10 @@ export function mountMpptCalculatorBuyers(root, {
   windowRoot = globalThis.window,
 } = {}) {
   const section = root?.querySelector?.("[data-mppt-buyers]");
+  const locale=root?.dataset?.calculatorLocale;
+  const market=Object.hasOwn(LOCAL,locale)?LOCAL[locale]:null;
   if (!section || root.dataset.calculatorIntent !== "mppt-sizing" ||
-      root.dataset.calculatorLocale !== "cs" || typeof fetchImpl !== "function") return null;
+      (locale !== "cs" && !market) || typeof fetchImpl !== "function") return null;
   const list = section.querySelector("[data-mppt-offer-list]");
   const fallback = section.querySelector("[data-mppt-offer-fallback]");
   if (!list || !fallback) return null;
@@ -36,6 +69,7 @@ export function mountMpptCalculatorBuyers(root, {
     Observer: windowRoot?.IntersectionObserver,
     now,
     allowedSources: ["mppt-calculator-match"],
+    allowedMerchants: [market?.merchant || "vselektro"],
   });
   let generation = 0;
   let activeResult = null;
@@ -73,40 +107,40 @@ export function mountMpptCalculatorBuyers(root, {
     if (token !== generation || !activeResult) return;
     section.dataset.buyerFetchState = "selecting";
     const current = now();
-    const offers = selectMpptCalculatorOffers(payload, calculation, current);
+    const offers = market ? selectMarketMpptOffers(locale,payload,calculation,current) : selectMpptCalculatorOffers(payload, calculation, current);
     clearOffers();
     if (!offers.length) {
       section.dataset.buyerFetchState = "empty";
-      noOffers("Pro zadané parametry nyní nemáme čerstvou ověřenou nabídku. Porovnejte proud, Wp, Voc a Isc v průvodci nebo navrhněte celou sestavu v Builderu.");
+      noOffers(market?.empty || "Pro zadané parametry nyní nemáme čerstvou ověřenou nabídku. Porovnejte proud, Wp, Voc a Isc v průvodci nebo navrhněte celou sestavu v Builderu.");
       return;
     }
 
     let earliestExpiry = Infinity;
     for (const offer of offers) {
-      const expiresAt = mpptOfferExpiresAt(payload, offer);
+      const expiresAt = market ? marketMpptExpiresAt(payload) : mpptOfferExpiresAt(payload, offer);
       if (!Number.isFinite(expiresAt) || expiresAt <= current) continue;
       earliestExpiry = Math.min(earliestExpiry, expiresAt);
       const item = documentRoot.createElement("li");
       addText(item, "strong", offer.name);
       addText(item, "span",
-        offer.specs.currentA + " A · FV limit " +
+        market ? offer.specs.currentA+market.nominal+offer.specs.maxPvWattsBySystemVoltage[calculation.systemVoltage]+market.at+calculation.systemVoltage+market.pv+offer.specs.maxPvVocV+market.isc+offer.specs.maxPvIscA+" A" : offer.specs.currentA + " A · FV limit " +
           offer.specs.maxPvWattsBySystemVoltage[calculation.systemVoltage] + " Wp při " +
           calculation.systemVoltage + " V",
         "calculator-mppt-offer-facts");
-      addText(item, "span", new Intl.NumberFormat("cs-CZ", {
-        style: "currency", currency: "CZK", maximumFractionDigits: 0,
-      }).format(offer.priceCzk) + " · cena dle poslední ověřené nabídky",
+      addText(item, "span", new Intl.NumberFormat(market?.numberLocale || "cs-CZ", {
+        style: "currency", currency: market?.currency || "CZK", maximumFractionDigits: market ? 2 : 0,
+      }).format(offer.priceCzk) + (market?.price || " · cena dle poslední ověřené nabídky"),
       "calculator-mppt-offer-facts");
 
-      const link = addText(item, "a", "Ověřit aktuální cenu a parametry →", "calculator-mppt-offer-link");
+      const link = addText(item, "a", market?.link || "Ověřit aktuální cenu a parametry →", "calculator-mppt-offer-link");
       link.href = decorateAwinAffiliateUrl(offer.affiliateUrl, {
-        market: "cz", category: "controller", source: "product-card", placement: "mppt_calculator",
+        market: market ? locale : "cz", category: "controller", source: "product-card", placement: "mppt_calculator",
       });
       link.target = "_blank";
       link.rel = "sponsored noopener noreferrer";
       link.dataset.affiliateClick = "";
       link.dataset.productId = offer.id;
-      link.dataset.merchant = "vselektro";
+      link.dataset.merchant = market?.merchant || "vselektro";
       link.dataset.category = "controller";
       link.dataset.source = "mppt-calculator-match";
       link.dataset.offerExpiresAt = String(expiresAt);
@@ -116,10 +150,10 @@ export function mountMpptCalculatorBuyers(root, {
         // The result must still match the actual unmodified form, with current
         // source evidence. A stale click can never count as an affiliate event.
         if (token !== generation || section.hidden ||
-            !isMpptOfferStillEligible(payload, activeResult, offer, now())) {
+            !(market ? isMarketMpptStillEligible(locale,payload,activeResult,offer,now()) : isMpptOfferStillEligible(payload, activeResult, offer, now()))) {
           event.preventDefault();
           event.stopPropagation();
-          noOffers("Nabídka mezitím vypršela. Spusťte nový výpočet a zkontrolujte čerstvé produkty.");
+          noOffers(market?.expired || "Nabídka mezitím vypršela. Spusťte nový výpočet a zkontrolujte čerstvé produkty.");
           return;
         }
         windowRoot?.MyPowerSetupAnalytics?.track?.("affiliate_click", buildAttributedAffiliateParameters(link));
@@ -129,7 +163,7 @@ export function mountMpptCalculatorBuyers(root, {
       list.append(item);
     }
     if (!list.childElementCount) {
-      noOffers("Aktuálně nemáme dostatečně čerstvou nabídku. Pokračujte do průvodce nebo Builderu.");
+      noOffers(market?.empty || "Aktuálně nemáme dostatečně čerstvou nabídku. Pokračujte do průvodce nebo Builderu.");
       return;
     }
     list.hidden = false;
@@ -140,7 +174,7 @@ export function mountMpptCalculatorBuyers(root, {
     impressionTracker?.scan();
     if (Number.isFinite(earliestExpiry) && windowRoot?.setTimeout) {
       expiryTimer = windowRoot.setTimeout(() => {
-        if (token === generation) noOffers("Platnost ověřených cen vypršela. Znovu spusťte výpočet pro aktuální nabídky.");
+        if (token === generation) noOffers(market?.expired || "Platnost ověřených cen vypršela. Znovu spusťte výpočet pro aktuální nabídky.");
       }, Math.max(1, earliestExpiry - now() + 1));
     }
   }
@@ -158,11 +192,11 @@ export function mountMpptCalculatorBuyers(root, {
     section.dataset.buyerFetchState = "loading";
     section.dataset.buyerGeneration = String(token);
     section.hidden = false;
-    fallback.textContent = "Ověřujeme čerstvé nabídky přesných modelů MPPT…";
+    fallback.textContent = market?.loading || "Ověřujeme čerstvé nabídky přesných modelů MPPT…";
     fallback.hidden = false;
     let payload = null;
     try {
-      payload = await loadCalculatorOffers(fetchImpl);
+      payload = market ? await loadMarketMpptOffers(locale,fetchImpl) : await loadCalculatorOffers(fetchImpl);
       section.dataset.buyerFetchState = payload ? "parsed" : "missing";
     } catch {
       section.dataset.buyerFetchState = "failed";

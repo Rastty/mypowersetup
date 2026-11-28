@@ -195,9 +195,11 @@ test("all twelve receiving and sending pages reference the current handoff modul
     const html = await readFile(new URL("../" + path.slice(1) + "index.html", import.meta.url), "utf8");
     const expectedVersion = ["/sk/kalkulacky/kapacita-baterie/", "/pl/kalkulatory/pojemnosc-akumulatora/"].includes(path)
       ? "20261127-market-battery1"
+      : ["/sk/kalkulacky/mppt-regulator/", "/pl/kalkulatory/regulator-mppt/"].includes(path)
+      ? "20261128-market-mppt1"
       : ["/pl/kalkulatory/panele-solarne/", "/hu/kalkulatorok/napelem-teljesitmeny/"].includes(path)
       ? "20261115-plhu-solar1"
-      : ["/kalkulacky/solarni-panely/", "/sk/kalkulacky/solarne-panely/", "/sk/kalkulacky/mppt-regulator/", "/pl/kalkulatory/regulator-mppt/", "/hu/kalkulatorok/mppt-szabalyozo/"].includes(path)
+      : ["/kalkulacky/solarni-panely/", "/sk/kalkulacky/solarne-panely/", "/hu/kalkulatorok/mppt-szabalyozo/"].includes(path)
       ? "20261115-placement-events1"
       : ["/kalkulacky/mppt-regulator/", "/kalkulacky/kapacita-baterie/"].includes(path)
         ? "20261115-placement-events1" : "20261107-handoff1";
