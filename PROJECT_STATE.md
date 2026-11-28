@@ -187,7 +187,11 @@ Připraveno: 18 skladových SKU s 4 skutečnými fotografiemi z přesných katal
 
 ## TURBO cyklus #28 — Nezávislá obnova CZ shore nabídek (2026-11-28)
 
-Připraveno: izolace aktuálního pozorování SvětKaravanů do dočasného souboru konkrétního workflow runu před SolarImport continuity guardem. Bez nového síťového požadavku, bez druhého writeru, bez změny full-CZ guardu a bez oslabení 72h expirace. Stávající writer po restore publikuje pouze validovaný samostatný výřez; při výpadku SvětKaravanů prázdný výřez se starým časem, při nedosaženém stage původní výřez s původní expirací. SK/PL beze změny. Příčina předchozího CZ guardu: CZ_SOLARIMPORT_INVERTER_BUYER_PATH_LOST (11 → 0). Nasazení #28 zatím neověřeno. Další priorita: obnovit doložené SolarImport měniče nebo rozšířit pokrytí existujícími schválenými alternativami; žádné nové kampaně.
+Připraveno: izolace aktuálního pozorování SvětKaravanů do dočasného souboru konkrétního workflow runu před SolarImport continuity guardem. Bez nového síťového požadavku, bez druhého writeru, bez změny full-CZ guardu a bez oslabení 72h expirace. Stávající writer po restore publikuje pouze validovaný samostatný výřez; při výpadku SvětKaravanů prázdný výřez se starým časem, při nedosaženém stage původní výřez s původní expirací. SK/PL beze změny. Příčina předchozího CZ guardu: CZ_SOLARIMPORT_INVERTER_BUYER_PATH_LOST (11 → 0). **Doručeno:** [PR #743](https://github.com/Rastty/mypowersetup/pull/743), [Pages PASS](https://github.com/Rastty/mypowersetup/actions/runs/46141449784), [sync PASS](https://github.com/Rastty/mypowersetup/actions/runs/46141449961), CI/IndexNow PASS. Nový ostrý běh uspěl, režim při skutečném výpadku zatím produkčně nepozorován. Další priorita: obnovit doložené SolarImport měniče nebo rozšířit pokrytí existujícími schválenými alternativami; žádné nové kampaně.
+
+## TURBO cyklus #29 — Hloubkové nákupní průvodce kapacitou baterie CZ/SK/PL (2026-11-28)
+
+Připraveno: 2630 / 2177 / 2158 slov CZ/SK/PL včetně tabulek. Rozšířeny stávající kanonické stránky: 100–300 Ah, 350–1800 Wh/den, 1–3 dny, 12/24 V, AGM vs LiFePO₄, plánovací rezerva, BMS a měnič, topologie, bilance nabíjení, praktické příklady a šest FAQ na trh. SK/PL tři dříve technicky doložené modely Carbest s výrobními podklady a lokální kalkulačkou, CZ zachována doložená Sunstone cesta. Upraven nepřesný text CTA, datum a sitemap; žádná nová URL, kampaň nebo nové testy. Nasazení #29 zatím neověřeno.
 
 ## BLOKACE / nezaměňovat za tržby
 
