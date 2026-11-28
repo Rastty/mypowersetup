@@ -26,6 +26,7 @@ on:
       - "src/market-dcdc-calculator-offers.js"
       - "src/shore-calculator-offers.js"
       - "scripts/write-shore-calculator-offers.mjs"
+      - "scripts/stage-cz-shore-offers.mjs"
       - "scripts/check-market-dcdc-calculator-offers.mjs"
       - "src/market-mppt-calculator-offers.js"
       - "scripts/check-market-mppt-calculator-offers.mjs"
@@ -128,6 +129,7 @@ jobs:
         env:
           RESLSHOP_FEED_URL: ${{ secrets.RESLSHOP_FEED_URL }}
           SVETKARAVANU_FEED_URL: ${{ secrets.SVETKARAVANU_FEED_URL }}
+          MPS_CZ_SHORE_STAGE_PATH: ${{ runner.temp }}/mps-cz-shore-${{ github.run_id }}-${{ github.run_attempt }}.json
           # Optional partner feeds remain disabled until their repository secrets exist.
           SOLAR_IMPORT_FEED_URL: ${{ secrets.SOLAR_IMPORT_FEED_URL }}
           BATTERY_CZ_FEED_URL: ${{ secrets.BATTERY_CZ_FEED_URL }}
@@ -184,6 +186,8 @@ jobs:
       - run: node scripts/sync-products-pt.mjs
       - name: Project compact local shore charger catalogs
         run: node scripts/write-shore-calculator-offers.mjs
+        env:
+          MPS_CZ_SHORE_STAGE_PATH: ${{ runner.temp }}/mps-cz-shore-${{ github.run_id }}-${{ github.run_attempt }}.json
       - run: node scripts/write-cz-dcdc-coverage.mjs
       - run: node scripts/write-commercial-opportunity-report.mjs
       - run: node scripts/write-owner-action-queue.mjs
@@ -237,5 +241,5 @@ jobs:
       - name: Report quarantined CZ merchant outage (without losing other markets)
         if: steps.cz_refresh.outcome == 'failure'
         run: |
-          echo "::error::CZ guarded catalog refresh failed; no core CZ catalog or reviewed inverter/solar offer snapshot was published. Independently reviewed AMPUL CZ offers may still refresh. Check the failed CZ merchant feed and continuity guard. Independent approved markets have completed their normal safety gates."
+          echo "::error::CZ guarded catalog refresh failed; no core CZ catalog or reviewed inverter/solar offer snapshot was published. Independently reviewed AMPUL CZ and SvětKaravanů shore offers may still refresh. Check the failed CZ merchant feed and continuity guard. Independent approved markets have completed their normal safety gates."
           exit 1
