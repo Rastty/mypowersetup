@@ -55,7 +55,7 @@ test("changed calculator surfaces carry current lastmod in both calculator and p
     "https://mypowersetup.com/kalkulacky/solarni-panely/",
     "https://mypowersetup.com/sk/kalkulacky/solarne-panely/",
   ]) {
-    const needle = `<loc>${url}</loc><lastmod>2026-11-15</lastmod>`;
+    const needle = `<loc>${url}</loc><lastmod>${url.includes("/sk/") ? "2026-11-15" : "2026-11-28"}</lastmod>`;
     assert.ok(calculatorSitemap.includes(needle), `calculator sitemap missing ${url}`);
     assert.ok(primarySitemap.includes(needle), `primary sitemap missing ${url}`);
   }
@@ -142,7 +142,7 @@ test("Wave 19 records fresh evidence and promotes the final two indexing gaps fr
   assert.match(homepage, /href="\/kalkulacky\/kapacita-baterie\/"/);
   assert.match(homepage, /href="\/kalkulacky\/solarni-panely\/"/);
   assert.ok(
-    sitemap.includes("<loc>https://mypowersetup.com/</loc><lastmod>2026-11-27</lastmod>"),
+    sitemap.includes("<loc>https://mypowersetup.com/</loc><lastmod>2026-11-28</lastmod>"),
   );
 });
 
