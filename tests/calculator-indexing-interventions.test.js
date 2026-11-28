@@ -74,7 +74,7 @@ test("Wave 17 strengthens contextual discovery for the battery autonomy calculat
     /href="\/kalkulacky\/vydrz-baterie\/"[^>]*>Mám baterii — spočítat její výdrž<\/a>/,
   );
 
-  const sourceNeedle = "<loc>https://mypowersetup.com/kalkulacky/kapacita-baterie/</loc><lastmod>2026-11-09</lastmod>";
+  const sourceNeedle = "<loc>https://mypowersetup.com/kalkulacky/kapacita-baterie/</loc><lastmod>2026-11-28</lastmod>";
   assert.ok(calculatorSitemap.includes(sourceNeedle));
   assert.ok(primarySitemap.includes(sourceNeedle));
 
