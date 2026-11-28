@@ -23,6 +23,8 @@ on:
       - "scripts/sync-products.mjs"
       - "src/calculator-offer-catalog.js"
       - "src/sk-solar-calculator-offers.js"
+      - "src/market-mppt-calculator-offers.js"
+      - "scripts/check-market-mppt-calculator-offers.mjs"
       - "src/market-inverter-calculator-offers.js"
       - "scripts/check-market-inverter-calculator-offers.mjs"
       - "src/market-battery-calculator-offers.js"
@@ -159,6 +161,8 @@ jobs:
         env:
           PADABO_PL_FEED_URL: ${{ secrets.PADABO_PL_FEED_URL }}
           AMPUL_PL_FEED_URL: ${{ secrets.AMPUL_PL_FEED_URL }}
+      - name: Validate exact-source SK/PL MPPT calculator offers
+        run: node scripts/check-market-mppt-calculator-offers.mjs
       - name: Validate exact-source SK/PL inverter calculator offers
         run: node scripts/check-market-inverter-calculator-offers.mjs
       - name: Validate exact-source SK/PL battery calculator offers
@@ -186,7 +190,7 @@ jobs:
       - run: npm run check:commercial:opportunities
       - name: Commit refreshed catalog
         run: |
-          FILES="data/products.json data/calculator-offers-cz.json data/dcdc-guide-offers-cz.json data/inverter-calculator-offers-cz.json data/solar-calculator-offers-cz.json data/products-ampul-cz.json data/products-sk.json data/solar-calculator-offers-sk.json data/battery-calculator-offers-sk.json data/inverter-calculator-offers-sk.json data/products-pl.json data/battery-calculator-offers-pl.json data/inverter-calculator-offers-pl.json data/pl-s400-offers.json data/solar-calculator-offers-pl.json data/products-hu.json data/solar-calculator-offers-hu.json data/products-pt.json data/cz-dcdc-coverage.json data/commercial-opportunity-report.json data/owner-action-queue.json"
+          FILES="data/products.json data/calculator-offers-cz.json data/dcdc-guide-offers-cz.json data/inverter-calculator-offers-cz.json data/solar-calculator-offers-cz.json data/products-ampul-cz.json data/products-sk.json data/solar-calculator-offers-sk.json data/battery-calculator-offers-sk.json data/inverter-calculator-offers-sk.json data/mppt-calculator-offers-sk.json data/products-pl.json data/battery-calculator-offers-pl.json data/inverter-calculator-offers-pl.json data/mppt-calculator-offers-pl.json data/pl-s400-offers.json data/solar-calculator-offers-pl.json data/products-hu.json data/solar-calculator-offers-hu.json data/products-pt.json data/cz-dcdc-coverage.json data/commercial-opportunity-report.json data/owner-action-queue.json"
           if [[ -z "$(git status --porcelain -- $FILES)" ]]; then exit 0; fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"
@@ -220,6 +224,7 @@ jobs:
           node scripts/wait-for-pages-deployment.mjs
           node scripts/verify-buyer-paths-live.mjs
           node scripts/check-market-inverter-calculator-offers.mjs --live
+          node scripts/check-market-mppt-calculator-offers.mjs --live
       - name: Report quarantined CZ merchant outage (without losing other markets)
         if: steps.cz_refresh.outcome == 'failure'
         run: |
