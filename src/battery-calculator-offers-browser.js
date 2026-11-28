@@ -11,6 +11,31 @@ const MARKET_COPY={
  pl:{currency:"PLN",numberLocale:"pl-PL",merchants:["padabo_pl"],loading:"Sprawdzamy aktualne oferty konkretnych akumulatorów…",empty:"Dla tej pojemności, napięcia i chemii nie mamy aktualnego zweryfikowanego pojedynczego akumulatora. Przejdź do Buildera; nie łączymy automatycznie kilku akumulatorów.",expired:"Dane ofert straciły ważność. Uruchom obliczenie ponownie.",price:" · cena z ostatniego feedu",link:"Sprawdź cenę i parametry techniczne →",current:" A według producenta (sprawdź rzeczywiste obciążenie)"}
 };
 
+const CARD_COPY={
+ cs:{merchants:{vselektro:"VSelektro.eu"},capacity:"Kapacita",margin:"Nad požadované minimum",current:"Doložený trvalý / nešpičkový limit",runtime:"Modelová výdrž bez dobíjení",day:"d",price:"Cena z posledního feedu",link:"Ověřit cenu a dostupnost →",affiliate:"Affiliate odkaz",lowest:"Nejnižší cena ze zobrazených",count:n=>n+" odpovídající nabídky podle kapacity",fit:"Kapacitně vyhovuje",details:"Ověřte BMS, nabíjení a montáž. Výpočet výdrže používá 80 % využitelnosti a 15 % rezervu; nejde o měřenou výdrž.",spec:"Parametry výrobce",mount:"Podsedadlový model – ověřte rozměry."},
+ sk:{merchants:{padabo_sk:"Padabo.sk",powerqueen_eu:"Power Queen EU"},capacity:"Kapacita",margin:"Nad požadované minimum",current:"Doložený trvalý / nešpičkový limit",runtime:"Modelová výdrž bez dobíjania",day:"d",price:"Cena z posledného feedu",link:"Overiť cenu a dostupnosť →",affiliate:"Affiliate odkaz",lowest:"Najnižšia cena zo zobrazených",count:n=>n+" ponuky podľa kapacity",fit:"Kapacitne vyhovuje",details:"Overte BMS, nabíjanie a montáž. Výdrž používa 80 % využiteľnosti a 15 % rezervu; nejde o meranú výdrž.",spec:"Údaje výrobcu",mount:"Podsedadlový model – overte rozmery."},
+ pl:{merchants:{padabo_pl:"Padabo.pl"},capacity:"Pojemność",margin:"Ponad wymagane minimum",current:"Udokumentowany limit ciągły / nieszczytowy",runtime:"Modelowy czas bez ładowania",day:"d",price:"Cena z ostatniego feedu",link:"Sprawdź cenę i dostępność →",affiliate:"Link afiliacyjny",lowest:"Najniższa cena spośród pokazanych",count:n=>n+" ofert według pojemności",fit:"Spełnia wymóg pojemności",details:"Sprawdź BMS, ładowanie i montaż. Model czasu pracy przyjmuje 80% użyteczności i 15% zapasu; nie jest to pomiar.",spec:"Dane producenta",mount:"Model pod siedzenie – sprawdź wymiary."}
+};
+// Exact photos observed in the corresponding approved full merchant feed
+// on 2026-11-28. Never use an arbitrary feed URL or a similar-model photo.
+const BATTERY_PHOTOS=Object.freeze({
+ "vselektro:sunstone-slpo12-100n":"https://vselektro.eu/lifepo4-baterie-12v-100ah-sunstone-power-slpo12-100n-322222--0-wm0.jpg",
+ "vselektro:sunstone-slpo12-200n":"https://vselektro.eu/lifepo4-baterie-12v-200ah-slpo12-200n-hc200a-sunstone-power-512347--0-wm0.jpg",
+ "vselektro:sunstone-slpo12-200m-hc200a":"https://vselektro.eu/lifepo4-baterie-12v-200ah-slpo12-200m-hc200a-lifepo4-baterie-12v-200ah-slpo12-200n-hc200a-sunstone-power-559771--0-wm0.jpg",
+ "padabo_sk:26753":"https://data.svetkaravanu.cz/data/tmp/102/8/152518_102.jpg?1704379090_1",
+ "padabo_sk:26754":"https://data.svetkaravanu.cz/data/tmp/102/0/152520_102.jpg?1704379091_1",
+ "padabo_sk:26755":"https://data.svetkaravanu.cz/data/tmp/102/2/152522_102.jpg?1704379091_1",
+ "padabo_sk:107358":"https://data.svetkaravanu.cz/data/tmp/102/8/191118_102.jpg?1772808346_1",
+ "padabo_pl:26753":"https://data.svetkaravanu.cz/data/tmp/102/8/152518_102.jpg?1704379090_1",
+ "padabo_pl:26754":"https://data.svetkaravanu.cz/data/tmp/102/0/152520_102.jpg?1704379091_1",
+ "padabo_pl:26755":"https://data.svetkaravanu.cz/data/tmp/102/2/152522_102.jpg?1704379091_1",
+ "padabo_pl:107358":"https://data.svetkaravanu.cz/data/tmp/102/8/191118_102.jpg?1772808346_1",
+ "powerqueen_eu:7881294676188":"https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PQ-25.6V200Ah-A250.webp?v=1773826393",
+ "powerqueen_eu:7752840380636":"https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PQ-25.6V100Ah-A160.webp?v=1773826324",
+ "powerqueen_eu:7752838578396":"https://cdn.shopify.com/s/files/1/0652/8086/8572/files/PQ-12.8V200Ah-Plus-A160.webp?v=1749462405"
+});
+const UNDER_SEAT=new Set(["vselektro:sunstone-slpo12-200m-hc200a","padabo_sk:26754","padabo_sk:26755","padabo_pl:26754","padabo_pl:26755"]);
+
 function addText(parent, tag, value, className) {
   const node = parent.ownerDocument.createElement(tag);
   node.textContent = value;
@@ -35,6 +60,10 @@ export function mountBatteryCalculatorBuyers(root, {
   const fallback = section.querySelector("[data-battery-offer-fallback]");
   if (!list || !fallback) return null;
   const documentRoot = section.ownerDocument;
+  const cardCopy = CARD_COPY[locale];
+  const count = section.querySelector('[data-battery-offer-count]');
+  const num = new Intl.NumberFormat(market?.numberLocale || 'cs-CZ',{maximumFractionDigits:1});
+  const price = new Intl.NumberFormat(market?.numberLocale || 'cs-CZ',{style:'currency',currency:market?.currency || 'CZK',maximumFractionDigits:market?2:0});
   const impressions = createVerifiedGuideImpressionTracker({
     documentRoot, sections: [section],
     getAnalytics: () => windowRoot?.MyPowerSetupAnalytics,
@@ -49,6 +78,7 @@ export function mountBatteryCalculatorBuyers(root, {
     if (timer !== null) windowRoot?.clearTimeout?.(timer);
     timer = null;
     list.replaceChildren();
+    if(count) count.hidden=true;
     list.hidden = true;
     section.dataset.liveOffers = "0";
     impressions?.scan();
@@ -79,21 +109,34 @@ export function mountBatteryCalculatorBuyers(root, {
       return;
     }
     let earliest = Infinity;
+    const lowest=Math.min(...offers.map(p=>p.priceCzk));
     for (const offer of offers) {
       const expiresAt = market ? marketBatteryOfferExpiresAt(payload) : batteryOfferExpiresAt(payload, offer);
       if (!Number.isFinite(expiresAt) || expiresAt <= current) continue;
       earliest = Math.min(earliest, expiresAt);
       const item = documentRoot.createElement("li");
-      addText(item, "strong", offer.name);
-      addText(item, "span",
-        market ? offer.specs.capacityAh + " Ah · " + offer.specs.voltageV + " V LiFePO₄ · " + offer.specs.bmsContinuousCurrentA + market.current : offer.specs.capacityAh + " Ah · 12 V LiFePO₄ · BMS " +
-        offer.specs.bmsContinuousCurrentA + " A (ověřte skutečné zatížení)",
-        "calculator-mppt-offer-facts");
-      addText(item, "span", new Intl.NumberFormat(market?.numberLocale || "cs-CZ", {
-        style: "currency", currency: market?.currency || "CZK", maximumFractionDigits: market ? 2 : 0,
-      }).format(offer.priceCzk) + (market?.price || " · naposledy ověřená cena"),
-      "calculator-mppt-offer-facts");
-      const link = addText(item, "a", market?.link || "Ověřit cenu a technické parametry →", "calculator-mppt-offer-link");
+      item.className="battery-offer-card";
+      if(offers.length>1&&offer.priceCzk===lowest)addText(item,"span",cardCopy.lowest,"battery-offer-lowest");
+      const heading=documentRoot.createElement("div");heading.className="battery-offer-header";item.append(heading);
+      const photo=Object.hasOwn(BATTERY_PHOTOS,offer.id)?BATTERY_PHOTOS[offer.id]:null;
+      if(photo){
+        const img=documentRoot.createElement("img");img.className="battery-offer-photo";img.width=104;img.height=104;img.loading="lazy";img.decoding="async";img.referrerPolicy="no-referrer";img.alt=offer.name;
+        img.addEventListener("error",()=>img.remove(),{once:true});heading.append(img);img.src=photo;
+      }
+      const main=documentRoot.createElement("div");main.className="battery-offer-title";heading.append(main);
+      addText(main,"strong",offer.name);
+      addText(main,"span",cardCopy.merchants[offer.merchant]||offer.merchant,"battery-offer-merchant");
+      addText(main,"span",price.format(offer.priceCzk),"battery-offer-price");
+      addText(main,"small",cardCopy.price,"calculator-mppt-offer-facts");
+      addText(item,"span",cardCopy.fit+" · "+offer.specs.voltageV+" V LiFePO₄","battery-offer-fit");
+      const facts=documentRoot.createElement("dl");facts.className="battery-offer-metrics";item.append(facts);
+      const reserve=offer.specs.capacityAh-result.batteryAh;
+      const days=Math.floor((offer.specs.capacityAh*offer.specs.voltageV*0.8/1.15/result.dailyWh)*10)/10;
+      for(const [label,value] of [[cardCopy.capacity,num.format(offer.specs.capacityAh)+" Ah"],[cardCopy.margin,"+"+num.format(reserve)+" Ah"],[cardCopy.current,num.format(offer.specs.bmsContinuousCurrentA)+" A"],[cardCopy.runtime,num.format(days)+" "+cardCopy.day]]){
+        const cell=documentRoot.createElement("div");addText(cell,"dt",label);addText(cell,"dd",value);facts.append(cell);
+      }
+      if(UNDER_SEAT.has(offer.id))addText(item,"small",cardCopy.mount,"calculator-mppt-offer-facts");
+      const link = addText(item, "a", cardCopy.link, "calculator-mppt-offer-link battery-offer-cta");
       link.href = decorateAwinAffiliateUrl(offer.affiliateUrl, {
         market: market ? locale : "cz", category: "battery", source: "product-card", placement: "battery_calculator",
       });
@@ -121,6 +164,7 @@ export function mountBatteryCalculatorBuyers(root, {
       };
       link.addEventListener("click", click);
       link.addEventListener("auxclick", click);
+      addText(item,"small",cardCopy.affiliate,"calculator-mppt-offer-facts");
       list.append(item);
     }
     if (!list.childElementCount) {
@@ -128,6 +172,7 @@ export function mountBatteryCalculatorBuyers(root, {
       return;
     }
     list.hidden = false;
+    if(count){count.textContent=String(list.childElementCount)+" · "+cardCopy.fit;count.hidden=false;}
     fallback.hidden = true;
     section.hidden = false;
     section.dataset.liveOffers = String(list.childElementCount);

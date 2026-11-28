@@ -1,0 +1,20 @@
+/* Battery result cards only; the eligibility and expiry logic is unchanged. */
+[data-battery-buyers]{margin-top:16px;padding-top:16px}
+[data-battery-buyers] h3{font-size:1.3rem}
+[data-battery-buyers] .battery-offer-card{border:1px solid #cbd5e1;background:#fff;border-radius:16px;padding:16px;gap:12px;box-shadow:0 3px 12px rgba(15,23,42,.06)}
+.battery-offer-header{display:flex;align-items:flex-start;gap:12px;min-width:0}
+.battery-offer-photo{width:104px;height:104px;object-fit:contain;flex:0 0 104px;border:1px solid #e2e8f0;border-radius:10px;background:white}
+.battery-offer-title{display:grid;gap:4px;min-width:0}
+.battery-offer-title>strong{font-size:1.06rem;line-height:1.3}
+.battery-offer-price{font-size:1.55rem;font-weight:800;line-height:1.2;color:#123d31;font-variant-numeric:tabular-nums}
+.battery-offer-merchant{font-size:.87rem;font-weight:600;color:#475569}
+.battery-offer-fit,.battery-offer-lowest,.battery-offer-count{color:#176b4c;font-weight:700;font-size:.88rem;margin:0}
+.battery-offer-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0}
+.battery-offer-metrics>div{background:#f1f5f9;border-radius:9px;padding:10px;min-width:0}
+.battery-offer-metrics dt{font-size:.79rem;line-height:1.25;color:#475569}
+.battery-offer-metrics dd{font-size:1.15rem;font-weight:800;margin:3px 0 0;font-variant-numeric:tabular-nums}
+[data-battery-buyers] .battery-offer-cta{display:flex;justify-content:center;text-align:center;padding:11px 12px;min-height:48px;background:#176b4c;color:white;border-radius:10px;text-decoration:none}
+.battery-offer-cta:focus-visible{outline:3px solid #2563eb;outline-offset:3px}
+.battery-input-hint{margin:0}
+[data-calculator-intent="battery-capacity"] .calculator-result{scroll-margin-top:16px;min-width:0}
+@media(max-width:420px){[data-battery-buyers] .battery-offer-card{padding:12px}.battery-offer-photo{width:78px;height:78px;flex-basis:78px}.battery-offer-price{font-size:1.35rem}.battery-offer-metrics>div{padding:8px}}

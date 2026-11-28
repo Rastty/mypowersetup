@@ -162,7 +162,7 @@ test("release wiring shares the compact loader and generates it in existing dail
     assert.match(source,/calculator-offer-catalog\.js\?v=20261109-lightweight-cz1/);
   }
   assert.match(mpptHtml,/calculator-landing-browser\.js\?v=20261115-placement-events1/);
-  assert.match(batteryHtml,/calculator-landing-browser\.js\?v=20261128-voltage1/);
+  assert.match(batteryHtml,/calculator-landing-browser\.js\?v=20261128-battery-card1/);
   assert.match(sync,/projectCalculatorOffers\(fullCatalog/);
   assert.match(sync,/data\/calculator-offers-cz\.json/);
   assert.match(workflow,/FILES="data\/products\.json data\/calculator-offers-cz\.json/);

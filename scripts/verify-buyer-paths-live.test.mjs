@@ -103,11 +103,11 @@ test("twenty CZ, SK, PL and HU buyer pages, exact JS and catalogs are public-evi
   for (const kind of ["mppt_calculator", "inverter_calculator", "solar_calculator", "sk_solar_calculator", "dcdc_calculator"])
     assert.ok(result.browserVersions[kind].includes("20261115-placement-events1"), kind);
   for (const kind of ["battery_capacity", "sk_battery_capacity", "pl_battery_capacity"])
-    assert.ok(result.browserVersions[kind].includes("20261128-voltage1"), kind);
+    assert.ok(result.browserVersions[kind].includes("20261128-battery-card1"), kind);
   for (const kind of ["pl_solar_calculator", "hu_solar_calculator"])
     assert.ok(result.browserVersions[kind].includes("20261115-plhu-solar1"), kind);
   assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
-    row.servedPath.includes("?v=20261127-market-battery1")));
+    row.servedPath.includes("?v=20261128-battery-card1")));
   assert.ok(result.assets.some(row => row.asset === "src/mppt-calculator-offers-browser.js" &&
     row.servedPath.includes("?v=20261128-market-mppt1")));
   assert.ok(result.assets.some(row => row.asset === "src/inverter-calculator-offers-browser.js" &&

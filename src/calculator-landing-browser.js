@@ -5,7 +5,7 @@ import { classifyCalculatorContinuation, classifyCalculatorSpecialistHandoff, ge
 import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
 import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261128-voltage1";
 import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261128-market-mppt1";
-import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261127-market-battery1";
+import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261128-battery-card1";
 import { mountInverterCalculatorBuyers } from "./inverter-calculator-offers-browser.js?v=20261128-market-inverter1";
 import { mountSolarCalculatorBuyers } from "./solar-calculator-offers-browser.js?v=20261115-plhu-solar1";
 
@@ -251,7 +251,7 @@ if (root) {
       // focus on the form until a visitor explicitly requests a calculation.
       if (userInitiated) {
         resultPanel.focus({ preventScroll: true });
-        if(intent==="voltage-system" && result.comparison) resultPanel.scrollIntoView({block:"start",behavior:"auto"});
+        if((intent==="voltage-system" && result.comparison)||batteryBuyers) resultPanel.scrollIntoView({block:"start",behavior:"auto"});
         track("calculation_completed", { source: "seo_landing" });
         // Only a real, submitted calculation can unlock fresh merchant offers.
         // The initial static/SEO preview never creates a purchase link.
