@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { parseProductFeed } from "../src/feed.js";
 import { parseVselektroVerifiedFeed } from "../src/vselektro-feed.js";
 import { projectCalculatorOffers, projectDcdcGuideOffers, projectInverterCalculatorOffers, projectSolarCalculatorOffers } from "../src/calculator-offer-catalog.js";
+import { stageCzShoreOffers } from "./stage-cz-shore-offers.mjs";
 import { assertCzBuyerFeedContinuity } from "../src/cz-buyer-feed-continuity.js";
 import { syncPowerQueenEu } from "./lib/sync-powerqueen-eu.mjs";
 import { loadSolarImportGoogleFallback, solarImportNeedsFallback } from "./lib/sync-solarimport-google.mjs";
@@ -138,6 +139,9 @@ if (products.length === 0) {
   throw new Error("Nepodařilo se načíst žádný produktový feed.");
 }
 const fullCatalog = { generatedAt: new Date().toISOString(), sources, products: catalogProducts };
+// Stage only the independently observed merchant in runner temporary storage.
+// This does not touch committed files or bypass the full catalog guard.
+await stageCzShoreOffers({stagePath:process.env.MPS_CZ_SHORE_STAGE_PATH,source:sources.svetkaravanu,products:catalogProducts,previousGeneratedAt:previousCatalog.generatedAt,observedAt:fullCatalog.generatedAt});
 // A successful-but-truncated feed is not evidence that reviewed stock vanished.
 // Check BEFORE touching any committed artifact, so an unsafe refresh cannot
 // replace a still-time-bounded buyer snapshot with empty recommendations.
