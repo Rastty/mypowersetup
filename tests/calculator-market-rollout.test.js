@@ -353,7 +353,7 @@ test("15 localized buyer guides lead first to native tools and retain builder jo
     assert.ok(jump, `${file} must show an above-fold calculator next step`);
     assert.ok(bottom, `${file} must have a calculator CTA`);
     assert.ok(bottom.includes(`href="/${locale}/#kalkulator"`), `${file} must retain the market builder path`);
-    const modified = ["sk/sprievodca/aky-velky-menic-do-karavanu/index.html","pl/poradnik/jak-dobrac-przetwornice-do-kampera/index.html","sk/sprievodca/ako-vybrat-mppt-regulator/index.html","pl/poradnik/jak-dobrac-regulator-mppt/index.html","sk/sprievodca/ako-vybrat-dc-dc-nabijacku/index.html","pl/poradnik/jak-dobrac-ladowarke-dc-dc/index.html"].includes(file) ? "2026-11-28" : "2026-11-15";
+    const modified = ["sk/sprievodca/aky-velky-menic-do-karavanu/index.html","pl/poradnik/jak-dobrac-przetwornice-do-kampera/index.html","sk/sprievodca/ako-vybrat-mppt-regulator/index.html","pl/poradnik/jak-dobrac-regulator-mppt/index.html","sk/sprievodca/ako-vybrat-dc-dc-nabijacku/index.html","pl/poradnik/jak-dobrac-ladowarke-dc-dc/index.html","sk/sprievodca/12-v-alebo-24-v-karavan/index.html","pl/poradnik/12-v-czy-24-v-kamper/index.html"].includes(file) ? "2026-11-28" : "2026-11-15";
     assert.ok(html.includes(`"dateModified":"${modified}"`), `${file} should reflect the update`);
     const slug = file.replace(/\/index\.html$/, "/");
     const sitemapEntry = sitemap.match(new RegExp(`<url><loc>https://mypowersetup.com/${slug}<\\/loc><lastmod>([^<]+)<\\/lastmod>`));
