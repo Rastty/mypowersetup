@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-27T19:06:43.749Z",
+  "generatedAt": "2026-11-28T03:25:06.515Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
     "padabo_pl": {
       "status": "ok",
-      "parsedProducts": 16404,
-      "relevantProducts": 200
+      "parsedProducts": 16396,
+      "relevantProducts": 201
     },
     "powerqueen_eu": {
       "status": "ok",
@@ -257,6 +257,37 @@
         "voltageV": null,
         "capacityAh": 92,
         "capacityWh": null,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
+      "id": "padabo_pl:16597_17411",
+      "merchant": "padabo_pl",
+      "name": "Akumulator EXIDE Dual AGM pojemność 100 Ah wersja EP 900",
+      "description": "Wytrzymały akumulator do każdego rodzaju pojazdu rekreacyjnegoAkumulatory do najpopularniejszych kamperów i przyczep kempingowych. Ich konstrukcja zapewnia dużą elastyczność instalacji. Technologia AGM (Absorbent Glass Mat) ze stopem wapnia i wentylacją VRLA obejmuje zakres mocy od 450 do 2100 Wh, oferując szeroki wybór dla każdego rodzaju pojazdu rekreacyjnego. Kluczowe cechy akumulatora EXIDE Dual AGM: Jest całkowicie bezobsługowy, co ułatwia jego długotrwałe użytkowanie. Oferujewysoką elastyc",
+      "categoryPath": "Elektryka do przyczepek, kamperów i vanów | Akumulatory | Akumulatory AGM",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 2119.75,
+      "priceCurrency": "PLN",
+      "available": true,
+      "productUrl": "https://www.padabo.pl/akumulator-exide-dual-agm_z16597/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=95d61abf&desturl=https%3A%2F%2Fwww.padabo.pl%2Fakumulator-exide-dual-agm_z16597%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/154563_102.jpg?1704380087_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 100,
+        "capacityWh": 2100,
         "powerW": null,
         "currentA": null,
         "chargingVoltagesV": [],
@@ -8010,7 +8041,7 @@
       "categoryPath": "Portable Power Station",
       "category": "power_station",
       "brand": "ALLPOWERS",
-      "priceCzk": 2399,
+      "priceCzk": 4299,
       "priceCurrency": "PLN",
       "available": true,
       "productUrl": "https://allpowers.com.pl/products/allpowers-r1500-portable-home-backup-power-station-1800w-1152wh-lifep04-battery",

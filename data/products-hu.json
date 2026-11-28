@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-27T19:06:54.639Z",
+  "generatedAt": "2026-11-28T03:25:17.571Z",
   "market": "hu-HU",
   "currency": "EUR",
   "sources": {
     "padabo_hu": {
       "status": "ok",
-      "parsedProducts": 12426,
-      "relevantProducts": 161
+      "parsedProducts": 12414,
+      "relevantProducts": 162
     },
     "ampul_hu": {
       "status": "ok",
@@ -45,6 +45,37 @@
     }
   },
   "products": [
+    {
+      "id": "padabo_hu:16597_17411",
+      "merchant": "padabo_hu",
+      "name": "EXIDE Dual AGM akkumulátor kapacitás 100 Ah opció EP 900",
+      "description": "Tartós akkumulátor bármilyen szabadidőjárműhöz A leggyakoribb lakóautókhoz és lakókocsikhoz készült akkumulátor. Felépítése nagy rugalmasságot biztosít a beszerelés során. A kalciumötvözetet tartalmazó AGM (Absorbent Glass Mat) technológia és a VRLA szellőzés 450 és 2100 Wh közötti teljesítménytartományt fed le, így széles választékot kínál bármilyen típusú szabadidős járműhöz. Az EXIDE Dual AGM akkumulátor legfontosabb jellemzői: Teljesen karbantartásmentes, ami megkönnyíti a hosszú távú haszná",
+      "categoryPath": "Elektromos berendezések lakókocsikhoz, lakóautókhoz és furgonokhoz | Akkumulátorok | AGM akkumulátorok",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 200630,
+      "priceCurrency": "HUF",
+      "available": true,
+      "productUrl": "https://www.padabo.hu/exide-dual-agm-akkumulator_z16597/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=0f2a2252&desturl=https%3A%2F%2Fwww.padabo.hu%2Fexide-dual-agm-akkumulator_z16597%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/154563_102.jpg?1704380087_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 100,
+        "capacityWh": 2100,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
     {
       "id": "padabo_hu:24087_26040",
       "merchant": "padabo_hu",

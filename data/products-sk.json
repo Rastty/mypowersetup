@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-27T19:06:32.493Z",
+  "generatedAt": "2026-11-28T03:24:54.677Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16391,
-      "relevantProducts": 245
+      "parsedProducts": 16380,
+      "relevantProducts": 246
     },
     "allpowers_eu": {
       "status": "ok",
@@ -333,6 +333,37 @@
       }
     },
     {
+      "id": "padabo_sk:16597_17411",
+      "merchant": "padabo_sk",
+      "name": "EXIDE Duálna batéria AGM kapacita 100 Ah variant EP 900",
+      "description": "Odolná batéria pre akýkoľvek druh rekreačného vozidlaBatérie pre najbežnejšie obytné vozidlá a karavany. Ich konštrukcia ponúka vysokú flexibilitu pri inštalácii. Technológia AGM (Absorbent Glass Mat) so zliatinou vápnika a ventiláciou VRLA pokrýva výkonový rozsah od 450 do 2100 Wh, čím ponúka široký výber pre akýkoľvek druh rekreačného vozidla. Kľúčové vlastnosti batérie EXIDE Dual AGM: Je úplne bezúdržbový, čo uľahčuje jeho dlhodobé používanie. Ponúka vysokú flexibilitu inštalácie, pretože nem",
+      "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Batérie | Batérie AGM",
+      "category": "battery",
+      "brand": "EXIDE",
+      "priceCzk": 475.86,
+      "priceCurrency": "EUR",
+      "available": true,
+      "productUrl": "https://www.padabo.sk/exide-dualna-bateria-agm_z16597/",
+      "affiliateUrl": "https://ehub.cz/system/scripts/click.php?a_aid=f34c86c8&a_bid=7aed5c13&desturl=https%3A%2F%2Fwww.padabo.sk%2Fexide-dualna-bateria-agm_z16597%2F",
+      "imageUrl": "https://data.svetkaravanu.cz/data/tmp/102/3/154563_102.jpg?1704380087_1",
+      "specs": {
+        "voltageV": null,
+        "capacityAh": 100,
+        "capacityWh": 2100,
+        "powerW": null,
+        "currentA": null,
+        "chargingVoltagesV": [],
+        "chargingInputVoltagesV": [],
+        "chargingBatteryTypes": [
+          "lead"
+        ],
+        "batteryType": "lead",
+        "pureSine": null,
+        "solarInputW": null,
+        "dcOutputA": null
+      }
+    },
+    {
       "id": "padabo_sk:16597_22219",
       "merchant": "padabo_sk",
       "name": "EXIDE Duálna batéria AGM kapacita 92 Ah variant EP 800",
@@ -465,7 +496,7 @@
     {
       "id": "padabo_sk:19287_21292",
       "merchant": "padabo_sk",
-      "name": "Sínusový menič Dometic SinePower DSP-T stály / špičkový výkon 2300 W / 4000 W napätie 24 V",
+      "name": "Sínusový menič Dometic SinePower DSP-T napätie 24 V stály / špičkový výkon 2300 W / 4000 W",
       "description": "Konverzia prúdu z 12 V na 230 V pomocou sínusového meniča DometicSínusový menič napätia DSP-T Dometic SinePower je určený na premenu prúdu z 12 V batérie na 230 V AC. To zabezpečuje spoľahlivú prevádzku elektrických spotrebičov s výkonom až 1200 W pri napájaní z akumulátora vozidla. Inteligentný sieťový prioritný obvod zabezpečuje plynulé prepínanie z napájania z batérie na napájanie zo siete hneď po pripojení vozidla k sieti. Keď je zaťaženie nižšie, dôjde k automatickému prepnutiu do energetic",
       "categoryPath": "Elektro pre karavany, obytné autá a dodávky | Meniče napätia",
       "category": "inverter",
