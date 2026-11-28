@@ -131,6 +131,21 @@ test("voltage-system landing uses canonical automatic voltage decision", () => {
   assert.equal(calculation.result.systemVoltage, 24);
 });
 
+test("voltage comparison keeps energy and peak load independent and preserves both voltage classes", () => {
+  const input={voltageCompare:"1",dailyWh:900,autonomyDays:2,batteryType:"lifepo4",maxAcLoadWatts:300,dcPeakWatts:100,surgeMultiplier:1};
+  const r=calculateLanding("voltage-system",input,"cs").result;
+  assert.equal(r.batteryWh,2600);
+  assert.equal(r.systemVoltage,24);
+  assert.deepEqual(r.comparison,[{voltage:12,batteryAh:220,currentA:37},{voltage:24,batteryAh:110,currentA:19}]);
+  const dc=calculateLanding("voltage-system",{...input,maxAcLoadWatts:0,dailyWh:500},"sk").result;
+  assert.equal(dc.dailyWh,500);
+  assert.equal(dc.inverterWatts,0);
+  assert.equal(dc.systemVoltage,12);
+  const large=calculateLanding("battery-capacity",{dailyWh:20000,autonomyDays:2,batteryType:"lead",systemVoltage:"24"},"pl").result;
+  assert.equal(large.dailyWh,20000);
+  assert.equal(large.batteryWh,92000);
+});
+
 test("cable-voltage-drop landing uses the shared canonical cable module", () => {
   const calculation = calculateLanding("cable-voltage-drop", {
     loadWatts: 500,

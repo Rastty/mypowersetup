@@ -4,12 +4,12 @@ import { readCommunityAttribution } from "./community-attribution.js";
 // never require re-entering the same Wh, DC voltage, or battery chemistry.
 // No synthetic appliance loads or hidden inverter assumptions are invented.
 const ROUTES = Object.freeze({
-  cs: Object.freeze({ "battery-autonomy": "/kalkulacky/vydrz-baterie/", "battery-capacity": "/kalkulacky/kapacita-baterie/", "solar-sizing": "/kalkulacky/solarni-panely/", "mppt-sizing": "/kalkulacky/mppt-regulator/" }),
-  sk: Object.freeze({ "battery-autonomy": "/sk/kalkulacky/vydrz-baterie/", "battery-capacity": "/sk/kalkulacky/kapacita-baterie/", "solar-sizing": "/sk/kalkulacky/solarne-panely/", "mppt-sizing": "/sk/kalkulacky/mppt-regulator/" }),
-  pl: Object.freeze({ "battery-autonomy": "/pl/kalkulatory/czas-pracy-akumulatora/", "battery-capacity": "/pl/kalkulatory/pojemnosc-akumulatora/", "solar-sizing": "/pl/kalkulatory/panele-solarne/", "mppt-sizing": "/pl/kalkulatory/regulator-mppt/" }),
+  cs: Object.freeze({ "voltage-system": "/kalkulacky/12v-nebo-24v/", "battery-autonomy": "/kalkulacky/vydrz-baterie/", "battery-capacity": "/kalkulacky/kapacita-baterie/", "solar-sizing": "/kalkulacky/solarni-panely/", "mppt-sizing": "/kalkulacky/mppt-regulator/" }),
+  sk: Object.freeze({ "voltage-system": "/sk/kalkulacky/12v-alebo-24v/", "battery-autonomy": "/sk/kalkulacky/vydrz-baterie/", "battery-capacity": "/sk/kalkulacky/kapacita-baterie/", "solar-sizing": "/sk/kalkulacky/solarne-panely/", "mppt-sizing": "/sk/kalkulacky/mppt-regulator/" }),
+  pl: Object.freeze({ "voltage-system": "/pl/kalkulatory/12v-czy-24v/", "battery-autonomy": "/pl/kalkulatory/czas-pracy-akumulatora/", "battery-capacity": "/pl/kalkulatory/pojemnosc-akumulatora/", "solar-sizing": "/pl/kalkulatory/panele-solarne/", "mppt-sizing": "/pl/kalkulatory/regulator-mppt/" }),
   hu: Object.freeze({ "battery-capacity": "/hu/kalkulatorok/akkumulator-kapacitas/", "solar-sizing": "/hu/kalkulatorok/napelem-teljesitmeny/", "mppt-sizing": "/hu/kalkulatorok/mppt-szabalyozo/" }),
 });
-const NEXT_INTENT = Object.freeze({ "battery-autonomy": "battery-capacity", "battery-capacity": "solar-sizing", "solar-sizing": "mppt-sizing" });
+const NEXT_INTENT = Object.freeze({ "voltage-system": "battery-capacity", "battery-autonomy": "battery-capacity", "battery-capacity": "solar-sizing", "solar-sizing": "mppt-sizing" });
 const INPUT_KEYS = Object.freeze({ "battery-capacity": "dailyWh", "solar-sizing": "dailyWh", "mppt-sizing": "panelWatts" });
 
  // Wh-only handoff from the factual fridge guide to an existing CZ battery
@@ -100,7 +100,10 @@ export function buildCalculatorHandoffUrl({ intent, locale, result, inputs } = {
     : { panelWatts: result?.solarWatts, systemVoltage: result?.systemVoltage, batteryType: inputs?.batteryType };
   const values = validatedValues(destination.intent, raw);
   if (!values) return null;
-  const params = new URLSearchParams({ mps_from: intent, ...values });
+  // This advisor explicitly asks for autonomy; preserve it, never infer it.
+  const days = Number(result?.autonomyDays);
+  if (intent === "voltage-system" && (!Number.isInteger(days) || days < 1 || days > 7 || !result?.comparison)) return null;
+  const params = new URLSearchParams({ mps_from: intent, ...values, ...(intent === "voltage-system" ? {autonomyDays:String(days)} : {}) });
   return `${destination.path}?${params.toString()}`;
 }
 
@@ -116,11 +119,13 @@ export function applyCalculatorHandoffPrefill({ form, intent, locale, pathname, 
   const expected = calculatorHandoffTarget(sourceIntent, locale);
   if (!expected || expected.intent !== intent || expected.path !== pathname) return null;
   const key = INPUT_KEYS[intent];
-  const keys = [key, "systemVoltage", "batteryType"];
+  const keys = [key, "systemVoltage", "batteryType", ...(sourceIntent === "voltage-system" ? ["autonomyDays"] : [])];
   if (keys.some((name) => params.getAll(name).length !== 1)) return null;
   const raw = Object.fromEntries(keys.map((name) => [name, params.get(name)]));
-  const values = validatedValues(intent, raw);
-  if (!values) return null;
+  const checked = validatedValues(intent, raw);
+  if (!checked) return null;
+  if (sourceIntent === "voltage-system" && (!/^[1-7]$/.test(raw.autonomyDays) || [...params.keys()].some(k=>!["mps_from",...keys].includes(k)))) return null;
+  const values = Object.freeze({...checked,...(sourceIntent === "voltage-system"?{autonomyDays:raw.autonomyDays}:{})});
   const fields = keys.map((name) => form?.elements?.namedItem?.(name));
   if (fields.some((field) => !field || typeof field.value !== "string")) return null;
   // All form fields are known on these routes; commit only after the entire

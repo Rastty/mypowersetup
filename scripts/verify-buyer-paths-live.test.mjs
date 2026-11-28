@@ -100,8 +100,10 @@ test("twenty CZ, SK, PL and HU buyer pages, exact JS and catalogs are public-evi
   assert.equal(result.skSolarCatalog.commissionVerified, false);
   assert.ok(result.browserVersions.battery_runtime.includes("fridge-estimate1"));
   assert.ok(result.browserVersions.pl_s400_guide.includes("20261121-s400-compact1"));
-  for (const kind of ["mppt_calculator", "battery_capacity", "inverter_calculator", "solar_calculator", "sk_solar_calculator", "dcdc_calculator"])
+  for (const kind of ["mppt_calculator", "inverter_calculator", "solar_calculator", "sk_solar_calculator", "dcdc_calculator"])
     assert.ok(result.browserVersions[kind].includes("20261115-placement-events1"), kind);
+  for (const kind of ["battery_capacity", "sk_battery_capacity", "pl_battery_capacity"])
+    assert.ok(result.browserVersions[kind].includes("20261128-voltage1"), kind);
   for (const kind of ["pl_solar_calculator", "hu_solar_calculator"])
     assert.ok(result.browserVersions[kind].includes("20261115-plhu-solar1"), kind);
   assert.ok(result.assets.some(row => row.asset === "src/battery-calculator-offers-browser.js" &&
