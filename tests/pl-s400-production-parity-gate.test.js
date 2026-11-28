@@ -20,7 +20,7 @@ test("PL S400 buyer guide, dynamic offers and source catalog trigger postdeploym
 test("PL guide hub has truthful modified date identical to sitemap", async () => {
   const hub = await readFile("pl/poradnik/index.html", "utf8");
   const sitemap = await readFile("sitemap.xml", "utf8");
-  assert.match(hub, /"dateModified":"2026-11-27"/);
-  assert.match(sitemap, /<loc>https:\/\/mypowersetup\.com\/pl\/poradnik\/<\/loc><lastmod>2026-11-27<\/lastmod>/);
+  assert.match(hub, /"dateModified":"2026-11-28"/);
+  assert.match(sitemap, /<loc>https:\/\/mypowersetup\.com\/pl\/poradnik\/<\/loc><lastmod>2026-11-28<\/lastmod>/);
   assert.match(hub, /href="\/pl\/poradnik\/oxe-s400-czy-zestaw-sp100w-kamper\/"/);
 });
