@@ -240,7 +240,9 @@ test("localized DC/DC pages render one shared charger engine with safe market-sp
     assert.ok(html.includes(`href="${families.cable[locale]}"`), `${route} needs cable-sizing handoff`);
     assert.match(html, /BMS/);
     assert.match(html, /src="\/src\/dcdc-localized-landing-browser\.js\?v=/);
-    assert.doesNotMatch(html, /data-dcdc-buyers|data-affiliate|ehub\.cz|dognet\.sk/, `${route} must not present unverified market offers`);
+    if (["sk","pl"].includes(locale)) { assert.match(html,/data-dcdc-buyers/); assert.match(html,/data-dcdc-offer-list/); assert.ok(html.indexOf("data-dcdc-buyers") < html.indexOf('class="calculator-actions"')); }
+    else assert.doesNotMatch(html,/data-dcdc-buyers/);
+    assert.doesNotMatch(html,/data-affiliate|ehub\.cz|dognet\.sk/, `${route} must not present static unverified market offers`);
     const schema = JSON.parse([...html.matchAll(/<script type="application\/ld\+json">([^<]+)<\/script>/g)][0][1]);
     assert.deepEqual(schema["@graph"].map(({ "@type": type }) => type), ["WebApplication", "BreadcrumbList", "FAQPage"]);
     assert.equal(schema["@graph"][0].inLanguage, `${locale}-${locale.toUpperCase()}`);
@@ -249,6 +251,7 @@ test("localized DC/DC pages render one shared charger engine with safe market-sp
   assert.match(browser, /calculateDcDcCharger/);
   assert.match(browser, /rememberCalculatorResultContext/);
   assert.match(browser, /calculator_landing_continue/);
+  assert.match(browser, /mountMarketDcdcBuyers/);
   assert.doesNotMatch(browser, /from\s+["'][^"']*(?:merchant|feed|productOffers|affiliate-analytics)|data-dcdc-buyers/i);
 });
 

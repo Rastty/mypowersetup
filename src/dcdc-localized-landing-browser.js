@@ -7,9 +7,10 @@ import {
 } from "./calculator-attribution.js";
 import { classifyCalculatorContinuation } from "./calculator-copy.js";
 import { calculateDcDcCharger } from "./dc-dc-charger.js";
+import { mountMarketDcdcBuyers } from "./market-dcdc-calculator-offers-browser.js?v=20261128-market-dcdc1";
 
 // One shared electrical engine for all markets. Only the explanation is localized.
-// CZ merchant offers are deliberately absent from this SK/PL/HU interface.
+// SK/PL use independently reviewed local offers; HU has no buyer block.
 const COPY = Object.freeze({
   sk: {
     numberLocale: "sk-SK", yes: "Áno", no: "Nie",
@@ -57,6 +58,7 @@ if (root) {
   const errorPanel = root.querySelector("[data-calculator-error]");
   const staleNotice = root.querySelector("[data-calculator-stale]");
   const intent = "dcdc-sizing";
+  const buyers = mountMarketDcdcBuyers(root);
   const sourcePath = window.location.pathname;
   const n = (value) => new Intl.NumberFormat(copy.numberLocale, { maximumFractionDigits: 1 }).format(value);
   const landingParameters = buildCalculatorLandingAnalyticsParameters({ sourcePath, intent, locale });
@@ -101,6 +103,7 @@ if (root) {
       renderWarnings(result);
       resultPanel.hidden = false;
       if (userInitiated) {
+        void buyers?.update(result);
         // Do not move focus during the SEO preview; only after explicit input.
         resultPanel.focus({ preventScroll: true });
         const completed = track("calculation_completed", { source: "seo_landing" });
@@ -108,6 +111,7 @@ if (root) {
         root.dispatchEvent(new CustomEvent("mypowersetup:calculator-result", { bubbles: true, detail: { intent, locale, userInitiated: true } }));
       }
     } catch (error) {
+      buyers?.invalidate();
       resultPanel.hidden = true;
       errorPanel.textContent = copy.error;
       errorPanel.hidden = false;
@@ -116,6 +120,7 @@ if (root) {
   }
 
   function invalidateResult() {
+    buyers?.invalidate();
     resultPanel.hidden = true;
     errorPanel.hidden = true;
     staleNotice.hidden = false;
