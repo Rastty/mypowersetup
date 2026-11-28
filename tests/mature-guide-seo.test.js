@@ -81,8 +81,8 @@ test("regenerator keeps the original 52-guide baseline and accepts indexed compa
   const { readFile } = await import("node:fs/promises");
   const xml = await readFile("sitemap.xml", "utf8");
   const routes = matureGuideRoutesFromSitemap(xml);
-  assert.equal(routes.length, 70);
-  assert.equal(new Set(routes).size, 70);
+  assert.equal(routes.length, 72);
+  assert.equal(new Set(routes).size, 72);
   for (const slug of [
     "lifepo4-100ah-nebo-200ah-karavan",
     "victron-mppt-100-20-vs-100-30-vs-100-50",

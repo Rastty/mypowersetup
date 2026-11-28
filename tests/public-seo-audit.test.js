@@ -83,12 +83,12 @@ test("public SEO audit fails closed on canonical, robots, JSON-LD and article la
 
 test("public SEO audit requires guide hub CollectionPage and ItemList to match the visible core guide links", async () => {
   const route = "/pl/poradnik/";
-  const guideRoutes = Array.from({ length: 12 }, (_, index) => `${route}guide-${index + 1}/`);
+  const guideRoutes = Array.from({ length: 13 }, (_, index) => `${route}guide-${index + 1}/`);
   const pageUrl = `https://mypowersetup.com${route}`;
   const schemas = [{
     "@type": "CollectionPage", url: pageUrl, name: "Poradnik energii", inLanguage: "pl-PL", dateModified: "2026-09-07",
   }, {
-    "@type": "ItemList", numberOfItems: 12,
+    "@type": "ItemList", numberOfItems: 13,
     itemListElement: guideRoutes.map((guide, index) => ({ "@type": "ListItem", position: index + 1, item: `https://mypowersetup.com${guide}` })),
   }, {
     "@type": "BreadcrumbList",
@@ -139,7 +139,7 @@ test("committed sitemap passes the seven-market public SEO audit", async () => {
   assert.equal(report.ready, true, report.failures.join("\n"));
   assert.equal(Object.keys(report.marketCounts).length, 7);
   assert.ok(Object.values(report.marketCounts).every((count) => count > 0));
-  assert.equal(report.articlePages, 106);
-  assert.equal(report.breadcrumbPages, 106);
+  assert.equal(report.articlePages, 108);
+  assert.equal(report.breadcrumbPages, 108);
   assert.equal(report.guideHubPages, 7);
 });

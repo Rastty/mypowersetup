@@ -4,8 +4,8 @@ import { readFile } from "node:fs/promises";
 
 const read = path => readFile(new URL("../" + path, import.meta.url), "utf8");
 const markets = [
-  { hub: "sk/sprievodca/", modified: "2026-11-27", marker: "rychly-vypocet", battery: "/sk/kalkulacky/kapacita-baterie/", solar: "/sk/kalkulacky/solarne-panely/", main: "/sk/#kalkulator" },
-  { hub: "pl/poradnik/", modified: "2026-11-27", marker: "szybkie-obliczenia", battery: "/pl/kalkulatory/pojemnosc-akumulatora/", solar: "/pl/kalkulatory/panele-solarne/", main: "/pl/#kalkulator" },
+  { hub: "sk/sprievodca/", modified: "2026-11-28", marker: "rychly-vypocet", battery: "/sk/kalkulacky/kapacita-baterie/", solar: "/sk/kalkulacky/solarne-panely/", main: "/sk/#kalkulator" },
+  { hub: "pl/poradnik/", modified: "2026-11-28", marker: "szybkie-obliczenia", battery: "/pl/kalkulatory/pojemnosc-akumulatora/", solar: "/pl/kalkulatory/panele-solarne/", main: "/pl/#kalkulator" },
   { hub: "hu/utmutatok/", modified: "2026-11-15", marker: "gyors-szamitas", battery: "/hu/kalkulatorok/akkumulator-kapacitas/", solar: "/hu/kalkulatorok/napelem-teljesitmeny/", main: "/hu/#kalkulator" },
 ];
 
