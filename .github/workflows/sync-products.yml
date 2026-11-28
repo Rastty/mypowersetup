@@ -24,6 +24,8 @@ on:
       - "src/calculator-offer-catalog.js"
       - "src/sk-solar-calculator-offers.js"
       - "src/market-dcdc-calculator-offers.js"
+      - "src/shore-calculator-offers.js"
+      - "scripts/write-shore-calculator-offers.mjs"
       - "scripts/check-market-dcdc-calculator-offers.mjs"
       - "src/market-mppt-calculator-offers.js"
       - "scripts/check-market-mppt-calculator-offers.mjs"
@@ -180,6 +182,8 @@ jobs:
       - name: Validate exact-SKU PL and HU solar calculator offers
         run: node scripts/check-solar-calculator-offers-pl-hu.mjs
       - run: node scripts/sync-products-pt.mjs
+      - name: Project compact local shore charger catalogs
+        run: node scripts/write-shore-calculator-offers.mjs
       - run: node scripts/write-cz-dcdc-coverage.mjs
       - run: node scripts/write-commercial-opportunity-report.mjs
       - run: node scripts/write-owner-action-queue.mjs
@@ -194,7 +198,7 @@ jobs:
       - run: npm run check:commercial:opportunities
       - name: Commit refreshed catalog
         run: |
-          FILES="data/products.json data/calculator-offers-cz.json data/dcdc-guide-offers-cz.json data/inverter-calculator-offers-cz.json data/solar-calculator-offers-cz.json data/products-ampul-cz.json data/products-sk.json data/solar-calculator-offers-sk.json data/battery-calculator-offers-sk.json data/inverter-calculator-offers-sk.json data/mppt-calculator-offers-sk.json data/dcdc-calculator-offers-sk.json data/products-pl.json data/battery-calculator-offers-pl.json data/inverter-calculator-offers-pl.json data/mppt-calculator-offers-pl.json data/dcdc-calculator-offers-pl.json data/pl-s400-offers.json data/solar-calculator-offers-pl.json data/products-hu.json data/solar-calculator-offers-hu.json data/products-pt.json data/cz-dcdc-coverage.json data/commercial-opportunity-report.json data/owner-action-queue.json"
+          FILES="data/products.json data/calculator-offers-cz.json data/dcdc-guide-offers-cz.json data/inverter-calculator-offers-cz.json data/solar-calculator-offers-cz.json data/products-ampul-cz.json data/products-sk.json data/solar-calculator-offers-sk.json data/battery-calculator-offers-sk.json data/inverter-calculator-offers-sk.json data/mppt-calculator-offers-sk.json data/dcdc-calculator-offers-sk.json data/products-pl.json data/battery-calculator-offers-pl.json data/inverter-calculator-offers-pl.json data/mppt-calculator-offers-pl.json data/dcdc-calculator-offers-pl.json data/pl-s400-offers.json data/solar-calculator-offers-pl.json data/products-hu.json data/solar-calculator-offers-hu.json data/products-pt.json data/cz-dcdc-coverage.json data/commercial-opportunity-report.json data/owner-action-queue.json data/shore-calculator-offers-cz.json data/shore-calculator-offers-sk.json data/shore-calculator-offers-pl.json"
           if [[ -z "$(git status --porcelain -- $FILES)" ]]; then exit 0; fi
           git config user.name "mypowersetup-bot"
           git config user.email "actions@users.noreply.github.com"
