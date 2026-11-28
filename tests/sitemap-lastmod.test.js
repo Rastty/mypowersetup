@@ -26,7 +26,7 @@ function articleModified(html) {
   return null;
 }
 
-test("all 106 guide sitemap lastmod values match Article.dateModified", async () => {
+test("all 108 guide sitemap lastmod values match Article.dateModified", async () => {
   const xml = await readFile("sitemap.xml", "utf8");
   const entries = sitemapEntries(xml);
   const routes = [...entries.keys()].filter((route) =>
@@ -39,7 +39,7 @@ test("all 106 guide sitemap lastmod values match Article.dateModified", async ()
     (/^\/si\/vodici\/.+\/$/.test(route) && route !== "/si/vodici/")
   );
 
-  assert.equal(routes.length, 106);
+  assert.equal(routes.length, 108);
   for (const route of routes) {
     const html = await readFile(publicRoutePath(route), "utf8");
     const modified = articleModified(html);
@@ -70,5 +70,5 @@ test("guide hub sitemap lastmod matches CollectionPage.dateModified", async () =
 test("recently changed CZ and SK homes expose truthful lastmod", async () => {
   const entries = sitemapEntries(await readFile("sitemap.xml", "utf8"));
   assert.equal(entries.get("/"), "2026-11-28");
-  assert.equal(entries.get("/sk/"), "2026-11-27");
+  assert.equal(entries.get("/sk/"), "2026-11-28");
 });
