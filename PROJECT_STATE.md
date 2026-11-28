@@ -167,11 +167,15 @@ Připraveno: 2377 / 1947 / 1954 slov CZ/SK/PL orientačně včetně tabulek. Opr
 
 ## TURBO cyklus #23 — Kompletní průvodce síťovými nabíječkami CZ/SK/PL (2026-11-28)
 
-Připraveno: 2431 / 2235 / 2021 slov CZ/SK/PL orientačně včetně tabulek. Výpočet ideální doby 25–150 Ah, pracovní AC příkon, rozdíl W/VA a účiník, šest variant Victron IP22 podle aktuálně ověřené výrobní specifikace, šest již doložených variant Carbest/Dometic s kontrolovaným rozsahem LiFePO₄, lokální modelové příklady, souběh zdrojů, diagnostika a šest FAQ na trh. Zachované bezpečnostní limity, stávající Builder a lokální měny, canonical/hreflang, datum publikace a aktualizace sitemap. Žádné nové kampaně ani testy; pouze aktualizace očekávaného data ve stávající kontrole. Nasazení #23 zatím neověřeno.
+Připraveno: 2431 / 2235 / 2021 slov CZ/SK/PL orientačně včetně tabulek. Výpočet ideální doby 25–150 Ah, pracovní AC příkon, rozdíl W/VA a účiník, šest variant Victron IP22 podle aktuálně ověřené výrobní specifikace, šest již doložených variant Carbest/Dometic s kontrolovaným rozsahem LiFePO₄, lokální modelové příklady, souběh zdrojů, diagnostika a šest FAQ na trh. Zachované bezpečnostní limity, stávající Builder a lokální měny, canonical/hreflang, datum publikace a aktualizace sitemap. Žádné nové kampaně ani testy; pouze aktualizace očekávaného data ve stávající kontrole. **Doručeno:** [PR #738](https://github.com/Rastty/mypowersetup/pull/738), [Pages PASS](https://github.com/Rastty/mypowersetup/actions/runs/46139094897), [produkční HTML parity PASS](https://github.com/Rastty/mypowersetup/actions/runs/46139095044), CI, SEO a IndexNow PASS.
 
 ## TURBO cyklus #24 — Interaktivní výpočet síťového dobíjení CZ/SK/PL (2026-11-28)
 
 Připraveno: nad prvním výpočtem tří stávajících průvodců nový společný kalkulátor: chybějící Ah, zvolený proud, ideální čas po odečtu DC spotřeby, požadovaný proud, modelový strop s doloženým limitem BMS a souběžnými zdroji, příkon a vstupní proud s účiníkem, rezerva přípojky a první dosažitelná standardní třída. Při překročení limitu se čas nezobrazuje; žádný produkt není automaticky schválen. Ponechána lokální cesta do Builderu s výslovným upozorněním na nutnost znovu zadat parametry, protože bezpečnostní limity se nepřenášejí. Sdílený výpočet a existující responzivní CSS; žádná nová URL, kampaň nebo nové testy. Sitemap a dateModified jsou již 2026-11-28. Nasazení #24 zatím neověřeno. #23 merge potvrzen; Pages/produkční parity při začátku #24 ještě nebyly dokončené.
+
+## TURBO cyklus #25 — Přímé nabídky síťových nabíječek CZ/SK/PL (2026-11-28)
+
+Připraveno: 3 lokální nákupní bloky pod výsledkem #24. Výhradně doložené LiFePO₄ Carbest/Dometic SKU, re-use stávajících výrobních gate funkcí, lokální měna, sklad, status feedu, 72h stáří, přesný affiliate cíl a kapacita/napětí/čas/modelový AC a BMS limit. Nejvýše 3 nabídky dle ceny; žádná nabídka AGM bez doloženého rozsahu. Při změně vstupu, expiraci, chybě nebo návratu do tab se dřívější odkazy zneplatní. Pouze modelový AC proud, výrobní maximum a montáž ověřit; žádný nový partner. Reuse existující consented impression/click tracking a eHUB placement. Plný lokální katalog se načítá až po výpočtu; žádná kopie ani nový feed. Nasazení #25 zatím neověřeno.
 
 ## BLOKACE / nezaměňovat za tržby
 

@@ -3,7 +3,7 @@ import { resolveCalculatorAttribution } from "./calculator-attribution.js";
 
 const CALCULATOR_PLACEMENTS = new Set([
   "battery_calculator", "mppt_calculator", "inverter_calculator",
-  "dcdc_calculator", "solar_calculator",
+  "dcdc_calculator", "solar_calculator", "shore_calculator",
 ]);
 
 // Mirror only the *effective* static sub-ID sent to the affiliate network.
