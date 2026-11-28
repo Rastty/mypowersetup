@@ -8,6 +8,23 @@ const MARKETS=Object.freeze({
  pl:{merchant:"padabo_pl",currency:"PLN",path:"/data/shore-calculator-offers-pl.json",market:"pl-PL"}
 });
 const SKU=/^(25869_(27324|27325|27326)|24087_(26040|26042)|24088_26048)$/;
+// Only exact image URLs observed for these merchant SKUs in the approved
+// catalog. Carbest uses one family photograph across three selectable variants.
+const PHOTO_PATHS=Object.freeze({
+ "25869_27324":"/data/tmp/102/5/149415_102.jpg?1704379002_1",
+ "25869_27325":"/data/tmp/102/5/149415_102.jpg?1704379002_1",
+ "25869_27326":"/data/tmp/102/5/149415_102.jpg?1704379002_1",
+ "24087_26040":"/data/tmp/102/1/158411_102.jpg?1704380222_1",
+ "24087_26042":"/data/tmp/102/3/158413_102.jpg?1704380222_1",
+ "24088_26048":"/data/tmp/102/8/158418_102.jpg?1704380222_1",
+});
+function reviewedPhoto(p){
+ const sku=String(p?.id||"").split(":")[1];
+ const path=Object.hasOwn(PHOTO_PATHS,sku)?PHOTO_PATHS[sku]:null;
+ const exact=path?"https://data.svetkaravanu.cz"+path:null;
+ // New/unreviewed URL or missing photo must never block a valid purchase.
+ return exact&&p.imageUrl===exact?exact:null;
+}
 function time(v){
  if(typeof v!=="string"||!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d{1,3})?Z$/.test(v))return NaN;
  const n=Date.parse(v);return Number.isFinite(n)&&new Date(n).toISOString().slice(0,19)===v.slice(0,19)?n:NaN;
@@ -33,7 +50,7 @@ export function projectShoreOffers(locale,payload){
    if(!p||typeof p.id!=="string"||!p.id.startsWith(c.merchant+":")||!SKU.test(p.id.slice(c.merchant.length+1))||counts.get(p.id)!==1||p.merchant!==c.merchant||p.category!=="shore_charger"||p.available!==true||p.staleSource===true||p.marketEligible===false||p.priceCurrency!==c.currency||!Number.isFinite(p.priceCzk)||p.priceCzk<=0)continue;
    const s=p.specs;
    if(!s||typeof p.name!=="string"||typeof p.productUrl!=="string"||typeof p.affiliateUrl!=="string")continue;
-   products.push({id:p.id,name:p.name,merchant:p.merchant,category:p.category,priceCzk:p.priceCzk,priceCurrency:p.priceCurrency,available:p.available,staleSource:p.staleSource,marketEligible:p.marketEligible,productUrl:p.productUrl,affiliateUrl:p.affiliateUrl,description:typeof p.description==="string"?p.description.slice(0,500):"",specs:{voltageV:s.voltageV,currentA:s.currentA,chargingVoltagesV:s.chargingVoltagesV,batteryType:s.batteryType}});
+   products.push({id:p.id,name:p.name,merchant:p.merchant,category:p.category,priceCzk:p.priceCzk,priceCurrency:p.priceCurrency,available:p.available,staleSource:p.staleSource,marketEligible:p.marketEligible,productUrl:p.productUrl,affiliateUrl:p.affiliateUrl,imageUrl:reviewedPhoto(p),description:typeof p.description==="string"?p.description.slice(0,500):"",specs:{voltageV:s.voltageV,currentA:s.currentA,chargingVoltagesV:s.chargingVoltagesV,batteryType:s.batteryType}});
   }
  }
  return {schemaVersion:1,projection:"shore_charger",market:c.market,generatedAt:payload.generatedAt,sources:{[c.merchant]:{status:source?.status||"unavailable",recommendationsDisabled:source?.recommendationsDisabled===true}},products:products.sort((a,b)=>a.id.localeCompare(b.id))};
@@ -70,7 +87,7 @@ export function selectShoreOffers(locale,payload,input,now=Date.now()){
   if(!s.chargingProfileEvidenceUrl||!s.chargingManufacturerModel||s.chargingCapacityRangeChemistry!=="lifepo4"||!s.chargingBatteryTypes?.includes("lifepo4")||s.voltageV!==Number(input.systemVoltage)||!s.chargingInputVoltagesV?.includes(230)||!Number.isFinite(s.chargingCapacityMinAh)||!Number.isFinite(s.chargingCapacityMaxAh)||capacity<s.chargingCapacityMinAh||capacity>s.chargingCapacityMaxAh)continue;
   const model=estimateShoreCharge({...input,chargerA:s.currentA});
   if(!model?.within||!model.targetMet||model.minimumHours===null)continue;
-  result.push({id:p.id,name:p.name,merchant:p.merchant,price:p.priceCzk,currency:c.currency,affiliateUrl:p.affiliateUrl,model:s.chargingManufacturerModel,voltage:s.voltageV,amps:s.currentA,minAh:s.chargingCapacityMinAh,maxAh:s.chargingCapacityMaxAh,manual:s.chargingProfileEvidenceUrl,minimumHours:model.minimumHours,inputA:model.inputA,expiry});
+  result.push({id:p.id,name:p.name,merchant:p.merchant,price:p.priceCzk,currency:c.currency,affiliateUrl:p.affiliateUrl,imageUrl:reviewedPhoto(p),model:s.chargingManufacturerModel,voltage:s.voltageV,amps:s.currentA,minAh:s.chargingCapacityMinAh,maxAh:s.chargingCapacityMaxAh,manual:s.chargingProfileEvidenceUrl,minimumHours:model.minimumHours,inputA:model.inputA,expiry});
  }
  return result.sort((a,b)=>a.price-b.price||a.amps-b.amps||a.id.localeCompare(b.id)).slice(0,3);
 }
