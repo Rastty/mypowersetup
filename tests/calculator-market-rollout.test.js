@@ -353,10 +353,11 @@ test("15 localized buyer guides lead first to native tools and retain builder jo
     assert.ok(jump, `${file} must show an above-fold calculator next step`);
     assert.ok(bottom, `${file} must have a calculator CTA`);
     assert.ok(bottom.includes(`href="/${locale}/#kalkulator"`), `${file} must retain the market builder path`);
-    assert.ok(html.includes('"dateModified":"2026-11-15"'), `${file} should reflect the update`);
+    const modified = ["sk/sprievodca/aky-velky-menic-do-karavanu/index.html","pl/poradnik/jak-dobrac-przetwornice-do-kampera/index.html"].includes(file) ? "2026-11-28" : "2026-11-15";
+    assert.ok(html.includes(`"dateModified":"${modified}"`), `${file} should reflect the update`);
     const slug = file.replace(/\/index\.html$/, "/");
     const sitemapEntry = sitemap.match(new RegExp(`<url><loc>https://mypowersetup.com/${slug}<\\/loc><lastmod>([^<]+)<\\/lastmod>`));
-    assert.equal(sitemapEntry?.[1], "2026-11-15", `${file} sitemap lastmod must match`);
+    assert.equal(sitemapEntry?.[1], modified, `${file} sitemap lastmod must match`);
     for (const route of routes) {
       assert.ok(jump.includes(`href="${route}"`), `${file} early CTA missing ${route}`);
       assert.ok(bottom.includes(`href="${route}"`), `${file} final CTA missing ${route}`);
