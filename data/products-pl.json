@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-28T14:06:20.270Z",
+  "generatedAt": "2026-11-28T14:26:35.741Z",
   "market": "pl-PL",
   "currency": "mixed",
   "sources": {
@@ -26,7 +26,7 @@
       "relevantProducts": 17,
       "liveSupplements": 0,
       "liveOfferChecks": 11,
-      "liveOfferVerified": 10,
+      "liveOfferVerified": 9,
       "liveOfferRedirects": 1,
       "powerStations": 11,
       "technicallyVerifiedPowerStations": 6,
@@ -7339,7 +7339,7 @@
       "categoryPath": "",
       "category": "power_station",
       "brand": "OXE",
-      "priceCzk": 1598.21,
+      "priceCzk": null,
       "priceCurrency": "PLN",
       "available": false,
       "productUrl": "https://www.oxepower.pl/oxe-powerstation-s200-wielofunkcyjny-generator-ladowania-200w-193wh/",

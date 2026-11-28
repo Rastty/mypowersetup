@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-28T14:06:09.775Z",
+  "generatedAt": "2026-11-28T14:26:15.530Z",
   "market": "sk-SK",
   "currency": "EUR",
   "sources": {
     "padabo_sk": {
       "status": "ok",
-      "parsedProducts": 16378,
+      "parsedProducts": 16370,
       "relevantProducts": 246
     },
     "allpowers_eu": {
