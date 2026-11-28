@@ -1,9 +1,9 @@
 import "./analytics.js";
 import { buildCalculatorLandingAnalyticsParameters, rememberCalculatorAttribution } from "./calculator-attribution.js?v=20261127-fridge-estimate1";
-import { calculateLanding } from "./calculator-landing.js";
+import { calculateLanding } from "./calculator-landing.js?v=20261128-voltage1";
 import { classifyCalculatorContinuation, classifyCalculatorSpecialistHandoff, getCalculatorCopy } from "./calculator-copy.js?v=20261127-fridge-estimate1";
 import { invalidateCalculatedResult } from "./calculator-result-visibility.js";
-import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261127-fridge-estimate1";
+import { applyCalculatorHandoffPrefill, buildCalculatorHandoffUrl, calculatorHandoffTarget } from "./calculator-handoff.js?v=20261128-voltage1";
 import { mountMpptCalculatorBuyers } from "./mppt-calculator-offers-browser.js?v=20261128-market-mppt1";
 import { mountBatteryCalculatorBuyers } from "./battery-calculator-offers-browser.js?v=20261127-market-battery1";
 import { mountInverterCalculatorBuyers } from "./inverter-calculator-offers-browser.js?v=20261128-market-inverter1";
@@ -53,7 +53,8 @@ if (root) {
     const notice = document.createElement("p");
     notice.className = "calculator-help";
     notice.setAttribute("role", "status");
-    notice.textContent = prefill.from === "fridge-guide" ? copy.guidePrefillNote : prefill.from === "fridge-estimate" ? copy.estimatePrefillNote : copy.prefillNote;
+    const voltagePrefill = {cs:"Převzali jsme spotřebu, dny, napětí a chemii. Zkontrolujte je a spusťte výpočet; proudový limit baterie ověřte zvlášť.",sk:"Prevzali sme spotrebu, dni, napätie a typ batérie. Skontrolujte údaje a spustite výpočet; prúdový limit overte samostatne.",pl:"Przeniesiono zużycie, dni, napięcie i technologię. Sprawdź dane i oblicz ponownie; limit prądu zweryfikuj osobno."};
+    notice.textContent = prefill.from === "voltage-system" ? voltagePrefill[locale] : prefill.from === "fridge-guide" ? copy.guidePrefillNote : prefill.from === "fridge-estimate" ? copy.estimatePrefillNote : copy.prefillNote;
     form.insertAdjacentElement("afterbegin", notice);
   }
 
@@ -100,6 +101,7 @@ if (root) {
   }
 
   function updateHandoffLink(result, inputs) {
+    if (intent === "voltage-system") return;
     const target = calculatorHandoffTarget(intent, locale);
     const actions = resultPanel.querySelector(".calculator-actions");
     if (!target || !actions) return;
@@ -190,6 +192,24 @@ if (root) {
     setText("[data-result-inverter-watts]", `${n(result.inverterWatts)} W`);
     setText("[data-result-daily-wh]", `${n(result.dailyWh)} Wh`);
     setText("[data-result-summary]", copy.voltageSummary({ n, result }));
+    if (!result.comparison) return;
+    const comparison = root.querySelector("[data-voltage-comparison]");
+    if (!comparison) return;
+    const reason = result.batteryTrigger && result.inverterTrigger ? "both" : result.batteryTrigger ? "battery" : result.inverterTrigger ? "inverter" : "small";
+    setText("[data-voltage-reason]", comparison.dataset[reason]);
+    setText("[data-voltage-reserve]", `${result.assumptions.usableDepthPercent} % / +${result.assumptions.batteryMarginPercent} %`);
+    for (const v of result.comparison) {
+      const card = comparison.querySelector(`[data-voltage-option="${v.voltage}"]`);
+      if (!card) continue;
+      card.classList.toggle("is-recommended", v.voltage === result.systemVoltage);
+      card.querySelector("[data-voltage-recommended]").hidden = v.voltage !== result.systemVoltage;
+      card.querySelector("[data-voltage-ah]").textContent = n(v.batteryAh) + " Ah";
+      card.querySelector("[data-voltage-current]").textContent = v.currentA == null ? "—" : n(v.currentA) + " A";
+      const link = card.querySelector("[data-voltage-battery]");
+      const href = buildCalculatorHandoffUrl({intent,locale,result:{...result,systemVoltage:v.voltage},inputs:{batteryType:result.batteryType}});
+      if (href) { link.href=href; link.hidden=false; } else { link.removeAttribute("href"); link.hidden=true; }
+    }
+    comparison.hidden=false;
   }
 
   function renderCable(result) {
@@ -231,6 +251,7 @@ if (root) {
       // focus on the form until a visitor explicitly requests a calculation.
       if (userInitiated) {
         resultPanel.focus({ preventScroll: true });
+        if(intent==="voltage-system" && result.comparison) resultPanel.scrollIntoView({block:"start",behavior:"auto"});
         track("calculation_completed", { source: "seo_landing" });
         // Only a real, submitted calculation can unlock fresh merchant offers.
         // The initial static/SEO preview never creates a purchase link.
@@ -249,7 +270,7 @@ if (root) {
       inverterBuyers?.invalidate();
       solarBuyers?.invalidate();
       resultPanel.hidden = true;
-      errorPanel.textContent = error instanceof Error ? error.message : copy.failed;
+      errorPanel.textContent = intent==="voltage-system" ? copy.failed : error instanceof Error ? error.message : copy.failed;
       errorPanel.hidden = false;
       if (userInitiated) track("calculation_failed", { source: "seo_landing" });
     }
@@ -267,6 +288,13 @@ if (root) {
   form.addEventListener("input", invalidateResult);
   form.addEventListener("change", invalidateResult);
 
+  // Presets only fill the form; the visitor explicitly submits the calculation.
+  root.querySelectorAll("[data-voltage-preset]").forEach(button => button.addEventListener("click", () => {
+    const values=button.dataset.voltagePreset.split(",");
+    ["dailyWh","autonomyDays","batteryType","maxAcLoadWatts","dcPeakWatts","surgeMultiplier"].forEach((key,i)=>{form.elements.namedItem(key).value=values[i];});
+    invalidateResult();
+    form.elements.namedItem("dailyWh").focus();
+  }));
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     track("calculator_started", { source: "seo_landing_submit" });

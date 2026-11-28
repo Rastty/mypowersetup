@@ -1,4 +1,4 @@
-import { calculateBatteryAutonomy, calculateControllerSizing, calculateSetup } from "./engine.js";
+import { calculateBatteryAutonomy, calculateControllerSizing, calculateSetup, calculateVoltageComparison } from "./engine.js";
 import { calculateDcCable } from "./dc-cable.js";
 
 const INTENTS = Object.freeze({
@@ -224,6 +224,10 @@ export function getCalculatorIntent(intent) {
 }
 
 export function calculateLanding(intent, input = {}, locale = "cs") {
+  // Explicit mode on three upgraded public routes; legacy HU remains unchanged.
+  if (intent === "voltage-system" && ["cs","sk","pl"].includes(locale) && input.voltageCompare === "1") {
+    return { intent, input, result: calculateVoltageComparison(input), engineInput:null, engineResult:null };
+  }
   const config = getCalculatorIntent(intent);
   const normalizedInput = { ...config.defaultInput, ...input };
 
@@ -254,8 +258,8 @@ function dailyEnergyAppliance(dailyWh) {
     id: "calculator-daily-consumption",
     name: "Denní spotřeba",
     selected: true,
-    watts: dailyWh,
-    hours: 1,
+    watts: dailyWh > 10000 ? dailyWh / 2 : dailyWh,
+    hours: dailyWh > 10000 ? 2 : 1,
     quantity: 1,
     ac: false,
     surge: 1,

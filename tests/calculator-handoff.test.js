@@ -193,8 +193,8 @@ test("all twelve receiving and sending pages reference the current handoff modul
   const paths = [...cases.flatMap(([, battery, solar]) => [battery, solar]), "/kalkulacky/mppt-regulator/", "/sk/kalkulacky/mppt-regulator/", "/pl/kalkulatory/regulator-mppt/", "/hu/kalkulatorok/mppt-szabalyozo/"];
   for (const path of paths) {
     const html = await readFile(new URL("../" + path.slice(1) + "index.html", import.meta.url), "utf8");
-    const expectedVersion = ["/sk/kalkulacky/kapacita-baterie/", "/pl/kalkulatory/pojemnosc-akumulatora/"].includes(path)
-      ? "20261127-market-battery1"
+    const expectedVersion = ["/kalkulacky/kapacita-baterie/", "/sk/kalkulacky/kapacita-baterie/", "/pl/kalkulatory/pojemnosc-akumulatora/"].includes(path)
+      ? "20261128-voltage1"
       : ["/sk/kalkulacky/mppt-regulator/", "/pl/kalkulatory/regulator-mppt/"].includes(path)
       ? "20261128-market-mppt1"
       : ["/pl/kalkulatory/panele-solarne/", "/hu/kalkulatorok/napelem-teljesitmeny/"].includes(path)

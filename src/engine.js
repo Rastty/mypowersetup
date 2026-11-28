@@ -134,6 +134,33 @@ export function calculateBatteryAutonomy({
   });
 }
 
+// Energy at the battery and peak loads are independent inputs. Use the
+// Builder's design margins, not synthetic appliance runtime.
+export function calculateVoltageComparison({dailyWh,autonomyDays,batteryType,maxAcLoadWatts,dcPeakWatts,surgeMultiplier} = {}) {
+  const number = (v, min, max, step = 1) => {
+    if (v == null || String(v).trim() === "") throw new RangeError("Invalid voltage comparison input");
+    const n = Number(v);
+    if (!Number.isFinite(n) || n < min || n > max || Math.abs(n / step - Math.round(n / step)) > 1e-8) throw new RangeError("Invalid voltage comparison input");
+    return n;
+  };
+  const wh = number(dailyWh,50,20000,10), days = number(autonomyDays,1,7);
+  const ac = number(maxAcLoadWatts,0,5000,10), dc = number(dcPeakWatts,0,5000,10);
+  const surge = number(surgeMultiplier,1,5,0.5);
+  if (!["lifepo4","lead"].includes(batteryType)) throw new RangeError("Invalid battery chemistry");
+  const battery = BATTERIES[batteryType];
+  const batteryWh = roundUp(wh * days * BATTERY_MARGIN / battery.usableDepth,100);
+  const inverterWatts = roundUp(Math.max(ac * INVERTER_MARGIN,ac * surge),100);
+  const systemVoltage = automaticVoltageFor(batteryWh,inverterWatts);
+  const compare = [12,24].map(voltage => Object.freeze({
+    voltage, batteryAh:roundUp(batteryWh / voltage,10),
+    currentA:ac+dc>0?Math.ceil((ac / 0.9 + dc) / voltage):null,
+  }));
+  return Object.freeze({dailyWh:wh,autonomyDays:days,batteryType,batteryWh,inverterWatts,systemVoltage,automaticVoltage:systemVoltage,comparison:Object.freeze(compare),maxAcLoadWatts:ac,dcPeakWatts:dc,surgeMultiplier:surge,batteryTrigger:batteryWh>2400,inverterTrigger:inverterWatts>1200,warnings:[],assumptions:{batteryMarginPercent:15,usableDepthPercent:Math.round(battery.usableDepth*100)}});
+}
+function automaticVoltageFor(requiredBatteryWh,inverterWatts) {
+  return requiredBatteryWh > 2400 || inverterWatts > 1200 ? 24 : 12;
+}
+
 export function calculateSetup(input) {
   const locale = Object.hasOwn(ENGINE_TEXT, input.locale) ? input.locale : "cs";
   const text = ENGINE_TEXT[locale];
@@ -181,7 +208,7 @@ export function calculateSetup(input) {
     100
   );
 
-  const automaticVoltage = requiredBatteryWh > 2400 || inverterWatts > 1200 ? 24 : 12;
+  const automaticVoltage = automaticVoltageFor(requiredBatteryWh,inverterWatts);
   const systemVoltage = input.systemVoltage === "12" || input.systemVoltage === 12
     ? 12
     : input.systemVoltage === "24" || input.systemVoltage === 24
