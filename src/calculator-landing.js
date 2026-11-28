@@ -1,4 +1,4 @@
-import { calculateBatteryAutonomy, calculateControllerSizing, calculateSetup, calculateVoltageComparison } from "./engine.js";
+import { calculateBatteryAutonomy, calculateControllerSizing, calculateSetup, calculateVoltageComparison } from "./engine.js?v=20261128-voltage1";
 import { calculateDcCable } from "./dc-cable.js";
 
 const INTENTS = Object.freeze({

@@ -112,6 +112,23 @@ test("autonomy-to-capacity handoff refuses invalid values and tampered source qu
   }
 });
 
+test("voltage comparison transfers the chosen voltage and explicit days only to its local battery form", () => {
+  for (const [locale,path] of cases.slice(0,3)) {
+    const inputs={voltageCompare:"1",dailyWh:900,autonomyDays:3,batteryType:"lead",maxAcLoadWatts:0,dcPeakWatts:100,surgeMultiplier:1};
+    const result=calculateLanding("voltage-system",inputs,locale).result;
+    const href=buildCalculatorHandoffUrl({intent:"voltage-system",locale,result:{...result,systemVoltage:12},inputs});
+    const f=form();f.values.autonomyDays={value:"initial"};
+    const query=new URL(href,"https://mypowersetup.com").search;
+    assert.equal(applyCalculatorHandoffPrefill({form:f,intent:"battery-capacity",locale,pathname:path,search:query})?.from,"voltage-system");
+    assert.equal(f.values.systemVoltage.value,"12");
+    assert.equal(f.values.autonomyDays.value,"3");
+    assert.equal(f.values.dailyWh.value,"900");
+    assert.equal(f.values.batteryType.value,"lead");
+    assert.equal(applyCalculatorHandoffPrefill({form:f,intent:"battery-capacity",locale,pathname:path,search:query+"&autonomyDays=2"}),null);
+  }
+  assert.equal(calculatorHandoffTarget("voltage-system","hu"),null);
+});
+
 test("MPPT handoffs reject arrays exceeding the 5000 Wp input limit", () => {
   const huge = { solarWatts: 10000, systemVoltage: 24 };
   assert.equal(buildCalculatorHandoffUrl({ intent: "solar-sizing", locale: "cs", result: huge, inputs: { batteryType: "lifepo4" } }), null);
