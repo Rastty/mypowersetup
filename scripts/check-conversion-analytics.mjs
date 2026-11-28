@@ -43,7 +43,9 @@ requireMatch(editorialImpressions, /buildAttributedAffiliateParameters\(link\)/,
 requireMatch(batteryBuyer, /buildAttributedAffiliateParameters\(link\)/, "battery_calculator_click_uses_shared_attribution");
 requireMatch(mpptBuyer, /buildAttributedAffiliateParameters\(link\)/, "mppt_calculator_click_uses_shared_attribution");
 requireMatch(inverterBuyer, /buildAttributedAffiliateParameters\(link\)/, "inverter_calculator_click_uses_shared_attribution");
-requireMatch(inverterBuyer, /allowedMerchants: \["solarimport"\]/, "inverter_impressions_use_reviewed_merchant");
+requireMatch(inverterBuyer, /allowedMerchants: \[market\?\.merchant \|\| "solarimport"\]/, "inverter_impressions_use_reviewed_merchant");
+requireMatch(inverterBuyer, /sk:\{merchant:"padabo_sk"/, "sk_inverter_impressions_use_local_merchant");
+requireMatch(inverterBuyer, /pl:\{merchant:"padabo_pl"/, "pl_inverter_impressions_use_local_merchant");
 requireMatch(affiliateAnalytics, /tracker\("product_choice_impression",\s*\{/, "product_impressions_share_click_dimensions");
 requireMatch(affiliateAnalytics, /resolveCalculatorAttribution/, "affiliate_events_receive_calculator_landing_attribution");
 requireMatch(affiliateAnalytics, /details:not\(\[open\]\)/, "closed_product_comparisons_are_not_impressions");

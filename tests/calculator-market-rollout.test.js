@@ -161,7 +161,13 @@ test("localized inverter landings expose the shared sizing engine and electrical
     }
     assert.ok(html.includes(`href="${meta.builder}"`));
     assert.ok(html.includes(`href="${meta.guidePrefix}`));
-    assert.doesNotMatch(html, /data-inverter-buyers/, "localized buyers require reviewed offers in their own market");
+    if (["sk","pl"].includes(locale)) {
+      assert.match(html, /data-inverter-buyers/);
+      assert.match(html, /data-inverter-offer-list/);
+      assert.ok(html.indexOf("data-inverter-buyers") < html.indexOf('class="calculator-actions"'));
+    } else {
+      assert.doesNotMatch(html, /data-inverter-buyers/, "localized buyers require reviewed offers in their own market");
+    }
     assert.doesNotMatch(html, /(?:href|src)="\/\/(?:[a-z]{2}|www)\./, "no protocol-relative external destinations");
     const scripts = [...html.matchAll(/<script type="application\/ld\+json">([^<]+)<\/script>/g)];
     assert.ok(scripts.length > 0, `${route} needs structured data`);
