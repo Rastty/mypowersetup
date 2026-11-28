@@ -1,4 +1,4 @@
-import {loadShoreOffers,selectShoreOffers} from "./shore-calculator-offers.js?v=20261128-1";
+import {loadShoreOffers,selectShoreOffers} from "./shore-calculator-offers.js?v=20261128-compact1";
 import {decorateAwinAffiliateUrl} from "./awin-attribution.js?v=20261115-placement-subids1";
 import {buildAttributedAffiliateParameters} from "./affiliate-analytics.js?v=20261115-placement-events1";
 import {createVerifiedGuideImpressionTracker} from "./guide-offer-impressions.js?v=20261115-placement-events1";

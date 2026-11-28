@@ -1,5 +1,5 @@
 import {estimateShoreCharge} from "./shore-charge-estimator.js?v=20261128-1";
-import {mountShoreBuyers} from "./shore-calculator-offers-browser.js?v=20261128-1";
+import {mountShoreBuyers} from "./shore-calculator-offers-browser.js?v=20261128-compact1";
 const root=document.querySelector("[data-shore-charge-estimator]");
 if(root){
  const form=root.querySelector("form"),result=root.querySelector("[data-shore-result]"),error=root.querySelector("[data-shore-error]"),status=root.querySelector("[data-shore-status]");
