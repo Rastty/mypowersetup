@@ -11,3 +11,5 @@
 .solar-charge-estimator [hidden]{display:none!important}
 .solar-charge-estimator :focus-visible{outline:3px solid #176b4c;outline-offset:3px}
 @media(max-width:480px){.article .solar-charge-estimator{padding:16px}.solar-charge-fields{grid-template-columns:minmax(0,1fr)}.solar-charge-metrics dd{font-size:19px}}
+
+.shore-buyers{margin:18px 0;padding-top:12px;border-top:1px solid #c6d8cc}.shore-buyers h3{margin:12px 0 8px}.shore-offer-list{list-style:none;padding:0;display:grid;gap:12px}.shore-offer-list li{display:grid;gap:6px;padding:14px;border:1px solid #c6d8cc;border-radius:10px;background:white}.shore-offer-list strong{font-size:18px;color:var(--ink)}.shore-offer-list span,.shore-offer-list small{font-size:14px}.shore-offer-list .shore-offer-link{display:block;text-align:center;padding:11px 15px;min-height:44px;background:var(--forest);color:white;border-radius:8px;font-weight:750;text-decoration:none}
