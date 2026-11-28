@@ -18,13 +18,13 @@ test("solar wiring guide is an independent indexable evergreen buyer path with h
   const schemas = [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]));
   const article = schemas.find(x => x["@type"] === "Article");
   const crumbs = schemas.find(x => x["@type"] === "BreadcrumbList");
-  assert.equal(article.datePublished, "2026-11-28");
-  assert.equal(article.dateModified, "2026-11-28");
+  assert.equal(article.datePublished, "2026-11-20");
+  assert.equal(article.dateModified, "2026-11-20");
   assert.equal(article.author.name, "Petr Gálík");
   assert.equal(article.inLanguage, "cs-CZ");
   assert.equal(crumbs.itemListElement.at(-1).item, `https://mypowersetup.com${route}`);
   assert.equal((sitemap.match(/\/pruvodce\/solarni-panely-seriove-nebo-paralelne-karavan\//g) || []).length, 1);
-  assert.ok(sitemap.includes(`<loc>https://mypowersetup.com${route}</loc><lastmod>2026-11-28</lastmod>`));
+  assert.ok(sitemap.includes(`<loc>https://mypowersetup.com${route}</loc><lastmod>2026-11-20</lastmod>`));
   assert.ok(hub.includes(`href="${route}"`));
   assert.ok(neighbor.includes(`href="${route}"`), "existing solar sizing guide links back");
 });
