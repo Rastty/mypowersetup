@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-28T03:29:57.784Z",
+  "generatedAt": "2026-11-28T14:08:02.530Z",
   "market": "sl-SI",
   "currency": "EUR",
   "private": false,
@@ -140,7 +140,7 @@
       "relevantProducts": 8,
       "liveSupplements": 1,
       "liveOfferChecks": 5,
-      "liveOfferVerified": 4,
+      "liveOfferVerified": 3,
       "liveOfferRedirects": 1,
       "powerStations": 5,
       "technicallyVerifiedPowerStations": 3,
