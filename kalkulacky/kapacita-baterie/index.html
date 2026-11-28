@@ -58,7 +58,7 @@
     ]
   }
   </script>
-</head>
+<link rel="stylesheet" href="/kalkulacky/battery-offer-cards.css?v=20261128-1"></head>
 <body>
   <header class="site-header">
     <a class="brand" href="/" aria-label="MyPowerSetup – domů">MyPowerSetup</a>
@@ -109,8 +109,8 @@
             </select>
           </div>
 
-          <input type="hidden" name="season" value="summer">
-          <button class="calculator-button" type="submit">Spočítat potřebnou baterii</button>
+          <p class="calculator-help battery-input-hint">Příklady: 450 Wh/den na 1 den · 600 Wh/den na 2 dny · 900 Wh/den na 2 dny. U existující instalace vyberte její skutečné napětí.</p><input type="hidden" name="season" value="summer">
+          <button class="calculator-button" type="submit">Spočítat a zobrazit baterie</button>
         </form>
         <p class="calculator-error" data-calculator-error role="alert" hidden></p>
       </div>
@@ -131,7 +131,7 @@
           <h3 id="battery-buyer-heading">Ověřené baterie podle vypočtené kapacity</h3>
           <p class="calculator-help">Po vašem výpočtu nabídneme pouze konkrétní dostupné <strong>12V LiFePO₄</strong> baterie s čerstvým ověřením ceny, které samostatně splňují vypočtené minimum Ah. <strong>Nejde o automatické potvrzení kompatibility celé elektroinstalace.</strong></p>
           <p class="calculator-help" data-battery-offer-fallback>Ověřené nabídky se zobrazí až po vlastním výpočtu.</p>
-          <ul class="calculator-mppt-offer-list" data-battery-offer-list hidden></ul>
+          <p class="battery-offer-count" data-battery-offer-count hidden>Nabídky podle kapacity</p><ul class="calculator-mppt-offer-list" data-battery-offer-list hidden></ul><p class="calculator-help">Modelová výdrž počítá s jmenovitým systémovým napětím, 80 % využitelnosti LiFePO₄ a 15% rezervou. Nezaručuje skutečnou výdrž ani vhodnost BMS. Cena nezahrnuje případnou dopravu.</p>
           <p class="calculator-help">Před nákupem prověřte maximální vybíjecí a nabíjecí proud BMS, jištění, rozměry, teplotu, svorky a kompatibilitu s nabíječkou a měničem. Nesčítáme automaticky více baterií do paralelních ani sériových sestav. <a href="/pruvodce/lifepo4-100ah-nebo-200ah-karavan/">Srovnat 100 Ah a 200 Ah</a>.</p>
         </section>
         <div class="calculator-actions">
