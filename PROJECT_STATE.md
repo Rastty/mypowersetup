@@ -169,6 +169,10 @@ Připraveno: 2377 / 1947 / 1954 slov CZ/SK/PL orientačně včetně tabulek. Opr
 
 Připraveno: 2431 / 2235 / 2021 slov CZ/SK/PL orientačně včetně tabulek. Výpočet ideální doby 25–150 Ah, pracovní AC příkon, rozdíl W/VA a účiník, šest variant Victron IP22 podle aktuálně ověřené výrobní specifikace, šest již doložených variant Carbest/Dometic s kontrolovaným rozsahem LiFePO₄, lokální modelové příklady, souběh zdrojů, diagnostika a šest FAQ na trh. Zachované bezpečnostní limity, stávající Builder a lokální měny, canonical/hreflang, datum publikace a aktualizace sitemap. Žádné nové kampaně ani testy; pouze aktualizace očekávaného data ve stávající kontrole. Nasazení #23 zatím neověřeno.
 
+## TURBO cyklus #24 — Interaktivní výpočet síťového dobíjení CZ/SK/PL (2026-11-28)
+
+Připraveno: nad prvním výpočtem tří stávajících průvodců nový společný kalkulátor: chybějící Ah, zvolený proud, ideální čas po odečtu DC spotřeby, požadovaný proud, modelový strop s doloženým limitem BMS a souběžnými zdroji, příkon a vstupní proud s účiníkem, rezerva přípojky a první dosažitelná standardní třída. Při překročení limitu se čas nezobrazuje; žádný produkt není automaticky schválen. Ponechána lokální cesta do Builderu s výslovným upozorněním na nutnost znovu zadat parametry, protože bezpečnostní limity se nepřenášejí. Sdílený výpočet a existující responzivní CSS; žádná nová URL, kampaň nebo nové testy. Sitemap a dateModified jsou již 2026-11-28. Nasazení #24 zatím neověřeno. #23 merge potvrzen; Pages/produkční parity při začátku #24 ještě nebyly dokončené.
+
 ## BLOKACE / nezaměňovat za tržby
 
 - **GA4 návštěvnost, consented impressions/prokliky, skutečné objednávky, schválené a vyplacené provize a zisk: NEOVĚŘENO, nikoli nula.** Organická viditelnost GSC je samostatně doložena výše. Není zde validovaný výpis GA4 a affiliate financí pro MyPowerSetup.
